@@ -9,10 +9,10 @@ export default function Footer() {
           Engineering certification, at the speed of design.
         </p>
         <a
-          href="mailto:hello@invariant.ai"
+          href="mailto:founders@invariant-ai.com"
           className="font-mono text-base text-ink/60 hover:text-ink transition-colors underline underline-offset-2 decoration-ink/25 hover:decoration-ink/50"
         >
-          hello@invariant.ai
+          founders@invariant-ai.com
         </a>
       </div>
     </footer>
