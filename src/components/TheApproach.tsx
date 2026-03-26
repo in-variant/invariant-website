@@ -27,7 +27,7 @@ export default function TheApproach() {
             className="space-y-6 lg:pt-2"
           >
             <p className="body-technical">
-              The model ingests design inputs and regulatory frameworks from the start of R&amp;D — not just at the documentation phase. It reasons about which design decisions trigger which regulatory requirements, and what each deliverable must demonstrate.
+              The model ingests design inputs and regulatory frameworks from the start of R&amp;D, not just at the documentation phase. It reasons about which design decisions trigger which regulatory requirements, and what each deliverable must demonstrate.
             </p>
             <p className="body-technical">
               No hallucination tolerance. No invented citations. The standard is not "helpful." It is "defensible."

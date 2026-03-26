@@ -42,7 +42,7 @@ const FACTS: FactCard[] = [
   {
     domain: 'NUCLEAR',
     figure: '$200M+',
-    description: 'Cost to prepare and submit a full License Application for a new nuclear facility — before a single component is manufactured.',
+    description: 'Cost to prepare and submit a full License Application for a new nuclear facility, before a single component is manufactured.',
     countUp: { end: 200, suffix: 'M+', prefix: '$' },
   },
   {
@@ -60,7 +60,7 @@ const FACTS: FactCard[] = [
   {
     domain: 'NUCLEAR',
     figure: '$50M/year',
-    description: 'Carrying cost of a delayed nuclear project during a licensing hold — interest, labor, fixed overhead.',
+    description: 'Carrying cost of a delayed nuclear project during a licensing hold: interest, labor, fixed overhead.',
     countUp: { end: 50, suffix: 'M/year', prefix: '$' },
   },
   {
@@ -112,117 +112,168 @@ function CountUpNumber({ end, suffix, prefix, resetKey }: { end: number; suffix:
   )
 }
 
+const AUTO_ADVANCE_MS = 5000
+const PAUSE_AFTER_INTERACTION_MS = 8000
+
 export default function FactCards() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const sectionEndRef = useRef<HTMLDivElement>(null)
+  const isUserScrolling = useRef(false)
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const pausedUntil = useRef(0)
 
-  const handleScroll = useCallback(() => {
-    if (!containerRef.current) return
+  const updateActiveFromScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
 
-    const rect = containerRef.current.getBoundingClientRect()
-    const containerHeight = containerRef.current.offsetHeight
-    const viewportHeight = window.innerHeight
-    const scrollableDistance = containerHeight - viewportHeight
-    const scrolled = -rect.top
-
-    if (scrolled >= 0 && scrolled <= scrollableDistance) {
-      const progress = scrolled / scrollableDistance
-      const index = Math.min(
-        Math.floor(progress * FACTS.length),
-        FACTS.length - 1
-      )
-      setActiveIndex(Math.max(0, index))
-    }
+    const cardWidth = el.scrollWidth / FACTS.length
+    const index = Math.round(el.scrollLeft / cardWidth)
+    setActiveIndex(Math.max(0, Math.min(index, FACTS.length - 1)))
   }, [])
 
+  const handleScroll = useCallback(() => {
+    isUserScrolling.current = true
+    pausedUntil.current = Date.now() + PAUSE_AFTER_INTERACTION_MS
+    clearTimeout(scrollTimeout.current)
+    scrollTimeout.current = setTimeout(() => {
+      isUserScrolling.current = false
+    }, 150)
+    updateActiveFromScroll()
+  }, [updateActiveFromScroll])
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const el = scrollRef.current
+    if (!el) return
+    el.addEventListener('scroll', handleScroll, { passive: true })
+    return () => el.removeEventListener('scroll', handleScroll)
   }, [handleScroll])
 
-  const skipToNext = () => {
-    sectionEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
+  const scrollToIndex = useCallback((index: number) => {
+    const el = scrollRef.current
+    if (!el) return
+    const cardWidth = el.scrollWidth / FACTS.length
+    el.scrollTo({ left: cardWidth * index, behavior: 'smooth' })
+    setActiveIndex(index)
+  }, [])
 
   const jumpToFact = (index: number) => {
-    if (!containerRef.current) return
-    const containerTop = containerRef.current.offsetTop
-    const containerHeight = containerRef.current.offsetHeight
-    const viewportHeight = window.innerHeight
-    const scrollableDistance = containerHeight - viewportHeight
-    const targetScroll = containerTop + (index / FACTS.length) * scrollableDistance
-    window.scrollTo({ top: targetScroll, behavior: 'smooth' })
+    pausedUntil.current = Date.now() + PAUSE_AFTER_INTERACTION_MS
+    scrollToIndex(index)
   }
 
-  const fact = FACTS[activeIndex]
+  const goNext = () => {
+    pausedUntil.current = Date.now() + PAUSE_AFTER_INTERACTION_MS
+    scrollToIndex((activeIndex + 1) % FACTS.length)
+  }
+
+  const goPrev = () => {
+    pausedUntil.current = Date.now() + PAUSE_AFTER_INTERACTION_MS
+    scrollToIndex((activeIndex - 1 + FACTS.length) % FACTS.length)
+  }
+
+  const activeIndexRef = useRef(activeIndex)
+  activeIndexRef.current = activeIndex
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Date.now() < pausedUntil.current) return
+      if (isUserScrolling.current) return
+
+      const next = (activeIndexRef.current + 1) % FACTS.length
+      scrollToIndex(next)
+    }, AUTO_ADVANCE_MS)
+
+    return () => clearInterval(interval)
+  }, [scrollToIndex])
 
   return (
-    <div
-      ref={containerRef}
-      style={{ height: `${(FACTS.length + 1) * 60}vh` }}
-      className="relative"
-    >
-      <div className="sticky top-0 h-screen flex items-center px-6 md:px-12 lg:px-24 xl:px-32">
-        <div className="w-full relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              <p className="font-mono text-sm md:text-base tracking-[0.3em] uppercase text-ink font-medium mb-4 md:mb-6">
-                {fact.domain}
-              </p>
-              <p
-                className="font-serif font-medium tracking-[-0.04em] text-ink leading-[0.9] mb-6 md:mb-8"
-                style={{ fontSize: 'clamp(4rem, 15vw, 14rem)' }}
-              >
-                <CountUpNumber
-                  end={fact.countUp.end}
-                  suffix={fact.countUp.suffix}
-                  prefix={fact.countUp.prefix}
-                  resetKey={activeIndex}
-                />
-              </p>
-              <p className="font-mono text-sm md:text-base leading-relaxed text-ink/60 max-w-lg">
-                {fact.description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="absolute bottom-[-4rem] left-0 flex items-center gap-4">
-            <div className="flex gap-1.5">
-              {FACTS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => jumpToFact(i)}
-                  className={`w-6 h-1 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === activeIndex ? 'bg-ink' : 'bg-ink/15 hover:bg-ink/30'
-                  }`}
-                />
-              ))}
+    <div className="relative">
+      {/* Scrollable card strip */}
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {FACTS.map((f, i) => (
+          <div
+            key={i}
+            className="snap-center flex-shrink-0 w-full px-6 md:px-12 lg:px-24 xl:px-32"
+          >
+            <div className="py-16 md:py-24">
+              <AnimatePresence mode="wait">
+                {activeIndex === i && (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    <p className="font-mono text-sm md:text-base tracking-[0.3em] uppercase text-ink font-medium mb-4 md:mb-6">
+                      {f.domain}
+                    </p>
+                    <p
+                      className="font-serif font-medium tracking-[-0.04em] text-ink leading-[0.9] mb-6 md:mb-8"
+                      style={{ fontSize: 'clamp(3.5rem, 12vw, 10rem)' }}
+                    >
+                      <CountUpNumber
+                        end={f.countUp.end}
+                        suffix={f.countUp.suffix}
+                        prefix={f.countUp.prefix}
+                        resetKey={i}
+                      />
+                    </p>
+                    <p className="font-mono text-sm md:text-base leading-relaxed text-ink/60 max-w-lg">
+                      {f.description}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-
-            <span className="font-mono text-xs text-ink/40 tabular-nums">
-              {activeIndex + 1}/{FACTS.length}
-            </span>
-
-            <button
-              onClick={skipToNext}
-              className="font-mono text-sm text-ink/50 hover:text-ink transition-colors flex items-center gap-1.5 ml-2"
-            >
-              Skip
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="mt-px">
-                <path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
           </div>
-        </div>
+        ))}
       </div>
-      <div ref={sectionEndRef} className="absolute bottom-0" />
+
+      {/* Navigation controls */}
+      <div className="px-6 md:px-12 lg:px-24 xl:px-32 pb-8 flex items-center gap-4">
+        <button
+          onClick={goPrev}
+          disabled={activeIndex === 0}
+          className="font-mono text-sm text-ink/50 hover:text-ink disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          aria-label="Previous fact"
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <div className="flex gap-1.5">
+          {FACTS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => jumpToFact(i)}
+              className={`w-6 h-1 rounded-full transition-all duration-300 cursor-pointer ${
+                i === activeIndex ? 'bg-ink' : 'bg-ink/15 hover:bg-ink/30'
+              }`}
+            />
+          ))}
+        </div>
+
+        <span className="font-mono text-xs text-ink/40 tabular-nums">
+          {activeIndex + 1}/{FACTS.length}
+        </span>
+
+        <button
+          onClick={goNext}
+          disabled={activeIndex === FACTS.length - 1}
+          className="font-mono text-sm text-ink/50 hover:text-ink disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          aria-label="Next fact"
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   )
 }

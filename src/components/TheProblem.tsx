@@ -30,7 +30,7 @@ export default function TheProblem() {
           className="max-w-2xl"
         >
           <p className="body-technical">
-            Regulations don't just gate the final approval — they shape design decisions, constrain material choices, and dictate testing protocols from day one. Yet the tools engineers use to navigate this complexity haven't changed in decades: manual cross-referencing, tribal knowledge, and consultants who take years to train.
+            Regulations don't just gate the final approval. They shape design decisions, constrain material choices, and dictate testing protocols from day one. Yet the tools engineers use to navigate this complexity haven't changed in decades: manual cross-referencing, tribal knowledge, and consultants who take years to train.
           </p>
         </motion.div>
       </div>

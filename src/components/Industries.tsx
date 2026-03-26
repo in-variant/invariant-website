@@ -30,7 +30,7 @@ const INDUSTRIES: Industry[] = [
       { label: 'DGCA Type Cert', assisted: true, detail: 'Full type certificate application authored with traceability to every design input and test result.' },
       { label: 'Fleet Deployment', detail: 'Certified fleet enters commercial operation.' },
     ],
-    description: 'From prototype airworthiness to DGCA type certification — our models train on the regulations your drone must satisfy.',
+    description: 'From prototype airworthiness to DGCA type certification, our models train on the regulations your drone must satisfy.',
   },
   {
     id: 'nuclear',
@@ -42,10 +42,10 @@ const INDUSTRIES: Industry[] = [
       { label: 'Preliminary Design', assisted: true, detail: 'Design basis documentation aligned with NRC acceptance criteria from first principles.' },
       { label: 'Safety Analysis', assisted: true, detail: 'Chapter-by-chapter PSAR content grounded in deterministic and probabilistic methods.' },
       { label: 'Topical Reports', assisted: true, detail: 'Standalone technical reports addressing specific regulatory questions with full citation chains.' },
-      { label: 'NRC License App', assisted: true, detail: 'Complete license application assembled from verified components — review-ready on submission.' },
+      { label: 'NRC License App', assisted: true, detail: 'Complete license application assembled from verified components, review-ready on submission.' },
       { label: 'Construction', detail: 'Licensed facility enters the construction phase.' },
     ],
-    description: 'From site selection through topical reports to the full license application — regulatory understanding from day one.',
+    description: 'From site selection through topical reports to the full license application. Regulatory understanding from day one.',
   },
   {
     id: 'maritime',
@@ -59,7 +59,7 @@ const INDUSTRIES: Industry[] = [
       { label: 'Flag State Review', assisted: true, detail: 'Flag state compliance documentation prepared for the specific jurisdiction of registration.' },
       { label: 'Commissioning', detail: 'Approved vessel enters service.' },
     ],
-    description: 'From class society approval to flag state certification — trained on IMO, DNV, and maritime safety frameworks.',
+    description: 'From class society approval to flag state certification. Trained on IMO, DNV, and maritime safety frameworks.',
   },
   {
     id: 'aerospace',
@@ -70,10 +70,10 @@ const INDUSTRIES: Industry[] = [
       { label: 'System Design', assisted: true, detail: 'Architecture decisions informed by certification requirements under DO-178C and DO-254.' },
       { label: 'DO-178C / DO-254', assisted: true, detail: 'Software and hardware assurance artifacts generated with full traceability to design inputs.' },
       { label: 'Safety Case', assisted: true, detail: 'System safety assessment structured for DER review with complete hazard analysis chains.' },
-      { label: 'FAA / EASA Cert', assisted: true, detail: 'Type certificate application compiled from verified assurance artifacts — submission-ready.' },
+      { label: 'FAA / EASA Cert', assisted: true, detail: 'Type certificate application compiled from verified assurance artifacts, submission-ready.' },
       { label: 'Production', detail: 'Certified system enters manufacturing.' },
     ],
-    description: 'From system design through DO-178C compliance to airworthiness certification — regulatory fluency at every gate.',
+    description: 'From system design through DO-178C compliance to airworthiness certification. Regulatory fluency at every gate.',
   },
 ]
 
@@ -189,7 +189,7 @@ export default function Industries() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="body-technical max-w-2xl mb-14"
         >
-          Invariant's models are trained on domain-specific regulations. They don't just write documentation at the end — they assist your team from early design through final certification.
+          Invariant's models are trained on domain-specific regulations. They don't just write documentation at the end. They assist your team from early design through final certification.
         </motion.p>
 
         <motion.div

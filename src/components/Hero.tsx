@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const REGULATORY_PROSE = `Section 4.2.1 — The applicant shall demonstrate, through deterministic and probabilistic analysis, that the proposed design meets the acceptance criteria of 10 CFR 50.46 for emergency core cooling system performance under all postulated loss-of-coolant accident scenarios, including documentation of all assumptions, boundary conditions, and analytical methods employed...`
+const REGULATORY_PROSE = `Section 4.2.1: The applicant shall demonstrate, through deterministic and probabilistic analysis, that the proposed design meets the acceptance criteria of 10 CFR 50.46 for emergency core cooling system performance under all postulated loss-of-coolant accident scenarios, including documentation of all assumptions, boundary conditions, and analytical methods employed...`
 
 const CHARS_TO_TYPE = 220
 
@@ -11,15 +11,17 @@ const REGULATORY_SOURCES = [
   'DGCA CAR',
   'IMO SOLAS',
   'NRC SRP',
+  'Other',
 ]
 
 const TEAM_OUTPUTS = [
   { label: 'Engineering Teams', color: '#2A9D8F' },
   { label: 'Licensing Consultants', color: '#3A7CA5' },
   { label: 'Program Leadership', color: '#5C6370' },
+  { label: 'Your Team', color: '#9CA3AF' },
 ]
 
-const SOURCE_COLORS = ['#C4820E', '#2A9D8F', '#3A7CA5', '#5C6370', '#8B5CF6']
+const SOURCE_COLORS = ['#C4820E', '#2A9D8F', '#3A7CA5', '#5C6370', '#8B5CF6', '#9CA3AF']
 
 function ModelStackDiagram() {
   return (
@@ -31,57 +33,67 @@ function ModelStackDiagram() {
     >
       <div className="w-full max-w-[380px] flex flex-col items-center">
 
-        {/* Teams working with the model */}
+        {/* Regulatory sources at the top */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.0, duration: 0.6 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
           className="w-full mb-5"
         >
           <p className="font-mono text-sm tracking-[0.2em] uppercase text-ink/60 mb-3 text-center">
-            Teams
+            Regulatory Sources
           </p>
-          <div className="flex justify-center gap-3">
-            {TEAM_OUTPUTS.map((team, i) => (
-              <motion.div
-                key={team.label}
-                initial={{ opacity: 0, y: -8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.2 + i * 0.12, duration: 0.4 }}
-                className="flex-1 rounded px-3 py-3 text-center border"
+          <div className="flex flex-wrap justify-center gap-2">
+            {REGULATORY_SOURCES.map((source, i) => (
+              <motion.span
+                key={source}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 + i * 0.1, duration: 0.4 }}
+                className="font-mono text-sm px-3 py-1.5 rounded font-medium"
                 style={{
-                  borderColor: `${team.color}45`,
-                  backgroundColor: `${team.color}10`,
+                  borderWidth: 1,
+                  borderColor: `${SOURCE_COLORS[i]}50`,
+                  backgroundColor: `${SOURCE_COLORS[i]}12`,
+                  color: SOURCE_COLORS[i],
                 }}
               >
-                <span
-                  className="block text-base mb-1"
-                  style={{ color: team.color }}
-                >◇</span>
-                <span className="font-mono text-xs leading-tight text-ink/75 block">
-                  {team.label}
-                </span>
-              </motion.div>
+                {source}
+              </motion.span>
             ))}
           </div>
         </motion.div>
 
-        {/* Upward arrows from model to teams */}
+        {/* Downward arrows from sources to training divider */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 0.5 }}
-          className="flex justify-center gap-8 mb-5"
+          transition={{ delay: 0.9, duration: 0.5 }}
+          className="flex justify-center gap-10 mb-5"
         >
-          {TEAM_OUTPUTS.map((team, i) => (
-            <svg key={i} width="14" height="22" viewBox="0 0 14 22" style={{ color: `${team.color}80` }}>
-              <line x1="7" y1="20" x2="7" y2="5" stroke="currentColor" strokeWidth="1.5" />
-              <polyline points="2,9 7,2 12,9" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          {[0, 1].map((i) => (
+            <svg key={i} width="14" height="22" viewBox="0 0 14 22" style={{ color: '#C4820E80' }}>
+              <line x1="7" y1="2" x2="7" y2="17" stroke="currentColor" strokeWidth="1.5" />
+              <polyline points="2,13 7,20 12,13" stroke="currentColor" strokeWidth="1.5" fill="none" />
             </svg>
           ))}
         </motion.div>
 
-        {/* The model — central element */}
+        {/* Training divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 1.0, duration: 0.6, ease: 'easeOut' }}
+          className="w-full mb-5 origin-center flex items-center gap-3"
+        >
+          <div className="flex-1 h-px" style={{ backgroundColor: '#C4820E50' }} />
+          <span className="font-mono text-xs tracking-[0.15em] uppercase font-medium" style={{ color: '#C4820E' }}>
+            Training
+          </span>
+          <div className="flex-1 h-px" style={{ backgroundColor: '#C4820E50' }} />
+        </motion.div>
+
+        {/* The model, central element */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -113,62 +125,52 @@ function ModelStackDiagram() {
           </div>
         </motion.div>
 
-        {/* Horizontal divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 1.0, duration: 0.6, ease: 'easeOut' }}
-          className="w-full mb-5 origin-center flex items-center gap-3"
-        >
-          <div className="flex-1 h-px" style={{ backgroundColor: '#C4820E50' }} />
-          <span className="font-mono text-xs tracking-[0.15em] uppercase font-medium" style={{ color: '#C4820E' }}>
-            Training
-          </span>
-          <div className="flex-1 h-px" style={{ backgroundColor: '#C4820E50' }} />
-        </motion.div>
-
-        {/* Upward arrows from documents to model */}
+        {/* Downward arrows from model to teams */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
+          transition={{ delay: 1.8, duration: 0.5 }}
           className="flex justify-center gap-10 mb-5"
         >
           {[0, 1].map((i) => (
-            <svg key={i} width="14" height="22" viewBox="0 0 14 22" style={{ color: '#C4820E80' }}>
-              <line x1="7" y1="20" x2="7" y2="5" stroke="currentColor" strokeWidth="1.5" />
-              <polyline points="2,9 7,2 12,9" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            <svg key={i} width="14" height="22" viewBox="0 0 14 22" style={{ color: '#5C637080' }}>
+              <line x1="7" y1="2" x2="7" y2="17" stroke="currentColor" strokeWidth="1.5" />
+              <polyline points="2,13 7,20 12,13" stroke="currentColor" strokeWidth="1.5" fill="none" />
             </svg>
           ))}
         </motion.div>
 
-        {/* Regulatory documents feeding in */}
+        {/* Teams at the bottom, 2x2 grid */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          transition={{ delay: 2.0, duration: 0.6 }}
           className="w-full"
         >
           <p className="font-mono text-sm tracking-[0.2em] uppercase text-ink/60 mb-3 text-center">
-            Regulatory Sources
+            Teams
           </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {REGULATORY_SOURCES.map((source, i) => (
-              <motion.span
-                key={source}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 + i * 0.1, duration: 0.4 }}
-                className="font-mono text-sm px-3 py-1.5 rounded font-medium"
+          <div className="grid grid-cols-2 gap-3">
+            {TEAM_OUTPUTS.map((team, i) => (
+              <motion.div
+                key={team.label}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.2 + i * 0.12, duration: 0.4 }}
+                className="rounded px-3 py-3 text-center border"
                 style={{
-                  borderWidth: 1,
-                  borderColor: `${SOURCE_COLORS[i]}50`,
-                  backgroundColor: `${SOURCE_COLORS[i]}12`,
-                  color: SOURCE_COLORS[i],
+                  borderColor: `${team.color}45`,
+                  backgroundColor: `${team.color}10`,
                 }}
               >
-                {source}
-              </motion.span>
+                <span
+                  className="block text-base mb-1"
+                  style={{ color: team.color }}
+                >&#9671;</span>
+                <span className="font-mono text-xs leading-tight text-ink/75 block">
+                  {team.label}
+                </span>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -265,7 +267,7 @@ export default function Hero() {
             </p>
 
             <p className="body-technical max-w-xl mb-12">
-              Invariant builds language models trained on engineering regulations — AI that works alongside your team from early R&amp;D through certification.
+              Invariant builds language models trained on engineering regulations. AI that works alongside your team from early R&amp;D through certification.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 max-w-md">

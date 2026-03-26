@@ -6,6 +6,7 @@ import Partners from './pages/Partners'
 import Contact from './pages/Contact'
 import Blog from './pages/Blog'
 import Part100vsPart53 from './pages/blog/Part100vsPart53'
+import Prototype from './pages/Prototype'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/part100-vs-part53-siting" element={<Part100vsPart53 />} />
+          <Route path="/prototype" element={<Prototype />} />
         </Route>
       </Routes>
     </BrowserRouter>
