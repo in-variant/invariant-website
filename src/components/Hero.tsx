@@ -220,7 +220,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-2 px-4 py-2 border border-ink/15 rounded-full mb-6">
             <span className="font-mono text-sm text-ink/70">Backed by</span>
             <a href="https://www.joinef.com" target="_blank" rel="noopener noreferrer" className="font-mono text-sm font-medium text-ink hover:text-ink/70 transition-colors">
-              Entrepreneur First
+              Entrepreneurs First
             </a>
           </div>
 
