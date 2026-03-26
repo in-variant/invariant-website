@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Partners from './pages/Partners'
 import Contact from './pages/Contact'
+import Blog from './pages/Blog'
+import Part100vsPart53 from './pages/blog/Part100vsPart53'
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/partners" element={<Partners />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/part100-vs-part53-siting" element={<Part100vsPart53 />} />
         </Route>
       </Routes>
     </BrowserRouter>
