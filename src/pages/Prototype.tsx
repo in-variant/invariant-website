@@ -374,10 +374,11 @@ function EditorPanel() {
 
 function ChatPanel() {
   const [input, setInput] = useState('')
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const chatScrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const el = chatScrollRef.current
+    if (el) el.scrollTop = el.scrollHeight
   }, [])
 
   return (
@@ -390,7 +391,7 @@ function ChatPanel() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3">
+      <div ref={chatScrollRef} className="flex-1 overflow-y-auto px-3 py-3 space-y-3">
         {CHAT_MESSAGES.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[90%] rounded-lg px-3 py-2 text-xs leading-relaxed ${
@@ -408,7 +409,6 @@ function ChatPanel() {
             </div>
           </div>
         ))}
-        <div ref={messagesEndRef} />
       </div>
 
       <div className="px-3 py-2.5 border-t border-gray-200">
