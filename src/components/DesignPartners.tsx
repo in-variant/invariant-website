@@ -8,14 +8,14 @@ const PARTNERS = [
     description: 'Nuclear technical services and licensing consulting',
     url: 'https://intomes.com',
     urlLabel: 'intomes.com',
-    logo: '/logos/intomes.png',
+    logo: `${import.meta.env.BASE_URL}logos/intomes.png`,
   },
   {
     name: 'Leher',
     description: 'Agricultural drone manufacturer navigating regulatory certification',
     url: 'https://leher.ag',
     urlLabel: 'leher.ag',
-    logo: '/logos/leher.jpeg',
+    logo: `${import.meta.env.BASE_URL}logos/leher.jpeg`,
   },
 ]
 

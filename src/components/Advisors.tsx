@@ -6,12 +6,12 @@ const ADVISORS = [
   {
     name: 'Charles Keller',
     description: 'Nuclear licensing and advanced reactor deployment',
-    photo: '/advisors/charles-keller.jpg',
+    photo: `${import.meta.env.BASE_URL}advisors/charles-keller.jpg`,
   },
   {
     name: 'Vivin Rana',
     description: 'Co-Founder @ Leher | Building Drone Spraying Intelligence',
-    photo: '/advisors/vivin-rana.jpg',
+    photo: `${import.meta.env.BASE_URL}advisors/vivin-rana.jpg`,
   },
 ]
 
