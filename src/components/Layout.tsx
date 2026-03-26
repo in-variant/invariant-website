@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom'
-import Nav from './Nav'
-import Footer from './Footer'
+import { Header } from '@/components/ui/header-3'
+import { Footer } from '@/components/ui/footer'
 
 export default function Layout() {
   return (
     <div className="paper-grain min-h-screen flex flex-col">
-      <Nav />
+      <Header />
       <main className="flex-1">
         <Outlet />
       </main>

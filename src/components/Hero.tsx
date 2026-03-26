@@ -277,7 +277,7 @@ export default function Hero() {
                 className="flex-1 px-4 py-3 font-mono text-base bg-transparent border border-ink/15 text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink/40 transition-colors"
               />
               <a
-                href={`mailto:hello@invariant.ai?subject=Early Access Request&body=I'd like to request early access to Invariant.`}
+                href={`mailto:founders@invariant-ai.com?subject=Early Access Request&body=I'd like to request early access to Invariant.`}
                 className="px-6 py-3 bg-ink text-white font-mono text-base tracking-wide hover:bg-ink/85 transition-colors text-center whitespace-nowrap"
               >
                 Request early access
