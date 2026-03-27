@@ -7,11 +7,13 @@ import Contact from './pages/Contact'
 import Blog from './pages/Blog'
 import Part100vsPart53 from './pages/blog/Part100vsPart53'
 import Prototype from './pages/Prototype'
+import Deck from './pages/Deck'
 
 export default function App() {
   return (
     <BrowserRouter basename="/">
       <Routes>
+        <Route path="/deck" element={<Deck />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
