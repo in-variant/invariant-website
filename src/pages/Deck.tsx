@@ -651,6 +651,22 @@ export default function Deck() {
         </motion.div>
       </AnimatePresence>
 
+      {/* First-slide hint: visible right-side button */}
+      {current === 0 && (
+        <button
+          onClick={next}
+          aria-label="Next slide"
+          className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 border border-white/40 rounded-full hover:border-white/80 hover:bg-white/10 transition-all group"
+        >
+          <span className="font-mono text-xs tracking-[0.15em] uppercase text-white/80 group-hover:text-white transition-colors">
+            Begin
+          </span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-white/80 group-hover:text-white transition-colors">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      )}
+
       {/* Bottom navigation bar */}
       <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4">
         <div className="flex items-center gap-3">
