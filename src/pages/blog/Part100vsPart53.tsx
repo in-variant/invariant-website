@@ -672,12 +672,9 @@ export default function Part100vsPart53() {
               AI-assisted analysis. May contain errors; verify against original regulatory text.
             </p>
             <p className="font-sans text-sm text-ink/50 leading-relaxed text-center">
-              This analysis was prepared using the actual text of 10 CFR Part 100
-              (current as of March 24, 2026) and 10 CFR Part 53 Subpart D
-              (§§53.500-53.540) as published in the final rule (ADAMS Accession No.
-              ML26084A489, effective March 25, 2026). It is intended as a technical
-              reference for licensing professionals and does not constitute legal
-              advice.
+              Prepared from 10 CFR Part 100 (current as of March 24, 2026) and Part 53 Subpart D
+              (ML26084A489, published March 25, 2026). Part 53 takes effect April 29, 2026, 30 days
+              after Federal Register publication on March 30, 2026. Not legal advice.
             </p>
           </div>
         </div>
