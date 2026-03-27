@@ -8,21 +8,13 @@ interface Slide {
   render: () => React.ReactNode
 }
 
-function SlideShell({
-  children,
-  dark,
-  align = 'center',
-}: {
-  children: React.ReactNode
-  dark?: boolean
-  /** `start` keeps tall slides (e.g. training flow) scrollable from the top */
-  align?: 'center' | 'start'
-}) {
+function SlideShell({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
   return (
     <div
-      className={`w-full h-full min-h-0 flex flex-col px-12 md:px-20 lg:px-32 xl:px-40 py-16 ${
-        align === 'start' ? 'justify-start' : 'justify-center'
-      } ${dark ? 'bg-ink text-white' : 'bg-white text-ink'}`}
+      className={`w-full h-full min-h-0 overflow-y-auto overscroll-contain flex flex-col
+        px-5 sm:px-10 md:px-20 lg:px-32 xl:px-40
+        pt-8 pb-20 sm:pt-10 sm:pb-20 md:pt-14 md:pb-20 lg:pt-16 lg:pb-16
+        ${dark ? 'bg-ink text-white' : 'bg-white text-ink'}`}
     >
       {children}
     </div>
@@ -128,96 +120,147 @@ const PIPELINE_STAGES: PipelineStage[] = [
   },
 ]
 
-function TrainingFlowDiagram() {
+function StageCard({
+  stage,
+  stepIndex,
+}: {
+  stage: PipelineStage
+  stepIndex: number
+}) {
   return (
-    <div className="w-full flex items-stretch gap-0 select-none">
-      {PIPELINE_STAGES.map((stage, i) => (
-        <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
-          {/* Card */}
-          <div
-            className="flex-1 rounded-lg border flex flex-col px-3 py-4 md:px-4 md:py-5 gap-3 min-w-0"
-            style={{
-              borderColor: `${stage.color}${stage.highlight ? '70' : '35'}`,
-              backgroundColor: `${stage.color}${stage.highlight ? '10' : '07'}`,
-            }}
+    <div
+      className="h-full rounded-lg border flex flex-col px-3 py-3.5 md:px-4 md:py-4 gap-2.5 min-w-0"
+      style={{
+        borderColor: `${stage.color}${stage.highlight ? '70' : '35'}`,
+        backgroundColor: `${stage.color}${stage.highlight ? '10' : '07'}`,
+      }}
+    >
+      {/* Divider-rail header */}
+      <div className="flex items-center gap-1.5 min-w-0">
+        <div className="h-px flex-1 min-w-0" style={{ backgroundColor: `${stage.color}45` }} />
+        <span
+          className="font-mono text-[8px] md:text-[10px] tracking-[0.18em] uppercase font-medium shrink-0 leading-none text-center"
+          style={{ color: stage.color }}
+        >
+          <span className="text-ink/30 mr-1 tabular-nums">{String(stepIndex).padStart(2, '0')}</span>
+          {stage.label}
+        </span>
+        <div className="h-px flex-1 min-w-0" style={{ backgroundColor: `${stage.color}45` }} />
+      </div>
+
+      <p className="font-mono text-[10px] md:text-[11px] leading-relaxed text-ink/60 flex-1 min-w-0">
+        {stage.body}
+      </p>
+
+      <div className="flex flex-wrap gap-1 mt-auto">
+        {stage.tags.map((tag) => (
+          <span
+            key={tag}
+            className="font-mono text-[8px] md:text-[9px] tracking-wide uppercase px-1.5 py-0.5 rounded-sm font-medium"
+            style={{ backgroundColor: `${stage.color}20`, color: stage.color }}
           >
-            {/* Divider-rail header — same visual language as Hero */}
-            <div className="flex items-center gap-2 min-w-0">
-              <div className="h-px flex-1 min-w-0" style={{ backgroundColor: `${stage.color}45` }} />
-              <span
-                className="font-mono text-[9px] md:text-[10px] tracking-[0.2em] uppercase font-medium shrink-0 leading-none text-center"
-                style={{ color: stage.color }}
-              >
-                {stage.label}
-              </span>
-              <div className="h-px flex-1 min-w-0" style={{ backgroundColor: `${stage.color}45` }} />
-            </div>
-
-            <p className="font-mono text-[10px] md:text-xs leading-relaxed text-ink/65 flex-1 min-w-0">
-              {stage.body}
-            </p>
-
-            <div className="flex flex-wrap gap-1 mt-auto">
-              {stage.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[9px] md:text-[10px] tracking-wide uppercase px-1.5 md:px-2 py-0.5 rounded-sm font-medium"
-                  style={{ backgroundColor: `${stage.color}20`, color: stage.color }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Right-pointing arrow between stages */}
-          {i < PIPELINE_STAGES.length - 1 && (
-            <div className="flex items-center justify-center w-5 md:w-6 shrink-0">
-              <svg
-                width="18"
-                height="14"
-                viewBox="0 0 18 14"
-                style={{ color: `${stage.color}55` }}
-                aria-hidden
-              >
-                <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <polyline
-                  points="9,2 16,7 9,12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          )}
-        </div>
-      ))}
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   )
 }
+
+function RightArrow({ color }: { color: string }) {
+  return (
+    <div className="flex items-center justify-center w-5 md:w-6 shrink-0 self-center">
+      <svg width="18" height="14" viewBox="0 0 18 14" style={{ color: `${color}55` }} aria-hidden>
+        <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <polyline points="9,2 16,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  )
+}
+
+function TrainingFlowDiagram() {
+  const first = PIPELINE_STAGES.slice(0, 3)
+  const second = PIPELINE_STAGES.slice(3, 6)
+
+  return (
+    <div className="w-full select-none">
+
+      {/* ── Mobile (< 640px): 2-col grid, step numbers show order ── */}
+      <div className="grid grid-cols-2 gap-2.5 sm:hidden">
+        {PIPELINE_STAGES.map((stage, i) => (
+          <StageCard key={stage.label} stage={stage} stepIndex={i + 1} />
+        ))}
+      </div>
+
+      {/* ── Tablet (640 – 1023px): 3+3 rows with arrows + wrap indicator ── */}
+      <div className="hidden sm:block lg:hidden space-y-3">
+        <div className="flex items-stretch gap-0">
+          {first.map((stage, i) => (
+            <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
+              <div className="flex-1 min-w-0">
+                <StageCard stage={stage} stepIndex={i + 1} />
+              </div>
+              {i < 2 && <RightArrow color={stage.color} />}
+            </div>
+          ))}
+        </div>
+        {/* wrap connector */}
+        <div className="flex items-center gap-3 px-1">
+          <div className="flex-1 h-px bg-ink/10" />
+          <svg width="28" height="18" viewBox="0 0 28 18" className="text-ink/20 shrink-0" aria-hidden>
+            <path d="M2 4 Q2 14 12 14 L22 14 M18 10l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <div className="flex-1 h-px bg-ink/10" />
+        </div>
+        <div className="flex items-stretch gap-0">
+          {second.map((stage, i) => (
+            <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
+              <div className="flex-1 min-w-0">
+                <StageCard stage={stage} stepIndex={i + 4} />
+              </div>
+              {i < 2 && <RightArrow color={stage.color} />}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Desktop (1024px+): full horizontal row ── */}
+      <div className="hidden lg:flex items-stretch gap-0">
+        {PIPELINE_STAGES.map((stage, i) => (
+          <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
+            <div className="flex-1 min-w-0">
+              <StageCard stage={stage} stepIndex={i + 1} />
+            </div>
+            {i < PIPELINE_STAGES.length - 1 && <RightArrow color={stage.color} />}
+          </div>
+        ))}
+      </div>
+
+    </div>
+  )
+}
+
 
 const slides: Slide[] = [
   {
     id: 'title',
     render: () => (
       <SlideShell dark>
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between flex-1">
           <div>
-            <p className="font-mono text-sm tracking-[0.25em] uppercase text-white/40 mb-4">
+            <p className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-white/40 mb-4">
               Confidential
             </p>
           </div>
           <div>
-            <h1 className="font-serif text-6xl md:text-8xl lg:text-[9rem] font-medium tracking-[-0.04em] text-white mb-8">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-medium tracking-[-0.04em] text-white mb-5 md:mb-8">
               Invariant
             </h1>
-            <p className="font-serif text-2xl md:text-3xl lg:text-4xl text-white/70 leading-tight tracking-[-0.02em] max-w-2xl">
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/70 leading-tight tracking-[-0.02em] max-w-2xl">
               Engineering certification,<br />at the speed of design.
             </p>
           </div>
-          <div className="flex items-center gap-6 mt-auto pt-16">
+          <div className="flex items-center gap-6 mt-auto pt-8 md:pt-16">
             <span className="font-mono text-sm text-white/40">Backed by</span>
             <span className="font-mono text-sm text-white/60 font-medium">Entrepreneurs First</span>
           </div>
@@ -230,13 +273,13 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>The Problem</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-10 max-w-4xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5 sm:mb-7 lg:mb-10 max-w-4xl">
           Regulation touches every phase of engineering. The tools haven't kept up.
         </h2>
-        <p className="body-technical max-w-2xl mb-16">
+        <p className="body-technical max-w-2xl mb-6 sm:mb-10 lg:mb-16 text-sm sm:text-base">
           Regulations don't just gate the final approval. They shape design decisions, constrain material choices, and dictate testing protocols from day one. Yet the tools engineers use to navigate this complexity haven't changed in decades.
         </p>
-        <p className="font-serif text-xl md:text-2xl text-ink/60 italic max-w-2xl">
+        <p className="font-serif text-lg sm:text-xl md:text-2xl text-ink/60 italic max-w-2xl">
           The documentation is not the afterthought. It is the program.
         </p>
       </SlideShell>
@@ -247,16 +290,16 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>The Cost of the Status Quo</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-16 max-w-3xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-3xl">
           Billions lost to documentation rework and licensing delays.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-7 sm:gap-y-10 md:gap-y-12 max-w-4xl">
           {COST_FACTS.map((fact) => (
             <div key={fact.figure}>
-              <p className="font-serif text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-3">
+              <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-2 md:mb-3">
                 {fact.figure}
               </p>
-              <p className="font-mono text-sm md:text-base leading-relaxed text-ink/60">
+              <p className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/60">
                 {fact.label}
               </p>
             </div>
@@ -270,17 +313,17 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell dark>
         <SlideLabel dark>The Solution</SlideLabel>
-        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] tracking-[-0.02em] text-white mb-10 max-w-4xl">
+        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] tracking-[-0.02em] text-white mb-5 sm:mb-7 lg:mb-10 max-w-4xl">
           Language models trained on engineering regulations.
         </h2>
-        <p className="font-mono text-base md:text-lg leading-relaxed text-white/60 max-w-2xl mb-16" style={{ fontWeight: 350 }}>
+        <p className="font-mono text-sm sm:text-base md:text-lg leading-relaxed text-white/60 max-w-2xl mb-6 sm:mb-10 lg:mb-16" style={{ fontWeight: 350 }}>
           Invariant builds domain-specific AI that works alongside your team from early R&D through certification. Not a summarizer — an author.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-3 sm:gap-4">
           {['Learning', 'Reasoning', 'Authoring'].map((cap) => (
             <span
               key={cap}
-              className="font-mono text-sm tracking-[0.15em] uppercase px-5 py-2.5 rounded border border-white/20 text-white/80"
+              className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase px-4 sm:px-5 py-2 sm:py-2.5 rounded border border-white/20 text-white/80"
             >
               {cap}
             </span>
@@ -294,11 +337,11 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>How We Train</SlideLabel>
-        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-10">
-          <h2 className="heading-editorial text-3xl md:text-4xl lg:text-5xl max-w-xl">
-            From corpus to production —<br className="hidden md:block" /> one accountable pipeline.
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4 mb-6 md:mb-8 lg:mb-10">
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-xl">
+            From corpus to production — one accountable pipeline.
           </h2>
-          <p className="font-mono text-xs md:text-sm text-ink/45 max-w-xs shrink-0 leading-relaxed">
+          <p className="font-mono text-xs text-ink/45 max-w-xs shrink-0 leading-relaxed hidden sm:block">
             Sources flow in, experts shape the signal,<br />the model trains with citation discipline.
           </p>
         </div>
@@ -311,34 +354,34 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>Prototype</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-8 max-w-4xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5 sm:mb-7 lg:mb-8 max-w-4xl">
           A certification workspace, not a chat window.
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 max-w-5xl items-start">
-          <div className="space-y-6">
-            <p className="body-technical">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-20 max-w-5xl items-start">
+          <div className="space-y-4 sm:space-y-6">
+            <p className="body-technical text-sm sm:text-base">
               The live prototype mirrors how licensing teams actually work: structured chapters aligned to NUREG-style
               expectations, an editor with traceable regulatory references, and a copilot that answers from your uploaded
               corpus — not from memory.
             </p>
-            <p className="body-technical">
+            <p className="body-technical text-sm sm:text-base">
               Inline review threads, chapter status, and file trees tie design basis documents to the narrative under
               construction. The goal is review-ready output, not a one-off summary.
             </p>
           </div>
-          <div className="rounded-lg border border-ink/12 bg-ink/[0.02] p-6 md:p-8 space-y-6">
+          <div className="rounded-lg border border-ink/12 bg-ink/[0.02] p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
             <div>
               <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 mb-3">In the demo</h3>
-              <ul className="font-mono text-sm md:text-base leading-relaxed text-ink/70 space-y-3 list-none">
-                <li className="pl-4 border-l-2 border-ink/15">PSAR-style chapter shell with progress and status</li>
-                <li className="pl-4 border-l-2 border-ink/15">Rich-text section drafting with inline comments</li>
-                <li className="pl-4 border-l-2 border-ink/15">Copilot grounded in CFR / NUREG uploads</li>
-                <li className="pl-4 border-l-2 border-ink/15">Design-basis file tree and citation-first responses</li>
+              <ul className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/70 space-y-2.5 sm:space-y-3 list-none">
+                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">PSAR-style chapter shell with progress and status</li>
+                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">Rich-text section drafting with inline comments</li>
+                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">Copilot grounded in CFR / NUREG uploads</li>
+                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">Design-basis file tree and citation-first responses</li>
               </ul>
             </div>
             <a
               href="/prototype"
-              className="inline-flex items-center gap-2 font-mono text-sm tracking-wide text-ink border border-ink/20 px-5 py-3 rounded hover:bg-ink/[0.04] transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wide text-ink border border-ink/20 px-4 sm:px-5 py-2.5 sm:py-3 rounded hover:bg-ink/[0.04] transition-colors"
             >
               Open interactive prototype
               <span aria-hidden>→</span>
@@ -353,16 +396,16 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>Capabilities</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-16 max-w-3xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-3xl">
           Not a summarizer.<br />An author.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-6 sm:gap-y-8 md:gap-y-10 max-w-4xl">
           {CAPABILITIES.map((cap) => (
-            <div key={cap.title} className="border-t border-ink/10 pt-6">
-              <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-3">
+            <div key={cap.title} className="border-t border-ink/10 pt-4 sm:pt-6">
+              <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2 md:mb-3">
                 {cap.title}
               </h3>
-              <p className="font-mono text-sm md:text-base leading-relaxed text-ink/65">
+              <p className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/65">
                 {cap.description}
               </p>
             </div>
@@ -376,17 +419,17 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>The Approach</SlideLabel>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-24 max-w-5xl">
           <div>
-            <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-8">
+            <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 md:mb-8">
               Grounded in the design. Calibrated to the standard.
             </h2>
           </div>
-          <div className="space-y-6 lg:pt-4">
-            <p className="body-technical">
+          <div className="space-y-4 sm:space-y-6 lg:pt-4">
+            <p className="body-technical text-sm sm:text-base">
               The model ingests design inputs and regulatory frameworks from the start of R&D, not just at the documentation phase. It reasons about which design decisions trigger which regulatory requirements.
             </p>
-            <p className="body-technical">
+            <p className="body-technical text-sm sm:text-base">
               No hallucination tolerance. No invented citations. The standard is not "helpful." It is "defensible."
             </p>
           </div>
@@ -399,26 +442,26 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>Industries</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-16 max-w-4xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-4xl">
           Regulatory intelligence across the engineering lifecycle.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-4xl">
           {INDUSTRIES.map((ind) => (
             <div
               key={ind.name}
-              className="rounded-lg px-6 py-6 border"
+              className="rounded-lg px-4 sm:px-6 py-4 sm:py-6 border"
               style={{
                 borderColor: `${ind.color}40`,
                 backgroundColor: `${ind.color}0A`,
               }}
             >
               <h3
-                className="font-mono text-sm tracking-[0.2em] uppercase font-medium mb-3"
+                className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-medium mb-2 sm:mb-3"
                 style={{ color: ind.color }}
               >
                 {ind.name}
               </h3>
-              <p className="font-mono text-sm text-ink/60">
+              <p className="font-mono text-xs sm:text-sm text-ink/60">
                 {ind.frameworks}
               </p>
             </div>
@@ -432,16 +475,16 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>Who It's For</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-16 max-w-4xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-4xl">
           Built for teams where regulation shapes the engineering.
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-4xl">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 lg:gap-16 max-w-4xl">
           {AUDIENCES.map((a) => (
             <div key={a.label}>
-              <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-4">
+              <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2 sm:mb-4">
                 {a.label}
               </h3>
-              <p className="font-mono text-sm md:text-base leading-relaxed text-ink/65">
+              <p className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/65">
                 {a.description}
               </p>
             </div>
@@ -455,37 +498,37 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <SlideLabel>Traction</SlideLabel>
-        <h2 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-16 max-w-3xl">
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-3xl">
           Built alongside practitioners.
         </h2>
-        <div className="space-y-10 max-w-3xl">
-          <div className="border-t border-ink/10 pt-6">
+        <div className="space-y-5 sm:space-y-7 lg:space-y-10 max-w-3xl">
+          <div className="border-t border-ink/10 pt-4 sm:pt-6">
             <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2">
               Design Partners
             </h3>
-            <p className="font-mono text-base text-ink/60">
+            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60">
               InTomes Technical Services · Nuclear technical services and licensing consulting
             </p>
-            <p className="font-mono text-base text-ink/60 mt-2">
+            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60 mt-1.5 sm:mt-2">
               Leher · Agricultural drone manufacturer navigating regulatory certification
             </p>
           </div>
-          <div className="border-t border-ink/10 pt-6">
+          <div className="border-t border-ink/10 pt-4 sm:pt-6">
             <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2">
               Advisors
             </h3>
-            <p className="font-mono text-base text-ink/60">
+            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60">
               Charles Keller · Nuclear licensing and advanced reactor deployment
             </p>
-            <p className="font-mono text-base text-ink/60 mt-2">
+            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60 mt-1.5 sm:mt-2">
               Vivin Rana · Co-Founder @ Leher | Building Drone Spraying Intelligence
             </p>
           </div>
-          <div className="border-t border-ink/10 pt-6">
+          <div className="border-t border-ink/10 pt-4 sm:pt-6">
             <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2">
               Backed By
             </h3>
-            <p className="font-mono text-base text-ink/60">
+            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60">
               Entrepreneurs First
             </p>
           </div>
@@ -497,23 +540,23 @@ const slides: Slide[] = [
     id: 'close',
     render: () => (
       <SlideShell dark>
-        <div className="flex flex-col justify-between h-full">
+        <div className="flex flex-col justify-between flex-1">
           <div />
           <div>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-[7rem] font-medium tracking-[-0.04em] text-white mb-8">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] font-medium tracking-[-0.04em] text-white mb-4 md:mb-8">
               Invariant
             </h2>
-            <p className="font-serif text-2xl md:text-3xl text-white/60 leading-tight tracking-[-0.02em] max-w-xl mb-12">
+            <p className="font-serif text-lg sm:text-2xl md:text-3xl text-white/60 leading-tight tracking-[-0.02em] max-w-xl mb-6 md:mb-12">
               From first design to final approval.
             </p>
             <a
               href="mailto:founders@invariant-ai.com?subject=Partnership Inquiry"
-              className="inline-block px-8 py-4 border border-white/30 text-white font-mono text-base tracking-wide hover:bg-white/10 transition-colors"
+              className="inline-block px-6 sm:px-8 py-3 sm:py-4 border border-white/30 text-white font-mono text-sm sm:text-base tracking-wide hover:bg-white/10 transition-colors"
             >
               founders@invariant-ai.com
             </a>
           </div>
-          <div className="flex items-center gap-6 mt-auto pt-16">
+          <div className="flex items-center gap-6 mt-auto pt-6 md:pt-16">
             <span className="font-mono text-sm text-white/30">invariant-ai.com</span>
           </div>
         </div>
