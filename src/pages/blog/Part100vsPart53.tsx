@@ -434,7 +434,7 @@ export default function Part100vsPart53() {
 
         {/* Header */}
         <header className="mb-16 text-center">
-          <p className="font-mono text-sm text-ink/40 mb-4">March 26, 2026</p>
+          <p className="font-mono text-sm text-ink/40 mb-4">March 27, 2026</p>
           <h1 className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-6">
             10 CFR Part 100 vs. Part 53 Subpart D
           </h1>
