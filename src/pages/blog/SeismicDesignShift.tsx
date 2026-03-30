@@ -723,8 +723,8 @@ export default function SeismicDesignShift() {
                 on each tectonic structure within 200 miles and moved it to the closest point") is replaced
                 by a PSHA-based GMRS derivation with formal uncertainty quantification. The capable fault
                 criteria disappear in favor of applicant-defined investigation scope. The single SSE design
-                demand is replaced by tiered DBGMs calibrated to SDC. And the seismic PRA, which was a
-                post-Fukushima add-on under Part 50, becomes a first-class regulatory requirement.
+                demand is replaced by tiered DBGMs calibrated to SDC. And seismic risk analysis, formally integrated into the §53.450 framework,
+                becomes a first-class regulatory requirement.
               </p>
             </div>
 
