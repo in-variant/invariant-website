@@ -2,8 +2,16 @@ import { Link } from 'react-router-dom'
 
 const POSTS = [
   {
+    slug: 'seismic-design-shift',
+    date: 'March 29, 2026',
+    title: 'SSE/OBE → GMRS/SDC: The Seismic Design Shift from Part 100 Appendix A to Part 53 §53.480',
+    summary:
+      'The deterministic SSE/OBE two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered Design-Basis Ground Motions and Seismic Design Categories. A regulation-to-regulation comparison of every substantive change, from the 0.1g floor to the capable fault criteria erasure.',
+    tags: ['Nuclear', 'Part 53', 'Seismic', 'Earthquake Engineering'],
+  },
+  {
     slug: 'part100-vs-part53-siting',
-    date: 'March 26, 2026',
+    date: 'March 27, 2026',
     title: '10 CFR Part 100 vs. Part 53 Subpart D: A Regulation-to-Regulation Siting Comparison',
     summary:
       'A line-by-line comparison of the legacy siting criteria in Part 100 against the new technology-inclusive framework in Part 53 Subpart D. Covers exclusion area sizing, seismic methodology, capable fault criteria, and the new siting-design integration mandate.',
