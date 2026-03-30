@@ -245,7 +245,7 @@ const SECTIONS: Section[] = [
           'No requirement for probabilistic risk assessment of seismic events. The deterministic SSE/OBE framework is self-contained: if the SSC withstands the SSE, it is adequate. Seismic margins analysis or seismic PRA was used in practice (post-Fukushima NTTF) but not required by Appendix A.',
         part53:
           '§53.480(f): "The analyses required by §53.450 must address seismic hazards and related SSC responses in determining that the safety criteria defined in §53.220 will be met." This explicitly requires seismic events to be included in the PRA/SRE framework of §53.450, including fragility modeling and risk quantification.',
-        diff: 'Part 53 formally integrates seismic risk into the licensing basis. The preamble states that SSC responses to seismic hazards "could be addressed in the analyses using a fragility model (conditional probability of its failure at a given hazard input level), a high confidence of low probability of failure value, or other method." This means seismic PRA or equivalent is not optional. It is a regulatory requirement for demonstrating compliance with §53.220.',
+        diff: 'Part 53 formally integrates seismic risk into the licensing basis. The preamble states that SSC responses to seismic hazards "could be addressed in the analyses using a fragility model (conditional probability of its failure at a given hazard input level), a high confidence of low probability of failure value, or other method." §53.450 allows PRA, other systematic risk evaluations (SREs), or a combination, so a full seismic PRA is one way to comply, not the only way. What is mandatory is that seismic hazards are addressed within the §53.450 analytical framework for demonstrating compliance with §53.220.',
       },
       {
         topic: 'Engineering method for seismic qualification',
@@ -471,8 +471,7 @@ export default function SeismicDesignShift() {
               the threshold for continued operation.
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
-              With the publication of 10 CFR Part 53 on March 25, 2026, that framework is replaced.
-              Section 53.480 introduces Design-Basis Ground Motions (DBGMs), plural and risk-tiered,
+              With 10 CFR Part 53, finalised on March 25, 2026, Section 53.480 introduces Design-Basis Ground Motions (DBGMs), plural and risk-tiered,
               derived from a site-specific Ground Motion Response Spectra (GMRS) through Probabilistic
               Seismic Hazard Analysis (PSHA). SSCs are assigned to Seismic Design Categories (SDCs)
               based on their risk significance, and each SDC gets a different DBGM. The deterministic
@@ -520,10 +519,12 @@ export default function SeismicDesignShift() {
               applicant-defined.
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
-              <strong className="text-ink">Seismic PRA mandatory.</strong> §53.480(f) requires
-              seismic hazards to be addressed in the §53.450 PRA/SRE framework. Fragility
-              modeling and risk quantification for seismic events are no longer optional; they
-              are a regulatory requirement for demonstrating compliance with §53.220.
+              <strong className="text-ink">Seismic risk integration mandatory.</strong> §53.480(f) requires
+              seismic hazards to be addressed in the §53.450 analyses, whether via PRA, other
+              systematic risk evaluations (SREs), or a combination. Fragility modeling is one
+              accepted approach; the regulation does not prescribe a single method. What is
+              mandatory is that seismic risk is formally integrated into the licensing basis
+              for demonstrating compliance with §53.220.
             </p>
           </div>
         </div>
@@ -753,6 +754,41 @@ export default function SeismicDesignShift() {
                 exceed the old Appendix A scope. The difference is the burden of justification: under
                 Appendix A, the regulation told you what to do; under Part 53, you tell the NRC what you
                 did and why it was sufficient.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-mono text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
+                Three compliance pathways for seismic design
+              </h3>
+              <p className="font-sans text-base text-ink/75 leading-relaxed">
+                The preamble to Part 53 explicitly identifies three approaches for satisfying the
+                seismic design requirements:
+              </p>
+              <ol className="list-decimal list-outside ml-6 mt-3 space-y-2">
+                <li className="font-sans text-base text-ink/75 leading-relaxed">
+                  <strong className="text-ink">Appendix S to Part 50 approach:</strong> the existing
+                  probabilistic framework used for post-1997 licenses, adapted to the Part 53 SSC
+                  classification structure.
+                </li>
+                <li className="font-sans text-base text-ink/75 leading-relaxed">
+                  <strong className="text-ink">ASCE/SEI 43-19:</strong> the graded SDC-1 through SDC-5
+                  framework, which calibrates seismic demand to risk significance and is the basis for
+                  the multi-tier DBGM structure.
+                </li>
+                <li className="font-sans text-base text-ink/75 leading-relaxed">
+                  <strong className="text-ink">Full seismic PRA integration:</strong> where seismic
+                  fragilities and risk quantification are embedded directly in the §53.450 analyses to
+                  demonstrate compliance with §53.220 safety criteria.
+                </li>
+              </ol>
+              <p className="font-sans text-base text-ink/75 leading-relaxed mt-3">
+                These are not mutually exclusive. An applicant could use the ASCE/SEI 43-19 graded
+                framework for structural design while addressing seismic risk in the §53.450 analyses
+                through fragility models, high-confidence-of-low-probability-of-failure (HCLPF) values,
+                or other systematic risk evaluations. The choice of pathway has significant practical
+                implications for the structure of the application and the depth of seismic analysis
+                required.
               </p>
             </div>
 
