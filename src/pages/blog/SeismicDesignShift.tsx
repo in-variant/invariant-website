@@ -61,7 +61,7 @@ const SECTIONS: Section[] = [
           'Deterministic: trace historic earthquakes to tectonic structures, assume worst epicenter at nearest point to site. Appendix A §V(a)(1)(i)-(iv) prescribes a four-step procedure for correlating earthquakes with structures and provinces. §100.23(d)(1) mentions PSHA as one acceptable uncertainty method but does not require it.',
         part53:
           'Probabilistic Seismic Hazard Analysis (PSHA) explicitly endorsed as the standard approach. §53.510(c): "The site assessment must reflect these uncertainties through an appropriate analysis, such as a probabilistic seismic hazard analysis." GMRS must be characterized by both horizontal and vertical free-field response spectra. RG 1.208 is an acceptable method for developing GMRS.',
-        diff: 'Part 100 Appendix A was written before PSHA was mature (1973). It uses a deterministic framework: find the worst historical earthquake on each nearby fault, move it to the closest point to the site, calculate the resulting motion. Part 53 normalizes PSHA (the same approach already used under Appendix S to Part 50 for post-1997 licenses), making probabilistic hazard analysis the standard for advanced reactors. The deterministic four-step procedure is gone.',
+        diff: 'Part 100 Appendix A was written before PSHA was mature (1973). It uses a deterministic framework: find the worst historical earthquake on each nearby fault, move it to the closest point to the site, calculate the resulting motion. Part 53 makes PSHA the primary framework (the same approach already used under Appendix S to Part 50 for post-1997 licenses), replacing the deterministic SSE as the central design basis for advanced reactors. Deterministic checks may still be used for bounding or validation, but the four-step deterministic procedure is no longer the organizing principle.',
       },
       {
         topic: 'Uncertainty treatment',
@@ -471,13 +471,13 @@ export default function SeismicDesignShift() {
               the threshold for continued operation.
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
-              With the finalization of 10 CFR Part 53 on March 25, 2026, that framework is replaced.
+              With the publication of 10 CFR Part 53 on March 25, 2026, that framework is replaced.
               Section 53.480 introduces Design-Basis Ground Motions (DBGMs), plural and risk-tiered,
               derived from a site-specific Ground Motion Response Spectra (GMRS) through Probabilistic
               Seismic Hazard Analysis (PSHA). SSCs are assigned to Seismic Design Categories (SDCs)
               based on their risk significance, and each SDC gets a different DBGM. The deterministic
-              SSE is gone. The prescriptive capable fault criteria are gone. Table 1 and Table 2 of
-              Appendix A are gone.
+              SSE is no longer the organizing principle. The prescriptive capable fault criteria are gone.
+              Table 1 and Table 2 of Appendix A are gone.
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
               This is not a cosmetic rewrite. It is a fundamental change in how seismic design is
@@ -489,12 +489,14 @@ export default function SeismicDesignShift() {
 
           <div className="space-y-4 pl-4 border-l-2 border-ink/10">
             <p className="font-sans text-base text-ink/75 leading-relaxed">
-              <strong className="text-ink">Deterministic → Probabilistic.</strong> Part 100
+              <strong className="text-ink">PSHA becomes the primary framework.</strong> Part 100
               Appendix A's four-step deterministic procedure for deriving the SSE (correlate
               historic earthquakes with tectonic structures, move worst-case epicenter to
-              nearest point, calculate resulting motion) is replaced by PSHA as the standard
-              method. The 0.1g minimum acceleration floor, a 1973-era backstop for sparse
-              seismological data, has no Part 53 equivalent.
+              nearest point, calculate resulting motion) is replaced by PSHA as the central
+              design basis. Deterministic evaluations may still be used for bounding checks
+              and validation, but they are no longer the organizing principle. The 0.1g minimum
+              acceleration floor, a 1973-era backstop for sparse seismological data, has no
+              Part 53 equivalent.
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
               <strong className="text-ink">Single-tier → Multi-tier.</strong> Under Appendix A,
