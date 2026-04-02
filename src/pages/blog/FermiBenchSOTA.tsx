@@ -23,7 +23,7 @@ export default function FermiBenchSOTA() {
 
         {/* Header */}
         <header className="mb-16 text-center">
-          <p className="font-mono text-sm text-ink/40 mb-4">April 2, 2026</p>
+          <p className="font-mono text-sm text-ink/40 mb-4">April 1, 2026</p>
           <h1 className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-6">
             Invariant Sets State-of-the-Art on FermiBench
           </h1>
