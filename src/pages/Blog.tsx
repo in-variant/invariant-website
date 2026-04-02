@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom'
 
 const POSTS = [
   {
+    slug: 'fermibench-sota',
+    date: 'April 2, 2026',
+    title: 'Invariant Sets State-of-the-Art on FermiBench Nuclear Retrieval Benchmark',
+    summary:
+      'Our domain-adapted retrieval model helion-512 achieves 0.97 NDCG@10 and 0.93 Precision@1 on FermiBench, the only published information retrieval benchmark for the nuclear domain, up from the previous state-of-the-art of 0.74.',
+    tags: ['Announcement', 'Retrieval', 'NRC ADAMS', 'Machine Learning'],
+  },
+  {
     slug: 'seismic-design-shift',
     date: 'March 29, 2026',
     title: 'SSE/OBE → GMRS/SDC: The Seismic Design Shift from Part 100 Appendix A to Part 53 §53.480',
