@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const API_URL: string = 'https://rag-gcp-520296708682.asia-south1.run.app/search'
+const API_HEALTH_URL = API_URL.replace(/\/search$/, '/')
 const USE_DEMO = API_URL === 'PLACEHOLDER_API_URL'
 
 interface SearchResult {
@@ -105,10 +106,28 @@ export default function Probe() {
   const [loading, setLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [apiStatus, setApiStatus] = useState<'checking' | 'online' | 'offline'>('checking')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     inputRef.current?.focus()
+  }, [])
+
+  useEffect(() => {
+    if (USE_DEMO) { setApiStatus('offline'); return }
+
+    let active = true
+    const check = async () => {
+      try {
+        const res = await fetch(API_HEALTH_URL, { method: 'GET', mode: 'no-cors' })
+        if (active) setApiStatus(res.type === 'opaque' || res.ok ? 'online' : 'offline')
+      } catch {
+        if (active) setApiStatus('offline')
+      }
+    }
+    check()
+    const id = setInterval(check, 3000)
+    return () => { active = false; clearInterval(id) }
   }, [])
 
   const handleSearch = useCallback(async () => {
@@ -227,9 +246,25 @@ export default function Probe() {
             transition={{ delay: 0.3 }}
             className="mt-6 flex flex-col items-center gap-4"
           >
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs text-ink/35">Powered by</span>
-              <span className="font-mono text-xs font-semibold text-ink/70">helion-512</span>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs text-ink/35">Powered by</span>
+                <span className="font-mono text-xs font-semibold text-ink/70">helion-512</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className={`w-1.5 h-1.5 rounded-full ${
+                  apiStatus === 'online' ? 'bg-emerald-500' :
+                  apiStatus === 'offline' ? 'bg-red-400' :
+                  'bg-amber-400 animate-pulse'
+                }`} />
+                <span className={`font-mono text-[10px] ${
+                  apiStatus === 'online' ? 'text-emerald-600' :
+                  apiStatus === 'offline' ? 'text-red-400' :
+                  'text-amber-500'
+                }`}>
+                  {apiStatus === 'online' ? 'API Online' : apiStatus === 'offline' ? 'API Offline' : 'Checking...'}
+                </span>
+              </div>
             </div>
 
             <div className="flex items-center gap-6">
