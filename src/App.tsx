@@ -12,12 +12,14 @@ import FermiBenchSOTA from './pages/blog/FermiBenchSOTA'
 import Prototype from './pages/Prototype'
 import Probe from './pages/Probe'
 import Deck from './pages/Deck'
+import DroneDeck from './pages/DroneDeck'
 
 export default function App() {
   return (
     <BrowserRouter basename="/">
       <Routes>
         <Route path="/deck" element={<Deck />} />
+        <Route path="/drone-deck" element={<DroneDeck />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
