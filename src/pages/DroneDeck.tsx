@@ -29,8 +29,6 @@ const ACRONYM_MAP: Record<string, string> = {
   'RTH': 'Return to Home',
   'GNSS': 'Global Navigation Satellite System',
   'OEM': 'Original Equipment Manufacturer',
-  'CIB&RC': 'Central Insecticides Board & Registration Committee',
-  'MoAFW': 'Ministry of Agriculture & Farmers Welfare',
   'QCI': 'Quality Council of India',
   'NABL': 'National Accreditation Board for Testing and Calibration Laboratories',
   'MeitY': 'Ministry of Electronics & Information Technology',
@@ -102,14 +100,14 @@ const CSUAS_CRITERIA = [
 ]
 
 const PHASE1_CHANGES = [
-  { type: 'Minor component substitution (same spec, different brand)', can: 'Yes', impact: 'Notify CB, update docs, resubmit affected clauses' },
-  { type: 'Battery cell change (same chemistry, different supplier)', can: 'Yes', impact: 'New BIS certificate required, CB re-reviews Clause 3' },
-  { type: 'Motor/ESC change (same spec)', can: 'Yes', impact: 'New datasheet or test report, CB re-reviews Clause 5' },
-  { type: 'Motor/ESC change (different spec)', can: 'Risky', impact: 'May require Stage 1 re-evaluation; could restart doc review clock' },
-  { type: 'Frame / structural change', can: 'High risk', impact: 'Clause 4 docs resubmitted; may need new FEA/static analysis' },
-  { type: 'Flight controller change', can: 'High risk', impact: 'Clauses 6 + 7 + 8 affected; likely Stage 1 restart' },
-  { type: 'Weight class change (crosses MTOW boundary)', can: 'D-1 restart', impact: 'New application required; different CSUAS clauses apply' },
-  { type: 'NPNT module change', can: 'High risk', impact: 'Clause 9 core; mandatory feature tampering risk' },
+  { type: 'Minor component substitution (same spec, different brand)', can: 'Yes', impact: 'Notify CB, update docs, resubmit affected clauses', cbReview: 'Affected clause only', clauses: ['Varies'] },
+  { type: 'Battery cell change (same chemistry, different supplier)', can: 'Yes', impact: 'New BIS certificate required, CB re-reviews Clause 3', cbReview: 'Clause 3 re-review', clauses: ['Clause 3'] },
+  { type: 'Motor/ESC change (same spec)', can: 'Yes', impact: 'New datasheet or test report, CB re-reviews Clause 5', cbReview: 'Clause 5 re-review', clauses: ['Clause 5'] },
+  { type: 'Motor/ESC change (different spec)', can: 'Risky', impact: 'May require Stage 1 re-evaluation; could restart doc review clock', cbReview: 'Stage 1 re-evaluation likely', clauses: ['Clause 5', 'Stage 1'] },
+  { type: 'Frame / structural change', can: 'High risk', impact: 'Clause 4 docs resubmitted; may need new FEA/static analysis', cbReview: 'Clause 4 + new FEA', clauses: ['Clause 4'] },
+  { type: 'Flight controller change', can: 'High risk', impact: 'Clauses 6 + 7 + 8 affected; likely Stage 1 restart', cbReview: 'Full Stage 1 restart likely', clauses: ['Clause 6', 'Clause 7', 'Clause 8'] },
+  { type: 'Weight class change (crosses MTOW boundary)', can: 'D-1 restart', impact: 'New application required; different CSUAS clauses apply', cbReview: 'Entire D-1 resubmission', clauses: ['All clauses'] },
+  { type: 'NPNT module change', can: 'High risk', impact: 'Clause 9 core; mandatory feature tampering risk', cbReview: 'Clause 9 re-review', clauses: ['Clause 9'] },
 ]
 
 const EGCA_FORMS = [
@@ -131,6 +129,114 @@ function RiskBadge({ level }: { level: string }) {
     <span className={`inline-block font-mono text-[9px] sm:text-[10px] tracking-wide uppercase px-1.5 py-0.5 rounded border font-medium whitespace-nowrap ${colors[level] || 'bg-ink/5 text-ink/60 border-ink/10'}`}>
       {level}
     </span>
+  )
+}
+
+function ChangePhase1Slide() {
+  const [active, setActive] = useState(0)
+  const row = PHASE1_CHANGES[active]
+
+  const riskBg: Record<string, string> = {
+    'Yes': 'bg-emerald-50 border-emerald-200',
+    'Risky': 'bg-amber-50 border-amber-200',
+    'High risk': 'bg-red-50 border-red-200',
+    'D-1 restart': 'bg-red-100 border-red-300',
+  }
+  const riskText: Record<string, string> = {
+    'Yes': 'text-emerald-700',
+    'Risky': 'text-amber-700',
+    'High risk': 'text-red-700',
+    'D-1 restart': 'text-red-800',
+  }
+  const leftBorder: Record<string, string> = {
+    'Yes': 'border-l-emerald-400',
+    'Risky': 'border-l-amber-400',
+    'High risk': 'border-l-red-400',
+    'D-1 restart': 'border-l-red-500',
+  }
+
+  return (
+    <SlideShell acronyms={['D-1', 'CB', 'BIS', 'ESC', 'FEA', 'MTOW', 'NPNT', 'CSUAS']}>
+      <SlideLabel>Change Management / Phase 1</SlideLabel>
+      <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
+        After D-1 Submitted, Before Stage 2.
+      </h2>
+      <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <strong className="text-ink/70 font-medium">D-1 locks your declared design.</strong> Hover over a change type to see its risk level, impact, and what CB re-review is required.
+      </p>
+
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1fr] gap-0 max-w-5xl">
+        {/* Left: change type list */}
+        <div className="flex flex-col gap-1 pr-0 lg:pr-6">
+          {PHASE1_CHANGES.map((item, i) => (
+            <button
+              key={i}
+              onMouseEnter={() => setActive(i)}
+              onClick={() => setActive(i)}
+              className={`text-left px-4 py-3 rounded-lg border-l-[3px] transition-all duration-200 ${
+                active === i
+                  ? `${leftBorder[item.can] || 'border-l-ink/30'} bg-ink/[0.03]`
+                  : 'border-l-transparent hover:bg-ink/[0.02]'
+              }`}
+            >
+              <div className="flex items-center gap-2.5">
+                <RiskBadge level={item.can} />
+                <span className={`font-mono text-[10px] sm:text-xs leading-snug transition-colors ${
+                  active === i ? 'text-ink/80 font-medium' : 'text-ink/50'
+                }`}>
+                  {item.type}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="hidden lg:block bg-ink/10" />
+        <div className="lg:hidden h-px bg-ink/10 my-4" />
+
+        {/* Right: detail panel */}
+        <div className="pl-0 lg:pl-6 flex items-center">
+          <div className="w-full">
+            <div className={`rounded-xl border px-6 py-6 ${riskBg[row.can] || 'bg-ink/[0.02] border-ink/10'} transition-all duration-200`}>
+              <div className="flex items-center gap-3 mb-5">
+                <RiskBadge level={row.can} />
+                <span className={`font-mono text-sm sm:text-base font-semibold ${riskText[row.can] || 'text-ink/70'}`}>
+                  {row.can === 'Yes' ? 'Allowed' : row.can === 'D-1 restart' ? 'Full D-1 Restart' : row.can}
+                </span>
+              </div>
+
+              <p className="font-mono text-xs sm:text-sm font-medium text-ink/80 leading-snug mb-4">
+                {row.type}
+              </p>
+
+              <div className="space-y-4">
+                <div>
+                  <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1.5">Impact</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-ink/60 leading-relaxed">{row.impact}</p>
+                </div>
+
+                <div>
+                  <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1.5">CB Re-Review</p>
+                  <p className="font-mono text-[11px] sm:text-xs text-ink/60 leading-relaxed">{row.cbReview}</p>
+                </div>
+
+                <div>
+                  <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-2">Affected Clauses</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {row.clauses.map((c) => (
+                      <span key={c} className="font-mono text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded border border-ink/15 text-ink/60">
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </SlideShell>
   )
 }
 
@@ -211,92 +317,47 @@ const slides: Slide[] = [
     ),
   },
 
-  /* ── Slide 3: Two Regulatory Bodies ── */
+  /* ── Slide 3: DGCA — The Gatekeeper ── */
   {
     id: 'two-bodies',
     render: () => (
-      <SlideShell acronyms={['DGCA', 'TC', 'UIN', 'RPC', 'RPTO', 'CIB&RC', 'MoAFW']}>
+      <SlideShell acronyms={['DGCA', 'TC', 'UIN', 'RPC', 'RPTO']}>
         <SlideLabel>Regulatory Landscape</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8 sm:mb-12 max-w-4xl">
-          Two Regulatory Bodies. Both Required Independently.
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 max-w-4xl">
+          Everything Goes Through DGCA.
         </h2>
+        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-3xl">
+          The Directorate General of Civil Aviation controls <strong className="text-ink/70 font-medium">every stage</strong> of a drone's lifecycle — from proving it's safe to fly, to who can fly it, to where it's allowed to operate.
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-stretch max-w-4xl mb-8 sm:mb-12">
-          {/* DGCA Card */}
-          <div className="rounded-xl border border-[#2A9D8F]/20 px-6 sm:px-8 py-6 sm:py-8 flex flex-col">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg border border-[#2A9D8F]/20 flex items-center justify-center">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A9D8F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="font-mono text-[10px] sm:text-xs font-medium tracking-[0.15em] uppercase text-[#2A9D8F]">DGCA</h3>
-                <p className="font-mono text-[10px] sm:text-xs text-ink/40">Aviation Regulator</p>
-              </div>
-            </div>
-            <p className="font-mono text-xs sm:text-sm text-ink/55 leading-relaxed mb-5">
-              Controls the <strong className="text-ink/80 font-medium">drone itself</strong> — airworthiness, pilot licensing, and registration.
-            </p>
-            <div className="mt-auto flex flex-wrap gap-2">
-              {['TC', 'UIN', 'RPC', 'RPTO'].map(tag => (
-                <span key={tag} className="font-mono text-[10px] sm:text-xs font-medium tracking-wide px-2.5 py-1 rounded-md text-[#2A9D8F] border border-[#2A9D8F]/20">
-                  {tag}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mb-8 sm:mb-12">
+          {([
+            { abbr: 'TC', label: 'Type Certificate', desc: 'Proves the drone design is airworthy. Required before any unit can be sold or operated.', color: '#2A9D8F', num: '01' },
+            { abbr: 'UIN', label: 'Unique Identification No.', desc: 'Registers each individual drone unit. No UIN = illegal to fly.', color: '#3A7CA5', num: '02' },
+            { abbr: 'RPC', label: 'Remote Pilot Certificate', desc: 'Licenses the human operator. Requires training from a DGCA-approved RPTO.', color: '#6366f1', num: '03' },
+            { abbr: 'RPTO', label: 'Remote Pilot Training Org.', desc: 'Authorised training schools that can issue pilot certifications.', color: '#C4820E', num: '04' },
+          ]).map((item) => (
+            <div key={item.abbr} className="rounded-xl border border-ink/[0.08] px-5 sm:px-6 py-5 sm:py-6 flex flex-col group hover:border-ink/[0.15] transition-colors">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium">{item.num}</span>
+                <span className="font-mono text-[10px] sm:text-xs font-semibold tracking-[0.1em] uppercase px-2 py-0.5 rounded" style={{ color: item.color, borderColor: `${item.color}33`, borderWidth: 1 }}>
+                  {item.abbr}
                 </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden md:flex flex-col items-center justify-center px-5 lg:px-8">
-            <div className="w-px flex-1 bg-ink/10" />
-            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/25 font-medium py-3">and</span>
-            <div className="w-px flex-1 bg-ink/10" />
-          </div>
-          <div className="flex md:hidden items-center justify-center py-4">
-            <div className="h-px flex-1 bg-ink/10" />
-            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/25 font-medium px-4">and</span>
-            <div className="h-px flex-1 bg-ink/10" />
-          </div>
-
-          {/* CIB&RC Card */}
-          <div className="rounded-xl border border-[#C4820E]/20 px-6 sm:px-8 py-6 sm:py-8 flex flex-col">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg border border-[#C4820E]/20 flex items-center justify-center">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4820E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
               </div>
-              <div>
-                <h3 className="font-mono text-[10px] sm:text-xs font-medium tracking-[0.15em] uppercase text-[#C4820E]">CIB&RC / MoAFW</h3>
-                <p className="font-mono text-[10px] sm:text-xs text-ink/40">Agriculture Regulator</p>
-              </div>
+              <h3 className="font-mono text-xs sm:text-sm font-medium text-ink/80 leading-snug mb-2">{item.label}</h3>
+              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
-            <p className="font-mono text-xs sm:text-sm text-ink/55 leading-relaxed mb-5">
-              Controls the <strong className="text-ink/80 font-medium">chemicals being sprayed</strong> — pesticide registration and usage norms.
-            </p>
-            <div className="mt-auto flex flex-wrap gap-2">
-              {['Pesticide Reg.', 'Spray Norms'].map(tag => (
-                <span key={tag} className="font-mono text-[10px] sm:text-xs font-medium tracking-wide px-2.5 py-1 rounded-md text-[#C4820E] border border-[#C4820E]/20">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Callout */}
-        <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-5 sm:py-6 max-w-4xl">
+        <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-5 sm:py-6 max-w-5xl">
           <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
             <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Key Insight</span>
           </div>
           <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">
-            Getting DGCA TC <strong className="text-ink/80 font-medium">does not</strong> authorise pesticide spraying.
-            <br className="hidden sm:block" />{' '}
-            Getting pesticide approval <strong className="text-ink/80 font-medium">does not</strong> mean your drone is airworthy.
-          </p>
-          <p className="font-mono text-[10px] sm:text-xs text-ink/40 mt-3">
-            Both approvals must be obtained independently. Neither implies the other.
+            You need <strong className="text-ink/80 font-medium">all four</strong> to operate commercially.
+            A Type Certificate alone does not authorise flight — you still need a registered unit, a licensed pilot, and operational approval.
           </p>
         </div>
       </SlideShell>
@@ -439,36 +500,7 @@ const slides: Slide[] = [
   /* ── Slide 7: Change Management - Phase 1 ── */
   {
     id: 'change-phase1',
-    render: () => (
-      <SlideShell acronyms={['D-1', 'CB', 'BIS', 'ESC', 'FEA', 'MTOW', 'NPNT', 'CSUAS']}>
-        <SlideLabel>Change Management / Phase 1</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
-          After D-1 Submitted, Before Stage 2.
-        </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
-          <strong className="text-ink/70 font-medium">D-1 locks your declared design.</strong> Same spec, different supplier = notify + resubmit. Different spec = assume <strong className="text-ink/70 font-medium">Stage 1 restart</strong>.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl">
-          {PHASE1_CHANGES.map((row, i) => {
-            const borderColor: Record<string, string> = {
-              'Yes': 'border-emerald-200',
-              'Risky': 'border-amber-200',
-              'High risk': 'border-red-200',
-              'D-1 restart': 'border-red-300',
-            }
-            return (
-              <div key={i} className={`rounded-lg border ${borderColor[row.can] || 'border-ink/10'} px-4 py-3 sm:py-4 flex flex-col`}>
-                <div className="flex items-center justify-between mb-2">
-                  <RiskBadge level={row.can} />
-                </div>
-                <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{row.type}</p>
-                <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{row.impact}</p>
-              </div>
-            )
-          })}
-        </div>
-      </SlideShell>
-    ),
+    render: () => <ChangePhase1Slide />,
   },
 
   /* ── Slide 8: Change Management - Phase 2 ── */
@@ -629,7 +661,7 @@ const slides: Slide[] = [
   {
     id: 'critical-path',
     render: () => (
-      <SlideShell acronyms={['BOM', 'ESC', 'BIS', 'D-1', 'CB', 'NTH', 'eGCA', 'CIB&RC']}>
+      <SlideShell acronyms={['BOM', 'ESC', 'BIS', 'D-1', 'CB', 'NTH', 'eGCA']}>
         <SlideLabel>What to Do Now</SlideLabel>
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           The Critical Path If You Are Starting Today.
@@ -646,8 +678,7 @@ const slides: Slide[] = [
             { label: '4. Prepare D-1 Docs', desc: 'Stage 1 pre-check with CB recommended before filing.' },
             { label: '5. File D-1 on eGCA', desc: 'Submit application and pay fee.' },
             { label: '6. Lock Components', desc: 'Do NOT change any spec after D-1 without CB notification.' },
-            { label: '7. Pesticide Approval', desc: 'Verify CIB&RC status independently before commercial spraying.' },
-            { label: '8. Register on eGCA', desc: 'Account setup takes time. Do it now.' },
+            { label: '7. Register on eGCA', desc: 'Account setup takes time. Do it now.' },
           ]).map((step, i) => (
             <div key={i} className="rounded-lg border border-ink/10 px-4 py-3 sm:py-4 flex flex-col">
               <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{step.label}</p>
