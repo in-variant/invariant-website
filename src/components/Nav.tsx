@@ -7,6 +7,7 @@ const LINKS = [
   { to: '/probe', label: 'Probe' },
   { to: '/partners', label: 'Partners' },
   { to: '/blog', label: 'Blog' },
+  { to: '/pricing', label: 'Pricing' },
   { to: '/contact', label: 'Contact' },
 ]
 

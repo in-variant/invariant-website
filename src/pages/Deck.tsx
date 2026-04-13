@@ -8,298 +8,232 @@ interface Slide {
   render: () => React.ReactNode
 }
 
-function SlideShell({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
+function SlideShell({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`w-full h-full min-h-0 overflow-y-auto overscroll-contain flex flex-col
-        px-5 sm:px-10 md:px-20 lg:px-32 xl:px-40
-        pt-8 pb-20 sm:pt-10 sm:pb-20 md:pt-14 md:pb-20 lg:pt-16 lg:pb-16
-        ${dark ? 'bg-ink text-white' : 'bg-white text-ink'}`}
+      className="w-full h-full min-h-0 overflow-y-auto overscroll-contain flex flex-col items-center
+        px-5 sm:px-10 md:px-16 lg:px-20
+        pt-14 pb-20 sm:pt-16 sm:pb-20 md:pt-18 md:pb-20 lg:pt-20 lg:pb-16
+        bg-white text-ink"
     >
-      {children}
+      <div className="absolute top-4 sm:top-5 left-5 sm:left-10 md:left-16 lg:left-20 z-10">
+        <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
+          Invariant
+        </span>
+      </div>
+      <div className="flex flex-col justify-center flex-1 w-full max-w-4xl">
+        {children}
+      </div>
     </div>
   )
 }
 
-function SlideLabel({ children, dark }: { children: React.ReactNode; dark?: boolean }) {
+function SlideLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p
-      className={`font-mono text-xs md:text-sm tracking-[0.25em] uppercase mb-8 ${
-        dark ? 'text-white/50' : 'text-ink/50'
-      }`}
-    >
+    <p className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
       {children}
     </p>
   )
 }
 
-const INDUSTRIES = [
-  { name: 'Nuclear', color: '#C4820E', frameworks: '10 CFR · NRC SRP · NUREG' },
-  { name: 'Aerospace', color: '#5C6370', frameworks: 'DO-178C · DO-254 · FAA / EASA' },
-  { name: 'Drones', color: '#2A9D8F', frameworks: 'DGCA CAR · Type Certification' },
-  { name: 'Maritime', color: '#3A7CA5', frameworks: 'IMO SOLAS · DNV · Lloyd\'s' },
-]
-
-const CAPABILITIES = [
+const PROBLEM_CASES = [
   {
-    title: 'Design-Phase Guidance',
-    description: 'Surfaces regulatory constraints during early engineering, before they become costly rework.',
-  },
-  {
-    title: 'Citation Integrity',
-    description: 'Every claim traces back to a source. The daisy-chain of references is verified, not assumed.',
-  },
-  {
-    title: 'Regulatory Fluency',
-    description: 'Trained on the acceptance criteria for your domain, not just the words in the standard.',
-  },
-  {
-    title: 'Review-Readiness',
-    description: 'Output is structured to survive regulatory scrutiny, not just pass a human read.',
-  },
-]
-
-const COST_FACTS = [
-  { figure: '$1.1B', label: 'Vogtle Units 3 & 4 cost overrun driven by licensing delays' },
-  { figure: '$20B+', label: 'Boeing 737 MAX return-to-service documentation rework' },
-  { figure: '7 years', label: 'NRC\'s first advanced reactor design certification review' },
-  { figure: '3,000+', label: 'Pages in a standard Preliminary Safety Analysis Report' },
-]
-
-const AUDIENCES = [
-  { label: 'Engineering Teams', description: 'Regulatory awareness from first sketch to final submission.' },
-  { label: 'Licensing Consultants', description: 'Author safety cases and compliance documentation faster.' },
-  { label: 'Program Leadership', description: 'Manage the intersection of engineering and regulatory timelines.' },
-]
-
-interface PipelineStage {
-  label: string
-  color: string
-  body: string
-  tags: readonly string[]
-  highlight?: boolean
-}
-
-const PIPELINE_STAGES: PipelineStage[] = [
-  {
-    label: 'Corpus',
-    color: '#C4820E',
-    body: 'CFR, NUREG, review guides, PSAR patterns, and customer design-basis docs — with version and jurisdiction metadata.',
-    tags: ['10 CFR', 'NUREG', 'RG 1.157'],
-  },
-  {
-    label: 'Ingest & Structure',
-    color: '#C4820E',
-    body: 'Every chunk maps to a document, section, and revision. No anonymous paragraphs.',
-    tags: ['Provenance', 'Chunking'],
-  },
-  {
-    label: 'Expert Grounding',
-    color: '#3A7CA5',
-    body: 'SME review, citation verification, acceptance-criteria alignment — humans in the loop.',
-    tags: ['SME review', 'Citation QA'],
-  },
-  {
-    label: 'Training',
+    industry: 'Drones',
     color: '#2A9D8F',
-    body: 'SFT and preference optimisation — outputs tuned for defensibility over fluency.',
-    tags: ['SFT', 'Preferences', 'Citations'],
-    highlight: true,
+    headline: 'Built a drone. Failed compliance.',
+    detail: 'You build the product, submit for type certification, fail the checklist — and can\'t ship to market. Months of engineering, grounded by paperwork.',
   },
   {
-    label: 'Evaluation',
+    industry: 'Space',
     color: '#5C6370',
-    body: 'Hallucination and citation-integrity suites, domain benchmarks, regression gates.',
-    tags: ['Benchmarks', 'Regression'],
+    headline: 'Software didn\'t meet DO-178C.',
+    detail: 'You build satellite launch vehicles and realise the software requirements didn\'t fulfil DO-178C criteria. Entire project delayed by 10 months.',
   },
   {
-    label: 'Ship',
-    color: '#5C6370',
-    body: 'RAG inference, policy guardrails, and drift monitoring in production.',
-    tags: ['RAG', 'Guardrails', 'Drift QA'],
+    industry: 'Nuclear',
+    color: '#C4820E',
+    headline: 'Design immaturity cascades.',
+    detail: 'You apply for a nuclear plant construction permit and realise the design is immature. The project cascades — Vogtle-style overruns measured in billions.',
   },
 ]
 
-function StageCard({
-  stage,
-  stepIndex,
-}: {
-  stage: PipelineStage
-  stepIndex: number
-}) {
+const COMPETITORS = {
+  nuclear: [
+    { name: 'Atomic Canyon', detail: 'Nuclear regulatory AI', logo: '/logos/atomic_canyon_logo.jpeg', initial: 'AC', bg: '#C4820E' },
+    { name: 'Everstar Inc', detail: 'Nuclear engineering software', logo: '/logos/everstar.png', initial: 'E', bg: '#2A9D8F' },
+    { name: 'Nuclearn', detail: 'Nuclear knowledge management', logo: null, initial: 'N', bg: '#3A7CA5' },
+  ],
+  indirect: [
+    { name: 'Flow Engineering', detail: 'Requirements management', logo: '/logos/flow.svg', initial: 'FE', bg: '#6366f1' },
+    { name: 'Seamflow', detail: 'Systems engineering workflows', logo: '/logos/seamflow.svg', initial: 'S', bg: '#5C6370' },
+    { name: 'Epsilon3', detail: 'Procedure management', logo: null, initial: 'ε3', bg: '#dc2626' },
+    { name: 'Aletiq', detail: 'Product lifecycle management', logo: null, initial: 'A', bg: '#0d9488' },
+  ],
+}
+
+const DESIGN_PARTNERS = [
+  {
+    name: 'Spantrik',
+    domain: 'Space Tech',
+    color: '#5C6370',
+    logo: '/logos/spantrik.png',
+    scope: 'Reusable Launch Vehicles — Testing Authorisation via IN-SPACe',
+  },
+  {
+    name: 'Leher',
+    domain: 'Drones',
+    color: '#2A9D8F',
+    logo: '/logos/leher.jpeg',
+    scope: 'Agridrone Type C Certification',
+  },
+  {
+    name: 'InTomes',
+    domain: 'Nuclear',
+    color: '#C4820E',
+    logo: '/logos/intomes.png',
+    scope: 'Development and deployment of Invariant AI for compliance with nuclear regulations, codes, and standards.',
+  },
+]
+
+const PIPELINE_STEPS = [
+  { label: 'Goal', color: '#2A9D8F' },
+  { label: 'Requirements', color: '#3A7CA5' },
+  { label: 'Design', color: '#5C6370' },
+  { label: 'Implementation', color: '#6366f1' },
+  { label: 'Tests', color: '#C4820E' },
+  { label: 'Compliance', color: '#dc2626' },
+]
+
+function PipelineArrow({ color }: { color: string }) {
   return (
-    <div
-      className="h-full rounded-lg border flex flex-col px-3 py-3.5 md:px-4 md:py-4 gap-2.5 min-w-0"
-      style={{
-        borderColor: `${stage.color}${stage.highlight ? '70' : '35'}`,
-        backgroundColor: `${stage.color}${stage.highlight ? '10' : '07'}`,
-      }}
-    >
-      {/* Divider-rail header */}
-      <div className="flex items-center gap-1.5 min-w-0">
-        <div className="h-px flex-1 min-w-0" style={{ backgroundColor: `${stage.color}45` }} />
-        <span
-          className="font-mono text-[8px] md:text-[10px] tracking-[0.18em] uppercase font-medium shrink-0 leading-none text-center"
-          style={{ color: stage.color }}
-        >
-          <span className="text-ink/30 mr-1 tabular-nums">{String(stepIndex).padStart(2, '0')}</span>
-          {stage.label}
-        </span>
-        <div className="h-px flex-1 min-w-0" style={{ backgroundColor: `${stage.color}45` }} />
-      </div>
-
-      <p className="font-mono text-[10px] md:text-[11px] leading-relaxed text-ink/60 flex-1 min-w-0">
-        {stage.body}
-      </p>
-
-      <div className="flex flex-wrap gap-1 mt-auto">
-        {stage.tags.map((tag) => (
-          <span
-            key={tag}
-            className="font-mono text-[8px] md:text-[9px] tracking-wide uppercase px-1.5 py-0.5 rounded-sm font-medium"
-            style={{ backgroundColor: `${stage.color}20`, color: stage.color }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
+    <svg width="18" height="14" viewBox="0 0 18 14" style={{ color: `${color}55` }} aria-hidden className="shrink-0">
+      <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <polyline points="9,2 16,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
 
-function RightArrow({ color }: { color: string }) {
+function ReversePipelineArrow({ color }: { color: string }) {
   return (
-    <div className="flex items-center justify-center w-5 md:w-6 shrink-0 self-center">
-      <svg width="18" height="14" viewBox="0 0 18 14" style={{ color: `${color}55` }} aria-hidden>
-        <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <polyline points="9,2 16,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </div>
+    <svg width="18" height="14" viewBox="0 0 18 14" style={{ color: `${color}55` }} aria-hidden className="shrink-0">
+      <line x1="17" y1="7" x2="5" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <polyline points="9,2 2,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
-
-function TrainingFlowDiagram() {
-  const first = PIPELINE_STAGES.slice(0, 3)
-  const second = PIPELINE_STAGES.slice(3, 6)
-
-  return (
-    <div className="w-full select-none">
-
-      {/* ── Mobile (< 640px): 2-col grid, step numbers show order ── */}
-      <div className="grid grid-cols-2 gap-2.5 sm:hidden">
-        {PIPELINE_STAGES.map((stage, i) => (
-          <StageCard key={stage.label} stage={stage} stepIndex={i + 1} />
-        ))}
-      </div>
-
-      {/* ── Tablet (640 – 1023px): 3+3 rows with arrows + wrap indicator ── */}
-      <div className="hidden sm:block lg:hidden space-y-3">
-        <div className="flex items-stretch gap-0">
-          {first.map((stage, i) => (
-            <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
-              <div className="flex-1 min-w-0">
-                <StageCard stage={stage} stepIndex={i + 1} />
-              </div>
-              {i < 2 && <RightArrow color={stage.color} />}
-            </div>
-          ))}
-        </div>
-        {/* wrap connector */}
-        <div className="flex items-center gap-3 px-1">
-          <div className="flex-1 h-px bg-ink/10" />
-          <svg width="28" height="18" viewBox="0 0 28 18" className="text-ink/20 shrink-0" aria-hidden>
-            <path d="M2 4 Q2 14 12 14 L22 14 M18 10l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <div className="flex-1 h-px bg-ink/10" />
-        </div>
-        <div className="flex items-stretch gap-0">
-          {second.map((stage, i) => (
-            <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
-              <div className="flex-1 min-w-0">
-                <StageCard stage={stage} stepIndex={i + 4} />
-              </div>
-              {i < 2 && <RightArrow color={stage.color} />}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Desktop (1024px+): full horizontal row ── */}
-      <div className="hidden lg:flex items-stretch gap-0">
-        {PIPELINE_STAGES.map((stage, i) => (
-          <div key={stage.label} className="flex items-stretch flex-1 min-w-0">
-            <div className="flex-1 min-w-0">
-              <StageCard stage={stage} stepIndex={i + 1} />
-            </div>
-            {i < PIPELINE_STAGES.length - 1 && <RightArrow color={stage.color} />}
-          </div>
-        ))}
-      </div>
-
-    </div>
-  )
-}
-
 
 const slides: Slide[] = [
   {
     id: 'title',
     render: () => (
-      <SlideShell dark>
-        <div className="flex flex-col justify-between flex-1">
-          <div>
-            <p className="font-mono text-xs sm:text-sm tracking-[0.25em] uppercase text-white/40 mb-4">
-              Confidential
-            </p>
-          </div>
-          <div>
-            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-medium tracking-[-0.04em] text-white mb-5 md:mb-8">
-              Invariant
-            </h1>
-            <p className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/70 leading-tight tracking-[-0.02em] max-w-2xl">
-              Engineering certification,<br />at the speed of design.
-            </p>
-          </div>
-          <div className="flex items-center gap-6 mt-auto pt-8 md:pt-16">
-            <span className="font-mono text-sm text-white/40">Backed by</span>
-            <span className="font-mono text-sm text-white/60 font-medium">Entrepreneurs First</span>
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
+            Investor Deck · Confidential
+          </p>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink mb-5 md:mb-8 leading-[1.1] whitespace-nowrap">
+            Go-to-market faster than ever.
+          </h1>
+          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
+            Invariant builds AI that turns compliance from a bottleneck into a competitive advantage — across nuclear, aerospace, and drones.
+          </p>
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
+              <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&larr;</kbd>
+              <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&rarr;</kbd>
+              <span className="ml-1">to navigate</span>
+            </span>
+            <span className="font-mono text-xs text-ink/35 tracking-wide sm:hidden">
+              Swipe to navigate
+            </span>
           </div>
         </div>
       </SlideShell>
     ),
   },
+
   {
-    id: 'problem',
+    id: 'problem-drones',
     render: () => (
       <SlideShell>
-        <SlideLabel>The Problem</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5 sm:mb-7 lg:mb-10 max-w-4xl">
-          Regulation touches every phase of engineering. The tools haven't kept up.
-        </h2>
-        <p className="body-technical max-w-2xl mb-6 sm:mb-10 lg:mb-16 text-sm sm:text-base">
-          Regulations don't just gate the final approval. They shape design decisions, constrain material choices, and dictate testing protocols from day one. Yet the tools engineers use to navigate this complexity haven't changed in decades.
-        </p>
-        <p className="font-serif text-lg sm:text-xl md:text-2xl text-ink/60 italic max-w-2xl">
-          The documentation is not the afterthought. It is the program.
-        </p>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>The Problem</SlideLabel>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
+            Drones.
+          </h2>
+          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
+            You build a drone. Check the compliance checklist. It fails. You can't ship to market.
+          </p>
+          <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
+            Months of engineering, grounded by paperwork.
+          </p>
+        </div>
       </SlideShell>
     ),
   },
+
+  {
+    id: 'problem-space',
+    render: () => (
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>The Problem</SlideLabel>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
+            Satellite Launch Vehicles.
+          </h2>
+          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
+            You build rockets and realise the software requirements didn't fulfil DO-178C criteria. Entire project delayed by 10 months.
+          </p>
+          <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
+            One missed criteria. An entire program stalled.
+          </p>
+        </div>
+      </SlideShell>
+    ),
+  },
+
+  {
+    id: 'problem-nuclear',
+    render: () => (
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>The Problem</SlideLabel>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
+            Nuclear Construction Permit.
+          </h2>
+          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
+            You apply for a nuclear plant construction permit. Realise the design is immature. The project cascades.
+          </p>
+          <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
+            Vogtle: billions in overruns, years of delay.
+          </p>
+        </div>
+      </SlideShell>
+    ),
+  },
+
   {
     id: 'cost',
     render: () => (
       <SlideShell>
-        <SlideLabel>The Cost of the Status Quo</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-3xl">
-          Billions lost to documentation rework and licensing delays.
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-7 sm:gap-y-10 md:gap-y-12 max-w-4xl">
-          {COST_FACTS.map((fact) => (
-            <div key={fact.figure}>
-              <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-2 md:mb-3">
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>The Cost</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6 sm:mb-10 max-w-3xl">
+            The price of getting compliance wrong.
+          </h2>
+        </div>
+        <div className="flex justify-center gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto items-end">
+          {[
+            { figure: '$1.1B', label: 'Vogtle Units 3 & 4 cost overrun from licensing delays' },
+            { figure: '$20B+', label: 'Boeing 737 MAX return-to-service documentation rework' },
+            { figure: '7 years', label: 'NRC\'s first advanced reactor design certification review' },
+            { figure: '10 months', label: 'Typical delay when software fails DO-178C criteria' },
+          ].map((fact) => (
+            <div key={fact.figure} className="flex flex-col items-center text-center">
+              <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-2 md:mb-3 whitespace-nowrap">
                 {fact.figure}
               </p>
-              <p className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/60">
+              <p className="font-mono text-[10px] sm:text-xs text-ink/50 leading-relaxed w-28 sm:w-36">
                 {fact.label}
               </p>
             </div>
@@ -308,22 +242,99 @@ const slides: Slide[] = [
       </SlideShell>
     ),
   },
+
+  {
+    id: 'why',
+    render: () => (
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Why This Happens</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+            We talked to people across US nuclear, space tech, and drone manufacturing.
+          </h2>
+          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
+            The same pattern emerged everywhere.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 max-w-3xl mx-auto">
+          <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
+            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-4">
+              01
+            </span>
+            <h3 className="font-mono text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
+              Design Immaturity
+            </h3>
+            <p className="font-mono text-xs sm:text-sm text-ink/50 leading-relaxed">
+              Teams don't know what the regulator expects until they submit. By then, the design is locked and rework is expensive.
+            </p>
+          </div>
+          <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
+            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-4">
+              02
+            </span>
+            <h3 className="font-mono text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
+              Fragmented Operations
+            </h3>
+            <p className="font-mono text-xs sm:text-sm text-ink/50 leading-relaxed">
+              Large project operations are spread across teams, tools, and timelines. Requirements, design, and compliance live in silos.
+            </p>
+          </div>
+        </div>
+      </SlideShell>
+    ),
+  },
+
   {
     id: 'solution',
     render: () => (
-      <SlideShell dark>
-        <SlideLabel dark>The Solution</SlideLabel>
-        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-[1.1] tracking-[-0.02em] text-white mb-5 sm:mb-7 lg:mb-10 max-w-4xl">
-          Language models trained on engineering regulations.
-        </h2>
-        <p className="font-mono text-sm sm:text-base md:text-lg leading-relaxed text-white/60 max-w-2xl mb-6 sm:mb-10 lg:mb-16" style={{ fontWeight: 350 }}>
-          Invariant builds domain-specific AI that works alongside your team from early R&D through certification. Not a summarizer — an author.
-        </p>
-        <div className="flex flex-wrap gap-3 sm:gap-4">
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>The Solution</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+            Invariant AI: Language models built for compliance.
+          </h2>
+          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
+            Our models read your CAD designs, Ansys simulations, and test results — and tell you whether the design is compliant before you file.
+          </p>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap max-w-4xl mx-auto mb-10 sm:mb-14">
+          {[
+            { label: 'CAD Designs', color: '#3A7CA5' },
+            { label: 'Ansys Simulations', color: '#6366f1' },
+            { label: 'Test Results', color: '#2A9D8F' },
+          ].map((src, i) => (
+            <div key={src.label} className="flex items-center gap-2 sm:gap-3">
+              <div
+                className="rounded-lg border px-4 sm:px-5 py-2.5 sm:py-3"
+                style={{ borderColor: `${src.color}35`, backgroundColor: `${src.color}08` }}
+              >
+                <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap" style={{ color: src.color }}>
+                  {src.label}
+                </span>
+              </div>
+              {i < 2 && <span className="font-mono text-ink/20 text-xs">+</span>}
+            </div>
+          ))}
+          <PipelineArrow color="#5C6370" />
+          <div className="rounded-lg border-2 border-ink/30 bg-ink/[0.03] px-4 sm:px-5 py-2.5 sm:py-3">
+            <span className="font-mono text-[10px] sm:text-xs font-semibold whitespace-nowrap text-ink/80">
+              Invariant AI
+            </span>
+          </div>
+          <PipelineArrow color="#5C6370" />
+          <div className="rounded-lg border-2 border-emerald-400/50 bg-emerald-50/50 px-4 sm:px-5 py-2.5 sm:py-3">
+            <span className="font-mono text-[10px] sm:text-xs font-semibold whitespace-nowrap text-emerald-700">
+              Compliant / Not Compliant
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
           {['Learning', 'Reasoning', 'Authoring'].map((cap) => (
             <span
               key={cap}
-              className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase px-4 sm:px-5 py-2 sm:py-2.5 rounded border border-white/20 text-white/80"
+              className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase px-5 py-2.5 rounded border border-ink/20 text-ink/70"
             >
               {cap}
             </span>
@@ -332,137 +343,279 @@ const slides: Slide[] = [
       </SlideShell>
     ),
   },
+
   {
-    id: 'training',
+    id: 'se-workflow',
+    render: () => {
+      const standardSteps = PIPELINE_STEPS.filter((s) => s.label !== 'Compliance')
+      return (
+        <SlideShell>
+          <div className="flex flex-col items-center text-center">
+            <SlideLabel>Systems Engineering</SlideLabel>
+            <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+              The standard workflow.
+            </h2>
+            <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+              Compliance is completely absent. Any change in any step — its impact on compliance is invisible until it's too late.
+            </p>
+          </div>
+
+          <div className="w-full max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2.5">
+              {standardSteps.map((step, i) => (
+                <div key={step.label} className="flex items-center gap-1.5 sm:gap-2.5">
+                  <div
+                    className="rounded-lg border px-3.5 sm:px-5 py-2.5 sm:py-3"
+                    style={{
+                      borderColor: `${step.color}35`,
+                      backgroundColor: `${step.color}08`,
+                    }}
+                  >
+                    <span
+                      className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap"
+                      style={{ color: step.color }}
+                    >
+                      {step.label}
+                    </span>
+                  </div>
+                  {i < standardSteps.length - 1 && <PipelineArrow color={step.color} />}
+                </div>
+              ))}
+
+              <div className="flex items-center gap-1.5 sm:gap-2.5 ml-1 sm:ml-2">
+                <div className="w-px h-8 bg-ink/10" />
+                <div className="rounded-lg border-2 border-dashed border-red-300/50 bg-red-50/30 px-3.5 sm:px-5 py-2.5 sm:py-3 relative">
+                  <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap text-red-400/60">
+                    Compliance?
+                  </span>
+                  <div className="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-red-100 border border-red-300 flex items-center justify-center">
+                    <span className="text-red-500 text-xs font-bold leading-none">✕</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative rounded-xl border border-red-200/60 bg-red-50/30 px-6 sm:px-8 py-5 sm:py-6 max-w-3xl mx-auto mt-10 sm:mt-12">
+            <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
+              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-red-400/70 font-medium">Missing</span>
+            </div>
+            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+              Compliance is <strong className="text-ink/80 font-medium">never part of the workflow</strong>. A requirement changes, a design shifts, a test is added — and nobody knows how it affects regulatory approval until submission day.
+            </p>
+          </div>
+        </SlideShell>
+      )
+    },
+  },
+
+  {
+    id: 'how-it-works',
     render: () => (
       <SlideShell>
-        <SlideLabel>How We Train</SlideLabel>
-        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-4 mb-6 md:mb-8 lg:mb-10">
-          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl max-w-xl">
-            From corpus to production — one accountable pipeline.
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Our Approach</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+            Invariant adds compliance to every step.
           </h2>
-          <p className="font-mono text-xs text-ink/45 max-w-xs shrink-0 leading-relaxed hidden sm:block">
-            Sources flow in, experts shape the signal,<br />the model trains with citation discipline.
+          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+            The same workflow — but now compliance is woven in from the start, not bolted on at the end.
           </p>
         </div>
-        <TrainingFlowDiagram />
-      </SlideShell>
-    ),
-  },
-  {
-    id: 'prototype',
-    render: () => (
-      <SlideShell>
-        <SlideLabel>Prototype</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-5 sm:mb-7 lg:mb-8 max-w-4xl">
-          A certification workspace, not a chat window.
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-20 max-w-5xl items-start">
-          <div className="space-y-4 sm:space-y-6">
-            <p className="body-technical text-sm sm:text-base">
-              The live prototype mirrors how licensing teams actually work: structured chapters aligned to NUREG-style
-              expectations, an editor with traceable regulatory references, and a copilot that answers from your uploaded
-              corpus — not from memory.
-            </p>
-            <p className="body-technical text-sm sm:text-base">
-              Inline review threads, chapter status, and file trees tie design basis documents to the narrative under
-              construction. The goal is review-ready output, not a one-off summary.
-            </p>
+
+        <div className="w-full max-w-4xl mx-auto">
+          <div className="flex items-center justify-center gap-1.5 sm:gap-2.5">
+            {PIPELINE_STEPS.map((step, i) => (
+              <div key={step.label} className="flex items-center gap-1.5 sm:gap-2.5">
+                <div
+                  className={`rounded-lg border-2 px-3.5 sm:px-5 py-2.5 sm:py-3 ${
+                    step.label === 'Compliance' ? 'ring-2 ring-emerald-400/40 ring-offset-2' : ''
+                  }`}
+                  style={{
+                    borderColor: step.label === 'Compliance' ? '#059669' : `${step.color}50`,
+                    backgroundColor: step.label === 'Compliance' ? '#05966912' : `${step.color}0A`,
+                  }}
+                >
+                  <span
+                    className="font-mono text-[10px] sm:text-xs font-semibold whitespace-nowrap"
+                    style={{ color: step.label === 'Compliance' ? '#059669' : step.color }}
+                  >
+                    {step.label}
+                  </span>
+                </div>
+                {i < PIPELINE_STEPS.length - 1 && <PipelineArrow color={step.color} />}
+              </div>
+            ))}
           </div>
-          <div className="rounded-lg border border-ink/12 bg-ink/[0.02] p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6">
-            <div>
-              <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 mb-3">In the demo</h3>
-              <ul className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/70 space-y-2.5 sm:space-y-3 list-none">
-                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">PSAR-style chapter shell with progress and status</li>
-                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">Rich-text section drafting with inline comments</li>
-                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">Copilot grounded in CFR / NUREG uploads</li>
-                <li className="pl-3 sm:pl-4 border-l-2 border-ink/15">Design-basis file tree and citation-first responses</li>
-              </ul>
-            </div>
-            <a
-              href="/prototype"
-              className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm tracking-wide text-ink border border-ink/20 px-4 sm:px-5 py-2.5 sm:py-3 rounded hover:bg-ink/[0.04] transition-colors"
-            >
-              Open interactive prototype
-              <span aria-hidden>→</span>
-            </a>
+        </div>
+
+        <div className="relative rounded-xl border border-emerald-200/60 bg-emerald-50/30 px-6 sm:px-8 py-5 sm:py-6 max-w-3xl mx-auto mt-10 sm:mt-14">
+          <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">With Invariant</span>
           </div>
+          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            Compliance is now <strong className="text-ink/80 font-medium">part of the workflow</strong>. Every requirement, design decision, and test result is checked against regulatory criteria in real time.
+          </p>
         </div>
       </SlideShell>
     ),
   },
+
   {
-    id: 'capabilities',
+    id: 'competitors-direct',
     render: () => (
       <SlideShell>
-        <SlideLabel>Capabilities</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-3xl">
-          Not a summarizer.<br />An author.
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-6 sm:gap-y-8 md:gap-y-10 max-w-4xl">
-          {CAPABILITIES.map((cap) => (
-            <div key={cap.title} className="border-t border-ink/10 pt-4 sm:pt-6">
-              <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2 md:mb-3">
-                {cap.title}
-              </h3>
-              <p className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/65">
-                {cap.description}
-              </p>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Competitors · Direct</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-3xl">
+            Nuclear vertical.
+          </h2>
+          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-xl">
+            Single-vertical players. None solve end-to-end compliance across industries.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 max-w-md mx-auto w-full">
+          {COMPETITORS.nuclear.map((c) => (
+            <div key={c.name} className="rounded-lg border border-amber-200 bg-amber-50/50 px-6 py-5 flex items-center gap-4">
+              {c.logo ? (
+                <img src={c.logo} alt={`${c.name} logo`} className="w-11 h-11 rounded-full object-cover shrink-0" />
+              ) : (
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: c.bg }}
+                >
+                  <span className="font-mono text-xs font-bold text-white">{c.initial}</span>
+                </div>
+              )}
+              <div>
+                <p className="font-mono text-sm font-medium text-ink/80 mb-0.5">{c.name}</p>
+                <p className="font-mono text-xs text-ink/45">{c.detail}</p>
+              </div>
             </div>
           ))}
         </div>
       </SlideShell>
     ),
   },
+
   {
-    id: 'approach',
+    id: 'competitors-indirect',
     render: () => (
       <SlideShell>
-        <SlideLabel>The Approach</SlideLabel>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-24 max-w-5xl">
-          <div>
-            <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 md:mb-8">
-              Grounded in the design. Calibrated to the standard.
-            </h2>
-          </div>
-          <div className="space-y-4 sm:space-y-6 lg:pt-4">
-            <p className="body-technical text-sm sm:text-base">
-              The model ingests design inputs and regulatory frameworks from the start of R&D, not just at the documentation phase. It reasons about which design decisions trigger which regulatory requirements.
-            </p>
-            <p className="body-technical text-sm sm:text-base">
-              No hallucination tolerance. No invented citations. The standard is not "helpful." It is "defensible."
-            </p>
-          </div>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Competitors · Indirect</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-3xl">
+            Adjacent tools.
+          </h2>
+          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-xl">
+            Solve workflow problems without compliance depth.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto w-full">
+          {COMPETITORS.indirect.map((c) => (
+            <div key={c.name} className="rounded-lg border border-ink/10 bg-ink/[0.015] px-5 py-4 flex items-center gap-4">
+              {c.logo ? (
+                <img src={c.logo} alt={`${c.name} logo`} className="w-10 h-10 rounded-full object-contain shrink-0" />
+              ) : (
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: c.bg }}
+                >
+                  <span className="font-mono text-[10px] font-bold text-white">{c.initial}</span>
+                </div>
+              )}
+              <div>
+                <p className="font-mono text-sm font-medium text-ink/80 mb-0.5">{c.name}</p>
+                <p className="font-mono text-xs text-ink/45">{c.detail}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </SlideShell>
     ),
   },
+
   {
-    id: 'industries',
+    id: 'consultants',
     render: () => (
       <SlideShell>
-        <SlideLabel>Industries</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-4xl">
-          Regulatory intelligence across the engineering lifecycle.
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-4xl">
-          {INDUSTRIES.map((ind) => (
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>The Real Competition</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-3xl">
+            Our biggest competitors are consultants.
+          </h2>
+          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
+            Today, compliance is done by armies of consultants billing by the hour. Slow, expensive, and doesn't scale.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-3xl mx-auto">
+          <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
+            <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">$50–600</p>
+            <p className="font-mono text-[10px] sm:text-xs text-ink/45">/hour for regulatory consultants</p>
+          </div>
+          <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
+            <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">Months</p>
+            <p className="font-mono text-[10px] sm:text-xs text-ink/45">to produce a single compliance package</p>
+          </div>
+          <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
+            <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">Zero</p>
+            <p className="font-mono text-[10px] sm:text-xs text-ink/45">real-time feedback during design</p>
+          </div>
+        </div>
+
+        <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-5 sm:py-6 max-w-3xl mx-auto mt-10 sm:mt-12">
+          <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Invariant replaces this</span>
+          </div>
+          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            AI that delivers compliance insight <strong className="text-ink/80 font-medium">in seconds, not months</strong> — at a fraction of the cost.
+          </p>
+        </div>
+      </SlideShell>
+    ),
+  },
+
+  {
+    id: 'design-partners',
+    render: () => (
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Design Partners</SlideLabel>
+          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+            Built alongside practitioners.
+          </h2>
+          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+            Three design partners across three industries. Real compliance workflows, real regulatory submissions.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-4xl mx-auto w-full">
+          {DESIGN_PARTNERS.map((p) => (
             <div
-              key={ind.name}
-              className="rounded-lg px-4 sm:px-6 py-4 sm:py-6 border"
+              key={p.name}
+              className="rounded-xl border px-5 sm:px-6 py-6 sm:py-8 flex flex-col items-center text-center"
               style={{
-                borderColor: `${ind.color}40`,
-                backgroundColor: `${ind.color}0A`,
+                borderColor: `${p.color}35`,
+                backgroundColor: `${p.color}08`,
               }}
             >
-              <h3
-                className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase font-medium mb-2 sm:mb-3"
-                style={{ color: ind.color }}
+              <span
+                className="font-mono text-[10px] tracking-[0.15em] uppercase font-medium mb-4"
+                style={{ color: p.color }}
               >
-                {ind.name}
+                {p.domain}
+              </span>
+              <img
+                src={p.logo}
+                alt={`${p.name} logo`}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg mb-5"
+              />
+              <h3 className="font-mono text-sm sm:text-base font-medium text-ink/80 mb-2">
+                {p.name}
               </h3>
-              <p className="font-mono text-xs sm:text-sm text-ink/60">
-                {ind.frameworks}
+              <p className="font-mono text-[10px] sm:text-xs text-ink/50 leading-relaxed">
+                {p.scope}
               </p>
             </div>
           ))}
@@ -470,94 +623,31 @@ const slides: Slide[] = [
       </SlideShell>
     ),
   },
-  {
-    id: 'who',
-    render: () => (
-      <SlideShell>
-        <SlideLabel>Who It's For</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-4xl">
-          Built for teams where regulation shapes the engineering.
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-12 lg:gap-16 max-w-4xl">
-          {AUDIENCES.map((a) => (
-            <div key={a.label}>
-              <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2 sm:mb-4">
-                {a.label}
-              </h3>
-              <p className="font-mono text-xs sm:text-sm md:text-base leading-relaxed text-ink/65">
-                {a.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </SlideShell>
-    ),
-  },
-  {
-    id: 'traction',
-    render: () => (
-      <SlideShell>
-        <SlideLabel>Traction</SlideLabel>
-        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-10 lg:mb-16 max-w-3xl">
-          Built alongside practitioners.
-        </h2>
-        <div className="space-y-5 sm:space-y-7 lg:space-y-10 max-w-3xl">
-          <div className="border-t border-ink/10 pt-4 sm:pt-6">
-            <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2">
-              Design Partners
-            </h3>
-            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60">
-              InTomes Technical Services · Nuclear technical services and licensing consulting
-            </p>
-            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60 mt-1.5 sm:mt-2">
-              Leher · Agricultural drone manufacturer navigating regulatory certification
-            </p>
-          </div>
-          <div className="border-t border-ink/10 pt-4 sm:pt-6">
-            <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2">
-              Advisors
-            </h3>
-            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60">
-              Charles Keller · Nuclear licensing and advanced reactor deployment
-            </p>
-            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60 mt-1.5 sm:mt-2">
-              Vivin Rana · Co-Founder @ Leher | Building Drone Spraying Intelligence
-            </p>
-          </div>
-          <div className="border-t border-ink/10 pt-4 sm:pt-6">
-            <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-2">
-              Backed By
-            </h3>
-            <p className="font-mono text-xs sm:text-sm md:text-base text-ink/60">
-              Entrepreneurs First
-            </p>
-          </div>
-        </div>
-      </SlideShell>
-    ),
-  },
+
   {
     id: 'close',
     render: () => (
-      <SlideShell dark>
-        <div className="flex flex-col justify-between flex-1">
-          <div />
-          <div>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] font-medium tracking-[-0.04em] text-white mb-4 md:mb-8">
-              Invariant
-            </h2>
-            <p className="font-serif text-lg sm:text-2xl md:text-3xl text-white/60 leading-tight tracking-[-0.02em] max-w-xl mb-6 md:mb-12">
-              From first design to final approval.
-            </p>
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Let's Talk</SlideLabel>
+          <h2 className="heading-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8 whitespace-nowrap">
+            Go-to-market faster than ever.
+          </h2>
+          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-xl mb-8 sm:mb-10">
+            Invariant is building AI for systems engineering and compliance. We'd love to talk.
+          </p>
+          <div className="flex flex-col items-center gap-4 mb-8 sm:mb-12">
             <a
-              href="mailto:founders@invariant-ai.com?subject=Partnership Inquiry"
-              className="inline-block px-6 sm:px-8 py-3 sm:py-4 border border-white/30 text-white font-mono text-sm sm:text-base tracking-wide hover:bg-white/10 transition-colors"
+              href="mailto:founders@invariant-ai.com?subject=Investor Inquiry"
+              className="font-mono text-sm tracking-[0.1em] uppercase bg-ink text-white px-8 py-3.5 rounded hover:bg-ink/90 transition-colors"
             >
               founders@invariant-ai.com
             </a>
+            <span className="font-mono text-xs text-ink/35">invariant-ai.com</span>
           </div>
-          <div className="flex items-center gap-6 mt-auto pt-6 md:pt-16">
-            <span className="font-mono text-sm text-white/30">invariant-ai.com</span>
+          <div className="flex items-center gap-6">
+            <span className="font-mono text-xs text-ink/40">Backed by</span>
+            <span className="font-mono text-xs text-ink/60 font-medium">Entrepreneurs First</span>
           </div>
         </div>
       </SlideShell>
@@ -651,62 +741,34 @@ export default function Deck() {
         </motion.div>
       </AnimatePresence>
 
-      {/* First-slide hint: visible right-side button */}
-      {current === 0 && (
+      {current > 0 && (
+        <button
+          onClick={prev}
+          aria-label="Previous slide"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-ink/10 bg-white/80 backdrop-blur-sm flex items-center justify-center hover:border-ink/25 hover:bg-white transition-all shadow-sm"
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink/40" />
+          </svg>
+        </button>
+      )}
+      {current < total - 1 && (
         <button
           onClick={next}
           aria-label="Next slide"
-          className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 z-50 flex items-center gap-2.5 px-4 py-2.5 border border-white/40 rounded-full hover:border-white/80 hover:bg-white/10 transition-all group"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-ink/10 bg-white/80 backdrop-blur-sm flex items-center justify-center hover:border-ink/25 hover:bg-white transition-all shadow-sm"
         >
-          <span className="font-mono text-xs tracking-[0.15em] uppercase text-white/80 group-hover:text-white transition-colors">
-            Begin
-          </span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-white/80 group-hover:text-white transition-colors">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M7 4l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-ink/40" />
           </svg>
         </button>
       )}
 
-      {/* Bottom navigation bar */}
-      <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={prev}
-            disabled={current === 0}
-            className="p-2 disabled:opacity-20 transition-opacity"
-            aria-label="Previous slide"
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M11 4L6 9l5 5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-ink/50"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={next}
-            disabled={current === total - 1}
-            className="p-2 disabled:opacity-20 transition-opacity"
-            aria-label="Next slide"
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path
-                d="M7 4l5 5-5 5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-ink/50"
-              />
-            </svg>
-          </button>
-        </div>
+      <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-3 bg-white/80 backdrop-blur-sm border-t border-ink/[0.04]">
+        <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
+          Invariant
+        </span>
 
-        {/* Progress dots */}
         <div className="flex items-center gap-1.5">
           {slides.map((_, i) => (
             <button
@@ -714,14 +776,14 @@ export default function Deck() {
               onClick={() => go(i)}
               className={`h-1 rounded-full transition-all duration-300 ${
                 i === current
-                  ? 'w-6 bg-ink/70'
-                  : 'w-2 bg-ink/15 hover:bg-ink/30'
+                  ? 'w-6 bg-ink/60'
+                  : 'w-2 bg-ink/12 hover:bg-ink/25'
               }`}
             />
           ))}
         </div>
 
-        <span className="font-mono text-xs text-ink/40 tabular-nums min-w-[3rem] text-right">
+        <span className="font-mono text-[10px] sm:text-xs tabular-nums text-ink/30">
           {current + 1} / {total}
         </span>
       </div>

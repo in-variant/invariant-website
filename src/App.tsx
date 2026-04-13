@@ -10,9 +10,11 @@ import Part100vsPart53 from './pages/blog/Part100vsPart53'
 import SeismicDesignShift from './pages/blog/SeismicDesignShift'
 import FermiBenchSOTA from './pages/blog/FermiBenchSOTA'
 import Prototype from './pages/Prototype'
+import Pricing from './pages/Pricing'
 import Probe from './pages/Probe'
 import Deck from './pages/Deck'
 import DroneDeck from './pages/DroneDeck'
+import SpantrikDeck from './pages/SpantrikDeck'
 
 export default function App() {
   return (
@@ -20,6 +22,7 @@ export default function App() {
       <Routes>
         <Route path="/deck" element={<Deck />} />
         <Route path="/drone-deck" element={<DroneDeck />} />
+        <Route path="/spantrik" element={<SpantrikDeck />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -29,6 +32,7 @@ export default function App() {
           <Route path="/blog/part100-vs-part53-siting" element={<Part100vsPart53 />} />
           <Route path="/blog/seismic-design-shift" element={<SeismicDesignShift />} />
           <Route path="/blog/fermibench-sota" element={<FermiBenchSOTA />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/prototype" element={<Prototype />} />
           <Route path="/probe" element={<Probe />} />
         </Route>
