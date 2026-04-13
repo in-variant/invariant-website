@@ -36,27 +36,6 @@ function SlideLabel({ children }: { children: React.ReactNode }) {
   )
 }
 
-const PROBLEM_CASES = [
-  {
-    industry: 'Drones',
-    color: '#2A9D8F',
-    headline: 'Built a drone. Failed compliance.',
-    detail: 'You build the product, submit for type certification, fail the checklist — and can\'t ship to market. Months of engineering, grounded by paperwork.',
-  },
-  {
-    industry: 'Space',
-    color: '#5C6370',
-    headline: 'Software didn\'t meet DO-178C.',
-    detail: 'You build satellite launch vehicles and realise the software requirements didn\'t fulfil DO-178C criteria. Entire project delayed by 10 months.',
-  },
-  {
-    industry: 'Nuclear',
-    color: '#C4820E',
-    headline: 'Design immaturity cascades.',
-    detail: 'You apply for a nuclear plant construction permit and realise the design is immature. The project cascades — Vogtle-style overruns measured in billions.',
-  },
-]
-
 const COMPETITORS = {
   nuclear: [
     { name: 'Atomic Canyon', detail: 'Nuclear regulatory AI', logo: '/logos/atomic_canyon_logo.jpeg', initial: 'AC', bg: '#C4820E', logoBg: undefined as string | undefined },
@@ -92,66 +71,6 @@ const DESIGN_PARTNERS = [
     color: '#C4820E',
     logo: '/logos/intomes.png',
     scope: 'Development and deployment of Invariant AI for compliance with nuclear regulations, codes, and standards.',
-  },
-]
-
-const PIPELINE_STEPS = [
-  { label: 'Goal', color: '#2A9D8F' },
-  { label: 'Requirements', color: '#3A7CA5' },
-  { label: 'Design', color: '#5C6370' },
-  { label: 'Implementation', color: '#6366f1' },
-  { label: 'Tests', color: '#C4820E' },
-  { label: 'Compliance', color: '#dc2626' },
-]
-
-function PipelineArrow({ color }: { color: string }) {
-  return (
-    <svg width="18" height="14" viewBox="0 0 18 14" style={{ color: `${color}55` }} aria-hidden className="shrink-0">
-      <line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <polyline points="9,2 16,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function ReversePipelineArrow({ color }: { color: string }) {
-  return (
-    <svg width="18" height="14" viewBox="0 0 18 14" style={{ color: `${color}55` }} aria-hidden className="shrink-0">
-      <line x1="17" y1="7" x2="5" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <polyline points="9,2 2,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-const SE_STEPS = [
-  {
-    label: 'Goal',
-    color: '#2A9D8F',
-    detail: 'Define the system objective and success criteria',
-  },
-  {
-    label: 'Requirements',
-    color: '#3A7CA5',
-    details: [
-      'Functional requirements',
-      'Safety requirements',
-      'Performance criteria',
-      'Regulatory standards',
-    ],
-  },
-  {
-    label: 'Design',
-    color: '#5C6370',
-    detail: 'CAD models, simulations, architecture',
-  },
-  {
-    label: 'Implementation',
-    color: '#6366f1',
-    detail: 'Build specs, procedures, QA records',
-  },
-  {
-    label: 'Tests',
-    color: '#C4820E',
-    detail: 'Verification, validation, acceptance',
   },
 ]
 
