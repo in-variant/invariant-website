@@ -59,9 +59,9 @@ const PROBLEM_CASES = [
 
 const COMPETITORS = {
   nuclear: [
-    { name: 'Atomic Canyon', detail: 'Nuclear regulatory AI', logo: '/logos/atomic_canyon_logo.jpeg', initial: 'AC', bg: '#C4820E' },
-    { name: 'Everstar Inc', detail: 'Nuclear engineering software', logo: '/logos/everstar.png', initial: 'E', bg: '#2A9D8F' },
-    { name: 'Nuclearn', detail: 'Nuclear knowledge management', logo: null, initial: 'N', bg: '#3A7CA5' },
+    { name: 'Atomic Canyon', detail: 'Nuclear regulatory AI', logo: '/logos/atomic_canyon_logo.jpeg', initial: 'AC', bg: '#C4820E', logoBg: undefined as string | undefined },
+    { name: 'Everstar Inc', detail: 'Nuclear engineering software', logo: '/logos/everstar.png', initial: 'E', bg: '#2A9D8F', logoBg: 'white' },
+    { name: 'Nuclearn', detail: 'Nuclear knowledge management', logo: '/logos/nuclearn.png', initial: 'N', bg: '#3A7CA5', logoBg: 'black' },
   ],
   indirect: [
     { name: 'Flow Engineering', detail: 'Requirements management', logo: '/logos/flow.svg', initial: 'FE', bg: '#6366f1' },
@@ -119,6 +119,346 @@ function ReversePipelineArrow({ color }: { color: string }) {
       <line x1="17" y1="7" x2="5" y2="7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       <polyline points="9,2 2,7 9,12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  )
+}
+
+const SE_STEPS = [
+  {
+    label: 'Goal',
+    color: '#2A9D8F',
+    detail: 'Define the system objective and success criteria',
+  },
+  {
+    label: 'Requirements',
+    color: '#3A7CA5',
+    details: [
+      'Functional requirements',
+      'Safety requirements',
+      'Performance criteria',
+      'Regulatory standards',
+    ],
+  },
+  {
+    label: 'Design',
+    color: '#5C6370',
+    detail: 'CAD models, simulations, architecture',
+  },
+  {
+    label: 'Implementation',
+    color: '#6366f1',
+    detail: 'Build specs, procedures, QA records',
+  },
+  {
+    label: 'Tests',
+    color: '#C4820E',
+    detail: 'Verification, validation, acceptance',
+  },
+]
+
+function FlowArrow({ label, color, broken }: { label: string; color: string; broken?: boolean }) {
+  const c = broken ? '#ef4444' : color
+  return (
+    <div className="flex flex-col items-center gap-1 px-1 sm:px-2 shrink-0">
+      <svg width="48" height="24" viewBox="0 0 48 24" className="shrink-0">
+        <line x1="0" y1="12" x2="38" y2="12" stroke={c} strokeWidth="1.5" strokeDasharray="4 3" opacity="0.5" />
+        <polyline points="34,6 44,12 34,18" stroke={c} strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
+        <circle cx="8" cy="12" r="2" fill={c} opacity="0.6">
+          <animate attributeName="cx" values="4;40;4" dur="2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
+        </circle>
+      </svg>
+      <span className="font-mono text-[8px] sm:text-[9px] whitespace-nowrap" style={{ color: c, opacity: 0.6 }}>{label}</span>
+    </div>
+  )
+}
+
+function ArchSection({ label, color, children, broken, badge }: { label: string; color: string; children: React.ReactNode; broken?: boolean; badge?: React.ReactNode }) {
+  const borderColor = broken ? '#ef4444' : `${color}40`
+  const bgColor = broken ? '#fef2f208' : `${color}06`
+  return (
+    <div className="flex flex-col items-center shrink-0">
+      <div
+        className="rounded-xl border-2 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 relative transition-colors duration-500 min-w-[130px] sm:min-w-[150px]"
+        style={{ borderColor, backgroundColor: bgColor }}
+      >
+        <span
+          className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium transition-colors duration-500"
+          style={{ color: broken ? '#ef4444' : `${color}99` }}
+        >
+          {label}
+        </span>
+        {children}
+        {badge}
+      </div>
+    </div>
+  )
+}
+
+function ArchItem({ text, color, broken }: { text: string; color: string; broken?: boolean }) {
+  const c = broken ? '#ef4444' : color
+  return (
+    <div
+      className="flex items-center rounded-lg border px-3 py-1.5 sm:py-2 w-full transition-colors duration-500"
+      style={{ borderColor: `${c}30`, backgroundColor: `${c}08` }}
+    >
+      <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap transition-colors duration-500" style={{ color: c }}>{text}</span>
+    </div>
+  )
+}
+
+function SEWorkflowSlide() {
+  const [phase, setPhase] = useState(0)
+  const [changed, setChanged] = useState(false)
+
+  useEffect(() => {
+    if (phase < 4) {
+      const t = setTimeout(() => setPhase((p) => p + 1), 800)
+      return () => clearTimeout(t)
+    }
+    if (phase === 4 && !changed) {
+      const t = setTimeout(() => setChanged(true), 1400)
+      return () => clearTimeout(t)
+    }
+  }, [phase, changed])
+
+  return (
+    <SlideShell>
+      <div className="flex flex-col items-center text-center">
+        <SlideLabel>Systems Engineering</SlideLabel>
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+          The standard workflow.
+        </h2>
+        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
+          A change in design cascades downstream — but compliance never notices.
+        </p>
+      </div>
+
+      <div className="w-full max-w-5xl mx-auto flex items-center justify-center gap-0 overflow-x-auto pb-2">
+        {/* INPUTS */}
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: phase >= 1 ? 1 : 0.15, x: phase >= 1 ? 0 : -20 }} transition={{ duration: 0.4 }}>
+          <ArchSection label="Inputs" color="#2A9D8F">
+            <ArchItem text="Goal" color="#2A9D8F" />
+            <ArchItem text="Requirement A" color="#3A7CA5" />
+            <ArchItem text="Requirement B" color="#3A7CA5" />
+            <ArchItem text="Requirement C" color="#3A7CA5" />
+          </ArchSection>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: phase >= 1 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+          <FlowArrow label="specify" color="#3A7CA5" />
+        </motion.div>
+
+        {/* DESIGN & BUILD */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 2 ? 1 : 0.15, scale: phase >= 2 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
+          <ArchSection label="Design & Build" color="#5C6370" broken={changed}
+            badge={changed ? (
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+                className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-red-100 border-2 border-red-400 flex items-center justify-center">
+                <span className="text-red-500 text-xs font-bold">X</span>
+              </motion.div>
+            ) : undefined}
+          >
+            <ArchItem text="CAD Models" color="#5C6370" broken={changed} />
+            <ArchItem text="Simulations" color="#6366f1" broken={changed} />
+            <ArchItem text="Architecture" color="#5C6370" broken={changed} />
+          </ArchSection>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: phase >= 2 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+          <FlowArrow label="verify" color="#5C6370" broken={changed} />
+        </motion.div>
+
+        {/* TESTS */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 3 ? 1 : 0.15, scale: phase >= 3 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
+          <ArchSection label="Verification" color="#C4820E" broken={changed}>
+            <ArchItem text="Unit Tests" color="#C4820E" broken={changed} />
+            <ArchItem text="Integration" color="#C4820E" broken={changed} />
+            <ArchItem text="Acceptance" color="#C4820E" broken={changed} />
+          </ArchSection>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: phase >= 3 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+          <FlowArrow label="submit" color="#C4820E" broken={changed} />
+        </motion.div>
+
+        {/* COMPLIANCE — MISSING */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 4 ? 1 : 0.15, scale: phase >= 4 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
+          <div className="flex flex-col items-center shrink-0">
+            <div className="rounded-xl border-2 border-dashed border-red-300/50 bg-red-50/20 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 min-w-[130px] sm:min-w-[150px] relative">
+              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium text-red-400/60">
+                Compliance
+              </span>
+              <div className="flex items-center rounded-lg border border-red-200/40 bg-red-50/30 px-3 py-1.5 sm:py-2 w-full">
+                <span className="font-mono text-[10px] sm:text-xs font-medium text-red-400/50">Reg. Review</span>
+              </div>
+              <div className="flex items-center rounded-lg border border-red-200/40 bg-red-50/30 px-3 py-1.5 sm:py-2 w-full">
+                <span className="font-mono text-[10px] sm:text-xs font-medium text-red-400/50">Audit</span>
+              </div>
+              <div className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-red-100 border-2 border-red-300 flex items-center justify-center">
+                <span className="text-red-500 text-xs font-bold">X</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {changed && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="relative rounded-xl border border-red-200/60 bg-red-50/30 px-6 sm:px-8 py-4 sm:py-5 max-w-3xl mx-auto mt-6 sm:mt-8"
+        >
+          <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-red-400/70 font-medium">No compliance check</span>
+          </div>
+          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            Design changed. Everything downstream is stale. <strong className="text-red-500 font-medium">Nothing flags the gap</strong> — you find out at submission.
+          </p>
+        </motion.div>
+      )}
+
+      <button
+        onClick={() => { setPhase(0); setChanged(false); setTimeout(() => setPhase(1), 100) }}
+        className="mx-auto mt-5 font-mono text-[10px] sm:text-xs text-ink/30 hover:text-ink/60 transition-colors tracking-wide uppercase"
+      >
+        ↻ Replay
+      </button>
+    </SlideShell>
+  )
+}
+
+function SEWorkflowWithComplianceSlide() {
+  const [phase, setPhase] = useState(0)
+  const [changed, setChanged] = useState(false)
+
+  useEffect(() => {
+    if (phase < 4) {
+      const t = setTimeout(() => setPhase((p) => p + 1), 800)
+      return () => clearTimeout(t)
+    }
+    if (phase === 4 && !changed) {
+      const t = setTimeout(() => setChanged(true), 1400)
+      return () => clearTimeout(t)
+    }
+  }, [phase, changed])
+
+  return (
+    <SlideShell>
+      <div className="flex flex-col items-center text-center">
+        <SlideLabel>With Invariant</SlideLabel>
+        <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
+          Compliance at every step.
+        </h2>
+        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
+          Same workflow — but now every step is checked in real time.
+        </p>
+      </div>
+
+      <div className="w-full max-w-5xl mx-auto flex items-center justify-center gap-0 overflow-x-auto pb-2">
+        {/* INPUTS */}
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: phase >= 1 ? 1 : 0.15, x: phase >= 1 ? 0 : -20 }} transition={{ duration: 0.4 }}>
+          <ArchSection label="Inputs" color="#2A9D8F">
+            <ArchItem text="Goal" color="#2A9D8F" />
+            <ArchItem text="Requirement A" color="#3A7CA5" />
+            <ArchItem text="Requirement B" color="#3A7CA5" />
+            <ArchItem text="Requirement C" color="#3A7CA5" />
+          </ArchSection>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: phase >= 1 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+          <FlowArrow label="specify" color="#3A7CA5" />
+        </motion.div>
+
+        {/* DESIGN & BUILD */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 2 ? 1 : 0.15, scale: phase >= 2 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
+          <ArchSection label="Design & Build" color="#5C6370" broken={changed}
+            badge={changed ? (
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+                className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-amber-100 border-2 border-amber-400 flex items-center justify-center">
+                <span className="text-amber-600 text-xs font-bold">!</span>
+              </motion.div>
+            ) : undefined}
+          >
+            <ArchItem text="CAD Models" color="#5C6370" broken={changed} />
+            <ArchItem text="Simulations" color="#6366f1" broken={changed} />
+            <ArchItem text="Architecture" color="#5C6370" broken={changed} />
+          </ArchSection>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: phase >= 2 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+          <FlowArrow label="verify" color="#5C6370" broken={changed} />
+        </motion.div>
+
+        {/* TESTS */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 3 ? 1 : 0.15, scale: phase >= 3 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
+          <ArchSection label="Verification" color="#C4820E" broken={changed}>
+            <ArchItem text="Unit Tests" color="#C4820E" broken={changed} />
+            <ArchItem text="Integration" color="#C4820E" broken={changed} />
+            <ArchItem text="Acceptance" color="#C4820E" broken={changed} />
+          </ArchSection>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: phase >= 3 ? 1 : 0 }} transition={{ duration: 0.3, delay: 0.2 }}>
+          <FlowArrow label="check" color="#059669" />
+        </motion.div>
+
+        {/* COMPLIANCE — INVARIANT */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 4 ? 1 : 0.15, scale: phase >= 4 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
+          <div className="flex flex-col items-center shrink-0">
+            <div className="rounded-xl border-2 border-emerald-400/60 bg-emerald-50/20 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 min-w-[130px] sm:min-w-[150px] relative ring-2 ring-emerald-400/30 ring-offset-2">
+              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium text-emerald-600">
+                Invariant AI
+              </span>
+              <div className="flex items-center rounded-lg border border-emerald-300/40 bg-emerald-50/50 px-3 py-1.5 sm:py-2 w-full">
+                <span className="font-mono text-[10px] sm:text-xs font-medium text-emerald-700">Reg. Check</span>
+              </div>
+              <div className="flex items-center rounded-lg border border-emerald-300/40 bg-emerald-50/50 px-3 py-1.5 sm:py-2 w-full">
+                <span className="font-mono text-[10px] sm:text-xs font-medium text-emerald-700">Doc Review</span>
+              </div>
+              <div className="flex items-center rounded-lg border border-emerald-300/40 bg-emerald-50/50 px-3 py-1.5 sm:py-2 w-full">
+                <span className="font-mono text-[10px] sm:text-xs font-medium text-emerald-700">Gap Analysis</span>
+              </div>
+              {!changed && phase >= 4 && (
+                <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+                  className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-emerald-100 border-2 border-emerald-400 flex items-center justify-center">
+                  <span className="font-mono text-emerald-600 text-[9px] font-bold leading-none">OK</span>
+                </motion.div>
+              )}
+              {changed && (
+                <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+                  className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-amber-100 border-2 border-amber-400 flex items-center justify-center">
+                  <span className="text-amber-600 text-xs font-bold">!</span>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {changed && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="relative rounded-xl border border-emerald-200/60 bg-emerald-50/30 px-6 sm:px-8 py-4 sm:py-5 max-w-3xl mx-auto mt-6 sm:mt-8"
+        >
+          <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Invariant catches it</span>
+          </div>
+          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            Design changed → Invariant <strong className="text-emerald-600 font-medium">immediately flags</strong> affected steps and re-checks against every applicable regulatory criterion.
+          </p>
+        </motion.div>
+      )}
+
+      <button
+        onClick={() => { setPhase(0); setChanged(false); setTimeout(() => setPhase(1), 100) }}
+        className="mx-auto mt-5 font-mono text-[10px] sm:text-xs text-ink/30 hover:text-ink/60 transition-colors tracking-wide uppercase"
+      >
+        ↻ Replay
+      </button>
+    </SlideShell>
   )
 }
 
@@ -199,13 +539,13 @@ const slides: Slide[] = [
         <div className="flex flex-col items-center text-center">
           <SlideLabel>The Problem</SlideLabel>
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
-            Nuclear Construction Permit.
+            Nuclear.
           </h2>
           <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
-            You apply for a nuclear plant construction permit. Realise the design is immature. The project cascades.
+            You file for an NRC construction permit. An RAI comes back — your containment analysis doesn't meet GDC 16. Redesign cascades through the entire FSAR.
           </p>
           <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
-            Vogtle: billions in overruns, years of delay.
+            Vogtle: $17 B in overruns, 7 years late.
           </p>
         </div>
       </SlideShell>
@@ -224,10 +564,10 @@ const slides: Slide[] = [
         </div>
         <div className="flex justify-center gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto items-end">
           {[
-            { figure: '$1.1B', label: 'Vogtle Units 3 & 4 cost overrun from licensing delays' },
-            { figure: '$20B+', label: 'Boeing 737 MAX return-to-service documentation rework' },
-            { figure: '7 years', label: 'NRC\'s first advanced reactor design certification review' },
-            { figure: '10 months', label: 'Typical delay when software fails DO-178C criteria' },
+            { figure: '$17B', label: 'Vogtle Units 3 & 4 cost overrun — design immaturity met NRC licensing' },
+            { figure: '$20B+', label: 'Boeing 737 MAX grounding — recertification, fines & rework' },
+            { figure: '42 mo', label: 'NuScale SMR design certification — first-ever NRC SMR review' },
+            { figure: '18–36 mo', label: 'Typical DO-178C recertification cycle per software component' },
           ].map((fact) => (
             <div key={fact.figure} className="flex flex-col items-center text-center">
               <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-2 md:mb-3 whitespace-nowrap">
@@ -250,10 +590,10 @@ const slides: Slide[] = [
         <div className="flex flex-col items-center text-center">
           <SlideLabel>Why This Happens</SlideLabel>
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
-            We talked to people across US nuclear, space tech, and drone manufacturing.
+            One pattern. Every industry.
           </h2>
           <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
-            The same pattern emerged everywhere.
+            We spoke with teams across <strong className="text-ink/80 font-medium">US nuclear</strong>, <strong className="text-ink/80 font-medium">space tech</strong>, and <strong className="text-ink/80 font-medium">drone manufacturing</strong>.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 max-w-3xl mx-auto">
@@ -265,7 +605,7 @@ const slides: Slide[] = [
               Design Immaturity
             </h3>
             <p className="font-mono text-xs sm:text-sm text-ink/50 leading-relaxed">
-              Teams don't know what the regulator expects until they submit. By then, the design is locked and rework is expensive.
+              You don't know what the regulator expects until you submit. By then, rework is expensive.
             </p>
           </div>
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
@@ -273,10 +613,10 @@ const slides: Slide[] = [
               02
             </span>
             <h3 className="font-mono text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
-              Fragmented Operations
+              Siloed Operations
             </h3>
             <p className="font-mono text-xs sm:text-sm text-ink/50 leading-relaxed">
-              Large project operations are spread across teams, tools, and timelines. Requirements, design, and compliance live in silos.
+              Requirements, design, and compliance live in different tools, teams, and timelines.
             </p>
           </div>
         </div>
@@ -290,175 +630,91 @@ const slides: Slide[] = [
       <SlideShell>
         <div className="flex flex-col items-center text-center">
           <SlideLabel>The Solution</SlideLabel>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink leading-[1.1]">
+            Invariant AI
+          </h2>
+          <p className="font-mono text-base sm:text-lg md:text-xl text-ink/50 mt-4 sm:mt-6">
+            Language models built for compliance.
+          </p>
+        </div>
+      </SlideShell>
+    ),
+  },
+
+  {
+    id: 'helion-benchmark',
+    render: () => (
+      <SlideShell>
+        <div className="flex flex-col items-center text-center">
+          <SlideLabel>Our Model</SlideLabel>
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
-            Invariant AI: Language models built for compliance.
+            Helion-512 beats Fermi-512 on FermiBench.
           </h2>
           <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
-            Our models read your CAD designs, Ansys simulations, and test results — and tell you whether the design is compliant before you file.
+            Our in-house model is the only state-of-the-art for nuclear compliance.
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap max-w-4xl mx-auto mb-10 sm:mb-14">
-          {[
-            { label: 'CAD Designs', color: '#3A7CA5' },
-            { label: 'Ansys Simulations', color: '#6366f1' },
-            { label: 'Test Results', color: '#2A9D8F' },
-          ].map((src, i) => (
-            <div key={src.label} className="flex items-center gap-2 sm:gap-3">
-              <div
-                className="rounded-lg border px-4 sm:px-5 py-2.5 sm:py-3"
-                style={{ borderColor: `${src.color}35`, backgroundColor: `${src.color}08` }}
-              >
-                <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap" style={{ color: src.color }}>
-                  {src.label}
-                </span>
-              </div>
-              {i < 2 && <span className="font-mono text-ink/20 text-xs">+</span>}
+        <div className="max-w-md mx-auto w-full flex flex-col gap-5">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-mono text-xs sm:text-sm font-semibold text-ink/80">Helion-512</span>
+              <span className="font-mono text-xs sm:text-sm font-bold text-emerald-600">SOTA</span>
             </div>
-          ))}
-          <PipelineArrow color="#5C6370" />
-          <div className="rounded-lg border-2 border-ink/30 bg-ink/[0.03] px-4 sm:px-5 py-2.5 sm:py-3">
-            <span className="font-mono text-[10px] sm:text-xs font-semibold whitespace-nowrap text-ink/80">
-              Invariant AI
-            </span>
+            <div className="w-full h-3 rounded-full bg-ink/[0.06] overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-emerald-500"
+                initial={{ width: 0 }}
+                animate={{ width: '96.93%' }}
+                transition={{ duration: 1.2, ease: 'easeOut', delay: 0.3 }}
+              />
+            </div>
+            <div className="flex justify-between mt-1">
+              <span className="font-mono text-[10px] text-ink/30">Invariant · In-house</span>
+              <span className="font-mono text-[10px] text-emerald-600 font-medium">96.93</span>
+            </div>
           </div>
-          <PipelineArrow color="#5C6370" />
-          <div className="rounded-lg border-2 border-emerald-400/50 bg-emerald-50/50 px-4 sm:px-5 py-2.5 sm:py-3">
-            <span className="font-mono text-[10px] sm:text-xs font-semibold whitespace-nowrap text-emerald-700">
-              Compliant / Not Compliant
-            </span>
+
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="font-mono text-xs sm:text-sm font-medium text-ink/60">Fermi-512</span>
+              <span className="font-mono text-[10px] sm:text-xs text-ink/35">Previous SOTA</span>
+            </div>
+            <div className="w-full h-3 rounded-full bg-ink/[0.06] overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-ink/25"
+                initial={{ width: 0 }}
+                animate={{ width: '74%' }}
+                transition={{ duration: 1.2, ease: 'easeOut', delay: 0.5 }}
+              />
+            </div>
+            <div className="flex justify-between mt-1">
+              <span className="font-mono text-[10px] text-ink/30"></span>
+              <span className="font-mono text-[10px] text-ink/40 font-medium">74.00</span>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-          {['Learning', 'Reasoning', 'Authoring'].map((cap) => (
-            <span
-              key={cap}
-              className="font-mono text-xs sm:text-sm tracking-[0.15em] uppercase px-5 py-2.5 rounded border border-ink/20 text-ink/70"
-            >
-              {cap}
-            </span>
-          ))}
-        </div>
+        <a
+          href="https://huggingface.co/datasets/atomic-canyon/FermiBench"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-[10px] sm:text-xs text-ink/30 hover:text-ink/50 transition-colors text-center mt-8 sm:mt-10 underline underline-offset-2 decoration-ink/15 hover:decoration-ink/30"
+        >
+          FermiBench · nDCG@10 · Nuclear regulatory compliance benchmark
+        </a>
       </SlideShell>
     ),
   },
 
   {
     id: 'se-workflow',
-    render: () => {
-      const standardSteps = PIPELINE_STEPS.filter((s) => s.label !== 'Compliance')
-      return (
-        <SlideShell>
-          <div className="flex flex-col items-center text-center">
-            <SlideLabel>Systems Engineering</SlideLabel>
-            <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
-              The standard workflow.
-            </h2>
-            <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
-              Compliance is completely absent. Any change in any step — its impact on compliance is invisible until it's too late.
-            </p>
-          </div>
-
-          <div className="w-full max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-1.5 sm:gap-2.5">
-              {standardSteps.map((step, i) => (
-                <div key={step.label} className="flex items-center gap-1.5 sm:gap-2.5">
-                  <div
-                    className="rounded-lg border px-3.5 sm:px-5 py-2.5 sm:py-3"
-                    style={{
-                      borderColor: `${step.color}35`,
-                      backgroundColor: `${step.color}08`,
-                    }}
-                  >
-                    <span
-                      className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap"
-                      style={{ color: step.color }}
-                    >
-                      {step.label}
-                    </span>
-                  </div>
-                  {i < standardSteps.length - 1 && <PipelineArrow color={step.color} />}
-                </div>
-              ))}
-
-              <div className="flex items-center gap-1.5 sm:gap-2.5 ml-1 sm:ml-2">
-                <div className="w-px h-8 bg-ink/10" />
-                <div className="rounded-lg border-2 border-dashed border-red-300/50 bg-red-50/30 px-3.5 sm:px-5 py-2.5 sm:py-3 relative">
-                  <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap text-red-400/60">
-                    Compliance?
-                  </span>
-                  <div className="absolute -top-2.5 -right-2.5 w-5 h-5 rounded-full bg-red-100 border border-red-300 flex items-center justify-center">
-                    <span className="text-red-500 text-xs font-bold leading-none">✕</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative rounded-xl border border-red-200/60 bg-red-50/30 px-6 sm:px-8 py-5 sm:py-6 max-w-3xl mx-auto mt-10 sm:mt-12">
-            <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-red-400/70 font-medium">Missing</span>
-            </div>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
-              Compliance is <strong className="text-ink/80 font-medium">never part of the workflow</strong>. A requirement changes, a design shifts, a test is added — and nobody knows how it affects regulatory approval until submission day.
-            </p>
-          </div>
-        </SlideShell>
-      )
-    },
+    render: () => <SEWorkflowSlide />,
   },
 
   {
     id: 'how-it-works',
-    render: () => (
-      <SlideShell>
-        <div className="flex flex-col items-center text-center">
-          <SlideLabel>Our Approach</SlideLabel>
-          <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
-            Invariant adds compliance to every step.
-          </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
-            The same workflow — but now compliance is woven in from the start, not bolted on at the end.
-          </p>
-        </div>
-
-        <div className="w-full max-w-4xl mx-auto">
-          <div className="flex items-center justify-center gap-1.5 sm:gap-2.5">
-            {PIPELINE_STEPS.map((step, i) => (
-              <div key={step.label} className="flex items-center gap-1.5 sm:gap-2.5">
-                <div
-                  className={`rounded-lg border-2 px-3.5 sm:px-5 py-2.5 sm:py-3 ${
-                    step.label === 'Compliance' ? 'ring-2 ring-emerald-400/40 ring-offset-2' : ''
-                  }`}
-                  style={{
-                    borderColor: step.label === 'Compliance' ? '#059669' : `${step.color}50`,
-                    backgroundColor: step.label === 'Compliance' ? '#05966912' : `${step.color}0A`,
-                  }}
-                >
-                  <span
-                    className="font-mono text-[10px] sm:text-xs font-semibold whitespace-nowrap"
-                    style={{ color: step.label === 'Compliance' ? '#059669' : step.color }}
-                  >
-                    {step.label}
-                  </span>
-                </div>
-                {i < PIPELINE_STEPS.length - 1 && <PipelineArrow color={step.color} />}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative rounded-xl border border-emerald-200/60 bg-emerald-50/30 px-6 sm:px-8 py-5 sm:py-6 max-w-3xl mx-auto mt-10 sm:mt-14">
-          <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">With Invariant</span>
-          </div>
-          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
-            Compliance is now <strong className="text-ink/80 font-medium">part of the workflow</strong>. Every requirement, design decision, and test result is checked against regulatory criteria in real time.
-          </p>
-        </div>
-      </SlideShell>
-    ),
+    render: () => <SEWorkflowWithComplianceSlide />,
   },
 
   {
@@ -478,7 +734,12 @@ const slides: Slide[] = [
           {COMPETITORS.nuclear.map((c) => (
             <div key={c.name} className="rounded-lg border border-amber-200 bg-amber-50/50 px-6 py-5 flex items-center gap-4">
               {c.logo ? (
-                <img src={c.logo} alt={`${c.name} logo`} className="w-11 h-11 rounded-full object-cover shrink-0" />
+                <div
+                  className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center overflow-hidden"
+                  style={{ backgroundColor: c.logoBg || 'transparent' }}
+                >
+                  <img src={c.logo} alt={`${c.name} logo`} className="w-full h-full object-contain p-1" />
+                </div>
               ) : (
                 <div
                   className="w-11 h-11 rounded-full flex items-center justify-center shrink-0"
