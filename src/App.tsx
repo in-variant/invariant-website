@@ -15,6 +15,7 @@ import Probe from './pages/Probe'
 import Deck from './pages/Deck'
 import DroneDeck from './pages/DroneDeck'
 import SpantrikDeck from './pages/SpantrikDeck'
+import IntomesDeck from './pages/IntomesDeck'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/deck" element={<Deck />} />
         <Route path="/drone-deck" element={<DroneDeck />} />
         <Route path="/spantrik" element={<SpantrikDeck />} />
+        <Route path="/intomes" element={<IntomesDeck />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
