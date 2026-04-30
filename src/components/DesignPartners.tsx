@@ -11,11 +11,11 @@ const PARTNERS = [
     logo: `${import.meta.env.BASE_URL}logos/intomes.png`,
   },
   {
-    name: 'Leher',
-    description: 'Agricultural drone manufacturer navigating regulatory certification',
-    url: 'https://leher.ag',
-    urlLabel: 'leher.ag',
-    logo: `${import.meta.env.BASE_URL}logos/leher.jpeg`,
+    name: 'Akashalabdhi',
+    description: 'Space technology company advancing modular space habitats',
+    url: 'https://akashalabdhi.space',
+    urlLabel: 'akashalabdhi.space',
+    logo: `${import.meta.env.BASE_URL}logos/akashalabdhi_logoX2x.png`,
   },
 ]
 

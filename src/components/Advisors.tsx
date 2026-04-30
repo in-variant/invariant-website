@@ -10,7 +10,7 @@ const ADVISORS = [
   },
   {
     name: 'Vivin Rana',
-    description: 'Co-Founder @ Leher | Building Drone Spraying Intelligence',
+    description: 'Building drone spraying intelligence and agricultural automation',
     photo: `${import.meta.env.BASE_URL}advisors/vivin-rana.jpg`,
   },
 ]

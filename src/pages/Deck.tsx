@@ -59,11 +59,11 @@ const DESIGN_PARTNERS = [
     scope: 'Reusable Launch Vehicles — Testing Authorisation via IN-SPACe',
   },
   {
-    name: 'Leher',
-    domain: 'Drones',
-    color: '#2A9D8F',
-    logo: '/logos/leher.jpeg',
-    scope: 'Agridrone Type C Certification',
+    name: 'Akashalabdhi',
+    domain: 'Space Tech',
+    color: '#7E57C2',
+    logo: '/logos/akashalabdhi_logoX2x.png',
+    scope: 'Modular space habitat development and compliance workflows',
   },
   {
     name: 'InTomes',
