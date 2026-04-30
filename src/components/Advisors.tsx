@@ -8,11 +8,6 @@ const ADVISORS = [
     description: 'Nuclear licensing and advanced reactor deployment',
     photo: `${import.meta.env.BASE_URL}advisors/charles-keller.jpg`,
   },
-  {
-    name: 'Vivin Rana',
-    description: 'Building drone spraying intelligence and agricultural automation',
-    photo: `${import.meta.env.BASE_URL}advisors/vivin-rana.jpg`,
-  },
 ]
 
 export default function Advisors() {
