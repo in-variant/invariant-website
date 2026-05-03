@@ -522,19 +522,20 @@ export default function Prototype() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="text-center max-w-2xl mx-auto"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-ink/15 rounded-full mb-6">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-mono text-xs text-ink/70">Interactive Prototype</span>
           </div>
           <h1 className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-4">
-            See the authoring environment.
+            The platform behind the service.
           </h1>
-          <p className="body-technical max-w-2xl mb-8">
-            A preview of how Invariant's AI-assisted authoring platform works in practice. Upload regulatory documents, generate draft sections with full citation traceability, and collaborate with AI that understands your domain.
+          <p className="body-technical mb-8">
+            A preview of Invariant AI's compliance authoring platform. Upload regulatory documents, generate draft sections with full citation traceability, and collaborate with AI built for your domain.
           </p>
 
-          <div className="flex gap-2 mb-8">
+          <div className="flex gap-2 mb-8 justify-center">
             <button
               onClick={() => setActiveView('authoring')}
               className={`font-mono text-xs tracking-[0.15em] uppercase px-4 py-2 rounded transition-colors ${
@@ -571,7 +572,7 @@ export default function Prototype() {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-[9px] font-bold text-white">IN</div>
-                    <span className="font-mono text-xs font-bold text-gray-800">Invariant</span>
+                    <span className="font-mono text-xs font-bold text-gray-800">Invariant AI</span>
                   </div>
                   <div className="w-px h-5 bg-gray-200" />
                   <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded text-xs font-mono text-gray-600">

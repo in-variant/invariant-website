@@ -27,7 +27,7 @@ export default function Nav() {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-ink/10">
       <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 xl:px-32 h-[60px]">
         <Link to="/" className="font-serif text-lg font-medium tracking-[-0.02em] text-ink hover:text-ink/80 transition-colors">
-          Invariant
+          Invariant AI
         </Link>
 
         {/* Desktop links */}

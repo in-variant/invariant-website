@@ -37,7 +37,7 @@ export default function TheModel() {
               transition={{ duration: 0.8 }}
               className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-8"
             >
-              Not a summarizer.<br />An author.
+              Not a tool.<br />A compliance service.
             </motion.h2>
 
             <motion.p
@@ -46,7 +46,7 @@ export default function TheModel() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="body-technical"
             >
-              Invariant's models are trained on domain-specific regulatory frameworks. They reason over your design inputs and the standards that govern them, assisting across the full lifecycle, from early constraint identification to final documentation.
+              Invariant delivers AI-native compliance services trained on domain-specific regulatory frameworks. They reason over your design inputs and the standards that govern them, operating across the full lifecycle — from early constraint identification to final documentation.
             </motion.p>
           </div>
 

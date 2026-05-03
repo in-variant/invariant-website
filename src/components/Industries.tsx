@@ -180,7 +180,7 @@ export default function Industries() {
           transition={{ duration: 0.8 }}
           className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-6"
         >
-          Regulatory intelligence across the engineering lifecycle.
+          AI-native compliance across the engineering lifecycle.
         </motion.h2>
 
         <motion.p
@@ -189,7 +189,7 @@ export default function Industries() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="body-technical max-w-2xl mb-14"
         >
-          Invariant's models are trained on domain-specific regulations. They don't just write documentation at the end. They assist your team from early design through final certification.
+          Invariant's AI-native services are grounded in domain-specific regulations. They don't just write documentation at the end — they embed compliance intelligence into every phase, from early design through final certification.
         </motion.p>
 
         <motion.div

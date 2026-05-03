@@ -4,7 +4,7 @@ const POSTS = [
   {
     slug: 'fermibench-sota',
     date: 'April 1, 2026',
-    title: 'Invariant Sets State-of-the-Art on FermiBench Nuclear Retrieval Benchmark',
+    title: 'Invariant AI Sets State-of-the-Art on FermiBench Nuclear Retrieval Benchmark',
     summary:
       'Our domain-adapted retrieval model helion-512 achieves 0.97 NDCG@10 and 0.93 Precision@1 on FermiBench, the only published information retrieval benchmark for the nuclear domain, up from the previous state-of-the-art of 0.74.',
     tags: ['Announcement', 'Retrieval', 'NRC ADAMS', 'Machine Learning'],
@@ -12,7 +12,7 @@ const POSTS = [
   {
     slug: 'seismic-design-shift',
     date: 'March 29, 2026',
-    title: 'SSE/OBE → GMRS/SDC: The Seismic Design Shift from Part 100 Appendix A to Part 53 §53.480',
+    title: 'SSE/OBE to GMRS/SDC: The Seismic Design Shift from Part 100 Appendix A to Part 53',
     summary:
       'The deterministic SSE/OBE two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered Design-Basis Ground Motions and Seismic Design Categories. A regulation-to-regulation comparison of every substantive change, from the 0.1g floor to the capable fault criteria erasure.',
     tags: ['Nuclear', 'Part 53', 'Seismic', 'Earthquake Engineering'],
@@ -31,7 +31,6 @@ export default function Blog() {
   return (
     <section className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
       <p className="section-label mb-4">Research</p>
-      <div className="section-rule mb-10" />
 
       <h1 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-6">
         Blog

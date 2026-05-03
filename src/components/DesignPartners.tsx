@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import SectionDivider from './SectionDivider'
 
 const PARTNERS = [
   {
@@ -25,7 +24,6 @@ export default function DesignPartners() {
 
   return (
     <section>
-      <SectionDivider label="§6" />
       <div ref={ref} className="px-6 md:px-12 lg:px-24 xl:px-32 pt-12 pb-24">
         <p className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-ink/50 mb-8">
           Design Partners

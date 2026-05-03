@@ -17,7 +17,7 @@ export default function TheApproach() {
             transition={{ duration: 0.8 }}
             className="heading-editorial text-3xl md:text-4xl lg:text-5xl"
           >
-            Grounded in the design.<br />Calibrated to the standard.
+            Built into the workflow.<br />Calibrated to the standard.
           </motion.h2>
 
           <motion.div
@@ -27,10 +27,10 @@ export default function TheApproach() {
             className="space-y-6 lg:pt-2"
           >
             <p className="body-technical">
-              The model ingests design inputs and regulatory frameworks from the start of R&amp;D, not just at the documentation phase. It reasons about which design decisions trigger which regulatory requirements, and what each deliverable must demonstrate.
+              Invariant's services ingest design inputs and regulatory frameworks from the start of R&amp;D, not just at the documentation phase. They reason about which design decisions trigger which regulatory requirements, and what each deliverable must demonstrate.
             </p>
             <p className="body-technical">
-              No hallucination tolerance. No invented citations. The standard is not "helpful." It is "defensible."
+              No hallucination tolerance. No invented citations. AI-native means the standard is not "helpful." It is "defensible."
             </p>
           </motion.div>
         </div>

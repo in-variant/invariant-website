@@ -5,184 +5,166 @@ const REGULATORY_PROSE = `Section 4.2.1: The applicant shall demonstrate, throug
 
 const CHARS_TO_TYPE = 220
 
-const REGULATORY_SOURCES = [
-  '10 CFR 50.46',
-  'DO-178C',
-  'DGCA CAR',
-  'IMO SOLAS',
-  'NRC SRP',
-  'Other',
+const FLOW_LINES = [
+  { y: '15%', delay: 0, duration: 3.5, color: '#2A9D8F' },
+  { y: '30%', delay: 0.8, duration: 4.2, color: '#C4820E' },
+  { y: '45%', delay: 0.3, duration: 3.8, color: '#3A7CA5' },
+  { y: '60%', delay: 1.2, duration: 4.5, color: '#5C6370' },
+  { y: '75%', delay: 0.6, duration: 3.2, color: '#2A9D8F' },
+  { y: '88%', delay: 1.5, duration: 4.0, color: '#C4820E' },
+  { y: '22%', delay: 2.0, duration: 3.6, color: '#3A7CA5' },
+  { y: '52%', delay: 1.8, duration: 4.8, color: '#5C6370' },
 ]
 
-const TEAM_OUTPUTS = [
-  { label: 'Engineering Teams', color: '#2A9D8F' },
-  { label: 'Licensing Consultants', color: '#3A7CA5' },
-  { label: 'Program Leadership', color: '#5C6370' },
-  { label: 'Your Team', color: '#9CA3AF' },
+const ACCENT_ICONS = [
+  { type: 'satellite', y: '20%', delay: 1, duration: 18, color: '#3A7CA5', bob: -12 },
+  { type: 'atom', y: '50%', delay: 4, duration: 22, color: '#C4820E', bob: 10 },
+  { type: 'rocket', y: '78%', delay: 7, duration: 16, color: '#3A7CA5', bob: -8 },
 ]
 
-const SOURCE_COLORS = ['#C4820E', '#2A9D8F', '#3A7CA5', '#5C6370', '#8B5CF6', '#9CA3AF']
-
-function ModelStackDiagram() {
+function FlowingBackground() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.6, duration: 1.2 }}
-      className="hidden lg:flex flex-col items-center justify-end select-none"
-    >
-      <div className="w-full max-w-[380px] flex flex-col items-center">
-
-        {/* Regulatory sources at the top */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Flowing horizontal lines */}
+      {FLOW_LINES.map((line, i) => (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
-          className="w-full mb-5"
-        >
-          <p className="font-mono text-sm tracking-[0.2em] uppercase text-ink/60 mb-3 text-center">
-            Regulatory Sources
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {REGULATORY_SOURCES.map((source, i) => (
-              <motion.span
-                key={source}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 + i * 0.1, duration: 0.4 }}
-                className="font-mono text-sm px-3 py-1.5 rounded font-medium"
-                style={{
-                  borderWidth: 1,
-                  borderColor: `${SOURCE_COLORS[i]}50`,
-                  backgroundColor: `${SOURCE_COLORS[i]}12`,
-                  color: SOURCE_COLORS[i],
-                }}
-              >
-                {source}
-              </motion.span>
-            ))}
-          </div>
-        </motion.div>
+          key={i}
+          className="absolute h-px"
+          style={{
+            top: line.y,
+            background: `linear-gradient(90deg, transparent 0%, ${line.color}15 20%, ${line.color}25 50%, ${line.color}15 80%, transparent 100%)`,
+          }}
+          initial={{ left: '-40%', width: '40%' }}
+          animate={{ left: '100%' }}
+          transition={{
+            delay: line.delay,
+            duration: line.duration,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
+      ))}
 
-        {/* Downward arrows from sources to training divider */}
+      {/* Small particles along lines */}
+      {FLOW_LINES.map((line, i) => (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-          className="flex justify-center gap-10 mb-5"
+          key={`p-${i}`}
+          className="absolute rounded-full"
+          style={{
+            top: line.y,
+            width: i % 3 === 0 ? 3 : 2,
+            height: i % 3 === 0 ? 3 : 2,
+            backgroundColor: `${line.color}30`,
+          }}
+          initial={{ left: '-5%', y: 0 }}
+          animate={{
+            left: '105%',
+            y: [0, i % 2 === 0 ? -15 : 15, 0],
+          }}
+          transition={{
+            left: {
+              delay: line.delay + 0.5,
+              duration: line.duration * 1.3,
+              repeat: Infinity,
+              ease: 'linear',
+            },
+            y: {
+              delay: line.delay + 0.5,
+              duration: line.duration * 0.65,
+              repeat: Infinity,
+              repeatType: 'reverse',
+              ease: 'easeInOut',
+            },
+          }}
+        />
+      ))}
+
+      {/* A few sparse domain icons — very small, very faint */}
+      {ACCENT_ICONS.map((item, i) => (
+        <motion.div
+          key={`icon-${i}`}
+          className="absolute"
+          style={{ top: item.y, opacity: 0.12 }}
+          initial={{ left: '-6%' }}
+          animate={{
+            left: '106%',
+            y: [0, item.bob, 0],
+          }}
+          transition={{
+            left: {
+              delay: item.delay,
+              duration: item.duration,
+              repeat: Infinity,
+              ease: 'linear',
+            },
+            y: {
+              delay: item.delay,
+              duration: item.duration * 0.35,
+              repeat: Infinity,
+              repeatType: 'reverse',
+              ease: 'easeInOut',
+            },
+          }}
         >
-          {[0, 1].map((i) => (
-            <svg key={i} width="14" height="22" viewBox="0 0 14 22" style={{ color: '#C4820E80' }}>
-              <line x1="7" y1="2" x2="7" y2="17" stroke="currentColor" strokeWidth="1.5" />
-              <polyline points="2,13 7,20 12,13" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          {item.type === 'satellite' && (
+            <svg viewBox="0 0 36 20" width="36" height="20" fill="none">
+              <rect x="12" y="6" width="12" height="8" rx="1.5" fill={item.color} />
+              <rect x="0" y="7.5" width="10" height="5" rx="1" fill={item.color} />
+              <rect x="26" y="7.5" width="10" height="5" rx="1" fill={item.color} />
+              <line x1="18" y1="6" x2="18" y2="2" stroke={item.color} strokeWidth="1" />
+              <circle cx="18" cy="1" r="1" fill={item.color} />
             </svg>
-          ))}
-        </motion.div>
-
-        {/* Training divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 1.0, duration: 0.6, ease: 'easeOut' }}
-          className="w-full mb-5 origin-center flex items-center gap-3"
-        >
-          <div className="flex-1 h-px" style={{ backgroundColor: '#C4820E50' }} />
-          <span className="font-mono text-xs tracking-[0.15em] uppercase font-medium" style={{ color: '#C4820E' }}>
-            Training
-          </span>
-          <div className="flex-1 h-px" style={{ backgroundColor: '#C4820E50' }} />
-        </motion.div>
-
-        {/* The model, central element */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.2, duration: 0.7 }}
-          className="w-full rounded-md px-5 py-5 mb-5 relative overflow-hidden border"
-          style={{ borderColor: '#2A9D8F60', backgroundColor: '#2A9D8F0D' }}
-        >
-          <div className="relative">
-            <p className="font-mono text-sm tracking-[0.2em] uppercase mb-2 font-medium" style={{ color: '#2A9D8F' }}>
-              Invariant Model
-            </p>
-            <p className="font-mono text-sm text-ink/75 leading-relaxed">
-              Domain-specific language models trained on engineering regulations
-            </p>
-            <div className="mt-3 flex gap-2">
-              {['Learning', 'Reasoning', 'Authoring'].map((cap, i) => {
-                const colors = ['#C4820E', '#3A7CA5', '#2A9D8F']
-                return (
-                  <span
-                    key={cap}
-                    className="font-mono text-xs tracking-wide uppercase px-2.5 py-1 rounded-sm font-medium"
-                    style={{ backgroundColor: `${colors[i]}20`, color: colors[i] }}
-                  >
-                    {cap}
-                  </span>
-                )
-              })}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Downward arrows from model to teams */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 0.5 }}
-          className="flex justify-center gap-10 mb-5"
-        >
-          {[0, 1].map((i) => (
-            <svg key={i} width="14" height="22" viewBox="0 0 14 22" style={{ color: '#5C637080' }}>
-              <line x1="7" y1="2" x2="7" y2="17" stroke="currentColor" strokeWidth="1.5" />
-              <polyline points="2,13 7,20 12,13" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          )}
+          {item.type === 'rocket' && (
+            <svg viewBox="0 0 18 36" width="16" height="32" fill="none" style={{ transform: 'rotate(-25deg)' }}>
+              <path d="M9 1 L14 12 H4 Z" fill={item.color} />
+              <rect x="5" y="12" width="8" height="14" rx="1" fill={item.color} />
+              <rect x="2" y="20" width="3" height="7" rx="1.5" fill={item.color} />
+              <rect x="13" y="20" width="3" height="7" rx="1.5" fill={item.color} />
+              <ellipse cx="9" cy="30" rx="3" ry="4" fill={item.color} opacity="0.5" />
             </svg>
-          ))}
+          )}
+          {item.type === 'atom' && (
+            <motion.svg
+              viewBox="0 0 32 32" width="32" height="32" fill="none"
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            >
+              <circle cx="16" cy="16" r="3" fill={item.color} />
+              <ellipse cx="16" cy="16" rx="14" ry="5" stroke={item.color} strokeWidth="0.8" />
+              <ellipse cx="16" cy="16" rx="14" ry="5" stroke={item.color} strokeWidth="0.8" transform="rotate(60 16 16)" />
+              <ellipse cx="16" cy="16" rx="14" ry="5" stroke={item.color} strokeWidth="0.8" transform="rotate(120 16 16)" />
+            </motion.svg>
+          )}
         </motion.div>
+      ))}
 
-        {/* Teams at the bottom, 2x2 grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.0, duration: 0.6 }}
-          className="w-full"
-        >
-          <p className="font-mono text-sm tracking-[0.2em] uppercase text-ink/60 mb-3 text-center">
-            Teams
-          </p>
-          <div className="grid grid-cols-2 gap-3">
-            {TEAM_OUTPUTS.map((team, i) => (
-              <motion.div
-                key={team.label}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.2 + i * 0.12, duration: 0.4 }}
-                className="rounded px-3 py-3 text-center border"
-                style={{
-                  borderColor: `${team.color}45`,
-                  backgroundColor: `${team.color}10`,
-                }}
-              >
-                <span
-                  className="block text-base mb-1"
-                  style={{ color: team.color }}
-                >&#9671;</span>
-                <span className="font-mono text-xs leading-tight text-ink/75 block">
-                  {team.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-      </div>
-    </motion.div>
+      {/* Central convergence glow */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+        style={{
+          width: 500,
+          height: 500,
+          background:
+            'radial-gradient(circle, rgba(42,157,143,0.05) 0%, rgba(196,130,14,0.03) 30%, rgba(58,124,165,0.02) 60%, transparent 80%)',
+        }}
+        animate={{
+          scale: [1, 1.12, 1],
+          opacity: [0.5, 0.9, 0.5],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+    </div>
   )
 }
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState('')
-  const [phase, setPhase] = useState<'typing' | 'pause' | 'fading' | 'wordmark'>('typing')
+  const [phase, setPhase] = useState<'typing' | 'pause' | 'fading' | 'content'>('typing')
   const charIndex = useRef(0)
   const [email, setEmail] = useState('')
 
@@ -211,84 +193,96 @@ export default function Hero() {
 
   useEffect(() => {
     if (phase !== 'fading') return
-    const timeout = setTimeout(() => setPhase('wordmark'), 700)
+    const timeout = setTimeout(() => setPhase('content'), 700)
     return () => clearTimeout(timeout)
   }, [phase])
 
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 xl:px-32 py-24 relative">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-end">
-        <div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 border border-ink/15 rounded-full mb-6">
-            <span className="font-mono text-sm text-ink/70">Backed by</span>
-            <a href="https://www.joinef.com" target="_blank" rel="noopener noreferrer" className="font-mono text-sm font-medium text-ink hover:text-ink/70 transition-colors">
-              Entrepreneurs First
-            </a>
-          </div>
+    <section className="min-h-screen flex flex-col items-center justify-center px-6 md:px-12 lg:px-24 xl:px-32 pb-32 pt-16 relative overflow-hidden bg-white">
+      <FlowingBackground />
 
-          <div className="mb-6 h-[80px] md:h-[100px] lg:h-[120px] xl:h-[145px] relative overflow-hidden">
-            <AnimatePresence mode="wait">
-              {(phase === 'typing' || phase === 'pause') && (
-                <motion.div
-                  key="prose"
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.7 }}
-                  className="absolute inset-0"
-                >
-                  <p className="font-mono text-sm md:text-base leading-relaxed text-ink/60 max-w-3xl">
-                    {displayedText}
-                    <span className="cursor-blink text-ink/30 ml-px">▌</span>
-                  </p>
-                </motion.div>
-              )}
-              {phase === 'wordmark' && (
-                <motion.div
-                  key="wordmark"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1.2, ease: 'easeOut' }}
-                  className="absolute inset-0 flex items-start"
-                >
-                  <h1 className="font-serif text-6xl md:text-8xl lg:text-[7rem] xl:text-[8.5rem] font-medium tracking-[-0.04em] text-ink">
-                    Invariant
-                  </h1>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
+      <div className="relative z-10 w-full max-w-3xl flex flex-col items-center text-center">
+        {/* Backed by badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-4 py-2 border border-ink/15 rounded-full mb-8"
+        >
+          <span className="font-mono text-sm text-ink/70">Backed by</span>
+          <a
+            href="https://www.joinef.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-sm font-medium text-ink hover:text-ink/70 transition-colors"
           >
-            <p className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] tracking-[-0.02em] text-ink mb-8">
-              From first design<br />to final approval.
-            </p>
+            Entrepreneurs First
+          </a>
+        </motion.div>
 
-            <p className="body-technical max-w-xl mb-12">
-              Invariant builds language models trained on engineering regulations. AI that works alongside your team from early R&amp;D through certification.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@company.com"
-                className="flex-1 px-4 py-3 font-mono text-base bg-transparent border border-ink/15 text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink/40 transition-colors"
-              />
-              <a
-                href={`mailto:founders@invariant-ai.com?subject=Early Access Request&body=I'd like to request early access to Invariant.`}
-                className="px-6 py-3 bg-ink text-white font-mono text-base tracking-wide hover:bg-ink/85 transition-colors text-center whitespace-nowrap"
+        {/* Typing → Wordmark transition */}
+        <div className="mb-6 h-[80px] md:h-[100px] lg:h-[120px] xl:h-[145px] relative overflow-hidden w-full flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            {(phase === 'typing' || phase === 'pause') && (
+              <motion.div
+                key="prose"
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7 }}
+                className="absolute inset-0 flex items-center justify-center"
               >
-                Request early access
-              </a>
-            </div>
-          </motion.div>
+                <p className="font-mono text-sm md:text-base leading-relaxed text-ink/60 max-w-2xl text-center">
+                  {displayedText}
+                  <span className="cursor-blink text-ink/30 ml-px">▌</span>
+                </p>
+              </motion.div>
+            )}
+            {phase === 'content' && (
+              <motion.div
+                key="wordmark"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: 'easeOut' }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <h1 className="font-serif text-6xl md:text-8xl lg:text-[7rem] xl:text-[8.5rem] font-medium tracking-[-0.04em] text-ink">
+                  Invariant AI
+                </h1>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        <ModelStackDiagram />
+        {/* Headline */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={phase === 'content' ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ delay: 0.3, duration: 0.9, ease: 'easeOut' }}
+          className="font-serif text-xl md:text-2xl lg:text-3xl leading-[1.2] tracking-[-0.02em] text-ink mb-8"
+        >
+          AI-native services for regulated compliance.
+        </motion.p>
+
+        {/* Email CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={phase === 'content' ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ delay: 0.55, duration: 0.8, ease: 'easeOut' }}
+          className="flex flex-col sm:flex-row gap-3 w-full max-w-md"
+        >
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@company.com"
+            className="flex-1 px-4 py-3 font-mono text-base bg-white/80 backdrop-blur-sm border border-ink/15 text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink/40 transition-colors text-center sm:text-left"
+          />
+          <a
+            href={`mailto:founders@invariant-ai.com?subject=Early Access Request&body=I'd like to request early access to Invariant AI.`}
+            className="px-6 py-3 bg-ink text-white font-mono text-base tracking-wide hover:bg-ink/85 transition-colors text-center whitespace-nowrap"
+          >
+            Request early access
+          </a>
+        </motion.div>
       </div>
     </section>
   )

@@ -20,7 +20,7 @@ export default function TheProblem() {
           transition={{ duration: 0.8 }}
           className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-12 max-w-3xl"
         >
-          Regulation touches every phase of engineering. The tools haven't kept up.
+          Compliance touches every phase of engineering. The services haven't kept up.
         </motion.h2>
 
         <motion.div
@@ -30,7 +30,7 @@ export default function TheProblem() {
           className="max-w-2xl"
         >
           <p className="body-technical">
-            Regulations don't just gate the final approval. They shape design decisions, constrain material choices, and dictate testing protocols from day one. Yet the tools engineers use to navigate this complexity haven't changed in decades: manual cross-referencing, tribal knowledge, and consultants who take years to train.
+            Regulations don't just gate the final approval. They shape design decisions, constrain material choices, and dictate testing protocols from day one. Yet the services engineers rely on to navigate this complexity haven't evolved: manual cross-referencing, tribal knowledge, and consultants who take years to train. Compliance needs AI-native infrastructure, not bolt-on tooling.
           </p>
         </motion.div>
       </div>
