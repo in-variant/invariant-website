@@ -484,9 +484,69 @@ function ProblemSlide() {
 
 function SolutionSlide() {
   const cols = [
-    { title: 'Embedded team', color: '#2A9D8F', desc: 'Engineer and regulatory specialist in your workflow.' },
-    { title: 'Agentic workflows', color: '#3A7CA5', desc: 'AI pipelines for documentation and filing.' },
-    { title: 'Regulatory liaison', color: '#C4820E', desc: 'Single point of contact with every authority.' },
+    {
+      num: '01',
+      title: 'Dedicated team',
+      color: '#2A9D8F',
+      desc: 'Engineer and regulatory specialist working inside your workflow.',
+      icon: (c: string) => (
+        <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+          <circle cx="24" cy="16" r="7" fill={`${c}18`} stroke={c} strokeWidth="1.5" />
+          <path d="M12 42 C12 34 17 29 24 29 C31 29 36 34 36 42" stroke={c} strokeWidth="1.5" fill={`${c}08`} />
+          <motion.path d="M32 10 L38 4" stroke={c} strokeWidth="1.2" strokeLinecap="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 0.8, duration: 0.4, ease: 'easeOut' }} />
+          <motion.circle cx="40" cy="3" r="2" fill={c}
+            initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2, duration: 0.3, ease: 'easeOut' }} />
+        </svg>
+      ),
+    },
+    {
+      num: '02',
+      title: 'Agentic workflows',
+      color: '#3A7CA5',
+      desc: 'AI pipelines that draft, validate, and file documentation automatically.',
+      icon: (c: string) => (
+        <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+          <rect x="6" y="10" width="14" height="12" rx="2" fill={`${c}12`} stroke={c} strokeWidth="1.2" />
+          <rect x="28" y="10" width="14" height="12" rx="2" fill={`${c}12`} stroke={c} strokeWidth="1.2" />
+          <rect x="17" y="30" width="14" height="12" rx="2" fill={`${c}18`} stroke={c} strokeWidth="1.5" />
+          <motion.path d="M13 22 L20 30" stroke={c} strokeWidth="1" strokeDasharray="2 2"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 1.0, duration: 0.4, ease: 'easeOut' }} />
+          <motion.path d="M35 22 L28 30" stroke={c} strokeWidth="1" strokeDasharray="2 2"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 1.1, duration: 0.4, ease: 'easeOut' }} />
+          <motion.path d="M21 36 L27 36" stroke={c} strokeWidth="1.5" strokeLinecap="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 1.3, duration: 0.3, ease: 'easeOut' }} />
+        </svg>
+      ),
+    },
+    {
+      num: '03',
+      title: 'Regulatory liaison',
+      color: '#C4820E',
+      desc: 'Single point of contact with every certifying authority.',
+      icon: (c: string) => (
+        <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+          <rect x="8" y="6" width="32" height="36" rx="2" fill={`${c}08`} stroke={c} strokeWidth="1.2" />
+          <motion.path d="M16 16 L32 16" stroke={`${c}50`} strokeWidth="1" strokeLinecap="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 0.9, duration: 0.3, ease: 'easeOut' }} />
+          <motion.path d="M16 22 L28 22" stroke={`${c}50`} strokeWidth="1" strokeLinecap="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 1.0, duration: 0.3, ease: 'easeOut' }} />
+          <motion.path d="M16 28 L30 28" stroke={`${c}50`} strokeWidth="1" strokeLinecap="round"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 1.1, duration: 0.3, ease: 'easeOut' }} />
+          <motion.path d="M18 34 L22 38 L32 28" stroke={c} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
+            transition={{ delay: 1.3, duration: 0.4, ease: 'easeOut' }} />
+        </svg>
+      ),
+    },
   ]
 
   return (
@@ -497,24 +557,50 @@ function SolutionSlide() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-12 max-w-3xl"
+          className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-14 max-w-3xl"
         >
           We own your compliance path.
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 w-full max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-4xl">
           {cols.map((col, i) => (
             <motion.div
               key={col.title}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + i * 0.2, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-center"
+              transition={{ delay: 0.3 + i * 0.18, duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
+              className="flex flex-col items-center text-center border border-ink/[0.07] p-6 md:p-8 relative overflow-hidden"
             >
-              <span className="font-mono text-xs tracking-[0.2em] uppercase font-medium mb-3 block" style={{ color: col.color }}>
-                {col.title}
+              <motion.div
+                className="absolute top-0 left-0 w-full h-[2px]"
+                style={{ backgroundColor: col.color }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.5 + i * 0.18, duration: 0.5, ease: 'easeOut' }}
+                layoutId={`bar-${i}`}
+              />
+
+              <span
+                className="font-mono text-[40px] md:text-[48px] font-bold leading-none mb-4 select-none"
+                style={{ color: `${col.color}15` }}
+              >
+                {col.num}
               </span>
-              <p className="font-mono text-sm leading-relaxed text-ink/60">{col.desc}</p>
+
+              <div
+                className="w-14 h-14 mb-5 rounded-xl flex items-center justify-center p-2.5"
+                style={{ backgroundColor: `${col.color}08`, border: `1.5px solid ${col.color}20` }}
+              >
+                {col.icon(col.color)}
+              </div>
+
+              <h3
+                className="font-mono text-xs tracking-[0.2em] uppercase font-semibold mb-3"
+                style={{ color: col.color }}
+              >
+                {col.title}
+              </h3>
+              <p className="font-mono text-xs leading-relaxed text-ink/55">{col.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -552,11 +638,11 @@ const FLOW_STEPS = [
         <path d="M36 14 L36 8" stroke={c} strokeWidth="1" strokeLinecap="round" />
         <path d="M33 10 L36 6 L39 10" stroke={c} strokeWidth="1" fill="none" strokeLinecap="round" />
         <rect x="6" y="32" width="36" height="10" rx="3" fill={`${c}08`} stroke={`${c}40`} strokeWidth="1" />
-        <text x="24" y="39.5" fontSize="5" fill={c} fontFamily="monospace" textAnchor="middle" fontWeight="500">EMBEDDED</text>
+        <text x="24" y="39.5" fontSize="5" fill={c} fontFamily="monospace" textAnchor="middle" fontWeight="500">DEPLOY</text>
       </svg>
     ),
     title: 'Deploy',
-    subtitle: 'Embed with your team',
+    subtitle: 'Deploy into your team',
     color: '#C4820E',
   },
   {
@@ -706,7 +792,7 @@ function HowWeWorkSlide() {
 
 function TheExchangeSlide() {
   const getItems = [
-    { label: 'Embedded engineer', color: '#C4820E', icon: (c: string) => (
+    { label: 'Dedicated engineer', color: '#C4820E', icon: (c: string) => (
       <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
         <circle cx="24" cy="16" r="7" fill={`${c}20`} stroke={c} strokeWidth="1.5" />
         <path d="M12 40 C12 32 18 28 24 28 C30 28 36 32 36 40" stroke={c} strokeWidth="1.5" fill={`${c}10`} />
@@ -977,9 +1063,19 @@ function CTASlide() {
           founders@invariant-ai.com
         </motion.a>
 
+        <motion.a
+          href="tel:+919328276067"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+          className="font-mono text-base md:text-lg text-ink/50 hover:text-ink transition-colors mt-4"
+        >
+          +91 93282 76067
+        </motion.a>
+
         <motion.div
           initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
-          transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
+          transition={{ delay: 0.9, duration: 0.5, ease: 'easeOut' }}
           className="w-full max-w-[100px] mt-10 mb-4"
           style={{ transformOrigin: 'center' }}
         >
@@ -988,7 +1084,7 @@ function CTASlide() {
 
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          transition={{ delay: 1.0, duration: 0.5 }}
+          transition={{ delay: 1.1, duration: 0.5 }}
           className="font-mono text-xs text-ink/35 tracking-wide"
         >
           invariant-ai.com
