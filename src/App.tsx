@@ -17,6 +17,7 @@ import DroneDeck from './pages/DroneDeck'
 import SpantrikDeck from './pages/SpantrikDeck'
 import IntomesDeck from './pages/IntomesDeck'
 import CustomerDeck from './pages/CustomerDeck'
+import InsuranceDeck from './pages/InsuranceDeck'
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/spantrik" element={<SpantrikDeck />} />
         <Route path="/intomes" element={<IntomesDeck />} />
         <Route path="/customer-deck" element={<CustomerDeck />} />
+        <Route path="/insurance-deck" element={<InsuranceDeck />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
