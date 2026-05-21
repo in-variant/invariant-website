@@ -7,7 +7,6 @@ const LOGOS = [
   { src: '/team/iitj-logo.png', alt: 'IIT Jodhpur' },
   { src: '/team/skyroot-logo.jpeg', alt: 'Skyroot Aerospace' },
   { src: '/team/wbd-logo.png', alt: 'Warner Bros. Discovery' },
-  { src: '/team/galaxeye-logo.png', alt: 'GalaxEye' },
   { src: '/team/linkedin-logo.webp', alt: 'LinkedIn' },
 ]
 

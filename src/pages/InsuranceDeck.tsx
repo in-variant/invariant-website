@@ -175,7 +175,7 @@ function HeroSlide() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="font-serif text-6xl md:text-8xl lg:text-[7rem] xl:text-[8.5rem] font-medium tracking-[-0.04em] text-ink mb-6"
+          className="font-serif text-4xl sm:text-6xl md:text-8xl lg:text-[7rem] xl:text-[8.5rem] font-medium tracking-[-0.04em] text-ink mb-6"
         >
           Invariant AI
         </motion.h1>
@@ -183,7 +183,7 @@ function HeroSlide() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.9, ease: 'easeOut' }}
-          className="font-serif text-xl md:text-2xl lg:text-3xl leading-[1.2] tracking-[-0.02em] text-ink"
+          className="font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl leading-[1.2] tracking-[-0.02em] text-ink"
         >
           AI-native services for regulated compliance.
         </motion.p>
@@ -392,7 +392,7 @@ function TransitInsuranceSlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
-          className="font-serif text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-10"
+          className="font-serif text-base sm:text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-10 px-2"
         >
           Covers the vehicle or payload from the manufacturer's facility to the launch site.
         </motion.p>
@@ -415,17 +415,17 @@ function TransitInsuranceSlide() {
           Key risks
         </motion.p>
 
-        <div className="flex items-center justify-center gap-3 md:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 md:flex-nowrap">
           {['Handling damage', 'Transportation accidents', 'Environmental exposure', 'Ground movement incidents'].map((risk, i) => (
             <motion.div
               key={risk}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 + i * 0.1, duration: 0.4, ease: 'easeOut' }}
-              className="border border-ink/[0.08] px-4 py-2.5 rounded-md"
+              className="border border-ink/[0.08] px-3 sm:px-4 py-2 sm:py-2.5 rounded-md"
               style={{ background: 'linear-gradient(135deg, #2A9D8F03 0%, #2A9D8F06 100%)' }}
             >
-              <span className="font-mono text-xs text-ink/60">{risk}</span>
+              <span className="font-mono text-[10px] sm:text-xs text-ink/60">{risk}</span>
             </motion.div>
           ))}
         </div>
@@ -470,7 +470,7 @@ function PreLaunchInsuranceSlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
-          className="font-serif text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-10"
+          className="font-serif text-base sm:text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-10 px-2"
         >
           Covers the period from arrival at the launch facility through intentional ignition.
         </motion.p>
@@ -493,17 +493,17 @@ function PreLaunchInsuranceSlide() {
           Key risks
         </motion.p>
 
-        <div className="flex items-center justify-center gap-3 md:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 md:flex-nowrap">
           {['Ground handling', 'Fueling operations', 'Integration incidents', 'Facility-related damage'].map((risk, i) => (
             <motion.div
               key={risk}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 + i * 0.1, duration: 0.4, ease: 'easeOut' }}
-              className="border border-ink/[0.08] px-4 py-2.5 rounded-md"
+              className="border border-ink/[0.08] px-3 sm:px-4 py-2 sm:py-2.5 rounded-md"
               style={{ background: 'linear-gradient(135deg, #C4820E03 0%, #C4820E06 100%)' }}
             >
-              <span className="font-mono text-xs text-ink/60">{risk}</span>
+              <span className="font-mono text-[10px] sm:text-xs text-ink/60">{risk}</span>
             </motion.div>
           ))}
         </div>
@@ -548,7 +548,7 @@ function LaunchInsuranceSlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
-          className="font-serif text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-4"
+          className="font-serif text-base sm:text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-4 px-2"
         >
           Covers the period from intentional ignition through orbital insertion.
         </motion.p>
@@ -557,7 +557,7 @@ function LaunchInsuranceSlide() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6, ease: 'easeOut' }}
-          className="font-mono text-sm text-ink/50 mb-10 max-w-lg"
+          className="font-mono text-xs sm:text-sm text-ink/50 mb-10 max-w-lg px-2"
         >
           Highest-risk phase. Typically carries the largest share of the premium.
         </motion.p>
@@ -580,17 +580,17 @@ function LaunchInsuranceSlide() {
           Key risks
         </motion.p>
 
-        <div className="flex items-center justify-center gap-3 md:gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 md:flex-nowrap">
           {['Vehicle failure', 'Stage separation anomalies', 'Payload fairing failures'].map((risk, i) => (
             <motion.div
               key={risk}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 + i * 0.1, duration: 0.4, ease: 'easeOut' }}
-              className="border border-ink/[0.08] px-4 py-2.5 rounded-md"
+              className="border border-ink/[0.08] px-3 sm:px-4 py-2 sm:py-2.5 rounded-md"
               style={{ background: 'linear-gradient(135deg, #3A7CA503 0%, #3A7CA506 100%)' }}
             >
-              <span className="font-mono text-xs text-ink/60">{risk}</span>
+              <span className="font-mono text-[10px] sm:text-xs text-ink/60">{risk}</span>
             </motion.div>
           ))}
         </div>
@@ -635,7 +635,7 @@ function InOrbitInsuranceSlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
-          className="font-serif text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-10"
+          className="font-serif text-base sm:text-lg md:text-xl leading-[1.4] tracking-[-0.02em] text-ink/70 max-w-xl mb-10 px-2"
         >
           Covers the on-orbit phase. Coverage can be structured across multiple sub-stages.
         </motion.p>
@@ -658,7 +658,7 @@ function InOrbitInsuranceSlide() {
           Coverage options
         </motion.p>
 
-        <div className="flex flex-col items-center gap-4 max-w-md w-full">
+        <div className="flex flex-col items-center gap-3 sm:gap-4 w-full max-w-md">
           {[
             { label: 'Full mission duration', desc: 'Active coverage for the operational life of the spacecraft' },
             { label: 'Until payload commissioning', desc: 'Coverage until the payload is verified operational on orbit' },
@@ -669,7 +669,7 @@ function InOrbitInsuranceSlide() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 + i * 0.12, duration: 0.4, ease: 'easeOut' }}
-              className="w-full border border-ink/[0.08] px-5 py-4 rounded-md text-left"
+              className="w-full border border-ink/[0.08] px-4 sm:px-5 py-3 sm:py-4 rounded-md text-left"
               style={{ background: 'linear-gradient(135deg, #8B5CF603 0%, #8B5CF606 100%)' }}
             >
               <p className="font-mono text-xs font-semibold text-ink/75 mb-1">{option.label}</p>
@@ -853,7 +853,7 @@ function WhatReinsurersNeedSlide() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 + i * 0.1, duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex flex-col items-start text-left border border-ink/[0.08] p-5 relative overflow-hidden"
+              className="flex flex-col items-start text-left border border-ink/[0.08] p-4 sm:p-5 relative overflow-hidden"
               style={{ background: `linear-gradient(135deg, ${item.color}03 0%, ${item.color}06 100%)` }}
             >
               <motion.div
@@ -873,7 +873,7 @@ function WhatReinsurersNeedSlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.7, ease: 'easeOut' }}
-          className="font-serif text-lg md:text-xl leading-[1.3] tracking-[-0.02em] text-ink/70 mb-8"
+          className="font-serif text-base sm:text-lg md:text-xl leading-[1.3] tracking-[-0.02em] text-ink/70 mb-8 px-2"
         >
           Gaps in this package directly result in higher premiums or declined coverage.
         </motion.p>
@@ -921,7 +921,7 @@ function HowInvariantHelpsSlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.7, ease: 'easeOut' }}
-          className="body-technical mb-12 max-w-2xl"
+          className="body-technical mb-12 max-w-2xl px-2"
         >
           Forward-deployed engineering consultant at your site. End-to-end ownership.
         </motion.p>
@@ -1142,17 +1142,17 @@ function IndiaConstraintSlide() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.15, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-              className="flex flex-col items-center text-center border border-ink/[0.08] p-6 md:p-7"
+              className="flex flex-col items-center text-center border border-ink/[0.08] p-4 sm:p-6 md:p-7"
               style={{ background: `linear-gradient(135deg, ${card.color}03 0%, ${card.color}06 100%)` }}
             >
               <div
-                className="w-16 h-16 mb-5 rounded-xl flex items-center justify-center p-3"
+                className="w-14 h-14 sm:w-16 sm:h-16 mb-4 sm:mb-5 rounded-xl flex items-center justify-center p-2.5 sm:p-3"
                 style={{ backgroundColor: `${card.color}0A`, border: `1.5px solid ${card.color}30` }}
               >
                 {card.icon(card.color)}
               </div>
-              <h3 className="font-serif text-lg font-medium text-ink mb-2">{card.title}</h3>
-              <p className="font-mono text-xs leading-relaxed text-ink/55">{card.desc}</p>
+              <h3 className="font-serif text-base sm:text-lg font-medium text-ink mb-2">{card.title}</h3>
+              <p className="font-mono text-[11px] sm:text-xs leading-relaxed text-ink/55">{card.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -1237,9 +1237,9 @@ function TheExchangeSlide() {
             className="flex flex-col items-center justify-center py-8 md:py-12"
           >
             <p className="font-serif text-lg md:text-xl font-medium text-ink/35 mb-8">You give us</p>
-            <p className="font-serif text-6xl sm:text-7xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3–4</p>
-            <p className="font-mono text-sm text-ink/50 mt-3">hours of your lead systems engineer</p>
-            <p className="font-mono text-xs text-ink/30 mt-1">occasional availability for reinsurer calls</p>
+            <p className="font-serif text-5xl sm:text-6xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3–4</p>
+            <p className="font-mono text-xs sm:text-sm text-ink/50 mt-3">hours of your lead systems engineer</p>
+            <p className="font-mono text-[10px] sm:text-xs text-ink/30 mt-1">occasional availability for reinsurer calls</p>
           </motion.div>
 
           <div className="hidden md:flex flex-col items-center justify-center px-6 self-stretch">
@@ -1299,14 +1299,14 @@ function TheExchangeSlide() {
             className="py-8 md:py-12"
           >
             <p className="font-serif text-lg md:text-xl font-medium mb-8 text-center" style={{ color: '#2A9D8F' }}>You get</p>
-            <div className="grid grid-cols-2 gap-4 md:gap-5">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5">
               {getItems.map((item, i) => (
                 <motion.div
                   key={item.label}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + i * 0.12, duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="flex flex-col items-center text-center border border-ink/[0.08] p-4 md:p-5"
+                  className="flex flex-col items-center text-center border border-ink/[0.08] p-3 sm:p-4 md:p-5"
                   style={{ background: `linear-gradient(135deg, ${item.color}03 0%, ${item.color}06 100%)` }}
                 >
                   <motion.div
@@ -1335,7 +1335,6 @@ function TheExchangeSlide() {
 
 const TEAM_LOGOS_ROW1 = [
   { src: '/team/skyroot-logo.jpeg', alt: 'Skyroot Aerospace' },
-  { src: '/team/galaxeye-logo.png', alt: 'GalaxEye' },
 ]
 const TEAM_LOGOS_ROW2 = [
   { src: '/team/iisc-logo.png', alt: 'Indian Institute of Science' },
@@ -1371,7 +1370,7 @@ function WhyInvariantSlide() {
           transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
           className="flex flex-col items-center gap-8 max-w-3xl mx-auto mb-14"
         >
-          <div className="flex items-center justify-center gap-x-12 md:gap-x-16">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:gap-x-12 md:gap-x-16">
             {TEAM_LOGOS_ROW1.map((logo, i) => (
               <motion.img
                 key={logo.alt}
@@ -1380,11 +1379,11 @@ function WhyInvariantSlide() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + i * 0.1, duration: 0.5, ease: 'easeOut' }}
-                className="h-12 md:h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="h-8 sm:h-12 md:h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               />
             ))}
           </div>
-          <div className="flex items-center justify-center gap-x-10 md:gap-x-14">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 md:gap-x-14">
             {TEAM_LOGOS_ROW2.map((logo, i) => (
               <motion.img
                 key={logo.alt}
@@ -1393,7 +1392,7 @@ function WhyInvariantSlide() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 + i * 0.1, duration: 0.5, ease: 'easeOut' }}
-                className="h-12 md:h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="h-8 sm:h-12 md:h-14 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               />
             ))}
           </div>
@@ -1426,7 +1425,7 @@ function CTASlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-          className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium tracking-[-0.02em] text-ink hover:text-ink/70 transition-colors"
+          className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-[-0.02em] text-ink hover:text-ink/70 transition-colors"
         >
           founders@invariant-ai.com
         </motion.a>
@@ -1436,7 +1435,7 @@ function CTASlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
-          className="font-mono text-base md:text-lg text-ink/50 hover:text-ink transition-colors mt-4"
+          className="font-mono text-sm sm:text-base md:text-lg text-ink/50 hover:text-ink transition-colors mt-4"
         >
           +91 93282 76067
         </motion.a>
@@ -1569,10 +1568,10 @@ export default function InsuranceDeck() {
 
       <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-3 bg-white/80 backdrop-blur-sm border-t border-ink/[0.04]">
         <span className="font-serif text-xs sm:text-sm font-medium tracking-[-0.02em] text-ink/25">Invariant</span>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1 sm:gap-1.5">
           {slides.map((_, i) => (
             <button key={i} onClick={() => go(i)}
-              className={`h-1 rounded-full transition-all duration-300 ${i === current ? 'w-6 bg-ink/60' : 'w-2 bg-ink/12 hover:bg-ink/25'}`}
+              className={`h-1 rounded-full transition-all duration-300 ${i === current ? 'w-4 sm:w-6 bg-ink/60' : 'w-1.5 sm:w-2 bg-ink/12 hover:bg-ink/25'}`}
             />
           ))}
         </div>

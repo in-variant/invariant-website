@@ -947,7 +947,6 @@ function TheExchangeSlide() {
 
 const TEAM_LOGOS_ROW1 = [
   { src: '/team/skyroot-logo.jpeg', alt: 'Skyroot Aerospace' },
-  { src: '/team/galaxeye-logo.png', alt: 'GalaxEye' },
 ]
 const TEAM_LOGOS_ROW2 = [
   { src: '/team/iisc-logo.png', alt: 'Indian Institute of Science' },
