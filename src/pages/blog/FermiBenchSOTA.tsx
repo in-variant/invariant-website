@@ -11,26 +11,24 @@ export default function FermiBenchSOTA() {
   return (
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
       <div className="max-w-3xl mx-auto">
-        {/* Breadcrumb */}
-        <div className="mb-10">
-          <Link
-            to="/blog"
-            className="font-mono text-sm text-ink/40 hover:text-ink/70 transition-colors"
-          >
-            &larr; Back to Blog
+        <div className="mx-auto max-w-3xl">
+          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-ink">
+            ← Back to Blog
           </Link>
+          <div
+            className="mt-6 aspect-[16/7] w-full overflow-hidden rounded-2xl bg-cover bg-center"
+            style={{ backgroundImage: 'url(/blog/fermibench.jpg), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)' }}
+          />
+          <header className="mb-16 mt-10 text-center">
+            <p className="mb-4 font-sans text-sm text-ink/40">April 1, 2026</p>
+            <h1 className="mb-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.025em] text-ink md:text-4xl lg:text-5xl">
+              Invariant Sets State-of-the-Art on FermiBench
+            </h1>
+            <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
+              0.97 nDCG@10 on the only published information retrieval benchmark for the nuclear domain
+            </p>
+          </header>
         </div>
-
-        {/* Header */}
-        <header className="mb-16 text-center">
-          <p className="font-mono text-sm text-ink/40 mb-4">April 1, 2026</p>
-          <h1 className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-6">
-            Invariant Sets State-of-the-Art on FermiBench
-          </h1>
-          <p className="font-serif text-xl md:text-2xl text-ink/60 leading-relaxed tracking-[-0.01em] max-w-3xl mx-auto">
-            0.97 NDCG@10 on the only published information retrieval benchmark for the nuclear domain
-          </p>
-        </header>
 
         {/* Lead */}
         <div className="mb-16 space-y-6">
@@ -51,10 +49,10 @@ export default function FermiBenchSOTA() {
             <table className="w-full">
               <thead>
                 <tr className="bg-ink/[0.03]">
-                  <th className="text-left font-mono text-[11px] tracking-[0.1em] uppercase text-ink/50 px-5 py-3">
+                  <th className="text-left font-sans text-[11px] tracking-[0.1em] uppercase text-ink/50 px-5 py-3">
                     Model
                   </th>
-                  <th className="text-right font-mono text-[11px] tracking-[0.1em] uppercase text-ink/50 px-5 py-3">
+                  <th className="text-right font-sans text-[11px] tracking-[0.1em] uppercase text-ink/50 px-5 py-3">
                     FermiBench NDCG@10
                   </th>
                 </tr>
@@ -63,12 +61,12 @@ export default function FermiBenchSOTA() {
                 {BENCHMARK_ROWS.map((row) => (
                   <tr
                     key={row.model}
-                    className={`border-t border-ink/[0.06] ${row.highlight ? 'bg-blue-50/60' : ''}`}
+                    className={`border-t border-ink/[0.06] ${row.highlight ? 'bg-emerald-50/60' : ''}`}
                   >
-                    <td className={`px-5 py-3 font-mono text-sm ${row.highlight ? 'text-ink font-semibold' : 'text-ink/70'}`}>
+                    <td className={`px-5 py-3 font-sans text-sm ${row.highlight ? 'text-ink font-semibold' : 'text-ink/70'}`}>
                       {row.model}
                     </td>
-                    <td className={`px-5 py-3 text-right font-mono text-sm tabular-nums ${row.highlight ? 'text-ink font-semibold' : 'text-ink/70'}`}>
+                    <td className={`px-5 py-3 text-right font-sans text-sm tabular-nums ${row.highlight ? 'text-ink font-semibold' : 'text-ink/70'}`}>
                       {row.score}
                     </td>
                   </tr>
@@ -76,7 +74,7 @@ export default function FermiBenchSOTA() {
               </tbody>
             </table>
           </div>
-          <p className="font-mono text-xs text-ink/40 mt-3 text-center">
+          <p className="font-sans text-xs text-ink/40 mt-3 text-center">
             Other results: <strong className="text-ink/60">Precision@1: 0.93</strong>
           </p>
         </div>
@@ -85,7 +83,7 @@ export default function FermiBenchSOTA() {
         <div className="space-y-14">
           {/* What we built */}
           <section>
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               What we built
             </h2>
             <div className="space-y-4">
@@ -118,7 +116,7 @@ export default function FermiBenchSOTA() {
           {/* What these numbers mean */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               What these numbers mean
             </h2>
             <div className="space-y-4">
@@ -150,18 +148,18 @@ export default function FermiBenchSOTA() {
             {/* Visual comparison callout */}
             <div className="mt-8 grid grid-cols-2 gap-4">
               <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-5 text-center">
-                <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+                <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
                   Previous SOTA
                 </p>
-                <p className="font-mono text-3xl font-semibold text-ink/40 mb-1">0.74</p>
-                <p className="font-mono text-xs text-ink/30">fermi-512</p>
+                <p className="font-sans text-3xl font-semibold text-ink/40 mb-1">0.74</p>
+                <p className="font-sans text-xs text-ink/30">fermi-512</p>
               </div>
-              <div className="bg-blue-50/60 border border-blue-200/60 rounded-md p-5 text-center">
-                <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-blue-600/70 mb-2">
+              <div className="bg-emerald-50/60 border border-emerald-200/50 rounded-md p-5 text-center">
+                <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-emerald-700/70 mb-2">
                   Invariant
                 </p>
-                <p className="font-mono text-3xl font-semibold text-ink mb-1">0.97</p>
-                <p className="font-mono text-xs text-ink/50">helion-512</p>
+                <p className="font-sans text-3xl font-semibold text-ink mb-1">0.97</p>
+                <p className="font-sans text-xs text-ink/50">helion-512</p>
               </div>
             </div>
           </section>
@@ -169,7 +167,7 @@ export default function FermiBenchSOTA() {
           {/* Why retrieval quality is the foundation */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               Why retrieval quality is the foundation of what we are building
             </h2>
             <div className="space-y-4">
@@ -223,7 +221,7 @@ export default function FermiBenchSOTA() {
           {/* Will this be limited to NRC ADAMS? */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               Will this be limited to NRC ADAMS?
             </h2>
             <div className="space-y-4">
@@ -264,7 +262,7 @@ export default function FermiBenchSOTA() {
           {/* Try it */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               Try it
             </h2>
             <p className="font-sans text-base text-ink/75 leading-relaxed mb-6">
@@ -276,14 +274,14 @@ export default function FermiBenchSOTA() {
               fastest way to see the retrieval quality firsthand.
             </p>
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-ink/[0.04] border border-ink/[0.08]">
-              <span className="font-mono text-sm text-ink/50 tracking-wide uppercase">Coming Soon</span>
+              <span className="font-sans text-sm text-ink/50 tracking-wide uppercase">Coming Soon</span>
             </div>
           </section>
 
           {/* Acknowledgements */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               Acknowledgements
             </h2>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -301,7 +299,7 @@ export default function FermiBenchSOTA() {
           {/* Open-source contribution */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
               Open-source contribution
             </h2>
             <p className="font-sans text-base text-ink/75 leading-relaxed mb-4">
@@ -316,7 +314,7 @@ export default function FermiBenchSOTA() {
               href="https://huggingface.co/datasets/in-variant-ai/helion-reduced-dataset"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-mono text-sm text-ink/70 hover:text-ink transition-colors border-b border-ink/20 hover:border-ink/40 pb-0.5"
+              className="inline-flex items-center gap-2 font-sans text-sm text-ink/70 hover:text-ink transition-colors border-b border-ink/20 hover:border-ink/40 pb-0.5"
             >
               View dataset on Hugging Face &rarr;
             </a>

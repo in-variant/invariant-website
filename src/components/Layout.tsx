@@ -1,12 +1,17 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Nav from './Nav'
 import Footer from './Footer'
 
 export default function Layout() {
+  const { pathname } = useLocation()
+  // The home hero runs full-bleed under the transparent nav; every other page
+  // needs to clear the fixed 60px nav so content isn't hidden behind it.
+  const isHome = pathname === '/'
+
   return (
     <div className="paper-grain min-h-screen flex flex-col">
       <Nav />
-      <main className="flex-1">
+      <main className={`flex-1 ${isHome ? '' : 'pt-[60px]'}`}>
         <Outlet />
       </main>
       <Footer />

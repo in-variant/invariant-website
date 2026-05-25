@@ -273,21 +273,12 @@ const CHANGE_META: Record<Change, { label: string; dot: string; activeBg: string
   removed: { label: 'Removed from Part 53', dot: 'bg-gray-500', activeBg: 'bg-gray-100', activeText: 'text-gray-800' },
 }
 
-const BADGE_STYLES: Record<Change, { bg: string; text: string }> = {
-  same: { bg: 'bg-emerald-100', text: 'text-emerald-800' },
-  reframed: { bg: 'bg-violet-100', text: 'text-violet-800' },
-  relaxed: { bg: 'bg-amber-100', text: 'text-amber-800' },
-  stricter: { bg: 'bg-red-100', text: 'text-red-800' },
-  new: { bg: 'bg-blue-100', text: 'text-blue-800' },
-  removed: { bg: 'bg-gray-100', text: 'text-gray-800' },
-}
-
 const TOTAL_ITEMS = SECTIONS.reduce((sum, s) => sum + s.rows.length, 0)
 
 function Badge({ change, label }: { change: Change; label: string }) {
-  const s = BADGE_STYLES[change]
   return (
-    <span className={`inline-block font-mono text-[10px] font-medium px-2 py-0.5 rounded-full whitespace-nowrap ${s.bg} ${s.text}`}>
+    <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-ink/10 bg-white px-2.5 py-1 font-sans text-[11px] font-medium text-ink/55">
+      <span className={`h-1.5 w-1.5 rounded-full ${CHANGE_META[change].dot}`} />
       {label}
     </span>
   )
@@ -298,10 +289,10 @@ function ComparisonCard({ row }: { row: Row }) {
     <div className="blog-comparison-card">
       <div className="flex items-start justify-between gap-3 mb-4">
         <div>
-          <h4 className="font-serif text-lg font-medium text-ink tracking-[-0.01em]">
+          <h4 className="font-sans text-lg font-medium text-ink tracking-[-0.01em]">
             {row.topic}
           </h4>
-          <p className="font-mono text-[11px] text-ink/40 mt-1 leading-relaxed">
+          <p className="font-sans text-[11px] text-ink/40 mt-1 leading-relaxed">
             {row.refs}
           </p>
         </div>
@@ -310,7 +301,7 @@ function ComparisonCard({ row }: { row: Row }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
-          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
             Part 100 Appendix A
           </p>
           <p className="font-sans text-sm text-ink/70 leading-relaxed">
@@ -318,7 +309,7 @@ function ComparisonCard({ row }: { row: Row }) {
           </p>
         </div>
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
-          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
             Part 53 §53.480 / §53.510
           </p>
           {row.part53 ? (
@@ -334,7 +325,7 @@ function ComparisonCard({ row }: { row: Row }) {
       </div>
 
       <div className="border-t border-ink/[0.06] pt-3">
-        <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-1.5">
+        <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-1.5">
           Key difference
         </p>
         <p className="font-sans text-sm text-ink/80 leading-relaxed">
@@ -436,26 +427,24 @@ export default function SeismicDesignShift() {
   return (
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
       <div className="max-w-6xl mx-auto">
-        {/* Breadcrumb */}
-        <div className="mb-10">
-          <Link
-            to="/blog"
-            className="font-mono text-sm text-ink/40 hover:text-ink/70 transition-colors"
-          >
-            &larr; Back to Blog
+        <div className="mx-auto max-w-3xl">
+          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-ink">
+            ← Back to Blog
           </Link>
+          <div
+            className="mt-6 aspect-[16/7] w-full overflow-hidden rounded-2xl bg-cover bg-center"
+            style={{ backgroundImage: 'url(/blog/seismic.jpg), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)' }}
+          />
+          <header className="mb-16 mt-10 text-center">
+            <p className="mb-4 font-sans text-sm text-ink/40">March 29, 2026</p>
+            <h1 className="mb-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.025em] text-ink md:text-4xl lg:text-5xl">
+              SSE/OBE → GMRS/SDC
+            </h1>
+            <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
+              The seismic design shift from Part 100 Appendix A to Part 53 §53.480
+            </p>
+          </header>
         </div>
-
-        {/* Header */}
-        <header className="mb-16 text-center">
-          <p className="font-mono text-sm text-ink/40 mb-4">March 29, 2026</p>
-          <h1 className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-6">
-            SSE/OBE → GMRS/SDC
-          </h1>
-          <p className="font-serif text-xl md:text-2xl text-ink/60 leading-relaxed tracking-[-0.01em] max-w-3xl mx-auto">
-            The seismic design shift from Part 100 Appendix A to Part 53 §53.480
-          </p>
-        </header>
 
         {/* Introduction */}
         <div className="max-w-3xl mx-auto mb-16 space-y-6">
@@ -531,7 +520,7 @@ export default function SeismicDesignShift() {
 
         {/* Regulation header bar */}
         <div className="bg-ink/[0.03] border border-ink/[0.08] rounded-md px-5 py-3 mb-8 text-center">
-          <p className="font-mono text-xs text-ink/60 leading-relaxed">
+          <p className="font-sans text-xs text-ink/60 leading-relaxed">
             <strong className="text-ink font-medium">10 CFR Part 100 Appendix A</strong>{' '}
             (Seismic and Geologic Siting Criteria, current as of 3/24/2026)
             <br />
@@ -554,10 +543,10 @@ export default function SeismicDesignShift() {
                   key={change}
                   onClick={() => toggleFilter(change)}
                   className={`
-                    flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-xs
+                    flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-xs
                     transition-all duration-150 cursor-pointer border
                     ${isActive
-                      ? `${meta.activeBg} ${meta.activeText} border-transparent`
+                      ? 'bg-ink/[0.06] text-ink border-transparent'
                       : 'bg-transparent text-ink/30 border-ink/10 hover:border-ink/20'
                     }
                   `}
@@ -570,7 +559,7 @@ export default function SeismicDesignShift() {
             {!allActive && (
               <button
                 onClick={resetFilters}
-                className="font-mono text-xs text-ink/40 hover:text-ink/70 transition-colors underline underline-offset-2 ml-2 cursor-pointer"
+                className="font-sans text-xs text-ink/40 hover:text-ink/70 transition-colors underline underline-offset-2 ml-2 cursor-pointer"
               >
                 Reset
               </button>
@@ -579,7 +568,7 @@ export default function SeismicDesignShift() {
         </div>
 
         {/* Stats bar */}
-        <p className="font-mono text-xs text-ink/40 text-center mb-10">
+        <p className="font-sans text-xs text-ink/40 text-center mb-10">
           Showing {visibleCount} of {TOTAL_ITEMS} items across {visibleSectionCount} section{visibleSectionCount !== 1 ? 's' : ''}
         </p>
 
@@ -594,7 +583,7 @@ export default function SeismicDesignShift() {
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
                   className={`
-                    flex items-center gap-1.5 px-3 py-2 rounded-md font-mono text-xs whitespace-nowrap
+                    flex items-center gap-1.5 px-3 py-2 rounded-md font-sans text-xs whitespace-nowrap
                     transition-all duration-150 cursor-pointer border
                     ${count === 0
                       ? 'text-ink/20 border-ink/5'
@@ -619,7 +608,7 @@ export default function SeismicDesignShift() {
           {/* Sidebar TOC - desktop only */}
           <nav className="hidden lg:block">
             <div className="sticky top-[80px]">
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
+              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
                 Sections
               </p>
               <div className="flex flex-col gap-1">
@@ -644,7 +633,7 @@ export default function SeismicDesignShift() {
                       <span>{section.heading}</span>
                       <span
                         className={`
-                          font-mono text-[10px] min-w-[18px] text-center rounded-full px-1.5 py-0.5
+                          font-sans text-[10px] min-w-[18px] text-center rounded-full px-1.5 py-0.5
                           ${count === 0
                             ? 'text-ink/15'
                             : isActive
@@ -675,7 +664,7 @@ export default function SeismicDesignShift() {
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="h-px flex-1 bg-ink/10" />
-                    <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 whitespace-nowrap">
+                    <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-ink/50 whitespace-nowrap">
                       {section.heading}
                     </h3>
                     <div className="h-px flex-1 bg-ink/10" />
@@ -691,12 +680,12 @@ export default function SeismicDesignShift() {
 
             {visibleCount === 0 && (
               <div className="text-center py-20">
-                <p className="font-mono text-sm text-ink/40 mb-3">
+                <p className="font-sans text-sm text-ink/40 mb-3">
                   No items match the current filters.
                 </p>
                 <button
                   onClick={resetFilters}
-                  className="font-mono text-sm text-ink/60 hover:text-ink transition-colors underline underline-offset-2 cursor-pointer"
+                  className="font-sans text-sm text-ink/60 hover:text-ink transition-colors underline underline-offset-2 cursor-pointer"
                 >
                   Reset filters
                 </button>
@@ -708,13 +697,13 @@ export default function SeismicDesignShift() {
         {/* What this means in practice */}
         <div className="mt-20 max-w-3xl mx-auto space-y-8">
           <div className="section-rule" />
-          <h2 className="font-serif text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em]">
+          <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em]">
             What this means in practice
           </h2>
 
           <div className="space-y-6">
             <div>
-              <h3 className="font-mono text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
+              <h3 className="font-sans text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
                 For applicants writing a seismic chapter
               </h3>
               <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -729,7 +718,7 @@ export default function SeismicDesignShift() {
             </div>
 
             <div>
-              <h3 className="font-mono text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
+              <h3 className="font-sans text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
                 For structural engineers
               </h3>
               <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -743,7 +732,7 @@ export default function SeismicDesignShift() {
             </div>
 
             <div>
-              <h3 className="font-mono text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
+              <h3 className="font-sans text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
                 For site characterization teams
               </h3>
               <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -758,7 +747,7 @@ export default function SeismicDesignShift() {
             </div>
 
             <div>
-              <h3 className="font-mono text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
+              <h3 className="font-sans text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
                 Three compliance pathways for seismic design
               </h3>
               <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -793,7 +782,7 @@ export default function SeismicDesignShift() {
             </div>
 
             <div>
-              <h3 className="font-mono text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
+              <h3 className="font-sans text-xs tracking-[0.15em] uppercase text-ink/50 mb-3">
                 The OBE ratio question
               </h3>
               <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -812,7 +801,7 @@ export default function SeismicDesignShift() {
         {/* Footer */}
         <div className="mt-20 pt-10 border-t border-ink/10">
           <div className="max-w-3xl mx-auto space-y-4">
-            <p className="font-mono text-xs text-ink/35 text-center">
+            <p className="font-sans text-xs text-ink/35 text-center">
               AI-assisted analysis. May contain errors; verify against original regulatory text.
             </p>
             <p className="font-sans text-sm text-ink/50 leading-relaxed text-center">
