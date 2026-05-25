@@ -66,21 +66,6 @@ export default function Hero() {
         >
           We embed engineers and lawyers in your team and take regulatory compliance off your plate, so nuclear, space, and aerospace companies reach market faster.
         </motion.p>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="mt-7"
-        >
-          <a
-            href="mailto:founders@invariant-ai.com"
-            className="inline-flex items-center rounded-full bg-ink px-7 py-3.5 font-sans text-sm font-medium text-white transition-colors hover:bg-ink/85"
-          >
-            Get in touch
-          </a>
-        </motion.div>
       </div>
     </section>
   )

@@ -187,12 +187,6 @@ export default function Product() {
         <p className="mx-auto mt-4 max-w-md font-sans text-base leading-relaxed text-ink/55 md:text-lg">
           Draft defensible compliance sections, with every claim traced to its rule.
         </p>
-        <a
-          href="mailto:founders@invariant-ai.com"
-          className="mt-7 inline-flex items-center rounded-full bg-ink px-6 py-3 font-sans text-sm font-medium text-white transition-colors hover:bg-ink/85"
-        >
-          Get in touch
-        </a>
       </section>
 
       <section className="px-4 pb-28 md:px-8 lg:px-12">
