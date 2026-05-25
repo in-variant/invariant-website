@@ -29,10 +29,9 @@ const POSTS = [
 
 export default function Blog() {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-32 lg:px-20">
+    <section className="px-6 pt-16 pb-24 md:px-12 md:pt-24 md:pb-32 lg:px-20">
       <div className="mx-auto max-w-5xl">
-        <p className="font-grotesk text-xs font-medium uppercase tracking-[0.2em] text-ink/40">Research</p>
-        <h1 className="mt-4 font-sans text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Blog</h1>
+        <h1 className="font-sans text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Blog</h1>
         <p className="mt-4 max-w-xl font-sans text-lg leading-relaxed text-ink/55">
           Deep dives into regulatory frameworks, licensing strategy, and the engineering
           certification landscape.
