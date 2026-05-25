@@ -63,12 +63,12 @@ export default function Nav() {
           </div>
 
           {/* Desktop CTA */}
-          <Link
-            to="/contact"
+          <a
+            href="mailto:founders@invariant-ai.com"
             className="hidden md:inline-flex items-center rounded-full bg-ink px-5 py-2.5 font-sans text-sm font-medium text-white transition-colors hover:bg-ink/85"
           >
             Get in touch
-          </Link>
+          </a>
 
           {/* Mobile hamburger button */}
           <button
@@ -113,12 +113,13 @@ export default function Nav() {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="mailto:founders@invariant-ai.com"
+            onClick={() => setOpen(false)}
             className="mt-2 inline-flex items-center rounded-full bg-ink px-6 py-3 font-sans text-base font-medium text-white"
           >
             Get in touch
-          </Link>
+          </a>
         </div>
       </div>
     </>

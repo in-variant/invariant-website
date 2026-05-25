@@ -8,7 +8,7 @@ const COLUMNS = [
       { label: 'Product', to: '/product' },
       { label: 'Probe', to: '/probe' },
       { label: 'Blog', to: '/blog' },
-      { label: 'Contact', to: '/contact' },
+      { label: 'Contact', to: 'mailto:founders@invariant-ai.com' },
     ],
   },
 ]
@@ -49,12 +49,21 @@ export default function Footer() {
                 <ul className="mt-4 space-y-3">
                   {col.links.map((lnk) => (
                     <li key={lnk.to}>
-                      <Link
-                        to={lnk.to}
-                        className="font-sans text-sm text-white/65 transition-colors hover:text-white"
-                      >
-                        {lnk.label}
-                      </Link>
+                      {lnk.to.startsWith('mailto:') || lnk.to.startsWith('http') ? (
+                        <a
+                          href={lnk.to}
+                          className="font-sans text-sm text-white/65 transition-colors hover:text-white"
+                        >
+                          {lnk.label}
+                        </a>
+                      ) : (
+                        <Link
+                          to={lnk.to}
+                          className="font-sans text-sm text-white/65 transition-colors hover:text-white"
+                        >
+                          {lnk.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

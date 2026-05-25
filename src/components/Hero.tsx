@@ -75,7 +75,7 @@ export default function Hero() {
           className="mt-7"
         >
           <a
-            href="/contact"
+            href="mailto:founders@invariant-ai.com"
             className="inline-flex items-center rounded-full bg-ink px-7 py-3.5 font-sans text-sm font-medium text-white transition-colors hover:bg-ink/85"
           >
             Get in touch
