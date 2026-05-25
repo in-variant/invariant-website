@@ -1,5 +1,12 @@
-import { useRef } from 'react'
-import { motion, useScroll, useSpring, useTransform, type MotionValue } from 'framer-motion'
+import { useRef, useState } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion'
 
 const STEPS = [
   { n: '01', title: 'Engage', body: 'Map your full compliance surface.' },
@@ -9,114 +16,113 @@ const STEPS = [
   { n: '05', title: 'Done', body: 'Defensible, filed, approved.', done: true },
 ]
 
-const TOTAL = STEPS.length
-
-/** Node that fills with ink as the scroll-driven progress reaches it. */
-function Dot({ progress, index, n, done }: { progress: MotionValue<number>; index: number; n: string; done?: boolean }) {
-  const t = index / (TOTAL - 1)
-  const fill = useTransform(progress, [t - 0.05, t + 0.02], [0, 1])
-  const ink = useTransform(fill, [0, 1], ['rgba(13,13,13,0.5)', 'rgba(255,255,255,1)'])
-
+function Check() {
   return (
-    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink/20 bg-white">
-      <motion.span className="absolute inset-[-1px] rounded-full bg-ink" style={{ opacity: fill, scale: fill }} />
-      {done ? (
-        <motion.svg viewBox="0 0 16 16" className="relative h-4 w-4" fill="none" strokeWidth="2" style={{ stroke: ink }}>
-          <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-        </motion.svg>
-      ) : (
-        <motion.span className="relative font-grotesk text-sm font-medium" style={{ color: ink }}>
-          {n}
-        </motion.span>
-      )}
-    </div>
+    <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   )
 }
 
 function Heading() {
   return (
-    <>
+    <div className="lg:sticky lg:top-28 lg:self-start">
       <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-grotesk text-xs font-medium tracking-wide text-ink/60">
         How we work
       </span>
-      <h2 className="mt-5 max-w-2xl font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl">
+      <h2 className="mt-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl">
         One engagement. End-to-end compliance.
       </h2>
       <p className="mt-4 max-w-md font-sans text-lg leading-relaxed text-ink/55">
         From first scope to regulatory sign-off.
       </p>
-    </>
+    </div>
+  )
+}
+
+/** A single drawer row. Open state is driven by scroll, not clicks. */
+function Drawer({ step, isOpen }: { step: (typeof STEPS)[number]; isOpen: boolean }) {
+  return (
+    <div className="border-b border-ink/10">
+      <div className="flex items-center gap-4 py-5">
+        <span
+          className={`flex h-6 w-7 shrink-0 items-center font-grotesk text-sm font-medium tabular-nums transition-colors duration-300 ${
+            isOpen ? 'text-ink' : 'text-ink/35'
+          }`}
+        >
+          {step.done ? <Check /> : step.n}
+        </span>
+        <h3
+          className={`font-sans text-lg font-medium tracking-[-0.01em] transition-colors duration-300 ${
+            isOpen ? 'text-ink' : 'text-ink/55'
+          }`}
+        >
+          {step.title}
+        </h3>
+      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            className="overflow-hidden"
+          >
+            <p className="max-w-md pb-6 pl-11 font-sans text-base leading-relaxed text-ink/60">
+              {step.body}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
 export default function Process() {
   const ref = useRef<HTMLElement>(null)
+  const [active, setActive] = useState(0)
+
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  // Smooth friction on the scroll value, then map the middle of the pinned range to 0→1
-  // (buffer so the timeline settles centered before it starts and finishes before it releases).
+  // Spring gives the scroll a little friction/weight; the buffer keeps the
+  // panel settled on screen before the first step opens and after the last.
   const smooth = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 })
-  const progress = useTransform(smooth, [0.12, 0.9], [0, 1])
+  const progress = useTransform(smooth, [0.1, 0.92], [0, 1], { clamp: true })
+
+  useMotionValueEvent(progress, 'change', (v) => {
+    const idx = Math.min(STEPS.length - 1, Math.max(0, Math.floor(v * STEPS.length)))
+    setActive((prev) => (prev === idx ? prev : idx))
+  })
 
   return (
-    <section ref={ref} className="relative border-t border-ink/[0.06] bg-white md:h-[220vh]">
-      {/* Desktop: pinned, scroll-driven horizontal timeline */}
+    <section ref={ref} className="relative border-t border-ink/[0.06] bg-white md:h-[240vh]">
+      {/* Desktop: pinned panel, drawers open as you scroll (and reverse) */}
       <div className="sticky top-0 hidden h-screen items-center px-6 md:flex md:px-12 lg:px-20">
-        <div className="mx-auto w-full max-w-6xl">
+        <div className="mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-20">
           <Heading />
-          <div className="relative mt-24">
-            <div className="absolute left-[10%] right-[10%] top-5 h-px bg-ink/12" />
-            <motion.div
-              className="absolute left-[10%] right-[10%] top-5 h-px origin-left bg-ink"
-              style={{ scaleX: progress }}
-            />
-            <div className="grid grid-cols-5">
-              {STEPS.map((s, i) => (
-                <div key={s.n} className="flex flex-col items-center px-3 text-center">
-                  <Dot progress={progress} index={i} n={s.n} done={s.done} />
-                  <h3 className="mt-5 font-sans text-base font-semibold text-ink">{s.title}</h3>
-                  <p className="mt-1.5 font-sans text-sm leading-relaxed text-ink/55">{s.body}</p>
-                </div>
-              ))}
-            </div>
+          <div className="border-t border-ink/10">
+            {STEPS.map((s, i) => (
+              <Drawer key={s.n} step={s} isOpen={active === i} />
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Mobile: simple vertical timeline (no pin) */}
+      {/* Mobile: static stacked list, all steps shown */}
       <div className="px-6 py-24 md:hidden">
         <Heading />
-        <div className="relative mt-12">
-          <div className="absolute bottom-3 left-5 top-3 w-px bg-ink/15" />
-          <div className="flex flex-col gap-8">
-            {STEPS.map((s) => (
-              <motion.div
-                key={s.n}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="flex items-start gap-5"
-              >
-                <div
-                  className={`relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border ${
-                    s.done ? 'border-ink bg-ink text-white' : 'border-ink/20 bg-white text-ink/55'
-                  }`}
-                >
-                  {s.done ? (
-                    <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  ) : (
-                    <span className="font-grotesk text-sm font-medium">{s.n}</span>
-                  )}
-                </div>
-                <div className="pt-1.5">
-                  <h3 className="font-sans text-base font-semibold text-ink">{s.title}</h3>
-                  <p className="mt-1 font-sans text-sm leading-relaxed text-ink/55">{s.body}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="mt-10 border-t border-ink/10">
+          {STEPS.map((s) => (
+            <div key={s.n} className="border-b border-ink/10 py-5">
+              <div className="flex items-center gap-4">
+                <span className="flex h-6 w-7 shrink-0 items-center font-grotesk text-sm font-medium tabular-nums text-ink/40">
+                  {s.done ? <Check /> : s.n}
+                </span>
+                <h3 className="font-sans text-lg font-medium tracking-[-0.01em] text-ink">{s.title}</h3>
+              </div>
+              <p className="mt-2 max-w-md pl-11 font-sans text-base leading-relaxed text-ink/60">{s.body}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
