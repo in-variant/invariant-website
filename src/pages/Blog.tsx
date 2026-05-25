@@ -7,7 +7,7 @@ const POSTS = [
     date: 'April 1, 2026',
     title: 'Invariant Sets State-of-the-Art on FermiBench',
     summary:
-      'Our domain-adapted retrieval model Helion-512 reaches 0.97 nDCG@10 on FermiBench — the only published retrieval benchmark for the nuclear domain — up from the previous best of 0.74.',
+      'Our domain-adapted retrieval model Helion-512 reaches 0.97 nDCG@10 on FermiBench, the only published retrieval benchmark for the nuclear domain, up from the previous best of 0.74.',
   },
   {
     slug: 'seismic-design-shift',
@@ -15,7 +15,7 @@ const POSTS = [
     date: 'March 29, 2026',
     title: 'SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53',
     summary:
-      'The deterministic two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered ground motions and seismic design categories — a regulation-to-regulation comparison of every substantive change.',
+      'The deterministic two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered ground motions and seismic design categories, a regulation-to-regulation comparison of every substantive change.',
   },
   {
     slug: 'part100-vs-part53-siting',
@@ -23,7 +23,7 @@ const POSTS = [
     date: 'March 27, 2026',
     title: '10 CFR Part 100 vs. Part 53 Subpart D: A Siting Comparison',
     summary:
-      'A line-by-line comparison of the legacy siting criteria in Part 100 against the new technology-inclusive framework in Part 53 Subpart D — exclusion areas, seismic methodology, and the siting-design integration mandate.',
+      'A line-by-line comparison of the legacy siting criteria in Part 100 against the new technology-inclusive framework in Part 53 Subpart D: exclusion areas, seismic methodology, and the siting-design integration mandate.',
   },
 ]
 

@@ -46,7 +46,7 @@ export default function TheModel() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="body-technical"
             >
-              Invariant delivers AI-native compliance services trained on domain-specific regulatory frameworks. They reason over your design inputs and the standards that govern them, operating across the full lifecycle — from early constraint identification to final documentation.
+              Invariant delivers AI-native compliance services trained on domain-specific regulatory frameworks. They reason over your design inputs and the standards that govern them, operating across the full lifecycle, from early constraint identification to final documentation.
             </motion.p>
           </div>
 

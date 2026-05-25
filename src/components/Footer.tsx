@@ -16,7 +16,7 @@ const COLUMNS = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#1a2230] text-white">
-      {/* Painterly landscape backdrop — generate /footer-dawn.png (see prompt).
+      {/* Painterly landscape backdrop, generate /footer-dawn.png (see prompt).
           Until it exists, the dark #1a2230 fallback keeps the footer readable. */}
       <div
         className="absolute inset-0 bg-cover bg-center"

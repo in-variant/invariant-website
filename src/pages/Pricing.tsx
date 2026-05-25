@@ -19,7 +19,7 @@ const TIERS = [
       '48-hour response SLA',
     ],
     ownership:
-      'Client owns compliance entirely — Invariant provides the tool only.',
+      'Client owns compliance entirely. Invariant provides the tool only.',
     cta: 'Get started',
     href: '/contact',
   },
@@ -39,7 +39,7 @@ const TIERS = [
       '24-hour response SLA',
     ],
     ownership:
-      'Invariant owns document quality — reviews and signs off every submission package before it reaches you.',
+      'Invariant owns document quality, reviewing and signing off every submission package before it reaches you.',
     integrationNote: 'CAD, Ansys, SharePoint, Notion, and more',
     cta: 'Get started',
     href: '/contact',
@@ -106,7 +106,7 @@ export default function Pricing() {
         Simple, transparent pricing
       </h1>
       <p className="body-technical max-w-2xl mb-12">
-        From self-serve tooling to fully managed compliance — choose the level
+        From self-serve tooling to fully managed compliance, choose the level
         of ownership that fits your team.
       </p>
 

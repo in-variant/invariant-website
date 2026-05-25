@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const FEATURES = [
-  { title: 'Citation integrity', body: 'Every claim traced to the rule it satisfies — no invented citations.' },
+  { title: 'Citation integrity', body: 'Every claim traced to the rule it satisfies. No invented citations.' },
   { title: 'Regulatory fluency', body: 'Tuned on NRC, FAA, FCC, IN-SPACe and DGCA standards.' },
   { title: 'Document automation', body: 'Draft safety analysis reports and license applications in hours.' },
   { title: 'Audit-ready trails', body: 'Every decision logged for the regulator to follow.' },

@@ -3,14 +3,14 @@ import { motion } from 'framer-motion'
 export default function Hero() {
   return (
     <section className="relative w-full bg-white md:h-screen md:overflow-hidden">
-      {/* Painting — on mobile, a scene-focused banner cropped to the colourful top
+      {/* Painting, on mobile, a scene-focused banner cropped to the colourful top
           (the white below is supplied by the page, not the image); on desktop it fills
           the screen below the nav, anchored to the top. */}
       <div className="relative md:absolute md:inset-0">
         {/* Mobile: portrait painting, cropped to the scene (its dead white tail is trimmed) */}
         <img
           src="/hero-dawn-mobile.png"
-          alt="Dawn above a sea of cloud — a rocket ascending on the right, a nuclear power station with cooling towers on the left, drones in the sky."
+          alt="Dawn above a sea of cloud, a rocket ascending on the right, a nuclear power station with cooling towers on the left, drones in the sky."
           className="block aspect-[5/4] w-full object-cover object-top md:hidden"
         />
         {/* Desktop: wide painting filling the screen below the nav */}
@@ -24,9 +24,9 @@ export default function Hero() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent md:hidden" />
       </div>
 
-      {/* Copy — below the image on mobile; overlaid on the white lower half on desktop. */}
+      {/* Copy, below the image on mobile; overlaid on the white lower half on desktop. */}
       <div className="relative z-10 mx-auto max-w-2xl px-6 pb-16 pt-3 text-center md:absolute md:inset-0 md:mx-0 md:max-w-none md:flex md:flex-col md:items-center md:justify-end md:pb-[9vh] md:pt-0">
-        {/* Backed-by badge — dark Duna-style pill */}
+        {/* Backed-by badge, dark Duna-style pill */}
         <motion.a
           href="https://www.joinef.com"
           target="_blank"
@@ -64,7 +64,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="mx-auto mt-4 max-w-[34rem] text-balance font-sans text-base leading-relaxed text-ink/55 md:mt-5 md:text-xl"
         >
-          We embed engineers and lawyers in your team and take regulatory compliance off your plate — so nuclear, space, and aerospace companies reach market faster.
+          We embed engineers and lawyers in your team and take regulatory compliance off your plate, so nuclear, space, and aerospace companies reach market faster.
         </motion.p>
 
         {/* CTA */}

@@ -75,7 +75,7 @@ function Editor() {
       <div className="flex-1 overflow-hidden px-6 py-6 md:px-10 md:py-8">
         <div className="mx-auto max-w-2xl">
           <motion.h3 {...reveal(0)} className="font-sans text-lg font-semibold text-ink">
-            15.6.5 — Loss-of-Coolant Accidents
+            15.6.5 Loss-of-Coolant Accidents
           </motion.h3>
           <motion.p {...reveal(0.1)} className="mt-4 font-sans text-sm leading-relaxed text-ink/70">
             This section analyses loss-of-coolant accidents resulting from postulated breaks in the
@@ -152,7 +152,7 @@ function Chat() {
           <div className="max-w-[92%] rounded-2xl bg-ink/[0.04] px-3.5 py-2.5 text-[13px] leading-relaxed text-ink/80">
             <p>
               Five criteria apply: peak cladding temperature ≤ 2200°F, local oxidation ≤ 17%, hydrogen
-              ≤ 1%, coolable geometry, and long-term cooling. Your draft covers 1–3 — I'd add explicit
+              ≤ 1%, coolable geometry, and long-term cooling. Your draft covers 1–3, I'd add explicit
               treatment of 4 and 5 in 15.6.5.4.
             </p>
             <div className="mt-2 flex flex-wrap gap-1">

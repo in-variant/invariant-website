@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-/** The Invariant "I" — a serif capital split into two mirrored halves.
+/** The Invariant "I", a serif capital split into two mirrored halves.
  *  Symmetric under reflection: the form is literally invariant. */
 export function KeystoneMark({ className = 'h-5 w-auto' }: { className?: string }) {
   return (
@@ -14,7 +14,7 @@ export default function Logo({ className = '' }: { className?: string }) {
   return (
     <Link
       to="/"
-      aria-label="Invariant — home"
+      aria-label="Invariant, home"
       className={`flex items-center gap-2 text-ink transition-opacity hover:opacity-80 ${className}`}
     >
       <KeystoneMark className="h-[18px] w-auto" />

@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const STATS = [
-  { value: '0.9693', label: 'nDCG@10 — state of the art on FermiBench (Helion-512)' },
+  { value: '0.9693', label: 'nDCG@10, state of the art on FermiBench (Helion-512)' },
   { value: '10×', label: 'faster compliance documentation with agentic AI' },
   { value: '5', label: 'regulators covered, from the NRC to the DGCA' },
 ]

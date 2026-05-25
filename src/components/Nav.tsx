@@ -43,7 +43,7 @@ export default function Nav() {
         <div className="relative flex items-center justify-between h-[60px] px-6 lg:px-8">
           <Logo />
 
-          {/* Desktop links — centered */}
+          {/* Desktop links, centered */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
             {LINKS.map((link) => (
               <Link
@@ -84,7 +84,7 @@ export default function Nav() {
         </div>
       </nav>
 
-      {/* Mobile menu overlay — outside nav to avoid sticky stacking issues */}
+      {/* Mobile menu overlay, outside nav to avoid sticky stacking issues */}
       <div
         className={`md:hidden fixed inset-0 z-[55] bg-white transition-opacity duration-300 ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'

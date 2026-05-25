@@ -2,9 +2,9 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const VERTICALS = [
-  { name: 'Nuclear', body: 'From license applications to safety analysis reports — compliance for the most regulated energy sector on earth.' },
-  { name: 'Space-Tech', body: 'From launch-vehicle certification to satellite licensing — purpose-built compliance for the new space economy.' },
-  { name: 'Unmanned Aerial Systems', body: 'From DGCA type certification to airworthiness approvals — end-to-end compliance for drone manufacturers and their fleets.' },
+  { name: 'Nuclear', body: 'From license applications to safety analysis reports, compliance for the most regulated energy sector on earth.' },
+  { name: 'Space-Tech', body: 'From launch-vehicle certification to satellite licensing, purpose-built compliance for the new space economy.' },
+  { name: 'Unmanned Aerial Systems', body: 'From DGCA type certification to airworthiness approvals, end-to-end compliance for drone manufacturers and their fleets.' },
 ]
 
 export default function Verticals() {
