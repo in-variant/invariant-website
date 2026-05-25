@@ -3,69 +3,60 @@ import { Link } from 'react-router-dom'
 const POSTS = [
   {
     slug: 'fermibench-sota',
+    image: '/blog/fermibench.jpg',
     date: 'April 1, 2026',
-    title: 'Invariant AI Sets State-of-the-Art on FermiBench Nuclear Retrieval Benchmark',
+    title: 'Invariant Sets State-of-the-Art on FermiBench',
     summary:
-      'Our domain-adapted retrieval model helion-512 achieves 0.97 NDCG@10 and 0.93 Precision@1 on FermiBench, the only published information retrieval benchmark for the nuclear domain, up from the previous state-of-the-art of 0.74.',
-    tags: ['Announcement', 'Retrieval', 'NRC ADAMS', 'Machine Learning'],
+      'Our domain-adapted retrieval model Helion-512 reaches 0.97 nDCG@10 on FermiBench — the only published retrieval benchmark for the nuclear domain — up from the previous best of 0.74.',
   },
   {
     slug: 'seismic-design-shift',
+    image: '/blog/seismic.jpg',
     date: 'March 29, 2026',
-    title: 'SSE/OBE to GMRS/SDC: The Seismic Design Shift from Part 100 Appendix A to Part 53',
+    title: 'SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53',
     summary:
-      'The deterministic SSE/OBE two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered Design-Basis Ground Motions and Seismic Design Categories. A regulation-to-regulation comparison of every substantive change, from the 0.1g floor to the capable fault criteria erasure.',
-    tags: ['Nuclear', 'Part 53', 'Seismic', 'Earthquake Engineering'],
+      'The deterministic two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered ground motions and seismic design categories — a regulation-to-regulation comparison of every substantive change.',
   },
   {
     slug: 'part100-vs-part53-siting',
+    image: '/blog/siting.jpg',
     date: 'March 27, 2026',
-    title: '10 CFR Part 100 vs. Part 53 Subpart D: A Regulation-to-Regulation Siting Comparison',
+    title: '10 CFR Part 100 vs. Part 53 Subpart D: A Siting Comparison',
     summary:
-      'A line-by-line comparison of the legacy siting criteria in Part 100 against the new technology-inclusive framework in Part 53 Subpart D. Covers exclusion area sizing, seismic methodology, capable fault criteria, and the new siting-design integration mandate.',
-    tags: ['Nuclear', 'Part 53', 'Siting'],
+      'A line-by-line comparison of the legacy siting criteria in Part 100 against the new technology-inclusive framework in Part 53 Subpart D — exclusion areas, seismic methodology, and the siting-design integration mandate.',
   },
 ]
 
 export default function Blog() {
   return (
-    <section className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
-      <p className="section-label mb-4">Research</p>
+    <section className="px-6 py-24 md:px-12 md:py-32 lg:px-20">
+      <div className="mx-auto max-w-5xl">
+        <p className="font-grotesk text-xs font-medium uppercase tracking-[0.2em] text-ink/40">Research</p>
+        <h1 className="mt-4 font-sans text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Blog</h1>
+        <p className="mt-4 max-w-xl font-sans text-lg leading-relaxed text-ink/55">
+          Deep dives into regulatory frameworks, licensing strategy, and the engineering
+          certification landscape.
+        </p>
 
-      <h1 className="heading-editorial text-4xl md:text-5xl lg:text-6xl mb-6">
-        Blog
-      </h1>
-      <p className="body-technical max-w-2xl mb-16">
-        Deep dives into regulatory frameworks, licensing strategy, and the
-        engineering certification landscape.
-      </p>
-
-      <div className="flex flex-col gap-12">
-        {POSTS.map((post) => (
-          <Link
-            key={post.slug}
-            to={`/blog/${post.slug}`}
-            className="group block border-b border-ink/10 pb-10 last:border-b-0"
-          >
-            <p className="font-mono text-sm text-ink/40 mb-3">{post.date}</p>
-            <h2 className="font-serif text-2xl md:text-3xl font-medium tracking-[-0.02em] text-ink group-hover:text-ink/70 transition-colors mb-4 max-w-3xl">
-              {post.title}
-            </h2>
-            <p className="font-mono text-base text-ink/60 leading-relaxed max-w-2xl mb-4">
-              {post.summary}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-xs tracking-wide uppercase px-2.5 py-1 rounded-sm border border-ink/10 text-ink/50"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </Link>
-        ))}
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+          {POSTS.map((post) => (
+            <Link
+              key={post.slug}
+              to={`/blog/${post.slug}`}
+              className="group flex flex-col bg-white p-5 transition-colors hover:bg-ink/[0.02]"
+            >
+              <div
+                className="mb-5 aspect-[16/10] w-full overflow-hidden rounded-lg bg-cover bg-center"
+                style={{ backgroundImage: `url(${post.image}), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)` }}
+              />
+              <p className="font-sans text-xs text-ink/40">{post.date}</p>
+              <h2 className="mt-2 font-sans text-lg font-semibold leading-snug tracking-[-0.01em] text-ink transition-colors group-hover:text-ink/70">
+                {post.title}
+              </h2>
+              <p className="mt-2 line-clamp-3 font-sans text-sm leading-relaxed text-ink/55">{post.summary}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -1,15 +1,21 @@
 import Hero from '../components/Hero'
-import BuiltByTeamFrom from '../components/BuiltByTeamFrom'
-import WhoWeServe from '../components/WhoWeServe'
-import HowWeWork from '../components/HowWeWork'
+import BuiltFor from '../components/BuiltFor'
+import Verticals from '../components/Verticals'
+import Platform from '../components/Platform'
+import Metrics from '../components/Metrics'
+import Process from '../components/Process'
+import Advisors from '../components/Advisors'
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <BuiltByTeamFrom />
-      <WhoWeServe />
-      <HowWeWork />
+      <BuiltFor />
+      <Verticals />
+      <Platform />
+      <Metrics />
+      <Process />
+      <Advisors />
     </>
   )
 }

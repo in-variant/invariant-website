@@ -188,10 +188,10 @@ export default function Probe() {
       >
         <motion.p
           layout
-          className={`font-serif tracking-[-0.02em] text-ink mb-8 text-center ${
+          className={`font-sans tracking-[-0.025em] text-ink mb-8 text-center ${
             centered
-              ? 'text-2xl md:text-3xl lg:text-4xl font-medium leading-[1.15]'
-              : 'text-lg md:text-xl font-medium leading-[1.3]'
+              ? 'text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1]'
+              : 'text-xl md:text-2xl font-semibold leading-[1.2]'
           }`}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -217,12 +217,12 @@ export default function Probe() {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Search NRC documents..."
-              className="w-full h-14 pl-12 pr-44 rounded-xl border border-ink/15 bg-white font-mono text-sm text-ink placeholder:text-ink/30 focus:outline-none focus:border-ink/40 focus:ring-1 focus:ring-ink/10 transition-all shadow-sm"
+              className="w-full h-14 pl-12 pr-44 rounded-xl border border-ink/15 bg-white font-sans text-[15px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink/40 focus:ring-1 focus:ring-ink/10 transition-all shadow-sm"
             />
             <button
               onClick={handleSearch}
               disabled={loading || !query.trim()}
-              className="absolute right-2 h-10 w-[8.5rem] flex items-center justify-center rounded-lg bg-ink text-white font-mono text-xs tracking-[0.15em] uppercase transition-all hover:bg-ink/85 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="absolute right-2 h-10 w-[8.5rem] flex items-center justify-center rounded-lg bg-ink text-white font-sans text-sm font-medium transition-all hover:bg-ink/85 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center gap-2">
@@ -244,47 +244,24 @@ export default function Probe() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="mt-6 flex flex-col items-center gap-4"
+            className="mt-7 flex flex-col items-center gap-2.5 text-center"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs text-ink/35">Powered by</span>
-                <span className="font-mono text-xs font-semibold text-ink/70">helion-512</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className={`w-1.5 h-1.5 rounded-full ${
-                  apiStatus === 'online' ? 'bg-emerald-500' :
-                  apiStatus === 'offline' ? 'bg-red-400' :
-                  'bg-amber-400 animate-pulse'
-                }`} />
-                <span className={`font-mono text-[10px] ${
-                  apiStatus === 'online' ? 'text-emerald-600' :
-                  apiStatus === 'offline' ? 'text-red-400' :
-                  'text-amber-500'
-                }`}>
-                  {apiStatus === 'online' ? 'API Online' : apiStatus === 'offline' ? 'API Offline' : 'Checking...'}
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <div className="text-center">
-                <p className="font-mono text-xl font-semibold text-ink tabular-nums">0.97</p>
-                <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/35">NDCG@10</p>
-              </div>
-              <div className="w-px h-8 bg-ink/10" />
-              <div className="text-center">
-                <p className="font-mono text-xl font-semibold text-ink tabular-nums">0.93</p>
-                <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/35">Precision@1</p>
-              </div>
-            </div>
-
-            <p className="font-mono text-[11px] text-ink/30 text-center max-w-md">
-              State-of-the-art on{' '}
-              <Link to="/blog/fermibench-sota" className="border-b border-ink/20 hover:text-ink/50 hover:border-ink/40 transition-colors">
+            <span className="inline-flex items-center gap-2">
+              <span className={`h-1.5 w-1.5 rounded-full ${
+                apiStatus === 'online' ? 'bg-emerald-500' :
+                apiStatus === 'offline' ? 'bg-red-400' :
+                'bg-amber-400 animate-pulse'
+              }`} />
+              <span className="font-sans text-sm text-ink/50">
+                Powered by <span className="font-medium text-ink/80">Helion-512</span>
+              </span>
+            </span>
+            <p className="font-sans text-[13px] text-ink/40">
+              State of the art on{' '}
+              <Link to="/blog/fermibench-sota" className="border-b border-ink/20 text-ink/55 transition-colors hover:border-ink/40 hover:text-ink/80">
                 FermiBench
-              </Link>
-              , the only published IR benchmark for the nuclear domain
+              </Link>{' '}
+              — <span className="font-medium text-ink/60 tabular-nums">0.97</span> nDCG@10
             </p>
           </motion.div>
         )}
@@ -306,8 +283,8 @@ export default function Probe() {
                   <path d="M8 4.5v4M8 10.5v.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                 </svg>
                 <div>
-                  <p className="font-mono text-xs text-amber-800">{error}</p>
-                  <p className="font-mono text-[11px] text-amber-600/70 mt-1">Showing demo results below.</p>
+                  <p className="font-sans text-xs text-amber-800">{error}</p>
+                  <p className="mt-1 font-sans text-[11px] text-amber-600/70">Showing demo results below.</p>
                 </div>
               </div>
             )}
@@ -326,10 +303,10 @@ export default function Probe() {
               </div>
             ) : results.length > 0 ? (
               <div className="max-w-3xl mx-auto">
-                <p className="font-mono text-xs text-ink/40 mb-6">
+                <p className="mb-6 font-sans text-sm text-ink/45">
                   {results.length} result{results.length !== 1 ? 's' : ''} for "{query}"
                 </p>
-                <div className="space-y-4">
+                <div className="divide-y divide-ink/[0.07] border-t border-ink/[0.07]">
                   {results.map((result, i) => (
                     <motion.div
                       key={result.chunk_id}
@@ -344,8 +321,8 @@ export default function Probe() {
               </div>
             ) : (
               <div className="max-w-3xl mx-auto text-center py-16">
-                <p className="font-mono text-sm text-ink/40">No results found.</p>
-                <p className="font-mono text-xs text-ink/25 mt-1">Try a different query or broader terms.</p>
+                <p className="font-sans text-sm text-ink/40">No results found.</p>
+                <p className="mt-1 font-sans text-xs text-ink/25">Try a different query or broader terms.</p>
               </div>
             )}
           </motion.div>
@@ -356,61 +333,21 @@ export default function Probe() {
 }
 
 function ResultCard({ result }: { result: SearchResult }) {
-  const [expanded, setExpanded] = useState(false)
   const nrcUrl = `https://${result.doc_id}`
-  const displayText = expanded ? result.text : result.text.slice(0, 280)
-  const needsTruncation = result.text.length > 280
-
   return (
-    <div className="group rounded-lg border border-ink/[0.08] bg-white p-5 md:p-6 transition-colors hover:border-ink/[0.14]">
-      <div className="flex items-start justify-between gap-4 mb-2">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40">
-            NRC Document
-          </span>
-          <span className="font-mono text-[10px] text-ink/25">·</span>
-          <span className="font-mono text-[10px] text-ink/30">
-            Relevance {result.score.toFixed(1)}
-          </span>
-        </div>
+    <a href={nrcUrl} target="_blank" rel="noopener noreferrer" className="group block py-4">
+      <div className="flex items-start gap-2">
+        <h3 className="font-sans text-[15px] font-medium leading-snug text-ink decoration-ink/25 underline-offset-2 group-hover:underline">
+          {result.title}
+        </h3>
+        <svg width="13" height="13" viewBox="0 0 12 12" fill="none" className="mt-1 shrink-0 text-ink/25 transition-colors group-hover:text-ink/55">
+          <path d="M5 1H2.5A1.5 1.5 0 001 2.5v7A1.5 1.5 0 002.5 11h7A1.5 1.5 0 0011 9.5V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+          <path d="M7 1h4v4M11 1L5.5 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
-
-      <h3 className="font-serif text-base md:text-lg font-medium leading-snug text-ink mb-3">
-        {result.title}
-      </h3>
-
-      <p className="font-mono text-sm leading-relaxed text-ink/60 mb-4">
-        {displayText}
-        {needsTruncation && !expanded && '...'}
+      <p className="mt-1.5 line-clamp-2 font-sans text-sm leading-relaxed text-ink/50">
+        {result.text}
       </p>
-
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <a
-            href={nrcUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-xs text-ink/50 hover:text-ink transition-colors"
-          >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M5 1H2.5A1.5 1.5 0 001 2.5v7A1.5 1.5 0 002.5 11h7A1.5 1.5 0 0011 9.5V7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-              <path d="M7 1h4v4M11 1L5.5 6.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            View source
-          </a>
-          {needsTruncation && (
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="font-mono text-xs text-ink/40 hover:text-ink/70 transition-colors"
-            >
-              {expanded ? 'Show less' : 'Show more'}
-            </button>
-          )}
-        </div>
-        <span className="font-mono text-[10px] text-ink/20">
-          chunk {result.chunk_index}
-        </span>
-      </div>
-    </div>
+    </a>
   )
 }

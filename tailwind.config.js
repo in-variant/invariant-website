@@ -14,8 +14,10 @@ export default {
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', '"SF Mono"', '"Fira Code"', 'monospace'],
+        mono: ['"Fragment Mono"', '"SF Mono"', '"Fira Code"', 'monospace'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        grotesk: ['"Space Grotesk"', 'sans-serif'],
+        geist: ['"Geist"', 'system-ui', 'sans-serif'],
       },
     },
   },
