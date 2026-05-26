@@ -12,19 +12,19 @@ export default function Verticals() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="bg-cloud px-6 py-24 md:px-12 md:py-32 lg:px-20">
+    <section ref={ref} className="bg-midnight px-6 py-24 text-cloud md:px-12 md:py-32 lg:px-20">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Who we serve</p>
-          <h2 className="mt-5 max-w-md font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
+          <h2 className="mt-5 max-w-md font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
             We work with teams building the hardest things in the most regulated industries.
           </h2>
-          <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-ink/60">
+          <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-cloud/60">
             Where compliance isn't optional, and failure isn't abstract.
           </p>
         </div>
 
-        <div className="divide-y divide-ink/10 lg:pt-2">
+        <div className="divide-y divide-cloud/15 lg:pt-2">
           {VERTICALS.map((v, i) => (
             <motion.div
               key={v.name}
@@ -33,8 +33,8 @@ export default function Verticals() {
               transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
               className="py-6 first:pt-0"
             >
-              <h3 className="font-sans text-lg font-medium text-ink">{v.name}</h3>
-              <p className="mt-2 font-sans text-base leading-relaxed text-ink/60">{v.body}</p>
+              <h3 className="font-sans text-lg font-medium text-cloud">{v.name}</h3>
+              <p className="mt-2 font-sans text-base leading-relaxed text-cloud/55">{v.body}</p>
             </motion.div>
           ))}
         </div>

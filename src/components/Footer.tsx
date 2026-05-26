@@ -15,8 +15,14 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-midnight text-cloud">
-      <div className="mx-auto max-w-6xl px-6 pb-10 pt-24 md:px-12 lg:px-20">
+    <footer className="relative overflow-hidden bg-midnight text-cloud">
+      {/* Painterly dusk landscape, washed in Midnight so it stays cool/on-brand and text reads. */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: 'url(/footer-dawn.png)' }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-midnight/55 via-midnight/45 to-midnight/75" />
+      <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-24 md:px-12 lg:px-20">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5 text-cloud">
