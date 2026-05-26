@@ -116,7 +116,7 @@ export default function Pricing() {
           onClick={() => setSegment('india-space-tech')}
           className={`font-mono text-sm tracking-[0.1em] uppercase px-4 py-2 rounded transition-all ${
             segment === 'india-space-tech'
-              ? 'bg-ink text-white'
+              ? 'bg-midnight text-cloud'
               : 'text-ink/50 hover:text-ink'
           }`}
         >
@@ -126,7 +126,7 @@ export default function Pricing() {
           onClick={() => setSegment('platform')}
           className={`relative font-mono text-sm tracking-[0.1em] uppercase px-4 py-2 rounded transition-all ${
             segment === 'platform'
-              ? 'bg-ink text-white'
+              ? 'bg-midnight text-cloud'
               : 'text-ink/50 hover:text-ink'
           }`}
         >
@@ -148,17 +148,17 @@ export default function Pricing() {
                 }`}
               >
                 {tier.popular && (
-                  <span className="absolute -top-3 left-6 font-mono text-xs tracking-[0.15em] uppercase bg-ink text-white px-3 py-1 rounded-sm">
+                  <span className="absolute -top-3 left-6 font-mono text-xs tracking-[0.15em] uppercase bg-midnight text-cloud px-3 py-1 rounded-sm">
                     Most popular
                   </span>
                 )}
 
-                <h3 className="font-serif text-2xl font-medium tracking-[-0.02em] text-ink mb-2">
+                <h3 className="font-serif text-2xl font-normal tracking-[-0.02em] text-ink mb-2">
                   {tier.name}
                 </h3>
 
                 <div className="flex items-baseline gap-1 mb-1">
-                  <span className="font-serif text-4xl font-medium tracking-[-0.02em] text-ink">
+                  <span className="font-serif text-4xl font-normal tracking-[-0.02em] text-ink">
                     {tier.price}
                   </span>
                 </div>
@@ -193,7 +193,7 @@ export default function Pricing() {
                   to={tier.href}
                   className={`block text-center font-mono text-sm tracking-[0.1em] uppercase py-3 rounded transition-all ${
                     tier.popular
-                      ? 'bg-ink text-white hover:bg-ink/90'
+                      ? 'bg-midnight text-cloud hover:bg-copper'
                       : 'border border-ink/20 text-ink hover:border-ink/40'
                   }`}
                 >
@@ -211,11 +211,11 @@ export default function Pricing() {
                 <p className="font-mono text-xs tracking-[0.2em] uppercase text-ink/40 mb-4">
                   Add-on · Available on any tier
                 </p>
-                <h3 className="font-serif text-3xl md:text-4xl font-medium tracking-[-0.02em] text-ink mb-2">
+                <h3 className="font-serif text-3xl md:text-4xl font-normal tracking-[-0.02em] text-ink mb-2">
                   {LIAISON.name}
                 </h3>
                 <div className="flex items-baseline gap-1 mb-1">
-                  <span className="font-serif text-3xl font-medium tracking-[-0.02em] text-ink">
+                  <span className="font-serif text-3xl font-normal tracking-[-0.02em] text-ink">
                     {LIAISON.price}
                   </span>
                 </div>
@@ -248,7 +248,7 @@ export default function Pricing() {
         </>
       ) : (
         <div className="flex flex-col items-center justify-center py-32 border border-ink/10 rounded-lg">
-          <p className="font-serif text-3xl md:text-4xl font-medium tracking-[-0.02em] text-ink mb-4">
+          <p className="font-serif text-3xl md:text-4xl font-normal tracking-[-0.02em] text-ink mb-4">
             Coming soon
           </p>
           <p className="font-mono text-base text-ink/50 max-w-md text-center leading-relaxed">

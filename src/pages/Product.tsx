@@ -16,7 +16,7 @@ function Docs() {
   return (
     <aside className="hidden w-60 shrink-0 flex-col border-r border-ink/10 bg-ink/[0.015] md:flex">
       <div className="border-b border-ink/10 px-4 py-3">
-        <span className="font-grotesk text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/45">Documents</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">Documents</span>
       </div>
       <div className="flex-1 overflow-hidden py-2">
         {FILE_TREE.map((folder) => (
@@ -58,11 +58,11 @@ function Editor() {
   })
 
   return (
-    <main className="flex min-w-0 flex-1 flex-col bg-white">
+    <main className="flex min-w-0 flex-1 flex-col bg-paper">
       <div className="flex items-center justify-between border-b border-ink/10 px-5 py-2.5">
         <span className="font-sans text-[11px] text-ink/45">Section 15.6.5 · Transient &amp; Accident Analyses</span>
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-1 font-sans text-[11px] font-medium text-white">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-1 font-sans text-[11px] font-medium text-cloud">
             <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
             Generate
           </span>
@@ -74,7 +74,7 @@ function Editor() {
 
       <div className="flex-1 overflow-hidden px-6 py-6 md:px-10 md:py-8">
         <div className="mx-auto max-w-2xl">
-          <motion.h3 {...reveal(0)} className="font-sans text-lg font-semibold text-ink">
+          <motion.h3 {...reveal(0)} className="font-sans text-lg font-medium text-ink">
             15.6.5 Loss-of-Coolant Accidents
           </motion.h3>
           <motion.p {...reveal(0.1)} className="mt-4 font-sans text-sm leading-relaxed text-ink/70">
@@ -107,7 +107,7 @@ function Editor() {
             className="mt-6 rounded-lg border border-ink/10 bg-ink/[0.02] px-4 py-3"
           >
             <div className="flex items-center gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[9px] font-semibold text-white">AI</span>
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[9px] font-semibold text-cloud">AI</span>
               <span className="font-sans text-xs font-medium text-ink/70">Review note</span>
               <span className="font-sans text-[10px] text-ink/35">just now</span>
             </div>
@@ -124,9 +124,9 @@ function Editor() {
 
 function Chat() {
   return (
-    <aside className="hidden w-80 shrink-0 flex-col border-l border-ink/10 bg-white lg:flex">
+    <aside className="hidden w-80 shrink-0 flex-col border-l border-ink/10 bg-paper lg:flex">
       <div className="flex items-center justify-between border-b border-ink/10 px-4 py-3">
-        <span className="font-grotesk text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/45">Assistant</span>
+        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">Assistant</span>
         <span className="inline-flex items-center gap-1.5 font-sans text-[11px] text-emerald-600">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> KB ready
         </span>
@@ -139,7 +139,7 @@ function Chat() {
           transition={{ duration: 0.4 }}
           className="flex justify-end"
         >
-          <div className="max-w-[92%] rounded-2xl bg-ink px-3.5 py-2.5 text-[13px] leading-relaxed text-white">
+          <div className="max-w-[92%] rounded-2xl bg-ink px-3.5 py-2.5 text-[13px] leading-relaxed text-cloud">
             What acceptance criteria from 10 CFR 50.46 must Section 15.6.5 address?
           </div>
         </motion.div>
@@ -157,7 +157,7 @@ function Chat() {
             </p>
             <div className="mt-2 flex flex-wrap gap-1">
               {['10CFR50_App_K.pdf', 'NUREG-0800_Ch15.pdf'].map((s) => (
-                <span key={s} className="rounded bg-white px-1.5 py-0.5 font-sans text-[10px] text-ink/45 ring-1 ring-ink/10">{s}</span>
+                <span key={s} className="rounded bg-paper px-1.5 py-0.5 font-sans text-[10px] text-ink/45 ring-1 ring-ink/10">{s}</span>
               ))}
             </div>
           </div>
@@ -166,7 +166,7 @@ function Chat() {
       <div className="border-t border-ink/10 p-3">
         <div className="flex items-center gap-2 rounded-xl border border-ink/12 px-3 py-2">
           <span className="flex-1 font-sans text-[13px] text-ink/35">Ask about a regulation, request a draft…</span>
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-ink text-white">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-ink text-cloud">
             <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M12 7L2 2v4l5 1-5 1v4z" fill="currentColor" /></svg>
           </span>
         </div>
@@ -179,9 +179,9 @@ function Chat() {
 
 export default function Product() {
   return (
-    <div className="bg-white">
+    <div className="bg-paper">
       <section className="px-6 pt-14 pb-10 text-center md:px-12 md:pt-20 lg:px-20">
-        <h1 className="mx-auto max-w-xl font-sans text-3xl font-semibold leading-[1.1] tracking-[-0.025em] text-ink md:text-4xl">
+        <h1 className="mx-auto max-w-xl font-serif text-3xl font-normal leading-[1.1] tracking-[-0.02em] text-ink md:text-4xl">
           The platform behind the service.
         </h1>
         <p className="mx-auto mt-4 max-w-md font-sans text-base leading-relaxed text-ink/55 md:text-lg">
@@ -195,13 +195,13 @@ export default function Product() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-[0_40px_100px_-35px_rgba(13,13,13,0.3)]"
+          className="mx-auto max-w-6xl overflow-hidden rounded-2xl border border-ink/10 bg-paper shadow-[0_40px_100px_-35px_rgba(13,13,13,0.3)]"
         >
           <div className="flex items-center justify-between border-b border-ink/10 bg-ink/[0.015] px-4 py-2.5">
             <div className="flex items-center gap-3 text-ink">
               <KeystoneMark className="h-[14px] w-auto" />
               <span className="font-grotesk text-sm font-semibold tracking-[-0.01em]">Invariant</span>
-              <span className="hidden items-center rounded-md bg-white px-2 py-1 font-sans text-[11px] text-ink/55 ring-1 ring-ink/10 sm:inline-flex">
+              <span className="hidden items-center rounded-md bg-paper px-2 py-1 font-sans text-[11px] text-ink/55 ring-1 ring-ink/10 sm:inline-flex">
                 Advanced PWR · Unit 3 FSAR
               </span>
             </div>
@@ -209,7 +209,7 @@ export default function Product() {
               <span className="hidden font-sans text-[11px] text-ink/35 sm:inline">synced 2m ago</span>
               <div className="flex -space-x-1.5">
                 {['JM', 'RC', 'AP'].map((u) => (
-                  <span key={u} className="flex h-6 w-6 items-center justify-center rounded-full bg-ink/80 text-[9px] font-semibold text-white ring-2 ring-white">{u}</span>
+                  <span key={u} className="flex h-6 w-6 items-center justify-center rounded-full bg-ink/80 text-[9px] font-semibold text-cloud ring-2 ring-paper">{u}</span>
                 ))}
               </div>
             </div>

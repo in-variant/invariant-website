@@ -256,14 +256,14 @@ const CHANGE_META: Record<Change, { label: string; dot: string; activeBg: string
   reframed: { label: 'Reframed / performance-based', dot: 'bg-violet-500', activeBg: 'bg-violet-100', activeText: 'text-violet-800' },
   relaxed: { label: 'More flexible in Part 53', dot: 'bg-amber-500', activeBg: 'bg-amber-100', activeText: 'text-amber-800' },
   stricter: { label: 'Stricter / more explicit', dot: 'bg-red-500', activeBg: 'bg-red-100', activeText: 'text-red-800' },
-  new: { label: 'New in Part 53', dot: 'bg-blue-500', activeBg: 'bg-blue-100', activeText: 'text-blue-800' },
+  new: { label: 'New in Part 53', dot: 'bg-observatory', activeBg: 'bg-observatory/15', activeText: 'text-observatory' },
 }
 
 const TOTAL_ITEMS = SECTIONS.reduce((sum, s) => sum + s.rows.length, 0)
 
 function Badge({ change, label }: { change: Change; label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-ink/10 bg-white px-2.5 py-1 font-sans text-[11px] font-medium text-ink/55">
+    <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-ink/10 bg-paper px-2.5 py-1 font-sans text-[11px] font-medium text-ink/55">
       <span className={`h-1.5 w-1.5 rounded-full ${CHANGE_META[change].dot}`} />
       {label}
     </span>
@@ -287,7 +287,7 @@ function ComparisonCard({ row }: { row: Row }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
-          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
             Part 100
           </p>
           <p className="font-sans text-sm text-ink/70 leading-relaxed">
@@ -295,7 +295,7 @@ function ComparisonCard({ row }: { row: Row }) {
           </p>
         </div>
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
-          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
             Part 53 Subpart D
           </p>
           {row.part53 ? (
@@ -312,7 +312,7 @@ function ComparisonCard({ row }: { row: Row }) {
       </div>
 
       <div className="border-t border-ink/[0.06] pt-3">
-        <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-1.5">
+        <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-1.5">
           Key difference
         </p>
         <p className="font-sans text-sm text-ink/80 leading-relaxed">
@@ -415,7 +415,7 @@ export default function Part100vsPart53() {
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
       <div className="max-w-6xl mx-auto">
         <div className="mx-auto max-w-3xl">
-          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-ink">
+          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">
             ← Back to Blog
           </Link>
           <div
@@ -424,7 +424,7 @@ export default function Part100vsPart53() {
           />
           <header className="mb-16 mt-10 text-center">
             <p className="mb-4 font-sans text-sm text-ink/40">March 27, 2026</p>
-            <h1 className="mb-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.025em] text-ink md:text-4xl lg:text-5xl">
+            <h1 className="mb-5 font-serif text-3xl font-normal leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl lg:text-5xl">
               10 CFR Part 100 vs. Part 53 Subpart D
             </h1>
             <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
@@ -569,7 +569,7 @@ export default function Part100vsPart53() {
           {/* Sidebar TOC - desktop only */}
           <nav className="hidden lg:block">
             <div className="sticky top-[80px]">
-              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
+              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
                 Sections
               </p>
               <div className="flex flex-col gap-1">
@@ -625,7 +625,7 @@ export default function Part100vsPart53() {
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="h-px flex-1 bg-ink/10" />
-                    <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-ink/50 whitespace-nowrap">
+                    <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 whitespace-nowrap">
                       {section.heading}
                     </h3>
                     <div className="h-px flex-1 bg-ink/10" />

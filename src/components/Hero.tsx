@@ -52,7 +52,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-          className="mt-6 text-balance font-sans text-[2rem] font-medium leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl lg:text-6xl"
+          className="mt-6 text-balance font-serif text-[2.25rem] font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-5xl lg:text-6xl"
         >
           Compliance that holds.
         </motion.h1>

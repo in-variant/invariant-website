@@ -12,31 +12,29 @@ export default function Verticals() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="border-t border-ink/[0.06] bg-white px-6 py-24 md:px-12 md:py-32 lg:px-20">
+    <section ref={ref} className="bg-cloud px-6 py-24 md:px-12 md:py-32 lg:px-20">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
-          <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-grotesk text-xs font-medium tracking-wide text-ink/60">
-            Who we serve
-          </span>
-          <h2 className="mt-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Who we serve</p>
+          <h2 className="mt-5 max-w-md font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
             We work with teams building the hardest things in the most regulated industries.
           </h2>
-          <p className="mt-4 max-w-md font-sans text-lg leading-relaxed text-ink/55">
+          <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-ink/60">
             Where compliance isn't optional, and failure isn't abstract.
           </p>
         </div>
 
-        <div className="divide-y divide-ink/[0.08] lg:pt-2">
+        <div className="divide-y divide-ink/10 lg:pt-2">
           {VERTICALS.map((v, i) => (
             <motion.div
               key={v.name}
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
-              className="py-5 first:pt-0"
+              className="py-6 first:pt-0"
             >
-              <h3 className="font-sans text-base font-semibold text-ink">{v.name}</h3>
-              <p className="mt-1.5 font-sans text-sm leading-relaxed text-ink/55">{v.body}</p>
+              <h3 className="font-sans text-lg font-medium text-ink">{v.name}</h3>
+              <p className="mt-2 font-sans text-base leading-relaxed text-ink/60">{v.body}</p>
             </motion.div>
           ))}
         </div>

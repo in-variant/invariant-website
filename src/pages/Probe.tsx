@@ -188,10 +188,10 @@ export default function Probe() {
       >
         <motion.p
           layout
-          className={`font-sans tracking-[-0.025em] text-ink mb-8 text-center ${
+          className={`font-serif tracking-[-0.02em] text-ink mb-8 text-center ${
             centered
-              ? 'text-3xl md:text-4xl lg:text-5xl font-semibold leading-[1.1]'
-              : 'text-xl md:text-2xl font-semibold leading-[1.2]'
+              ? 'text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.1]'
+              : 'text-xl md:text-2xl font-normal leading-[1.2]'
           }`}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -217,12 +217,12 @@ export default function Probe() {
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Search NRC documents..."
-              className="w-full h-14 pl-12 pr-44 rounded-xl border border-ink/15 bg-white font-sans text-[15px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink/40 focus:ring-1 focus:ring-ink/10 transition-all shadow-sm"
+              className="w-full h-14 pl-12 pr-44 rounded-xl border border-ink/15 bg-paper font-sans text-[15px] text-ink placeholder:text-ink/35 focus:outline-none focus:border-ink/40 focus:ring-1 focus:ring-ink/10 transition-all shadow-sm"
             />
             <button
               onClick={handleSearch}
               disabled={loading || !query.trim()}
-              className="absolute right-2 h-10 w-[8.5rem] flex items-center justify-center rounded-lg bg-ink text-white font-sans text-sm font-medium transition-all hover:bg-ink/85 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="absolute right-2 h-10 w-[8.5rem] flex items-center justify-center rounded-lg bg-midnight text-cloud font-sans text-sm font-medium transition-all hover:bg-copper disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center gap-2">
@@ -258,7 +258,7 @@ export default function Probe() {
             </span>
             <p className="font-sans text-[13px] text-ink/40">
               State of the art on{' '}
-              <Link to="/blog/fermibench-sota" className="border-b border-ink/20 text-ink/55 transition-colors hover:border-ink/40 hover:text-ink/80">
+              <Link to="/blog/fermibench-sota" className="border-b border-copper/40 text-copper transition-colors hover:border-copper hover:text-copper">
                 FermiBench
               </Link>,{' '}
               <span className="font-medium text-ink/60 tabular-nums">0.97</span> nDCG@10

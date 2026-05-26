@@ -9,9 +9,9 @@ export default function Layout() {
   const isHome = pathname === '/'
 
   return (
-    <div className="paper-grain min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-paper">
       <Nav />
-      <main className={`flex-1 ${isHome ? '' : 'pt-[60px]'}`}>
+      <main className={`flex-1 ${isHome ? '' : 'pt-[64px]'}`}>
         <Outlet />
       </main>
       <Footer />

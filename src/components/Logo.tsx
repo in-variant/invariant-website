@@ -15,10 +15,10 @@ export default function Logo({ className = '' }: { className?: string }) {
     <Link
       to="/"
       aria-label="Invariant, home"
-      className={`flex items-center gap-2 text-ink transition-opacity hover:opacity-80 ${className}`}
+      className={`flex items-center gap-2.5 transition-opacity hover:opacity-80 ${className}`}
     >
-      <KeystoneMark className="h-[18px] w-auto" />
-      <span className="font-grotesk text-lg font-semibold tracking-[-0.02em]">Invariant</span>
+      <KeystoneMark className="h-[20px] w-auto" />
+      <span className="font-serif text-[22px] font-normal leading-none tracking-[-0.015em]">Invariant</span>
     </Link>
   )
 }

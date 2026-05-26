@@ -12,7 +12,7 @@ export default function FermiBenchSOTA() {
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
       <div className="max-w-3xl mx-auto">
         <div className="mx-auto max-w-3xl">
-          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-ink">
+          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">
             ← Back to Blog
           </Link>
           <div
@@ -21,7 +21,7 @@ export default function FermiBenchSOTA() {
           />
           <header className="mb-16 mt-10 text-center">
             <p className="mb-4 font-sans text-sm text-ink/40">April 1, 2026</p>
-            <h1 className="mb-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.025em] text-ink md:text-4xl lg:text-5xl">
+            <h1 className="mb-5 font-serif text-3xl font-normal leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl lg:text-5xl">
               Invariant Sets State-of-the-Art on FermiBench
             </h1>
             <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
@@ -83,7 +83,7 @@ export default function FermiBenchSOTA() {
         <div className="space-y-14">
           {/* What we built */}
           <section>
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               What we built
             </h2>
             <div className="space-y-4">
@@ -116,7 +116,7 @@ export default function FermiBenchSOTA() {
           {/* What these numbers mean */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               What these numbers mean
             </h2>
             <div className="space-y-4">
@@ -167,7 +167,7 @@ export default function FermiBenchSOTA() {
           {/* Why retrieval quality is the foundation */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               Why retrieval quality is the foundation of what we are building
             </h2>
             <div className="space-y-4">
@@ -221,7 +221,7 @@ export default function FermiBenchSOTA() {
           {/* Will this be limited to NRC ADAMS? */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               Will this be limited to NRC ADAMS?
             </h2>
             <div className="space-y-4">
@@ -262,7 +262,7 @@ export default function FermiBenchSOTA() {
           {/* Try it */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               Try it
             </h2>
             <p className="font-sans text-base text-ink/75 leading-relaxed mb-6">
@@ -281,7 +281,7 @@ export default function FermiBenchSOTA() {
           {/* Acknowledgements */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               Acknowledgements
             </h2>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
@@ -299,7 +299,7 @@ export default function FermiBenchSOTA() {
           {/* Open-source contribution */}
           <section>
             <div className="section-rule mb-6" />
-            <h2 className="font-sans text-2xl md:text-3xl font-medium text-ink tracking-[-0.01em] mb-6">
+            <h2 className="font-serif text-3xl md:text-4xl font-normal text-ink tracking-[-0.02em] mb-6">
               Open-source contribution
             </h2>
             <p className="font-sans text-base text-ink/75 leading-relaxed mb-4">
@@ -314,7 +314,7 @@ export default function FermiBenchSOTA() {
               href="https://huggingface.co/datasets/in-variant-ai/helion-reduced-dataset"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-sans text-sm text-ink/70 hover:text-ink transition-colors border-b border-ink/20 hover:border-ink/40 pb-0.5"
+              className="inline-flex items-center gap-2 font-sans text-sm text-copper hover:text-copper transition-colors border-b border-copper/40 hover:border-copper pb-0.5"
             >
               View dataset on Hugging Face &rarr;
             </a>

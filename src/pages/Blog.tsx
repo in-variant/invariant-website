@@ -31,7 +31,7 @@ export default function Blog() {
   return (
     <section className="px-6 pt-16 pb-24 md:px-12 md:pt-24 md:pb-32 lg:px-20">
       <div className="mx-auto max-w-5xl">
-        <h1 className="font-sans text-4xl font-semibold tracking-[-0.03em] text-ink md:text-5xl">Blog</h1>
+        <h1 className="font-serif text-4xl font-normal tracking-[-0.02em] text-ink md:text-5xl">Blog</h1>
         <p className="mt-4 max-w-xl font-sans text-lg leading-relaxed text-ink/55">
           Deep dives into regulatory frameworks, licensing strategy, and the engineering
           certification landscape.
@@ -42,14 +42,14 @@ export default function Blog() {
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
-              className="group flex flex-col bg-white p-5 transition-colors hover:bg-ink/[0.02]"
+              className="group flex flex-col bg-paper p-5 transition-colors hover:bg-ink/[0.02]"
             >
               <div
                 className="mb-5 aspect-[16/10] w-full overflow-hidden rounded-lg bg-cover bg-center"
                 style={{ backgroundImage: `url(${post.image}), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)` }}
               />
               <p className="font-sans text-xs text-ink/40">{post.date}</p>
-              <h2 className="mt-2 font-sans text-lg font-semibold leading-snug tracking-[-0.01em] text-ink transition-colors group-hover:text-ink/70">
+              <h2 className="mt-2 font-sans text-lg font-medium leading-snug tracking-[-0.01em] text-ink transition-colors group-hover:text-copper">
                 {post.title}
               </h2>
               <p className="mt-2 line-clamp-3 font-sans text-sm leading-relaxed text-ink/55">{post.summary}</p>

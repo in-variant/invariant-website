@@ -15,16 +15,14 @@ export default function Advisors() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className="border-t border-ink/[0.06] bg-white px-6 py-20 md:px-12 md:py-24 lg:px-20">
+    <section ref={ref} className="bg-midnight px-6 py-20 text-cloud md:px-12 md:py-24 lg:px-20">
       <div className="mx-auto max-w-2xl text-center">
-        <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-grotesk text-xs font-medium tracking-wide text-ink/60">
-          Advisors
-        </span>
-        <h2 className="mt-5 font-sans text-2xl font-semibold leading-[1.15] tracking-[-0.02em] text-ink md:text-3xl">
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Advisors</p>
+        <h2 className="mt-5 font-serif text-3xl font-normal leading-[1.1] tracking-[-0.02em] text-cloud md:text-4xl">
           Guided by those who've built the hardest things.
         </h2>
 
-        <div className="mt-10 flex flex-col items-center">
+        <div className="mt-12 flex flex-col items-center">
           {ADVISORS.map((a) => (
             <motion.div
               key={a.name}
@@ -34,9 +32,9 @@ export default function Advisors() {
               className="flex flex-col items-center"
             >
               <img src={a.photo} alt={a.name} className="h-20 w-20 rounded-full object-cover grayscale" />
-              <h3 className="mt-4 font-sans text-lg font-semibold text-ink">{a.name}</h3>
-              <p className="mt-0.5 font-sans text-sm text-ink/55">{a.role}</p>
-              <p className="font-sans text-sm text-ink/40">{a.org}</p>
+              <h3 className="mt-4 font-sans text-lg font-medium text-cloud">{a.name}</h3>
+              <p className="mt-1 font-sans text-sm text-cloud/55">{a.role}</p>
+              <p className="font-sans text-sm text-cloud/40">{a.org}</p>
             </motion.div>
           ))}
         </div>

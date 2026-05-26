@@ -7,17 +7,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0D0D0D',
-        mid: '#888888',
-        rule: '#BFBFBF',
+        // Foundation
+        midnight: '#1B2436',
+        observatory: '#425D77',
+        mineral: '#D9D6D1',
+        cloud: '#ECEAE7',
+        // Accents
+        copper: '#C57A3E',
+        peach: '#E4CBBE',
+        lavender: '#7F7A93',
+        // System
+        paper: '#FAFAF7',
+        ink: '#1B2436',     // brand ink == Midnight
+        mid: '#6B6B66',
+        rule: '#C9C5BD',
         dim: '#CCCCCC',
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        mono: ['"Fragment Mono"', '"SF Mono"', '"Fira Code"', 'monospace'],
-        sans: ['"Inter"', 'system-ui', 'sans-serif'],
-        grotesk: ['"Space Grotesk"', 'sans-serif'],
-        geist: ['"Geist"', 'system-ui', 'sans-serif'],
+        serif: ['Newsreader', 'Georgia', 'serif'],          // display / headings
+        sans: ['Satoshi', 'Inter', 'system-ui', 'sans-serif'], // body / UI
+        mono: ['"IBM Plex Mono"', 'monospace'],              // labels / metadata
+        grotesk: ['Newsreader', 'serif'],                    // legacy alias -> serif
       },
     },
   },

@@ -14,12 +14,10 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
 
   const isHome = pathname === '/'
-  // Transparent only while sitting on the home hero at the top of the page.
+  // Transparent (over the dark hero) only while at the top of the home page.
   const solid = !isHome || scrolled || open
 
-  useEffect(() => {
-    setOpen(false)
-  }, [pathname])
+  useEffect(() => { setOpen(false) }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -37,77 +35,70 @@ export default function Nav() {
     <>
       <nav
         className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-          solid ? 'bg-white/90 backdrop-blur-sm border-b border-ink/10' : 'bg-transparent'
+          solid ? 'border-b border-ink/10 bg-paper/90 backdrop-blur-sm' : 'bg-transparent'
         }`}
       >
-        <div className="relative flex items-center justify-between h-[60px] px-6 lg:px-8">
-          <Logo />
+        <div className="relative flex h-[64px] items-center justify-between px-6 lg:px-8">
+          <Logo className="text-ink" />
 
           {/* Desktop links, centered */}
-          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-            {LINKS.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`font-sans text-sm font-medium transition-colors ${
-                  pathname === link.to
-                    ? 'text-ink'
-                    : solid
-                      ? 'text-ink/60 hover:text-ink'
-                      : 'text-ink/70 hover:text-ink'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-9 md:flex">
+            {LINKS.map((link) => {
+              const active = pathname === link.to
+              return (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={`font-sans text-sm transition-colors hover:text-copper ${
+                    active ? 'text-ink' : 'text-ink/55'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Desktop CTA */}
           <a
             href="mailto:founders@invariant-ai.com"
-            className="hidden md:inline-flex items-center rounded-full bg-ink px-5 py-2.5 font-sans text-sm font-medium text-white transition-colors hover:bg-ink/85"
+            className="hidden items-center rounded-[3px] bg-midnight px-5 py-2.5 font-sans text-sm font-medium text-cloud transition-colors hover:bg-copper md:inline-flex"
           >
             Get in touch
           </a>
 
-          {/* Mobile hamburger button */}
+          {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden relative z-[60] flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
+            className="relative z-[60] flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
-            <span className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 origin-center ${open ? 'translate-y-[6.5px] rotate-45' : ''}`} />
-            <span className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 ${open ? 'opacity-0' : ''}`} />
-            <span className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 origin-center ${open ? '-translate-y-[6.5px] -rotate-45' : ''}`} />
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 ${
+                  open && i === 0 ? 'translate-y-[6.5px] rotate-45' : ''
+                } ${open && i === 1 ? 'opacity-0' : ''} ${open && i === 2 ? '-translate-y-[6.5px] -rotate-45' : ''}`}
+              />
+            ))}
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu overlay, outside nav to avoid sticky stacking issues */}
+      {/* Mobile menu overlay */}
       <div
-        className={`md:hidden fixed inset-0 z-[55] bg-white transition-opacity duration-300 ${
-          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 z-[55] bg-paper transition-opacity duration-300 md:hidden ${
+          open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
       >
-        <button
-          onClick={() => setOpen(false)}
-          className="absolute top-4 right-6 w-10 h-10 flex items-center justify-center"
-          aria-label="Close menu"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="2" y1="2" x2="18" y2="18" stroke="#0D0D0D" strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="18" y1="2" x2="2" y2="18" stroke="#0D0D0D" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
-
-        <div className="flex flex-col items-center justify-center gap-8 h-full">
+        <div className="flex h-full flex-col items-center justify-center gap-8">
           {LINKS.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`font-sans text-lg font-medium transition-colors ${
-                pathname === link.to ? 'text-ink' : 'text-ink/60 hover:text-ink'
+              className={`font-serif text-3xl font-normal tracking-[-0.015em] transition-colors hover:text-copper ${
+                pathname === link.to ? 'text-ink' : 'text-ink/55'
               }`}
             >
               {link.label}
@@ -116,7 +107,7 @@ export default function Nav() {
           <a
             href="mailto:founders@invariant-ai.com"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex items-center rounded-full bg-ink px-6 py-3 font-sans text-base font-medium text-white"
+            className="mt-3 inline-flex items-center rounded-[3px] bg-midnight px-6 py-3 font-sans text-base font-medium text-cloud transition-colors hover:bg-copper"
           >
             Get in touch
           </a>

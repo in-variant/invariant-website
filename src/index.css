@@ -11,28 +11,32 @@
   }
 
   body {
-    @apply bg-white text-ink font-sans;
-    line-height: 1.7;
+    background-color: #FAFAF7;
+    color: #1B2436;
+    font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+    line-height: 1.55;
   }
 
   ::selection {
-    background: #0D0D0D;
-    color: #fff;
+    background: #1B2436;
+    color: #ECEAE7;
   }
 }
 
 @layer components {
+  /* Plex Mono eyebrow / metadata label */
   .section-label {
-    @apply font-mono text-sm tracking-[0.2em] uppercase text-ink/50;
+    @apply font-mono text-[11px] tracking-[0.14em] uppercase text-ink/50;
     font-weight: 400;
   }
 
   .section-rule {
-    @apply w-full h-px bg-rule;
+    @apply w-full h-px bg-ink/10;
   }
 
+  /* Newsreader display heading, weight comes from size + color */
   .heading-editorial {
-    @apply font-sans font-semibold leading-[1.1] tracking-[-0.02em] text-ink;
+    @apply font-serif font-normal leading-[1.05] tracking-[-0.02em] text-ink;
   }
 
   .body-technical {
@@ -55,15 +59,9 @@
 }
 
 .blog-comparison-card {
-  @apply border border-ink/[0.08] rounded-lg p-5 md:p-6;
-  background: linear-gradient(135deg, rgba(13,13,13,0.01) 0%, rgba(13,13,13,0.025) 100%);
+  @apply border border-ink/[0.12] rounded-[3px] p-5 md:p-6 bg-white;
   transition: border-color 0.2s ease;
 }
 .blog-comparison-card:hover {
-  border-color: rgba(13,13,13,0.14);
-}
-
-.paper-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+  border-color: rgba(27,36,54,0.28);
 }

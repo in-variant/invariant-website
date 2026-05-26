@@ -27,13 +27,11 @@ function Check() {
 function Heading() {
   return (
     <div className="lg:sticky lg:top-28 lg:self-start">
-      <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-grotesk text-xs font-medium tracking-wide text-ink/60">
-        How we work
-      </span>
-      <h2 className="mt-5 font-sans text-3xl font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl">
+      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">How we work</p>
+      <h2 className="mt-5 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
         One engagement. End-to-end compliance.
       </h2>
-      <p className="mt-4 max-w-md font-sans text-lg leading-relaxed text-ink/55">
+      <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-ink/60">
         From first scope to regulatory sign-off.
       </p>
     </div>
@@ -43,18 +41,18 @@ function Heading() {
 /** A single drawer row. Open state is driven by scroll, not clicks. */
 function Drawer({ step, isOpen }: { step: (typeof STEPS)[number]; isOpen: boolean }) {
   return (
-    <div className="border-b border-ink/10">
+    <div className="border-b border-ink/12">
       <div className="flex items-center gap-4 py-5">
         <span
-          className={`flex h-6 w-7 shrink-0 items-center font-grotesk text-sm font-medium tabular-nums transition-colors duration-300 ${
-            isOpen ? 'text-ink' : 'text-ink/35'
+          className={`flex h-6 w-7 shrink-0 items-center font-mono text-sm tabular-nums transition-colors duration-300 ${
+            isOpen ? 'text-copper' : 'text-ink/35'
           }`}
         >
           {step.done ? <Check /> : step.n}
         </span>
         <h3
           className={`font-sans text-lg font-medium tracking-[-0.01em] transition-colors duration-300 ${
-            isOpen ? 'text-ink' : 'text-ink/55'
+            isOpen ? 'text-ink' : 'text-ink/50'
           }`}
         >
           {step.title}
@@ -84,8 +82,6 @@ export default function Process() {
   const [active, setActive] = useState(0)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  // Spring gives the scroll a little friction/weight; the buffer keeps the
-  // panel settled on screen before the first step opens and after the last.
   const smooth = useSpring(scrollYProgress, { stiffness: 60, damping: 20, restDelta: 0.001 })
   const progress = useTransform(smooth, [0.1, 0.92], [0, 1], { clamp: true })
 
@@ -95,12 +91,12 @@ export default function Process() {
   })
 
   return (
-    <section ref={ref} className="relative border-t border-ink/[0.06] bg-white md:h-[240vh]">
+    <section ref={ref} className="relative bg-mineral md:h-[240vh]">
       {/* Desktop: pinned panel, drawers open as you scroll (and reverse) */}
       <div className="sticky top-0 hidden h-screen items-center px-6 md:flex md:px-12 lg:px-20">
         <div className="mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-20">
           <Heading />
-          <div className="border-t border-ink/10">
+          <div className="border-t border-ink/12">
             {STEPS.map((s, i) => (
               <Drawer key={s.n} step={s} isOpen={active === i} />
             ))}
@@ -108,14 +104,14 @@ export default function Process() {
         </div>
       </div>
 
-      {/* Mobile: static stacked list, all steps shown */}
+      {/* Mobile: static stacked list */}
       <div className="px-6 py-24 md:hidden">
         <Heading />
-        <div className="mt-10 border-t border-ink/10">
+        <div className="mt-10 border-t border-ink/12">
           {STEPS.map((s) => (
-            <div key={s.n} className="border-b border-ink/10 py-5">
+            <div key={s.n} className="border-b border-ink/12 py-5">
               <div className="flex items-center gap-4">
-                <span className="flex h-6 w-7 shrink-0 items-center font-grotesk text-sm font-medium tabular-nums text-ink/40">
+                <span className={`flex h-6 w-7 shrink-0 items-center font-mono text-sm tabular-nums ${s.done ? 'text-copper' : 'text-ink/40'}`}>
                   {s.done ? <Check /> : s.n}
                 </span>
                 <h3 className="font-sans text-lg font-medium tracking-[-0.01em] text-ink">{s.title}</h3>

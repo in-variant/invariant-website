@@ -15,28 +15,20 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#1a2230] text-white">
-      {/* Painterly landscape backdrop, generate /footer-dawn.png (see prompt).
-          Until it exists, the dark #1a2230 fallback keeps the footer readable. */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/footer-dawn.png)' }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/25 to-black/55" />
-
-      <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-24 md:px-12 lg:px-20">
+    <footer className="bg-midnight text-cloud">
+      <div className="mx-auto max-w-6xl px-6 pb-10 pt-24 md:px-12 lg:px-20">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div className="max-w-xs">
-            <div className="flex items-center gap-2">
-              <KeystoneMark className="h-[18px] w-auto" />
-              <span className="font-grotesk text-lg font-semibold tracking-[-0.02em]">Invariant</span>
+            <div className="flex items-center gap-2.5 text-cloud">
+              <KeystoneMark className="h-[20px] w-auto" />
+              <span className="font-serif text-[22px] font-normal leading-none tracking-[-0.015em]">Invariant</span>
             </div>
-            <p className="mt-4 font-sans text-sm leading-relaxed text-white/70">
+            <p className="mt-5 font-sans text-sm leading-relaxed text-cloud/55">
               AI-native services for regulated compliance.
             </p>
             <a
               href="mailto:founders@invariant-ai.com"
-              className="mt-4 inline-block font-sans text-sm text-white/80 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white"
+              className="mt-4 inline-block font-sans text-sm text-cloud/75 underline decoration-cloud/25 underline-offset-4 transition-colors hover:text-copper"
             >
               founders@invariant-ai.com
             </a>
@@ -45,22 +37,16 @@ export default function Footer() {
           <div className="flex gap-16">
             {COLUMNS.map((col) => (
               <div key={col.title}>
-                <p className="font-grotesk text-sm font-semibold text-white">{col.title}</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-cloud/45">{col.title}</p>
                 <ul className="mt-4 space-y-3">
                   {col.links.map((lnk) => (
                     <li key={lnk.to}>
                       {lnk.to.startsWith('mailto:') || lnk.to.startsWith('http') ? (
-                        <a
-                          href={lnk.to}
-                          className="font-sans text-sm text-white/65 transition-colors hover:text-white"
-                        >
+                        <a href={lnk.to} className="font-sans text-sm text-cloud/70 transition-colors hover:text-copper">
                           {lnk.label}
                         </a>
                       ) : (
-                        <Link
-                          to={lnk.to}
-                          className="font-sans text-sm text-white/65 transition-colors hover:text-white"
-                        >
+                        <Link to={lnk.to} className="font-sans text-sm text-cloud/70 transition-colors hover:text-copper">
                           {lnk.label}
                         </Link>
                       )}
@@ -72,15 +58,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-24 flex flex-col gap-3 border-t border-white/15 pt-6 text-white/55 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-sans text-xs">
+        <div className="mt-24 flex flex-col gap-3 border-t border-cloud/12 pt-6 text-cloud/45 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-mono text-[11px] uppercase tracking-[0.1em]">
             © {new Date().getFullYear()} Invariant · Backed by Entrepreneurs First
           </p>
-          <div className="flex gap-6 font-sans text-xs">
-            <a href="mailto:founders@invariant-ai.com" className="transition-colors hover:text-white">
-              Contact
-            </a>
-          </div>
+          <a href="mailto:founders@invariant-ai.com" className="font-sans text-xs transition-colors hover:text-copper">
+            Contact
+          </a>
         </div>
       </div>
     </footer>
