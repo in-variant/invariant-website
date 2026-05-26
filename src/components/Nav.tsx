@@ -62,7 +62,7 @@ export default function Nav() {
           {/* Desktop CTA */}
           <a
             href="mailto:founders@invariant-ai.com"
-            className="hidden items-center rounded-[3px] bg-midnight px-5 py-2.5 font-sans text-sm font-medium text-cloud transition-colors hover:bg-copper md:inline-flex"
+            className="hidden items-center rounded-full bg-midnight px-5 py-2.5 font-sans text-sm font-medium text-cloud transition-colors hover:bg-copper md:inline-flex"
           >
             Get in touch
           </a>
@@ -107,7 +107,7 @@ export default function Nav() {
           <a
             href="mailto:founders@invariant-ai.com"
             onClick={() => setOpen(false)}
-            className="mt-3 inline-flex items-center rounded-[3px] bg-midnight px-6 py-3 font-sans text-base font-medium text-cloud transition-colors hover:bg-copper"
+            className="mt-3 inline-flex items-center rounded-full bg-midnight px-6 py-3 font-sans text-base font-medium text-cloud transition-colors hover:bg-copper"
           >
             Get in touch
           </a>

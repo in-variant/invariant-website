@@ -13,10 +13,10 @@ export default function Platform() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="bg-mineral px-6 py-24 md:px-12 md:py-32 lg:px-20">
+    <section ref={ref} className="bg-paper px-6 py-24 md:px-12 md:py-32 lg:px-20">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">The platform</p>
+          <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-sans text-xs font-medium tracking-wide text-ink/60">The platform</span>
           <h2 className="mt-5 max-w-md font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
             Compliance, drafted and defended by AI.
           </h2>

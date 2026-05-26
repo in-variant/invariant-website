@@ -14,7 +14,7 @@ export default function Metrics() {
   return (
     <section ref={ref} className="bg-midnight px-6 py-24 text-cloud md:px-12 md:py-32 lg:px-20">
       <div className="mx-auto max-w-6xl">
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">By the numbers</p>
+        <span className="inline-flex rounded-full bg-cloud/10 px-3 py-1 font-sans text-xs font-medium tracking-wide text-cloud/70">By the numbers</span>
         <h2 className="mt-5 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
           State of the art.
           <br />

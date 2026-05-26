@@ -17,7 +17,7 @@ export default function Advisors() {
   return (
     <section ref={ref} className="bg-midnight px-6 py-20 text-cloud md:px-12 md:py-24 lg:px-20">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Advisors</p>
+        <span className="inline-flex rounded-full bg-cloud/10 px-3 py-1 font-sans text-xs font-medium tracking-wide text-cloud/70">Advisors</span>
         <h2 className="mt-5 font-serif text-3xl font-normal leading-[1.1] tracking-[-0.02em] text-cloud md:text-4xl">
           Guided by those who've built the hardest things.
         </h2>

@@ -11,7 +11,7 @@ export default function BuiltFor() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section ref={ref} className="bg-mineral px-6 py-16 md:py-20">
+    <section ref={ref} className="bg-paper px-6 py-16 md:py-20">
       <div className="mx-auto max-w-5xl text-center">
         <motion.p
           initial={{ opacity: 0 }}

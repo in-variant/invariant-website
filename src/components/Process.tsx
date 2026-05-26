@@ -27,7 +27,7 @@ function Check() {
 function Heading() {
   return (
     <div className="lg:sticky lg:top-28 lg:self-start">
-      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">How we work</p>
+      <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-sans text-xs font-medium tracking-wide text-ink/60">How we work</span>
       <h2 className="mt-5 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
         One engagement. End-to-end compliance.
       </h2>
@@ -91,7 +91,7 @@ export default function Process() {
   })
 
   return (
-    <section ref={ref} className="relative bg-mineral md:h-[240vh]">
+    <section ref={ref} className="relative bg-paper md:h-[240vh]">
       {/* Desktop: pinned panel, drawers open as you scroll (and reverse) */}
       <div className="sticky top-0 hidden h-screen items-center px-6 md:flex md:px-12 lg:px-20">
         <div className="mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[0.85fr_1fr] lg:gap-20">
