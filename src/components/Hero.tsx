@@ -54,7 +54,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
           className="mt-6 text-balance font-serif text-[2.25rem] font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-5xl lg:text-6xl"
         >
-          Compliance that holds.
+          Autonomous AI agents for compliance in mission-critical industries.
         </motion.h1>
 
         {/* Subhead */}
@@ -64,7 +64,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className="mx-auto mt-4 max-w-[34rem] text-balance font-sans text-base leading-relaxed text-ink/55 md:mt-5 md:text-xl"
         >
-          We embed engineers and lawyers in your team and take regulatory compliance off your plate, so nuclear, space, and aerospace companies reach market faster.
+          Agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. So your engineers stay on the hardware, and your launches don't slip.
         </motion.p>
       </div>
     </section>

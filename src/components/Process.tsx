@@ -9,11 +9,11 @@ import {
 } from 'framer-motion'
 
 const STEPS = [
-  { n: '01', title: 'Engage', body: 'Map your full compliance surface.' },
-  { n: '02', title: 'Deploy', body: 'Embed engineers and lawyers in your team.' },
-  { n: '03', title: 'Automate', body: 'Agentic AI drafts, cites, and reviews.' },
-  { n: '04', title: 'Accelerate', body: 'Months of documentation become days.' },
-  { n: '05', title: 'Done', body: 'Defensible, filed, approved.', done: true },
+  { n: '01', title: 'Ingest', body: 'Agents read your designs, test data, and the regulations that apply to you.' },
+  { n: '02', title: 'Trace', body: 'Every claim mapped back to the rule that supports it. No invented citations.' },
+  { n: '03', title: 'Draft', body: 'Submissions, test plans, and compliance matrices written end to end.' },
+  { n: '04', title: 'Review', body: 'Your team verifies the high-stakes outputs before anything ships.' },
+  { n: '05', title: 'Approved', body: 'Filed, traceable, and monitored as the rules change.', done: true },
 ]
 
 function Check() {
@@ -29,10 +29,10 @@ function Heading() {
     <div className="lg:sticky lg:top-28 lg:self-start">
       <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-sans text-xs font-medium tracking-wide text-ink/60">How we work</span>
       <h2 className="mt-5 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
-        One engagement. End-to-end compliance.
+        One platform. End-to-end compliance.
       </h2>
       <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-ink/60">
-        From first scope to regulatory sign-off.
+        From data ingest to regulatory sign-off, continuously monitored.
       </p>
     </div>
   )

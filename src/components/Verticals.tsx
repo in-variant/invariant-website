@@ -2,9 +2,9 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const VERTICALS = [
-  { name: 'Nuclear', body: 'From license applications to safety analysis reports, compliance for the most regulated energy sector on earth.' },
-  { name: 'Space-Tech', body: 'From launch-vehicle certification to satellite licensing, purpose-built compliance for the new space economy.' },
-  { name: 'Unmanned Aerial Systems', body: 'From DGCA type certification to airworthiness approvals, end-to-end compliance for drone manufacturers and their fleets.' },
+  { name: 'Space', body: 'Launch licensing, IN-SPACe and FAA authorization, spectrum, and environmental qualification for satellites and launch vehicles.' },
+  { name: 'Aerospace', body: 'Type certification, airworthiness, and Part 21/23/25 paperwork for crewed and unmanned aviation systems.' },
+  { name: 'Nuclear', body: 'Safety analysis reports, license applications, and NRC submissions for advanced reactor developers.' },
 ]
 
 export default function Verticals() {
@@ -19,7 +19,7 @@ export default function Verticals() {
             Who we serve
           </span>
           <h2 className="mt-5 max-w-md font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
-            We work with teams building the hardest things in the most regulated industries.
+            We work with teams building the hardest things in mission-critical industries.
           </h2>
           <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-cloud/60">
             Where compliance isn't optional, and failure isn't abstract.

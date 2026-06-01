@@ -30,7 +30,7 @@ export default function Footer() {
               <span className="font-serif text-[22px] font-normal leading-none tracking-[-0.015em]">Invariant</span>
             </div>
             <p className="mt-5 font-sans text-sm leading-relaxed text-cloud/55">
-              AI-native services for regulated compliance.
+              Autonomous AI agents for mission-critical compliance.
             </p>
             <a
               href="mailto:founders@invariant-ai.com"
