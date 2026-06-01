@@ -52,9 +52,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-          className="mt-6 text-balance font-serif text-[2.25rem] font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-5xl lg:text-6xl"
+          className="mx-auto mt-6 max-w-3xl text-balance font-serif text-[2.25rem] font-normal leading-[1.05] tracking-[-0.025em] text-ink sm:text-5xl lg:text-6xl"
         >
-          Autonomous AI agents for compliance in mission-critical industries.
+          Autonomous agents for mission-critical compliance.
         </motion.h1>
 
         {/* Subhead */}
