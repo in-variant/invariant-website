@@ -663,8 +663,8 @@ export default function SeismicDesignShift() {
                   style={{ scrollMarginTop: '80px' }}
                 >
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="h-px flex-1 bg-ink/10" />
-                    <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 whitespace-nowrap">
+                    <div className="hidden h-px flex-1 bg-ink/10 sm:block" />
+                    <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 sm:whitespace-nowrap">
                       {section.heading}
                     </h3>
                     <div className="h-px flex-1 bg-ink/10" />

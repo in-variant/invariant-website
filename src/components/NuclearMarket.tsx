@@ -86,7 +86,10 @@ function smoothLine(pts: [number, number][]) {
 
 function line(values: number[], scale: (v: number) => number) {
   const pts = values.map((v, i) => [x(i), scale(v)] as [number, number])
-  return { d: smoothLine(pts), last: pts[n - 1] }
+  const d = smoothLine(pts)
+  // close the smooth path down to the baseline to form an area under the curve
+  const area = `${d} L ${pts[n - 1][0]} ${baseY} L ${pts[0][0]} ${baseY} Z`
+  return { d, area, last: pts[n - 1] }
 }
 
 const GW = line(DATA.map((d) => d.gw), yGw)
@@ -97,11 +100,12 @@ export default function NuclearMarket() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <figure ref={ref} className="not-prose my-2 rounded-2xl border border-ink/10 bg-white p-5 md:p-7">
+    <figure ref={ref} className="not-prose my-2 rounded-2xl border border-ink/10 bg-white p-4 sm:p-5 md:p-7">
       <div className="w-full">
+        <div className="-mx-1 overflow-x-auto px-1 sm:mx-0 sm:overflow-x-visible sm:px-0">
         <svg
             viewBox={`0 0 ${W} ${H}`}
-            className="h-auto w-full"
+            className="h-auto w-full min-w-[460px]"
             role="img"
             aria-label="U.S. nuclear market, 2022–2040: installed capacity rising 93→200 GW (left axis) and compliance TAM growing to $35.8B (right axis), each on its own scale."
           >
@@ -116,6 +120,16 @@ export default function NuclearMarket() {
                   transition={{ duration: 1.7, ease: [0.4, 0, 0.2, 1] }}
                 />
               </clipPath>
+
+              {/* area-under-curve gradients (fade to transparent at the baseline) */}
+              <linearGradient id="nm-fill-gw" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={LAVENDER} stopOpacity={0.18} />
+                <stop offset="100%" stopColor={LAVENDER} stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="nm-fill-comp" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={COPPER} stopOpacity={0.18} />
+                <stop offset="100%" stopColor={COPPER} stopOpacity={0} />
+              </linearGradient>
             </defs>
 
             {/* plot title (for standalone screenshots) */}
@@ -230,6 +244,10 @@ export default function NuclearMarket() {
 
             {/* ===== series (revealed left to right) ===== */}
             <g clipPath="url(#nm-reveal)">
+              {/* area fills under each curve */}
+              <path d={GW.area} fill="url(#nm-fill-gw)" stroke="none" />
+              <path d={COMP.area} fill="url(#nm-fill-comp)" stroke="none" />
+
               {/* Installed capacity (left axis) */}
               <path
                 d={GW.d}
@@ -261,6 +279,7 @@ export default function NuclearMarket() {
               <circle cx={COMP.last[0]} cy={COMP.last[1]} r={4} fill={COPPER} />
             </motion.g>
           </svg>
+        </div>
 
           {/* legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">

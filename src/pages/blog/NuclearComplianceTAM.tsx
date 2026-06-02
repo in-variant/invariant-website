@@ -12,8 +12,8 @@ const TABLE: { year: string; spend: string; capacity: string; tam: string }[] = 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="mt-16 mb-6 flex items-center gap-3">
-      <div className="h-px flex-1 bg-ink/10" />
-      <h2 className="whitespace-nowrap font-serif text-2xl font-normal tracking-[-0.01em] text-ink md:text-3xl">
+      <div className="hidden h-px flex-1 bg-ink/10 sm:block" />
+      <h2 className="font-serif text-2xl font-normal tracking-[-0.01em] text-ink sm:whitespace-nowrap md:text-3xl">
         {children}
       </h2>
       <div className="h-px flex-1 bg-ink/10" />
