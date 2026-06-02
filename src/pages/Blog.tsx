@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom'
 
 const POSTS = [
   {
+    slug: 'nuclear-compliance-tam',
+    image: '/blog/nuclear-tam.png',
+    date: 'June 2, 2026',
+    title: 'The $35 Billion Problem Nobody Is Talking About in Nuclear',
+    summary:
+      'By 2040 the US nuclear compliance market reaches an estimated $35.8B annually, up from $9.5B in 2024, a near-4x climb driven by a doubling fleet and three SMR licensing milestones.',
+  },
+  {
     slug: 'fermibench-sota',
     image: '/blog/fermibench.jpg',
     date: 'April 1, 2026',
