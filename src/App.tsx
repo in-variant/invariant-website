@@ -8,6 +8,7 @@ import Part100vsPart53 from './pages/blog/Part100vsPart53'
 import SeismicDesignShift from './pages/blog/SeismicDesignShift'
 import FermiBenchSOTA from './pages/blog/FermiBenchSOTA'
 import NuclearComplianceTAM from './pages/blog/NuclearComplianceTAM'
+import SpaceComplianceTAM from './pages/blog/SpaceComplianceTAM'
 import Product from './pages/Product'
 import Pricing from './pages/Pricing'
 import Probe from './pages/Probe'
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/blog/seismic-design-shift" element={<SeismicDesignShift />} />
           <Route path="/blog/fermibench-sota" element={<FermiBenchSOTA />} />
           <Route path="/blog/nuclear-compliance-tam" element={<NuclearComplianceTAM />} />
+          <Route path="/blog/space-compliance-tam" element={<SpaceComplianceTAM />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/product" element={<Product />} />
           <Route path="/probe" element={<Probe />} />

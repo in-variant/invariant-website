@@ -2,6 +2,14 @@ import { Link } from 'react-router-dom'
 
 const POSTS = [
   {
+    slug: 'space-compliance-tam',
+    image: '/blog/space-tam.png',
+    date: 'June 3, 2026',
+    title: 'The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate',
+    summary:
+      'By 2035, 66,000 satellites will be in orbit and the space industry will spend $52B annually on compliance, up from $4.4B in 2024, a 22% CAGR that outpaces the industry growing at 10%.',
+  },
+  {
     slug: 'nuclear-compliance-tam',
     image: '/blog/nuclear-tam.png',
     date: 'June 2, 2026',
