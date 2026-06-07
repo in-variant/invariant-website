@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import SpaceMarket from '../../components/SpaceMarket'
+import RocketLaunchesMarket from '../../components/RocketLaunchesMarket'
 
 const TABLE: { year: string; sats: string; spend: string; compliance: string }[] = [
   { year: '2024', sats: '11,500', spend: '$613B', compliance: '$4.4B' },
@@ -76,6 +77,14 @@ export default function SpaceComplianceTAM() {
             Notice what that means structurally: compliance spend is not a percentage of revenue. It
             is a function of orbital complexity. The more crowded the environment, the more expensive
             it is for each new entrant to prove they belong in it.
+          </p>
+        </div>
+
+        <div className="mt-12">
+          <RocketLaunchesMarket />
+          <p className="mt-3 text-center font-sans text-sm text-ink/45">
+            Orbital launches per year and compliance spend, 2024–2035. Launch cadence nearly
+            quadruples while compliance spend grows 15x — two scales, one timeline.
           </p>
         </div>
 
