@@ -38,6 +38,7 @@ const Research = lazy(() => import('./pages/Research'))
 const Compliance = lazy(() => import('./pages/Compliance'))
 const Trust = lazy(() => import('./pages/Trust'))
 const FaaPart450Calculator = lazy(() => import('./pages/calculators/FaaPart450Calculator'))
+const NrcLicenseCalculator = lazy(() => import('./pages/calculators/NrcLicenseCalculator'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -103,6 +104,7 @@ export default function App() {
             <Route path="/compliance" element={<Compliance />} />
             <Route path="/trust" element={<Trust />} />
             <Route path="/calculators/faa-part-450-timeline" element={<FaaPart450Calculator />} />
+            <Route path="/calculators/nrc-license-timeline" element={<NrcLicenseCalculator />} />
           </Route>
         </Routes>
       </Suspense>
