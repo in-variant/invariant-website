@@ -119,7 +119,7 @@ export const PAGES: PageRef[] = [
       'A timeline-focused explainer that walks through the FAA Part 450 launch and reentry license process and the realistic wall-clock duration.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
+    live: true,
     weight: 2,
   },
   {
