@@ -200,6 +200,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'faa-part-450-vs-legacy',
+    title: 'FAA Part 450 vs legacy launch licensing: the complete reference',
+    shortTitle: 'Part 450 vs legacy',
+    description:
+      'How 14 CFR Part 450 replaced legacy Parts 415, 417, 431, and 435 on March 10, 2021 — the consolidation, the philosophical shift to performance-based regulation, and the transition.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'how-to-write-faa-part-450-means-of-compliance',
     title: 'How to write a Means of Compliance for FAA Part 450',
     shortTitle: 'Part 450 Means of Compliance',

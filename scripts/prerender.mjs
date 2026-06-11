@@ -236,6 +236,7 @@ const PILLAR_DATA_MAP = {
   'nuclear-compliance-india': 'nuclear-compliance-india-pillar.json',
   'fcc-5-year-deorbit-rule': 'fcc-5-year-deorbit-pillar.json',
   'space-compliance-india': 'space-compliance-india-pillar.json',
+  'faa-part-450-vs-legacy': 'part-450-vs-legacy-pillar.json',
   'how-to-write-faa-part-450-means-of-compliance': 'faa-part-450-means-of-compliance-pillar.json',
   'noaa-remote-sensing-license-tiers': 'noaa-tiers-pillar.json',
   'advanced-reactor-licensing-eu': 'advanced-reactor-licensing-eu-pillar.json',
