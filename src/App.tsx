@@ -17,6 +17,9 @@ const SpaceCompliance = lazy(() => import('./pages/SpaceCompliance'))
 const NuclearCompliance = lazy(() => import('./pages/NuclearCompliance'))
 const Part50vs52vs53 = lazy(() => import('./pages/clusters/Part50vs52vs53'))
 
+const Glossary = lazy(() => import('./pages/Glossary'))
+const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
+
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
 const FermiBenchSOTA = lazy(() => import('./pages/blog/FermiBenchSOTA'))
@@ -60,6 +63,8 @@ export default function App() {
             <Route path="/space-compliance" element={<SpaceCompliance />} />
             <Route path="/nuclear-compliance" element={<NuclearCompliance />} />
             <Route path="/part-50-vs-52-vs-53" element={<Part50vs52vs53 />} />
+            <Route path="/glossary" element={<Glossary />} />
+            <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
           </Route>
         </Routes>
       </Suspense>

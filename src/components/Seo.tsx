@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
 export const SITE_URL = 'https://invariant-ai.com'
-const DEFAULT_OG = `${SITE_URL}/og-image.png`
+export const DEFAULT_OG = `${SITE_URL}/og-image.png`
 
 type Props = {
   title: string

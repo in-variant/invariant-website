@@ -1,48 +1,42 @@
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
-import glossaryData from './_data/glossary.json'
-
-type Entry = {
-  slug: string
-  term: string
-  aliases?: string[]
-  short_definition: string
-  topic: 'space' | 'nuclear' | 'aerospace'
-}
-
-const ENTRIES = (glossaryData.entries as Entry[]) || []
+import { GLOSSARY, entriesByTopic } from '../data/glossary'
 
 const URL = `${SITE_URL}/glossary`
 
+const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace', string> = {
+  space: 'Space',
+  nuclear: 'Nuclear',
+  aerospace: 'Aerospace',
+}
+
 export default function Glossary() {
-  const groups: Record<string, Entry[]> = {}
-  for (const e of ENTRIES) {
-    ;(groups[e.topic] ||= []).push(e)
-  }
-  for (const k of Object.keys(groups)) {
+  const groups = entriesByTopic()
+  for (const k of Object.keys(groups) as (keyof typeof groups)[]) {
     groups[k].sort((a, b) => a.term.localeCompare(b.term))
   }
 
-  const definedTermSet = ENTRIES.length > 0
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'DefinedTermSet',
-        '@id': `${URL}#glossary`,
-        name: 'Invariant Compliance Glossary',
-        description:
-          'Authoritative definitions of regulatory, standards, and qualification terms used across space, aerospace, and nuclear compliance.',
-        url: URL,
-        hasDefinedTerm: ENTRIES.map((e) => ({
-          '@type': 'DefinedTerm',
-          '@id': `${SITE_URL}/glossary/${e.slug}`,
-          name: e.term,
-          alternateName: e.aliases,
-          description: e.short_definition,
-          inDefinedTermSet: `${URL}#glossary`,
-          url: `${SITE_URL}/glossary/${e.slug}`,
-        })),
-      }
-    : null
+  const definedTermSet =
+    GLOSSARY.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'DefinedTermSet',
+          '@id': `${URL}#glossary`,
+          name: 'Invariant Compliance Glossary',
+          description:
+            'Authoritative definitions of regulatory, standards, and qualification terms used across space, aerospace, and nuclear compliance.',
+          url: URL,
+          hasDefinedTerm: GLOSSARY.map((e) => ({
+            '@type': 'DefinedTerm',
+            '@id': `${SITE_URL}/glossary/${e.slug}`,
+            name: e.term,
+            alternateName: e.aliases,
+            description: e.short_definition,
+            inDefinedTermSet: `${URL}#glossary`,
+            url: `${SITE_URL}/glossary/${e.slug}`,
+          })),
+        }
+      : null
 
   return (
     <>
@@ -68,7 +62,7 @@ export default function Glossary() {
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
             Authoritative definitions of every regulatory, standards, and qualification term we work with — each one tied back to the primary source.
           </p>
-          {ENTRIES.length === 0 ? (
+          {GLOSSARY.length === 0 ? (
             <p className="mt-10 font-sans text-base text-ink/60">
               Compiling. Definitions are being written and reviewed; this page will fill in over the next 24 hours.
             </p>
@@ -80,7 +74,7 @@ export default function Glossary() {
                 return (
                   <section key={topic}>
                     <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
-                      {topic === 'space' ? 'Space' : topic === 'nuclear' ? 'Nuclear' : 'Aerospace'}
+                      {TOPIC_LABEL[topic]}
                     </h2>
                     <ul className="mt-4 divide-y divide-ink/10">
                       {items.map((e) => (
