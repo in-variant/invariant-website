@@ -174,8 +174,8 @@ export const PAGES: PageRef[] = [
       'FCC 22-74 compressed post-mission disposal for LEO satellites from 25 years to 5. Who is captured, what the order requires, and the design implications.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'noaa-remote-sensing-license-tiers',
