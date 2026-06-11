@@ -49,6 +49,7 @@ const Part53Subparts = lazy(() => import('./pages/clusters/Part53Subparts'))
 const NrcRaiManagement = lazy(() => import('./pages/clusters/NrcRaiManagement'))
 const ItarCommodityJurisdiction = lazy(() => import('./pages/clusters/ItarCommodityJurisdiction'))
 const ItaacClosure = lazy(() => import('./pages/clusters/ItaacClosure'))
+const FccScheduleS = lazy(() => import('./pages/clusters/FccScheduleS'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -125,6 +126,7 @@ export default function App() {
             <Route path="/nrc-rai-management" element={<NrcRaiManagement />} />
             <Route path="/itar-commodity-jurisdiction" element={<ItarCommodityJurisdiction />} />
             <Route path="/itaac-closure" element={<ItaacClosure />} />
+            <Route path="/fcc-schedule-s" element={<FccScheduleS />} />
           </Route>
         </Routes>
       </Suspense>

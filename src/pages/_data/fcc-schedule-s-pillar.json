@@ -1,0 +1,348 @@
+{
+  "canonical_summary": "FCC Form 312 Schedule S is the structured technical and operational description that every space station applicant must file with the Federal Communications Commission under 47 CFR Section 25.114. The schedule digitizes the substantive rule into seventeen numbered items (S1 through S17) covering frequency bands, orbital geometry, service areas, antenna beams, transponders, modulation, emissions, telemetry tracking and control, spacecraft mass and power, and the operator's certifications that Section 25.208 power flux density limits and Section 25.202 frequency-tolerance rules are met. It is mandatory for new space stations, for amendments that change previously submitted Schedule S data, for modifications that change a Schedule S on file, and for non-U.S. licensed satellites seeking U.S. market access.\n\nDrafting a clean Schedule S means understanding where the form's structured fields end and the narrative exhibits under Section 25.114(d) begin. The orbital debris probability showings, the orbital debris mitigation plan, the Section 25.114(c)(4) antenna beam parameters, and the GIMS-readable gain contour database all travel with the Form 312 as attached exhibits in the International Communications Filing System. The Commission's September 2023 expedited processing order (FCC 23-73, effective January 5, 2024) tightened how clerical defects are handled and put target timeframes on placing accepted applications on public notice, which raises the cost of a sloppy initial filing because acceptable applications now move faster while defective ones still get bounced.\n\nThis guide consolidates the primary source structure of Schedule S, the GSO versus NGSO branch logic, the antenna and power flux density rules, the post-2020 orbital debris quantitative thresholds (0.001 large object collision probability and 0.9 disposal reliability), and the recurring rejection patterns that the Space Bureau sees most often.",
+  "h1": "FCC Form 312 Schedule S: How to draft, file, and avoid rejection",
+  "meta_title": "FCC Form 312 Schedule S: Drafting guide (US)",
+  "meta_description": "How to draft FCC Form 312 Schedule S under 47 CFR 25.114: data blocks, GSO vs NGSO, antenna beams, orbital debris exhibits, 2023 expedited rule, rejection patterns.",
+  "sections": [
+    {
+      "heading": "What Schedule S is and when it is required",
+      "paragraphs": [
+        "FCC Form 312 is the master application for satellite space and earth station authorizations under 47 CFR Part 25. The Main Form captures applicant identity and legal qualifications. The technical engineering data is offloaded onto schedules: Schedule A (assignment or transfer of control), Schedule B (earth station technical data), and Schedule S (space station technical and operational description).",
+        "Schedule S is the structured technical and operational description of a space station or constellation. It is filed through the International Communications Filing System (ICFS, formerly IBFS) as part of every Form 312 space station application. Schedule S itself does not collect everything required by rule. Applicants must also supply, as attached exhibits, the narrative information specified in 47 CFR Section 25.114, including orbital debris mitigation showings.",
+        "Schedule S is mandatory in four situations: new space station applications, amendments to pending space station applications that change previously submitted Schedule S data, modifications of an existing authorization that change the Schedule S on file, and petitions for U.S. market access by non-U.S. licensed satellites. Small satellites filed under the streamlined Section 25.122 or Section 25.123 routes follow a separate, shorter track."
+      ],
+      "bullets": [
+        "Authority: 47 CFR Section 25.114(a) and (c)",
+        "Filing system: International Communications Filing System (ICFS)",
+        "OMB control number: 3060-0678",
+        "Companion form: FCC Form 312 Main Form",
+        "Exhibits required: orbital debris mitigation plan, antenna gain contours, technical narrative"
+      ]
+    },
+    {
+      "heading": "The four main data blocks of Schedule S",
+      "paragraphs": [
+        "Schedule S is laid out as eleven numbered pages corresponding to seventeen data items (S1 through S17). Four data blocks do most of the work and account for the majority of drafting time and rejection risk."
+      ],
+      "subsections": [
+        {
+          "heading": "Block 1: General information and frequency bands (S1, S2)",
+          "paragraphs": [
+            "Item S1 collects identity and lifecycle data for the satellite or network: satellite network name, construction commencement and completion dates, estimated launch date, estimated date of placement into service, estimated lifetime, total number of transponders, total transponder bandwidth in MHz, common carrier status, and the critical orbit type flag (S1l: GSO, NGSO, or both). Item S2 lists every operating frequency band with lower and upper edges, units (K, M, G), transmit/receive mode, and nature of service. Items S14 through S17 round out the administrative block with telemetry tracking and control remote control point data, spacecraft mass and dimensions, electrical power budgets, and the Section 25.208, Section 25.143(b) or Section 25.145(c), and Section 25.202(e)/(f) certifications."
+          ]
+        },
+        {
+          "heading": "Block 2: Orbital information (S3, S4, S5)",
+          "paragraphs": [
+            "S3 is for geostationary satellites only and captures nominal orbital longitude, east and west station-keeping tolerances, inclination excursion, and an optional active service arc. S4 is for non-geostationary systems and is constellation-level, then plane-level: total satellites, total planes, celestial reference body, and orbit epoch date are entered once, followed by one row per plane carrying inclination, period, apogee, perigee, right ascension of the ascending node, argument of perigee, and active service arc. S5 lists the initial phase angle for each satellite in each plane at the S4d epoch."
+          ]
+        },
+        {
+          "heading": "Block 3: Space station antenna beam characteristics (S7, S8)",
+          "paragraphs": [
+            "S7 carries per-beam parameters: beam ID, transmit/receive mode, peak gain in dBi, edge-of-coverage gain, pointing error, rotational alignment error, minimum cross-polar isolation in dB, polarization, switchable polarization flag, service area ID linking to S6, and input losses. Transmit-only fields add effective output power and maximum saturation EIRP in dBW. Receive-only fields add system noise temperature, G/T at the maximum-gain point, minimum input attenuator, maximum input flux density in dBW per square meter, and step size. S8 carries the antenna beam diagrams and the power flux density tables tied to each transmit beam, delivered as a GIMS-readable GXT file."
+          ]
+        },
+        {
+          "heading": "Block 4: Service area and power flux density (S6 plus S8 and S13 columns)",
+          "paragraphs": [
+            "S6 records per service area: service area ID, type of associated station (earth or space), service area diagram GXT file name, and a textual description listing state postal codes, ITU three-letter country codes, satellite IDs, or figure numbers. S8 ties each transmit beam to a power flux density table at angles of arrival of 5, 10, 15, 20, and 25 degrees above the horizon, expressed in dBW per square meter per reference bandwidth, with the reference bandwidth (4 kHz or 1 MHz) tied to Section 25.208. S13 carries a second power flux density column per emission. The S17 certification then attests that those Section 25.208 limits are met."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "GSO vs NGSO: where Schedule S branches",
+      "paragraphs": [
+        "The branch point is item S1l on the first page. Once that orbit type is selected, Sections S3, S4, and S5 are mutually exclusive in their effect: GSO applicants complete S3 and skip S4 and S5; NGSO applicants skip S3 and complete S4 and S5. A constellation that mixes GSO and NGSO satellites must complete both. The modern ICFS web filing rewrites the navigation bar to expose only the relevant orbital pages once the orbit type is saved.",
+        "The split mirrors the substantive rule split in Part 25. GSO satellites are governed by station-keeping rules under Sections 25.210 and 25.280 framed around a longitude and a tolerance, which is why S3 collects longitude and station-keeping windows rather than Keplerian elements. NGSO constellations are evaluated for inter-system interference, equivalent power flux density limits under Sections 25.146 and 25.289, processing-round eligibility under Section 25.157, and orbital debris mitigation under Section 25.114(d)(14). All of those analyses need the full Keplerian description, which is why S4 collects period, apogee, perigee, right ascension of the ascending node, and argument of perigee by name rather than abstracting to a semi-major axis."
+      ],
+      "subsections": [
+        {
+          "heading": "GSO filers complete S3 only",
+          "bullets": [
+            "S3a: Nominal orbital longitude (degrees E or W)",
+            "S3b: Reason for orbital location selection",
+            "S3c and S3d: West and east longitudinal station-keeping tolerances",
+            "S3e: Inclination excursion or north-south station-keeping tolerance",
+            "S3f, S3g, S3h: Westernmost and easternmost service arc ends and rationale (optional for FSS)"
+          ]
+        },
+        {
+          "heading": "NGSO filers complete S4 and S5",
+          "bullets": [
+            "S4a through S4d (once per constellation): total satellites, total planes, celestial reference body, orbit epoch date",
+            "S4e through S4o (one row per plane): plane number, satellites in plane, inclination, period in seconds, apogee in km, perigee in km, RAAN, argument of perigee, active service arc begin/end",
+            "S5 (one row per satellite): plane number, satellite number in plane, initial phase angle in degrees at the S4d epoch",
+            "Practical caveat: very large constellations routinely supplement S4 and S5 with technical narrative exhibits under Section 25.114"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Antenna beam data, EIRP density, G/T, and the 2 dB gain contours",
+      "paragraphs": [
+        "Section 25.114(c)(4) is the rule that drives the antenna block. Five parameter families almost always trigger drafting work.",
+        "EIRP and EIRP density: For each transmitting beam, report maximum EIRP and maximum EIRP density. The reference bandwidth is band-dependent: below 15 GHz, EIRP density is reported in dBW per 4 kHz; at and above 15 GHz, it is dBW per MHz. For shapeable beams, the values reported are the maximum possible anywhere within the proposed coverage area, not just at boresight, and the worst-case maximum must be used where EIRP density varies with time.",
+        "G/T and saturation flux density: For every receiving beam, report G/T at beam peak. For transponder-fed beams, also report minimum and maximum saturation flux density at beam peak across gain step settings. Shapeable receiving beams add minimum and maximum G/T anywhere in the proposed coverage area, plus minimum and maximum saturation flux density across the same area.",
+        "Gain contours at 2 dB steps: Under Section 25.114(c)(4)(vi)(A), GSO applicants must submit predicted antenna gain contours for each transmit and receive beam, except for beams whose 8 dB contour falls entirely beyond the visible Earth. Contours are plotted at 2 dB intervals down to 10 dB below peak gain, then at 5 dB intervals between 10 dB and 20 dB below peak. The submission must be in a GIMS-readable format, normally a GXT export inside a GIMS .mdb database. For NGSO systems, contours are required per unique orbital plane or per space station type.",
+        "Worst-case beam selection for shapeable antennas: The applicant must pick a single configuration to characterize each side of the link. For the transmit side, the contour set submitted is the configuration that produces the highest EIRP density. For the receive side, it is the configuration with the smallest G/T and the highest required saturation flux density.",
+        "Resolution 55 and the GIMS pathway: The FCC's GIMS requirement exists to keep U.S. filings ingestible by the ITU Radiocommunication Bureau, which mandates GIMS through Resolution 55 (Rev.WRC-19). A complete ITU filing normally contains two database files: an SNS .mdb captured in SpaceCap and a GIMS .mdb capturing service areas, antenna gain contours, and gain toward the geostationary orbit. The FCC's How to Prepare a USA ITU Filing guide enforces this two-file structure for any application that the United States must forward to the Bureau."
+      ]
+    },
+    {
+      "heading": "Orbital debris supporting exhibits and the post-2020 quantitative thresholds",
+      "paragraphs": [
+        "The FCC's April 2020 orbital debris order (FCC 20-54) sharpened two numerical thresholds that now anchor every Part 25 space station application. Both live in 47 CFR Section 25.114(d)(14). Both are reported not in the structured Schedule S database fields but in the narrative exhibits that travel with Schedule S in ICFS.",
+        "Section 25.114(d)(14)(iv)(A)(1) requires a demonstration that the probability of collision between any space station of the system and other large objects (10 cm or larger in diameter) during the total orbital lifetime, including any de-orbit phases, is less than 0.001 (1 in 1,000). Section 25.114(d)(14)(vii)(D)(1) requires a demonstration that the probability of success of the chosen disposal method is 0.9 or greater for any individual space station. The 2024 Order on Reconsideration (FCC 24-21) clarified that the 0.9 disposal reliability figure applies on a per-spacecraft basis and tightened the compliance date to September 29, 2024.",
+        "Schedule S itself is a structured XML-driven schedule that captures orbital and frequency parameters the Space Bureau ingests into its databases. It is not designed to carry probability calculations or fault-tree analyses. The Commission therefore treats the Section 25.114(d)(14) showings as attached exhibits under Section 25.114(a) and (d). In practice the material is bundled into a single PDF labelled the Orbital Debris Mitigation Plan or Orbital Debris Assessment Report and uploaded to ICFS as an exhibit to the Form 312."
+      ],
+      "subsections": [
+        {
+          "heading": "Reporting the 0.001 large-object collision probability",
+          "bullets": [
+            "Use NASA Debris Assessment Software (DAS), currently version 3.2.x, or justify a higher-fidelity tool",
+            "Provide the DAS Requirement 4.5-1 output for each unique orbit shell, with per-spacecraft and constellation-aggregate figures",
+            "Document inputs: cross-sectional area, ballistic coefficient, mission duration, post-mission orbit",
+            "For constellations, state explicitly that the threshold is met for any space station of the system, tracking the regulatory text",
+            "Credit operational mitigations (collision avoidance maneuvers, conjunction screening) only with citation to FCC 20-54 recognition"
+          ]
+        },
+        {
+          "heading": "Reporting the 0.9 disposal reliability",
+          "bullets": [
+            "Identify the disposal method and the regulatory pathway (LEO atmospheric reentry, GSO graveyard orbit, or other)",
+            "Aggregate subsystem reliability of propulsion, attitude control, and command/telemetry over the disposal window",
+            "Report a per-spacecraft figure, not a fleet average, per the FCC 24-21 clarification",
+            "If relying on natural decay, provide a separate showing under Section 25.114(d)(14)(vii)(C) that decay occurs as soon as practicable",
+            "The Space Bureau's ODM Plan Checklist maps each subparagraph of (d)(14) to a discrete narrative item the exhibit must address"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Common rejection and deficiency patterns",
+      "paragraphs": [
+        "Most Schedule S returns from the Space Bureau cluster around a small set of recurring drafting errors. The 2023 expedited processing reforms reduced the risk that minor clerical defects force outright dismissal, but substantive omissions still draw deficiency letters or dismissal."
+      ],
+      "bullets": [
+        "Missing S1l orbit type or inconsistent S3 versus S4 entries (e.g., NGSO marked but S3 longitude populated)",
+        "S2 frequency band edges that do not match the bands certified in S17 or the bands shown in S13 emissions",
+        "PFD tables in S8 reporting at the wrong angles of arrival, or in the wrong reference bandwidth (4 kHz versus 1 MHz) for the band",
+        "GIMS gain contour file that is not GIMS-readable, missing the 2 dB contour steps to peak minus 10 dB, or missing the 5 dB steps from peak minus 10 dB to peak minus 20 dB",
+        "Shapeable-beam filings that report only peak EIRP density rather than the worst case across the coverage area",
+        "Orbital debris exhibit that attaches DAS runs without stating the 0.001 and 0.9 figures explicitly in narrative form",
+        "Disposal reliability reported as a fleet average rather than per spacecraft, contrary to FCC 24-21",
+        "NGSO constellation S4 rows that omit one or more of inclination, period, apogee, perigee, RAAN, or argument of perigee",
+        "S5 phase angle rows that do not cover every satellite in every plane at the S4d epoch",
+        "Service area in S6 described only by figure reference without state postal codes or ITU three-letter codes when the service area is a geographic region",
+        "Mismatch between EIRP density values in Schedule S and the Section 25.138 or Section 25.218 routine licensing thresholds used in the associated earth station Schedule B"
+      ]
+    },
+    {
+      "heading": "The 2023 expedited processing rule (FCC 23-73)",
+      "paragraphs": [
+        "The Commission's Report and Order and Further Notice of Proposed Rulemaking in IB Docket Nos. 22-411 and 22-271, Expediting Initial Processing of Satellite and Earth Station Applications; Space Innovation (FCC 23-73), was adopted September 21, 2023, released September 22, 2023, and published in the Federal Register on December 6, 2023 (88 FR 84690). Most rule changes took effect January 5, 2024. A correction was published December 19, 2023.",
+        "The reforms target the front end of licensing. The Commission directed the Space Bureau to publish updated guidance and a transparency initiative so applicants can self-correct before formal review. It changed how omissions, inconsistencies, and clerical errors are handled so that minor defects do not force outright dismissal of an otherwise acceptable application. It eliminated the prior procedural rule that barred consideration of waivers of the U.S. Table of Frequency Allocations where it differs from the ITU international table. It removed the long-standing prohibition that prevented an NGSO operator with one licensed-but-unbuilt system from being authorized for another. It standardized how waiver requests are handled within an application so they do not stall the underlying review.",
+        "Most consequentially for drafting practice, the Order set target timeframes for placing accepted space and earth station applications on public notice and tightened internal handling so that, once on public notice and absent objection, applications move to grant. A separate streamlined framework lets earth station operators add satellite points of communication under defined conditions without a full modification proceeding. The Further Notice teed up further streamlining, including expanded Section 25.118 minor modifications without prior authorization, STA-equivalent relief for market-access petitioners, longer renewal windows, and a default permit-but-disclose ex parte status for space and earth station proceedings. A second Report and Order in the same docket (FCC 25-48) carried the program forward."
+      ]
+    },
+    {
+      "heading": "Practical drafting tips",
+      "bullets": [
+        "Start with the Section 25.114 cross-reference list, not the form. The form is a vehicle for the rule; the rule controls.",
+        "Lock S1l (orbit type) before anything else. Every downstream page branches on it, and the ICFS navigation rewrites itself.",
+        "Build the GIMS .mdb in parallel with Schedule S, not after. The 2 dB and 5 dB contour rules are the most common source of Bureau returns.",
+        "Match S2 frequency bands, S13 emissions, and the S17 certifications. The three pages must agree on every band edge.",
+        "For shapeable beams, document the worst-case configuration choice (highest EIRP density on transmit; smallest G/T and highest SFD on receive) in a short narrative under Section 25.114(c)(4)(v).",
+        "Report PFD at the standard arcs of 0-5, 5-10, 10-15, 15-20, 20-25, and 25-90 degrees above the horizon for services and bands not specifically called out, in addition to the S8 table at 5, 10, 15, 20, and 25 degrees.",
+        "Write the orbital debris exhibit to mirror the FCC Space Bureau ODM Plan Checklist subparagraph by subparagraph; state the 0.001 and 0.9 figures verbatim.",
+        "Run DAS Requirement 4.5-1 per orbit shell, save inputs and outputs, and quote the per-spacecraft figure in the narrative.",
+        "For NGSO constellations too large for the legacy S4/S5 pages, attach a structured exhibit with the same column headings (plane, satellites, inclination, period, apogee, perigee, RAAN, argument of perigee, phase angle).",
+        "Treat the 2023 expedited rule as a forcing function: defects that used to languish in queue now get bounced faster, so file once and clean.",
+        "File Schedule B (earth station) and Schedule S in alignment when both are involved; EIRP density values must match across the two schedules.",
+        "Confirm OMB Paperwork Reduction Act clearance for any new information collection items before relying on a rule change that depends on it."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is FCC Form 312 Schedule S?",
+      "answer": "Schedule S is the structured technical and operational description of a satellite space station that accompanies the FCC Form 312 Main Form when applying for a Part 25 space station authorization. It is filed through the International Communications Filing System (ICFS) and is built around seventeen data items (S1 through S17) covering frequency bands, orbital geometry, service areas, antenna beams, transponders, modulation, emissions, telemetry tracking and control, spacecraft characteristics, and rule certifications. The substantive list of what must appear in Schedule S is set by 47 CFR Section 25.114, and the schedule must be supplemented by narrative exhibits including the orbital debris mitigation plan."
+    },
+    {
+      "question": "When is Schedule S required?",
+      "answer": "Schedule S is mandatory in four situations: new space station applications under 47 CFR Part 25, amendments to pending space station applications that change previously submitted Schedule S data, modifications of an existing authorization that change the Schedule S on file, and petitions for U.S. market access by non-U.S. licensed satellites seeking to serve the United States. Small satellite applicants using the streamlined Section 25.122 or Section 25.123 routes follow a separate, shorter track and are not required to file the full Schedule S. Earth station applicants file Schedule B instead."
+    },
+    {
+      "question": "How does Schedule S differ for GSO and NGSO satellites?",
+      "answer": "The branch point is item S1l on the first page. GSO applicants complete S3 (nominal orbital longitude, east and west station-keeping tolerances, inclination excursion, optional service arc) and skip S4 and S5. NGSO applicants skip S3 and complete S4 and S5. S4a through S4d capture constellation-level parameters once; S4e through S4o capture one row per orbital plane with inclination, period, apogee, perigee, right ascension of the ascending node, and argument of perigee. S5 then lists the initial phase angle for every satellite in every plane at the S4d epoch. Mixed GSO/NGSO systems complete both."
+    },
+    {
+      "question": "What antenna gain contour format does the FCC require?",
+      "answer": "Under 47 CFR Section 25.114(c)(4)(vi)(A), GSO applicants must submit predicted antenna gain contours for each transmit and receive beam in a GIMS-readable format, normally a GXT export inside a GIMS .mdb database. Contours are plotted at 2 dB intervals from peak gain down to peak minus 10 dB, then at 5 dB intervals from peak minus 10 dB to peak minus 20 dB. NGSO systems file contours per unique orbital plane or space station type. The GIMS requirement aligns U.S. filings with ITU Resolution 55 (Rev.WRC-19), which mandates GIMS-compatible graphical data for ITU filings."
+    },
+    {
+      "question": "What are the post-2020 orbital debris quantitative thresholds?",
+      "answer": "47 CFR Section 25.114(d)(14)(iv)(A)(1) requires a demonstration that the probability of collision between any space station of the system and other large objects (10 cm or larger in diameter) during the total orbital lifetime, including de-orbit phases, is less than 0.001 (1 in 1,000). Section 25.114(d)(14)(vii)(D)(1) requires a demonstration that the disposal method succeeds with probability 0.9 or greater for any individual space station. Both thresholds were adopted in FCC 20-54 (April 2020) and clarified in FCC 24-21 (2024), which confirmed that the 0.9 figure is per spacecraft, not a fleet average."
+    },
+    {
+      "question": "Where do the orbital debris probability figures go in the filing?",
+      "answer": "Schedule S itself does not have structured fields for the 0.001 collision probability or the 0.9 disposal reliability. These figures are reported in narrative exhibits that travel with Schedule S in ICFS, normally bundled as an Orbital Debris Mitigation Plan or Orbital Debris Assessment Report PDF attached to the Form 312. The accepted reference tool is NASA Debris Assessment Software (DAS), currently version 3.2.x, with the Requirement 4.5-1 output covering large-object collision probability. The Commission consistently bounces applications where the narrative does not state the 0.001 and 0.9 figures explicitly, even if DAS runs are attached."
+    },
+    {
+      "question": "What reference bandwidth applies to EIRP density in Schedule S?",
+      "answer": "The reference bandwidth for maximum EIRP density depends on the frequency band. Below 15 GHz, EIRP density is reported in dBW per 4 kHz. At and above 15 GHz, EIRP density is reported in dBW per MHz. For shapeable beams, the values reported are the maximum possible anywhere within the proposed coverage area, not just at boresight. Where EIRP density varies with time because of adaptive coding or time division payloads, the worst-case maximum must be reported. Schedule S expects one row per beam per emission, so most operators populate dozens of rows even for a single payload."
+    },
+    {
+      "question": "What did the FCC 23-73 expedited processing rule change?",
+      "answer": "FCC 23-73, adopted September 21, 2023 and effective January 5, 2024 (88 FR 84690, December 6, 2023), reformed initial processing of Part 25 satellite and earth station applications. The Order tightened how minor clerical defects are handled so they do not force outright dismissal, eliminated the bar on considering waivers of the U.S. Table of Frequency Allocations versus the ITU table, removed the prohibition on licensing an NGSO operator with an unbuilt prior system, set target timeframes for placing accepted applications on public notice, and created a streamlined path for earth stations to add satellite points of communication. The Further Notice teed up additional streamlining issues."
+    },
+    {
+      "question": "What are the most common Schedule S rejection patterns?",
+      "answer": "Recurring deficiencies include missing or inconsistent S1l orbit type, S2 frequency bands that do not match S13 emissions or the S17 certifications, PFD tables at the wrong angles or in the wrong reference bandwidth, GIMS gain contour files that are not GIMS-readable or that omit the 2 dB and 5 dB contour steps, shapeable-beam filings that report only peak EIRP density rather than the worst case across coverage, orbital debris exhibits that attach DAS runs without stating the 0.001 and 0.9 figures verbatim, disposal reliability reported as a fleet average rather than per spacecraft, and NGSO S4 rows that omit inclination, period, apogee, perigee, RAAN, or argument of perigee."
+    },
+    {
+      "question": "What is the relationship between Schedule S and ITU Resolution 55?",
+      "answer": "ITU Resolution 55 (Rev.WRC-19) requires that graphical data accompanying ITU advance publication, coordination, and notification filings under Articles 9 and 11 be submitted in a format compatible with the ITU Radiocommunication Bureau's GIMS software. The FCC's Schedule S GIMS requirement exists so that U.S.-licensed networks remain ingestible by the Bureau when the United States forwards the network to the ITU. A complete ITU filing normally contains an SNS .mdb captured in SpaceCap and a GIMS .mdb capturing service areas, antenna gain contours, and gain toward the geostationary orbit. The FCC's How to Prepare a USA ITU Filing guide enforces this two-file structure."
+    },
+    {
+      "question": "Where do I file Schedule S?",
+      "answer": "Schedule S is filed electronically through the International Communications Filing System (ICFS), the Space Bureau's filing portal that succeeded the legacy International Bureau Filing System (IBFS). The applicant logs in, opens a Form 312 application, completes the Main Form, opens the Schedule S workbook, completes pages S1 through S17, and attaches exhibits including the orbital debris mitigation plan and the GIMS-readable antenna gain contour database. ICFS rewrites the Schedule S navigation bar after the orbit type is selected in S1l so only the relevant orbital pages (S3 for GSO, S4 and S5 for NGSO) appear. The form carries OMB control number 3060-0678."
+    },
+    {
+      "question": "Do I need to file Schedule S for a small satellite?",
+      "answer": "Not necessarily. The streamlined small spacecraft licensing routes at 47 CFR Section 25.122 (small spacecraft) and Section 25.123 (small satellites) are designed for missions that meet specified eligibility criteria including orbital altitude, mass, maneuverability, and trackability. Applicants on these tracks file a shorter application that does not require the full Schedule S workbook. They still must file an orbital debris mitigation plan tailored to the streamlined route. If the mission cannot meet the Section 25.122 or Section 25.123 criteria, the applicant must file under Section 25.114 and complete the full Schedule S plus all required exhibits."
+    }
+  ],
+  "citations": [
+    {
+      "label": "47 CFR Section 25.114, Applications for space station authorizations (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-25/subpart-B/subject-group-ECFRe2bd70fc6b2eea0/section-25.114"
+    },
+    {
+      "label": "47 CFR Section 25.114 (Cornell LII mirror)",
+      "url": "https://www.law.cornell.edu/cfr/text/47/25.114"
+    },
+    {
+      "label": "47 CFR Part 25 master text (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-25"
+    },
+    {
+      "label": "FCC Form 312 fillable form",
+      "url": "https://transition.fcc.gov/Forms/Form312/312Fill.pdf"
+    },
+    {
+      "label": "FCC Form 312 instructions landing page",
+      "url": "https://www.fcc.gov/document/instructions-completion-fcc-form-312-application-satellite-space-and-earth-station"
+    },
+    {
+      "label": "FCC Form 312 Schedule S form (reginfo.gov / OMB 3060-0678)",
+      "url": "https://www.reginfo.gov/public/do/DownloadDocument?objectID=48403501"
+    },
+    {
+      "label": "Specific Instructions for Schedule S Rev. 4f (reginfo.gov)",
+      "url": "https://www.reginfo.gov/public/do/DownloadDocument?objectID=44247701"
+    },
+    {
+      "label": "Instructions for Schedule S vApr2016 (FCC enterpriseefiling)",
+      "url": "https://enterpriseefiling.fcc.gov/schedules/resources/Instructions%20for%20Schedule%20S%20vApr2016.pdf"
+    },
+    {
+      "label": "FCC overview of earth station licensing and license contents",
+      "url": "https://www.fcc.gov/space/overview-earth-station-licensing-and-license-contents"
+    },
+    {
+      "label": "FCC sample Form 312 applications",
+      "url": "https://www.fcc.gov/earth-station-licensing-sample-form-312-applications"
+    },
+    {
+      "label": "FCC Part 25 space station licensing process and timeline",
+      "url": "https://www.fcc.gov/part-25-space-station-licensing-process-and-timeline"
+    },
+    {
+      "label": "FCC Space Stations landing page",
+      "url": "https://www.fcc.gov/space/space-stations"
+    },
+    {
+      "label": "FCC How to Prepare a USA ITU Filing",
+      "url": "https://www.fcc.gov/space/how-prepare-usa-itu-filing"
+    },
+    {
+      "label": "FCC Orbital Debris portal",
+      "url": "https://www.fcc.gov/space/orbital-debris"
+    },
+    {
+      "label": "FCC Orbital Debris FAQ",
+      "url": "https://www.fcc.gov/space/faq-orbital-debris"
+    },
+    {
+      "label": "FCC Space Bureau ODM Plan Checklist (Streamlined Small Space Stations, Feb 2024)",
+      "url": "https://www.fcc.gov/sites/default/files/ODM%20Plan%20Checklist%20-%20Streamlined%20Small%20Space%20Stations.pdf"
+    },
+    {
+      "label": "FCC 20-54, Mitigation of Orbital Debris in the New Space Age, Report and Order and Further Notice (2020)",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-20-54A1.pdf"
+    },
+    {
+      "label": "FCC 22-74, Second Report and Order (2022)",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-22-74A1.pdf"
+    },
+    {
+      "label": "FCC 24-21, Order on Reconsideration (2024)",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-24-21A1.pdf"
+    },
+    {
+      "label": "Federal Register, 2024 orbital debris amendments (Feb 22, 2024)",
+      "url": "https://www.federalregister.gov/documents/2024/02/22/2024-03506/mitigation-of-orbital-debris-in-the-new-space-age"
+    },
+    {
+      "label": "Federal Register, Space Innovation orbital debris (Aug 9, 2024)",
+      "url": "https://www.federalregister.gov/documents/2024/08/09/2024-17093/space-innovation-mitigation-of-orbital-debris-in-the-new-space-age"
+    },
+    {
+      "label": "FCC 23-73, Expediting Initial Processing of Satellite and Earth Station Applications",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-23-73A1.pdf"
+    },
+    {
+      "label": "FCC press release, Streamlines Satellite Application Processing",
+      "url": "https://www.fcc.gov/document/fcc-streamlines-satellite-application-processing"
+    },
+    {
+      "label": "FCC Significant Satellite Rulemakings tracker",
+      "url": "https://www.fcc.gov/significant-satellite-rulemakings"
+    },
+    {
+      "label": "FCC 25-48, Second Report and Order on satellite application processing",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-25-48A1.pdf"
+    },
+    {
+      "label": "ITU-R GIMS software page (Resolution 55 references)",
+      "url": "https://www.itu.int/en/ITU-R/software/Pages/gims.aspx"
+    },
+    {
+      "label": "ITU-R Guide for Capturing and Submitting Graphical Information in GIMS",
+      "url": "https://www.itu.int/en/ITU-R/space/API%20documents/API_how%20to%20capture%20diagrams%20in%20GIMs.pdf"
+    },
+    {
+      "label": "ITU-R NGSO guide for diagrams and attachments",
+      "url": "https://www.itu.int/en/ITU-R/space/Documents/NGSO%20guide%20for%20diagrams%20and%20attachments.pdf"
+    },
+    {
+      "label": "WRC-19 Final Acts (Resolution 55, Rev.WRC-19)",
+      "url": "https://www.iata.org/contentassets/d7e421981aa64169af1a8d6b37438d4d/wrc-2019-final-acts.pdf"
+    },
+    {
+      "label": "NASA Debris Assessment Software User's Guide (TP-2020-5002380)",
+      "url": "https://ntrs.nasa.gov/api/citations/20205002380/downloads/NASA%20TP-2020-5002380_DAS_UsersGuide_final.pdf"
+    },
+    {
+      "label": "NASA DAS distribution page",
+      "url": "https://software.nasa.gov/software/MSC-26690-1"
+    },
+    {
+      "label": "FCC Space Modernization Fact Sheet (Oct 7, 2025), proposing Schedules O and F",
+      "url": "https://docs.fcc.gov/public/attachments/DOC-415048A1.pdf"
+    }
+  ]
+}

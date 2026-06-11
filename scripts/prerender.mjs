@@ -165,6 +165,8 @@ const HOW_TO_SLUGS = new Set([
   'how-to-write-a-psar',
   'how-to-write-faa-part-450-means-of-compliance',
   'how-to-draft-itu-coordination-filing',
+  'fcc-schedule-s',
+  'itar-commodity-jurisdiction',
 ])
 
 // ── Override the index.html head with per-page metadata ───────────────────
@@ -259,6 +261,7 @@ const PILLAR_DATA_MAP = {
   'nrc-rai-management': 'nrc-rai-management-pillar.json',
   'part-53-subparts': 'part-53-subparts-pillar.json',
   'how-to-write-a-psar': 'how-to-write-a-psar-pillar.json',
+  'fcc-schedule-s': 'fcc-schedule-s-pillar.json',
   'itar-commodity-jurisdiction': 'itar-commodity-jurisdiction-pillar.json',
   'itar-vs-ear-for-space-companies': 'itar-vs-ear-pillar.json',
   'nrc-pre-application-engagement-guide': 'nrc-pre-application-pillar.json',

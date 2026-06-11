@@ -179,6 +179,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'fcc-schedule-s',
+    title: 'FCC Form 312 Schedule S: How to draft, file, and avoid rejection',
+    shortTitle: 'FCC Schedule S',
+    description:
+      'A drafting guide to FCC Form 312 Schedule S for satellite applications under 47 CFR 25.114: data blocks, GSO vs NGSO logic, antenna beams, orbital debris exhibits, the 2023 expedited rule, and rejection patterns.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'itar-commodity-jurisdiction',
     title: 'How to file an ITAR Commodity Jurisdiction (CJ) request',
     shortTitle: 'ITAR Commodity Jurisdiction',
