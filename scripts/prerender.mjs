@@ -265,6 +265,90 @@ async function main() {
   const today = new Date().toISOString().slice(0, 10)
   let written = 0
 
+  // Core pages (Home is dist/index.html; we customize its head too)
+  const HOME_JSONLD = [
+    ORG_SCHEMA,
+    EDITORIAL_TEAM,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': `${SITE}/#website`,
+      url: SITE,
+      name: 'Invariant',
+      publisher: { '@id': `${SITE}/#organization` },
+      inLanguage: 'en',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${SITE}/probe?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    breadcrumbSchema([{ name: 'Invariant', url: `${SITE}/` }]),
+  ]
+  writeFileSync(
+    join(DIST, 'index.html'),
+    customizeHtml(template, {
+      title: 'Invariant — Autonomous agents for mission-critical compliance',
+      description:
+        'Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First.',
+      canonical: `${SITE}/`,
+      ogImage: `${SITE}/og-image.png`,
+      ogType: 'website',
+      jsonLd: HOME_JSONLD,
+    }),
+  )
+  written++
+
+  const SIMPLE_PAGES = [
+    {
+      slug: 'product',
+      title: 'Product — Submissions, test plans, verification matrices',
+      description:
+        'What Invariant agents produce: regulator-grade submissions, test plans, verification matrices, and the high-stakes review of a small domain-engineering team.',
+      ogImage: `${SITE}/og-image.png`,
+    },
+    {
+      slug: 'probe',
+      title: 'Probe — Live semantic search over NRC ADAMS, powered by Helion-512',
+      description:
+        'Try Probe, the public semantic search interface over NRC ADAMS powered by Helion-512, the published state of the art on the FermiBench retrieval benchmark.',
+      ogImage: `${SITE}/og-image.png`,
+    },
+    {
+      slug: 'blog',
+      title: 'Blog — Research, regulation comparisons, field notes',
+      description:
+        'Research, regulation comparisons, and field notes from Invariant on compliance for space, aerospace, and nuclear.',
+      ogImage: `${SITE}/og-image.png`,
+    },
+    {
+      slug: 'research',
+      title: 'Research — Helion-512, FermiBench, published notes',
+      description:
+        "Invariant's research: Helion-512 retrieval model at 0.97 nDCG@10 on FermiBench, siting comparisons, seismic design analyses, and field notes from regulator dockets.",
+      ogImage: `${SITE}/og-image.png`,
+    },
+  ]
+  for (const sp of SIMPLE_PAGES) {
+    const canonical = `${SITE}/${sp.slug}`
+    writeRoute(template, sp.slug, {
+      title: sp.title,
+      description: sp.description,
+      canonical,
+      ogImage: sp.ogImage,
+      ogType: 'website',
+      jsonLd: [
+        ORG_SCHEMA,
+        EDITORIAL_TEAM,
+        breadcrumbSchema([
+          { name: 'Invariant', url: `${SITE}/` },
+          { name: sp.slug.charAt(0).toUpperCase() + sp.slug.slice(1), url: canonical },
+        ]),
+      ],
+    })
+    written++
+  }
+
   // Pillars + clusters
   const pages = parseRegistry()
   for (const p of pages) {
