@@ -21,6 +21,7 @@ const CORE = [
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },
   { loc: '/about', changefreq: 'monthly', priority: '0.7' },
+  { loc: '/regulators', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/faa-part-450-timeline', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/nrc-license-timeline', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/fcc-deorbit-feasibility', changefreq: 'monthly', priority: '0.85' },
