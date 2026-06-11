@@ -30,6 +30,7 @@ const SpaceComplianceEu = lazy(() => import('./pages/clusters/SpaceComplianceEu'
 const HowToDraftItuCoordinationFiling = lazy(() => import('./pages/clusters/HowToDraftItuCoordinationFiling'))
 const Part450VsLegacy = lazy(() => import('./pages/clusters/Part450VsLegacy'))
 const EcssVsMilStd = lazy(() => import('./pages/clusters/EcssVsMilStd'))
+const NrcLicenseTimeline = lazy(() => import('./pages/clusters/NrcLicenseTimeline'))
 
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
@@ -92,6 +93,7 @@ export default function App() {
             <Route path="/how-to-draft-itu-coordination-filing" element={<HowToDraftItuCoordinationFiling />} />
             <Route path="/faa-part-450-vs-legacy" element={<Part450VsLegacy />} />
             <Route path="/ecss-vs-mil-std" element={<EcssVsMilStd />} />
+            <Route path="/how-long-does-nrc-license-take" element={<NrcLicenseTimeline />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
             <Route path="/research" element={<Research />} />

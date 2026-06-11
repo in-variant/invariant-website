@@ -73,8 +73,8 @@ export const PAGES: PageRef[] = [
       'Realistic timelines for NRC license applications under Parts 50, 52, and 53, based on recent advanced-reactor dockets.',
     pillar: 'nuclear',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'advanced-reactor-licensing-eu',
