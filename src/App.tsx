@@ -14,6 +14,7 @@ import Pricing from './pages/Pricing'
 import Probe from './pages/Probe'
 import SpaceCompliance from './pages/SpaceCompliance'
 import NuclearCompliance from './pages/NuclearCompliance'
+import Part50vs52vs53 from './pages/clusters/Part50vs52vs53'
 import Deck from './pages/Deck'
 import DroneDeck from './pages/DroneDeck'
 import SpantrikDeck from './pages/SpantrikDeck'
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/probe" element={<Probe />} />
           <Route path="/space-compliance" element={<SpaceCompliance />} />
           <Route path="/nuclear-compliance" element={<NuclearCompliance />} />
+          <Route path="/part-50-vs-52-vs-53" element={<Part50vs52vs53 />} />
         </Route>
       </Routes>
       <Analytics />
