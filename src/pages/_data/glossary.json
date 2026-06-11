@@ -107,6 +107,40 @@
       ]
     },
     {
+      "slug": "dal-a-e",
+      "term": "Design Assurance Level (DAL A-E)",
+      "topic": "aerospace",
+      "short_definition": "A five-tier civil-aviation rigor scale (A through E) tied to failure-condition severity, dictating how exhaustively airborne systems, hardware, and software must be developed and verified.",
+      "full_definition": "Design Assurance Level (more precisely Development Assurance Level, or DAL) is the qualitative classification that connects a system's worst-case failure-condition severity to the rigor of its development and verification process. It is established by the safety assessment process in SAE ARP4761 (originally issued 1996; ARP4761A jointly with EUROCAE ED-135, 20 December 2023) and ARP4754A/ED-79A, then invoked by software guidance DO-178C and hardware guidance DO-254. FAA AC 25.1309-1B (issued 30 August 2024, superseding the 1988 Rev. A) and 14 CFR 25.1309 anchor the scheme for Part 25 transport aircraft; EASA CS 25.1309 mirrors it.\n\nThe five levels map one-to-one to the five failure-condition categories defined in AC 25.1309-1B section 9: DAL A covers Catastrophic conditions, those that would prevent continued safe flight and landing (a definition tightened by Section 115 of the Aircraft Certification, Safety, and Accountability Act of 2020) and that must be Extremely Improbable, no more frequent than 1 x 10^-9 per flight hour. DAL B covers Hazardous (Severe-Major) conditions, with large reductions in safety margins, serious or fatal injury to a small number of occupants, and a budget of Extremely Remote, 1 x 10^-7 per flight hour. DAL C covers Major conditions, with significant crew workload increase or discomfort and a Remote budget of 1 x 10^-5 per flight hour. DAL D covers Minor conditions, slight reductions in safety margins that may be Probable. DAL E covers No Safety Effect conditions and carries no quantitative probability target.\n\nAssignment is top-down. A Functional Hazard Assessment (FHA) at the aircraft and system level fixes the severity class; Preliminary System Safety Assessment then allocates DALs to items, with permitted reductions when independent architectural means (redundancy, dissimilarity, monitoring) are credited per ARP4754A Section 5.2. The level drives concrete deliverables: under DO-178C Table A-7, DAL A demands Modified Condition/Decision Coverage (MC/DC) of object code, DAL B requires Decision Coverage, DAL C requires Statement Coverage, DAL D has no structural coverage objective, and DAL E is outside DO-178C's scope. DO-254 imposes a parallel ladder on complex electronic hardware. Rotorcraft use AC 29-2C / AC 27-1B with comparable budgets, and engines fall under AC 33.75-1A; the DAL framework, not the probability number alone, is what auditors at the FAA Aircraft Certification Office and EASA review during type certification.",
+      "related_to": [
+        "do-178c",
+        "do-254",
+        "arp4754a"
+      ],
+      "citations": [
+        {
+          "label": "FAA AC 25.1309-1B, System Design and Analysis (PDF)",
+          "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25.1309-1B.pdf"
+        },
+        {
+          "label": "FAA Advisory Circular record for AC 25.1309-1B",
+          "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1043037"
+        },
+        {
+          "label": "SAE ARP4761A, Guidelines and Methods for Conducting the Safety Assessment Process on Civil Airborne Systems and Equipment",
+          "url": "https://www.sae.org/standards/content/arp4761a/"
+        },
+        {
+          "label": "14 CFR 25.1309, Equipment, systems, and installations",
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-25/subpart-F/section-25.1309"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "DAL"
+      ]
+    },
+    {
       "slug": "easa",
       "term": "EASA",
       "topic": "aerospace",
@@ -387,6 +421,41 @@
       ]
     },
     {
+      "slug": "ac-25-1309",
+      "term": "FAA AC 25.1309-1",
+      "topic": "aerospace",
+      "short_definition": "FAA Advisory Circular describing acceptable means of compliance with 14 CFR 25.1309 system safety requirements for transport-category airplanes; current Revision B issued August 30, 2024.",
+      "full_definition": "FAA Advisory Circular 25.1309-1, \"System Design and Analysis,\" is the FAA's principal guidance document for showing compliance with 14 CFR 25.1309, the airworthiness regulation governing equipment, systems, and installations on Part 25 transport-category airplanes. Revision B was issued on August 30, 2024, cancelling Revision A (dated June 21, 1988) and was released in coordination with the final rule \"System Safety Assessments\" published in the Federal Register on August 27, 2024 (89 FR 68735). Revision B implements Section 115 of the Aircraft Certification, Safety, and Accountability Act of 2020 and incorporates roughly three decades of harmonization work with EASA CS-25 and ARAC's Systems Design and Analysis Harmonization Working Group recommendations.\n\nThe core construct of the AC is the inverse relationship between failure severity and acceptable probability. Chapter 7 defines five failure-condition severity classes and assigns quantitative safety objectives, expressed as average probability per flight hour: Catastrophic must be Extremely Improbable (no more frequent than 1x10^-9), Hazardous must be Extremely Remote (no more frequent than 1x10^-7), Major must be Remote (no more frequent than 1x10^-5), Minor must be Probable, and No Safety Effect carries no quantitative requirement. Per the Aircraft Certification, Safety, and Accountability Act, any failure condition that prevents continued safe flight and landing is classified as Catastrophic. Revision B also introduces explicit treatment of the \"Catastrophic Single Latent Failure Plus One\" (CSL+1) condition, requiring applicants to eliminate single-latent-plus-active failure paths to catastrophe to the maximum extent practical.\n\nRevision B substantially expands the Fail-Safe Design Concept (Chapter 5), articulating principles such as designed integrity, redundancy, isolation, failure warning, and flightcrew procedures, and tightens documentation expectations around flightcrew response time, alerting, and assumed pilot actions. It clarifies acceptable analytical methods in Chapters 8 through 11, including Functional Hazard Assessment (FHA), Preliminary System Safety Assessment (PSSA), System Safety Assessment (SSA), Common Cause Analysis, and the use of ARP4754B and ARP4761A as accepted industry standards for development assurance and safety assessment.\n\nIn practice, AC 25.1309-1B is the document every Part 25 type certificate, amended type certificate, and supplemental type certificate program references when scoping safety assessments, allocating Development Assurance Levels to software (per DO-178C) and complex hardware (per DO-254), and negotiating means-of-compliance plans with the FAA Aircraft Certification Service.",
+      "related_to": [
+        "faa-part-25",
+        "easa-cs-25",
+        "do-178c",
+        "do-254"
+      ],
+      "citations": [
+        {
+          "label": "FAA AC 25.1309-1B, System Design and Analysis (Aug 30, 2024)",
+          "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25.1309-1B.pdf"
+        },
+        {
+          "label": "FAA Advisory Circular record: AC 25.1309-1B",
+          "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1043037"
+        },
+        {
+          "label": "14 CFR 25.1309 - Equipment, systems, and installations (eCFR)",
+          "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-25/subpart-F/subject-group-ECFR9f24bf451b0d2b1/section-25.1309"
+        },
+        {
+          "label": "FAA AC 25.1309-1A (cancelled, 1988)",
+          "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25_1309-1A.pdf"
+        }
+      ],
+      "aliases": [
+        "System Design and Analysis Advisory Circular"
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
       "slug": "special-conditions",
       "term": "FAA Special Conditions",
       "topic": "aerospace",
@@ -520,6 +589,110 @@
           "label": "EASA: Specific Operations Risk Assessment (SORA)",
           "url": "https://www.easa.europa.eu/en/domains/drones-air-mobility/operating-drone/specific-category-civil-drones/specific-operations-risk-assessment-sora"
         }
+      ]
+    },
+    {
+      "slug": "mosa",
+      "term": "Modular Open Systems Approach (MOSA)",
+      "topic": "aerospace",
+      "short_definition": "MOSA is the US DoD statutory acquisition strategy, codified at 10 USC 4401, that mandates modular design and consensus-based open interfaces for major defense programs to enable competition and refresh.",
+      "full_definition": "The Modular Open Systems Approach (MOSA) is the integrated business and technical strategy that the Department of Defense is required to use, to the maximum extent practicable, on major defense acquisition programs (MDAPs) that received Milestone A or Milestone B approval after January 1, 2019. The requirement was first imposed by Section 805 of the Fiscal Year 2017 National Defense Authorization Act (Pub. L. 114-328) and is now codified at 10 U.S.C. Section 4401, with parallel direction for milestone decision authorities at 10 U.S.C. Section 4402 and contract clause requirements at Section 4403. Implementation across the Services was reinforced by the tri-service memorandum \"Modular Open Systems Approaches for our Weapon Systems is a Warfighting Imperative,\" signed by the Secretaries of the Army, Navy, and Air Force on January 7, 2019, which directed inclusion of MOSA-supporting standards in all future weapon system requirements, programming, and development activities.\n\nThe statutory definition at 10 U.S.C. 4401(c)(1) frames MOSA around four elements: (A) modular design using modular system interfaces between major systems, major system components, and modular systems; (B) verification that those interfaces comply, where available and suitable, with widely supported and consensus-based standards; (C) a system architecture that allows severable major system components to be incrementally added, removed, or replaced across the life cycle; and (D) compliance with the technical data rights provisions now at 10 U.S.C. Sections 3771 through 3775. The DoD MOSA Reference Frame (OUSD(R&E), May 2020) and the MOSA Implementation Guidebook (OUSD(R&E), 27 February 2025) operationalize this with five enabling principles: establish an enabling environment, employ modular design, designate key interfaces, use open standards, and certify conformance.\n\nDoD seeks five primary benefits from MOSA: enhanced competition through severable, openly competable modules; faster technology refresh without redesigning the whole system; incorporation of innovation by reconfiguring assets against changing threats; cost savings and cost avoidance through reuse across the life cycle; and improved interoperability by allowing independent change of software and hardware modules. In practice, programs satisfy MOSA by aligning to consortium-curated open standards such as the Sensor Open Systems Architecture (SOSA) Technical Standard, the Future Airborne Capability Environment (FACE) Technical Standard, the Open Mission Systems (OMS) standard, and the C5ISR/EW Modular Open Suite of Standards (CMOSS); these standards anchor RFP Sections L and M evaluation criteria templates issued under the Defense Federal Acquisition Regulation Supplement to enforce the Section 4401 requirement at source selection.",
+      "related_to": [
+        "do-178c",
+        "do-254",
+        "tso"
+      ],
+      "citations": [
+        {
+          "label": "10 U.S.C. Section 4401 - Requirement for modular open system approach in major defense acquisition programs (Office of the Law Revision Counsel)",
+          "url": "https://uscode.house.gov/view.xhtml?req=granuleid%3AUSC-prelim-title10-section4401&num=0&edition=prelim"
+        },
+        {
+          "label": "Public Law 114-328, FY2017 NDAA, Section 805 (GovInfo)",
+          "url": "https://www.govinfo.gov/content/pkg/PLAW-114publ328/html/PLAW-114publ328.htm"
+        },
+        {
+          "label": "Modular Open Systems Approach, DoD Office of the Under Secretary of Defense for Research and Engineering",
+          "url": "https://www.cto.mil/sea/mosa/"
+        },
+        {
+          "label": "Tri-Service Memo Updates MOSA Guidance, Defense Standardization Program (DLA)",
+          "url": "https://www.dsp.dla.mil/Publications/DSP-Journal/News-Display/Article/4047367/tri-service-memo-updates-mosa-guidance/"
+        }
+      ],
+      "aliases": [
+        "MOSA"
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "arp-4754a",
+      "term": "SAE ARP4754A",
+      "topic": "aerospace",
+      "short_definition": "SAE Aerospace Recommended Practice ARP4754A, dated December 21, 2010, sets the development assurance process for civil aircraft and their systems used in certification.",
+      "full_definition": "SAE ARP4754A, titled \"Guidelines for Development of Civil Aircraft and Systems,\" was released on December 21, 2010 by SAE International jointly with EUROCAE as ED-79A, superseding the 1996 original ARP4754. It defines a top-down development assurance process intended to minimize errors in aircraft and system requirements, architecture, and integration, and is recognized by the FAA as an acceptable means of compliance with the development assurance expectations of 14 CFR 25.1309, 23.2510, 27.1309, and 29.1309. The document was developed in the context of 14 CFR Part 25 but is routinely applied across Parts 23, 27, 29, 33, and 35, with EASA accepting it as AMC under CS-25 Book 2.\n\nThe standard organizes the lifecycle into planning, aircraft and system development, integral processes, and certification coordination, covering requirements capture, validation, verification, configuration management, process assurance, and certification liaison (Sections 4 through 8). Its central contribution is the development assurance level (DAL) framework, mapped from the failure condition classifications of AC 25.1309-1B: Catastrophic to DAL A, Hazardous to DAL B, Major to DAL C, Minor to DAL D, and No Safety Effect to DAL E. ARP4754A formally splits this into the Functional Development Assurance Level (FDAL), assigned at the function and system level, and the Item Development Assurance Level (IDAL), assigned to the hardware and software item implementing the function; IDAL may be reduced below FDAL when architectural independence is demonstrated through Common Cause Analysis. Appendix A enumerates the 70-plus objectives required at each FDAL.\n\nARP4754A operates as the apex of a recognized certification stack: it invokes ARP4761 for safety assessment (FHA, PSSA, SSA, CCA), flows requirements into RTCA DO-178C for airborne software and DO-254 for complex electronic hardware, and references DO-297 for integrated modular avionics. The FAA formally recognized it through Advisory Circular AC 20-174, \"Development of Civil Aircraft and Systems,\" issued September 30, 2011, which states ARP4754A \"is one acceptable method\" for establishing a development assurance process. ARP4754A remained the governing revision until SAE released ARP4754B in December 2023 as an interim update aligned with ARP4761A, though many active certification programs and bilateral acceptance arrangements still reference Revision A by name.",
+      "related_to": [
+        "do-178c",
+        "do-254",
+        "faa-part-25",
+        "easa-cs-25"
+      ],
+      "citations": [
+        {
+          "label": "FAA Advisory Circular AC 20-174, Development of Civil Aircraft and Systems (Sept 30, 2011)",
+          "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1019527"
+        },
+        {
+          "label": "SAE ARP4754A, Guidelines for Development of Civil Aircraft and Systems (SAE Mobilus)",
+          "url": "https://saemobilus.sae.org/standards/arp4754a-guidelines-development-civil-aircraft-systems"
+        },
+        {
+          "label": "FAA Federal Register Policy Statement on DAL Determination for Transport Category Airplanes",
+          "url": "https://www.federalregister.gov/documents/2016/03/11/2016-05529/policy-statement-on-guidance-for-determination-of-system-hardware-and-software-development-assurance"
+        },
+        {
+          "label": "NASA CR-2015-218982, Application of SAE ARP4754A to Flight Critical Systems",
+          "url": "https://ntrs.nasa.gov/api/citations/20160001634/downloads/20160001634.pdf"
+        }
+      ],
+      "aliases": [
+        "Guidelines for Development of Civil Aircraft and Systems"
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "arp-4761",
+      "term": "SAE ARP4761",
+      "topic": "aerospace",
+      "short_definition": "SAE Aerospace Recommended Practice that codifies the safety assessment process for civil airborne systems, defining FHA, PSSA, SSA, and CCA methods to demonstrate compliance with 14 CFR 25.1309.",
+      "full_definition": "SAE ARP4761, \"Guidelines and Methods for Conducting the Safety Assessment Process on Civil Airborne Systems and Equipment,\" was first issued by SAE International's S-18 committee on December 1, 1996. It became the de facto means of compliance for the airworthiness safety objectives in 14 CFR 25.1309 (and the harmonized EASA CS 25.1309) for transport category aircraft, and was paired with ARP4754 (development assurance) and the software/hardware standards DO-178B and DO-254. The 1996 document is organized around four core analytical activities: the Functional Hazard Assessment (FHA), which classifies failure conditions as Minor, Major, Hazardous, or Catastrophic with associated quantitative probability targets (10^-5, 10^-7, 10^-9 per flight hour); the Preliminary System Safety Assessment (PSSA), which allocates safety requirements to architecture and components; the System Safety Assessment (SSA), which verifies that the implemented design meets those requirements; and the Common Cause Analysis (CCA), comprising Zonal Safety Analysis, Particular Risks Analysis, and Common Mode Analysis.\n\nAfter roughly two decades of community use, SAE S-18 and EUROCAE WG-63 began revision work in 2004 and jointly published ARP4761A and ED-135 on December 20, 2023. ARP4761A expands applicability beyond CFR/CS Part 25 to cover Parts 23, 27, and 29 aircraft, as well as engines and propellers under Parts 33 and 35 (and CS-E, CS-P). It formalizes Aircraft Functional Hazard Assessment (AFHA), Preliminary Aircraft Safety Assessment (PASA), and Aircraft Safety Assessment (ASA) as dedicated aircraft-level processes that sit above the system-level FHA, PSSA, and SSA.\n\nThe A revision also introduces Model-Based Safety Analysis (MBSA) as an alternative to traditional Fault Tree Analysis, adds Cascading Effects Analysis (CEA) for multi-system propagation, and integrates Master Minimum Equipment List (MMEL) and in-service safety considerations. Notably, the assignment of Function Development Assurance Levels (FDAL) and Item Development Assurance Levels (IDAL) was moved out of ARP4754 and into ARP4761A, tightening the link between hazard classification and development rigor. ARP4761A is the cited means of compliance in FAA AC 25.1309-1B drafts and EASA AMC 25.1309, and is the companion safety standard to ARP4754B, which addresses the development process running in parallel.",
+      "related_to": [
+        "arp-4754",
+        "do-178c",
+        "do-254",
+        "fha"
+      ],
+      "citations": [
+        {
+          "label": "SAE International, ARP4761A standard page",
+          "url": "https://www.sae.org/standards/arp4761a-guidelines-conducting-safety-assessment-process-civil-aircraft-systems-equipment"
+        },
+        {
+          "label": "SAE International, original ARP4761 (1996) standard page",
+          "url": "https://www.sae.org/standards/arp4761-guidelines-methods-conducting-safety-assessment-process-civil-airborne-systems-equipment"
+        },
+        {
+          "label": "EUROCAE ED-135 (joint counterpart to ARP4761A)",
+          "url": "https://www.eurocae.net/news/posts/2023/december/eurocae-publishes-ed-79b-ed-135/"
+        },
+        {
+          "label": "FAA AC 25.1309-1A System Design and Analysis",
+          "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_25.1309-1A.pdf"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Guidelines and Methods for Conducting the Safety Assessment Process"
       ]
     },
     {
@@ -1189,6 +1362,41 @@
       "last_updated": "2026-06-12"
     },
     {
+      "slug": "kbs-3",
+      "term": "KBS-3",
+      "topic": "nuclear",
+      "short_definition": "KBS-3 is the Swedish multi-barrier concept for final disposal of spent nuclear fuel in copper canisters within bentonite clay roughly 500 metres deep in crystalline bedrock.",
+      "full_definition": "KBS-3 (K\u00e4rnbr\u00e4nsles\u00e4kerhet, \"nuclear fuel safety,\" method 3) is the reference disposal concept developed by Svensk K\u00e4rnbr\u00e4nslehantering AB (SKB) for permanent isolation of Sweden's spent nuclear fuel. The method was first set out in the 1983 KBS-3 report, which followed the earlier KBS-1 (vitrified reprocessing waste) and KBS-2 (direct disposal) studies and was submitted as part of the licensing basis required by the 1977 Stipulation Act for Forsmark-3 and Oskarshamn-3 to come online. KBS-3 rests on three engineered and natural barriers acting in series: a corrosion-resistant copper canister with a cast-iron insert, a swelling bentonite clay buffer in the deposition hole, and the surrounding crystalline bedrock at roughly 400 to 500 metres depth.\n\nPer SKB's design description, each canister is about 4.8 metres long, weighs roughly 25 tonnes when loaded, and has a 5 cm thick copper shell over a nodular cast-iron insert that provides mechanical strength against rock shear and ice-age glacial loads. The bentonite buffer saturates with groundwater and swells to a target dry density that limits advective transport, restricts microbial activity, and self-seals fractures, so that any radionuclide release would be diffusion-limited on a timescale of at least 100,000 years. The reference variant is KBS-3V, with canisters emplaced vertically in deposition holes from horizontal tunnels; KBS-3H, with horizontal supercontainers in long drifts, has been studied jointly with Posiva but is not the licensed Swedish design.\n\nSKB selected Forsmark in \u00d6sthammar municipality on 3 June 2009 after a multi-decade siting process, and on 16 March 2011 submitted parallel applications under the Nuclear Activities Act and the Environmental Code for an encapsulation plant in Oskarshamn and the KBS-3 repository at Forsmark, supported by the SR-Site safety assessment. The Swedish Radiation Safety Authority (SSM) issued its review statement on 23 January 2018 recommending that the government grant a licence, concluding that SKB had the potential to meet the requirements of the Nuclear Activities Act on safe final disposal. The Swedish government approved the application on 27 January 2022, making KBS-3 the second deep geological spent fuel disposal concept worldwide to receive a construction decision, after Finland's Posiva concept at Olkiluoto, which is itself a KBS-3 derivative.",
+      "related_to": [
+        "spent-nuclear-fuel",
+        "deep-geological-repository",
+        "bentonite-buffer",
+        "copper-canister"
+      ],
+      "citations": [
+        {
+          "label": "SKB, Our methodology (KBS-3)",
+          "url": "https://skb.com/future-projects/the-spent-fuel-repository/our-methodology/"
+        },
+        {
+          "label": "SKB, Swedish Radiation Safety Authority recommends approval of the Spent Fuel Repository (23 Jan 2018)",
+          "url": "https://www.skb.com/news/swedish-radiation-safety-authority-recommends-approval-of-the-spent-fuel-repository/"
+        },
+        {
+          "label": "Government of Sweden, Final disposal of spent nuclear fuel (27 Jan 2022)",
+          "url": "https://www.government.se/articles/2022/01/final-disposal-of-spent-nuclear-fuel/"
+        },
+        {
+          "label": "SSM, Licensing review of a spent nuclear fuel repository in Sweden",
+          "url": "https://inis.iaea.org/records/v53ex-cqd60"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Swedish spent fuel disposal"
+      ]
+    },
+    {
       "slug": "kairos-hermes",
       "term": "Kairos Hermes",
       "topic": "nuclear",
@@ -1366,6 +1574,76 @@
       ]
     },
     {
+      "slug": "nnsa-china",
+      "term": "NNSA (China)",
+      "topic": "nuclear",
+      "short_definition": "China's National Nuclear Safety Administration is the civil nuclear regulator housed inside the Ministry of Ecology and Environment, licensing reactors, fuel cycle facilities, and radioactive materials nationwide.",
+      "full_definition": "The National Nuclear Safety Administration (NNSA, \u56fd\u5bb6\u6838\u5b89\u5168\u5c40) was established on 2 July 1984 and today operates as a functional bureau within the Ministry of Ecology and Environment (MEE), serving as the independent civil nuclear and radiation safety regulator for the People's Republic of China. Its three-tier structure comprises the MEE headquarters in Beijing, six Regional Nuclear and Radiation Safety Supervision Stations (north, east, south, southwest, northwest, northeast), and technical support organizations led by the Nuclear and Radiation Safety Center (NSC). The Department of Nuclear Power Safety Regulation administers licensing across the full lifecycle (siting, design, construction, commissioning, operation, decommissioning) for power reactors, research reactors, critical assemblies, and nuclear heat and steam supply systems.\n\nFor Generation III pressurized water reactors, NNSA issues separate siting, construction, and operating permits. It approved the construction permit for Fuqing Unit 5, the lead HPR1000 (Hualong One) demonstration unit, on 5 May 2015, with first concrete on 7 May 2015; the unit entered commercial operation on 30 January 2021. For the CAP1000 (the indigenized derivative of Westinghouse's AP1000 transferred under the 2007 State Nuclear Power Technology Corporation agreement), NNSA has issued construction permits for follow-on units at Haiyang, Sanmen, and Lufeng on the basis of the AP1000 design certification and post-FOAK lessons from Sanmen 1 and Haiyang 1.\n\nThe 2011 Fukushima Daiichi accident drove a major regulatory overhaul. From March through December 2011, NNSA jointly with the National Energy Administration and the China Seismological Bureau ran a comprehensive safety check covering 41 in-service and under-construction units plus 3 ready-to-build units, mobilizing more than 300 experts. The State Council approved the resulting \"Report on Comprehensive Safety Check on Civil Nuclear Facilities\" and the Nuclear Safety Plan (2011-2020) on 31 May 2012, and in June 2012 NNSA issued the \"General Technical Requirements for Modification Action of Nuclear Power Plants after the Fukushima Daiichi Accident (trial),\" mandating retrofits for station blackout, hydrogen control, spent fuel pool instrumentation, and external flooding margins.\n\nThe post-Fukushima reforms culminated in the Nuclear Safety Law of the PRC, adopted by the Standing Committee of the National People's Congress on 1 September 2017 and effective 1 January 2018, which codifies NNSA's independent regulatory authority. By mid-2019 the framework comprised 9 administrative regulations, more than 30 departmental rules, over 100 safety guides, and roughly 1,000 national and industry standards, governing 47 operating units and 11 under construction at that time.",
+      "related_to": [
+        "hpr1000",
+        "cap1000",
+        "iaea-safeguards",
+        "fukushima-daiichi"
+      ],
+      "citations": [
+        {
+          "label": "NNSA Overview, Ministry of Ecology and Environment",
+          "url": "https://nnsa.mee.gov.cn/english/nnsa/overview/"
+        },
+        {
+          "label": "Department of Nuclear Power Safety Regulation, NNSA",
+          "url": "https://nnsa.mee.gov.cn/english/nnsa/organization/Headquarters/201805/t20180515_439552.html"
+        },
+        {
+          "label": "2012 Report on Comprehensive Safety Check on Civil Nuclear Facilities",
+          "url": "https://english.mee.gov.cn/News_service/news_release/201206/t20120621_231995.shtml"
+        },
+        {
+          "label": "Full Text: Nuclear Safety in China (State Council white paper)",
+          "url": "https://nnsa.mee.gov.cn/english/news/201909/t20190904_732338.html"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "National Nuclear Safety Administration of China"
+      ]
+    },
+    {
+      "slug": "nra-japan",
+      "term": "NRA (Japan)",
+      "topic": "nuclear",
+      "short_definition": "Japan's Nuclear Regulation Authority, the independent civilian regulator established 19 September 2012 under the Ministry of the Environment to oversee all civil nuclear safety and security.",
+      "full_definition": "The Nuclear Regulation Authority (Genshiryoku Kisei Iinkai) is the Japanese central government commission responsible for civilian nuclear safety regulation, radiation monitoring, safeguards, and security. It was launched on 19 September 2012 under the Act for Establishment of the Nuclear Regulation Authority (Act No. 47 of 2012, promulgated 27 June 2012), an Article 3 commission attached to the Ministry of the Environment. The NRA absorbed the functions of the Nuclear and Industrial Safety Agency (NISA), which had sat inside the promotion-oriented Ministry of Economy, Trade and Industry (METI), and the Nuclear Safety Commission under the Cabinet Office. The reorganization was a direct response to the March 2011 Fukushima Daiichi accident and to the National Diet inquiry's finding that the prior structure entangled promotion with regulation.\n\nThe commission is chaired by one Chairperson and four Commissioners, all appointed by the Prime Minister with both-house Diet consent for five-year terms. Shunichi Tanaka served as the inaugural Chairperson (2012 to 2017), followed by Toyoshi Fuketa (2017 to 2022) and Shinsuke Yamanaka (from September 2022). The commission is supported by the Nuclear Regulation Authority Secretariat with roughly 1,100 staff at headquarters in 1-9-9 Roppongi, Minato-ku, Tokyo, plus regional offices co-located with every operating site. Decisions are taken in weekly public meetings, with minutes and webcasts archived at nra.go.jp.\n\nThe NRA's most consequential output is the New Regulatory Requirements that entered force on 8 July 2013 for commercial light-water reactors (and on 18 December 2013 for reprocessing and fuel-cycle facilities). The rules impose: a 40-year operating-life ceiling under the revised Reactor Regulation Act (Article 43-3-32), extendable once by up to 20 years; a back-fit obligation that applies new standards to existing plants; site-specific design-basis ground motion and tsunami reassessments; volcanic, tornado, and forest-fire hazard screening; and mandatory severe-accident management for core damage, containment failure, and aircraft-impact scenarios, including filtered containment venting and an emergency control facility.\n\nPlants must obtain three sequential NRA approvals before restart: a Reactor Installation change permit, a Construction Plan approval, and Operational Safety Program approval, followed by pre-service inspection. As of mid-2024 the NRA had cleared ten reactors at five sites for restart under the post-Fukushima framework, while keeping Tokyo Electric's Kashiwazaki-Kariwa under additional security-related corrective action orders. The NRA also coordinates the IAEA-monitored discharge of ALPS-treated water from Fukushima Daiichi that began on 24 August 2023.",
+      "related_to": [
+        "fukushima-daiichi-accident",
+        "iaea",
+        "light-water-reactor",
+        "alps-treated-water"
+      ],
+      "citations": [
+        {
+          "label": "Nuclear Regulation Authority (official English site)",
+          "url": "https://www.nra.go.jp/english/"
+        },
+        {
+          "label": "Outline of Nuclear Regulation of Japan (NRA reference material)",
+          "url": "https://www.nra.go.jp/data/000148578.pdf"
+        },
+        {
+          "label": "Act for Establishment of the Nuclear Regulation Authority (OECD/NEA text)",
+          "url": "https://www.oecd-nea.org/upload/docs/application/pdf/2020-03/act_for_establishment_of_the_nuclear_regulation_authority_.pdf"
+        },
+        {
+          "label": "Profile of NRA Commissioners",
+          "url": "https://www.nra.go.jp/english/e_nra/outline/02.html"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Nuclear Regulation Authority Japan"
+      ]
+    },
+    {
       "slug": "danu",
       "term": "NRC DANU",
       "topic": "nuclear",
@@ -1398,6 +1676,39 @@
       "aliases": [
         "Division of Advanced Reactors and Non-Power Production and Utilization Facilities"
       ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "nrc-secy",
+      "term": "NRC SECY paper",
+      "topic": "nuclear",
+      "short_definition": "A SECY paper is a written issue paper that NRC staff submit through the Office of the Secretary to the five Commissioners, recommending a policy, rulemaking, licensing, or adjudicatory decision.",
+      "full_definition": "A SECY paper is the principal decision document by which the staff of the U.S. Nuclear Regulatory Commission asks the five-member Commission to act. The name comes from the Office of the Secretary of the Commission (SECY), which assigns the paper a serial number in the form SECY-YY-NNNN (for example SECY-93-087 on advanced light-water reactor policy, SECY-16-0005, and SECY-22-0018) and controls its movement between staff, the Commissioners, and the public docket. SECY papers cover policy issues, security matters, rulemaking, adjudicatory matters, and general information from 1996 onward in the public collection, and they are the primary written input the Commission receives when it is asked to choose among regulatory options.\n\nPapers are classified by the kind of action requested. Notation Vote papers ask each Commissioner to mark a vote sheet \"Approve,\" \"Disapprove,\" \"Abstain,\" or \"Not Participating,\" with the majority determined by the count of Approve and Disapprove votes. Affirmation papers, used for adjudicatory orders and certain rulemakings, are voted in notation form and then affirmed in a public meeting, with individual Commissioner views circulated at least 3 business days before the affirmation session. Negative Consent papers take effect unless a Commissioner objects within a stated period, and Information Reports (such as the March 3, 2022 SECY-22-0018) require no vote. A typical paper carries standard front matter (FOR, FROM, SUBJECT), then Purpose, Summary, Background, Discussion, Commitments, Recommendation, Coordination, and Resources sections.\n\nOnce voting closes, the Office of the Secretary records the outcome in a Staff Requirements Memorandum (SRM), which states the Commission's decision, any modifications to the staff recommendation, and action due dates back to the Executive Director for Operations or other offices. A Commission Voting Record (CVR) publishing the individual votes and views is issued in parallel. As a general policy the paper itself is released to the public 10 business days after issuance unless it contains classified, safeguards, proprietary, privacy, enforcement, investigatory, or attorney work-product material; missing numbers in the public SECY index indicate papers withheld on those grounds. SECY papers therefore form the durable paper trail behind most generic Commission positions cited in later licensing reviews, including long-running guidance such as SRM-SECY-93-087 on digital instrumentation and control, which governed staff practice until the Commission revised it on May 25, 2023.",
+      "related_to": [
+        "nrc",
+        "part-53",
+        "combined-license",
+        "design-certification"
+      ],
+      "citations": [
+        {
+          "label": "NRC, Commission Papers (SECY)",
+          "url": "https://www.nrc.gov/reading-rm/doc-collections/commission/secys/index.html"
+        },
+        {
+          "label": "NRC, Commission Direction-Setting and Policymaking Activities",
+          "url": "https://www.nrc.gov/about-nrc/policymaking.html"
+        },
+        {
+          "label": "NRC Internal Commission Procedures, Chapter II: Decision Documents",
+          "url": "https://www.nrc.gov/docs/ML1611/ML16112A110.pdf"
+        },
+        {
+          "label": "NRC Internal Commission Procedures, Chapter III: Voting",
+          "url": "https://www.nrc.gov/docs/ML1611/ML16112A122.pdf"
+        }
+      ],
+      "aliases": [],
       "last_updated": "2026-06-12"
     },
     {
@@ -1714,6 +2025,76 @@
       "last_updated": "2026-06-12"
     },
     {
+      "slug": "rosatom",
+      "term": "Rosatom",
+      "topic": "nuclear",
+      "short_definition": "Rosatom is the Russian Federation's state atomic energy corporation, established by Federal Law No. 317-FZ of 1 December 2007, holding monopoly authority over civil and military nuclear assets and the leading global exporter of VVER-1200 reactor units.",
+      "full_definition": "The State Atomic Energy Corporation Rosatom (Gosudarstvennaya korporatsiya po atomnoi energii \"Rosatom\") is the non-commercial state corporation that consolidates the Russian Federation's civilian and military nuclear assets under a single legal entity. It was created by Federal Law No. 317-FZ \"On the State Atomic Energy Corporation Rosatom,\" signed by President Vladimir Putin on 1 December 2007, which dissolved the Federal Agency on Atomic Energy (Rosatom's predecessor and itself successor to the Soviet Ministry of Medium Machine-Building, Minsredmash) and vested its functions in the new corporation. Article 4 of 317-FZ assigns Rosatom responsibility for state policy on nuclear energy, nuclear and radiation safety, the nuclear weapons complex, and international cooperation. The civilian generation and fuel-cycle businesses are held through the wholly owned joint-stock vehicle Atomenergoprom.\n\nPer Rosatom's own corporate disclosure (rosatom.ru/en/about-us), the holding now comprises over 550 enterprises employing roughly 415,000 people and generates 19.66 percent of Russia's electricity through subsidiary Rosenergoatom, which operates 11 nuclear power stations inside Russia. Rosatom also operates the world's only nuclear-powered icebreaker fleet via FSUE Atomflot and is the federal infrastructure operator for the Northern Sea Route under Federal Law No. 525-FZ of 27 December 2018.\n\nRosatom's flagship export product is the AES-2006 / VVER-1200, a Generation III+ pressurized-water reactor of approximately 1,200 MWe gross. The reference unit, Novovoronezh II Unit 1, entered commercial operation in February 2017. Export VVER-1200 units are under construction at Akkuyu in Turkey (four units, first concrete April 2018), Rooppur in Bangladesh (two units), El Dabaa in Egypt (four units, first concrete on Unit 1 July 2022), and Paks II in Hungary; the Belarusian NPP at Ostrovets (two VVER-1200 units) entered commercial operation in 2020 and 2023. Rosatom's 2023 key operating results report (report.rosatom.ru) records a foreign order portfolio of 22 power units across overseas projects and ten-year backlog of approximately USD 200 billion. Rosatom is not subject to comprehensive US or EU sectoral sanctions as of 2026, although individual subsidiaries and officials have been designated, and US imports of Russian low-enriched uranium are restricted by the Prohibiting Russian Uranium Imports Act (Public Law 118-62) signed 13 May 2024.",
+      "related_to": [
+        "10-cfr-part-110",
+        "npt",
+        "infcirc-153",
+        "123-agreement"
+      ],
+      "citations": [
+        {
+          "label": "Rosatom, About Us (official corporate page)",
+          "url": "https://rosatom.ru/en/about-us/"
+        },
+        {
+          "label": "Federal Law No. 317-FZ on the State Atomic Energy Corporation Rosatom (ECOLEX)",
+          "url": "https://www.ecolex.org/details/legislation/federal-law-no-317-fz-on-the-state-atomic-energy-corporation-rosatom-lex-faoc079146/"
+        },
+        {
+          "label": "Rosatom, Short History of the Russian Nuclear Industry",
+          "url": "https://www.rosatom.ru/en/press-centre/short-history-of-the-russian-nuclear-industry/"
+        },
+        {
+          "label": "Rosatom 2023 Key Operating Results (annual public report)",
+          "url": "https://www.report.rosatom.ru/go_eng/go_rosatom_eng_2023/rosatom_key_2023_eng.pdf"
+        }
+      ],
+      "aliases": [
+        "Russian State Atomic Energy Corporation"
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "rostekhnadzor",
+      "term": "Rostekhnadzor",
+      "topic": "nuclear",
+      "aliases": [
+        "Russian Federal Environmental Industrial and Nuclear Supervision Service"
+      ],
+      "short_definition": "Rostekhnadzor is the Russian federal executive body established in 2004 that licenses and supervises civil nuclear, radiation, industrial, and hydraulic safety across the Russian Federation.",
+      "full_definition": "Rostekhnadzor, formally the Federal Service for Ecological, Technological and Nuclear Supervision (Federalnaya sluzhba po ekologicheskomu, tekhnologicheskomu i atomnomu nadzoru), is the Russian government's federal executive body for state regulation of nuclear and radiation safety in the use of atomic energy, alongside industrial, environmental, and hydraulic supervision functions. It was created by Presidential Decree No. 314 of 9 March 2004 \"On the System and Structure of Federal Executive Bodies,\" which restructured Russia's executive agencies into ministries, services, and agencies; its specific mandate and powers were then fixed by Government Resolution No. 401 of 30 July 2004 \"On the Federal Service for Ecological, Technological and Nuclear Supervision.\" The agency absorbed the former Gosatomnadzor (Federal Nuclear Oversight Service) together with the Federal Service for Technological Oversight and selected environmental supervision functions.\n\nIts nuclear remit derives from Federal Law No. 170-FZ of 21 November 1995 \"On the Use of Atomic Energy,\" which establishes the legal basis for civil atomic energy in Russia and assigns state safety regulation, including licensing of siting, construction, operation, and decommissioning of nuclear installations, radiation sources, and storage facilities. Licensing procedures are detailed in Government Resolution No. 865 of 14 July 1997. Rostekhnadzor issues operating licenses for Russia's commercial power reactors operated by Rosenergoatom (part of the Rosatom State Corporation), inspects Rosatom fuel cycle and research facilities, and approves federal nuclear safety norms and rules in the \"NP\" series, such as NP-001 (general safety provisions for nuclear power plants) and NP-082 (reactor safety rules). It excludes military nuclear facilities, which fall under the Ministry of Defence.\n\nThe service is headquartered at Alexandra Lukyanova Street 4 in Moscow and is led by Aleksandr Trembitsky, appointed by Prime Minister Mikhail Mishustin on 30 March 2021 after eight years as deputy head. Following Presidential Decree No. 636 of 12 May 2008, Rostekhnadzor was temporarily subordinated to the Ministry of Natural Resources, then restored to direct subordination to the Government of the Russian Federation by Decree No. 780 of 23 June 2010. As of its most recent organizational reports, the agency operates central headquarters plus regional industrial and environmental departments and seven interregional territorial departments for nuclear and radiation safety. Rostekhnadzor represents Russia under the IAEA Convention on Nuclear Safety, submits the Russian Federation's national reports, and has hosted IAEA Integrated Regulatory Review Service (IRRS) missions in 2009 and 2013.",
+      "related_to": [
+        "asnr",
+        "cnsc",
+        "onr-gda",
+        "cns"
+      ],
+      "citations": [
+        {
+          "label": "Federal Law No. 170-FZ of 21 November 1995 'On the Use of Atomic Energy' (OECD NEA copy)",
+          "url": "https://www.oecd-nea.org/upload/docs/application/pdf/2020-03/russ-fed-law170-nov1995-en.pdf"
+        },
+        {
+          "label": "Russian Federation 8th National Report under the Convention on Nuclear Safety (IAEA)",
+          "url": "https://www.iaea.org/sites/default/files/21/07/national_report_of_the_russian_federation_for_the_8th_review_meeting.pdf"
+        },
+        {
+          "label": "Rostekhnadzor official site (Federal Environmental, Industrial and Nuclear Supervision Service of Russia)",
+          "url": "https://en.gosnadzor.ru/"
+        },
+        {
+          "label": "Federal Law No. 170-FZ unofficial translation (WTO accession dossier)",
+          "url": "https://www.wto.org/english/thewto_e/acc_e/rus_e/wtaccrus58_leg_269.pdf"
+        }
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
       "slug": "123-agreement",
       "term": "Section 123 Agreement",
       "topic": "nuclear",
@@ -1782,6 +2163,41 @@
       "last_updated": "2026-06-12",
       "aliases": [
         "Commercial Space Transportation Advisory Committee"
+      ]
+    },
+    {
+      "slug": "space-launch-safety-act",
+      "term": "Commercial Space Launch Amendments Act of 2024",
+      "topic": "space",
+      "short_definition": "Informal label for the 2024 statutory amendments to U.S. commercial space launch law, enacted across P.L. 118-63 and P.L. 118-159, that reset FAA AST authorities and extended the human-spaceflight learning period.",
+      "full_definition": "\"Commercial Space Launch Amendments Act of 2024\" is a colloquial label used by industry counsel for the package of 2024 statutory amendments to Chapter 509 of Title 51 of the U.S. Code, the commercial space launch authority administered by the FAA Office of Commercial Space Transportation (AST). No single statute with that exact title was enacted; the changes were carried in two laws. The first is the FAA Reauthorization Act of 2024 (Public Law 118-63, H.R. 3935), signed by President Biden on May 16, 2024, whose Title VI (\"Commercial Space\") amends 51 U.S.C. ch. 509 to direct AST workforce growth, mandate airspace integration upgrades for launch and reentry by December 2026, and require the FAA to deliver a Part 450 implementation report to Congress. The second is the Servicemember Quality of Life Improvement and National Defense Authorization Act for FY2025 (Public Law 118-159), signed December 23, 2024, whose Title LVI \u00a75702 extended the statutory moratorium on FAA human-occupant safety regulation under 51 U.S.C. \u00a750905(c) from January 1, 2025 to January 1, 2028. Note: Public Law 118-272, sometimes cited as the source, is in fact the Thomas R. Carper Water Resources Development Act of 2024, signed January 4, 2025, and is unrelated to commercial spaceflight.\n\nOperationally, the 2024 amendments preserve the \"learning period\" framework first created by the Commercial Space Launch Amendments Act of 2004 (P.L. 108-492), under which FAA may regulate crew and spaceflight participant safety only on the basis of design features or operating practices that have caused a serious or fatal injury, or contributed to an unplanned event posing a high risk of such injury. They also direct AST to accelerate Part 450 license processing, harmonize airspace deconfliction with ATO, and report on staffing relative to the Part 450 application backlog.\n\nFor operators, the practical effect through January 1, 2028 is that human spaceflight safety remains governed by 14 CFR Part 460 informed-consent and crew training rules rather than prescriptive occupant-safety regulation, while launch and reentry vehicle licensing continues under the consolidated 14 CFR Part 450 framework that fully superseded the legacy Parts 415, 417, 431, and 435 on March 10, 2026.",
+      "related_to": [
+        "faa-part-450",
+        "ac-450-41-1",
+        "slr-2",
+        "comstac"
+      ],
+      "citations": [
+        {
+          "label": "Public Law 118-63 (FAA Reauthorization Act of 2024), Congress.gov",
+          "url": "https://www.congress.gov/bill/118th-congress/house-bill/3935/text"
+        },
+        {
+          "label": "Public Law 118-159, govinfo (learning period extension, Title LVI \u00a75702)",
+          "url": "https://www.govinfo.gov/content/pkg/PLAW-118publ159/html/PLAW-118publ159.htm"
+        },
+        {
+          "label": "51 U.S.C. Chapter 509, Commercial Space Launch Activities",
+          "url": "https://uscode.house.gov/view.xhtml?path=%2Fprelim%40title51%2Fsubtitle5%2Fchapter509&edition=prelim"
+        },
+        {
+          "label": "CRS R48582, Commercial Space Launch and Reentry Regulations: Overview and Select Issues",
+          "url": "https://www.congress.gov/crs-product/R48582"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "CSLAA 2024"
       ]
     },
     {
@@ -2025,6 +2441,77 @@
       "last_updated": "2026-06-12"
     },
     {
+      "slug": "fcc-part-5",
+      "term": "FCC Part 5",
+      "topic": "space",
+      "short_definition": "47 CFR Part 5 is the FCC's Experimental Radio Service rule, which authorizes non-commercial experimentation, product development, and market trials, including space and earth station experimental authorizations.",
+      "full_definition": "Codified at 47 CFR Part 5, the Experimental Radio Service (ERS) provides the framework under which the FCC grants non-commercial authority to transmit on essentially any radio frequency for scientific or technical research, product development, market trials, equipment certification testing, and (since the 2013 overhaul) medical-device testing and compliance testing. Section 5.3 sets the permissible purposes; Section 5.5 defines the authorization types; and Section 5.71 sets license terms. ERS authorizations are unprotected and operate on a non-interference basis (NIB) to all licensed services, and licensees are barred from providing commercial service or charging fees for the operation.\n\nThe current structure dates to the Report and Order in ET Docket No. 10-236 (FCC 13-15), adopted January 31, 2013, which became effective May 29, 2013 (78 FR 25162, April 29, 2013). That order created three new categories alongside the legacy \"conventional\" license: the Program Experimental Radio License (for universities, federal research labs, RF equipment manufacturers, and medical research institutions, with a streamlined online experiment-registration process), the Medical Testing License, and the Compliance Testing License. A separate Spectrum Horizons license for devices above 95 GHz was added in 2019. License terms run two years for conventional grants (extendable to five with justification), five years for program, medical, and compliance testing licenses, and ten years (non-renewable) for Spectrum Horizons. Special Temporary Authority (STA) under Section 5.61 covers operations of six months or less and must be filed at least ten days before the proposed start.\n\nFor orbital activities, Part 5 is the licensing pathway for experimental satellites and earth stations that do not fit, or are not yet ready for, a Part 25 commercial space station license. Applications are filed in the Experimental Licensing System (ELS) and reviewed by the Office of Engineering and Technology in coordination with the Space Bureau. Per Section 5.64, satellite applicants must submit an orbital debris mitigation (ODM) showing aligned with Section 25.114(d)(14), including a collision-probability assessment (less than 0.001 for NGSO systems using NASA debris-assessment software) and a disposal plan with a success probability of 0.9 or greater. Applicants must also submit an ITU satellite network filing and commit to ITU cost recovery before grant. Long-duration experimental missions (over six months) use FCC Form 442; shorter missions use the STA process.",
+      "related_to": [
+        "fcc-part-25",
+        "fcc-22-74",
+        "itu-api-crc",
+        "odmsp"
+      ],
+      "citations": [
+        {
+          "label": "eCFR: 47 CFR Part 5, Experimental Radio Service",
+          "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-5"
+        },
+        {
+          "label": "FCC: Part 5 Experimental Licensing (Space)",
+          "url": "https://www.fcc.gov/space/part-5-experimental-licensing"
+        },
+        {
+          "label": "FCC Report and Order FCC 13-15, ET Docket 10-236 (78 FR 25162, Apr. 29, 2013)",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2013-04-29/pdf/2013-08528.pdf"
+        },
+        {
+          "label": "FCC: Part 5 Experimental and STA Space Station Application Checklist",
+          "url": "https://www.fcc.gov/space/part-5-experimental-and-special-temporary-authority-sta-space-station-application-checklist"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "47 CFR Part 5"
+      ]
+    },
+    {
+      "slug": "fcc-part-97",
+      "term": "FCC Part 97",
+      "topic": "space",
+      "short_definition": "FCC 47 CFR Part 97 governs the U.S. Amateur Radio Service, including amateur satellites operated under noncommercial rules, with space station requirements set in Section 97.207.",
+      "full_definition": "47 CFR Part 97 is the Federal Communications Commission rulebook for the Amateur Radio Service, the noncommercial radiocommunication service for self-training, intercommunication, and technical investigation defined in Subpart A (Sections 97.1 through 97.21). Authority flows from the Communications Act of 1934 and the ITU Radio Regulations, which reserve specific HF, VHF, UHF, and microwave bands for amateur and amateur-satellite use. Because Part 97 prohibits any pecuniary interest in operation, it is the licensing vehicle of choice for university and hobbyist cubesats but is generally unavailable to commercial smallsats, which file instead under Part 25 or, for experimental missions, Part 5.\n\nSection 97.3(a)(41) defines a space station as any amateur station located more than 50 km above the Earth's surface, and Section 97.207 sets the operating regime. Only a licensed amateur may serve as license grantee. Permitted downlink and crosslink segments are limited to 7.0 to 7.1 MHz, 14.00 to 14.25 MHz, 18.068 to 18.168 MHz, 21.00 to 21.45 MHz, 24.89 to 24.99 MHz, 28.0 to 29.7 MHz, 144 to 146 MHz, 435 to 438 MHz, 2400 to 2450 MHz, 3.40 to 3.41 GHz, 5.83 to 5.85 GHz, 10.45 to 10.50 GHz, 24.00 to 24.05 GHz, plus the 47, 76, 122, 134, 241, and higher GHz amateur allocations. The station must be capable of cessation of transmissions by telecommand whenever ordered by the FCC, and only Amateur Extra class operators may serve as control operators for telecommand stations under Section 97.213.\n\nSection 97.207(g) requires three written notifications to the FCC Space Bureau at 45 L Street NE, Washington, DC 20554. The pre-space notification is due within 30 days of launch vehicle selection and no later than 90 days before integration, and must include the Appendix 4 and Resolution 642 information called for by ITU Radio Regulations Articles 9 and 11. The in-space notification is due within 7 days after transmissions begin, and the post-space notification is due within 3 months of termination, or within 24 hours if the FCC orders shutdown. Following the 2022 FCC Report and Order FCC 22-74 and the 2024 amendments, Section 97.207 also pulls in orbital debris mitigation showings aligned with the U.S. Government Orbital Debris Mitigation Standard Practices and IARU frequency coordination, the de facto gate for any amateur cubesat manifest.",
+      "related_to": [
+        "fcc-part-25",
+        "fcc-22-74",
+        "itu-api-crc",
+        "iadc"
+      ],
+      "citations": [
+        {
+          "label": "eCFR: 47 CFR Part 97 - Amateur Radio Service",
+          "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97"
+        },
+        {
+          "label": "eCFR: 47 CFR 97.207 - Space station",
+          "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-C/section-97.207"
+        },
+        {
+          "label": "eCFR: 47 CFR 97.3 - Definitions",
+          "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97/subpart-A/section-97.3"
+        },
+        {
+          "label": "FCC: Space Stations",
+          "url": "https://www.fcc.gov/space/space-stations"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Amateur radio service",
+        "Cubesat amateur"
+      ]
+    },
+    {
       "slug": "fcc-market-access",
       "term": "FCC market access",
       "topic": "space",
@@ -2057,6 +2544,41 @@
       "last_updated": "2026-06-12",
       "aliases": [
         "47 CFR 25.137"
+      ]
+    },
+    {
+      "slug": "flight-safety-system",
+      "term": "Flight Safety System (FSS)",
+      "topic": "space",
+      "aliases": [
+        "FSS"
+      ],
+      "related_to": [
+        "faa-part-450",
+        "ac-450-41-1",
+        "slr-2",
+        "comstac"
+      ],
+      "last_updated": "2026-06-12",
+      "short_definition": "The high-reliability onboard plus ground system, required under 14 CFR 450.145, that terminates or aborts a launch or reentry vehicle whose failure would endanger the public.",
+      "full_definition": "A Flight Safety System (FSS) is the safety-critical chain of sensors, decision logic, command links, ordnance, and ground infrastructure that an FAA-licensed launch or reentry operator uses to end a vehicle's flight before it endangers the uninvolved public. Under the Streamlined Launch and Reentry License Requirements final rule (14 CFR Part 450), published December 10, 2020 and effective March 10, 2021, the FSS is the implementing hardware behind the flight abort rules of 14 CFR 450.108 and is governed primarily by 14 CFR 450.143 and 14 CFR 450.145. Legacy programs may continue under prior FAA AST regulations only through March 10, 2026, after which all licensees must operate under Part 450.\n\nThe reliability tier is set by public risk. When any reasonably foreseeable failure mode in a significant period of flight could produce more than 1 x 10^-2 conditional expected casualties in uncontrolled areas, the operator must use a Highly Reliable Flight Safety System (HRFSS) meeting 14 CFR 450.145. That section, captioned \"Highly reliable flight safety system,\" requires a design reliability of 0.999 at 95 percent confidence with commensurate design, analysis, and testing for the onboard portion, and the same 0.999 at 95 percent confidence for any ground-based, space-based, or otherwise off-vehicle portion if used. Operators must also monitor in-flight environments to validate component performance and adjust inspection or life-limit intervals. When consequence falls between 1 x 10^-2 and 1 x 10^-3 conditional expected casualties, a Reduced Reliability FSS (RRFSS) under 14 CFR 450.143 is acceptable; the FAA published an Advisory Circular for RRFSS design, test, and documentation on May 14, 2025.\n\nA modern FSS typically implements Autonomous Flight Safety System (AFTS) logic, in which redundant onboard flight computers (commonly triple-redundant, GPS plus inertial) evaluate position, velocity, and state against pre-loaded mission rules and command ordnance without a human range safety officer on the loop. AFTS is now the baseline at Cape Canaveral SFS, Vandenberg SFB, and Wallops, and the Part 450 application package required under 450.145(d) must include a system description, subsystem diagram, reliability analyses, tracking validation, and qualification, acceptance, and preflight test plans.",
+      "citations": [
+        {
+          "label": "14 CFR 450.145 - Highly reliable flight safety system (eCFR)",
+          "url": "https://www.ecfr.gov/current/title-14/chapter-III/subchapter-C/part-450/subpart-C/section-450.145"
+        },
+        {
+          "label": "14 CFR 450.143 - Safety-critical system design, test, and documentation (eCFR)",
+          "url": "https://www.ecfr.gov/current/title-14/chapter-III/subchapter-C/part-450/subpart-C/section-450.143"
+        },
+        {
+          "label": "Streamlined Launch and Reentry License Requirements, Final Rule (Federal Register, Dec 10, 2020)",
+          "url": "https://www.federalregister.gov/documents/2020/12/10/2020-22042/streamlined-launch-and-reentry-license-requirements"
+        },
+        {
+          "label": "Agency Advisory Circular: Reduced Reliability Flight Safety System Design, Test, and Documentation (Federal Register, May 14, 2025)",
+          "url": "https://www.federalregister.gov/documents/2025/05/14/2025-08496/agency-advisory-circular-reduced-reliability-flight-safety-system-design-test-and-documentation"
+        }
       ]
     },
     {
