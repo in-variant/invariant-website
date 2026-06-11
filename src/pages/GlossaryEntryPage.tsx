@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { getEntry, GLOSSARY } from '../data/glossary'
+import { renderLinkified } from '../components/linkifyGlossary'
 
 const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace', string> = {
   space: 'Space',
@@ -77,9 +78,13 @@ export default function GlossaryEntryPage() {
           </p>
 
           <div className="mt-10 space-y-4 font-sans text-base leading-relaxed text-ink/70">
-            {entry.full_definition.split(/\n\n+/).map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+            {(() => {
+              // Skip self-linking, but cross-link to every other glossary term mentioned.
+              const linked = new Set<string>([entry.slug])
+              return entry.full_definition.split(/\n\n+/).map((p, i) => (
+                <p key={i}>{renderLinkified(p, linked)}</p>
+              ))
+            })()}
           </div>
 
           {related.length > 0 && (
