@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 
 const LINKS = [
-  { to: '/compliance', label: 'Compliance' },
   { to: '/product', label: 'Product' },
   { to: '/probe', label: 'Probe' },
   { to: '/blog', label: 'Blog' },
+  { to: '/compliance', label: 'Compliance' },
 ]
 
 export default function Nav() {
