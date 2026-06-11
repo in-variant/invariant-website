@@ -10,7 +10,7 @@ export default function NrcLicenseTimeline() {
       breadcrumbLabel="NRC license timeline"
       topic="nuclear"
       ogImage="https://invariant-ai.com/og/how-long-does-nrc-license-take.png"
-      about={['10-cfr-part-50', '10-cfr-part-52', '10-cfr-part-53', 'combined-license', 'early-site-permit']}
+      about={['10-cfr-part-50', '10-cfr-part-52', '10-cfr-part-53', 'combined-license', 'early-site-permit', 'kairos-hermes', 'nei-21-07-ticap']}
       keywords={[
         'NRC license timeline',
         'how long does an NRC license take',

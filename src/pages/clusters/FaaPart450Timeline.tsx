@@ -10,7 +10,7 @@ export default function FaaPart450Timeline() {
       breadcrumbLabel="FAA Part 450 timeline"
       topic="space"
       ogImage="https://invariant-ai.com/og/faa-part-450-license-timeline.png"
-      about={['faa-part-450']}
+      about={['faa-part-450', 'flight-safety-system', 'ac-450-41-1']}
       keywords={[
         'FAA Part 450',
         '14 CFR Part 450',
