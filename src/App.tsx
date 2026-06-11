@@ -36,6 +36,7 @@ const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
 const Research = lazy(() => import('./pages/Research'))
 const Compliance = lazy(() => import('./pages/Compliance'))
+const Trust = lazy(() => import('./pages/Trust'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -99,6 +100,7 @@ export default function App() {
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
             <Route path="/research" element={<Research />} />
             <Route path="/compliance" element={<Compliance />} />
+            <Route path="/trust" element={<Trust />} />
           </Route>
         </Routes>
       </Suspense>
