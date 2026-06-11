@@ -114,7 +114,7 @@ export default function Regulators() {
   return (
     <>
       <Seo
-        title="Regulators directory — every US agency for space, nuclear, and aerospace compliance"
+        title="Regulators directory: every US agency for space, nuclear, and aerospace compliance"
         description="A concise directory of every US regulator a space, nuclear, or aerospace operator may need to engage with, including NRC, FAA AST, FCC Space Bureau, NOAA CRSRA, DDTC, and BIS."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}

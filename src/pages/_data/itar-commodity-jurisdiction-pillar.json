@@ -1,0 +1,312 @@
+{
+  "canonical_summary": "A commodity jurisdiction (CJ) determination is the formal Department of State decision, under 22 CFR Section 120.12, on whether an article, software, technology, or service is covered by the United States Munitions List (USML) and therefore controlled by the International Traffic in Arms Regulations (ITAR), or whether it instead falls to the Commerce Control List (CCL) under the Export Administration Regulations (EAR). The Directorate of Defense Trade Controls (DDTC) runs the process, but the outcome is the product of an inter-agency negotiation among State, Defense (acting through the Defense Technology Security Administration), and Commerce (acting through the Bureau of Industry and Security).\n\nFilings are made electronically on Form DS-4076 through the Defense Export Control and Compliance System (DECCS). The regulation promises a preliminary acknowledgment within 10 working days of a complete submission and gives the requester the right to ask for expedited handling after 45 days, but observed processing windows for substantive cases run 60 to 120 days, longer for novel autonomy, hypersonics, space, and AI systems that draw in service technical reviewers.\n\nThis page explains, in operative detail, what a CJ is, when it is mandatory versus optional, how to draft the DS-4076 description, function, performance, and technical data sections, how the State, Defense, and Commerce review actually flows, what the published Final Determinations record shows for post-2014 space hardware, and the tactical moves that shorten the cycle.",
+  "citations": [
+    {
+      "label": "22 CFR Section 120.12, commodity jurisdiction determination procedures (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-B/section-120.12"
+    },
+    {
+      "label": "22 CFR Section 120.4, policy on use of the commodity jurisdiction procedure (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-A/section-120.4"
+    },
+    {
+      "label": "22 CFR Part 120, Subpart B (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-B"
+    },
+    {
+      "label": "22 CFR Section 120.12, Cornell Legal Information Institute mirror",
+      "url": "https://www.law.cornell.edu/cfr/text/22/120.12"
+    },
+    {
+      "label": "DDTC public portal, commodity jurisdiction landing page",
+      "url": "https://www.pmddtc.state.gov/commodity_jurisdiction/"
+    },
+    {
+      "label": "DDTC commodity jurisdiction knowledge base article",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_kb_article_page&sys_id=8a045f8cdb3cd30044f9ff621f961946"
+    },
+    {
+      "label": "DDTC CJ Final Determinations knowledge base article",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_kb_article_page&sys_id=6ea6afdcdbc36300529d368d7c96194b"
+    },
+    {
+      "label": "DDTC CJ Final Determinations consolidated index (PDF)",
+      "url": "https://www.pmddtc.state.gov/commodity_jurisdiction/documents/Final_Determinations.pdf"
+    },
+    {
+      "label": "DDTC CJ Final Determinations workbook (XLSX)",
+      "url": "https://www.pmddtc.state.gov/commodity_jurisdiction/documents/Final_Determinations.xlsx"
+    },
+    {
+      "label": "DDTC CJ frequently asked questions",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_public_portal_faq_detail&sys_id=dc8be99cdb3d5b4044f9ff621f9619cf"
+    },
+    {
+      "label": "DDTC Office of Defense Trade Controls Policy (DTCP) article",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_kb_article_page&sys_id=47ee3b08dbc7bf0044f9ff621f9619d7"
+    },
+    {
+      "label": "DDTC DECCS resource and CJ application page",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_kb_article_page&sys_id=86b7a4dadb415fc0d0a370131f961923"
+    },
+    {
+      "label": "DS-4076 commodity jurisdiction request form (DDTC attachment)",
+      "url": "https://www.pmddtc.state.gov/sys_attachment.do?sys_id=3174759edbb140505c3070808c961995"
+    },
+    {
+      "label": "Form DS-4076 instructions (Reginfo PDF)",
+      "url": "https://www.reginfo.gov/public/do/DownloadDocument?objectID=11068501"
+    },
+    {
+      "label": "Bureau of Industry and Security training on commodity jurisdictions",
+      "url": "https://www.bis.doc.gov/index.php/documents/compliance-training/export-administration-regulations-training/1023-commodity-jurisdictions/file"
+    },
+    {
+      "label": "2014 ITAR USML Category XV interim final rule (Federal Register)",
+      "url": "https://www.federalregister.gov/documents/2014/05/13/2014-10806/amendment-to-the-international-traffic-in-arms-regulations-revision-of-us-munitions-list-category-xv"
+    },
+    {
+      "label": "2014 EAR companion rule creating the 9x515 series (Federal Register)",
+      "url": "https://www.federalregister.gov/documents/2014/05/13/2014-10807/revisions-to-the-export-administration-regulations-ear-control-of-spacecraft-systems-and-related"
+    },
+    {
+      "label": "2017 USML Category XV cleanup rule (Federal Register)",
+      "url": "https://www.federalregister.gov/documents/2017/01/10/2016-31751/international-traffic-in-arms-regulations-revision-of-us-munitions-list-category-xv"
+    },
+    {
+      "label": "Office of Space Commerce, ITAR controls on GPS and GNSS receivers",
+      "url": "https://space.commerce.gov/itar-controls-on-gps-gnss-receivers-updated/"
+    },
+    {
+      "label": "Office of Space Commerce, 2022 briefing on US export controls on GPS and GNSS equipment",
+      "url": "https://www.space.commerce.gov/wp-content/uploads/2022-03-US-export-controls-GPS-GNSS-equipment.pdf"
+    },
+    {
+      "label": "Office of Space Commerce, BIS export control overview for aerospace",
+      "url": "https://www.space.commerce.gov/wp-content/uploads/BIS_EXPORT_CONTROL.pdf"
+    },
+    {
+      "label": "Akin Gump, first significant changes in over a decade to US export controls on space-related items",
+      "url": "https://www.akingump.com/en/insights/alerts/first-significant-changes-in-over-a-decade-to-us-export-controls-on-space-related-items-and-activities"
+    },
+    {
+      "label": "Braumiller Law Group, commodity jurisdiction get it right",
+      "url": "https://www.braumillerlaw.com/commodity-jurisdiction-get-right/"
+    },
+    {
+      "label": "Torres Trade Law, CJ practice (WorldECR issue 49)",
+      "url": "https://www.torrestradelaw.com/blog_images/WorldECR%20issue%2049%20-%20Torres%20Pages.pdf"
+    },
+    {
+      "label": "Lexology, step by step overview of commodity jurisdiction",
+      "url": "https://www.lexology.com/library/detail.aspx?g=98eb0709-1ed7-4342-b404-56cedfa35c22"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is a commodity jurisdiction filing legally mandatory?",
+      "answer": "No. 22 CFR Section 120.4(a) says the commodity jurisdiction procedure is used if doubt exists as to whether an article or service is covered by the USML. The trigger is the exporter's own reasonable doubt, not a regulatory command. In practice, a CJ becomes effectively mandatory in three situations: when doubt about USML coverage cannot be resolved through self-classification, when an exporter wants an article removed from the USML (which requires the 30-day congressional notification only DDTC can initiate), and when reconsidering a prior CJ. Where USML language plainly captures the article, or where the order of review at 22 CFR Section 120.5 yields a clean answer, a CJ is optional and often unnecessary."
+    },
+    {
+      "question": "What is the regulatory deadline for a CJ determination?",
+      "answer": "There is no binding statutory deadline. 22 CFR Section 120.12(d) sets two performance targets. First, DDTC will issue a preliminary response within 10 working days of receipt of a complete request, acknowledging the filing and assigning a CJ case number. Second, if a final determination has not issued within 45 days, the requester may write to the Director of the Office of Defense Trade Controls Policy and ask for expedited processing. Those numbers are internal goals, not deadlines that bind the State, Defense, and Commerce reviewers. Treat the 45-day mark as the trigger for an expedite letter, and plan your program calendar around a realistic 60 to 120 day window."
+    },
+    {
+      "question": "How long does a CJ actually take in practice?",
+      "answer": "Practitioner experience and published DDTC metrics put typical CJs in a 60 to 120 day band from complete submission to issuance. Straightforward dual-use questions with clean prior precedent can clear in 60 to 90 days. Novel technologies, autonomy, hypersonics, space components, AI-enabled systems, and cybersecurity tools routinely run past 120 days, sometimes well past, because the Defense Technology Security Administration refers the case to a service technical office (Army, Navy, Air Force, or a combatant command) for substantive engineering input. That referral is the single biggest driver of timeline variance. Pre-engaging the relevant DoD technical authority before filing, where ethically and contractually permitted, materially shortens the loop."
+    },
+    {
+      "question": "Who actually decides a CJ, and is it just State?",
+      "answer": "Formally the Secretary of State decides, and DDTC's Office of Defense Trade Controls Policy is the action office. Substantively the determination is an inter-agency product. 22 CFR Section 120.12(a) requires consultation among the Departments of State, Defense, and Commerce, with disputes resolved under established procedures derived from Executive Order 13637. In practice the CJ officer routes the case in parallel to DDTC's internal licensing engineers, to the Defense Technology Security Administration (which often refers to a service technical office), and to the Bureau of Industry and Security at Commerce. Each agency returns a recommendation. DDTC reconciles and issues the signed letter, but if State, Defense, and Commerce disagree, the dispute escalates before a final answer."
+    },
+    {
+      "question": "What goes in the description, function, performance, and technical data sections of DS-4076?",
+      "answer": "The DS-4076 narrative drives the jurisdictional analysis. Description covers form, fit, configuration, materials, part and model numbers, end item integration, and whether the article is a part, component, accessory, attachment, or end item under 22 CFR Section 121.8. Function explains what the article does, its operating principles, all known military and civil end uses, and any Department of Defense development history. Performance is quantitative against the USML or CCL control thresholds: bias stability and angular random walk for inertial units, total ionizing dose and single event effects for rad-hard parts, range, endurance, and payload for unmanned systems. Technical data, in the sense of 22 CFR Section 120.10, covers design methodology, engineering analyses, manufacturing know-how, and software including source code where applicable."
+    },
+    {
+      "question": "How do I file the DS-4076 in DECCS?",
+      "answer": "Since 2020 DDTC requires electronic filing through the Defense Export Control and Compliance System (DECCS) commodity jurisdiction application. The company must first enroll in DECCS, create a super-user account, and complete identity proofing for authorized users. Note that registration under 22 CFR Part 122 is not required before submitting a CJ, per 22 CFR Section 120.12(f). The CJ application walks the requester through the DS-4076 fields, accepts attachments including the technical description package, marketing literature, drawings, schematics, photographs, and any prior DDTC or BIS correspondence, and collects the electronic signature of an empowered official. Incomplete packages are returned without action and reset the 10-working-day acknowledgment clock."
+    },
+    {
+      "question": "Can I appeal a CJ determination I disagree with?",
+      "answer": "Yes. 22 CFR Section 120.12(e) creates a two-step appeal. First, the requester files a written request for reconsideration with the Deputy Assistant Secretary of State for Defense Trade Controls, who responds in writing within 30 days. Second, if the requester remains aggrieved, a further appeal lies to the Assistant Secretary of State for Political-Military Affairs. Outside the appeal track, a requester can also file a fresh CJ with new technical data or design changes, which is functionally a reconsideration request. Self-classifying around a prior CJ determination without going back through the procedure is treated by DDTC as a compliance failure, so the appeal or refile path is the only safe route."
+    },
+    {
+      "question": "Where is the public CJ database and how do I use it as precedent?",
+      "answer": "DDTC maintains a running public record of final CJ determinations. The consolidated index PDF is posted at the DDTC commodity jurisdiction landing page, and a parallel Final Determinations workbook in XLSX form lets practitioners filter by requester, commodity description, case number, date, and outcome (USML category, ECCN, or EAR99). The underlying technical submissions are protected as proprietary and are not published. Before filing a new CJ, search the workbook for analogous commodities by keyword such as thruster, telescope, SAR, GNSS, or receiver. Citing a close prior determination in your own analysis tightens the inter-agency review and is one of the highest-leverage moves a requester can make to compress timelines."
+    },
+    {
+      "question": "What outcomes have CJs produced for commercial space hardware since 2014?",
+      "answer": "The 2014 USML Category XV rewrite created the 9x515 series on the CCL and built the pipeline that has moved most commercial space hardware to EAR control. Post-2014 CJs have consistently placed sub-threshold smallsat propulsion in ECCN 9A515.e, with USML jurisdiction retained only for thrusters above 1,500 seconds specific impulse and 1.1 MN-s total impulse under XV(e)(12). Earth observation telescopes with clear apertures below 0.50 m and panchromatic ground sample distance worse than 0.40 m have moved to 9A515.a.1 through a.3 or 6A003. The December 2016 Category XII rewrite restricted ITAR GPS and GNSS jurisdiction to SAASM and M-code receivers and certain anti-jam antennas, sending commercial receivers to ECCN 7A105 or 7A994."
+    },
+    {
+      "question": "What are the most common reasons a CJ is returned without action or comes back unfavorably?",
+      "answer": "The dominant failure mode is a description package that omits quantitative performance data against the specific USML or CCL thresholds at issue. DDTC and its interagency partners cannot apply the specially designed definition at 22 CFR Section 120.41 or the order of review at 22 CFR Section 120.5 without numbers. The second failure mode is skipping the recommended jurisdiction and reasoning: a DS-4076 that does not cite the specific USML paragraph and the specific ECCN subparagraph analyzed forces reviewers to redo the requester's homework. The third is incomplete attachments, missing drawings, marketing literature, or development history. A clean DS-4076 with quantitative performance, walked through the order of review, with a defensible recommended classification, is the package that clears."
+    },
+    {
+      "question": "Does filing a CJ waive ITAR registration or licensing obligations in the meantime?",
+      "answer": "No. A pending CJ does not authorize export, retransfer, or release of technical data to foreign persons. Until DDTC issues a final determination, the article's controlled status is whatever the requester's good-faith self-classification supports under the order of review at 22 CFR Section 120.5. If self-classification points to USML, ITAR registration under 22 CFR Part 122 and an appropriate license (DSP-5, DSP-85, TAA, MLA) are still required for any export or transfer during the pendency of the CJ. The one carve-out is the 22 CFR Section 120.12(f) rule that registration is not a prerequisite to filing the CJ itself, but that is a filing carve-out, not an operational one."
+    }
+  ],
+  "h1": "ITAR commodity jurisdiction request: how to file a CJ under 22 CFR Section 120.12",
+  "meta_title": "ITAR Commodity Jurisdiction Request: How to File a CJ",
+  "meta_description": "File an ITAR commodity jurisdiction (CJ) request under 22 CFR Section 120.12. DS-4076 fields, DECCS portal, inter-agency review, timelines, precedent outcomes.",
+  "sections": [
+    {
+      "heading": "What a commodity jurisdiction is and when to file",
+      "paragraphs": [
+        "A commodity jurisdiction (CJ) determination is the formal Department of State decision, issued by the Directorate of Defense Trade Controls (DDTC), on whether a given article, software, technology, or service is covered by the United States Munitions List (USML) at 22 CFR Part 121 and therefore controlled under the International Traffic in Arms Regulations (ITAR), or whether it falls under the Commerce Control List (CCL) and the Export Administration Regulations (EAR) administered by the Bureau of Industry and Security (BIS), or whether it is uncontrolled as EAR99.",
+        "The procedural rule is 22 CFR Section 120.12. The policy hook is 22 CFR Section 120.4(b), which provides that the CJ procedure is used with the U.S. Government if doubt exists as to whether an article or service is covered by the USML. The trigger is the exporter's own reasonable doubt, not a regulatory command.",
+        "On its face the rule makes CJ optional. In practice it becomes mandatory in three situations: when an exporter cannot resolve USML coverage through self-classification and the order of review at 22 CFR Section 120.5, when the exporter wants an article removed from the USML (which requires the 30-day congressional notification only the Secretary of State can initiate), and when reconsidering a prior CJ. A CJ is properly optional when USML Part 121 plainly describes the article, when only marketing confirmation is sought, or when the order of review yields a clean answer the exporter can document."
+      ],
+      "subsections": [
+        {
+          "heading": "The five categories of CJ inquiry",
+          "paragraphs": [
+            "Block 5 of Form DS-4076 enumerates five types of determination requests."
+          ],
+          "bullets": [
+            "Determination whether or not an article is covered by the USML, the classic doubt-resolution case.",
+            "Removal of an article from USML coverage, supported by extended marketing and end-use data (up to 10 years per Block 14a).",
+            "Reconsideration of a previous commodity jurisdiction determination, citing the prior CJ case number; only Blocks 3 and 6 of the form must be completed.",
+            "Request for a change to the USML Category designation assigned to an article, where the applicant believes the item is properly USML but in a different category.",
+            "Confirmation of the USML Category designation, often filed where downstream customers or foreign partners demand DDTC paper."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Form DS-4076 content: description, function, performance, technical data",
+      "paragraphs": [
+        "DS-4076 is the official CJ request form. The live electronic version in DECCS includes administrative fields (requester identity, point of contact, prior determinations, recommended jurisdiction, basis for the recommendation), but the substantive heart of the submission is the four-part technical narrative. Blocks marked with an asterisk are mandatory; unmarked blocks are optional but recommended, and incomplete submissions are returned without action (RWA)."
+      ],
+      "subsections": [
+        {
+          "heading": "Description",
+          "paragraphs": [
+            "A plain-language description of the article, including form, fit, configuration, materials of construction, and identifying part or model numbers. Identify the end item into which the article is incorporated, if any, and state whether the article is a part, component, accessory, attachment, or end item as those terms are defined in 22 CFR Section 121.8. Describe each variant separately. Attach marketing literature, drawings, schematics, and photographs."
+          ]
+        },
+        {
+          "heading": "Function",
+          "paragraphs": [
+            "What the article does, how it operates, and the purpose it serves in its intended end use. Explain operating principles in sufficient detail for a technical reviewer to understand how the item performs its task. Identify all known military and civil end uses. Disclose any Department of Defense contract development history. Where the same item is sold commercially, describe those sales including catalog availability and volume."
+          ]
+        },
+        {
+          "heading": "Performance",
+          "paragraphs": [
+            "A quantitative discussion against the specific USML and CCL control thresholds. For an inertial measurement unit, address bias stability, scale factor, and angular random walk. For a radiation-hardened integrated circuit, address total ionizing dose and single event effects thresholds. For an unmanned aerial system, address range, endurance, payload, and altitude. The performance section is what lets DDTC, BIS, and DTSA apply the specially designed definition at 22 CFR Section 120.41 and the order of review at 22 CFR Section 120.5."
+          ]
+        },
+        {
+          "heading": "Technical data",
+          "paragraphs": [
+            "Technical data in the sense of 22 CFR Section 120.10: design methodology, engineering analyses, manufacturing know-how, and software (including source code where applicable). Indicate whether any technical data is itself proposed for a jurisdictional determination distinct from the hardware. State a recommended jurisdiction and classification (for example USML Category XI(c), or ECCN 7A994, or EAR99) and cite the specific USML paragraph and ECCN subparagraph analyzed."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The State, Defense, and Commerce inter-agency review",
+      "paragraphs": [
+        "22 CFR Section 120.12(a) provides that the CJ determination entails consultation among the Departments of State, Defense, Commerce, and other U.S. Government agencies and industry in appropriate cases, and that State, Defense, and Commerce will resolve disputes in accordance with established procedures. The CJ is not a unilateral State decision."
+      ],
+      "subsections": [
+        {
+          "heading": "Operational workflow",
+          "bullets": [
+            "Filing. The requester submits DS-4076 through the DECCS commodity jurisdiction application.",
+            "Assignment. DDTC's Office of Defense Trade Controls Policy (DTCP) assigns a CJ officer who triages the case and issues a preliminary acknowledgment within 10 working days of a complete request, per 22 CFR Section 120.12(d).",
+            "Referral. The CJ officer routes the request, in parallel, to DDTC's internal compliance and licensing engineers, to the Defense Technology Security Administration (DTSA) at Defense (which often refers to a service technical office such as the Army, Navy, Air Force, or a combatant command), and to the Bureau of Industry and Security (BIS) at Commerce.",
+            "Recommendation. Each agency returns a recommendation: USML category and subparagraph if ITAR-controlled, proposed ECCN if EAR-controlled, or EAR99 if uncontrolled. Disagreements escalate under the State, Defense, Commerce dispute-resolution procedure referenced in 22 CFR Section 120.12(a).",
+            "Reconciliation and issuance. The CJ officer reconciles the inputs, drafts the final determination, and DDTC issues a signed CJ letter to the requester. State notifies Defense, Commerce, and other relevant agencies of initiation and conclusion."
+          ]
+        },
+        {
+          "heading": "Appeal",
+          "paragraphs": [
+            "22 CFR Section 120.12(e) creates a two-step appeal. A written request for reconsideration goes to the Deputy Assistant Secretary of State for Defense Trade Controls, who responds in writing within 30 days. A further appeal lies to the Assistant Secretary of State for Political-Military Affairs."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Typical CJ timelines: regulatory targets versus reality",
+      "paragraphs": [
+        "22 CFR Section 120.12(d) sets two timing benchmarks. DDTC will provide a preliminary response within 10 working days of receipt of a complete request, acknowledging the filing and assigning a CJ tracking number. If a final determination has not issued within 45 days, the requester may write to the Director of the Office of Defense Trade Controls Policy and request expedited processing.",
+        "Both numbers are internal performance targets, not statutory deadlines that bind the inter-agency reviewers. In practice, observed processing times run 60 to 120 days for typical industrial cases, with straightforward dual-use questions clearing in the lower half of that band and novel technologies (autonomy, hypersonics, space components, AI-enabled systems, cybersecurity tools) routinely running past 120 days.",
+        "The single biggest driver of timeline variance is whether DTSA refers the matter to a service technical office. DTSA, not DDTC engineering, is the long pole in most contested cases. Pre-engaging the relevant DoD technical authority before filing, where contractually and ethically permitted, materially shortens the loop."
+      ],
+      "bullets": [
+        "10 working days: regulatory target for preliminary acknowledgment and case-number assignment after a complete DS-4076.",
+        "45 days: regulatory threshold past which the requester may send a written expedite letter to the Director of DTCP.",
+        "60 to 120 days: realistic planning band for a substantive CJ from complete submission to signed determination.",
+        "Beyond 120 days: novel commodities and contested inter-agency cases, particularly those referred to a service technical office."
+      ]
+    },
+    {
+      "heading": "Precedent CJ outcomes: post-2014 space hardware",
+      "paragraphs": [
+        "The Public Law 113-66 and May 13, 2014 interim final rules at State and Commerce rewrote USML Category XV, created the 9x515 series on the CCL, and built the CJ pipeline that, over the following decade, moved most commercial space hardware off the USML. The DDTC Final Determinations workbook is the authoritative public record of those individual outcomes."
+      ],
+      "subsections": [
+        {
+          "heading": "Smallsat propulsion",
+          "paragraphs": [
+            "USML Category XV(e)(12) retains ITAR control over thrusters above 1,500 seconds specific impulse and 1.1 MN-s total impulse. Below those lines, electric thrusters move to ECCN 9A515.e and chemical systems to 9A604 or 9A005. Post-2014 CJs have consistently placed low-power Hall thrusters, cold-gas micro-propulsion, electrothermal water and resistojet systems, and small monopropellant kits on the EAR side, with the rationale that thrust and Isp fall below the XV(e)(12) thresholds and the article is not specially designed for an XV(a) spacecraft. That is the legal regime under which Busek, Astra Spacecraft Engines (formerly Accion), Aerojet's MPS-130, Phase Four, and Enpulsion ship commercially under EAR licensing."
+          ]
+        },
+        {
+          "heading": "Earth observation cameras and remote sensing payloads",
+          "paragraphs": [
+            "USML Category XV(a)(7) keeps ITAR jurisdiction over remote sensing spacecraft that beat fixed performance thresholds: clear-aperture diameter greater than 0.50 m for electro-optical, certain SWIR/MWIR/LWIR sensitivity bands, hyperspectral channel counts greater than ten across IR with band widths less than 20 nm, certain SAR center frequencies and bandwidths, and panchromatic ground sample distance better than 0.40 m. Below those lines, payloads move to ECCN 9A515.a.1 through a.3, or for many commercial multispectral instruments to 9A991 or 6A003 if standalone. This is the mechanism behind Planet's PlanetScope Doves, BlackSky, Capella, ICEYE-US, and Maxar's WorldView Legion sub-systems operating under EAR rather than DSP-5s."
+          ]
+        },
+        {
+          "heading": "GPS and GNSS receivers",
+          "paragraphs": [
+            "The State Department's December 31, 2016 final rule revising USML Category XII restricted ITAR jurisdiction over GPS and GNSS receivers to specifically enumerated military-grade items under Category XII(d): SAASM and M-code receivers, anti-jam controlled-radiation-pattern antennas, and receivers capable of operating above the historic 60,000 feet and 1,000 knots thresholds in certain configurations. Everything else moved to ECCN 7A105 or 7A994. Commercial space-rated receivers from NovAtel OEM7, Septentrio, u-blox, and General Dynamics Viceroy variants below the SAASM and M-code line have routinely cleared CJ as EAR-controlled, and CubeSat-class receivers from Tyvak, NanoAvionics, and Surrey are no longer ITAR by default."
+          ]
+        },
+        {
+          "heading": "Reading the DDTC database",
+          "paragraphs": [
+            "The Final Determinations workbook lists each CJ by case number (format CJ XXX-YY), requester, article description, and final jurisdiction. Filtering for spacecraft, satellite, thruster, telescope, camera, GNSS, or receiver surfaces the post-2014 trend: heavy EAR concentration for sub-threshold propulsion, sub-threshold optical and SAR payloads, and non-military GNSS receivers, with USML outcomes concentrated in M-code GPS, SAASM, hyperspectral IR sensors above the XV(a)(7) density line, and propulsion above the 1,500 second Isp and 1.1 MN-s line."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "DECCS portal mechanics",
+      "paragraphs": [
+        "Since 2020 DDTC requires CJ requests to be filed electronically through the Defense Export Control and Compliance System (DECCS) commodity jurisdiction application. Paper submissions are not accepted for routine filings. The CJ application is one module within DECCS, alongside registration, licensing, and advisory opinion applications.",
+        "Enrollment is the first hurdle. The company must create a super-user account, complete identity proofing for authorized users, and provision additional users under the super-user. The CJ application then walks the requester through the DS-4076 fields, accepts attachments (the technical description package, marketing brochures, drawings, prior DDTC or BIS correspondence), and collects the electronic signature of an empowered official.",
+        "Registration under 22 CFR Part 122 is not a prerequisite to filing a CJ, per 22 CFR Section 120.12(f). A pending CJ, however, does not authorize export, retransfer, or release of technical data to foreign persons. Until DDTC issues a final determination, the article's controlled status is whatever the requester's good-faith self-classification under 22 CFR Section 120.5 supports, and any export during pendency must be licensed accordingly."
+      ],
+      "bullets": [
+        "DECCS super-user account and identity proofing required before any CJ application.",
+        "All filings are electronic; paper DS-4076 submissions are not accepted.",
+        "Attachments cover description package, marketing brochures, drawings, schematics, photographs, and prior DDTC or BIS correspondence.",
+        "Empowered official electronic signature finalizes submission and starts the 10-working-day acknowledgment clock.",
+        "Incomplete packages are returned without action and reset the clock; the regulation's timing benchmarks only run from a complete request."
+      ]
+    },
+    {
+      "heading": "Tactical advice for a clean CJ filing",
+      "paragraphs": [
+        "A poorly supported DS-4076, particularly one that omits quantitative performance data or fails to walk through the order of review at 22 CFR Section 120.5, is the most common reason for return without action or an adverse determination. Conversely, a well-structured submission that crisply maps the article's description, function, performance, and technical data against the cited USML and CCL paragraphs gives DDTC and its interagency partners the record they need to issue a determination the requester can rely on for export compliance."
+      ],
+      "bullets": [
+        "Lead with the order of review. Walk through 22 CFR Section 120.5 explicitly: enumerated USML paragraph first, then specially designed analysis under 22 CFR Section 120.41, then candidate ECCN, then EAR99.",
+        "Quantify everything. Give numbers against the actual control thresholds, not adjectives. Isp in seconds, total impulse in N-s, aperture in meters, ground sample distance in meters, bandwidth in MHz, frequency in GHz.",
+        "Cite analog prior CJs. Search the DDTC Final Determinations workbook for analogous commodities by keyword. A close prior determination cited in your own analysis tightens the inter-agency review and is one of the highest-leverage moves a requester can make.",
+        "State a recommended classification with reasoning. Do not ask DDTC to do your homework. Identify the USML paragraph and the ECCN subparagraph and argue your way to the recommendation.",
+        "Disclose military development history. Hiding a DoD contract origin will surface in the DTSA referral and destroys credibility for the rest of the case.",
+        "Treat the 45-day mark as the trigger for an expedite letter under 22 CFR Section 120.12(d), not as the expected response date. Plan around 60 to 120 days, longer for novel space, autonomy, hypersonics, AI, or cybersecurity systems.",
+        "Pre-engage the DoD technical office, where permitted. DTSA referrals to service technical authorities are the principal driver of timeline variance.",
+        "Do not self-classify around a prior CJ. The only safe route to displace an existing determination is a reconsideration request under 22 CFR Section 120.12(e) or a fresh CJ with new design data."
+      ]
+    }
+  ]
+}

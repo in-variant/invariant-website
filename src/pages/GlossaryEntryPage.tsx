@@ -38,7 +38,7 @@ export default function GlossaryEntryPage() {
   return (
     <>
       <Seo
-        title={`${entry.term} — definition`}
+        title={`${entry.term}, definition`}
         description={entry.short_definition}
         canonical={url}
         ogImage={ogImage}

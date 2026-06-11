@@ -5,7 +5,7 @@ const SLIDE_TRANSITION = { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }
 const TOTAL = 13
 
 /* ═══════════════════════════════════════════════════════════════
-   FLOWING BACKGROUND — from Hero.tsx
+   FLOWING BACKGROUND, from Hero.tsx
    ═══════════════════════════════════════════════════════════════ */
 
 const FLOW_LINES = [
@@ -163,7 +163,7 @@ function VerticalArrow({ color, delay }: { color: string; delay: number }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 1 — HERO
+   SLIDE 1, HERO
    ═══════════════════════════════════════════════════════════════ */
 
 function HeroSlide() {
@@ -194,7 +194,7 @@ function HeroSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 2 — COVERAGE VERTICALS
+   SLIDE 2, COVERAGE VERTICALS
    ═══════════════════════════════════════════════════════════════ */
 
 const COVERAGE_PHASES = [
@@ -356,7 +356,7 @@ function CoverageVerticalsSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDES 3–6 — INDIVIDUAL COVERAGE DETAILS
+   SLIDES 3,6, INDIVIDUAL COVERAGE DETAILS
    ═══════════════════════════════════════════════════════════════ */
 
 function TransitInsuranceSlide() {
@@ -683,7 +683,7 @@ function InOrbitInsuranceSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 7 — THE PROCESS (1:N graph)
+   SLIDE 7, THE PROCESS (1:N graph)
    ═══════════════════════════════════════════════════════════════ */
 
 const REINSURER_NODES = [
@@ -822,7 +822,7 @@ function TheProcessSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 8 — WHAT REINSURERS NEED
+   SLIDE 8, WHAT REINSURERS NEED
    ═══════════════════════════════════════════════════════════════ */
 
 function WhatReinsurersNeedSlide() {
@@ -893,7 +893,7 @@ function WhatReinsurersNeedSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 9 — HOW INVARIANT HELPS
+   SLIDE 9, HOW INVARIANT HELPS
    ═══════════════════════════════════════════════════════════════ */
 
 const INVARIANT_SERVICES = [
@@ -951,7 +951,7 @@ function HowInvariantHelpsSlide() {
             <HorizontalArrow color="#2A9D8F" delay={0.55} />
           </div>
 
-          {/* Invariant — center with services */}
+          {/* Invariant, center with services */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1081,7 +1081,7 @@ function HowInvariantHelpsSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 10 — INDIA-SPECIFIC REGULATORY CONSTRAINT
+   SLIDE 10, INDIA-SPECIFIC REGULATORY CONSTRAINT
    ═══════════════════════════════════════════════════════════════ */
 
 function IndiaConstraintSlide() {
@@ -1172,7 +1172,7 @@ function IndiaConstraintSlide() {
           transition={{ delay: 1.0, duration: 0.7, ease: 'easeOut' }}
           className="font-serif text-lg md:text-xl leading-[1.3] tracking-[-0.02em] text-ink/70 max-w-lg"
         >
-          Start the insurance process 8–10 months before the planned launch date.
+          Start the insurance process 8,10 months before the planned launch date.
         </motion.p>
       </div>
     </SlideShell>
@@ -1180,7 +1180,7 @@ function IndiaConstraintSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE — THE EXCHANGE
+   SLIDE, THE EXCHANGE
    ═══════════════════════════════════════════════════════════════ */
 
 function TheExchangeSlide() {
@@ -1237,7 +1237,7 @@ function TheExchangeSlide() {
             className="flex flex-col items-center justify-center py-8 md:py-12"
           >
             <p className="font-serif text-lg md:text-xl font-medium text-ink/35 mb-8">You give us</p>
-            <p className="font-serif text-5xl sm:text-6xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3–4</p>
+            <p className="font-serif text-5xl sm:text-6xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3,4</p>
             <p className="font-mono text-xs sm:text-sm text-ink/50 mt-3">hours of your lead systems engineer</p>
             <p className="font-mono text-[10px] sm:text-xs text-ink/30 mt-1">occasional availability for reinsurer calls</p>
           </motion.div>
@@ -1330,7 +1330,7 @@ function TheExchangeSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 8 — WHY INVARIANT
+   SLIDE 8, WHY INVARIANT
    ═══════════════════════════════════════════════════════════════ */
 
 const TEAM_LOGOS_ROW1 = [

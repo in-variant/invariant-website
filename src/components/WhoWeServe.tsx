@@ -270,7 +270,7 @@ function RocketLaunch() {
         </motion.div>
       </motion.div>
 
-      {/* Rocket body – centered, flying upward */}
+      {/* Rocket body, centered, flying upward */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-[25%]">
         <motion.div
           animate={{ y: [0, -6, 0] }}

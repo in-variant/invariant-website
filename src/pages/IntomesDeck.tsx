@@ -380,7 +380,7 @@ const slides: Slide[] = [
             Helion-512 via Docker.
           </h2>
           <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
-            The Helion-512 model ships as a Docker image — same React frontend, Python backend with the model hosted on it.
+            The Helion-512 model ships as a Docker image, same React frontend, Python backend with the model hosted on it.
           </p>
         </div>
 
@@ -402,7 +402,7 @@ const slides: Slide[] = [
               <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Note</span>
             </div>
             <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
-              The Docker image bundles the <strong className="text-ink/80 font-medium">React frontend + Python backend + Helion-512 model</strong> — no separate setup needed.
+              The Docker image bundles the <strong className="text-ink/80 font-medium">React frontend + Python backend + Helion-512 model</strong>, no separate setup needed.
             </p>
           </div>
         </div>

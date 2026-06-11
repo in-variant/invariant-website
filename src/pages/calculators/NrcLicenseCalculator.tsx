@@ -65,9 +65,9 @@ function estimate(i: Inputs) {
 }
 
 const PATHWAY_LABEL: Record<Pathway, string> = {
-  'part-50-cp': '10 CFR Part 50 — Construction Permit (then OL separately)',
-  'part-52-col': '10 CFR Part 52 — Combined Licence',
-  'part-53': '10 CFR Part 53 — risk-informed (effective April 29, 2026)',
+  'part-50-cp': '10 CFR Part 50, Construction Permit (then OL separately)',
+  'part-52-col': '10 CFR Part 52, Combined Licence',
+  'part-53': '10 CFR Part 53, risk-informed (effective April 29, 2026)',
 }
 
 export default function NrcLicenseCalculator() {

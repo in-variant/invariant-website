@@ -60,7 +60,7 @@ export const ORG_SCHEMA = {
   logo: `${SITE_URL}/og-image.png`,
   image: `${SITE_URL}/og-image.png`,
   description:
-    'Autonomous AI agents for compliance in mission-critical industries — space, aerospace, and nuclear.',
+    'Autonomous AI agents for compliance in mission-critical industries, space, aerospace, and nuclear.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: {
@@ -158,7 +158,7 @@ export function articleSchema({
   authorName?: string
   articleSection?: string
   keywords?: string[]
-  /** Glossary slugs this article is canonically about — links Article to DefinedTerm entities for GEO. */
+  /** Glossary slugs this article is canonically about, links Article to DefinedTerm entities for GEO. */
   aboutSlugs?: string[]
   /** Place name(s) the article specifically covers (e.g. ['India'] or ['European Union','France','Germany']). */
   spatialCoverage?: string[]

@@ -49,7 +49,7 @@ export default function Compliance() {
   return (
     <>
       <Seo
-        title="Compliance — every Invariant resource for space, nuclear, and aerospace"
+        title="Compliance library: every Invariant resource for space, nuclear, and aerospace"
         description="The complete Invariant library: pillar guides, cluster explainers, and 60+ glossary definitions for space, nuclear, and aerospace regulatory and qualification compliance."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}

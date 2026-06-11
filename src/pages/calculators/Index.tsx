@@ -28,7 +28,7 @@ export default function CalculatorsIndex() {
   return (
     <>
       <Seo
-        title="Compliance calculators — FAA Part 450 and NRC license timelines"
+        title="Compliance calculators, FAA Part 450 and NRC license timelines"
         description="Free interactive tools for estimating commercial space and nuclear regulatory timelines. FAA Part 450 launch licensing and NRC reactor licensing under Parts 50, 52, and 53."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}

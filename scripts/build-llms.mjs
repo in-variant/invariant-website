@@ -47,9 +47,9 @@ const glossAerospace = entries.filter((e) => e.topic === 'aerospace')
 const out = []
 out.push('# Invariant')
 out.push('')
-out.push('> Autonomous AI agents for compliance in mission-critical industries — space, aerospace, and nuclear.')
+out.push('> Autonomous AI agents for compliance in mission-critical industries, space, aerospace, and nuclear.')
 out.push('')
-out.push('Invariant builds autonomous AI agents that draft, file, and monitor regulatory and qualification compliance for companies in space, aerospace, and nuclear. The agents ingest design docs, test data, and the regulations that apply, then produce regulator-grade submissions, test plans, and verification/compliance matrices end to end — with every claim traced back to the rule that supports it. A small team of domain engineers handles deployment and high-stakes review. Backed by Entrepreneurs First.')
+out.push('Invariant builds autonomous AI agents that draft, file, and monitor regulatory and qualification compliance for companies in space, aerospace, and nuclear. The agents ingest design docs, test data, and the regulations that apply, then produce regulator-grade submissions, test plans, and verification/compliance matrices end to end, with every claim traced back to the rule that supports it. A small team of domain engineers handles deployment and high-stakes review. Backed by Entrepreneurs First.')
 out.push('')
 out.push('## Key facts')
 out.push('')
@@ -63,45 +63,45 @@ out.push('')
 
 out.push('## Pages')
 out.push('')
-out.push('- [Home](https://invariant-ai.com/) — Autonomous agents for mission-critical compliance.')
+out.push('- [Home](https://invariant-ai.com/), Autonomous agents for mission-critical compliance.')
 for (const p of pillars) {
-  out.push(`- [${p.title}](${SITE}/${p.slug}) — ${p.description}`)
+  out.push(`- [${p.title}](${SITE}/${p.slug}), ${p.description}`)
 }
 if (clustersNuclear.length) {
   out.push('')
   out.push('### Nuclear guides')
   for (const c of clustersNuclear) {
-    out.push(`- [${c.title}](${SITE}/${c.slug}) — ${c.description}`)
+    out.push(`- [${c.title}](${SITE}/${c.slug}), ${c.description}`)
   }
 }
 if (clustersSpace.length) {
   out.push('')
   out.push('### Space guides')
   for (const c of clustersSpace) {
-    out.push(`- [${c.title}](${SITE}/${c.slug}) — ${c.description}`)
+    out.push(`- [${c.title}](${SITE}/${c.slug}), ${c.description}`)
   }
 }
 
 out.push('')
 out.push('### Product + research')
-out.push('- [Product](https://invariant-ai.com/product) — What the agents produce: submissions, test plans, verification matrices.')
-out.push('- [Probe](https://invariant-ai.com/probe) — Live semantic search across NRC ADAMS, powered by Helion-512.')
-out.push('- [Blog](https://invariant-ai.com/blog) — Research, regulation comparisons, field notes.')
-out.push('- [Glossary](https://invariant-ai.com/glossary) — Authoritative definitions of regulatory and qualification compliance terms.')
-out.push('- [Research](https://invariant-ai.com/research) — Helion-512 retrieval model, FermiBench benchmark, published notes.')
-out.push('- [Compliance library](https://invariant-ai.com/compliance) — Every Invariant resource for space, nuclear, and aerospace.')
-out.push('- [Trust](https://invariant-ai.com/trust) — Security and data-handling disclosures.')
+out.push('- [Product](https://invariant-ai.com/product), What the agents produce: submissions, test plans, verification matrices.')
+out.push('- [Probe](https://invariant-ai.com/probe), Live semantic search across NRC ADAMS, powered by Helion-512.')
+out.push('- [Blog](https://invariant-ai.com/blog), Research, regulation comparisons, field notes.')
+out.push('- [Glossary](https://invariant-ai.com/glossary), Authoritative definitions of regulatory and qualification compliance terms.')
+out.push('- [Research](https://invariant-ai.com/research), Helion-512 retrieval model, FermiBench benchmark, published notes.')
+out.push('- [Compliance library](https://invariant-ai.com/compliance), Every Invariant resource for space, nuclear, and aerospace.')
+out.push('- [Trust](https://invariant-ai.com/trust), Security and data-handling disclosures.')
 out.push('')
 out.push('### Calculators')
-out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline) — Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
-out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline) — Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
+out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline), Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
+out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline), Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
 
 out.push('')
 out.push('## Research')
 out.push('')
-out.push('- [Invariant Sets State-of-the-Art on FermiBench](https://invariant-ai.com/blog/fermibench-sota) — Helion-512 reaches 0.97 nDCG@10 on the only published nuclear-domain IR benchmark.')
-out.push('- [10 CFR Part 100 vs Part 53 Subpart D: A Siting Comparison](https://invariant-ai.com/blog/part100-vs-part53-siting) — A line-by-line comparison of the legacy and the new technology-inclusive frameworks.')
-out.push('- [SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53](https://invariant-ai.com/blog/seismic-design-shift) — The deterministic two-tier framework is replaced by risk-tiered ground motions and seismic design categories.')
+out.push('- [Invariant Sets State-of-the-Art on FermiBench](https://invariant-ai.com/blog/fermibench-sota), Helion-512 reaches 0.97 nDCG@10 on the only published nuclear-domain IR benchmark.')
+out.push('- [10 CFR Part 100 vs Part 53 Subpart D: A Siting Comparison](https://invariant-ai.com/blog/part100-vs-part53-siting), A line-by-line comparison of the legacy and the new technology-inclusive frameworks.')
+out.push('- [SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53](https://invariant-ai.com/blog/seismic-design-shift), The deterministic two-tier framework is replaced by risk-tiered ground motions and seismic design categories.')
 
 if (entries.length) {
   out.push('')
@@ -109,17 +109,17 @@ if (entries.length) {
   if (glossSpace.length) {
     out.push('')
     out.push('Space:')
-    for (const e of glossSpace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}) — ${e.short_definition}`)
+    for (const e of glossSpace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
   }
   if (glossNuclear.length) {
     out.push('')
     out.push('Nuclear:')
-    for (const e of glossNuclear) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}) — ${e.short_definition}`)
+    for (const e of glossNuclear) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
   }
   if (glossAerospace.length) {
     out.push('')
     out.push('Aerospace:')
-    for (const e of glossAerospace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}) — ${e.short_definition}`)
+    for (const e of glossAerospace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
   }
 }
 

@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 /**
- * Global space industry, 2024–2035
+ * Global space industry, 2024,2035
  * (source: space_satellites_spend_compliance_2024_2035.csv).
  *
  * Two independently-scaled line series share one timeline, each on its own
@@ -100,7 +100,7 @@ export default function SpaceMarket() {
             viewBox={`0 0 ${W} ${H}`}
             className="h-auto w-full min-w-[460px]"
             role="img"
-            aria-label="Global space industry, 2024–2035: satellites in orbit rising 11,500→66,000 (left axis) and compliance spend growing $4.4B→$52B (right axis), each on its own scale."
+            aria-label="Global space industry, 2024,2035: satellites in orbit rising 11,500→66,000 (left axis) and compliance spend growing $4.4B→$52B (right axis), each on its own scale."
           >
             <defs>
               <clipPath id="sm-reveal">
@@ -146,7 +146,7 @@ export default function SpaceMarket() {
               fontSize={11}
               letterSpacing="0.12em"
             >
-              2024–2035 · TWO INDEPENDENT SCALES
+              2024,2035 · TWO INDEPENDENT SCALES
             </text>
 
             {/* horizontal gridlines (keyed to the satellites / left axis) */}
@@ -288,7 +288,7 @@ export default function SpaceMarket() {
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
-              Global space industry · 2024–2035
+              Global space industry · 2024,2035
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
               Two independent scales · one timeline

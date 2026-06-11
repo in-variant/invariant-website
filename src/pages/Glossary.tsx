@@ -61,7 +61,7 @@ export default function Glossary() {
             A glossary of space, aerospace, and nuclear compliance.
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Authoritative definitions of every regulatory, standards, and qualification term we work with — each one tied back to the primary source.
+            Authoritative definitions of every regulatory, standards, and qualification term we work with, each one tied back to the primary source.
           </p>
           {GLOSSARY.length === 0 ? (
             <p className="mt-10 font-sans text-base text-ink/60">

@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 /**
- * U.S. nuclear market, 2022–2040
+ * U.S. nuclear market, 2022,2040
  * (source: us_nuclear_spend_gw_compliance_2022_2040.csv).
  *
  * Two independently-scaled line series share one timeline, each on its own
@@ -107,7 +107,7 @@ export default function NuclearMarket() {
             viewBox={`0 0 ${W} ${H}`}
             className="h-auto w-full min-w-[460px]"
             role="img"
-            aria-label="U.S. nuclear market, 2022–2040: installed capacity rising 93→200 GW (left axis) and compliance TAM growing to $35.8B (right axis), each on its own scale."
+            aria-label="U.S. nuclear market, 2022,2040: installed capacity rising 93→200 GW (left axis) and compliance TAM growing to $35.8B (right axis), each on its own scale."
           >
             <defs>
               <clipPath id="nm-reveal">
@@ -153,7 +153,7 @@ export default function NuclearMarket() {
               fontSize={11}
               letterSpacing="0.12em"
             >
-              2022–2040 · TWO INDEPENDENT SCALES
+              2022,2040 · TWO INDEPENDENT SCALES
             </text>
 
             {/* horizontal gridlines (keyed to the capacity / left axis) */}
@@ -295,7 +295,7 @@ export default function NuclearMarket() {
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
-              U.S. nuclear market · 2022–2040
+              U.S. nuclear market · 2022,2040
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
               Two independent scales · one timeline

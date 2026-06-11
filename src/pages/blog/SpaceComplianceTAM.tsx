@@ -59,7 +59,7 @@ export default function SpaceComplianceTAM() {
         <div className="mt-12">
           <SpaceMarket />
           <p className="mt-3 text-center font-sans text-sm text-ink/45">
-            Satellites in orbit and space compliance spend, 2024–2035. Two metrics, two scales, one
+            Satellites in orbit and space compliance spend, 2024,2035. Two metrics, two scales, one
             timeline.
           </p>
         </div>
@@ -83,8 +83,8 @@ export default function SpaceComplianceTAM() {
         <div className="mt-12">
           <RocketLaunchesMarket />
           <p className="mt-3 text-center font-sans text-sm text-ink/45">
-            Orbital launches per year and compliance spend, 2024–2035. Launch cadence nearly
-            quadruples while compliance spend grows 15x — two scales, one timeline.
+            Orbital launches per year and compliance spend, 2024,2035. Launch cadence nearly
+            quadruples while compliance spend grows 15x, two scales, one timeline.
           </p>
         </div>
 

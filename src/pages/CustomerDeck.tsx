@@ -5,7 +5,7 @@ const SLIDE_TRANSITION = { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }
 const TOTAL = 8
 
 /* ═══════════════════════════════════════════════════════════════
-   FLOWING BACKGROUND — from Hero.tsx
+   FLOWING BACKGROUND, from Hero.tsx
    ═══════════════════════════════════════════════════════════════ */
 
 const FLOW_LINES = [
@@ -102,7 +102,7 @@ function FlowingBackground() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   ANIMATED VISUALS — from WhoWeServe.tsx
+   ANIMATED VISUALS, from WhoWeServe.tsx
    ═══════════════════════════════════════════════════════════════ */
 
 function NuclearReactor() {
@@ -288,7 +288,7 @@ function VerticalArrow({ color, delay }: { color: string; delay: number }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 1 — HERO
+   SLIDE 1, HERO
    ═══════════════════════════════════════════════════════════════ */
 
 function HeroSlide() {
@@ -319,7 +319,7 @@ function HeroSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 2 — YOUR WORLD
+   SLIDE 2, YOUR WORLD
    ═══════════════════════════════════════════════════════════════ */
 
 const SECTORS = [
@@ -385,7 +385,7 @@ function YourWorldSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 3 — THE PROBLEM (cards)
+   SLIDE 3, THE PROBLEM (cards)
    ═══════════════════════════════════════════════════════════════ */
 
 const PROBLEM_CARDS = [
@@ -479,7 +479,7 @@ function ProblemSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 4 — THE SOLUTION (tighter)
+   SLIDE 4, THE SOLUTION (tighter)
    ═══════════════════════════════════════════════════════════════ */
 
 function SolutionSlide() {
@@ -610,7 +610,7 @@ function SolutionSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 5 — HOW WE WORK (icon flow like HowWeWork.tsx)
+   SLIDE 5, HOW WE WORK (icon flow like HowWeWork.tsx)
    ═══════════════════════════════════════════════════════════════ */
 
 const FLOW_STEPS = [
@@ -787,7 +787,7 @@ function HowWeWorkSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 6 — WHAT WE NEED (visual layout)
+   SLIDE 6, WHAT WE NEED (visual layout)
    ═══════════════════════════════════════════════════════════════ */
 
 function TheExchangeSlide() {
@@ -839,7 +839,7 @@ function TheExchangeSlide() {
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] w-full max-w-4xl items-start gap-0">
-          {/* LEFT — you give */}
+          {/* LEFT, you give */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -847,12 +847,12 @@ function TheExchangeSlide() {
             className="flex flex-col items-center justify-center py-8 md:py-12"
           >
             <p className="font-serif text-lg md:text-xl font-medium text-ink/35 mb-8">You give us</p>
-            <p className="font-serif text-6xl sm:text-7xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3–4</p>
+            <p className="font-serif text-6xl sm:text-7xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3,4</p>
             <p className="font-mono text-sm text-ink/50 mt-3">hours per week</p>
             <p className="font-mono text-xs text-ink/30 mt-1">one senior engineer</p>
           </motion.div>
 
-          {/* CENTER — divider + animated arrow */}
+          {/* CENTER, divider + animated arrow */}
           <div className="hidden md:flex flex-col items-center justify-center px-6 self-stretch">
             <motion.div
               className="w-px flex-1 bg-rule"
@@ -903,7 +903,7 @@ function TheExchangeSlide() {
             </motion.svg>
           </div>
 
-          {/* RIGHT — you get */}
+          {/* RIGHT, you get */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -942,7 +942,7 @@ function TheExchangeSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 8 — WHY INVARIANT
+   SLIDE 8, WHY INVARIANT
    ═══════════════════════════════════════════════════════════════ */
 
 const TEAM_LOGOS_ROW1 = [
@@ -1014,7 +1014,7 @@ function WhyInvariantSlide() {
 
         <div className="flex flex-col items-center max-w-xl gap-6">
           {[
-            { text: 'helion-512 — state-of-the-art on FermiBench. NDCG@10: 0.9693.', color: '#C4820E' },
+            { text: 'helion-512, state-of-the-art on FermiBench. NDCG@10: 0.9693.', color: '#C4820E' },
             { text: 'Active MSA with an orbital launch and reentry client.', color: '#3A7CA5' },
             { text: 'We close on authorisation, not on hours billed.', color: '#5C6370' },
           ].map((item, i) => (
@@ -1036,7 +1036,7 @@ function WhyInvariantSlide() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SLIDE 9 — LET'S TALK (minimal)
+   SLIDE 9, LET'S TALK (minimal)
    ═══════════════════════════════════════════════════════════════ */
 
 function CTASlide() {
@@ -1049,7 +1049,7 @@ function CTASlide() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="body-technical max-w-sm mb-10"
         >
-          If compliance is on your critical path —
+          If compliance is on your critical path,
         </motion.p>
 
         <motion.a

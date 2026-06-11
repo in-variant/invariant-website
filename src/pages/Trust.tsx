@@ -7,7 +7,7 @@ export default function Trust() {
   return (
     <>
       <Seo
-        title="Trust — Security, data handling, and compliance disclosures"
+        title="Trust: security, data handling, and compliance disclosures"
         description="How Invariant handles your data, hosts your regulatory submissions, and meets the security expectations of space, aerospace, and nuclear operators."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}

@@ -56,7 +56,7 @@ const DESIGN_PARTNERS = [
     domain: 'Space Tech',
     color: '#5C6370',
     logo: '/logos/spantrik.png',
-    scope: 'Reusable Launch Vehicles — Testing Authorisation via IN-SPACe',
+    scope: 'Reusable Launch Vehicles, Testing Authorisation via IN-SPACe',
   },
   {
     name: 'Akashalabdhi',
@@ -148,7 +148,7 @@ function SEWorkflowSlide() {
           The standard workflow.
         </h2>
         <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
-          A change in design cascades downstream — but compliance never notices.
+          A change in design cascades downstream, but compliance never notices.
         </p>
       </div>
 
@@ -200,7 +200,7 @@ function SEWorkflowSlide() {
           <FlowArrow label="submit" color="#C4820E" broken={changed} />
         </motion.div>
 
-        {/* COMPLIANCE — MISSING */}
+        {/* COMPLIANCE, MISSING */}
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 4 ? 1 : 0.15, scale: phase >= 4 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
           <div className="flex flex-col items-center shrink-0">
             <div className="rounded-xl border-2 border-dashed border-red-300/50 bg-red-50/20 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 min-w-[130px] sm:min-w-[150px] relative">
@@ -232,7 +232,7 @@ function SEWorkflowSlide() {
             <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-red-400/70 font-medium">No compliance check</span>
           </div>
           <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
-            Design changed. Everything downstream is stale. <strong className="text-red-500 font-medium">Nothing flags the gap</strong> — you find out at submission.
+            Design changed. Everything downstream is stale. <strong className="text-red-500 font-medium">Nothing flags the gap</strong>, you find out at submission.
           </p>
         </motion.div>
       )}
@@ -270,7 +270,7 @@ function SEWorkflowWithComplianceSlide() {
           Compliance at every step.
         </h2>
         <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
-          Same workflow — but now every step is checked in real time.
+          Same workflow, but now every step is checked in real time.
         </p>
       </div>
 
@@ -322,7 +322,7 @@ function SEWorkflowWithComplianceSlide() {
           <FlowArrow label="check" color="#059669" />
         </motion.div>
 
-        {/* COMPLIANCE — INVARIANT */}
+        {/* COMPLIANCE, INVARIANT */}
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 4 ? 1 : 0.15, scale: phase >= 4 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
           <div className="flex flex-col items-center shrink-0">
             <div className="rounded-xl border-2 border-emerald-400/60 bg-emerald-50/20 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 min-w-[130px] sm:min-w-[150px] relative ring-2 ring-emerald-400/30 ring-offset-2">
@@ -394,7 +394,7 @@ const slides: Slide[] = [
             Go-to-market faster than ever.
           </h1>
           <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
-            Invariant builds AI that turns compliance from a bottleneck into a competitive advantage — across nuclear, aerospace, and drones.
+            Invariant builds AI that turns compliance from a bottleneck into a competitive advantage, across nuclear, aerospace, and drones.
           </p>
           <div className="flex items-center gap-4">
             <span className="font-mono text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
@@ -461,7 +461,7 @@ const slides: Slide[] = [
             Nuclear.
           </h2>
           <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
-            You file for an NRC construction permit. An RAI comes back — your containment analysis doesn't meet GDC 16. Redesign cascades through the entire FSAR.
+            You file for an NRC construction permit. An RAI comes back, your containment analysis doesn't meet GDC 16. Redesign cascades through the entire FSAR.
           </p>
           <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
             Vogtle: $17 B in overruns, 7 years late.
@@ -483,10 +483,10 @@ const slides: Slide[] = [
         </div>
         <div className="flex justify-center gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto items-end">
           {[
-            { figure: '$17B', label: 'Vogtle Units 3 & 4 cost overrun — design immaturity met NRC licensing' },
-            { figure: '$20B+', label: 'Boeing 737 MAX grounding — recertification, fines & rework' },
-            { figure: '42 mo', label: 'NuScale SMR design certification — first-ever NRC SMR review' },
-            { figure: '18–36 mo', label: 'Typical DO-178C recertification cycle per software component' },
+            { figure: '$17B', label: 'Vogtle Units 3 & 4 cost overrun, design immaturity met NRC licensing' },
+            { figure: '$20B+', label: 'Boeing 737 MAX grounding, recertification, fines & rework' },
+            { figure: '42 mo', label: 'NuScale SMR design certification, first-ever NRC SMR review' },
+            { figure: '18,36 mo', label: 'Typical DO-178C recertification cycle per software component' },
           ].map((fact) => (
             <div key={fact.figure} className="flex flex-col items-center text-center">
               <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-2 md:mb-3 whitespace-nowrap">
@@ -731,7 +731,7 @@ const slides: Slide[] = [
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-3xl mx-auto">
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
-            <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">$50–600</p>
+            <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">$50,600</p>
             <p className="font-mono text-[10px] sm:text-xs text-ink/45">/hour for regulatory consultants</p>
           </div>
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
@@ -749,7 +749,7 @@ const slides: Slide[] = [
             <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Invariant replaces this</span>
           </div>
           <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
-            AI that delivers compliance insight <strong className="text-ink/80 font-medium">in seconds, not months</strong> — at a fraction of the cost.
+            AI that delivers compliance insight <strong className="text-ink/80 font-medium">in seconds, not months</strong>, at a fraction of the cost.
           </p>
         </div>
       </SlideShell>

@@ -54,7 +54,7 @@ export default function Research() {
   return (
     <>
       <Seo
-        title="Research — Helion-512, FermiBench, and Invariant's published work"
+        title="Research: Helion-512, FermiBench, and Invariant's published work"
         description="Invariant's research: Helion-512 retrieval model at 0.97 nDCG@10 on FermiBench (the only public nuclear regulatory retrieval benchmark), siting comparisons, seismic design analyses, and field notes from regulator dockets."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}

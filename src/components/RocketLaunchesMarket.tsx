@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 /**
- * Global orbital launches vs. compliance spend, 2024–2035
+ * Global orbital launches vs. compliance spend, 2024,2035
  * (source: rocket_launches_compliance_2024_2035.csv).
  *
  * Two independently-scaled line series share one timeline, each on its own
@@ -105,7 +105,7 @@ export default function RocketLaunchesMarket() {
             viewBox={`0 0 ${W} ${H}`}
             className="h-auto w-full min-w-[460px]"
             role="img"
-            aria-label="Global orbital launches and compliance spend, 2024–2035: orbital launches rising 259→967 per year (left axis) and compliance spend growing $0.8B→$12B (right axis), each on its own scale."
+            aria-label="Global orbital launches and compliance spend, 2024,2035: orbital launches rising 259→967 per year (left axis) and compliance spend growing $0.8B→$12B (right axis), each on its own scale."
           >
             <defs>
               <clipPath id="rl-reveal">
@@ -151,7 +151,7 @@ export default function RocketLaunchesMarket() {
               fontSize={11}
               letterSpacing="0.12em"
             >
-              2024–2035 · TWO INDEPENDENT SCALES
+              2024,2035 · TWO INDEPENDENT SCALES
             </text>
 
             {/* horizontal gridlines (keyed to the launches / left axis) */}
@@ -293,7 +293,7 @@ export default function RocketLaunchesMarket() {
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
-              Global orbital launches · 2024–2035
+              Global orbital launches · 2024,2035
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
               Two independent scales · one timeline

@@ -48,7 +48,7 @@ export default function Blog() {
   return (
     <>
       <Seo
-        title="Blog — Research on space, aerospace, and nuclear compliance"
+        title="Blog, Research on space, aerospace, and nuclear compliance"
         description="Research notes, regulation comparisons, and field reports on space, aerospace, and nuclear compliance. From the team building autonomous AI agents at Invariant."
         canonical="https://invariant-ai.com/blog"
         jsonLd={[

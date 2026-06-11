@@ -66,7 +66,7 @@ const TIERS = [
       '48-hour response SLA',
     ],
     ownership:
-      'Client owns compliance entirely — Invariant provides the tool only.',
+      'Client owns compliance entirely, Invariant provides the tool only.',
     cta: 'Get started',
   },
   {
@@ -84,7 +84,7 @@ const TIERS = [
       'Priority support',
     ],
     ownership:
-      'Invariant owns document quality — reviews and signs off every submission package before it reaches you.',
+      'Invariant owns document quality, reviews and signs off every submission package before it reaches you.',
     integrationNote: 'CAD, Ansys, SharePoint, Notion, and more',
     cta: 'Get started',
   },
@@ -112,7 +112,7 @@ const TIERS = [
 const SPANTRIK_BENEFITS = [
   {
     label: 'Sub-6-hour SLA on Professional',
-    description: 'Enterprise-grade response time included with your Professional plan — no upgrade required.',
+    description: 'Enterprise-grade response time included with your Professional plan, no upgrade required.',
     standard: '24-hour SLA',
     spantrik: '< 6-hour SLA',
   },
@@ -150,7 +150,7 @@ const slides: Slide[] = [
             Invariant for Spantrik
           </h1>
           <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
-            Regulatory compliance infrastructure for India's space tech companies — built with our founding client.
+            Regulatory compliance infrastructure for India's space tech companies, built with our founding client.
           </p>
           <div className="flex items-center gap-4">
             <span className="font-mono text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
@@ -183,7 +183,7 @@ const slides: Slide[] = [
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 max-w-5xl">
           {[
-            { num: '01', title: 'One month free', desc: 'First week free now through April 17. Sign the contract and get 3 more weeks — a full month on us.' },
+            { num: '01', title: 'One month free', desc: 'First week free now through April 17. Sign the contract and get 3 more weeks, a full month on us.' },
             { num: '02', title: 'Founding pricing', desc: 'Locked-in rates that never increase. Enterprise at $999, Liaison at $1,000.' },
             { num: '03', title: 'Product influence', desc: 'Direct line to engineering. Your workflow shapes how we build.' },
             { num: '04', title: 'Priority everything', desc: 'Sub-6-hour SLA on Professional. Dedicated compliance success manager on Enterprise.' },
@@ -378,13 +378,13 @@ const slides: Slide[] = [
             Let's get started.
           </h2>
           <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-xl mb-8 sm:mb-10">
-            Your first week is already free — start using Invariant today. Sign
+            Your first week is already free, start using Invariant today. Sign
             the contract to unlock 3 more weeks, giving you a full month at no cost.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-10 sm:mb-14 max-w-2xl w-full">
             <div className="flex-1 rounded-lg border border-ink/10 bg-ink/[0.015] px-5 py-4 text-center">
-              <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1">Now — April 17</p>
+              <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1">Now, April 17</p>
               <p className="font-mono text-sm font-medium text-ink/80">First week free</p>
             </div>
             <svg className="w-5 h-5 text-ink/20 shrink-0 rotate-90 sm:rotate-0" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">

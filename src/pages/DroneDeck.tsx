@@ -317,7 +317,7 @@ const slides: Slide[] = [
     ),
   },
 
-  /* ── Slide 3: DGCA — The Gatekeeper ── */
+  /* ── Slide 3: DGCA, The Gatekeeper ── */
   {
     id: 'two-bodies',
     render: () => (
@@ -327,7 +327,7 @@ const slides: Slide[] = [
           Everything Goes Through DGCA.
         </h2>
         <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-3xl">
-          The Directorate General of Civil Aviation controls <strong className="text-ink/70 font-medium">every stage</strong> of a drone's lifecycle — from proving it's safe to fly, to who can fly it, to where it's allowed to operate.
+          The Directorate General of Civil Aviation controls <strong className="text-ink/70 font-medium">every stage</strong> of a drone's lifecycle, from proving it's safe to fly, to who can fly it, to where it's allowed to operate.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mb-8 sm:mb-12">
@@ -357,7 +357,7 @@ const slides: Slide[] = [
           </div>
           <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">
             You need <strong className="text-ink/80 font-medium">all four</strong> to operate commercially.
-            A Type Certificate alone does not authorise flight — you still need a registered unit, a licensed pilot, and operational approval.
+            A Type Certificate alone does not authorise flight, you still need a registered unit, a licensed pilot, and operational approval.
           </p>
         </div>
       </SlideShell>
@@ -369,7 +369,7 @@ const slides: Slide[] = [
     id: 'process-1',
     render: () => (
       <SlideShell acronyms={['BOM', 'CB', 'D-1', 'eGCA', 'DGCA']}>
-        <SlideLabel>The Full Process — Part 1 of 2</SlideLabel>
+        <SlideLabel>The Full Process, Part 1 of 2</SlideLabel>
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8 sm:mb-12 max-w-4xl">
           End To End: BOM To Legal Commercial Operation.
         </h2>
@@ -408,7 +408,7 @@ const slides: Slide[] = [
     id: 'process-2',
     render: () => (
       <SlideShell acronyms={['SoC', 'TC', 'UIN', 'RPC', 'eGCA', 'DGCA']}>
-        <SlideLabel>The Full Process — Part 2 of 2</SlideLabel>
+        <SlideLabel>The Full Process, Part 2 of 2</SlideLabel>
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-8 sm:mb-12 max-w-4xl">
           From SoC To Legal Commercial Operation.
         </h2>
@@ -483,8 +483,8 @@ const slides: Slide[] = [
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-5xl">
           {([
             { label: 'Components', desc: 'Motors, ESCs, frame, battery cells, spray system, flight controller.' },
-            { label: 'Suppliers', desc: 'Manufacturer, brand, source — all swappable.' },
-            { label: 'Design', desc: 'Configuration, layout, architecture — fully open.' },
+            { label: 'Suppliers', desc: 'Manufacturer, brand, source, all swappable.' },
+            { label: 'Design', desc: 'Configuration, layout, architecture, fully open.' },
             { label: 'Weight Class', desc: 'Can cross MTOW boundaries. Changes which CSUAS clauses apply.' },
           ]).map((item, i) => (
             <div key={i} className="rounded-lg border border-emerald-200 px-4 py-3 sm:py-4 flex flex-col">

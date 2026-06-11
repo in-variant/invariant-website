@@ -69,7 +69,7 @@ export default function NuclearComplianceTAM() {
         <div className="mt-12">
           <NuclearMarket />
           <p className="mt-3 text-center font-sans text-sm text-ink/45">
-            US nuclear installed capacity and compliance TAM, 2022–2040. Two metrics, two scales,
+            US nuclear installed capacity and compliance TAM, 2022,2040. Two metrics, two scales,
             one timeline.
           </p>
         </div>
@@ -156,7 +156,7 @@ export default function NuclearComplianceTAM() {
               By the early 2030s, the first-mover licences have been granted and a broader commercial
               wave begins. Google's Kairos Power PPA, Meta's TerraPower agreements, Amazon's nuclear
               partnerships, the tech-sector demand signal has already pulled forward investment
-              timelines across the industry. An estimated 10–15 GW of SMR capacity will be online or in
+              timelines across the industry. An estimated 10,15 GW of SMR capacity will be online or in
               final commissioning by this point. The compliance load transitions from peak
               new-licensing intensity toward a higher steady-state operational base. The floor rises
               and does not come back down.
@@ -170,7 +170,7 @@ export default function NuclearComplianceTAM() {
             <p className="mt-3 font-sans text-base leading-relaxed text-ink/75">
               The third inflection is less discussed but equally significant. Generation IV reactor
               designs, sodium-cooled fast reactors beyond Natrium, molten salt concepts, gas-cooled
-              designs, begin entering the commercial licensing pipeline around 2034–2036. By 2037, a
+              designs, begin entering the commercial licensing pipeline around 2034,2036. By 2037, a
               second distinct licensing wave is underway. These designs require not just new Part 53
               applications but in some cases new regulatory guidance documents, new inspection
               protocols, and new fuel cycle oversight frameworks. The compliance intensity resets to

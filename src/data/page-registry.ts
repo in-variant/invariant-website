@@ -13,7 +13,7 @@ export type PageRef = {
   pillar: Pillar
   type: PageType
   live: boolean
-  /** Inverse priority — lower number = more important / more central. Used to rank related-guides. */
+  /** Inverse priority, lower number = more important / more central. Used to rank related-guides. */
   weight?: number
 }
 
@@ -48,7 +48,7 @@ export const PAGES: PageRef[] = [
     title: 'Part 50 vs Part 52 vs Part 53: the three NRC reactor licensing pathways, explained',
     shortTitle: 'Part 50 vs Part 52 vs Part 53',
     description:
-      'A side-by-side comparison of 10 CFR Part 50, Part 52, and Part 53 — history, structure, timelines, and which advanced reactor developers use each in 2026.',
+      'A side-by-side comparison of 10 CFR Part 50, Part 52, and Part 53, history, structure, timelines, and which advanced reactor developers use each in 2026.',
     pillar: 'nuclear',
     type: 'cluster',
     live: true,
@@ -168,6 +168,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'itar-commodity-jurisdiction',
+    title: 'How to file an ITAR Commodity Jurisdiction (CJ) request',
+    shortTitle: 'ITAR Commodity Jurisdiction',
+    description:
+      'A drafting guide for the ITAR Commodity Jurisdiction (CJ) procedure under 22 CFR 120.12: Form DS-4076 content, the inter-agency State/Defense/Commerce review, typical timelines, and CJ Final Determination precedent for space hardware.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'itar-vs-ear-for-space-companies',
     title: 'ITAR vs EAR for space companies: how to classify your hardware',
     shortTitle: 'ITAR vs EAR for space',
@@ -238,7 +249,7 @@ export const PAGES: PageRef[] = [
     title: 'ECSS vs MIL-STD: qualification testing standards for space',
     shortTitle: 'ECSS vs MIL-STD',
     description:
-      'A comparison of ECSS and MIL-STD families for space qualification testing — ECSS-E-ST-10-03C, MIL-STD-1540, SMC-S-016, MIL-STD-461G, NASA GEVS — and when to use each.',
+      'A comparison of ECSS and MIL-STD families for space qualification testing, ECSS-E-ST-10-03C, MIL-STD-1540, SMC-S-016, MIL-STD-461G, NASA GEVS, and when to use each.',
     pillar: 'space',
     type: 'cluster',
     live: true,
@@ -249,7 +260,7 @@ export const PAGES: PageRef[] = [
     title: 'FAA Part 450 vs legacy launch licensing: the complete reference',
     shortTitle: 'Part 450 vs legacy',
     description:
-      'How 14 CFR Part 450 replaced legacy Parts 415, 417, 431, and 435 on March 10, 2021 — the consolidation, the philosophical shift to performance-based regulation, and the transition.',
+      'How 14 CFR Part 450 replaced legacy Parts 415, 417, 431, and 435 on March 10, 2021, the consolidation, the philosophical shift to performance-based regulation, and the transition.',
     pillar: 'space',
     type: 'cluster',
     live: true,
