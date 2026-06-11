@@ -152,8 +152,8 @@ export const PAGES: PageRef[] = [
       'Everything a commercial space operator needs to clear before flying from or operating in India.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'space-compliance-eu',
@@ -207,8 +207,8 @@ export const PAGES: PageRef[] = [
       'The Means of Compliance is the single most important artefact in a Part 450 application. Here is how to write one.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
 ]
 

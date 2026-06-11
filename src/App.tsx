@@ -22,6 +22,8 @@ const ItarVsEarForSpace = lazy(() => import('./pages/clusters/ItarVsEarForSpace'
 const NrcPreApplicationEngagement = lazy(() => import('./pages/clusters/NrcPreApplicationEngagement'))
 const NuclearComplianceIndia = lazy(() => import('./pages/clusters/NuclearComplianceIndia'))
 const Fcc5YearDeorbitRule = lazy(() => import('./pages/clusters/Fcc5YearDeorbitRule'))
+const SpaceComplianceIndia = lazy(() => import('./pages/clusters/SpaceComplianceIndia'))
+const FaaPart450MeansOfCompliance = lazy(() => import('./pages/clusters/FaaPart450MeansOfCompliance'))
 
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
@@ -75,6 +77,8 @@ export default function App() {
             <Route path="/nrc-pre-application-engagement-guide" element={<NrcPreApplicationEngagement />} />
             <Route path="/nuclear-compliance-india" element={<NuclearComplianceIndia />} />
             <Route path="/fcc-5-year-deorbit-rule" element={<Fcc5YearDeorbitRule />} />
+            <Route path="/space-compliance-india" element={<SpaceComplianceIndia />} />
+            <Route path="/how-to-write-faa-part-450-means-of-compliance" element={<FaaPart450MeansOfCompliance />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
           </Route>

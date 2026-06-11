@@ -1,0 +1,346 @@
+{
+  "canonical_summary": "A Means of Compliance (MoC) under 14 CFR Part 450 is the operator-authored, FAA-accepted methodology that shows how a launch or reentry program will satisfy a performance-based safety requirement. Part 450 states the safety outcome, not the method. Section 450.35 is the bridge: for five high-consequence topics, the methodology itself must be accepted by the Administrator before a license application will even be docketed. The five pre-acceptance areas are 450.115(b)(1) flight safety analysis methods, 450.139(e)(1) flight toxic hazards, 450.145(b) highly reliable flight safety system, 450.163(a)(1) lightning, and 450.187(e)(1) ground toxic hazards.\n\nAn acceptable MoC document mirrors the rule paragraph it satisfies. Modeled on AC 450.115-1B (8/2/2024) and AC 450.115-2 (9/20/2024), it contains administrative front matter, purpose and scope, a methodology description that addresses each item in 450.115(c) (scientific basis, assumptions, fidelity rationale, V&V evidence under 450.101(g), benchmark comparability, mitigation accounting), inputs and tools, outputs tied to 450.101(a) and (b), verification and validation, limitations, configuration management, and a compliance matrix that plugs into the Part 450 Subpart C Accepted Means of Compliance Table v3 (9/11/2024).\n\nOperators may adopt a previously accepted MoC, tailor an FAA Advisory Circular, or submit a novel MoC under 450.35(b). The fastest pre-application path is to cite an accepted MoC from the published table and supply the supporting analyses, rationale, and test data that 450.35(a)(3) requires.",
+  "h1": "How to write a Means of Compliance for FAA Part 450",
+  "meta_title": "How to write a Part 450 Means of Compliance",
+  "meta_description": "A reviewer-grade guide to writing a Means of Compliance under 14 CFR Part 450: the five \u00a7450.35 areas, document structure, the AC catalog, and reviewer feedback.",
+  "sections": [
+    {
+      "heading": "What a Means of Compliance is, and why \u00a7450.35 requires pre-acceptance",
+      "paragraphs": [
+        "14 CFR Part 450 is a performance-based rule. It states the safety outcome an operator must achieve, but it does not prescribe the analytic method. A Means of Compliance (MoC) is the operator-authored, FAA-accepted methodology that closes that gap. Under 14 CFR 450.35(a), for five enumerated high-consequence topics the methodology itself must be accepted by the Administrator before a license application will be accepted for review. Under 450.35(b), an operator or third party may submit a proposed MoC to the FAA outside of a license application, in a form and manner acceptable to the Administrator. Once accepted and published, an MoC can be reused by other operators.",
+        "The pre-acceptance regime exists because methodology errors in these five areas would unwind an entire 180-day application review. By forcing the analytic basis to be reviewed up front, the FAA reduces the risk that an application collapses late. AC 450.31-1 (4/22/2024) is explicit that if a submission is incomplete or changes after submission, it can significantly delay review. The Office of Commercial Space Transportation (AST) treats use of previously accepted MoCs as the fastest pre-application path and publishes a living table that maps every Subpart C section to one or more accepted MoCs."
+      ]
+    },
+    {
+      "heading": "The five \u00a7450.35(a) areas that require a pre-application accepted MoC",
+      "paragraphs": [
+        "Per 14 CFR 450.35(a), prior to application acceptance, a Means of Compliance must be accepted by the Administrator for the following five sections. Each is methodology-driven, technically complex, and central to a public safety determination. The canonical FAA-published MoC for each is the corresponding AC."
+      ],
+      "bullets": [
+        "\u00a7450.115(b)(1) Flight safety analysis methods. The quantitative and qualitative methods used to compute collective and individual casualty expectation, far-field overpressure, debris, and related risks. Canonical accepted MoC: AC 450.115-1B (8/2/2024), companion AC 450.115-2 (9/20/2024).",
+        "\u00a7450.139(e)(1) Toxic hazards for flight. The method used to assess airborne toxic concentration and duration thresholds for flight operations, including dispersion modeling and exposure criteria. Canonical accepted MoC: AC 450.139-1 (7/8/2024), with AEGL-2 (EPA/NAS), ERPG-2 (AIHA), or SPEGL (NRC) accepted as threshold standards.",
+        "\u00a7450.145(b) Highly reliable flight safety system. The method used to demonstrate that an FSS meets the high-reliability standard. Accepted MoCs by reference: RCC 319-19, RCC 324-11, AFSPCI 91-701, and AFI 13-602.",
+        "\u00a7450.163(a)(1) Lightning hazard mitigation. The lightning commit criteria used to determine that natural and triggered lightning conditions are acceptable for flight. Accepted MoC: NASA-STD 4010 (latest active version) and legacy Appendix G to Part 417.",
+        "\u00a7450.187(e)(1) Toxic hazards mitigation for ground operations. The method used to assess airborne toxic concentration and duration thresholds for ground operations. Accepted MoC: AC 450.139-1 (covers both flight and ground toxic); AEGL-2, ERPG-2, or SPEGL thresholds. No separate AC 450.187-1 is published."
+      ]
+    },
+    {
+      "heading": "MoC document structure",
+      "paragraphs": [
+        "The most explicit MoC-structure guidance the FAA has published is the AC 450.115 family, particularly AC 450.115-2 (Describing Flight Safety Analysis Methods, 9/20/2024). Its organization is the model an experienced reviewer expects, even for non-FSA MoCs. The document must mirror the rule paragraph it satisfies, and every sub-paragraph of the target rule must map to a section of the MoC by number."
+      ],
+      "subsections": [
+        {
+          "heading": "Front matter",
+          "bullets": [
+            "Applicant name, point of contact, document version, effective date.",
+            "Exact rule paragraph(s) the MoC claims to satisfy.",
+            "List of any earlier accepted MoCs being superseded."
+          ]
+        },
+        {
+          "heading": "Purpose and scope",
+          "paragraphs": [
+            "A plain statement of which rule paragraph(s) the MoC addresses, the vehicle class and phases of flight covered, and any limits on applicability. AC 450.115-1B Chapter 1 (Purpose) and Chapter 2 (Applicability) are the model."
+          ]
+        },
+        {
+          "heading": "Methodology description (the substantive core)",
+          "paragraphs": [
+            "Per 450.115(c), the methodology section must identify and justify six items. AC 450.115-2 walks each one and tells the applicant to organize the document section-by-section against them."
+          ],
+          "bullets": [
+            "Scientific principles and statistical methods used.",
+            "Assumptions and their justifications.",
+            "Rationale for level of fidelity.",
+            "Evidence for validation and verification required by 450.101(g).",
+            "Extent to which benchmark conditions are comparable to foreseeable conditions of the intended operations.",
+            "Extent to which risk mitigations were accounted for."
+          ]
+        },
+        {
+          "heading": "Inputs, data sources, and tools",
+          "paragraphs": [
+            "Vehicle data, failure data, debris catalogs, atmosphere and population models, and any software with version control. AC 450.115-1B treats these as auditable artifacts and expects traceability from input to result."
+          ]
+        },
+        {
+          "heading": "Outputs and acceptance criteria",
+          "paragraphs": [
+            "Quantitative thresholds the method produces (Ec, casualty area, probability of failure bins) tied back to the safety criteria of 450.101(a) and (b)."
+          ]
+        },
+        {
+          "heading": "Verification, validation, limitations, configuration management",
+          "bullets": [
+            "Recurring V&V regime: regression cases, benchmark comparisons, sensitivity studies.",
+            "Explicit statement of what the MoC does not cover and conditions that would trigger re-acceptance.",
+            "Versioning of document, code, and data; change triggers for re-submission."
+          ]
+        },
+        {
+          "heading": "Compliance matrix and cross-walk",
+          "paragraphs": [
+            "Every published Part 450 AC is presented as one, but not the only, acceptable MoC. The applicant must provide a matrix mapping each sub-paragraph of the target rule to the MoC section that addresses it, plus the evidence pointer. The FAA's Part 450 Application Compliance Checklist (MS Excel) is the model. The matrix must align with the Part 450 Subpart C Accepted Means of Compliance Table v3 (9/11/2024) by section number. Misalignment between the matrix and the document body is the most common cause of rework."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Advisory Circulars: a section-by-section walk-through",
+      "paragraphs": [
+        "The FAA Office of Commercial Space Transportation publishes ACs keyed to specific Part 450 sections. Each AC states one accepted MoC. An operator may adopt it directly, tailor it, or propose an alternative. Citing an AC and following it is the fastest path to acceptance."
+      ],
+      "subsections": [
+        {
+          "heading": "Subpart B: application, policy, payload, safety review",
+          "bullets": [
+            "AC 450.31-1, Applying for FAA Determination on Policy or Payload Reviews (4/22/2024). Supports \u00a7\u00a7450.31, 450.41, 450.43.",
+            "AC 450.45-1, Launch and Reentry of Space Nuclear Systems (Aug 2023). Endorses NSPM-20 tiering and inter-agency SAR process.",
+            "AC 450.45-2, Compliance when Contracting with a Federal Entity (3/11/2025). Implements \u00a7450.45(b)."
+          ]
+        },
+        {
+          "heading": "Subpart C: system safety and hazard analyses",
+          "bullets": [
+            "AC 450.101-1B, High Consequence Event Protection (4/9/2024). Implements \u00a7450.101 risk criteria (1\u00d710\u207b\u2074 Ec collective, 1\u00d710\u207b\u2076 individual Pc).",
+            "AC 450.103-1, System Safety Program (9/7/2021).",
+            "AC 450.107-1, Hazard Control Strategy Determination (7/27/2021).",
+            "AC 450.108-1, Flight Abort Rule Development (7/27/2021).",
+            "AC 450.109-1, Flight Hazard Analysis (8/5/2021).",
+            "AC 450.110-1, Physical Containment as a Hazard Control Strategy (9/27/2022)."
+          ]
+        },
+        {
+          "heading": "Subpart C: flight safety analysis",
+          "bullets": [
+            "AC 450.115-1B, High Fidelity Flight Safety Analysis (8/2/2024).",
+            "AC 450.115-2, Describing Flight Safety Analysis Methods (9/20/2024).",
+            "AC 450.117-1, Trajectory Analysis for Normal Flight (8/19/2021).",
+            "AC 450.123-1, Population Exposure Analysis (10/12/2022).",
+            "AC 450.137-1, De Minimis Far-Field Blast Overpressure Effects Analysis (9/10/2024).",
+            "AC 450.139-1, Toxic Hazards (7/8/2024). Covers both \u00a7450.139 (flight) and \u00a7450.187 (ground).",
+            "AC 450.141-1A, Computing System Safety (8/18/2021).",
+            "Draft AC 450.131-1, Probability of Failure (Federal Register notice 8/25/2025).",
+            "Draft AC 450.143-1, Reduced Reliability Flight Safety System (Federal Register notice 5/14/2025)."
+          ]
+        },
+        {
+          "heading": "Subpart C: operations",
+          "bullets": [
+            "AC 450.161-1, Control of Hazard Areas (12/21/2022).",
+            "AC 450.167-1, Tracking for Launch and Reentry Safety Analysis (9/29/2022).",
+            "AC 450.169-1, Launch and Reentry Collision Avoidance Analysis (8/10/2023); draft AC 450.169-1A (Federal Register 9/17/2025).",
+            "AC 450.173-1, Mishap Plan, Reporting, Response, and Investigation (8/12/2021).",
+            "AC 450.179-1, Ground Safety (9/22/2021). Covers \u00a7\u00a7450.179, 450.181, 450.183, 450.185, 450.189."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Accepted Means of Compliance to date",
+      "paragraphs": [
+        "The Part 450 Subpart C Accepted Means of Compliance Table v3 (9/11/2024) is the consolidated, living roster. Every entry is FAA-issued (an AST Advisory Circular) or an FAA-cited external/legacy standard from the Range Commanders Council, NASA, USAF, EPA/NAS, AIHA, NRC, IADC, or legacy Parts 415/417/431. The table does not list third-party proposers row-by-row because each entry was produced or designated by the FAA. Applicant-unique MoCs accepted under 450.35(b) (for example, operator-specific FSA tools) are handled privately as part of license actions and are not published."
+      ],
+      "subsections": [
+        {
+          "heading": "Representative entries from table v3",
+          "bullets": [
+            "\u00a7450.103 System Safety Program \u2014 AC 450.103-1 (9/7/2021).",
+            "\u00a7450.107 Hazard Control Strategies \u2014 AC 450.107-1 (7/27/2021).",
+            "\u00a7450.108 Flight Abort \u2014 AC 450.108-1 (7/27/2021); \u00a7450.108(c)(6) flight safety limit objectives also accept legacy 14 CFR 417.213(a),(b),(d).",
+            "\u00a7450.111 Wind Weighting \u2014 legacy 14 CFR 415.109(b)(2)(v), 417.125, 417.201(c), 417.233, Appendix C to Part 417.",
+            "\u00a7450.115 High Fidelity FSA \u2014 AC 450.115-1B (8/2/2024).",
+            "\u00a7450.137 Far-Field Blast Overpressure \u2014 AC 450.137-1 (9/10/2024).",
+            "\u00a7450.139 Toxic Hazards \u2014 AC 450.139-1 (7/8/2024); \u00a7450.139(e)(1) thresholds accept AEGL-2 (EPA/NAS), ERPG-2 (AIHA), or SPEGL (NRC).",
+            "\u00a7450.141 Computing Systems \u2014 AC 450.141-1A (8/18/2021) plus RCC-319 Mission Data Loads appendix.",
+            "\u00a7450.145 Highly Reliable FSS \u2014 RCC 319-19, RCC 324-11, AFSPCI 91-701, AFI 13-602.",
+            "\u00a7450.163(a)(1) Lightning Commit Criteria \u2014 NASA-STD 4010 (latest active version), legacy Appendix G to Part 417.",
+            "\u00a7450.171 Safety at End of Launch \u2014 IADC 02-01 Space Debris Mitigation Guidelines.",
+            "\u00a7450.179 Ground Safety (and \u00a7\u00a7450.181, 183, 185, 189) \u2014 AC 450.179-1 (9/22/2021).",
+            "\u00a7450.187(e)(1) Ground Airborne Toxic Thresholds \u2014 AEGL-2, ERPG-2, or SPEGL."
+          ]
+        },
+        {
+          "heading": "Pending additions",
+          "paragraphs": [
+            "Two ACs are in the Federal Register pipeline and not yet in a republished table. The Reduced Reliability Flight Safety System AC for \u00a7450.143 was noticed on 5/14/2025 (FR 2025-08496). The Probability of Failure AC 450.131-1 for \u00a7450.131 was noticed on 8/25/2025 (FR 2025-16260)."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Common deficiencies and FAA reviewer feedback",
+      "paragraphs": [
+        "Patterns visible across AST workshop materials, AC 450.31-1, the FAA SLR-2 FAQ, the COMSTAC Regulatory Working Group Report (July 2023), CRS Report R48582, and Senate Commerce testimony from Bill Gerstenmaier (October 2023) recur across operator submissions."
+      ],
+      "bullets": [
+        "Treating the legacy Part 415/417/431/435 cross-walk as a substitute for a Part 450 submission. The FAA SLR-2 FAQ is explicit that legacy material does not in all instances meet Part 450 requirements.",
+        "Submitting a procedural description without the supporting rationale, analyses, or test data required by \u00a7450.35(a)(3). The MoC is a claim; the proof is the underlying analysis.",
+        "Cross-walk inconsistency and version drift. Different debris catalogs, drag coefficients, or failure-mode taxonomies between the \u00a7450.109 hazard analysis and the \u00a7\u00a7450.115/117 flight safety analysis generate formal questions and restart the clock.",
+        "MoC and safety case mismatch. An MoC keyed only to first-stage anomalies while the safety case includes upper-stage breakup, or a debris MoC that omits a fragment class later included in casualty expectation. Flagged in the FR notice for draft AC 450.131-1.",
+        "Premature submission before the ConOps, vehicle configuration, and trajectory family are stable. The Pre-Application Consultation Checklist requires this stability before MoC submission.",
+        "Proposing a novel MoC where an accepted one exists. CRS R48582 documents months of avoidable delay from triggering a full \u00a7450.35 review instead of citing an existing acceptance from the table."
+      ]
+    },
+    {
+      "heading": "Where AI helps",
+      "paragraphs": [
+        "Most Part 450 MoC rework is structural, not scientific. The compliance matrix is misaligned with the document body, an assumption used in \u00a7450.109 contradicts one used in \u00a7450.115, the supporting analyses required by \u00a7450.35(a)(3) are deferred to a later package, or a novel method is proposed where the MoC table already names an accepted one. These are exactly the failure modes that AI agents with access to the rule text, the AC catalog, the MoC table, and the operator's own configuration-controlled assumption set can detect before the FAA does.",
+        "Invariant builds verification agents for regulated aerospace programs. They read the live Subpart C Accepted Means of Compliance Table, parse the operator's MoC and supporting analyses, and produce a reviewer-grade compliance matrix with evidence pointers, assumption-conflict detection across \u00a7\u00a7450.103, 450.107, 450.109, 450.115, and 450.117, and a delta report against the latest AC revisions. The goal is to reach pre-application convergence in weeks rather than months."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is a Means of Compliance under 14 CFR Part 450?",
+      "answer": "A Means of Compliance (MoC) is an operator-authored, FAA-accepted methodology for satisfying a performance-based safety requirement in 14 CFR Part 450. Part 450 states the safety outcome but does not prescribe the method. Under 14 CFR 450.35, the methodology itself must be reviewed and accepted by the Administrator before a license application will be accepted. The MoC document describes the scientific basis, assumptions, fidelity rationale, validation and verification evidence, and the cross-walk that ties each sub-paragraph of the target rule to a section of the document. Once accepted, an MoC can be reused by other operators."
+    },
+    {
+      "question": "Which five Part 450 areas require an FAA-accepted MoC before application?",
+      "answer": "Per 14 CFR 450.35(a), the five areas are 450.115(b)(1) flight safety analysis methods, 450.139(e)(1) toxic hazards for flight, 450.145(b) highly reliable flight safety system, 450.163(a)(1) lightning hazard mitigation, and 450.187(e)(1) toxic hazards for ground operations. The FAA chose these because each is methodology-driven, technically complex, and central to a public safety determination. The canonical accepted MoC for each is the corresponding Advisory Circular: AC 450.115-1B, AC 450.139-1, RCC 319-19 and related standards for FSS, NASA-STD 4010 for lightning, and AC 450.139-1 for ground toxic."
+    },
+    {
+      "question": "What sections does an acceptable MoC document contain?",
+      "answer": "Drawing from AC 450.115-1B (8/2/2024) and AC 450.115-2 (9/20/2024), an acceptable MoC contains administrative front matter, a purpose and scope statement that names the rule paragraphs it satisfies, a methodology description covering the six items in 450.115(c), inputs and data sources with version control, outputs tied to 450.101(a) and (b), a recurring verification and validation regime under 450.101(g), explicit limitations and conditions of acceptance, configuration management for document, code, and data, appendices for derivations and sample calculations, and a compliance matrix that maps each sub-paragraph of the target rule to a section of the MoC."
+    },
+    {
+      "question": "How does \u00a7450.35(b) differ from \u00a7450.35(a)?",
+      "answer": "Section 450.35(a) names the five high-consequence areas where an accepted MoC must be in place before the FAA will even accept a license application. Section 450.35(b) is the procedural mechanism: it allows an operator, standards body, or other proponent to submit a proposed MoC to the FAA outside of a license application, in a form and manner acceptable to the Administrator. This decoupling lets industry build the accepted MoC inventory in advance of any specific license action, and lets the FAA publish accepted MoCs that other operators can reuse without re-litigating the method."
+    },
+    {
+      "question": "What is the Part 450 Subpart C Accepted Means of Compliance Table and how is it used?",
+      "answer": "The Part 450 Subpart C Accepted Means of Compliance Table is the FAA's consolidated, living roster of accepted MoCs. The current version is v3 dated 9/11/2024. It maps every Subpart C section to one or more accepted MoCs, typically an FAA Advisory Circular, an industry consensus standard such as RCC 319-19 or NASA-STD 4010, or a legacy 14 CFR Part 415/417/431 provision. Operators are expected to check the table first and cite an existing accepted MoC where possible. Proposing a novel MoC where an accepted one exists triggers a full 450.35 review and avoidable delay."
+    },
+    {
+      "question": "Which Advisory Circulars are the canonical MoCs for the \u00a7450.35(a) areas?",
+      "answer": "AC 450.115-1B (High Fidelity Flight Safety Analysis, 8/2/2024) and AC 450.115-2 (Describing Flight Safety Analysis Methods, 9/20/2024) cover \u00a7450.115. AC 450.139-1 (Toxic Hazards, 7/8/2024) covers both \u00a7450.139 and \u00a7450.187. For \u00a7450.145(b) highly reliable FSS, the FAA accepts RCC 319-19, RCC 324-11, AFSPCI 91-701, and AFI 13-602 by reference. For \u00a7450.163(a)(1) lightning, NASA-STD 4010 (latest active version) and legacy Appendix G to Part 417 are accepted. For \u00a7450.187(e)(1) ground toxic thresholds, AEGL-2, ERPG-2, or SPEGL are accepted."
+    },
+    {
+      "question": "What supporting material must accompany an MoC submission?",
+      "answer": "Section 450.35(a)(3) requires an MoC submission to include supporting rationale, analyses, or test data. AC 450.31-1 (4/22/2024) warns that incomplete submissions can significantly delay review. In practice the FAA expects, alongside the methodology description, the severity and likelihood criteria with the basis for selecting them, sensitivity analyses, validation against benchmark cases, and verification evidence required by 450.101(g). For a flight safety analysis MoC, that includes the vehicle data, failure data, debris catalogs, atmosphere and population models, software with version control, and traceability from input to result."
+    },
+    {
+      "question": "What are the most common reasons FAA reviewers send an MoC back for rework?",
+      "answer": "Six patterns recur across FAA workshop materials, AC 450.31-1, the SLR-2 FAQ, CRS Report R48582, and the COMSTAC Regulatory Working Group Report (July 2023). Operators submit legacy Part 417 analyses with a thin cross-walk and expect acceptance. They describe procedures without supporting analyses. The compliance matrix conflicts with the document body. Assumptions drift between \u00a7450.109, \u00a7450.115, and \u00a7450.117. The ConOps is still in flux when the MoC is submitted. Operators propose a novel MoC where an accepted one already exists in the table. Each pattern restarts the iterative review cycle."
+    },
+    {
+      "question": "Are there pending ACs that will become accepted MoCs?",
+      "answer": "Yes. On 5/14/2025 the FAA published in the Federal Register an Agency Advisory Circular for Reduced Reliability Flight Safety System Design, Test, and Documentation (FR 2025-08496), intended to become an accepted MoC for \u00a7450.143. On 8/25/2025 the FAA noticed draft AC 450.131-1, Probability of Failure (FR 2025-16260), intended to become an accepted MoC for \u00a7450.131. Draft AC 450.169-1A, Launch and Reentry Collision Avoidance Analysis, was noticed on 9/17/2025. None had been folded into a republished MoC Table at the time of v3 (9/11/2024)."
+    },
+    {
+      "question": "Can an MoC accepted for one operator be reused by another?",
+      "answer": "Yes for FAA-published ACs and FAA-cited industry consensus standards, which are listed in the Part 450 Subpart C Accepted Means of Compliance Table and are reusable by any operator that tailors and cites them appropriately. Applicant-unique MoCs accepted under 450.35(b), for example operator-specific flight safety analysis tools, are accepted privately as part of license actions and are not listed in the published table. The FAA has not published a roster of those acceptances. The reusability principle is one of the explicit motivations of the streamlined model in the December 10, 2020 final rule."
+    },
+    {
+      "question": "How long does MoC acceptance take, and how should an operator sequence it?",
+      "answer": "The Part 450 Pre-Application Consultation Checklist (faa.gov/media/75146) is explicit that the concept of operations, vehicle description, and program schedule must be stable before MoC submission. An operator targeting a vehicle operator license should either adopt a previously accepted MoC for each of the five \u00a7450.35(a) topics or submit its own well in advance of the intended application. The FAA's AST treats use of previously accepted MoCs as the fastest pre-application path. Submitting an MoC before the safety case architecture is locked guarantees rework and an extended pre-application phase."
+    },
+    {
+      "question": "Where does AI fit in writing and reviewing a Part 450 MoC?",
+      "answer": "Most MoC rework is structural, not scientific: compliance matrix misalignment, assumption drift across \u00a7\u00a7450.103, 450.107, 450.109, 450.115, and 450.117, supporting analyses deferred to a later package, or a novel method proposed where the MoC Table already names an accepted one. AI verification agents with access to the rule text, the AC catalog, the live Accepted Means of Compliance Table v3, and the operator's configuration-controlled assumption set can detect these failure modes before the FAA does and produce a reviewer-grade compliance matrix with evidence pointers and a delta report against the latest AC revisions."
+    }
+  ],
+  "citations": [
+    {
+      "label": "14 CFR 450.35 Means of Compliance (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-III/subchapter-C/part-450/subpart-B/section-450.35"
+    },
+    {
+      "label": "14 CFR Part 450 full text (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-III/subchapter-C/part-450"
+    },
+    {
+      "label": "14 CFR 450.115 Flight safety analysis methods (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-III/subchapter-C/part-450/subpart-C/section-450.115"
+    },
+    {
+      "label": "Cornell LII mirror of 14 CFR 450.35",
+      "url": "https://www.law.cornell.edu/cfr/text/14/450.35"
+    },
+    {
+      "label": "FAA Part 450 Means of Compliance Table v3 (9/11/2024)",
+      "url": "https://www.faa.gov/sites/faa.gov/files/Part_450_Means_of_Compliance_Table%20v3%209_11_2024.pdf"
+    },
+    {
+      "label": "FAA Part 450 Means of Compliance Table (2/22/2023)",
+      "url": "https://www.faa.gov/sites/faa.gov/files/Part_450_Means_of_Compliance_Table_2_22_23_0.pdf"
+    },
+    {
+      "label": "FAA Part 450 Pre-Application Consultation Checklist",
+      "url": "https://www.faa.gov/media/75146"
+    },
+    {
+      "label": "FAA Part 450 Application Compliance Checklist",
+      "url": "https://www.faa.gov/space/streamlinedlicensingprocess/part-450-application-compliance-checklist"
+    },
+    {
+      "label": "FAA SLR-2 Final Rule reference (Part 450)",
+      "url": "https://www.faa.gov/sites/faa.gov/files/space/additional_information/faq/SLR2_Final_Rule_450.pdf"
+    },
+    {
+      "label": "Federal Register, Streamlined Launch and Reentry License Requirements final rule (12/10/2020)",
+      "url": "https://www.federalregister.gov/documents/2020/12/10/2020-22042/streamlined-launch-and-reentry-license-requirements"
+    },
+    {
+      "label": "AC 450.115-1B High Fidelity Flight Safety Analysis (8/2/2024)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.115-1B.pdf"
+    },
+    {
+      "label": "AC 450.115-2 Describing Flight Safety Analysis Methods (9/20/2024)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.115-2.pdf"
+    },
+    {
+      "label": "AC 450.31-1 Applying for FAA Determination on Policy or Payload Reviews (4/22/2024)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.31-1.pdf"
+    },
+    {
+      "label": "AC 450.101-1B High Consequence Event Protection (4/9/2024)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.101-1B_2024-05-03.pdf"
+    },
+    {
+      "label": "AC 450.103-1 System Safety Program (9/7/2021)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.103-1.pdf"
+    },
+    {
+      "label": "AC 450.108-1 Flight Abort Rule Development (7/27/2021)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.108-1_Flight_Abort_Rule_Development.pdf"
+    },
+    {
+      "label": "AC 450.109-1 Flight Hazard Analysis (8/5/2021)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.109-1_Flight_Hazard_Analysis_nj.pdf"
+    },
+    {
+      "label": "AC 450.110-1 Physical Containment (9/27/2022)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.110-1.pdf"
+    },
+    {
+      "label": "AC 450.139-1 Toxic Hazards (7/8/2024)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/450.139-1.pdf"
+    },
+    {
+      "label": "AC 450.161-1 Control of Hazard Areas (12/21/2022)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.161-1_Control_of_Hazard_Areas.pdf"
+    },
+    {
+      "label": "AC 450.167-1 Tracking for Launch and Reentry Safety Analysis (9/29/2022)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.167-1.pdf"
+    },
+    {
+      "label": "AC 450.173-1 Mishap Plan, Reporting, Response, and Investigation (8/12/2021)",
+      "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_450.173-1.pdf"
+    },
+    {
+      "label": "Federal Register, Agency Advisory Circular: Reduced Reliability Flight Safety System (5/14/2025)",
+      "url": "https://www.federalregister.gov/documents/2025/05/14/2025-08496/agency-advisory-circular-reduced-reliability-flight-safety-system-design-test-and-documentation"
+    },
+    {
+      "label": "Federal Register, Advisory Circular No. 450.131-1 Probability of Failure (8/25/2025)",
+      "url": "https://www.federalregister.gov/documents/2025/08/25/2025-16260/advisory-circular-no-450131-1-probability-of-failure"
+    },
+    {
+      "label": "Commercial Space Advisory Circulars index (FAA)",
+      "url": "https://www.faa.gov/space/legislationregulationguidance/commercial-space-advisory-circulars-acs/commercial-space"
+    }
+  ]
+}
