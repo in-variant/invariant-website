@@ -37,6 +37,41 @@
       ]
     },
     {
+      "slug": "do-160",
+      "term": "DO-160",
+      "topic": "aerospace",
+      "short_definition": "RTCA DO-160G (2010) is the standard defining environmental conditions and test procedures, from temperature and vibration to HIRF and lightning, for certifying airborne electronic equipment.",
+      "full_definition": "RTCA DO-160G, \"Environmental Conditions and Test Procedures for Airborne Equipment,\" was issued on December 8, 2010, superseding DO-160F. It was prepared by RTCA Special Committee 135 (SC-135) jointly with EUROCAE Working Group 14, and is published in identical wording by EUROCAE as ED-14G. The FAA accepts DO-160 versions D, E, F, and G through Advisory Circular AC 21-16G as an acceptable means of showing compliance with environmental qualification requirements for airborne equipment. Change 1 to DO-160G and ED-14G was issued in 2014 to 2015, primarily to remove the embedded User Guides (which were migrated to companion document EUROCAE ED-234, \"User Guide Supplement to ED-14G\").\n\nDO-160G is organized into 26 sections. Sections 1 through 3 define purpose, definitions, and conditions of tests. Sections 4 through 26 specify the actual environmental tests, each with categorical letter codes that the equipment qualification form (the \"DO-160 form\") records. The mechanical and climatic block covers Section 4 (temperature and altitude), Section 5 (temperature variation), Section 6 (humidity), Section 7 (operational shock and crash safety), Section 8 (vibration), Section 9 (explosive atmosphere), Section 10 (waterproofness), Section 11 (fluids susceptibility), Section 12 (sand and dust), Section 13 (fungus), and Section 14 (salt fog). Sections 15 through 19 cover magnetic effect, power input, voltage spike, audio frequency conducted susceptibility, and induced signal susceptibility. The electromagnetic block covers Section 20 (radio frequency susceptibility, conducted and radiated, with CW, square wave, and pulse modulated signals, and HIRF levels up to 7,200 V/m peak in some categories), Section 21 (emission of radio frequency energy), Section 22 (lightning induced transient susceptibility, with pin and cable bundle waveforms at levels up to 3,200 V and 800 A for the highest category), and Section 23 (lightning direct effects). Section 24 covers icing, Section 25 covers electrostatic discharge at 15 kV, and Section 26 covers fire, flammability, and the 12 second and 5 minute burn tests.\n\nEquipment qualified to DO-160G is summarized by an environmental qualification form listing the category code applied for each section, which feeds the Declaration of Design and Performance used in TSO authorizations and type certification packages.",
+      "related_to": [
+        "do-178c",
+        "do-254",
+        "tso",
+        "arp-4754a"
+      ],
+      "citations": [
+        {
+          "label": "RTCA DO-160 standard page",
+          "url": "https://www.rtca.org/do-160/"
+        },
+        {
+          "label": "FAA Advisory Circular AC 21-16G (RTCA DO-160 acceptance)",
+          "url": "https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_21-16G.pdf"
+        },
+        {
+          "label": "RTCA SC-135 Terms of Reference (Environmental Testing)",
+          "url": "https://www.rtca.org/wp-content/uploads/2021/05/SC-135-TOR_Approved-03-18-2021.pdf"
+        },
+        {
+          "label": "EUROCAE ED-14G (twin of RTCA DO-160G)",
+          "url": "https://standards.globalspec.com/std/9935773/EUROCAE%20ED%2014"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Environmental Conditions and Test Procedures for Airborne Equipment"
+      ]
+    },
+    {
       "slug": "do-178c",
       "term": "DO-178C",
       "topic": "aerospace",
@@ -104,6 +139,41 @@
       "last_updated": "2026-06-12",
       "aliases": [
         "Design Assurance Guidance for Airborne Electronic Hardware"
+      ]
+    },
+    {
+      "slug": "do-330",
+      "term": "DO-330",
+      "topic": "aerospace",
+      "short_definition": "RTCA DO-330 / EUROCAE ED-215, the 2011 Software Tool Qualification Considerations document supplementing DO-178C, defining five Tool Qualification Levels and objectives for qualifying development and verification tools.",
+      "full_definition": "DO-330, \"Software Tool Qualification Considerations,\" is the RTCA standard published 13 December 2011 by Special Committee SC-205 (jointly with EUROCAE WG-71, issued as ED-215 in January 2012). It is the tool-qualification supplement to DO-178C and DO-278A, replacing the brief tool-qualification clauses formerly buried in DO-178B Section 12.2. DO-178C Section 12.2.3 explicitly delegates all tool-qualification objectives, guidance, and life-cycle activity to DO-330/ED-215.\n\nThe document introduces five Tool Qualification Levels (TQL-1 through TQL-5), with TQL-1 the most rigorous. TQL is assigned by cross-referencing the software level of the airborne software the tool affects (Level A through D under DO-178C) with one of three tool Criteria defined in Section 12.2.2 of DO-178C: Criterion 1 (a development tool whose output becomes part of airborne software, so it could insert an error), Criterion 2 (a verification tool that automates a verification process and is used to eliminate, reduce, or replace another process), and Criterion 3 (a verification tool that could fail to detect an error but is not used to reduce other activities). A Criterion 1 tool used on Level A software requires TQL-1; Criterion 3 tools default to TQL-5 regardless of software level.\n\nDO-330 mirrors the DO-178C life cycle but applied to the tool itself, with the Tool Operational Requirements (TOR) replacing system requirements as the qualification baseline. Required artifacts include the Tool Qualification Plan (TQP), Tool Operational Requirements (TOR), Tool Development Plan, Tool Verification Plan, Tool Configuration Management and Quality Assurance plans, and the Tool Accomplishment Summary (TAS) submitted to the certification authority. Compliance is demonstrated against ten Annex A tables of objectives, with the number of applicable objectives, independence requirements, and control-category rigor scaling with TQL.\n\nFAA Advisory Circular AC 20-115D (24 July 2017) and EASA AMC 20-115D recognize DO-330 as the acceptable means of compliance for tool qualification on Part 23/25/27/29/33 and CS-25 certification programs. Although written for airborne software, Section 1.2 explicitly invites reuse in adjacent domains, and DO-330 is now cited by DO-278A (CNS/ATM ground systems), DO-254 hardware tool flows, ISO 26262 automotive (Part 8 Clause 11), and IEC 61508 functional safety as a recognized tool-qualification reference.",
+      "related_to": [
+        "do-178c",
+        "dal-a-e",
+        "arp-4754a",
+        "do-254"
+      ],
+      "citations": [
+        {
+          "label": "RTCA DO-330 product page, Software Tool Qualification Considerations (13 Dec 2011)",
+          "url": "https://my.rtca.org/productdetails?id=a1B36000001IcfkEAC"
+        },
+        {
+          "label": "FAA Advisory Circular AC 20-115D, Airborne Software Development Assurance Using EUROCAE ED-12( ) and RTCA DO-178( )",
+          "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentNumber/20-115D"
+        },
+        {
+          "label": "EUROCAE ED-215 / ED-216 catalog entry",
+          "url": "https://www.eurocae.net/news/posts/2012/january/ed-215-and-ed-216-now-available/"
+        },
+        {
+          "label": "NASA CR-2017-219371, Formal Methods Tool Qualification (DO-330 analysis)",
+          "url": "https://shemesh.larc.nasa.gov/fm/FMinCert/NASA-CR-2017-219371.pdf"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Software Tool Qualification Considerations"
       ]
     },
     {
@@ -557,6 +627,75 @@
       ]
     },
     {
+      "slug": "icao-annex-14",
+      "term": "ICAO Annex 14",
+      "topic": "aerospace",
+      "short_definition": "ICAO Annex 14 sets the international Standards and Recommended Practices for aerodromes, covering runway geometry, obstacle limitation surfaces, visual aids, and rescue and firefighting services.",
+      "full_definition": "ICAO Annex 14 to the Chicago Convention, formally \"Aerodromes,\" is the global rulebook that prescribes the physical characteristics, services, and operational requirements every certified airport must meet. The Council first adopted Annex 14 on 29 May 1951 (the original 61-page document grew out of the 1947 and 1949 Aerodromes Division meetings) and reorganized it on 9 March 1990 into two volumes: Volume I, \"Aerodrome Design and Operations,\" and Volume II, \"Heliports.\" Volume I, currently the 9th Edition published in July 2022 and incorporating Amendment 18, contains roughly 1,100 SARPs distributed across ten chapters: Chapter 1 (definitions), Chapter 2 (aerodrome data), Chapter 3 (physical characteristics: runways, strips, RESAs, taxiways, aprons), Chapter 4 (obstacle restriction and removal), Chapter 5 (visual aids: markings, lights, signs, markers), Chapter 6 (visual aids for denoting obstacles), Chapter 7 (visual aids for restricted-use areas), Chapter 8 (electrical systems), Chapter 9 (aerodrome operational services, including rescue and firefighting and wildlife hazard management), and Chapter 10 (aerodrome maintenance). Specifications are scaled by an Aerodrome Reference Code that pairs a number 1 to 4 (based on aeroplane reference field length) with a letter A to F (based on wingspan and outer main gear wheel span); code 4F covers the largest aircraft such as the A380 and 747-8. The Annex defines runway end safety areas (RESAs) of at least 90 metres beyond the strip end (recommended 240 metres) for code 3 and 4 runways, and ranks rescue and firefighting (RFF) categories 1 to 10 by aeroplane length and fuselage width, dictating minimum extinguishing-agent quantities and response times not exceeding three minutes to any point of each operational runway. Chapter 4's classic obstacle limitation surfaces (approach, transitional, inner horizontal, conical, take-off climb) are being replaced by a revised, risk-based OLS framework introduced via Amendment 18, which the Council adopted on 7 March 2024; the new ground-handling SARPs become applicable on 26 November 2026, and the revised OLS SARPs on 21 November 2030 after a five-year transition. Compliance flows through each Contracting State's civil aviation authority via aerodrome certification under PANS-Aerodromes (Doc 9981) and the Aerodrome Design Manual (Doc 9157).",
+      "related_to": [
+        "icao",
+        "easa",
+        "faa-part-25"
+      ],
+      "citations": [
+        {
+          "label": "ICAO Store: Annex 14, Volume I, Aerodrome Design and Operations (9th Edition, July 2022)",
+          "url": "https://store.icao.int/en/annex-14-aerodromes"
+        },
+        {
+          "label": "ICAO Postal History: Annex 14 Aerodromes (adoption and editions)",
+          "url": "https://www.icao.int/sites/default/files/postalhistory/annex_14_aerodromes.htm"
+        },
+        {
+          "label": "ICAO APAC: Adoption of Amendment 18 to Annex 14, Volume I (applicability dates 26 Nov 2026 and 21 Nov 2030)",
+          "url": "https://www.icao.int/sites/default/files/APAC/Meetings/2025/2025%20Workshop%20on%20Implementation%20of%20New%20ICAO%20Annex/Training%20Materials/SL-2025-23_amendment-18-to-Annex-14-Vol-I.pdf"
+        },
+        {
+          "label": "ICAO A42 Working Paper 212: Implementation of the revised Annex 14, Volume I",
+          "url": "https://www.icao.int/sites/default/files/Meetings/a42/Documents/WP/wp_212_en.pdf"
+        }
+      ],
+      "aliases": [
+        "Aerodromes"
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "icao-annex-8",
+      "term": "ICAO Annex 8",
+      "topic": "aerospace",
+      "last_updated": "2026-06-12",
+      "short_definition": "Annex 8 to the Chicago Convention sets Standards and Recommended Practices for the airworthiness of aircraft, defining the minimum design and continuing-airworthiness basis Contracting States must recognize.",
+      "full_definition": "Annex 8 to the Convention on International Civil Aviation (Chicago, 7 December 1944), titled Airworthiness of Aircraft, is the International Civil Aviation Organization (ICAO) instrument that establishes the international Standards and Recommended Practices (SARPs) governing the design, manufacture, certification and continued airworthiness of civil aircraft, engines and propellers. Annex 8 was first adopted by the ICAO Council on 1 March 1949, became effective on 1 August 1949 and applicable on 1 September 1949. The current text is the 13th Edition, published in July 2022, incorporating Amendment 110 and Corrigenda 1 to 3.\n\nAnnex 8 gives operative effect to Article 33 of the Convention, which obliges every Contracting State to recognize as valid an airworthiness certificate issued or rendered valid by the State of Registry, provided the requirements under which the certificate was issued are equal to or above the minimum standards established under the Convention. Annex 8 defines that minimum.\n\nStructurally, the Annex is organized into seven Parts. Part I contains definitions. Part II sets out procedures for type certification, production, issue of Certificates of Airworthiness, and continuing airworthiness of aircraft, including the responsibilities of the State of Design, State of Manufacture, State of Registry and State of the Operator. Parts IIIA and IIIB contain technical airworthiness requirements for large aeroplanes (maximum certificated take-off mass greater than 5,700 kg), with IIIB applicable to designs submitted for certification on or after 2 March 2004. Parts IVA and IVB cover helicopters. Part V applies to small aeroplanes (over 750 kg up to and including 5,700 kg), Part VI to engines, and Part VII to propellers, each indicating its applicability date in section 1.1.\n\nThe Annex is supported by Doc 9760, the Airworthiness Manual, first published in 2001 as a consolidation of earlier ICAO airworthiness guidance issued from 1974 onward. Major policy revisions followed the Third Air Navigation Conference (Montreal, 1956), the 1972 reformulation of international airworthiness policy, and the establishment of the Airworthiness Panel (later the Continuing Airworthiness Panel, first convened in January 1988). Recent amendments have introduced SARPs for remotely piloted aircraft systems (RPAS), so that RPAS intended for international operations are type-certificated under Annex 8 in conjunction with Annex 6, Part IV.",
+      "related_to": [
+        "chicago-convention",
+        "icao-annex-6",
+        "type-certificate",
+        "certificate-of-airworthiness"
+      ],
+      "citations": [
+        {
+          "label": "ICAO Postal History: Annex 8 - Airworthiness of Aircraft",
+          "url": "https://www.icao.int/sites/default/files/postalhistory/annex_8_airworthiness_of_aircraft.htm"
+        },
+        {
+          "label": "ICAO Store: Annex 8 - Airworthiness of Aircraft (13th Edition, July 2022)",
+          "url": "https://store.icao.int/en/annex-8-airworthiness-of-aircraft"
+        },
+        {
+          "label": "ICAO Standards and Recommended Practices (SARPs)",
+          "url": "https://www.icao.int/safety-management/standards-and-recommended-practices-sarps"
+        },
+        {
+          "label": "Convention on International Civil Aviation (Doc 7300), Article 33",
+          "url": "https://www.icao.int/publications/pages/doc7300.aspx"
+        }
+      ],
+      "aliases": [
+        "Airworthiness of Aircraft"
+      ]
+    },
+    {
       "slug": "sora",
       "term": "JARUS SORA",
       "topic": "aerospace",
@@ -589,6 +728,72 @@
           "label": "EASA: Specific Operations Risk Assessment (SORA)",
           "url": "https://www.easa.europa.eu/en/domains/drones-air-mobility/operating-drone/specific-category-civil-drones/specific-operations-risk-assessment-sora"
         }
+      ]
+    },
+    {
+      "slug": "mil-std-810",
+      "term": "MIL-STD-810",
+      "topic": "aerospace",
+      "aliases": [
+        "Environmental Engineering Considerations"
+      ],
+      "short_definition": "The U.S. Department of Defense environmental engineering and laboratory test method standard that tailors temperature, vibration, shock, humidity, and altitude testing to a materiel system's life cycle.",
+      "full_definition": "MIL-STD-810, formally titled \"Environmental Engineering Considerations and Laboratory Tests,\" is the Department of Defense test method standard governing how military materiel is evaluated against the environmental stresses it will encounter across manufacture, transport, storage, deployment, and end-of-life. The current revision, MIL-STD-810H, was issued on 31 January 2019 by the U.S. Army Test and Evaluation Command (ATEC) as the Lead Standardization Activity and Preparing Activity, superseding MIL-STD-810G with Change Notice 1 of 15 April 2014. ATEC, Naval Air Systems Command, and the Air Force Life Cycle Management Center share Tri-Service custodianship. Change Notice 1 to Revision H followed on 18 May 2022 (FSC ENVR).\\n\\nThe standard is organized in three parts. Part One contains the management, engineering, and technical roles for the environmental tailoring process and Life Cycle Environmental Profile development; it explicitly disclaims a one-size-fits-all qualification regime and instead requires programs to derive test conditions from documented platform usage. Part Two contains the laboratory test methods, numbered 500 through 528, including 500.6 Low Pressure (Altitude), 501.7 High Temperature, 502.7 Low Temperature, 503.7 Temperature Shock, 505.7 Solar Radiation, 506.6 Rain, 507.6 Humidity, 508.8 Fungus, 509.7 Salt Fog, 510.7 Sand and Dust, 511.7 Explosive Atmosphere, 512.6 Immersion, 513.8 Acceleration, 514.8 Vibration, 515.8 Acoustic Noise, 516.8 Shock, 517.3 Pyroshock, 519.8 Gunfire Shock, 520.5 Combined Environments, 521.4 Icing/Freezing Rain, 522.2 Ballistic Shock, 525.2 Time Waveform Replication, 527.2 Multi-Exciter, and 528.1 Mechanical Vibrations of Shipboard Equipment. Part Three defines world climatic regions and the basic, hot, cold, and severe cold climatic design types that anchor temperature and humidity tailoring.\\n\\nRevision H introduced several substantive changes over 810G: Method 527 Multi-Exciter was promoted from an annex to a full method; Method 503 expanded shock-of-fluid scenarios; Method 514 vibration adopted updated minimum integrity tests and propeller aircraft profiles; Method 516 added a new Procedure VIII for catapult and arrested-landing shock; and Method 521 incorporated freezing-drizzle conditions. The standard remains advisory rather than a pass/fail certification (the materiel community calls a device \"810H tested\" rather than \"810H certified\"), but DoD contracts routinely cite specific methods and procedures in System Performance Specifications, and Defense Federal Acquisition Regulation Supplement clauses require the tailoring rationale to be documented in the Environmental Test Plan and Environmental Test Report.",
+      "related_to": [
+        "mil-std-461",
+        "nasa-gevs",
+        "ecss-e-st-10-03",
+        "thermal-vacuum-tvac"
+      ],
+      "citations": [
+        {
+          "label": "DoD ASSIST: MIL-STD-810H Document Details (DLA Quicksearch)",
+          "url": "https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=35978"
+        },
+        {
+          "label": "MIL-STD-810H, Department of Defense Test Method Standard, 31 January 2019 (PDF)",
+          "url": "https://www.trentonsystems.com/hubfs/mil-std-810h.pdf"
+        },
+        {
+          "label": "EverySpec: MIL-STD-810H Environmental Engineering Considerations and Laboratory Tests",
+          "url": "https://everyspec.com/MIL-STD/MIL-STD-0800-0899/MIL-STD-810H_55998/"
+        },
+        {
+          "label": "DoD ASSIST Standardization Document Search Portal",
+          "url": "https://quicksearch.dla.mil/"
+        }
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "mil-std-882e",
+      "term": "MIL-STD-882E",
+      "topic": "aerospace",
+      "short_definition": "U.S. Department of Defense Standard Practice for System Safety, issued 11 May 2012, defining the systems-engineering approach for identifying hazards and managing risk across defense systems.",
+      "full_definition": "MIL-STD-882E, titled \"Department of Defense Standard Practice: System Safety,\" was issued by the DoD on 11 May 2012, superseding MIL-STD-882D (10 February 2000). A Change 1 revision was released on 27 September 2023, reinstating detailed task descriptions while leaving the core requirements intact. The standard applies across all Military Departments and Defense Agencies and conforms to the DoD Instruction 5000 series, which designates the risk acceptance authorities.\n\nPer Section 1.1, the standard covers hazards in systems, products, equipment, and infrastructure (hardware and software) across design, development, test, production, use, and disposal. When invoked in a contract without a specific task call-out, only Sections 3 (Definitions) and 4 (General Requirements) are mandatory. Section 4.3 codifies the eight-element system safety process: (1) document the system safety approach, (2) identify and document hazards, (3) assess and document risk, (4) identify and document risk mitigation measures, (5) reduce risk, (6) verify, validate, and document risk reduction, (7) accept risk and document, and (8) manage life-cycle risk. All identified hazards are recorded in a closed-loop Hazard Tracking System (HTS) per 4.3.1.d.\n\nRisk is assessed as a Risk Assessment Code (RAC) combining severity and probability. Table I defines four severity categories: Catastrophic (1, death, permanent total disability, or monetary loss greater than or equal to $10M), Critical (2, $1M to less than $10M), Marginal (3, $100K to less than $1M), and Negligible (4, less than $100K). Table II defines six probability levels A through F (Frequent, Probable, Occasional, Remote, Improbable, Eliminated). Table III maps each RAC to a risk level of High, Serious, Medium, or Low. Section 4.3.4 establishes the design order of precedence: eliminate by design first, then design alteration, engineered features, warning devices, and finally signage/procedures/PPE (the last is disallowed as the sole mitigation for Catastrophic or Critical hazards).\n\nSection 4.4 addresses software contribution to risk through Software Control Categories (Table IV), the Software Safety Criticality Matrix (Table V) yielding Software Criticality Indices (SwCI 1 through 5), and Table VI tying SwCI to Level of Rigor (LOR) tasks. Section 5 introduces optional contractual tasks grouped as 100-series (Management), 200-series (Analysis), 300-series (Evaluation), and 400-series (Verification), including the Safety Assessment Report (Task 301) and Preliminary Hazard Analysis (Task 202).",
+      "related_to": [
+        "hazard-tracking-system",
+        "risk-assessment-code",
+        "system-safety",
+        "preliminary-hazard-analysis"
+      ],
+      "citations": [
+        {
+          "label": "MIL-STD-882E w/Change 1 (27 Sep 2023, superseding 11 May 2012), U.S. Army Combat Readiness Center",
+          "url": "https://safety.army.mil/Portals/0/Documents/ON-DUTY/SYSTEMSAFETY/Standard/MIL-STD-882E-change-1.pdf"
+        },
+        {
+          "label": "ASSIST online database (DoD standardization document repository for MIL-STD-882E)",
+          "url": "https://assist.dla.mil"
+        },
+        {
+          "label": "DoD Instruction 5000 Series, Acquisition Policy (risk acceptance authorities cited by MIL-STD-882E)",
+          "url": "https://www.dtic.mil/whs/directives/"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "System Safety"
       ]
     },
     {
@@ -659,6 +864,41 @@
         "Guidelines for Development of Civil Aircraft and Systems"
       ],
       "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "arp-4754b",
+      "term": "SAE ARP4754B",
+      "topic": "aerospace",
+      "short_definition": "SAE Aerospace Recommended Practice (Dec 20, 2023) for civil aircraft and systems development, jointly issued as EUROCAE ED-79B, aligned with ARP4761A safety assessment.",
+      "full_definition": "SAE ARP4754B, \"Guidelines for Development of Civil Aircraft and Systems,\" is the December 20, 2023 revision of the principal aircraft/system development assurance recommended practice, published jointly by SAE International and EUROCAE (as ED-79B). It supersedes ARP4754A/ED-79A (December 2010), which the FAA recognized through Advisory Circular AC 20-174 (November 2011), and remains the de facto means of compliance for showing that the aircraft- and system-level development process satisfies 14 CFR 25.1309 and CS-25.1309 functional-failure objectives.\n\nThe Revision B effort was deliberately scoped: SAE and EUROCAE characterize it as an alignment release with the concurrently issued ARP4761A/ED-135 \"Guidelines and Methods for Conducting the Safety Assessment Process,\" with deeper restructuring deferred to a future Revision C. The three-pillar development model is retained: Development Planning, Aircraft/System Development, and Integral Processes. Section 3.3 (Development Planning) now absorbs the prior \"Certification and Regulatory Authority Coordination\" integral process, which has been eliminated as a standalone activity.\n\nKey substantive changes: (1) detailed FDAL/IDAL assignment procedures and Functional Hazard Assessment mechanics are relocated to ARP4761A, with ARP4754B retaining the principles; (2) the catalog of acceptable safety analysis techniques is broadened to include Model-Based Safety Analysis (MBSA) and Cascading Effects Analysis (CEA) alongside FTA, FMEA, PRA, and ZSA; (3) validation and verification flexibility is increased, so for FDAL A, Traceability and Engineering Review are the primary methods, with Analysis, Modeling, or Testing optional when the primary methods are insufficient (versus the ARP4754A requirement to combine at least three methods); (4) the Modifications clause is expanded to cover reuse of systems, equipment, and items, requiring a Modification Impact Analysis that classifies elements as Unmodified, Affected, Modified, or New; and (5) Development Assurance Plans must explicitly address identification and mitigation of unintended behavior at intra-system, inter-system, and aircraft levels. A new informative Appendix E provides a hypothetical S18 Wheel Brake System worked example aligned with ARP4761A Appendix Q.\n\nScope exclusions remain: ARP4754B does not itself specify processes for software (see DO-178C), airborne electronic hardware (see DO-254), avionics integration, security (see DO-326A), or structural and aerodynamic development. Applicants typically cite ARP4754B together with ARP4761A as the system-level development assurance backbone of an FAA or EASA certification basis.",
+      "related_to": [
+        "arp-4761a",
+        "do-178c",
+        "do-254",
+        "fdal"
+      ],
+      "citations": [
+        {
+          "label": "SAE International, ARP4754B: Guidelines for Development of Civil Aircraft and Systems",
+          "url": "https://www.sae.org/standards/content/arp4754b/"
+        },
+        {
+          "label": "SAE Mobilus, ARP4754B Standard Record",
+          "url": "https://saemobilus.sae.org/standards/arp4754b-guidelines-development-civil-aircraft-systems"
+        },
+        {
+          "label": "EUROCAE, ED-79B Guidelines for Development of Civil Aircraft and Systems",
+          "url": "https://ee-aero.com/glossary/ed-79b"
+        },
+        {
+          "label": "FAA Advisory Circular AC 20-174 (recognizing ARP4754A predecessor)",
+          "url": "https://www.faa.gov/regulations_policies/advisory_circulars/index.cfm/go/document.information/documentID/1019673"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Guidelines for Development of Civil Aircraft and Systems Rev B"
+      ]
     },
     {
       "slug": "arp-4761",
@@ -940,6 +1180,76 @@
         }
       ],
       "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "10-cfr-part-71",
+      "term": "10 CFR Part 71",
+      "topic": "nuclear",
+      "short_definition": "U.S. NRC regulation governing packaging and transportation of radioactive material, setting Type A and Type B package design, testing, and quality assurance standards for licensed shipments.",
+      "full_definition": "10 CFR Part 71, titled \"Packaging and Transportation of Radioactive Material,\" is the U.S. Nuclear Regulatory Commission rule that licenses package designs, establishes performance standards, and prescribes operating controls for shipments of licensed material in interstate commerce. Authority traces to the Atomic Energy Act of 1954 (secs. 53, 57, 62, 63, 81, 161, 182, 183, 223, 234) and the Energy Reorganization Act of 1974 (secs. 201, 202, 206, 211). Section 71.1 sets the purpose and Section 71.4 contains definitions, including the radionuclide-specific activity limits A1 (special form) and A2 (other forms) that demarcate Type A from Type B contents.\n\nSubpart C issues general licenses (for example, 71.14 for low-level material and 71.17 for use of an NRC-approved Certificate of Compliance). Subpart D (71.31 through 71.45) governs applications for package approval, including evaluations of criticality, shielding, containment, and thermal performance. Subpart E sets approval standards: 71.43 general standards, 71.51 additional requirements for Type B packages (limiting release under accident conditions to A2 in 1 week, 10 A2 for krypton-85, and external dose rate to 10 mSv/h at 1 m), and 71.55 and 71.59 fissile-material criticality safety with the criticality safety index.\n\nSubpart F prescribes the two performance-test regimes. Section 71.71 \"Normal Conditions of Transport\" exposes the package to heat at 38 C with insolation, cold at -40 C, reduced pressure at 25 kPa absolute, vibration, water spray simulating 5 cm/h rainfall for at least 1 hour, and a free drop (0.3 to 1.2 m depending on mass) followed by compression and penetration. Section 71.73 \"Hypothetical Accident Conditions\" applies a sequential 9-meter free drop onto an unyielding surface, a 1-meter drop onto a 15 cm steel puncture bar, a fully engulfing 800 C fire for 30 minutes, and water immersion under 15 m head. Section 71.61 adds 200 m immersion for irradiated-fuel packages above 37 PBq.\n\nSubpart G (71.81 through 71.91) covers operating controls, including pre-shipment leakage testing, package marking, and 49 CFR cross-references. Subpart H (71.101 through 71.137) imposes a graded quality assurance program that mirrors Appendix B of 10 CFR Part 50. The 2015 harmonization rule (80 FR 33988) aligned Part 71 with IAEA SSR-6.",
+      "related_to": [
+        "10-cfr-part-50",
+        "10-cfr-part-110",
+        "aea-1954",
+        "era-1974"
+      ],
+      "citations": [
+        {
+          "label": "eCFR: 10 CFR Part 71 - Packaging and Transportation of Radioactive Material",
+          "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-71"
+        },
+        {
+          "label": "eCFR: 10 CFR 71.71 - Normal conditions of transport",
+          "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-71/subpart-F/section-71.71"
+        },
+        {
+          "label": "NRC: 10 CFR 71.51 Additional requirements for Type B packages",
+          "url": "https://www.nrc.gov/reading-rm/doc-collections/cfr/part071/part071-0051.html"
+        },
+        {
+          "label": "Federal Register: Revisions to Transportation Safety Requirements and Harmonization With IAEA (80 FR 33988, June 12, 2015)",
+          "url": "https://www.federalregister.gov/documents/2015/06/12/2015-14212/revisions-to-transportation-safety-requirements-and-harmonization-with-international-atomic-energy"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Part 71 Packaging and Transportation"
+      ]
+    },
+    {
+      "slug": "10-cfr-part-73",
+      "term": "10 CFR Part 73",
+      "topic": "nuclear",
+      "short_definition": "NRC regulation titled \"Physical Protection of Plants and Materials\" that establishes security requirements for nuclear facilities, special nuclear material, and the Design Basis Threat licensees must defend against.",
+      "full_definition": "10 CFR Part 73, \"Physical Protection of Plants and Materials,\" is the U.S. Nuclear Regulatory Commission (NRC) regulation that prescribes the physical security framework for power reactors, fuel cycle facilities, special nuclear material (SNM), and SNM in transit. It is organized into subparts including Subpart A (General Provisions, 73.1 to 73.8), Subpart C (General Performance Objective for Strategic SNM, 73.20), Subpart E (Material in Transit, 73.24 to 73.38), Subpart F (Fixed Sites, 73.40 to 73.55), Subpart G (Access Authorization, 73.56 to 73.67), and Subpart T (Security Notifications and Reporting, 73.1200 to 73.1215). Section 73.54 governs cyber security at power reactors, and section 73.55 establishes the dominant physical protection program for commercial nuclear power plants against radiological sabotage.\n\nThe cornerstone of Part 73 is the Design Basis Threat (DBT), codified at 10 CFR 73.1(a). Two DBTs are defined: one for radiological sabotage and one for theft or diversion of formula quantities of strategic SNM. Each describes a determined violent external assault, attack by stealth, or deceptive actions by multiple well-trained and dedicated adversaries willing to kill or be killed, operating in one or more teams attacking from multiple entry points, with active or passive insider assistance. Adversary capabilities include hand-held automatic weapons equipped with silencers, long-range accuracy, hand-carried explosives and incapacitating agents, and land and water vehicles for personnel transport. The DBT also encompasses land vehicle bomb assaults, waterborne vehicle bomb assaults, and a cyber attack component at 73.1(a)(1)(v) and (a)(2)(v).\n\nThe DBT has been part of NRC regulations since 1979. Following the September 11, 2001 attacks, the NRC issued interim compensatory orders, and Section 651 of the Energy Policy Act of 2005 directed the NRC to consider twelve specific factors when revising the DBT. The current DBT framework was promulgated in the final rule \"Design Basis Threat,\" published at 72 FR 12705 on March 19, 2007 and effective April 18, 2007. The 2007 rule expanded adversary numbers and capabilities, added the cyber attack component, broadened the assumed vehicle threat beyond four-wheel-drive vehicles, and required licensees to defend against multiple coordinated attack teams. Detailed adversary numbers, weapons specifications, and tactics are classified as Safeguards Information and distributed only through controlled regulatory guides.",
+      "related_to": [
+        "design-basis-threat",
+        "nrc",
+        "special-nuclear-material",
+        "safeguards-information"
+      ],
+      "citations": [
+        {
+          "label": "eCFR: 10 CFR Part 73 - Physical Protection of Plants and Materials",
+          "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73"
+        },
+        {
+          "label": "eCFR: 10 CFR 73.1 - Purpose and scope",
+          "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73/subpart-A/section-73.1"
+        },
+        {
+          "label": "NRC: Frequently Asked Questions About NRC's Design Basis Threat Final Rule",
+          "url": "https://www.nrc.gov/security/faq-dbtfr"
+        },
+        {
+          "label": "Federal Register: Design Basis Threat (72 FR 12705, March 19, 2007)",
+          "url": "https://www.federalregister.gov/documents/2007/03/19/07-1317/design-basis-threat"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Part 73 Physical Protection"
+      ]
     },
     {
       "slug": "arcap",
@@ -1255,6 +1565,41 @@
         }
       ],
       "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "iaea-naa",
+      "term": "IAEA Nuclear Activities Authorisation",
+      "topic": "nuclear",
+      "short_definition": "Composite IAEA framework under which States authorise peaceful nuclear activities, combining INFCIRC/153 safeguards obligations with GSR Part 1 (Rev. 1) regulatory authorisation requirements for facilities and activities.",
+      "full_definition": "The IAEA Nuclear Activities Authorisation (NAA) framework is the composite legal-regulatory regime through which States party to the Treaty on the Non-Proliferation of Nuclear Weapons (NPT) authorise, control, and account for peaceful nuclear activities on their territory. It rests on two pillars published by the IAEA: the safeguards instrument INFCIRC/153 (Corrected), issued in June 1972, and the General Safety Requirements No. GSR Part 1 (Rev. 1), Governmental, Legal and Regulatory Framework for Safety, published on 29 February 2016.\n\nINFCIRC/153 supplies the international authorisation envelope. Under paragraph 1 (Basic Undertaking), a non-nuclear-weapon State accepts safeguards on all source or special fissionable material in all peaceful nuclear activities within its territory, under its jurisdiction, or carried out under its control anywhere. Paragraphs 7 and 32 require the State to establish and maintain a State System of Accounting for and Control of nuclear material (SSAC), which functions as the national authorisation layer feeding IAEA verification. Design information for each facility is reported under paragraphs 42 to 50, and facility-specific safeguards obligations are codified in Subsidiary Arrangements and Facility Attachments. Most States with comprehensive safeguards have layered an Additional Protocol (INFCIRC/540, model adopted 1997) on top, extending declarations to research and development on the front and back end of the fuel cycle.\n\nGSR Part 1 (Rev. 1) supplies the domestic authorisation mechanics. Requirement 23 mandates that authorisation by the regulatory body, including the conditions necessary for safety, be a prerequisite for all facilities and activities that are not explicitly exempted or notified. Authorisation is a written permission and may take the form of licensing, certification, or registration. Requirement 24 (paras. 4.29 to 4.39) compels the operator to demonstrate safety as a condition of authorisation; Requirement 25 obliges the regulatory body to review and assess that demonstration; Requirement 27 covers inspection; and Requirement 30 addresses enforcement. Paragraph 2.4 ties the authorisation regime to other obligations such as nuclear security, emergency preparedness, and the SSAC, explicitly connecting safety authorisation to safeguards.\n\nTogether, the two instruments mean that a State cannot lawfully operate a reactor, enrichment plant, or reprocessing facility unless (i) the material is under an INFCIRC/153-type safeguards agreement and SSAC reporting, and (ii) the facility holds a written authorisation issued by a competent regulatory body meeting GSR Part 1 (Rev. 1) requirements. Advanced reactor developers exporting designs typically map their licensing basis against both pillars in parallel.",
+      "related_to": [
+        "infcirc-153",
+        "npt",
+        "iaea-sf-1",
+        "iaea-ssr-2-1"
+      ],
+      "citations": [
+        {
+          "label": "INFCIRC/153 (Corrected), The Structure and Content of Agreements Between the Agency and States Required in Connection with the Treaty on the Non-Proliferation of Nuclear Weapons, IAEA, June 1972",
+          "url": "https://www.iaea.org/sites/default/files/publications/documents/infcircs/1972/infcirc153.pdf"
+        },
+        {
+          "label": "Governmental, Legal and Regulatory Framework for Safety, IAEA Safety Standards No. GSR Part 1 (Rev. 1), IAEA, 2016",
+          "url": "https://www.iaea.org/publications/10883/governmental-legal-and-regulatory-framework-for-safety"
+        },
+        {
+          "label": "More on Safeguards Agreements, IAEA Safeguards Legal Framework",
+          "url": "https://www.iaea.org/topics/safeguards-legal-framework/more-on-safeguards-agreements"
+        },
+        {
+          "label": "IAEA Safety Standards General Safety Requirements Part 1 (Revision 1) online learning course, IAEA",
+          "url": "https://www.iaea.org/online-learning/courses/1765/iaea-safety-standards-general-safety-requirements-part-1-revision-1-governmental-legal-and-regulatory-framework-for-safety"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "IAEA NAA"
+      ]
     },
     {
       "slug": "iaea-sf-1",
@@ -1574,6 +1919,41 @@
       ]
     },
     {
+      "slug": "nepa",
+      "term": "NEPA review",
+      "topic": "nuclear",
+      "short_definition": "NRC environmental review under the National Environmental Policy Act of 1969, producing an Environmental Impact Statement that informs nuclear reactor licensing decisions under 10 CFR Part 51.",
+      "full_definition": "A NEPA review is the environmental analysis the U.S. Nuclear Regulatory Commission must complete before issuing a major reactor licensing action, including early site permits (ESPs), construction permits, combined licenses (COLs), operating license renewals, and large license amendments. It implements Section 102(2)(C) of the National Environmental Policy Act of 1969 (Pub. L. 91-190, signed January 1, 1970), which requires a detailed statement on major federal actions significantly affecting the human environment. NRC procedures live at 10 CFR Part 51, Subpart A, originally promulgated to satisfy NEPA and the now-rescinded Council on Environmental Quality regulations at 40 CFR Parts 1500 through 1508.\n\nFor a power reactor application, the staff prepares an Environmental Impact Statement (EIS). The process begins when the NRC publishes a Notice of Intent in the Federal Register and opens public scoping, then issues a draft EIS for a public comment period, holds public meetings, and finally publishes the final EIS responding to comments. A separate Record of Decision and a Final Safety Evaluation Report accompany the licensing decision. Historically the NRC has scoped the full review at roughly 24 to 36 months, though Section 107 of the Fiscal Responsibility Act of 2023 now imposes a statutory 2-year deadline for EISs and a presumptive 150-page limit (300 pages for extraordinary complexity), with a 1-year deadline and 75-page limit for environmental assessments.\n\nThe staff conducts the review using NUREG-1555, \"Standard Review Plans for Environmental Reviews for Nuclear Power Plants,\" first issued in October 1999 to supersede NUREG-0555 (1978). NUREG-1555 contains Environmental Standard Review Plans (ESRPs) organized by chapter: Chapter 2 (environmental description), Chapter 4 (construction impacts), Chapter 5 (operational impacts including cooling-water, radiological, and socioeconomic effects), Chapter 6 (environmental measurements and monitoring), Chapter 7 (postulated-accident impacts including severe-accident mitigation design alternatives, or SAMDAs), Chapter 8 (need for power, since revised), and Chapter 9 (alternatives, including the no-action alternative). Supplement 1 (2000, revised 2013) covers license renewal and is paired with the generic NUREG-1437 GEIS. Cumulative impacts, environmental justice, and Endangered Species Act and National Historic Preservation Act consultations are addressed throughout. The ADVANCE Act of 2024 directs the NRC to further streamline these reviews for advanced reactors.",
+      "related_to": [
+        "10-cfr-part-52",
+        "10-cfr-part-50",
+        "early-site-permit",
+        "combined-license"
+      ],
+      "citations": [
+        {
+          "label": "NRC Environmental Review Process (10 CFR Part 51)",
+          "url": "https://www.nrc.gov/reactors/new-reactors/how-we-regulate/regs-guides-comm/erp.html"
+        },
+        {
+          "label": "NUREG-1555 Environmental Standard Review Plan",
+          "url": "https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1555/"
+        },
+        {
+          "label": "CEQ NEPA and the Fiscal Responsibility Act of 2023",
+          "url": "https://ceq.doe.gov/laws-regulations/fra.html"
+        },
+        {
+          "label": "NRC NEPA Amendments / ADVANCE Act page",
+          "url": "https://www.nrc.gov/about-nrc/regulatory/licensing/ecoe/modernizing/fra-adv-act.html"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "National Environmental Policy Act"
+      ]
+    },
+    {
       "slug": "nra-japan",
       "term": "NRA (Japan)",
       "topic": "nuclear",
@@ -1609,6 +1989,41 @@
       ]
     },
     {
+      "slug": "nrc-coc",
+      "term": "NRC Certificate of Compliance",
+      "topic": "nuclear",
+      "short_definition": "An NRC-issued approval listing a specific dry spent fuel storage cask design at 10 CFR 72.214, authorizing power reactor licensees to load it under a Part 72 general license.",
+      "full_definition": "An NRC Certificate of Compliance (CoC) is the formal regulatory approval the U.S. Nuclear Regulatory Commission issues for a specific dry storage cask or canister design used to store spent nuclear fuel at an Independent Spent Fuel Storage Installation (ISFSI). Each approved design is codified by rulemaking and added to the list at 10 CFR 72.214, which is the regulatory hook that lets any Part 50 or Part 52 power reactor licensee load that cask under the general license established by 10 CFR 72.210 and 72.212, without applying for a site-specific Part 72 license.\n\nA CoC is issued under Subpart L of 10 CFR Part 72 after the vendor submits a Safety Analysis Report and the NRC staff completes a technical review (structural, thermal, shielding, criticality, confinement, materials, and operating procedures), publishes a proposed and final rule in the Federal Register, and amends 72.214. Since the 2011 final rule revising license and CoC terms (74 FR 47126, 2009; effective changes to 72.42 and 72.240), the initial CoC term runs up to 40 years, and renewals run up to 40 additional years. Each amendment is also a rulemaking and gets its own effective date.\n\nThe 72.214 list currently includes designs such as CoC No. 1004 (TN Americas Standardized NUHOMS Horizontal Modular Storage System), CoC No. 1014 (Holtec HI-STORM 100; Renewed Amendment No. 19 effective March 2025), CoC No. 1015 (NAC-UMS, approved Oct 19, 2000; Renewed Amendment No. 10 effective Dec 2025), CoC No. 1026 (FuelSolutions, renewal effective 2024), CoC No. 1032 (Holtec HI-STORM FW), CoC No. 1040 (Holtec HI-STORM UMAX, with a 2026 amendment), and CoC No. 1042 (TN Americas NUHOMS EOS, Amendment No. 5 effective January 28, 2026).\n\nA 10 CFR Part 72 CoC governs at-reactor or away-from-reactor storage and is distinct from a 10 CFR Part 71 transportation package CoC, which authorizes off-site shipment. Vendors and licensees regularly amend a CoC to expand authorized fuel contents, qualify higher burnup or shorter cooling times, or update technical specifications, with each change tracked in the Federal Register and incorporated by reference at 72.214.",
+      "related_to": [
+        "10-cfr-part-50",
+        "10-cfr-part-52",
+        "rai-nrc",
+        "nrc-secy"
+      ],
+      "citations": [
+        {
+          "label": "10 CFR 72.214 List of approved spent fuel storage casks (eCFR)",
+          "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-72/subpart-L/section-72.214"
+        },
+        {
+          "label": "10 CFR Part 72 Subpart L (eCFR)",
+          "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-72"
+        },
+        {
+          "label": "Federal Register: NUHOMS EOS CoC 1042 Amendment 5 (Jan 28, 2026)",
+          "url": "https://www.federalregister.gov/documents/2026/01/28/2026-01647/list-of-approved-spent-fuel-storage-casks-tn-americas-llc-nuhoms-eos-dry-spent-fuel-storage-system"
+        },
+        {
+          "label": "Federal Register: License and Certificate of Compliance Terms final rule (74 FR 47126)",
+          "url": "https://www.federalregister.gov/documents/2009/09/15/E9-22126/license-and-certificate-of-compliance-terms"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "CoC"
+      ]
+    },
+    {
       "slug": "danu",
       "term": "NRC DANU",
       "topic": "nuclear",
@@ -1640,6 +2055,41 @@
       ],
       "aliases": [
         "Division of Advanced Reactors and Non-Power Production and Utilization Facilities"
+      ],
+      "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "rg-1-232",
+      "term": "NRC RG 1.232",
+      "topic": "nuclear",
+      "aliases": [
+        "Regulatory Guide 1.232"
+      ],
+      "short_definition": "NRC Regulatory Guide 1.232 Revision 0, issued April 2018, provides advanced reactor design criteria adapting 10 CFR Part 50 Appendix A GDC for non-light-water reactor principal design criteria.",
+      "full_definition": "Regulatory Guide 1.232, Revision 0, \"Guidance for Developing Principal Design Criteria for Non-Light Water Reactors,\" was issued by the U.S. Nuclear Regulatory Commission in April 2018, with the Federal Register notice of availability published on April 9, 2018 (83 FR 15293) under Docket ID NRC-2017-0016. The guide is filed in ADAMS as ML17325A611, and the staff regulatory analysis is at ML16330A179. It gives designers, applicants, and licensees of non-light-water reactors (non-LWRs) a structured way to adapt the 64 General Design Criteria (GDC) in 10 CFR Part 50, Appendix A, which were written for light-water reactors, into Principal Design Criteria (PDC) that an applicant must submit under 10 CFR 50.34, 10 CFR 52.47, or 10 CFR 52.79 for a construction permit, design certification, or combined license.\n\nThe body of the guide is a short policy and scope discussion, with the substantive content carried in three appendices. Appendix A contains the Advanced Reactor Design Criteria (ARDC), a generic set intended to be broadly applicable across six non-LWR technology families: sodium-cooled fast reactors, lead-cooled fast reactors, gas-cooled fast reactors, modular high-temperature gas-cooled reactors, fluoride-salt-cooled high-temperature reactors, and molten salt reactors. Appendix B contains the Sodium-Cooled Fast Reactor Design Criteria (SFR-DC), further refined for pool and loop SFR configurations. Appendix C contains the Modular High Temperature Gas-Cooled Reactor Design Criteria (MHTGR-DC), tailored for prismatic and pebble-bed HTGR concepts. Each criterion is numbered and mapped to its corresponding GDC, with technical differences shown by mark-up so applicants can trace deviations from Appendix A of Part 50.\n\nRG 1.232 was developed jointly with the U.S. Department of Energy and Idaho National Laboratory, building on INL/EXT-14-31179 Revision 1. It is non-binding guidance: applicants may use the ARDC, SFR-DC, or MHTGR-DC in whole or in part, mix among the three, or propose alternative criteria with justification. It is routinely cited in pre-application engagements and topical reports, including the Kairos Hermes construction permit, the Xe-100 Licensing Topical Report on principal design criteria, and TerraPower Natrium submittals. The guide complements RG 1.233 (NEI 18-04 LMP methodology) and feeds the PDC inputs used in 10 CFR Part 53 risk-informed reviews.",
+      "related_to": [
+        "rg-1-233",
+        "10-cfr-part-50",
+        "nei-18-04",
+        "10-cfr-part-53"
+      ],
+      "citations": [
+        {
+          "label": "NRC RG 1.232 Revision 0 (ML17325A611)",
+          "url": "https://www.nrc.gov/docs/ML1732/ML17325A611.pdf"
+        },
+        {
+          "label": "Federal Register notice, 83 FR 15293 (Apr 9, 2018)",
+          "url": "https://www.federalregister.gov/documents/2018/04/09/2018-07214/guidance-for-developing-principal-design-criteria-for-non-light-water-reactors"
+        },
+        {
+          "label": "NRC RG 1.232 staff summary (ML18081A306)",
+          "url": "https://www.nrc.gov/docs/ML1808/ML18081A306.pdf"
+        },
+        {
+          "label": "DOE-NRC Advanced Non-LWR Design Criteria (ML16096A420)",
+          "url": "https://www.nrc.gov/docs/ml1609/ml16096a420.pdf"
+        }
       ],
       "last_updated": "2026-06-12"
     },
@@ -2407,6 +2857,41 @@
       ]
     },
     {
+      "slug": "fcc-schedule-s",
+      "term": "FCC Schedule S",
+      "topic": "space",
+      "short_definition": "FCC Form 312 Schedule S is the structured satellite engineering data form required for Part 25 space station applications, capturing beam, frequency, EIRP, G/T, and orbit parameters.",
+      "full_definition": "Schedule S is the engineering attachment to FCC Form 312, the master application used by the Federal Communications Commission for Part 25 satellite radio services. Under 47 CFR 25.114, any applicant seeking authority to launch and operate a geostationary (GSO) or non-geostationary (NGSO) space station, or to obtain U.S. market access for a foreign-licensed system, must file Form 312 Main Form together with Schedule S and supporting narrative exhibits. The form is submitted electronically through the International Bureau Filing System (IBFS), now folded into the consolidated ICFS portal, and is the document FCC engineers in the Space Bureau (created when the International Bureau was reorganized in April 2023) parse line by line during acceptability and full review.\n\nSchedule S is organized into four principal data blocks. The general information block identifies the satellite or constellation, construction and launch milestones, transponder count, total RF bandwidth, and common-carrier status. The orbital block captures, for GSO systems, the requested longitude and east-west and north-south station-keeping tolerances; for NGSO systems it captures number of planes, satellites per plane, inclination, period, apogee, perigee, argument of perigee, right ascension of the ascending node, and initial phase angle. The antenna beam block lists, per beam, center frequencies, occupied bandwidth, polarization, maximum EIRP and EIRP density on transmit, and gain-to-noise-temperature ratio (G/T) and saturation flux density on receive. Predicted gain contours must be supplied in GIMS-readable format at 2 dB steps to 10 dB below peak and 5 dB steps from 10 to 20 dB below peak. The service area and power flux density block reports calculated maximum PFD at the Earth's surface across arrival angles needed to demonstrate compliance with the limits in 47 CFR 25.208.\n\nThe current instructions carry the version date April 2016, and the underlying form is OMB-cleared under control number 3060-0678. Schedule S does not satisfy all of 25.114 on its own; orbital debris mitigation showings (including the post-2020 quantitative requirements such as collision probability with objects of 10 cm or larger less than 0.001 and post-mission disposal success probability of at least 0.9), interference analyses, and public interest narratives must be attached as exhibits. The FCC's December 2023 Report and Order on expediting initial processing tightened the acceptability checks on Schedule S so that incomplete filings are returned rather than queued.",
+      "related_to": [
+        "part-25",
+        "ibfs",
+        "ngso",
+        "gso"
+      ],
+      "citations": [
+        {
+          "label": "47 CFR 25.114 - Applications for space station authorizations",
+          "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-25/subpart-B/section-25.114"
+        },
+        {
+          "label": "FCC Part 25 Space Station Licensing Process and Timeline",
+          "url": "https://www.fcc.gov/part-25-space-station-licensing-process-and-timeline"
+        },
+        {
+          "label": "FCC Part 25 Space Station License and Market Access Checklist",
+          "url": "https://www.fcc.gov/part-25-space-station-license-and-market-access-checklist"
+        },
+        {
+          "label": "FCC Space Stations Bureau page",
+          "url": "https://www.fcc.gov/space/space-stations"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "FCC Form 312 Schedule S"
+      ]
+    },
+    {
       "slug": "fcc-market-access",
       "term": "FCC market access",
       "topic": "space",
@@ -2580,6 +3065,41 @@
         }
       ],
       "last_updated": "2026-06-12"
+    },
+    {
+      "slug": "iso-24113",
+      "term": "ISO 24113",
+      "topic": "space",
+      "short_definition": "ISO 24113:2023 is the top-level international standard defining space debris mitigation requirements for unmanned spacecraft and launch vehicle orbital stages operating in or transiting near-Earth space.",
+      "full_definition": "ISO 24113, formally titled \"Space systems, Space debris mitigation requirements,\" is the top-level engineering standard that translates the high-level principles of the United Nations COPUOS and Inter-Agency Space Debris Coordination Committee (IADC) guidelines into testable technical requirements. The current fourth edition, ISO 24113:2023, was published on 3 May 2023 and cancels and replaces ISO 24113:2019. It is the parent document of a family of supporting ISO standards (including ISO 16164 for LEO disposal and ISO 16699 for launch-stage disposal) and is adopted in Europe as ECSS-U-AS-10C Rev.2 (9 February 2024).\n\nThe standard applies to all elements of unmanned systems launched into, or passing through, near-Earth space, including launch vehicle orbital stages, operating spacecraft, and any objects released as part of normal operations. It is organized into a normative scope (Clause 1), normative references (Clause 2), terms and definitions (Clause 3), the LEO and GEO protected regions (Clause 4), general requirements (Clause 5), and the core mitigation requirements (Clause 6) covering limitation of debris released during normal operations, prevention of on-orbit break-ups, post-mission disposal, and prevention of on-ground casualties from re-entry.\n\nKey numerical requirements carried into the 2023 edition include: a 25-year maximum residual orbital lifetime for objects left in or crossing the LEO protected region (below 2,000 km altitude) following end of mission; clearance of the GEO protected region by raising perigee at least 235 km above the geostationary altitude (35,786 km) into a graveyard orbit that does not interfere with GEO for at least 100 years; a minimum probability of successful disposal of 0.9 through end of life; and an expected number of casualties per uncontrolled re-entry not exceeding 1 in 10,000 (10^-4). The 2023 revision tightened definitions for \"disposal phase,\" \"end of life,\" \"end of mission,\" \"passivate,\" and \"probability of successful disposal,\" and formally introduced the threshold metric \"expected number of casualties per re-entry.\" Passivation under Clause 6 requires permanently depleting or deactivating all on-board sources of stored energy, including residual propellants, batteries, pressurant tanks, pyrotechnics, and momentum wheels, to prevent post-mission break-up. ISO 24113 is the reference benchmark cited by ESA, JAXA, and most national licensing regimes, although the U.S. FCC adopted a stricter 5-year LEO disposal rule in 2022.",
+      "related_to": [
+        "leo-protected-region",
+        "geo-graveyard-orbit",
+        "iadc-guidelines",
+        "passivation"
+      ],
+      "citations": [
+        {
+          "label": "ISO 24113:2023, Space systems, Space debris mitigation requirements",
+          "url": "https://www.iso.org/standard/83494.html"
+        },
+        {
+          "label": "ISO 24113:2019 (superseded edition reference)",
+          "url": "https://www.iso.org/standard/72383.html"
+        },
+        {
+          "label": "ECSS-U-AS-10C Rev.2, Adoption Notice of ISO 24113 (9 Feb 2024)",
+          "url": "https://ecss.nl/standard/ecss-u-as-10c-rev-2-adoption-notice-of-iso-24113-space-systems-space-debris-mitigation-requirements-9-february-2024/"
+        },
+        {
+          "label": "ISO 24113:2019(en) Online Browsing Platform",
+          "url": "https://www.iso.org/obp/ui/#iso:std:iso:24113:ed-3:en"
+        }
+      ],
+      "last_updated": "2026-06-12",
+      "aliases": [
+        "Space Debris Mitigation Requirements"
+      ]
     },
     {
       "slug": "itu-api-crc",
