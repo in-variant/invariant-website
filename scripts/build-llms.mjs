@@ -88,6 +88,13 @@ out.push('- [Product](https://invariant-ai.com/product) — What the agents prod
 out.push('- [Probe](https://invariant-ai.com/probe) — Live semantic search across NRC ADAMS, powered by Helion-512.')
 out.push('- [Blog](https://invariant-ai.com/blog) — Research, regulation comparisons, field notes.')
 out.push('- [Glossary](https://invariant-ai.com/glossary) — Authoritative definitions of regulatory and qualification compliance terms.')
+out.push('- [Research](https://invariant-ai.com/research) — Helion-512 retrieval model, FermiBench benchmark, published notes.')
+out.push('- [Compliance library](https://invariant-ai.com/compliance) — Every Invariant resource for space, nuclear, and aerospace.')
+out.push('- [Trust](https://invariant-ai.com/trust) — Security and data-handling disclosures.')
+out.push('')
+out.push('### Calculators')
+out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline) — Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
+out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline) — Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
 
 out.push('')
 out.push('## Research')
