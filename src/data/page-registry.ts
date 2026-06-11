@@ -106,8 +106,8 @@ export const PAGES: PageRef[] = [
       "India's nuclear regulatory architecture: AERB, DAE, and what is and is not open to private-sector participation in 2026.",
     pillar: 'nuclear',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
 
   // ── Clusters: space ─────────────────────────────────────────────────────

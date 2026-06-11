@@ -5,7 +5,7 @@ import Platform from '../components/Platform'
 import Metrics from '../components/Metrics'
 import Process from '../components/Process'
 import Advisors from '../components/Advisors'
-import { Seo, ORG_SCHEMA, WEBSITE_SCHEMA, faqSchema } from '../components/Seo'
+import { Seo, ORG_SCHEMA, WEBSITE_SCHEMA, EDITORIAL_TEAM, faqSchema, SITE_URL } from '../components/Seo'
 
 const HOME_FAQS = [
   {
@@ -40,14 +40,35 @@ const HOME_FAQS = [
   },
 ]
 
+const PRIMARY_PAGES = [
+  { name: 'Space compliance', url: `${SITE_URL}/space-compliance` },
+  { name: 'Nuclear compliance', url: `${SITE_URL}/nuclear-compliance` },
+  { name: 'Glossary', url: `${SITE_URL}/glossary` },
+  { name: 'Product', url: `${SITE_URL}/product` },
+  { name: 'Probe', url: `${SITE_URL}/probe` },
+  { name: 'Blog', url: `${SITE_URL}/blog` },
+]
+
+const SITE_NAVIGATION = {
+  '@context': 'https://schema.org',
+  '@type': 'SiteNavigationElement',
+  '@id': `${SITE_URL}/#site-navigation`,
+  name: 'Invariant main navigation',
+  hasPart: PRIMARY_PAGES.map((p) => ({
+    '@type': 'SiteNavigationElement',
+    name: p.name,
+    url: p.url,
+  })),
+}
+
 export default function Home() {
   return (
     <>
       <Seo
         title="Invariant — Autonomous agents for mission-critical compliance"
-        description="Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. State-of-the-art retrieval (0.97 nDCG@10 on FermiBench). Backed by Entrepreneurs First."
+        description="Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First."
         canonical="https://invariant-ai.com/"
-        jsonLd={[ORG_SCHEMA, WEBSITE_SCHEMA, faqSchema(HOME_FAQS)]}
+        jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
       <Hero />
       <BuiltFor />
