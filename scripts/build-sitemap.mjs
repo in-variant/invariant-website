@@ -22,6 +22,7 @@ const CORE = [
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },
   { loc: '/calculators/faa-part-450-timeline', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/nrc-license-timeline', changefreq: 'monthly', priority: '0.85' },
+  { loc: '/calculators', changefreq: 'monthly', priority: '0.8' },
 ]
 
 const BLOG = [

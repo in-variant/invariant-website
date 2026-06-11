@@ -20,6 +20,7 @@ const COLUMNS = [
       { label: 'Part 450 MoC', to: '/how-to-write-faa-part-450-means-of-compliance' },
       { label: 'ITAR vs EAR for space', to: '/itar-vs-ear-for-space-companies' },
       { label: 'FCC 5-year deorbit rule', to: '/fcc-5-year-deorbit-rule' },
+      { label: 'Calculators', to: '/calculators' },
     ],
   },
   {
