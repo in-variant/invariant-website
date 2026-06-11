@@ -381,6 +381,13 @@ async function main() {
         'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneurs First. Founded 2025.',
       ogImage: `${SITE}/og-image.png`,
     },
+    {
+      slug: 'regulators',
+      title: 'Regulators directory — every US agency for space, nuclear, and aerospace compliance',
+      description:
+        'A concise directory of every US regulator a space, nuclear, or aerospace operator may need to engage with, including NRC, FAA AST, FCC Space Bureau, NOAA CRSRA, DDTC, and BIS.',
+      ogImage: `${SITE}/og-image.png`,
+    },
   ]
   for (const sp of SIMPLE_PAGES) {
     const canonical = `${SITE}/${sp.slug}`
