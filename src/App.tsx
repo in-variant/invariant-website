@@ -43,6 +43,7 @@ const FaaPart450Calculator = lazy(() => import('./pages/calculators/FaaPart450Ca
 const NrcLicenseCalculator = lazy(() => import('./pages/calculators/NrcLicenseCalculator'))
 const CalculatorsIndex = lazy(() => import('./pages/calculators/Index'))
 const FccDeorbitCalculator = lazy(() => import('./pages/calculators/FccDeorbitCalculator'))
+const FaaAc450Series = lazy(() => import('./pages/clusters/FaaAc450Series'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -113,6 +114,7 @@ export default function App() {
             <Route path="/calculators/nrc-license-timeline" element={<NrcLicenseCalculator />} />
             <Route path="/calculators" element={<CalculatorsIndex />} />
             <Route path="/calculators/fcc-deorbit-feasibility" element={<FccDeorbitCalculator />} />
+            <Route path="/faa-ac-450-series" element={<FaaAc450Series />} />
           </Route>
         </Routes>
       </Suspense>

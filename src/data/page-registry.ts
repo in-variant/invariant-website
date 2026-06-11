@@ -234,6 +234,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'faa-ac-450-series',
+    title: 'FAA AC 450 series: complete advisory circular catalog for Part 450',
+    shortTitle: 'FAA AC 450 series',
+    description:
+      'Every FAA Advisory Circular issued for 14 CFR Part 450, with section mapping, issue dates, and primary faa.gov sources. AC 413.13-1, 450.103-1, 450.115-1B, 450.139-1, 450.169-1A, and the rest.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'how-to-write-faa-part-450-means-of-compliance',
     title: 'How to write a Means of Compliance for FAA Part 450',
     shortTitle: 'Part 450 Means of Compliance',

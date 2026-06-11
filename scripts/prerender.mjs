@@ -265,6 +265,7 @@ const PILLAR_DATA_MAP = {
   'how-long-does-nrc-license-take': 'nrc-license-timeline-pillar.json',
   'ecss-vs-mil-std': 'ecss-vs-mil-std-pillar.json',
   'faa-part-450-vs-legacy': 'part-450-vs-legacy-pillar.json',
+  'faa-ac-450-series': 'faa-ac-450-series-pillar.json',
   'how-to-write-faa-part-450-means-of-compliance': 'faa-part-450-means-of-compliance-pillar.json',
   'noaa-remote-sensing-license-tiers': 'noaa-tiers-pillar.json',
   'advanced-reactor-licensing-eu': 'advanced-reactor-licensing-eu-pillar.json',
