@@ -44,6 +44,7 @@ export default function Glossary() {
         title="Glossary of space, aerospace, and nuclear compliance terms"
         description="Authoritative, citation-backed definitions of every regulatory, standards, and qualification term across FAA Part 450, FCC, NOAA, IN-SPACe, ECSS, NRC 10 CFR Parts 50/52/53, and more."
         canonical={URL}
+        ogImage={`${SITE_URL}/og/glossary.png`}
         jsonLd={[
           ORG_SCHEMA,
           breadcrumbSchema([
