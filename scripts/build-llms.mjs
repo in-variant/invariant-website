@@ -12,13 +12,24 @@ const SITE = 'https://invariant-ai.com'
 
 // ── Parse page registry ──────────────────────────────────────────────────────
 const registry = readFileSync(join(ROOT, 'src/data/page-registry.ts'), 'utf8')
-const blockRe = /\{\s*slug:\s*'([^']+)',\s*title:\s*'([^']+)',(?:\s*shortTitle:\s*'[^']+',)?\s*description:\s*\n?\s*'([^']+)',\s*pillar:\s*'([^']+)',\s*type:\s*'([^']+)',\s*live:\s*(true|false)/g
+// Accept single OR double quotes for every quoted field.
+const Q = `(?:'([^']+)'|"([^"]+)")`
+const blockRe = new RegExp(
+  `\\{\\s*slug:\\s*${Q},\\s*title:\\s*${Q},(?:\\s*shortTitle:\\s*${Q},)?\\s*description:\\s*\\n?\\s*${Q},\\s*pillar:\\s*${Q},\\s*type:\\s*${Q},\\s*live:\\s*(true|false)`,
+  'g',
+)
 const pages = []
 let m
 while ((m = blockRe.exec(registry))) {
-  if (m[6] === 'true') {
-    pages.push({ slug: m[1], title: m[2], description: m[3], pillar: m[4], type: m[5] })
-  }
+  // Each Q produces 2 capture groups (single, double). Pick whichever matched.
+  const pick = (i) => m[i] ?? m[i + 1]
+  const slug = pick(1)
+  const title = pick(3)
+  const description = pick(7)
+  const pillar = pick(9)
+  const type = pick(11)
+  const live = m[13]
+  if (live === 'true') pages.push({ slug, title, description, pillar, type })
 }
 
 const pillars = pages.filter((p) => p.type === 'pillar')

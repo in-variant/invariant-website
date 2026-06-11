@@ -29,9 +29,10 @@ const BLOG = [
 
 // ── Page registry (pillars + clusters) ───────────────────────────────────────
 // Parse src/data/page-registry.ts naively — extract slug + live + type.
+// Accept single or double quotes on slug/type.
 const registry = readFileSync(join(ROOT, 'src/data/page-registry.ts'), 'utf8')
 const entries = []
-const blockRe = /\{\s*slug:\s*'([^']+)',[\s\S]*?type:\s*'([^']+)',\s*live:\s*(true|false)/g
+const blockRe = /\{\s*slug:\s*['"]([^'"]+)['"][\s\S]*?type:\s*['"]([^'"]+)['"],\s*live:\s*(true|false)/g
 let m
 while ((m = blockRe.exec(registry))) {
   if (m[3] === 'true') {
