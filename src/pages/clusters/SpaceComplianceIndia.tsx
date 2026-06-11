@@ -11,6 +11,7 @@ export default function SpaceComplianceIndia() {
       topic="space"
       ogImage="https://invariant-ai.com/og/space-compliance-india.png"
       about={['in-space-ngp-2024']}
+      spatialCoverage={['India']}
       keywords={[
         'IN-SPACe',
         'IN-SPACe authorisation',

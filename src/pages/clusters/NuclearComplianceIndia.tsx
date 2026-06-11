@@ -11,6 +11,7 @@ export default function NuclearComplianceIndia() {
       topic="nuclear"
       ogImage="https://invariant-ai.com/og/nuclear-compliance-india.png"
       about={['iaea-ssr-2-1']}
+      spatialCoverage={['India']}
       keywords={[
         'AERB',
         'Atomic Energy Act 1962',

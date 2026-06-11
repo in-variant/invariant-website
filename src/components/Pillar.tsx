@@ -44,6 +44,8 @@ type Props = {
   about?: string[]
   /** Keywords for schema. If absent, derived from breadcrumbLabel + topic. */
   keywords?: string[]
+  /** Place name(s) the article specifically covers (e.g. ['India'] or ['European Union']). */
+  spatialCoverage?: string[]
 }
 
 export default function Pillar({
@@ -56,6 +58,7 @@ export default function Pillar({
   ogImage,
   about,
   keywords,
+  spatialCoverage,
 }: Props) {
   const url = `https://invariant-ai.com/${slug}`
   const summaryParas = data.canonical_summary.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
@@ -73,6 +76,7 @@ export default function Pillar({
       articleSection: sectionLabel,
       keywords,
       aboutSlugs: about,
+      spatialCoverage,
     }),
     faqSchema(data.faqs),
     breadcrumbSchema([

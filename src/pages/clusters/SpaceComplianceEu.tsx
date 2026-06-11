@@ -11,6 +11,7 @@ export default function SpaceComplianceEu() {
       topic="space"
       ogImage="https://invariant-ai.com/og/space-compliance-eu.png"
       about={['ecss']}
+      spatialCoverage={['European Union', 'United Kingdom', 'France', 'Germany', 'Italy', 'Luxembourg', 'Netherlands', 'Belgium']}
       keywords={[
         'EU Space Act',
         'COM(2025) 335',

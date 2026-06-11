@@ -147,6 +147,7 @@ export function articleSchema({
   articleSection,
   keywords,
   aboutSlugs,
+  spatialCoverage,
 }: {
   title: string
   description: string
@@ -159,6 +160,8 @@ export function articleSchema({
   keywords?: string[]
   /** Glossary slugs this article is canonically about — links Article to DefinedTerm entities for GEO. */
   aboutSlugs?: string[]
+  /** Place name(s) the article specifically covers (e.g. ['India'] or ['European Union','France','Germany']). */
+  spatialCoverage?: string[]
 }) {
   const about = (aboutSlugs || []).map((slug) => ({
     '@type': 'DefinedTerm',
@@ -187,6 +190,9 @@ export function articleSchema({
     ...(articleSection ? { articleSection } : {}),
     ...(keywords && keywords.length ? { keywords: keywords.join(', ') } : {}),
     ...(about.length ? { about } : {}),
+    ...(spatialCoverage && spatialCoverage.length
+      ? { spatialCoverage: spatialCoverage.map((name) => ({ '@type': 'Place', name })) }
+      : {}),
   }
 }
 

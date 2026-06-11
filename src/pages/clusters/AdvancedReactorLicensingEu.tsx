@@ -11,6 +11,7 @@ export default function AdvancedReactorLicensingEu() {
       topic="nuclear"
       ogImage="https://invariant-ai.com/og/advanced-reactor-licensing-eu.png"
       about={['iaea-ssr-2-1', '10-cfr-part-53']}
+      spatialCoverage={['European Union', 'United Kingdom', 'France', 'Finland', 'Czech Republic', 'Romania', 'Sweden', 'Spain', 'Hungary']}
       keywords={[
         'UK ONR GDA',
         'France ASNR',
