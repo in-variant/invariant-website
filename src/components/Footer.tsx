@@ -27,7 +27,9 @@ const COLUMNS = [
     links: [
       { label: 'Product', to: '/product' },
       { label: 'Probe', to: '/probe' },
+      { label: 'Research', to: '/research' },
       { label: 'Blog', to: '/blog' },
+      { label: 'Trust', to: '/trust' },
       { label: 'Contact', to: 'mailto:founders@invariant-ai.com' },
     ],
   },
