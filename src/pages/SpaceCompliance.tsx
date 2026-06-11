@@ -8,6 +8,8 @@ export default function SpaceCompliance() {
       eyebrow="Space compliance"
       slug="space-compliance"
       breadcrumbLabel="Space compliance"
+      topic="space"
+      ogImage="https://invariant-ai.com/og/space-compliance.png"
     />
   )
 }

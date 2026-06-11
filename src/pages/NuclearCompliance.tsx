@@ -8,6 +8,8 @@ export default function NuclearCompliance() {
       eyebrow="Nuclear compliance"
       slug="nuclear-compliance"
       breadcrumbLabel="Nuclear compliance"
+      topic="nuclear"
+      ogImage="https://invariant-ai.com/og/nuclear-compliance.png"
     />
   )
 }

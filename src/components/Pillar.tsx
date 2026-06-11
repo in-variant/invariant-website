@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 import { Seo, articleSchema, faqSchema, breadcrumbSchema, ORG_SCHEMA } from './Seo'
+import RelatedGuides from './RelatedGuides'
+import type { Pillar as PillarTopic } from '../data/page-registry'
 
 type Subsection = { heading: string; paragraphs?: string[]; bullets?: string[] }
 type Section = {
@@ -26,7 +28,9 @@ type Props = {
   eyebrow: string
   slug: string // e.g. 'space-compliance'
   breadcrumbLabel: string
+  topic: PillarTopic // for RelatedGuides
   updatedAt?: string
+  ogImage?: string
 }
 
 export default function Pillar({
@@ -34,7 +38,9 @@ export default function Pillar({
   eyebrow,
   slug,
   breadcrumbLabel,
-  updatedAt = '2026-06-11',
+  topic,
+  updatedAt = '2026-06-12',
+  ogImage,
 }: Props) {
   const url = `https://invariant-ai.com/${slug}`
   const summaryParas = data.canonical_summary.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
@@ -59,6 +65,7 @@ export default function Pillar({
         title={data.meta_title || data.h1}
         description={data.meta_description}
         canonical={url}
+        ogImage={ogImage}
         jsonLd={ld}
         ogType="article"
       />
@@ -68,6 +75,9 @@ export default function Pillar({
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
             {data.h1}
           </h1>
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">
+            By the Invariant editorial team · Updated {formatDate(updatedAt)}
+          </p>
           {summaryParas.map((p, i) => (
             <p
               key={i}
@@ -110,6 +120,8 @@ export default function Pillar({
               </li>
             ))}
           </ul>
+
+          <RelatedGuides currentSlug={slug} pillar={topic} />
 
           <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">
             Last updated {formatDate(updatedAt)}

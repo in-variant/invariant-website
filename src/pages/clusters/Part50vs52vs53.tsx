@@ -8,6 +8,8 @@ export default function Part50vs52vs53() {
       eyebrow="Nuclear compliance · Guide"
       slug="part-50-vs-52-vs-53"
       breadcrumbLabel="Part 50 vs Part 52 vs Part 53"
+      topic="nuclear"
+      ogImage="https://invariant-ai.com/og/part-50-vs-52-vs-53.png"
     />
   )
 }
