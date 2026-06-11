@@ -84,8 +84,8 @@ export const PAGES: PageRef[] = [
       "A regional explainer comparing the UK GDA under ONR, France's ASNR review, and the patchwork of EU member-state regimes.",
     pillar: 'nuclear',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'nrc-pre-application-engagement-guide',
@@ -163,8 +163,8 @@ export const PAGES: PageRef[] = [
       'Why there is no single EU space regulator and how operators navigate the member-state patchwork.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'fcc-5-year-deorbit-rule',
@@ -196,8 +196,8 @@ export const PAGES: PageRef[] = [
       'The ITU filing flow, the API and CR/C documents, and the interference-analysis content national administrations want.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'how-to-write-faa-part-450-means-of-compliance',
