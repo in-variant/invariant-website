@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
+
+const POST_URL = 'https://invariant-ai.com/blog/seismic-design-shift'
+const POST_TITLE = 'SSE/OBE to GMRS/SDC: the seismic design shift to Part 53'
+const POST_DESC = 'The deterministic two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered ground motions and seismic design categories. A regulation-to-regulation comparison of every substantive change.'
+const POST_IMAGE = 'https://invariant-ai.com/blog/seismic.jpg'
+const POST_DATE = '2026-03-29'
 
 type Change = 'same' | 'reframed' | 'relaxed' | 'stricter' | 'new' | 'removed'
 
@@ -426,6 +433,22 @@ export default function SeismicDesignShift() {
 
   return (
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
+      <Seo
+        title={POST_TITLE}
+        description={POST_DESC}
+        canonical={POST_URL}
+        ogImage={POST_IMAGE}
+        ogType="article"
+        jsonLd={[
+          ORG_SCHEMA,
+          articleSchema({ title: POST_TITLE, description: POST_DESC, url: POST_URL, datePublished: POST_DATE, image: POST_IMAGE }),
+          breadcrumbSchema([
+            { name: 'Invariant', url: 'https://invariant-ai.com/' },
+            { name: 'Blog', url: 'https://invariant-ai.com/blog' },
+            { name: POST_TITLE, url: POST_URL },
+          ]),
+        ]}
+      />
       <div className="max-w-6xl mx-auto">
         <div className="mx-auto max-w-3xl">
           <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">

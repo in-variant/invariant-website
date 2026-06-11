@@ -1,4 +1,11 @@
 import { Link } from 'react-router-dom'
+import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
+
+const POST_URL = 'https://invariant-ai.com/blog/fermibench-sota'
+const POST_TITLE = 'Invariant Sets State-of-the-Art on FermiBench'
+const POST_DESC = 'Our domain-adapted retrieval model Helion-512 reaches 0.97 nDCG@10 on FermiBench, the only published retrieval benchmark for the nuclear regulatory domain, up from the previous best of 0.74.'
+const POST_IMAGE = 'https://invariant-ai.com/blog/fermibench.jpg'
+const POST_DATE = '2026-04-01'
 
 const BENCHMARK_ROWS = [
   { model: 'fermi-512', score: '0.74', highlight: false },
@@ -10,6 +17,22 @@ const BENCHMARK_ROWS = [
 export default function FermiBenchSOTA() {
   return (
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
+      <Seo
+        title={POST_TITLE}
+        description={POST_DESC}
+        canonical={POST_URL}
+        ogImage={POST_IMAGE}
+        ogType="article"
+        jsonLd={[
+          ORG_SCHEMA,
+          articleSchema({ title: POST_TITLE, description: POST_DESC, url: POST_URL, datePublished: POST_DATE, image: POST_IMAGE }),
+          breadcrumbSchema([
+            { name: 'Invariant', url: 'https://invariant-ai.com/' },
+            { name: 'Blog', url: 'https://invariant-ai.com/blog' },
+            { name: POST_TITLE, url: POST_URL },
+          ]),
+        ]}
+      />
       <div className="max-w-3xl mx-auto">
         <div className="mx-auto max-w-3xl">
           <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">

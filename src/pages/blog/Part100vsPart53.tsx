@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
+import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
+
+const POST_URL = 'https://invariant-ai.com/blog/part100-vs-part53-siting'
+const POST_TITLE = '10 CFR Part 100 vs Part 53 Subpart D: a siting comparison'
+const POST_DESC = 'A line-by-line comparison of the legacy siting criteria in 10 CFR Part 100 against the new technology-inclusive framework in 10 CFR Part 53 Subpart D: exclusion areas, seismic methodology, and the siting-design integration mandate.'
+const POST_IMAGE = 'https://invariant-ai.com/blog/siting.jpg'
+const POST_DATE = '2026-03-27'
 
 type Change = 'same' | 'reframed' | 'relaxed' | 'stricter' | 'new'
 
@@ -413,6 +420,22 @@ export default function Part100vsPart53() {
 
   return (
     <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
+      <Seo
+        title={POST_TITLE}
+        description={POST_DESC}
+        canonical={POST_URL}
+        ogImage={POST_IMAGE}
+        ogType="article"
+        jsonLd={[
+          ORG_SCHEMA,
+          articleSchema({ title: POST_TITLE, description: POST_DESC, url: POST_URL, datePublished: POST_DATE, image: POST_IMAGE }),
+          breadcrumbSchema([
+            { name: 'Invariant', url: 'https://invariant-ai.com/' },
+            { name: 'Blog', url: 'https://invariant-ai.com/blog' },
+            { name: POST_TITLE, url: POST_URL },
+          ]),
+        ]}
+      />
       <div className="max-w-6xl mx-auto">
         <div className="mx-auto max-w-3xl">
           <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">
