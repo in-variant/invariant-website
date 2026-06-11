@@ -1,11 +1,24 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useInView } from 'framer-motion'
 
 const VERTICALS = [
-  { name: 'Space', body: 'Launch licensing, IN-SPACe and FAA authorization, spectrum, and environmental qualification for satellites and launch vehicles.' },
-  { name: 'Aerospace', body: 'Type certification, airworthiness, and Part 21/23/25 paperwork for crewed and unmanned aviation systems.' },
-  { name: 'Nuclear', body: 'Safety analysis reports, license applications, and NRC submissions for advanced reactor developers.' },
-]
+  {
+    name: 'Space',
+    body: 'Launch licensing, IN-SPACe and FAA authorization, spectrum, and environmental qualification for satellites and launch vehicles.',
+    href: '/space-compliance',
+  },
+  {
+    name: 'Aerospace',
+    body: 'Type certification, airworthiness, and Part 21/23/25 paperwork for crewed and unmanned aviation systems.',
+    href: null,
+  },
+  {
+    name: 'Nuclear',
+    body: 'Safety analysis reports, license applications, and NRC submissions for advanced reactor developers.',
+    href: '/nuclear-compliance',
+  },
+] as const
 
 export default function Verticals() {
   const ref = useRef(null)
@@ -27,18 +40,38 @@ export default function Verticals() {
         </div>
 
         <div className="divide-y divide-cloud/15 lg:pt-2">
-          {VERTICALS.map((v, i) => (
-            <motion.div
-              key={v.name}
-              initial={{ opacity: 0, y: 12 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
-              className="py-6 first:pt-0"
-            >
-              <h3 className="font-sans text-lg font-medium text-cloud">{v.name}</h3>
-              <p className="mt-2 font-sans text-base leading-relaxed text-cloud/55">{v.body}</p>
-            </motion.div>
-          ))}
+          {VERTICALS.map((v, i) => {
+            const inner = (
+              <>
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-sans text-lg font-medium text-cloud">{v.name}</h3>
+                  {v.href && (
+                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-cloud/45 transition-colors group-hover:text-copper">
+                      Read guide &rarr;
+                    </span>
+                  )}
+                </div>
+                <p className="mt-2 font-sans text-base leading-relaxed text-cloud/55">{v.body}</p>
+              </>
+            )
+            return (
+              <motion.div
+                key={v.name}
+                initial={{ opacity: 0, y: 12 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
+                className="py-6 first:pt-0"
+              >
+                {v.href ? (
+                  <Link to={v.href} className="group block">
+                    {inner}
+                  </Link>
+                ) : (
+                  inner
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

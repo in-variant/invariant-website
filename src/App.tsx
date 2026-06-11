@@ -12,6 +12,8 @@ import SpaceComplianceTAM from './pages/blog/SpaceComplianceTAM'
 import Product from './pages/Product'
 import Pricing from './pages/Pricing'
 import Probe from './pages/Probe'
+import SpaceCompliance from './pages/SpaceCompliance'
+import NuclearCompliance from './pages/NuclearCompliance'
 import Deck from './pages/Deck'
 import DroneDeck from './pages/DroneDeck'
 import SpantrikDeck from './pages/SpantrikDeck'
@@ -41,6 +43,8 @@ export default function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/product" element={<Product />} />
           <Route path="/probe" element={<Probe />} />
+          <Route path="/space-compliance" element={<SpaceCompliance />} />
+          <Route path="/nuclear-compliance" element={<NuclearCompliance />} />
         </Route>
       </Routes>
       <Analytics />

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Seo, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 
 const POSTS = [
   {
@@ -45,6 +46,19 @@ const POSTS = [
 
 export default function Blog() {
   return (
+    <>
+      <Seo
+        title="Blog — Research on space, aerospace, and nuclear compliance"
+        description="Research notes, regulation comparisons, and field reports on space, aerospace, and nuclear compliance. From the team building autonomous AI agents at Invariant."
+        canonical="https://invariant-ai.com/blog"
+        jsonLd={[
+          ORG_SCHEMA,
+          breadcrumbSchema([
+            { name: 'Invariant', url: 'https://invariant-ai.com/' },
+            { name: 'Blog', url: 'https://invariant-ai.com/blog' },
+          ]),
+        ]}
+      />
     <section className="px-6 pt-16 pb-24 md:px-12 md:pt-24 md:pb-32 lg:px-20">
       <div className="mx-auto max-w-5xl">
         <h1 className="font-serif text-4xl font-normal tracking-[-0.02em] text-ink md:text-5xl">Blog</h1>
@@ -74,5 +88,6 @@ export default function Blog() {
         </div>
       </div>
     </section>
+    </>
   )
 }
