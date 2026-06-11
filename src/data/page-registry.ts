@@ -179,6 +179,28 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'faa-vehicle-operator-license',
+    title: 'FAA Vehicle Operator License (VOL): the Part 450 single-license model',
+    shortTitle: 'FAA vehicle operator license',
+    description:
+      'How a Part 450 VOL works: Section 450.3 scope, Section 450.5 issuance, Section 450.7 five-year term, the consolidation of legacy launch-specific and launch operator licenses, real VOLs issued since 2021.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'itu-bringing-into-use',
+    title: 'ITU Bringing Into Use: the 7-year clock and the 90-day rule',
+    shortTitle: 'ITU Bringing Into Use',
+    description:
+      'A guide to the ITU Bringing Into Use mechanism under Article 11: the 7-year clock, the 90-day continuous transmission requirement, Resolution 35 NGSO milestones, and how the FCC mirrors the rule for US operators.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'fcc-schedule-s',
     title: 'FCC Form 312 Schedule S: How to draft, file, and avoid rejection',
     shortTitle: 'FCC Schedule S',

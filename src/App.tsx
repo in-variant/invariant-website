@@ -50,6 +50,8 @@ const NrcRaiManagement = lazy(() => import('./pages/clusters/NrcRaiManagement'))
 const ItarCommodityJurisdiction = lazy(() => import('./pages/clusters/ItarCommodityJurisdiction'))
 const ItaacClosure = lazy(() => import('./pages/clusters/ItaacClosure'))
 const FccScheduleS = lazy(() => import('./pages/clusters/FccScheduleS'))
+const ItuBringingIntoUse = lazy(() => import('./pages/clusters/ItuBringingIntoUse'))
+const FaaVehicleOperatorLicense = lazy(() => import('./pages/clusters/FaaVehicleOperatorLicense'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -127,6 +129,8 @@ export default function App() {
             <Route path="/itar-commodity-jurisdiction" element={<ItarCommodityJurisdiction />} />
             <Route path="/itaac-closure" element={<ItaacClosure />} />
             <Route path="/fcc-schedule-s" element={<FccScheduleS />} />
+            <Route path="/itu-bringing-into-use" element={<ItuBringingIntoUse />} />
+            <Route path="/faa-vehicle-operator-license" element={<FaaVehicleOperatorLicense />} />
           </Route>
         </Routes>
       </Suspense>

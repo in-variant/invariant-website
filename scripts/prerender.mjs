@@ -261,6 +261,8 @@ const PILLAR_DATA_MAP = {
   'nrc-rai-management': 'nrc-rai-management-pillar.json',
   'part-53-subparts': 'part-53-subparts-pillar.json',
   'how-to-write-a-psar': 'how-to-write-a-psar-pillar.json',
+  'faa-vehicle-operator-license': 'faa-vehicle-operator-license-pillar.json',
+  'itu-bringing-into-use': 'itu-bringing-into-use-pillar.json',
   'fcc-schedule-s': 'fcc-schedule-s-pillar.json',
   'itar-commodity-jurisdiction': 'itar-commodity-jurisdiction-pillar.json',
   'itar-vs-ear-for-space-companies': 'itar-vs-ear-pillar.json',
