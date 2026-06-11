@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { Seo, articleSchema, faqSchema, breadcrumbSchema, ORG_SCHEMA, EDITORIAL_TEAM } from './Seo'
+import { Seo, articleSchema, faqSchema, breadcrumbSchema, howToSchema, ORG_SCHEMA, EDITORIAL_TEAM } from './Seo'
 import RelatedGuides from './RelatedGuides'
 import { getPage, type Pillar as PillarTopic } from '../data/page-registry'
 import { renderLinkified } from './linkifyGlossary'
@@ -46,6 +46,8 @@ type Props = {
   keywords?: string[]
   /** Place name(s) the article specifically covers (e.g. ['India'] or ['European Union']). */
   spatialCoverage?: string[]
+  /** When true, emits HowTo JSON-LD using section headings as steps (use only for actual how-tos). */
+  howTo?: boolean
 }
 
 export default function Pillar({
@@ -59,6 +61,7 @@ export default function Pillar({
   about,
   keywords,
   spatialCoverage,
+  howTo,
 }: Props) {
   const url = `https://invariant-ai.com/${slug}`
   const summaryParas = data.canonical_summary.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
@@ -84,6 +87,19 @@ export default function Pillar({
       { name: breadcrumbLabel, url },
     ]),
   ]
+  if (howTo) {
+    ld.push(
+      howToSchema({
+        name: data.h1,
+        description: data.meta_description,
+        url,
+        steps: data.sections.map((s) => ({
+          name: s.heading,
+          text: s.paragraphs?.[0]?.slice(0, 280),
+        })),
+      }),
+    )
+  }
   return (
     <>
       <Seo

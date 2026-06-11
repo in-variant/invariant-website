@@ -10,6 +10,7 @@ export default function HowToDraftItuCoordinationFiling() {
       breadcrumbLabel="ITU coordination filing"
       topic="space"
       ogImage="https://invariant-ai.com/og/how-to-draft-itu-coordination-filing.png"
+      howTo
       about={['itu-api-crc']}
       keywords={[
         'ITU Article 9',

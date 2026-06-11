@@ -10,6 +10,7 @@ export default function FaaPart450MeansOfCompliance() {
       breadcrumbLabel="Part 450 Means of Compliance"
       topic="space"
       ogImage="https://invariant-ai.com/og/how-to-write-faa-part-450-means-of-compliance.png"
+      howTo
       about={['faa-part-450']}
       keywords={[
         'Means of Compliance',

@@ -196,6 +196,46 @@ export function articleSchema({
   }
 }
 
+export function howToSchema({
+  name,
+  description,
+  totalTime,
+  steps,
+  url,
+}: {
+  name: string
+  description: string
+  totalTime?: string
+  steps: { name: string; text?: string; url?: string }[]
+  url: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${url}#howto`,
+    name,
+    description,
+    ...(totalTime ? { totalTime } : {}),
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      ...(s.text ? { text: s.text } : {}),
+      ...(s.url ? { url: s.url } : { url: `${url}#${slugify(s.name)}` }),
+    })),
+  }
+}
+
+function slugify(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 64)
+}
+
 export function faqSchema(faqs: { question: string; answer: string }[]) {
   return {
     '@context': 'https://schema.org',

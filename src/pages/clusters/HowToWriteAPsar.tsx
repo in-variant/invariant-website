@@ -10,6 +10,7 @@ export default function HowToWriteAPsar() {
       breadcrumbLabel="How to write a PSAR"
       topic="nuclear"
       ogImage="https://invariant-ai.com/og/how-to-write-a-psar.png"
+      howTo
       about={['psar-fsar', '10-cfr-part-50', '10-cfr-part-53', 'rai-nrc']}
       keywords={[
         'PSAR',
