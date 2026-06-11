@@ -48,6 +48,7 @@ const FaaAc450Series = lazy(() => import('./pages/clusters/FaaAc450Series'))
 const Part53Subparts = lazy(() => import('./pages/clusters/Part53Subparts'))
 const NrcRaiManagement = lazy(() => import('./pages/clusters/NrcRaiManagement'))
 const ItarCommodityJurisdiction = lazy(() => import('./pages/clusters/ItarCommodityJurisdiction'))
+const ItaacClosure = lazy(() => import('./pages/clusters/ItaacClosure'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -123,6 +124,7 @@ export default function App() {
             <Route path="/part-53-subparts" element={<Part53Subparts />} />
             <Route path="/nrc-rai-management" element={<NrcRaiManagement />} />
             <Route path="/itar-commodity-jurisdiction" element={<ItarCommodityJurisdiction />} />
+            <Route path="/itaac-closure" element={<ItaacClosure />} />
           </Route>
         </Routes>
       </Suspense>

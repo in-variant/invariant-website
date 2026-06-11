@@ -55,6 +55,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'itaac-closure',
+    title: 'ITAAC closure under 10 CFR 52.99 and 52.103(g): the path to fuel load',
+    shortTitle: 'ITAAC closure',
+    description:
+      'How ITAAC closure works for a Part 52 combined license: ICN submission under 52.99(c)(1), Commission finding under 52.103(g), the 52.103(b) public hearing right, and Vogtle 3 and 4 precedent.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'nrc-rai-management',
     title: 'NRC RAI management: how to respond to Requests for Additional Information',
     shortTitle: 'NRC RAI management',
