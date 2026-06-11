@@ -115,8 +115,10 @@ export default function Pillar({
             ))
           })()}
 
+          {data.sections.length >= 4 && <Toc sections={data.sections} />}
+
           {data.sections.map((s, i) => (
-            <SectionBlock key={i} section={s} />
+            <SectionBlock key={i} section={s} id={sectionId(s.heading, i)} />
           ))}
 
           <H2>Frequently asked questions</H2>
@@ -161,11 +163,48 @@ export default function Pillar({
   )
 }
 
-function SectionBlock({ section }: { section: Section }) {
+function sectionId(heading: string, idx: number) {
+  const slug = heading
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 64)
+  return slug || `section-${idx + 1}`
+}
+
+function Toc({ sections }: { sections: Section[] }) {
+  return (
+    <nav
+      aria-label="Table of contents"
+      className="mt-12 rounded-[3px] border border-ink/10 bg-white p-6 md:p-7"
+    >
+      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">In this guide</p>
+      <ol className="mt-4 space-y-2 font-sans text-sm text-ink/70">
+        {sections.map((s, i) => (
+          <li key={i} className="flex gap-3">
+            <span className="font-mono text-[11px] tabular-nums text-ink/40 mt-1">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <a
+              href={`#${sectionId(s.heading, i)}`}
+              className="hover:text-copper transition-colors"
+            >
+              {s.heading}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+function SectionBlock({ section, id }: { section: Section; id?: string }) {
   // Fresh "already linked" scope per section so each term can re-link once per section.
   const linked = new Set<string>()
   return (
-    <section className="mt-16">
+    <section id={id} className="mt-16 scroll-mt-24">
       <H2>{section.heading}</H2>
       {section.paragraphs?.map((p, i) => (
         <p key={i} className="mt-5 font-sans text-base leading-relaxed text-ink/70">
