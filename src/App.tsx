@@ -18,6 +18,8 @@ const NuclearCompliance = lazy(() => import('./pages/NuclearCompliance'))
 const Part50vs52vs53 = lazy(() => import('./pages/clusters/Part50vs52vs53'))
 const FaaPart450Timeline = lazy(() => import('./pages/clusters/FaaPart450Timeline'))
 const HowToWriteAPsar = lazy(() => import('./pages/clusters/HowToWriteAPsar'))
+const ItarVsEarForSpace = lazy(() => import('./pages/clusters/ItarVsEarForSpace'))
+const NrcPreApplicationEngagement = lazy(() => import('./pages/clusters/NrcPreApplicationEngagement'))
 
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
@@ -67,6 +69,8 @@ export default function App() {
             <Route path="/part-50-vs-52-vs-53" element={<Part50vs52vs53 />} />
             <Route path="/faa-part-450-license-timeline" element={<FaaPart450Timeline />} />
             <Route path="/how-to-write-a-psar" element={<HowToWriteAPsar />} />
+            <Route path="/itar-vs-ear-for-space-companies" element={<ItarVsEarForSpace />} />
+            <Route path="/nrc-pre-application-engagement-guide" element={<NrcPreApplicationEngagement />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
           </Route>

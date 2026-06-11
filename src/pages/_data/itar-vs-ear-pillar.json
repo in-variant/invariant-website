@@ -1,0 +1,375 @@
+{
+  "canonical_summary": "For United States space companies, export jurisdiction over a spacecraft, payload, ground station, or piece of technical data is decided by a fixed order of review codified at 22 CFR 120.11 and Supplement No. 4 to 15 CFR Part 774. Check the U.S. Munitions List first. If the article is enumerated in USML Category XV at 22 CFR 121.1, it is ITAR-controlled by the State Department's Directorate of Defense Trade Controls (DDTC), and the company must register under 22 CFR 122.1 before any export, defense service, or technical-data release. If it is not on the USML, the article moves to the Commerce Control List under the Bureau of Industry and Security (BIS), where space hardware, ground control stations, software, and technology typically classify to ECCN 9A515, 9B515, 9D515, or 9E515. Items subject to the EAR but not listed on the CCL fall to EAR99.\n\nThe dividing line was redrawn by the 2014 Export Control Reform rules at 79 FR 27417 (DDTC) and 79 FR 27418 (BIS), both effective November 10, 2014, which moved most commercial communications and lower-resolution remote-sensing satellites off USML Category XV and into the new 9x515 series. The October 23, 2024 rules at 89 FR 84766 and 89 FR 84746 proposed further narrowing of remote-sensing controls and added License Exception CSA at 15 CFR 740.27. The practical answer for almost every commercial smallsat, bus, or component built today is 9A515, not USML XV, but classified content, anti-jam payloads above thresholds, SIGINT, MASINT, anti-satellite functions, or human-rated habitation with integrated propulsion keep an article on the Munitions List. When in doubt, file a Commodity Jurisdiction request on Form DS-4076 under 22 CFR 120.12 before the first export, foreign-national hire, or marketing trip abroad.",
+  "h1": "ITAR vs EAR for space companies: how to classify spacecraft, components, and technical data",
+  "meta_title": "ITAR vs EAR for space companies: a classification guide",
+  "meta_description": "How US space companies classify hardware, software, and technical data under USML Category XV, ECCN 9x515, and EAR99, with the rules, cases, and citations.",
+  "sections": [
+    {
+      "heading": "The two regimes at a glance",
+      "paragraphs": [
+        "Two statutes govern the export of US space technology. The Arms Export Control Act, implemented through the International Traffic in Arms Regulations at 22 CFR Parts 120 to 130, gives the State Department's Directorate of Defense Trade Controls (DDTC) jurisdiction over articles enumerated on the United States Munitions List at 22 CFR 121.1. The Export Control Reform Act, implemented through the Export Administration Regulations at 15 CFR Parts 730 to 774, gives the Commerce Department's Bureau of Industry and Security (BIS) jurisdiction over items on the Commerce Control List, identified by Export Control Classification Number (ECCN). Anything subject to the EAR but not listed on the CCL is EAR99.",
+        "The two systems are not parallel. ITAR is a positive list of munitions, defense services, and technical data with a worldwide license requirement, no de minimis for most articles, mandatory registration for every US manufacturer or exporter, and a separate concept of defense services that captures training, integration, and engineering assistance to foreign persons. The EAR is a license-by-classification system keyed to the Commerce Country Chart at Supplement No. 1 to 15 CFR Part 738, with broad license exceptions including STA at 15 CFR 740.20, GOV at 15 CFR 740.11, and the 2024 Commercial Space Activities exception at 15 CFR 740.27."
+      ],
+      "bullets": [
+        "ITAR: 22 CFR 120 to 130, administered by State/DDTC, USML at 22 CFR 121.1",
+        "EAR: 15 CFR 730 to 774, administered by Commerce/BIS, CCL at Supplement No. 1 to Part 774",
+        "EAR99: residual catch-all under the EAR, no ECCN, license usually not required unless destination, end use, or end user triggers controls",
+        "Registration: every US manufacturer, exporter, or broker of ITAR articles must register annually under 22 CFR 122.1; no equivalent registration exists under the EAR"
+      ]
+    },
+    {
+      "heading": "USML Category XV versus ECCN 9x515",
+      "paragraphs": [
+        "USML Category XV, titled 'Spacecraft and Related Articles,' is structured in paragraphs (a) through (f). Paragraph (a) is the positive trigger list of spacecraft that remain on the Munitions List. Paragraph (b) covers ground control systems and training simulators specially designed for telemetry, tracking, and control of (a) spacecraft. Paragraph (c) covers military GPS receivers. Paragraph (d) covers radiation-hardened microelectronic circuits at specified thresholds, including total dose of 5 x 10^5 Rads(Si). Paragraph (e) is the 'specially designed' parts and components catch-all, which includes (e)(11) propulsion items such as bipropellant liquid apogee engines at or above 100 lbf, Hall-effect, ion, electrostatic, and electromagnetic plasma thrusters, radioisotope thermoelectric generators, and nuclear thermal propulsion. Paragraph (f) covers technical data and defense services directly related to the above.",
+        "ECCN 9A515 is the EAR counterpart on the Commerce Control List for spacecraft, satellites, and spaceflight vehicles (.a), ground control stations specially designed for TT&C (.b), radiation-hardened microelectronic circuits at lower thresholds than USML XV(d) (.d and .e), an .x paragraph for specially designed parts and components, and an .y paragraph for items warranting only AT controls. 9B515 covers test, inspection, and production equipment specially designed for 9A515 or USML XV articles, including thermal-vacuum chambers. 9D515 and 9E515 cover the corresponding software and technology. The reasons for control are National Security Column 1, Regional Stability Column 1, and Anti-Terrorism Column 1, with Missile Technology controls on 9A515.d items also described in 3A101.a."
+      ],
+      "subsections": [
+        {
+          "heading": "What stays on USML Category XV(a)",
+          "bullets": [
+            "(a)(1) spacecraft specially designed to mitigate or detect a nuclear detonation",
+            "(a)(2) autonomous real-time missile launch or nuclear detonation tracking",
+            "(a)(3) signals intelligence (SIGINT) or measurement and signature intelligence (MASINT)",
+            "(a)(4) constellation or formation operation exceeding (a) thresholds",
+            "(a)(5) anti-satellite or anti-spacecraft kinetic, RF, laser, or charged-particle systems",
+            "(a)(6) space-to-ground weapons (kinetic or directed energy)",
+            "(a)(7) remote sensing above thresholds: EO VNIR or IR with clear aperture greater than 0.35 meters, hyperspectral above specified band counts and GSDs, and most SAR/ISAR systems",
+            "(a)(9) positioning, navigation, and timing signals (excluding differential correction only)",
+            "(a)(10) on-orbit logistics, assembly, or servicing with propulsion beyond attitude control",
+            "(a)(12) suborbital, Earth-orbital, cis-lunar, lunar, or deep space human habitation with integrated propulsion",
+            "(a)(13) classified spacecraft, classified software or hardware, classified production data, or classified Category XIII cryptography"
+          ]
+        },
+        {
+          "heading": "USML XV(a)(7) remote sensing thresholds in detail",
+          "bullets": [
+            "(a)(7)(i) EO VNIR (400-1,000 nm) or IR (greater than 1,000 to 30,000 nm) with clear aperture greater than 0.35 meters",
+            "(a)(7)(ii) hyperspectral with 40 or more bands in VNIR/SWIR, FWHM at or below 10 nm, or wide bandwidth with GSD under 30 m",
+            "(a)(7)(iii) hyperspectral with 40 or more bands in MWIR, FWHM at or below 20 nm, or wide bandwidth with GSD under 200 m",
+            "(a)(7)(iv) hyperspectral with 40 or more bands in LWIR, FWHM at or below 50 nm, or wide bandwidth with GSD under 500 m",
+            "Radar remote sensing except center frequency 1-10 GHz with bandwidth under 300 MHz",
+            "GSD is measured from the spacecraft nadir per Note 1; non-Earth-pointing optical spacecraft are not Significant Military Equipment per Note 3"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The 2014 reform and what moved",
+      "paragraphs": [
+        "The current architecture was created by two companion interim final rules published the same day. DDTC issued the ITAR rule at 79 FR 27417 (RIN 1400-AD33, document 2014-10806) revising USML Category XV. BIS issued the EAR rule at 79 FR 27418 (document 2014-10807) creating ECCNs 9A515, 9B515, 9D515, and 9E515. The radiation-hardened microelectronics provisions in Category XV(d) and 9A515.d/.e took effect 45 days after publication on June 27, 2014. The remainder took effect 180 days after publication on November 10, 2014. A correction followed at 79 FR 66608 (November 10, 2014) and BIS issued clarifications at 79 FR 67055 (November 12, 2014) and 80 FR 40080 (July 13, 2015). A further revision arrived at 82 FR 2889 (January 10, 2017).",
+        "The statutory key was Section 1261 of the National Defense Authorization Act for Fiscal Year 2013 (Pub. L. 112-239, signed January 2, 2013), which repealed the categorical bar in Section 1513 of the Strom Thurmond NDAA for FY1999 (Pub. L. 105-261) that had forced all satellites onto the USML after the 1999 Cox Committee report. Section 1261 restored Presidential discretion to move satellites off the Munitions List subject to interagency review and a national-security certification, while keeping a statutory prohibition on exports or reexports to China, North Korea, and state sponsors of terrorism. Items the President determined no longer warranted ITAR control included most commercial communications satellites, remote-sensing satellites below the new XV(a)(7) thresholds, planetary rovers, and the bulk of associated parts and components.",
+        "On October 23, 2024, three coordinated rules updated the framework. DDTC published a proposed rule at 89 FR 84766 to raise remote-sensing aperture thresholds, replace the circular-aperture metric with light-collecting area, restructure ASAT and kinetic kill vehicle controls into a new Cat IV(e), and add three civil-space ITAR exemptions. BIS published 89 FR 84746 reorganizing 9x515 and 89 FR 84782 (now codified at 15 CFR 740.27) adding License Exception Commercial Space Activities (CSA), with companion treatment for Australia, Canada, and the United Kingdom. The DDTC comment period was extended to December 23, 2024 at 89 FR 91418, and the Categories IV and XV final rule remained pending as of mid-2026; the January 17, 2025 interim final rule at 90 FR 5754 and the August 27, 2025 final rule did not finalize the space-specific changes."
+      ],
+      "bullets": [
+        "DDTC final rule: 79 FR 27417, document 2014-10806, RIN 1400-AD33",
+        "BIS companion rule: 79 FR 27418, document 2014-10807",
+        "Effective: June 27, 2014 for rad-hard microelectronics; November 10, 2014 for everything else",
+        "Statutory authority: Section 1261 of FY2013 NDAA (Pub. L. 112-239) repealing Section 1513 of FY1999 NDAA",
+        "October 23, 2024 rules: 89 FR 84766 (DDTC proposed), 89 FR 84746 (BIS reorganization), 89 FR 84782 (License Exception CSA)",
+        "License Exception CSA codified at 15 CFR 740.27"
+      ]
+    },
+    {
+      "heading": "How to classify, step by step",
+      "paragraphs": [
+        "Classification is not a judgment call. The 'Order of Review' at 22 CFR 120.11 and the CCL Order of Review at Supplement No. 4 to 15 CFR Part 774 fix the sequence. A space company's compliance team should walk the same five steps for every article, drawing, and line of source code that could leave the United States or reach a foreign person, including foreign persons inside the United States."
+      ],
+      "subsections": [
+        {
+          "heading": "Step 1: walk USML Category XV(a) and (c) and (d)",
+          "paragraphs": [
+            "Start with the enumerated paragraphs of Category XV. Is the spacecraft specially designed for any function in (a)(1) through (a)(13)? Does it carry a SIGINT or MASINT payload? Does it cross the (a)(7) remote-sensing apertures, hyperspectral band counts, or radar thresholds? Is the GPS receiver specially designed for military use under (c)? Are the rad-hard microelectronics at or above the (d) thresholds, including total dose of 5 x 10^5 Rads(Si)? Also walk USML Category IV for launch vehicles and reentry vehicles. If yes at any step, ITAR controls and the analysis stops."
+          ]
+        },
+        {
+          "heading": "Step 2: walk the USML XV(e) specially designed catch-all",
+          "paragraphs": [
+            "If the article is a part, component, accessory, attachment, associated equipment, or system 'specially designed' for an (a) spacecraft, it is captured by (e). 'Specially designed' is defined at 22 CFR 120.41. The trap is (e)(11) propulsion: liquid apogee engines at or above 100 lbf thrust, Hall-effect, ion, electrostatic, and electromagnetic plasma thrusters, radioisotope thermoelectric generators, and nuclear thermal propulsion are USML even when sold to a commercial satellite operator."
+          ]
+        },
+        {
+          "heading": "Step 3: walk the 9x515 series",
+          "paragraphs": [
+            "If the item is not USML, it almost always lands in 9A515 (hardware), 9B515 (test equipment), 9D515 (software), or 9E515 (technology). 9A515.a captures commercial communications satellites, smallsats, and cubesats that do not meet XV(a) thresholds. 9A515.b captures ground control stations specially designed for TT&C of those spacecraft. 9A515.x is the specially designed parts and components paragraph. 9A515.d and .e capture rad-hard microelectronics below the USML thresholds."
+          ]
+        },
+        {
+          "heading": "Step 4: walk the rest of the CCL",
+          "paragraphs": [
+            "Star trackers, reaction wheels, optics, transmitters, and inertial sensors can classify outside 9x515 if their performance crosses Category 7 or other paragraphs. Examples include star trackers under 7A004 or 7A104, accelerometers and gyros under 7A101, and antennas under Category 5 Part 1. Also check Category 3 for microelectronics outside the rad-hard cutoff, and Category 6 for sensors. Items not described elsewhere on the CCL fall to EAR99."
+          ]
+        },
+        {
+          "heading": "Step 5: file a Commodity Jurisdiction request if genuinely ambiguous",
+          "paragraphs": [
+            "If a novel article straddles the line, file a Commodity Jurisdiction (CJ) request under 22 CFR 120.12 on Form DS-4076 through the DDTC DECCS portal. A filer does not need to be ITAR-registered to submit. Per the regulation, DDTC issues a preliminary response within 10 working days, with a stated goal of 60 days to final determination; the applicant may request expedited processing in writing to the Director, Office of Defense Trade Controls Policy if no determination has issued after 45 days. Include technical drawings, specifications, brochures, prior CJ history, and a 120.11 analysis. The resulting letter classifies the item to USML (with paragraph), EAR (with ECCN), or EAR99 and becomes public precedent."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Defense services, deemed exports, and foreign hires",
+      "paragraphs": [
+        "Two ITAR concepts cause more day-to-day pain for space companies than any classification question. The first is the deemed-export rule at 22 CFR 120.17 (ITAR) and 15 CFR 734.13(a)(2) and 734.15 (EAR): releasing controlled technical data or technology to a foreign person inside the United States, whether by visual inspection, verbal exchange, or shared access credentials, counts as an export to every country of which that person is a citizen or permanent resident. 'Foreign person' is defined at 22 CFR 120.62; US citizens, lawful permanent residents (green card holders), and 'protected individuals' under 8 USC 1324b(a)(3), which includes asylees and refugees, are not foreign persons. This is why most engineering postings at SpaceX, Blue Origin, and United Launch Alliance gate on US citizen or LPR status. It is also why DOJ sued SpaceX in August 2023 for refusing to hire asylees and refugees who, by statute, do not trigger ITAR licensing.",
+        "The second is the defense-services rule at 22 CFR 120.32. Furnishing assistance, including training, to a foreign person in the design, development, engineering, manufacture, production, assembly, testing, repair, maintenance, modification, operation, demilitarization, destruction, processing, or use of defense articles is a defense service. Critically for space, the integration of a satellite or spacecraft to a launch vehicle is a defense service 'regardless of the jurisdiction, ownership, or origin of the satellite or spacecraft, or whether technical data is used' (a holdover from Section 1513 of the FY1999 NDAA preserved in the current ITAR). A defense service usually requires a Technical Assistance Agreement (TAA) under 22 CFR Part 124 or a DSP-5 license. DDTC issued a proposed rule at 89 FR 60980 (July 29, 2024) to narrow the defense-services definition; it remains unfinalized.",
+        "Special export controls for space activities live at ITAR Section 124.15, which requires a Technology Transfer Control Plan (TTCP) and Encryption Technology Control Plan (ETCP) for any export of a Category XV defense article or service for use in a foreign launch or foreign launch failure investigation. Companies running foreign launches must build these plans into the program from contract signature, not after manifest."
+      ]
+    },
+    {
+      "heading": "Enforcement and risk",
+      "paragraphs": [
+        "Recent enforcement against US defense and aerospace companies makes the same points the regulations make in dry prose. Technical data, not hardware, is the dominant vector. Compliance-program structure is itself charged. Recurrence is the largest aggravator. Multi-agency resolutions are now standard. Penalties have escalated from a $13 million DDTC ceiling for L3Harris (September 19, 2019) and Honeywell (May 3, 2021) to $20 million for 3D Systems (February 27, 2023) to $51 million for Boeing (2024) covering 199 charged ITAR violations including fabricated export licenses, jurisdiction errors, and proviso breaches.",
+        "The Honeywell consent agreement is the canonical 'technical-data-by-email' case: engineering drawings for engine and aircraft parts including F-35, F-22, and B-1B components were emailed to China, Taiwan, Ireland, Mexico, and Canada from 2011 to 2018, with China involvement and recurrence after a 2016 voluntary disclosure driving the penalty. 3D Systems brought a coordinated BIS ($2,777,750), DDTC ($20 million), and DOJ False Claims Act (up to $4.54 million) resolution centered on aerospace and military-electronics blueprints and metal-alloy powders shipped to a Chinese subsidiary as part of an ordinary quoting workflow. Airbus's $10 million Part 130 settlement on January 31, 2020 was paired with a roughly $3.9 billion global FCPA and AECA resolution.",
+        "The leading space-launch criminal precedent remains United States v. Shu Quan-Sheng (EDVA, 2008), 51 months for exporting cryogenic upper-stage technical data and defense services to the PRC, still cited in current charging documents. The Disruptive Technology Strike Force launched February 16, 2023 by DOJ and Commerce OEE had brought 24 cases against 34 defendants by its one-year mark, several involving rad-hard or aerospace-grade microelectronics. Quadrant Magnetics LLC (WD Ky.) saw ITAR drawings for aviation, submarine, radar, missile, and fire-control items sent to Hangzhou X-Mag and survived a constitutional vagueness challenge to 'specially designed' in 2024. No public ITAR or EAR enforcement action has been brought against SpaceX, Rocket Lab, Planet, or Maxar in this window; the SpaceX matter is an Immigration and Nationality Act case alleging over-application of ITAR, not a violation of it."
+      ],
+      "bullets": [
+        "L3Harris consent agreement: $13M, 36 months, 131 charged violations (September 19, 2019)",
+        "Honeywell consent agreement: $13M ($5M suspended), 34 violations 2011-2018 (May 3, 2021)",
+        "3D Systems trifecta: BIS $2,777,750, DDTC $20M, DOJ FCA up to $4.54M (February 27, 2023)",
+        "Boeing consent agreement: $51M, 199 charged violations (2024)",
+        "Disruptive Technology Strike Force: 34 defendants in 24 cases in year one (launched February 16, 2023)",
+        "BIS final rule September 16, 2024 removed tiered VSD penalty caps, raising civil-penalty exposure"
+      ]
+    },
+    {
+      "heading": "Decision framework for builders",
+      "paragraphs": [
+        "A practical framework for a space CTO or general counsel is to translate 22 CFR 120.11 into a workflow that runs before the first hire, first export, and first foreign meeting. Treat classification as a gate, not a deliverable. Maintain a parts list that records the USML paragraph or ECCN for every assembly, subassembly, and component, and refresh it whenever a vendor changes, a design changes, or a regulation changes. Build hiring on the foreign-person definition at 22 CFR 120.62, not on a corporate guess about who counts as 'American.' Build foreign-launch programs around a TTCP and ETCP from contract signature."
+      ],
+      "bullets": [
+        "Maintain a living classification matrix indexed to 22 CFR 120.11 and Supplement No. 4 to 15 CFR Part 774",
+        "File a Commodity Jurisdiction request under 22 CFR 120.12 on DS-4076 before the first export when an article straddles USML XV(a)(7) thresholds or sits near a 9A515 boundary",
+        "Register under 22 CFR 122.1 before manufacturing any USML article, even before the first export",
+        "Treat email of engineering drawings and CAD files as the highest-risk vector; deploy automated DLP and access controls, consistent with the remedies in recent DDTC consent agreements",
+        "Gate access by US person status under 22 CFR 120.62 (citizens, LPRs, asylees, refugees) rather than by US citizenship alone",
+        "Use License Exception STA (15 CFR 740.20) for eligible 9x515 items to Country Group A:5 destinations, and License Exception CSA (15 CFR 740.27) for Australia, Canada, and the United Kingdom where the 2024 rule applies",
+        "Build a TTCP and ETCP under ITAR Section 124.15 into every foreign launch agreement before negotiation, not after manifest",
+        "Document a defensible 22 CFR 120.32 analysis for any foreign training, integration, or engineering assistance, and assume satellite-to-launch-vehicle integration is a defense service by default"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is my commercial Earth-observation smallsat ITAR or EAR?",
+      "answer": "Walk USML Category XV(a)(7). If your electro-optical payload has a clear aperture greater than 0.35 meters in VNIR (400-1,000 nm) or IR (greater than 1,000 to 30,000 nm), the satellite is ITAR. If your hyperspectral payload has 40 or more bands at the (a)(7)(ii)-(iv) bandwidth and GSD thresholds, it is ITAR. Most radar payloads are ITAR unless they fit the 1-10 GHz center frequency and under-300 MHz bandwidth carve-out. If you are below those lines and not a SIGINT, MASINT, or PNT mission, the spacecraft classifies to ECCN 9A515.a, with software at 9D515 and technology at 9E515. File a CJ under 22 CFR 120.12 if your payload sits near a threshold."
+    },
+    {
+      "question": "Is a Hall thruster ITAR or EAR?",
+      "answer": "USML Category XV(e)(11) enumerates Hall-effect, ion, electrostatic, and electromagnetic plasma thrusters as ITAR-controlled propulsion items, alongside bipropellant liquid apogee engines at or above 100 lbf, radioisotope thermoelectric generators, and nuclear thermal propulsion. The article's commercial end use does not move it off the Munitions List. A Hall thruster built for a commercial GEO communications satellite is still USML XV(e)(11). The buyer's destination, end-use restrictions, and DSP-5 or TAA structuring all flow from that ITAR classification, and the manufacturer must be registered under 22 CFR 122.1 before producing the article."
+    },
+    {
+      "question": "When should we file a Commodity Jurisdiction (CJ) request?",
+      "answer": "File a CJ under 22 CFR 120.12 on Form DS-4076 through DDTC's DECCS portal whenever classification is genuinely ambiguous and the answer drives a real business decision: first export, first foreign-national hire on a program, first marketing trip abroad, or first foreign customer contract. Typical triggers are payloads near USML XV(a)(7) thresholds, novel propulsion designs that may or may not be 'specially designed' under 22 CFR 120.41, and dual-use sensors. DDTC issues a preliminary response within 10 working days and targets 60 days to final determination; you may request expedited handling in writing after 45 days. You do not need to be ITAR-registered to file."
+    },
+    {
+      "question": "Can we hire a foreign national engineer for a 9A515 program?",
+      "answer": "Often yes, with care. The deemed-export rules at 22 CFR 120.17 (ITAR) and 15 CFR 734.13(a)(2) and 734.15 (EAR) treat release of controlled technology to a foreign person inside the United States as an export to every country of citizenship or permanent residence. For 9A515 programs, a deemed-export license may or may not be required depending on the specific technology paragraphs in 9E515 and the engineer's country of nationality under the Commerce Country Chart. License Exception STA at 15 CFR 740.20 helps for Country Group A:5 nationals. For USML XV programs, plan on a TAA under 22 CFR Part 124 or a DSP-5, or limit the role to US persons under 22 CFR 120.62 (citizens, LPRs, asylees, refugees)."
+    },
+    {
+      "question": "Are SpaceX, Blue Origin, and ULA legally allowed to require US citizenship?",
+      "answer": "Not quite. The ITAR concept that drives these postings is 'US person' under 22 CFR 120.62, which includes US citizens, lawful permanent residents (green card holders), and 'protected individuals' under 8 USC 1324b(a)(3), including asylees and refugees. None of those categories is a foreign person, so hiring them does not trigger a deemed-export license. DOJ sued SpaceX on August 24, 2023 under the Immigration and Nationality Act for refusing to hire asylees and refugees on the theory that they were foreign persons. The correct gate is US person status, not US citizenship."
+    },
+    {
+      "question": "Is satellite integration to a foreign launch vehicle a defense service?",
+      "answer": "Yes. 22 CFR 120.32 defines a defense service to include assistance in the design, development, engineering, manufacture, production, assembly, testing, repair, maintenance, modification, operation, demilitarization, destruction, processing, or use of defense articles. A specific carve-back from the 1998 Strom Thurmond Act, preserved in current ITAR, makes satellite-to-launch-vehicle integration a defense service 'regardless of the jurisdiction, ownership, or origin of the satellite or spacecraft, or whether technical data is used.' Foreign launch campaigns therefore require a TAA, plus a TTCP and ETCP under ITAR Section 124.15. DDTC proposed narrowing the defense-services definition at 89 FR 60980 (July 29, 2024); that rule was not final as of mid-2026."
+    },
+    {
+      "question": "What is EAR99 and when does it apply to a space company?",
+      "answer": "EAR99 is the residual catch-all under the EAR for items subject to the EAR but not described on the Commerce Control List. For a space company, EAR99 typically applies to ancillary items like commercial-grade office hardware, standard fasteners, and many commodity electronic parts that are not enumerated anywhere on the CCL. Spacecraft, ground control stations specially designed for TT&C, rad-hard microelectronics at the relevant thresholds, and specially designed space components do not fall to EAR99; they classify to 9A515 or USML Category XV. EAR99 items usually require no license except to embargoed destinations, denied parties, or prohibited end uses."
+    },
+    {
+      "question": "What changed on October 23, 2024 for space exports?",
+      "answer": "Three coordinated rules. DDTC published a proposed rule at 89 FR 84766 to update USML Categories IV and XV: raise the XV(a)(7)(i) aperture threshold, replace the circular-aperture metric with a light-collecting-area metric, eliminate some spectral-band thresholds, restructure ASAT and kinetic kill vehicle controls into a new Cat IV(e), and add three civil-space ITAR exemptions. BIS published 89 FR 84746 reorganizing 9x515 and 89 FR 84782 adding License Exception Commercial Space Activities at 15 CFR 740.27 with treatment for Australia, Canada, and the United Kingdom. The DDTC comment period was extended to December 23, 2024 at 89 FR 91418. The Categories IV and XV proposed rule was still pending in mid-2026."
+    },
+    {
+      "question": "Can we use License Exception STA to ship 9A515 hardware to Europe?",
+      "answer": "Often yes, with conditions. License Exception STA at 15 CFR 740.20 is available for most 9A515.a spacecraft, 9A515.x specially designed parts and components, 9B515 test equipment, 9D515.a software, and 9E515.a technology to Country Group A:5 destinations including most of Western Europe, Japan, Korea, and Australia. STA requires a prior consignee statement, end-use commitments, and enhanced documentation. STA is not available to Country Group A:6, is excluded for 9D515.b/.d/.e and 9E515.b/.d/.e, and is unavailable to D:5 destinations. For Australia, Canada, and the United Kingdom, the 2024 License Exception CSA at 15 CFR 740.27 may provide a cleaner pathway for designated remote-sensing and on-orbit servicing items."
+    },
+    {
+      "question": "Are commercial rad-hard chips ITAR?",
+      "answer": "Only above the USML thresholds. USML Category XV(d) controls rad-hard microelectronic circuits that meet five tested thresholds, including total dose of 5 x 10^5 Rads(Si). Devices that pass some, but not all, of those tests fall to ECCN 9A515.d or .e under the EAR, with software at 9D515.d/.e and technology at 9E515.d/.e. 9A515.d items also described in 3A101.a carry Missile Technology controls in addition to NS1, RS1, and AT1. License Exception STA is not available for 9D515.d/.e or 9E515.d/.e. The June 27, 2014 effective date of the rad-hard provisions was a deliberate 45-day acceleration ahead of the rest of the 2014 reform."
+    },
+    {
+      "question": "What records does DDTC expect in our compliance program?",
+      "answer": "Recent consent agreements set the expectation. Maintain registration under 22 CFR 122.1 with an Empowered Official who has actual authority and ITAR expertise; the Darling Industries case (February 26, 2019) penalized failure on this point. Keep a classification matrix tied to 22 CFR 120.11. Run an automated export-compliance and data-loss-prevention system to control engineering drawings and CAD files; Honeywell (May 3, 2021), 3D Systems (February 27, 2023), and Boeing (2024) all turned on emailed technical data. Track and disclose Part 130 political contributions, fees, and commissions; Airbus's $10 million 2020 settlement was driven by Part 130 reporting failures. File voluntary self-disclosures when violations surface; recurrence is the largest single aggravator."
+    },
+    {
+      "question": "Is ground control software for a commercial satellite ITAR or EAR?",
+      "answer": "Almost always EAR. Ground control stations specially designed for telemetry, tracking, and control of USML XV(a) spacecraft fall on the Munitions List under XV(b). Ground control stations specially designed for TT&C of 9A515.a spacecraft fall under ECCN 9A515.b, with associated software under 9D515 and technology under 9E515. Generic ground systems built from commercial IT components and not specially designed for any controlled spacecraft may fall further down the CCL or to EAR99. The key question is what spacecraft the system is specially designed to operate; the 'specially designed' definitions at 22 CFR 120.41 (ITAR) and 15 CFR 772.1 (EAR) drive the answer."
+    }
+  ],
+  "citations": [
+    {
+      "label": "22 CFR Part 120 (ITAR definitions, including Order of Review at 120.11 and CJ at 120.12)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120"
+    },
+    {
+      "label": "22 CFR 120.11 Order of review",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-B/section-120.11"
+    },
+    {
+      "label": "22 CFR 120.12 Commodity jurisdiction (CJ) determinations",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-B/section-120.12"
+    },
+    {
+      "label": "22 CFR 120.17 Export, reexport, retransfer, and temporary import (deemed exports)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-C/section-120.17"
+    },
+    {
+      "label": "22 CFR 120.32 Defense service",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120/subpart-C/section-120.32"
+    },
+    {
+      "label": "22 CFR 120.62 US person and foreign person",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-120"
+    },
+    {
+      "label": "22 CFR 121.1 USML, including Category XV (Spacecraft and Related Articles)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-121/subject-group-ECFRf7e5fe639be4566/section-121.1"
+    },
+    {
+      "label": "22 CFR Part 121 USML (full)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-121"
+    },
+    {
+      "label": "22 CFR 122.1 Registration of US manufacturers, exporters, and brokers",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-122"
+    },
+    {
+      "label": "22 CFR 124.15 Special export controls for defense articles and defense services controlled under Category XV",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-124/section-124.15"
+    },
+    {
+      "label": "15 CFR Part 774, Supplement No. 1 (Commerce Control List), Category 9",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-774/appendix-Supplement%20No.%201%20to%20Part%20774"
+    },
+    {
+      "label": "15 CFR Part 774, Supplement No. 4 (CCL Order of Review)",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-774/appendix-Supplement%20No.%204%20to%20Part%20774"
+    },
+    {
+      "label": "15 CFR 740.20 License Exception STA",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-740/section-740.20"
+    },
+    {
+      "label": "15 CFR 740.27 License Exception CSA (Commercial Space Activities)",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-740"
+    },
+    {
+      "label": "15 CFR 734.13 Definition of export",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.13"
+    },
+    {
+      "label": "15 CFR 734.15 Release (visual inspection, oral exchange, application of personal knowledge)",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.15"
+    },
+    {
+      "label": "DDTC 2014 final rule on USML Category XV, 79 FR 27417",
+      "url": "https://www.federalregister.gov/documents/2014/05/13/2014-10806/amendment-to-the-international-traffic-in-arms-regulations-revision-of-us-munitions-list-category-xv"
+    },
+    {
+      "label": "BIS 2014 companion rule creating 9x515, 79 FR 27418",
+      "url": "https://www.federalregister.gov/documents/2014/05/13/2014-10807/revisions-to-the-export-administration-regulations-ear-control-of-spacecraft-systems-and-related"
+    },
+    {
+      "label": "DDTC 2014 correction, 79 FR 66608",
+      "url": "https://www.federalregister.gov/documents/2014/11/10/2014-26631/amendment-to-the-international-traffic-in-arms-regulations-revision-of-us-munitions-list-category-xv"
+    },
+    {
+      "label": "BIS November 12, 2014 clarifications, 79 FR 67055",
+      "url": "https://www.federalregister.gov/documents/2014/11/12/2014-26664/clarifications-and-corrections-to-the-export-administration-regulations-ear-control-of-spacecraft"
+    },
+    {
+      "label": "BIS July 13, 2015 clarifications, 80 FR 40080",
+      "url": "https://www.federalregister.gov/documents/2015/07/13/2015-16904/clarifications-and-corrections-to-the-export-administration-regulations-ear-control-of-spacecraft"
+    },
+    {
+      "label": "DDTC 2017 USML Cat XV revision, 82 FR 2889",
+      "url": "https://www.federalregister.gov/documents/2017/01/10/2016-31751/international-traffic-in-arms-regulations-revision-of-us-munitions-list-category-xv"
+    },
+    {
+      "label": "DDTC October 23, 2024 proposed rule, USML Categories IV and XV, 89 FR 84766",
+      "url": "https://www.federalregister.gov/documents/2024/10/23/2024-24091/international-traffic-in-arms-regulations-itar-us-munitions-list-categories-iv-and-xv"
+    },
+    {
+      "label": "BIS October 23, 2024 rule adding License Exception CSA, 89 FR 84782",
+      "url": "https://www.federalregister.gov/documents/2024/10/23/2024-23975/export-administration-regulations-revisions-to-space-related-export-controls-including-addition-of"
+    },
+    {
+      "label": "BIS October 23, 2024 EAR revisions to space controls, 89 FR 84746",
+      "url": "https://www.federalregister.gov/documents/2024/10/23/2024-23958/export-administration-regulations-revisions-to-space-related-export-controls"
+    },
+    {
+      "label": "BIS October 23, 2024 AUKUS-style removal rule",
+      "url": "https://www.federalregister.gov/documents/2024/10/23/2024-23932/export-administration-regulations-removal-of-license-requirements-for-certain-spacecraft-and-related"
+    },
+    {
+      "label": "DDTC November 19, 2024 comment-period extension, 89 FR 91418",
+      "url": "https://www.federalregister.gov/documents/2024/11/19/2024-27059/international-traffic-in-arms-regulations-us-munitions-list-categories-iv-and-xv-extension-of"
+    },
+    {
+      "label": "DDTC January 17, 2025 USML Targeted Revisions interim final rule, 90 FR 5754",
+      "url": "https://www.federalregister.gov/documents/2025/01/17/2025-01313/international-traffic-in-arms-regulations-us-munitions-list-targeted-revisions"
+    },
+    {
+      "label": "DDTC August 27, 2025 USML Targeted Revisions final rule",
+      "url": "https://www.federalregister.gov/documents/2025/08/27/2025-16382/international-traffic-in-arms-regulations-us-munitions-list-targeted-revisions"
+    },
+    {
+      "label": "DDTC proposed rule on defense services, 89 FR 60980 (July 29, 2024)",
+      "url": "https://www.federalregister.gov/documents/2024/07/29/2024-16501/international-traffic-in-arms-regulations-revisions-to-definition-and-controls-related-to-defense"
+    },
+    {
+      "label": "DDTC CJ determination landing page and DS-4076",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_kb_article_page&sys_id=249f7c0adb6cf7007ede365e7c9619fd"
+    },
+    {
+      "label": "DDTC home",
+      "url": "https://www.pmddtc.state.gov/"
+    },
+    {
+      "label": "DDTC consent agreements index",
+      "url": "https://www.pmddtc.state.gov/ddtc_public?id=ddtc_kb_article_page&sys_id=74705f5edbb4130044f9ff621f961954"
+    },
+    {
+      "label": "State Department release on L3Harris $13M settlement (September 19, 2019)",
+      "url": "https://2017-2021.state.gov/u-s-department-of-state-concludes-13-million-settlement-of-alleged-export-violations-by-l3harris-technologies-inc/"
+    },
+    {
+      "label": "DOJ Airbus global resolution including DDTC Part 130 settlement (January 31, 2020)",
+      "url": "https://www.justice.gov/archives/opa/pr/airbus-agrees-pay-over-39-billion-global-penalties-resolve-foreign-bribery-and-itar-case"
+    },
+    {
+      "label": "BIS press release on 3D Systems $2.77M penalty (February 27, 2023)",
+      "url": "https://www.bis.gov/press-release/bis-imposes-2.77-million-penalty-3d-printing-company-exports-china-germany-including-aerospace-military"
+    },
+    {
+      "label": "DOJ 3D Systems False Claims Act settlement (NDTX)",
+      "url": "https://www.justice.gov/usao-ndtx/pr/3d-printing-company-pay-454-million-settle-false-claims-act-allegations-export"
+    },
+    {
+      "label": "DOJ Disruptive Technology Strike Force launch (February 16, 2023)",
+      "url": "https://www.justice.gov/archives/opa/pr/justice-and-commerce-departments-announce-creation-disruptive-technology-strike-force"
+    },
+    {
+      "label": "DOJ Disruptive Technology Strike Force one-year fact sheet",
+      "url": "https://www.justice.gov/archives/opa/pr/fact-sheet-disruptive-technology-strike-force-efforts-first-year-prevent-sensitive"
+    },
+    {
+      "label": "DOJ Shu Quan-Sheng space-launch case (51-month sentence)",
+      "url": "https://justice.gov/opa/pr/virginia-physicist-sentenced-51-months-prison-illegally-exporting-space-launch-data-china-and"
+    },
+    {
+      "label": "DOJ Quadrant Magnetics charges (technical-data exports to PRC)",
+      "url": "https://www.justice.gov/opa/pr/three-arrested-illegal-scheme-export-controlled-data-and-defraud-department-defense"
+    },
+    {
+      "label": "BIS news and press releases",
+      "url": "https://www.bis.gov/news-updates"
+    },
+    {
+      "label": "Office of Space Commerce satellite export control overview",
+      "url": "https://space.commerce.gov/regulations/satellite-export-control-regulations/"
+    }
+  ]
+}

@@ -95,8 +95,8 @@ export const PAGES: PageRef[] = [
       'How pre-application engagement with the NRC actually works, and how it shapes the review timeline of a full application.',
     pillar: 'nuclear',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'nuclear-compliance-india',
@@ -141,7 +141,7 @@ export const PAGES: PageRef[] = [
       'How USML Category XV (ITAR) and ECCN 9x515 (EAR) split jurisdiction over space hardware after the 2014 reform.',
     pillar: 'space',
     type: 'cluster',
-    live: false,
+    live: true,
     weight: 2,
   },
   {
