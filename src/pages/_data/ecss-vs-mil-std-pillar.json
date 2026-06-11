@@ -1,0 +1,356 @@
+{
+  "canonical_summary": "ECSS and MIL-STD are the two dominant families of space qualification testing standards. ECSS, the European Cooperation for Space Standardization, organizes its work into Engineering (E), Management (M) and Product Assurance (Q) branches, with ECSS-E-ST-10-03C Rev.1 (31 October 2022) as the central testing document. MIL-STD is the United States Department of Defense lineage; MIL-STD-1540 set test requirements for launch and space vehicles, was cancelled through Revision D (15 January 1999), and was superseded by SMC-S-016 (5 September 2014). MIL-STD-461G (11 December 2015) remains the active electromagnetic interference standard cited across NASA, the Space Force, and commercial primes.\n\nThe two systems share a common philosophy of qualification, acceptance, and protoflight testing, but differ in numbering, governance, and product-assurance flow-down. ECSS bundles materials, parts, and processes into the ECSS-Q-ST-70 series. The US side splits these across MIL-STD-1546 (cancelled 1998 but still flowed down by reference), MIL-STD-1547, and Aerospace Corporation TOR documents.\n\nNASA GSFC-STD-7000 (GEVS), Revision B (28 April 2021), occupies a third position. It tailors MIL-STD-461 and inherits MIL-STD-1540 protoflight philosophy, while standing alongside ECSS-E-ST-10-03 as a functional equivalent. This guide compares all three systems, the exact section numbers and test levels each invokes, and the contractual contexts that determine which one governs your hardware.",
+  "h1": "ECSS vs MIL-STD: qualification testing standards for space",
+  "meta_title": "ECSS vs MIL-STD: Space Qualification Standards",
+  "meta_description": "ECSS vs MIL-STD compared: ECSS-E-ST-10-03C Rev.1, MIL-STD-1540, SMC-S-016, MIL-STD-461G, and NASA GEVS. Sections, test levels, when to use each.",
+  "sections": [
+    {
+      "heading": "The two standards systems at a glance",
+      "paragraphs": [
+        "ECSS and MIL-STD are not interchangeable. ECSS is a civil, multi-national, ESA-led standards system maintained by the ECSS Secretariat at ecss.nl and freely downloadable. MIL-STD is a United States Department of Defense system administered through the Defense Logistics Agency, with active revisions hosted on DLA ASSIST and mirrored at everyspec.com.",
+        "ECSS is also actively maintained. The headline testing document, ECSS-E-ST-10-03C Rev.1, was reissued on 31 October 2022. MIL-STD-1540, the equivalent legacy DoD testing standard, was cancelled at Revision D on 15 January 1999 and replaced by Aerospace Corporation lineage documents (SMC-S-016, 5 September 2014). MIL-STD-461G (11 December 2015) and MIL-STD-464C remain active as the EMC and electromagnetic environmental effects standards on the US side.",
+        "Both systems use the same three-tier test logic (development, qualification, acceptance) and both recognize protoflight as a single-article variant. Differences appear in scope, governance, numbering, product-assurance coverage, and the specific dB margins and durations each prescribes."
+      ],
+      "bullets": [
+        "ECSS: civil, ESA-led, three branches E, M, Q plus S. Free at ecss.nl.",
+        "MIL-STD: DoD, hosted on DLA ASSIST and everyspec.com. MIL-STD-1540 cancelled in 1999, succeeded by SMC-S-016 (2014).",
+        "MIL-STD-461G (2015) and MIL-STD-464C remain the active US EMC and E3 standards.",
+        "Both define development, qualification, acceptance, and protoflight test categories.",
+        "NASA GSFC-STD-7000 Rev B (2021) sits between the two and is the de facto smallsat baseline."
+      ]
+    },
+    {
+      "heading": "ECSS deep dive: structure and the key testing series",
+      "paragraphs": [
+        "ECSS was initiated in 1993 as a cooperative effort between ESA, national space agencies, and European industry to produce a single user-friendly set of standards. Documents are organized into three primary branches identified by a single letter in the identifier."
+      ],
+      "subsections": [
+        {
+          "heading": "Branches and document identifiers",
+          "paragraphs": [
+            "Each ECSS document follows the pattern ECSS-{Branch}-{Type}-{Discipline}-{Number}{Level}. Type is ST (Standard), HB (Handbook), or TM (Technical Memorandum). Level letters A, B, C indicate major revisions and a Rev. suffix indicates a minor revision."
+          ],
+          "bullets": [
+            "E (Engineering): system engineering, mechanical, electrical, EMC, software, ground systems, space environment.",
+            "M (Management): project management, planning, risk, configuration management, cost and schedule.",
+            "Q (Product Assurance): dependability, safety, software PA, EEE parts, materials, processes.",
+            "S (System): top-level documents, including ECSS-S-ST-00C 'Description, implementation, and general requirements'."
+          ]
+        },
+        {
+          "heading": "ECSS-E-ST-10-03C Rev.1 (31 October 2022): the testing standard",
+          "paragraphs": [
+            "ECSS-E-ST-10-03C Rev.1 is the central normative document for verification by test across European space programs. It applies at all product levels (equipment, subsystem, system, space segment) and across all project phases. The 2022 revision harmonizes terminology with ECSS-E-ST-10-02C Rev.1 'Verification' (1 February 2018) and updates vibration, shock, thermal vacuum, and EMC parameters to current launcher practice."
+          ],
+          "bullets": [
+            "Development tests: validate design, characterize margins, feed analytical models.",
+            "Qualification tests: typically +6 dB and 2x duration over flight levels, demonstrate design margin.",
+            "Acceptance tests: at flight levels and nominal duration, detect workmanship defects.",
+            "Protoflight tests: qualification levels at acceptance durations, on the single flight article.",
+            "Pre-launch and in-orbit tests covered as separate categories.",
+            "Annexes provide Test Procedure DRD, Test Report DRD, Test Specification DRD, and Verification Control Document inputs."
+          ]
+        },
+        {
+          "heading": "ECSS-Q-ST-70 series: materials, mechanical parts, and processes",
+          "paragraphs": [
+            "The ECSS-Q-ST-70 series sits within Product Assurance. The umbrella document is ECSS-Q-ST-70C Rev.2 (15 October 2019). The series contains roughly forty sub-standards, including the famous outgassing screening criteria (TML, RML, CVCM) in ECSS-Q-ST-70-02C."
+          ],
+          "bullets": [
+            "ECSS-Q-ST-70-01C: cleanliness and contamination control (15 November 2019).",
+            "ECSS-Q-ST-70-02C: thermal vacuum outgassing test, TML/RML/CVCM screening (15 November 2019).",
+            "ECSS-Q-ST-70-04C: thermal cycling test for materials and processes.",
+            "ECSS-Q-ST-70-08C and 70-38C: manual and surface-mount soldering for high reliability.",
+            "ECSS-Q-ST-70-11C: derating of EEE components (used with ECSS-Q-ST-30-11C).",
+            "ECSS-Q-ST-70-36C and 70-37C: stress-corrosion cracking control and susceptibility testing."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "MIL-STD deep dive: 1540, 461, and the rest",
+      "paragraphs": [
+        "The MIL-STD space testing lineage is older and more fragmented than ECSS. The three documents requesters most often ask about are MIL-STD-1540 (the testing standard), MIL-STD-1546 (parts, materials, and processes control), and MIL-STD-461 (EMC). Only MIL-STD-461 is still actively maintained as a MIL-STD."
+      ],
+      "subsections": [
+        {
+          "heading": "MIL-STD-1540 and its successor SMC-S-016",
+          "paragraphs": [
+            "MIL-STD-1540, 'Test Requirements for Launch, Upper-Stage, and Space Vehicles,' established the environmental and structural ground testing requirements for launch vehicles, upper-stage vehicles, space vehicles, and their subsystems and units. Revision C (1994) was the long-standing baseline; Revision D (15 January 1999) reorganized the document around 'product verification' and was the last MIL-STD-prefix issuance.",
+            "There is no public MIL-STD-1540F. The Air Force Space and Missile Systems Center (SMC) took over the document and reissued it as SMC-S-016 in 2008, revised on 5 September 2014. The 2014 edition carries Aerospace Corporation report TR-RS-2014-00016 as its technical body and is the operative reference for USSF and NRO payloads under National Security Space Launch."
+          ],
+          "bullets": [
+            "Three test levels: development, qualification, acceptance, with protoqualification as an in-between option.",
+            "Qualification margins: typically +3 dB above maximum predicted environment with added duration or cycles.",
+            "Environments covered: thermal vacuum, thermal cycling, sine and random vibration, acoustic, pyroshock, static loads, modal survey, pressure and leakage, EMC, life testing.",
+            "MIL-HDBK-340 (Test Requirements Application Guidelines) is the companion application handbook."
+          ]
+        },
+        {
+          "heading": "MIL-STD-1546 and MIL-STD-1547: parts, materials, and processes",
+          "paragraphs": [
+            "MIL-STD-1546 'Parts, Materials, and Processes Control Program for Space and Launch Vehicles' is the governance standard. Revision B (27 July 1992) was cancelled without replacement on 4 May 1998 but remains widely cited in legacy contracts and Aerospace Corporation TOR documents. It mandates a contractor PMP control board, a standardized parts selection list, derating policies, qualification and screening flows, traceability, GIDEP alerts handling, and approval procedures for non-standard parts.",
+            "MIL-STD-1547 is the companion electronic parts criteria document referenced by MIL-STD-1546."
+          ]
+        },
+        {
+          "heading": "MIL-STD-461G (11 December 2015): EMC for subsystems and equipment",
+          "paragraphs": [
+            "MIL-STD-461G is the active DoD interface standard governing electromagnetic interference emissions and susceptibility for electronic, electrical, and electromechanical equipment and subsystems. It supersedes MIL-STD-461F (2007) and is applied at the equipment level; MIL-STD-464C handles system-level electromagnetic environmental effects."
+          ],
+          "bullets": [
+            "Conducted Emissions: CE101 (30 Hz to 10 kHz on power leads) through CE106 (antenna terminal).",
+            "Conducted Susceptibility: CS101 (power lead injection), CS114 (bulk cable injection), CS115 (impulse), CS116 (damped sine transients), CS118 (personnel-borne ESD, new in 461G).",
+            "Radiated Emissions: RE101 (magnetic field 30 Hz to 100 kHz), RE102 (electric field 10 kHz to 18 GHz), RE103 (antenna spurious and harmonics).",
+            "Radiated Susceptibility: RS101 (low-frequency magnetic field), RS103 (electric field 2 MHz to 40 GHz), RS105 (transient electromagnetic field, EMP simulation).",
+            "Applicability is tailored by procuring activity, platform (Army ground, Navy surface, submarine, aircraft, space), and external versus internal installation."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where NASA GSFC-STD-7000 (GEVS) sits",
+      "paragraphs": [
+        "GSFC-STD-7000 'General Environmental Verification Standard,' Revision B (28 April 2021), is a Goddard Space Flight Center technical standard, not an Agency-wide NASA-STD. It defines how flight payloads, subsystems, and components are verified against integration, launch, and on-orbit environments. It is the de facto baseline for NASA-managed smallsats and CubeSat Launch Initiative (CSLI) deliveries, and is openly cited by commercial smallsat bus vendors.",
+        "GEVS does not formally supersede or replace any MIL-STD. Its mechanical philosophy (qualification +3 dB over maximum predicted environment, protoflight at qualification levels for acceptance duration, the 6.8 Grms workmanship random vibration floor, and approximately 14.1 Grms qualification levels for small components) is recognizably descended from MIL-STD-1540. Its EMC section (2.5) directly invokes and tailors MIL-STD-461, MIL-STD-464, MIL-HDBK-419, and MIL-HDBK-1857, with NASA-specific additions like a common-mode conducted-emissions test using a current probe and an extended radiated-emissions range to 200 MHz using CISPR 16-1-4 absorbing clamps.",
+        "On the ECSS side, GEVS does not endorse ECSS as a normative reference and does not modify ECSS test levels. Industry treats GEVS and ECSS-E-ST-10-03 as functionally equivalent options on joint missions, with each side qualifying to its own standard and exchanging evidence through a verification control document. NASA-STD-7001B 'Payload Vibroacoustic Test Criteria' complements GEVS by setting the workmanship random vibration floor for electronics."
+      ]
+    },
+    {
+      "heading": "Qualification vs acceptance vs protoflight: the actual test levels",
+      "paragraphs": [
+        "The three standards converge on the same hierarchy but disagree on the exact margins. Knowing which dB and which duration applies is the most common source of contractual ambiguity in joint missions."
+      ],
+      "subsections": [
+        {
+          "heading": "ECSS-E-ST-10-03C Rev.1 levels",
+          "bullets": [
+            "Qualification: +6 dB above flight limit level and 2x duration (typical random vibration).",
+            "Acceptance: at flight limit level, nominal duration (typically 2.5 minutes per axis for random).",
+            "Protoflight: qualification levels at acceptance durations, on the single flight article.",
+            "Margins documented in Annexes of ECSS-E-ST-10-03C Rev.1; durations refined in ECSS-E-HB-10-03A handbook (31 May 2022)."
+          ]
+        },
+        {
+          "heading": "MIL-STD-1540 / SMC-S-016 levels",
+          "bullets": [
+            "Qualification: +3 dB above maximum predicted environment, with added duration or cycles.",
+            "Acceptance: at maximum predicted level for nominal duration, as a workmanship screen.",
+            "Protoqualification: in-between for one-off or short-production builds where dedicated qualification hardware is impractical.",
+            "MIL-HDBK-340 provides tailoring rationale; Aerospace Corporation TR-2004(8583)-1 Rev A remains the most cited reference for US commercial work."
+          ]
+        },
+        {
+          "heading": "GEVS (GSFC-STD-7000B) levels",
+          "bullets": [
+            "Workmanship random vibration floor: approximately 6.8 Grms acceptance, 14.1 Grms qualification for small components.",
+            "CubeSat random vibration: 14.1 Grms over 60 seconds per axis at qualification, 10 Grms at acceptance, per Appendix B.",
+            "Qualification margins: +3 dB over maximum predicted environment, protoflight at qualification levels for acceptance duration.",
+            "EMC: tailored MIL-STD-461 with NASA-specific additions in Section 2.5."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "When to use which standard",
+      "paragraphs": [
+        "The contractually correct standard is determined by who is buying the launch, who is operating the spacecraft, and which export-control regime applies. The technically correct standard is determined by which set of test levels envelopes the actual mission environment. In well-run programs the two answers coincide."
+      ],
+      "bullets": [
+        "ESA institutional missions, EUMETSAT, Copernicus Sentinels: ECSS-E-ST-10-03C Rev.1 is contractually mandatory; product assurance flows through ECSS-Q-ST-70 series.",
+        "USSF, NRO, and other National Security Space Launch payloads: SMC-S-016 (5 September 2014) is flowed down; MIL-STD-461G covers EMC at the equipment level; MIL-STD-464C at the system level.",
+        "NASA-managed science missions: GSFC-STD-7000 Rev B (2021) is the default for GSFC-led programs; other centers may invoke it by adoption.",
+        "CubeSats and NASA CSLI deliveries: GEVS Appendix B governs; NASA-STD-7001B sets the vibroacoustic floor.",
+        "Commercial GEO operators procuring from Airbus DS or Thales Alenia Space: inherit ECSS by prime flow-down.",
+        "Commercial LEO smallsats on Falcon 9 or Electron: SpaceX MPE or Rocket Lab MPE-based envelopes, often verified against GEVS workmanship floors.",
+        "Joint ESA / NASA missions (for example JWST, Solar Orbiter): each side qualifies to its own standard, deltas documented in a verification control document."
+      ]
+    },
+    {
+      "heading": "What changes for ESA vs DoD vs commercial",
+      "paragraphs": [
+        "Beyond test levels, three deeper differences govern programmatic posture and cost: how product assurance is structured, how the launch vehicle expresses environments, and how the standards are accessed and licensed."
+      ],
+      "subsections": [
+        {
+          "heading": "Product assurance flow-down",
+          "bullets": [
+            "ECSS: bundles materials, parts, processes, dependability, safety, and software PA into the ECSS-Q-ST series. Uniform numbering simplifies contractual flow-down.",
+            "DoD: splits coverage across MIL-STD-1546 (cancelled but invoked by reference), MIL-STD-1547 (electronic parts), Aerospace Corporation TOR documents, and JEDEC/MIL-PRF specifications.",
+            "NASA: leans on NASA-STD-6016 'Standard Materials and Processes Requirements for Spacecraft' and the GEVS environmental envelope, with center variations."
+          ]
+        },
+        {
+          "heading": "Launch vehicle interface",
+          "bullets": [
+            "Ariane 6 and Vega-C User's Manuals express sine, random, acoustic, and shock environments in ECSS-consumable form and reference ECSS-Q-ST-70-class PA standards.",
+            "ULA Vulcan and Atlas V users guides validate environments against MIL-STD-1540 lineage and SMC-S-016 by reference.",
+            "SpaceX Falcon User's Guide publishes maximum predicted environments at P95/50 derived from PAF flight data; references MIL-STD-461 for EMC but does not invoke SMC-S-016 verbatim.",
+            "Rocket Lab Electron PUG v8.0 (September 2025) and Neutron PUG (January 2025) provide explicit MPE-based envelopes rather than mandating any single standard."
+          ]
+        },
+        {
+          "heading": "Access and licensing",
+          "bullets": [
+            "ECSS: every active and superseded standard is freely downloadable in PDF from ecss.nl. No registration required.",
+            "MIL-STD: hosted on DLA ASSIST (DoD), free, but cancellation notices and the active edition can be subtly out of step. Everyspec.com mirrors many editions, including superseded ones.",
+            "NASA: GSFC-STD-7000 and NASA-STD documents are free on standards.nasa.gov.",
+            "Aerospace Corporation TOR documents (the technical body for SMC-S-016 and many DoD tailoring choices): some public on aerospace.org, others distribution-controlled."
+          ]
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is there a MIL-STD-1540F?",
+      "answer": "No. The MIL-STD-1540 family was published as revisions A, B, C, and D, and the document then migrated out of the MIL-STD numbering system entirely. MIL-STD-1540D, issued on 15 January 1999, was the last MIL-STD-prefix issuance. The Air Force Space and Missile Systems Center (SMC) took over the document and reissued it as SMC-S-016 in 2008, revised on 5 September 2014. The 2014 edition carries Aerospace Corporation report TR-RS-2014-00016 as its technical body. When industry users informally refer to '1540F,' they usually mean SMC-S-016 (2014), which is the operative current-generation document."
+    },
+    {
+      "question": "Does ECSS replace MIL-STD-1540?",
+      "answer": "No. ECSS and MIL-STD-1540 are parallel systems with different governance. ECSS-E-ST-10-03C Rev.1 (31 October 2022) is the European Cooperation for Space Standardization testing standard, maintained by ESA, national agencies, and European industry. MIL-STD-1540 was a US Department of Defense standard; its lineage now lives in SMC-S-016 (5 September 2014). On joint ESA / NASA / DoD missions each side typically qualifies to its own standard and documents deltas in a verification control document. Some primes will test to the enveloping case across both. ECSS does not invoke MIL-STD-1540, and SMC-S-016 does not invoke ECSS."
+    },
+    {
+      "question": "What test levels does ECSS-E-ST-10-03C Rev.1 specify?",
+      "answer": "ECSS-E-ST-10-03C Rev.1 defines development, qualification, acceptance, and protoflight tests. Qualification is typically +6 dB above flight limit level with 2x duration for random vibration. Acceptance is at flight limit level with nominal duration, typically 2.5 minutes per axis for random vibration. Protoflight applies qualification levels for acceptance durations on the single flight article. The standard covers all product levels (equipment, subsystem, system, space segment) and all project phases. Annexes specify the test matrix per product category (electrical, mechanical, thermal, EMC, optical, propulsion, pyrotechnic) and include Test Procedure DRD, Test Report DRD, Test Specification DRD, and Verification Control Document inputs."
+    },
+    {
+      "question": "What does MIL-STD-461G actually require?",
+      "answer": "MIL-STD-461G (11 December 2015) controls electromagnetic interference emissions and susceptibility for electronic, electrical, and electromechanical equipment housed in enclosures up to equipment-rack size. Conducted Emissions tests run from CE101 (30 Hz to 10 kHz on power leads) through CE106. Conducted Susceptibility covers CS101 through CS118 (the new personnel-borne ESD test). Radiated Emissions includes RE101 (magnetic field 30 Hz to 100 kHz), RE102 (electric field 10 kHz to 18 GHz), and RE103. Radiated Susceptibility includes RS101, RS103 (2 MHz to 40 GHz), and RS105 (EMP-like transients). Limits are tailored by procuring activity and platform (ground, ship, aircraft, space)."
+    },
+    {
+      "question": "Is MIL-STD-1546 still active?",
+      "answer": "No. MIL-STD-1546B (27 July 1992) was cancelled without replacement on 4 May 1998. However, it remains widely cited in legacy space contracts and is frequently invoked by reference in newer Aerospace Corporation TOR documents and Statements of Work. It established a Parts, Materials, and Processes Control Program, mandating a contractor PMP control board, a standardized parts selection list driven by MIL-STD-1547, derating policies, qualification and screening flows, traceability, GIDEP alerts handling, and non-standard parts approval. New US space programs typically replace MIL-STD-1546 with Aerospace Corporation TOR documents and program-specific PMP plans. ECSS users get equivalent coverage through ECSS-Q-ST-70 and ECSS-Q-ST-60."
+    },
+    {
+      "question": "How does NASA GEVS relate to ECSS and MIL-STD?",
+      "answer": "GSFC-STD-7000 (GEVS), Revision B (28 April 2021), is a NASA Goddard Center standard that sits between ECSS and MIL-STD. Its mechanical philosophy descends from MIL-STD-1540 (qualification +3 dB over maximum predicted environment, protoflight, the 6.8 Grms workmanship random vibration floor). Section 2.5 directly invokes and tailors MIL-STD-461 and MIL-STD-464 for EMC. GEVS does not endorse ECSS, and ECSS does not endorse GEVS, but industry treats GEVS and ECSS-E-ST-10-03 as functionally equivalent options on joint missions. CubeSats under NASA's CSLI program follow GEVS Appendix B, which prescribes approximately 14.1 Grms qualification and 10 Grms acceptance random vibration."
+    },
+    {
+      "question": "Which ECSS standard covers materials outgassing?",
+      "answer": "ECSS-Q-ST-70-02C 'Thermal vacuum outgassing test for the screening of space materials' (15 November 2019) is the canonical European outgassing screening standard. It defines the Total Mass Loss (TML), Recovered Mass Loss (RML), and Collected Volatile Condensable Material (CVCM) screening criteria. The umbrella materials document is ECSS-Q-ST-70C Rev.2 'Materials, mechanical parts and processes' (15 October 2019), which sits under the ECSS-Q (Product Assurance) branch and references the European Preferred Parts List and the Declared Materials, Mechanical Parts, and Processes Lists (DML, DMPL, DPL). The series contains roughly forty sub-standards spanning cleanliness, soldering, derating, and stress-corrosion cracking."
+    },
+    {
+      "question": "What is the difference between qualification and acceptance testing?",
+      "answer": "Qualification testing demonstrates that the design, including margins, meets specified requirements with adequate confidence. It is performed on dedicated hardware that is not flown. Test levels are elevated above the flight environment (typically +6 dB in ECSS-E-ST-10-03C Rev.1, or +3 dB in MIL-STD-1540 lineage) and durations are extended (typically 2x). Acceptance testing is performed on flight hardware as a workmanship screen, at flight levels and nominal duration, to detect manufacturing or assembly defects without damaging the article. Protoflight is a hybrid: qualification levels with acceptance durations on a single flight article, common in NASA GEVS and in one-off or short-production builds."
+    },
+    {
+      "question": "Where can I download ECSS and MIL-STD documents?",
+      "answer": "ECSS standards are free at ecss.nl. The active catalogue is at https://ecss.nl/standards/active-standards/, with no registration required. Superseded documents are also hosted. MIL-STD documents are hosted by the Defense Logistics Agency on DLA ASSIST (quicksearch.dla.mil), and many editions are mirrored on everyspec.com, including superseded revisions like MIL-STD-1540C and MIL-STD-1540D. NASA standards, including GSFC-STD-7000B and NASA-STD-7001B, are free on standards.nasa.gov. SMC-S-016 (2014) is available through DTIC and Everyspec. Aerospace Corporation TR-RS-2014-00016 and related TORs are partly public on aerospace.org."
+    },
+    {
+      "question": "Does SpaceX require MIL-STD compliance from payload customers?",
+      "answer": "Not by default. The SpaceX Falcon User's Guide publishes Maximum Predicted Environments (MPE) at P95/50 derived from Payload Adapter Fitting flight data and vibroacoustic models. It points payloads to MIL-STD-461 as a reference for EMC, with SpaceX-specific limits that are typically more lenient than the default. SpaceX does not invoke SMC-S-016 verbatim on commercial missions. For National Security Space Launch missions flying on Falcon, the government customer flows SMC-S-016 directly to the payload provider. Commercial smallsat operators usually qualify their hardware to GEVS or to their own internal envelope, then acceptance-test against the SpaceX MPE."
+    },
+    {
+      "question": "What does ECSS-Q-ST-70 cover that MIL-STD does not?",
+      "answer": "ECSS-Q-ST-70C Rev.2 (15 October 2019) provides a single coherent umbrella for materials, mechanical parts, and processes in flight hardware. It is supported by roughly forty sub-standards covering cleanliness (70-01), outgassing (70-02), thermal cycling (70-04), soldering (70-08, 70-38), derating (70-11), shelf-life control (70-22), PCB repair (70-28), stress-corrosion cracking (70-36, 70-37), and mechanical testing of metals (70-45). The MIL-STD equivalent coverage is fragmented across MIL-STD-1546 (cancelled), MIL-STD-1547, MIL-STD-883 (microcircuits), MIL-PRF specifications, NASA-STD-6016, and Aerospace Corporation TOR documents. ECSS-Q-ST-70 is the cleaner contractual flow-down."
+    },
+    {
+      "question": "Which standard should a new smallsat program adopt?",
+      "answer": "For NASA-customer or CSLI smallsats, adopt GSFC-STD-7000 Revision B (2021) with Appendix B for CubeSats, complemented by NASA-STD-7001B for vibroacoustic floors. For ESA-customer or Ariane / Vega launches, adopt ECSS-E-ST-10-03C Rev.1 (31 October 2022) and the ECSS-Q-ST-70 product-assurance series. For commercial smallsats on Falcon 9 or Electron, qualify to GEVS workmanship levels (approximately 14.1 Grms random vibration, +3 dB protoflight margins) and accept against the launch vehicle's published MPE. For DoD smallsats, expect SMC-S-016 (2014) plus MIL-STD-461G to be flowed down. When in doubt, qualify to the enveloping case across the standards your mission might touch."
+    }
+  ],
+  "citations": [
+    {
+      "label": "ECSS-E-ST-10-03C Rev.1 Testing (31 October 2022)",
+      "url": "https://ecss.nl/standard/ecss-e-st-10-03c-rev-1-testing-31-october-2022/"
+    },
+    {
+      "label": "ECSS-E-ST-10-02C Rev.1 Verification (1 February 2018)",
+      "url": "https://ecss.nl/standard/ecss-e-st-10-02c-rev-1-verification-1-february-2018/"
+    },
+    {
+      "label": "ECSS-Q-ST-70C Rev.2 Materials, mechanical parts and processes (15 October 2019)",
+      "url": "https://ecss.nl/standard/ecss-q-st-70c-rev-2-materials-mechanical-parts-and-processes-15-october-2019/"
+    },
+    {
+      "label": "ECSS-S-ST-00C Description, implementation, and general requirements",
+      "url": "https://ecss.nl/standard/ecss-s-st-00c-description-implementation-and-general-requirements/"
+    },
+    {
+      "label": "ECSS active standards catalogue",
+      "url": "https://ecss.nl/standards/active-standards/"
+    },
+    {
+      "label": "ECSS home",
+      "url": "https://ecss.nl"
+    },
+    {
+      "label": "ECSS-E-ST-10-03C Rev.1 full PDF",
+      "url": "https://ecss.nl/wp-content/uploads/2022/05/ECSS-E-ST-10-03-Rev.1(31May2022).pdf"
+    },
+    {
+      "label": "ECSS-E-HB-10-03A Testing guidelines (31 May 2022)",
+      "url": "https://ecss.nl/wp-content/uploads/2022/05/ECSS-E-HB-10-03A(31May2022).pdf"
+    },
+    {
+      "label": "MIL-STD-1540C on Everyspec",
+      "url": "https://everyspec.com/MIL-STD/MIL-STD-1500-1599/MIL-STD-1540C_11337/"
+    },
+    {
+      "label": "MIL-STD-1540D on Everyspec",
+      "url": "https://everyspec.com/MIL-STD/MIL-STD-1500-1599/MIL-STD-1540D_17788/"
+    },
+    {
+      "label": "SMC-S-016 (2008) on Everyspec",
+      "url": "https://everyspec.com/USAF/USAF-SMC/SMC-S-016_13JUN2008_21548/"
+    },
+    {
+      "label": "SMC-S-016 (2014) on Everyspec",
+      "url": "https://everyspec.com/USAF/USAF-SMC/SMC-S-016_05SEP2014_51608/"
+    },
+    {
+      "label": "Aerospace Corporation TR-2004(8583)-1 Rev A (SMC-S-016 technical body)",
+      "url": "https://www.vibrationdata.com/tutorials2/TR_2004(8583)_1_REV_A.pdf"
+    },
+    {
+      "label": "DTIC ADA619375 Test Requirements for Launch, Upper-Stage and Space Vehicles",
+      "url": "https://apps.dtic.mil/sti/pdfs/ADA619375.pdf"
+    },
+    {
+      "label": "MIL-STD-1546B on Everyspec",
+      "url": "https://everyspec.com/MIL-STD/MIL-STD-1500-1599/MIL-STD-1546B_10284/"
+    },
+    {
+      "label": "MIL-STD-1546B Notice 1 (cancellation) on Everyspec",
+      "url": "https://everyspec.com/MIL-STD/MIL-STD-1500-1599/MIL-STD-1546B_NOTICE-1_23425/"
+    },
+    {
+      "label": "MIL-STD-461G on Everyspec",
+      "url": "https://everyspec.com/MIL-STD/MIL-STD-0300-0499/MIL-STD-461G_53571/"
+    },
+    {
+      "label": "MIL-STD-461G full PDF (NASA SSRI mirror)",
+      "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/MIL-STD-461G.pdf"
+    },
+    {
+      "label": "DLA ASSIST record for MIL-STD-461",
+      "url": "https://quicksearch.dla.mil/qsdocdetails.aspx?ident_number=35789"
+    },
+    {
+      "label": "MIL-HDBK-340 Test Requirements Application Guidelines",
+      "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/MIL-HDBK-340.PDF"
+    },
+    {
+      "label": "NASA GSFC-STD-7000 record on standards.nasa.gov",
+      "url": "https://standards.nasa.gov/standard/GSFC/GSFC-STD-7000"
+    },
+    {
+      "label": "NASA GSFC-STD-7000B full PDF (April 2021)",
+      "url": "https://standards.nasa.gov/sites/default/files/standards/GSFC/B/0/gsfc-std-7000b_signature_cycle_04_28_2021_fixed_links.pdf"
+    },
+    {
+      "label": "NASA-STD-7001B Payload Vibroacoustic Test Criteria",
+      "url": "https://s3vi.ndc.nasa.gov/ssri-kb/static/resources/nasa-std-7001b.pdf"
+    },
+    {
+      "label": "Aerospace Corporation Flight Unit Qualification Guidelines TOR-2010(8591)-20",
+      "url": "https://aerospace.org/sites/default/files/maiw/TOR-2010(8591)-20.pdf"
+    },
+    {
+      "label": "EMC United summary of GSFC-STD-7000B EMC tailoring of MIL-STD-461",
+      "url": "https://www.emcunited.com/standards-info/gsf-std-7000b"
+    }
+  ]
+}

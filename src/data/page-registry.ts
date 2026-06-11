@@ -200,6 +200,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'ecss-vs-mil-std',
+    title: 'ECSS vs MIL-STD: qualification testing standards for space',
+    shortTitle: 'ECSS vs MIL-STD',
+    description:
+      'A comparison of ECSS and MIL-STD families for space qualification testing — ECSS-E-ST-10-03C, MIL-STD-1540, SMC-S-016, MIL-STD-461G, NASA GEVS — and when to use each.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'faa-part-450-vs-legacy',
     title: 'FAA Part 450 vs legacy launch licensing: the complete reference',
     shortTitle: 'Part 450 vs legacy',
