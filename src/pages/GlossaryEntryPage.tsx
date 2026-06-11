@@ -33,12 +33,14 @@ export default function GlossaryEntryPage() {
     .map((s) => GLOSSARY.find((e) => e.slug === s))
     .filter(Boolean) as typeof GLOSSARY
 
+  const ogImage = `${SITE_URL}/og/glossary/${entry.slug}.png`
   return (
     <>
       <Seo
         title={`${entry.term} — definition`}
         description={entry.short_definition}
         canonical={url}
+        ogImage={ogImage}
         jsonLd={[
           ORG_SCHEMA,
           definedTerm,
