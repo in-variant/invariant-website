@@ -5,10 +5,16 @@ import { GLOSSARY } from '../data/glossary'
 
 const URL = `${SITE_URL}/compliance`
 
+const REGIONAL_SUFFIXES = ['-eu', '-india', '-japan']
+function isRegional(slug: string) {
+  return REGIONAL_SUFFIXES.some((s) => slug.endsWith(s))
+}
+
 export default function Compliance() {
   const pillars = LIVE_PAGES.filter((p) => p.type === 'pillar')
-  const nuclearClusters = LIVE_PAGES.filter((p) => p.type === 'cluster' && p.pillar === 'nuclear')
-  const spaceClusters = LIVE_PAGES.filter((p) => p.type === 'cluster' && p.pillar === 'space')
+  const nuclearUS = LIVE_PAGES.filter((p) => p.type === 'cluster' && p.pillar === 'nuclear' && !isRegional(p.slug))
+  const spaceUS = LIVE_PAGES.filter((p) => p.type === 'cluster' && p.pillar === 'space' && !isRegional(p.slug))
+  const regional = LIVE_PAGES.filter((p) => p.type === 'cluster' && isRegional(p.slug))
 
   const COLLECTION = {
     '@context': 'https://schema.org',
@@ -67,9 +73,10 @@ export default function Compliance() {
             Every guide, every glossary entry, every research note we have published. Sourced from primary regulators. Updated as rules change.
           </p>
 
-          <PillarSection title="Pillar guides" pages={pillars} />
-          <PillarSection title="Nuclear guides" pages={nuclearClusters} />
-          <PillarSection title="Space guides" pages={spaceClusters} />
+          <PillarSection title="Pillars" pages={pillars} />
+          <PillarSection title="Nuclear guides" pages={nuclearUS} />
+          <PillarSection title="Space guides" pages={spaceUS} />
+          <PillarSection title="Region guides (EU, India, Japan)" pages={regional} />
 
           <section className="mt-16">
             <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.02em] text-ink md:text-4xl">
