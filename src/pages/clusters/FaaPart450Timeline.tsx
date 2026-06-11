@@ -10,6 +10,17 @@ export default function FaaPart450Timeline() {
       breadcrumbLabel="FAA Part 450 timeline"
       topic="space"
       ogImage="https://invariant-ai.com/og/faa-part-450-license-timeline.png"
+      about={['faa-part-450']}
+      keywords={[
+        'FAA Part 450',
+        '14 CFR Part 450',
+        'launch license',
+        'reentry license',
+        'pre-application consultation',
+        'Means of Compliance',
+        'safety case',
+        'commercial space',
+      ]}
     />
   )
 }

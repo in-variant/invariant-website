@@ -144,6 +144,9 @@ export function articleSchema({
   dateModified,
   image,
   authorName = 'Invariant',
+  articleSection,
+  keywords,
+  aboutSlugs,
 }: {
   title: string
   description: string
@@ -152,7 +155,15 @@ export function articleSchema({
   dateModified?: string
   image?: string
   authorName?: string
+  articleSection?: string
+  keywords?: string[]
+  /** Glossary slugs this article is canonically about — links Article to DefinedTerm entities for GEO. */
+  aboutSlugs?: string[]
 }) {
+  const about = (aboutSlugs || []).map((slug) => ({
+    '@type': 'DefinedTerm',
+    '@id': `${SITE_URL}/glossary/${slug}`,
+  }))
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -173,6 +184,9 @@ export function articleSchema({
     isPartOf: { '@id': `${SITE_URL}/#website` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     inLanguage: 'en',
+    ...(articleSection ? { articleSection } : {}),
+    ...(keywords && keywords.length ? { keywords: keywords.join(', ') } : {}),
+    ...(about.length ? { about } : {}),
   }
 }
 

@@ -39,6 +39,10 @@ type Props = {
   topic: PillarTopic // for RelatedGuides
   updatedAt?: string
   ogImage?: string
+  /** Glossary entry slugs this article is canonically about (links to DefinedTerm in schema). */
+  about?: string[]
+  /** Keywords for schema. If absent, derived from breadcrumbLabel + topic. */
+  keywords?: string[]
 }
 
 export default function Pillar({
@@ -49,9 +53,13 @@ export default function Pillar({
   topic,
   updatedAt = '2026-06-12',
   ogImage,
+  about,
+  keywords,
 }: Props) {
   const url = `https://invariant-ai.com/${slug}`
   const summaryParas = data.canonical_summary.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
+  const sectionLabel =
+    topic === 'nuclear' ? 'Nuclear compliance' : topic === 'space' ? 'Space compliance' : 'Aerospace compliance'
   const ld = [
     ORG_SCHEMA,
     EDITORIAL_TEAM,
@@ -61,6 +69,9 @@ export default function Pillar({
       url,
       datePublished: updatedAt,
       dateModified: updatedAt,
+      articleSection: sectionLabel,
+      keywords,
+      aboutSlugs: about,
     }),
     faqSchema(data.faqs),
     breadcrumbSchema([
