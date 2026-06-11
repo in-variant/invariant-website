@@ -8,23 +8,39 @@ const COLUMNS = [
       { label: 'Space compliance', to: '/space-compliance' },
       { label: 'Nuclear compliance', to: '/nuclear-compliance' },
       { label: 'Glossary', to: '/glossary' },
+      { label: 'Library', to: '/compliance' },
     ],
   },
   {
     title: 'Guides',
     links: [
       { label: 'Part 50 vs 52 vs 53', to: '/part-50-vs-52-vs-53' },
+      { label: 'NRC license timeline', to: '/how-long-does-nrc-license-take' },
       { label: 'How to write a PSAR', to: '/how-to-write-a-psar' },
       { label: 'NRC pre-application', to: '/nrc-pre-application-engagement-guide' },
       { label: 'FAA Part 450 timeline', to: '/faa-part-450-license-timeline' },
       { label: 'Part 450 MoC', to: '/how-to-write-faa-part-450-means-of-compliance' },
+      { label: 'Part 450 vs legacy', to: '/faa-part-450-vs-legacy' },
       { label: 'ITAR vs EAR for space', to: '/itar-vs-ear-for-space-companies' },
       { label: 'FCC 5-year deorbit rule', to: '/fcc-5-year-deorbit-rule' },
+      { label: 'NOAA tier system', to: '/noaa-remote-sensing-license-tiers' },
+      { label: 'ECSS vs MIL-STD', to: '/ecss-vs-mil-std' },
+      { label: 'ITU coordination filing', to: '/how-to-draft-itu-coordination-filing' },
       { label: 'Calculators', to: '/calculators' },
     ],
   },
   {
-    title: 'Explore',
+    title: 'Region guides',
+    links: [
+      { label: 'EU advanced reactor licensing', to: '/advanced-reactor-licensing-eu' },
+      { label: 'EU space compliance', to: '/space-compliance-eu' },
+      { label: 'India nuclear compliance', to: '/nuclear-compliance-india' },
+      { label: 'India space compliance', to: '/space-compliance-india' },
+      { label: 'Japan nuclear compliance', to: '/nuclear-compliance-japan' },
+    ],
+  },
+  {
+    title: 'Company',
     links: [
       { label: 'Product', to: '/product' },
       { label: 'Probe', to: '/probe' },
@@ -63,7 +79,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-12 gap-y-12 md:grid-cols-3 md:gap-x-16">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-12 md:grid-cols-4 md:gap-x-12">
             {COLUMNS.map((col) => (
               <div key={col.title}>
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-cloud/45">{col.title}</p>

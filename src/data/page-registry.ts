@@ -179,17 +179,6 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
-    slug: 'space-compliance-china',
-    title: 'Space compliance in China: CNSA, CMSA, SASTIND, MIIT, and the 2024 Negative List',
-    shortTitle: 'Space compliance in China',
-    description:
-      "China's multi-agency space regulatory stack: CNSA, CMSA, SASTIND launch permits under Order No. 12, MIIT satellite licensing, the 2024 Negative List, and what foreign operators must clear.",
-    pillar: 'space',
-    type: 'cluster',
-    live: true,
-    weight: 2,
-  },
-  {
     slug: 'fcc-5-year-deorbit-rule',
     title: 'The FCC 5-year deorbit rule explained',
     shortTitle: 'FCC 5-year deorbit rule',
