@@ -371,6 +371,13 @@ async function main() {
         'How Invariant handles your data, hosts your regulatory submissions, and meets the security expectations of space, aerospace, and nuclear operators.',
       ogImage: `${SITE}/og-image.png`,
     },
+    {
+      slug: 'about',
+      title: 'About Invariant — Autonomous AI agents for compliance in mission-critical industries',
+      description:
+        'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneurs First. Founded 2025.',
+      ogImage: `${SITE}/og-image.png`,
+    },
   ]
   for (const sp of SIMPLE_PAGES) {
     const canonical = `${SITE}/${sp.slug}`

@@ -38,6 +38,7 @@ const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
 const Research = lazy(() => import('./pages/Research'))
 const Compliance = lazy(() => import('./pages/Compliance'))
 const Trust = lazy(() => import('./pages/Trust'))
+const About = lazy(() => import('./pages/About'))
 const FaaPart450Calculator = lazy(() => import('./pages/calculators/FaaPart450Calculator'))
 const NrcLicenseCalculator = lazy(() => import('./pages/calculators/NrcLicenseCalculator'))
 const CalculatorsIndex = lazy(() => import('./pages/calculators/Index'))
@@ -106,6 +107,7 @@ export default function App() {
             <Route path="/research" element={<Research />} />
             <Route path="/compliance" element={<Compliance />} />
             <Route path="/trust" element={<Trust />} />
+            <Route path="/about" element={<About />} />
             <Route path="/calculators/faa-part-450-timeline" element={<FaaPart450Calculator />} />
             <Route path="/calculators/nrc-license-timeline" element={<NrcLicenseCalculator />} />
             <Route path="/calculators" element={<CalculatorsIndex />} />
