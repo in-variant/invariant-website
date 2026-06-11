@@ -261,6 +261,8 @@ const PILLAR_DATA_MAP = {
   'nuclear-compliance-india': 'nuclear-compliance-india-pillar.json',
   'fcc-5-year-deorbit-rule': 'fcc-5-year-deorbit-pillar.json',
   'space-compliance-india': 'space-compliance-india-pillar.json',
+  'nuclear-compliance-japan': 'nuclear-compliance-japan-pillar.json',
+  'space-compliance-china': 'space-compliance-china-pillar.json',
   'how-long-does-nrc-license-take': 'nrc-license-timeline-pillar.json',
   'ecss-vs-mil-std': 'ecss-vs-mil-std-pillar.json',
   'faa-part-450-vs-legacy': 'part-450-vs-legacy-pillar.json',

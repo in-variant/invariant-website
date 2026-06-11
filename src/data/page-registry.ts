@@ -110,6 +110,18 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
 
+  {
+    slug: 'nuclear-compliance-japan',
+    title: 'Nuclear compliance in Japan: NRA, New Regulatory Requirements, restart',
+    shortTitle: 'Nuclear compliance in Japan',
+    description:
+      "Japan's post-Fukushima nuclear regulatory architecture: the NRA as an Article 3 commission, the 2013 New Regulatory Requirements, restart status, and the advanced reactor program.",
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+
   // ── Clusters: space ─────────────────────────────────────────────────────
   {
     slug: 'faa-part-450-license-timeline',
@@ -161,6 +173,17 @@ export const PAGES: PageRef[] = [
     shortTitle: 'Space compliance in the EU',
     description:
       'Why there is no single EU space regulator and how operators navigate the member-state patchwork.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'space-compliance-china',
+    title: 'Space compliance in China: CNSA, CMSA, SASTIND, MIIT, and the 2024 Negative List',
+    shortTitle: 'Space compliance in China',
+    description:
+      "China's multi-agency space regulatory stack: CNSA, CMSA, SASTIND launch permits under Order No. 12, MIIT satellite licensing, the 2024 Negative List, and what foreign operators must clear.",
     pillar: 'space',
     type: 'cluster',
     live: true,
