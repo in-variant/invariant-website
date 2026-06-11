@@ -16,6 +16,12 @@ const TOOLS = [
     description:
       'Estimate an NRC reactor license duration under 10 CFR Part 50, 52, or 53 from pre-application engagement, approved topical reports, TICAP alignment, design novelty, and existing ESP.',
   },
+  {
+    slug: 'fcc-deorbit-feasibility',
+    title: 'FCC 5-year deorbit feasibility checker',
+    description:
+      'Check whether your LEO satellite design satisfies the FCC 22-74 five-year post-mission disposal rule under 47 CFR 25.283(e), based on altitude, ballistic coefficient, and disposal strategy.',
+  },
 ]
 
 export default function CalculatorsIndex() {
