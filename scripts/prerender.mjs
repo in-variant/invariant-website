@@ -142,6 +142,31 @@ function definedTerm(entry) {
   }
 }
 
+function howToSchema(args) {
+  const slugify = (s) =>
+    String(s).toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').slice(0, 64)
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    '@id': `${args.url}#howto`,
+    name: args.name,
+    description: args.description,
+    step: args.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      ...(s.text ? { text: s.text } : {}),
+      url: `${args.url}#${slugify(s.name)}`,
+    })),
+  }
+}
+
+const HOW_TO_SLUGS = new Set([
+  'how-to-write-a-psar',
+  'how-to-write-faa-part-450-means-of-compliance',
+  'how-to-draft-itu-coordination-filing',
+])
+
 // ── Override the index.html head with per-page metadata ───────────────────
 function customizeHtml(template, opts) {
   const { title, description, canonical, ogImage, ogType = 'article', jsonLd = [] } = opts
@@ -382,6 +407,19 @@ async function main() {
       ]),
     ]
     if (data?.faqs?.length) jsonLd.push(faqSchema(data.faqs))
+    if (HOW_TO_SLUGS.has(p.slug) && data?.sections?.length) {
+      jsonLd.push(
+        howToSchema({
+          name: data.h1 || p.title,
+          description: data.meta_description || p.description,
+          url: canonical,
+          steps: data.sections.map((s) => ({
+            name: s.heading,
+            text: s.paragraphs && s.paragraphs[0] ? s.paragraphs[0].slice(0, 280) : undefined,
+          })),
+        }),
+      )
+    }
     writeRoute(template, p.slug, {
       title,
       description,
