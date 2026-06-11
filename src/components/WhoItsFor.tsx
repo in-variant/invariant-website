@@ -4,44 +4,46 @@ import { motion, useInView } from 'framer-motion'
 const AUDIENCES = [
   {
     label: 'Engineering Teams',
-    description: 'Teams building regulated systems who need compliance awareness from first sketch to final submission.',
-    color: '#2A9D8F',
-    icon: (c: string) => (
-      <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-        <circle cx="16" cy="16" r="7" fill={`${c}20`} stroke={c} strokeWidth="1.5" />
-        <circle cx="32" cy="16" r="7" fill={`${c}20`} stroke={c} strokeWidth="1.5" />
-        <circle cx="24" cy="30" r="7" fill={`${c}20`} stroke={c} strokeWidth="1.5" />
-        <path d="M22 17 L26 17" stroke={`${c}40`} strokeWidth="1" />
-        <path d="M18 22 L22 27" stroke={`${c}40`} strokeWidth="1" />
-        <path d="M30 22 L26 27" stroke={`${c}40`} strokeWidth="1" />
+    description:
+      'Teams building regulated systems who need compliance awareness from first sketch to final submission.',
+    icon: (
+      // System within a system: an L-bracket framing a smaller marked square.
+      <svg viewBox="0 0 48 48" fill="none" className="h-full w-full">
+        <path d="M10 30 L10 38 L18 38" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+        <path d="M38 18 L38 10 L30 10" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+        <rect x="17" y="17" width="14" height="14" stroke="currentColor" strokeWidth="1.25" />
+        <line x1="24" y1="14" x2="24" y2="34" stroke="currentColor" strokeWidth="1" strokeDasharray="1.5 2" opacity="0.55" />
+        <line x1="14" y1="24" x2="34" y2="24" stroke="currentColor" strokeWidth="1" strokeDasharray="1.5 2" opacity="0.55" />
       </svg>
     ),
   },
   {
     label: 'Compliance Consultants',
-    description: 'Practitioners who author safety cases, regulatory filings, and compliance documentation across industries.',
-    color: '#C4820E',
-    icon: (c: string) => (
-      <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-        <rect x="10" y="8" width="28" height="32" rx="3" fill={`${c}12`} stroke={c} strokeWidth="1.5" />
-        <line x1="16" y1="16" x2="32" y2="16" stroke={`${c}40`} strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="16" y1="22" x2="28" y2="22" stroke={`${c}40`} strokeWidth="1.2" strokeLinecap="round" />
-        <line x1="16" y1="28" x2="30" y2="28" stroke={`${c}40`} strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M14 34 L18 38 L24 32" stroke={c} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    description:
+      'Practitioners who author safety cases, regulatory filings, and compliance documentation across industries.',
+    icon: (
+      // A folio leaf: rules above a signature stroke.
+      <svg viewBox="0 0 48 48" fill="none" className="h-full w-full">
+        <path d="M14 10 L34 10 L34 38 L14 38 Z" stroke="currentColor" strokeWidth="1.25" />
+        <line x1="18" y1="18" x2="30" y2="18" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+        <line x1="18" y1="22" x2="30" y2="22" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+        <line x1="18" y1="26" x2="26" y2="26" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+        <path d="M18 32 C 22 30 26 34 30 32" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" fill="none" />
       </svg>
     ),
   },
   {
     label: 'Program Leadership',
-    description: 'Leaders managing the intersection of engineering schedules and regulatory timelines.',
-    color: '#3A7CA5',
-    icon: (c: string) => (
-      <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-        <rect x="8" y="18" width="32" height="22" rx="2" fill={`${c}10`} stroke={c} strokeWidth="1.5" />
-        <line x1="8" y1="26" x2="40" y2="26" stroke={`${c}30`} strokeWidth="1" />
-        <rect x="14" y="12" width="20" height="6" rx="1.5" fill={`${c}15`} stroke={c} strokeWidth="1.2" />
-        <circle cx="24" cy="33" r="4" fill={`${c}20`} stroke={c} strokeWidth="1" />
-        <path d="M22 33 L24 35 L27 31" stroke={c} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    description:
+      'Leaders managing the intersection of engineering schedules and regulatory timelines.',
+    icon: (
+      // A timeline with one milestone marked.
+      <svg viewBox="0 0 48 48" fill="none" className="h-full w-full">
+        <line x1="10" y1="24" x2="38" y2="24" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
+        <line x1="14" y1="20" x2="14" y2="28" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+        <line x1="24" y1="18" x2="24" y2="30" stroke="currentColor" strokeWidth="1.25" />
+        <line x1="34" y1="20" x2="34" y2="28" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+        <circle cx="24" cy="24" r="3" fill="currentColor" />
       </svg>
     ),
   },
@@ -61,7 +63,7 @@ export default function WhoItsFor() {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-5"
           >
-            Who Invariant AI is for.
+            Who Invariant is for.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
@@ -82,19 +84,13 @@ export default function WhoItsFor() {
               transition={{ duration: 0.55, delay: 0.2 + i * 0.15, ease: [0.25, 0.1, 0.25, 1] }}
               className="flex flex-col items-center text-center"
             >
-              <div
-                className="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center p-3"
-                style={{ backgroundColor: `${audience.color}0A`, border: `1.5px solid ${audience.color}30` }}
-              >
-                {audience.icon(audience.color)}
+              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-[4px] border border-ink/12 bg-paper p-3 text-copper">
+                {audience.icon}
               </div>
-              <h3
-                className="font-mono text-xs tracking-[0.2em] uppercase font-medium mb-2"
-                style={{ color: audience.color }}
-              >
+              <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/55">
                 {audience.label}
               </h3>
-              <p className="font-mono text-sm leading-relaxed text-ink/50 max-w-xs">
+              <p className="max-w-xs font-sans text-sm leading-relaxed text-ink/65">
                 {audience.description}
               </p>
             </motion.div>
