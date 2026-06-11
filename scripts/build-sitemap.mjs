@@ -17,6 +17,7 @@ const CORE = [
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', changefreq: 'weekly', priority: '0.8' },
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
+  { loc: '/research', changefreq: 'monthly', priority: '0.85' },
 ]
 
 const BLOG = [

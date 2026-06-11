@@ -31,6 +31,7 @@ const HowToDraftItuCoordinationFiling = lazy(() => import('./pages/clusters/HowT
 
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
+const Research = lazy(() => import('./pages/Research'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -89,6 +90,7 @@ export default function App() {
             <Route path="/how-to-draft-itu-coordination-filing" element={<HowToDraftItuCoordinationFiling />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
+            <Route path="/research" element={<Research />} />
           </Route>
         </Routes>
       </Suspense>
