@@ -55,6 +55,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'nrc-part-73-security',
+    title: '10 CFR Part 73 physical security and the Design Basis Threat',
+    shortTitle: '10 CFR Part 73 security',
+    description:
+      'A reference on 10 CFR Part 73 physical security at US nuclear plants: the Design Basis Threat under Section 73.1, the Section 73.55 reactor rule, Safeguards Information, force-on-force exercises, and the proposed Alternative Physical Security rule for advanced reactors.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'itaac-closure',
     title: 'ITAAC closure under 10 CFR 52.99 and 52.103(g): the path to fuel load',
     shortTitle: 'ITAAC closure',

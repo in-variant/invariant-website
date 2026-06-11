@@ -131,6 +131,7 @@ export default function App() {
             <Route path="/fcc-schedule-s" element={<FccScheduleS />} />
             <Route path="/itu-bringing-into-use" element={<ItuBringingIntoUse />} />
             <Route path="/faa-vehicle-operator-license" element={<FaaVehicleOperatorLicense />} />
+            <Route path="/nrc-part-73-security" element={<NrcPart73Security />} />
           </Route>
         </Routes>
       </Suspense>

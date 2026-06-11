@@ -1,0 +1,387 @@
+{
+  "canonical_summary": "10 CFR Part 73, \"Physical Protection of Plants and Materials,\" is the U.S. Nuclear Regulatory Commission (NRC) rule that governs physical security at every commercial nuclear power reactor, Category I fuel-cycle facility, and qualifying shipment of special nuclear material (SNM) in the United States. The rule is organized into subparts covering general provisions (A), SNM in transit (B and C), fixed-site protection (F, including the reactor rule at Section 73.55), other SNM quantities (G), information security including Safeguards Information and cyber (H), and enforcement (I). The architecture rests on two Design Basis Threats (DBTs) codified at Section 73.1(a): the DBT of radiological sabotage and the DBT of theft or diversion of formula quantities of strategic special nuclear material.\n\nSection 73.55 translates the radiological-sabotage DBT into operational requirements at operating power reactors: an isolation zone, a fenced and monitored protected area, interior vital areas containing vital equipment, at least two physical barriers between an adversary and vital equipment, two continuously staffed alarm stations (central and secondary), and an armed response force capable of detecting, assessing, interdicting, and neutralizing the DBT before a target set is completed. Safeguards Information (SGI) under Sections 73.21 and 73.22 protects the sensitive details of those programs. The NRC validates the whole architecture through triennial force-on-force exercises using a Composite Adversary Force, and is now extending the same framework, with scaled requirements, to small modular reactors (SMRs) and advanced reactors through the proposed Alternative Physical Security rule (RIN 3150-AK19) and the new technology-inclusive Sections 73.100, 73.110, and 73.120 added by 10 CFR Part 53.",
+  "citations": [
+    {
+      "label": "10 CFR Part 73, Physical Protection of Plants and Materials (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73"
+    },
+    {
+      "label": "10 CFR 73.1, Purpose and scope (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73/subpart-A/section-73.1"
+    },
+    {
+      "label": "10 CFR 73.2, Definitions (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73/subpart-A/section-73.2"
+    },
+    {
+      "label": "10 CFR 73.55, Physical protection of nuclear power reactors against radiological sabotage (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73/subpart-F/section-73.55"
+    },
+    {
+      "label": "10 CFR Part 73 Subpart F, Physical Protection at Fixed Sites (eCFR)",
+      "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-73/subpart-F"
+    },
+    {
+      "label": "10 CFR 73.21, Protection of Safeguards Information: Performance requirements (NRC)",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/cfr/part073/part073-0021.html"
+    },
+    {
+      "label": "10 CFR 73.22, Protection of Safeguards Information: Specific requirements (NRC)",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/cfr/part073/part073-0022.html"
+    },
+    {
+      "label": "10 CFR 73.23, Safeguards Information-Modified Handling (NRC)",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/cfr/part073/part073-0023.html"
+    },
+    {
+      "label": "NRC Safeguards Information overview",
+      "url": "https://www.nrc.gov/security/info-security/safeguards-info.html"
+    },
+    {
+      "label": "NRC Physical Protection Areas overview",
+      "url": "https://www.nrc.gov/security/domestic/phys-protect/areas.html"
+    },
+    {
+      "label": "NRC Threat Assessment page",
+      "url": "https://www.nrc.gov/security/domestic/phys-protect/threat.html"
+    },
+    {
+      "label": "NRC FAQ on Design Basis Threat Final Rule",
+      "url": "https://www.nrc.gov/security/faq-dbtfr.html"
+    },
+    {
+      "label": "Federal Register, Design Basis Threat Final Rule, 72 FR 12705 (2007)",
+      "url": "https://www.federalregister.gov/documents/2007/03/19/07-1317/design-basis-threat"
+    },
+    {
+      "label": "NRC Backgrounder on Force-on-Force Security Inspections",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/fact-sheets/force-on-force-bg.html"
+    },
+    {
+      "label": "NRC FAQ on Force-on-Force Security Exercises",
+      "url": "https://www.nrc.gov/security/faq-force-on-force.html"
+    },
+    {
+      "label": "NRC Glossary, Design-basis threat (DBT)",
+      "url": "https://www.nrc.gov/reading-rm/basic-ref/glossary/design-basis-threat-dbt.html"
+    },
+    {
+      "label": "NRC Regulatory Guide 5.69 (DBT companion guidance)",
+      "url": "https://www.nrc.gov/docs/ML1634/ML16342B024.pdf"
+    },
+    {
+      "label": "Energy Policy Act of 2005, Public Law 109-58 (Section 651(a))",
+      "url": "https://www.congress.gov/109/plaws/publ58/PLAW-109publ58.pdf"
+    },
+    {
+      "label": "GAO-06-388, Nuclear Power Plants: Efforts Made to Upgrade Security",
+      "url": "https://www.gao.gov/assets/a249255.html"
+    },
+    {
+      "label": "Alternative Physical Security Requirements for Advanced Reactors, proposed rule (RIN 3150-AK19)",
+      "url": "https://public-inspection.federalregister.gov/2024-17598.pdf"
+    },
+    {
+      "label": "SECY-18-0076, Options and Recommendation for Physical Security for Advanced Reactors",
+      "url": "https://www.nrc.gov/docs/ML1805/ML18052B032.pdf"
+    },
+    {
+      "label": "SECY-22-0072 proposed rule package",
+      "url": "https://www.nrc.gov/docs/ML2133/ML21334A004.pdf"
+    },
+    {
+      "label": "NRC rulemaking landing page: Physical Security for Advanced Reactors",
+      "url": "https://www.nrc.gov/reactors/new-reactors/advanced/modernizing/rulemaking/physical-security"
+    },
+    {
+      "label": "NRC rulemaking landing page: Part 53",
+      "url": "https://www.nrc.gov/reactors/new-reactors/advanced/modernizing/rulemaking/part-53"
+    },
+    {
+      "label": "SMR/ONT Emergency Preparedness final rule (RIN 3150-AJ68)",
+      "url": "https://www.nrc.gov/docs/ML2322/ML23226A195.pdf"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is 10 CFR Part 73?",
+      "answer": "10 CFR Part 73, titled \"Physical Protection of Plants and Materials,\" is the U.S. Nuclear Regulatory Commission's physical-security regulation for licensed nuclear facilities and special nuclear material (SNM). It governs everything from perimeter barriers and intrusion detection to armed response forces, alarm stations, Safeguards Information protection, and cyber security. The rule is organized into subparts covering general provisions, SNM in transit, fixed-site protection (including the reactor rule at Section 73.55), other SNM quantities, information security, and enforcement. Every commercial power reactor, Category I fuel-cycle facility, and qualifying SNM shipment in the United States operates under Part 73."
+    },
+    {
+      "question": "What is the Design Basis Threat (DBT) under Section 73.1?",
+      "answer": "The Design Basis Threat is the NRC's published description of the adversary that licensees must defend against with high assurance. Section 73.1(a) codifies two DBTs: radiological sabotage at Section 73.1(a)(1), applicable to power reactors and Category I facilities, and theft or diversion of formula quantities of strategic special nuclear material at Section 73.1(a)(2). Public attributes include multi-team external assault, military-trained attackers willing to kill or be killed, automatic weapons with silencers, explosives, four-wheel-drive and waterborne vehicle bombs, a knowledgeable insider, and cyber attack. Detailed numerical attributes are kept in non-public Adversary Characteristics Documents."
+    },
+    {
+      "question": "What does Section 73.55 require at a nuclear power plant?",
+      "answer": "Section 73.55 is the reactor physical-protection rule. It requires an isolation zone, a fenced and monitored protected area, interior vital areas housing vital equipment, and at least two physical barriers between an adversary and vital equipment per Section 73.55(e). Intrusion detection must precede penetration, with concurrent video assessment annunciated in at least two continuously staffed alarm stations, the central alarm station (CAS) and secondary alarm station (SAS), per Section 73.55(g). An armed response force, governed by Section 73.55(k), must detect, assess, interdict, and neutralize the DBT before a target set is completed."
+    },
+    {
+      "question": "What is the difference between a protected area and a vital area?",
+      "answer": "Both are defined in Section 73.2 and operationalized in Section 73.55. The protected area is the outer fenced and monitored zone, surrounded by an isolation zone, that encloses the plant. The vital area is a smaller zone, located inside the protected area, that contains vital equipment whose loss could lead to significant core damage or spent-fuel sabotage. Section 73.55(e) requires that vital equipment sit only within vital areas, that vital areas sit within a protected area, and that an adversary must defeat at least two physical barriers to reach vital equipment, which is the core two-barrier defense-in-depth rule."
+    },
+    {
+      "question": "What is Safeguards Information (SGI)?",
+      "answer": "Safeguards Information is a category of sensitive unclassified information protected under Section 147 of the Atomic Energy Act and 10 CFR Sections 73.21 and 73.22. SGI includes detailed physical security plans, safeguards contingency plans, guard training plans, cyber plans, intrusion-detection design features, vital-area identifications, and the location and quantities of SNM in transit. Access requires both a need to know and a trustworthiness and reliability determination, typically including an FBI criminal-history check under Section 149 of the Atomic Energy Act. A less stringent companion category, Safeguards Information-Modified Handling (SGI-M), is governed by Section 73.23."
+    },
+    {
+      "question": "How must Safeguards Information be marked, stored, and transmitted?",
+      "answer": "Under Section 73.22, documents containing SGI must be marked \"SAFEGUARDS INFORMATION\" at the top and bottom of the first page and on any front or back cover, with interior pages marked similarly or at minimum with \"SAFEGUARDS.\" Storage requires a locked security container within a controlled environment. External transmission requires two sealed envelopes, the inner marked SGI and the outer bearing only addresses. Electronic transmission requires an NRC-approved protected communication system, typically NIST-approved encryption. Destruction must preclude reconstruction, using burning, cross-cut shredding, or equivalent means. Unauthorized disclosure carries civil and criminal penalties under Section 223 of the Atomic Energy Act."
+    },
+    {
+      "question": "What is a force-on-force (FOF) exercise?",
+      "answer": "A force-on-force exercise is a full-scale mock attack used by the NRC to verify that a licensee can detect, assess, interdict, and neutralize the Design Basis Threat. Per the NRC's public Backgrounder, every commercial operating nuclear power plant receives at least one full-scope NRC-evaluated FOF inspection every three years. Mock attackers come from a Composite Adversary Force (CAF) trained to NRC standards, with no member exercising at his or her home site. Exercises use MILES laser-engagement gear in place of live fire, and inspection teams include advisors from U.S. Special Operations Command. The CAF attempts to disable a defined target set."
+    },
+    {
+      "question": "How does Part 73 apply to small modular reactors and advanced reactors?",
+      "answer": "The proposed rule \"Alternative Physical Security Requirements for Advanced Reactors\" (RIN 3150-AK19, Docket NRC-2017-0227, published August 9, 2024) retains the Section 73.55 framework but creates voluntary, eligibility-gated alternatives keyed to smaller fission-product inventories, passive heat removal, and slower transient progression. The Commission's longer-arc vehicle, 10 CFR Part 53, adds three new technology-inclusive sections to Part 73: Section 73.100 for physical protection against radiological sabotage, Section 73.110 for protection of digital computer and communication systems, and Section 73.120 for access authorization. Both tracks scale obligations to potential offsite consequence while preserving reasonable assurance of adequate protection."
+    },
+    {
+      "question": "What is the relationship between Part 73 and 10 CFR 73.54 cyber security?",
+      "answer": "Section 73.54, located in Subpart H, is the cyber-security rule for operating power reactors. It requires licensees to provide high assurance that digital computer and communication systems and networks associated with safety, security, and emergency-preparedness functions are protected from cyber attacks up to and including the cyber attack element of the Section 73.1 DBT. Each licensee must implement a cyber security plan, identify critical digital assets, and apply defense-in-depth controls. The cyber program is one element of the broader physical-protection program and is integrated with the security plan, safeguards contingency plan, and training and qualification plan required by Section 73.55(b)."
+    },
+    {
+      "question": "Who regulates physical security at U.S. nuclear power plants?",
+      "answer": "The U.S. Nuclear Regulatory Commission, specifically the Office of Nuclear Security and Incident Response (NSIR), regulates physical security at commercial nuclear power plants and Category I fuel-cycle facilities. NSIR develops policy, runs the threat-assessment process that underpins the Design Basis Threat, oversees the force-on-force inspection program, and coordinates with the Federal Bureau of Investigation, the Department of Homeland Security, the Department of Energy's National Nuclear Security Administration, and U.S. Special Operations Command. Day-to-day inspection of licensee compliance with Part 73 is performed by NRC Region I through IV staff using inspection procedures aligned with the Reactor Oversight Process."
+    },
+    {
+      "question": "Where can AI agents safely help with Part 73 security plan drafting?",
+      "answer": "AI agents are useful for the unclassified scaffolding around a Part 73 program: cross-referencing regulatory citations, drafting non-SGI portions of security plans, generating compliance matrices against Section 73.55 and Appendix B, summarizing public NRC guidance such as Regulatory Guides 5.69, 5.71, and 5.76, and tracking rulemaking dockets including RIN 3150-AK19 and the Part 53 final rule. AI agents should not process Safeguards Information unless run inside an NRC-approved protected information system that meets Section 73.22(g) and (f)(3), including NIST-approved cryptographic protection, access controls limited to vetted personnel, and approved destruction of removable media."
+    },
+    {
+      "question": "What enforcement actions apply if a licensee violates Part 73?",
+      "answer": "Violations of Part 73 are subject to NRC enforcement under 10 CFR Part 2, Subpart B, and the NRC Enforcement Policy. Available actions include notices of violation, civil penalties, orders modifying or suspending the license, and, in serious cases, license revocation. Unauthorized disclosure of Safeguards Information can also trigger civil and criminal penalties under Section 223 of the Atomic Energy Act. The Reactor Oversight Process color-codes security findings as green, white, yellow, or red based on safety and security significance, with red findings triggering the highest level of NRC engagement and supplemental inspection. Force-on-force exercise failures are processed through the same significance-determination framework."
+    }
+  ],
+  "h1": "10 CFR Part 73 Nuclear Physical Security: The Complete Guide to NRC Plant Protection",
+  "meta_description": "10 CFR Part 73 explained: NRC physical security rules, the Design Basis Threat, Section 73.55, Safeguards Information, force-on-force, SMRs, and advanced reactors.",
+  "meta_title": "10 CFR Part 73 Nuclear Physical Security: NRC Guide",
+  "sections": [
+    {
+      "heading": "The structure of 10 CFR Part 73: what the rule covers and how it is organized",
+      "paragraphs": [
+        "Title 10, Part 73 of the Code of Federal Regulations is the U.S. Nuclear Regulatory Commission's (NRC) physical-security rule for licensed nuclear facilities and the special nuclear material (SNM) they handle. It is the regulatory backbone for everything a commercial reactor's security organization does, from the perimeter fence and the isolation zone to the central alarm station, the armed response force, the cyber program, and the trustworthiness-and-reliability program that gates access to Safeguards Information. Section 73.1(a) describes the rule's purpose as prescribing \"requirements for the establishment and maintenance of a physical protection system which will have capabilities for the protection of special nuclear material at fixed sites and in transit and of plants in which special nuclear material is used.\"",
+        "Part 73 is organized into subparts that map cleanly onto the regulated population. Subpart A contains general provisions, including the Design Basis Threats at Section 73.1, the definitions at Section 73.2, and the protection-against-malevolent-use baseline. Subparts B and C cover SNM in transit, distinguishing formula quantities of strategic SNM from material of moderate and low strategic significance. Subpart F is the fixed-site rule, anchored by Section 73.55 for power reactors and Section 73.45 and Section 73.46 for Category I facilities. Subpart G covers other SNM quantities. Subpart H houses information security, including Safeguards Information at Sections 73.21, 73.22, and 73.23 and cyber security at Section 73.54. Subpart I covers enforcement and reporting.",
+        "The scope statement at Section 73.1(b) is what determines who is in: physical protection of SNM in transit (formula quantities of strategic SNM, moderate strategic significance, and low strategic significance), shipments of irradiated reactor fuel above defined thresholds, spent fuel and high-level waste at independent spent fuel storage installations (ISFSIs) and monitored retrievable storage (MRS) installations, and physical protection of plants in which SNM is used. The scope is then sharpened by Appendices B (training and qualification of security personnel), C (licensee safeguards contingency plans), and G (reportable safeguards events)."
+      ],
+      "subsections": [
+        {
+          "heading": "Where Part 73 sits in the broader NRC regulatory stack",
+          "bullets": [
+            "10 CFR Part 50 and 10 CFR Part 52 govern operating licenses and combined licenses, and require Part 73 security plans as license conditions.",
+            "10 CFR Part 53 is the new technology-inclusive framework for advanced reactors, and adds Sections 73.100, 73.110, and 73.120 to Part 73.",
+            "10 CFR Part 26 covers fitness-for-duty, which interfaces with Part 73 access authorization at Section 73.56.",
+            "10 CFR Part 37 covers physical protection of Category 1 and Category 2 radioactive materials, complementary to Part 73's SNM focus.",
+            "10 CFR Part 2, Subpart B and the NRC Enforcement Policy govern violations of Part 73."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The Design Basis Threat at Section 73.1(a): the adversary nuclear plants must defeat",
+      "paragraphs": [
+        "The Design Basis Threat (DBT) is the NRC's published description of the adversary that licensees must defend against with high assurance. It has lived at 10 CFR Section 73.1 since 1979 and was substantially expanded in a Final Rule effective April 18, 2007 (72 FR 12705) in response to lessons learned after September 11, 2001 and to Section 651(a) of the Energy Policy Act of 2005, which added Section 170E to the Atomic Energy Act. The NRC's glossary defines the DBT as \"a description of the type, composition, and capabilities of an adversary\" against which a security system is designed to protect.",
+        "Section 73.1(a) contains two distinct DBTs that drive everything downstream. Section 73.1(a)(1) is the DBT of radiological sabotage, applicable to operating commercial power reactors and Category I fuel-cycle facilities. Section 73.1(a)(2) is the DBT of theft or diversion of formula quantities of strategic special nuclear material, applicable to facilities that receive, acquire, possess, use, or transfer formula quantities of SSNM. The public attributes are deliberately general. Detailed numerical attributes, including adversary size, weapons inventory, explosives quantities, and vehicle specifications, are kept in non-public Adversary Characteristics Documents that contain Safeguards Information and classified national security information."
+      ],
+      "subsections": [
+        {
+          "heading": "Publicly stated attributes of the radiological-sabotage DBT (Section 73.1(a)(1))",
+          "bullets": [
+            "A determined violent external assault, attack by stealth, or deceptive actions, including diversionary actions, by an adversary force capable of operating in one or more teams attacking from multiple entry points.",
+            "Several well-trained, dedicated individuals, with military training and skills, willing to kill or be killed.",
+            "Suitable weapons, up to and including hand-held automatic weapons, equipped with silencers and having effective long-range accuracy.",
+            "Hand-carried equipment, including incendiary devices and explosives, for use as tools of entry or for destroying reactor, facility, or transporter integrity.",
+            "Land and water vehicles for transporting personnel and equipment to the proximity of vital areas.",
+            "A four-wheel-drive land-vehicle bomb assault, which may be coordinated with an external assault.",
+            "A waterborne vehicle bomb.",
+            "A knowledgeable insider in any position, in an active or passive role.",
+            "Cyber attack as a stand-alone or coordinating element."
+          ]
+        },
+        {
+          "heading": "The theft-or-diversion DBT (Section 73.1(a)(2))",
+          "paragraphs": [
+            "The theft-or-diversion DBT mirrors the sabotage list but explicitly specifies an active insider, including an insider in any position capable of facilitating theft or diversion of strategic special nuclear material. This active-insider element is the key public distinction between the two DBTs and is what drives the more stringent material-control-and-accounting and insider-mitigation requirements applicable to Category I fuel-cycle facilities under Section 73.45 and Section 73.46."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The security plan and Section 73.55: the operational core of plant protection",
+      "paragraphs": [
+        "Section 73.55, titled \"Requirements for physical protection of licensed activities in nuclear power reactors against radiological sabotage,\" is the operative rule for every operating commercial power reactor in the United States. It establishes a defense-in-depth architecture organized around concentric physical areas, layered detection and assessment, and an armed response force, all keyed to the radiological-sabotage DBT in Section 73.1.",
+        "Section 73.55(b)(1) sets the general performance objective: the licensee shall implement and maintain a physical protection program that protects against the DBT of radiological sabotage with the explicit goal of preventing significant core damage and spent fuel sabotage. Section 73.55(b)(3) requires that \"the capabilities to detect, assess, interdict, and neutralize threats up to and including the design basis threat of radiological sabotage\" be maintained at all times. The detect, assess, interdict, neutralize sequence is the operational mantra of the rule and is reflected directly in how Sections 73.55(c), (g), and (k) are structured."
+      ],
+      "subsections": [
+        {
+          "heading": "Protected area, vital area, and the two-barrier rule (Section 73.55(e))",
+          "paragraphs": [
+            "The architecture rests on two nested area types. The protected area is the fenced and monitored zone, surrounded by an isolation zone, that encloses the plant. The vital area is a smaller zone, inside the protected area, that contains vital equipment whose loss could lead to significant core damage or spent fuel sabotage. Section 73.55(e) makes the nesting rule explicit: vital equipment must be located only within vital areas, vital areas must be located within a protected area, and access to vital equipment must require passage through at least two physical barriers, unless otherwise approved by the Commission and identified in the security plans. Vital-area portals and emergency exits must be protected with intrusion detection and locking devices that still permit rapid egress."
+          ]
+        },
+        {
+          "heading": "Physical barriers (Section 73.55(c))",
+          "bullets": [
+            "An isolation zone in clear view on both sides of the protected-area perimeter barrier, sized to permit observation and assessment, with obstructions located outside it.",
+            "Intrusion detection equipment on the protected-area perimeter capable of detecting attempted and actual penetration before completed penetration.",
+            "Assessment equipment providing real-time and recorded video of detected activities before and after each alarm.",
+            "Vehicle-control measures including a designated vehicle barrier system at a stand-off distance keyed to the land-vehicle bomb assumed in the DBT.",
+            "Separate vital-area barriers that force any adversary to defeat at least two distinct physical barriers to reach vital equipment.",
+            "Protected penetrations (HVAC ducts, cable trays, ventilation openings) into vital areas so barrier integrity is preserved."
+          ]
+        },
+        {
+          "heading": "Detection, assessment, and response (Section 73.55(g))",
+          "paragraphs": [
+            "Section 73.55(g) ties the sensors to the people. Intrusion detection and assessment systems must provide visual and audible annunciation, a video display from which the cause of the alarm can be assessed, and indication of the type and location of the alarm. Annunciation and concurrent video assessment must occur in at least two continuously staffed onsite alarm stations, the central alarm station (CAS) and the secondary alarm station (SAS), at least one of which is protected to the CAS standard. For new build, both must be built to the CAS standard so that loss of either does not blind the security force.",
+            "Each station must be staffed continuously by at least one trained and qualified operator, and the two operators must cross-check each other: neither may unilaterally change a detection-point status or deactivate a locking or access-control device at a protected or vital-area portal without the knowledge and concurrence of the operator in the other station. Detection must precede penetration, and assessment must be fast enough for the armed response, governed by Section 73.55(k), to interdict and neutralize the adversary before they can complete a target set, that is, before they can disable the combination of equipment that would cause significant core damage or spent fuel sabotage."
+          ]
+        },
+        {
+          "heading": "The security plan package itself",
+          "bullets": [
+            "Physical Security Plan under Section 73.55(b)(4), describing protected area, vital areas, barriers, detection, assessment, alarm stations, and search requirements.",
+            "Training and Qualification Plan under Appendix B to Part 73, covering security-organization staffing, weapons qualification, and tactical training.",
+            "Safeguards Contingency Plan under Appendix C to Part 73, defining initial response, predetermined actions, and notification procedures.",
+            "Cyber Security Plan under Section 73.54, identifying critical digital assets and defense-in-depth controls.",
+            "Insider Mitigation Program under Section 73.55(b)(9) and access-authorization program under Section 73.56."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Safeguards Information under Sections 73.21 and 73.22",
+      "paragraphs": [
+        "Safeguards Information (SGI) is a special category of sensitive unclassified information that the NRC protects from unauthorized disclosure under Section 147 of the Atomic Energy Act. Unlike National Security Information or Restricted Data, SGI is not classified, but it is subject to specific handling and protection requirements established in 10 CFR Part 73, principally Sections 73.21 and 73.22, with Section 73.23 covering the less stringent Safeguards Information-Modified Handling (SGI-M) category that applies to many materials licensees.",
+        "Under Section 73.22(a), SGI in the power reactor and Category I context includes information not otherwise classified that specifically identifies a licensee's detailed security measures (plans, procedures, equipment) for the physical protection of SNM and vital equipment, response procedures for security events (including schedules and tactics of armed responders), and engineering or safety analyses that contain those details where disclosure could reasonably be expected to have a significant adverse effect on the public health and safety or the common defense and security by significantly increasing the likelihood of theft, radiological sabotage, or unauthorized production of SNM."
+      ],
+      "subsections": [
+        {
+          "heading": "Who may access SGI (Section 73.22(b))",
+          "bullets": [
+            "Anyone granted access must have both a need to know and a trustworthiness and reliability determination, typically including an FBI criminal-history records check under Section 149 of the Atomic Energy Act.",
+            "Deemed trustworthy by position: NRC employees, contractors, and consultants; Members of Congress and designated congressional staff; Executive Branch officials acting in an official capacity; state, local, and tribal law-enforcement and emergency responders when the head of the organization has made a trustworthiness determination.",
+            "For licensee personnel and contractors, the licensee must conduct the background investigation and make a written trustworthiness-and-reliability determination before granting access."
+          ]
+        },
+        {
+          "heading": "Handling, marking, storage, and transmission (Section 73.22(c) through (i))",
+          "bullets": [
+            "Marking: each document containing SGI must be marked \"SAFEGUARDS INFORMATION\" at top and bottom of the first page and any cover, with interior SGI pages marked similarly or at minimum \"SAFEGUARDS.\"",
+            "In-use control: SGI must remain under the control of an authorized individual and out of view of unauthorized persons.",
+            "Storage: locked security storage container (locked file cabinet, safe, or equivalent) within a controlled environment.",
+            "External transmission: two sealed envelopes, inner marked SGI, outer bearing only addresses; by U.S. first-class, registered, express, or certified mail or an authorized individual.",
+            "Electronic transmission: only over an NRC-approved protected communication system, typically NIST-approved cryptographic protection.",
+            "Information systems: stand-alone or networked systems processing SGI must be protected against unauthorized disclosure; removable media must be protected as SGI.",
+            "Destruction: tearing into small pieces, burning, cross-cut shredding, or other methods that preclude reconstruction."
+          ]
+        },
+        {
+          "heading": "Penalties for unauthorized disclosure",
+          "paragraphs": [
+            "Unauthorized disclosure of SGI is subject to civil and criminal penalties under Section 223 of the Atomic Energy Act and may also result in NRC enforcement action under 10 CFR Part 2, Subpart B. The Federal Register notice that established the modern SGI rule made clear that these penalties apply equally to licensees, contractors, vendors, and third parties (such as researchers, journalists, or AI vendors) who come into possession of SGI without authorization and disclose it."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Force-on-force exercises: how the NRC tests the DBT in the field",
+      "paragraphs": [
+        "The DBT is not a planning abstraction. Under Section 73.55, each licensee must implement and maintain security plans, safeguards contingency plans, and training and qualification plans capable of detecting, assessing, interdicting, and neutralizing threats up to and including the DBT. The NRC verifies that capability through force-on-force (FOF) inspections, a mock-attack program managed by the Office of Nuclear Security and Incident Response.",
+        "Per the NRC's public Backgrounder on Force-on-Force Security Inspections and the agency's FOF FAQ, every commercial operating nuclear power plant site receives at least one full-scope NRC-evaluated FOF inspection every three years, with tabletop exercises and licensee-run drills in the intervening years. Mock attackers are drawn from a Composite Adversary Force (CAF), trained to NRC standards and managed under contract, with strict separation of functions between the CAF and the host-plant security force and a rule that no CAF member may participate at his or her home site."
+      ],
+      "subsections": [
+        {
+          "heading": "How an FOF exercise actually runs",
+          "bullets": [
+            "Mock attackers use MILES gear (Multiple Integrated Laser Engagement System) and other simulation equipment in lieu of live ammunition or real explosives.",
+            "The CAF attempts to reach and \"destroy\" a defined target set, the combination of safety-significant equipment that, if disabled, could lead to reactor core damage or to a spent-fuel pool release.",
+            "The site protective force must interdict and neutralize the CAF before any target set is completed.",
+            "NRC FOF inspection teams include active-duty advisors from U.S. Special Operations Command, who help evaluate both the site force and the CAF's tactics.",
+            "Findings flow into the Reactor Oversight Process and are color-coded green, white, yellow, or red based on safety and security significance."
+          ]
+        },
+        {
+          "heading": "Independent oversight history",
+          "paragraphs": [
+            "GAO has independently reviewed and pressured the program. GAO-03-752 (2003) flagged the need to strengthen NRC oversight of security at commercial nuclear power plants, contributing to the post-2003 redesign of the FOF regime. GAO-06-388 (2006) examined the NRC's DBT process and security upgrades after September 11 and was a key input into the 2007 DBT Final Rule. The current FOF program is the operational answer to both reports and is what makes Section 73.55 a demonstrably enforceable rule rather than a paper standard."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Part 73 for advanced reactors and SMRs: scaling to smaller source terms",
+      "paragraphs": [
+        "The NRC's high-assurance performance objective in Part 73 has been formally interpreted as \"equivalent to reasonable assurance\" of adequate protection in SRM-SECY-16-0073 and SRM-SECY-18-0076. That equivalence is what allows staff to calibrate security obligations to the actual radiological risk a facility presents rather than to the historical large light-water reactor (LWR) baseline. The proposed rule \"Alternative Physical Security Requirements for Advanced Reactors\" (RIN 3150-AK19, Docket NRC-2017-0227, published August 9, 2024) makes that calibration explicit.",
+        "Staff state in the proposed rule that, compared with operating large LWRs, many advanced reactor designs have smaller power outputs and a correspondingly smaller inventory of fission products available for potential release, and that some designs may include attributes that could result in smaller and slower releases of fission products following the loss of certain safety functions. Some designs may therefore warrant different methods for meeting the NRC's physical security requirements, commensurate with the potential radiological consequences resulting from radiological sabotage. The Commission's 2008 \"Policy Statement on the Regulation of Advanced Reactors\" (73 FR 60612) framed this years earlier by directing that safety and security be considered together in design such that security issues can be effectively resolved through facility design and engineered security features with reduced reliance on human actions."
+      ],
+      "subsections": [
+        {
+          "heading": "The SECY trail",
+          "bullets": [
+            "SECY-10-0034 identified SMR physical security as a key policy issue of high importance.",
+            "SECY-11-0184 concluded that the existing Part 73 framework was workable for SMRs via the Section 73.55(r) \"alternative measures\" provision.",
+            "SECY-18-0076 (August 1, 2018) presented four options and recommended a limited-scope rulemaking; SRM-SECY-18-0076 (November 19, 2018) approved that path.",
+            "SECY-22-0072 (August 2, 2022) transmitted the draft proposed rule package; SRM-SECY-22-0072 (June 18, 2024) authorized publication on August 9, 2024.",
+            "Draft Regulatory Guide DG-5072 is the public companion guide; DG-5071 (target-set guidance) is withheld as security-sensitive."
+          ]
+        },
+        {
+          "heading": "What the alternative path actually changes",
+          "paragraphs": [
+            "The proposed rule keeps Section 73.55 as the master framework and makes conforming amendments at Section 73.55(b)(9)(i), Section 73.55(e)(10)(i), Section 73.55(k)(1), and Appendix B to Part 73. It creates voluntary, eligibility-gated alternatives that let advanced reactor licensees lean on engineered features such as passive cooling, low fission-product inventory, and slow transient progression, and credit offsite law-enforcement response in place of some onsite armed-responder requirements. The intent, in NRC staff's words, is to provide a level of security commensurate with the risk associated with these facilities and to reduce the need for advanced reactor applicants to request alternative measures or exemptions."
+          ]
+        },
+        {
+          "heading": "Part 53 and the technology-inclusive endpoint",
+          "paragraphs": [
+            "The longer-arc vehicle is 10 CFR Part 53, the risk-informed, technology-inclusive framework mandated by the Nuclear Energy Innovation and Modernization Act (NEIMA). Part 53 does not just amend Section 73.55. It adds three new sections to Part 73: Section 73.100, \"Technology-inclusive requirements for physical protection of licensed activities at commercial nuclear plants against radiological sabotage\"; Section 73.110, \"Technology-inclusive requirements for protection of digital computer and communication systems and networks\"; and Section 73.120, \"Access authorization program for commercial nuclear plants.\" The result is two tracks: a Section 73.55-anchored alternative path for Part 50 and Part 52 applicants, and a Section 73.100 technology-inclusive path for Part 53 applicants. Both derive their lighter footprint from the same evidentiary claim: smaller cores, lower power density, passive heat removal, and engineered security features compress the consequence side of the risk equation enough to justify scaled requirements without dropping below reasonable assurance of adequate protection."
+          ]
+        },
+        {
+          "heading": "Companion EP rule",
+          "paragraphs": [
+            "The SMR and Other New Technologies (ONT) emergency-preparedness rule (RIN 3150-AJ68, Docket NRC-2015-0225, 88 FR 80950, published November 16, 2023) is explicitly architected as a pair with the Part 73 alternative-security rule. Both are performance-based, technology-inclusive, risk-informed, and consequence-oriented. The EP rule's scalable plume-exposure emergency planning zone (EPZ) sized to dose is the operational corollary of the security rule's source-term argument: if calculated offsite dose stays within EPA Protective Action Guides at a small radius, both EP and security can be sized accordingly."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where AI agents help, and where they must not, in Part 73 security work",
+      "paragraphs": [
+        "Drafting and maintaining a Part 73 security plan package is one of the most document-heavy compliance tasks at any nuclear facility. A single power reactor's Physical Security Plan, Safeguards Contingency Plan, Training and Qualification Plan, and Cyber Security Plan typically run to thousands of pages, all tied back to specific Section 73.55 paragraphs, Appendix B and C clauses, and the Section 73.1 DBT. AI agents are well suited to the unclassified scaffolding around that work and are unsuitable for the classified or SGI-marked core unless run inside an NRC-approved protected information system.",
+        "The dividing line is the Section 73.22 marking and access rules. Anything marked \"SAFEGUARDS INFORMATION\" or processed by a system that handles SGI is in the high-trust zone and must comply with Section 73.22(b) trustworthiness checks, Section 73.22(f) transmission rules, and Section 73.22(g) information-system controls including NIST-approved cryptography. Everything else, the public regulatory citations, the rulemaking docket history, the GAO reports, the public NRC backgrounders and FAQs, and the public portions of Regulatory Guides 5.69, 5.71, and 5.76, is fair game for AI-assisted drafting, mapping, and review."
+      ],
+      "subsections": [
+        {
+          "heading": "High-value AI agent uses for Part 73 work (unclassified, public)",
+          "bullets": [
+            "Generating Section 73.55 compliance matrices that map each plan section to the regulatory paragraph it satisfies.",
+            "Cross-referencing Section 73.1 DBT attributes to Section 73.55 and Appendix B requirements during plan updates.",
+            "Drafting non-SGI portions of training plans, including the unclassified Appendix B training topics.",
+            "Summarizing rulemaking history (SECY-10-0034, SECY-11-0184, SECY-18-0076, SECY-22-0072, RIN 3150-AK19, Part 53) for license amendment requests.",
+            "Building change-tracking diffs against eCFR baselines and Federal Register notices when the rule text is amended.",
+            "Drafting force-on-force after-action report templates for the non-tactical, non-target-set sections.",
+            "Cyber security plan scaffolding around Section 73.54 and Regulatory Guide 5.71, excluding critical-digital-asset lists which are SGI."
+          ]
+        },
+        {
+          "heading": "Hard limits: when AI agents must not touch the material",
+          "bullets": [
+            "Any document marked \"SAFEGUARDS INFORMATION\" or \"SAFEGUARDS INFORMATION-MODIFIED HANDLING.\"",
+            "Target-set descriptions and the guidance in DG-5071 that explains how to identify them.",
+            "Adversary Characteristics Documents and any classified national security information referenced in Section 73.1.",
+            "Detailed intrusion-detection layouts, alarm-station floor plans, armed-responder posts and schedules, and tactical plays.",
+            "SGI-marked critical-digital-asset lists, cyber attack trees, and incident-response playbooks under Section 73.54.",
+            "Anything that would, in aggregate, satisfy the Section 73.22(a) test for SGI even if individual elements are public."
+          ]
+        },
+        {
+          "heading": "Operating model: contained AI inside a Section 73.22(g) information system",
+          "paragraphs": [
+            "The only way to apply AI agents directly to SGI is to run them inside an information system that meets Section 73.22(g) and the related Section 73.22(f)(3) electronic-transmission rules. That means NIST-approved cryptographic modules at rest and in transit, access restricted to personnel with Section 73.22(b) trustworthiness determinations, removable media protected as SGI, destruction methods that preclude reconstruction, and an audit trail that lets the licensee demonstrate compliance during NRC inspection. For most operators, the practical pattern is a two-tier setup: an outside-the-fence AI tier that handles public regulatory work and unclassified plan scaffolding, and an inside-the-fence AI tier, deployed in the licensee's protected information system, that handles SGI under the same access and audit controls as a human analyst."
+          ]
+        }
+      ]
+    }
+  ]
+}
