@@ -356,6 +356,20 @@ async function main() {
         "Invariant's research: Helion-512 retrieval model at 0.97 nDCG@10 on FermiBench, siting comparisons, seismic design analyses, and field notes from regulator dockets.",
       ogImage: `${SITE}/og-image.png`,
     },
+    {
+      slug: 'compliance',
+      title: 'Compliance — every Invariant resource for space, nuclear, and aerospace',
+      description:
+        'The complete Invariant library: pillar guides, cluster explainers, and 90+ glossary definitions for space, nuclear, and aerospace regulatory and qualification compliance.',
+      ogImage: `${SITE}/og-image.png`,
+    },
+    {
+      slug: 'trust',
+      title: 'Trust — Security, data handling, and compliance disclosures',
+      description:
+        'How Invariant handles your data, hosts your regulatory submissions, and meets the security expectations of space, aerospace, and nuclear operators.',
+      ogImage: `${SITE}/og-image.png`,
+    },
   ]
   for (const sp of SIMPLE_PAGES) {
     const canonical = `${SITE}/${sp.slug}`
