@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Seo, articleSchema, faqSchema, breadcrumbSchema, ORG_SCHEMA, EDITORIAL_TEAM } from './Seo'
 import RelatedGuides from './RelatedGuides'
 import { getPage, type Pillar as PillarTopic } from '../data/page-registry'
+import { renderLinkified } from './linkifyGlossary'
 
 type SeeAlso = { slug: string; label?: string }
 type Subsection = {
@@ -98,18 +99,21 @@ export default function Pillar({
           <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">
             By the Invariant editorial team · Updated {formatDate(updatedAt)}
           </p>
-          {summaryParas.map((p, i) => (
-            <p
-              key={i}
-              className={
-                i === 0
-                  ? 'mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl'
-                  : 'mt-4 font-sans text-base leading-relaxed text-ink/65'
-              }
-            >
-              {p}
-            </p>
-          ))}
+          {(() => {
+            const linked = new Set<string>()
+            return summaryParas.map((p, i) => (
+              <p
+                key={i}
+                className={
+                  i === 0
+                    ? 'mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl'
+                    : 'mt-4 font-sans text-base leading-relaxed text-ink/65'
+                }
+              >
+                {renderLinkified(p, linked)}
+              </p>
+            ))
+          })()}
 
           {data.sections.map((s, i) => (
             <SectionBlock key={i} section={s} />
@@ -117,12 +121,17 @@ export default function Pillar({
 
           <H2>Frequently asked questions</H2>
           <div className="mt-8 divide-y divide-ink/10">
-            {data.faqs.map((f) => (
-              <div key={f.question} className="py-6">
-                <h3 className="font-serif text-xl font-normal text-ink">{f.question}</h3>
-                <p className="mt-3 font-sans text-base leading-relaxed text-ink/65">{f.answer}</p>
-              </div>
-            ))}
+            {(() => {
+              const linked = new Set<string>()
+              return data.faqs.map((f) => (
+                <div key={f.question} className="py-6">
+                  <h3 className="font-serif text-xl font-normal text-ink">{f.question}</h3>
+                  <p className="mt-3 font-sans text-base leading-relaxed text-ink/65">
+                    {renderLinkified(f.answer, linked)}
+                  </p>
+                </div>
+              ))
+            })()}
           </div>
 
           <H2 small>Primary sources</H2>
@@ -153,41 +162,46 @@ export default function Pillar({
 }
 
 function SectionBlock({ section }: { section: Section }) {
+  // Fresh "already linked" scope per section so each term can re-link once per section.
+  const linked = new Set<string>()
   return (
     <section className="mt-16">
       <H2>{section.heading}</H2>
       {section.paragraphs?.map((p, i) => (
         <p key={i} className="mt-5 font-sans text-base leading-relaxed text-ink/70">
-          {p}
+          {renderLinkified(p, linked)}
         </p>
       ))}
       {section.bullets && section.bullets.length > 0 && (
         <ul className="mt-6 ml-5 list-disc space-y-2 font-sans text-base leading-relaxed text-ink/70">
           {section.bullets.map((b, i) => (
-            <li key={i}>{b}</li>
+            <li key={i}>{renderLinkified(b, linked)}</li>
           ))}
         </ul>
       )}
       {section.subsections && section.subsections.length > 0 && (
         <div className="mt-8 space-y-6">
-          {section.subsections.map((sub, i) => (
-            <div key={i} className="rounded-[3px] border border-ink/10 bg-white p-6 md:p-7">
-              <h3 className="font-serif text-xl font-normal tracking-[-0.01em] text-ink">{sub.heading}</h3>
-              {sub.paragraphs?.map((p, j) => (
-                <p key={j} className="mt-3 font-sans text-base leading-relaxed text-ink/70">
-                  {p}
-                </p>
-              ))}
-              {sub.bullets && sub.bullets.length > 0 && (
-                <ul className="mt-3 ml-5 list-disc space-y-2 font-sans text-base leading-relaxed text-ink/70">
-                  {sub.bullets.map((b, k) => (
-                    <li key={k}>{b}</li>
-                  ))}
-                </ul>
-              )}
-              <SeeAlsoBlock items={sub.see_also} inline />
-            </div>
-          ))}
+          {section.subsections.map((sub, i) => {
+            const sublinked = new Set(linked)
+            return (
+              <div key={i} className="rounded-[3px] border border-ink/10 bg-white p-6 md:p-7">
+                <h3 className="font-serif text-xl font-normal tracking-[-0.01em] text-ink">{sub.heading}</h3>
+                {sub.paragraphs?.map((p, j) => (
+                  <p key={j} className="mt-3 font-sans text-base leading-relaxed text-ink/70">
+                    {renderLinkified(p, sublinked)}
+                  </p>
+                ))}
+                {sub.bullets && sub.bullets.length > 0 && (
+                  <ul className="mt-3 ml-5 list-disc space-y-2 font-sans text-base leading-relaxed text-ink/70">
+                    {sub.bullets.map((b, k) => (
+                      <li key={k}>{renderLinkified(b, sublinked)}</li>
+                    ))}
+                  </ul>
+                )}
+                <SeeAlsoBlock items={sub.see_also} inline />
+              </div>
+            )
+          })}
         </div>
       )}
       <SeeAlsoBlock items={section.see_also} />
