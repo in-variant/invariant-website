@@ -1,14 +1,22 @@
 import type { ReactNode } from 'react'
-import { Seo, articleSchema, faqSchema, breadcrumbSchema, ORG_SCHEMA } from './Seo'
+import { Link } from 'react-router-dom'
+import { Seo, articleSchema, faqSchema, breadcrumbSchema, ORG_SCHEMA, EDITORIAL_TEAM } from './Seo'
 import RelatedGuides from './RelatedGuides'
-import type { Pillar as PillarTopic } from '../data/page-registry'
+import { getPage, type Pillar as PillarTopic } from '../data/page-registry'
 
-type Subsection = { heading: string; paragraphs?: string[]; bullets?: string[] }
+type SeeAlso = { slug: string; label?: string }
+type Subsection = {
+  heading: string
+  paragraphs?: string[]
+  bullets?: string[]
+  see_also?: SeeAlso[]
+}
 type Section = {
   heading: string
   paragraphs?: string[]
   bullets?: string[]
   subsections?: Subsection[]
+  see_also?: SeeAlso[]
 }
 type Faq = { question: string; answer: string }
 type Citation = { label: string; url: string }
@@ -46,6 +54,7 @@ export default function Pillar({
   const summaryParas = data.canonical_summary.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
   const ld = [
     ORG_SCHEMA,
+    EDITORIAL_TEAM,
     articleSchema({
       title: data.h1,
       description: data.meta_description,
@@ -165,11 +174,35 @@ function SectionBlock({ section }: { section: Section }) {
                   ))}
                 </ul>
               )}
+              <SeeAlsoBlock items={sub.see_also} inline />
             </div>
           ))}
         </div>
       )}
+      <SeeAlsoBlock items={section.see_also} />
     </section>
+  )
+}
+
+function SeeAlsoBlock({ items, inline }: { items?: SeeAlso[]; inline?: boolean }) {
+  if (!items || items.length === 0) return null
+  return (
+    <div className={inline ? 'mt-4' : 'mt-6'}>
+      {items.map((it) => {
+        const page = getPage(it.slug)
+        const label = it.label || page?.shortTitle || page?.title || it.slug
+        return (
+          <Link
+            key={it.slug}
+            to={`/${it.slug}`}
+            className="mr-3 inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
+          >
+            <span className="text-copper/80">↳</span>
+            <span>Continue: {label}</span>
+          </Link>
+        )
+      })}
+    </div>
   )
 }
 

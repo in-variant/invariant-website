@@ -63,21 +63,62 @@ export const ORG_SCHEMA = {
     'Autonomous AI agents for compliance in mission-critical industries — space, aerospace, and nuclear.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
+  funder: {
+    '@type': 'Organization',
+    name: 'Entrepreneurs First',
+    url: 'https://www.joinef.com',
+  },
   sameAs: ['https://www.linkedin.com/company/invariant-ai', 'https://www.joinef.com'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'business',
+    email: 'founders@invariant-ai.com',
+    url: `${SITE_URL}/contact`,
+    availableLanguage: ['English'],
+  },
   knowsAbout: [
     'Space compliance',
     'Nuclear compliance',
     'Aerospace compliance',
-    'FAA Part 450',
-    'FCC Part 25',
-    'NOAA CSLA',
+    'FAA 14 CFR Part 450',
+    'FCC 47 CFR Part 25',
+    'NOAA Commercial Remote Sensing Licensing',
+    'IN-SPACe NGP 2024',
     'IN-SPACe authorisation',
-    'ECSS',
-    'NASA GEVS',
+    'ECSS standards',
+    'NASA GEVS (GSFC-STD-7000)',
+    'MIL-STD-1540',
+    'MIL-STD-461',
+    'NRC 10 CFR Part 50',
+    'NRC 10 CFR Part 52',
     'NRC 10 CFR Part 53',
-    'Safety Analysis Reports',
+    'NRC 10 CFR Part 100',
+    'IAEA SSR-2/1',
+    'Preliminary Safety Analysis Report',
+    'Final Safety Analysis Report',
+    'Request for Additional Information (RAI)',
     'Environmental qualification',
+    'Information retrieval for nuclear regulatory documents',
   ],
+  knowsLanguage: ['en'],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Invariant compliance agents',
+    itemListElement: [
+      { '@type': 'Offer', name: 'Space regulatory submission automation' },
+      { '@type': 'Offer', name: 'Nuclear safety analysis report drafting' },
+      { '@type': 'Offer', name: 'Aerospace airworthiness compliance' },
+    ],
+  },
+}
+
+export const EDITORIAL_TEAM = {
+  '@type': 'Organization',
+  '@id': `${SITE_URL}/#editorial-team`,
+  name: 'Invariant editorial team',
+  parentOrganization: { '@id': `${SITE_URL}/#organization` },
+  description:
+    'Domain engineers at Invariant who write and review regulatory and qualification content for space, aerospace, and nuclear compliance.',
 }
 
 export const WEBSITE_SCHEMA = {
@@ -120,13 +161,18 @@ export function articleSchema({
     image: image || DEFAULT_OG,
     datePublished,
     dateModified: dateModified || datePublished,
-    author: { '@type': 'Organization', name: authorName, url: SITE_URL },
-    publisher: {
+    author: {
       '@type': 'Organization',
-      name: 'Invariant',
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/og-image.png` },
+      '@id': `${SITE_URL}/#editorial-team`,
+      name: authorName === 'Invariant' ? 'Invariant editorial team' : authorName,
+      url: SITE_URL,
     },
+    editor: { '@id': `${SITE_URL}/#editorial-team` },
+    reviewedBy: { '@id': `${SITE_URL}/#editorial-team` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    isPartOf: { '@id': `${SITE_URL}/#website` },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    inLanguage: 'en',
   }
 }
 
