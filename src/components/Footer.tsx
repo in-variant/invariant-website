@@ -3,6 +3,26 @@ import { KeystoneMark } from './Logo'
 
 const COLUMNS = [
   {
+    title: 'Compliance',
+    links: [
+      { label: 'Space compliance', to: '/space-compliance' },
+      { label: 'Nuclear compliance', to: '/nuclear-compliance' },
+      { label: 'Glossary', to: '/glossary' },
+    ],
+  },
+  {
+    title: 'Guides',
+    links: [
+      { label: 'Part 50 vs 52 vs 53', to: '/part-50-vs-52-vs-53' },
+      { label: 'How to write a PSAR', to: '/how-to-write-a-psar' },
+      { label: 'NRC pre-application', to: '/nrc-pre-application-engagement-guide' },
+      { label: 'FAA Part 450 timeline', to: '/faa-part-450-license-timeline' },
+      { label: 'Part 450 MoC', to: '/how-to-write-faa-part-450-means-of-compliance' },
+      { label: 'ITAR vs EAR for space', to: '/itar-vs-ear-for-space-companies' },
+      { label: 'FCC 5-year deorbit rule', to: '/fcc-5-year-deorbit-rule' },
+    ],
+  },
+  {
     title: 'Explore',
     links: [
       { label: 'Product', to: '/product' },
@@ -40,7 +60,7 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="flex gap-16">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-12 md:grid-cols-3 md:gap-x-16">
             {COLUMNS.map((col) => (
               <div key={col.title}>
                 <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-cloud/45">{col.title}</p>

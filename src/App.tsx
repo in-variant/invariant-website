@@ -24,6 +24,7 @@ const NuclearComplianceIndia = lazy(() => import('./pages/clusters/NuclearCompli
 const Fcc5YearDeorbitRule = lazy(() => import('./pages/clusters/Fcc5YearDeorbitRule'))
 const SpaceComplianceIndia = lazy(() => import('./pages/clusters/SpaceComplianceIndia'))
 const FaaPart450MeansOfCompliance = lazy(() => import('./pages/clusters/FaaPart450MeansOfCompliance'))
+const NoaaRemoteSensingTiers = lazy(() => import('./pages/clusters/NoaaRemoteSensingTiers'))
 
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
@@ -79,6 +80,7 @@ export default function App() {
             <Route path="/fcc-5-year-deorbit-rule" element={<Fcc5YearDeorbitRule />} />
             <Route path="/space-compliance-india" element={<SpaceComplianceIndia />} />
             <Route path="/how-to-write-faa-part-450-means-of-compliance" element={<FaaPart450MeansOfCompliance />} />
+            <Route path="/noaa-remote-sensing-license-tiers" element={<NoaaRemoteSensingTiers />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
           </Route>

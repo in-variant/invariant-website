@@ -185,8 +185,8 @@ export const PAGES: PageRef[] = [
       "NOAA's three-tier commercial remote-sensing licensing framework and which tier your sensor falls into.",
     pillar: 'space',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'how-to-draft-itu-coordination-filing',
