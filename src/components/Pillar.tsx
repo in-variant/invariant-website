@@ -67,7 +67,7 @@ export default function Pillar({
   const summaryParas = data.canonical_summary.split(/\n\n+/).map((s) => s.trim()).filter(Boolean)
   const sectionLabel =
     topic === 'nuclear' ? 'Nuclear compliance' : topic === 'space' ? 'Space compliance' : 'Aerospace compliance'
-  const ld = [
+  const ld: object[] = [
     ORG_SCHEMA,
     EDITORIAL_TEAM,
     articleSchema({
