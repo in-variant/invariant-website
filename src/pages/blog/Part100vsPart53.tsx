@@ -33,13 +33,13 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Purpose & scope',
-        refs: '§100.1-100.2 vs §53.500',
+        refs: 'Section 100.1-100.2 vs Section 53.500',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
           'Establish approval requirements for sites for stationary power and testing reactors under Parts 50/52. Reactor design, construction and operation are "primary factors" for public health and safety.',
         part53:
-          'Ensure siting assessments demonstrate design satisfies safety criteria in §§53.210/220. Siting must address what site environs do to the plant (external hazards) AND what the plant does to nearby populations (LBE consequences).',
+          'Ensure siting assessments demonstrate design satisfies safety criteria in Sections 53.210/220. Siting must address what site environs do to the plant (external hazards) AND what the plant does to nearby populations (LBE consequences).',
         diff: 'Bidirectional framing. Part 100 is primarily site to plant. Part 53 explicitly requires both directions: site to plant (hazard characterization) and plant to site (consequence assessment). Siting and safety analysis are formally integrated.',
       },
     ],
@@ -50,57 +50,57 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Exclusion area requirement',
-        refs: '§100.3, §100.21(a) vs §53.530, §53.020',
+        refs: 'Section 100.3, Section 100.21(a) vs Section 53.530, Section 53.020',
         change: 'same',
         changeLabel: 'same',
         part100:
-          'Every site must have an exclusion area. Defined in §100.3: licensee has authority to determine all activities; residence normally prohibited; ready removal required.',
+          'Every site must have an exclusion area. Defined in Section 100.3: licensee has authority to determine all activities; residence normally prohibited; ready removal required.',
         part53:
-          'Every site must have an exclusion area (§53.530). Defined in §53.020 with the same substantive criteria as §100.3.',
+          'Every site must have an exclusion area (Section 53.530). Defined in Section 53.020 with the same substantive criteria as Section 100.3.',
         diff: 'Requirement carried over. The exclusion area obligation is preserved verbatim. The practical flexibility lies in how its boundary is determined (see dose-based sizing row below).',
       },
       {
         topic: 'Exclusion area sizing basis',
-        refs: '§100.11(a)(1) vs §53.530(a)(1)',
+        refs: 'Section 100.11(a)(1) vs Section 53.530(a)(1)',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
           'Exclusion area sized so individual at boundary for 2 hours post-release does not exceed 25 rem whole body OR 300 rem thyroid. Based on assumed core melt + containment leak rate + site meteorology (TID-14844 method).',
         part53:
-          '§53.530(a)(1): same 25 rem TEDE limit at exclusion area boundary. But dose is derived from §53.450(f) LBE analyses, i.e., the plant\'s actual design-specific DBA consequence calculation, not a standardized source term assumption.',
+          'Section 53.530(a)(1): same 25 rem TEDE limit at exclusion area boundary. But dose is derived from Section 53.450(f) LBE analyses, i.e., the plant\'s actual design-specific DBA consequence calculation, not a standardized source term assumption.',
         diff: 'Site-specific vs. generic source term. Part 100 uses a conservative, standardized fission product release assumption. Part 53 uses the applicant\'s own LBE analysis. For passively safe SMRs with low source terms, this can dramatically shrink the required exclusion area, potentially to the site fence.',
       },
       {
         topic: 'Low population zone (LPZ)',
-        refs: '§100.3, §100.11(a)(2) vs §53.530(a)(2)',
+        refs: 'Section 100.3, Section 100.11(a)(2) vs Section 53.530(a)(2)',
         change: 'same',
         changeLabel: 'same',
         part100:
           'LPZ sized so individual at outer boundary during entire cloud passage does not exceed 25 rem whole body or 300 rem thyroid. Definition: population total/density such that protective measures are reasonably possible.',
         part53:
-          '§53.530(a)(2): same 25 rem TEDE limit at LPZ outer boundary, derived from §53.450(f) LBE analyses. LPZ defined in §53.020 with equivalent language to §100.3.',
+          'Section 53.530(a)(2): same 25 rem TEDE limit at LPZ outer boundary, derived from Section 53.450(f) LBE analyses. LPZ defined in Section 53.020 with equivalent language to Section 100.3.',
         diff: 'Same limit, same logic. The LPZ dose criterion is identical. The difference again is how dose is calculated: LBE-specific in Part 53 vs. generic source term in Part 100.',
       },
       {
         topic: 'Population center distance',
-        refs: '§100.3, §100.21(b) vs §53.530(b)',
+        refs: 'Section 100.3, Section 100.21(b) vs Section 53.530(b)',
         change: 'relaxed',
         changeLabel: 'more flexible',
         part100:
           'Population center distance must be at least 1.33x the distance to the LPZ outer boundary. Hard rule. Political boundaries not controlling. Greater distance may be needed for very large cities.',
         part53:
-          '§53.530(b): same 1.33x rule as option (b)(1), OR site found acceptable via "assessments of societal risks in comparison to societal benefits" as option (b)(2). Either path is valid.',
+          'Section 53.530(b): same 1.33x rule as option (b)(1), OR site found acceptable via "assessments of societal risks in comparison to societal benefits" as option (b)(2). Either path is valid.',
         diff: 'Alternative pathway added. Part 100 has no societal risk/benefit alternative; 1.33x is mandatory. Part 53 adds an explicit waiver path. This is significant for SMRs proposed at industrial or urban sites.',
       },
       {
         topic: 'Dense population siting preference',
-        refs: '§100.21(h) vs §53.530(c)',
+        refs: 'Section 100.21(h) vs Section 53.530(c)',
         change: 'relaxed',
         changeLabel: 'more flexible',
         part100:
-          '§100.21(h): sites should be away from very densely populated centers. Low population density preferred. Higher density acceptable if safety, environmental, economic, or other factors justify it. No population threshold stated in text; ~25,000 used in practice.',
+          'Section 100.21(h): sites should be away from very densely populated centers. Low population density preferred. Higher density acceptable if safety, environmental, economic, or other factors justify it. No population threshold stated in text; ~25,000 used in practice.',
         part53:
-          '§53.530(c): same preference language, same factors for justifying denser siting. Adds explicit recognition that sites near or within centers with more than ~25,000 residents are assessable via societal risk/benefit analysis. Cites RG 4.7 Rev. 4 for guidance.',
+          'Section 53.530(c): same preference language, same factors for justifying denser siting. Adds explicit recognition that sites near or within centers with more than ~25,000 residents are assessable via societal risk/benefit analysis. Cites RG 4.7 Rev. 4 for guidance.',
         diff: '~25,000 threshold made explicit. Part 100 implies the 25,000-resident threshold but doesn\'t state it. Part 53 writes it into the regulation and explicitly provides a pathway for sites exceeding it. Grounded in SRM-SECY-20-0045.',
       },
     ],
@@ -111,46 +111,46 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Atmospheric dispersion',
-        refs: '§100.21(c) vs §53.520, §53.450',
+        refs: 'Section 100.21(c) vs Section 53.520, Section 53.450',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
-          'Atmospheric dispersion characteristics must be evaluated; dispersion parameters established so (1) effluent release limits can be met for offsite individuals and (2) accident dose criteria of §50.34(a)(1) are met.',
+          'Atmospheric dispersion characteristics must be evaluated; dispersion parameters established so (1) effluent release limits can be met for offsite individuals and (2) accident dose criteria of Section 50.34(a)(1) are met.',
         part53:
-          '§53.520: meteorological site characteristics (including dispersion) must be "identified, assessed, and considered in the design and analyses required by subpart C." §53.450(f) requires offsite radiological consequence analysis for all LBEs, which incorporates dispersion.',
-        diff: 'Absorbed into LBE analysis. Part 100 treats atmospheric dispersion as a standalone siting criterion with its own parameters. Part 53 folds it into the LBE consequence framework; dispersion is an input to §53.450, not a separate deliverable.',
+          'Section 53.520: meteorological site characteristics (including dispersion) must be "identified, assessed, and considered in the design and analyses required by subpart C." Section 53.450(f) requires offsite radiological consequence analysis for all LBEs, which incorporates dispersion.',
+        diff: 'Absorbed into LBE analysis. Part 100 treats atmospheric dispersion as a standalone siting criterion with its own parameters. Part 53 folds it into the LBE consequence framework; dispersion is an input to Section 53.450, not a separate deliverable.',
       },
       {
         topic: 'Man-made / industrial hazards',
-        refs: '§100.20(b), §100.21(e) vs §53.510(a)',
+        refs: 'Section 100.20(b), Section 100.21(e) vs Section 53.510(a)',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
-          '§100.21(e): transportation routes, industrial and military facilities must be evaluated; site characteristics established such that hazards from such facilities pose "no undue risk." §100.20(b): airports, dams, military/chemical facilities must be evaluated.',
+          'Section 100.21(e): transportation routes, industrial and military facilities must be evaluated; site characteristics established such that hazards from such facilities pose "no undue risk." Section 100.20(b): airports, dams, military/chemical facilities must be evaluated.',
         part53:
-          '§53.510(a): design-basis external hazard levels for "natural and constructed hazards with potential to adversely affect plant functions" must be identified from site-specific assessments. Man-made hazards are "constructed hazards," with no separate section or prescribed checklist.',
-        diff: 'No checklist. Part 100 §100.20(b) explicitly lists airports, dams, transportation routes, military, chemical facilities. Part 53 uses "constructed hazards" as a catch-all; the applicant defines what\'s relevant. More flexible but places completeness burden on applicant.',
+          'Section 53.510(a): design-basis external hazard levels for "natural and constructed hazards with potential to adversely affect plant functions" must be identified from site-specific assessments. Man-made hazards are "constructed hazards," with no separate section or prescribed checklist.',
+        diff: 'No checklist. Part 100 Section 100.20(b) explicitly lists airports, dams, transportation routes, military, chemical facilities. Part 53 uses "constructed hazards" as a catch-all; the applicant defines what\'s relevant. More flexible but places completeness burden on applicant.',
       },
       {
         topic: 'Physical site characteristics (met, geo, hydro)',
-        refs: '§100.21(d) vs §53.520',
+        refs: 'Section 100.21(d) vs Section 53.520',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
-          '§100.21(d): meteorology, geology, seismology, hydrology must be evaluated; site characteristics established so physical characteristics pose "no undue risk." §100.21(c)(2)/(c)(3): meteorological and hydrological parameters specifically identified.',
+          'Section 100.21(d): meteorology, geology, seismology, hydrology must be evaluated; site characteristics established so physical characteristics pose "no undue risk." Section 100.21(c)(2)/(c)(3): meteorological and hydrological parameters specifically identified.',
         part53:
-          '§53.520: site characteristics that "might contribute to initiation, progression, or consequences of LBEs" must be identified, assessed, and considered in subpart C design and analyses. No enumerated list of topics; the applicant identifies what is relevant.',
+          'Section 53.520: site characteristics that "might contribute to initiation, progression, or consequences of LBEs" must be identified, assessed, and considered in subpart C design and analyses. No enumerated list of topics; the applicant identifies what is relevant.',
         diff: 'LBE-linked vs. topic-listed. Part 100 names the topics (meteorology, geology, seismology, hydrology). Part 53 links the obligation to LBE relevance: if a characteristic could affect an LBE, it must be addressed. Scope is potentially broader but the trigger is functional, not categorical.',
       },
       {
         topic: 'Security & emergency planning',
-        refs: '§100.21(f), §100.21(g) vs §53.540',
+        refs: 'Section 100.21(f), Section 100.21(g) vs Section 53.540',
         change: 'same',
         changeLabel: 'same',
         part100:
-          '§100.21(f): site characteristics must allow adequate security plans. §100.21(g): physical characteristics posing significant impediment to emergency plans must be identified.',
+          'Section 100.21(f): site characteristics must allow adequate security plans. Section 100.21(g): physical characteristics posing significant impediment to emergency plans must be identified.',
         part53:
-          '§53.540: site characteristics must be such that "adequate emergency plans and security plans can be developed and maintained." Single combined requirement.',
+          'Section 53.540: site characteristics must be such that "adequate emergency plans and security plans can be developed and maintained." Single combined requirement.',
         diff: 'Consolidated but substantively equivalent. Two separate Part 100 provisions merged into one Part 53 sentence. Same obligation: security and emergency planning feasibility must be demonstrated from site characteristics.',
       },
     ],
@@ -161,67 +161,67 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Seismic hazard methodology',
-        refs: '§100.23(d)(1), App. A §V(a) vs §53.510(c)',
+        refs: 'Section 100.23(d)(1), App. A Section V(a) vs Section 53.510(c)',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
-          '§100.23(d)(1): Safe Shutdown Earthquake Ground Motion (SSHEGM) determined considering investigation results; uncertainties addressed "through appropriate analysis, such as a probabilistic seismic hazard analysis or suitable sensitivity analyses." Appendix A §V(a): deterministic SSE procedure, worst historical earthquake at closest point to site, minimum 0.1g floor.',
+          'Section 100.23(d)(1): Safe Shutdown Earthquake Ground Motion (SSHEGM) determined considering investigation results; uncertainties addressed "through appropriate analysis, such as a probabilistic seismic hazard analysis or suitable sensitivity analyses." Appendix A Section V(a): deterministic SSE procedure, worst historical earthquake at closest point to site, minimum 0.1g floor.',
         part53:
-          '§53.510(c): Ground Motion Response Spectra (GMRS) determined from PSHA; uncertainties in data, models, and methods must be explicitly accounted for. RG 1.208 is acceptable for GMRS. ASCE/SEI 43-19 can be proposed application-by-application for SDC assignment.',
+          'Section 53.510(c): Ground Motion Response Spectra (GMRS) determined from PSHA; uncertainties in data, models, and methods must be explicitly accounted for. RG 1.208 is acceptable for GMRS. ASCE/SEI 43-19 can be proposed application-by-application for SDC assignment.',
         diff: 'PSHA mandatory in Part 53; optional in Part 100. Part 100 Appendix A is fundamentally deterministic (SSE/OBE); PSHA is listed as one acceptable uncertainty method. Part 53 is built around PSHA as the primary method, with risk-informed seismic design categories (SDC-1 through SDC-5) tied to SSC risk significance. The 0.1g SSE floor in Appendix A has no direct equivalent in Part 53.',
       },
       {
         topic: 'Operating Basis Earthquake (OBE)',
-        refs: 'App. A §III(d), §V(a)(2) vs Part 53',
+        refs: 'App. A Section III(d), Section V(a)(2) vs Part 53',
         change: 'relaxed',
         changeLabel: 'removed in Part 53',
         part100:
-          'Appendix A §III(d): OBE defined as earthquake reasonably expected during plant life; all SSCs for continued operation designed to remain functional. OBE must be at least half the SSE. If OBE exceeded, shutdown required until Commission verifies no functional damage.',
+          'Appendix A Section III(d): OBE defined as earthquake reasonably expected during plant life; all SSCs for continued operation designed to remain functional. OBE must be at least half the SSE. If OBE exceeded, shutdown required until Commission verifies no functional damage.',
         part53: '',
         diff: 'Two-level seismic design eliminated. The SSE/OBE framework is an LWR-era construct. Part 53\'s SDC approach allows a graded, risk-informed assignment of seismic design requirements per SSC rather than a uniform two-tier plant-wide basis. This is a fundamental architectural change in how seismic design is organized.',
       },
       {
         topic: 'Geological investigations scope',
-        refs: '§100.23(c), App. A §IV vs §53.510(c)(d)',
+        refs: 'Section 100.23(c), App. A Section IV vs Section 53.510(c)(d)',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
-          '§100.23(c): investigation scope and detail must be sufficient; region size determined by nature of surrounding region. Appendix A §IV: detailed prescribed steps including lithologic/stratigraphic conditions, tectonic structures, earthquake catalog, fault geometry, subsurface material properties, 200-mile survey region, fault length/distance table.',
+          'Section 100.23(c): investigation scope and detail must be sufficient; region size determined by nature of surrounding region. Appendix A Section IV: detailed prescribed steps including lithologic/stratigraphic conditions, tectonic structures, earthquake catalog, fault geometry, subsurface material properties, 200-mile survey region, fault length/distance table.',
         part53:
-          '§53.510(c): GMRS determination requires investigations of geological, seismological, and engineering characteristics; data on vibratory ground motion, earthquake recurrence, fault geometry, slip rates, subsurface properties. Region size "based on nature of the region surrounding the site." No prescribed distance thresholds or fault length table.',
+          'Section 53.510(c): GMRS determination requires investigations of geological, seismological, and engineering characteristics; data on vibratory ground motion, earthquake recurrence, fault geometry, slip rates, subsurface properties. Region size "based on nature of the region surrounding the site." No prescribed distance thresholds or fault length table.',
         diff: 'Prescriptive steps removed. Appendix A\'s 200-mile survey region, Table 1 minimum fault lengths by distance, and 8-step investigation checklist are all gone. Part 53 states what data must be collected but not how far out or by what specific procedure. This is flexibility for non-traditional sites but could create RAI risk if the scope is seen as insufficient by NRC staff.',
       },
       {
         topic: 'Capable fault criteria & surface faulting',
-        refs: 'App. A §III(g), §IV(b), §V(b) vs §53.510(d)',
+        refs: 'App. A Section III(g), Section IV(b), Section V(b) vs Section 53.510(d)',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
           'Appendix A: "capable fault" defined by 35,000-year / 500,000-year movement criteria. Faults >1,000 ft within 5 miles investigated for surface faulting; zone requiring detailed faulting investigation determined by Table 2 (magnitude x control width). Reactor may not be sited within zone without detailed investigation.',
         part53:
-          '§53.510(d): "potential for surface tectonic and nontectonic deformations" must be addressed as a geologic siting factor. No capable fault definition, no 1,000-ft threshold, no 5-mile radius, no mandatory Table 2 zone calculation.',
+          'Section 53.510(d): "potential for surface tectonic and nontectonic deformations" must be addressed as a geologic siting factor. No capable fault definition, no 1,000-ft threshold, no 5-mile radius, no mandatory Table 2 zone calculation.',
         diff: 'All specific thresholds removed. The capable fault definition (35,000/500,000 yr), the 1,000-ft fault length, the 5-mile radius, and the zone width table are Part 100 Appendix A constructs with no Part 53 equivalent. Part 53 requires the hazard to be characterized; the method and scope are applicant-defined.',
       },
       {
         topic: 'Seismically induced floods & water waves',
-        refs: '§100.23(d)(3), App. A §IV(c), §V(c) vs §53.510(d)',
+        refs: 'Section 100.23(d)(3), App. A Section IV(c), Section V(c) vs Section 53.510(d)',
         change: 'reframed',
         changeLabel: 'reframed',
         part100:
-          '§100.23(d)(3): size of seismically induced floods and water waves from local or distant seismic activity must be determined. App. A §IV(c): detailed investigation of tsunami history, coastal topography, offshore fault characteristics for coastal sites; lake/river sites treated separately.',
+          'Section 100.23(d)(3): size of seismically induced floods and water waves from local or distant seismic activity must be determined. App. A Section IV(c): detailed investigation of tsunami history, coastal topography, offshore fault characteristics for coastal sites; lake/river sites treated separately.',
         part53:
-          '§53.510(d): "size and character of seismically induced floods and water waves that could affect a site from either locally or distantly generated seismic activity" explicitly listed as a geologic/seismic siting factor. Same substantive scope, no prescribed investigation methodology.',
+          'Section 53.510(d): "size and character of seismically induced floods and water waves that could affect a site from either locally or distantly generated seismic activity" explicitly listed as a geologic/seismic siting factor. Same substantive scope, no prescribed investigation methodology.',
         diff: 'Same scope, no prescribed method. Both regulations require seismically-induced flood characterization. Part 100 Appendix A prescribes how (coastal vs. inland investigations, tsunami runup methods). Part 53 states the outcome required; the analytical method is applicant\'s choice.',
       },
       {
         topic: 'Soil stability, liquefaction, slope stability',
-        refs: 'App. A §V(d)(1)(2) vs §53.510(d)',
+        refs: 'App. A Section V(d)(1)(2) vs Section 53.510(d)',
         change: 'same',
         changeLabel: 'same',
         part100:
-          'Appendix A §V(d): evaluate subsidence, uplift, collapse, deformational zones, altered weathering zones, residual stresses, liquefaction, thixotropy, differential consolidation, slope stability under SSE conditions.',
+          'Appendix A Section V(d): evaluate subsidence, uplift, collapse, deformational zones, altered weathering zones, residual stresses, liquefaction, thixotropy, differential consolidation, slope stability under SSE conditions.',
         part53:
-          '§53.510(d): "soil and rock stability, liquefaction potential, and natural and artificial slope stability" explicitly listed as geologic/seismic siting factors to be addressed.',
+          'Section 53.510(d): "soil and rock stability, liquefaction potential, and natural and artificial slope stability" explicitly listed as geologic/seismic siting factors to be addressed.',
         diff: 'Substantively the same topics. Part 53 consolidates Appendix A\'s detailed list into a single sentence. The hazards to characterize are identical: liquefaction, slope stability, soil/rock stability.',
       },
     ],
@@ -232,25 +232,25 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Link between siting and design',
-        refs: '§100.10(d), §100.20 vs §53.540',
+        refs: 'Section 100.10(d), Section 100.20 vs Section 53.540',
         change: 'new',
         changeLabel: 'new in Part 53',
         part100:
-          '§100.10(d): unfavorable site characteristics may be acceptable if compensating engineering safeguards are included. §100.20: population density/distribution, man-made hazards, and physical characteristics evaluated to determine individual and societal risk. No formal link to design basis.',
+          'Section 100.10(d): unfavorable site characteristics may be acceptable if compensating engineering safeguards are included. Section 100.20: population density/distribution, man-made hazards, and physical characteristics evaluated to determine individual and societal risk. No formal link to design basis.',
         part53:
-          '§53.540: site characteristics must be addressed by "design features, programmatic controls, and supporting analyses" used to demonstrate §§53.210/220 criteria are met. Explicit closure requirement: siting outputs must feed into and be satisfied by the safety case.',
+          'Section 53.540: site characteristics must be addressed by "design features, programmatic controls, and supporting analyses" used to demonstrate Sections 53.210/220 criteria are met. Explicit closure requirement: siting outputs must feed into and be satisfied by the safety case.',
         diff: 'Formal integration mandate. Part 100 allows compensating engineering safeguards as a workaround for bad sites. Part 53 requires that design features and programmatic controls affirmatively close out every site characteristic against the LBE safety criteria. The siting analysis is not complete until the design case is complete; they are the same document conceptually.',
       },
       {
         topic: 'Quality assurance for siting activities',
-        refs: '§100.23(c) [implied] vs §53.500(b)',
+        refs: 'Section 100.23(c) [implied] vs Section 53.500(b)',
         change: 'new',
         changeLabel: 'explicit in Part 53',
         part100:
           'Part 100 does not explicitly address QA requirements for siting investigations. QA obligations for site characterization activities flow from Part 50 Appendix B, applied by cross-reference.',
         part53:
-          '§53.500(b): activities performed to identify site characteristics must satisfy the special treatment requirements of §53.460, including, where applicable, Appendix B to Part 50 QA requirements.',
-        diff: 'QA obligation written into siting subpart. Part 53 explicitly calls out that siting investigations are subject to §53.460 special treatment, including Appendix B QA where applicable. Part 100 leaves this implicit. This has direct implications for what documentation of siting investigations must look like.',
+          'Section 53.500(b): activities performed to identify site characteristics must satisfy the special treatment requirements of Section 53.460, including, where applicable, Appendix B to Part 50 QA requirements.',
+        diff: 'QA obligation written into siting subpart. Part 53 explicitly calls out that siting investigations are subject to Section 53.460 special treatment, including Appendix B QA where applicable. Part 100 leaves this implicit. This has direct implications for what documentation of siting investigations must look like.',
       },
     ],
   },
@@ -469,8 +469,8 @@ export default function Part100vsPart53() {
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
               This comparison works from the actual regulatory text: <strong className="text-ink">Part 100</strong> (current
-              as of 3/24/2026, covering §§100.20, 100.21, 100.23, and Appendix A)
-              and <strong className="text-ink">Part 53 Subpart D</strong> (§§53.500-53.540, extracted from
+              as of 3/24/2026, covering Sections 100.20, 100.21, 100.23, and Appendix A)
+              and <strong className="text-ink">Part 53 Subpart D</strong> (Sections 53.500-53.540, extracted from
               ML26084A489). Three findings stand out:
             </p>
           </div>
@@ -506,13 +506,13 @@ export default function Part100vsPart53() {
         <div className="bg-ink/[0.03] border border-ink/[0.08] rounded-md px-5 py-3 mb-8 text-center">
           <p className="font-sans text-xs text-ink/60 leading-relaxed">
             <strong className="text-ink font-medium">10 CFR Part 100</strong>{' '}
-            (§§100.20, 100.21, 100.23, Appendix A, current as of 3/24/2026)
+            (Sections 100.20, 100.21, 100.23, Appendix A, current as of 3/24/2026)
             <br />
             vs.{' '}
             <strong className="text-ink font-medium">
               10 CFR Part 53 Subpart D
             </strong>{' '}
-            (§§53.500-53.540, final rule 3/25/2026)
+            (Sections 53.500-53.540, final rule 3/25/2026)
           </p>
         </div>
 

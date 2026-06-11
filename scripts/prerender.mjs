@@ -255,6 +255,8 @@ const PILLAR_DATA_MAP = {
   'nuclear-compliance': 'nuclear-pillar.json',
   'part-50-vs-52-vs-53': 'part-50-52-53-pillar.json',
   'faa-part-450-license-timeline': 'faa-part-450-timeline-pillar.json',
+  'nrc-rai-management': 'nrc-rai-management-pillar.json',
+  'part-53-subparts': 'part-53-subparts-pillar.json',
   'how-to-write-a-psar': 'how-to-write-a-psar-pillar.json',
   'itar-vs-ear-for-space-companies': 'itar-vs-ear-pillar.json',
   'nrc-pre-application-engagement-guide': 'nrc-pre-application-pillar.json',

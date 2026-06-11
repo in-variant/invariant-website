@@ -55,6 +55,28 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'nrc-rai-management',
+    title: 'NRC RAI management: how to respond to Requests for Additional Information',
+    shortTitle: 'NRC RAI management',
+    description:
+      'A complete guide to NRC RAI process and response: LIC-115 Revision 1, 30-day window, RAI categories by SAR chapter, real-docket examples (NuScale, Kairos Hermes, Natrium), and the audit pivot under LIC-111.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'part-53-subparts',
+    title: '10 CFR Part 53 subparts: a deep dive for advanced reactor builders',
+    shortTitle: 'Part 53 subparts',
+    description:
+      'Subpart-by-subpart reference for 10 CFR Part 53 covering Subparts A through H. 25 rem TEDE criterion, PRA scope, LBE selection, siting, FSAR, decommissioning, and the rule history.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'how-to-write-a-psar',
     title: 'How to write a Preliminary Safety Analysis Report (PSAR) for the NRC',
     shortTitle: 'How to write a PSAR',

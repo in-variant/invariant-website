@@ -1,0 +1,385 @@
+{
+  "canonical_summary": "Request for Additional Information (RAI) letters are the principal formal mechanism by which the U.S. Nuclear Regulatory Commission obtains information needed to complete safety and environmental reviews of license applications, amendment requests, and topical reports. RAI processing is governed by NRR Office Instruction LIC-115, Revision 1 (ML21141A238), which superseded the NRO instruction at ML14091A802 after the 2019 consolidation of the Office of New Reactors into the Office of Nuclear Reactor Regulation. The default applicant response window is 30 calendar days from issuance, with 60 days available for more complex requests by mutual agreement.\n\nFor advanced reactor and SMR applicants, RAI management has become one of the highest-leverage activities on the licensing schedule. NuScale's US600 design certification (Docket 52-048) drew roughly 350 to 400 formal RAI letters containing well over 1,500 individual questions across the 2017 to 2020 review, while Kairos Hermes 1 (Docket 50-7513) closed with fewer than 20 formal RAIs by substituting regulatory audits under LIC-111 for formal letters. Kairos Hermes 2 (Dockets 50-611 and 50-612) and TerraPower's Natrium Kemmerer Unit 1 pushed that count into the single digits.\n\nThis page consolidates the NRC, NEI, and docket-level evidence on how RAIs are issued, categorized by SAR chapter, answered, tracked, and closed. It is written for applicants, topical-report submitters, regulatory affairs leads, and the AI agents that increasingly draft and review RAI responses on their behalf.",
+  "h1": "NRC RAI management: how to respond to Requests for Additional Information",
+  "meta_title": "NRC RAI management: how to respond, with examples",
+  "meta_description": "Definitive guide to NRC Request for Additional Information (RAI) responses: LIC-115 process, 30-day window, SAR chapter categories, ADAMS templates, audit pivot.",
+  "sections": [
+    {
+      "heading": "What an NRC RAI is and how the formal process works",
+      "paragraphs": [
+        "A Request for Additional Information (RAI) is a docketed written request from the NRC to an applicant or licensee for information that the staff reviewer needs to complete a safety or environmental evaluation. RAIs supplement, but do not replace, the application of record. The applicant's response is also docketed and becomes part of the basis for the staff Safety Evaluation (SE) that supports the licensing decision.",
+        "RAI processing is governed by NRR Office Instruction LIC-115, Revision 1, 'Processing Requests for Additional Information' (November 6, 2019, ADAMS ML21141A238), which superseded the legacy Office of New Reactors instruction NRO-REG-108 (ML14091A802) following the 2019 consolidation of NRO into the Office of Nuclear Reactor Regulation. The audit-side guidance now sits in LIC-111, Revision 2, 'Regulatory Audits' (December 30, 2024, ML24309A281), and the acceptance-review counterpart is LIC-117. Standard Review Plans such as NUREG-1700 incorporate the RAI mechanism by reference rather than redefining it.",
+        "NRC practice draws an operational line between formal RAIs and informal information requests. A formal RAI is drafted by the reviewer, reviewed by branch and division management, transmitted by letter through the project manager, and docketed in ADAMS. An informal information request is a non-docketed exchange (email, clarification call, public meeting question) used to scope or close a question without a formal letter. The reviewer card 'Do you need to write an RAI?' (Rev. 2, ML18199A235) instructs staff to exhaust informal channels before issuing a formal RAI, and to issue one only when the information is not available through another docketed source and is technically relevant to a conclusion in the safety evaluation."
+      ],
+      "subsections": [
+        {
+          "heading": "Acceptance review RAIs",
+          "paragraphs": [
+            "Under 10 CFR 2.815 and LIC-117, the acceptance review is the sufficiency check that precedes detailed review. The staff determines, generally within 30 days of receipt, whether the application contains enough scope and depth to complete the detailed review using a 'reasonable number of rounds of RAIs,' typically one or two. If supplemental information is required, the staff issues acceptance-review RAIs (sometimes called supplemental information requests) on a mutually agreed schedule, with the supplemental response required before docketing."
+          ]
+        },
+        {
+          "heading": "Detailed review RAIs",
+          "paragraphs": [
+            "Once the application is docketed, technical reviewers issue detailed-review RAIs to close gaps against Standard Review Plan acceptance criteria, organized by SRP section. Under LIC-115, the project manager typically transmits a draft RAI and requests a clarification call within 3 business days so the applicant can ask scoping questions before the formal 30-day clock starts. The formal RAI letter is then issued and docketed, and the applicant's docketed response supplements the application."
+          ]
+        },
+        {
+          "heading": "Response timelines: 30 and 60 days",
+          "paragraphs": [
+            "The default applicant response time is 30 calendar days from issuance of the formal RAI letter. NRR's internal audit of RAIs issued April through December 2016 found that most RAIs specified a 30-day due date, with a subset at 60 days for more complex requests. Where 30 days is infeasible, the project manager and applicant may negotiate a longer mutually agreeable date. If the applicant cannot meet 30 days, a committed date should be supplied inside the same 30 days so the staff can rebaseline the schedule."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "RAI categories by SAR / PSAR chapter",
+      "paragraphs": [
+        "Across the public advanced-reactor dockets, RAIs cluster into recurring themes by Standard Review Plan or PSAR chapter. Knowing the typical category lets applicants anticipate and pre-empt the most common questions in their submission."
+      ],
+      "subsections": [
+        {
+          "heading": "Chapter 1: General / introductory information",
+          "paragraphs": [
+            "For non-LWRs using NEI 18-04 and Regulatory Guide 1.233 (the Licensing Modernization Project methodology), RAIs cluster on the licensing basis itself: how Licensing Basis Events (LBEs) were selected, the traceability between the PRA and SSC safety classification (RIPB), and justification for departures from Part 50 or 52 prescriptive requirements. The Natrium docket was the first power-reactor LMP application and drew exemption-driven RAIs on HALEU criticality, ECCS analysis, financial qualifications, and NEI 18-04 safety classification."
+          ]
+        },
+        {
+          "heading": "Chapter 2: Site characteristics",
+          "paragraphs": [
+            "The Hermes 1 Chapter 2 audit plan (ML22143B016) explicitly states that the chapter was being audited 'to eliminate unnecessary requests for additional information.' Common topics: probabilistic seismic hazard analysis inputs and ground motion response spectra, hydrology and flooding (PMF, LIP), meteorological dispersion (X/Q) values, population and EPZ assumptions, and external hazard screening including aircraft and nearby industrial."
+          ]
+        },
+        {
+          "heading": "Chapter 3: Design of SSCs",
+          "paragraphs": [
+            "A perennial RAI bucket. Recurring topics include seismic Category I and II classification basis, codes-and-standards applicability for non-LWR fluids (FLiBe, sodium, molten salt) where ASME Section III does not cleanly apply, environmental qualification of equipment exposed to high-temperature salt or sodium, and pipe-break or leak-before-break arguments. The Hermes 1 SER (ML23108A119) flags piping, pipe breaks, and seismic events as warranting further OL-stage review."
+          ]
+        },
+        {
+          "heading": "Chapter 4: Reactor",
+          "paragraphs": [
+            "Heavy RAI volume. Core neutronics (cross-section libraries, criticality safety, reactivity coefficients), fuel qualification (TRISO for Kairos, HALEU metal fuel for Natrium), and code validation against integral and separate-effects tests dominate. NuScale's Chapter 4 review generated eRAI 9462 on thermal-hydraulic design (RAI No. 421, ML18102A275) and a stream of topical-report RAIs tied to NRELAP5 qualification."
+          ]
+        },
+        {
+          "heading": "Chapter 5: Reactor coolant / heat transport",
+          "paragraphs": [
+            "For Hermes (FHR) and Natrium (SFR), this chapter covers novel coolants. RAIs typically address coolant chemistry control (oxygen and tritium for FLiBe, sodium purity for Natrium), intermediate-loop isolation, primary-boundary materials compatibility, and inventory-loss accident sequences. Hermes 1 SER explicitly identified assumptions about salt coolant inventory loss as an open topic."
+          ]
+        },
+        {
+          "heading": "Chapter 6: Engineered safety features",
+          "paragraphs": [
+            "Common RAIs address classification of passive safety features (DRACS, RVACS), containment functional design where the design uses low-pressure confinement rather than traditional containment, and fission-product retention credit (especially TRISO source-term reductions). NuScale received extensive Chapter 6 RAIs on ECCS valve performance and containment heat removal under LOCA."
+          ]
+        },
+        {
+          "heading": "Chapter 13: Conduct of operations",
+          "paragraphs": [
+            "Recurring themes: operator staffing and licensed-operator requirements (anticipating remote and multi-unit operations now formalized in Part 53), training program adequacy for novel SSCs, technical specifications scope at CP stage versus OL stage, emergency planning (especially EPZ-reduction arguments tied to source term), and physical security plan adequacy. The Natrium docket drew specific fitness-for-duty and security RAIs (ML24123A243)."
+          ]
+        },
+        {
+          "heading": "Chapter 15: Accident analysis",
+          "paragraphs": [
+            "The highest-volume RAI chapter on most non-LWR dockets. Common topics: LBE selection completeness, deterministic DBA acceptance criteria for novel coolants, mechanistic source term defensibility, dose consequence methodology (RG 1.183 applicability), and treatment of 'other quantified events' and beyond-design-basis events. The Hermes 1 Chapter 13 and 15 SE (ML23117A052) and the Natrium ASER (ML25311A150) both reflect heavy RAI traffic on how OQEs and cliff-edge effects are demonstrated."
+          ]
+        },
+        {
+          "heading": "Chapter 19: PRA and severe accident evaluation",
+          "paragraphs": [
+            "RAIs focus on PRA scope and quality for novel designs without operating-experience datasets: data uncertainty for first-of-a-kind components, treatment of passive system reliability, multi-module risk aggregation (a NuScale-specific issue), external events PRA scope, and Level 2 source-term release category definitions. NuScale's Chapter 19 review involved two formal audits (November 2017 and September 2018) precisely to keep RAI counts down."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "RAI response best practices and the ADAMS-format template",
+      "paragraphs": [
+        "NuScale's design certification correspondence is the cleanest public template for RAI responses. Every response letter, for example RAIO-0318-59203 for RAI 157 / eRAI 9033 and RAIO-0818-61634, follows the same skeleton. Applicants and AI agents drafting on their behalf should mirror this structure."
+      ],
+      "bullets": [
+        "Cover letter on letterhead addressed to the NRC Document Control Desk, citing the RAI letter number, the eRAI number, the docket, and the date of the original RAI.",
+        "Explicit statement of regulatory commitments, typically that the letter makes no new commitments and revises none.",
+        "Enclosure 1: response to each question, with the original question repeated verbatim before the answer and the SRP or DSRS section called out.",
+        "Enclosure 2 or attachment: redlined Tier 1, Tier 2, or FSAR markup pages showing exactly what will change in the application.",
+        "Separate proprietary and non-proprietary versions where needed, with proprietary content bracketed in double braces and accompanied by an affidavit under 10 CFR 2.390."
+      ],
+      "subsections": [
+        {
+          "heading": "Why this format works",
+          "paragraphs": [
+            "The structure lets the reviewer close the eRAI question without flipping between documents. The question, the technical answer, and the proposed application change all live in one self-contained package keyed to a single SRP section. LIC-115 explicitly endorses tracking and closing RAIs on a question-by-question basis rather than as monolithic packages, and encourages applicants to deliver answers as each question is ready instead of holding the whole package. Public exemplars in ADAMS include ML18078B295, ML18079B134, ML18242A703, ML17249A662, ML18114A371, ML20255A029, ML24353A333, and ML25051A299."
+          ]
+        },
+        {
+          "heading": "Common failure modes",
+          "bullets": [
+            "Restating the application instead of supplying the new information requested, which staff close as non-responsive and reissue as supplemental RAIs.",
+            "Bundling the answer into a narrative without a corresponding FSAR or Tier 2 markup, leaving the reviewer no artifact to incorporate into the safety evaluation.",
+            "Missing the 30-day window without a committed date, which forces a schedule rebaseline under LIC-115.",
+            "Mixing proprietary and public content without bracketed markings and a 10 CFR 2.390 affidavit, which delays public docketing.",
+            "Answering multi-part questions partially, which keeps the eRAI question open in 'action still needed' status."
+          ]
+        },
+        {
+          "heading": "GAO findings",
+          "paragraphs": [
+            "GAO-17-344 (May 2017) identified two recurring failure modes in the RAI process: expectation gaps where applicants misjudge what the initial submission must contain, and inconsistent staff application of guidance. The remedies the NRC adopted, namely earlier and more frequent communication, tight tracking, and visible alignment with the SRP, are the practices the NuScale letters embody."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Typical RAI volumes on real US dockets",
+      "paragraphs": [
+        "RAI traffic is one of the few quantifiable signals of NRC review intensity. The agency does not publish a normalized scoreboard, but counts can be reconstructed from licensing dashboards, dedicated RAI index pages, SER chronologies, and ADAMS searches. The picture across recent advanced-reactor dockets is one of steep decline in formal RAI volume across generations."
+      ],
+      "subsections": [
+        {
+          "heading": "NuScale US600 (Docket 52-048): roughly 350 to 400 RAI letters, 1,500+ questions",
+          "paragraphs": [
+            "The DCA was docketed March 30, 2017, and the FSER was issued in August 2020, with the design rule codified in 10 CFR Part 52, Appendix G in 2023. Publicly traceable RAI numbering reached at least RAI No. 200 (response RAIO-0818-61204, ADAMS ML18214A835, August 2018) and continued upward through 2019, with individual eRAI question identifiers in the 8900 to 9700 range visible in chapter-level SERs. The FSER chronology appendix (ML20233B032) is the authoritative tally."
+          ]
+        },
+        {
+          "heading": "Kairos Hermes 1 (Docket 50-7513): fewer than 20 formal RAIs",
+          "paragraphs": [
+            "Hermes 1 was the first non-light-water test reactor CP docketed under Part 50 in decades. Application docketed November 29, 2021; CP No. CPTR-6 issued December 14, 2023. Kairos and NRC staff deliberately substituted regulatory audits for formal RAIs. The Hermes review documents only a small number of formal RAI letters across all SER chapters, with the bulk of technical issues resolved via in-process audit questions. The audit-first approach became the template for advanced-reactor reviews."
+          ]
+        },
+        {
+          "heading": "Kairos Hermes 2 (Dockets 50-611 and 50-612): single-digit formal RAIs",
+          "paragraphs": [
+            "Hermes 2 was docketed November 2023 and CPs were issued November 21, 2024, roughly a 12-month review and the fastest non-power reactor CP in the modern era. Public ADAMS records show Hermes 2 was handled almost entirely through 'General Audit Questions' (for example, response to General Audit Question 1.5-1 at ML23300A143). Practitioner counts suggest a single-digit number of formal RAI letters across the entire CP review, leveraging the Hermes 1 SER and the co-location of the units."
+          ]
+        },
+        {
+          "heading": "TerraPower Natrium Kemmerer Unit 1: low-tens of formal RAIs",
+          "paragraphs": [
+            "TerraPower submitted the Natrium CP application in March 2024, NRC docketed it in May 2024, and the Commissioners voted to issue the CP on March 4, 2026. Final safety review completed December 2025, 9 months ahead of an already accelerated 27-month schedule, and 11 percent under budget. NRC staff attributed the schedule compression to a 'core-team structure and extensive regulatory audits' and granted four exemptions (HALEU handling, ECCS analysis, financial qualifications, and NEI 18-04 safety classification)."
+          ]
+        },
+        {
+          "heading": "The order-of-magnitude trend",
+          "paragraphs": [
+            "Across these dockets, formal RAI volume fell roughly an order of magnitude from NuScale (hundreds of letters, more than a thousand questions) to Hermes 1 (tens of formal RAIs) to Hermes 2 and Natrium (single-digit to low-tens of formal RAIs, with the substantive review carried by audit questions and topical reports). The trend reflects a deliberate NRC shift to audit-first review and risk-informed, performance-based licensing under the ADVANCE Act and the new Part 53 framework."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The audit-to-RAI escalation path",
+      "paragraphs": [
+        "Regulatory audits under LIC-111 are now the primary review tool on advanced-reactor dockets, and applicants need to understand exactly when an audit question converts into a docketed RAI. A regulatory audit is the process by which NRC staff examines non-docketed information held by the applicant (process documents, calculations, design basis documents, software inputs and outputs) to gain understanding and verify information. Audits are explicitly not a substitute for docketing.",
+        "Any information the staff needs to rely on for its safety conclusions must be on the docket. When an audit identifies a question whose resolution requires docketed information, the staff converts the audit item into a formal RAI, issued separately from audit correspondence per LIC-111. This audit-to-RAI conversion is visible across recent reviews: the Clinch River Early Site Permit audit summary (ML18122A344) and the NuScale Chapter 19 audit summaries both show audited calculations supporting RAI responses being captured back into the docket via subsequent formal RAIs."
+      ],
+      "subsections": [
+        {
+          "heading": "When an audit becomes an RAI",
+          "bullets": [
+            "The staff needs to cite the information in the Safety Evaluation Report.",
+            "The information drives a conclusion on compliance with a regulation or SRP acceptance criterion.",
+            "The applicant agrees to provide a formal docketed response in lieu of additional audit cycles.",
+            "The audit reveals a gap in the application that cannot be closed by clarification alone."
+          ]
+        },
+        {
+          "heading": "How to use audits proactively",
+          "paragraphs": [
+            "Applicants can request a pre-application or in-process regulatory audit to walk reviewers through complex calculations, validation packages, or proprietary data without committing to a formal RAI exchange. The Hermes Chapter 2 audit plan (ML22143B016) is the public exemplar: it is explicit that the audit was designed 'to eliminate unnecessary requests for additional information.' Done well, an audit closes a dozen potential RAIs and leaves only the truly load-bearing items for the docket."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Where AI agents are helping with RAI workflows today",
+      "paragraphs": [
+        "AI agents are increasingly used to draft, cross-check, and close RAI responses, particularly on advanced-reactor dockets where novel coolants and methodologies generate large volumes of cross-referenced text. The highest-leverage uses pair the agent with the canonical ADAMS template and the SRP section structure, so every drafted answer maps cleanly to a closable eRAI question."
+      ],
+      "bullets": [
+        "Drafting question-level responses that restate the question verbatim, cite the relevant SRP or DSRS section, and produce paired FSAR or Tier 2 markups in the NuScale-style format.",
+        "Cross-checking proposed responses against the application of record to catch the most common failure mode flagged by GAO-17-344: restating the application instead of supplying new information.",
+        "Mapping incoming RAI questions to prior responses on the same docket (or analog dockets such as Hermes 1, Hermes 2, NuScale, and Natrium) to surface precedent language and pre-cleared regulatory arguments.",
+        "Tracking the 30-day clock per eRAI question and flagging questions where a committed date should be submitted inside the original window.",
+        "Auto-bracketing proprietary content and generating draft 10 CFR 2.390 affidavits for review by counsel before submission.",
+        "Maintaining a question-by-question status board mirroring the NRC eRAI states ('open,' 'applicant has responded but action still needed,' 'closed') so leadership can see exactly which questions are at risk."
+      ],
+      "subsections": [
+        {
+          "heading": "What AI agents should not do unsupervised",
+          "paragraphs": [
+            "AI agents should not finalize submissions, sign affidavits, or commit to schedule extensions without licensed regulatory affairs sign-off. The docketed response is a regulatory commitment that supplements the application of record, and errors propagate into the Safety Evaluation. Agents are most useful as the first-pass drafter and the always-on cross-checker, with humans owning the docketing decision."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Closing every RAI cleanly",
+      "paragraphs": [
+        "An RAI is closed when the NRC reviewer marks the eRAI question 'closed' in the tracking system and the relevant content is incorporated into the Safety Evaluation Report. Applicants control roughly 80 percent of the closure path: clean format, verbatim question restatement, paired application markups, on-time response, and clear proprietary handling. The remaining 20 percent is reviewer discretion, which is influenced by pre-RAI clarification calls and the audit-first practices described above."
+      ],
+      "bullets": [
+        "Confirm the eRAI question identifier and SRP / DSRS section before drafting.",
+        "Restate the question verbatim at the top of the response enclosure.",
+        "Produce the paired FSAR, Tier 1, or Tier 2 markup in redline form, not in narrative form.",
+        "Submit inside 30 calendar days, or submit a committed date inside the same 30 days.",
+        "Track each question to closure individually, not as a bundle.",
+        "After closure, mine the response into a precedent library for the next RAI and the next docket."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What is an NRC Request for Additional Information (RAI)?",
+      "answer": "An RAI is a docketed written request from the NRC to an applicant or licensee for information that staff reviewers need to complete a safety or environmental evaluation of a license application, amendment request, or topical report. The request is transmitted by letter from the project manager, and the applicant's response is also docketed in ADAMS and becomes part of the basis for the staff Safety Evaluation. RAI processing is governed by NRR Office Instruction LIC-115, Revision 1 (ADAMS ML21141A238), which superseded the legacy NRO instruction NRO-REG-108 after the 2019 consolidation of the Office of New Reactors into the Office of Nuclear Reactor Regulation."
+    },
+    {
+      "question": "How long do applicants have to respond to an NRC RAI?",
+      "answer": "The default response time is 30 calendar days from issuance of the formal RAI letter. NRR's internal audit of RAIs issued April through December 2016 found that most RAIs specified a 30-day due date, with a smaller subset at 60 days for more complex requests. Where 30 days is infeasible, the project manager and applicant may negotiate a mutually agreeable longer date. If the applicant cannot meet 30 days, LIC-115 requires that a committed date be supplied inside the same 30-day window so the staff can rebaseline the review schedule. Missing the window without a committed date forces a schedule rebaseline and can delay the Safety Evaluation."
+    },
+    {
+      "question": "What is the difference between a formal RAI and an informal information request?",
+      "answer": "A formal RAI is a docketed letter from the NRC to the applicant, drafted by the reviewer, reviewed by branch and division management, transmitted by the project manager, and recorded in ADAMS. The applicant's response is also docketed and supplements the application of record. An informal information request is a non-docketed exchange (clarification email, public meeting question, or short call) used to scope or close a question without a formal letter. The reviewer card 'Do you need to write an RAI?' (ML18199A235) instructs staff to exhaust informal channels first and to issue a formal RAI only when the information is not available through another docketed source and is technically relevant to a safety conclusion."
+    },
+    {
+      "question": "How many RAIs did NuScale receive during US600 design certification?",
+      "answer": "NuScale's US600 design certification (Docket 52-048) drew on the order of 350 to 400 formal RAI letters containing well over 1,500 individual questions across the 2017 to 2020 review. Publicly traceable RAI numbering reached at least RAI No. 200 (response RAIO-0818-61204, ADAMS ML18214A835, August 2018) and continued upward through 2019, with individual eRAI question identifiers in the 8900 to 9700 range visible in chapter-level SERs. The FSER chronology appendix (ML20233B032) is the authoritative tally. This volume represents the high-water mark for modern US reactor licensing and is the baseline against which subsequent advanced-reactor reviews are measured."
+    },
+    {
+      "question": "What does a NuScale-style RAI response look like in ADAMS?",
+      "answer": "Every NuScale design certification RAI response follows the same skeleton: a cover letter to the NRC Document Control Desk citing the RAI letter number, eRAI number, docket, and original RAI date; an explicit regulatory commitments statement; Enclosure 1 with each question restated verbatim followed by the answer and the SRP or DSRS section tag; Enclosure 2 with redlined Tier 1, Tier 2, or FSAR markup pages; and separate proprietary and non-proprietary versions where needed, with proprietary content in double braces and a 10 CFR 2.390 affidavit. Public exemplars include ML18078B295, ML18079B134, ML18242A703, ML17249A662, ML18114A371, ML20255A029, ML24353A333, and ML25051A299."
+    },
+    {
+      "question": "Which SAR chapter generates the most RAIs?",
+      "answer": "Chapter 15 (accident analysis) is the highest-volume RAI chapter on most non-LWR dockets. Common topics include Licensing Basis Event selection completeness, deterministic Design Basis Accident acceptance criteria for novel coolants, mechanistic source term defensibility, dose consequence methodology under Regulatory Guide 1.183, and treatment of 'other quantified events' and beyond-design-basis events. Chapter 4 (reactor) and Chapter 19 (PRA and severe accident evaluation) are close behind, particularly for first-of-a-kind designs without operating-experience datasets. The Hermes 1 Chapter 13 and 15 SE (ML23117A052) and the Natrium ASER (ML25311A150) both reflect heavy RAI traffic in Chapter 15."
+    },
+    {
+      "question": "How do regulatory audits relate to RAIs under LIC-111?",
+      "answer": "A regulatory audit, governed by LIC-111, Revision 2 (ML24309A281), is the process by which NRC staff examines non-docketed information (process documents, calculations, design basis documents, software inputs and outputs) to gain understanding and verify information. Audits are explicitly not a substitute for docketing. When an audit identifies a question whose resolution requires docketed information, the staff converts the audit item into a formal RAI per LIC-111. The Hermes Chapter 2 audit plan (ML22143B016) is the public exemplar of using an audit proactively 'to eliminate unnecessary requests for additional information' before they reach formal docketed status."
+    },
+    {
+      "question": "Did Kairos Hermes 1 really close with fewer than 20 formal RAIs?",
+      "answer": "Yes. Hermes 1 (Docket 50-7513) was the first non-light-water test reactor construction permit docketed under Part 50 in decades. Application docketed November 29, 2021; Construction Permit No. CPTR-6 issued December 14, 2023. The Preliminary SER (ML22143B016) and final SER (ML23108A119) confirm that Kairos and NRC staff deliberately substituted regulatory audits for formal RAIs. The Hermes review documents only a small number of formal RAI letters across all SER chapters, with the bulk of technical issues resolved via in-process audit questions. The audit-first approach became the template for the subsequent Hermes 2 and Natrium reviews."
+    },
+    {
+      "question": "What are the most common reasons NRC reviewers reject an RAI response?",
+      "answer": "Five failure modes recur: (1) restating the application instead of supplying the new information requested, which staff close as non-responsive and reissue as supplemental RAIs; (2) bundling the answer into a narrative without a corresponding FSAR or Tier 2 markup, leaving the reviewer no artifact to incorporate into the safety evaluation; (3) missing the 30-day window without submitting a committed date; (4) mixing proprietary and public content without the bracketed markings and 10 CFR 2.390 affidavit, which delays public docketing; and (5) answering multi-part questions partially, which keeps the eRAI question open in 'action still needed' status. GAO-17-344 identified expectation gaps and inconsistent staff application of guidance as the underlying drivers."
+    },
+    {
+      "question": "Is NEI 21-04 the document that governs RAI responses?",
+      "answer": "No. There is no widely published NEI document numbered NEI 21-04 that governs RAI responses. The NEI advanced-reactor guidance frequently confused with that number is NEI 21-07, 'Technology Inclusive Guidance for Non-Light-Water Reactors, Safety Analysis Report Content for Applicants Using the NEI 18-04 Methodology' (ML22060A190), submitted for NRC endorsement in 2022. NEI 21-07 shapes what goes into the application up front, which in turn shapes how RAIs are framed and answered. The NRC documents that actually govern RAI processing are office instructions LIC-115 (NRR) and the legacy NRO instruction ML14091A802, plus the reviewer card 'Do you need to write an RAI?' (ML18199A235)."
+    },
+    {
+      "question": "How are AI agents being used to manage RAI responses today?",
+      "answer": "AI agents are increasingly used to draft question-level responses in the NuScale ADAMS format, cross-check proposed responses against the application of record to catch the GAO-flagged failure mode of restating the application, map incoming questions to precedent on prior dockets (Hermes 1, Hermes 2, NuScale, Natrium), track the 30-day clock per eRAI question, auto-bracket proprietary content and draft 10 CFR 2.390 affidavits for legal review, and maintain a question-by-question status board mirroring the NRC eRAI states. AI agents should not finalize submissions, sign affidavits, or commit to schedule extensions without licensed regulatory affairs sign-off, because the docketed response is a regulatory commitment that supplements the application of record."
+    },
+    {
+      "question": "Where do I track RAI traffic on a current advanced-reactor docket?",
+      "answer": "The primary public entry points are the NRC Advanced Reactor Project Status dashboards at nrc.gov, the docket-specific project pages (for example, the Hermes 2 dashboard), the NuScale RAI index, and the ADAMS Public Search. SECY-25-0036 (ML24334A055) provides the Advanced Reactor Program Status overview. For Hermes 1 and Hermes 2 specifically, the non-power reactor licensing pages list the formal RAI letters and audit summaries; for NuScale, the dedicated RAI index page organizes the eRAI numbering. ADAMS full-text search against the docket number remains the authoritative tool for reconstructing a complete RAI history."
+    }
+  ],
+  "citations": [
+    {
+      "label": "LIC-115, Rev. 1, Processing Requests for Additional Information (NRR, 2019), ADAMS ML21141A238",
+      "url": "https://www.nrc.gov/docs/ML2114/ML21141A238.pdf"
+    },
+    {
+      "label": "NRO-REG-108, Processing RAIs (NRO, 2014), ADAMS ML14091A802",
+      "url": "https://www.nrc.gov/docs/ML1409/ML14091A802.pdf"
+    },
+    {
+      "label": "LIC-111, Rev. 2, Regulatory Audits (NRR, 2024), ADAMS ML24309A281",
+      "url": "https://www.nrc.gov/docs/ML2430/ML24309A281.pdf"
+    },
+    {
+      "label": "LIC-117, Acceptance Review for New Reactor Applications (NRR), ADAMS ML20283A188",
+      "url": "https://www.nrc.gov/docs/ML2028/ML20283A188.pdf"
+    },
+    {
+      "label": "Do you need to write an RAI? Rev. 2 (NRO reviewer card, 2018), ADAMS ML18199A235",
+      "url": "https://www.nrc.gov/docs/ML1819/ML18199A235.pdf"
+    },
+    {
+      "label": "10 CFR 2.815, Docketing and acceptance review",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/cfr/part002/part002-0815"
+    },
+    {
+      "label": "NUREG-1700, Rev. 2, Standard Review Plan for Evaluating Nuclear Power Reactor License Termination Plans",
+      "url": "https://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr1700/"
+    },
+    {
+      "label": "NRO-REG-100, Rev. 2, Acceptance Review Process, ADAMS ML14078A152",
+      "url": "https://www.nrc.gov/docs/ML1407/ML14078A152.pdf"
+    },
+    {
+      "label": "GAO-17-344, Nuclear Regulatory Commission: Regulatory Reviews of New Reactor Designs (May 2017)",
+      "url": "https://www.gao.gov/products/gao-17-344"
+    },
+    {
+      "label": "NEI 21-07, Technology Inclusive Guidance for Non-LWRs (NEI, 2022), ADAMS ML22060A190",
+      "url": "https://www.nrc.gov/docs/ML2206/ML22060A190.pdf"
+    },
+    {
+      "label": "NuScale US600 RAI index (Past License Activities)",
+      "url": "https://www.nrc.gov/reactors/new-reactors/advanced/who-were-working-with/past-license-activities/nuscale/rai"
+    },
+    {
+      "label": "NuScale eRAI 9462 / RAI No. 421 response, ADAMS ML18102A275",
+      "url": "https://www.nrc.gov/docs/ML1810/ML18102A275.pdf"
+    },
+    {
+      "label": "NuScale FSER Chapter 19, ADAMS ML19143A106",
+      "url": "https://www.nrc.gov/docs/ML1914/ML19143A106.pdf"
+    },
+    {
+      "label": "NuScale Design Certification Final Rule, Federal Register, January 19, 2023",
+      "url": "https://www.federalregister.gov/documents/2023/01/19/2023-00729/nuscale-small-modular-reactor-design-certification"
+    },
+    {
+      "label": "Kairos Hermes 1 SER, ADAMS ML23108A119",
+      "url": "https://www.nrc.gov/docs/ML2310/ML23108A119.pdf"
+    },
+    {
+      "label": "Kairos Hermes 1 Chapter 2 audit plan, ADAMS ML22143B016",
+      "url": "https://www.nrc.gov/docs/ML2214/ML22143B016.pdf"
+    },
+    {
+      "label": "Kairos Hermes 1 Chapter 13 / 15 SE, ADAMS ML23117A052",
+      "url": "https://www.nrc.gov/docs/ML2311/ML23117A052.pdf"
+    },
+    {
+      "label": "Hermes 1 application landing page (Docket 50-7513)",
+      "url": "https://www.nrc.gov/reactors/non-power/new-facility-licensing/hermes-kairos"
+    },
+    {
+      "label": "Hermes 2 project dashboard (Dockets 50-611 and 50-612)",
+      "url": "https://www.nrc.gov/reactors/non-power/new-facility-licensing/hermes2-kairos/dashboard"
+    },
+    {
+      "label": "TerraPower Natrium Kemmerer Unit 1 ASER, ADAMS ML25311A150",
+      "url": "https://www.nrc.gov/docs/ML2531/ML25311A150.pdf"
+    },
+    {
+      "label": "Kemmerer Unit 1 Exemption notice (LMP, HALEU, ECCS, financial), Federal Register, May 15, 2025",
+      "url": "https://www.federalregister.gov/documents/2025/05/15/2025-08628/us-sfr-owner-llc-kemmerer-power-station-unit-1-exemption"
+    },
+    {
+      "label": "Natrium fitness-for-duty / security RAI response, ADAMS ML24123A243",
+      "url": "https://www.nrc.gov/docs/ML2412/ML24123A243.pdf"
+    },
+    {
+      "label": "Clinch River Early Site Permit audit summary, ADAMS ML18122A344",
+      "url": "https://www.nrc.gov/docs/ML1812/ML18122A344.pdf"
+    },
+    {
+      "label": "SECY-25-0036, Advanced Reactor Program Status, ADAMS ML24334A055",
+      "url": "https://www.nrc.gov/docs/ML2433/ML24334A055.pdf"
+    },
+    {
+      "label": "NRC Advanced Reactor Project Status dashboards",
+      "url": "https://www.nrc.gov/reactors/new-reactors/advanced/how-were-executing/project-status.html"
+    }
+  ]
+}

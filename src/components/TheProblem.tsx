@@ -12,7 +12,7 @@ export default function TheProblem() {
 
   return (
     <section>
-      <SectionDivider label="§1" />
+      <SectionDivider label="01" />
       <div ref={ref} className="px-6 md:px-12 lg:px-24 xl:px-32 pt-12 pb-24">
         <motion.h2
           initial={{ opacity: 0 }}

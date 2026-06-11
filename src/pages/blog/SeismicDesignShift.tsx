@@ -33,18 +33,18 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Design earthquake(s)',
-        refs: 'App. A §V(a)(1) / §53.480(b)-(c)',
+        refs: 'App. A Section V(a)(1) / Section 53.480(b)-(c)',
         change: 'reframed',
         changeLabel: 'performance-based',
         part100:
           'Safe Shutdown Earthquake (SSE): a single deterministic maximum event. Identified by correlating historic earthquakes with tectonic structures within 200 miles, then assuming worst-case epicenter at the closest point to the site. Defined by response spectra at foundation level.',
         part53:
-          'Design-Basis Ground Motions (DBGMs): plural, risk-tiered. Derived from site-specific GMRS and calibrated to SSC risk significance via Seismic Design Categories (SDCs). The horizontal component of the DBGM must be "an appropriate response spectrum that is determined based on the risk-significance of SSCs and their safety functions" (§53.480(c)(1)(i)).',
+          'Design-Basis Ground Motions (DBGMs): plural, risk-tiered. Derived from site-specific GMRS and calibrated to SSC risk significance via Seismic Design Categories (SDCs). The horizontal component of the DBGM must be "an appropriate response spectrum that is determined based on the risk-significance of SSCs and their safety functions" (Section 53.480(c)(1)(i)).',
         diff: 'Part 100 anchors the design earthquake to a single worst-case historical event: one SSE for the entire plant. Part 53 replaces this with a family of DBGMs scaled to risk. A low-risk SSC gets a lower DBGM; a high-risk SR SSC gets the full GMRS-derived motion. This enables graded seismic design instead of one-size-fits-all.',
       },
       {
         topic: 'Minimum ground acceleration floor',
-        refs: 'App. A §V(a)(1)(v) / §53.480',
+        refs: 'App. A Section V(a)(1)(v) / Section 53.480',
         change: 'removed',
         changeLabel: 'removed',
         part100:
@@ -61,24 +61,24 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Hazard analysis approach',
-        refs: 'App. A §IV(a), §V(a) / §53.510(c)',
+        refs: 'App. A Section IV(a), Section V(a) / Section 53.510(c)',
         change: 'reframed',
         changeLabel: 'probabilistic',
         part100:
-          'Deterministic: trace historic earthquakes to tectonic structures, assume worst epicenter at nearest point to site. Appendix A §V(a)(1)(i)-(iv) prescribes a four-step procedure for correlating earthquakes with structures and provinces. §100.23(d)(1) mentions PSHA as one acceptable uncertainty method but does not require it.',
+          'Deterministic: trace historic earthquakes to tectonic structures, assume worst epicenter at nearest point to site. Appendix A Section V(a)(1)(i)-(iv) prescribes a four-step procedure for correlating earthquakes with structures and provinces. Section 100.23(d)(1) mentions PSHA as one acceptable uncertainty method but does not require it.',
         part53:
-          'Probabilistic Seismic Hazard Analysis (PSHA) explicitly endorsed as the standard approach. §53.510(c): "The site assessment must reflect these uncertainties through an appropriate analysis, such as a probabilistic seismic hazard analysis." GMRS must be characterized by both horizontal and vertical free-field response spectra. RG 1.208 is an acceptable method for developing GMRS.',
+          'Probabilistic Seismic Hazard Analysis (PSHA) explicitly endorsed as the standard approach. Section 53.510(c): "The site assessment must reflect these uncertainties through an appropriate analysis, such as a probabilistic seismic hazard analysis." GMRS must be characterized by both horizontal and vertical free-field response spectra. RG 1.208 is an acceptable method for developing GMRS.',
         diff: 'Part 100 Appendix A was written before PSHA was mature (1973). It uses a deterministic framework: find the worst historical earthquake on each nearby fault, move it to the closest point to the site, calculate the resulting motion. Part 53 makes PSHA the primary framework (the same approach already used under Appendix S to Part 50 for post-1997 licenses), replacing the deterministic SSE as the central design basis for advanced reactors. Deterministic checks may still be used for bounding or validation, but the four-step deterministic procedure is no longer the organizing principle.',
       },
       {
         topic: 'Uncertainty treatment',
-        refs: 'App. A §V(a)(1)(iv) / §53.510(a),(c)',
+        refs: 'App. A Section V(a)(1)(iv) / Section 53.510(a),(c)',
         change: 'new',
         changeLabel: 'explicit requirement',
         part100:
-          'Appendix A does not formally require uncertainty quantification. The deterministic approach uses conservatism (worst-case epicenter placement, 0.1g floor) as an implicit uncertainty buffer. §100.23(d)(1) mentions "uncertainties are inherent" and suggests PSHA or "suitable sensitivity analyses" but leaves the method open.',
+          'Appendix A does not formally require uncertainty quantification. The deterministic approach uses conservatism (worst-case epicenter placement, 0.1g floor) as an implicit uncertainty buffer. Section 100.23(d)(1) mentions "uncertainties are inherent" and suggests PSHA or "suitable sensitivity analyses" but leaves the method open.',
         part53:
-          '§53.510(a): external hazard frequencies and magnitudes "must take into account uncertainties and variabilities in data, models, and methods." §53.510(c): "Uncertainties are inherent in the parameters and models used to estimate the GMRS for the site. The site assessment must reflect these uncertainties." This is a mandatory, explicit requirement, not a suggestion.',
+          'Section 53.510(a): external hazard frequencies and magnitudes "must take into account uncertainties and variabilities in data, models, and methods." Section 53.510(c): "Uncertainties are inherent in the parameters and models used to estimate the GMRS for the site. The site assessment must reflect these uncertainties." This is a mandatory, explicit requirement, not a suggestion.',
         diff: 'Part 53 makes uncertainty quantification a regulatory requirement, not a best practice. The shift from deterministic conservatism to formal uncertainty treatment is fundamental: it means the seismic hazard chapter of a Part 53 application must include epistemic and aleatory uncertainty characterization, logic trees, and sensitivity analyses. This is standard PSHA practice but was never explicitly mandated in Appendix A.',
       },
     ],
@@ -89,35 +89,35 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Operating Basis Earthquake (OBE)',
-        refs: 'App. A §III(d), §V(a)(2), §VI(a)(2) / §53.480(c)(2)',
+        refs: 'App. A Section III(d), Section V(a)(2), Section VI(a)(2) / Section 53.480(c)(2)',
         change: 'stricter',
         changeLabel: 'tighter ratio',
         part100:
           'OBE defined as the earthquake "reasonably expected to affect the plant site during the operating life." OBE must be at least ½ the SSE (i.e., OBE ≥ 0.5 × SSE). All SSCs for continued operation must remain functional within applicable stress and deformation limits. If OBE is exceeded, shutdown required; licensee must demonstrate no functional damage before restart.',
         part53:
-          'OBE Ground Motion retained but redefined: must be "set to one-third or less of the DBGMs response spectra" (§53.480(c)(2)). Used as a shutdown trigger in §53.720. The OBE is characterized by response spectra, same as Part 100.',
+          'OBE Ground Motion retained but redefined: must be "set to one-third or less of the DBGMs response spectra" (Section 53.480(c)(2)). Used as a shutdown trigger in Section 53.720. The OBE is characterized by response spectra, same as Part 100.',
         diff: 'The ratio changes direction. Part 100 sets OBE ≥ ½ SSE (OBE is at least half the design basis). Part 53 sets OBE ≤ ⅓ DBGM (OBE is at most one-third of the design basis). The Part 53 OBE is proportionally lower relative to the design basis, meaning the gap between operating-level and design-basis ground motion is larger. This means fewer spurious shutdowns from moderate earthquakes, but the plant must still shut down and evaluate if the OBE is exceeded.',
       },
       {
         topic: 'Two-tier vs. multi-tier seismic design',
-        refs: 'App. A §VI(a)(1)-(2) / §53.480(a),(c)',
+        refs: 'App. A Section VI(a)(1)-(2) / Section 53.480(a),(c)',
         change: 'reframed',
         changeLabel: 'multi-tier SDC',
         part100:
           'Binary two-tier structure: SSE (design basis for safety-related SSCs) and OBE (design basis for continued operation). Every safety-related SSC is designed to the same SSE demand. The OBE is a single plant-wide operating-level earthquake. No gradation within either tier.',
         part53:
-          'Multi-tier framework. SSCs classified by risk significance (SR, NSRSS, non-safety-significant) under §53.460, then assigned to Seismic Design Categories. Each SDC gets a different DBGM derived from the site GMRS. ASCE/SEI 43-19 SDC-1 through SDC-5 is an acceptable graded framework (preamble). The OBE is retained as a single operational trigger.',
+          'Multi-tier framework. SSCs classified by risk significance (SR, NSRSS, non-safety-significant) under Section 53.460, then assigned to Seismic Design Categories. Each SDC gets a different DBGM derived from the site GMRS. ASCE/SEI 43-19 SDC-1 through SDC-5 is an acceptable graded framework (preamble). The OBE is retained as a single operational trigger.',
         diff: 'This is the architectural heart of the seismic framework change. Under Part 100, a safety-related SSC is designed to the full SSE. A fire damper in a safety-related building gets the same seismic demand as the reactor pressure boundary. Under Part 53, the DBGM is calibrated to the SSC\'s risk significance. SDC-5 (highest) aligns with the traditional SSE/Appendix S approach; SDC-1 through SDC-4 allow progressively lower design demands for less risk-significant SSCs. This enables substantially more efficient design while maintaining safety margins where they matter.',
       },
       {
         topic: 'SSE design scope',
-        refs: 'App. A §VI(a)(1) / §53.480(c)(1)(ii)',
+        refs: 'App. A Section VI(a)(1) / Section 53.480(c)(1)(ii)',
         change: 'reframed',
         changeLabel: 'risk-graded',
         part100:
           'SSE design applies to SSCs "necessary to assure (i) the integrity of the reactor coolant pressure boundary, (ii) the capability to shut down the reactor and maintain it in a safe shutdown condition, or (iii) the capability to prevent or mitigate the consequences of accidents which could result in potential offsite exposures comparable to the guideline exposures." All such SSCs get the full SSE.',
         part53:
-          '§53.480(c)(1)(ii): the plant must be designed so that if the DBGMs occur, SSCs "for which functional design criteria are established in accordance with §53.410 or §53.420" and SSCs "classified as SR or NSRSS commensurate with safety significance" remain functional. The DBGM level varies by SSC classification.',
+          'Section 53.480(c)(1)(ii): the plant must be designed so that if the DBGMs occur, SSCs "for which functional design criteria are established in accordance with Section 53.410 or Section 53.420" and SSCs "classified as SR or NSRSS commensurate with safety significance" remain functional. The DBGM level varies by SSC classification.',
         diff: 'Part 100 uses a functional definition (reactor coolant boundary, shutdown capability, accident mitigation) that maps to a single seismic demand. Part 53 uses a classification-based approach (SR, NSRSS) with graded seismic demands. The practical effect: NSRSS SSCs in Part 53 may be designed to a lower DBGM than SR SSCs, whereas under Part 100 there was no such distinction. If it was safety-related, it got the full SSE.',
       },
     ],
@@ -128,36 +128,36 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Capable fault definition',
-        refs: 'App. A §III(g) / §53.510(d)',
+        refs: 'App. A Section III(g) / Section 53.510(d)',
         change: 'removed',
         changeLabel: 'removed',
         part100:
           'Prescriptive "capable fault" definition with three criteria: (1) movement at or near ground surface within past 35,000 years OR recurring movement within 500,000 years; (2) macro-seismicity instrumentally determined with records demonstrating direct relationship to the fault; (3) structural relationship to a capable fault such that movement on one could reasonably be expected to accompany movement on the other.',
         part53:
-          'No "capable fault" definition. §53.510(d) requires evaluation of "the potential for surface tectonic and nontectonic deformations" as a geologic siting factor. The applicant defines the investigation scope based on site characteristics. No fixed recency thresholds.',
+          'No "capable fault" definition. Section 53.510(d) requires evaluation of "the potential for surface tectonic and nontectonic deformations" as a geologic siting factor. The applicant defines the investigation scope based on site characteristics. No fixed recency thresholds.',
         diff: 'The capable fault criteria in Appendix A are among the most specific requirements in Part 100: 35,000-year and 500,000-year recency windows with precise triggers. Part 53 replaces all of this with a principles-based requirement to evaluate whether surface deformation is possible. The elimination of the capable fault definition is a significant departure. It gives applicants flexibility but creates RAI exposure if the NRC staff disagrees with the investigation scope.',
       },
       {
         topic: 'Fault distance/length thresholds (Table 1)',
-        refs: 'App. A §IV(a)(7) Table 1 / §53.510(c)',
+        refs: 'App. A Section IV(a)(7) Table 1 / Section 53.510(c)',
         change: 'removed',
         changeLabel: 'removed',
         part100:
           'Prescriptive Table 1: minimum fault length to investigate by distance band. 0-20 miles: ≥1-mile faults. 20-50 miles: ≥5-mile faults. 50-100 miles: ≥10-mile faults. 100-150 miles: ≥20-mile faults. 150-200 miles: ≥40-mile faults. Also: 1,000-ft fault length threshold within 5 miles for surface faulting investigation.',
         part53:
-          'No distance-band tables. §53.510(c): "The size of the region to be investigated and the type of data pertinent to the investigations must be determined based on the nature of the region surrounding the site." Investigation scope is applicant-defined with NRC review.',
+          'No distance-band tables. Section 53.510(c): "The size of the region to be investigated and the type of data pertinent to the investigations must be determined based on the nature of the region surrounding the site." Investigation scope is applicant-defined with NRC review.',
         diff: 'Table 1 has driven thousands of geologic investigations by specifying exactly which faults need evaluation at each distance band. Its removal does not mean smaller investigations are acceptable. It means the applicant must justify the scope based on regional geology. In seismically active areas, the NRC may effectively require an investigation that equals or exceeds Table 1 scope. The justification burden shifts to the applicant.',
       },
       {
         topic: 'Zone requiring detailed faulting investigation (Table 2)',
-        refs: 'App. A §V(b)(1) Table 2 / §53.510(d)',
+        refs: 'App. A Section V(b)(1) Table 2 / Section 53.510(d)',
         change: 'removed',
         changeLabel: 'removed',
         part100:
           'Table 2: zone width = 1-4× control width based on earthquake magnitude. M<5.5: 1× control width. M 5.5-6.4: 2×. M 6.5-7.5: 3×. M>7.5: 4×. Minimum zone width ½ mile. Reactor may not be located within the zone without detailed investigation demonstrating surface faulting need not be considered in design.',
         part53:
-          'No zone requiring detailed faulting investigation concept. Surface deformation potential evaluated through §53.480(d): "The potential for surface deformation must be taken into account in the design of the commercial nuclear plant by providing reasonable assurance that in the event of deformation, SSCs classified as SR or NSRSS... will remain functional."',
-        diff: 'The zone requiring detailed faulting investigation (and Figure 1 of Appendix A) is a procedural safety net that has historically prevented reactors from being sited near capable faults without detailed study. Its removal does not mean fault proximity is ignored. The same concern is addressed through design (§53.480(d)) rather than a standalone siting gate. For applications near active fault zones, expect the NRC to require equivalent demonstration.',
+          'No zone requiring detailed faulting investigation concept. Surface deformation potential evaluated through Section 53.480(d): "The potential for surface deformation must be taken into account in the design of the commercial nuclear plant by providing reasonable assurance that in the event of deformation, SSCs classified as SR or NSRSS... will remain functional."',
+        diff: 'The zone requiring detailed faulting investigation (and Figure 1 of Appendix A) is a procedural safety net that has historically prevented reactors from being sited near capable faults without detailed study. Its removal does not mean fault proximity is ignored. The same concern is addressed through design (Section 53.480(d)) rather than a standalone siting gate. For applications near active fault zones, expect the NRC to require equivalent demonstration.',
       },
     ],
   },
@@ -167,7 +167,7 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Seismic Design Categories (SDCs)',
-        refs: 'App. A §VI(a) / §53.460, §53.480',
+        refs: 'App. A Section VI(a) / Section 53.460, Section 53.480',
         change: 'new',
         changeLabel: 'new framework',
         part100:
@@ -178,13 +178,13 @@ const SECTIONS: Section[] = [
       },
       {
         topic: 'NSRSS SSCs in seismic design',
-        refs: 'App. A §VI(a)(1) / §53.480(a),(c)(1)(ii)',
+        refs: 'App. A Section VI(a)(1) / Section 53.480(a),(c)(1)(ii)',
         change: 'new',
         changeLabel: 'new in Part 53',
         part100:
           'Appendix A addresses only safety-related SSCs for seismic design. Non-safety-related SSCs have no explicit seismic design requirement in Part 100, even if they are safety-significant. The concept of "non-safety-related but safety-significant" does not exist in the Part 100 framework.',
         part53:
-          '§53.480(a): "Structures, systems, and components classified as SR or NSRSS must be able to withstand the effects of earthquakes, commensurate with the safety significance of the SSC." NSRSS SSCs are explicitly included in the seismic design scope, at a demand level proportional to their safety significance.',
+          'Section 53.480(a): "Structures, systems, and components classified as SR or NSRSS must be able to withstand the effects of earthquakes, commensurate with the safety significance of the SSC." NSRSS SSCs are explicitly included in the seismic design scope, at a demand level proportional to their safety significance.',
         diff: 'Part 53 creates a new category of SSCs that must be seismically designed but at a lower demand than SR SSCs. This fills a gap in Part 100 where an SSC could be important to risk but not formally safety-related, and therefore had no regulatory seismic design requirement. The "commensurate with safety significance" language is the key enabler for graded seismic design.',
       },
     ],
@@ -195,46 +195,46 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Required seismic instrumentation',
-        refs: 'App. A §VI(a)(3) / §53.480(c)(4)',
+        refs: 'App. A Section VI(a)(3) / Section 53.480(c)(4)',
         change: 'same',
         changeLabel: 'substantially retained',
         part100:
           'Required: "Suitable instrumentation shall be provided so that the seismic response of nuclear power plant features important to safety can be determined promptly to permit comparison of such response with that used as the design basis." Explicit note that automatic shutdown instrumentation was "under consideration."',
         part53:
-          '§53.480(c)(4): "Suitable instrumentation must be provided so that the seismic response of commercial nuclear plant SR SSCs or NSRSS SSCs can be evaluated promptly after an earthquake." Language is performance-based; specific types not prescribed. Shutdown trigger addressed in §53.720.',
-        diff: 'The instrumentation requirement is one of the few areas of genuine continuity. Both regulations require prompt post-earthquake evaluation of SSC response. The main difference: Part 53 includes NSRSS SSCs in the instrumentation requirement (not just safety-related), reflecting the broader SSC classification framework. The old note about automatic shutdown instrumentation being "under consideration" is gone. §53.720 now handles the operational seismic shutdown trigger directly.',
+          'Section 53.480(c)(4): "Suitable instrumentation must be provided so that the seismic response of commercial nuclear plant SR SSCs or NSRSS SSCs can be evaluated promptly after an earthquake." Language is performance-based; specific types not prescribed. Shutdown trigger addressed in Section 53.720.',
+        diff: 'The instrumentation requirement is one of the few areas of genuine continuity. Both regulations require prompt post-earthquake evaluation of SSC response. The main difference: Part 53 includes NSRSS SSCs in the instrumentation requirement (not just safety-related), reflecting the broader SSC classification framework. The old note about automatic shutdown instrumentation being "under consideration" is gone. Section 53.720 now handles the operational seismic shutdown trigger directly.',
       },
       {
         topic: 'Surface deformation design provisions',
-        refs: 'App. A §VI(b)(3) / §53.480(d)',
+        refs: 'App. A Section VI(b)(3) / Section 53.480(d)',
         change: 'reframed',
         changeLabel: 'performance-based',
         part100:
-          'App. A §VI(b)(3): design basis for surface faulting must be taken into account to ensure safety-related SSCs "will remain functional." Design provisions must assume surface faulting "can occur in any direction and azimuth and under any part of the nuclear power plant unless evidence indicates this assumption is not appropriate."',
+          'App. A Section VI(b)(3): design basis for surface faulting must be taken into account to ensure safety-related SSCs "will remain functional." Design provisions must assume surface faulting "can occur in any direction and azimuth and under any part of the nuclear power plant unless evidence indicates this assumption is not appropriate."',
         part53:
-          '§53.480(d)(1)-(3): surface deformation must be taken into account to ensure SR and NSRSS SSCs "will remain functional." Design provisions must be based on "postulated occurrence in any direction and azimuth and under any part of the commercial nuclear plant, unless evidence indicates this assumption is not appropriate." Must take into account estimated rate of deformation.',
+          'Section 53.480(d)(1)-(3): surface deformation must be taken into account to ensure SR and NSRSS SSCs "will remain functional." Design provisions must be based on "postulated occurrence in any direction and azimuth and under any part of the commercial nuclear plant, unless evidence indicates this assumption is not appropriate." Must take into account estimated rate of deformation.',
         diff: 'Nearly identical substantive requirement. The main differences: Part 53 extends the scope to NSRSS SSCs (not just safety-related), and uses "surface deformation" rather than "surface faulting," a broader term that includes non-tectonic deformation. The directional assumption (any direction, any azimuth, under any part of the plant) is preserved verbatim.',
       },
       {
         topic: 'Soil stability, liquefaction, slope stability',
-        refs: 'App. A §V(d) / §53.510(d)',
+        refs: 'App. A Section V(d) / Section 53.510(d)',
         change: 'relaxed',
         changeLabel: 'principles-based',
         part100:
           'Detailed prescriptive list: fissuring, differential consolidation, liquefaction, cratering, subsidence, uplift, collapse, deformational zones (shears, joints, fractures, folds), alteration zones, residual stresses in bedrock, mineralogically unstable soils, slope stability (natural and artificial), cooling water supply, distant safety-related structures.',
         part53:
-          '§53.510(d): "soil and rock stability, liquefaction potential, and natural and artificial slope stability" explicitly listed. Volcanic activity and seismically induced flooding added. Framed as factors "included, but not limited to"; applicant must evaluate all relevant hazards.',
+          'Section 53.510(d): "soil and rock stability, liquefaction potential, and natural and artificial slope stability" explicitly listed. Volcanic activity and seismically induced flooding added. Framed as factors "included, but not limited to"; applicant must evaluate all relevant hazards.',
         diff: 'Same hazards, different framing. Part 100 Appendix A enumerates specific failure modes with sub-bullets. Part 53 uses a non-exhaustive list. For most sites this will not change the investigation scope, but the open-ended language means applicants in unusual geologic settings cannot rely on the checklist as a ceiling. Conversely, applicants at benign sites are not forced through irrelevant checklist items.',
       },
       {
         topic: 'Seismically induced floods and water waves',
-        refs: 'App. A §IV(c), §V(c) / §53.480(e), §53.510(d)',
+        refs: 'App. A Section IV(c), Section V(c) / Section 53.480(e), Section 53.510(d)',
         change: 'same',
         changeLabel: 'substantially same',
         part100:
-          'App. A §IV(c): detailed investigation of tsunami history, coastal topography, offshore fault characteristics for coastal sites. §V(c): size of seismically induced floods and water waves must be determined considering local topographic characteristics and adverse tide conditions.',
+          'App. A Section IV(c): detailed investigation of tsunami history, coastal topography, offshore fault characteristics for coastal sites. Section V(c): size of seismically induced floods and water waves must be determined considering local topographic characteristics and adverse tide conditions.',
         part53:
-          '§53.480(e): "Seismically induced floods and water waves from either locally or distantly generated seismic activity and other design conditions determined pursuant to subpart D of this part must be taken into account in the design." §53.510(d) lists "size and character of seismically induced floods and water waves" as a geologic siting factor.',
+          'Section 53.480(e): "Seismically induced floods and water waves from either locally or distantly generated seismic activity and other design conditions determined pursuant to subpart D of this part must be taken into account in the design." Section 53.510(d) lists "size and character of seismically induced floods and water waves" as a geologic siting factor.',
         diff: 'Same scope, no prescribed method. Both regulations require seismically-induced flood characterization. Part 100 Appendix A prescribes how (coastal vs. inland investigations, tsunami runup methods). Part 53 states the outcome required; the analytical method is the applicant\'s choice.',
       },
     ],
@@ -245,24 +245,24 @@ const SECTIONS: Section[] = [
     rows: [
       {
         topic: 'Seismic PRA integration',
-        refs: 'App. A §VI(a)(1) / §53.480(f)',
+        refs: 'App. A Section VI(a)(1) / Section 53.480(f)',
         change: 'new',
         changeLabel: 'new in Part 53',
         part100:
           'No requirement for probabilistic risk assessment of seismic events. The deterministic SSE/OBE framework is self-contained: if the SSC withstands the SSE, it is adequate. Seismic margins analysis or seismic PRA was used in practice (post-Fukushima NTTF) but not required by Appendix A.',
         part53:
-          '§53.480(f): "The analyses required by §53.450 must address seismic hazards and related SSC responses in determining that the safety criteria defined in §53.220 will be met." This explicitly requires seismic events to be included in the PRA/SRE framework of §53.450, including fragility modeling and risk quantification.',
-        diff: 'Part 53 formally integrates seismic risk into the licensing basis. The preamble states that SSC responses to seismic hazards "could be addressed in the analyses using a fragility model (conditional probability of its failure at a given hazard input level), a high confidence of low probability of failure value, or other method." §53.450 allows PRA, other systematic risk evaluations (SREs), or a combination, so a full seismic PRA is one way to comply, not the only way. What is mandatory is that seismic hazards are addressed within the §53.450 analytical framework for demonstrating compliance with §53.220.',
+          'Section 53.480(f): "The analyses required by Section 53.450 must address seismic hazards and related SSC responses in determining that the safety criteria defined in Section 53.220 will be met." This explicitly requires seismic events to be included in the PRA/SRE framework of Section 53.450, including fragility modeling and risk quantification.',
+        diff: 'Part 53 formally integrates seismic risk into the licensing basis. The preamble states that SSC responses to seismic hazards "could be addressed in the analyses using a fragility model (conditional probability of its failure at a given hazard input level), a high confidence of low probability of failure value, or other method." Section 53.450 allows PRA, other systematic risk evaluations (SREs), or a combination, so a full seismic PRA is one way to comply, not the only way. What is mandatory is that seismic hazards are addressed within the Section 53.450 analytical framework for demonstrating compliance with Section 53.220.',
       },
       {
         topic: 'Engineering method for seismic qualification',
-        refs: 'App. A §VI(a)(1) / §53.480(c)(1)(v)-(vi)',
+        refs: 'App. A Section VI(a)(1) / Section 53.480(c)(1)(v)-(vi)',
         change: 'same',
         changeLabel: 'substantially same',
         part100:
-          'App. A §VI(a)(1): "The engineering method used to insure that the required safety functions are maintained... shall involve the use of either a suitable dynamic analysis or a suitable qualification test... except where it can be demonstrated that the use of an equivalent static load method provides adequate conservatism." Soil-structure interaction and duration must be considered. Inelastic behavior permitted if safety functions maintained.',
+          'App. A Section VI(a)(1): "The engineering method used to insure that the required safety functions are maintained... shall involve the use of either a suitable dynamic analysis or a suitable qualification test... except where it can be demonstrated that the use of an equivalent static load method provides adequate conservatism." Soil-structure interaction and duration must be considered. Inelastic behavior permitted if safety functions maintained.',
         part53:
-          '§53.480(c)(1)(v): SSCs must be "demonstrated through design, testing, or qualification methods" to fulfill safety functions during and after DBGMs. §53.480(c)(1)(vi): evaluation "should consider, if applicable, soil-structure interaction effects and the expected duration of vibratory motion. It is permissible to design for inelastic behavior... provided the necessary safety functions are maintained."',
+          'Section 53.480(c)(1)(v): SSCs must be "demonstrated through design, testing, or qualification methods" to fulfill safety functions during and after DBGMs. Section 53.480(c)(1)(vi): evaluation "should consider, if applicable, soil-structure interaction effects and the expected duration of vibratory motion. It is permissible to design for inelastic behavior... provided the necessary safety functions are maintained."',
         diff: 'The engineering methods are substantively the same: dynamic analysis, testing, or qualification; soil-structure interaction; inelastic behavior permitted. Part 53 uses slightly broader language ("design, testing, or qualification methods") but the practical requirements are equivalent. The key difference is that Part 53 applies these methods to graded DBGMs rather than a single SSE.',
       },
     ],
@@ -317,7 +317,7 @@ function ComparisonCard({ row }: { row: Row }) {
         </div>
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
           <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
-            Part 53 §53.480 / §53.510
+            Part 53 Section 53.480 / Section 53.510
           </p>
           {row.part53 ? (
             <p className="font-sans text-sm text-ink/70 leading-relaxed">
@@ -464,7 +464,7 @@ export default function SeismicDesignShift() {
               SSE/OBE → GMRS/SDC
             </h1>
             <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
-              The seismic design shift from Part 100 Appendix A to Part 53 §53.480
+              The seismic design shift from Part 100 Appendix A to Part 53 Section 53.480
             </p>
           </header>
         </div>
@@ -493,7 +493,7 @@ export default function SeismicDesignShift() {
             <p className="font-sans text-base text-ink/75 leading-relaxed">
               This is not a cosmetic rewrite. It is a fundamental change in how seismic design is
               organized for nuclear facilities. The comparison below works from the actual regulatory
-              text (Appendix A to Part 100, current as of 3/24/2026, and Part 53 §53.480 and §53.510,
+              text (Appendix A to Part 100, current as of 3/24/2026, and Part 53 Section 53.480 and Section 53.510,
               final rule published 3/30/2026) to map every substantive change.
             </p>
           </div>
@@ -531,12 +531,12 @@ export default function SeismicDesignShift() {
               applicant-defined.
             </p>
             <p className="font-sans text-base text-ink/75 leading-relaxed">
-              <strong className="text-ink">Seismic risk integration mandatory.</strong> §53.480(f) requires
-              seismic hazards to be addressed in the §53.450 analyses, whether via PRA, other
+              <strong className="text-ink">Seismic risk integration mandatory.</strong> Section 53.480(f) requires
+              seismic hazards to be addressed in the Section 53.450 analyses, whether via PRA, other
               systematic risk evaluations (SREs), or a combination. Fragility modeling is one
               accepted approach; the regulation does not prescribe a single method. What is
               mandatory is that seismic risk is formally integrated into the licensing basis
-              for demonstrating compliance with §53.220.
+              for demonstrating compliance with Section 53.220.
             </p>
           </div>
         </div>
@@ -549,7 +549,7 @@ export default function SeismicDesignShift() {
             <br />
             vs.{' '}
             <strong className="text-ink font-medium">
-              10 CFR Part 53 §53.480 &amp; §53.510
+              10 CFR Part 53 Section 53.480 &amp; Section 53.510
             </strong>{' '}
             (Earthquake Engineering &amp; External Hazards, final rule 3/25/2026)
           </p>
@@ -735,7 +735,7 @@ export default function SeismicDesignShift() {
                 on each tectonic structure within 200 miles and moved it to the closest point") is replaced
                 by a PSHA-based GMRS derivation with formal uncertainty quantification. The capable fault
                 criteria disappear in favor of applicant-defined investigation scope. The single SSE design
-                demand is replaced by tiered DBGMs calibrated to SDC. And seismic risk analysis, formally integrated into the §53.450 framework,
+                demand is replaced by tiered DBGMs calibrated to SDC. And seismic risk analysis, formally integrated into the Section 53.450 framework,
                 becomes a first-class regulatory requirement.
               </p>
             </div>
@@ -790,13 +790,13 @@ export default function SeismicDesignShift() {
                 </li>
                 <li className="font-sans text-base text-ink/75 leading-relaxed">
                   <strong className="text-ink">Full seismic PRA integration:</strong> where seismic
-                  fragilities and risk quantification are embedded directly in the §53.450 analyses to
-                  demonstrate compliance with §53.220 safety criteria.
+                  fragilities and risk quantification are embedded directly in the Section 53.450 analyses to
+                  demonstrate compliance with Section 53.220 safety criteria.
                 </li>
               </ol>
               <p className="font-sans text-base text-ink/75 leading-relaxed mt-3">
                 These are not mutually exclusive. An applicant could use the ASCE/SEI 43-19 graded
-                framework for structural design while addressing seismic risk in the §53.450 analyses
+                framework for structural design while addressing seismic risk in the Section 53.450 analyses
                 through fragility models, high-confidence-of-low-probability-of-failure (HCLPF) values,
                 or other systematic risk evaluations. The choice of pathway has significant practical
                 implications for the structure of the application and the depth of seismic analysis
@@ -815,7 +815,7 @@ export default function SeismicDesignShift() {
                 lower relative to the design basis, which means the gap between "keep operating" and
                 "design basis" is larger. This reduces the frequency of shutdown triggers from moderate
                 seismic events while maintaining the requirement to shut down and evaluate if the OBE
-                is exceeded (§53.720).
+                is exceeded (Section 53.720).
               </p>
             </div>
           </div>
@@ -829,7 +829,7 @@ export default function SeismicDesignShift() {
             </p>
             <p className="font-sans text-sm text-ink/50 leading-relaxed text-center">
               Prepared from 10 CFR Part 100 Appendix A (current as of March 24, 2026) and Part 53
-              §53.480 and §53.510 (final rule published March 30, 2026, effective April 29, 2026).
+              Section 53.480 and Section 53.510 (final rule published March 30, 2026, effective April 29, 2026).
               Preamble discussion at 91 FR pp. 45-48. Not legal advice.
             </p>
           </div>

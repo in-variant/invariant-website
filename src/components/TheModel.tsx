@@ -27,7 +27,7 @@ export default function TheModel() {
 
   return (
     <section>
-      <SectionDivider label="§3" />
+      <SectionDivider label="03" />
       <div ref={ref} className="px-6 md:px-12 lg:px-24 xl:px-32 pt-12 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div>

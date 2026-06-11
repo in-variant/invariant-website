@@ -81,7 +81,7 @@ function Editor() {
             This section analyses loss-of-coolant accidents resulting from postulated breaks in the
             reactor coolant pressure boundary, demonstrating compliance with{' '}
             <span className="font-medium text-ink">10 CFR 50.46</span> and the requirements of{' '}
-            <span className="font-medium text-ink">10 CFR 50, Appendix&nbsp;K</span>. <Cite>NUREG-0800 §15.6.5</Cite>
+            <span className="font-medium text-ink">10 CFR 50, Appendix&nbsp;K</span>. <Cite>NUREG-0800 015.6.5</Cite>
           </motion.p>
           <motion.p {...reveal(0.2)} className="mt-4 font-sans text-sm leading-relaxed text-ink/70">
             The emergency core cooling system is designed to provide adequate core cooling across the

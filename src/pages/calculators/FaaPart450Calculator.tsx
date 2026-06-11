@@ -149,7 +149,7 @@ export default function FaaPart450Calculator() {
 
             <Field
               label="Accepted Means of Compliance you can claim (0 to 6)"
-              hint="The five §450.35 areas plus a general MoC are the canonical six. More accepted MoCs = faster review."
+              hint="The five Section 450.35 areas plus a general MoC are the canonical six. More accepted MoCs = faster review."
             >
               <input
                 type="range"

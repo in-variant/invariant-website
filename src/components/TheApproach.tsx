@@ -8,7 +8,7 @@ export default function TheApproach() {
 
   return (
     <section>
-      <SectionDivider label="§4" />
+      <SectionDivider label="04" />
       <div ref={ref} className="px-6 md:px-12 lg:px-24 xl:px-32 pt-12 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
           <motion.h2

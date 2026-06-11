@@ -9,7 +9,7 @@ export default function EarlyAccess() {
 
   return (
     <section>
-      <SectionDivider label="§8" />
+      <SectionDivider label="08" />
       <div ref={ref} className="px-6 md:px-12 lg:px-24 xl:px-32 pt-12 pb-32">
         <div className="max-w-2xl mx-auto text-center">
           <motion.h2
