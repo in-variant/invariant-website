@@ -17,6 +17,7 @@ const SpaceCompliance = lazy(() => import('./pages/SpaceCompliance'))
 const NuclearCompliance = lazy(() => import('./pages/NuclearCompliance'))
 const Part50vs52vs53 = lazy(() => import('./pages/clusters/Part50vs52vs53'))
 const FaaPart450Timeline = lazy(() => import('./pages/clusters/FaaPart450Timeline'))
+const HowToWriteAPsar = lazy(() => import('./pages/clusters/HowToWriteAPsar'))
 
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
@@ -65,6 +66,7 @@ export default function App() {
             <Route path="/nuclear-compliance" element={<NuclearCompliance />} />
             <Route path="/part-50-vs-52-vs-53" element={<Part50vs52vs53 />} />
             <Route path="/faa-part-450-license-timeline" element={<FaaPart450Timeline />} />
+            <Route path="/how-to-write-a-psar" element={<HowToWriteAPsar />} />
             <Route path="/glossary" element={<Glossary />} />
             <Route path="/glossary/:slug" element={<GlossaryEntryPage />} />
           </Route>

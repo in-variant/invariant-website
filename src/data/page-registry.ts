@@ -62,8 +62,8 @@ export const PAGES: PageRef[] = [
       'A chapter-by-chapter drafting guide to the Preliminary Safety Analysis Report required for an NRC Construction Permit or Part 53 application.',
     pillar: 'nuclear',
     type: 'cluster',
-    live: false,
-    weight: 3,
+    live: true,
+    weight: 2,
   },
   {
     slug: 'how-long-does-nrc-license-take',
