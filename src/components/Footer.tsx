@@ -7,6 +7,7 @@ const COLUMNS = [
     links: [
       { label: 'Space compliance', to: '/space-compliance' },
       { label: 'Nuclear compliance', to: '/nuclear-compliance' },
+      { label: 'Regulators', to: '/regulators' },
       { label: 'Glossary', to: '/glossary' },
       { label: 'Library', to: '/compliance' },
     ],
@@ -30,13 +31,17 @@ const COLUMNS = [
     ],
   },
   {
-    title: 'Region guides',
+    title: 'Deep dives',
     links: [
-      { label: 'EU advanced reactor licensing', to: '/advanced-reactor-licensing-eu' },
-      { label: 'EU space compliance', to: '/space-compliance-eu' },
-      { label: 'India nuclear compliance', to: '/nuclear-compliance-india' },
-      { label: 'India space compliance', to: '/space-compliance-india' },
-      { label: 'Japan nuclear compliance', to: '/nuclear-compliance-japan' },
+      { label: 'Part 53 subparts', to: '/part-53-subparts' },
+      { label: 'NRC RAI management', to: '/nrc-rai-management' },
+      { label: 'ITAAC closure', to: '/itaac-closure' },
+      { label: '10 CFR Part 73 security', to: '/nrc-part-73-security' },
+      { label: 'FAA AC 450 series', to: '/faa-ac-450-series' },
+      { label: 'FAA vehicle operator license', to: '/faa-vehicle-operator-license' },
+      { label: 'FCC Schedule S', to: '/fcc-schedule-s' },
+      { label: 'ITAR Commodity Jurisdiction', to: '/itar-commodity-jurisdiction' },
+      { label: 'ITU Bringing Into Use', to: '/itu-bringing-into-use' },
     ],
   },
   {
