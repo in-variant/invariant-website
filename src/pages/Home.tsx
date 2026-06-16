@@ -65,7 +65,7 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Invariant: autonomous agents for mission-critical compliance"
+        title="Invariant: Compliance for Space & Nuclear"
         description="Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First."
         canonical="https://invariant-ai.com/"
         jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
