@@ -139,6 +139,7 @@ export const WEBSITE_SCHEMA = {
 export function articleSchema({
   title,
   description,
+  abstract,
   url,
   datePublished,
   dateModified,
@@ -151,6 +152,8 @@ export function articleSchema({
 }: {
   title: string
   description: string
+  /** Optional long-form TL;DR that LLMs use as the citation snippet. */
+  abstract?: string
   url: string
   datePublished: string
   dateModified?: string
@@ -172,6 +175,7 @@ export function articleSchema({
     '@type': 'Article',
     headline: title,
     description,
+    ...(abstract ? { abstract } : {}),
     image: image || DEFAULT_OG,
     datePublished,
     dateModified: dateModified || datePublished,

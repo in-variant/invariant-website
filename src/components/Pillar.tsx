@@ -75,6 +75,7 @@ export default function Pillar({
     articleSchema({
       title: data.h1,
       description: data.meta_description,
+      abstract: data.tldr,
       url,
       datePublished: updatedAt,
       dateModified: updatedAt,

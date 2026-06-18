@@ -33,6 +33,9 @@ const COLUMNS = [
   {
     title: 'Deep dives',
     links: [
+      { label: 'AI for nuclear compliance', to: '/ai-for-nuclear-compliance' },
+      { label: 'DOE Reactor Pilot Program', to: '/doe-advanced-reactor-pilot-program' },
+      { label: 'Which agency licenses my satellite', to: '/which-agency-licenses-my-satellite' },
       { label: 'Part 53 subparts', to: '/part-53-subparts' },
       { label: 'NRC RAI management', to: '/nrc-rai-management' },
       { label: 'ITAAC closure', to: '/itaac-closure' },

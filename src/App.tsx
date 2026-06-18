@@ -53,6 +53,9 @@ const FccScheduleS = lazy(() => import('./pages/clusters/FccScheduleS'))
 const ItuBringingIntoUse = lazy(() => import('./pages/clusters/ItuBringingIntoUse'))
 const FaaVehicleOperatorLicense = lazy(() => import('./pages/clusters/FaaVehicleOperatorLicense'))
 const NrcPart73Security = lazy(() => import('./pages/clusters/NrcPart73Security'))
+const WhichAgencyLicensesMySatellite = lazy(() => import('./pages/clusters/WhichAgencyLicensesMySatellite'))
+const AiForNuclearCompliance = lazy(() => import('./pages/clusters/AiForNuclearCompliance'))
+const DoeAdvancedReactorPilotProgram = lazy(() => import('./pages/clusters/DoeAdvancedReactorPilotProgram'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -133,6 +136,9 @@ export default function App() {
             <Route path="/itu-bringing-into-use" element={<ItuBringingIntoUse />} />
             <Route path="/faa-vehicle-operator-license" element={<FaaVehicleOperatorLicense />} />
             <Route path="/nrc-part-73-security" element={<NrcPart73Security />} />
+            <Route path="/which-agency-licenses-my-satellite" element={<WhichAgencyLicensesMySatellite />} />
+            <Route path="/ai-for-nuclear-compliance" element={<AiForNuclearCompliance />} />
+            <Route path="/doe-advanced-reactor-pilot-program" element={<DoeAdvancedReactorPilotProgram />} />
           </Route>
         </Routes>
       </Suspense>

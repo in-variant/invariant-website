@@ -343,6 +343,39 @@ export const PAGES: PageRef[] = [
     live: true,
     weight: 2,
   },
+  {
+    slug: 'which-agency-licenses-my-satellite',
+    title: 'Which agency licenses my satellite: the US space regulator map',
+    shortTitle: 'Which agency licenses my satellite',
+    description:
+      'A decision matrix across FAA, FCC, NOAA, NRC, DDTC, and BIS for US commercial space activity, with the typical smallsat license stack.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'ai-for-nuclear-compliance',
+    title: 'AI for nuclear compliance: Atomic Canyon vs Inductive vs Everstar vs Invariant',
+    shortTitle: 'AI for nuclear compliance',
+    description:
+      'A side-by-side comparison of the four AI vendors competing on NRC licensing work: Atomic Canyon Neutron, Inductive, Everstar Gordian, and Invariant Helion-512.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'doe-advanced-reactor-pilot-program',
+    title: 'DOE Advanced Reactor Pilot Program: the 11 projects and the July 4, 2026 criticality target',
+    shortTitle: 'DOE Reactor Pilot Program',
+    description:
+      'EO 14301 set up the DOE pilot for 11 advanced reactors to reach criticality by July 4, 2026 under DOE authority, not the NRC. Projects, authority, NRC interface, status.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
 ]
 
 export const LIVE_PAGES = PAGES.filter((p) => p.live)

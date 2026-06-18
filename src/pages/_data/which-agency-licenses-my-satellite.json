@@ -1,0 +1,335 @@
+{
+  "h1": "Which agency licenses my satellite: the US space regulator map",
+  "meta_title": "Which agency licenses my satellite? FAA, FCC, NOAA, NRC",
+  "meta_description": "Which US agency licenses your satellite or space activity. FAA vs FCC vs NOAA vs NRC vs DDTC vs BIS, with the typical commercial smallsat license stack.",
+  "tldr": "There is no single agency that licenses a US commercial satellite. The FAA Office of Commercial Space Transportation licenses launch and reentry under 14 CFR Part 450, the FCC Space Bureau licenses spectrum and orbital debris under 47 CFR Part 25, NOAA licenses Earth imagery under 15 CFR Part 960, and the State Department DDTC plus Commerce BIS control export. A typical commercial smallsat needs FCC, NOAA, and an EAR classification, but no FAA license unless it operates the launch vehicle.",
+  "canonical_summary": "For a US commercial space mission, there is no single licensing authority. The FAA Office of Commercial Space Transportation licenses launch and reentry, the FCC Space Bureau licenses spectrum and orbital debris mitigation, NOAA's Commercial Remote Sensing Regulatory Affairs office licenses any sensor that produces Earth imagery, and the State Department's DDTC plus the Commerce Department's BIS control export of the hardware and technical data. Nuclear assets sit on a separate, categorical split: the Nuclear Regulatory Commission licenses civilian commercial reactors and special nuclear material, while the Department of Energy and NNSA authorize government-owned reactors at the national labs, the weapons complex, and naval propulsion.\n\nThe practical answer to \"which agency licenses my satellite\" is almost always more than one. A typical commercial smallsat operator that buys a launch and flies an imaging payload holds an FCC Part 25 authorization (often the streamlined small-satellite path under Section 25.122 or Section 25.123), a NOAA Part 960 license tiered by data novelty, and an EAR classification for the bus, with no FAA license unless it operates the launch vehicle and no DDTC registration unless any component is on the US Munitions List.\n\nEach regime runs on a separate statute, separate timeline, and separate interagency consultation. There is no statutory consolidation mechanism, and there is currently no standalone US \"on-orbit mission authorization\" license.",
+  "sections": [
+    {
+      "heading": "The US regulator map at a glance",
+      "paragraphs": [
+        "US commercial space activity sits inside a deliberately fragmented federal structure. No single agency holds end-to-end authority. The same mission can require concurrent licenses from four civilian regulators, plus the export-control agencies, plus, for nuclear payloads or power systems, a separate regime entirely.",
+        "The mapping is functional. The FAA licenses what flies. The FCC licenses what transmits. NOAA licenses what senses Earth. The State Department and Commerce Department control what crosses the border, including technical data shared with a foreign national. The NRC and the Department of Energy split the nuclear world on ownership: commercial reactors and civilian special nuclear material go to the NRC, government reactors and weapons material go to DOE and NNSA."
+      ],
+      "bullets": [
+        "FAA Office of Commercial Space Transportation (AST): launch, reentry, and spaceports under 14 CFR Part 450.",
+        "FCC Space Bureau: space station and earth station radio licenses under 47 CFR Part 25, including orbital debris mitigation.",
+        "NOAA Commercial Remote Sensing Regulatory Affairs (CRSRA): private remote sensing space systems under 15 CFR Part 960.",
+        "State Department DDTC: ITAR-controlled spacecraft and components on the US Munitions List under 22 CFR Parts 120 to 130.",
+        "Commerce Department BIS: dual-use spacecraft and components on the Commerce Control List under 15 CFR Part 774.",
+        "NRC: civilian commercial reactors and special nuclear material under 10 CFR Parts 50, 52, 70, 72, and 76.",
+        "DOE and NNSA: government-owned reactors, weapons complex, and naval propulsion under the Atomic Energy Act and 10 CFR Part 830.",
+        "PHMSA: hazardous materials in ground transport, including propellants and pressurants, under 49 CFR Parts 171 to 180."
+      ]
+    },
+    {
+      "heading": "FAA AST: launch, reentry, and vehicle operations",
+      "paragraphs": [
+        "The FAA Office of Commercial Space Transportation licenses launch and reentry of any US launch operator and any US-controlled vehicle abroad, under 51 USC chapter 509 and 14 CFR Part 450. Part 450 is the consolidated Streamlined Launch and Reentry rule that became effective March 10, 2021 and replaced legacy Parts 415, 417, 431, and 435.",
+        "A Part 450 vehicle operator license can authorize launch, reentry, or both, and is valid for up to five years. FAA AST scope explicitly includes pre-flight and post-flight ground operations at the launch site. If you only buy a ride on someone else's rocket, you are a customer and the launch provider holds the FAA license. If you operate the launch vehicle, the reentry vehicle, or a spaceport, you need your own Part 450 license."
+      ],
+      "subsections": [
+        {
+          "heading": "Payload review under Section 50904",
+          "paragraphs": [
+            "Under 51 USC Section 50904(c), the FAA may refuse to license a launch if the payload would jeopardize public safety, national security, foreign policy, or US international obligations. The mechanism is the payload review and determination at 14 CFR Section 450.43. For lunar missions and novel mission profiles, this is the de facto mission authorization gate, even though the FAA cannot directly regulate on-orbit conduct."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "FCC Space Bureau: spectrum, earth stations, and orbital debris",
+      "paragraphs": [
+        "The FCC licenses radiofrequency use by US-licensed space stations and earth stations under 47 CFR Part 25. Every space station application must include an Orbital Debris Mitigation plan under Section 25.114, covering debris release, collision risk, maneuverability, casualty risk on reentry, and post-mission disposal. In the Second Report and Order FCC 22-74, adopted September 29, 2022, the Commission shortened the LEO post-mission disposal benchmark from 25 years to 5 years.",
+        "The FCC also reaches non-US operators that seek US market access through earth station landing rights, which is jurisdictionally significant where NOAA and the FAA do not reach. Earth station licenses for the ground network are separate authorizations under Part 25 Subpart C."
+      ],
+      "subsections": [
+        {
+          "heading": "Three smallsat-friendly tracks",
+          "bullets": [
+            "Full Part 25 license: the default for commercial NGSO and GSO systems.",
+            "Streamlined small-satellite license under Section 25.122: up to 10 satellites, wet mass at or below 180 kg, on-orbit lifetime at or below 6 years, deployment below 600 km or demonstrable deorbit within 6 years, plus debris and collision-risk findings.",
+            "Streamlined small spacecraft license under Section 25.123: a single-satellite path with tighter debris and trackability conditions, available for missions that do not fit Section 25.122.",
+            "Part 5 Experimental: one-off technology demonstrations, university missions, and pre-commercial testing."
+          ]
+        },
+        {
+          "heading": "ISAM rulemaking",
+          "paragraphs": [
+            "On February 15, 2024 the FCC released FCC 24-21, a Notice of Proposed Rulemaking proposing a dedicated licensing framework for in-space servicing, assembly, and manufacturing space stations covering inspection, life extension, refueling, repair, debris removal, and on-orbit assembly. The proposal was published at 89 FR 18840 on March 15, 2024."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "NOAA CRSRA: remote sensing under 15 CFR Part 960",
+      "paragraphs": [
+        "Under the Land Remote Sensing Policy Act at 51 USC chapter 601 and 15 CFR Part 960, NOAA licenses any US person operating a private remote sensing space system. The trigger is the sensing capability, not the business plan: a hosted payload, a star tracker repurposed for Earth views, or a hyperspectral demo all require a license if they can produce Earth data.",
+        "The 2020 rewrite of Part 960 introduced a three-tier system based on data availability. Tier 1 covers capabilities substantially the same as those already available from unlicensed entities including foreign sources. Tier 2 covers capabilities substantially the same as those available from other CRSRA licensees. Tier 3 covers capabilities unavailable anywhere. Standard conditions live at Sections 960.8, 960.9, and 960.10 respectively. NOAA must act within 60 days of a complete application and consults the Department of Defense on national security and the State Department on foreign policy."
+      ]
+    },
+    {
+      "heading": "DDTC and BIS: ITAR and EAR for space hardware",
+      "paragraphs": [
+        "Spacecraft and related defense articles are controlled under the US Munitions List Category XV at 22 CFR 121.1, administered by the State Department's Directorate of Defense Trade Controls under the ITAR at 22 CFR Parts 120 to 130. The May 13, 2014 export control reform moved most commercial communications and remote sensing items to the Commerce Control List, but military and intelligence-grade spacecraft, GNC, and sensitive optics remain ITAR. The October 23, 2024 rulemaking further refined Categories IV and XV.",
+        "Dual-use spacecraft and components live in the Commerce Control List under 15 CFR Part 774, primarily in the 9A515 series, administered by the Commerce Department's Bureau of Industry and Security. EAR control is destination-keyed. A commercial Earth observation bus may be EAR99 or 9A515.a to most destinations, yet still require a license with a presumption of denial for Country Group D:5 destinations under Section 744.21."
+      ],
+      "subsections": [
+        {
+          "heading": "DDTC registration",
+          "paragraphs": [
+            "If any component, subsystem, or service in your stack is ITAR-controlled, your company must register with DDTC under 22 CFR Section 122.1 before applying for any license, agreement, or claimed exemption. Registration is annual and fee-based, and it is required of manufacturers of USML items even if you never export. Specific transactions then require a DSP-5 for permanent hardware export, a DSP-73 for temporary export, a Technical Assistance Agreement, or a Manufacturing License Agreement."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "NRC vs DOE: the categorical line for nuclear",
+      "paragraphs": [
+        "Nuclear governance is bifurcated by ownership and end use, not by technology. The Nuclear Regulatory Commission, established under the Energy Reorganization Act of 1974, licenses the civilian commercial sector. The Department of Energy, including the semi-autonomous National Nuclear Security Administration, authorizes, owns, and operates government nuclear assets.",
+        "The NRC licenses commercial power reactors under 10 CFR Part 50 and 10 CFR Part 52, non-power production and utilization facilities including most university research reactors, and possession and use of special nuclear material in civilian channels under 10 CFR Parts 70, 72, and 76. DOE regulates itself for nuclear safety at government-owned, contractor-operated facilities under 10 CFR Part 830, with the Defense Nuclear Facilities Safety Board providing advisory oversight of defense nuclear facilities. The Advanced Test Reactor at Idaho National Laboratory and the High Flux Isotope Reactor at Oak Ridge operate under DOE authority, not NRC licenses."
+      ],
+      "subsections": [
+        {
+          "heading": "NNSA: weapons and naval reactors",
+          "paragraphs": [
+            "NNSA was established by Title 32 of the National Defense Authorization Act for Fiscal Year 2000, codified at 50 USC Section 2401 et seq. It runs the design laboratories, the production sites, the Nevada National Security Site, and the Naval Nuclear Propulsion Program co-managed under a dual-hatted Director who reports to both the Secretary of the Navy and the NNSA Administrator under Executive Order 12344. Naval propulsion reactors, prototype training reactors, and their highly enriched uranium fuel are categorically outside NRC jurisdiction."
+          ]
+        },
+        {
+          "heading": "Why this matters for space nuclear power",
+          "paragraphs": [
+            "A startup pursuing a commercial reactor design, even one initially demonstrated at a DOE site under the Advanced Reactor Demonstration Program, must ultimately obtain an NRC license to sell power commercially. A space nuclear power source flown on a defense mission stays on the DOE and NNSA side of the line. The dividing line is not the isotope; it is who owns the facility and what it is for."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "The typical multi-license stack",
+      "paragraphs": [
+        "Most US commercial smallsat operators assemble the same stack. The FCC and NOAA filings are the long poles and should start in parallel as early as preliminary design review. Export classification should precede any foreign supplier or foreign launch contract."
+      ],
+      "subsections": [
+        {
+          "heading": "Commercial imaging smallsat buying a ride",
+          "bullets": [
+            "FCC Part 25 authorization, often the streamlined Section 25.122 or Section 25.123 path, plus earth station licenses under Part 25 Subpart C.",
+            "NOAA Part 960 license, tier assigned based on capability novelty.",
+            "EAR classification of the bus, typically ECCN 9A515.a, with destination-keyed licensing for export.",
+            "No FAA license, because the launch provider holds Part 450.",
+            "No DDTC registration unless a component is on the USML."
+          ]
+        },
+        {
+          "heading": "University cubesat technology demonstration",
+          "bullets": [
+            "FCC Part 5 Experimental authorization through the Experimental Licensing System.",
+            "NOAA Part 960 license if any sensor can image Earth.",
+            "EAR-only classification confirmed, typically EAR99 or 9A515 series.",
+            "No FAA license, no DDTC registration."
+          ]
+        },
+        {
+          "heading": "Vertically integrated launch and constellation operator",
+          "bullets": [
+            "FAA Part 450 vehicle operator license for the launch vehicle.",
+            "FCC Part 25 NGSO authorization for the constellation, plus earth station licenses for gateways.",
+            "PHMSA 49 CFR Parts 171 to 180 for ground transport of propellants.",
+            "ITAR Category XV for spacecraft hardware and Category IV for the launch vehicle, with DDTC registration.",
+            "NOAA Part 960 if any payload images Earth."
+          ]
+        },
+        {
+          "heading": "Crewed mission",
+          "bullets": [
+            "FAA Part 450 for public safety on launch and reentry.",
+            "14 CFR Part 460 informed-consent regime for occupants, under the statutory learning period at 51 USC Section 50905(c), extended through January 1, 2028.",
+            "For ISS missions, NASA Commercial Crew Program contractual safety and mission assurance, with FAA retaining public-safety licensing.",
+            "Reciprocal waiver of claims under 51 USC Section 50914(b)."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Edge cases that catch builders",
+      "subsections": [
+        {
+          "heading": "Satellite servicing and the STM gap",
+          "paragraphs": [
+            "Every servicer that uses radio needs an FCC space station authorization, and the proposed ISAM framework in FCC 24-21 would build a dedicated track. Space Traffic Management authority, however, is unresolved. Space Policy Directive-3 assigned civil STM to the Commerce Department, and NOAA's Office of Space Commerce operates the Traffic Coordination System for Space, but Commerce lacks Congressional authority to mandate maneuvers. Builders proposing rendezvous and proximity operations navigate an FCC license (required), TraCSS coordination (voluntary), and informal Article VI consultations, without any single agency saying yes to the mission itself."
+          ]
+        },
+        {
+          "heading": "Lunar payloads",
+          "paragraphs": [
+            "The FAA cannot directly regulate on-orbit or on-surface conduct, but it can refuse to license the launch under Section 50904 if the payload review is unfavorable. The agency coordinates that determination with the State Department on Article VI, with NOAA on remote sensing, and with NASA. This is the de facto mission authorization gate for sample return, surface mobility, and resource prospecting."
+          ]
+        },
+        {
+          "heading": "Dual-use hardware",
+          "paragraphs": [
+            "EAR-controlled does not mean freely exportable. The see-through rule for sub-assemblies and the catch-all in 9A515.x routinely pull components back under stricter controls when integrated into a satellite ultimately destined for a Country Group D:5 country. The October 23, 2024 amendments to USML Categories IV and XV further narrowed ITAR coverage while tightening controls on specified spacecraft headed to embargoed destinations."
+          ]
+        },
+        {
+          "heading": "Commercial human spaceflight",
+          "paragraphs": [
+            "Three statutory pieces interact. Section 50905(b)(2) and (c) bar the FAA from issuing occupant-safety regulations during the learning period, now extended to January 1, 2028. Section 50905(b)(5) requires written informed consent from every space flight participant. Section 50914(b) requires a reciprocal waiver of claims among the licensee, contractors, customers, crew, and participants. Third-party tort exposure is not waived and is backstopped only up to the FAA-set Maximum Probable Loss, with conditional federal indemnification under Section 50915."
+          ]
+        }
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which US agency licenses my satellite?",
+      "answer": "There is no single agency. Most US commercial satellites need an FCC Part 25 radio license for the spacecraft and earth stations, a NOAA Part 960 license if any sensor can image Earth, and an export classification under either the State Department's ITAR or the Commerce Department's EAR. The FAA licenses launch and reentry, not the satellite, so you only deal with the FAA if you operate the launch vehicle, a reentry vehicle, or a spaceport. The US has no standalone on-orbit mission authorization license today."
+    },
+    {
+      "question": "NRC vs FAA vs FCC: which one do I need?",
+      "answer": "These three agencies do different things and you may need any combination. The FAA licenses launch and reentry under 14 CFR Part 450. The FCC licenses radiofrequency use by space stations and earth stations under 47 CFR Part 25, including orbital debris mitigation. The NRC licenses civilian commercial nuclear reactors and special nuclear material under 10 CFR Parts 50, 52, 70, 72, and 76. A commercial satellite with no nuclear payload typically needs the FCC but not the NRC, and only needs the FAA if it operates the launch."
+    },
+    {
+      "question": "Do I need an FAA license if I just buy a launch?",
+      "answer": "No. If you are only a payload customer, the launch operator holds the FAA Part 450 license and you do not need your own. The FAA license obligation attaches to the entity that conducts the launch or reentry, that operates a reusable vehicle, or that runs a spaceport. The FAA does review your payload under Section 50904, and can refuse to license the launch if the payload would jeopardize public safety, national security, foreign policy, or US international obligations, but that is a determination on the launch license, not a license you hold."
+    },
+    {
+      "question": "When do I need a NOAA remote sensing license?",
+      "answer": "You need a NOAA Commercial Remote Sensing Regulatory Affairs license under 15 CFR Part 960 whenever a US-operated spacecraft carries any sensor capable of producing imagery or data about Earth. The trigger is sensing capability, not business plan. Hosted payloads, repurposed star trackers used for Earth views, and experimental hyperspectral demonstrators all require a license. NOAA tiers systems by data novelty: Tier 1 for capabilities already available from unlicensed sources including foreign, Tier 2 for capabilities available from other US licensees, and Tier 3 for capabilities unavailable anywhere. Standard conditions are at Sections 960.8, 960.9, and 960.10."
+    },
+    {
+      "question": "What is the difference between an FCC small-satellite license under Section 25.122 and Section 25.123?",
+      "answer": "Both are streamlined paths inside 47 CFR Part 25, with lower fees and faster review than a full Part 25 license. Section 25.122 covers up to 10 satellites under a single authorization, with each satellite at or below 180 kg wet mass, on-orbit lifetime at or below 6 years, deployed below 600 km or demonstrably deorbited within 6 years, plus debris and collision-risk findings. Section 25.123 is a parallel path for missions that do not fit Section 25.122, including missions above 600 km, with a single-satellite cap and tighter debris and trackability conditions."
+    },
+    {
+      "question": "ITAR or EAR: how do I know which controls my satellite?",
+      "answer": "Classify the bill of materials. Spacecraft providing a critical military or intelligence advantage remain on the US Munitions List Category XV at 22 CFR 121.1 and are ITAR-controlled by the State Department's DDTC. Most commercial communications and remote sensing spacecraft and components were moved to the Commerce Control List in 2014 and now sit in the 9A515 series at 15 CFR Part 774 under the EAR, administered by the Commerce Department's BIS. When classification is ambiguous, file a Commodity Jurisdiction request to DDTC, then a Commodity Classification to BIS for confirmed EAR items."
+    },
+    {
+      "question": "Does EAR-controlled mean my satellite can be freely exported?",
+      "answer": "No. EAR controls are destination-keyed. A commercial Earth observation bus may be EAR99 or 9A515.a to most destinations, yet still require a license with a presumption of denial for Country Group D:5 destinations under 15 CFR Section 744.21. The see-through rule for sub-assemblies and the catch-all in 9A515.x routinely pull components back under stricter controls when they are integrated into a satellite ultimately destined for an embargoed country. The October 23, 2024 amendments tightened controls on specified spacecraft headed to embargoed destinations."
+    },
+    {
+      "question": "When does the NRC regulate a nuclear power source for a spacecraft?",
+      "answer": "The NRC regulates civilian commercial nuclear activity. A nuclear power source designed and owned for a commercial space mission would, in principle, fall on the NRC side once it leaves the federal demonstration phase, because the NRC licenses commercial reactors and special nuclear material under 10 CFR Parts 50, 52, 70, 72, and 76. Government-owned reactors, the weapons complex, and naval propulsion stay with the Department of Energy and NNSA under the Atomic Energy Act and 10 CFR Part 830. The dividing line is ownership and end use, not the isotope."
+    },
+    {
+      "question": "Who licenses satellite servicing, refueling, and debris removal?",
+      "answer": "The FCC licenses the radio side under 47 CFR Part 25 and proposed a dedicated ISAM space station framework in FCC 24-21, published at 89 FR 18840 on March 15, 2024. Space Traffic Management is unresolved. Space Policy Directive-3 assigned civil STM to the Commerce Department, and NOAA's Office of Space Commerce operates the Traffic Coordination System for Space, but Commerce lacks Congressional authority to mandate maneuvers. There is no single agency that authorizes the rendezvous, proximity operations, or capture mission itself, so the FCC license carries the weight."
+    },
+    {
+      "question": "What is the FCC 5-year deorbit rule?",
+      "answer": "In the Second Report and Order FCC 22-74, adopted September 29, 2022, the FCC shortened the post-mission disposal benchmark for LEO satellites from the historical 25 years to 5 years. The rule is enforced through the Orbital Debris Mitigation showing required in every space station application under 47 CFR Section 25.114(d)(14). It applies to FCC-licensed space stations and, through US market access conditions on earth station landing rights, indirectly reaches some non-US operators that serve US customers."
+    },
+    {
+      "question": "Do I need DDTC registration if I never export anything?",
+      "answer": "Yes, if any component, subsystem, or service in your stack is ITAR-controlled. Under 22 CFR Section 122.1, US manufacturers of USML items must register with DDTC regardless of whether they ever export. Registration is annual and fee-based, and it is a prerequisite to any license, agreement, or claimed exemption. Specific transactions then require a DSP-5 for permanent hardware export, a DSP-73 for temporary export, a Technical Assistance Agreement, or a Manufacturing License Agreement. Sharing technical data with a foreign national employee counts as an export."
+    },
+    {
+      "question": "What does a typical commercial smallsat license stack look like?",
+      "answer": "A typical US commercial smallsat operator that buys a launch and flies an imaging payload holds an FCC Section 25.122 or 25.123 authorization, plus earth station licenses under Part 25 Subpart C, plus a NOAA Part 960 license tiered by capability novelty, plus an EAR classification of the bus, often ECCN 9A515.a, with no FAA license and no DDTC registration. Start the FCC and NOAA filings in parallel at preliminary design review because both review cycles are the long pole. Confirm export classification before signing any foreign supplier or foreign launch contract."
+    }
+  ],
+  "citations": [
+    {
+      "label": "FAA Office of Commercial Space Transportation: licenses",
+      "url": "https://www.faa.gov/space/licenses"
+    },
+    {
+      "label": "FAA Streamlined Launch and Reentry rule (Part 450 background)",
+      "url": "https://www.faa.gov/space/streamlined_licensing_process"
+    },
+    {
+      "label": "14 CFR Part 450, Launch and Reentry License Requirements",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-III/subchapter-C/part-450"
+    },
+    {
+      "label": "FCC Space Bureau: satellite licensing",
+      "url": "https://www.fcc.gov/space-bureau/satellite-licensing"
+    },
+    {
+      "label": "FCC streamlined small-satellite licensing",
+      "url": "https://www.fcc.gov/space-bureau/streamlined-small-satellite-licensing"
+    },
+    {
+      "label": "47 CFR Section 25.122, streamlined small-satellite license",
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-25/subpart-B/section-25.122"
+    },
+    {
+      "label": "47 CFR Section 25.123, streamlined small spacecraft license",
+      "url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-25/subpart-B/section-25.123"
+    },
+    {
+      "label": "FCC 22-74, 5-year LEO post-mission disposal order",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-22-74A1.pdf"
+    },
+    {
+      "label": "FCC 24-21, ISAM space stations NPRM",
+      "url": "https://docs.fcc.gov/public/attachments/FCC-24-21A1.pdf"
+    },
+    {
+      "label": "NOAA Commercial Remote Sensing Regulatory Affairs",
+      "url": "https://www.nesdis.noaa.gov/commercial-space/commercial-remote-sensing-regulatory-affairs"
+    },
+    {
+      "label": "NOAA CRSRA tier categorization",
+      "url": "https://www.nesdis.noaa.gov/commercial-space/regulatory-affairs/licensing/tier-categorization"
+    },
+    {
+      "label": "15 CFR Part 960, Licensing of Private Remote Sensing Space Systems",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-IX/subchapter-A/part-960"
+    },
+    {
+      "label": "22 CFR Part 121, US Munitions List",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-121"
+    },
+    {
+      "label": "DDTC ITAR Part 121 (official)",
+      "url": "https://www.pmddtc.state.gov/regulations_laws/documents/official_itar/ITAR_Part_121.pdf"
+    },
+    {
+      "label": "DDTC registration (22 CFR Part 122)",
+      "url": "https://www.ecfr.gov/current/title-22/chapter-I/subchapter-M/part-122"
+    },
+    {
+      "label": "15 CFR Part 774, Commerce Control List",
+      "url": "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-774"
+    },
+    {
+      "label": "USML Categories IV and XV amendments (Oct 23, 2024)",
+      "url": "https://www.federalregister.gov/documents/2024/10/23/2024-24091/international-traffic-in-arms-regulations-itar-us-munitions-list-categories-iv-and-xv"
+    },
+    {
+      "label": "NRC: about",
+      "url": "https://www.nrc.gov/about-nrc.html"
+    },
+    {
+      "label": "NRC: regulatory scope",
+      "url": "https://www.nrc.gov/about-nrc/regulatory.html"
+    },
+    {
+      "label": "NRC: special nuclear material",
+      "url": "https://www.nrc.gov/materials/sp-nucmaterials.html"
+    },
+    {
+      "label": "DOE Nuclear Safety Management (10 CFR Part 830)",
+      "url": "https://www.energy.gov/ehss/nuclear-safety-management-10-cfr-830"
+    },
+    {
+      "label": "DOE Office of Nuclear Energy: Advanced Test Reactor",
+      "url": "https://www.energy.gov/ne/advanced-test-reactor"
+    },
+    {
+      "label": "DOE NNSA: about",
+      "url": "https://www.energy.gov/nnsa/about-nnsa"
+    },
+    {
+      "label": "DOE NNSA: Naval Nuclear Propulsion Program",
+      "url": "https://www.energy.gov/nnsa/naval-nuclear-propulsion-program"
+    },
+    {
+      "label": "51 USC chapter 509, commercial space launch",
+      "url": "https://uscode.house.gov/view.xhtml?path=%2Fprelim%40title51%2Fsubtitle5%2Fchapter509&edition=prelim"
+    }
+  ]
+}
