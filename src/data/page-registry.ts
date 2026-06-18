@@ -398,6 +398,28 @@ export const PAGES: PageRef[] = [
     live: true,
     weight: 2,
   },
+  {
+    slug: 'aerb-licensing-process',
+    title: 'The AERB licensing process for advanced reactors and SMRs in India after the SHANTI Act',
+    shortTitle: 'AERB licensing process',
+    description:
+      'The AERB consent chain (siting, construction, commissioning, operation, decommissioning) for advanced reactors and SMRs in India after the SHANTI Act 2025, with the safety codes that govern each stage.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'in-space-authorisation-process',
+    title: 'How IN-SPACe authorisation works in India: procedure, timelines, and documents',
+    shortTitle: 'IN-SPACe authorisation process',
+    description:
+      'The IN-SPACe authorisation flow under NGP 2024: activity categories, 75 to 120 day target window, engineering data requirements, WPC and AERB interfaces, and the March 2024 FDI regime.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
 ]
 
 export const LIVE_PAGES = PAGES.filter((p) => p.live)
