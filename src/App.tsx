@@ -58,6 +58,7 @@ const WhichAgencyLicensesMySatellite = lazy(() => import('./pages/clusters/Which
 const AiForNuclearCompliance = lazy(() => import('./pages/clusters/AiForNuclearCompliance'))
 const DoeAdvancedReactorPilotProgram = lazy(() => import('./pages/clusters/DoeAdvancedReactorPilotProgram'))
 const IndiaShantiActBharatSmr = lazy(() => import('./pages/clusters/IndiaShantiActBharatSmr'))
+const AiForSpaceCompliance = lazy(() => import('./pages/clusters/AiForSpaceCompliance'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -143,6 +144,7 @@ export default function App() {
             <Route path="/ai-for-nuclear-compliance" element={<AiForNuclearCompliance />} />
             <Route path="/doe-advanced-reactor-pilot-program" element={<DoeAdvancedReactorPilotProgram />} />
             <Route path="/india-shanti-act-bharat-smr" element={<IndiaShantiActBharatSmr />} />
+            <Route path="/ai-for-space-compliance" element={<AiForSpaceCompliance />} />
           </Route>
         </Routes>
       </Suspense>

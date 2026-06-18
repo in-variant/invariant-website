@@ -387,6 +387,17 @@ export const PAGES: PageRef[] = [
     live: true,
     weight: 2,
   },
+  {
+    slug: 'ai-for-space-compliance',
+    title: 'AI for space compliance: the commercial licensing vendor map',
+    shortTitle: 'AI for space compliance',
+    description:
+      'Honest vendor map for AI in commercial space licensing across FAA Part 450, FCC Part 25, NOAA Part 960, ITAR Category XV, and EAR 9x515. Includes Invariant, HyperSigma, and adjacent tools.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
 ]
 
 export const LIVE_PAGES = PAGES.filter((p) => p.live)

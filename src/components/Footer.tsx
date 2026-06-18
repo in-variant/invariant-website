@@ -34,6 +34,7 @@ const COLUMNS = [
     title: 'Deep dives',
     links: [
       { label: 'AI for nuclear compliance', to: '/ai-for-nuclear-compliance' },
+      { label: 'AI for space compliance', to: '/ai-for-space-compliance' },
       { label: 'DOE Reactor Pilot Program', to: '/doe-advanced-reactor-pilot-program' },
       { label: 'India SHANTI Act and Bharat SMR', to: '/india-shanti-act-bharat-smr' },
       { label: 'Which agency licenses my satellite', to: '/which-agency-licenses-my-satellite' },
