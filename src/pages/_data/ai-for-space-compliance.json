@@ -1,5 +1,5 @@
 {
-  "h1": "AI for Space Compliance: The Commercial Licensing Vendor Map",
+  "h1": "AI for space compliance: the commercial licensing vendor map",
   "meta_title": "AI for Space Compliance: Vendor Landscape (2026)",
   "meta_description": "Honest vendor map for AI in commercial space licensing across FAA Part 450, FCC Part 25, NOAA Part 960, ITAR and EAR. What exists, what does not, what to pilot.",
   "tldr": "AI for space compliance is the use of retrieval, drafting, and classification models to accelerate commercial space licensing across FAA Part 450, FCC Part 25, NOAA Part 960, ITAR Category XV, and the EAR 9x515 and 600 series. As of mid 2026 the category is thin. Two direct vendors have public product surface: Invariant, which covers FAA, FCC, NOAA, NRC, and IN-SPACe with a published retrieval benchmark, and HyperSigma.AI, which targets Part 450 only. Most other tools labeled AI for space are adjacent, covering ITAR data handling, CMMC, or space situational awareness rather than licensing applications.",
@@ -11,7 +11,8 @@
         "Commercial space activity has outpaced the regulatory machinery licensing it. FAA Part 450, finalized in 2020 and intended as a performance based replacement for legacy Parts 415, 417, 431, and 435, has produced sustained backlog. The Congressional Research Service report R48582 and 2024 to 2025 reporting in SpaceNews and SpacePolicyOnline document operator complaints, congressional pressure, and an explicit Starship licensing delay. The FAA ended the Part 450 legacy transition period in March 2026, forcing every operator onto the new regime regardless of whether their applications had cleared.",
         "The FCC is moving in the same direction. The September 2022 Report and Order shortened the post mission disposal window to five years for low Earth orbit satellites. The August 2024 Second Report and Order on orbital debris extended the rules. The October 2025 Space Modernization for the 21st Century fact sheet announced the agency would move Part 25 toward a modular self certification model, a so called licensing assembly line that anticipates internal AI assistance. NOAA Commercial Remote Sensing Regulatory Affairs, after the 2020 tier reforms under 15 CFR Part 960, has eliminated many restrictive operating conditions but still processes applications through email and PDF.",
         "ITAR and EAR add a parallel burden. USML Category XV covers spacecraft. The October 2024 proposed revisions to USML Categories IV and XV, alongside EAR revisions including the new License Exception CSA, force every export, deemed export, and technical assistance agreement to be reclassified. Executive Order 14335 of August 2025 then ordered DOT to reevaluate Part 450 within 120 days. Compliance teams need to absorb all of this in parallel, which is where AI assisted retrieval and drafting becomes interesting."
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "What AI for space compliance actually does",
@@ -24,7 +25,8 @@
         "Response to information request triage and draft replies",
         "ITAR jurisdiction, commodity jurisdiction, and EAR ECCN classification support",
         "Docket and review timeline prediction"
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "The vendor map, honestly assessed",
@@ -32,14 +34,16 @@
         "Direct entrants with a public product surface for commercial space licensing are scarce. Invariant covers FAA, FCC, NOAA, DDTC, BIS, NRC, IN-SPACe, and AERB and publishes the FermiBench retrieval benchmark with a Helion-512 score of 0.9693 nDCG at 10. HyperSigma.AI, founded by Gina Lewis and launched in January 2026, targets Part 450 form completion specifically and claims a 70 percent reduction in certification timelines. That claim is unverified by independent customers.",
         "Adjacent tooling is more populated but does not draft applications. Exostar CMMC Ready Suite automates System Security Plans and Plans of Action and Milestones for NIST 800-171 and is used across the defense supply base. CaseMark generates ITAR Technology Control Plans. Ardent Federal TurtleShield and WorkCell handle ITAR data classification. PreVeil handles CUI and ITAR email and file storage. None of these draft a Part 450 system safety program or an FCC Schedule S.",
         "Space situational awareness vendors are sometimes labeled AI for space but do not touch licensing. Slingshot Aerospace operates the Slingshot Beacon SSA platform and won the NOAA TraCSS presentation layer contract in November 2024. LeoLabs runs LEO tracking radar. Kayhan Space Pathfinder handles collision avoidance. Privateer Wayfinder visualizes the catalog. Lockheed Martin Astris AI, announced December 2024, is generic generative AI infrastructure rather than a licensing product. Northrop Grumman, RTX, and Boeing have no public AI compliance tool for space licensing. Defense AI startups including Govini, Distyl, Octant, Hadrian, Anduril, and Shield AI have no space licensing product surface. A name circulating as SpaceTai does not resolve to any real company."
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "Where Invariant fits",
       "paragraphs": [
         "Invariant is an AI native compliance company covering nuclear and space regulators in the United States and India. US coverage spans the FAA Office of Commercial Space Transportation, the FCC Space Bureau, NOAA Commercial Remote Sensing Regulatory Affairs, the State Department Directorate of Defense Trade Controls, the Bureau of Industry and Security, and the Nuclear Regulatory Commission. India coverage spans IN-SPACe, AERB, and DGCA. The same retrieval and drafting stack runs across all regulators rather than separate point products per regime.",
         "The proof point is published. Helion-512, the retrieval model behind Invariant, scores 0.9693 nDCG at 10 on FermiBench, the company's published benchmark for regulatory retrieval over the NRC corpus. The FermiBench paper is at invariant-ai.com slash blog slash fermibench-sota. The same architecture applies to the FAA, FCC, and NOAA corpora because the underlying problem, retrieving the controlling clause from a deep technical regulation given a partial engineering question, is structurally identical. Invariant is backed by Entrepreneurs First."
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "How to evaluate any AI tool for space compliance",
@@ -54,28 +58,32 @@
         "Require a clear position on CUI, ITAR controlled technical data, and FedRAMP",
         "Require traceability from generated text back to source clauses",
         "Confirm support for response to information request workflows, not only initial drafting"
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "Deployment and security considerations",
       "paragraphs": [
         "Space licensing data is rarely public. Part 450 applications contain trajectory, propulsion, and flight termination data that is often ITAR controlled. Part 25 narratives include link budgets and orbital parameters that may be CUI under DFARS 252.204-7012. NOAA Part 960 filings include sensor parameters that can be export controlled. Buyers therefore need to be specific about where the model runs, where embeddings are stored, and whether any data leaves a controlled boundary.",
         "The credible deployment targets are AWS GovCloud US, Microsoft Azure Government, and on premises in a CMMC Level 2 enclave aligned to NIST SP 800-171 Revision 3 and the new 32 CFR Part 170 CMMC final rule effective December 2024. FedRAMP Moderate is the floor for most prime contractor environments and FedRAMP High is appropriate for anything touching national security payloads. Vendors should publish a written ITAR posture covering deemed exports to vendor staff, model training data segregation, and customer data retention. Generic SOC 2 is not sufficient."
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "Regulator posture on AI use",
       "paragraphs": [
         "The FAA has not published a Part 450 specific position on applicant use of AI. The agency does maintain an Artificial Intelligence and Machine Learning technical discipline page within its aircraft certification organization and signals general openness to AI assisted submissions provided the applicant remains responsible for the content. The Streamlines Commercial Space License Approvals announcement of March 2026 closed the Part 450 legacy transition without addressing AI assisted applications directly.",
         "The FCC has been more explicit. The October 2025 Space Modernization for the 21st Century fact sheet describes a modular self certification regime that anticipates internal AI assistance and faster Part 25 throughput. The August 2025 Expediting Initial Processing order shows the same direction at the docket level. NOAA Commercial Remote Sensing Regulatory Affairs has not issued an AI specific statement but has used the 2020 Part 960 tier framework to compress turnaround. DDTC and BIS have not published vendor facing AI guidance, though Executive Order 14335 of August 2025 explicitly references AI in commercial space safety research."
-      ]
+      ],
+      "subsections": []
     },
     {
       "heading": "What compliance teams should pilot first",
       "paragraphs": [
         "Start with retrieval and citation, not with autonomous drafting. A retrieval pilot on the FAA Part 450 Advisory Circular family, the FCC Part 25 docket, and the NOAA Part 960 tier guidance answers the most expensive question your engineers ask, which is what clause controls a given design decision. Measure how often the system surfaces the correct clause as the first result on a fixed evaluation set drawn from your own engineering questions.",
         "Then layer drafting on top, scoped to one section type. Part 450 mishap plans under AC 450.173-1 and system safety programs under AC 450.103-1 are good starting points because they are templated and well defined. FCC Schedule S narratives are another good target. For ITAR and EAR, pilot classification support before generation. The goal of the first six months is not to remove the compliance officer from the loop. It is to cut the time from engineering question to controlling clause by an order of magnitude and to make every drafted paragraph fully traceable to a source clause."
-      ]
+      ],
+      "subsections": []
     }
   ],
   "faqs": [

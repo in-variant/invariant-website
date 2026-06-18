@@ -34,11 +34,8 @@ const COLUMNS = [
     title: 'Deep dives',
     links: [
       { label: 'AI for nuclear compliance', to: '/ai-for-nuclear-compliance' },
-      { label: 'AI for space compliance', to: '/ai-for-space-compliance' },
       { label: 'DOE Reactor Pilot Program', to: '/doe-advanced-reactor-pilot-program' },
       { label: 'India SHANTI Act and Bharat SMR', to: '/india-shanti-act-bharat-smr' },
-      { label: 'AERB licensing process', to: '/aerb-licensing-process' },
-      { label: 'IN-SPACe authorisation process', to: '/in-space-authorisation-process' },
       { label: 'Which agency licenses my satellite', to: '/which-agency-licenses-my-satellite' },
       { label: 'Part 53 subparts', to: '/part-53-subparts' },
       { label: 'NRC RAI management', to: '/nrc-rai-management' },

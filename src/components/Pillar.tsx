@@ -123,12 +123,9 @@ export default function Pillar({
             By the Invariant editorial team · Updated {formatDate(updatedAt)}
           </p>
           {data.tldr && (
-            <aside className="mt-8 rounded-[3px] border-l-2 border-copper bg-white/70 px-5 py-4 md:px-6 md:py-5">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-copper">In one paragraph</p>
-              <p className="mt-2 font-serif text-lg leading-relaxed text-ink md:text-xl">
-                {data.tldr}
-              </p>
-            </aside>
+            <p className="mt-8 font-serif text-xl leading-relaxed text-ink md:text-2xl">
+              {data.tldr}
+            </p>
           )}
           {(() => {
             const linked = new Set<string>()
