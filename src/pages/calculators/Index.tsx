@@ -22,12 +22,6 @@ const TOOLS = [
     description:
       'Check whether your LEO satellite design satisfies the FCC 22-74 five-year post-mission disposal rule under 47 CFR 25.283(e), based on altitude, ballistic coefficient, and disposal strategy.',
   },
-  {
-    slug: 'cfr-citation-formatter',
-    title: 'CFR citation formatter',
-    description:
-      'Paste any Code of Federal Regulations reference and get the eCFR deep link, the Bluebook citation, and a schema.org JSON-LD block. Covers 10 CFR (NRC), 14 CFR (FAA), 15 CFR (NOAA and EAR), 22 CFR (ITAR), and 47 CFR (FCC).',
-  },
 ]
 
 export default function CalculatorsIndex() {
