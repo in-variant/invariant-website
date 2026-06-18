@@ -44,6 +44,7 @@ const FaaPart450Calculator = lazy(() => import('./pages/calculators/FaaPart450Ca
 const NrcLicenseCalculator = lazy(() => import('./pages/calculators/NrcLicenseCalculator'))
 const CalculatorsIndex = lazy(() => import('./pages/calculators/Index'))
 const FccDeorbitCalculator = lazy(() => import('./pages/calculators/FccDeorbitCalculator'))
+const CfrCitationFormatter = lazy(() => import('./pages/calculators/CfrCitationFormatter'))
 const FaaAc450Series = lazy(() => import('./pages/clusters/FaaAc450Series'))
 const Part53Subparts = lazy(() => import('./pages/clusters/Part53Subparts'))
 const NrcRaiManagement = lazy(() => import('./pages/clusters/NrcRaiManagement'))
@@ -56,6 +57,7 @@ const NrcPart73Security = lazy(() => import('./pages/clusters/NrcPart73Security'
 const WhichAgencyLicensesMySatellite = lazy(() => import('./pages/clusters/WhichAgencyLicensesMySatellite'))
 const AiForNuclearCompliance = lazy(() => import('./pages/clusters/AiForNuclearCompliance'))
 const DoeAdvancedReactorPilotProgram = lazy(() => import('./pages/clusters/DoeAdvancedReactorPilotProgram'))
+const IndiaShantiActBharatSmr = lazy(() => import('./pages/clusters/IndiaShantiActBharatSmr'))
 
 const Part100vsPart53 = lazy(() => import('./pages/blog/Part100vsPart53'))
 const SeismicDesignShift = lazy(() => import('./pages/blog/SeismicDesignShift'))
@@ -127,6 +129,7 @@ export default function App() {
             <Route path="/calculators/nrc-license-timeline" element={<NrcLicenseCalculator />} />
             <Route path="/calculators" element={<CalculatorsIndex />} />
             <Route path="/calculators/fcc-deorbit-feasibility" element={<FccDeorbitCalculator />} />
+            <Route path="/calculators/cfr-citation-formatter" element={<CfrCitationFormatter />} />
             <Route path="/faa-ac-450-series" element={<FaaAc450Series />} />
             <Route path="/part-53-subparts" element={<Part53Subparts />} />
             <Route path="/nrc-rai-management" element={<NrcRaiManagement />} />
@@ -139,6 +142,7 @@ export default function App() {
             <Route path="/which-agency-licenses-my-satellite" element={<WhichAgencyLicensesMySatellite />} />
             <Route path="/ai-for-nuclear-compliance" element={<AiForNuclearCompliance />} />
             <Route path="/doe-advanced-reactor-pilot-program" element={<DoeAdvancedReactorPilotProgram />} />
+            <Route path="/india-shanti-act-bharat-smr" element={<IndiaShantiActBharatSmr />} />
           </Route>
         </Routes>
       </Suspense>

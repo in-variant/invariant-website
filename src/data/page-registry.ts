@@ -376,6 +376,17 @@ export const PAGES: PageRef[] = [
     live: true,
     weight: 2,
   },
+  {
+    slug: 'india-shanti-act-bharat-smr',
+    title: 'India nuclear compliance after the SHANTI Act 2025 and the Bharat Small Reactor program',
+    shortTitle: 'India SHANTI Act and Bharat SMR',
+    description:
+      "India's SHANTI Act 2025 repealed the AEA 1962 and CLNDA 2010, opened private reactor build with 49% FDI, set graded operator liability, and gave AERB statutory powers. NPCIL leads the Bharat Small Reactor program of 220 MWe PHWRs.",
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
 ]
 
 export const LIVE_PAGES = PAGES.filter((p) => p.live)
