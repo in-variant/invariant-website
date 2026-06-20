@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 import Logo from './Logo'
 
 // At scrollY=0 the logo and CTA sit near the viewport edges (with a small
 // BUFFER gap). As you scroll past 0 → SCROLL_RANGE px, they animate inward
-// to their normal positions at the max-w-7xl container edges. Naturally
-// reverses when scrolling back up since it's bound to scrollY.
+// to their normal positions at the max-w-7xl container edges. Spring-damped
+// so the motion is smooth and noticeable, reverses on scroll-up.
 const CONTAINER_MAX_PX = 1280 // tailwind max-w-7xl = 80rem
 const BUFFER_PX = 56          // gap to keep from the viewport edge
-const SCROLL_RANGE = 120      // scrollY over which the animation completes
+const SCROLL_RANGE = 320      // scrollY over which the animation completes
 
 type NavLeaf = { title: string; href: string; description?: string }
 type NavGroup = {
@@ -103,8 +103,11 @@ export default function Nav() {
   const edgeShift = Math.max(0, (vw - CONTAINER_MAX_PX - BUFFER_PX) / 2)
 
   const { scrollY } = useScroll()
-  const logoX = useTransform(scrollY, [0, SCROLL_RANGE], [-edgeShift, 0], { clamp: true })
-  const ctaX = useTransform(scrollY, [0, SCROLL_RANGE], [edgeShift, 0], { clamp: true })
+  // Spring-smooth the scroll position so the edge animation reads as a
+  // glide rather than a jitter, and the eye can catch it happening.
+  const scrollSmoothed = useSpring(scrollY, { stiffness: 90, damping: 28, mass: 0.6 })
+  const logoX = useTransform(scrollSmoothed, [0, SCROLL_RANGE], [-edgeShift, 0], { clamp: true })
+  const ctaX = useTransform(scrollSmoothed, [0, SCROLL_RANGE], [edgeShift, 0], { clamp: true })
 
   const requestOpen = (title: string) => {
     if (closeTimeout.current) { clearTimeout(closeTimeout.current); closeTimeout.current = null }
