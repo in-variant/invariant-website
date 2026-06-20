@@ -40,19 +40,20 @@ export default function Nav() {
         }`}
       >
         <div className="relative flex h-[64px] items-center justify-between px-6 lg:px-8">
-          <Logo className="text-ink" />
+          <Logo className={solid ? 'text-ink' : 'text-cloud'} />
 
           {/* Desktop links, centered */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-9 md:flex">
             {LINKS.map((link) => {
               const active = pathname === link.to
+              const baseColor = solid
+                ? active ? 'text-ink' : 'text-ink/55'
+                : active ? 'text-cloud' : 'text-cloud/75'
               return (
                 <Link
                   key={link.to}
                   to={link.to}
-                  className={`font-sans text-sm transition-colors hover:text-copper ${
-                    active ? 'text-ink' : 'text-ink/55'
-                  }`}
+                  className={`font-sans text-sm transition-colors hover:text-copper ${baseColor}`}
                 >
                   {link.label}
                 </Link>
@@ -63,7 +64,11 @@ export default function Nav() {
           {/* Desktop CTA */}
           <a
             href="mailto:founders@invariant-ai.com"
-            className="hidden items-center rounded-full bg-midnight px-5 py-2.5 font-sans text-sm font-medium text-cloud transition-colors hover:bg-copper md:inline-flex"
+            className={`hidden items-center rounded-full px-5 py-2.5 font-sans text-sm font-medium transition-colors md:inline-flex ${
+              solid
+                ? 'bg-midnight text-cloud hover:bg-copper'
+                : 'border border-cloud/30 bg-cloud/10 text-cloud backdrop-blur-sm hover:border-cloud/55 hover:bg-cloud hover:text-ink'
+            }`}
           >
             Get in touch
           </a>
@@ -78,9 +83,9 @@ export default function Nav() {
             {[0, 1, 2].map((i) => (
               <span
                 key={i}
-                className={`block h-[1.5px] w-5 bg-ink transition-all duration-300 ${
-                  open && i === 0 ? 'translate-y-[6.5px] rotate-45' : ''
-                } ${open && i === 1 ? 'opacity-0' : ''} ${open && i === 2 ? '-translate-y-[6.5px] -rotate-45' : ''}`}
+                className={`block h-[1.5px] w-5 transition-all duration-300 ${
+                  solid || open ? 'bg-ink' : 'bg-cloud'
+                } ${open && i === 0 ? 'translate-y-[6.5px] rotate-45' : ''} ${open && i === 1 ? 'opacity-0' : ''} ${open && i === 2 ? '-translate-y-[6.5px] -rotate-45' : ''}`}
               />
             ))}
           </button>

@@ -11,12 +11,12 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/video/hero-poster.jpg"
         >
-          <source src="/video/hero.webm" type="video/webm" media="(min-width: 768px)" />
-          <source src="/video/hero.mp4" type="video/mp4" media="(min-width: 768px)" />
-          <source src="/video/hero-mobile.mp4" type="video/mp4" />
+          {/* Desktop browsers: 1080p VP9 first (smallest at quality), MP4 fallback. */}
+          <source src="/video/hero.webm" type="video/webm" />
+          <source src="/video/hero.mp4" type="video/mp4" />
         </video>
 
         {/* Readability layers: vertical darken so the headline sits clean. */}
