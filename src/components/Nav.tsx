@@ -33,10 +33,10 @@ const NAV_GROUPS: NavGroup[] = [
   },
   {
     title: 'Industries',
-    href: '/nuclear-compliance',
+    href: '/space-compliance',
     items: [
-      { title: 'Nuclear', href: '/nuclear-compliance', description: 'NRC, AERB, IAEA. PSAR, RAI, ITAAC, and decommissioning.' },
       { title: 'Space', href: '/space-compliance', description: 'FAA Part 450, FCC Part 25, NOAA Part 960, and IN-SPACe.' },
+      { title: 'Nuclear', href: '/nuclear-compliance', description: 'NRC, AERB, IAEA. PSAR, RAI, ITAAC, and decommissioning.' },
     ],
     visual: { src: '/platform/document-editor.jpg', alt: 'The Invariant document editor. A PSAR section drafted with the agent on the right.' },
   },

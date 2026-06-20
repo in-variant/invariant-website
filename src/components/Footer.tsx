@@ -16,8 +16,8 @@ const COLUMNS = [
   {
     title: 'Industries',
     links: [
-      { label: 'Nuclear', to: '/nuclear-compliance' },
       { label: 'Space', to: '/space-compliance' },
+      { label: 'Nuclear', to: '/nuclear-compliance' },
     ],
   },
   {
