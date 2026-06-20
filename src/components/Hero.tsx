@@ -42,10 +42,29 @@ export default function Hero() {
         <div className="flex flex-1 flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-16">
           {/* Inner container biased toward the lower third of the hero */}
           <div className="mx-auto mt-[20vh] flex w-full max-w-[46rem] flex-col items-center sm:mt-[24vh] md:mt-[28vh]">
+            <motion.a
+              href="https://www.joinef.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-cloud/25 bg-cloud/10 px-3 py-1 backdrop-blur-md transition-colors hover:border-cloud/40 hover:bg-cloud/15"
+            >
+              <img
+                src="/logos/entrepreneurs-first.png"
+                alt=""
+                aria-hidden="true"
+                className="h-3.5 w-auto opacity-90 brightness-0 invert"
+              />
+              <span className="font-sans text-[11px] font-medium text-cloud/90">
+                Backed by Entrepreneurs First
+              </span>
+            </motion.a>
             <motion.h1
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.95, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
               // SeasonMix is single-weight (400) — no font-variation-settings needed.
               // Fraunces fallback still receives the variation if SeasonMix fails to load.
               style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
@@ -58,7 +77,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.9, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="mt-3 text-cloud text-[clamp(0.75rem,3.5vw,1rem)] leading-[1.5] sm:text-[18px]"
             >
               <span className="block sm:whitespace-nowrap">Autonomous agents that accelerate compliance</span>
@@ -68,7 +87,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 flex justify-center"
             >
               <a
