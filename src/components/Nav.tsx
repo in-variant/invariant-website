@@ -83,12 +83,22 @@ export default function Nav() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
+  // On the home page (transparent nav over the hero video) the solid
+  // background should only kick in after we're past most of the hero.
+  // Everywhere else: any scroll triggers solid immediately.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      const threshold = isHome ? window.innerHeight * 0.65 : 24
+      setScrolled(window.scrollY > threshold)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    window.addEventListener('resize', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [isHome])
 
   // Track viewport width so we can compute how far the logo + CTA need to
   // travel to reach the viewport edges from their container positions.
