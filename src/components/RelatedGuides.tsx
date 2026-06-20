@@ -12,7 +12,7 @@ export default function RelatedGuides({ currentSlug, pillar, limit = 4 }: Props)
   if (items.length === 0) return null
   return (
     <section className="mt-16 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
-      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Related guides</p>
+      <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Related guides</p>
       <h2 className="mt-3 font-serif text-2xl font-normal tracking-[-0.01em] text-ink md:text-3xl">
         Continue reading
       </h2>

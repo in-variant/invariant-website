@@ -31,7 +31,7 @@ export default function Verticals() {
           <span className="inline-flex rounded-full bg-cloud/10 px-3 py-1 font-sans text-xs font-medium tracking-wide text-cloud/70">
             Who we serve
           </span>
-          <h2 className="mt-5 max-w-md font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
+          <h2 className="mt-5 max-w-md font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
             We work with teams building the hardest things in mission-critical industries.
           </h2>
           <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-cloud/60">
@@ -46,7 +46,7 @@ export default function Verticals() {
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="font-sans text-lg font-medium text-cloud">{v.name}</h3>
                   {v.href && (
-                    <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-cloud/45 transition-colors group-hover:text-copper">
+                    <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-cloud/45 transition-colors group-hover:text-copper">
                       Read guide &rarr;
                     </span>
                   )}

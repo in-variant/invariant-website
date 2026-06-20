@@ -17,7 +17,7 @@ function SlideShell({ children }: { children: React.ReactNode }) {
         bg-white text-ink"
     >
       <div className="absolute top-4 sm:top-5 left-5 sm:left-10 md:left-16 lg:left-20 z-10">
-        <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
+        <span className="font-sans text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
           Invariant
         </span>
       </div>
@@ -30,7 +30,7 @@ function SlideShell({ children }: { children: React.ReactNode }) {
 
 function SlideLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
+    <p className="font-sans text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
       {children}
     </p>
   )
@@ -86,7 +86,7 @@ function FlowArrow({ label, color, broken }: { label: string; color: string; bro
           <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
         </circle>
       </svg>
-      <span className="font-mono text-[8px] sm:text-[9px] whitespace-nowrap" style={{ color: c, opacity: 0.6 }}>{label}</span>
+      <span className="font-sans text-[8px] sm:text-[9px] whitespace-nowrap" style={{ color: c, opacity: 0.6 }}>{label}</span>
     </div>
   )
 }
@@ -101,7 +101,7 @@ function ArchSection({ label, color, children, broken, badge }: { label: string;
         style={{ borderColor, backgroundColor: bgColor }}
       >
         <span
-          className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium transition-colors duration-500"
+          className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium transition-colors duration-500"
           style={{ color: broken ? '#ef4444' : `${color}99` }}
         >
           {label}
@@ -120,7 +120,7 @@ function ArchItem({ text, color, broken }: { text: string; color: string; broken
       className="flex items-center rounded-lg border px-3 py-1.5 sm:py-2 w-full transition-colors duration-500"
       style={{ borderColor: `${c}30`, backgroundColor: `${c}08` }}
     >
-      <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap transition-colors duration-500" style={{ color: c }}>{text}</span>
+      <span className="font-sans text-[10px] sm:text-xs font-medium whitespace-nowrap transition-colors duration-500" style={{ color: c }}>{text}</span>
     </div>
   )
 }
@@ -147,7 +147,7 @@ function SEWorkflowSlide() {
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
           The standard workflow.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
           A change in design cascades downstream, but compliance never notices.
         </p>
       </div>
@@ -204,14 +204,14 @@ function SEWorkflowSlide() {
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 4 ? 1 : 0.15, scale: phase >= 4 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
           <div className="flex flex-col items-center shrink-0">
             <div className="rounded-xl border-2 border-dashed border-red-300/50 bg-red-50/20 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 min-w-[130px] sm:min-w-[150px] relative">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium text-red-400/60">
+              <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium text-red-400/60">
                 Compliance
               </span>
               <div className="flex items-center rounded-lg border border-red-200/40 bg-red-50/30 px-3 py-1.5 sm:py-2 w-full">
-                <span className="font-mono text-[10px] sm:text-xs font-medium text-red-400/50">Reg. Review</span>
+                <span className="font-sans text-[10px] sm:text-xs font-medium text-red-400/50">Reg. Review</span>
               </div>
               <div className="flex items-center rounded-lg border border-red-200/40 bg-red-50/30 px-3 py-1.5 sm:py-2 w-full">
-                <span className="font-mono text-[10px] sm:text-xs font-medium text-red-400/50">Audit</span>
+                <span className="font-sans text-[10px] sm:text-xs font-medium text-red-400/50">Audit</span>
               </div>
               <div className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-red-100 border-2 border-red-300 flex items-center justify-center">
                 <span className="text-red-500 text-xs font-bold">X</span>
@@ -229,9 +229,9 @@ function SEWorkflowSlide() {
           className="relative rounded-xl border border-red-200/60 bg-red-50/30 px-6 sm:px-8 py-4 sm:py-5 max-w-3xl mx-auto mt-6 sm:mt-8"
         >
           <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-red-400/70 font-medium">No compliance check</span>
+            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-red-400/70 font-medium">No compliance check</span>
           </div>
-          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+          <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
             Design changed. Everything downstream is stale. <strong className="text-red-500 font-medium">Nothing flags the gap</strong>, you find out at submission.
           </p>
         </motion.div>
@@ -239,7 +239,7 @@ function SEWorkflowSlide() {
 
       <button
         onClick={() => { setPhase(0); setChanged(false); setTimeout(() => setPhase(1), 100) }}
-        className="mx-auto mt-5 font-mono text-[10px] sm:text-xs text-ink/30 hover:text-ink/60 transition-colors tracking-wide uppercase"
+        className="mx-auto mt-5 font-sans text-[10px] sm:text-xs text-ink/30 hover:text-ink/60 transition-colors tracking-wide uppercase"
       >
         ↻ Replay
       </button>
@@ -269,7 +269,7 @@ function SEWorkflowWithComplianceSlide() {
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
           Compliance at every step.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-2xl">
           Same workflow, but now every step is checked in real time.
         </p>
       </div>
@@ -326,22 +326,22 @@ function SEWorkflowWithComplianceSlide() {
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: phase >= 4 ? 1 : 0.15, scale: phase >= 4 ? 1 : 0.9 }} transition={{ duration: 0.4 }}>
           <div className="flex flex-col items-center shrink-0">
             <div className="rounded-xl border-2 border-emerald-400/60 bg-emerald-50/20 px-4 sm:px-5 py-4 sm:py-5 flex flex-col items-center gap-2.5 sm:gap-3 min-w-[130px] sm:min-w-[150px] relative ring-2 ring-emerald-400/30 ring-offset-2">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium text-emerald-600">
+              <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium text-emerald-600">
                 Invariant AI
               </span>
               <div className="flex items-center rounded-lg border border-emerald-300/40 bg-emerald-50/50 px-3 py-1.5 sm:py-2 w-full">
-                <span className="font-mono text-[10px] sm:text-xs font-medium text-emerald-700">Reg. Check</span>
+                <span className="font-sans text-[10px] sm:text-xs font-medium text-emerald-700">Reg. Check</span>
               </div>
               <div className="flex items-center rounded-lg border border-emerald-300/40 bg-emerald-50/50 px-3 py-1.5 sm:py-2 w-full">
-                <span className="font-mono text-[10px] sm:text-xs font-medium text-emerald-700">Doc Review</span>
+                <span className="font-sans text-[10px] sm:text-xs font-medium text-emerald-700">Doc Review</span>
               </div>
               <div className="flex items-center rounded-lg border border-emerald-300/40 bg-emerald-50/50 px-3 py-1.5 sm:py-2 w-full">
-                <span className="font-mono text-[10px] sm:text-xs font-medium text-emerald-700">Gap Analysis</span>
+                <span className="font-sans text-[10px] sm:text-xs font-medium text-emerald-700">Gap Analysis</span>
               </div>
               {!changed && phase >= 4 && (
                 <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
                   className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-emerald-100 border-2 border-emerald-400 flex items-center justify-center">
-                  <span className="font-mono text-emerald-600 text-[9px] font-bold leading-none">OK</span>
+                  <span className="font-sans text-emerald-600 text-[9px] font-bold leading-none">OK</span>
                 </motion.div>
               )}
               {changed && (
@@ -363,9 +363,9 @@ function SEWorkflowWithComplianceSlide() {
           className="relative rounded-xl border border-emerald-200/60 bg-emerald-50/30 px-6 sm:px-8 py-4 sm:py-5 max-w-3xl mx-auto mt-6 sm:mt-8"
         >
           <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Invariant catches it</span>
+            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Invariant catches it</span>
           </div>
-          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+          <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
             Design changed → Invariant <strong className="text-emerald-600 font-medium">immediately flags</strong> affected steps and re-checks against every applicable regulatory criterion.
           </p>
         </motion.div>
@@ -373,7 +373,7 @@ function SEWorkflowWithComplianceSlide() {
 
       <button
         onClick={() => { setPhase(0); setChanged(false); setTimeout(() => setPhase(1), 100) }}
-        className="mx-auto mt-5 font-mono text-[10px] sm:text-xs text-ink/30 hover:text-ink/60 transition-colors tracking-wide uppercase"
+        className="mx-auto mt-5 font-sans text-[10px] sm:text-xs text-ink/30 hover:text-ink/60 transition-colors tracking-wide uppercase"
       >
         ↻ Replay
       </button>
@@ -387,22 +387,22 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <div className="flex flex-col items-center text-center">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
+          <p className="font-sans text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
             Investor Deck · Confidential
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink mb-5 md:mb-8 leading-[1.1] whitespace-nowrap">
             Go-to-market faster than ever.
           </h1>
-          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
             Invariant builds AI that turns compliance from a bottleneck into a competitive advantage, across nuclear, aerospace, and drones.
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
+            <span className="font-sans text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
               <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&larr;</kbd>
               <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&rarr;</kbd>
               <span className="ml-1">to navigate</span>
             </span>
-            <span className="font-mono text-xs text-ink/35 tracking-wide sm:hidden">
+            <span className="font-sans text-xs text-ink/35 tracking-wide sm:hidden">
               Swipe to navigate
             </span>
           </div>
@@ -420,10 +420,10 @@ const slides: Slide[] = [
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
             Drones.
           </h2>
-          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
             You build a drone. Check the compliance checklist. It fails. You can't ship to market.
           </p>
-          <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
             Months of engineering, grounded by paperwork.
           </p>
         </div>
@@ -440,10 +440,10 @@ const slides: Slide[] = [
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
             Satellite Launch Vehicles.
           </h2>
-          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
             You build rockets and realise the software requirements didn't fulfil DO-178C criteria. Entire project delayed by 10 months.
           </p>
-          <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
             One missed criteria. An entire program stalled.
           </p>
         </div>
@@ -460,10 +460,10 @@ const slides: Slide[] = [
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-10">
             Nuclear.
           </h2>
-          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-4">
             You file for an NRC construction permit. An RAI comes back, your containment analysis doesn't meet GDC 16. Redesign cascades through the entire FSAR.
           </p>
-          <p className="font-mono text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/35 leading-relaxed max-w-xl">
             Vogtle: $17 B in overruns, 7 years late.
           </p>
         </div>
@@ -492,7 +492,7 @@ const slides: Slide[] = [
               <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-[-0.03em] text-ink mb-2 md:mb-3 whitespace-nowrap">
                 {fact.figure}
               </p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/50 leading-relaxed w-28 sm:w-36">
+              <p className="font-sans text-[10px] sm:text-xs text-ink/50 leading-relaxed w-28 sm:w-36">
                 {fact.label}
               </p>
             </div>
@@ -511,30 +511,30 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             One pattern. Every industry.
           </h2>
-          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
+          <p className="font-sans text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
             We spoke with teams across <strong className="text-ink/80 font-medium">US nuclear</strong>, <strong className="text-ink/80 font-medium">space tech</strong>, and <strong className="text-ink/80 font-medium">drone manufacturing</strong>.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 max-w-3xl mx-auto">
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-4">
+            <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-4">
               01
             </span>
-            <h3 className="font-mono text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
+            <h3 className="font-sans text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
               Design Immaturity
             </h3>
-            <p className="font-mono text-xs sm:text-sm text-ink/50 leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-ink/50 leading-relaxed">
               You don't know what the regulator expects until you submit. By then, rework is expensive.
             </p>
           </div>
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-4">
+            <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-4">
               02
             </span>
-            <h3 className="font-mono text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
+            <h3 className="font-sans text-base sm:text-lg font-medium text-ink/80 leading-snug mb-3">
               Siloed Operations
             </h3>
-            <p className="font-mono text-xs sm:text-sm text-ink/50 leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-ink/50 leading-relaxed">
               Requirements, design, and compliance live in different tools, teams, and timelines.
             </p>
           </div>
@@ -552,7 +552,7 @@ const slides: Slide[] = [
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink leading-[1.1]">
             Invariant AI
           </h2>
-          <p className="font-mono text-base sm:text-lg md:text-xl text-ink/50 mt-4 sm:mt-6">
+          <p className="font-sans text-base sm:text-lg md:text-xl text-ink/50 mt-4 sm:mt-6">
             Language models built for compliance.
           </p>
         </div>
@@ -569,7 +569,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Helion-512 beats Fermi-512 on FermiBench.
           </h2>
-          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
+          <p className="font-sans text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
             Our in-house model is the only state-of-the-art for nuclear compliance.
           </p>
         </div>
@@ -577,8 +577,8 @@ const slides: Slide[] = [
         <div className="max-w-md mx-auto w-full flex flex-col gap-5">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="font-mono text-xs sm:text-sm font-semibold text-ink/80">Helion-512</span>
-              <span className="font-mono text-xs sm:text-sm font-bold text-emerald-600">SOTA</span>
+              <span className="font-sans text-xs sm:text-sm font-semibold text-ink/80">Helion-512</span>
+              <span className="font-sans text-xs sm:text-sm font-bold text-emerald-600">SOTA</span>
             </div>
             <div className="w-full h-3 rounded-full bg-ink/[0.06] overflow-hidden">
               <motion.div
@@ -589,15 +589,15 @@ const slides: Slide[] = [
               />
             </div>
             <div className="flex justify-between mt-1">
-              <span className="font-mono text-[10px] text-ink/30">Invariant · In-house</span>
-              <span className="font-mono text-[10px] text-emerald-600 font-medium">96.93</span>
+              <span className="font-sans text-[10px] text-ink/30">Invariant · In-house</span>
+              <span className="font-sans text-[10px] text-emerald-600 font-medium">96.93</span>
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="font-mono text-xs sm:text-sm font-medium text-ink/60">Fermi-512</span>
-              <span className="font-mono text-[10px] sm:text-xs text-ink/35">Previous SOTA</span>
+              <span className="font-sans text-xs sm:text-sm font-medium text-ink/60">Fermi-512</span>
+              <span className="font-sans text-[10px] sm:text-xs text-ink/35">Previous SOTA</span>
             </div>
             <div className="w-full h-3 rounded-full bg-ink/[0.06] overflow-hidden">
               <motion.div
@@ -608,8 +608,8 @@ const slides: Slide[] = [
               />
             </div>
             <div className="flex justify-between mt-1">
-              <span className="font-mono text-[10px] text-ink/30"></span>
-              <span className="font-mono text-[10px] text-ink/40 font-medium">74.00</span>
+              <span className="font-sans text-[10px] text-ink/30"></span>
+              <span className="font-sans text-[10px] text-ink/40 font-medium">74.00</span>
             </div>
           </div>
         </div>
@@ -618,7 +618,7 @@ const slides: Slide[] = [
           href="https://huggingface.co/datasets/atomic-canyon/FermiBench"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-[10px] sm:text-xs text-ink/30 hover:text-ink/50 transition-colors text-center mt-8 sm:mt-10 underline underline-offset-2 decoration-ink/15 hover:decoration-ink/30"
+          className="font-sans text-[10px] sm:text-xs text-ink/30 hover:text-ink/50 transition-colors text-center mt-8 sm:mt-10 underline underline-offset-2 decoration-ink/15 hover:decoration-ink/30"
         >
           FermiBench · nDCG@10 · Nuclear regulatory compliance benchmark
         </a>
@@ -645,7 +645,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-3xl">
             Nuclear vertical.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-xl">
             Single-vertical players. None solve end-to-end compliance across industries.
           </p>
         </div>
@@ -664,12 +664,12 @@ const slides: Slide[] = [
                   className="w-11 h-11 rounded-full flex items-center justify-center shrink-0"
                   style={{ backgroundColor: c.bg }}
                 >
-                  <span className="font-mono text-xs font-bold text-white">{c.initial}</span>
+                  <span className="font-sans text-xs font-bold text-white">{c.initial}</span>
                 </div>
               )}
               <div>
-                <p className="font-mono text-sm font-medium text-ink/80 mb-0.5">{c.name}</p>
-                <p className="font-mono text-xs text-ink/45">{c.detail}</p>
+                <p className="font-sans text-sm font-medium text-ink/80 mb-0.5">{c.name}</p>
+                <p className="font-sans text-xs text-ink/45">{c.detail}</p>
               </div>
             </div>
           ))}
@@ -687,7 +687,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-3xl">
             Adjacent tools.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-xl">
             Solve workflow problems without compliance depth.
           </p>
         </div>
@@ -701,12 +701,12 @@ const slides: Slide[] = [
                   className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
                   style={{ backgroundColor: c.bg }}
                 >
-                  <span className="font-mono text-[10px] font-bold text-white">{c.initial}</span>
+                  <span className="font-sans text-[10px] font-bold text-white">{c.initial}</span>
                 </div>
               )}
               <div>
-                <p className="font-mono text-sm font-medium text-ink/80 mb-0.5">{c.name}</p>
-                <p className="font-mono text-xs text-ink/45">{c.detail}</p>
+                <p className="font-sans text-sm font-medium text-ink/80 mb-0.5">{c.name}</p>
+                <p className="font-sans text-xs text-ink/45">{c.detail}</p>
               </div>
             </div>
           ))}
@@ -724,7 +724,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-3xl">
             Our biggest competitors are consultants.
           </h2>
-          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
+          <p className="font-sans text-sm sm:text-base text-ink/50 leading-relaxed max-w-2xl mb-10 sm:mb-14">
             Today, compliance is done by armies of consultants billing by the hour. Slow, expensive, and doesn't scale.
           </p>
         </div>
@@ -732,23 +732,23 @@ const slides: Slide[] = [
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-3xl mx-auto">
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
             <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">$50,600</p>
-            <p className="font-mono text-[10px] sm:text-xs text-ink/45">/hour for regulatory consultants</p>
+            <p className="font-sans text-[10px] sm:text-xs text-ink/45">/hour for regulatory consultants</p>
           </div>
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
             <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">Months</p>
-            <p className="font-mono text-[10px] sm:text-xs text-ink/45">to produce a single compliance package</p>
+            <p className="font-sans text-[10px] sm:text-xs text-ink/45">to produce a single compliance package</p>
           </div>
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-5 sm:px-6 py-5 sm:py-6 text-center">
             <p className="font-serif text-3xl sm:text-4xl font-medium tracking-[-0.03em] text-ink mb-2">Zero</p>
-            <p className="font-mono text-[10px] sm:text-xs text-ink/45">real-time feedback during design</p>
+            <p className="font-sans text-[10px] sm:text-xs text-ink/45">real-time feedback during design</p>
           </div>
         </div>
 
         <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-5 sm:py-6 max-w-3xl mx-auto mt-10 sm:mt-12">
           <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Invariant replaces this</span>
+            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Invariant replaces this</span>
           </div>
-          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+          <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
             AI that delivers compliance insight <strong className="text-ink/80 font-medium">in seconds, not months</strong>, at a fraction of the cost.
           </p>
         </div>
@@ -765,7 +765,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Built alongside practitioners.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             Three design partners across three industries. Real compliance workflows, real regulatory submissions.
           </p>
         </div>
@@ -781,7 +781,7 @@ const slides: Slide[] = [
               }}
             >
               <span
-                className="font-mono text-[10px] tracking-[0.15em] uppercase font-medium mb-4"
+                className="font-sans text-[10px] tracking-[0.15em] uppercase font-medium mb-4"
                 style={{ color: p.color }}
               >
                 {p.domain}
@@ -791,10 +791,10 @@ const slides: Slide[] = [
                 alt={`${p.name} logo`}
                 className="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-lg mb-5"
               />
-              <h3 className="font-mono text-sm sm:text-base font-medium text-ink/80 mb-2">
+              <h3 className="font-sans text-sm sm:text-base font-medium text-ink/80 mb-2">
                 {p.name}
               </h3>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/50 leading-relaxed">
+              <p className="font-sans text-[10px] sm:text-xs text-ink/50 leading-relaxed">
                 {p.scope}
               </p>
             </div>
@@ -813,21 +813,21 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 sm:mb-8 whitespace-nowrap">
             Go-to-market faster than ever.
           </h2>
-          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-xl mb-8 sm:mb-10">
+          <p className="font-sans text-sm sm:text-base text-ink/50 leading-relaxed max-w-xl mb-8 sm:mb-10">
             Invariant is building AI for systems engineering and compliance. We'd love to talk.
           </p>
           <div className="flex flex-col items-center gap-4 mb-8 sm:mb-12">
             <a
               href="mailto:founders@invariant-ai.com?subject=Investor Inquiry"
-              className="font-mono text-sm tracking-[0.1em] uppercase bg-ink text-white px-8 py-3.5 rounded hover:bg-ink/90 transition-colors"
+              className="font-sans text-sm tracking-[0.1em] uppercase bg-ink text-white px-8 py-3.5 rounded hover:bg-ink/90 transition-colors"
             >
               founders@invariant-ai.com
             </a>
-            <span className="font-mono text-xs text-ink/35">invariant-ai.com</span>
+            <span className="font-sans text-xs text-ink/35">invariant-ai.com</span>
           </div>
           <div className="flex items-center gap-6">
-            <span className="font-mono text-xs text-ink/40">Backed by</span>
-            <span className="font-mono text-xs text-ink/60 font-medium">Entrepreneurs First</span>
+            <span className="font-sans text-xs text-ink/40">Backed by</span>
+            <span className="font-sans text-xs text-ink/60 font-medium">Entrepreneurs First</span>
           </div>
         </div>
       </SlideShell>
@@ -945,7 +945,7 @@ export default function Deck() {
       )}
 
       <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-3 bg-white/80 backdrop-blur-sm border-t border-ink/[0.04]">
-        <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
+        <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
           Invariant
         </span>
 
@@ -963,7 +963,7 @@ export default function Deck() {
           ))}
         </div>
 
-        <span className="font-mono text-[10px] sm:text-xs tabular-nums text-ink/30">
+        <span className="font-sans text-[10px] sm:text-xs tabular-nums text-ink/30">
           {current + 1} / {total}
         </span>
       </div>

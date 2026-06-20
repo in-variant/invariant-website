@@ -108,7 +108,7 @@ export default function NrcLicenseCalculator() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
             Calculator · NRC reactor licensing
           </p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
@@ -119,7 +119,7 @@ export default function NrcLicenseCalculator() {
           </p>
 
           <section className="mt-12 rounded-[3px] border border-ink/15 bg-white p-6 md:p-8">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Inputs</h2>
+            <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Inputs</h2>
 
             <Field label="Licensing pathway">
               <select
@@ -162,7 +162,7 @@ export default function NrcLicenseCalculator() {
                 onChange={(e) => setInputs({ ...inputs, topicalReportsApproved: Number(e.target.value) })}
                 className="mt-2 w-full accent-copper"
               />
-              <span className="ml-2 font-mono text-xs text-ink/65">{inputs.topicalReportsApproved}</span>
+              <span className="ml-2 font-sans text-xs text-ink/65">{inputs.topicalReportsApproved}</span>
             </Field>
 
             <Field
@@ -178,7 +178,7 @@ export default function NrcLicenseCalculator() {
                 onChange={(e) => setInputs({ ...inputs, noveltyLevel: Number(e.target.value) })}
                 className="mt-2 w-full accent-copper"
               />
-              <span className="ml-2 font-mono text-xs text-ink/65">{inputs.noveltyLevel}</span>
+              <span className="ml-2 font-sans text-xs text-ink/65">{inputs.noveltyLevel}</span>
             </Field>
 
             <Field label="Application aligned to NEI 21-07 TICAP?">
@@ -190,7 +190,7 @@ export default function NrcLicenseCalculator() {
                   <button
                     key={String(v)}
                     onClick={() => setInputs({ ...inputs, ticapAligned: v as boolean })}
-                    className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                    className={`rounded-full border px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.12em] transition-colors ${
                       inputs.ticapAligned === v
                         ? 'border-copper bg-copper/10 text-copper'
                         : 'border-ink/15 text-ink/65 hover:border-ink/30'
@@ -212,7 +212,7 @@ export default function NrcLicenseCalculator() {
                     key={String(v)}
                     onClick={() => setInputs({ ...inputs, hasEsp: v as boolean })}
                     disabled={inputs.pathway !== 'part-52-col'}
-                    className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors disabled:opacity-40 ${
+                    className={`rounded-full border px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.12em] transition-colors disabled:opacity-40 ${
                       inputs.hasEsp === v
                         ? 'border-copper bg-copper/10 text-copper'
                         : 'border-ink/15 text-ink/65 hover:border-ink/30'
@@ -226,7 +226,7 @@ export default function NrcLicenseCalculator() {
           </section>
 
           <section className="mt-8 rounded-[3px] border border-copper/20 bg-copper/5 p-6 md:p-8">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Estimate</h2>
+            <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Estimate</h2>
             <p className="mt-4 font-serif text-5xl font-normal leading-none tracking-[-0.02em] text-ink md:text-6xl">
               ~{result.totalMonths} months
             </p>
@@ -263,7 +263,7 @@ export default function NrcLicenseCalculator() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <div className="mt-5">
-      <label className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55">
+      <label className="block font-sans text-[11px] uppercase tracking-[0.12em] text-ink/55">
         {label}
       </label>
       {hint && <p className="mt-1 font-sans text-xs text-ink/45">{hint}</p>}
@@ -275,7 +275,7 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</dt>
+      <dt className="font-sans text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</dt>
       <dd className="mt-2 font-serif text-2xl font-normal text-ink">{value}</dd>
     </div>
   )

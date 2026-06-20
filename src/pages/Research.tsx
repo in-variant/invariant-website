@@ -72,7 +72,7 @@ export default function Research() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Research</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Research</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
             Research at Invariant.
           </h1>
@@ -81,7 +81,7 @@ export default function Research() {
           </p>
 
           <section className="mt-16 rounded-[3px] border border-ink/15 bg-white p-8 md:p-10">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Headline result</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Headline result</p>
             <h2 className="mt-4 font-serif text-3xl font-normal leading-tight tracking-[-0.015em] text-ink md:text-4xl">
               Helion-512 reaches 0.9693 nDCG@10 on FermiBench.
             </h2>
@@ -154,7 +154,7 @@ export default function Research() {
           </section>
 
           <section className="mt-16 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Contact</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Contact</p>
             <p className="mt-4 font-sans text-base leading-relaxed text-ink/70">
               If you are researching retrieval, regulator workflows, or the application of AI to high-consequence compliance, we are happy to talk. Reach the team at {' '}
               <a href="mailto:founders@invariant-ai.com" className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">

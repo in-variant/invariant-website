@@ -209,7 +209,7 @@ export default function FactCards() {
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                   >
-                    <p className="font-mono text-sm md:text-base tracking-[0.3em] uppercase text-ink font-medium mb-4 md:mb-6">
+                    <p className="font-sans text-sm md:text-base tracking-[0.3em] uppercase text-ink font-medium mb-4 md:mb-6">
                       {f.domain}
                     </p>
                     <p
@@ -223,7 +223,7 @@ export default function FactCards() {
                         resetKey={i}
                       />
                     </p>
-                    <p className="font-mono text-sm md:text-base leading-relaxed text-ink/60 max-w-lg">
+                    <p className="font-sans text-sm md:text-base leading-relaxed text-ink/60 max-w-lg">
                       {f.description}
                     </p>
                   </motion.div>
@@ -239,7 +239,7 @@ export default function FactCards() {
         <button
           onClick={goPrev}
           disabled={activeIndex === 0}
-          className="font-mono text-sm text-ink/50 hover:text-ink disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          className="font-sans text-sm text-ink/50 hover:text-ink disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
           aria-label="Previous fact"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -259,14 +259,14 @@ export default function FactCards() {
           ))}
         </div>
 
-        <span className="font-mono text-xs text-ink/40 tabular-nums">
+        <span className="font-sans text-xs text-ink/40 tabular-nums">
           {activeIndex + 1}/{FACTS.length}
         </span>
 
         <button
           onClick={goNext}
           disabled={activeIndex === FACTS.length - 1}
-          className="font-mono text-sm text-ink/50 hover:text-ink disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
+          className="font-sans text-sm text-ink/50 hover:text-ink disabled:opacity-20 disabled:cursor-not-allowed transition-colors"
           aria-label="Next fact"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">

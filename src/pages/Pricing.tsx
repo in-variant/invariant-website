@@ -114,7 +114,7 @@ export default function Pricing() {
       <div className="flex items-center gap-1 p-1 border border-ink/10 rounded-md w-fit mb-16">
         <button
           onClick={() => setSegment('india-space-tech')}
-          className={`font-mono text-sm tracking-[0.1em] uppercase px-4 py-2 rounded transition-all ${
+          className={`font-sans text-sm tracking-[0.1em] uppercase px-4 py-2 rounded transition-all ${
             segment === 'india-space-tech'
               ? 'bg-midnight text-cloud'
               : 'text-ink/50 hover:text-ink'
@@ -124,7 +124,7 @@ export default function Pricing() {
         </button>
         <button
           onClick={() => setSegment('platform')}
-          className={`relative font-mono text-sm tracking-[0.1em] uppercase px-4 py-2 rounded transition-all ${
+          className={`relative font-sans text-sm tracking-[0.1em] uppercase px-4 py-2 rounded transition-all ${
             segment === 'platform'
               ? 'bg-midnight text-cloud'
               : 'text-ink/50 hover:text-ink'
@@ -148,7 +148,7 @@ export default function Pricing() {
                 }`}
               >
                 {tier.popular && (
-                  <span className="absolute -top-3 left-6 font-mono text-xs tracking-[0.15em] uppercase bg-midnight text-cloud px-3 py-1 rounded-sm">
+                  <span className="absolute -top-3 left-6 font-sans text-xs tracking-[0.15em] uppercase bg-midnight text-cloud px-3 py-1 rounded-sm">
                     Most popular
                   </span>
                 )}
@@ -162,7 +162,7 @@ export default function Pricing() {
                     {tier.price}
                   </span>
                 </div>
-                <p className="font-mono text-sm text-ink/40 mb-8">
+                <p className="font-sans text-sm text-ink/40 mb-8">
                   {tier.unit}
                 </p>
 
@@ -170,7 +170,7 @@ export default function Pricing() {
                   {tier.features.map((f) => (
                     <li key={f} className="flex items-start gap-2.5">
                       <CheckIcon />
-                      <span className="font-mono text-sm text-ink/70 leading-snug">
+                      <span className="font-sans text-sm text-ink/70 leading-snug">
                         {f}
                       </span>
                     </li>
@@ -178,20 +178,20 @@ export default function Pricing() {
                 </ul>
 
                 {'integrationNote' in tier && tier.integrationNote && (
-                  <p className="font-mono text-xs text-ink/40 mb-6 -mt-4">
+                  <p className="font-sans text-xs text-ink/40 mb-6 -mt-4">
                     Integrations: {tier.integrationNote}
                   </p>
                 )}
 
                 <div className="border-t border-ink/10 pt-6 mb-8">
-                  <p className="font-mono text-xs text-ink/50 leading-relaxed">
+                  <p className="font-sans text-xs text-ink/50 leading-relaxed">
                     {tier.ownership}
                   </p>
                 </div>
 
                 <Link
                   to={tier.href}
-                  className={`block text-center font-mono text-sm tracking-[0.1em] uppercase py-3 rounded transition-all ${
+                  className={`block text-center font-sans text-sm tracking-[0.1em] uppercase py-3 rounded transition-all ${
                     tier.popular
                       ? 'bg-midnight text-cloud hover:bg-copper'
                       : 'border border-ink/20 text-ink hover:border-ink/40'
@@ -208,7 +208,7 @@ export default function Pricing() {
           <div className="border border-dashed border-ink/20 rounded-lg p-8 md:p-12 bg-ink/[0.015]">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
               <div className="max-w-xl">
-                <p className="font-mono text-xs tracking-[0.2em] uppercase text-ink/40 mb-4">
+                <p className="font-sans text-xs tracking-[0.2em] uppercase text-ink/40 mb-4">
                   Add-on · Available on any tier
                 </p>
                 <h3 className="font-serif text-3xl md:text-4xl font-normal tracking-[-0.02em] text-ink mb-2">
@@ -219,15 +219,15 @@ export default function Pricing() {
                     {LIAISON.price}
                   </span>
                 </div>
-                <p className="font-mono text-sm text-ink/40 mb-6">
+                <p className="font-sans text-sm text-ink/40 mb-6">
                   {LIAISON.unit}
                 </p>
-                <p className="font-mono text-base text-ink/60 leading-relaxed mb-8">
+                <p className="font-sans text-base text-ink/60 leading-relaxed mb-8">
                   {LIAISON.description}
                 </p>
                 <Link
                   to="/contact"
-                  className="inline-block font-mono text-sm tracking-[0.1em] uppercase border border-ink/20 text-ink hover:border-ink/40 px-6 py-3 rounded transition-all"
+                  className="inline-block font-sans text-sm tracking-[0.1em] uppercase border border-ink/20 text-ink hover:border-ink/40 px-6 py-3 rounded transition-all"
                 >
                   Learn more
                 </Link>
@@ -237,7 +237,7 @@ export default function Pricing() {
                 {LIAISON.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5">
                     <CheckIcon />
-                    <span className="font-mono text-sm text-ink/70 leading-snug">
+                    <span className="font-sans text-sm text-ink/70 leading-snug">
                       {f}
                     </span>
                   </li>
@@ -251,13 +251,13 @@ export default function Pricing() {
           <p className="font-serif text-3xl md:text-4xl font-normal tracking-[-0.02em] text-ink mb-4">
             Coming soon
           </p>
-          <p className="font-mono text-base text-ink/50 max-w-md text-center leading-relaxed">
+          <p className="font-sans text-base text-ink/50 max-w-md text-center leading-relaxed">
             Platform pricing for nuclear, drone, and other regulated industries
             is on the way. Get in touch to learn more.
           </p>
           <Link
             to="/contact"
-            className="mt-8 inline-block font-mono text-sm tracking-[0.1em] uppercase border border-ink/20 text-ink hover:border-ink/40 px-6 py-3 rounded transition-all"
+            className="mt-8 inline-block font-sans text-sm tracking-[0.1em] uppercase border border-ink/20 text-ink hover:border-ink/40 px-6 py-3 rounded transition-all"
           >
             Contact us
           </Link>

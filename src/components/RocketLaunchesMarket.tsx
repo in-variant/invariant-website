@@ -145,7 +145,7 @@ export default function RocketLaunchesMarket() {
               x={W / 2}
               y={54}
               textAnchor="middle"
-              className="font-mono"
+              className="font-sans"
               fill="#1B2436"
               fillOpacity={0.45}
               fontSize={11}
@@ -176,7 +176,7 @@ export default function RocketLaunchesMarket() {
                 x={PAD.left - 10}
                 y={yLaunch(v) + 3.5}
                 textAnchor="end"
-                className="font-mono"
+                className="font-sans"
                 fill={LAVENDER}
                 fillOpacity={0.85}
                 fontSize={11}
@@ -188,7 +188,7 @@ export default function RocketLaunchesMarket() {
               x={4}
               y={PAD.top - 16}
               textAnchor="start"
-              className="font-mono"
+              className="font-sans"
               fill={LAVENDER}
               fontSize={10}
               letterSpacing="0.08em"
@@ -204,7 +204,7 @@ export default function RocketLaunchesMarket() {
                 x={COMP_AXIS_X + 8}
                 y={yComp(v) + 3.5}
                 textAnchor="start"
-                className="font-mono"
+                className="font-sans"
                 fill={COPPER}
                 fillOpacity={0.8}
                 fontSize={11}
@@ -216,7 +216,7 @@ export default function RocketLaunchesMarket() {
               x={COMP_AXIS_X + 8}
               y={PAD.top - 16}
               textAnchor="start"
-              className="font-mono"
+              className="font-sans"
               fill={COPPER}
               fontSize={10}
               letterSpacing="0.08em"
@@ -231,7 +231,7 @@ export default function RocketLaunchesMarket() {
                 x={x(i)}
                 y={baseY + 24}
                 textAnchor="middle"
-                className="font-mono"
+                className="font-sans"
                 fill="#1B2436"
                 fillOpacity={0.4}
                 fontSize={11}
@@ -281,21 +281,21 @@ export default function RocketLaunchesMarket() {
 
           {/* legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink/60">
+            <span className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.1em] text-ink/60">
               <span className="h-[2.5px] w-5 rounded-full" style={{ background: LAVENDER }} />
               Orbital launches · 259 → 967 / yr
             </span>
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-ink/60">
+            <span className="inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.1em] text-ink/60">
               <span className="h-[2.5px] w-5 rounded-full" style={{ background: COPPER }} />
               Compliance spend · $0.8 → $12B
             </span>
           </div>
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
+            <p className="font-sans text-[11px] uppercase tracking-[0.12em] text-ink/40">
               Global orbital launches · 2024,2035
             </p>
-            <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/40">
+            <p className="font-sans text-[11px] uppercase tracking-[0.12em] text-ink/40">
               Two independent scales · one timeline
             </p>
           </div>

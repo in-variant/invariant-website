@@ -166,7 +166,7 @@ function StatusBadge({ status }: { status: string }) {
     'not-started': 'Not Started',
   }
   return (
-    <span className={`text-[10px] font-mono font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border ${styles[status] || styles['not-started']}`}>
+    <span className={`text-[10px] font-sans font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border ${styles[status] || styles['not-started']}`}>
       {labels[status] || status}
     </span>
   )
@@ -197,7 +197,7 @@ function InlineComment({ section }: { section: string }) {
                   style={{ backgroundColor: reply.color }}
                 >{reply.author}</div>
                 <span className="text-[11px] font-medium text-gray-700">{reply.authorFull}</span>
-                {reply.isAI && <span className="text-[9px] font-mono bg-gray-200/60 text-gray-500 px-1 rounded">AI</span>}
+                {reply.isAI && <span className="text-[9px] font-sans bg-gray-200/60 text-gray-500 px-1 rounded">AI</span>}
               </div>
               <p className="text-[11px] text-gray-600 leading-relaxed">{reply.body}</p>
             </div>
@@ -212,7 +212,7 @@ function FileTreePanel({ openFolders, toggleFolder }: { openFolders: Record<stri
   return (
     <div className="w-[260px] flex-shrink-0 border-r border-gray-200 bg-[#fafbfc] flex flex-col overflow-hidden">
       <div className="px-3 py-2.5 border-b border-gray-200 flex items-center justify-between">
-        <span className="font-mono text-xs font-semibold text-gray-700 uppercase tracking-wider">Documents</span>
+        <span className="font-sans text-xs font-semibold text-gray-700 uppercase tracking-wider">Documents</span>
         <button className="w-6 h-6 rounded flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
         </button>
@@ -260,9 +260,9 @@ function FileTreePanel({ openFolders, toggleFolder }: { openFolders: Record<stri
       <div className="px-3 py-2.5 border-t border-gray-200 bg-emerald-50/50">
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-emerald-500" />
-          <span className="font-mono text-[10px] text-emerald-700 font-medium uppercase tracking-wider">Knowledge Base Ready</span>
+          <span className="font-sans text-[10px] text-emerald-700 font-medium uppercase tracking-wider">Knowledge Base Ready</span>
         </div>
-        <p className="font-mono text-[10px] text-gray-500 mt-0.5">124,800 embeddings indexed</p>
+        <p className="font-sans text-[10px] text-gray-500 mt-0.5">124,800 embeddings indexed</p>
       </div>
     </div>
   )
@@ -280,7 +280,7 @@ function EditorPanel() {
           <button
             key={ch.num}
             onClick={() => setActiveChapter(ch.num)}
-            className={`flex items-center gap-2 px-3 py-2 text-xs font-mono border-b-2 transition-colors whitespace-nowrap ${
+            className={`flex items-center gap-2 px-3 py-2 text-xs font-sans border-b-2 transition-colors whitespace-nowrap ${
               activeChapter === ch.num
                 ? 'border-blue-600 text-blue-700 bg-white'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
@@ -301,25 +301,25 @@ function EditorPanel() {
           <div className="flex bg-gray-100 rounded p-0.5">
             <button
               onClick={() => setMode('write')}
-              className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+              className={`px-2.5 py-1 rounded text-xs font-sans font-medium transition-colors ${
                 mode === 'write' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
               }`}
             >Write</button>
             <button
               onClick={() => setMode('preview')}
-              className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+              className={`px-2.5 py-1 rounded text-xs font-sans font-medium transition-colors ${
                 mode === 'preview' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
               }`}
             >Preview</button>
           </div>
-          <span className="text-[11px] font-mono text-gray-400">Section 15.6.5</span>
+          <span className="text-[11px] font-sans text-gray-400">Section 15.6.5</span>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-2.5 py-1 rounded text-xs font-mono font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors flex items-center gap-1">
+          <button className="px-2.5 py-1 rounded text-xs font-sans font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors flex items-center gap-1">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
             Generate
           </button>
-          <span className="text-[10px] font-mono text-emerald-600 flex items-center gap-1">
+          <span className="text-[10px] font-sans text-emerald-600 flex items-center gap-1">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" strokeWidth="1.2" /><path d="M3 5l1.5 1.5L7 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             Saved
           </span>
@@ -331,22 +331,22 @@ function EditorPanel() {
         <div className="max-w-3xl mx-auto px-8 py-8">
           {mode === 'preview' ? (
             <div>
-              <h2 className="text-lg font-mono font-semibold text-gray-900 mb-4">
+              <h2 className="text-lg font-sans font-semibold text-gray-900 mb-4">
                 15.6.5 Loss-of-Coolant Accidents Resulting from Spectrum of Postulated Piping Breaks Within the Reactor Coolant Pressure Boundary
               </h2>
 
-              <h3 className="text-base font-mono font-semibold text-gray-800 mt-6 mb-3">15.6.5.1 Introduction and Summary</h3>
+              <h3 className="text-base font-sans font-semibold text-gray-800 mt-6 mb-3">15.6.5.1 Introduction and Summary</h3>
               <p className="text-sm leading-relaxed text-gray-700 mb-3">
                 This section presents the analysis of loss-of-coolant accidents (LOCAs) resulting from postulated breaks in the reactor coolant pressure boundary (RCPB). The analysis demonstrates compliance with the acceptance criteria of <strong>10 CFR 50.46</strong> and the requirements of <strong>10 CFR 50, Appendix K</strong>.
               </p>
               <p className="text-sm leading-relaxed text-gray-700 mb-3">
                 The LOCA analysis considers a spectrum of break sizes ranging from small breaks up to and including the double-ended guillotine break (DEGB) of the largest pipe in the reactor coolant system.{' '}
-                <span className="text-blue-600 text-xs font-mono bg-blue-50 px-1 py-0.5 rounded">[Ref: NUREG-0800, Section 15.6.5]</span>
+                <span className="text-blue-600 text-xs font-sans bg-blue-50 px-1 py-0.5 rounded">[Ref: NUREG-0800, Section 15.6.5]</span>
               </p>
 
               <InlineComment section="15.6.5.1" />
 
-              <h3 className="text-base font-mono font-semibold text-gray-800 mt-6 mb-3">15.6.5.2 Design Basis</h3>
+              <h3 className="text-base font-sans font-semibold text-gray-800 mt-6 mb-3">15.6.5.2 Design Basis</h3>
               <p className="text-sm leading-relaxed text-gray-700 mb-3">
                 The emergency core cooling system (ECCS) is designed to provide adequate core cooling for the entire spectrum of postulated LOCAs. The design basis requires that:
               </p>
@@ -358,13 +358,13 @@ function EditorPanel() {
                 <li>Long-term cooling shall be provided following successful initial operation of the ECCS</li>
               </ol>
               <p className="text-sm leading-relaxed text-gray-700">
-                <span className="text-blue-600 text-xs font-mono bg-blue-50 px-1 py-0.5 rounded">[Ref: 10 CFR 50.46(b), Acceptance Criteria for ECCS]</span>
+                <span className="text-blue-600 text-xs font-sans bg-blue-50 px-1 py-0.5 rounded">[Ref: 10 CFR 50.46(b), Acceptance Criteria for ECCS]</span>
               </p>
 
               <InlineComment section="15.6.5.2" />
             </div>
           ) : (
-            <pre className="font-mono text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">{EDITOR_CONTENT}</pre>
+            <pre className="font-sans text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">{EDITOR_CONTENT}</pre>
           )}
         </div>
       </div>
@@ -384,10 +384,10 @@ function ChatPanel() {
   return (
     <div className="w-[340px] flex-shrink-0 border-l border-gray-200 bg-white flex flex-col overflow-hidden">
       <div className="px-3 py-2.5 border-b border-gray-200 flex items-center justify-between">
-        <span className="font-mono text-xs font-semibold text-gray-700 uppercase tracking-wider">AI Assistant</span>
+        <span className="font-sans text-xs font-semibold text-gray-700 uppercase tracking-wider">AI Assistant</span>
         <div className="flex items-center gap-1.5">
           <div className="w-2 h-2 rounded-full bg-emerald-500" />
-          <span className="font-mono text-[10px] text-emerald-600">KB Ready</span>
+          <span className="font-sans text-[10px] text-emerald-600">KB Ready</span>
         </div>
       </div>
 
@@ -402,7 +402,7 @@ function ChatPanel() {
               {msg.role === 'assistant' && (
                 <div className="flex items-center gap-1 mb-1.5">
                   <div className="w-4 h-4 rounded bg-gray-800 text-white flex items-center justify-center text-[8px] font-bold">AI</div>
-                  <span className="font-mono text-[10px] font-medium text-gray-500">Licensing AI</span>
+                  <span className="font-sans text-[10px] font-medium text-gray-500">Licensing AI</span>
                 </div>
               )}
               <div className="whitespace-pre-wrap">{msg.content}</div>
@@ -417,7 +417,7 @@ function ChatPanel() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about regulations, request drafts..."
-            className="flex-1 resize-none border border-gray-200 rounded-lg px-3 py-2 text-xs font-mono text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-100 transition-colors"
+            className="flex-1 resize-none border border-gray-200 rounded-lg px-3 py-2 text-xs font-sans text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-100 transition-colors"
             rows={2}
           />
           <button className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors flex-shrink-0">
@@ -440,7 +440,7 @@ function ProjectTracker() {
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-5">
-      <h3 className="font-mono text-sm font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <h3 className="font-sans text-sm font-semibold text-gray-800 mb-4 flex items-center gap-2">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <rect x="1" y="1" width="14" height="14" rx="2" stroke="#6b7280" strokeWidth="1.2" fill="none" />
           <line x1="1" y1="5.5" x2="15" y2="5.5" stroke="#e5e7eb" strokeWidth="1" />
@@ -451,27 +451,27 @@ function ProjectTracker() {
 
       <div className="grid grid-cols-4 gap-3 mb-4">
         <div className="text-center">
-          <div className="font-mono text-lg font-bold text-gray-800">{total}</div>
-          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-wider">Total</div>
+          <div className="font-sans text-lg font-bold text-gray-800">{total}</div>
+          <div className="font-sans text-[10px] text-gray-500 uppercase tracking-wider">Total</div>
         </div>
         <div className="text-center">
-          <div className="font-mono text-lg font-bold text-emerald-600">{complete}</div>
-          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-wider">Complete</div>
+          <div className="font-sans text-lg font-bold text-emerald-600">{complete}</div>
+          <div className="font-sans text-[10px] text-gray-500 uppercase tracking-wider">Complete</div>
         </div>
         <div className="text-center">
-          <div className="font-mono text-lg font-bold text-amber-600">{review}</div>
-          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-wider">Review</div>
+          <div className="font-sans text-lg font-bold text-amber-600">{review}</div>
+          <div className="font-sans text-[10px] text-gray-500 uppercase tracking-wider">Review</div>
         </div>
         <div className="text-center">
-          <div className="font-mono text-lg font-bold text-blue-600">{draft}</div>
-          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-wider">Draft</div>
+          <div className="font-sans text-lg font-bold text-blue-600">{draft}</div>
+          <div className="font-sans text-[10px] text-gray-500 uppercase tracking-wider">Draft</div>
         </div>
       </div>
 
       <div className="mb-4">
         <div className="flex items-center justify-between mb-1">
-          <span className="font-mono text-[10px] text-gray-500 uppercase tracking-wider">Overall Completion</span>
-          <span className="font-mono text-xs font-medium text-gray-700">{Math.round((complete / total) * 100)}%</span>
+          <span className="font-sans text-[10px] text-gray-500 uppercase tracking-wider">Overall Completion</span>
+          <span className="font-sans text-xs font-medium text-gray-700">{Math.round((complete / total) * 100)}%</span>
         </div>
         <div className="h-2 bg-gray-100 rounded-full overflow-hidden flex">
           <div className="bg-emerald-500 transition-all" style={{ width: `${(complete / total) * 100}%` }} />
@@ -483,7 +483,7 @@ function ProjectTracker() {
       <div className="space-y-1.5">
         {chapters.map((ch) => (
           <div key={ch.num} className="flex items-center gap-3 py-1.5 px-2 rounded hover:bg-gray-50 transition-colors">
-            <span className="font-mono text-xs text-gray-400 w-6 text-right">{ch.num}</span>
+            <span className="font-sans text-xs text-gray-400 w-6 text-right">{ch.num}</span>
             <span className="text-xs text-gray-700 flex-1 truncate">{ch.title}</span>
             <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
               <div
@@ -526,7 +526,7 @@ export default function Prototype() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 border border-ink/15 rounded-full mb-6">
             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-mono text-xs text-ink/70">Interactive Prototype</span>
+            <span className="font-sans text-xs text-ink/70">Interactive Prototype</span>
           </div>
           <h1 className="heading-editorial text-3xl md:text-4xl lg:text-5xl mb-4">
             The platform behind the service.
@@ -538,7 +538,7 @@ export default function Prototype() {
           <div className="flex gap-2 mb-8 justify-center">
             <button
               onClick={() => setActiveView('authoring')}
-              className={`font-mono text-xs tracking-[0.15em] uppercase px-4 py-2 rounded transition-colors ${
+              className={`font-sans text-xs tracking-[0.15em] uppercase px-4 py-2 rounded transition-colors ${
                 activeView === 'authoring'
                   ? 'bg-ink text-white'
                   : 'bg-white text-ink/60 border border-ink/15 hover:text-ink'
@@ -546,7 +546,7 @@ export default function Prototype() {
             >Authoring Environment</button>
             <button
               onClick={() => setActiveView('project')}
-              className={`font-mono text-xs tracking-[0.15em] uppercase px-4 py-2 rounded transition-colors ${
+              className={`font-sans text-xs tracking-[0.15em] uppercase px-4 py-2 rounded transition-colors ${
                 activeView === 'project'
                   ? 'bg-ink text-white'
                   : 'bg-white text-ink/60 border border-ink/15 hover:text-ink'
@@ -572,10 +572,10 @@ export default function Prototype() {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-[9px] font-bold text-white">IN</div>
-                    <span className="font-mono text-xs font-bold text-gray-800">Invariant AI</span>
+                    <span className="font-sans text-xs font-bold text-gray-800">Invariant AI</span>
                   </div>
                   <div className="w-px h-5 bg-gray-200" />
-                  <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded text-xs font-mono text-gray-600">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-gray-50 rounded text-xs font-sans text-gray-600">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                       <rect x="1" y="2" width="10" height="8" rx="1.5" stroke="currentColor" strokeWidth="1" fill="none" />
                       <path d="M4 2V1M8 2V1" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
@@ -586,7 +586,7 @@ export default function Prototype() {
                     {['Documents', 'Project', 'Comments'].map((tab, i) => (
                       <button
                         key={tab}
-                        className={`px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors ${
+                        className={`px-3 py-1.5 rounded text-xs font-sans font-medium transition-colors ${
                           i === 0 ? 'text-blue-600 bg-blue-50' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                         }`}
                       >{tab}</button>
@@ -594,7 +594,7 @@ export default function Prototype() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-[10px] text-gray-400">Last synced 2 min ago</span>
+                  <span className="font-sans text-[10px] text-gray-400">Last synced 2 min ago</span>
                   <div className="w-px h-5 bg-gray-200" />
                   <div className="flex -space-x-1.5">
                     {[{ initials: 'JM', color: '#6366f1' }, { initials: 'RC', color: '#2563eb' }, { initials: 'AP', color: '#059669' }].map((u) => (
@@ -622,7 +622,7 @@ export default function Prototype() {
           )}
         </motion.div>
 
-        <p className="font-mono text-xs text-center text-ink/40 mt-4">
+        <p className="font-sans text-xs text-center text-ink/40 mt-4">
           Static prototype. Functional product in development.
         </p>
       </section>

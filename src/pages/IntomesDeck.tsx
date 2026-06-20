@@ -17,7 +17,7 @@ function SlideShell({ children }: { children: React.ReactNode }) {
         bg-white text-ink"
     >
       <div className="absolute top-4 sm:top-5 left-5 sm:left-10 md:left-16 lg:left-20 z-10">
-        <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
+        <span className="font-sans text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
           Invariant
         </span>
       </div>
@@ -30,7 +30,7 @@ function SlideShell({ children }: { children: React.ReactNode }) {
 
 function SlideLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
+    <p className="font-sans text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
       {children}
     </p>
   )
@@ -47,10 +47,10 @@ function CodeBlock({ children }: { children: string }) {
   }
 
   return (
-    <div className="relative group rounded-xl border border-ink/[0.08] bg-ink/[0.02] px-6 py-4 w-full font-mono text-xs sm:text-sm text-ink/70 leading-relaxed overflow-x-auto">
+    <div className="relative group rounded-xl border border-ink/[0.08] bg-ink/[0.02] px-6 py-4 w-full font-sans text-xs sm:text-sm text-ink/70 leading-relaxed overflow-x-auto">
       <button
         onClick={handleCopy}
-        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-2 py-1 rounded-md border border-ink/10 bg-white hover:bg-ink/[0.04] text-ink/40 hover:text-ink/70 text-[10px] font-mono tracking-wide uppercase"
+        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity px-2 py-1 rounded-md border border-ink/10 bg-white hover:bg-ink/[0.04] text-ink/40 hover:text-ink/70 text-[10px] font-sans tracking-wide uppercase"
       >
         {copied ? 'Copied' : 'Copy'}
       </button>
@@ -62,10 +62,10 @@ function CodeBlock({ children }: { children: string }) {
 function StepCard({ number, title, children }: { number: string; title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-5 sm:py-6">
-      <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-3">
+      <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-3">
         {number}
       </span>
-      <h3 className="font-mono text-sm sm:text-base font-medium text-ink/80 leading-snug mb-3">
+      <h3 className="font-sans text-sm sm:text-base font-medium text-ink/80 leading-snug mb-3">
         {title}
       </h3>
       <div className="flex flex-col gap-3">
@@ -82,7 +82,7 @@ function ArchBox({ label, items, color }: { label: string; items: string[]; colo
       style={{ borderColor: `${color}40`, backgroundColor: `${color}06` }}
     >
       <span
-        className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium"
+        className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase font-medium"
         style={{ color: `${color}99` }}
       >
         {label}
@@ -93,7 +93,7 @@ function ArchBox({ label, items, color }: { label: string; items: string[]; colo
           className="flex items-center rounded-lg border px-3 py-1.5 sm:py-2 w-full"
           style={{ borderColor: `${color}30`, backgroundColor: `${color}08` }}
         >
-          <span className="font-mono text-[10px] sm:text-xs font-medium whitespace-nowrap" style={{ color }}>{item}</span>
+          <span className="font-sans text-[10px] sm:text-xs font-medium whitespace-nowrap" style={{ color }}>{item}</span>
         </div>
       ))}
     </div>
@@ -111,7 +111,7 @@ function FlowArrow({ label, color }: { label: string; color: string }) {
           <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
         </circle>
       </svg>
-      <span className="font-mono text-[8px] sm:text-[9px] whitespace-nowrap" style={{ color, opacity: 0.6 }}>{label}</span>
+      <span className="font-sans text-[8px] sm:text-[9px] whitespace-nowrap" style={{ color, opacity: 0.6 }}>{label}</span>
     </div>
   )
 }
@@ -123,7 +123,7 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <div className="flex flex-col items-center text-center">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
+          <p className="font-sans text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
             Technical Onboarding · Confidential
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink mb-5 md:mb-8 leading-[1.1]">
@@ -131,16 +131,16 @@ const slides: Slide[] = [
             <span className="text-ink/30 mx-3 font-light">×</span>
             InTomes
           </h1>
-          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
             Implementation workflow & local development setup for Jim.
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
+            <span className="font-sans text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
               <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&larr;</kbd>
               <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&rarr;</kbd>
               <span className="ml-1">to navigate</span>
             </span>
-            <span className="font-mono text-xs text-ink/35 tracking-wide sm:hidden">
+            <span className="font-sans text-xs text-ink/35 tracking-wide sm:hidden">
               Swipe to navigate
             </span>
           </div>
@@ -159,7 +159,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             High-level system design.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             Both frontend and backend are deployed on GCP services.
           </p>
         </div>
@@ -176,9 +176,9 @@ const slides: Slide[] = [
 
         <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-4 sm:py-5 max-w-3xl mx-auto mt-8 sm:mt-10">
           <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Deployment</span>
+            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Deployment</span>
           </div>
-          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+          <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
             Frontend served via <strong className="text-ink/80 font-medium">Nginx on GCP Cloud Run</strong> · Backend runs as a <strong className="text-ink/80 font-medium">Python container on GCP Cloud Run</strong>
           </p>
         </div>
@@ -196,14 +196,14 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Frontend & Backend.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             Key technologies powering the Invariant IDE.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto w-full">
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-5">
+            <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-5">
               Frontend
             </span>
             <div className="flex flex-col gap-3">
@@ -217,15 +217,15 @@ const slides: Slide[] = [
                 { name: 'Zustand', detail: 'State management' },
               ].map((t) => (
                 <div key={t.name} className="flex items-center justify-between">
-                  <span className="font-mono text-xs sm:text-sm font-medium text-ink/80">{t.name}</span>
-                  <span className="font-mono text-[10px] sm:text-xs text-ink/40">{t.detail}</span>
+                  <span className="font-sans text-xs sm:text-sm font-medium text-ink/80">{t.name}</span>
+                  <span className="font-sans text-[10px] sm:text-xs text-ink/40">{t.detail}</span>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="rounded-xl border border-ink/[0.08] bg-ink/[0.015] px-6 sm:px-8 py-6 sm:py-8">
-            <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-5">
+            <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium block mb-5">
               Backend
             </span>
             <div className="flex flex-col gap-3">
@@ -239,8 +239,8 @@ const slides: Slide[] = [
                 { name: 'GCS', detail: 'Cloud storage' },
               ].map((t) => (
                 <div key={t.name} className="flex items-center justify-between">
-                  <span className="font-mono text-xs sm:text-sm font-medium text-ink/80">{t.name}</span>
-                  <span className="font-mono text-[10px] sm:text-xs text-ink/40">{t.detail}</span>
+                  <span className="font-sans text-xs sm:text-sm font-medium text-ink/80">{t.name}</span>
+                  <span className="font-sans text-[10px] sm:text-xs text-ink/40">{t.detail}</span>
                 </div>
               ))}
             </div>
@@ -260,7 +260,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Install Node.js & NPM.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             NPM ships with Node.js. Install Node to get both.
           </p>
         </div>
@@ -276,9 +276,9 @@ const slides: Slide[] = [
 
           <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-4 sm:py-5">
             <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Reference</span>
+              <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Reference</span>
             </div>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
               <a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 decoration-ink/15 hover:decoration-ink/30 hover:text-ink/70 transition-colors">nodejs.org/en/download</a>
             </p>
           </div>
@@ -297,7 +297,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Unzip & run the frontend.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             Extract the provided zip, install dependencies, and start the dev server.
           </p>
         </div>
@@ -317,9 +317,9 @@ const slides: Slide[] = [
 
           <div className="relative rounded-xl border border-emerald-200/60 bg-emerald-50/30 px-6 sm:px-8 py-4 sm:py-5">
             <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Result</span>
+              <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Result</span>
             </div>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
               Frontend live at <strong className="text-emerald-600 font-medium">http://localhost:5173</strong>
             </p>
           </div>
@@ -338,7 +338,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Deploy the backend locally.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             Create a virtual environment, install requirements, and start the server.
           </p>
         </div>
@@ -358,9 +358,9 @@ const slides: Slide[] = [
 
           <div className="relative rounded-xl border border-emerald-200/60 bg-emerald-50/30 px-6 sm:px-8 py-4 sm:py-5">
             <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Result</span>
+              <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-emerald-500/70 font-medium">Result</span>
             </div>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
               Backend API live at <strong className="text-emerald-600 font-medium">http://localhost:8000</strong>
             </p>
           </div>
@@ -379,7 +379,7 @@ const slides: Slide[] = [
           <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 max-w-4xl">
             Helion-512 via Docker.
           </h2>
-          <p className="font-mono text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
+          <p className="font-sans text-xs sm:text-sm text-ink/50 mb-10 sm:mb-14 max-w-2xl">
             The Helion-512 model ships as a Docker image, same React frontend, Python backend with the model hosted on it.
           </p>
         </div>
@@ -399,9 +399,9 @@ const slides: Slide[] = [
 
           <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-4 sm:py-5">
             <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-              <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Note</span>
+              <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Note</span>
             </div>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55 text-center">
               The Docker image bundles the <strong className="text-ink/80 font-medium">React frontend + Python backend + Helion-512 model</strong>, no separate setup needed.
             </p>
           </div>
@@ -420,17 +420,17 @@ const slides: Slide[] = [
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink mb-6 sm:mb-8">
             Questions?
           </h2>
-          <p className="font-mono text-sm sm:text-base text-ink/50 leading-relaxed max-w-xl mb-8 sm:mb-10">
+          <p className="font-sans text-sm sm:text-base text-ink/50 leading-relaxed max-w-xl mb-8 sm:mb-10">
             Start building your workflow.
           </p>
           <div className="flex flex-col items-center gap-4 mb-8 sm:mb-12">
             <a
               href="mailto:founders@invariant-ai.com?subject=InTomes Technical Setup"
-              className="font-mono text-sm tracking-[0.1em] uppercase bg-ink text-white px-8 py-3.5 rounded hover:bg-ink/90 transition-colors"
+              className="font-sans text-sm tracking-[0.1em] uppercase bg-ink text-white px-8 py-3.5 rounded hover:bg-ink/90 transition-colors"
             >
               founders@invariant-ai.com
             </a>
-            <span className="font-mono text-xs text-ink/35">invariant-ai.com</span>
+            <span className="font-sans text-xs text-ink/35">invariant-ai.com</span>
           </div>
         </div>
       </SlideShell>
@@ -548,7 +548,7 @@ export default function IntomesDeck() {
       )}
 
       <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-3 bg-white/80 backdrop-blur-sm border-t border-ink/[0.04]">
-        <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
+        <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
           Invariant × InTomes
         </span>
 
@@ -566,7 +566,7 @@ export default function IntomesDeck() {
           ))}
         </div>
 
-        <span className="font-mono text-[10px] sm:text-xs tabular-nums text-ink/30">
+        <span className="font-sans text-[10px] sm:text-xs tabular-nums text-ink/30">
           {current + 1} / {total}
         </span>
       </div>

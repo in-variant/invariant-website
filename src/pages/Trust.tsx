@@ -22,7 +22,7 @@ export default function Trust() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Trust</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Trust</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
             How we handle your work.
           </h1>

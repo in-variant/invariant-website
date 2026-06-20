@@ -1,9 +1,8 @@
 import Hero from '../components/Hero'
-import BuiltFor from '../components/BuiltFor'
-import Verticals from '../components/Verticals'
-import Platform from '../components/Platform'
-import Metrics from '../components/Metrics'
-import Process from '../components/Process'
+import IntroducingInvariant from '../components/IntroducingInvariant'
+import PlatformShowcase from '../components/PlatformShowcase'
+import CustomerStories from '../components/CustomerStories'
+import HowItWorks from '../components/HowItWorks'
 import Advisors from '../components/Advisors'
 import { Seo, ORG_SCHEMA, WEBSITE_SCHEMA, EDITORIAL_TEAM, faqSchema, SITE_URL } from '../components/Seo'
 
@@ -71,11 +70,10 @@ export default function Home() {
         jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
       <Hero />
-      <BuiltFor />
-      <Verticals />
-      <Platform />
-      <Metrics />
-      <Process />
+      <IntroducingInvariant />
+      <PlatformShowcase />
+      <CustomerStories />
+      <HowItWorks />
       <Advisors />
     </>
   )

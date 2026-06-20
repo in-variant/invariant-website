@@ -103,7 +103,7 @@ export default function FccDeorbitCalculator() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
             Calculator · FCC orbital debris
           </p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
@@ -114,7 +114,7 @@ export default function FccDeorbitCalculator() {
           </p>
 
           <section className="mt-12 rounded-[3px] border border-ink/15 bg-white p-6 md:p-8">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Inputs</h2>
+            <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Inputs</h2>
 
             <Field label="Operational altitude (km)">
               <input
@@ -158,7 +158,7 @@ export default function FccDeorbitCalculator() {
                   <button
                     key={String(v)}
                     onClick={() => setInputs({ ...inputs, hasPropulsion: v as boolean })}
-                    className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                    className={`rounded-full border px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.12em] transition-colors ${
                       inputs.hasPropulsion === v ? 'border-copper bg-copper/10 text-copper' : 'border-ink/15 text-ink/65 hover:border-ink/30'
                     }`}
                   >
@@ -186,7 +186,7 @@ export default function FccDeorbitCalculator() {
                   <button
                     key={String(v)}
                     onClick={() => setInputs({ ...inputs, launchAfterGrandfathering: v as boolean })}
-                    className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                    className={`rounded-full border px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.12em] transition-colors ${
                       inputs.launchAfterGrandfathering === v ? 'border-copper bg-copper/10 text-copper' : 'border-ink/15 text-ink/65 hover:border-ink/30'
                     }`}
                   >
@@ -198,7 +198,7 @@ export default function FccDeorbitCalculator() {
           </section>
 
           <section className="mt-8 rounded-[3px] border border-copper/20 bg-copper/5 p-6 md:p-8">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Result</h2>
+            <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Result</h2>
             <p className="mt-4 font-serif text-3xl font-normal leading-tight tracking-[-0.015em] text-ink md:text-4xl">
               {result.grandfathered
                 ? 'Grandfathered under prior 25-year benchmark.'
@@ -242,7 +242,7 @@ export default function FccDeorbitCalculator() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <div className="mt-5">
-      <label className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</label>
+      <label className="block font-sans text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</label>
       {hint && <p className="mt-1 font-sans text-xs text-ink/45">{hint}</p>}
       {children}
     </div>
@@ -252,9 +252,9 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div>
-      <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</dt>
+      <dt className="font-sans text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</dt>
       <dd className="mt-2 font-serif text-2xl font-normal text-ink">{value}</dd>
-      {hint && <p className="mt-1 font-mono text-xs text-ink/45">{hint}</p>}
+      {hint && <p className="mt-1 font-sans text-xs text-ink/45">{hint}</p>}
     </div>
   )
 }

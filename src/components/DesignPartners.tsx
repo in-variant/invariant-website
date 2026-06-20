@@ -25,7 +25,7 @@ export default function DesignPartners() {
   return (
     <section>
       <div ref={ref} className="px-6 md:px-12 lg:px-24 xl:px-32 pt-12 pb-24">
-        <p className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-ink/50 mb-8">
+        <p className="font-sans text-xs md:text-sm tracking-[0.25em] uppercase text-ink/50 mb-8">
           Design Partners
         </p>
 
@@ -54,7 +54,7 @@ export default function DesignPartners() {
               <h3 className="font-serif text-xl md:text-2xl font-medium text-ink mb-2">
                 {partner.name}
               </h3>
-              <p className="font-mono text-base text-ink/60">
+              <p className="font-sans text-base text-ink/60">
                 {partner.description}{' · '}
                 <a
                   href={partner.url}

@@ -61,7 +61,7 @@ export default function GlossaryEntryPage() {
             ← Glossary
           </Link>
 
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-copper">
+          <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
             {TOPIC_LABEL[entry.topic]} compliance · Definition
           </p>
           <h1 className="mt-3 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.025em] text-ink md:text-5xl">
@@ -89,7 +89,7 @@ export default function GlossaryEntryPage() {
 
           {related.length > 0 && (
             <section className="mt-12 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
-              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">
+              <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
                 Related terms
               </p>
               <ul className="mt-4 space-y-3">
@@ -127,7 +127,7 @@ export default function GlossaryEntryPage() {
             </section>
           )}
 
-          <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">
+          <p className="mt-16 font-sans text-[11px] uppercase tracking-[0.14em] text-ink/45">
             Last updated {formatDate(entry.last_updated)}
           </p>
         </div>

@@ -56,7 +56,7 @@ export default function Glossary() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Glossary</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Glossary</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
             A glossary of space, aerospace, and nuclear compliance.
           </h1>
@@ -74,7 +74,7 @@ export default function Glossary() {
                 if (!items?.length) return null
                 return (
                   <section key={topic}>
-                    <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/55">
+                    <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-ink/55">
                       {TOPIC_LABEL[topic]}
                     </h2>
                     <ul className="mt-4 divide-y divide-ink/10">

@@ -59,10 +59,10 @@ export default function TheModel() {
                 transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
                 className="border-t border-ink/10 pt-5"
               >
-                <h3 className="font-mono text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-3">
+                <h3 className="font-sans text-xs md:text-sm tracking-[0.2em] uppercase text-ink mb-3">
                   {cap.title}
                 </h3>
-                <p className="font-mono text-sm md:text-base leading-relaxed text-ink/65">
+                <p className="font-sans text-sm md:text-base leading-relaxed text-ink/65">
                   {cap.description}
                 </p>
               </motion.div>

@@ -43,7 +43,7 @@ function AcronymBar({ keys }: { keys: string[] }) {
     <div className="mt-auto pt-6 sm:pt-8">
       <div className="flex flex-wrap gap-x-4 gap-y-1">
         {keys.map((k) => (
-          <span key={k} className="font-mono text-[9px] sm:text-[10px] text-ink/35 leading-relaxed">
+          <span key={k} className="font-sans text-[9px] sm:text-[10px] text-ink/35 leading-relaxed">
             <span className="font-medium text-ink/45">{k}</span> {ACRONYM_MAP[k] || k}
           </span>
         ))}
@@ -61,7 +61,7 @@ function SlideShell({ children, acronyms }: { children: React.ReactNode; acronym
         bg-white text-ink"
     >
       <div className="absolute top-4 sm:top-5 left-5 sm:left-10 md:left-16 lg:left-20 z-10">
-        <span className="font-mono text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
+        <span className="font-sans text-[10px] sm:text-xs tracking-[0.2em] uppercase text-ink/30 font-medium">
           Invariant
         </span>
       </div>
@@ -79,7 +79,7 @@ function SlideShell({ children, acronyms }: { children: React.ReactNode; acronym
 
 function SlideLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
+    <p className="font-sans text-xs md:text-sm tracking-[0.25em] uppercase mb-8 text-ink/50">
       {children}
     </p>
   )
@@ -126,7 +126,7 @@ function RiskBadge({ level }: { level: string }) {
     'D-1 restart': 'text-red-800 border-red-400',
   }
   return (
-    <span className={`inline-block font-mono text-[9px] sm:text-[10px] tracking-wide uppercase px-1.5 py-0.5 rounded border font-medium whitespace-nowrap ${colors[level] || 'bg-ink/5 text-ink/60 border-ink/10'}`}>
+    <span className={`inline-block font-sans text-[9px] sm:text-[10px] tracking-wide uppercase px-1.5 py-0.5 rounded border font-medium whitespace-nowrap ${colors[level] || 'bg-ink/5 text-ink/60 border-ink/10'}`}>
       {level}
     </span>
   )
@@ -161,7 +161,7 @@ function ChangePhase1Slide() {
       <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
         After D-1 Submitted, Before Stage 2.
       </h2>
-      <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+      <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
         <strong className="text-ink/70 font-medium">D-1 locks your declared design.</strong> Hover over a change type to see its risk level, impact, and what CB re-review is required.
       </p>
 
@@ -181,7 +181,7 @@ function ChangePhase1Slide() {
             >
               <div className="flex items-center gap-2.5">
                 <RiskBadge level={item.can} />
-                <span className={`font-mono text-[10px] sm:text-xs leading-snug transition-colors ${
+                <span className={`font-sans text-[10px] sm:text-xs leading-snug transition-colors ${
                   active === i ? 'text-ink/80 font-medium' : 'text-ink/50'
                 }`}>
                   {item.type}
@@ -201,31 +201,31 @@ function ChangePhase1Slide() {
             <div className={`rounded-xl border px-6 py-6 ${riskBg[row.can] || 'bg-ink/[0.02] border-ink/10'} transition-all duration-200`}>
               <div className="flex items-center gap-3 mb-5">
                 <RiskBadge level={row.can} />
-                <span className={`font-mono text-sm sm:text-base font-semibold ${riskText[row.can] || 'text-ink/70'}`}>
+                <span className={`font-sans text-sm sm:text-base font-semibold ${riskText[row.can] || 'text-ink/70'}`}>
                   {row.can === 'Yes' ? 'Allowed' : row.can === 'D-1 restart' ? 'Full D-1 Restart' : row.can}
                 </span>
               </div>
 
-              <p className="font-mono text-xs sm:text-sm font-medium text-ink/80 leading-snug mb-4">
+              <p className="font-sans text-xs sm:text-sm font-medium text-ink/80 leading-snug mb-4">
                 {row.type}
               </p>
 
               <div className="space-y-4">
                 <div>
-                  <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1.5">Impact</p>
-                  <p className="font-mono text-[11px] sm:text-xs text-ink/60 leading-relaxed">{row.impact}</p>
+                  <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1.5">Impact</p>
+                  <p className="font-sans text-[11px] sm:text-xs text-ink/60 leading-relaxed">{row.impact}</p>
                 </div>
 
                 <div>
-                  <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1.5">CB Re-Review</p>
-                  <p className="font-mono text-[11px] sm:text-xs text-ink/60 leading-relaxed">{row.cbReview}</p>
+                  <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-1.5">CB Re-Review</p>
+                  <p className="font-sans text-[11px] sm:text-xs text-ink/60 leading-relaxed">{row.cbReview}</p>
                 </div>
 
                 <div>
-                  <p className="font-mono text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-2">Affected Clauses</p>
+                  <p className="font-sans text-[9px] sm:text-[10px] tracking-[0.15em] uppercase text-ink/35 font-medium mb-2">Affected Clauses</p>
                   <div className="flex flex-wrap gap-1.5">
                     {row.clauses.map((c) => (
-                      <span key={c} className="font-mono text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded border border-ink/15 text-ink/60">
+                      <span key={c} className="font-sans text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded border border-ink/15 text-ink/60">
                         {c}
                       </span>
                     ))}
@@ -261,22 +261,22 @@ const slides: Slide[] = [
     render: () => (
       <SlideShell>
         <div className="flex flex-col items-center text-center">
-          <p className="font-mono text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
+          <p className="font-sans text-xs sm:text-sm tracking-[0.2em] uppercase text-ink/40 mb-6">
             Prepared by Invariant AI
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium tracking-[-0.03em] text-ink mb-5 md:mb-8 max-w-4xl leading-[1.1]">
             Getting Your Agri Drone Type Certified In India
           </h1>
-          <p className="font-mono text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
+          <p className="font-sans text-sm sm:text-base md:text-lg text-ink/50 leading-relaxed max-w-2xl mb-10 md:mb-14">
             A practical guide from BOM to flying legally.
           </p>
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
+            <span className="font-sans text-xs text-ink/35 tracking-wide hidden sm:flex items-center gap-2">
               <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&larr;</kbd>
               <kbd className="inline-flex items-center justify-center w-6 h-6 rounded border border-ink/20 text-[11px] text-ink/45">&rarr;</kbd>
               <span className="ml-1">to navigate</span>
             </span>
-            <span className="font-mono text-xs text-ink/35 tracking-wide sm:hidden">
+            <span className="font-sans text-xs text-ink/35 tracking-wide sm:hidden">
               Swipe to navigate
             </span>
           </div>
@@ -297,20 +297,20 @@ const slides: Slide[] = [
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 max-w-4xl">
           <div className="rounded-lg border border-ink/[0.08] px-4 sm:px-5 py-4 sm:py-5 bg-ink/[0.015]">
-            <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">No TC, no UIN</span>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">You <strong className="text-ink/80 font-medium">cannot register a drone</strong> without a Type Certificate. No UIN means no legal identity.</p>
+            <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">No TC, no UIN</span>
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55">You <strong className="text-ink/80 font-medium">cannot register a drone</strong> without a Type Certificate. No UIN means no legal identity.</p>
           </div>
           <div className="rounded-lg border border-ink/[0.08] px-4 sm:px-5 py-4 sm:py-5 bg-ink/[0.015]">
-            <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">No UIN, no operations</span>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">Commercial operation requires a registered UIN. <strong className="text-ink/80 font-medium">There is no interim path.</strong></p>
+            <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">No UIN, no operations</span>
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55">Commercial operation requires a registered UIN. <strong className="text-ink/80 font-medium">There is no interim path.</strong></p>
           </div>
           <div className="rounded-lg border border-ink/[0.08] px-4 sm:px-5 py-4 sm:py-5 bg-ink/[0.015]">
-            <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">DGCA enforcement</span>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">Registration of all non-TC drones has been <strong className="text-ink/80 font-medium">suspended. No exceptions</strong>, no timeline given.</p>
+            <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">DGCA enforcement</span>
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55">Registration of all non-TC drones has been <strong className="text-ink/80 font-medium">suspended. No exceptions</strong>, no timeline given.</p>
           </div>
           <div className="rounded-lg border border-ink/[0.08] px-4 sm:px-5 py-4 sm:py-5 bg-ink/[0.015]">
-            <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">eGCA is the only portal</span>
-            <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">All regulatory filings moved to eGCA as of July 2025. <strong className="text-ink/80 font-medium">Digital Sky is no longer used.</strong></p>
+            <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase font-medium text-ink/80 block mb-2.5">eGCA is the only portal</span>
+            <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55">All regulatory filings moved to eGCA as of July 2025. <strong className="text-ink/80 font-medium">Digital Sky is no longer used.</strong></p>
           </div>
         </div>
       </SlideShell>
@@ -326,7 +326,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 max-w-4xl">
           Everything Goes Through DGCA.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-8 sm:mb-12 max-w-3xl">
           The Directorate General of Civil Aviation controls <strong className="text-ink/70 font-medium">every stage</strong> of a drone's lifecycle, from proving it's safe to fly, to who can fly it, to where it's allowed to operate.
         </p>
 
@@ -339,13 +339,13 @@ const slides: Slide[] = [
           ]).map((item) => (
             <div key={item.abbr} className="rounded-xl border border-ink/[0.08] px-5 sm:px-6 py-5 sm:py-6 flex flex-col group hover:border-ink/[0.15] transition-colors">
               <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium">{item.num}</span>
-                <span className="font-mono text-[10px] sm:text-xs font-semibold tracking-[0.1em] uppercase px-2 py-0.5 rounded" style={{ color: item.color, borderColor: `${item.color}33`, borderWidth: 1 }}>
+                <span className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/25 font-medium">{item.num}</span>
+                <span className="font-sans text-[10px] sm:text-xs font-semibold tracking-[0.1em] uppercase px-2 py-0.5 rounded" style={{ color: item.color, borderColor: `${item.color}33`, borderWidth: 1 }}>
                   {item.abbr}
                 </span>
               </div>
-              <h3 className="font-mono text-xs sm:text-sm font-medium text-ink/80 leading-snug mb-2">{item.label}</h3>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <h3 className="font-sans text-xs sm:text-sm font-medium text-ink/80 leading-snug mb-2">{item.label}</h3>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -353,9 +353,9 @@ const slides: Slide[] = [
         {/* Callout */}
         <div className="relative rounded-xl border border-ink/10 bg-ink/[0.02] px-6 sm:px-8 py-5 sm:py-6 max-w-5xl">
           <div className="absolute -top-3 left-6 sm:left-8 bg-white px-2">
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Key Insight</span>
+            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-ink/35 font-medium">Key Insight</span>
           </div>
-          <p className="font-mono text-xs sm:text-sm leading-relaxed text-ink/55">
+          <p className="font-sans text-xs sm:text-sm leading-relaxed text-ink/55">
             You need <strong className="text-ink/80 font-medium">all four</strong> to operate commercially.
             A Type Certificate alone does not authorise flight, you still need a registered unit, a licensed pilot, and operational approval.
           </p>
@@ -386,17 +386,17 @@ const slides: Slide[] = [
                     <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 relative z-10 bg-white ${
                       i === 0 ? '!bg-ink text-white' : 'border border-ink/20 text-ink/60'
                     }`}>
-                      <span className="font-mono text-[9px] sm:text-[10px] font-medium">{i + 1}</span>
+                      <span className="font-sans text-[9px] sm:text-[10px] font-medium">{i + 1}</span>
                     </div>
                     <div className="h-px flex-1 bg-ink/15" />
                   </div>
-                  <p className="font-mono text-[10px] sm:text-xs text-ink/70 leading-snug text-center mt-3 px-1">{step}</p>
+                  <p className="font-sans text-[10px] sm:text-xs text-ink/70 leading-snug text-center mt-3 px-1">{step}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <p className="font-mono text-[10px] sm:text-xs text-ink/30 mt-8 sm:mt-12 tracking-wide">
+        <p className="font-sans text-[10px] sm:text-xs text-ink/30 mt-8 sm:mt-12 tracking-wide">
           Continued on next slide →
         </p>
       </SlideShell>
@@ -424,18 +424,18 @@ const slides: Slide[] = [
                     <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 relative z-10 bg-white ${
                       i === PROCESS_STEPS.slice(6).length - 1 ? '!bg-ink text-white' : 'border border-ink/20 text-ink/60'
                     }`}>
-                      <span className="font-mono text-[9px] sm:text-[10px] font-medium">{i + 7}</span>
+                      <span className="font-sans text-[9px] sm:text-[10px] font-medium">{i + 7}</span>
                     </div>
                     {i < PROCESS_STEPS.slice(6).length - 1 && <div className="h-px flex-1 bg-ink/15" />}
                     {i === PROCESS_STEPS.slice(6).length - 1 && <div className="flex-1" />}
                   </div>
-                  <p className="font-mono text-[10px] sm:text-xs text-ink/70 leading-snug text-center mt-3 px-1">{step}</p>
+                  <p className="font-sans text-[10px] sm:text-xs text-ink/70 leading-snug text-center mt-3 px-1">{step}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 max-w-3xl mt-8 sm:mt-12">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 max-w-3xl mt-8 sm:mt-12">
           Timeline: <strong className="text-ink/70 font-medium">3-6 months</strong> typically. <strong className="text-ink/70 font-medium">60 days</strong> for CB to submit SoC + <strong className="text-ink/70 font-medium">15 days</strong> for DGCA to issue TC.
         </p>
       </SlideShell>
@@ -454,12 +454,12 @@ const slides: Slide[] = [
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 md:gap-x-10 gap-y-3 sm:gap-y-4 max-w-5xl">
           {CSUAS_CRITERIA.map((c) => (
             <div key={c.num} className="flex gap-3 sm:gap-4 py-2 border-b border-ink/[0.06]">
-              <span className="font-mono text-xs sm:text-sm text-ink/30 tabular-nums font-medium w-5 sm:w-6 shrink-0 text-right pt-0.5">
+              <span className="font-sans text-xs sm:text-sm text-ink/30 tabular-nums font-medium w-5 sm:w-6 shrink-0 text-right pt-0.5">
                 {c.num}
               </span>
               <div className="min-w-0">
-                <p className="font-mono text-xs sm:text-sm font-medium text-ink/80 leading-snug">{c.name}</p>
-                <p className="font-mono text-[10px] sm:text-xs text-ink/50 leading-relaxed mt-0.5">{c.detail}</p>
+                <p className="font-sans text-xs sm:text-sm font-medium text-ink/80 leading-snug">{c.name}</p>
+                <p className="font-sans text-[10px] sm:text-xs text-ink/50 leading-relaxed mt-0.5">{c.detail}</p>
               </div>
             </div>
           ))}
@@ -477,7 +477,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           Before D-1 Submission. Full Freedom.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">Nothing is locked.</strong> Only constraint: your CB/ATE relationship and any pre-testing work. <strong className="text-ink/70 font-medium">No regulatory consequence.</strong>
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-5xl">
@@ -488,8 +488,8 @@ const slides: Slide[] = [
             { label: 'Weight Class', desc: 'Can cross MTOW boundaries. Changes which CSUAS clauses apply.' },
           ]).map((item, i) => (
             <div key={i} className="rounded-lg border border-emerald-200 px-4 py-3 sm:py-4 flex flex-col">
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -512,7 +512,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           Stage 1 Cleared. The Design Is Approved On Paper.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">Very limited freedom.</strong> After Stage 1 clearance, freeze the BOM. Any change = cost and time.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl">
@@ -524,8 +524,8 @@ const slides: Slide[] = [
             { label: 'Bottom Line', desc: 'Any change = cost and time. Freeze the BOM after Stage 1 clearance.' },
           ]).map((item, i) => (
             <div key={i} className={`rounded-lg border border-red-200 px-4 py-3 sm:py-4 flex flex-col ${i === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -542,7 +542,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           TC Issued. No Freedom.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">Everything is locked.</strong> Minor changes need amendment via D-1 on eGCA. Significant changes may require <strong className="text-ink/70 font-medium">partial or full re-certification</strong>.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl">
@@ -555,8 +555,8 @@ const slides: Slide[] = [
             { label: 'Significant Changes', desc: 'May require partial or full re-certification. Treat as a new TC process.' },
           ]).map((item, i) => (
             <div key={i} className="rounded-lg border border-red-200 px-4 py-3 sm:py-4 flex flex-col">
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -573,7 +573,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           The Most Regulated Component.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">Freeze your battery spec and supplier before D-1.</strong> Supplier changes most frequently trigger regulatory re-work.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl">
@@ -588,8 +588,8 @@ const slides: Slide[] = [
             { label: 'Staging', desc: 'OEM report for Stage 1; bench test may be done in Stage 2.' },
           ]).map((item, i) => (
             <div key={i} className="rounded-lg border border-ink/10 px-4 py-3 sm:py-4 flex flex-col">
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -606,7 +606,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           Less Regulated, But Still Documented.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">No published Indian standard</strong> for motors or ESCs. Changing <strong className="text-ink/70 font-medium">motor KV</strong> or <strong className="text-ink/70 font-medium">propeller diameter</strong> post-D-1 affects Clause 5 and 4. <strong className="text-ink/70 font-medium">Assume Stage 1 restart.</strong>
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl">
@@ -619,8 +619,8 @@ const slides: Slide[] = [
             { label: 'Propeller Change', desc: 'Affects structural load calculations. High risk post-D-1.' },
           ]).map((item, i) => (
             <div key={i} className={`rounded-lg border ${i >= 4 ? 'border-red-200' : 'border-ink/10'} px-4 py-3 sm:py-4 flex flex-col`}>
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -637,7 +637,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           What The eGCA Migration Changed (July 2025).
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">All regulatory filings moved to eGCA.</strong> Old: digitalsky.dgca.gov.in → New: egca.dgca.gov.in. Invariant tracks these changes so you don't miss a deadline.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl">
@@ -648,8 +648,8 @@ const slides: Slide[] = [
             { label: 'Digital Sky Residual', desc: 'Still used only for: flight plan, airspace map, NPNT clearance per flight.', color: 'border-amber-200' },
           ]).map((item, i) => (
             <div key={i} className={`rounded-lg border ${item.color} px-4 py-3 sm:py-4 flex flex-col`}>
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{item.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -666,7 +666,7 @@ const slides: Slide[] = [
         <h2 className="heading-editorial text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-3 max-w-4xl">
           The Critical Path If You Are Starting Today.
         </h2>
-        <p className="font-mono text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
+        <p className="font-sans text-xs sm:text-sm text-ink/50 mb-6 sm:mb-8 max-w-3xl">
           <strong className="text-ink/70 font-medium">8 steps to legal commercial operation.</strong> Questions? Reach out at{' '}
           <a href="mailto:founders@invariant-ai.com?subject=Drone TC Inquiry" className="underline underline-offset-2 hover:text-ink/70 transition-colors">founders@invariant-ai.com</a>
         </p>
@@ -681,8 +681,8 @@ const slides: Slide[] = [
             { label: '7. Register on eGCA', desc: 'Account setup takes time. Do it now.' },
           ]).map((step, i) => (
             <div key={i} className="rounded-lg border border-ink/10 px-4 py-3 sm:py-4 flex flex-col">
-              <p className="font-mono text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{step.label}</p>
-              <p className="font-mono text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{step.desc}</p>
+              <p className="font-sans text-[10px] sm:text-xs font-medium text-ink/80 leading-snug mb-1.5">{step.label}</p>
+              <p className="font-sans text-[10px] sm:text-xs text-ink/45 leading-relaxed mt-auto">{step.desc}</p>
             </div>
           ))}
         </div>
@@ -803,7 +803,7 @@ export default function DroneDeck() {
 
       {/* Bottom bar */}
       <div className="absolute bottom-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-3 bg-white/80 backdrop-blur-sm border-t border-ink/[0.04]">
-        <span className="font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
+        <span className="font-sans text-[10px] sm:text-xs tracking-[0.15em] uppercase text-ink/25 font-medium">
           Invariant
         </span>
 
@@ -821,7 +821,7 @@ export default function DroneDeck() {
           ))}
         </div>
 
-        <span className="font-mono text-[10px] sm:text-xs tabular-nums text-ink/30">
+        <span className="font-sans text-[10px] sm:text-xs tabular-nums text-ink/30">
           {current + 1} / {total}
         </span>
       </div>

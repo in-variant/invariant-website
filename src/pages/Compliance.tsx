@@ -65,7 +65,7 @@ export default function Compliance() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Compliance library</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Compliance library</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
             The Invariant compliance library.
           </h1>
@@ -87,7 +87,7 @@ export default function Compliance() {
             </p>
             <Link
               to="/glossary"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-5 py-2 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
             >
               <span className="text-copper/80">→</span>
               <span>Open the glossary</span>
@@ -95,7 +95,7 @@ export default function Compliance() {
           </section>
 
           <section className="mt-16 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Research</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Research</p>
             <p className="mt-4 font-sans text-base leading-relaxed text-ink/70">
               Helion-512, our domain-adapted retrieval model, is the published state of the art on FermiBench at 0.9693 nDCG@10. The full write-up and the rest of our research notes are at {' '}
               <Link to="/research" className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">/research</Link>

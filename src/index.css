@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Pax-equivalent display serif. NOTE: SeasonMix is a commercial font.
+ * Self-hosting here for parity with Pax — production deployment requires
+ * a license from the foundry, or swap the @font-face src to a free analog
+ * (Instrument Serif works visually). */
+@font-face {
+  font-family: 'SeasonMix';
+  src: url('/fonts/SeasonMix.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     font-size: 16px;
@@ -13,7 +25,7 @@
   body {
     background-color: #FAFAF7;
     color: #1B2436;
-    font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+    font-family: 'Geist', system-ui, sans-serif;
     line-height: 1.55;
   }
 
@@ -24,10 +36,10 @@
 }
 
 @layer components {
-  /* Plex Mono eyebrow / metadata label */
+  /* Geist eyebrow / metadata label — Pax-style microheader */
   .section-label {
-    @apply font-mono text-[11px] tracking-[0.14em] uppercase text-ink/50;
-    font-weight: 400;
+    @apply font-sans text-[11px] tracking-[0.12em] uppercase text-ink/50;
+    font-weight: 500;
   }
 
   .section-rule {
@@ -56,6 +68,15 @@
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* Vertical infinite marquee for the platform-showcase capability list.
+ * The list renders the capabilities twice (one full cycle + one repeat).
+ * Translating to -50% lands the second copy in the start position, so the
+ * loop is seamless. */
+@keyframes capability-marquee-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
 }
 
 .blog-comparison-card {

@@ -179,7 +179,7 @@ export default function HowWeWork() {
                     {step.title}
                   </h3>
                   <p
-                    className="font-mono text-[10px] lg:text-[11px] tracking-wide uppercase text-center"
+                    className="font-sans text-[10px] lg:text-[11px] tracking-wide uppercase text-center"
                     style={{ color: step.color }}
                   >
                     {step.subtitle}
@@ -217,7 +217,7 @@ export default function HowWeWork() {
                     {step.title}
                   </h3>
                   <p
-                    className="font-mono text-[10px] tracking-wide uppercase text-center"
+                    className="font-sans text-[10px] tracking-wide uppercase text-center"
                     style={{ color: step.color }}
                   >
                     {step.subtitle}

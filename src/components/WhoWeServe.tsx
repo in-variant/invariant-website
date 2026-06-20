@@ -450,7 +450,7 @@ export default function WhoWeServe() {
 
               {/* Label */}
               <motion.span
-                className="font-mono text-xs tracking-[0.25em] uppercase font-medium mb-3 block"
+                className="font-sans text-xs tracking-[0.25em] uppercase font-medium mb-3 block"
                 style={{ color: sector.color }}
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
@@ -461,7 +461,7 @@ export default function WhoWeServe() {
 
               {/* Description */}
               <motion.p
-                className="font-mono text-sm leading-relaxed text-ink/60 max-w-sm"
+                className="font-sans text-sm leading-relaxed text-ink/60 max-w-sm"
                 initial={{ opacity: 0, y: 8 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.6 + i * 0.25, duration: 0.5 }}

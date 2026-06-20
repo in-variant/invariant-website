@@ -41,11 +41,11 @@ export default function EarlyAccess() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@company.com"
-              className="flex-1 px-4 py-3 font-mono text-base bg-transparent border border-ink/15 text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink/40 transition-colors"
+              className="flex-1 px-4 py-3 font-sans text-base bg-transparent border border-ink/15 text-ink placeholder:text-ink/40 focus:outline-none focus:border-ink/40 transition-colors"
             />
             <a
               href={`mailto:founders@invariant-ai.com?subject=Design Partner Inquiry&body=I'd like to learn more about Invariant.`}
-              className="px-6 py-3 bg-ink text-white font-mono text-base tracking-wide hover:bg-ink/85 transition-colors text-center whitespace-nowrap"
+              className="px-6 py-3 bg-ink text-white font-sans text-base tracking-wide hover:bg-ink/85 transition-colors text-center whitespace-nowrap"
             >
               Get in touch
             </a>

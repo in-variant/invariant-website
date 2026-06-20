@@ -61,7 +61,7 @@ export default function CalculatorsIndex() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Calculators</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Calculators</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
             Compliance calculators.
           </h1>
@@ -79,7 +79,7 @@ export default function CalculatorsIndex() {
                   <p className="mt-2 font-sans text-base leading-relaxed text-ink/65">
                     {t.description}
                   </p>
-                  <span className="mt-3 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.12em] text-copper">
+                  <span className="mt-3 inline-flex items-center gap-1 font-sans text-[11px] uppercase tracking-[0.12em] text-copper">
                     <span>Open tool →</span>
                   </span>
                 </Link>

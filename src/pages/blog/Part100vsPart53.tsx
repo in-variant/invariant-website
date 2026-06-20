@@ -294,7 +294,7 @@ function ComparisonCard({ row }: { row: Row }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
-          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
             Part 100
           </p>
           <p className="font-sans text-sm text-ink/70 leading-relaxed">
@@ -302,7 +302,7 @@ function ComparisonCard({ row }: { row: Row }) {
           </p>
         </div>
         <div className="bg-ink/[0.02] border border-ink/[0.06] rounded-md p-4">
-          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
+          <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-2">
             Part 53 Subpart D
           </p>
           {row.part53 ? (
@@ -319,7 +319,7 @@ function ComparisonCard({ row }: { row: Row }) {
       </div>
 
       <div className="border-t border-ink/[0.06] pt-3">
-        <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-1.5">
+        <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-ink/40 mb-1.5">
           Key difference
         </p>
         <p className="font-sans text-sm text-ink/80 leading-relaxed">
@@ -592,7 +592,7 @@ export default function Part100vsPart53() {
           {/* Sidebar TOC - desktop only */}
           <nav className="hidden lg:block">
             <div className="sticky top-[80px]">
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
+              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
                 Sections
               </p>
               <div className="flex flex-col gap-1">
@@ -648,7 +648,7 @@ export default function Part100vsPart53() {
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="hidden h-px flex-1 bg-ink/10 sm:block" />
-                    <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-ink/50 sm:whitespace-nowrap">
+                    <h3 className="font-sans text-xs tracking-[0.2em] uppercase text-ink/50 sm:whitespace-nowrap">
                       {section.heading}
                     </h3>
                     <div className="h-px flex-1 bg-ink/10" />

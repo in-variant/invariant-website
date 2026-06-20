@@ -135,7 +135,7 @@ export default function NuclearComplianceTAM() {
           </p>
 
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-[0.15em] text-ink/50">
+            <h3 className="font-sans text-xs uppercase tracking-[0.15em] text-ink/50">
               2028 · Demonstration units online
             </h3>
             <p className="mt-3 font-sans text-base leading-relaxed text-ink/75">
@@ -149,7 +149,7 @@ export default function NuclearComplianceTAM() {
           </div>
 
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-[0.15em] text-ink/50">
+            <h3 className="font-sans text-xs uppercase tracking-[0.15em] text-ink/50">
               2032 · Commercial wave
             </h3>
             <p className="mt-3 font-sans text-base leading-relaxed text-ink/75">
@@ -164,7 +164,7 @@ export default function NuclearComplianceTAM() {
           </div>
 
           <div>
-            <h3 className="font-mono text-xs uppercase tracking-[0.15em] text-ink/50">
+            <h3 className="font-sans text-xs uppercase tracking-[0.15em] text-ink/50">
               2037 · Gen IV enters the pipeline
             </h3>
             <p className="mt-3 font-sans text-base leading-relaxed text-ink/75">
@@ -207,10 +207,10 @@ export default function NuclearComplianceTAM() {
           <table className="w-full border-collapse text-left font-sans text-sm">
             <thead>
               <tr className="border-b border-ink/15">
-                <th className="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Year</th>
-                <th className="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Market spend</th>
-                <th className="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Installed capacity</th>
-                <th className="py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Compliance TAM</th>
+                <th className="py-3 pr-4 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Year</th>
+                <th className="py-3 pr-4 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Market spend</th>
+                <th className="py-3 pr-4 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Installed capacity</th>
+                <th className="py-3 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Compliance TAM</th>
               </tr>
             </thead>
             <tbody>

@@ -115,11 +115,11 @@ export default function Pillar({
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">{eyebrow}</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">{eyebrow}</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
             {data.h1}
           </h1>
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">
+          <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.14em] text-ink/45">
             By the Invariant editorial team · Updated {formatDate(updatedAt)}
           </p>
           {data.tldr && (
@@ -182,7 +182,7 @@ export default function Pillar({
 
           <RelatedGuides currentSlug={slug} pillar={topic} />
 
-          <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45">
+          <p className="mt-16 font-sans text-[11px] uppercase tracking-[0.14em] text-ink/45">
             Last updated {formatDate(updatedAt)}
           </p>
         </div>
@@ -208,11 +208,11 @@ function Toc({ sections }: { sections: Section[] }) {
       aria-label="Table of contents"
       className="mt-12 rounded-[3px] border border-ink/10 bg-white p-6 md:p-7"
     >
-      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">In this guide</p>
+      <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">In this guide</p>
       <ol className="mt-4 space-y-2 font-sans text-sm text-ink/70">
         {sections.map((s, i) => (
           <li key={i} className="flex gap-3">
-            <span className="font-mono text-[11px] tabular-nums text-ink/40 mt-1">
+            <span className="font-sans text-[11px] tabular-nums text-ink/40 mt-1">
               {String(i + 1).padStart(2, '0')}
             </span>
             <a
@@ -287,7 +287,7 @@ function SeeAlsoBlock({ items, inline }: { items?: SeeAlso[]; inline?: boolean }
           <Link
             key={it.slug}
             to={`/${it.slug}`}
-            className="mr-3 inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
+            className="mr-3 inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-white px-3 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
           >
             <span className="text-copper/80">↳</span>
             <span>Continue: {label}</span>

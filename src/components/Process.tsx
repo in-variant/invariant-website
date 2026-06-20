@@ -28,7 +28,7 @@ function Heading() {
   return (
     <div className="lg:sticky lg:top-28 lg:self-start">
       <span className="inline-flex rounded-full bg-ink/[0.05] px-3 py-1 font-sans text-xs font-medium tracking-wide text-ink/60">How we work</span>
-      <h2 className="mt-5 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
+      <h2 className="mt-5 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl">
         One platform. End-to-end compliance.
       </h2>
       <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-ink/60">
@@ -44,7 +44,7 @@ function Drawer({ step, isOpen }: { step: (typeof STEPS)[number]; isOpen: boolea
     <div className="border-b border-ink/12">
       <div className="flex items-center gap-4 py-5">
         <span
-          className={`flex h-6 w-7 shrink-0 items-center font-mono text-sm tabular-nums transition-colors duration-300 ${
+          className={`flex h-6 w-7 shrink-0 items-center font-sans text-sm tabular-nums transition-colors duration-300 ${
             isOpen ? 'text-copper' : 'text-ink/35'
           }`}
         >
@@ -111,7 +111,7 @@ export default function Process() {
           {STEPS.map((s) => (
             <div key={s.n} className="border-b border-ink/12 py-5">
               <div className="flex items-center gap-4">
-                <span className={`flex h-6 w-7 shrink-0 items-center font-mono text-sm tabular-nums ${s.done ? 'text-copper' : 'text-ink/40'}`}>
+                <span className={`flex h-6 w-7 shrink-0 items-center font-sans text-sm tabular-nums ${s.done ? 'text-copper' : 'text-ink/40'}`}>
                   {s.done ? <Check /> : s.n}
                 </span>
                 <h3 className="font-sans text-lg font-medium tracking-[-0.01em] text-ink">{s.title}</h3>

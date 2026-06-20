@@ -87,7 +87,7 @@ export default function WhoItsFor() {
               <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-[4px] border border-ink/12 bg-paper p-3 text-copper">
                 {audience.icon}
               </div>
-              <h3 className="mb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/55">
+              <h3 className="mb-3 font-sans text-[11px] uppercase tracking-[0.18em] text-ink/55">
                 {audience.label}
               </h3>
               <p className="max-w-xs font-sans text-sm leading-relaxed text-ink/65">

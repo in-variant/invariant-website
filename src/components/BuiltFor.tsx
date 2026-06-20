@@ -17,7 +17,7 @@ export default function BuiltFor() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45"
+          className="font-sans text-[11px] font-medium uppercase tracking-[0.12em] text-ink/45"
         >
           Built for businesses where compliance matters
         </motion.p>

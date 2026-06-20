@@ -1,82 +1,95 @@
 import { Link } from 'react-router-dom'
 import { KeystoneMark } from './Logo'
 
+// Pax-tight. Three columns of what matters about Invariant. Everything
+// else (guides, deep dives) lives under /compliance and /blog and is
+// reachable via the nav.
 const COLUMNS = [
   {
-    title: 'Compliance',
+    title: 'Product',
     links: [
-      { label: 'Space compliance', to: '/space-compliance' },
-      { label: 'Nuclear compliance', to: '/nuclear-compliance' },
-      { label: 'Regulators', to: '/regulators' },
-      { label: 'Glossary', to: '/glossary' },
-      { label: 'Library', to: '/compliance' },
+      { label: 'Overview', to: '/product' },
+      { label: 'Probe', to: '/probe' },
+      { label: 'Research', to: '/research' },
     ],
   },
   {
-    title: 'Guides',
+    title: 'Industries',
     links: [
-      { label: 'Part 50 vs 52 vs 53', to: '/part-50-vs-52-vs-53' },
-      { label: 'NRC license timeline', to: '/how-long-does-nrc-license-take' },
-      { label: 'How to write a PSAR', to: '/how-to-write-a-psar' },
-      { label: 'NRC pre-application', to: '/nrc-pre-application-engagement-guide' },
-      { label: 'FAA Part 450 timeline', to: '/faa-part-450-license-timeline' },
-      { label: 'Part 450 MoC', to: '/how-to-write-faa-part-450-means-of-compliance' },
-      { label: 'Part 450 vs legacy', to: '/faa-part-450-vs-legacy' },
-      { label: 'ITAR vs EAR for space', to: '/itar-vs-ear-for-space-companies' },
-      { label: 'FCC 5-year deorbit rule', to: '/fcc-5-year-deorbit-rule' },
-      { label: 'NOAA tier system', to: '/noaa-remote-sensing-license-tiers' },
-      { label: 'ECSS vs MIL-STD', to: '/ecss-vs-mil-std' },
-      { label: 'ITU coordination filing', to: '/how-to-draft-itu-coordination-filing' },
-      { label: 'Calculators', to: '/calculators' },
-    ],
-  },
-  {
-    title: 'Deep dives',
-    links: [
-      { label: 'AI for nuclear compliance', to: '/ai-for-nuclear-compliance' },
-      { label: 'DOE Reactor Pilot Program', to: '/doe-advanced-reactor-pilot-program' },
-      { label: 'India SHANTI Act and Bharat SMR', to: '/india-shanti-act-bharat-smr' },
-      { label: 'Which agency licenses my satellite', to: '/which-agency-licenses-my-satellite' },
-      { label: 'Part 53 subparts', to: '/part-53-subparts' },
-      { label: 'NRC RAI management', to: '/nrc-rai-management' },
-      { label: 'ITAAC closure', to: '/itaac-closure' },
-      { label: '10 CFR Part 73 security', to: '/nrc-part-73-security' },
-      { label: 'FAA AC 450 series', to: '/faa-ac-450-series' },
-      { label: 'FAA vehicle operator license', to: '/faa-vehicle-operator-license' },
-      { label: 'FCC Schedule S', to: '/fcc-schedule-s' },
-      { label: 'ITAR Commodity Jurisdiction', to: '/itar-commodity-jurisdiction' },
-      { label: 'ITU Bringing Into Use', to: '/itu-bringing-into-use' },
+      { label: 'Nuclear', to: '/nuclear-compliance' },
+      { label: 'Space', to: '/space-compliance' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'Product', to: '/product' },
-      { label: 'Probe', to: '/probe' },
-      { label: 'Research', to: '/research' },
-      { label: 'Blog', to: '/blog' },
       { label: 'About', to: '/about' },
+      { label: 'Blog', to: '/blog' },
       { label: 'Trust', to: '/trust' },
       { label: 'Contact', to: 'mailto:founders@invariant-ai.com' },
     ],
   },
 ]
 
+/**
+ * Faint compass-arc pattern. Concentric arcs from above the footer + a
+ * handful of vertical/diagonal lines, all at low opacity. Same trick Pax
+ * uses to give the dark footer some depth without putting an image there.
+ */
+function CompassPattern() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 h-full w-full text-cloud"
+      viewBox="0 0 1600 1000"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <g stroke="currentColor" strokeWidth="1" fill="none" opacity="0.08">
+        {/* Concentric horizontal arcs centered on top */}
+        <path d="M -200 240 Q 800 -120 1800 240" />
+        <path d="M -200 380 Q 800 20 1800 380" />
+        <path d="M -200 520 Q 800 160 1800 520" />
+        <path d="M -200 660 Q 800 300 1800 660" />
+        <path d="M -200 800 Q 800 440 1800 800" />
+        <path d="M -200 940 Q 800 580 1800 940" />
+        {/* Crossing radial-ish lines */}
+        <line x1="800" y1="-100" x2="800" y2="1100" />
+        <line x1="500" y1="-100" x2="1100" y2="1100" />
+        <line x1="1100" y1="-100" x2="500" y2="1100" />
+        <line x1="200" y1="-100" x2="1400" y2="1100" />
+        <line x1="1400" y1="-100" x2="200" y2="1100" />
+      </g>
+    </svg>
+  )
+}
+
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-midnight text-cloud">
-      {/* Painterly dusk landscape, washed in Midnight so it stays cool/on-brand and text reads. */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/footer-dawn.png)' }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-midnight/55 via-midnight/45 to-midnight/75" />
-      <div className="relative mx-auto max-w-6xl px-6 pb-10 pt-24 md:px-12 lg:px-20">
+    <footer className="relative overflow-hidden bg-ink text-cloud">
+      <CompassPattern />
+
+      {/* Closing CTA — Pax-shape */}
+      <div className="relative px-6 pb-24 pt-24 text-center md:pb-32 md:pt-32 lg:pb-40 lg:pt-40">
+        <h2 className="mx-auto max-w-3xl font-display text-4xl font-normal leading-[1.1] tracking-[-0.02em] text-cloud md:text-5xl lg:text-[3.5rem]">
+          From spec to launch.
+          <br />
+          <span className="text-cloud/45">From spec to first power.</span>
+        </h2>
+        <a
+          href="mailto:founders@invariant-ai.com?subject=Invariant%20conversation"
+          className="mt-8 inline-flex h-11 items-center justify-center rounded-full bg-cloud px-6 font-sans text-[15px] font-medium text-ink transition-colors hover:bg-mineral md:mt-10"
+        >
+          Talk to an expert
+        </a>
+      </div>
+
+      {/* Logo + link columns */}
+      <div className="relative mx-auto max-w-6xl px-6 pb-10 md:px-12 lg:px-20">
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5 text-cloud">
               <KeystoneMark className="h-[20px] w-auto" />
-              <span className="font-serif text-[22px] font-normal leading-none tracking-[-0.015em]">Invariant</span>
+              <span className="font-display text-[22px] font-normal leading-none tracking-[-0.015em]">Invariant</span>
             </div>
             <p className="mt-5 font-sans text-sm leading-relaxed text-cloud/55">
               Autonomous AI agents for mission-critical compliance.
@@ -89,10 +102,10 @@ export default function Footer() {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-10 gap-y-12 md:grid-cols-4 md:gap-x-12">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-12 sm:grid-cols-3 md:gap-x-16">
             {COLUMNS.map((col) => (
               <div key={col.title}>
-                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-cloud/45">{col.title}</p>
+                <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-cloud/45">{col.title}</p>
                 <ul className="mt-4 space-y-3">
                   {col.links.map((lnk) => (
                     <li key={lnk.to}>
@@ -113,8 +126,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-24 flex flex-col gap-3 border-t border-cloud/12 pt-6 text-cloud/45 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] uppercase tracking-[0.1em]">
+        <div className="mt-16 flex flex-col gap-3 border-t border-cloud/12 pt-6 text-cloud/45 sm:flex-row sm:items-center sm:justify-between md:mt-24">
+          <p className="font-sans text-[11px] uppercase tracking-[0.1em]">
             © {new Date().getFullYear()} Invariant · Backed by Entrepreneurs First
           </p>
           <a href="mailto:founders@invariant-ai.com" className="font-sans text-xs transition-colors hover:text-copper">

@@ -137,7 +137,7 @@ export default function Regulators() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Reference</p>
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Reference</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
             US regulators, at a glance.
           </h1>
@@ -150,7 +150,7 @@ export default function Regulators() {
           <RegBlock title="Aerospace" rows={US_AEROSPACE} />
 
           <section className="mt-16 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Allied jurisdictions</p>
+            <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Allied jurisdictions</p>
             <p className="mt-4 font-sans text-base leading-relaxed text-ink/70">
               For UK, EU, India, and Japan content, see the regional guides linked from the {' '}
               <Link to="/compliance" className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">
@@ -176,7 +176,7 @@ function RegBlock({ title, rows }: { title: string; rows: Reg[] }) {
           <li key={r.acronym} className="rounded-[3px] border border-ink/10 bg-white p-6 md:p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-copper">{r.acronym}</p>
+                <p className="font-sans text-[11px] uppercase tracking-[0.12em] text-copper">{r.acronym}</p>
                 <h3 className="mt-1 font-serif text-xl font-normal tracking-[-0.01em] text-ink">{r.name}</h3>
                 <p className="mt-1 font-sans text-xs text-ink/50">{r.agency} · {r.jurisdiction}</p>
               </div>
@@ -184,7 +184,7 @@ function RegBlock({ title, rows }: { title: string; rows: Reg[] }) {
                 href={r.primaryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 rounded-full border border-ink/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
+                className="shrink-0 rounded-full border border-ink/15 px-3 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
               >
                 Visit
               </a>
@@ -194,7 +194,7 @@ function RegBlock({ title, rows }: { title: string; rows: Reg[] }) {
               {r.clusterSlug && (
                 <Link
                   to={`/${r.clusterSlug}`}
-                  className="rounded-full border border-ink/15 bg-paper px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
+                  className="rounded-full border border-ink/15 bg-paper px-3 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
                 >
                   Full guide →
                 </Link>
@@ -202,7 +202,7 @@ function RegBlock({ title, rows }: { title: string; rows: Reg[] }) {
               {r.glossarySlug && (
                 <Link
                   to={`/glossary/${r.glossarySlug}`}
-                  className="rounded-full border border-ink/15 bg-paper px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
+                  className="rounded-full border border-ink/15 bg-paper px-3 py-1 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/65 transition-colors hover:border-copper/40 hover:text-copper"
                 >
                   Glossary →
                 </Link>

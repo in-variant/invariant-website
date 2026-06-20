@@ -104,7 +104,7 @@ export default function FaaPart450Calculator() {
       />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">
+          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
             Calculator · FAA Part 450
           </p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
@@ -115,7 +115,7 @@ export default function FaaPart450Calculator() {
           </p>
 
           <section className="mt-12 rounded-[3px] border border-ink/15 bg-white p-6 md:p-8">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Inputs</h2>
+            <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Inputs</h2>
 
             <Field label="Vehicle class">
               <select
@@ -144,7 +144,7 @@ export default function FaaPart450Calculator() {
                 onChange={(e) => setInputs({ ...inputs, novelFeatures: Number(e.target.value) })}
                 className="mt-2 w-full accent-copper"
               />
-              <span className="ml-2 font-mono text-xs text-ink/65">{inputs.novelFeatures}</span>
+              <span className="ml-2 font-sans text-xs text-ink/65">{inputs.novelFeatures}</span>
             </Field>
 
             <Field
@@ -160,7 +160,7 @@ export default function FaaPart450Calculator() {
                 onChange={(e) => setInputs({ ...inputs, acceptedMocCount: Number(e.target.value) })}
                 className="mt-2 w-full accent-copper"
               />
-              <span className="ml-2 font-mono text-xs text-ink/65">{inputs.acceptedMocCount}</span>
+              <span className="ml-2 font-sans text-xs text-ink/65">{inputs.acceptedMocCount}</span>
             </Field>
 
             <Field label="Environmental review type">
@@ -169,7 +169,7 @@ export default function FaaPart450Calculator() {
                   <button
                     key={v}
                     onClick={() => setInputs({ ...inputs, environmentalReview: v })}
-                    className={`rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
+                    className={`rounded-full border px-4 py-1.5 font-sans text-[11px] uppercase tracking-[0.12em] transition-colors ${
                       inputs.environmentalReview === v
                         ? 'border-copper bg-copper/10 text-copper'
                         : 'border-ink/15 text-ink/65 hover:border-ink/30'
@@ -197,7 +197,7 @@ export default function FaaPart450Calculator() {
           </section>
 
           <section className="mt-8 rounded-[3px] border border-copper/20 bg-copper/5 p-6 md:p-8">
-            <h2 className="font-mono text-[11px] uppercase tracking-[0.14em] text-copper">Estimate</h2>
+            <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Estimate</h2>
             <p className="mt-4 font-serif text-5xl font-normal leading-none tracking-[-0.02em] text-ink md:text-6xl">
               ~{result.totalMonths} months
             </p>
@@ -242,7 +242,7 @@ export default function FaaPart450Calculator() {
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
   return (
     <div className="mt-5">
-      <label className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55">
+      <label className="block font-sans text-[11px] uppercase tracking-[0.12em] text-ink/55">
         {label}
       </label>
       {hint && <p className="mt-1 font-sans text-xs text-ink/45">{hint}</p>}
@@ -254,9 +254,9 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div>
-      <dt className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</dt>
+      <dt className="font-sans text-[11px] uppercase tracking-[0.12em] text-ink/55">{label}</dt>
       <dd className="mt-2 font-serif text-2xl font-normal text-ink">{value}</dd>
-      {hint && <p className="mt-1 font-mono text-xs text-ink/45">{hint}</p>}
+      {hint && <p className="mt-1 font-sans text-xs text-ink/45">{hint}</p>}
     </div>
   )
 }

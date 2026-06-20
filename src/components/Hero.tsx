@@ -1,75 +1,84 @@
 import { motion } from 'framer-motion'
 
+/**
+ * Hero, structured exactly to Pax's spec.
+ *
+ *   - Section: min-h-[100svh] sm:min-h-[760px] lg:min-h-[800px], -mt-16 so it
+ *     pulls up under the fixed nav (which sits transparent on top).
+ *   - Single dark overlay (bg-ink/60), no multi-layer gradients.
+ *   - Content stack centered in max-w-[46rem] container.
+ *   - Explicit <span class="block sm:whitespace-nowrap"> line breaks on both
+ *     headline and subhead so wrap is predictable, not text-balance roulette.
+ *   - Headline uses clamp() like Pax for fluid sizing across the breakpoints.
+ *   - CTA matches Pax exactly: h-11, px-4, text-[15px], leading-6.
+ *   - Font: Fraunces (closest free analog to Pax's commercial "SeasonMix")
+ *     with display optical-size and slightly elevated grade for authority.
+ */
 export default function Hero() {
   return (
-    <section className="relative w-full overflow-hidden bg-ink text-cloud">
-      {/* Cinematic loop: shuttle ignition, operating reactor, engineer on the drawing. */}
-      <div className="relative h-[88vh] min-h-[560px] w-full md:h-screen">
+    <section className="relative -mt-16 flex min-h-[100svh] flex-col overflow-hidden bg-ink sm:min-h-[820px] md:min-h-[880px] lg:min-h-[920px]">
+      {/* Background video */}
+      <div className="absolute inset-0">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="size-full object-cover"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
           poster="/video/hero-poster.jpg"
+          aria-hidden="true"
         >
-          {/* Desktop browsers: 1080p VP9 first (smallest at quality), MP4 fallback. */}
           <source src="/video/hero.webm" type="video/webm" />
           <source src="/video/hero.mp4" type="video/mp4" />
         </video>
+      </div>
 
-        {/* Readability layers: vertical darken so the headline sits clean. */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/35 via-ink/45 to-ink/75" />
-        <div className="pointer-events-none absolute inset-0 bg-ink/15" />
+      {/* Single dark overlay, exactly like Pax */}
+      <div aria-hidden="true" className="absolute inset-0 z-20 bg-ink/60" />
 
-        {/* Copy stack, vertically centered toward the bottom third. */}
-        <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-end px-6 pb-[12vh] text-center md:pb-[10vh] md:px-12">
-          <motion.a
-            href="https://www.joinef.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 rounded-full border border-cloud/20 bg-cloud/10 px-4 py-1.5 font-sans text-xs text-cloud/80 backdrop-blur-sm transition hover:border-cloud/40 hover:text-cloud"
-          >
-            <span>Backed by <span className="text-cloud">Entrepreneurs First</span></span>
-            <span aria-hidden="true" className="text-cloud/45">›</span>
-          </motion.a>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: 'easeOut' }}
-            className="mt-7 max-w-4xl text-balance font-serif text-[2.5rem] font-normal leading-[1.04] tracking-[-0.025em] text-cloud sm:text-5xl md:text-6xl lg:text-[5.25rem]"
-          >
-            The new standard for nuclear and space compliance.
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: 'easeOut' }}
-            className="mt-5 max-w-2xl text-balance font-sans text-base leading-relaxed text-cloud/75 md:mt-6 md:text-lg"
-          >
-            Autonomous AI for the teams licensing the next reactor, satellite, and launch vehicle. Drafts the submission, traces every citation, and watches the rule that supports it.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-            className="mt-8"
-          >
-            <a
-              href="mailto:founders@invariant-ai.com?subject=Invariant%20licensing%20conversation"
-              className="inline-flex items-center gap-2 rounded-full bg-cloud px-6 py-3 font-sans text-sm font-medium text-ink transition hover:bg-copper hover:text-paper"
+      {/* Content stack, with pt-16 to clear the fixed nav */}
+      <div className="relative z-30 flex flex-1 flex-col pt-16">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-16">
+          {/* Inner container biased toward the lower third of the hero */}
+          <div className="mx-auto mt-[20vh] flex w-full max-w-[46rem] flex-col items-center sm:mt-[24vh] md:mt-[28vh]">
+            <motion.h1
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+              // SeasonMix is single-weight (400) — no font-variation-settings needed.
+              // Fraunces fallback still receives the variation if SeasonMix fails to load.
+              style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
+              className="font-display text-cloud text-[clamp(2rem,8.75vw,3.25rem)] leading-[1.08] tracking-[-0.02em] sm:text-[clamp(3rem,7vw,4.25rem)] sm:leading-[1] md:text-[clamp(4rem,7vw,5rem)]"
             >
-              Talk to a licensing lead
-              <span aria-hidden="true">›</span>
-            </a>
-          </motion.div>
+              <span className="block sm:whitespace-nowrap">The new standard</span>
+              <span className="block sm:whitespace-nowrap">for nuclear and space</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-3 text-cloud text-[clamp(0.75rem,3.5vw,1rem)] leading-[1.5] sm:text-[18px]"
+            >
+              <span className="block sm:whitespace-nowrap">Autonomous agents that accelerate compliance</span>
+              <span className="block sm:whitespace-nowrap">in mission-critical industries.</span>
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 flex justify-center"
+            >
+              <a
+                href="mailto:founders@invariant-ai.com?subject=Invariant%20conversation"
+                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border-0 bg-cloud px-4 font-sans text-[15px] font-medium leading-6 text-ink transition-colors hover:bg-mineral"
+              >
+                Talk to an expert
+              </a>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

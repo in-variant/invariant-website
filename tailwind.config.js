@@ -24,10 +24,13 @@ export default {
         dim: '#CCCCCC',
       },
       fontFamily: {
-        serif: ['Newsreader', 'Georgia', 'serif'],          // display / headings
-        sans: ['Satoshi', 'Inter', 'system-ui', 'sans-serif'], // body / UI
-        mono: ['"IBM Plex Mono"', 'monospace'],              // labels / metadata
-        grotesk: ['Newsreader', 'serif'],                    // legacy alias -> serif
+        display: ['SeasonMix', 'Fraunces', 'Georgia', 'serif'], // hero + section headings
+        // Geist everywhere. font-sans AND font-mono both resolve to Geist
+        // so legacy `font-mono` usages still render in the new font.
+        sans: ['Geist', 'system-ui', 'sans-serif'],
+        mono: ['Geist', 'system-ui', 'sans-serif'],
+        serif: ['Newsreader', 'Georgia', 'serif'],     // editorial body on doc pages only
+        grotesk: ['Geist', 'sans-serif'],              // legacy alias
       },
     },
   },

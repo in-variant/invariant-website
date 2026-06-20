@@ -190,10 +190,10 @@ export default function SpaceComplianceTAM() {
           <table className="w-full border-collapse text-left font-sans text-sm">
             <thead>
               <tr className="border-b border-ink/15">
-                <th className="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Year</th>
-                <th className="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Satellites</th>
-                <th className="py-3 pr-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Industry spend</th>
-                <th className="py-3 font-mono text-[11px] uppercase tracking-[0.12em] text-ink/45">Compliance spend</th>
+                <th className="py-3 pr-4 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Year</th>
+                <th className="py-3 pr-4 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Satellites</th>
+                <th className="py-3 pr-4 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Industry spend</th>
+                <th className="py-3 font-sans text-[11px] uppercase tracking-[0.12em] text-ink/45">Compliance spend</th>
               </tr>
             </thead>
             <tbody>

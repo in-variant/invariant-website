@@ -15,7 +15,7 @@ export default function Metrics() {
     <section ref={ref} className="bg-midnight px-6 py-24 text-cloud md:px-12 md:py-32 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <span className="inline-flex rounded-full bg-cloud/10 px-3 py-1 font-sans text-xs font-medium tracking-wide text-cloud/70">By the numbers</span>
-        <h2 className="mt-5 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
+        <h2 className="mt-5 font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
           State of the art.
           <br />
           Built to defend.
@@ -29,7 +29,7 @@ export default function Metrics() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1, ease: 'easeOut' }}
             >
-              <p className="font-serif text-6xl font-normal tracking-[-0.02em] text-cloud md:text-7xl">
+              <p className="font-display text-6xl font-normal tracking-[-0.02em] text-cloud md:text-7xl">
                 {s.value}
               </p>
               <p className="mt-4 max-w-[15rem] font-sans text-sm leading-relaxed text-cloud/55">

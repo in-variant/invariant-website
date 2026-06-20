@@ -307,7 +307,7 @@ function CoverageVerticalsSlide() {
                     {phase.icon(phase.color)}
                   </motion.div>
                   <h3 className="font-serif text-lg lg:text-xl font-medium text-ink mb-1 text-center">{phase.title}</h3>
-                  <p className="font-mono text-[10px] lg:text-[11px] tracking-wide uppercase text-center" style={{ color: phase.color }}>
+                  <p className="font-sans text-[10px] lg:text-[11px] tracking-wide uppercase text-center" style={{ color: phase.color }}>
                     {phase.subtitle}
                   </p>
                 </motion.div>
@@ -339,7 +339,7 @@ function CoverageVerticalsSlide() {
                     {phase.icon(phase.color)}
                   </div>
                   <h3 className="font-serif text-lg font-medium text-ink mb-0.5 text-center">{phase.title}</h3>
-                  <p className="font-mono text-[10px] tracking-wide uppercase text-center" style={{ color: phase.color }}>
+                  <p className="font-sans text-[10px] tracking-wide uppercase text-center" style={{ color: phase.color }}>
                     {phase.subtitle}
                   </p>
                 </motion.div>
@@ -410,7 +410,7 @@ function TransitInsuranceSlide() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
-          className="font-mono text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
+          className="font-sans text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
         >
           Key risks
         </motion.p>
@@ -425,7 +425,7 @@ function TransitInsuranceSlide() {
               className="border border-ink/[0.08] px-3 sm:px-4 py-2 sm:py-2.5 rounded-md"
               style={{ background: 'linear-gradient(135deg, #2A9D8F03 0%, #2A9D8F06 100%)' }}
             >
-              <span className="font-mono text-[10px] sm:text-xs text-ink/60">{risk}</span>
+              <span className="font-sans text-[10px] sm:text-xs text-ink/60">{risk}</span>
             </motion.div>
           ))}
         </div>
@@ -488,7 +488,7 @@ function PreLaunchInsuranceSlide() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
-          className="font-mono text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
+          className="font-sans text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
         >
           Key risks
         </motion.p>
@@ -503,7 +503,7 @@ function PreLaunchInsuranceSlide() {
               className="border border-ink/[0.08] px-3 sm:px-4 py-2 sm:py-2.5 rounded-md"
               style={{ background: 'linear-gradient(135deg, #C4820E03 0%, #C4820E06 100%)' }}
             >
-              <span className="font-mono text-[10px] sm:text-xs text-ink/60">{risk}</span>
+              <span className="font-sans text-[10px] sm:text-xs text-ink/60">{risk}</span>
             </motion.div>
           ))}
         </div>
@@ -557,7 +557,7 @@ function LaunchInsuranceSlide() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6, ease: 'easeOut' }}
-          className="font-mono text-xs sm:text-sm text-ink/50 mb-10 max-w-lg px-2"
+          className="font-sans text-xs sm:text-sm text-ink/50 mb-10 max-w-lg px-2"
         >
           Highest-risk phase. Typically carries the largest share of the premium.
         </motion.p>
@@ -575,7 +575,7 @@ function LaunchInsuranceSlide() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
-          className="font-mono text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
+          className="font-sans text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
         >
           Key risks
         </motion.p>
@@ -590,7 +590,7 @@ function LaunchInsuranceSlide() {
               className="border border-ink/[0.08] px-3 sm:px-4 py-2 sm:py-2.5 rounded-md"
               style={{ background: 'linear-gradient(135deg, #3A7CA503 0%, #3A7CA506 100%)' }}
             >
-              <span className="font-mono text-[10px] sm:text-xs text-ink/60">{risk}</span>
+              <span className="font-sans text-[10px] sm:text-xs text-ink/60">{risk}</span>
             </motion.div>
           ))}
         </div>
@@ -653,7 +653,7 @@ function InOrbitInsuranceSlide() {
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
-          className="font-mono text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
+          className="font-sans text-xs tracking-[0.2em] uppercase font-semibold text-ink/40 mb-6"
         >
           Coverage options
         </motion.p>
@@ -672,8 +672,8 @@ function InOrbitInsuranceSlide() {
               className="w-full border border-ink/[0.08] px-4 sm:px-5 py-3 sm:py-4 rounded-md text-left"
               style={{ background: 'linear-gradient(135deg, #8B5CF603 0%, #8B5CF606 100%)' }}
             >
-              <p className="font-mono text-xs font-semibold text-ink/75 mb-1">{option.label}</p>
-              <p className="font-mono text-[10px] leading-relaxed text-ink/45">{option.desc}</p>
+              <p className="font-sans text-xs font-semibold text-ink/75 mb-1">{option.label}</p>
+              <p className="font-sans text-[10px] leading-relaxed text-ink/45">{option.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -735,7 +735,7 @@ function TheProcessSlide() {
               </svg>
             </div>
             <h3 className="font-serif text-lg lg:text-xl font-medium text-ink mb-1">Client</h3>
-            <p className="font-mono text-[10px] lg:text-[11px] tracking-wide uppercase" style={{ color: '#3A7CA5' }}>You</p>
+            <p className="font-sans text-[10px] lg:text-[11px] tracking-wide uppercase" style={{ color: '#3A7CA5' }}>You</p>
           </motion.div>
 
           {/* Branching arrows */}
@@ -772,7 +772,7 @@ function TheProcessSlide() {
                 style={{ background: `linear-gradient(135deg, ${node.color}03 0%, ${node.color}06 100%)` }}
               >
                 <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: node.color }} />
-                <span className="font-mono text-xs text-ink/60">{node.label}</span>
+                <span className="font-sans text-xs text-ink/60">{node.label}</span>
               </motion.div>
             ))}
           </div>
@@ -795,7 +795,7 @@ function TheProcessSlide() {
               </svg>
             </div>
             <h3 className="font-serif text-lg font-medium text-ink mb-0.5">Client</h3>
-            <p className="font-mono text-[10px] tracking-wide uppercase" style={{ color: '#3A7CA5' }}>You</p>
+            <p className="font-sans text-[10px] tracking-wide uppercase" style={{ color: '#3A7CA5' }}>You</p>
           </motion.div>
 
           <VerticalArrow color="#5C6370" delay={0.5} />
@@ -811,7 +811,7 @@ function TheProcessSlide() {
                 style={{ background: `linear-gradient(135deg, ${node.color}03 0%, ${node.color}06 100%)` }}
               >
                 <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: node.color }} />
-                <span className="font-mono text-xs text-ink/60">{node.label}</span>
+                <span className="font-sans text-xs text-ink/60">{node.label}</span>
               </motion.div>
             ))}
           </div>
@@ -863,8 +863,8 @@ function WhatReinsurersNeedSlide() {
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease: 'easeOut' }}
               />
-              <h3 className="font-mono text-xs font-semibold text-ink/80 mb-2">{item.title}</h3>
-              <p className="font-mono text-[10px] leading-relaxed text-ink/50">{item.desc}</p>
+              <h3 className="font-sans text-xs font-semibold text-ink/80 mb-2">{item.title}</h3>
+              <p className="font-sans text-[10px] leading-relaxed text-ink/50">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -967,7 +967,7 @@ function HowInvariantHelpsSlide() {
               transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
             />
             <h3 className="font-serif text-lg font-medium text-ink mb-1">Invariant AI</h3>
-            <p className="font-mono text-[10px] tracking-wide uppercase mb-4" style={{ color: '#2A9D8F' }}>We handle</p>
+            <p className="font-sans text-[10px] tracking-wide uppercase mb-4" style={{ color: '#2A9D8F' }}>We handle</p>
             <div className="flex flex-col gap-2">
               {INVARIANT_SERVICES.map((svc, i) => (
                 <motion.div
@@ -977,7 +977,7 @@ function HowInvariantHelpsSlide() {
                   transition={{ delay: 0.7 + i * 0.08, duration: 0.35, ease: 'easeOut' }}
                   className="flex items-center"
                 >
-                  <span className="font-mono text-[11px] text-ink/60 text-left">{svc.label}</span>
+                  <span className="font-sans text-[11px] text-ink/60 text-left">{svc.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -1038,7 +1038,7 @@ function HowInvariantHelpsSlide() {
             style={{ background: 'linear-gradient(135deg, #2A9D8F03 0%, #2A9D8F06 100%)' }}
           >
             <h3 className="font-serif text-lg font-medium text-ink mb-1">Invariant AI</h3>
-            <p className="font-mono text-[10px] tracking-wide uppercase mb-3" style={{ color: '#2A9D8F' }}>We handle</p>
+            <p className="font-sans text-[10px] tracking-wide uppercase mb-3" style={{ color: '#2A9D8F' }}>We handle</p>
             <div className="flex flex-col gap-2">
               {INVARIANT_SERVICES.map((svc, i) => (
                 <motion.div
@@ -1048,7 +1048,7 @@ function HowInvariantHelpsSlide() {
                   transition={{ delay: 0.7 + i * 0.08, duration: 0.35 }}
                   className="flex items-center"
                 >
-                  <span className="font-mono text-[11px] text-ink/60 text-left">{svc.label}</span>
+                  <span className="font-sans text-[11px] text-ink/60 text-left">{svc.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -1152,7 +1152,7 @@ function IndiaConstraintSlide() {
                 {card.icon(card.color)}
               </div>
               <h3 className="font-serif text-base sm:text-lg font-medium text-ink mb-2">{card.title}</h3>
-              <p className="font-mono text-[11px] sm:text-xs leading-relaxed text-ink/55">{card.desc}</p>
+              <p className="font-sans text-[11px] sm:text-xs leading-relaxed text-ink/55">{card.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -1238,8 +1238,8 @@ function TheExchangeSlide() {
           >
             <p className="font-serif text-lg md:text-xl font-medium text-ink/35 mb-8">You give us</p>
             <p className="font-serif text-5xl sm:text-6xl md:text-8xl font-medium tracking-[-0.04em] text-ink leading-none">3,4</p>
-            <p className="font-mono text-xs sm:text-sm text-ink/50 mt-3">hours of your lead systems engineer</p>
-            <p className="font-mono text-[10px] sm:text-xs text-ink/30 mt-1">occasional availability for reinsurer calls</p>
+            <p className="font-sans text-xs sm:text-sm text-ink/50 mt-3">hours of your lead systems engineer</p>
+            <p className="font-sans text-[10px] sm:text-xs text-ink/30 mt-1">occasional availability for reinsurer calls</p>
           </motion.div>
 
           <div className="hidden md:flex flex-col items-center justify-center px-6 self-stretch">
@@ -1318,7 +1318,7 @@ function TheExchangeSlide() {
                   >
                     {item.icon(item.color)}
                   </motion.div>
-                  <p className="font-mono text-xs font-medium text-ink/70">{item.label}</p>
+                  <p className="font-sans text-xs font-medium text-ink/70">{item.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -1435,7 +1435,7 @@ function CTASlide() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
-          className="font-mono text-sm sm:text-base md:text-lg text-ink/50 hover:text-ink transition-colors mt-4"
+          className="font-sans text-sm sm:text-base md:text-lg text-ink/50 hover:text-ink transition-colors mt-4"
         >
           +91 93282 76067
         </motion.a>
@@ -1452,7 +1452,7 @@ function CTASlide() {
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          className="font-mono text-xs text-ink/35 tracking-wide"
+          className="font-sans text-xs text-ink/35 tracking-wide"
         >
           invariant-ai.com
         </motion.p>
@@ -1575,7 +1575,7 @@ export default function InsuranceDeck() {
             />
           ))}
         </div>
-        <span className="font-mono text-[10px] sm:text-xs tabular-nums text-ink/30">
+        <span className="font-sans text-[10px] sm:text-xs tabular-nums text-ink/30">
           {String(current + 1).padStart(2, '0')} / {String(TOTAL).padStart(2, '0')}
         </span>
       </div>

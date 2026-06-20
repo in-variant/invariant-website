@@ -112,12 +112,12 @@ function Pipeline({ industry }: { industry: Industry }) {
                   color: stage.assisted && expandedIndex === i ? '#FFFFFF' : '#0D0D0D',
                 }}
               >
-                <span className="font-mono text-xs md:text-sm font-medium block leading-tight">
+                <span className="font-sans text-xs md:text-sm font-medium block leading-tight">
                   {stage.label}
                 </span>
                 {stage.assisted && (
                   <span
-                    className="font-mono text-[10px] md:text-xs tracking-[0.15em] uppercase mt-1 block"
+                    className="font-sans text-[10px] md:text-xs tracking-[0.15em] uppercase mt-1 block"
                     style={{ color: expandedIndex === i ? 'rgba(255,255,255,0.8)' : industry.color }}
                   >
                     AI-assisted
@@ -147,12 +147,12 @@ function Pipeline({ industry }: { industry: Industry }) {
                 borderColor: industry.stages[expandedIndex].assisted ? `${industry.color}40` : '#E5E5E5',
               }}
             >
-              <p className="font-mono text-xs md:text-sm tracking-[0.15em] uppercase mb-2" style={{
+              <p className="font-sans text-xs md:text-sm tracking-[0.15em] uppercase mb-2" style={{
                 color: industry.stages[expandedIndex].assisted ? industry.color : '#888',
               }}>
                 {industry.stages[expandedIndex].label}
               </p>
-              <p className="font-mono text-sm md:text-base leading-relaxed text-ink/70">
+              <p className="font-sans text-sm md:text-base leading-relaxed text-ink/70">
                 {industry.stages[expandedIndex].detail}
               </p>
             </div>
@@ -202,7 +202,7 @@ export default function Industries() {
               <button
                 key={industry.id}
                 onClick={() => setActiveId(industry.id)}
-                className={`font-mono text-xs md:text-sm tracking-[0.2em] uppercase px-5 py-3 transition-colors relative ${
+                className={`font-sans text-xs md:text-sm tracking-[0.2em] uppercase px-5 py-3 transition-colors relative ${
                   activeId === industry.id
                     ? 'text-ink'
                     : 'text-ink/40 hover:text-ink/70'
