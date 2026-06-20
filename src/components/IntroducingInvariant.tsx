@@ -281,7 +281,7 @@ export default function IntroducingInvariant() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl lg:text-[3.5rem]"
           >
-            A senior licensing engineer, on day one.
+            A senior licensing engineer, from day one.
           </motion.h2>
 
           <motion.p

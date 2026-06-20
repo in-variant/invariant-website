@@ -51,8 +51,8 @@ export default function Hero() {
               style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
               className="font-display text-cloud text-[clamp(1.75rem,7vw,2.5rem)] leading-[1.1] tracking-[-0.02em] sm:text-[clamp(2.5rem,5.5vw,3.25rem)] sm:leading-[1.05] md:text-[clamp(3rem,5vw,3.75rem)]"
             >
-              <span className="block sm:whitespace-nowrap">The new standard for nuclear</span>
-              <span className="block sm:whitespace-nowrap">and space compliance.</span>
+              <span className="block sm:whitespace-nowrap">The new standard for space</span>
+              <span className="block sm:whitespace-nowrap">and nuclear compliance.</span>
             </motion.h1>
 
             <motion.p
