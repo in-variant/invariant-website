@@ -2,70 +2,75 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="relative w-full bg-white md:h-screen md:overflow-hidden">
-      {/* Painting, on mobile, a scene-focused banner cropped to the colourful top
-          (the white below is supplied by the page, not the image); on desktop it fills
-          the screen below the nav, anchored to the top. */}
-      <div className="relative md:absolute md:inset-0">
-        {/* Mobile: portrait painting, cropped to the scene (its dead white tail is trimmed) */}
-        <img
-          src="/hero-dawn-mobile.png"
-          alt="Dawn above a sea of cloud, a rocket ascending on the right, a nuclear power station with cooling towers on the left, drones in the sky."
-          className="block aspect-[5/4] w-full object-cover object-top md:hidden"
-        />
-        {/* Desktop: wide painting filling the screen below the nav */}
-        <img
-          src="/hero-dawn.png"
-          alt=""
-          aria-hidden="true"
-          className="hidden h-full w-full object-cover object-top md:block"
-        />
-        {/* Mobile only: melt the misty base into the white page below */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent md:hidden" />
-      </div>
-
-      {/* Copy, below the image on mobile; overlaid on the white lower half on desktop. */}
-      <div className="relative z-10 mx-auto max-w-2xl px-6 pb-16 pt-3 text-center md:absolute md:inset-0 md:mx-0 md:max-w-none md:flex md:flex-col md:items-center md:justify-end md:pb-[9vh] md:pt-0">
-        {/* Backed-by badge, dark Duna-style pill */}
-        <motion.a
-          href="https://www.joinef.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm transition hover:opacity-90"
-          style={{
-            background: 'rgba(28, 25, 23, 0.55)',
-            WebkitBackdropFilter: 'blur(8px)',
-            backdropFilter: 'blur(8px)',
-          }}
+    <section className="relative w-full overflow-hidden bg-ink text-cloud">
+      {/* Cinematic loop: shuttle ignition, operating reactor, engineer on the drawing. */}
+      <div className="relative h-[88vh] min-h-[560px] w-full md:h-screen">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/video/hero-poster.jpg"
         >
-          <span className="font-sans text-white/90">
-            Backed by <span className="font-medium text-white">Entrepreneurs First</span>
-          </span>
-          <span aria-hidden="true" className="font-sans text-white/45">›</span>
-        </motion.a>
+          <source src="/video/hero.webm" type="video/webm" media="(min-width: 768px)" />
+          <source src="/video/hero.mp4" type="video/mp4" media="(min-width: 768px)" />
+          <source src="/video/hero-mobile.mp4" type="video/mp4" />
+        </video>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-          className="mx-auto mt-6 max-w-3xl text-balance font-serif text-[2.25rem] font-normal leading-[1.05] tracking-[-0.025em] text-ink sm:text-5xl lg:text-6xl"
-        >
-          Autonomous agents for mission-critical compliance.
-        </motion.h1>
+        {/* Readability layers: vertical darken so the headline sits clean. */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/35 via-ink/45 to-ink/75" />
+        <div className="pointer-events-none absolute inset-0 bg-ink/15" />
 
-        {/* Subhead */}
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="mx-auto mt-4 max-w-[34rem] text-balance font-sans text-base leading-relaxed text-ink/55 md:mt-5 md:text-xl"
-        >
-          Agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. So your engineers stay on the hardware, and your launches don't slip.
-        </motion.p>
+        {/* Copy stack, vertically centered toward the bottom third. */}
+        <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-end px-6 pb-[12vh] text-center md:pb-[10vh] md:px-12">
+          <motion.a
+            href="https://www.joinef.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="inline-flex items-center gap-2 rounded-full border border-cloud/20 bg-cloud/10 px-4 py-1.5 font-sans text-xs text-cloud/80 backdrop-blur-sm transition hover:border-cloud/40 hover:text-cloud"
+          >
+            <span>Backed by <span className="text-cloud">Entrepreneurs First</span></span>
+            <span aria-hidden="true" className="text-cloud/45">›</span>
+          </motion.a>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: 'easeOut' }}
+            className="mt-7 max-w-4xl text-balance font-serif text-[2.5rem] font-normal leading-[1.04] tracking-[-0.025em] text-cloud sm:text-5xl md:text-6xl lg:text-[5.25rem]"
+          >
+            The new standard for nuclear and space compliance.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3, ease: 'easeOut' }}
+            className="mt-5 max-w-2xl text-balance font-sans text-base leading-relaxed text-cloud/75 md:mt-6 md:text-lg"
+          >
+            Autonomous AI for the teams licensing the next reactor, satellite, and launch vehicle. Drafts the submission, traces every citation, and watches the rule that supports it.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+            className="mt-8"
+          >
+            <a
+              href="mailto:founders@invariant-ai.com?subject=Invariant%20licensing%20conversation"
+              className="inline-flex items-center gap-2 rounded-full bg-cloud px-6 py-3 font-sans text-sm font-medium text-ink transition hover:bg-copper hover:text-paper"
+            >
+              Talk to a licensing lead
+              <span aria-hidden="true">›</span>
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   )
