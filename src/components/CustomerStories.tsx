@@ -26,7 +26,7 @@ const STORIES: Story[] = [
     logo: '/logos/akashalabdhi_logoX2x.png',
     logoHeight: 22,
     quote:
-      'Our team stays focused on building the spacecraft. Invariant handles the IN-SPACe authorisation work so licensing is never the bottleneck.',
+      'Our team stays focused on building the satellite. Invariant handles the IN-SPACe authorisation work so licensing is never the bottleneck.',
     role: 'IN-SPACe authorisation',
     description: 'Indian space technology. Satellite and launch systems.',
     image: '/cards/akashalabdhi.jpg',

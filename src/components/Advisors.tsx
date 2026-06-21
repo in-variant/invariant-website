@@ -5,7 +5,7 @@ const ADVISORS = [
   {
     name: 'Charles Keller',
     role: 'Nuclear licensing & advanced reactor deployment',
-    org: 'InTomes Consultancy',
+    org: 'InTomes',
     photo: `${import.meta.env.BASE_URL}advisors/charles-keller.jpg`,
   },
 ]
