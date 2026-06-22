@@ -72,7 +72,9 @@ export default function Hero() {
               className="mt-6 flex justify-center"
             >
               <a
-                href="mailto:founders@invariant-ai.com?subject=Invariant%20conversation"
+                href="https://calendar.app.google/mZPkSD8mPEpFCNh89"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border-0 bg-cloud px-4 font-sans text-[15px] font-medium leading-6 text-ink transition-colors hover:bg-mineral"
               >
                 Talk to an expert
