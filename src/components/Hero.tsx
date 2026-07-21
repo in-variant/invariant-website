@@ -37,6 +37,18 @@ export default function Hero() {
       {/* Single dark overlay, exactly like Pax */}
       <div aria-hidden="true" className="absolute inset-0 z-20 bg-ink/60" />
 
+      {/* Bottom vignette: darkens the video's bright horizon/foreground and
+          fades to the exact paper color of the section below, so there's no
+          visible seam between the hero and IntroducingInvariant. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-72 md:h-80"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(15, 22, 32, 0) 0%, rgba(15, 22, 32, 0.45) 42%, rgba(15, 22, 32, 0.92) 78%, #FAFAF7 100%)',
+        }}
+      />
+
       {/* Content stack, with pt-16 to clear the fixed nav */}
       <div className="relative z-30 flex flex-1 flex-col pt-16">
         <div className="flex flex-1 flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-16">
