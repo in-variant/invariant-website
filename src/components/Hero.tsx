@@ -37,26 +37,21 @@ export default function Hero() {
       {/* Uniform dark base overlay for text legibility */}
       <div aria-hidden="true" className="absolute inset-0 z-10 bg-ink/55" />
 
-      {/* Elliptical vignette: center transparent, edges darken TOWARD ink
-          (not paper) so corners never turn white. */}
+      {/* Single well-tuned bottom gradient. Extra-tall (h-96 md:h-[28rem])
+          so the fade has room to breathe:
+            0-25%  video shows through (partial darkening only)
+            25-70% ramps to solid #1B2436 (dark plateau)
+            70-88% stays solid #1B2436 — visible deep dark band
+            88-100% fades solid ink → paper #FAFAF7
+          Bottom pixel of hero == #FAFAF7, and IntroducingInvariant below
+          is bg-paper. Seam is invisible with zero layering, no vignette
+          artifacts, no separate strip needed on the next section. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-96 md:h-[28rem]"
         style={{
           background:
-            'radial-gradient(ellipse 100% 95% at 50% 40%, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0) 45%, rgba(27, 36, 54, 0.55) 100%)',
-        }}
-      />
-
-      {/* Bottom fade to solid ink #1B2436 — hero ends dark. Extra-tall
-          gradient (h-64 md:h-72) with 60% solid dark at the bottom so
-          there's a visibly deep dark band before the section boundary. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-64 md:h-72"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0.5) 40%, #1B2436 75%, #1B2436 100%)',
+            'linear-gradient(to bottom, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0.4) 30%, #1B2436 70%, #1B2436 88%, #FAFAF7 100%)',
         }}
       />
 
