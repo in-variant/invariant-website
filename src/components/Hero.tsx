@@ -34,26 +34,8 @@ export default function Hero() {
         </video>
       </div>
 
-      {/* Uniform dark base overlay for text legibility */}
-      <div aria-hidden="true" className="absolute inset-0 z-10 bg-ink/55" />
-
-      {/* Single well-tuned bottom gradient. Extra-tall (h-96 md:h-[28rem])
-          so the fade has room to breathe:
-            0-25%  video shows through (partial darkening only)
-            25-70% ramps to solid #1B2436 (dark plateau)
-            70-88% stays solid #1B2436 — visible deep dark band
-            88-100% fades solid ink → paper #FAFAF7
-          Bottom pixel of hero == #FAFAF7, and IntroducingInvariant below
-          is bg-paper. Seam is invisible with zero layering, no vignette
-          artifacts, no separate strip needed on the next section. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-96 md:h-[28rem]"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0.4) 30%, #1B2436 70%, #1B2436 88%, #FAFAF7 100%)',
-        }}
-      />
+      {/* Single dark overlay, exactly like Pax */}
+      <div aria-hidden="true" className="absolute inset-0 z-20 bg-ink/60" />
 
       {/* Content stack, with pt-16 to clear the fixed nav */}
       <div className="relative z-30 flex flex-1 flex-col pt-16">
