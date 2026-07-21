@@ -272,8 +272,18 @@ export default function IntroducingInvariant() {
   const inView = useInView(ref, { once: true, margin: '-120px' })
 
   return (
-    <section ref={ref} className="bg-paper px-6 py-24 md:px-12 md:py-32 lg:px-20">
-      <div className="mx-auto max-w-7xl">
+    <section ref={ref} className="relative bg-paper px-6 py-24 md:px-12 md:py-32 lg:px-20">
+      {/* Dark-to-paper strip at the top so the hero vignette flows into
+          this section without a visible white edge at the seam. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-16 md:h-20"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(15, 22, 32, 0.9) 0%, rgba(15, 22, 32, 0.4) 45%, rgba(15, 22, 32, 0) 100%)',
+        }}
+      />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.45fr_1fr] lg:gap-x-20 lg:items-start">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}

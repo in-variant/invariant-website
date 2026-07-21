@@ -34,18 +34,20 @@ export default function Hero() {
         </video>
       </div>
 
-      {/* Single dark overlay, exactly like Pax */}
-      <div aria-hidden="true" className="absolute inset-0 z-20 bg-ink/60" />
+      {/* Uniform dark base overlay for text legibility */}
+      <div aria-hidden="true" className="absolute inset-0 z-10 bg-ink/55" />
 
-      {/* Bottom vignette: darkens the video's bright horizon/foreground and
-          fades to the exact paper color of the section below, so there's no
-          visible seam between the hero and IntroducingInvariant. */}
+      {/* Elliptical vignette: center transparent (video shows), edges and
+          especially the bottom darken heavily and the bottom edge fades to
+          the exact paper color of IntroducingInvariant so no white line
+          shows at the seam. Ellipse centered high (50% x, 20% y) with
+          80% vertical radius so bottom-center hits 100% = paper exactly. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-72 md:h-80"
+        className="pointer-events-none absolute inset-0 z-20"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(15, 22, 32, 0) 0%, rgba(15, 22, 32, 0.45) 42%, rgba(15, 22, 32, 0.92) 78%, #FAFAF7 100%)',
+            'radial-gradient(ellipse 105% 82% at 50% 22%, rgba(15, 22, 32, 0) 0%, rgba(15, 22, 32, 0) 32%, rgba(15, 22, 32, 0.5) 68%, rgba(15, 22, 32, 0.95) 92%, #FAFAF7 100%)',
         }}
       />
 
