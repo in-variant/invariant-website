@@ -37,17 +37,26 @@ export default function Hero() {
       {/* Uniform dark base overlay for text legibility */}
       <div aria-hidden="true" className="absolute inset-0 z-10 bg-ink/55" />
 
-      {/* Elliptical vignette: center transparent (video shows), edges and
-          especially the bottom darken heavily and the bottom edge fades to
-          the exact paper color of IntroducingInvariant so no white line
-          shows at the seam. Ellipse centered high (50% x, 20% y) with
-          80% vertical radius so bottom-center hits 100% = paper exactly. */}
+      {/* Elliptical vignette: center transparent, edges darken TOWARD ink
+          (not paper) so corners never turn white. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-20"
+        className="pointer-events-none absolute inset-0 z-10"
         style={{
           background:
-            'radial-gradient(ellipse 105% 82% at 50% 22%, rgba(15, 22, 32, 0) 0%, rgba(15, 22, 32, 0) 32%, rgba(15, 22, 32, 0.5) 68%, rgba(15, 22, 32, 0.95) 92%, #FAFAF7 100%)',
+            'radial-gradient(ellipse 100% 95% at 50% 40%, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0) 45%, rgba(27, 36, 54, 0.55) 100%)',
+        }}
+      />
+
+      {/* Bottom fade to solid ink #1B2436 — hero ends dark. The next
+          section (IntroducingInvariant) starts at the same ink color and
+          fades to paper from there, so the seam is invisible. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-56 md:h-64"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0.55) 45%, #1B2436 100%)',
         }}
       />
 
