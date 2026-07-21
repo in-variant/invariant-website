@@ -48,15 +48,15 @@ export default function Hero() {
         }}
       />
 
-      {/* Bottom fade to solid ink #1B2436 — hero ends dark. The next
-          section (IntroducingInvariant) starts at the same ink color and
-          fades to paper from there, so the seam is invisible. */}
+      {/* Bottom fade to solid ink #1B2436 — hero ends dark. Extra-tall
+          gradient (h-64 md:h-72) with 60% solid dark at the bottom so
+          there's a visibly deep dark band before the section boundary. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-56 md:h-64"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-64 md:h-72"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0.55) 45%, #1B2436 100%)',
+            'linear-gradient(to bottom, rgba(27, 36, 54, 0) 0%, rgba(27, 36, 54, 0.5) 40%, #1B2436 75%, #1B2436 100%)',
         }}
       />
 

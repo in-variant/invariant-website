@@ -273,15 +273,16 @@ export default function IntroducingInvariant() {
 
   return (
     <section ref={ref} className="relative bg-paper px-6 py-24 md:px-12 md:py-32 lg:px-20">
-      {/* Section starts at the exact ink color the hero ends on and fades
-          to paper over ~96-128px, so the seam is invisible. Fits inside the
-          section's top padding so it doesn't dim the h2 or microheader. */}
+      {/* Section starts at the exact ink color the hero ends on. Keeps
+          solid ink for most of the strip; only the last 20% fades to
+          paper. Extends past the top padding so the fade completes below
+          the section's built-in content padding (content sits on paper). */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-24 md:h-32"
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 h-32 md:h-40"
         style={{
           background:
-            'linear-gradient(to bottom, #1B2436 0%, rgba(27, 36, 54, 0.55) 45%, rgba(27, 36, 54, 0) 100%)',
+            'linear-gradient(to bottom, #1B2436 0%, #1B2436 78%, rgba(27, 36, 54, 0.55) 92%, rgba(27, 36, 54, 0) 100%)',
         }}
       />
       <div className="relative z-10 mx-auto max-w-7xl">
