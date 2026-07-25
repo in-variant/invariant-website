@@ -1,12 +1,13 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import DemoVideo from '../components/DemoVideo'
 
 /**
  * /product — platform page.
  *
- * No hero. Page opens straight on the document editor screenshot with the
- * h1 above it. No "• MICROHEADER" labels — just headlines and body. Final
- * CTA at the bottom is the only call to action.
+ * No hero. Page opens straight on the product demo with the h1 above it.
+ * No "• MICROHEADER" labels — just headlines and body. Final CTA at the
+ * bottom is the only call to action.
  */
 
 const CAPABILITIES = [
@@ -84,15 +85,12 @@ function DocumentEditorSection() {
           transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="mt-14 overflow-hidden rounded-2xl border border-ink/10 bg-cloud/[0.3] p-2 shadow-2xl"
         >
-          <img
-            src="/platform/document-editor.jpg"
-            alt="The Invariant document editor. PSAR section being drafted with an agent on the right."
-            className="block w-full rounded-lg"
-            loading="lazy"
-            width="2000"
-            height="1044"
-          />
+          <DemoVideo />
         </motion.div>
+        <p className="mt-4 font-sans text-sm leading-relaxed text-ink/45">
+          Recorded in a demo workspace. The applicant and the licensing portal are stand-ins; the
+          product, the corpus and the citations are real.
+        </p>
       </div>
     </section>
   )

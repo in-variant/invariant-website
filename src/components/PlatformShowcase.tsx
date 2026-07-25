@@ -8,10 +8,14 @@
  *   stagger so the section feels like data flowing.
  *   "Explore the platform" pill sits at the convergence point.
  *   Right column: actual screenshot of the Invariant platform (document
- *   editor with AI agent panel). Not a mockup — the real product.
+ *   editor with AI agent panel). Not a mockup — the real product. Clicking
+ *   it opens the 51s demo in an overlay rather than playing in place: the
+ *   panel bleeds off the right edge by design, so it is not a viewing
+ *   surface.
  *
  * Marquee keyframes live in src/index.css (capability-marquee-up).
  */
+import { useEffect, useState } from 'react'
 
 // Sources that flow into the platform — the marquee + flow lines read as
 // ingestion. Mix of customer artefacts a real licensing team would actually
@@ -112,6 +116,17 @@ function FlowLines() {
 
 // ── Section ──────────────────────────────────────────────────────────────
 export default function PlatformShowcase() {
+  const [demoOpen, setDemoOpen] = useState(false)
+
+  useEffect(() => {
+    if (!demoOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setDemoOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [demoOpen])
+
   return (
     <section className="relative overflow-hidden bg-ink py-20 text-cloud sm:py-24 lg:py-28">
       <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-16">
@@ -185,7 +200,7 @@ export default function PlatformShowcase() {
             Explore the platform
           </a>
 
-          {/* RIGHT: actual platform screenshot */}
+          {/* RIGHT: actual platform screenshot, click to open the demo */}
           <div className="relative z-10">
             <div
               aria-hidden="true"
@@ -196,20 +211,71 @@ export default function PlatformShowcase() {
               }}
             />
             <div className="overflow-visible lg:ml-8 lg:w-[clamp(760px,68vw,1040px)] xl:ml-10">
-              <div className="w-full overflow-hidden rounded-2xl border border-cloud/10 bg-cloud/[0.03] p-2 shadow-2xl backdrop-blur-md">
+              <button
+                type="button"
+                onClick={() => setDemoOpen(true)}
+                aria-label="Watch the Invariant product demo, 51 seconds"
+                className="group relative block w-full overflow-hidden rounded-2xl border border-cloud/10 bg-cloud/[0.03] p-2 text-left shadow-2xl backdrop-blur-md"
+              >
                 <img
-                  src="/platform/document-editor.jpg"
-                  alt="The Invariant platform. PSAR drafting workspace with an agent generating a compliance filing."
+                  src="/video/demo-poster.jpg"
+                  alt="The Invariant platform. A satellite authorisation form being filled field by field, each answer carrying its source citation."
                   className="block w-full rounded-lg"
                   loading="lazy"
-                  width="2000"
-                  height="1044"
+                  width="1920"
+                  height="1080"
                 />
-              </div>
+                {/* Anchored left, not centred: the panel bleeds off the right
+                    edge by design, so a centred affordance would sit in the
+                    cropped zone. */}
+                <span className="pointer-events-none absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-ink/75 py-1.5 pl-2 pr-3.5 font-sans text-[13px] font-medium text-cloud shadow-lg backdrop-blur-sm transition-colors group-hover:bg-ink">
+                  <span className="flex size-6 items-center justify-center rounded-full bg-cloud">
+                    <svg viewBox="0 0 16 16" aria-hidden="true" className="ml-0.5 size-2.5 fill-ink">
+                      <path d="M2 1.5v13l12-6.5z" />
+                    </svg>
+                  </span>
+                  Watch the demo
+                  <span className="text-cloud/50">0:51</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {demoOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Invariant product demo"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-4 backdrop-blur-sm sm:p-8"
+          onClick={() => setDemoOpen(false)}
+        >
+          <div
+            className="w-full max-w-6xl overflow-hidden rounded-2xl border border-cloud/15 bg-ink shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              className="block aspect-video w-full bg-ink"
+              src="/video/demo.mp4"
+              poster="/video/demo-poster.jpg"
+              controls
+              autoPlay
+              playsInline
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => setDemoOpen(false)}
+            aria-label="Close the demo"
+            className="absolute right-4 top-4 flex size-10 items-center justify-center rounded-full border border-cloud/15 bg-ink/60 text-cloud transition-colors hover:bg-cloud hover:text-ink sm:right-8 sm:top-8"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4 stroke-current" fill="none" strokeWidth="1.5">
+              <path d="M3 3l10 10M13 3L3 13" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+      )}
     </section>
   )
 }
