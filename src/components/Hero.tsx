@@ -44,8 +44,14 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute inset-0 z-20"
         style={{
-          background:
-            'radial-gradient(115% 85% at 50% 42%, rgba(0,0,0,0) 38%, rgba(0,0,0,0.30) 74%, rgba(0,0,0,0.62) 100%)',
+          // Two passes rather than one ellipse: a heavy bottom weight that
+          // grounds the CTA and meets the paper section as a deliberate
+          // edge, plus a lighter squeeze on the left/right. Kept off the
+          // top, where the nav already lays its own gradient.
+          background: [
+            'linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.46) 13%, rgba(0,0,0,0.14) 32%, rgba(0,0,0,0) 55%)',
+            'linear-gradient(to right, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.14) 15%, rgba(0,0,0,0) 32%, rgba(0,0,0,0) 68%, rgba(0,0,0,0.14) 85%, rgba(0,0,0,0.50) 100%)',
+          ].join(','),
         }}
       />
 
