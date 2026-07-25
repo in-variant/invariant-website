@@ -3,9 +3,12 @@ import { motion } from 'framer-motion'
 /**
  * Hero, structured exactly to Pax's spec.
  *
- *   - Section: min-h-[100svh] sm:min-h-[760px] lg:min-h-[800px], -mt-16 so it
- *     pulls up under the fixed nav (which sits transparent on top).
- *   - Single dark overlay (bg-ink/60), no multi-layer gradients.
+ *   - Section: min-h-[100svh] at every breakpoint. It must always fill the
+ *     viewport on first load: the nav is `fixed` (no flow space) and Layout
+ *     gives home no top padding, so the hero starts at y=0 and needs no
+ *     negative margin. Do not reintroduce fixed pixel heights here — a
+ *     window taller than them exposes the next section beneath the video.
+ *   - Dark overlay (bg-ink/60) plus a black vignette, no other gradients.
  *   - Content stack centered in max-w-[46rem] container.
  *   - Explicit <span class="block sm:whitespace-nowrap"> line breaks on both
  *     headline and subhead so wrap is predictable, not text-balance roulette.
@@ -16,7 +19,7 @@ import { motion } from 'framer-motion'
  */
 export default function Hero() {
   return (
-    <section className="relative -mt-16 flex min-h-[100svh] flex-col overflow-hidden bg-ink sm:min-h-[820px] md:min-h-[880px] lg:min-h-[920px]">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
       {/* Background video */}
       <div className="absolute inset-0">
         <video
@@ -34,8 +37,17 @@ export default function Hero() {
         </video>
       </div>
 
-      {/* Single dark overlay, exactly like Pax */}
+      {/* Flat tint, then a vignette that darkens the edges so the headline
+          sits in the clean centre and the frame reads deliberate. */}
       <div aria-hidden="true" className="absolute inset-0 z-20 bg-ink/60" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-20"
+        style={{
+          background:
+            'radial-gradient(115% 85% at 50% 42%, rgba(0,0,0,0) 38%, rgba(0,0,0,0.30) 74%, rgba(0,0,0,0.62) 100%)',
+        }}
+      />
 
       {/* Content stack, with pt-16 to clear the fixed nav */}
       <div className="relative z-30 flex flex-1 flex-col pt-16">
