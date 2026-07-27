@@ -98,6 +98,38 @@ export default function Hero() {
                 Talk to an expert
               </a>
             </motion.div>
+
+            {/* Investor row. Sized well below the mockup: the logos are a
+                credential, not a second CTA, so they sit at wordmark heights
+                (EF 9px, Transpose 16px) that optically match each other
+                rather than at matched pixel widths. */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-7 flex flex-col items-center gap-2.5 sm:mt-8"
+            >
+              <span className="font-sans text-[10px] leading-none text-cloud/55 sm:text-[11px]">
+                Backed by
+              </span>
+              <div className="flex items-center gap-3 sm:gap-[18px]">
+                <img
+                  src="/logos/entrepreneurs-first.svg"
+                  alt="Entrepreneurs First"
+                  className="h-2 w-auto opacity-80 sm:h-[9px]"
+                  width={173}
+                  height={12}
+                />
+                <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
+                <img
+                  src="/logos/transpose-platform.svg"
+                  alt="Transpose Platform"
+                  className="h-3.5 w-auto opacity-80 sm:h-4"
+                  width={249}
+                  height={32}
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
