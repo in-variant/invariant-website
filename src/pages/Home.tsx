@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import SpaceFilingPitch from '../components/SpaceFilingPitch'
 import IntroducingInvariant from '../components/IntroducingInvariant'
 import PlatformShowcase from '../components/PlatformShowcase'
 import CustomerStories from '../components/CustomerStories'
@@ -10,12 +11,12 @@ const HOME_FAQS = [
   {
     question: 'What does Invariant do?',
     answer:
-      'Invariant builds autonomous AI agents that draft, file, and monitor regulatory and qualification compliance for companies in space, aerospace, and nuclear. The agents handle the documentation grind end to end with explicit citation back to source rules; a small team of forward-deployed domain engineers handles deployment and high-stakes review.',
+      'Invariant prepares and ships regulatory filings for space and nuclear companies. Forward-deployed licensing engineers and autonomous agents handle FAA launch licensing, FCC spectrum, ITU coordination, NOAA remote sensing, DDTC export filings, and NRC licensing work with explicit citation back to source rules.',
   },
   {
     question: 'Which industries does Invariant serve?',
     answer:
-      'Mission-critical industries: space (FAA Part 450, FCC, NOAA, IN-SPACe, ECSS, NASA GEVS, MIL-STD-1540/461), aerospace (FAA Part 21/23/25), and nuclear (NRC 10 CFR Parts 50/52/53/100/110, IAEA safety standards).',
+      'Invariant serves space and nuclear: FAA Part 450, FCC, NOAA, ITU, DDTC, IN-SPACe, ECSS, and NASA GEVS for space programs; NRC 10 CFR Parts 50, 52, 53, 100, and 110 for advanced nuclear.',
   },
   {
     question: 'How is Invariant different from a compliance consultancy?',
@@ -25,7 +26,7 @@ const HOME_FAQS = [
   {
     question: 'Who is Invariant for?',
     answer:
-      'Satellite manufacturers, launch vehicle operators, Earth-observation companies, in-orbit services, advanced nuclear reactor developers (SMRs and microreactors), aerospace OEMs, and unmanned aviation systems.',
+      'Launch vehicle operators, satellite manufacturers and operators, Earth-observation companies, in-orbit services, aerospace OEMs, unmanned aviation systems, and advanced reactor developers.',
   },
   {
     question: 'Does Invariant have proof of capability?',
@@ -64,12 +65,13 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Invariant: Compliance for Space & Nuclear"
-        description="Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First."
+        title="Invariant: Regulatory Filings for Space Companies"
+        description="Invariant prepares FAA, FCC, ITU, NOAA, and DDTC filings for launch providers, satellite operators, remote-sensing teams, and aerospace manufacturers."
         canonical="https://invariant-ai.com/"
         jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
       <Hero />
+      <SpaceFilingPitch />
       <IntroducingInvariant />
       <PlatformShowcase />
       <CustomerStories />

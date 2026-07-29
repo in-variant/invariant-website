@@ -348,6 +348,13 @@ async function main() {
       ogImage: `${SITE}/og-image.png`,
     },
     {
+      slug: 'timeline',
+      title: 'Mission timeline: every filing between you and launch',
+      description:
+        'Enter your company website. An agent reads the public record and derives your full US and India regulatory filing plan: FCC, NOAA, ITAR and EAR, FAA, IN-SPACe, with the real review clocks, fees, and failure modes for each filing.',
+      ogImage: `${SITE}/og-image.png`,
+    },
+    {
       slug: 'probe',
       title: 'Probe: Live semantic search over NRC ADAMS, powered by Helion-512',
       description:

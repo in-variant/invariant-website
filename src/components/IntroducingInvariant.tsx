@@ -95,7 +95,7 @@ function DraftingOverlay() {
   return (
     <>
       <DataPill
-        label="PSAR 3.9.4"
+        label="FCC Schedule S"
         value="Drafted"
         top="62%"
         left="6%"
@@ -157,7 +157,7 @@ function RaiOverlay() {
   return (
     <>
       <DataPill
-        label="RAI 3.7"
+        label="FAA question 3.7"
         value="Drafted"
         top="52%"
         left="15%"
@@ -183,10 +183,10 @@ function MonitoringOverlay() {
   return (
     <>
       <LabelPill top="22%" cx="26%" delay={0.25}>
-        NRC
+        FCC
       </LabelPill>
       <LabelPill top="22%" cx="74%" delay={0.3}>
-        FAA
+        NOAA
       </LabelPill>
 
       <svg
@@ -242,9 +242,9 @@ function MonitoringOverlay() {
 
 const CARDS: CardSpec[] = [
   {
-    image: '/cards/drafting.jpg',
+    image: '/cards/launchpad.jpg',
     label: 'Submissions ready',
-    caption: 'PSAR, RAI, MoC. Drafted by agents. Shipped by our engineer.',
+    caption: 'Part 450, Schedule S, and Part 960. Drafted by agents. Shipped by our engineer.',
     overlay: <DraftingOverlay />,
   },
   {
@@ -290,8 +290,9 @@ export default function IntroducingInvariant() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-md font-sans text-base leading-relaxed text-ink/65"
           >
-            Invariant ships nuclear and space filings for you. A forward-deployed
-            engineer drives the work. Agents draft, cite, and monitor.
+            Invariant ships space and nuclear regulatory filings for you, with space
+            programs front and center. A forward-deployed engineer drives the work.
+            Agents draft, cite, and monitor.
           </motion.p>
         </div>
 

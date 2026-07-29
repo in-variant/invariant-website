@@ -85,6 +85,7 @@ if (clustersSpace.length) {
 out.push('')
 out.push('### Product + research')
 out.push('- [Product](https://invariant-ai.com/product), What the agents produce: submissions, test plans, verification matrices.')
+out.push('- [Mission timeline](https://invariant-ai.com/timeline), Enter a space company website and get the full US and India regulatory filing plan, FCC, NOAA, ITAR and EAR, FAA, IN-SPACe, with real review clocks and fees.')
 out.push('- [Probe](https://invariant-ai.com/probe), Live semantic search across NRC ADAMS, powered by Helion-512.')
 out.push('- [Blog](https://invariant-ai.com/blog), Research, regulation comparisons, field notes.')
 out.push('- [Glossary](https://invariant-ai.com/glossary), Authoritative definitions of regulatory and qualification compliance terms.')

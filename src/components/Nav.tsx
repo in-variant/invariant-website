@@ -24,7 +24,8 @@ const NAV_GROUPS: NavGroup[] = [
     title: 'Product',
     href: '/product',
     items: [
-      { title: 'Overview', href: '/product', description: 'The compliance platform for nuclear and space teams.' },
+      { title: 'Overview', href: '/product', description: 'The regulatory filing platform for space and nuclear teams.' },
+      { title: 'Mission timeline', href: '/timeline', description: 'Enter your website, get every filing between you and launch.' },
       { title: 'Probe', href: '/probe', description: 'Search and trace regulations, dockets, and topical reports.' },
       { title: 'Helion-512', href: '/blog/fermibench-sota', description: 'The retrieval model behind Invariant, state of the art on FermiBench.' },
       { title: 'Compliance Library', href: '/compliance', description: 'Every reference, guide, and glossary we maintain.' },
@@ -49,12 +50,13 @@ const NAV_GROUPS: NavGroup[] = [
       { title: 'Blog', href: '/blog', description: 'Field notes from the licensing front.' },
       { title: 'Trust', href: '/trust', description: 'Security, data handling, and deployment.' },
     ],
-    visual: { src: '/cards/drafting.jpg', alt: 'A nuclear licensing engineer at a construction site.' },
+    visual: { src: '/cards/launchpad.jpg', alt: 'A launch vehicle lifting off from the pad.' },
   },
 ]
 
 const CTA_DROPDOWN: NavLeaf[] = [
   { title: 'Talk to an expert', href: 'mailto:founders@invariant-ai.com?subject=Invariant%20conversation', description: 'Direct line to the founders.' },
+  { title: 'Map your mission', href: '/timeline', description: 'Every filing between you and launch, in one chart.' },
   { title: 'Try Probe', href: '/probe', description: 'See the retrieval in action.' },
 ]
 

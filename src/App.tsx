@@ -12,6 +12,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Product = lazy(() => import('./pages/Product'))
 const Pricing = lazy(() => import('./pages/Pricing'))
 const Probe = lazy(() => import('./pages/Probe'))
+const Timeline = lazy(() => import('./pages/Timeline'))
 
 const SpaceCompliance = lazy(() => import('./pages/SpaceCompliance'))
 const NuclearCompliance = lazy(() => import('./pages/NuclearCompliance'))
@@ -99,6 +100,7 @@ export default function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/product" element={<Product />} />
             <Route path="/probe" element={<Probe />} />
+            <Route path="/timeline" element={<Timeline />} />
             <Route path="/space-compliance" element={<SpaceCompliance />} />
             <Route path="/nuclear-compliance" element={<NuclearCompliance />} />
             <Route path="/part-50-vs-52-vs-53" element={<Part50vs52vs53 />} />

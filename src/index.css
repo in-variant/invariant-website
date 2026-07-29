@@ -86,3 +86,10 @@
 .blog-comparison-card:hover {
   border-color: rgba(27,36,54,0.28);
 }
+
+/* Mission timeline: hide SMIL pulse dots for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tl-pulse {
+    display: none;
+  }
+}
