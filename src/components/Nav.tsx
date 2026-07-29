@@ -24,7 +24,7 @@ const NAV_GROUPS: NavGroup[] = [
     title: 'Product',
     href: '/product',
     items: [
-      { title: 'Overview', href: '/product', description: 'The regulatory filing platform for space and nuclear teams.' },
+      { title: 'Overview', href: '/product', description: 'The compliance platform for nuclear and space teams.' },
       { title: 'Mission timeline', href: '/timeline', description: 'Enter your website, get every filing between you and launch.' },
       { title: 'Probe', href: '/probe', description: 'Search and trace regulations, dockets, and topical reports.' },
       { title: 'Helion-512', href: '/blog/fermibench-sota', description: 'The retrieval model behind Invariant, state of the art on FermiBench.' },
@@ -50,7 +50,7 @@ const NAV_GROUPS: NavGroup[] = [
       { title: 'Blog', href: '/blog', description: 'Field notes from the licensing front.' },
       { title: 'Trust', href: '/trust', description: 'Security, data handling, and deployment.' },
     ],
-    visual: { src: '/cards/launchpad.jpg', alt: 'A launch vehicle lifting off from the pad.' },
+    visual: { src: '/cards/drafting.jpg', alt: 'A nuclear licensing engineer at a construction site.' },
   },
 ]
 

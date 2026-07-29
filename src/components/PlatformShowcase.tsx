@@ -23,12 +23,12 @@ import { useEffect, useState } from 'react'
 // ASME), and the live feeds we watch on their behalf (Federal Register,
 // ADAMS). Anything that reads like a placeholder ("test data") was cut.
 const CAPABILITIES = [
+  'Design basis',
+  'Topical reports',
+  '10 CFR Part 50',
   '14 CFR Part 450',
-  'FCC Schedule S',
-  'NOAA Part 960',
-  'ITU coordination',
-  'DDTC filings',
-  'NRC licensing',
+  'ASME III codes',
+  'NRC ADAMS',
   'Federal Register',
 ]
 

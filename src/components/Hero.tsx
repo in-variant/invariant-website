@@ -60,15 +60,6 @@ export default function Hero() {
         <div className="flex flex-1 flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-16">
           {/* Inner container biased toward the lower third of the hero */}
           <div className="mx-auto mt-[20vh] flex w-full max-w-[46rem] flex-col items-center sm:mt-[24vh] md:mt-[28vh]">
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="mb-4 font-sans text-[11px] font-medium uppercase tracking-[0.14em] text-cloud/70 sm:text-xs"
-            >
-              Regulatory filings for space and nuclear companies
-            </motion.p>
-
             <motion.h1
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,8 +69,8 @@ export default function Hero() {
               style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
               className="font-display text-cloud text-[clamp(1.75rem,7vw,2.5rem)] leading-[1.1] tracking-[-0.02em] sm:text-[clamp(2.5rem,5.5vw,3.25rem)] sm:leading-[1.05] md:text-[clamp(3rem,5vw,3.75rem)]"
             >
-              <span className="block sm:whitespace-nowrap">We get critical projects</span>
-              <span className="block sm:whitespace-nowrap">cleared to launch and operate.</span>
+              <span className="block sm:whitespace-nowrap">The new standard for space</span>
+              <span className="block sm:whitespace-nowrap">and nuclear compliance.</span>
             </motion.h1>
 
             <motion.p
@@ -88,8 +79,8 @@ export default function Hero() {
               transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
               className="mt-3 text-cloud text-[clamp(0.75rem,3.5vw,1rem)] leading-[1.5] sm:text-[18px]"
             >
-              <span className="block sm:whitespace-nowrap">FAA launch licenses, FCC spectrum, NOAA remote sensing,</span>
-              <span className="block sm:whitespace-nowrap">ITU coordination, and DDTC export filings.</span>
+              <span className="block sm:whitespace-nowrap">Autonomous agents that accelerate compliance</span>
+              <span className="block sm:whitespace-nowrap">in mission-critical industries.</span>
             </motion.p>
 
             <motion.div
@@ -99,10 +90,12 @@ export default function Hero() {
               className="mt-6 flex justify-center"
             >
               <a
-                href="mailto:founders@invariant-ai.com?subject=Advisor%20referral%20%E2%80%94%20space%20regulatory%20filings&body=I%20was%20referred%20to%20Invariant%20by%20an%20advisor.%0A%0ACompany%3A%0AMission%3A%0ATarget%20launch%20or%20filing%20date%3A"
+                href="https://calendar.app.google/mZPkSD8mPEpFCNh89"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border-0 bg-cloud px-4 font-sans text-[15px] font-medium leading-6 text-ink transition-colors hover:bg-mineral"
               >
-                Start a referred-company review
+                Talk to an expert
               </a>
             </motion.div>
 

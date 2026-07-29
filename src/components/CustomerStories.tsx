@@ -100,12 +100,10 @@ export default function CustomerStories() {
         </div>
 
         {/* Arrow nav */}
-        {STORIES.length > 1 && (
-          <div className="mt-8 flex items-center justify-center gap-2">
-            <ArrowButton direction="prev" onClick={() => go(-1)} />
-            <ArrowButton direction="next" onClick={() => go(1)} />
-          </div>
-        )}
+        <div className="mt-8 flex items-center justify-center gap-2">
+          <ArrowButton direction="prev" onClick={() => go(-1)} />
+          <ArrowButton direction="next" onClick={() => go(1)} />
+        </div>
 
         {/* Carousel */}
         <div className="relative mt-10 lg:mt-12">
@@ -158,7 +156,7 @@ export default function CustomerStories() {
         </div>
 
         {/* Dot indicator — visible pill inside a 44×44 tap target */}
-        {STORIES.length > 1 && <div className="mt-8 flex items-center justify-center gap-1">
+        <div className="mt-8 flex items-center justify-center gap-1">
           {STORIES.map((s, i) => (
             <button
               key={s.company}
@@ -175,7 +173,7 @@ export default function CustomerStories() {
               />
             </button>
           ))}
-        </div>}
+        </div>
       </div>
     </section>
   )

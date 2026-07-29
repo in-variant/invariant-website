@@ -7,9 +7,9 @@ import { motion, useInView } from 'framer-motion'
  */
 
 const STATS = [
-  { value: '6', label: 'core agencies', sub: 'FAA, FCC, ITU, NOAA, DDTC, and NRC in one filing program' },
-  { value: '10×', label: 'faster filings', sub: 'engineers plus agents turn weeks of drafting into days' },
-  { value: '24/7', label: 'rules monitored', sub: 'agency dockets, guidance, and Federal Register changes tracked continuously' },
+  { value: '0.9693', label: 'nDCG@10', sub: 'FermiBench state of the art (Helion-512)' },
+  { value: '10×', label: 'faster filings', sub: 'engineers plus agents, weeks become days' },
+  { value: '20+', label: 'regulators tracked', sub: 'NRC, FAA, FCC, IN-SPACe, and more across the US and India' },
 ]
 
 export default function HowItWorks() {
