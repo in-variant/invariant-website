@@ -157,7 +157,7 @@ function RaiOverlay() {
   return (
     <>
       <DataPill
-        label="RAI 3.7"
+        label="FAA response 3.7"
         value="Drafted"
         top="52%"
         left="15%"
@@ -183,7 +183,7 @@ function MonitoringOverlay() {
   return (
     <>
       <LabelPill top="22%" cx="26%" delay={0.25}>
-        NRC
+        FCC
       </LabelPill>
       <LabelPill top="22%" cx="74%" delay={0.3}>
         FAA
@@ -242,28 +242,28 @@ function MonitoringOverlay() {
 
 const CARDS: CardSpec[] = [
   {
-    image: '/cards/drafting.jpg',
-    label: 'Submissions ready',
-    caption: 'PSAR, RAI, MoC. Drafted by agents. Shipped by our engineer.',
-    overlay: <DraftingOverlay />,
-  },
-  {
     image: '/cards/citation.jpg',
-    label: 'Citations traced',
-    caption: 'Every claim traced to its rule.',
+    label: 'Requirements traced',
+    caption: 'Every claim linked to the exact rule, guidance, or advisory circular.',
     overlay: <CitationOverlay />,
   },
   {
     image: '/cards/rai.jpg',
-    label: 'Replies drafted',
-    caption: 'Agents pull the docket. Our engineer sends the reply.',
+    label: 'Regulator responses drafted',
+    caption: 'Agents pull the record and draft the response. Your licensing engineer reviews and ships it.',
     overlay: <RaiOverlay />,
   },
   {
     image: '/cards/monitoring.jpg',
     label: 'Rules watched',
-    caption: 'Every rule change, flagged in time.',
+    caption: 'FAA, FCC, NOAA, and Federal Register changes flagged against your active filings.',
     overlay: <MonitoringOverlay />,
+  },
+  {
+    image: '/cards/drafting.jpg',
+    label: 'Submissions ready',
+    caption: 'From FAA means of compliance to nuclear PSARs. Drafted by agents, shipped by your engineer.',
+    overlay: <DraftingOverlay />,
   },
 ]
 
@@ -281,7 +281,7 @@ export default function IntroducingInvariant() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl lg:text-[3.5rem]"
           >
-            A senior licensing engineer, from day one.
+            A senior licensing engineer for every filing between you and launch.
           </motion.h2>
 
           <motion.p
@@ -290,8 +290,10 @@ export default function IntroducingInvariant() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-md font-sans text-base leading-relaxed text-ink/65"
           >
-            Invariant ships nuclear and space filings for you. A forward-deployed
-            engineer drives the work. Agents draft, cite, and monitor.
+            Invariant prepares and ships FAA, FCC, NOAA, ITU, and export-control
+            filings for space teams. A forward-deployed engineer owns the work;
+            agents draft, trace requirements, and monitor changes. We bring the
+            same model to nuclear licensing.
           </motion.p>
         </div>
 

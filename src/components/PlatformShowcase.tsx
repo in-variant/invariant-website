@@ -18,17 +18,15 @@
 import { useEffect, useState } from 'react'
 
 // Sources that flow into the platform — the marquee + flow lines read as
-// ingestion. Mix of customer artefacts a real licensing team would actually
-// hand over (design basis, topicals), the regulator corpus (10 CFR, 14 CFR,
-// ASME), and the live feeds we watch on their behalf (Federal Register,
-// ADAMS). Anything that reads like a placeholder ("test data") was cut.
+// ingestion. Space licensing sources lead, with nuclear retained as the
+// platform's second regulated-industry practice.
 const CAPABILITIES = [
-  'Design basis',
-  'Topical reports',
-  '10 CFR Part 50',
   '14 CFR Part 450',
-  'ASME III codes',
-  'NRC ADAMS',
+  'FCC Schedule S',
+  'NOAA Part 960',
+  'ITU coordination',
+  'DDTC export filings',
+  '10 CFR Part 50',
   'Federal Register',
 ]
 
