@@ -217,16 +217,17 @@ export default function PlatformShowcase() {
               >
                 <img
                   src="/video/demo-poster.jpg"
-                  alt="The Invariant platform. A satellite authorisation form being filled field by field, each answer carrying its source citation."
+                  alt="The Invariant platform. A regulatory roadmap for a satellite mission, every filing workstream laid out on a timeline."
                   className="block w-full rounded-lg"
                   loading="lazy"
                   width="1920"
                   height="1080"
                 />
-                {/* Anchored left, not centred: the panel bleeds off the right
-                    edge by design, so a centred affordance would sit in the
-                    cropped zone. */}
-                <span className="pointer-events-none absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-ink/75 py-1.5 pl-2 pr-3.5 font-sans text-[13px] font-medium text-cloud shadow-lg backdrop-blur-sm transition-colors group-hover:bg-ink">
+                {/* Anchored bottom-left, not centred: the panel bleeds off the
+                    right edge by design, so a centred affordance would sit in
+                    the cropped zone, and the poster's top edge carries the app
+                    window chrome the pill would otherwise cover. */}
+                <span className="pointer-events-none absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full bg-ink/75 py-1.5 pl-2 pr-3.5 font-sans text-[13px] font-medium text-cloud shadow-lg backdrop-blur-sm transition-colors group-hover:bg-ink">
                   <span className="flex size-6 items-center justify-center rounded-full bg-cloud">
                     <svg viewBox="0 0 16 16" aria-hidden="true" className="ml-0.5 size-2.5 fill-ink">
                       <path d="M2 1.5v13l12-6.5z" />

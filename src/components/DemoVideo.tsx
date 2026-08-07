@@ -42,7 +42,7 @@ export default function DemoVideo({ className = '' }: { className?: string }) {
     >
       <img
         src="/video/demo-poster.jpg"
-        alt="The Invariant workspace. A satellite authorisation form being filled field by field, each answer carrying its source citation."
+        alt="The Invariant workspace. A regulatory roadmap for a satellite mission, every filing workstream laid out on a timeline."
         className="block size-full object-cover"
         loading="lazy"
         width="1920"

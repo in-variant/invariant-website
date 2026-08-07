@@ -32,24 +32,17 @@ export default function ArcadeShowcase() {
   }, [])
 
   return (
-    <section className="bg-ink px-4 pb-20 pt-14 text-cloud sm:px-6 sm:pb-24 sm:pt-16 lg:px-16">
-      <div className="mx-auto w-full max-w-6xl">
-        <div className="flex items-center justify-center gap-2">
-          <span aria-hidden="true" className="size-1 shrink-0 bg-cloud/60" />
-          <span className="font-sans text-[11px] font-medium uppercase tracking-[0.12em] text-cloud/60">
-            See the platform
-          </span>
-        </div>
-
-        <h2 className="mt-4 text-center font-display text-[1.75rem] leading-tight tracking-tight sm:text-[2.25rem]">
+    <section className="bg-ink px-4 pb-14 pt-10 text-cloud sm:px-6 sm:pb-16 sm:pt-12 lg:px-16">
+      <div className="mx-auto w-full max-w-5xl">
+        <h2 className="text-center font-display text-[1.5rem] leading-tight tracking-tight sm:text-[1.875rem]">
           File a satellite authorization, hands on.
         </h2>
-        <p className="mx-auto mt-3 max-w-xl text-center font-sans text-[15px] leading-relaxed text-cloud/70">
+        <p className="mx-auto mt-2.5 max-w-xl text-center font-sans text-[15px] leading-relaxed text-cloud/70">
           Click through the real product: an FCC space station application
           drafted field by field, every answer cited back to the rule.
         </p>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-cloud/10 bg-cloud/[0.03] p-2 shadow-2xl backdrop-blur-md">
+        <div className="mt-7 overflow-hidden rounded-2xl border border-cloud/10 bg-cloud/[0.03] p-2 shadow-2xl backdrop-blur-md">
           <div
             className="relative w-full overflow-hidden rounded-lg"
             style={{ paddingBottom: 'calc(54.3333% + 41px)' }}
