@@ -2,7 +2,7 @@ import { useState } from 'react'
 import posthog from '../posthog'
 
 /**
- * DemoVideo — the 51s product walkthrough, click-to-play.
+ * DemoVideo — the 96s product walkthrough, click-to-play.
  *
  * Deliberately NOT autoplaying. The home hero already runs a full-bleed
  * background video and PlatformShowcase already animates its flow lines;
@@ -37,12 +37,12 @@ export default function DemoVideo({ className = '' }: { className?: string }) {
         posthog.capture('demo_video_started', { video_name: 'product_walkthrough' })
         setPlaying(true)
       }}
-      aria-label="Play the Invariant product demo, 51 seconds"
+      aria-label="Play the Invariant product demo, 1 minute 36 seconds"
       className="group relative block aspect-video w-full overflow-hidden rounded-lg"
     >
       <img
         src="/video/demo-poster.jpg"
-        alt="The Invariant workspace. A satellite authorisation form being filled field by field, each answer carrying its source citation."
+        alt="The Invariant workspace. A regulatory roadmap for a satellite mission, every filing workstream laid out on a timeline."
         className="block size-full object-cover"
         loading="lazy"
         width="1920"
@@ -61,7 +61,7 @@ export default function DemoVideo({ className = '' }: { className?: string }) {
         </svg>
       </span>
       <span className="absolute bottom-3 right-3 rounded-full bg-ink/70 px-2.5 py-1 font-sans text-[11px] font-medium tracking-[0.04em] text-cloud backdrop-blur-sm">
-        0:51
+        1:36
       </span>
     </button>
   )
