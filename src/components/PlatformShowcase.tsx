@@ -9,7 +9,7 @@
  *   "Explore the platform" pill sits at the convergence point.
  *   Right column: actual screenshot of the Invariant platform (document
  *   editor with AI agent panel). Not a mockup — the real product. Clicking
- *   it opens the 51s demo in an overlay rather than playing in place: the
+ *   it opens the 96s demo in an overlay rather than playing in place: the
  *   panel bleeds off the right edge by design, so it is not a viewing
  *   surface.
  *
@@ -212,7 +212,7 @@ export default function PlatformShowcase() {
               <button
                 type="button"
                 onClick={() => setDemoOpen(true)}
-                aria-label="Watch the Invariant product demo, 51 seconds"
+                aria-label="Watch the Invariant product demo, 1 minute 36 seconds"
                 className="group relative block w-full overflow-hidden rounded-2xl border border-cloud/10 bg-cloud/[0.03] p-2 text-left shadow-2xl backdrop-blur-md"
               >
                 <img
@@ -233,7 +233,7 @@ export default function PlatformShowcase() {
                     </svg>
                   </span>
                   Watch the demo
-                  <span className="text-cloud/50">0:51</span>
+                  <span className="text-cloud/50">1:36</span>
                 </span>
               </button>
             </div>
