@@ -281,7 +281,8 @@ export default function IntroducingInvariant() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-ink md:text-5xl lg:text-[3.5rem]"
           >
-            A senior licensing engineer for every filing between you and launch.
+            Every filing between you and launch. Agents draft it, an engineer
+            owns it.
           </motion.h2>
 
           <motion.p
@@ -291,9 +292,10 @@ export default function IntroducingInvariant() {
             className="max-w-md font-sans text-base leading-relaxed text-ink/65"
           >
             Invariant prepares and ships FAA, FCC, NOAA, ITU, and export-control
-            filings for space teams. A forward-deployed engineer owns the work;
-            agents draft, trace requirements, and monitor changes. We bring the
-            same model to nuclear licensing.
+            filings for space teams. Agents draft the documents, trace every
+            answer to its source rule, and watch for regulatory changes; a
+            forward-deployed licensing engineer owns the work end to end. The
+            same model runs our nuclear practice.
           </motion.p>
         </div>
 
