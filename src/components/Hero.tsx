@@ -113,30 +113,38 @@ export default function Hero() {
               <span className="font-sans text-[10px] leading-none text-cloud/55 sm:text-[11px]">
                 Backed by
               </span>
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-[18px]">
-                <img
-                  src="/logos/transpose-platform.svg"
-                  alt="Transpose Platform"
-                  className="h-3.5 w-auto opacity-80 sm:h-4"
-                  width={249}
-                  height={32}
-                />
-                <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
+              {/* 1fr/auto/1fr grid rather than a centered flex row: the side
+                  marks differ in width, so flex centering drifts the middle
+                  mark off the page axis. The grid pins EF exactly under the
+                  centered "Backed by" label. */}
+              <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
+                <div className="flex items-center justify-end gap-2.5 sm:gap-[18px]">
+                  <img
+                    src="/logos/transpose-platform.svg"
+                    alt="Transpose Platform"
+                    className="h-3 w-auto opacity-80 sm:h-4"
+                    width={249}
+                    height={32}
+                  />
+                  <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
+                </div>
                 <img
                   src="/logos/entrepreneurs-first.svg"
                   alt="Entrepreneurs First"
-                  className="h-2 w-auto opacity-80 sm:h-[9px]"
+                  className="mx-2.5 h-2 w-auto opacity-80 sm:mx-[18px] sm:h-[9px]"
                   width={173}
                   height={12}
                 />
-                <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
-                <img
-                  src="/logos/nvidia-inception.svg"
-                  alt="NVIDIA Inception Program"
-                  className="h-[22px] w-auto opacity-80 sm:h-6"
-                  width={164}
-                  height={46}
-                />
+                <div className="flex items-center gap-2.5 sm:gap-[18px]">
+                  <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
+                  <img
+                    src="/logos/nvidia-inception.svg"
+                    alt="NVIDIA Inception Program"
+                    className="h-5 w-auto opacity-80 sm:h-6"
+                    width={164}
+                    height={46}
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
