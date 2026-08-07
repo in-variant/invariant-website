@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import posthog from '../posthog'
 
 /**
  * DemoVideo — the 51s product walkthrough, click-to-play.
@@ -32,7 +33,10 @@ export default function DemoVideo({ className = '' }: { className?: string }) {
   return (
     <button
       type="button"
-      onClick={() => setPlaying(true)}
+      onClick={() => {
+        posthog.capture('demo_video_started', { video_name: 'product_walkthrough' })
+        setPlaying(true)
+      }}
       aria-label="Play the Invariant product demo, 51 seconds"
       className="group relative block aspect-video w-full overflow-hidden rounded-lg"
     >

@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import posthog from '../posthog'
 
 const API_URL: string = 'https://rag-gcp-520296708682.asia-south1.run.app/search'
 const API_HEALTH_URL = API_URL.replace(/\/search$/, '/')
@@ -134,6 +135,7 @@ export default function Probe() {
     const trimmed = query.trim()
     if (!trimmed) return
 
+    posthog.capture('probe_search_submitted', { query_length: trimmed.length })
     setLoading(true)
     setHasSearched(true)
     setError(null)
