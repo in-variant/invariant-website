@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionDivider from './SectionDivider'
+import posthog from '../posthog'
 
 export default function EarlyAccess() {
   const [email, setEmail] = useState('')
@@ -45,6 +46,7 @@ export default function EarlyAccess() {
             />
             <a
               href={`mailto:founders@invariant-ai.com?subject=Design Partner Inquiry&body=I'd like to learn more about Invariant.`}
+              onClick={() => posthog.capture('early_access_contact_initiated', { source: 'early_access' })}
               className="px-6 py-3 bg-ink text-white font-sans text-base tracking-wide hover:bg-ink/85 transition-colors text-center whitespace-nowrap"
             >
               Get in touch

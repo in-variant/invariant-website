@@ -9,6 +9,7 @@ import { buildPlan } from '../lib/timeline/engine'
 import { SPECIALIST_TRACKS } from '../data/timeline/filings'
 import { runResearch } from '../lib/timeline/research'
 import type { MissionProfile, PlanItem, ResearchResult } from '../lib/timeline/types'
+import posthog from '../posthog'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -94,6 +95,9 @@ export default function Timeline() {
       if (!demo && !trimmed) return
       if (running.current) return
       running.current = true
+      posthog.capture('mission_research_started', {
+        source: demo ? 'worked_example' : 'website',
+      })
       const controller = new AbortController()
       abortRef.current = controller
       setStage('research')
@@ -106,6 +110,10 @@ export default function Timeline() {
           onStatus: (text) =>
             setStatusLines((prev) => [...prev.slice(-7), { id: statusId.current++, text }]),
           onResult: (r) => {
+            posthog.capture('mission_research_completed', {
+              source: demo ? 'worked_example' : 'website',
+              question_count: r.questions.length,
+            })
             setResult(r)
             setAnswers({})
             setStage('confirm')
@@ -553,7 +561,13 @@ export default function Timeline() {
           <div className="mt-12 flex flex-wrap items-center gap-4">
             <button
               type="button"
-              onClick={() => setStage('plan')}
+              onClick={() => {
+                posthog.capture('mission_timeline_built', {
+                  question_count: result.questions.length,
+                  answered_question_count: Object.keys(answers).length,
+                })
+                setStage('plan')
+              }}
               className="inline-flex h-11 items-center justify-center rounded-full bg-ink px-6 font-sans text-[15px] font-medium text-cloud transition-colors hover:bg-copper"
             >
               Build the timeline
