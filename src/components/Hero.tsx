@@ -101,8 +101,9 @@ export default function Hero() {
 
             {/* Investor row. Sized well below the mockup: the logos are a
                 credential, not a second CTA, so they sit at wordmark heights
-                (EF 9px, Transpose 16px) that optically match each other
-                rather than at matched pixel widths. */}
+                (Transpose 16px, EF 9px, NVIDIA Inception 24px two-deck lockup)
+                that optically match each other rather than at matched pixel
+                widths. */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -112,7 +113,15 @@ export default function Hero() {
               <span className="font-sans text-[10px] leading-none text-cloud/55 sm:text-[11px]">
                 Backed by
               </span>
-              <div className="flex items-center gap-3 sm:gap-[18px]">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-[18px]">
+                <img
+                  src="/logos/transpose-platform.svg"
+                  alt="Transpose Platform"
+                  className="h-3.5 w-auto opacity-80 sm:h-4"
+                  width={249}
+                  height={32}
+                />
+                <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
                 <img
                   src="/logos/entrepreneurs-first.svg"
                   alt="Entrepreneurs First"
@@ -122,11 +131,11 @@ export default function Hero() {
                 />
                 <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
                 <img
-                  src="/logos/transpose-platform.svg"
-                  alt="Transpose Platform"
-                  className="h-3.5 w-auto opacity-80 sm:h-4"
-                  width={249}
-                  height={32}
+                  src="/logos/nvidia-inception.svg"
+                  alt="NVIDIA Inception Program"
+                  className="h-[22px] w-auto opacity-80 sm:h-6"
+                  width={164}
+                  height={46}
                 />
               </div>
             </motion.div>
