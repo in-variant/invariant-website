@@ -399,6 +399,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'fcc-satellite-licensing',
+    title: 'FCC satellite licensing in 2026: the complete guide',
+    shortTitle: 'FCC satellite licensing',
+    description:
+      'How FCC satellite licensing works in 2026: Form 312 and Schedule S, the 47 CFR 25.122 small satellite track, fees, bonds, milestones, the 5-year deorbit rule, and the adopted Part 100 overhaul, with every number cited to the eCFR.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 1,
+  },
+  {
     slug: 'space-law-firms',
     title: 'Space law firms in 2026: who does what, what it costs, and when you need one',
     shortTitle: 'Space law firms',
