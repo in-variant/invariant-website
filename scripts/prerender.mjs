@@ -281,6 +281,7 @@ const PILLAR_DATA_MAP = {
   'advanced-reactor-licensing-eu': 'advanced-reactor-licensing-eu-pillar.json',
   'space-compliance-eu': 'space-compliance-eu-pillar.json',
   'how-to-draft-itu-coordination-filing': 'how-to-draft-itu-coordination-filing-pillar.json',
+  'space-law-firms': 'space-law-firms.json',
 }
 
 function readPillarData(slug) {

@@ -55,6 +55,7 @@ const ItuBringingIntoUse = lazy(() => import('./pages/clusters/ItuBringingIntoUs
 const FaaVehicleOperatorLicense = lazy(() => import('./pages/clusters/FaaVehicleOperatorLicense'))
 const NrcPart73Security = lazy(() => import('./pages/clusters/NrcPart73Security'))
 const WhichAgencyLicensesMySatellite = lazy(() => import('./pages/clusters/WhichAgencyLicensesMySatellite'))
+const SpaceLawFirms = lazy(() => import('./pages/clusters/SpaceLawFirms'))
 const AiForNuclearCompliance = lazy(() => import('./pages/clusters/AiForNuclearCompliance'))
 const DoeAdvancedReactorPilotProgram = lazy(() => import('./pages/clusters/DoeAdvancedReactorPilotProgram'))
 const IndiaShantiActBharatSmr = lazy(() => import('./pages/clusters/IndiaShantiActBharatSmr'))
@@ -141,6 +142,7 @@ export default function App() {
             <Route path="/faa-vehicle-operator-license" element={<FaaVehicleOperatorLicense />} />
             <Route path="/nrc-part-73-security" element={<NrcPart73Security />} />
             <Route path="/which-agency-licenses-my-satellite" element={<WhichAgencyLicensesMySatellite />} />
+            <Route path="/space-law-firms" element={<SpaceLawFirms />} />
             <Route path="/ai-for-nuclear-compliance" element={<AiForNuclearCompliance />} />
             <Route path="/doe-advanced-reactor-pilot-program" element={<DoeAdvancedReactorPilotProgram />} />
             <Route path="/india-shanti-act-bharat-smr" element={<IndiaShantiActBharatSmr />} />

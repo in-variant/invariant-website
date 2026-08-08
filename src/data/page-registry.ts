@@ -398,6 +398,17 @@ export const PAGES: PageRef[] = [
     live: true,
     weight: 2,
   },
+  {
+    slug: 'space-law-firms',
+    title: 'Space law firms in 2026: who does what, what it costs, and when you need one',
+    shortTitle: 'Space law firms',
+    description:
+      'The space law firm landscape in 2026: Chambers rankings, boutique and big-law practices, published pricing, what filings legally require an attorney, and how the FCC Part 100 overhaul changes legal spend.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
 ]
 
 export const LIVE_PAGES = PAGES.filter((p) => p.live)
