@@ -283,6 +283,7 @@ const PILLAR_DATA_MAP = {
   'how-to-draft-itu-coordination-filing': 'how-to-draft-itu-coordination-filing-pillar.json',
   'space-law-firms': 'space-law-firms.json',
   'fcc-satellite-licensing': 'fcc-satellite-licensing.json',
+  'aegis-space-law-alternative': 'aegis-space-law-alternative.json',
 }
 
 function readPillarData(slug) {

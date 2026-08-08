@@ -399,6 +399,17 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'aegis-space-law-alternative',
+    title: 'Aegis Space Law: services, pricing, and the alternative (2026)',
+    shortTitle: 'Aegis Space Law alternative',
+    description:
+      'A factual profile of Aegis Space Law with its published subscription pricing and effective hourly math, when a space law boutique fits, and how Invariant compares for the recurring FCC, FAA, NOAA, ITU, and export control filing pipeline.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'fcc-satellite-licensing',
     title: 'FCC satellite licensing in 2026: the complete guide',
     shortTitle: 'FCC satellite licensing',
