@@ -15,6 +15,10 @@ export default function AiForNuclearCompliance() {
       keywords={[
         'AI for nuclear compliance',
         'AI for NRC licensing',
+        'nuclear compliance software',
+        'nuclear licensing software',
+        'Atomic Canyon alternative',
+        'Everstar alternative',
         'Atomic Canyon vs Inductive',
         'Atomic Canyon Neutron',
         'Inductive nuclear licensing',

@@ -399,6 +399,28 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
+    slug: 'satellite-licensing-services',
+    title: 'Satellite licensing services in 2026: who actually does the work',
+    shortTitle: 'Satellite licensing services',
+    description:
+      'The 2026 map of satellite licensing help: law firms, regulatory consultancies, software tools, and licensing platforms compared, what each costs, and who actually prepares and files FCC, ITU, and NOAA applications.',
+    pillar: 'space',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
+    slug: 'nuclear-licensing-consultants',
+    title: 'Nuclear licensing consultants in 2026: who reactor developers actually hire',
+    shortTitle: 'Nuclear licensing consultants',
+    description:
+      'Who reactor developers hire for NRC licensing in 2026: Jensen Hughes, Enercon, Sargent and Lundy, Certrec, EXCEL, the law firms, and the AI platforms, with real cost anchors from the NRC fee rule, NuScale, and TerraPower.',
+    pillar: 'nuclear',
+    type: 'cluster',
+    live: true,
+    weight: 2,
+  },
+  {
     slug: 'aegis-space-law-alternative',
     title: 'Aegis Space Law: services, pricing, and the alternative (2026)',
     shortTitle: 'Aegis Space Law alternative',

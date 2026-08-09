@@ -284,6 +284,8 @@ const PILLAR_DATA_MAP = {
   'space-law-firms': 'space-law-firms.json',
   'fcc-satellite-licensing': 'fcc-satellite-licensing.json',
   'aegis-space-law-alternative': 'aegis-space-law-alternative.json',
+  'satellite-licensing-services': 'satellite-licensing-services.json',
+  'nuclear-licensing-consultants': 'nuclear-licensing-consultants.json',
 }
 
 function readPillarData(slug) {

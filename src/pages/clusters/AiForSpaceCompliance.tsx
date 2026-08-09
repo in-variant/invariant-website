@@ -14,6 +14,9 @@ export default function AiForSpaceCompliance() {
       spatialCoverage={['United States']}
       keywords={[
         'AI for space compliance',
+        'space compliance software',
+        'satellite compliance software',
+        'space licensing software',
         'AI for FAA Part 450',
         'AI for FCC Part 25',
         'AI for NOAA Part 960',
