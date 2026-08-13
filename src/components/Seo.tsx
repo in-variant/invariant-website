@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 
 export const SITE_URL = 'https://invariant-ai.com'
-export const DEFAULT_OG = `${SITE_URL}/og-image.png`
+export const DEFAULT_OG = `${SITE_URL}/og/home.png`
 
 type Props = {
   title: string
@@ -57,8 +57,8 @@ export const ORG_SCHEMA = {
   name: 'Invariant',
   alternateName: ['Invariant AI'],
   url: SITE_URL,
-  logo: `${SITE_URL}/og-image.png`,
-  image: `${SITE_URL}/og-image.png`,
+  logo: `${SITE_URL}/og/home.png`,
+  image: `${SITE_URL}/og/home.png`,
   description:
     'Autonomous AI agents for compliance in mission-critical industries, space, aerospace, and nuclear.',
   foundingDate: '2025',

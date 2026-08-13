@@ -45,8 +45,8 @@ const ORG_SCHEMA = {
   name: 'Invariant',
   alternateName: ['Invariant AI'],
   url: SITE,
-  logo: `${SITE}/og-image.png`,
-  image: `${SITE}/og-image.png`,
+  logo: `${SITE}/og/home.png`,
+  image: `${SITE}/og/home.png`,
   description:
     'Autonomous AI agents for compliance in mission-critical industries: space, aerospace, and nuclear.',
   foundingDate: '2025',
@@ -80,7 +80,7 @@ function articleSchema(args) {
     '@type': 'Article',
     headline: args.title,
     description: args.description,
-    image: args.image || `${SITE}/og-image.png`,
+    image: args.image || `${SITE}/og/home.png`,
     datePublished: args.datePublished,
     dateModified: args.dateModified || args.datePublished,
     author: { '@id': `${SITE}/#editorial-team` },
@@ -337,7 +337,7 @@ async function main() {
       description:
         'Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First.',
       canonical: `${SITE}/`,
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
       ogType: 'website',
       jsonLd: HOME_JSONLD,
     }),
@@ -350,63 +350,63 @@ async function main() {
       title: 'Product: Submissions, test plans, verification matrices',
       description:
         'What Invariant agents produce: regulator-grade submissions, test plans, verification matrices, and the high-stakes review of a small domain-engineering team.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'timeline',
       title: 'Mission timeline: every filing between you and launch',
       description:
         'Enter your company website. An agent reads the public record and derives your full US and India regulatory filing plan: FCC, NOAA, ITAR and EAR, FAA, IN-SPACe, with the real review clocks, fees, and failure modes for each filing.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'probe',
       title: 'Probe: Live semantic search over NRC ADAMS, powered by Helion-512',
       description:
         'Try Probe, the public semantic search interface over NRC ADAMS powered by Helion-512, the published state of the art on the FermiBench retrieval benchmark.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'blog',
       title: 'Blog: Research, regulation comparisons, field notes',
       description:
         'Research, regulation comparisons, and field notes from Invariant on compliance for space, aerospace, and nuclear.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'research',
       title: 'Research: Helion-512, FermiBench, published notes',
       description:
         "Invariant's research: Helion-512 retrieval model at 0.97 nDCG@10 on FermiBench, siting comparisons, seismic design analyses, and field notes from regulator dockets.",
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'compliance',
       title: 'Compliance library: every Invariant resource for space, nuclear, and aerospace',
       description:
         'The complete Invariant library: pillar guides, cluster explainers, and 90+ glossary definitions for space, nuclear, and aerospace regulatory and qualification compliance.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'trust',
       title: 'Trust: Security, data handling, and compliance disclosures',
       description:
         'How Invariant handles your data, hosts your regulatory submissions, and meets the security expectations of space, aerospace, and nuclear operators.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'about',
       title: 'About Invariant: Autonomous AI agents for compliance in mission-critical industries',
       description:
         'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneurs First. Founded 2025.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
     {
       slug: 'regulators',
       title: 'Regulators directory: every US agency for space, nuclear, and aerospace compliance',
       description:
         'A concise directory of every US regulator a space, nuclear, or aerospace operator may need to engage with, including NRC, FAA AST, FCC Space Bureau, NOAA CRSRA, DDTC, and BIS.',
-      ogImage: `${SITE}/og-image.png`,
+      ogImage: `${SITE}/og/home.png`,
     },
   ]
   for (const sp of SIMPLE_PAGES) {

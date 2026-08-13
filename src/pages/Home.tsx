@@ -66,7 +66,7 @@ export default function Home() {
     <>
       <Seo
         title="Invariant: Compliance for Space & Nuclear"
-        description="Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First."
+        description="Invariant prepares and ships FAA, FCC, NOAA, ITU, and export control filings for space and nuclear teams. Agents draft every filing; a forward-deployed engineer owns the work."
         canonical="https://invariant-ai.com/"
         jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
