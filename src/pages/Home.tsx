@@ -1,5 +1,5 @@
 import Hero from '../components/Hero'
-import ArcadeShowcase from '../components/ArcadeShowcase'
+import BackedBy from '../components/BackedBy'
 import IntroducingInvariant from '../components/IntroducingInvariant'
 import PlatformShowcase from '../components/PlatformShowcase'
 import CustomerStories from '../components/CustomerStories'
@@ -71,7 +71,7 @@ export default function Home() {
         jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
       <Hero />
-      <ArcadeShowcase />
+      <BackedBy />
       <IntroducingInvariant />
       <PlatformShowcase />
       <CustomerStories />

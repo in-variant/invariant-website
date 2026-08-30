@@ -93,3 +93,47 @@
     display: none;
   }
 }
+
+/* ── Hero film treatment ────────────────────────────────────────────────
+   A fine dot weave over the picture plus a drifting grain plate, so the film
+   reads as a broadcast frame rather than a clean digital export. Both are
+   CSS, so they stay sharp at any resolution and cost the video nothing in
+   bitrate.
+
+   The weave is a single light dot on a 4px pitch, kept faint: the gaps read
+   as the darker lattice, which is how the reference is built. Judge it at 1x
+   — at magnification it always looks stronger than it is, and tuning there
+   produced something far too opaque. Pairing a light
+   dot with a dark one made the dark layer dominate and the whole thing read
+   as a screen door. A 2px pitch is no good either — half-pixel dots render
+   sub-pixel and average out to a flat tint. No scanlines: an earlier pass had
+   them and it looked like pixelation rather than texture. */
+
+.hero-mesh {
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.07) 1.4px, transparent 1.55px);
+  background-size: 4px 4px;
+}
+
+
+@keyframes hero-grain {
+  0%   { background-position: 0 0; }
+  25%  { background-position: -60px 40px; }
+  50%  { background-position: 80px -30px; }
+  75%  { background-position: -40px -70px; }
+  100% { background-position: 0 0; }
+}
+
+.hero-grain {
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-size: 200px 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
+  animation: hero-grain 0.6s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-grain { animation: none; }
+}

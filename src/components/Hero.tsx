@@ -1,7 +1,48 @@
-import { motion } from 'framer-motion'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+
+/** Speaker glyph, crossed out when the film is muted. */
+/** Windows, in seconds of film, where the copy is on screen.
+ *
+ *  The opening shots carry themselves, so nothing appears until 17s; the film
+ *  has its own business between 25s and 36s that the type would fight, so it
+ *  steps out and comes back. All of it is measured against the video's own
+ *  clock rather than page load, so the sequence repeats on every loop. */
+const COPY_WINDOWS: readonly (readonly [number, number])[] = [
+  [17, 25],
+  [36, Number.POSITIVE_INFINITY],
+]
+
+const copyVisibleAt = (t: number) =>
+  COPY_WINDOWS.some(([from, to]) => t >= from && t < to)
+
+function SoundIcon({ on }: { on: boolean }) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" className="size-3.5">
+      <path
+        d="M4 7.5h2.6L10.5 4v12L6.6 12.5H4z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+      {on ? (
+        <>
+          <path d="M13.4 7.2a3.8 3.8 0 0 1 0 5.6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+          <path d="M15.6 5a7 7 0 0 1 0 10" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        </>
+      ) : (
+        <path d="M13.5 7.5l4 5m0-5l-4 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      )}
+    </svg>
+  )
+}
 
 /**
- * Hero, structured exactly to Pax's spec.
+ * Hero: the film, with the type seated lower-left.
+ *
+ * The centred stack, the CTA and the investor row have moved off this frame —
+ * the video is the hero, and anything laid over the middle of it fights the
+ * picture. Backers now sit in their own strip below the fold.
  *
  *   - Section: min-h-[100svh] at every breakpoint. It must always fill the
  *     viewport on first load: the nav is `fixed` (no flow space) and Layout
@@ -18,138 +59,145 @@ import { motion } from 'framer-motion'
  *     with display optical-size and slightly elevated grade for authority.
  */
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  // Muted by default and stays muted until the visitor asks for sound.
+  // Autoplay with audio is blocked by browsers anyway, and unprompted audio
+  // on a landing page is hostile.
+  const [muted, setMuted] = useState(true)
+  const [copyIn, setCopyIn] = useState(false)
+  const reduced = useReducedMotion()
+
+  // Tie the copy to the film's clock rather than to mount. On a mount-time
+  // delay the type appeared once and then stayed through every loop; driving
+  // it off currentTime means it clears when the film restarts and returns on
+  // the same beat each time round.
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    const onTime = () => setCopyIn(copyVisibleAt(v.currentTime))
+    v.addEventListener('timeupdate', onTime)
+    // If the film never plays — blocked, failed to load, no source — the hero
+    // must not be left wordless, so reveal the copy anyway.
+    const fallback = window.setTimeout(
+      () => {
+        const el = videoRef.current
+        if (!el || el.paused || el.readyState < 2) setCopyIn(true)
+      },
+      (COPY_WINDOWS[0][0] + 2) * 1000,
+    )
+    return () => {
+      v.removeEventListener('timeupdate', onTime)
+      window.clearTimeout(fallback)
+    }
+  }, [])
+
+  const toggleSound = useCallback(() => {
+    const v = videoRef.current
+    if (!v) return
+    const next = !v.muted
+    v.muted = next
+    if (!next) v.volume = 1
+    setMuted(next)
+    void v.play().catch(() => {})
+  }, [])
+
   return (
     <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
       {/* Background video */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           className="size-full object-cover"
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
-          poster="/video/hero-poster.jpg"
-          aria-hidden="true"
+          poster="/video/hero-film-poster.jpg"
+          aria-label="Invariant film"
         >
-          <source src="/video/hero.webm" type="video/webm" />
-          <source src="/video/hero.mp4" type="video/mp4" />
+          <source src="/video/hero-film.webm" type="video/webm" media="(min-width: 768px)" />
+          <source src="/video/hero-film.mp4" type="video/mp4" media="(min-width: 768px)" />
+          <source src="/video/hero-film-mobile.mp4" type="video/mp4" />
         </video>
       </div>
 
-      {/* Flat tint, then a vignette that darkens the edges so the headline
-          sits in the clean centre and the frame reads deliberate. */}
-      <div aria-hidden="true" className="absolute inset-0 z-20 bg-ink/60" />
+      {/* Scrims. Light — the film carries the frame; we only darken enough
+          at the foot to seat the headline and at the head to hold the nav. */}
       <div
         aria-hidden="true"
         className="absolute inset-0 z-20"
         style={{
-          // Two passes rather than one ellipse: a heavy bottom weight that
-          // grounds the CTA and meets the paper section as a deliberate
-          // edge, plus a lighter squeeze on the left/right. Kept off the
-          // top, where the nav already lays its own gradient.
           background: [
-            'linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.46) 13%, rgba(0,0,0,0.14) 32%, rgba(0,0,0,0) 55%)',
-            'linear-gradient(to right, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.14) 15%, rgba(0,0,0,0) 32%, rgba(0,0,0,0) 68%, rgba(0,0,0,0.14) 85%, rgba(0,0,0,0.50) 100%)',
+            'linear-gradient(to bottom, rgba(10,16,28,0.40) 0%, rgba(10,16,28,0.12) 20%, rgba(10,16,28,0) 38%)',
+            'linear-gradient(to top, rgba(10,16,28,0.55) 0%, rgba(10,16,28,0.22) 20%, rgba(10,16,28,0) 44%)',
           ].join(','),
         }}
       />
 
-      {/* Content stack, with pt-16 to clear the fixed nav */}
-      <div className="relative z-30 flex flex-1 flex-col pt-16">
-        <div className="flex flex-1 flex-col items-center justify-center px-4 py-10 text-center sm:px-6 sm:py-16">
-          {/* Inner container biased toward the lower third of the hero */}
-          <div className="mx-auto mt-[20vh] flex w-full max-w-[46rem] flex-col items-center sm:mt-[24vh] md:mt-[28vh]">
-            <motion.h1
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-              // SeasonMix is single-weight (400) — no font-variation-settings needed.
-              // Fraunces fallback still receives the variation if SeasonMix fails to load.
-              style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
-              className="font-display text-cloud text-[clamp(1.75rem,7vw,2.5rem)] leading-[1.1] tracking-[-0.02em] sm:text-[clamp(2.5rem,5.5vw,3.25rem)] sm:leading-[1.05] md:text-[clamp(3rem,5vw,3.75rem)]"
-            >
-              <span className="block sm:whitespace-nowrap">The new standard for space</span>
-              <span className="block sm:whitespace-nowrap">and nuclear compliance.</span>
-            </motion.h1>
+      {/* Corner scrim, arriving with the copy so the frame stays clean until
+          the type does. */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-0 z-20"
+        initial={false}
+        animate={{ opacity: copyIn ? 1 : 0 }}
+        transition={{ duration: reduced ? 0.01 : copyIn ? 1.6 : 0.6, ease: 'easeOut' }}
+        style={{
+          background:
+            'radial-gradient(115% 85% at 0% 100%, rgba(10,16,28,0.72) 0%, rgba(10,16,28,0.34) 40%, rgba(10,16,28,0) 70%)',
+        }}
+      />
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-3 text-cloud text-[clamp(0.75rem,3.5vw,1rem)] leading-[1.5] sm:text-[18px]"
-            >
-              <span className="block sm:whitespace-nowrap">Autonomous agents that accelerate compliance</span>
-              <span className="block sm:whitespace-nowrap">in mission-critical industries.</span>
-            </motion.p>
+      {/* Dot weave + grain. A fine screen over the picture, the way a
+          broadcast frame reads off a CRT, plus a drifting grain plate. Both
+          are pure CSS so they stay crisp at any resolution and cost the video
+          nothing in bitrate. */}
+      <div aria-hidden="true" className="hero-mesh absolute inset-0 z-20" />
+      <div aria-hidden="true" className="hero-grain absolute inset-0 z-20" />
 
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 flex justify-center"
-            >
-              <a
-                href="https://calendar.app.google/mZPkSD8mPEpFCNh89"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border-0 bg-cloud px-4 font-sans text-[15px] font-medium leading-6 text-ink transition-colors hover:bg-mineral"
-              >
-                Talk to an expert
-              </a>
-            </motion.div>
+      {/* Content: seated lower-left. The film is the hero, so the type sits
+          out of the centre of frame rather than on top of the subject. */}
+      <div className="relative z-30 flex flex-1 flex-col justify-end px-6 pb-10 pt-16 sm:px-10 sm:pb-12 lg:px-24">
+        <div className="w-full">
+          <motion.h1
+            initial={false}
+            animate={{ opacity: copyIn ? 1 : 0 }}
+            transition={{ duration: reduced ? 0.01 : copyIn ? 1.5 : 0.6, ease: 'easeOut' }}
+            style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
+            className="font-display text-cloud text-[clamp(1.85rem,3.9vw,3.1rem)] leading-[1.08] tracking-[-0.02em]"
+          >
+            <span className="block">The new standard for</span>
+            <span className="block">mission critical compliance.</span>
+          </motion.h1>
 
-            {/* Investor row. Sized well below the mockup: the logos are a
-                credential, not a second CTA, so they sit at wordmark heights
-                (Transpose 16px, EF 9px, NVIDIA Inception 24px two-deck lockup)
-                that optically match each other rather than at matched pixel
-                widths. */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-7 flex flex-col items-center gap-2.5 sm:mt-8"
-            >
-              <span className="font-sans text-[10px] leading-none text-cloud/55 sm:text-[11px]">
-                Backed by
-              </span>
-              {/* 1fr/auto/1fr grid rather than a centered flex row: the side
-                  marks differ in width, so flex centering drifts the middle
-                  mark off the page axis. The grid pins EF exactly under the
-                  centered "Backed by" label. */}
-              <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
-                <div className="flex items-center justify-end gap-2.5 sm:gap-[18px]">
-                  <img
-                    src="/logos/transpose-platform.svg"
-                    alt="Transpose Platform"
-                    className="h-3 w-auto opacity-80 sm:h-4"
-                    width={249}
-                    height={32}
-                  />
-                  <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
-                </div>
-                <img
-                  src="/logos/entrepreneurs-first.svg"
-                  alt="Entrepreneurs First"
-                  className="mx-2.5 h-2 w-auto opacity-80 sm:mx-[18px] sm:h-[9px]"
-                  width={173}
-                  height={12}
-                />
-                <div className="flex items-center gap-2.5 sm:gap-[18px]">
-                  <span aria-hidden="true" className="h-3.5 w-px bg-cloud/25" />
-                  <img
-                    src="/logos/nvidia-inception.svg"
-                    alt="NVIDIA Inception Program"
-                    className="h-5 w-auto opacity-80 sm:h-6"
-                    width={164}
-                    height={46}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </div>
+          <motion.p
+            initial={false}
+            animate={{ opacity: copyIn ? 1 : 0 }}
+            transition={{
+              duration: reduced ? 0.01 : copyIn ? 1.5 : 0.6,
+              delay: reduced || !copyIn ? 0 : 0.45,
+              ease: 'easeOut',
+            }}
+            className="mt-4 font-sans text-[15px] leading-relaxed text-cloud/70 sm:whitespace-nowrap"
+          >
+            Autonomous agents that accelerate compliance in space and nuclear.
+          </motion.p>
         </div>
       </div>
+
+      {/* Sound control. Sits on the right edge, clear of the centred
+          content stack, and always reports the true state. */}
+      <button
+        type="button"
+        onClick={toggleSound}
+        aria-pressed={!muted}
+        className="absolute bottom-5 right-5 z-40 inline-flex items-center gap-1.5 rounded-full border border-cloud/25 bg-ink/30 px-2.5 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.08em] text-cloud/85 backdrop-blur-sm transition-colors hover:border-cloud/60 hover:bg-cloud hover:text-ink sm:bottom-7 sm:right-8 lg:right-12"
+      >
+        <SoundIcon on={!muted} />
+        <span className="hidden sm:inline">{muted ? 'Sound off' : 'Sound on'}</span>
+      </button>
+
     </section>
   )
 }
