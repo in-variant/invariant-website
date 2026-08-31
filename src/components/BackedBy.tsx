@@ -14,7 +14,7 @@ export default function BackedBy() {
   const inView = useInView(ref, { once: true, margin: '-60px' })
 
   return (
-    <section className="bg-ink px-6 py-8 md:px-12 md:py-10 lg:px-20">
+    <section className="bg-ink px-6 pb-8 pt-4 md:px-12 md:py-10 lg:px-20">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 10 }}

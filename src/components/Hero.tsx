@@ -57,8 +57,11 @@ function SoundIcon({ on }: { on: boolean }) {
  * The full-bleed treatment is gated on viewport ASPECT, not width. Gating it
  * on a width breakpoint sent a portrait tablet full-bleed, where object-cover
  * kept 42% of the frame and cut the film's burned-in captions off. Anything
- * narrower than 3:2 gets the film as a 16:9 band instead, uncropped.
- */
+ * narrower than 3:2 gets the film as a band with the copy ABOVE it: 219px is
+ * the tallest a 390px-wide 16:9 frame can be without cropping the sides, which
+ * leaves no room to overlay type without colliding with the film's own
+ * captions, and putting the copy below left the hero trailing into dead ink. Anything
+ *  */
 export default function Hero() {
   const introRef = useRef<HTMLVideoElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -70,7 +73,23 @@ export default function Hero() {
   const [introDone, setIntroDone] = useState(false)
   const [introDim, setIntroDim] = useState(false)
   const [copyIn, setCopyIn] = useState(false)
+  // True only when the copy is laid over the picture. Below 3:2 the film is a
+  // band and the copy sits in its own block underneath it.
+  const [overlaid, setOverlaid] = useState(true)
   const reduced = useReducedMotion()
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-aspect-ratio: 3/2)')
+    const sync = () => setOverlaid(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [])
+
+  // The timed windows exist so the type does not fight the film's own
+  // burned-in captions. When the copy is not over the picture there is nothing
+  // to fight, and hiding it just leaves a hole in the layout — so it stays.
+  const showCopy = overlaid ? copyIn : true
 
   // The opener plays once, then hands over. Anything that goes wrong with it —
   // blocked autoplay, a missing file, a decode error — hands over immediately
@@ -161,7 +180,7 @@ export default function Hero() {
           everything. object-cover at a phone's 0.46 aspect kept only 26% of
           the source width, which cut the film's burned-in captions off at
           both ends and left the hero an unreadable smear. */}
-      <div className="relative mt-16 aspect-video w-full shrink-0 [@media(min-aspect-ratio:3/2)]:absolute [@media(min-aspect-ratio:3/2)]:inset-0 [@media(min-aspect-ratio:3/2)]:mt-0 [@media(min-aspect-ratio:3/2)]:aspect-auto">
+      <div className="relative order-2 aspect-video w-full shrink-0 [@media(min-aspect-ratio:3/2)]:absolute [@media(min-aspect-ratio:3/2)]:inset-0 [@media(min-aspect-ratio:3/2)]:order-none [@media(min-aspect-ratio:3/2)]:aspect-auto">
         <video
           ref={introRef}
           className="absolute inset-0 size-full object-cover"
@@ -232,8 +251,8 @@ export default function Hero() {
         aria-hidden="true"
         className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:3/2)]:block"
         initial={false}
-        animate={{ opacity: copyIn ? 1 : 0 }}
-        transition={{ duration: reduced ? 0.01 : copyIn ? 1.6 : 0.6, ease: 'easeOut' }}
+        animate={{ opacity: showCopy ? 1 : 0 }}
+        transition={{ duration: reduced ? 0.01 : showCopy ? 1.6 : 0.6, ease: 'easeOut' }}
         style={{
           background:
             'radial-gradient(115% 85% at 0% 100%, rgba(10,16,28,0.72) 0%, rgba(10,16,28,0.34) 40%, rgba(10,16,28,0) 70%)',
@@ -242,14 +261,14 @@ export default function Hero() {
 
       {/* Content: seated lower-left. The film is the hero, so the type sits
           out of the centre of frame rather than on top of the subject. */}
-      <div className="relative z-30 flex flex-1 flex-col justify-end px-6 pb-12 pt-10 sm:px-10 [@media(min-aspect-ratio:3/2)]:pb-12 [@media(min-aspect-ratio:3/2)]:pt-16 lg:px-24">
+      <div className="relative z-30 order-1 flex flex-1 flex-col justify-end px-6 pb-7 pt-24 sm:px-10 [@media(min-aspect-ratio:3/2)]:order-none [@media(min-aspect-ratio:3/2)]:pb-12 [@media(min-aspect-ratio:3/2)]:pt-16 lg:px-24">
         <div className="w-full">
           <motion.h1
             initial={false}
-            animate={{ opacity: copyIn ? 1 : 0 }}
-            transition={{ duration: reduced ? 0.01 : copyIn ? 1.5 : 0.6, ease: 'easeOut' }}
+            animate={{ opacity: showCopy ? 1 : 0 }}
+            transition={{ duration: reduced ? 0.01 : showCopy ? 1.5 : 0.6, ease: 'easeOut' }}
             style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
-            className="font-display text-cloud text-[clamp(1.85rem,3.9vw,3.1rem)] leading-[1.08] tracking-[-0.02em]"
+            className="font-display text-cloud text-[clamp(1.5rem,3.9vw,3.1rem)] leading-[1.08] tracking-[-0.02em]"
           >
             <span className="block">The new standard for</span>
             <span className="block">mission critical compliance.</span>
@@ -257,10 +276,10 @@ export default function Hero() {
 
           <motion.p
             initial={false}
-            animate={{ opacity: copyIn ? 1 : 0 }}
+            animate={{ opacity: showCopy ? 1 : 0 }}
             transition={{
-              duration: reduced ? 0.01 : copyIn ? 1.5 : 0.6,
-              delay: reduced || !copyIn ? 0 : 0.45,
+              duration: reduced ? 0.01 : showCopy ? 1.5 : 0.6,
+              delay: reduced || !showCopy || !overlaid ? 0 : 0.45,
               ease: 'easeOut',
             }}
             className="mt-4 font-sans text-[15px] leading-relaxed text-cloud/70 sm:whitespace-nowrap"
