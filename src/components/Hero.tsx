@@ -53,6 +53,11 @@ function SoundIcon({ on }: { on: boolean }) {
  *
  * Copy is driven by the FILM's clock, not by mount, so it holds, steps out
  * mid-film and repeats identically on every loop.
+ *
+ * The full-bleed treatment is gated on viewport ASPECT, not width. Gating it
+ * on a width breakpoint sent a portrait tablet full-bleed, where object-cover
+ * kept 42% of the frame and cut the film's burned-in captions off. Anything
+ * narrower than 3:2 gets the film as a 16:9 band instead, uncropped.
  */
 export default function Hero() {
   const introRef = useRef<HTMLVideoElement>(null)
@@ -147,11 +152,16 @@ export default function Hero() {
   }, [introDone])
 
   return (
-    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
+    <section className="relative flex flex-col overflow-hidden bg-ink [@media(min-aspect-ratio:3/2)]:min-h-[100svh]">
       {/* Opener, then the film. Both fill the frame and swap on opacity, so
           there is never a black gap between them. The film does not autoplay —
           it is started by hand once the opener hands over. */}
-      <div className="absolute inset-0">
+      {/* Film plate. On a phone this is a full-width 16:9 band in normal
+          flow, so the whole frame shows; from md up it goes full-bleed behind
+          everything. object-cover at a phone's 0.46 aspect kept only 26% of
+          the source width, which cut the film's burned-in captions off at
+          both ends and left the hero an unreadable smear. */}
+      <div className="relative mt-16 aspect-video w-full shrink-0 [@media(min-aspect-ratio:3/2)]:absolute [@media(min-aspect-ratio:3/2)]:inset-0 [@media(min-aspect-ratio:3/2)]:mt-0 [@media(min-aspect-ratio:3/2)]:aspect-auto">
         <video
           ref={introRef}
           className="absolute inset-0 size-full object-cover"
@@ -182,17 +192,32 @@ export default function Hero() {
           poster="/video/hero-film-poster.jpg"
           aria-label="Invariant film"
         >
-          <source src="/video/hero-film.webm" type="video/webm" media="(min-width: 768px)" />
-          <source src="/video/hero-film.mp4" type="video/mp4" media="(min-width: 768px)" />
+          <source src="/video/hero-film.webm" type="video/webm" media="(min-width: 900px)" />
+          <source src="/video/hero-film.mp4" type="video/mp4" media="(min-width: 900px)" />
           <source src="/video/hero-film-mobile.mp4" type="video/mp4" />
         </video>
+
+        {/* Dot weave + grain, over the picture at both breakpoints. */}
+        <div aria-hidden="true" className="hero-mesh absolute inset-0 z-20" />
+        <div aria-hidden="true" className="hero-grain absolute inset-0 z-20" />
+
+        {/* Sound control, seated on the film. */}
+        <button
+          type="button"
+          onClick={toggleSound}
+          aria-pressed={!muted}
+          className="absolute bottom-4 right-4 z-40 inline-flex items-center gap-1.5 rounded-full border border-cloud/25 bg-ink/30 px-2.5 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.08em] text-cloud/85 backdrop-blur-sm transition-colors hover:border-cloud/60 hover:bg-cloud hover:text-ink sm:bottom-7 sm:right-8 lg:right-12"
+        >
+          <SoundIcon on={!muted} />
+          <span className="hidden sm:inline">{muted ? 'Sound off' : 'Sound on'}</span>
+        </button>
       </div>
 
       {/* Scrims. Light — the film carries the frame; we only darken enough
           at the foot to seat the headline and at the head to hold the nav. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-20"
+        className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:3/2)]:block"
         style={{
           background: [
             'linear-gradient(to bottom, rgba(10,16,28,0.40) 0%, rgba(10,16,28,0.12) 20%, rgba(10,16,28,0) 38%)',
@@ -205,7 +230,7 @@ export default function Hero() {
           the type does. */}
       <motion.div
         aria-hidden="true"
-        className="absolute inset-0 z-20"
+        className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:3/2)]:block"
         initial={false}
         animate={{ opacity: copyIn ? 1 : 0 }}
         transition={{ duration: reduced ? 0.01 : copyIn ? 1.6 : 0.6, ease: 'easeOut' }}
@@ -215,16 +240,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Dot weave + grain. A fine screen over the picture, the way a
-          broadcast frame reads off a CRT, plus a drifting grain plate. Both
-          are pure CSS so they stay crisp at any resolution and cost the video
-          nothing in bitrate. */}
-      <div aria-hidden="true" className="hero-mesh absolute inset-0 z-20" />
-      <div aria-hidden="true" className="hero-grain absolute inset-0 z-20" />
-
       {/* Content: seated lower-left. The film is the hero, so the type sits
           out of the centre of frame rather than on top of the subject. */}
-      <div className="relative z-30 flex flex-1 flex-col justify-end px-6 pb-10 pt-16 sm:px-10 sm:pb-12 lg:px-24">
+      <div className="relative z-30 flex flex-1 flex-col justify-end px-6 pb-12 pt-10 sm:px-10 [@media(min-aspect-ratio:3/2)]:pb-12 [@media(min-aspect-ratio:3/2)]:pt-16 lg:px-24">
         <div className="w-full">
           <motion.h1
             initial={false}
@@ -251,18 +269,6 @@ export default function Hero() {
           </motion.p>
         </div>
       </div>
-
-      {/* Sound control. Sits on the right edge, clear of the centred
-          content stack, and always reports the true state. */}
-      <button
-        type="button"
-        onClick={toggleSound}
-        aria-pressed={!muted}
-        className="absolute bottom-5 right-5 z-40 inline-flex items-center gap-1.5 rounded-full border border-cloud/25 bg-ink/30 px-2.5 py-1.5 font-sans text-[10px] font-medium uppercase tracking-[0.08em] text-cloud/85 backdrop-blur-sm transition-colors hover:border-cloud/60 hover:bg-cloud hover:text-ink sm:bottom-7 sm:right-8 lg:right-12"
-      >
-        <SoundIcon on={!muted} />
-        <span className="hidden sm:inline">{muted ? 'Sound off' : 'Sound on'}</span>
-      </button>
 
     </section>
   )

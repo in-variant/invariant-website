@@ -25,29 +25,29 @@ export default function BackedBy() {
         <span className="font-sans text-[11px] uppercase leading-none tracking-[0.14em] text-cloud/45">
           Backed by
         </span>
-        <div className="flex items-center gap-6 sm:gap-9">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-4 sm:flex-nowrap sm:gap-x-9">
           <img
             src="/logos/transpose-platform.svg"
             alt="Transpose Platform"
-            className="h-4 w-auto opacity-75"
+            className="h-3.5 w-auto max-w-[38vw] object-contain opacity-75 sm:h-4 sm:max-w-none"
             width={249}
             height={32}
             loading="lazy"
           />
-          <span aria-hidden="true" className="h-4 w-px bg-cloud/20" />
+          <span aria-hidden="true" className="hidden h-4 w-px bg-cloud/20 sm:block" />
           <img
             src="/logos/entrepreneurs-first.svg"
             alt="Entrepreneurs First"
-            className="h-[9px] w-auto opacity-75"
+            className="h-2 w-auto max-w-[38vw] object-contain opacity-75 sm:h-[9px] sm:max-w-none"
             width={173}
             height={12}
             loading="lazy"
           />
-          <span aria-hidden="true" className="h-4 w-px bg-cloud/20" />
+          <span aria-hidden="true" className="hidden h-4 w-px bg-cloud/20 sm:block" />
           <img
             src="/logos/nvidia-inception.svg"
             alt="NVIDIA Inception Program"
-            className="h-6 w-auto opacity-75"
+            className="h-5 w-auto max-w-[38vw] object-contain opacity-75 sm:h-6 sm:max-w-none"
             width={200}
             height={48}
             loading="lazy"
