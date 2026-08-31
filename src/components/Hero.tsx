@@ -54,13 +54,17 @@ function SoundIcon({ on }: { on: boolean }) {
  * Copy is driven by the FILM's clock, not by mount, so it holds, steps out
  * mid-film and repeats identically on every loop.
  *
- * The full-bleed treatment is gated on viewport ASPECT, not width. Gating it
- * on a width breakpoint sent a portrait tablet full-bleed, where object-cover
- * kept 42% of the frame and cut the film's burned-in captions off. Anything
- * narrower than 3:2 gets the film as a band with the copy ABOVE it: 219px is
- * the tallest a 390px-wide 16:9 frame can be without cropping the sides, which
- * leaves no room to overlay type without colliding with the film's own
- * captions, and putting the copy below left the hero trailing into dead ink. Anything
+ * Full-bleed on any LANDSCAPE viewport; the band only on portrait. Gating on
+ * width sent a portrait tablet full-bleed, where object-cover kept 42% of the
+ * frame and cut the film's burned-in captions off — but gating at 3:2 was far
+ * worse in the other direction, dropping ordinary desktop windows (a 1.43
+ * window, say) into the narrow layout. 1:1 is the honest line: a desktop
+ * window is never portrait, a phone always is.
+ *
+ * On portrait the copy sits ABOVE the band. 219px is the tallest a 390px-wide
+ * 16:9 frame can be without cropping the sides, which leaves no room to
+ * overlay type without colliding with the film's own captions, and putting the
+ * copy below left the hero trailing off into dead ink. Anything
  *  */
 export default function Hero() {
   const introRef = useRef<HTMLVideoElement>(null)
@@ -79,7 +83,7 @@ export default function Hero() {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-aspect-ratio: 3/2)')
+    const mq = window.matchMedia('(min-aspect-ratio: 1/1)')
     const sync = () => setOverlaid(mq.matches)
     sync()
     mq.addEventListener('change', sync)
@@ -171,7 +175,7 @@ export default function Hero() {
   }, [introDone])
 
   return (
-    <section className="relative flex flex-col overflow-hidden bg-ink [@media(min-aspect-ratio:3/2)]:min-h-[100svh]">
+    <section className="relative flex flex-col overflow-hidden bg-ink [@media(min-aspect-ratio:1/1)]:min-h-[100svh]">
       {/* Opener, then the film. Both fill the frame and swap on opacity, so
           there is never a black gap between them. The film does not autoplay —
           it is started by hand once the opener hands over. */}
@@ -180,7 +184,7 @@ export default function Hero() {
           everything. object-cover at a phone's 0.46 aspect kept only 26% of
           the source width, which cut the film's burned-in captions off at
           both ends and left the hero an unreadable smear. */}
-      <div className="relative order-2 aspect-video w-full shrink-0 [@media(min-aspect-ratio:3/2)]:absolute [@media(min-aspect-ratio:3/2)]:inset-0 [@media(min-aspect-ratio:3/2)]:order-none [@media(min-aspect-ratio:3/2)]:aspect-auto">
+      <div className="relative order-2 aspect-video w-full shrink-0 [@media(min-aspect-ratio:1/1)]:absolute [@media(min-aspect-ratio:1/1)]:inset-0 [@media(min-aspect-ratio:1/1)]:order-none [@media(min-aspect-ratio:1/1)]:aspect-auto">
         <video
           ref={introRef}
           className="absolute inset-0 size-full object-cover"
@@ -236,7 +240,7 @@ export default function Hero() {
           at the foot to seat the headline and at the head to hold the nav. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:3/2)]:block"
+        className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:1/1)]:block"
         style={{
           background: [
             'linear-gradient(to bottom, rgba(10,16,28,0.40) 0%, rgba(10,16,28,0.12) 20%, rgba(10,16,28,0) 38%)',
@@ -249,7 +253,7 @@ export default function Hero() {
           the type does. */}
       <motion.div
         aria-hidden="true"
-        className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:3/2)]:block"
+        className="absolute inset-0 z-20 hidden [@media(min-aspect-ratio:1/1)]:block"
         initial={false}
         animate={{ opacity: showCopy ? 1 : 0 }}
         transition={{ duration: reduced ? 0.01 : showCopy ? 1.6 : 0.6, ease: 'easeOut' }}
@@ -261,7 +265,7 @@ export default function Hero() {
 
       {/* Content: seated lower-left. The film is the hero, so the type sits
           out of the centre of frame rather than on top of the subject. */}
-      <div className="relative z-30 order-1 flex flex-1 flex-col justify-end px-6 pb-7 pt-24 sm:px-10 [@media(min-aspect-ratio:3/2)]:order-none [@media(min-aspect-ratio:3/2)]:pb-12 [@media(min-aspect-ratio:3/2)]:pt-16 lg:px-24">
+      <div className="relative z-30 order-1 flex flex-1 flex-col justify-end px-6 pb-7 pt-24 sm:px-10 [@media(min-aspect-ratio:1/1)]:order-none [@media(min-aspect-ratio:1/1)]:pb-12 [@media(min-aspect-ratio:1/1)]:pt-16 lg:px-24">
         <div className="w-full">
           <motion.h1
             initial={false}
