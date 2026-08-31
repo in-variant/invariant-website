@@ -38,34 +38,77 @@ function SoundIcon({ on }: { on: boolean }) {
 }
 
 /**
- * Hero: the film, with the type seated lower-left.
+ * Hero: a short silent opener, then the film.
  *
- * The centred stack, the CTA and the investor row have moved off this frame —
- * the video is the hero, and anything laid over the middle of it fights the
- * picture. Backers now sit in their own strip below the fold.
+ * Two stacked video elements. The 2.2s opener autoplays on landing and gives
+ * the page something to look at while the main film buffers — and, since the
+ * film carries audio, a beat before anything could make a sound. When the
+ * opener ends the two cross-fade and the film takes over and loops. The
+ * opener is far brighter than the film's opening shot, so it dims over its
+ * last second to meet it rather than cutting from daylight to near-black.
  *
- *   - Section: min-h-[100svh] at every breakpoint. It must always fill the
- *     viewport on first load: the nav is `fixed` (no flow space) and Layout
- *     gives home no top padding, so the hero starts at y=0 and needs no
- *     negative margin. Do not reintroduce fixed pixel heights here — a
- *     window taller than them exposes the next section beneath the video.
- *   - Dark overlay (bg-ink/60) plus a black vignette, no other gradients.
- *   - Content stack centered in max-w-[46rem] container.
- *   - Explicit <span class="block sm:whitespace-nowrap"> line breaks on both
- *     headline and subhead so wrap is predictable, not text-balance roulette.
- *   - Headline uses clamp() like Pax for fluid sizing across the breakpoints.
- *   - CTA matches Pax exactly: h-11, px-4, text-[15px], leading-6.
- *   - Font: Fraunces (closest free analog to Pax's commercial "SeasonMix")
- *     with display optical-size and slightly elevated grade for authority.
+ * The film starts muted and stays muted until the control in the corner is
+ * pressed. If the toggle is pressed while the opener is still running, the
+ * intent is held and applied the moment the film starts.
+ *
+ * Copy is driven by the FILM's clock, not by mount, so it holds, steps out
+ * mid-film and repeats identically on every loop.
  */
 export default function Hero() {
+  const introRef = useRef<HTMLVideoElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   // Muted by default and stays muted until the visitor asks for sound.
   // Autoplay with audio is blocked by browsers anyway, and unprompted audio
   // on a landing page is hostile.
   const [muted, setMuted] = useState(true)
+  const mutedRef = useRef(true)
+  const [introDone, setIntroDone] = useState(false)
+  const [introDim, setIntroDim] = useState(false)
   const [copyIn, setCopyIn] = useState(false)
   const reduced = useReducedMotion()
+
+  // The opener plays once, then hands over. Anything that goes wrong with it —
+  // blocked autoplay, a missing file, a decode error — hands over immediately
+  // rather than leaving the hero sitting on a still.
+  useEffect(() => {
+    const i = introRef.current
+    if (!i) {
+      setIntroDone(true)
+      return
+    }
+    const handOver = () => setIntroDone(true)
+    // The opener sits around luma 141 and the film opens near 28 — a straight
+    // opacity swap between them reads as a brightness jump. Ramp the opener
+    // down over its last second so the two match at the point of the cut.
+    const onTime = () => {
+      const d = i.duration
+      if (Number.isFinite(d) && d > 0 && i.currentTime >= d - 1) setIntroDim(true)
+    }
+    i.addEventListener('timeupdate', onTime)
+    i.addEventListener('ended', handOver)
+    i.addEventListener('error', handOver)
+    i.muted = true
+    void i.play().catch(handOver)
+    // Backstop: never sit on the opener longer than it can possibly run.
+    const guard = window.setTimeout(handOver, 6000)
+    return () => {
+      i.removeEventListener('timeupdate', onTime)
+      i.removeEventListener('ended', handOver)
+      i.removeEventListener('error', handOver)
+      window.clearTimeout(guard)
+    }
+  }, [])
+
+  // Start the film the moment the opener is done, honouring the sound choice
+  // if the visitor already made one.
+  useEffect(() => {
+    if (!introDone) return
+    const v = videoRef.current
+    if (!v) return
+    v.muted = mutedRef.current
+    if (!v.muted) v.volume = 1
+    void v.play().catch(() => {})
+  }, [introDone])
 
   // Tie the copy to the film's clock rather than to mount. On a mount-time
   // delay the type appeared once and then stayed through every loop; driving
@@ -92,23 +135,46 @@ export default function Hero() {
   }, [])
 
   const toggleSound = useCallback(() => {
+    const next = !mutedRef.current
+    mutedRef.current = next
+    setMuted(next)
     const v = videoRef.current
     if (!v) return
-    const next = !v.muted
     v.muted = next
     if (!next) v.volume = 1
-    setMuted(next)
-    void v.play().catch(() => {})
-  }, [])
+    // Only nudge playback once the film is actually the one on screen.
+    if (!v.paused || introDone) void v.play().catch(() => {})
+  }, [introDone])
 
   return (
     <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-ink">
-      {/* Background video */}
+      {/* Opener, then the film. Both fill the frame and swap on opacity, so
+          there is never a black gap between them. The film does not autoplay —
+          it is started by hand once the opener hands over. */}
       <div className="absolute inset-0">
         <video
-          ref={videoRef}
-          className="size-full object-cover"
+          ref={introRef}
+          className="absolute inset-0 size-full object-cover"
+          style={{
+            opacity: introDone ? 0 : 1,
+            filter: `brightness(${introDim ? 0.34 : 1})`,
+            transition: 'opacity 900ms ease-out, filter 1000ms linear',
+          }}
           autoPlay
+          muted
+          playsInline
+          preload="auto"
+          poster="/video/hero-intro-poster.jpg"
+          aria-hidden="true"
+        >
+          <source src="/video/hero-intro.webm" type="video/webm" />
+          <source src="/video/hero-intro.mp4" type="video/mp4" />
+        </video>
+
+        <video
+          ref={videoRef}
+          className="absolute inset-0 size-full object-cover"
+          style={{ opacity: introDone ? 1 : 0, transition: 'opacity 900ms ease-out' }}
           muted
           loop
           playsInline

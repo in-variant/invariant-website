@@ -89,7 +89,7 @@ function StackBuild() {
     >
       <div className="sticky top-16 flex h-[calc(100svh-4rem)] items-center overflow-hidden px-6 md:px-12 lg:px-20">
         {/* Half and half: the index on one side, the drawing on the other. */}
-        <div className="mx-auto grid w-full max-w-5xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <ol>
             {STAGES.map((s, i) => {
               const on = i === active
@@ -100,19 +100,19 @@ function StackBuild() {
                     type="button"
                     onClick={() => goTo(i)}
                     aria-current={on ? 'step' : undefined}
-                    className={`grid w-full grid-cols-[auto_1fr] items-center gap-4 border-t py-4 text-left transition-colors duration-300 last:border-b ${
+                    className={`grid w-full grid-cols-[auto_1fr] items-center gap-5 border-t py-[18px] text-left transition-colors duration-300 last:border-b ${
                       on ? 'border-ink/35' : 'border-ink/10'
                     }`}
                   >
                     <span
-                      className={`font-sans text-[11px] tabular-nums transition-colors duration-300 ${
+                      className={`font-sans text-[12px] tabular-nums transition-colors duration-300 ${
                         on || done ? 'text-ink/70' : 'text-ink/30'
                       }`}
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <span
-                      className={`font-sans text-[15px] transition-colors duration-300 ${
+                      className={`font-sans text-[17px] transition-colors duration-300 ${
                         on ? 'font-semibold text-ink' : done ? 'text-ink/65' : 'text-ink/35'
                       }`}
                     >
@@ -126,7 +126,7 @@ function StackBuild() {
 
           {/* Every plate is padded to the same 3:2 frame, so this box matches
               the asset and nothing letterboxes or resizes between stages. */}
-          <div className="mx-auto w-full max-w-[400px]">
+          <div className="mx-auto w-full max-w-[480px]">
             <div className="relative aspect-[3/2] w-full">
             {STAGES.map((s, i) => (
               <motion.img
@@ -159,7 +159,7 @@ function StackBuild() {
               initial={reduced ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-7 font-sans text-[15px] leading-relaxed text-ink/60"
+              className="mt-8 font-sans text-[16px] leading-relaxed text-ink/60"
             >
               {current.d}
             </motion.p>
@@ -176,7 +176,7 @@ export default function IntroducingInvariant() {
 
   return (
     <>
-      <section ref={ref} className="bg-paper px-6 pb-0 pt-24 md:px-12 md:pt-28 lg:px-20">
+      <section ref={ref} className="bg-paper px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-28 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.45fr_1fr] lg:items-start lg:gap-x-20">
             <motion.h2
