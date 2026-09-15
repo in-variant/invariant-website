@@ -1,0 +1,613 @@
+[
+  {
+    "slug": "data-center-fuel-storage-spcc-tier-ii",
+    "topic": "Data Centers",
+    "title": "Data center fuel and chemical storage: SPCC and Tier II reporting",
+    "description": "How US data center operators assess diesel and transformer oil under SPCC and prepare EPCRA Tier II inventories for batteries, fuel, and cooling chemicals.",
+    "date": "2026-09-15",
+    "readMinutes": 8,
+    "intro": "Start a data center's fuel and chemical compliance review with an equipment walkdown. Reconcile the generator tanks, transformer oil, battery rooms, maintenance supplies, and cooling chemicals against the drawings and purchasing records. Then make two separate calculations: oil storage capacity for SPCC applicability and hazardous chemical quantities for EPCRA inventory reporting. An air permit, tank installation approval, or completed annual inventory does not answer all three questions. This guide covers the federal baseline as of September 15, 2026, with state and local requirements checked separately.",
+    "takeaways": [
+      "Calculate SPCC using applicable oil storage capacity, including qualifying oil-filled equipment.",
+      "Calculate EPCRA thresholds from hazardous chemicals present, using the relevant SDS and mixture rules.",
+      "Aggregate sulfuric acid in lead-acid batteries when evaluating its reporting threshold.",
+      "Give fuel deliveries, battery replacements, and chemical changes a compliance review owner."
+    ],
+    "sections": [
+      {
+        "id": "different-inventory-questions",
+        "heading": "Use the right inventory for each obligation",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Review",
+              "What the calculation concerns",
+              "Record to collect"
+            ],
+            "rows": [
+              [
+                "SPCC applicability",
+                "Oil storage capacity and the potential for a harmful discharge to navigable waters or adjoining shorelines.",
+                "Container capacities, equipment oil volumes, facility boundary, drainage, and the basis for exclusions."
+              ],
+              [
+                "EPCRA Sections 311 and 312",
+                "Covered hazardous chemicals present at or above reporting thresholds.",
+                "Current SDSs, chemical composition, maximum quantities, storage locations, and reporting decisions."
+              ],
+              [
+                "Generator air permit",
+                "The operating and recordkeeping conditions in the facility's applicable air requirements.",
+                "Engine and fuel-use records matched to the actual permit conditions."
+              ]
+            ],
+            "sourceIds": [
+              "spcc-applicability",
+              "tier-thresholds"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep one asset identifier across these records, while preserving each calculation's basis. A tank capacity sheet cannot establish the maximum chemical inventory during the year without operating information. A fuel invoice may support deliveries and consumption but omit the transformer yard entirely. Ask the facilities lead and environmental owner to sign off on the same physical inventory before either assessment is finalized."
+          }
+        ]
+      },
+      {
+        "id": "spcc-capacity",
+        "heading": "Count diesel and transformer oil before deciding SPCC applicability",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "EPA's SPCC applicability screen asks whether a non-transportation-related facility handles oil, could reasonably be expected to discharge harmful quantities to navigable waters or adjoining shorelines, and exceeds an applicable capacity threshold. The thresholds are more than 1,320 gallons aboveground or more than 42,000 gallons in completely buried storage. Specified exclusions apply, including containers smaller than 55 gallons and qualifying buried tanks subject to all technical requirements of the federal underground-storage-tank rules or an approved state program.",
+            "sourceIds": [
+              "spcc-applicability"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Do not stop at the main diesel tank. EPA confirms that the 55-gallon minimum also applies to oil-filled operating and electrical equipment, including transformers. Obtain the manufacturer's oil capacity for each relevant unit. Review generator day tanks, lubricant storage, and maintenance drums as well as bulk fuel. Document whether equipment inside or beside the campus belongs within the assessed facility; a utility ownership label alone should not replace a documented boundary analysis.",
+            "sourceIds": [
+              "transformer-capacity"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a simple screening example, assume two 1,000-gallon aboveground diesel tanks and two transformers containing 150 gallons each, all within the assessed facility and without a relevant exclusion. The counted capacity is 2,300 gallons. That exceeds the aboveground threshold even if the tanks are routinely half full. The discharge-potential and other applicability questions still need an answer. Save the equipment sheets and site drainage drawing with that conclusion."
+          }
+        ]
+      },
+      {
+        "id": "spcc-operating-controls",
+        "heading": "Translate the SPCC assessment into operating controls",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For covered facilities, the SPCC Plan must address the relevant prevention measures, inspections, personnel instruction, and discharge response. Section 112.7 also requires a management-approved plan and identifies facility diagrams and oil-handling information. Its provisions distinguish general containment requirements from special treatment available to qualifying oil-filled operational equipment. Have the plan preparer classify each asset before assigning its control requirements.",
+            "sourceIds": [
+              "spcc-general"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A covered new data center must have its SPCC Plan prepared and implemented before operations begin. EPA's six-month allowance for new oil-production facilities does not apply to an ordinary data center. Put plan completion and implementation on the commissioning schedule, with the operating team involved before fuel deliveries and startup activities are arranged.",
+            "sourceIds": [
+              "spcc-dates"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "EPA explains that applicable bulk storage installations need containment for the largest single container plus sufficient precipitation freeboard. Shared containment may serve multiple containers when it satisfies the requirements. This is a design calculation, not a reason to apply a single percentage to every tank, transformer, or loading area. Review the drainage route and the relevant containment provisions for each installation.",
+            "sourceIds": [
+              "spcc-containment"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Test the procedure against an ordinary delivery. Identify who checks available tank space, confirms the connection, watches the transfer, and responds to a leak. Walk the route from a failed hose to the nearest drain. Record whether valves, barriers, or response equipment are accessible during nights and bad weather. These operational questions help the preparer confirm that the written plan matches the people and equipment actually available."
+          }
+        ]
+      },
+      {
+        "id": "tier-ii-thresholds",
+        "heading": "Evaluate Tier II reporting from chemicals and maximum quantities",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Under 40 CFR 370.10, the federal reporting test generally starts with hazardous chemicals for which the OSHA Hazard Communication Standard requires an SDS. The threshold is 10,000 pounds for ordinary hazardous chemicals. For extremely hazardous substances, it is 500 pounds or the substance's threshold planning quantity, whichever is lower. The test concerns quantities present at any one time. The higher retail gasoline and diesel thresholds are narrowly conditioned exceptions for qualifying retail gas stations, not general allowances for data center generator fuel.",
+            "sourceIds": [
+              "tier-thresholds"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Create a row for each purchased chemical or mixture before deciding how it should be reported. Include diesel, battery electrolyte, water-treatment products, cleaning chemicals, and other materials identified by the walkdown. Use the actual product SDS to establish composition and hazards. Ask the supplier to resolve missing information. A familiar trade name or a prior site's inventory is a starting point for investigation, not a substitute for the current product record.",
+            "sourceIds": [
+              "tier-general"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Reconstruct peak inventory using delivery dates, tank readings, stock records, and temporary supplies. Annual gallons consumed can exceed the amount ever present at once. Conversely, a large delivery shortly before year end can set the maximum even when average use is low. Where a conversion to pounds is needed, retain the density source and units. Record the assumptions so another reviewer can reproduce the result."
+          }
+        ]
+      },
+      {
+        "id": "battery-mixtures",
+        "heading": "Calculate battery chemicals without assuming every battery follows one rule",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "EPA's non-consumer lead-acid battery guidance requires aggregation of sulfuric acid across batteries to evaluate the 500-pound reporting threshold. It permits reporting the batteries as mixtures identifying the sulfuric acid, or reporting the sulfuric acid itself, with consistent Section 311 and 312 reporting. EPA separately says facilities are not required to aggregate non-EHS lead across those batteries, although they may choose to do so. Do not replace those specific instructions with a blanket rule for all battery constituents.",
+            "sourceIds": [
+              "battery-reporting"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For an illustrative calculation, suppose verified supplier data establishes 6 pounds of sulfuric acid per battery and 100 batteries are present within the facility. The total is 600 pounds, exceeding the sulfuric-acid threshold. Use the actual model and count in a real assessment. When a UPS replacement changes chemistry, collect the new SDS and reassess reporting. Keep that review linked to the equipment change order so the inventory does not retain obsolete lead-acid assumptions."
+          }
+        ]
+      },
+      {
+        "id": "reporting-calendar",
+        "heading": "Build the reporting calendar around the facility's state",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Section 312 inventories cover the preceding calendar year and are due by March 1. Section 311 is a separate SDS or chemical-list submission obligation with its own initial and update triggers. Assign those triggers to the person approving new chemicals, rather than discovering them only during annual reporting. EPA's inventory overview identifies the state or tribal commission, local or tribal planning committee, and local fire department as recipients.",
+            "sourceIds": [
+              "tier-inventory"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The June 2026 final rule's Section 370.33 preserves three months for an initial submission, including a newly reportable chemical, and for a revised SDS after discovering significant new information about a chemical previously reported by SDS. An LEPC request for an SDS has a separate 30-day deadline. Its hazard-category changes have a January 1, 2028 compliance date, with the 2027 annual inventory due March 1, 2028. Keep the effective rule and those later compliance milestones distinct.",
+            "sourceIds": [
+              "tier-2026-rule"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Check the state program's current filing instructions, fees, additional requirements, and handling of local recipients. EPA's state directory illustrates materially different submission arrangements: some states distribute a single submission, while others require additional local delivery. Capture the actual portal, facility identifier, authorized submitter, and receipts in the site's calendar. Recheck these details when acquiring a campus or replacing the employee who controls the filing account.",
+            "sourceIds": [
+              "tier-states"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "handover-evidence",
+        "heading": "Keep an evidence pack that survives an operator change",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Asset register: tank and transformer identifiers, capacities, products, locations, and responsible operators.",
+              "Applicability record: facility boundary, drainage assessment, exclusions, threshold calculations, and reviewer.",
+              "Chemical register: SDS revision, constituent basis, unit conversions, maximum quantities, and reporting approach.",
+              "Operating record: current plan, relevant inspections, delivery procedure, training, and unresolved corrective actions.",
+              "Submission record: reporting year, recipients, filed inventory, confirmation receipts, and state-specific instructions."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "This evidence pack is a recommended management practice. EPA states that Sections 311 and 312 themselves have no federal record-retention requirement, while state requirements may differ. Do not label an internal retention period a universal Tier II rule. Separate it from enforceable SPCC inspection records or other requirements, and set a company retention policy that preserves the basis for past reporting decisions.",
+            "sourceIds": [
+              "tier-retention"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does every data center with diesel generators need an SPCC Plan?",
+        "answer": "Determine the counted oil capacity, facility characteristics, discharge potential, and exclusions. The presence of a generator alone does not establish applicability.",
+        "sourceIds": [
+          "spcc-applicability"
+        ]
+      },
+      {
+        "question": "Should transformer oil be included in the SPCC calculation?",
+        "answer": "Relevant oil-filled equipment with capacity of 55 gallons or more is included when assessing facility oil capacity. Confirm the equipment capacity and assessed facility boundary.",
+        "sourceIds": [
+          "transformer-capacity"
+        ]
+      },
+      {
+        "question": "Can an annual Tier II report replace the SPCC Plan?",
+        "answer": "No. Tier II communicates hazardous chemical inventory to emergency-planning authorities. SPCC addresses oil-discharge prevention and controls for covered facilities. Maintain the different calculations and required records.",
+        "sourceIds": [
+          "spcc-general",
+          "tier-inventory"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "spcc-applicability",
+        "title": "Does the SPCC Rule Apply to Your Facility?",
+        "url": "https://www.epa.gov/oil-spills-prevention-and-preparedness-regulations/does-spill-prevention-control-and-countermeasure",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "transformer-capacity",
+        "title": "Oil-filled equipment capacity less than 55 gallons",
+        "url": "https://www.epa.gov/oil-spills-prevention-and-preparedness-regulations/oil-filled-equipment-capacity-less-55-gallons",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "spcc-general",
+        "title": "40 CFR 112.7: General requirements for SPCC Plans",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-D/part-112/subpart-A/section-112.7",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "spcc-dates",
+        "title": "SPCC Compliance Dates",
+        "url": "https://www.epa.gov/oil-spills-prevention-and-preparedness-regulations/spcc-compliance-dates",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "spcc-containment",
+        "title": "Secondary containment for each container under SPCC",
+        "url": "https://www.epa.gov/oil-spills-prevention-and-preparedness-regulations/secondary-containment-each-container-under-spcc",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "tier-thresholds",
+        "title": "40 CFR 370.10: Applicability and reporting thresholds",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-J/part-370/subpart-B/section-370.10",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "tier-general",
+        "title": "EPCRA Hazardous Chemical Inventory Reporting: General Reporting Guidance",
+        "url": "https://www.epa.gov/epcra/epcra-hazardous-chemical-inventory-reporting-general-reporting-guidance",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "battery-reporting",
+        "title": "How does a facility report batteries for Tier II?",
+        "url": "https://www.epa.gov/epcra/how-does-facility-report-batteries-tier-ii",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "tier-inventory",
+        "title": "Hazardous Chemical Inventory Reporting",
+        "url": "https://www.epa.gov/epcra/hazardous-chemical-inventory-reporting",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "tier-2026-rule",
+        "title": "EPCRA Hazardous Chemical Inventory Reporting Requirements: June 22, 2026 Final Rule",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2026-06-22/html/2026-12426.htm",
+        "publisher": "Federal Register, U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "tier-states",
+        "title": "State Tier II Reporting Requirements and Procedures",
+        "url": "https://www.epa.gov/epcra/state-tier-ii-reporting-requirements-and-procedures",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "tier-retention",
+        "title": "Federal recordkeeping requirements under EPCRA Sections 311 and 312",
+        "url": "https://www.epa.gov/epcra/federal-recordkeeping-requirements-under-epcra-ssss311-and-312",
+        "publisher": "U.S. Environmental Protection Agency"
+      }
+    ],
+    "relatedSlugs": [
+      "data-center-backup-generator-air-permits",
+      "data-center-fire-code-battery-requirements",
+      "data-center-water-stormwater-permits",
+      "data-center-refrigerant-compliance",
+      "data-center-site-selection-permitting"
+    ]
+  },
+  {
+    "slug": "data-center-refrigerant-compliance",
+    "topic": "Data Centers",
+    "title": "Data center refrigerant compliance: Section 608 and AIM Act operating duties",
+    "description": "A US guide to data center cooling compliance under Section 608 and the AIM Act, with appliance-level applicability, leak response, automatic detection, and records.",
+    "date": "2026-09-15",
+    "readMinutes": 8,
+    "intro": "A refrigerant service visit should leave the data center operator with enough information to identify the appliance, account for refrigerant added, calculate any required leak rate, and assign the next action. An invoice saying that cooling has been restored is rarely enough for that review. Build the compliance register around individual refrigerant appliances and their actual use. Then apply the relevant Section 608 and AIM Act requirements. This guide uses the federal rules current on September 15, 2026; state requirements and site-specific obligations need a separate check.",
+    "takeaways": [
+      "Identify each independent refrigerant circuit, refrigerant composition, full charge, and application.",
+      "Distinguish Section 608 service rules from AIM Act leak-repair and automatic-detection requirements.",
+      "Link refrigerant additions to calculations, repair decisions, verification, and records.",
+      "Keep operating obligations separate from restrictions on new equipment manufacture and installation."
+    ],
+    "sections": [
+      {
+        "id": "regulatory-scope",
+        "heading": "Start with the appliance and refrigerant",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Program",
+              "Applicability question",
+              "Operating consequence"
+            ],
+            "rows": [
+              [
+                "Section 608, Part 82 Subpart F",
+                "Which refrigerant-handling provisions apply? Does the appliance contain 50 pounds or more of an ozone-depleting refrigerant or a blend containing one?",
+                "Service practices and certification remain relevant; qualifying ODS appliances also have leak-repair duties."
+              ],
+              [
+                "AIM Act, Section 84.106",
+                "Does an appliance have a full charge of at least 15 pounds containing an HFC or a covered substitute, with no applicable exception?",
+                "Leak-repair and associated records apply from January 1, 2026."
+              ],
+              [
+                "AIM Act, Section 84.108",
+                "Is it qualifying commercial or industrial process refrigeration with at least 1,500 pounds of covered refrigerant?",
+                "Automatic leak detection requirements depend on installation date and the rule's conditions."
+              ]
+            ],
+            "sourceIds": [
+              "section608-leaks",
+              "aim-leaks",
+              "aim-ald"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The AIM leak-repair rule excludes appliances containing solely ozone-depleting refrigerant and appliances in the residential and light commercial air-conditioning and heat-pump subsector. EPA notes that chillers and certain VRF systems have their own subsectors. A label such as office cooling is insufficient to establish that exception. Record the equipment classification and the reason it fits before excluding it.",
+            "sourceIds": [
+              "aim-factsheet"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "appliance-register",
+        "heading": "Create a register at the refrigerant-circuit level",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Part 84 defines each independent circuit in a device with multiple circuits as a separate appliance. It defines full charge by the refrigerant needed for normal operation, using permitted methods such as manufacturer information, calculations, or measurements. Its commercial-refrigeration definition concerns food and cold-storage uses. Industrial process refrigeration has a separate process-based definition. Classify the actual application; neither a commercial building nor a large cooling load establishes one of those categories by itself.",
+            "sourceIds": [
+              "aim-definitions"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Register field",
+              "Useful supporting evidence"
+            ],
+            "rows": [
+              [
+                "Appliance and circuit identity",
+                "Asset tag, equipment serial number, refrigerant schematic, and location."
+              ],
+              [
+                "Refrigerant and full charge",
+                "Product designation, composition, commissioning record, and charge determination."
+              ],
+              [
+                "Application and installation date",
+                "Design narrative, served load, commissioning date, and classification review."
+              ],
+              [
+                "Accountable people",
+                "Owner or operator contact, service contractor, and person reviewing each refrigerant addition."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Reconcile this register with the maintenance system before using it to schedule work. A single chiller asset may contain more than one independent circuit, while the contractor's invoice may use a different equipment nickname. Resolve those mismatches once, attach the mapping, and give contractors the identifiers required on future service records. Flag an unknown full charge for investigation rather than copying a value from a similar unit."
+          }
+        ]
+      },
+      {
+        "id": "refrigerant-addition",
+        "heading": "Make every refrigerant addition a review event",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For covered AIM appliances, refrigerant additions generally require a leak-rate calculation, with specified exceptions. The applicable rates are 30 percent for industrial process refrigeration, 20 percent for commercial refrigeration, and 10 percent for comfort cooling and other covered categories. When an exceedance triggers repair, the ordinary window is 30 days; 120 days applies if an industrial process shutdown is required. Initial and follow-up verification, subsequent inspections, and possible retrofit or retirement steps must also be assessed.",
+            "sourceIds": [
+              "aim-factsheet"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use a short service-review sequence: match the invoice to the circuit, verify the refrigerant and quantity, check whether a calculation exception applies, perform the appropriate calculation, and assign the resulting action. Capture both the technician's work date and the date the operator receives the record. Set an internal review target that leaves time to act within the applicable legal window. A late invoice should be visible as a process failure."
+          },
+          {
+            "type": "paragraph",
+            "text": "Consider an illustrative 100-pound appliance receiving 8 pounds after 90 days. Under the annualizing method, 8 divided by 100, multiplied by 365 divided by 90, gives about 32.4 percent. It is not simply an 8 percent annual leak rate. This example assumes the ordinary annualizing inputs apply; special first-calculation rules for 2026 need separate treatment. Use the facility's required calculation method consistently and preserve its inputs.",
+            "sourceIds": [
+              "aim-definitions",
+              "aim-leaks"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Do not close the compliance task when the cooling alarm clears. Ask for the leak location, repair performed, test results, and any unresolved defects. Coordinate the operational recovery with the compliance review so a temporary repair does not disappear from the backlog. If replacement is being considered, name the decision owner and preserve the service history that led to that decision."
+          }
+        ]
+      },
+      {
+        "id": "automatic-leak-detection",
+        "heading": "Check automatic leak detection separately",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Section 84.108 applies to qualifying industrial process or commercial refrigeration appliances with a full charge of at least 1,500 pounds containing an HFC, or a substitute subject to the rule's GWP test. Qualifying appliances installed from January 1, 2017, through December 31, 2025, must have automatic leak detection by January 1, 2027. For qualifying appliances installed on or after January 1, 2026, installation and use are required at installation or within 30 days. The rule also requires annual auditing and calibration.",
+            "sourceIds": [
+              "aim-ald"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Treat a building-management alarm as a system to investigate, not proof that this requirement has been met. Obtain the detector specification, monitored equipment list, commissioning results, alarm routing, and maintenance history. Ask the mechanical lead to compare the design with the rule's applicable performance and operating requirements. Have the shift team demonstrate who receives an alarm and how it reaches the person responsible for a refrigerant compliance decision."
+          }
+        ]
+      },
+      {
+        "id": "records-and-contractors",
+        "heading": "Specify the records the operator must receive",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Section 84.106 requires service information including appliance identity, date, work performed, refrigerant type and amount, and applicable charge and leak-rate information. Most listed records must be kept for at least three years; the full-charge determination is retained until three years after retirement. It also has conditional EPA reporting requirements, including a March 1 report for covered appliances leaking at least 125 percent of full charge during the previous calendar year.",
+            "sourceIds": [
+              "aim-leaks"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For qualifying Section 608 ODS appliances, EPA separately identifies owner service records, leak inspections, and repair-verification records. Technicians have their own documentation duties. Map each contractual deliverable to the appropriate program so an older Section 608 service template does not become the entire compliance process for the HFC equipment added to scope in 2026.",
+            "sourceIds": [
+              "section608-records"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Set up a sample handover before renewing the service contract. Ask the contractor to complete one record using your asset identifiers and required fields. Confirm that staff can export it after a contract ends, retrieve it during an outage, and join it to earlier repairs. Give rejected or incomplete records an owner and due date. Keep proposed internal turnaround times clearly identified as contract terms rather than federal deadlines."
+          },
+          {
+            "type": "paragraph",
+            "text": "Verify technician certification against the work being performed and the applicable certification type. EPA explains the certification categories and recognizes certification through approved testing organizations. Retain the evidence used during contractor qualification and refresh it when personnel change. An employer's service agreement should identify who will perform regulated work, rather than relying only on the contractor's company name.",
+            "sourceIds": [
+              "technician-certification"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "operating-versus-new-equipment",
+        "heading": "Keep procurement restrictions on a separate timeline",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Part 84 Subpart B governs technology transitions for specified products and systems. Current Section 84.54 lists January 1, 2027 restrictions at GWP 700 or greater for the identified data-center, IT-facility, and computer-room cooling products and systems. Check the exact product or system category and regulated activity. These provisions answer a different question from the operating leak-repair obligations that began in 2026.",
+            "sourceIds": [
+              "technology-transitions"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a cooling replacement, request a written equipment classification, refrigerant designation, installation plan, and service strategy from the design team. Put procurement milestones beside the applicable rule dates. Keep the existing appliance's service obligations active while the replacement is ordered or installed. A purchase decision does not close open repair, verification, or recordkeeping tasks for equipment still operating."
+          }
+        ]
+      },
+      {
+        "id": "operating-review",
+        "heading": "Review the program through one real maintenance job",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Select one recent refrigerant addition and trace it from the technician's record to the correct appliance.",
+              "Reproduce the applicability decision and any leak calculation using saved inputs.",
+              "Confirm who approved the repair response and where verification evidence is stored.",
+              "Check whether the event changes an inspection schedule, reporting obligation, or replacement decision.",
+              "Confirm that the facilities team can retrieve the complete record without asking a former contractor."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the gaps from that exercise to improve the next service visit. Common practical fixes include a circuit identifier on the work order, a mandatory quantity field, an operator review step, or a clear escalation contact. Repeating a simple traceable workflow across the campus is more useful than maintaining a policy that nobody checks against actual maintenance records."
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Did the 2020 Section 608 change remove HFC operating requirements?",
+        "answer": "It removed the Section 608 leak-repair extension to substitute refrigerants, while other handling provisions remained. Separate AIM Act leak-repair requirements apply to covered appliances from 2026.",
+        "sourceIds": [
+          "section608-updates",
+          "aim-leaks"
+        ]
+      },
+      {
+        "question": "Does every large data center chiller need automatic leak detection under the AIM Act?",
+        "answer": "Check appliance use, refrigerant, full charge, and installation date. Section 84.108 targets qualifying industrial process and commercial refrigeration; cooling capacity alone does not establish applicability.",
+        "sourceIds": [
+          "aim-ald"
+        ]
+      },
+      {
+        "question": "Can the maintenance contractor own the entire compliance record?",
+        "answer": "The contractor supplies important service evidence, but the owner or operator has recordkeeping and compliance duties. Arrange access, delivery, review, and retention so the site can demonstrate its decisions.",
+        "sourceIds": [
+          "aim-leaks",
+          "section608-records"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "section608-leaks",
+        "title": "40 CFR 82.157: Appliance maintenance and leak repair",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-82/subpart-F/section-82.157",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "aim-leaks",
+        "title": "40 CFR 84.106: Leak repair",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-C/section-84.106",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "aim-definitions",
+        "title": "40 CFR 84.102: Definitions",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-C/section-84.102",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "aim-ald",
+        "title": "40 CFR 84.108: Automatic leak detection systems",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-C/section-84.108",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "aim-factsheet",
+        "title": "AIM Act Leak Repair Requirements for Appliances Containing HFCs and Certain Substitutes, January 2026",
+        "url": "https://www.epa.gov/system/files/documents/2026-01/er-r-fact-sheet-leak-repair-2026-01-13_1.pdf",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "section608-records",
+        "title": "Recordkeeping and Reporting Requirements for Stationary Refrigeration",
+        "url": "https://www.epa.gov/section608/recordkeeping-and-reporting-requirements-stationary-refrigeration",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "technician-certification",
+        "title": "Section 608 Technician Certification Requirements",
+        "url": "https://www.epa.gov/section608/section-608-technician-certification-requirements",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "technology-transitions",
+        "title": "40 CFR 84.54: Restrictions on the use of hydrofluorocarbons",
+        "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-84/subpart-B/section-84.54",
+        "publisher": "Electronic Code of Federal Regulations"
+      },
+      {
+        "id": "section608-updates",
+        "title": "Regulatory Updates to Section 608 Refrigerant Management Regulations",
+        "url": "https://www.epa.gov/section608/regulatory-updates-section-608-refrigerant-management-regulations",
+        "publisher": "U.S. Environmental Protection Agency"
+      }
+    ],
+    "relatedSlugs": [
+      "data-center-water-stormwater-permits",
+      "data-center-fire-code-battery-requirements",
+      "data-center-fuel-storage-spcc-tier-ii",
+      "data-center-site-selection-permitting",
+      "data-center-backup-generator-air-permits"
+    ]
+  }
+]

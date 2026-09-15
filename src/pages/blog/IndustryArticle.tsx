@@ -49,6 +49,6 @@ export default function IndustryArticle({ articleSlug, renderSeo = true }: { art
         <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>
       </div>
     </div>
-    <BlogRelatedReading slug={article.slug} />
+    <BlogRelatedReading slug={article.slug} relatedSlugs={article.relatedSlugs} />
   </article>
 }

@@ -23,6 +23,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const DIST = join(ROOT, 'dist')
 const SITE = 'https://invariant-ai.com'
+const SITE_METADATA = JSON.parse(readFileSync(join(ROOT, 'src/data/siteMetadata.json'), 'utf8'))
 
 function escapeHtml(s) {
   return String(s)
@@ -45,10 +46,10 @@ const ORG_SCHEMA = {
   name: 'Invariant',
   alternateName: ['Invariant AI'],
   url: SITE,
-  logo: `${SITE}/og/home.png`,
-  image: `${SITE}/og/home.png`,
+  logo: `${SITE}${SITE_METADATA.image}`,
+  image: `${SITE}${SITE_METADATA.image}`,
   description:
-    'Autonomous AI agents for compliance in mission-critical industries: space, aerospace, and nuclear.',
+    'Autonomous agents for mission-critical compliance across aerospace, nuclear, data centers, and oil and gas.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: { '@type': 'Organization', name: 'Entrepreneurs First', url: 'https://www.joinef.com' },
@@ -80,7 +81,7 @@ function articleSchema(args) {
     '@type': 'Article',
     headline: args.title,
     description: args.description,
-    image: args.image || `${SITE}/og/home.png`,
+    image: args.image || `${SITE}${SITE_METADATA.image}`,
     datePublished: args.datePublished,
     dateModified: args.dateModified || args.datePublished,
     author: { '@id': `${SITE}/#editorial-team` },
@@ -336,11 +337,11 @@ async function main() {
   writeFileSync(
     join(DIST, 'index.html'),
     customizeHtml(template, {
-      title: 'Invariant: Compliance for Space & Nuclear',
+      title: SITE_METADATA.title,
       description:
-        'Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures.',
+        SITE_METADATA.description,
       canonical: `${SITE}/`,
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
       ogType: 'website',
       jsonLd: HOME_JSONLD,
     }),
@@ -353,83 +354,83 @@ async function main() {
       title: 'Platform | Invariant',
       description:
         'See Invariant draft, cite, and review regulatory work against your project corpus. Autonomous agents for mission-critical compliance.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'timeline',
       title: 'Mission timeline: every filing between you and launch',
       description:
         'Enter your company website. An agent reads the public record and derives your full US and India regulatory filing plan: FCC, NOAA, ITAR and EAR, FAA, IN-SPACe, with the real review clocks, fees, and failure modes for each filing.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'probe',
       title: 'Probe: Live semantic search over NRC ADAMS, powered by Helion-512',
       description:
         'Try Probe, the public semantic search interface over NRC ADAMS powered by Helion-512, the published state of the art on the FermiBench retrieval benchmark.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'blog',
       title: 'Articles | Research on mission-critical compliance',
       description:
         'Practical research on data-center, oil and gas, space, and nuclear compliance. Explore siting, permitting, operating records, and the evidence behind approvals.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'resources',
       title: 'Resources | Research, guides, and tools for mission-critical compliance',
       description:
         'Research, regulatory guides, and planning tools for data centers, oil and gas, space, and nuclear programs. Explore the work behind the path to approval.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'contact',
       title: 'Talk to an expert | Invariant',
       description: 'Tell us about your mission and the regulatory work ahead. Talk with the Invariant team about autonomous agents for mission-critical compliance.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'research',
       title: 'Research: Helion-512, FermiBench, published notes',
       description:
         "Invariant's research: Helion-512 retrieval model at 0.97 nDCG@10 on FermiBench, siting comparisons, seismic design analyses, and field notes from regulator dockets.",
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'compliance',
       title: 'Compliance library: every Invariant resource for space, nuclear, and aerospace',
       description:
         'The complete Invariant library: pillar guides, cluster explainers, and 90+ glossary definitions for space, nuclear, and aerospace regulatory and qualification compliance.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'trust',
       title: 'Trust: Security, data handling, and compliance disclosures',
       description:
         'How Invariant handles your data, hosts your regulatory submissions, and meets the security expectations of space, aerospace, and nuclear operators.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'about',
       title: 'About Invariant: Autonomous AI agents for compliance in mission-critical industries',
       description:
         'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures. Founded 2025.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'charter',
       title: 'Why We Exist | Invariant',
       description:
         'Why we are building Invariant: a clear path from engineering breakthroughs to approved missions. A letter from Parthiv and Pranav.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'regulators',
       title: 'Regulators directory: every US agency for space, nuclear, and aerospace compliance',
       description:
         'A concise directory of every US regulator a space, nuclear, or aerospace operator may need to engage with, including NRC, FAA AST, FCC Space Bureau, NOAA CRSRA, DDTC, and BIS.',
-      ogImage: `${SITE}/og/home.png`,
+      ogImage: `${SITE}${SITE_METADATA.image}`,
     },
   ]
   for (const sp of SIMPLE_PAGES) {

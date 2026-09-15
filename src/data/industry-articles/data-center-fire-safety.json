@@ -1,0 +1,338 @@
+[
+  {
+    "slug": "data-center-fire-code-battery-requirements",
+    "topic": "Data Centers",
+    "title": "Data center UPS and battery permits: settle the fire-code path before procurement",
+    "description": "A US guide to data center UPS and battery approvals: NFPA 75 versus NFPA 855, UL 9540 versus UL 9540A, local permits, retrofit reviews, and acceptance evidence.",
+    "date": "2026-09-15",
+    "readMinutes": 8,
+    "intro": "Before ordering a replacement UPS battery system, put the existing approval beside the proposed equipment schedule. Compare the chemistry, stored energy, cabinet arrangement, controls and intended use. If those facts change, the old approval may no longer answer the question the fire marshal will ask. A battery that fits the room and meets the electrical duty still needs a defensible installation and approval path.",
+    "takeaways": [
+      "Identify the adopted codes, editions and local amendments before selecting the approval path.",
+      "Keep UPS product safety, energy-storage installation requirements and fire-test evidence distinct.",
+      "Check the complete installed configuration, including the exact batteries, controls and protection systems.",
+      "Carry permit conditions and acceptance evidence into the operating site's records."
+    ],
+    "sections": [
+      {
+        "id": "establish-the-code-basis",
+        "heading": "Start with the adopted rules and the actual installation",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "There is no single national data-center battery permit. Start with the site's building, fire and electrical authorities. Record the adopted editions, amendments, permit history and any approved alternatives. New York City's 2025 ESS rule illustrates why: it defines its NFPA 855 reference as the 2020 edition with city amendments, while treating outdoor installations through FDNY rules. A newer published edition does not replace that local framework automatically.",
+            "sourceIds": [
+              "nyc-adopted-rule"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Then describe what the batteries actually do. Are they dedicated to UPS service, supporting emergency loads, performing peak management, or exporting power? Identify chemistry, unit and aggregate energy, indoor or outdoor location, and the equipment they support. Ask the relevant authority having jurisdiction, or AHJ, to resolve the classification against those facts. Preserve the answer with the drawings it reviewed."
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep publication status in the record too. A committee proposal is not an adopted requirement, and published editions can have corrections. For example, NFPA issued an erratum correcting references in the technology-specific requirements table of NFPA 855's 2026 edition. The document set should identify applicable corrections rather than merely saying 'latest NFPA'.",
+            "sourceIds": [
+              "nfpa-855-errata"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "standards-have-different-jobs",
+        "heading": "NFPA 75, NFPA 855 and the UL standards answer different questions",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Document",
+              "What it addresses",
+              "What to establish for the project"
+            ],
+            "rows": [
+              [
+                "NFPA 75",
+                "Fire protection of information technology equipment.",
+                "Its applicable role in the facility's fire-protection design; do not assume it settles every battery installation."
+              ],
+              [
+                "NFPA 855",
+                "Installation of stationary energy storage systems.",
+                "Whether the installation is within the adopted scope, including applicable chemistry, capacity and use provisions."
+              ],
+              [
+                "UL 1778",
+                "Product safety for uninterruptible power systems.",
+                "The exact UPS configuration covered by the listing and the manufacturer's installation conditions."
+              ],
+              [
+                "UL 9540",
+                "Product safety for energy storage systems and equipment.",
+                "Whether a system listing is required and whether it covers the supplied combination of equipment."
+              ],
+              [
+                "UL 9540A",
+                "Testing of thermal runaway and fire propagation in battery energy storage systems.",
+                "The test edition, tested configuration, results and their relevance to the proposed installation."
+              ]
+            ],
+            "sourceIds": [
+              "nfpa-75",
+              "ul-1778",
+              "ul-9540",
+              "ul-9540a",
+              "nyc-adopted-rule"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The UPS distinction is particularly important. UL 9540's published scope excludes systems using lead-acid or nickel-cadmium batteries that fall within UL 1778's scope and serve only a UPS application. Its note says the same exclusion does not extend to other chemistries simply because they serve a UPS. That is a product-standard scope distinction, not permission to bypass local fire or electrical review.",
+            "sourceIds": [
+              "ul-9540"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Treat 'UL 9540A tested' as the beginning of an evidence request. UL explains that test levels and performance criteria differ between editions. Obtain the actual report and identify which configuration it evaluates. A test report and a product listing perform different jobs; neither alone supplies the local installation approval.",
+            "sourceIds": [
+              "ul-9540a",
+              "fdny-guide"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prepare-the-ahj-matrix",
+        "heading": "Bring a decision matrix to the first review",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A useful preliminary submission lets the reviewer identify a specific unresolved issue. Prepare the following matrix with the electrical and fire-protection designers. Include the source document and responsible person for each answer. Leave unknowns visible instead of allowing a vendor brochure to become the design basis by default."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Decision",
+              "Evidence to assemble",
+              "Question to resolve"
+            ],
+            "rows": [
+              [
+                "Application and chemistry",
+                "Operating narrative, chemistry, SDS and equipment schedule.",
+                "Which definitions and exceptions apply to this use?"
+              ],
+              [
+                "Capacity and grouping",
+                "Unit ratings, aggregate energy and a dimensioned arrangement.",
+                "How is capacity assessed for the room or installation?"
+              ],
+              [
+                "Location and protection",
+                "Room construction, access, separation and proposed protection drawings.",
+                "Which site conditions determine the required safeguards?"
+              ],
+              [
+                "Equipment evidence",
+                "Listing, installation instructions and relevant test reports.",
+                "Does the evidence cover this exact combination and layout?"
+              ],
+              [
+                "Approval and acceptance",
+                "Permit register, inspection plan and commissioning responsibilities.",
+                "What must be accepted before installation and before operation?"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "This is practical preparation, not a substitute for the authority's submission requirements. Fairfax County, for example, requests the ESS layout, quantities, listings, management-system description, protection details and relevant hazard or fire-test documents. Its process also requires commissioning and decommissioning plans before ESS record approval.",
+            "sourceIds": [
+              "fairfax-ess"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "separate-product-and-site-approval",
+        "heading": "Separate product acceptance from permission to install",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In New York City, FDNY's ESS guide distinguishes product review and a Certificate of Approval from site-plan review, inspections and an operating permit. The Department of Buildings separately publishes filing and site-evaluation requirements. Scope, capacity, location and exceptions matter. Put each applicable approval on the schedule rather than reducing the process to one item called 'battery permit'.",
+            "sourceIds": [
+              "fdny-guide",
+              "nyc-dob"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Check the equipment identifier against the authority's records where product approval is required. FDNY publishes a list of approved energy storage systems. Use it to locate the relevant approval, then obtain its conditions and confirm that they match the selected model and proposed use. Keep that evidence with procurement, not only in the consultant's inbox.",
+            "sourceIds": [
+              "fdny-coa"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Fairfax uses a different workflow: a building permit is the parent record for the ESS record, which holds plan-review documentation, inspector qualifications and the final inspection report. The useful lesson is to map the dependencies in the jurisdiction where the project sits. Copying another campus's permit names will not establish that map.",
+            "sourceIds": [
+              "fairfax-ess"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "review-ups-retrofits",
+        "heading": "Treat a UPS retrofit as a comparison against the approved design",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Consider a hypothetical replacement of lead-acid batteries with lithium-ion cabinets in an operating data center. The power rating stays the same and the new equipment occupies less floor space. Those facts do not establish that the original listing, room design or approval covers the replacement. UL 1778's scope ties safe use to the manufacturer's installation, operation and maintenance provisions; UL 9540's chemistry distinction is another reason to review the complete change.",
+            "sourceIds": [
+              "ul-1778",
+              "ul-9540"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "Compare the approved and proposed equipment: battery model, chemistry, stored energy, cabinet count, controls and operating modes.",
+              "Obtain written confirmation of the supported UPS and battery combination, its listing and installation instructions.",
+              "Have the designers compare the new configuration with the existing room, protection systems and applicable test evidence.",
+              "Resolve permit amendments and acceptance requirements with the relevant authorities before fixing the cutover date.",
+              "Plan the temporary configuration, including any period when old and new systems coexist, and document the return to normal operation."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Make the result a short change record: what changed, which assumptions remain valid, what must be revised and who accepted the conclusion. Use the same process when adding cabinets, changing control behavior or moving equipment. The record should make the next replacement easier to evaluate, not force another team to reconstruct the site's history."
+          }
+        ]
+      },
+      {
+        "id": "close-the-operating-handoff",
+        "heading": "Define the acceptance evidence before the equipment arrives",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Agree early on who supplies the commissioning procedure, witnesses tests, closes defects and obtains final acceptance. FDNY's guide identifies testing and approval dependencies for associated protection systems before the final ESS inspection. In a schedule, those should be linked tasks with owners rather than an optimistic single-day commissioning milestone.",
+            "sourceIds": [
+              "fdny-guide"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Build the handover around the installed configuration: approved drawings, equipment identifiers, listing and test evidence, authority decisions, completed inspections, commissioning results, operating instructions and emergency contacts. Give unresolved conditions an owner and closure criterion. Retain the approved baseline alongside later modifications so operations can tell which documents still describe the room."
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep adjacent work connected without merging its approval status. A battery change belongs in the site's chemical-inventory review. Associated generator, cooling or drainage changes belong in their own environmental reviews. The practical objective is one controlled equipment record that each discipline can use, with each approval and remaining condition visible."
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does NFPA 75 replace NFPA 855 for a data center?",
+        "answer": "No general substitution follows from the building being a data center. NFPA 75 concerns information technology equipment fire protection; the ESS installation path depends on the applicable codes, adopted standards and system characteristics. Record the application of each with the relevant authority.",
+        "sourceIds": [
+          "nfpa-75",
+          "ul-9540",
+          "nyc-adopted-rule"
+        ]
+      },
+      {
+        "question": "Is a UL 9540A test report the same as a UL 9540 listing?",
+        "answer": "No. UL 9540 addresses system product safety. UL 9540A evaluates thermal runaway and fire propagation through testing. Obtain the applicable listing and test evidence, including editions and configuration, and establish what the local authority requires for installation approval.",
+        "sourceIds": [
+          "ul-9540a",
+          "fdny-guide"
+        ]
+      },
+      {
+        "question": "Are all UPS batteries exempt from energy-storage requirements?",
+        "answer": "No. UL 9540's scope exclusion is specific to lead-acid or nickel-cadmium systems within UL 1778's scope that serve only UPS applications. Other chemistries do not inherit that exclusion. Local permit and installation requirements must also be evaluated.",
+        "sourceIds": [
+          "ul-9540"
+        ]
+      },
+      {
+        "question": "Can we reuse an approval when replacing batteries with a different chemistry?",
+        "answer": "Do not assume so. Compare the approved configuration with the replacement, confirm listing and manufacturer conditions, and resolve any required permit or design changes before installation. Keep the authority's determination with the revision it addresses.",
+        "sourceIds": [
+          "ul-1778",
+          "fairfax-ess"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nfpa-75",
+        "title": "NFPA 75: Standard for the Fire Protection of Information Technology Equipment",
+        "url": "https://link.nfpa.org/all-publications/75/2024",
+        "publisher": "National Fire Protection Association"
+      },
+      {
+        "id": "ul-1778",
+        "title": "UL 1778: Uninterruptible Power Systems, published scope",
+        "url": "https://www.shopulstandards.com/ProductDetail.aspx?productId=UL1778",
+        "publisher": "UL Standards & Engagement"
+      },
+      {
+        "id": "ul-9540",
+        "title": "UL 9540: Energy Storage Systems and Equipment, published scope",
+        "url": "https://www.shopulstandards.com/ProductDetail.aspx?ShowFreeviewModal=1&UniqueKey=44534",
+        "publisher": "UL Standards & Engagement"
+      },
+      {
+        "id": "ul-9540a",
+        "title": "Understanding UL 9540A, NFPA 855 and Large-Scale Fire Testing for Battery Energy Storage Systems",
+        "url": "https://www.ul.com/thecodeauthority/knowledge/understanding-UL-9540A-NFPA-855",
+        "publisher": "UL Solutions"
+      },
+      {
+        "id": "nyc-adopted-rule",
+        "title": "Adopted ESS rules 1 RCNY 101-19 and 3616-07, effective October 26, 2025",
+        "url": "https://www.nyc.gov/assets/buildings/rules/1_RCNY_101-19_prom_details_date.pdf",
+        "publisher": "New York City Department of Buildings"
+      },
+      {
+        "id": "nyc-dob",
+        "title": "Energy Storage System filing and submittal requirements",
+        "url": "https://www.nyc.gov/site/buildings/codes/energy-storage-system.page",
+        "publisher": "New York City Department of Buildings"
+      },
+      {
+        "id": "fdny-guide",
+        "title": "Energy Storage System Equipment Approval and Installation Guide",
+        "url": "https://www.nyc.gov/assets/fdny/downloads/pdf/business/ess-equipment-approval-installation-guide.pdf",
+        "publisher": "New York City Fire Department"
+      },
+      {
+        "id": "fdny-coa",
+        "title": "Certificates of Approval and approved energy storage systems",
+        "url": "https://www.nyc.gov/site/fdny/business/all-certifications/certificates-of-approval.page",
+        "publisher": "New York City Fire Department"
+      },
+      {
+        "id": "fairfax-ess",
+        "title": "Energy Storage System record and approval requirements",
+        "url": "https://www.fairfaxcounty.gov/fire-ems/fire-marshal/energy-storage-system",
+        "publisher": "Fairfax County Office of the Fire Marshal"
+      },
+      {
+        "id": "nfpa-855-errata",
+        "title": "NFPA 855, 2026 edition: Errata 855-26-1",
+        "url": "https://docinfofiles.nfpa.org/files/AboutTheCodes/855/Errata_855_26_1.pdf",
+        "publisher": "National Fire Protection Association"
+      }
+    ],
+    "relatedSlugs": [
+      "data-center-fuel-storage-spcc-tier-ii",
+      "data-center-site-selection-permitting",
+      "data-center-backup-generator-air-permits",
+      "data-center-water-stormwater-permits",
+      "data-center-refrigerant-compliance"
+    ]
+  }
+]

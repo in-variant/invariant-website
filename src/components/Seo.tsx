@@ -1,7 +1,8 @@
 import { Helmet } from 'react-helmet-async'
+import siteMetadata from '../data/siteMetadata.json'
 
 export const SITE_URL = 'https://invariant-ai.com'
-export const DEFAULT_OG = `${SITE_URL}/og/home.png`
+export const DEFAULT_OG = `${SITE_URL}${siteMetadata.image}`
 
 type Props = {
   title: string
@@ -58,9 +59,9 @@ export const ORG_SCHEMA = {
   alternateName: ['Invariant AI'],
   url: SITE_URL,
   logo: `${SITE_URL}/og/home.png`,
-  image: `${SITE_URL}/og/home.png`,
+  image: DEFAULT_OG,
   description:
-    'Autonomous AI agents for compliance in mission-critical industries, space, aerospace, and nuclear.',
+    'Autonomous agents for mission-critical compliance across aerospace, nuclear, data centers, and oil and gas.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: {
@@ -80,6 +81,8 @@ export const ORG_SCHEMA = {
     'Space compliance',
     'Nuclear compliance',
     'Aerospace compliance',
+    'Data center compliance',
+    'Oil and gas compliance',
     'FAA 14 CFR Part 450',
     'FCC 47 CFR Part 25',
     'NOAA Commercial Remote Sensing Licensing',

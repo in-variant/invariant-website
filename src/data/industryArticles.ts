@@ -1,5 +1,7 @@
 import dataCenters from './industry-articles/data-centers.json'
 import oilGas from './industry-articles/oil-gas.json'
+import dataCenterOperations from './industry-articles/data-center-operations.json'
+import dataCenterFireSafety from './industry-articles/data-center-fire-safety.json'
 
 export type IndustryTopic = 'Data Centers' | 'Oil & Gas'
 export type ArticleBlock = (
@@ -22,6 +24,6 @@ export type IndustryArticle = {
   relatedSlugs: string[]
 }
 
-export const INDUSTRY_ARTICLES = [...dataCenters, ...oilGas] as IndustryArticle[]
+export const INDUSTRY_ARTICLES = [...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
 export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ? '/data-center-compliance' : '/oil-gas-compliance'
 export const articleImage = (slug: string) => `/blog/industry/${slug}.webp`

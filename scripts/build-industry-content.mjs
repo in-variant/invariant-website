@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const base = new URL('../src/data/', import.meta.url)
-const files = ['data-centers.json', 'oil-gas.json']
+const files = ['data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
 const slugs = new Set(articles.map(article => article.slug))
 if (slugs.size !== articles.length) throw new Error('Duplicate industry article slug')

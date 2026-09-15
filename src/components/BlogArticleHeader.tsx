@@ -22,9 +22,11 @@ export default function BlogArticleHeader({ slug, title, subtitle }: { slug: str
   )
 }
 
-export function BlogRelatedReading({ slug }: { slug: string }) {
+export function BlogRelatedReading({ slug, relatedSlugs }: { slug: string; relatedSlugs?: string[] }) {
   const current = RESOURCE_ARTICLES.find((article) => article.slug === slug)!
-  const related = RESOURCE_ARTICLES.filter((article) => article.slug !== slug).sort((a, b) => Number(b.topic === current.topic) - Number(a.topic === current.topic)).slice(0, 2)
+  const candidates = RESOURCE_ARTICLES.filter((article) => article.slug !== slug)
+  const selected = (relatedSlugs ?? []).flatMap(relatedSlug => candidates.filter(article => article.slug === relatedSlug))
+  const related = [...selected, ...candidates.filter(article => !selected.includes(article)).sort((a, b) => Number(b.topic === current.topic) - Number(a.topic === current.topic))].slice(0, 2)
   return (
     <aside className="blog-related-reading" aria-label="Related articles">
       <div className="blog-related-heading"><h2>Keep reading.</h2><Link to="/blog">All articles <span aria-hidden="true">↗</span></Link></div>
