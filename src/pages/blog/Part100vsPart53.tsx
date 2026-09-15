@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
 
 const POST_URL = 'https://invariant-ai.com/blog/part100-vs-part53-siting'
@@ -413,13 +413,13 @@ export default function Part100vsPart53() {
 
   const scrollToSection = useCallback((id: string) => {
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (el) el.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
   }, [])
 
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({})
 
   return (
-    <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
+    <article className="blog-article">
       <Seo
         title={POST_TITLE}
         description={POST_DESC}
@@ -436,26 +436,8 @@ export default function Part100vsPart53() {
           ]),
         ]}
       />
-      <div className="max-w-6xl mx-auto">
-        <div className="mx-auto max-w-3xl">
-          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">
-            ← Back to Blog
-          </Link>
-          <div
-            className="mt-6 aspect-[16/7] w-full overflow-hidden rounded-2xl bg-cover bg-center"
-            style={{ backgroundImage: 'url(/blog/siting.jpg), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)' }}
-          />
-          <header className="mb-16 mt-10 text-center">
-            <p className="mb-4 font-sans text-sm text-ink/40">March 27, 2026</p>
-            <h1 className="mb-5 font-serif text-3xl font-normal leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl lg:text-5xl">
-              10 CFR Part 100 vs. Part 53 Subpart D
-            </h1>
-            <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
-              A regulation-to-regulation comparison of nuclear siting criteria
-            </p>
-          </header>
-        </div>
-
+      <BlogArticleHeader slug="part100-vs-part53-siting" title="10 CFR Part 100 vs. Part 53 Subpart D" subtitle="A regulation-to-regulation comparison of nuclear siting criteria" />
+      <div className="blog-article-wide">
         {/* Introduction */}
         <div className="max-w-3xl mx-auto mb-16 space-y-6">
           <div className="section-rule" />
@@ -525,6 +507,7 @@ export default function Part100vsPart53() {
               return (
                 <button
                   key={change}
+                  aria-pressed={isActive}
                   onClick={() => toggleFilter(change)}
                   className={`
                     flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-xs
@@ -591,7 +574,7 @@ export default function Part100vsPart53() {
         <div className="grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-10">
           {/* Sidebar TOC - desktop only */}
           <nav className="hidden lg:block">
-            <div className="sticky top-[80px]">
+            <div className="blog-comparison-toc sticky top-[112px]">
               <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-ink/40 mb-3">
                 Sections
               </p>
@@ -644,7 +627,7 @@ export default function Part100vsPart53() {
                   key={section.id}
                   id={section.id}
                   ref={(el) => { sectionRefs.current[section.id] = el }}
-                  style={{ scrollMarginTop: '80px' }}
+                  style={{ scrollMarginTop: '112px' }}
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <div className="hidden h-px flex-1 bg-ink/10 sm:block" />
@@ -692,6 +675,7 @@ export default function Part100vsPart53() {
           </div>
         </div>
       </div>
+      <BlogRelatedReading slug="part100-vs-part53-siting" />
     </article>
   )
 }

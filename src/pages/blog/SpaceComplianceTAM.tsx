@@ -1,6 +1,12 @@
-import { Link } from 'react-router-dom'
+import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import SpaceMarket from '../../components/SpaceMarket'
 import RocketLaunchesMarket from '../../components/RocketLaunchesMarket'
+import { Seo, ORG_SCHEMA, SITE_URL, articleSchema, breadcrumbSchema } from '../../components/Seo'
+import { RESOURCE_ARTICLES } from '../../data/resources'
+
+const POST = RESOURCE_ARTICLES.find(article => article.slug === 'space-compliance-tam')!
+const POST_URL = `${SITE_URL}/blog/${POST.slug}`
+const POST_IMAGE = `${SITE_URL}${POST.image}`
 
 const TABLE: { year: string; sats: string; spend: string; compliance: string }[] = [
   { year: '2024', sats: '11,500', spend: '$613B', compliance: '$4.4B' },
@@ -12,7 +18,7 @@ const TABLE: { year: string; sats: string; spend: string; compliance: string }[]
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mt-16 mb-6 flex items-center gap-3">
+    <div className="blog-article-section-heading mt-16 mb-6 flex items-center gap-3">
       <div className="h-px flex-1 bg-ink/10" />
       <h2 className="whitespace-nowrap font-serif text-2xl font-normal tracking-[-0.01em] text-ink md:text-3xl">
         {children}
@@ -24,27 +30,25 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function SpaceComplianceTAM() {
   return (
-    <article className="min-h-screen px-6 py-24 md:px-12 lg:px-24 xl:px-32">
-      <div className="mx-auto max-w-3xl">
-        <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">
-          ← Back to Blog
-        </Link>
-
-        <div
-          className="mt-6 aspect-[16/7] w-full overflow-hidden rounded-2xl bg-cover bg-center"
-          style={{ backgroundImage: 'url(/blog/space-tam.png), linear-gradient(135deg, #DCE6EC, #F3D9CE 50%, #F4E4C1)' }}
-        />
-
-        <header className="mb-14 mt-10 text-center">
-          <p className="mb-4 font-sans text-sm text-ink/40">June 3, 2026</p>
-          <h1 className="mb-5 font-serif text-3xl font-normal leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl lg:text-5xl">
-            The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate
-          </h1>
-          <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
-            The satellite count is the story. Nobody is reading it that way.
-          </p>
-        </header>
-
+    <article className="blog-article">
+      <Seo
+        title={POST.title}
+        description={POST.summary}
+        canonical={POST_URL}
+        ogImage={POST_IMAGE}
+        ogType="article"
+        jsonLd={[
+          ORG_SCHEMA,
+          articleSchema({ title: POST.title, description: POST.summary, url: POST_URL, datePublished: POST.dateTime, image: POST_IMAGE }),
+          breadcrumbSchema([
+            { name: 'Invariant', url: `${SITE_URL}/` },
+            { name: 'Articles', url: `${SITE_URL}/blog` },
+            { name: POST.title, url: POST_URL },
+          ]),
+        ]}
+      />
+      <BlogArticleHeader slug="space-compliance-tam" title="The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate" subtitle="The satellite count is the story. Nobody is reading it that way." />
+      <div className="blog-article-body">
         <div className="section-rule" />
 
         <div className="mt-10 space-y-6">
@@ -234,6 +238,7 @@ export default function SpaceComplianceTAM() {
           </p>
         </div>
       </div>
+      <BlogRelatedReading slug="space-compliance-tam" />
     </article>
   )
 }

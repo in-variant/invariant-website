@@ -1,93 +1,53 @@
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Seo, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
+import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
+import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
+import { RESOURCE_ARTICLES } from '../data/resources'
+import './Resources.css'
 
-const POSTS = [
-  {
-    slug: 'space-compliance-tam',
-    image: '/blog/space-tam.png',
-    date: 'June 3, 2026',
-    title: 'The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate',
-    summary:
-      'By 2035, 66,000 satellites will be in orbit and the space industry will spend $52B annually on compliance, up from $4.4B in 2024, a 22% CAGR that outpaces the industry growing at 10%.',
-  },
-  {
-    slug: 'nuclear-compliance-tam',
-    image: '/blog/nuclear-tam.png',
-    date: 'June 2, 2026',
-    title: 'The $35 Billion Problem Nobody Is Talking About in Nuclear',
-    summary:
-      'By 2040 the US nuclear compliance market reaches an estimated $35.8B annually, up from $9.5B in 2024, a near-4x climb driven by a doubling fleet and three SMR licensing milestones.',
-  },
-  {
-    slug: 'fermibench-sota',
-    image: '/blog/fermibench.jpg',
-    date: 'April 1, 2026',
-    title: 'Invariant Sets State-of-the-Art on FermiBench',
-    summary:
-      'Our domain-adapted retrieval model Helion-512 reaches 0.97 nDCG@10 on FermiBench, the only published retrieval benchmark for the nuclear domain, up from the previous best of 0.74.',
-  },
-  {
-    slug: 'seismic-design-shift',
-    image: '/blog/seismic.jpg',
-    date: 'March 29, 2026',
-    title: 'SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53',
-    summary:
-      'The deterministic two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered ground motions and seismic design categories, a regulation-to-regulation comparison of every substantive change.',
-  },
-  {
-    slug: 'part100-vs-part53-siting',
-    image: '/blog/siting.jpg',
-    date: 'March 27, 2026',
-    title: '10 CFR Part 100 vs. Part 53 Subpart D: A Siting Comparison',
-    summary:
-      'A line-by-line comparison of the legacy siting criteria in Part 100 against the new technology-inclusive framework in Part 53 Subpart D: exclusion areas, seismic methodology, and the siting-design integration mandate.',
-  },
-]
+const TOPICS = ['All articles', 'Data Centers', 'Oil & Gas', 'Space', 'Nuclear'] as const
 
 export default function Blog() {
-  return (
-    <>
-      <Seo
-        title="Blog, Research on space, aerospace, and nuclear compliance"
-        description="Research notes, regulation comparisons, and field reports on space, aerospace, and nuclear compliance. From the team building autonomous AI agents at Invariant."
-        canonical="https://invariant-ai.com/blog"
-        jsonLd={[
-          ORG_SCHEMA,
-          breadcrumbSchema([
-            { name: 'Invariant', url: 'https://invariant-ai.com/' },
-            { name: 'Blog', url: 'https://invariant-ai.com/blog' },
-          ]),
-        ]}
-      />
-    <section className="px-6 pt-16 pb-24 md:px-12 md:pt-24 md:pb-32 lg:px-20">
-      <div className="mx-auto max-w-5xl">
-        <h1 className="font-serif text-4xl font-normal tracking-[-0.02em] text-ink md:text-5xl">Blog</h1>
-        <p className="mt-4 max-w-xl font-sans text-lg leading-relaxed text-ink/55">
-          Deep dives into regulatory frameworks, licensing strategy, and the engineering
-          certification landscape.
-        </p>
+  const [topic, setTopic] = useState<typeof TOPICS[number]>('All articles')
+  const [query, setQuery] = useState('')
+  const articles = useMemo(() => {
+    const terms = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean)
+    return RESOURCE_ARTICLES.filter((article) => (topic === 'All articles' || article.topic === topic) && terms.every((term) => `${article.title} ${article.summary} ${article.topic}`.toLocaleLowerCase().includes(term)))
+  }, [topic, query])
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
-          {POSTS.map((post) => (
-            <Link
-              key={post.slug}
-              to={`/blog/${post.slug}`}
-              className="group flex flex-col bg-paper p-5 transition-colors hover:bg-ink/[0.02]"
-            >
-              <div
-                className="mb-5 aspect-[16/10] w-full overflow-hidden rounded-lg bg-cover bg-center"
-                style={{ backgroundImage: `url(${post.image}), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)` }}
-              />
-              <p className="font-sans text-xs text-ink/40">{post.date}</p>
-              <h2 className="mt-2 font-sans text-lg font-medium leading-snug tracking-[-0.01em] text-ink transition-colors group-hover:text-copper">
-                {post.title}
-              </h2>
-              <p className="mt-2 line-clamp-3 font-sans text-sm leading-relaxed text-ink/55">{post.summary}</p>
-            </Link>
-          ))}
+  return (
+    <div className="resources-page resource-blog-page">
+      <Seo
+        title="Articles | Research on mission-critical compliance"
+        description="Practical research on data-center, oil and gas, space, and nuclear compliance. Explore siting, permitting, operating records, and the evidence behind approvals."
+        canonical={`${SITE_URL}/blog`}
+        jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'Resources', url: `${SITE_URL}/resources` }, { name: 'Articles', url: `${SITE_URL}/blog` }])]}
+      />
+      <header className="resources-intro resource-container">
+        <Link className="resource-back-link" to="/resources"><span aria-hidden="true">←</span> All resources</Link>
+        <p className="resource-eyebrow">Articles</p>
+        <div className="resources-intro-grid">
+          <h1>A closer look<br />at the work ahead.</h1>
+          <p>Research from our team on the regulations, engineering decisions, and economics behind mission-critical work.</p>
         </div>
-      </div>
-    </section>
-    </>
+      </header>
+      <section className="resource-container resource-blog-library" aria-label="Published articles">
+        <div className="resources-library-controls">
+          <div className="resource-filters" role="group" aria-label="Filter articles by industry">
+            {TOPICS.map((value) => <button type="button" key={value} aria-pressed={topic === value} onClick={() => setTopic(value)}>{value}</button>)}
+          </div>
+          <label className="resource-search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5" /><path d="m12 12 4 4" /></svg><span className="sr-only">Search articles</span><input type="search" placeholder="Search articles" value={query} onChange={(event) => setQuery(event.target.value)} /></label>
+        </div>
+        <p className="resources-result-count" role="status" aria-live="polite">{articles.length} {articles.length === 1 ? 'article' : 'articles'}{query.trim() ? ` matching “${query.trim()}”` : ''}</p>
+        <div className="resource-article-grid">
+          {articles.map((article) => <ResourceArticleCard key={article.slug} article={article} />)}
+        </div>
+        {articles.length === 0 && <div className="resource-empty"><h2>No matching articles.</h2><p>Try a different topic or search term.</p><button type="button" className="resource-outline-button" onClick={() => { setTopic('All articles'); setQuery('') }}>Clear filters <ResourceArrow /></button></div>}
+      </section>
+      <section className="resource-container resources-contact">
+        <div><p className="resource-eyebrow">For the next step</p><h2>From reading to doing.</h2><p>Explore the regulatory guides, references, and planning tools.</p></div>
+        <Link to="/resources" className="resource-solid-button">Explore resources <ResourceArrow diagonal /></Link>
+      </section>
+    </div>
   )
 }

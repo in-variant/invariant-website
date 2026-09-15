@@ -1,0 +1,48 @@
+.dither-morph {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.dither-morph > .dither-morph__image {
+  position: absolute;
+  display: block;
+  max-width: none;
+  object-fit: cover;
+  transition: none;
+  user-select: none;
+}
+
+.dither-morph > .dither-morph__canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dither-morph > .dither-morph__tint {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dither-morph[data-tint-visible='true'] > .dither-morph__tint { opacity: 1; }
+.dither-morph[data-tint-visible='true'] > :is(.dither-morph__image, .dither-morph__canvas) { visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dither-morph > .dither-morph__canvas {
+    display: none;
+  }
+}

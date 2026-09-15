@@ -1,0 +1,42 @@
+.figma-scramble-label {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+  vertical-align: baseline;
+}
+
+.figma-scramble-label__text {
+  opacity: 1;
+}
+
+.figma-scramble-label[data-scrambling] > .figma-scramble-label__text {
+  opacity: 0;
+}
+
+.figma-scramble-label__overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  white-space: pre;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figma-scramble-label[data-scrambling] > .figma-scramble-label__text {
+    opacity: 1;
+  }
+
+  .figma-scramble-label__overlay {
+    display: none;
+  }
+}
+
+@media print {
+  .figma-scramble-label[data-scrambling] > .figma-scramble-label__text {
+    opacity: 1;
+  }
+
+  .figma-scramble-label__overlay {
+    display: none;
+  }
+}

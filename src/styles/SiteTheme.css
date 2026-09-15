@@ -1,0 +1,59 @@
+.site-shell {
+  position: relative;
+  isolation: isolate;
+  --site-color-midnight: 7 27 53;
+  --site-color-observatory: 2 47 219;
+  --site-color-mineral: 230 235 246;
+  --site-color-cloud: 255 255 255;
+  --site-color-copper: 251 77 3;
+  --site-color-peach: 255 236 226;
+  --site-color-lavender: 112 123 153;
+  --site-color-paper: 255 255 255;
+  --site-color-ink: 48 48 48;
+  --site-color-mid: 98 103 111;
+  --site-color-rule: 209 218 251;
+  --site-color-dim: 203 208 218;
+  background: #fff;
+  color: #303030;
+  font-family: 'Geist', sans-serif;
+}
+.site-main { position: relative; z-index: 1; min-width: 0; padding-top: 88px; }
+.site-main--home { padding-top: 0; }
+/* Page canvases share the guide underneath; opaque cards, media, and the
+   homepage hero naturally mask it without intercepting any interaction. */
+.site-shell .site-main > :is(div, article, section),
+.site-shell > .site-footer { background-color: transparent; }
+.site-shell > .site-footer { position: relative; z-index: 1; }
+.site-shell :is(.product-sources, .resources-library) { background-color: #fafbff66; }
+.site-shell ::selection { background: #022fdb; color: #fff; }
+.site-shell :focus-visible { outline: 2px solid #fb4d03; outline-offset: 4px; }
+.site-shell [id] { scroll-margin-top: 112px; }
+.site-shell .font-display, .site-shell .font-serif, .site-shell .heading-editorial { font-family: 'DIN', 'D-DIN', sans-serif; }
+.site-shell .font-mono, .site-shell .section-label { font-family: 'JetBrains Mono', monospace; }
+.site-shell .section-label { color: #fb4d03; letter-spacing: .025em; }
+.site-legacy { line-height: 1.65; }
+.site-legacy :is(h1,h2,h3,h4) { font-family: 'DIN', 'D-DIN', sans-serif; font-weight: 500; letter-spacing: -.025em; }
+.site-legacy h1 { font-size: clamp(42px, 4.5vw, 76px); line-height: 1.055; text-wrap: balance; }
+.site-legacy h2 { line-height: 1.15; }
+.site-legacy :is(article,section,nav,details,[class*='border-ink']) { border-radius: 0; }
+.site-legacy :is(button,input,select,textarea,a[class*='rounded']) { border-radius: 0; }
+.site-legacy [class*='border-ink'] { border-color: #022fdb25; }
+.site-legacy [class*='divide-ink'] > :not([hidden]) ~ :not([hidden]) { border-color: #022fdb20; }
+.site-legacy :is([class*='shadow-lg'],[class*='shadow-xl'],[class*='shadow-2xl']) { box-shadow: none; }
+.site-legacy [class*='uppercase'][class*='tracking-'] { font-family: 'JetBrains Mono', monospace; letter-spacing: .035em; }
+.site-legacy :is(a,button) { transition: color 200ms ease, border-color 200ms ease, background-color 200ms ease; }
+.site-legacy :is(a,button):hover { text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.site-legacy :is(button,a)[class*='bg-ink']:not([class*='bg-ink/']) { background-color: #022fdb; }
+.site-legacy :is(button,a)[class*='bg-ink']:not([class*='bg-ink/']):hover { background-color: #fb4d03; }
+.site-legacy article > .max-w-3xl > h1 { padding-bottom: 30px; border-bottom: 1px solid #022fdb25; }
+.site-legacy article > .max-w-3xl > section { padding-top: 32px; border-top: 1px solid #022fdb20; }
+.site-legacy :is(input,select,textarea):focus { border-color: #022fdb; }
+.site-legacy :is(p,li,td,a) { overflow-wrap: break-word; }
+@media (max-width: 760px) {
+  .site-main { padding-top: 78px; }.site-main--home { padding-top: 0; }
+  .site-shell [id] { scroll-margin-top: 100px; }
+  .site-legacy h1 { font-size: clamp(38px, 9.6vw, 54px); }
+  .site-legacy :is(input,textarea,select) { font-size: 16px; }
+  .site-legacy article > .max-w-3xl > h1 { padding-bottom: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .site-shell *, .site-shell *::before, .site-shell *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

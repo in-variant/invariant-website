@@ -1,0 +1,19 @@
+.figma-type { position: relative; display: block; width: calc(var(--type-width) * var(--u)); height: calc(var(--type-height) * var(--u)); max-width: 100%; }
+.figma-type-live { position: absolute; inset: 0; }
+.figma-type-art { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.figma-type.is-loaded > .figma-type-live { opacity: 0; }
+.figma-type.is-loaded > .figma-type-art { opacity: 1; }
+.figma-home .block-reveal__content { display: block; }
+.figma-platform-step:not(.is-active) .figma-type-art { filter: grayscale(1); opacity: .3; }
+@media (max-width: 1023px) {
+  .figma-type { width: auto; height: auto; }
+  .figma-type-live { position: static; }
+  .figma-type.is-loaded > .figma-type-live { opacity: 1; }
+  .figma-type > .figma-type-art { display: none; }
+}
+@media print {
+  .figma-type { width: auto; height: auto; }
+  .figma-type-live { position: static; }
+  .figma-type.is-loaded > .figma-type-live { opacity: 1; }
+  .figma-type > .figma-type-art { display: none; }
+}

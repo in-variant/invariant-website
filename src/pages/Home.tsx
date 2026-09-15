@@ -1,10 +1,4 @@
-import Hero from '../components/Hero'
-import BackedBy from '../components/BackedBy'
-import IntroducingInvariant from '../components/IntroducingInvariant'
-import PlatformShowcase from '../components/PlatformShowcase'
-import CustomerStories from '../components/CustomerStories'
-import HowItWorks from '../components/HowItWorks'
-import Advisors from '../components/Advisors'
+import FigmaHomepage from '../components/FigmaHomepage'
 import { Seo, ORG_SCHEMA, WEBSITE_SCHEMA, EDITORIAL_TEAM, faqSchema, SITE_URL } from '../components/Seo'
 
 const HOME_FAQS = [
@@ -36,17 +30,15 @@ const HOME_FAQS = [
   {
     question: 'Who backs Invariant?',
     answer:
-      'Invariant is backed by Entrepreneurs First. Founded 2025.',
+      'Invariant is backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures. Founded 2025.',
   },
 ]
 
 const PRIMARY_PAGES = [
-  { name: 'Space compliance', url: `${SITE_URL}/space-compliance` },
-  { name: 'Nuclear compliance', url: `${SITE_URL}/nuclear-compliance` },
-  { name: 'Glossary', url: `${SITE_URL}/glossary` },
-  { name: 'Product', url: `${SITE_URL}/product` },
-  { name: 'Probe', url: `${SITE_URL}/probe` },
-  { name: 'Blog', url: `${SITE_URL}/blog` },
+  { name: 'Platform', url: `${SITE_URL}/product` },
+  { name: 'Why we exist', url: `${SITE_URL}/charter` },
+  { name: 'Resources', url: `${SITE_URL}/resources` },
+  { name: 'Talk to an expert', url: `${SITE_URL}/contact` },
 ]
 
 const SITE_NAVIGATION = {
@@ -70,13 +62,7 @@ export default function Home() {
         canonical="https://invariant-ai.com/"
         jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
-      <Hero />
-      <BackedBy />
-      <IntroducingInvariant />
-      <PlatformShowcase />
-      <CustomerStories />
-      <HowItWorks />
-      <Advisors />
+      <FigmaHomepage />
     </>
   )
 }

@@ -1,0 +1,193 @@
+/* Interaction-only styling: the resting composition stays at its Figma values. */
+.figma-home {
+  --micro-ease: cubic-bezier(.22, 1, .36, 1);
+  --micro-duration: 320ms;
+}
+
+.figma-home .figma-button {
+  --micro-surface: #fff;
+  --micro-fill: var(--figma-orange, #fb4d03);
+  --micro-hover-ink: #071b35;
+}
+
+.figma-home .figma-button-glass {
+  --micro-surface: #ffffff63;
+}
+
+.figma-home .figma-lower-button {
+  --micro-surface: #123c73;
+  --micro-fill: var(--figma-blue, #022fdb);
+  --micro-hover-ink: #fff;
+}
+
+.figma-home .figma-lower-button-secondary {
+  --micro-surface: rgba(4, 22, 46, .1);
+  --micro-fill: #123c73;
+}
+
+.figma-home :is(.figma-button, .figma-lower-button) {
+  isolation: isolate;
+  transition: color 160ms ease, translate 160ms var(--micro-ease);
+}
+
+.figma-home :is(.figma-button, .figma-lower-button)::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--micro-fill);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--micro-duration) var(--micro-ease);
+  pointer-events: none;
+}
+
+.figma-home :is(.figma-button, .figma-lower-button):is(:hover, :focus-visible) {
+  background: var(--micro-surface);
+  color: var(--micro-hover-ink) !important;
+}
+
+.figma-home :is(.figma-button, .figma-lower-button):is(:hover, :focus-visible)::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.figma-home :is(.figma-nav nav > a:not(.figma-button), .figma-footer-column a) {
+  position: relative;
+  text-decoration: none;
+  transition: color 160ms ease, opacity 160ms ease;
+}
+
+.figma-home :is(.figma-nav nav > a:not(.figma-button), .figma-footer-column a)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 260ms var(--micro-ease);
+  pointer-events: none;
+}
+
+.figma-home .figma-nav nav > a:not(.figma-button):is(:hover, :focus-visible) {
+  opacity: 1;
+}
+
+.figma-home .figma-footer-column a:is(:hover, :focus-visible) {
+  color: var(--figma-blue, #022fdb);
+  text-decoration: none;
+}
+
+.figma-home :is(.figma-nav nav > a:not(.figma-button), .figma-footer-column a):is(:hover, :focus-visible)::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.figma-home .figma-audience-card {
+  transition: border-color 220ms ease;
+}
+
+.figma-home .figma-workflow-card {
+  transition: opacity 160ms linear, transform 180ms linear, border-color 220ms ease;
+}
+
+.figma-home .figma-platform-step {
+  transition: height .65s cubic-bezier(.22,1,.36,1), top .65s cubic-bezier(.22,1,.36,1), color .4s, border-color 220ms ease;
+}
+
+.figma-home .figma-platform-step .figma-type-art { transition: opacity .45s ease; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .figma-home .figma-platform-step.is-active > .figma-body {
+    animation: figma-step-description .6s cubic-bezier(.22,1,.36,1) both;
+  }
+}
+
+@keyframes figma-step-description {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.figma-home .figma-audience-card .figma-card-heading {
+  transition: color 180ms ease;
+}
+
+.figma-home :is(.figma-corners, .figma-lower-corners) > img {
+  transition: translate var(--micro-duration) var(--micro-ease);
+}
+
+.figma-home :is(.figma-audience-art, .figma-workflow-image) > img {
+  transition: translate 480ms var(--micro-ease);
+}
+
+.figma-home .figma-platform-icon {
+  transition: opacity 180ms ease, filter 180ms ease, translate var(--micro-duration) var(--micro-ease);
+}
+
+.figma-home .figma-menu-toggle > span {
+  transition: rotate 240ms var(--micro-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .figma-home :is(.figma-audience-card, .figma-platform-step, .figma-workflow-card):hover {
+    border-color: #022fdb66;
+  }
+
+  .figma-home :is(.figma-audience-card, .figma-platform-step, .figma-workflow-card):hover > :is(.figma-corners, .figma-lower-corners) > :is(.tl, .corner-tl) {
+    translate: -2px -2px;
+  }
+
+  .figma-home :is(.figma-audience-card, .figma-platform-step, .figma-workflow-card):hover > :is(.figma-corners, .figma-lower-corners) > :is(.tr, .corner-tr) {
+    translate: 2px -2px;
+  }
+
+  .figma-home :is(.figma-audience-card, .figma-platform-step, .figma-workflow-card):hover > :is(.figma-corners, .figma-lower-corners) > :is(.bl, .corner-bl) {
+    translate: -2px 2px;
+  }
+
+  .figma-home :is(.figma-audience-card, .figma-platform-step, .figma-workflow-card):hover > :is(.figma-corners, .figma-lower-corners) > :is(.br, .corner-br) {
+    translate: 2px 2px;
+  }
+
+  .figma-home .figma-platform-step:hover .figma-platform-icon {
+    translate: 0 -2px;
+  }
+
+  .figma-home .figma-menu-toggle:hover > span {
+    rotate: 90deg;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .figma-home :is(.figma-button, .figma-lower-button):active {
+    translate: 0 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figma-home :is(.figma-button, .figma-lower-button),
+  .figma-home :is(.figma-button, .figma-lower-button)::before,
+  .figma-home :is(.figma-nav nav > a:not(.figma-button), .figma-footer-column a),
+  .figma-home :is(.figma-nav nav > a:not(.figma-button), .figma-footer-column a)::after,
+  .figma-home :is(.figma-audience-card, .figma-platform-step, .figma-workflow-card),
+  .figma-home .figma-audience-card .figma-card-heading,
+  .figma-home :is(.figma-corners, .figma-lower-corners) > img,
+  .figma-home :is(.figma-audience-art, .figma-workflow-image) > img,
+  .figma-home .figma-platform-icon,
+  .figma-home .figma-menu-toggle > span {
+    transition: none;
+  }
+
+  .figma-home :is(.figma-corners, .figma-lower-corners) > img,
+  .figma-home :is(.figma-audience-art, .figma-workflow-image) > img,
+  .figma-home .figma-platform-icon {
+    translate: none !important;
+  }
+
+  .figma-home .figma-menu-toggle > span {
+    rotate: none !important;
+  }
+}

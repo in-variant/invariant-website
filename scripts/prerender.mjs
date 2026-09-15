@@ -11,13 +11,13 @@
 // dist/{slug}/index.html for every live route, with the correct head content.
 // Vercel serves these static files first, then falls back to the SPA rewrite.
 //
-// The body still contains an empty <div id="root"> — JS hydrates from there
-// exactly as it does today. No SSR is performed; only meta tags + JSON-LD
-// are materialized.
+// Industry guides and hubs also include their complete rendered page bodies.
+// Existing routes retain the client-rendered body with prerendered metadata.
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { createServer } from 'vite'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -298,7 +298,10 @@ function readPillarData(slug) {
 
 // ── Write one route ────────────────────────────────────────────────────────
 function writeRoute(template, slug, opts) {
-  const out = customizeHtml(template, opts)
+  let out = customizeHtml(template, opts)
+  if (opts.bodyHtml) out = out.replace('<div id="root"></div>', () => `<div id="root">${opts.bodyHtml}</div>`)
+  const stylesheets = (opts.stylesheets ?? []).filter(file => !out.includes(`href="/${escapeAttr(file)}"`))
+  if (stylesheets.length) out = out.replace('</head>', `${stylesheets.map(file => `<link rel="stylesheet" href="/${escapeAttr(file)}">`).join('\n')}\n</head>`)
   const dir = join(DIST, slug)
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
   writeFileSync(join(dir, 'index.html'), out)
@@ -335,7 +338,7 @@ async function main() {
     customizeHtml(template, {
       title: 'Invariant: Compliance for Space & Nuclear',
       description:
-        'Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneurs First.',
+        'Autonomous AI agents that draft, file, and monitor regulatory compliance for space, aerospace, and nuclear companies. Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures.',
       canonical: `${SITE}/`,
       ogImage: `${SITE}/og/home.png`,
       ogType: 'website',
@@ -347,9 +350,9 @@ async function main() {
   const SIMPLE_PAGES = [
     {
       slug: 'product',
-      title: 'Product: Submissions, test plans, verification matrices',
+      title: 'Platform | Invariant',
       description:
-        'What Invariant agents produce: regulator-grade submissions, test plans, verification matrices, and the high-stakes review of a small domain-engineering team.',
+        'See Invariant draft, cite, and review regulatory work against your project corpus. Autonomous agents for mission-critical compliance.',
       ogImage: `${SITE}/og/home.png`,
     },
     {
@@ -368,9 +371,22 @@ async function main() {
     },
     {
       slug: 'blog',
-      title: 'Blog: Research, regulation comparisons, field notes',
+      title: 'Articles | Research on mission-critical compliance',
       description:
-        'Research, regulation comparisons, and field notes from Invariant on compliance for space, aerospace, and nuclear.',
+        'Practical research on data-center, oil and gas, space, and nuclear compliance. Explore siting, permitting, operating records, and the evidence behind approvals.',
+      ogImage: `${SITE}/og/home.png`,
+    },
+    {
+      slug: 'resources',
+      title: 'Resources | Research, guides, and tools for mission-critical compliance',
+      description:
+        'Research, regulatory guides, and planning tools for data centers, oil and gas, space, and nuclear programs. Explore the work behind the path to approval.',
+      ogImage: `${SITE}/og/home.png`,
+    },
+    {
+      slug: 'contact',
+      title: 'Talk to an expert | Invariant',
+      description: 'Tell us about your mission and the regulatory work ahead. Talk with the Invariant team about autonomous agents for mission-critical compliance.',
       ogImage: `${SITE}/og/home.png`,
     },
     {
@@ -398,7 +414,14 @@ async function main() {
       slug: 'about',
       title: 'About Invariant: Autonomous AI agents for compliance in mission-critical industries',
       description:
-        'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneurs First. Founded 2025.',
+        'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures. Founded 2025.',
+      ogImage: `${SITE}/og/home.png`,
+    },
+    {
+      slug: 'charter',
+      title: 'Why We Exist | Invariant',
+      description:
+        'Why we are building Invariant: a clear path from engineering breakthroughs to approved missions. A letter from Parthiv and Pranav.',
       ogImage: `${SITE}/og/home.png`,
     },
     {
@@ -416,13 +439,75 @@ async function main() {
       description: sp.description,
       canonical,
       ogImage: sp.ogImage,
-      ogType: 'website',
+      ogType: sp.slug === 'charter' ? 'article' : 'website',
       jsonLd: [
         ORG_SCHEMA,
         EDITORIAL_TEAM,
         breadcrumbSchema([
           { name: 'Invariant', url: `${SITE}/` },
           { name: sp.slug.charAt(0).toUpperCase() + sp.slug.slice(1), url: canonical },
+        ]),
+      ],
+    })
+    written++
+  }
+
+  // Article heads mirror each page's Seo values. The existing SPA renders
+  // the body; these files also expose article metadata without JavaScript.
+  const BLOG_ARTICLES = [
+    {
+      slug: 'space-compliance-tam',
+      title: 'The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate',
+      description: 'A breakdown of the space compliance market, from launch licensing to satellite operations, and the cost of getting to orbit.',
+      image: 'space-tam.png',
+      datePublished: '2026-06-03',
+    },
+    {
+      slug: 'nuclear-compliance-tam',
+      title: 'The $35 Billion Problem Nobody Is Talking About in Nuclear',
+      description: 'The market for nuclear compliance work, broken down by regulator, design phase, and the next generation of reactors.',
+      image: 'nuclear-tam.png',
+      datePublished: '2026-06-02',
+    },
+    {
+      slug: 'fermibench-sota',
+      title: 'Invariant Sets State-of-the-Art on FermiBench',
+      description: 'Our domain-adapted retrieval model Helion-512 reaches 0.97 nDCG@10 on FermiBench, the only published retrieval benchmark for the nuclear regulatory domain, up from the previous best of 0.74.',
+      image: 'fermibench.jpg',
+      datePublished: '2026-04-01',
+    },
+    {
+      slug: 'seismic-design-shift',
+      title: 'SSE/OBE to GMRS/SDC: the seismic design shift to Part 53',
+      description: 'The deterministic two-tier framework that governed nuclear seismic design for fifty years is replaced by risk-tiered ground motions and seismic design categories. A regulation-to-regulation comparison of every substantive change.',
+      image: 'seismic.jpg',
+      datePublished: '2026-03-29',
+    },
+    {
+      slug: 'part100-vs-part53-siting',
+      title: '10 CFR Part 100 vs Part 53 Subpart D: a siting comparison',
+      description: 'A line-by-line comparison of the legacy siting criteria in 10 CFR Part 100 against the new technology-inclusive framework in 10 CFR Part 53 Subpart D: exclusion areas, seismic methodology, and the siting-design integration mandate.',
+      image: 'siting.jpg',
+      datePublished: '2026-03-27',
+    },
+  ]
+  for (const post of BLOG_ARTICLES) {
+    const canonical = `${SITE}/blog/${post.slug}`
+    const ogImage = `${SITE}/blog/${post.image}`
+    writeRoute(template, `blog/${post.slug}`, {
+      title: post.title,
+      description: post.description,
+      canonical,
+      ogImage,
+      ogType: 'article',
+      jsonLd: [
+        ORG_SCHEMA,
+        EDITORIAL_TEAM,
+        articleSchema({ title: post.title, description: post.description, url: canonical, image: ogImage, datePublished: post.datePublished }),
+        breadcrumbSchema([
+          { name: 'Invariant', url: `${SITE}/` },
+          { name: 'Articles', url: `${SITE}/blog` },
+          { name: post.title, url: canonical },
         ]),
       ],
     })
@@ -541,6 +626,31 @@ async function main() {
     })
     written++
   }
+
+  // Render the new guides and hubs from their actual React components.
+  // Every visitor receives the same complete article HTML, including sources.
+  const renderer = await createServer({
+    server: { middlewareMode: true, hmr: false },
+    appType: 'custom',
+    ssr: {
+      noExternal: ['react-router-dom', 'react-router', 'react-helmet-async'],
+      resolve: { conditions: ['module', 'module-sync', 'node', 'development'] },
+    },
+  })
+  try {
+    const { industryPages } = await renderer.ssrLoadModule('/src/entry-industry-prerender.tsx')
+    const manifest = JSON.parse(readFileSync(join(DIST, '.vite/manifest.json'), 'utf8'))
+    const cssFor = (key, seen = new Set()) => {
+      if (seen.has(key)) return []
+      seen.add(key)
+      const chunk = manifest[key]
+      return chunk ? [...chunk.css ?? [], ...(chunk.imports ?? []).flatMap(dep => cssFor(dep, seen))] : []
+    }
+    for (const page of industryPages()) {
+      writeRoute(template, page.slug, { ...page, stylesheets: [...new Set(cssFor(page.source))] })
+      written++
+    }
+  } finally { await renderer.close() }
 
   console.log(`prerender: wrote ${written} per-route HTML files in dist/`)
 }

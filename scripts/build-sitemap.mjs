@@ -14,13 +14,16 @@ const SITE = 'https://invariant-ai.com'
 const CORE = [
   { loc: '/', changefreq: 'weekly', priority: '1.0' },
   { loc: '/product', changefreq: 'monthly', priority: '0.8' },
+  { loc: '/contact', changefreq: 'monthly', priority: '0.7' },
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', changefreq: 'weekly', priority: '0.8' },
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
   { loc: '/research', changefreq: 'monthly', priority: '0.85' },
+  { loc: '/resources', changefreq: 'weekly', priority: '0.85' },
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },
   { loc: '/about', changefreq: 'monthly', priority: '0.7' },
+  { loc: '/charter', changefreq: 'monthly', priority: '0.7' },
   { loc: '/regulators', changefreq: 'monthly', priority: '0.85' },
   { loc: '/timeline', changefreq: 'monthly', priority: '0.9' },
   { loc: '/calculators/faa-part-450-timeline', changefreq: 'monthly', priority: '0.85' },
@@ -35,6 +38,11 @@ const BLOG = [
   { loc: '/blog/seismic-design-shift', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/nuclear-compliance-tam', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog/space-compliance-tam', changefreq: 'monthly', priority: '0.7' },
+]
+const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
+const industryUrls = [
+  ...['data-center-compliance', 'oil-gas-compliance'].map(slug => ({ loc: `/${slug}`, changefreq: 'monthly', priority: '0.85', lastmod: '2026-09-15' })),
+  ...industryArticles.map(article => ({ loc: `/blog/${article.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: article.dateTime })),
 ]
 
 // ── Page registry (pillars + clusters) ───────────────────────────────────────
@@ -61,7 +69,7 @@ const glossaryUrls = (glossary.entries || []).map((e) => ({
 }))
 
 // ── Compose ──────────────────────────────────────────────────────────────────
-const all = [...CORE, ...entries, ...BLOG, ...glossaryUrls]
+const all = [...CORE, ...entries, ...BLOG, ...industryUrls, ...glossaryUrls]
 
 // Deduplicate by loc, last write wins.
 const seen = new Map()
@@ -74,7 +82,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 ${unique
   .map(
     (u) =>
-      `  <url><loc>${SITE}${u.loc}</loc><lastmod>${today}</lastmod><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
+      `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod ?? today}</lastmod><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
   )
   .join('\n')}
 </urlset>

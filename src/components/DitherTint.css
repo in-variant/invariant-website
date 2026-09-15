@@ -1,0 +1,22 @@
+.dither-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dither-tint[data-visible='true'] {
+  opacity: 1;
+}
+
+.dither-tint > canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Replace the raster while tinting so translucent ink edges are never doubled. */
+.dither-tint-host:has(> .dither-tint[data-visible='true']) > img {
+  opacity: 0;
+}

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/clean-content.mjs && node scripts/build-sitemap.mjs && node scripts/build-llms.mjs && tsc -b && tsc -p tsconfig.api.json && vite build && node scripts/prerender.mjs",
+    "build": "node scripts/build-industry-content.mjs && node scripts/clean-content.mjs && node scripts/build-sitemap.mjs && node scripts/build-llms.mjs && tsc -b && tsc -p tsconfig.api.json && vite build && node scripts/prerender.mjs",
     "preview": "vite preview",
     "sitemap": "node scripts/build-sitemap.mjs",
     "llms": "node scripts/build-llms.mjs",

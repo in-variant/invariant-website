@@ -1,0 +1,25 @@
+.hero-engineering { display: contents; }
+.hero-opening {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  overflow: hidden;
+  background: #050505;
+  opacity: var(--intro-cover, 1);
+  pointer-events: none;
+  animation: hero-opening-release 1ms linear 2200ms forwards;
+}
+.hero-engineering:is([data-phase='forming'], [data-phase='revealing']) .hero-opening { display: block; }
+.hero-opening-symbol {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  overflow: visible;
+}
+@keyframes hero-opening-release { to { visibility: hidden; } }
+@media (max-width: 760px) { .hero-opening-symbol { width: 90px; height: 90px; } }
+@media (prefers-reduced-motion: reduce), print { .hero-opening { display: none !important; } }

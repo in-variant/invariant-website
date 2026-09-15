@@ -1,0 +1,75 @@
+.about-page { --about-blue: #022fdb; --about-orange: #fb4d03; --about-rule: #022fdb33; padding: clamp(64px, 6.25vw, 120px) max(20px, 5.20833vw) clamp(80px, 7.3vw, 140px); background: #fff; color: #303030; font-family: 'Geist', sans-serif; }
+.about-page *, .about-page *::before, .about-page *::after { box-sizing: border-box; }
+.about-page h1, .about-page h2, .about-page h3, .about-page p, .about-page figure { margin: 0; }
+.about-container { max-width: 1720px; margin-inline: auto; }
+.about-eyebrow { color: var(--about-orange); font: 12px/1.5 'JetBrains Mono', 'Geist Mono', monospace; text-transform: uppercase; }
+.about-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(32px, 5vw, 96px); padding-bottom: clamp(64px, 7vw, 130px); }
+.about-hero h1 { margin-top: 24px; font-family: 'DIN', 'D-DIN', sans-serif; font-size: clamp(44px, 4.5vw, 78px); font-weight: 500; line-height: 1.04; letter-spacing: -.032em; }
+.about-lead { max-width: 530px; margin-top: 28px !important; font-size: clamp(16px, 1.2vw, 20px); line-height: 1.5; }
+.about-text-link { display: inline-flex; align-items: center; gap: 24px; margin-top: 28px; color: var(--about-blue); font: 11px/1.5 'Geist Mono', monospace; text-transform: uppercase; text-decoration: none; }
+.about-text-link > span:last-child { font-size: 21px; line-height: 1; transition: transform .2s; }
+.about-text-link:hover > span:last-child { transform: translate(3px, -3px); }
+.about-mission-art { border-bottom: 1px solid var(--about-rule); }
+.about-satellite { position: relative; aspect-ratio: 1.5; overflow: hidden; }
+.about-satellite img { position: absolute; width: 200%; max-width: none; height: auto; top: 0; left: 0; }
+.about-mission-art figcaption { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; color: var(--about-blue); font: 10px/1.5 'JetBrains Mono', 'Geist Mono', monospace; text-transform: uppercase; }
+.about-section { display: grid; grid-template-columns: minmax(160px, 1fr) minmax(0, 2.2fr); gap: clamp(32px, 5vw, 96px); border-top: 1px solid var(--about-rule); padding-block: clamp(48px, 5.2vw, 100px); }
+.about-section-label { display: flex; align-items: baseline; gap: 22px; }
+.about-section-number { color: var(--about-blue); font: 11px/1.5 'Geist Mono', monospace; }
+.about-page h2 { font-family: 'DIN', 'D-DIN', sans-serif; font-size: clamp(32px, 3.15vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -.025em; }
+.about-story-copy { max-width: 790px; }
+.about-story-copy p { max-width: 720px; font-size: clamp(16px, 1.16vw, 19px); line-height: 1.65; margin-top: 24px; }
+.about-story-copy h2 + p { margin-top: 32px; }
+.about-founder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 40px; border-top: 1px solid var(--about-rule); }
+.about-founder { padding: 28px 32px 0 0; }
+.about-founder + .about-founder { padding-left: 32px; padding-right: 0; border-left: 1px solid var(--about-rule); }
+.about-founder-portrait { aspect-ratio: 1; margin-bottom: 24px; overflow: hidden; border: 1px solid var(--about-rule); background: #f5f5f3; }
+.about-founder-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 70%; }
+.about-founder-role { color: var(--about-blue); font: 10px/1.5 'Geist Mono', monospace; text-transform: uppercase; }
+.about-founder h3 { margin-top: 12px; font-family: 'DIN', 'D-DIN', sans-serif; font-size: 30px; font-weight: 500; line-height: 1.15; letter-spacing: -.02em; }
+.about-founder p { margin-top: 16px; font-size: 15px; line-height: 1.65; }
+.about-advisor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 40px; }
+.about-advisor { display: flex; align-items: start; gap: 20px; }
+.about-advisor img { flex: none; width: 80px; height: 100px; object-fit: cover; object-position: center 25%; filter: grayscale(1); border: 1px solid var(--about-rule); }
+.about-advisor h3 { font-family: 'DIN', 'D-DIN', sans-serif; font-size: 24px; font-weight: 500; line-height: 1.2; }
+.about-advisor p { margin-top: 12px; font-size: 13px; line-height: 1.55; }
+.about-advisor div > span { display: block; margin-top: 10px; color: #727272; font-size: 12px; line-height: 1.5; }
+.about-invitation { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-top: 24px; padding: 40px 0; border-block: 1px solid var(--about-rule); }
+.about-invitation h2 { margin-top: 20px; }
+.about-invitation-action { justify-self: end; }
+.about-invitation-action p { font-size: 15px; line-height: 1.5; }
+.about-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 40px; min-height: 44px; margin-top: 24px; padding: 12px 18px; color: #fff; background: var(--about-blue); font: 11px/1.5 'Geist Mono', monospace; text-transform: uppercase; text-decoration: none; transition: background .2s; }
+.about-button > span:last-child { font-size: 20px; line-height: 1; }
+.about-button:hover { background: var(--about-orange); }
+.about-page a:focus-visible { outline: 2px solid var(--about-orange); outline-offset: 5px; }
+@media (max-width: 1100px) {
+  .about-advisor-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-advisor img { width: 88px; height: 104px; }
+}
+@media (max-width: 760px) {
+  .about-page { padding: 48px 20px 80px; }
+  .about-hero { grid-template-columns: 1fr; gap: 32px; padding-bottom: 48px; }
+  .about-hero h1 { font-size: clamp(39px, 9.7vw, 64px); margin-top: 18px; }
+  .about-hero h1 br { display: none; }
+  .about-lead { margin-top: 24px !important; }
+  .about-mission-art { width: 100%; max-width: 460px; justify-self: center; }
+  .about-mission-art figcaption { padding-block: 18px; }
+  .about-section { grid-template-columns: 1fr; gap: 28px; padding-block: 40px; }
+  .about-page h2 { font-size: 34px; }
+  .about-story-copy h2 br { display: none; }
+  .about-story-copy h2 + p { margin-top: 24px; }
+  .about-story-copy p { line-height: 1.6; }
+  .about-founder-grid { grid-template-columns: 1fr; margin-top: 28px; }
+  .about-founder { padding: 24px 0; }
+  .about-founder + .about-founder { padding: 24px 0 0; border-left: none; border-top: 1px solid var(--about-rule); }
+  .about-advisor-grid { margin-top: 28px; }
+  .about-advisor { gap: 20px; }
+  .about-advisor img { width: 72px; height: 88px; }
+  .about-invitation { grid-template-columns: 1fr; gap: 24px; padding-block: 32px; margin-top: 8px; }
+  .about-invitation-action { justify-self: start; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .about-hero { animation: about-arrive .55s cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes about-arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (prefers-reduced-motion: reduce) { .about-page * { animation: none !important; transition: none !important; } }

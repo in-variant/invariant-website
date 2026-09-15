@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
 
 const POST_URL = 'https://invariant-ai.com/blog/fermibench-sota'
@@ -16,7 +16,7 @@ const BENCHMARK_ROWS = [
 
 export default function FermiBenchSOTA() {
   return (
-    <article className="min-h-screen py-24 px-6 md:px-12 lg:px-24 xl:px-32">
+    <article className="blog-article">
       <Seo
         title={POST_TITLE}
         description={POST_DESC}
@@ -33,26 +33,8 @@ export default function FermiBenchSOTA() {
           ]),
         ]}
       />
-      <div className="max-w-3xl mx-auto">
-        <div className="mx-auto max-w-3xl">
-          <Link to="/blog" className="font-sans text-sm text-ink/45 transition-colors hover:text-copper">
-            ← Back to Blog
-          </Link>
-          <div
-            className="mt-6 aspect-[16/7] w-full overflow-hidden rounded-2xl bg-cover bg-center"
-            style={{ backgroundImage: 'url(/blog/fermibench.jpg), linear-gradient(135deg, #F4E4C1, #F3D9CE 50%, #DCE6EC)' }}
-          />
-          <header className="mb-16 mt-10 text-center">
-            <p className="mb-4 font-sans text-sm text-ink/40">April 1, 2026</p>
-            <h1 className="mb-5 font-serif text-3xl font-normal leading-[1.12] tracking-[-0.02em] text-ink md:text-4xl lg:text-5xl">
-              Invariant Sets State-of-the-Art on FermiBench
-            </h1>
-            <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-ink/55 md:text-xl">
-              0.97 nDCG@10 on the only published information retrieval benchmark for the nuclear domain
-            </p>
-          </header>
-        </div>
-
+      <BlogArticleHeader slug="fermibench-sota" title="Invariant Sets State-of-the-Art on FermiBench" subtitle="0.97 nDCG@10 on the only published information retrieval benchmark for the nuclear domain" />
+      <div className="blog-article-body">
         {/* Lead */}
         <div className="mb-16 space-y-6">
           <div className="section-rule" />
@@ -355,6 +337,7 @@ export default function FermiBenchSOTA() {
           </div>
         </div>
       </div>
+      <BlogRelatedReading slug="fermibench-sota" />
     </article>
   )
 }

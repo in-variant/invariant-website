@@ -1,0 +1,101 @@
+.charter-film {
+  width: 100%;
+  margin: 0;
+  color: #303030;
+}
+
+.charter-film__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #022fdb33;
+  background: #fff;
+}
+
+.charter-film__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+
+.charter-film .charter-film__play {
+  position: absolute;
+  left: clamp(14px, 2vw, 28px);
+  bottom: clamp(14px, 2vw, 28px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 5px 10px 5px 0;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: #022fdb;
+  cursor: pointer;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.charter-film__play-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #022fdb;
+  background: #022fdb;
+  color: #fff;
+  transition: background-color .18s ease, color .18s ease;
+}
+
+.charter-film__play-icon svg { margin-left: 2px; }
+.charter-film__play-copy { display: grid; gap: 5px; }
+
+.charter-film__play-label,
+.charter-film__play-meta {
+  font-family: 'Geist Mono', monospace;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: -.02em;
+}
+
+.charter-film__play-label { text-transform: uppercase; }
+.charter-film__play-meta { color: #707070; font-size: 10px; font-weight: 400; }
+.charter-film__play:hover .charter-film__play-icon { background: #fff; color: #022fdb; }
+.charter-film__play:focus-visible { outline: 2px solid #fb4d03; outline-offset: 5px; }
+.charter-film__video:focus-visible { outline: 2px solid #022fdb; outline-offset: 4px; }
+
+.charter-film__corners {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+}
+
+.charter-film__corners i {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: #022fdb;
+  border-style: solid;
+  border-width: 0;
+}
+
+.charter-film__corners i:nth-child(1) { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.charter-film__corners i:nth-child(2) { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.charter-film__corners i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.charter-film__corners i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.charter-film__message { padding-top: 12px; font-family: 'Geist', sans-serif; font-size: 13px; line-height: 1.5; color: #707070; }
+
+@media (max-width: 479px) {
+  .charter-film .charter-film__play { gap: 9px; left: 10px; bottom: 10px; padding: 0 6px 0 0; }
+  .charter-film__play-icon { width: 34px; height: 34px; }
+  .charter-film__play-label { font-size: 10px; }
+  .charter-film__play-meta { font-size: 9px; }
+  .charter-film__play-copy { gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .charter-film__play-icon { transition: none; }
+}

@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  build: { manifest: true },
   server: {
     // Local stand-in for the Vercel function: node scripts/dev-api.mjs
     proxy: {

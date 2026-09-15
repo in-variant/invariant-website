@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, EDITORIAL_TEAM, breadcrumbSchema, SITE_URL } from '../components/Seo'
+import './Trust.css'
 
 const URL = `${SITE_URL}/trust`
+const contents = [
+  ['data-handling', 'Data handling defaults'],
+  ['export-controlled-data', 'Export-controlled data'],
+  ['regulatory-accuracy', 'Regulatory accuracy'],
+  ['audit-trail', 'Reproducibility and audit trail'],
+  ['infrastructure', 'Subprocessors and infrastructure'],
+  ['research', 'Independent research'],
+  ['security-contact', 'Contact for security or data questions'],
+]
 
 export default function Trust() {
   return (
@@ -20,17 +30,32 @@ export default function Trust() {
           ]),
         ]}
       />
-      <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Trust</p>
-          <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
+      <article className="trust-page">
+        <div className="trust-container">
+          <header className="trust-hero">
+          <div className="trust-intro">
+          <p className="trust-eyebrow">Trust</p>
+          <h1>
             How we handle your work.
           </h1>
-          <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
+          <p className="trust-lead">
             Customers running launch, reactor, and aviation programs work with data that ranges from contract-sensitive to ITAR controlled. This is the practical statement of how Invariant handles that data, and where the explicit limits are.
           </p>
+          </div>
+          <figure className="trust-illustration" aria-label="Protected customer infrastructure, depicted in blue dither">
+            <div className="trust-data-art"><img src="/figma/imgDataSafetyDither3.png" width="4096" height="1747" alt="" /></div>
+            <figcaption>Security &amp; data handling</figcaption>
+          </figure>
+          </header>
 
-          <Section title="Data handling defaults">
+          <div className="trust-layout">
+          <aside className="trust-contents" aria-label="On this page">
+            <p className="trust-eyebrow">On this page</p>
+            <nav>{contents.map(([id, title], index) => <a key={id} href={`#${id}`}><span>{String(index + 1).padStart(2, '0')}</span>{title}</a>)}</nav>
+          </aside>
+          <div className="trust-sections">
+
+          <Section index={0}>
             <p>
               Customer documents and prompts are processed in tenant-scoped infrastructure and are not used for training shared models. Engagement-specific data, including drafts, technical memos, and Request-for-Additional-Information responses, is retained only as long as the engagement requires and is deleted on customer request.
             </p>
@@ -39,7 +64,7 @@ export default function Trust() {
             </p>
           </Section>
 
-          <Section title="Export-controlled data">
+          <Section index={1}>
             <p>
               We do not accept ITAR-controlled technical data, EAR Strategic-Trade-Authorization-restricted content, or material classified by a national authority into our standard cloud environment. Customers with controlled-data needs are routed to a dedicated, customer-controlled deployment with no shared infrastructure and personnel restricted to U.S. persons under 22 CFR 120.62.
             </p>
@@ -48,7 +73,7 @@ export default function Trust() {
             </p>
           </Section>
 
-          <Section title="Regulatory accuracy">
+          <Section index={2}>
             <p>
               Every claim our agents generate is traced to a specific regulatory section, advisory circular, regulatory guide, NUREG, ECSS standard, or other primary-source citation. Outputs are reviewed by domain engineers before they reach the regulator. The customer's named licensing professional remains the responsible party for any regulatory submission.
             </p>
@@ -57,53 +82,55 @@ export default function Trust() {
             </p>
           </Section>
 
-          <Section title="Reproducibility and audit trail">
+          <Section index={3}>
             <p>
               Every agent action is logged with the inputs that produced it, the prompt and tool configuration in effect, the cited source documents, and the timestamp. Logs are retained for the duration of the engagement and made available to customer auditors on request.
             </p>
           </Section>
 
-          <Section title="Subprocessors and infrastructure">
+          <Section index={4}>
             <p>
               Our default infrastructure runs on a U.S.-based cloud provider with FedRAMP-aligned services. Model providers used today include Anthropic for general agentic work and our own Helion-512 retrieval model for nuclear regulatory text. The current subprocessor list is provided to customers under NDA.
             </p>
           </Section>
 
-          <Section title="Independent research">
+          <Section index={5}>
             <p>
               We publish technical work as part of building trust with the customer base. Our domain-adapted retrieval model Helion-512 is the published state of the art on the FermiBench retrieval benchmark at 0.9693 nDCG@10. The full write-up and other research notes are at{' '}
-              <Link to="/research" className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">
+              <Link to="/research">
                 /research
               </Link>
               .
             </p>
           </Section>
 
-          <Section title="Contact for security or data questions">
+          <Section index={6}>
             <p>
               For procurement, security review, or data-handling questions specific to your program, reach the team at{' '}
               <a
                 href="mailto:founders@invariant-ai.com"
-                className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper"
               >
                 founders@invariant-ai.com
               </a>
               . We will respond within one business day with the right contact for your question.
             </p>
           </Section>
+          </div>
+          </div>
         </div>
       </article>
     </>
   )
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ index, children }: { index: number; children: React.ReactNode }) {
+  const [id, title] = contents[index]
   return (
-    <section className="mt-12">
-      <h2 className="font-serif text-2xl font-normal leading-tight tracking-[-0.01em] text-ink md:text-3xl">
+    <section className="trust-section" id={id} aria-labelledby={`${id}-title`}>
+      <div className="trust-section-heading"><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><h2 id={`${id}-title`}>
         {title}
-      </h2>
-      <div className="mt-4 space-y-4 font-sans text-base leading-relaxed text-ink/70">{children}</div>
+      </h2></div>
+      <div className="trust-section-copy">{children}</div>
     </section>
   )
 }

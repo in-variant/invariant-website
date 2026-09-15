@@ -9,6 +9,7 @@ import Blog from './pages/Blog'
 // Drops main bundle (Core Web Vitals signal) and keeps the SEO-critical
 // home + blog index fast.
 const Contact = lazy(() => import('./pages/Contact'))
+const Charter = lazy(() => import('./pages/Charter'))
 const Product = lazy(() => import('./pages/Product'))
 const Pricing = lazy(() => import('./pages/Pricing'))
 const Probe = lazy(() => import('./pages/Probe'))
@@ -37,9 +38,12 @@ const NuclearComplianceJapan = lazy(() => import('./pages/clusters/NuclearCompli
 const Glossary = lazy(() => import('./pages/Glossary'))
 const GlossaryEntryPage = lazy(() => import('./pages/GlossaryEntryPage'))
 const Research = lazy(() => import('./pages/Research'))
+const Resources = lazy(() => import('./pages/Resources'))
 const Compliance = lazy(() => import('./pages/Compliance'))
 const Trust = lazy(() => import('./pages/Trust'))
 const About = lazy(() => import('./pages/About'))
+const IndustryHub = lazy(() => import('./pages/IndustryHub'))
+const IndustryArticle = lazy(() => import('./pages/blog/IndustryArticle'))
 const Regulators = lazy(() => import('./pages/Regulators'))
 const FaaPart450Calculator = lazy(() => import('./pages/calculators/FaaPart450Calculator'))
 const NrcLicenseCalculator = lazy(() => import('./pages/calculators/NrcLicenseCalculator'))
@@ -96,6 +100,8 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/charter" element={<Charter />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/part100-vs-part53-siting" element={<Part100vsPart53 />} />
             <Route path="/blog/seismic-design-shift" element={<SeismicDesignShift />} />
@@ -131,6 +137,9 @@ export default function App() {
             <Route path="/compliance" element={<Compliance />} />
             <Route path="/trust" element={<Trust />} />
             <Route path="/about" element={<About />} />
+            <Route path="/data-center-compliance" element={<IndustryHub slug="data-center-compliance" />} />
+            <Route path="/oil-gas-compliance" element={<IndustryHub slug="oil-gas-compliance" />} />
+            <Route path="/blog/:slug" element={<IndustryArticle />} />
             <Route path="/regulators" element={<Regulators />} />
             <Route path="/calculators/faa-part-450-timeline" element={<FaaPart450Calculator />} />
             <Route path="/calculators/nrc-license-timeline" element={<NrcLicenseCalculator />} />

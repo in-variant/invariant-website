@@ -4,6 +4,7 @@ import { Seo, articleSchema, faqSchema, breadcrumbSchema, howToSchema, ORG_SCHEM
 import RelatedGuides from './RelatedGuides'
 import { getPage, type Pillar as PillarTopic } from '../data/page-registry'
 import { renderLinkified } from './linkifyGlossary'
+import './Guide.css'
 
 type SeeAlso = { slug: string; label?: string }
 type Subsection = {
@@ -113,8 +114,11 @@ export default function Pillar({
         jsonLd={ld}
         ogType="article"
       />
-      <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
-        <div className="mx-auto max-w-3xl">
+      <article className={`guide-page guide-page--${topic}`}>
+        <div className="guide-container">
+          <div className="guide-breadcrumb"><Link to="/resources">Resources</Link><span aria-hidden="true">/</span><Link to={topic === 'nuclear' ? '/nuclear-compliance' : '/space-compliance'}>{sectionLabel}</Link></div>
+          <header className="guide-heading">
+          <div>
           <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">{eyebrow}</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
             {data.h1}
@@ -122,11 +126,13 @@ export default function Pillar({
           <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.14em] text-ink/45">
             By the Invariant editorial team · Updated {formatDate(updatedAt)}
           </p>
-          {data.tldr && (
-            <p className="mt-8 font-serif text-xl leading-relaxed text-ink md:text-2xl">
-              {data.tldr}
-            </p>
-          )}
+          </div>
+          <div className={`guide-illustration guide-illustration--${topic}`} aria-hidden="true"><img src="/figma/imgAudiencevisualsUpdate2.png" alt="" width="1551" height="1033" loading="lazy" /></div>
+          </header>
+          <div className="guide-layout">
+          <aside className="guide-rail"><Toc sections={data.sections} /><Link to="/contact" className="guide-expert-link">Discuss your mission <span aria-hidden="true">↗</span></Link></aside>
+          <div className="guide-body">
+          {data.tldr && <div className="guide-summary"><p className="guide-summary-label">At a glance</p><p>{data.tldr}</p></div>}
           {(() => {
             const linked = new Set<string>()
             return summaryParas.map((p, i) => (
@@ -142,8 +148,6 @@ export default function Pillar({
               </p>
             ))
           })()}
-
-          {data.sections.length >= 4 && <Toc sections={data.sections} />}
 
           {data.sections.map((s, i) => (
             <SectionBlock key={i} section={s} id={sectionId(s.heading, i)} />
@@ -185,6 +189,8 @@ export default function Pillar({
           <p className="mt-16 font-sans text-[11px] uppercase tracking-[0.14em] text-ink/45">
             Last updated {formatDate(updatedAt)}
           </p>
+          </div>
+          </div>
         </div>
       </article>
     </>

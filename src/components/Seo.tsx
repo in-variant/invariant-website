@@ -113,12 +113,13 @@ export const ORG_SCHEMA = {
 }
 
 export const EDITORIAL_TEAM = {
+  '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE_URL}/#editorial-team`,
   name: 'Invariant editorial team',
   parentOrganization: { '@id': `${SITE_URL}/#organization` },
   description:
-    'Domain engineers at Invariant who write and review regulatory and qualification content for space, aerospace, and nuclear compliance.',
+    'Regulatory research and practical compliance guides from the Invariant team.',
 }
 
 export const WEBSITE_SCHEMA = {
