@@ -318,8 +318,16 @@
   .figma-home .figma-workflow.is-compact .figma-workflow-figure { max-width: 230px; margin-top: 8px; }
 }
 
-@media (max-width: 1023px) and (min-height: 600px) and (max-height: 700px) {
-  .figma-home .figma-workflow.is-compact .figma-workflow-figure { max-width: 174px; }
+@media (max-width: 1023px) {
+  .figma-home .figma-workflow.is-compact[data-stage-size='tight'] .figma-workflow-figure { max-width: 160px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short'] .figma-workflow-intro .figma-lower-heading { font-size: 28px; line-height: 30px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short'] .figma-workflow-controls { margin-top: 12px; padding-bottom: 10px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short'] .figma-workflow-controls button { min-height: 42px; gap: 4px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short']:is(.is-paced, .is-measuring) .figma-workflow-steps { margin-top: 12px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short']:is(.is-paced, .is-measuring) .figma-workflow-card { padding: 12px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short'] .figma-workflow-copy .figma-lower-subheading { font-size: 24px; line-height: 26px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short'] .figma-workflow-copy .figma-lower-body { line-height: 19px; }
+  .figma-home .figma-workflow.is-compact[data-stage-size='short'] .figma-workflow-figure { max-width: 110px; }
 }
 
 .figma-home .figma-workflow-outbound {
@@ -465,7 +473,7 @@
 .figma-home .figma-safety-morph { position: absolute !important; inset: 0; }
 .figma-home .figma-safety.is-paced .figma-safety-progress,
 .figma-home .figma-safety.is-paced .figma-safety-shared-art { transition: none; }
-.figma-home .figma-safety.is-paced .figma-safety-panel:not([hidden]) figcaption { animation: none; }
+.figma-home .figma-safety.is-paced .figma-safety-panel:not([hidden]) :is(.figma-lower-body, figcaption) { animation: none; }
 @media (min-width: 1024px) {
   .figma-home .figma-safety.is-paced .figma-safety-row { transition: none; }
   .figma-home .figma-safety.is-paced .figma-safety-panel { min-height: 0; height: 100%; }
@@ -673,17 +681,21 @@
     grid-area: 1 / 1;
     border: 1px solid #d7dfff;
     background: #fff;
-    opacity: 1;
-    transition: opacity 360ms ease, visibility 360ms;
+    opacity: var(--safety-row-opacity, 0);
+    transition: none;
   }
-  .figma-home .figma-safety.is-compact .figma-safety-row[aria-hidden='true'] { visibility: hidden; opacity: 0; pointer-events: none; }
+  .figma-home .figma-safety.is-compact .figma-safety-row.is-active { opacity: var(--safety-row-opacity, 1); }
+  .figma-home .figma-safety.is-compact .figma-safety-row[aria-hidden='true'] { pointer-events: none; }
+  /* All panels contribute their height, including the initial pre-commit fit.
+     Scrolling between descriptions must not change the stage's geometry. */
+  .figma-home .figma-safety.is-compact .figma-safety-panel[hidden] { display: flex; }
   .figma-home .figma-safety.is-compact .figma-safety-row-heading { height: auto; }
   .figma-home .figma-safety.is-compact .figma-safety-trigger { gap: 8px; padding: 16px; }
   .figma-home .figma-safety.is-compact .figma-safety-trigger .figma-lower-label { font-size: 10px; line-height: 14px; }
   .figma-home .figma-safety.is-compact .figma-safety-trigger .figma-lower-subheading { font-size: 25px; line-height: 27px; }
   .figma-home .figma-safety.is-compact .figma-safety-description { align-items: flex-start; min-height: 140px; padding: 0 16px; }
   .figma-home .figma-safety.is-compact .figma-safety-description .figma-lower-body { font-size: 14px; line-height: 20px; }
-  .figma-home .figma-safety.is-compact .figma-safety-figure { height: 264px; }
+  .figma-home .figma-safety.is-compact .figma-safety-figure { height: 264px; overflow: hidden; }
   .figma-home .figma-safety.is-compact .figma-safety-figure figcaption { bottom: 12px; }
   .figma-home .figma-safety.is-compact .figma-safety-shared-art {
     top: auto;
@@ -697,16 +709,25 @@
   }
 }
 
-@media (max-width: 1023px) and (max-height: 740px) {
-  .figma-home .figma-safety.is-compact .figma-safety-intro .figma-lower-heading { font-size: 28px; line-height: 30px; }
-  .figma-home .figma-safety.is-compact .figma-safety-controls { margin-top: 14px; }
-  .figma-home .figma-safety.is-compact .figma-safety-table { margin-top: 12px; }
-  .figma-home .figma-safety.is-compact .figma-safety-trigger { padding: 12px 16px; }
-  .figma-home .figma-safety.is-compact .figma-safety-trigger .figma-lower-subheading { font-size: 24px; line-height: 26px; }
-  .figma-home .figma-safety.is-compact .figma-safety-description { min-height: 134px; }
-  .figma-home .figma-safety.is-compact .figma-safety-description .figma-lower-body { line-height: 19px; }
-  .figma-home .figma-safety.is-compact .figma-safety-figure { height: 188px; }
-  .figma-home .figma-safety.is-compact .figma-safety-shared-art { width: min(184px, 100%); bottom: 26px; }
+@media (max-width: 1023px) {
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-intro .figma-lower-heading { font-size: 28px; line-height: 30px; }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-controls { margin-top: 14px; }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-table { margin-top: 12px; }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-trigger { padding: 12px 16px; }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-trigger .figma-lower-subheading { font-size: 24px; line-height: 26px; }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-description { min-height: 134px; }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-description .figma-lower-body { line-height: 19px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='tight'] { --safety-figure-height: clamp(128px, calc(var(--stage-viewport-height) - 526px), 188px); }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-figure { height: var(--safety-figure-height); }
+  .figma-home .figma-safety.is-compact:is([data-stage-size='tight'], [data-stage-size='short']) .figma-safety-shared-art { width: auto; height: calc(var(--safety-figure-height) - 30px); bottom: 26px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] { --safety-figure-height: 104px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-controls { margin-top: 10px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-controls button { min-height: 32px; gap: 4px; font-size: 10px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-table { margin-top: 10px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-trigger { gap: 6px; padding: 10px 16px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-trigger .figma-lower-subheading { font-size: 22px; line-height: 24px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-description { min-height: 108px; }
+  .figma-home .figma-safety.is-compact[data-stage-size='short'] .figma-safety-description .figma-lower-body { font-size: 13px; line-height: 18px; }
 }
 
 @keyframes figma-safety-appear {

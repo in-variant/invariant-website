@@ -40,7 +40,17 @@ function useLowerScrollStage(travelVh: number, update: (progress: number, paced:
     const stage = stageRef.current
     if (!section || !stage) return
     const preference = window.matchMedia(mobileTravelVh ? '(prefers-reduced-motion: no-preference)' : '(min-width: 1024px) and (prefers-reduced-motion: no-preference)')
+    // svh remains stable while a phone's address bar opens or closes. Keep the
+    // same geometry for fitting, sticky placement, and the scroll distance.
+    const viewportProbe = document.createElement('div')
+    viewportProbe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none;contain:strict;'
+    viewportProbe.setAttribute('aria-hidden', 'true')
+    document.body.appendChild(viewportProbe)
+    const supportsSmallViewport = CSS.supports('height', '100svh')
+    let fallbackWidth = window.innerWidth
+    let fallbackHeight = window.innerHeight
     let frame = 0
+    let measureFrame = 0
     let stickyTop = 0
     let travel = 1
     let enabled = false
@@ -52,30 +62,42 @@ function useLowerScrollStage(travelVh: number, update: (progress: number, paced:
     }
     const schedule = () => { if (!frame) frame = requestAnimationFrame(render) }
     const measure = () => {
+      measureFrame = 0
       const small = window.innerWidth < 1024
       const workflow = section.classList.contains('figma-workflow')
+      if (window.innerWidth !== fallbackWidth) {
+        fallbackWidth = window.innerWidth
+        fallbackHeight = window.innerHeight
+      }
+      const viewportHeight = small
+        ? (supportsSmallViewport ? viewportProbe.getBoundingClientRect().height : fallbackHeight)
+        : window.innerHeight
+      const topInset = small ? 90 : 8
+      const availableHeight = viewportHeight - (small ? topInset : 0) - 16
+      section.style.setProperty('--stage-viewport-height', `${viewportHeight}px`)
+      section.dataset.stageSize = viewportHeight <= 620 ? 'short' : viewportHeight <= 740 ? 'tight' : 'regular'
       // Measure the two-slot composition, not the full accessible fallback list.
       if (workflow) section.classList.toggle('is-measuring', preference.matches)
       setMobile(small)
-      let compactLayout = Boolean(mobileTravelVh && small && preference.matches && window.innerHeight >= 600)
+      let compactLayout = Boolean(mobileTravelVh && small && preference.matches)
       if (mobileTravelVh) {
         // Measure the compact composition before committing it; zoomed or short
         // screens fall back to complete cards in the normal document flow.
         section.classList.toggle('is-compact', compactLayout)
-        if (compactLayout && stage.getBoundingClientRect().height > window.innerHeight - 16) {
+        if (compactLayout && stage.getBoundingClientRect().height > availableHeight) {
           compactLayout = false
           section.classList.remove('is-compact')
         }
       }
       const height = stage.getBoundingClientRect().height
       setCompact(compactLayout)
-      enabled = preference.matches && (!small || compactLayout) && height <= window.innerHeight - 16
+      enabled = preference.matches && (!small || compactLayout) && height <= availableHeight
       if (workflow) {
         section.classList.toggle('is-paced', enabled)
         section.classList.remove('is-measuring')
       }
-      stickyTop = Math.max(8, Math.min(64, (window.innerHeight - height) / 2))
-      travel = window.innerHeight * (compactLayout ? mobileTravelVh! : travelVh)
+      stickyTop = small ? topInset : Math.max(8, Math.min(64, (viewportHeight - height) / 2))
+      travel = viewportHeight * (compactLayout ? mobileTravelVh! : travelVh)
       section.style.setProperty('--stage-height', `${height}px`)
       section.style.setProperty('--stage-top', `${stickyTop}px`)
       section.style.setProperty('--stage-travel', `${travel}px`)
@@ -83,18 +105,21 @@ function useLowerScrollStage(travelVh: number, update: (progress: number, paced:
       setMotion(preference.matches)
       schedule()
     }
-    const observer = new ResizeObserver(measure)
+    const scheduleMeasure = () => { if (!measureFrame) measureFrame = requestAnimationFrame(measure) }
+    const observer = new ResizeObserver(scheduleMeasure)
     observer.observe(stage)
     window.addEventListener('scroll', schedule, { passive: true })
-    window.addEventListener('resize', measure)
-    preference.addEventListener('change', measure)
+    window.addEventListener('resize', scheduleMeasure)
+    preference.addEventListener('change', scheduleMeasure)
     measure()
     return () => {
       cancelAnimationFrame(frame)
+      cancelAnimationFrame(measureFrame)
       observer.disconnect()
+      viewportProbe.remove()
       window.removeEventListener('scroll', schedule)
-      window.removeEventListener('resize', measure)
-      preference.removeEventListener('change', measure)
+      window.removeEventListener('resize', scheduleMeasure)
+      preference.removeEventListener('change', scheduleMeasure)
     }
   }, [travelVh, mobileTravelVh])
 
@@ -223,9 +248,9 @@ function HowItWorks() {
       <div ref={stageRef} className="figma-lower-container figma-workflow-stage">
         <header className="figma-workflow-intro">
           <p className="figma-lower-label">How it works</p>
-          <h2 id="workflow-heading" className="figma-lower-heading">
+          <BlockReveal as="h2" id="workflow-heading" className="figma-lower-heading" gradient={headingGradient}>
             <FigmaType node="6812">From integration<br />to approval.</FigmaType>
-          </h2>
+          </BlockReveal>
           <p className="figma-lower-body">We connect your systems, generate the right documents,<br className="figma-desktop-break" /> and orchestrate the entire process — so you can focus on the mission.</p>
         </header>
         <nav className="figma-workflow-controls" aria-label="Integration to approval steps">
@@ -321,6 +346,11 @@ function DataSafety() {
       const rawPosition = progress * (safetyFrames.length - 1)
       const nearestFrame = Math.round(rawPosition)
       const nextPosition = Math.abs(rawPosition - nearestFrame) < .002 ? nearestFrame : rawPosition
+      table.querySelectorAll<HTMLElement>('.figma-safety-row').forEach((row, index) => {
+        // The copy fades out before the next description resolves. Both
+        // directions use the same scroll value rather than a timed replay.
+        row.style.setProperty('--safety-row-opacity', String(ease((.5 - Math.abs(nextPosition - index)) / .16)))
+      })
       setPosition(nextPosition)
       setActive(previous => {
         // Keep the nearest image's copy readable when a trackpad settles at a
@@ -334,6 +364,15 @@ function DataSafety() {
   const morph = motion && (!mobile || compact)
   const scrubLayout = paced && !mobile
   const rowHeights = safetyItems.map((_, index) => 185 + 175 * Math.max(0, 1 - Math.abs(position - index)))
+
+  useLayoutEffect(() => {
+    if (!compact) return
+    const focused = document.activeElement
+    const departingRow = focused instanceof HTMLElement ? focused.closest('.figma-safety-row[aria-hidden="true"]') : null
+    if (departingRow && tableRef.current?.contains(departingRow)) {
+      sectionRef.current?.querySelector<HTMLButtonElement>('.figma-safety-controls [aria-current="step"]')?.focus({ preventScroll: true })
+    }
+  }, [active, compact, sectionRef])
 
   const selectItem = (index: number) => {
     const section = sectionRef.current
@@ -382,13 +421,14 @@ function DataSafety() {
                   aria-expanded={expandAll || active === index}
                   aria-controls={`safety-panel-${index}`}
                   disabled={expandAll}
+                  tabIndex={compact && active !== index ? -1 : undefined}
                   onClick={() => selectItem(index)}
                 >
                   <span className="figma-lower-label">[00{index + 1}]</span>
                   <span className="figma-lower-subheading"><FigmaType node={(['6620', '6671', '6675'] as const)[index]}>{item.title}</FigmaType></span>
                 </button>
               </h3>
-              <div className="figma-safety-panel" id={`safety-panel-${index}`} role="region" aria-labelledby={`safety-trigger-${index}`} hidden={!expandAll && active !== index}>
+              <div className="figma-safety-panel" id={`safety-panel-${index}`} role="region" aria-labelledby={`safety-trigger-${index}`} hidden={!compact && !expandAll && active !== index}>
                 <div className="figma-safety-description">
                   <Corners className="figma-divider-corners" />
                   <p className="figma-lower-body">{item.description}</p>

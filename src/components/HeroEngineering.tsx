@@ -42,7 +42,7 @@ export default function HeroEngineering() {
     if (!root || !path || !mark || !hero || !photo) return
     const preference = matchMedia('(prefers-reduced-motion: reduce)')
     const events = new AbortController()
-    const started = performance.now(), initialScroll = scrollY
+    const started = performance.now(), initialScroll = scrollY, initialWidth = innerWidth
     let frame = 0, deadline = 0, disposed = false, finished = false, ready = false, released = 0
     const update = (next: Phase) => { root.dataset.phase = next; setPhase(next) }
     const finish = () => {
@@ -87,7 +87,7 @@ export default function HeroEngineering() {
       deadline = window.setTimeout(finish, 2200)
     } else finish()
     window.addEventListener('scroll', () => { if (Math.abs(scrollY - initialScroll) > 14) finish() }, { signal: events.signal, passive: true })
-    window.addEventListener('resize', finish, { signal: events.signal })
+    window.addEventListener('resize', () => { if (Math.abs(innerWidth - initialWidth) > 1) finish() }, { signal: events.signal })
     hero.addEventListener('focusin', finish, { signal: events.signal })
     window.addEventListener('keydown', event => { if (event.key === 'Escape') finish() }, { signal: events.signal })
     document.addEventListener('visibilitychange', () => { if (document.hidden) finish() }, { signal: events.signal })

@@ -33,11 +33,12 @@
 .site-footer a:hover { color: #022fdb; }
 .site-footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 24px; border-top: 1px solid #022fdb25; padding: 25px 0 32px; font: 10px/1.7 'JetBrains Mono', monospace; text-transform: uppercase; color: #777; }
 .site-footer-bottom p { margin: 0; }.site-footer-bottom > div { display: flex; gap: 28px; }
-@media (max-width: 760px) {
+@media (max-width: 1023px) {
+  .site-nav--in-hero { position: fixed; }
   .site-nav-inner { width: calc(100% - 40px); height: 78px; }
   .site-nav .site-nav-toggle { display: inline-flex; }
-  .site-nav .site-nav-links { position: absolute; inset: 77px 0 auto; display: none; max-height: calc(100dvh - 78px); overflow-y: auto; overscroll-behavior: contain; padding: 30px 20px 36px; border-bottom: 1px solid #022fdb25; background: #fff; color: #303030; flex-direction: column; align-items: stretch; gap: 0; }
-  .site-nav.is-open .site-nav-links { display: flex; }
+  .site-nav .site-nav-links { position: absolute; inset: 77px 0 auto; display: flex; max-height: calc(100dvh - 78px); overflow-y: auto; overscroll-behavior: contain; padding: 30px 20px 36px; border-bottom: 1px solid #022fdb25; background: #fff; color: #303030; flex-direction: column; align-items: stretch; gap: 0; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-10px); transition: opacity 240ms ease, transform 320ms cubic-bezier(.22,1,.36,1), visibility 0s 320ms; }
+  .site-nav.is-open .site-nav-links { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
   .site-nav-links > a:not(.site-nav-cta) { padding: 17px 0; border-top: 1px solid #022fdb18; font-family: 'DIN', 'D-DIN', sans-serif; font-size: 29px; font-weight: 500; text-transform: none; }
   .site-nav-links > a:not(.site-nav-cta)::after { display: none; }
   .site-nav .site-nav-cta { width: max-content; margin-top: 24px; background: #022fdb; color: #fff; }

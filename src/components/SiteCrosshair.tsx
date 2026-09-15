@@ -9,7 +9,7 @@ export default function SiteCrosshair() {
     const element = ref.current
     if (!element) return
 
-    const motion = window.matchMedia('(prefers-reduced-motion: no-preference) and (any-pointer: fine)')
+    const motion = window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference) and (any-pointer: fine)')
     const origin = () => ({ x: window.innerWidth * .6375, y: window.innerHeight * .2908 })
     let position = origin()
     let target = { ...position }

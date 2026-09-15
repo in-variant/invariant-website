@@ -23,7 +23,7 @@ function Corners() {
 
 function Hero() {
   return <section className="figma-hero" aria-labelledby="figma-hero-title">
-    <img className="figma-hero-image" src="/media/hero-enhanced-1920.webp" srcSet="/media/hero-enhanced-1920.webp 1920w, /media/hero-enhanced-2560.webp 2560w, /media/hero-enhanced-3840.webp 3840w" sizes="max(100vw, 178svh)" width="3840" height="2160" fetchPriority="high" alt="A spacecraft ascending above the blue and orange horizon of Earth" />
+    <img className="figma-hero-image" src="/media/hero-enhanced-1920.webp?v=91f312f7" srcSet="/media/hero-enhanced-1920.webp?v=91f312f7 1920w, /media/hero-enhanced-2560.webp?v=91f312f7 2560w, /media/hero-enhanced-3840.webp?v=91f312f7 3840w" sizes="max(100vw, 178svh)" width="3840" height="2160" fetchPriority="high" alt="A spacecraft ascending above the blue and orange horizon of Earth" />
     <HeroEngineering />
     <Nav hero />
     <div className="figma-hero-copy">
@@ -104,11 +104,13 @@ function Solution() {
     let travel = 1
     const measure = () => {
       const mobile = window.innerWidth < 1024
-      const clearance = mobile ? 24 : 48
-      const canPin = !preference.matches && stage.offsetHeight + clearance <= window.innerHeight
+      const header = mobile ? 78 : 0
+      const clearance = mobile ? header + 28 : 48
+      section.dataset.stageSize = mobile && stage.clientHeight < 520 ? 'short' : 'regular'
+      const canPin = !preference.matches && Math.max(stage.offsetHeight, stage.scrollHeight) + clearance <= window.innerHeight + 1
       section.dataset.pinned = String(canPin)
       setPinned(canPin)
-      pinTop = mobile ? 16 : Math.max(24, Math.min(window.innerHeight * .07, (window.innerHeight - stage.offsetHeight) / 2))
+      pinTop = mobile ? header + 12 : Math.max(24, Math.min(window.innerHeight * .07, (window.innerHeight - stage.offsetHeight) / 2))
       section.style.setProperty('--platform-pin-top', `${pinTop}px`)
       travel = Math.max(1, section.clientHeight - stage.offsetHeight - parseFloat(getComputedStyle(section).paddingBottom))
     }
@@ -135,6 +137,7 @@ function Solution() {
     update()
     const observer = new ResizeObserver(resize)
     observer.observe(stage)
+    stage.querySelectorAll('.figma-section-intro, .figma-platform-mobile-summary').forEach(element => observer.observe(element))
     window.addEventListener('scroll', scroll, { passive: true })
     window.addEventListener('resize', resize)
     preference.addEventListener('change', resize)

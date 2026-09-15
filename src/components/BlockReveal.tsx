@@ -264,8 +264,11 @@ export default function BlockReveal({
         if (disposed) return
         measure()
         if (track && stage && stageContent) {
-          const viewport = window.innerHeight
-          const fits = stageContent.getBoundingClientRect().height + 80 <= viewport
+          // Match the sticky stage's svh height so a phone's retracting
+          // address bar cannot change the scroll distance mid-reveal.
+          const viewport = Math.min(stage.clientHeight, window.innerHeight)
+          const header = window.innerWidth < 1024 ? 78 : 0
+          const fits = stageContent.getBoundingClientRect().height + header + 48 <= viewport
           const canPin = !preference.matches && fits && lines.length > 0
           track.dataset.revealPinned = String(canPin)
           track.style.setProperty('--reveal-scroll-travel', `${canPin ? Math.round(Math.max(viewport * .9, lines.length * viewport * .18)) : 0}px`)
@@ -376,8 +379,8 @@ export default function BlockReveal({
       resizeObserver = new ResizeObserver(() => {
         const bounds = root.getBoundingClientRect()
         if (Math.ceil(bounds.width) === width && Math.ceil(bounds.height) === height) return
-        // Avoid stretching the canvas or covering already readable text on resize.
-        if (running) show()
+        // Toolbar movement or a late font load must not cancel the entrance.
+        // The next animation frame paints these freshly measured lines.
         measure()
       })
       resizeObserver.observe(root)

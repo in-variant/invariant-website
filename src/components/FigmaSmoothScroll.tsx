@@ -105,7 +105,8 @@ export default function FigmaSmoothScroll() {
           } else data.deltaY = resist(instance.targetScroll, data.deltaY, touch)
           return true
         },
-        anchors: { offset: -40, duration: 1.2, lerp: 0 },
+        // Phone navigation remains fixed above the pinned section headings.
+        anchors: { offset: window.innerWidth < 1024 ? -90 : -40, duration: 1.2, lerp: 0 },
         stopInertiaOnNavigate: true,
       })
       smoothScroll = instance
