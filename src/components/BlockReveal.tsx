@@ -1,5 +1,6 @@
 import { useId, useLayoutEffect, useRef, type ElementType, type HTMLAttributes, type ReactNode } from 'react'
 import './BlockReveal.css'
+import { smallViewportHeight } from './screenHeight'
 
 type BlockRevealProps = Omit<HTMLAttributes<HTMLElement>, 'color'> & {
   as?: ElementType
@@ -264,9 +265,11 @@ export default function BlockReveal({
         if (disposed) return
         measure()
         if (track && stage && stageContent) {
-          // Match the sticky stage's svh height so a phone's retracting
-          // address bar cannot change the scroll distance mid-reveal.
-          const viewport = Math.min(stage.clientHeight, window.innerHeight)
+          // Measured against svh, the height the sticky stage is sized in, so a
+          // phone's retracting address bar cannot change the scroll distance
+          // mid-reveal. Reading the stage's own height here would feed the pin
+          // decision back into itself, because pinning is what fixes that height.
+          const viewport = smallViewportHeight(track)
           const header = window.innerWidth < 1024 ? 78 : 0
           const fits = stageContent.getBoundingClientRect().height + header + 48 <= viewport
           const canPin = !preference.matches && fits && lines.length > 0

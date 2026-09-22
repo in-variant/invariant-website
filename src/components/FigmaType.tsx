@@ -15,11 +15,11 @@ const dimensions = {
 /** Exact designer-supplied outlines; the semantic, selectable text is retained.
  * On small screens live type reflows to fit rather than scaling a desktop frame.
  */
-export default function FigmaType({ node, children }: { node: keyof typeof dimensions; children: ReactNode }) {
+export default function FigmaType({ node, children, live = false }: { node: keyof typeof dimensions; children: ReactNode; live?: boolean }) {
   const [loaded, setLoaded] = useState(false)
   const [width, height] = dimensions[node]
-  return <span className={`figma-type ${loaded ? 'is-loaded' : ''}`} data-figma-lines={JSON.stringify(figmaTypeLines[node])} data-figma-width={width} style={{ '--type-width': width, '--type-height': height } as CSSProperties}>
+  return <span className={`figma-type ${live ? 'figma-type-plain' : ''} ${loaded ? 'is-loaded' : ''}`} data-figma-lines={JSON.stringify(figmaTypeLines[node])} data-figma-width={width} style={{ '--type-width': width, '--type-height': height } as CSSProperties}>
     <span className="figma-type-live">{children}</span>
-    <img className="figma-type-art" src={`/figma/type/398-${node}.svg`} width={width} height={height} alt="" aria-hidden="true" onLoad={() => setLoaded(true)} onError={() => setLoaded(false)} />
+    {!live && <img className="figma-type-art" src={`/figma/type/398-${node}.svg`} width={width} height={height} alt="" aria-hidden="true" onLoad={() => setLoaded(true)} onError={() => setLoaded(false)} />}
   </span>
 }

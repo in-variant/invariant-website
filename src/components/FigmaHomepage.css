@@ -204,3 +204,10 @@ html:has(.figma-home) { scroll-behavior: auto; }
   .figma-platform { flex: none; grid-template-rows: min(64vw, 320px) auto 44px; }
 }
 @media (prefers-reduced-motion: reduce) { .figma-home *, .figma-home *::before, .figma-home *::after { transition-duration: 0s !important; } }
+
+/* When the stage is not pinned it must not stay locked to a screen-height box,
+   or its contents are squeezed into a space the layout already decided is too
+   small. Keyed on the explicit false so nothing shifts before the measurement. */
+@media (max-width: 1023px) {
+  .figma-solution[data-pinned='false'] .figma-solution-stage { height: auto; min-height: 0; }
+}

@@ -8,6 +8,7 @@ import DitherMorph from './DitherMorph'
 import DitherTint from './DitherTint'
 import useDitherHover from './useDitherHover'
 import FigmaSmoothScroll, { scrollFigmaTo } from './FigmaSmoothScroll'
+import { smallViewportHeight } from './screenHeight'
 import Nav from './Nav'
 import HeroEngineering from './HeroEngineering'
 import '../styles/figma-fonts.css'
@@ -67,7 +68,7 @@ function Problem() {
     <div className="figma-problem-copy" data-reveal-stage-content>
       <p className="figma-label">The problem</p>
       <BlockReveal as="h2" id="figma-problem-title" className="figma-heading" gradient={revealGradient} mode="scroll" scrollTrack=".figma-problem-track">
-        <FigmaType node="6424">Mission-critical programs stall across fragmented requirements, disconnected evidence, regulatory delays, and approval gaps. For aerospace and nuclear work, there's no unified path forward.</FigmaType>
+        <FigmaType node="6424" live>Mission-critical programs stall across fragmented requirements, disconnected evidence, regulatory delays, and approval gaps. For work in space, nuclear, data centers, and oil and gas, there's no unified path forward.</FigmaType>
       </BlockReveal>
     </div>
     </section>
@@ -107,7 +108,15 @@ function Solution() {
       const header = mobile ? 78 : 0
       const clearance = mobile ? header + 28 : 48
       section.dataset.stageSize = mobile && stage.clientHeight < 520 ? 'short' : 'regular'
-      const canPin = !preference.matches && Math.max(stage.offsetHeight, stage.scrollHeight) + clearance <= window.innerHeight + 1
+      // Two separate questions. Does the stage's content fit the box the
+      // stylesheet gave it, and does that box fit the screen? On a phone the box
+      // is sized in svh, so it is measured against svh; measuring it against
+      // window.innerHeight instead left exactly one pixel of margin, and a
+      // retracting address bar moves that number by far more than a pixel.
+      const screen = mobile ? smallViewportHeight(section) : window.innerHeight
+      const contentFits = stage.scrollHeight <= stage.clientHeight + 1
+      const stageFits = stage.getBoundingClientRect().height + clearance <= screen + 1
+      const canPin = !preference.matches && contentFits && stageFits
       section.dataset.pinned = String(canPin)
       setPinned(canPin)
       pinTop = mobile ? header + 12 : Math.max(24, Math.min(window.innerHeight * .07, (window.innerHeight - stage.offsetHeight) / 2))
@@ -183,31 +192,25 @@ function Solution() {
   </section>
 }
 
+// Each entry carries its own heading outline and its own window onto the shared
+// artwork sheet, so the cards can be reordered without the art drifting.
 const audiences = [
-  { label: 'Space', title: 'Mission-Critical Operations', description: 'Navigate complex regulatory requirements across missions, systems, and launch operations.', href: '/space-compliance', crop: 'space', alt: 'Blue dithered satellite in orbit' },
-  { label: 'Nuclear', title: 'Safety by Design', description: 'Manage rigorous compliance requirements with traceable evidence and expert oversight.', href: '/nuclear-compliance', crop: 'nuclear', alt: 'Blue dithered nuclear power station' },
-  { label: 'Data Centers', title: 'Always-On Infrastructure', description: 'Keep critical infrastructure compliant across systems, operations, and evolving regulations.', href: '/data-center-compliance', crop: 'data', alt: 'Blue dithered data center server racks' },
-  { label: 'Oil & Gas', title: 'Built for High Stakes', description: 'Coordinate regulatory requirements across complex assets, operations, and safety-critical environments.', href: '/oil-gas-compliance', crop: 'oil', alt: 'Blue dithered offshore oil platform' },
-]
+  { label: 'Space', title: 'Mission-Critical Operations', description: 'Navigate complex regulatory requirements across missions, systems, and launch operations.', href: '/space-compliance', crop: 'space', node: '6562', frame: { width: 191.49, height: 201.85, left: 0, top: 0 }, alt: 'Blue dithered satellite in orbit' },
+  { label: 'Data Centers', title: 'Always-On Infrastructure', description: 'Keep critical infrastructure compliant across systems, operations, and evolving regulations.', href: '/data-center-compliance', crop: 'data', node: '6538', frame: { width: 191.49, height: 201.85, left: -5.24, top: -92.44 }, alt: 'Blue dithered data center server racks' },
+  { label: 'Nuclear', title: 'Safety by Design', description: 'Manage rigorous compliance requirements with traceable evidence and expert oversight.', href: '/nuclear-compliance', crop: 'nuclear', node: '6570', frame: { width: 191.49, height: 201.85, left: -91.42, top: 0 }, alt: 'Blue dithered nuclear power station' },
+  { label: 'Oil & Gas', title: 'Built for High Stakes', description: 'Coordinate regulatory requirements across complex assets, operations, and safety-critical environments.', href: '/oil-gas-compliance', crop: 'oil', node: '6545', frame: { width: 191.49, height: 201.85, left: -91.57, top: -92.44 }, alt: 'Blue dithered offshore oil platform' },
+] as const
 
-const audienceCrops = [
-  { width: 191.49, height: 201.85, left: 0, top: 0 },
-  { width: 191.49, height: 201.85, left: -91.42, top: 0 },
-  { width: 191.49, height: 201.85, left: -5.24, top: -92.44 },
-  { width: 191.49, height: 201.85, left: -91.57, top: -92.44 },
-]
-
-function AudienceCard({ index }: { index: number }) {
-  const audience = audiences[index]
+function AudienceCard({ audience }: { audience: typeof audiences[number] }) {
   const hover = useDitherHover()
   return <Link to={audience.href} className={`figma-audience-card figma-audience-${audience.crop}`} {...hover.bind}>
     <Corners />
     <p className="figma-label">{audience.label}</p>
-    <h3 className="figma-card-heading"><FigmaType node={(['6562', '6570', '6538', '6545'] as const)[index]}>{audience.title}</FigmaType></h3>
+    <h3 className="figma-card-heading"><FigmaType node={audience.node}>{audience.title}</FigmaType></h3>
     <p className="figma-body">{audience.description}</p>
     <div className="figma-audience-art dither-tint-host">
       <img src={asset('imgAudiencevisualsUpdate2.png')} alt={audience.alt} loading="lazy" />
-      <DitherTint src={asset('imgAudiencevisualsUpdate2.png')} crop={audienceCrops[index]} active={hover.active} />
+      <DitherTint src={asset('imgAudiencevisualsUpdate2.png')} crop={audience.frame} active={hover.active} />
     </div>
   </Link>
 }
@@ -220,7 +223,7 @@ function Audience() {
       <p className="figma-body">Invariant serves mission-critical teams where compliance, reliability, evidence, and expert oversight are essential to every operation.</p>
     </div>
     <div className="figma-audience-grid">
-      {audiences.map((audience, index) => <AudienceCard key={audience.label} index={index} />)}
+      {audiences.map(audience => <AudienceCard key={audience.label} audience={audience} />)}
     </div>
   </section>
 }

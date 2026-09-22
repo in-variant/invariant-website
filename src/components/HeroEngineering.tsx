@@ -42,6 +42,10 @@ export default function HeroEngineering() {
     if (!root || !path || !mark || !hero || !photo) return
     const preference = matchMedia('(prefers-reduced-motion: reduce)')
     const events = new AbortController()
+    // Reloading a scrolled homepage otherwise restores that scroll position before React
+    // mounts, which read as "the visitor is already reading" and skipped the opening.
+    const restoration = history.scrollRestoration
+    history.scrollRestoration = 'manual'
     const started = performance.now(), initialScroll = scrollY, initialWidth = innerWidth
     let frame = 0, deadline = 0, disposed = false, finished = false, ready = false, released = 0
     const update = (next: Phase) => { root.dataset.phase = next; setPhase(next) }
@@ -92,7 +96,7 @@ export default function HeroEngineering() {
     window.addEventListener('keydown', event => { if (event.key === 'Escape') finish() }, { signal: events.signal })
     document.addEventListener('visibilitychange', () => { if (document.hidden) finish() }, { signal: events.signal })
     preference.addEventListener('change', finish, { signal: events.signal })
-    return () => { disposed = true; cancelAnimationFrame(frame); clearTimeout(deadline); events.abort() }
+    return () => { disposed = true; cancelAnimationFrame(frame); clearTimeout(deadline); events.abort(); history.scrollRestoration = restoration }
   }, [])
 
   return <div className="hero-engineering" ref={rootRef} data-phase={phase} aria-hidden="true">
