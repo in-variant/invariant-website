@@ -61,7 +61,7 @@ export const ORG_SCHEMA = {
   logo: `${SITE_URL}/og/home.png`,
   image: DEFAULT_OG,
   description:
-    'Autonomous agents for mission-critical compliance across aerospace, nuclear, data centers, and oil and gas.',
+    'Autonomous agents for mission-critical compliance across aerospace, energy, data centers, and oil and gas.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: {

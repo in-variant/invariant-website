@@ -68,7 +68,7 @@ function Problem() {
     <div className="figma-problem-copy" data-reveal-stage-content>
       <p className="figma-label">The problem</p>
       <BlockReveal as="h2" id="figma-problem-title" className="figma-heading" gradient={revealGradient} mode="scroll" scrollTrack=".figma-problem-track">
-        <FigmaType node="6424" live>Mission-critical programs stall across fragmented requirements, disconnected evidence, regulatory delays, and approval gaps. For work in space, nuclear, data centers, and oil and gas, there's no unified path forward.</FigmaType>
+        <FigmaType node="6424" live>Mission-critical programs stall across fragmented requirements, disconnected evidence, regulatory delays, and approval gaps. For work in space, energy, data centers, and oil and gas, there's no unified path forward.</FigmaType>
       </BlockReveal>
     </div>
     </section>
@@ -197,7 +197,7 @@ function Solution() {
 const audiences = [
   { label: 'Space', title: 'Mission-Critical Operations', description: 'Navigate complex regulatory requirements across missions, systems, and launch operations.', href: '/space-compliance', crop: 'space', node: '6562', frame: { width: 191.49, height: 201.85, left: 0, top: 0 }, alt: 'Blue dithered satellite in orbit' },
   { label: 'Data Centers', title: 'Always-On Infrastructure', description: 'Keep critical infrastructure compliant across systems, operations, and evolving regulations.', href: '/data-center-compliance', crop: 'data', node: '6538', frame: { width: 191.49, height: 201.85, left: -5.24, top: -92.44 }, alt: 'Blue dithered data center server racks' },
-  { label: 'Nuclear', title: 'Safety by Design', description: 'Manage rigorous compliance requirements with traceable evidence and expert oversight.', href: '/nuclear-compliance', crop: 'nuclear', node: '6570', frame: { width: 191.49, height: 201.85, left: -91.42, top: 0 }, alt: 'Blue dithered nuclear power station' },
+  { label: 'Energy', title: 'Safety by Design', description: 'Manage rigorous compliance requirements with traceable evidence and expert oversight.', href: '/nuclear-compliance', crop: 'nuclear', node: '6570', frame: { width: 191.49, height: 201.85, left: -91.42, top: 0 }, alt: 'Blue dithered nuclear power station' },
   { label: 'Oil & Gas', title: 'Built for High Stakes', description: 'Coordinate regulatory requirements across complex assets, operations, and safety-critical environments.', href: '/oil-gas-compliance', crop: 'oil', node: '6545', frame: { width: 191.49, height: 201.85, left: -91.57, top: -92.44 }, alt: 'Blue dithered offshore oil platform' },
 ] as const
 

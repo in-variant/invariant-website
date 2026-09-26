@@ -49,7 +49,7 @@ const ORG_SCHEMA = {
   logo: `${SITE}${SITE_METADATA.image}`,
   image: `${SITE}${SITE_METADATA.image}`,
   description:
-    'Autonomous agents for mission-critical compliance across aerospace, nuclear, data centers, and oil and gas.',
+    'Autonomous agents for mission-critical compliance across aerospace, energy, data centers, and oil and gas.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: { '@type': 'Organization', name: 'Entrepreneurs First', url: 'https://www.joinef.com' },

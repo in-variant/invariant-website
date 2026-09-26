@@ -459,7 +459,7 @@ const footerColumns = [
     ['Orchestrate', '/product'], ['Approve', '/product'], ['Security', '#data-safety'],
   ] },
   { title: 'Use cases', links: [
-    ['Space', '/space-compliance'], ['Nuclear', '/nuclear-compliance'],
+    ['Space', '/space-compliance'], ['Energy', '/nuclear-compliance'],
     ['Data Centers', '/data-center-compliance'], ['Oil & Gas', '/oil-gas-compliance'],
   ] },
   { title: 'Company', links: [

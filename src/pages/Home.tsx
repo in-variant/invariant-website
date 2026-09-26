@@ -6,12 +6,12 @@ const HOME_FAQS = [
   {
     question: 'What does Invariant do?',
     answer:
-      'Invariant builds autonomous AI agents that draft, file, and monitor mission-critical compliance across aerospace, nuclear, data centers, and oil and gas. The agents handle the documentation grind end to end with explicit citation back to source rules; a small team of forward-deployed domain engineers handles deployment and high-stakes review.',
+      'Invariant builds autonomous AI agents that draft, file, and monitor mission-critical compliance across aerospace, energy, data centers, and oil and gas. The agents handle the documentation grind end to end with explicit citation back to source rules; a small team of forward-deployed domain engineers handles deployment and high-stakes review.',
   },
   {
     question: 'Which industries does Invariant serve?',
     answer:
-      'Space, aerospace, nuclear, data centers, and oil and gas. The applicable requirements depend on the project, jurisdiction, equipment and operating plan.',
+      'Space, aerospace, energy, data centers, and oil and gas. The applicable requirements depend on the project, jurisdiction, equipment and operating plan.',
   },
   {
     question: 'How is Invariant different from a compliance consultancy?',
@@ -21,7 +21,7 @@ const HOME_FAQS = [
   {
     question: 'Who is Invariant for?',
     answer:
-      'Satellite manufacturers, launch vehicle operators, Earth-observation companies, in-orbit services, advanced nuclear reactor developers (SMRs and microreactors), aerospace OEMs, unmanned aviation systems, data-center developers and operators, and oil-and-gas teams.',
+      'Satellite manufacturers, launch vehicle operators, Earth-observation companies, in-orbit services, energy developers and operators including SMR and microreactor teams, aerospace OEMs, unmanned aviation systems, data-center developers and operators, and oil-and-gas teams.',
   },
   {
     question: 'Does Invariant have proof of capability?',
