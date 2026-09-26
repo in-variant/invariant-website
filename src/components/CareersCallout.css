@@ -1,0 +1,17 @@
+.careers-callout { display: flex; justify-content: space-between; align-items: center; gap: 36px; padding: 40px 0; margin: 0; border-bottom: 1px solid #022fdb25; font-family: 'Geist', sans-serif; color: #303030; }
+.careers-callout-copy p { display: flex; align-items: center; gap: 9px; margin: 0 0 10px; font: 10px/1.5 'JetBrains Mono', monospace; text-transform: uppercase; color: #fb4d03; }
+.careers-callout-copy p > span { width: 5px; height: 5px; background: currentColor; }
+.careers-callout-copy h2 { margin: 0; font: 500 clamp(25px, 2.1vw, 34px)/1.1 'DIN', 'D-DIN', sans-serif; letter-spacing: -.02em; }
+.careers-callout-role { display: flex; align-items: center; justify-content: space-between; gap: 40px; color: inherit; text-decoration: none; padding: 12px 0 12px 24px; border-left: 1px solid #022fdb25; min-width: min(360px, 100%); }
+.careers-callout-role > span:first-child { display: grid; gap: 8px; font: 500 19px/1.25 'DIN', 'D-DIN', sans-serif; }
+.careers-callout-role small { font: 10px/1.5 'JetBrains Mono', monospace; color: #72757c; }
+.careers-callout-arrow { font: 26px/1 'Geist', sans-serif; color: #022fdb; transition: transform 240ms ease, color 240ms ease; }
+.careers-callout-role:hover .careers-callout-arrow { transform: translate(3px, -3px); color: #fb4d03; }
+.careers-callout-role:focus-visible { outline: 2px solid #fb4d03; outline-offset: 7px; }
+.site-footer .careers-callout { border-top: 0; }
+.figma-ending .careers-callout { border-top: 1px solid #022fdb25; }
+@media (max-width: 600px) {
+  .careers-callout { flex-direction: column; align-items: stretch; gap: 22px; padding: 32px 0; }
+  .careers-callout-role { padding: 0; border-left: 0; gap: 16px; min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .careers-callout-arrow { transition: none; } }

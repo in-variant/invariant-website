@@ -15,6 +15,7 @@ const CORE = [
   { loc: '/', changefreq: 'weekly', priority: '1.0' },
   { loc: '/product', changefreq: 'monthly', priority: '0.8' },
   { loc: '/contact', changefreq: 'monthly', priority: '0.7' },
+  { loc: '/careers', changefreq: 'weekly', priority: '0.7' },
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', changefreq: 'weekly', priority: '0.8' },
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },

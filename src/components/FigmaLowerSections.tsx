@@ -4,6 +4,7 @@ import BlockReveal from './BlockReveal'
 import FigmaType from './FigmaType'
 import FigmaScrambleLabel from './FigmaScrambleLabel'
 import DitherMorph from './DitherMorph'
+import CareersCallout from './CareersCallout'
 import { scrollFigmaTo } from './FigmaSmoothScroll'
 import './FigmaLowerSections.css'
 
@@ -462,7 +463,7 @@ const footerColumns = [
     ['Data Centers', '/data-center-compliance'], ['Oil & Gas', '/oil-gas-compliance'],
   ] },
   { title: 'Company', links: [
-    ['Why we exist', '/charter'], ['About', '/about'], ['Careers', 'mailto:founders@invariant-ai.com?subject=Careers%20at%20Invariant'],
+    ['Why we exist', '/charter'], ['About', '/about'], ['Careers', '/careers'],
     ['Resources', '/resources'], ['Contact', '/contact'],
   ] },
   { title: 'Legal', links: [
@@ -496,6 +497,7 @@ function MissionFooter() {
             </div>
           </div>
         </section>
+        <CareersCallout />
         <footer className="figma-site-footer">
           <img className="figma-footer-topline" src={asset('imgGroup260.svg')} alt="" aria-hidden="true" />
           <div className="figma-footer-content">

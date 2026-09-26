@@ -9,6 +9,7 @@ import Blog from './pages/Blog'
 // Drops main bundle (Core Web Vitals signal) and keeps the SEO-critical
 // home + blog index fast.
 const Contact = lazy(() => import('./pages/Contact'))
+const Careers = lazy(() => import('./pages/Careers'))
 const Charter = lazy(() => import('./pages/Charter'))
 const Product = lazy(() => import('./pages/Product'))
 const Pricing = lazy(() => import('./pages/Pricing'))
@@ -100,6 +101,7 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/charter" element={<Charter />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/blog" element={<Blog />} />

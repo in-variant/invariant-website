@@ -6,6 +6,8 @@ import Footer from './components/Footer'
 import SiteCrosshair from './components/SiteCrosshair'
 import IndustryArticle from './pages/blog/IndustryArticle'
 import IndustryHub from './pages/IndustryHub'
+import Careers from './pages/Careers'
+import { FOUNDING_ENGINEER } from './data/foundingEngineer'
 import { INDUSTRY_ARTICLES, articleImage, industryPath } from './data/industryArticles'
 import { INDUSTRY_HUBS } from './data/industryHubs'
 import { SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, faqSchema } from './components/Seo'
@@ -17,6 +19,12 @@ function body(path: string, page: ReactNode) {
 
 export function industryPages() {
   return [
+    {
+      slug: 'careers', title: FOUNDING_ENGINEER.pageTitle, description: FOUNDING_ENGINEER.description, canonical: `${SITE_URL}/careers`, ogType: 'website',
+      source: 'src/pages/Careers.tsx',
+      bodyHtml: body('/careers', <Careers renderSeo={false} />),
+      jsonLd: [ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Careers', url: `${SITE_URL}/careers` }])],
+    },
     ...INDUSTRY_ARTICLES.map(article => {
       const canonical = `${SITE_URL}/blog/${article.slug}`
       const ogImage = `${SITE_URL}${articleImage(article.slug)}`
