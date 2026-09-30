@@ -4,7 +4,7 @@ import FigmaScrambleLabel from './FigmaScrambleLabel'
 import CareersCallout from './CareersCallout'
 
 const columns = [
-  { title: 'Platform', links: [['Overview', '/product'], ['Space', '/space-compliance'], ['Nuclear', '/nuclear-compliance'], ['Data Centers', '/data-center-compliance'], ['Oil & Gas', '/oil-gas-compliance'], ['Security', '/trust'], ['Talk to an expert', '/contact']] },
+  { title: 'Platform', links: [['Overview', '/product'], ['Space', '/space-compliance'], ['Energy', '/nuclear-compliance'], ['Data Centers', '/data-center-compliance'], ['Oil & Gas', '/oil-gas-compliance'], ['Security', '/trust'], ['Talk to an expert', '/contact']] },
   { title: 'Resources', links: [['All resources', '/resources'], ['Field notes', '/blog'], ['Research', '/research'], ['Regulatory guides', '/compliance'], ['Tools & calculators', '/calculators']] },
   { title: 'Invariant', links: [['Why we exist', '/charter'], ['Our team', '/about'], ['Get in touch', '/contact'], ['Careers', '/careers']] },
 ]

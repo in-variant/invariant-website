@@ -4,7 +4,7 @@ import './CareersCallout.css'
 
 export default function CareersCallout() {
   const { pathname } = useLocation()
-  if (pathname === '/careers') return null
+  if (['/careers', '/charter'].includes(pathname.replace(/\/+$/, ''))) return null
 
   return <aside className="careers-callout" aria-label="Careers at Invariant">
     <div className="careers-callout-copy">

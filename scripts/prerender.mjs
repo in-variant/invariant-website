@@ -422,7 +422,7 @@ async function main() {
       slug: 'charter',
       title: 'Why We Exist | Invariant',
       description:
-        'The physical economy needs compliance that keeps pace with engineering. Why we are building Invariant, from the founders.',
+        'Why we are building Invariant: autonomous agents for compliance across energy, data centers, space, and the wider physical economy. A letter from our founders.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {

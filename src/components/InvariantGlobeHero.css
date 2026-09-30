@@ -1,5 +1,6 @@
 .invariant-globe-hero {
   --hero-blue: #1939a6;
+  --hero-globe-blue: #163392;
   position: relative;
   min-height: 100svh;
   padding: 96px 8px 8px 0;
@@ -17,7 +18,6 @@
   position: relative;
   isolation: isolate;
   overflow: clip;
-  border-bottom-right-radius: 20px;
   display: grid;
   grid-template-rows: 1fr auto;
   min-width: 0;
@@ -34,7 +34,10 @@
   height: min(56%, 460px);
   background: url('/media/brand/hero-corner-grain.webp') 85% 68% / 135% auto no-repeat;
   opacity: .15;
-  mask-image: linear-gradient(145deg, transparent 25%, rgb(0 0 0 / .15) 48%, #000 100%);
+  mask-image:
+    linear-gradient(145deg, transparent 25%, rgb(0 0 0 / .15) 48%, #000 100%),
+    linear-gradient(to bottom, #000 55%, rgb(0 0 0 / .7) 72%, rgb(0 0 0 / .2) 88%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .globe-hero-copy { container-type: inline-size; min-width: 0; align-self: center; display: flex; flex-direction: column; align-items: flex-start; }
@@ -63,7 +66,7 @@
 .globe-hero-backer-boundless { width: 90px; }
 .globe-hero-backer-npu { width: 44px; }
 
-.globe-hero-visual { position: relative; min-width: 0; overflow: clip; border-radius: 20px 0 0 20px; background: var(--hero-blue); }
+.globe-hero-visual { position: relative; min-width: 0; overflow: clip; border-radius: 8px; background: var(--hero-globe-blue); }
 .globe-hero-canvas { position: absolute; display: block; width: max(1117px, 73vw); height: max(903px, 59vw); top: 72%; left: 70%; transform: translate(-50%, -50%); max-width: none; cursor: grab; touch-action: none; }
 .globe-hero-canvas[data-dragging='true'] { cursor: grabbing; }
 /* The canvas extends beyond its crop; its focus outline cuts through the art. */
@@ -83,7 +86,7 @@
   .globe-hero-layout { grid-template-columns: 1fr; min-height: calc(100svh - 86px); }
   .globe-hero-content { display: contents; }
   .globe-hero-content::before { display: none; }
-  .globe-hero-copy { position: relative; isolation: isolate; overflow: clip; border-bottom-right-radius: 16px; order: 1; padding: 44px 20px 32px; }
+  .globe-hero-copy { position: relative; isolation: isolate; overflow: clip; order: 1; padding: 44px 20px 32px; }
   .globe-hero-copy::before {
     content: '';
     position: absolute;
@@ -95,11 +98,14 @@
     height: 78%;
     background: url('/media/brand/hero-corner-grain.webp') 88% 60% / 160% auto no-repeat;
     opacity: .12;
-    mask-image: linear-gradient(145deg, transparent 24%, rgb(0 0 0 / .1) 48%, #000 100%);
+    mask-image:
+      linear-gradient(145deg, transparent 24%, rgb(0 0 0 / .1) 48%, #000 100%),
+      linear-gradient(to bottom, #000 55%, rgb(0 0 0 / .7) 72%, rgb(0 0 0 / .2) 88%, transparent 100%);
+    mask-composite: intersect;
   }
   .globe-hero-backers { order: 3; margin-top: 0; padding: 28px 20px 24px; }
   .globe-hero-backers-logos { margin-top: 15px; }
-  .globe-hero-visual { order: 2; height: max(380px, 46svh); margin-inline: 8px; border-radius: 16px; }
+  .globe-hero-visual { order: 2; height: max(380px, 46svh); margin-inline: 8px; }
   .globe-hero-canvas { width: 1117px; height: 903px; top: 92%; left: 77%; }
 }
 

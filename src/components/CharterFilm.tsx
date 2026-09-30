@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import './CharterFilm.css'
 
-const FILM_SOURCE = '/media/invariant-teaser.mp4'
-const FILM_POSTER = '/media/invariant-teaser-poster.jpg'
+const FILM_SOURCE = '/media/invariant-film-sep20.mp4'
+const FILM_POSTER = '/media/invariant-film-sep20-poster.jpg'
 
 export default function CharterFilm() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -44,14 +44,14 @@ export default function CharterFilm() {
         type="button"
         className="charter-film__play"
         onClick={playFilm}
-        aria-label="Watch the Invariant film, 15 seconds, with sound"
+        aria-label="Watch the Invariant film, 1 minute 8 seconds, with sound"
       >
         <span className="charter-film__play-icon" aria-hidden="true">
           <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><path d="M1 1 11 7 1 13V1Z" fill="currentColor" /></svg>
         </span>
         <span className="charter-film__play-copy">
           <span className="charter-film__play-label">Watch the film</span>
-          <span className="charter-film__play-meta">00:15 · Sound on</span>
+          <span className="charter-film__play-meta">01:08 · Sound on</span>
         </span>
       </button>}
       <span className="charter-film__corners" aria-hidden="true"><i /><i /><i /><i /></span>
