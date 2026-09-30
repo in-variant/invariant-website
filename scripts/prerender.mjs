@@ -422,7 +422,7 @@ async function main() {
       slug: 'charter',
       title: 'Why We Exist | Invariant',
       description:
-        'Why we are building Invariant: a clear path from engineering breakthroughs to approved missions. A letter from Parthiv and Pranav.',
+        'The physical economy needs compliance that keeps pace with engineering. Why we are building Invariant, from the founders.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {

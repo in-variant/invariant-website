@@ -31,7 +31,9 @@ export default function DotGlobe({ className, landColor = '#fff', coastColor = '
     const preference = matchMedia('(prefers-reduced-motion: reduce)')
     const events = new AbortController()
     let width = 1, height = 1, rows = 1, ratio = 1, raf = 0, last = 0
-    let longitude = 150, tilt = 55, velocity = preference.matches ? 0 : 240
+    // Open at the equator with north upright and the Atlantic continents in view.
+    // Start at the normal rotation speed so the loader cannot hide this framing.
+    let longitude = -25, tilt = 0, velocity = 0
     let paused = false, visible = true, disposed = false
     let pointer: { id: number; x: number; y: number; at: number; dx: number } | null = null
     let response = new Float32Array(0), error = new Float32Array(0)
