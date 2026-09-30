@@ -6,7 +6,7 @@ const HOME_FAQS = [
   {
     question: 'What does Invariant do?',
     answer:
-      'Invariant builds autonomous AI agents that draft, file, and monitor mission-critical compliance across aerospace, energy, data centers, and oil and gas. The agents handle the documentation grind end to end with explicit citation back to source rules; a small team of forward-deployed domain engineers handles deployment and high-stakes review.',
+      'Invariant builds autonomous agents for the physical economy. The agents connect technical documents to regulatory requirements, draft filings with source citations, and monitor changes across aerospace, energy, data centers, and oil and gas. Forward-deployed engineers handle deployment and review.',
   },
   {
     question: 'Which industries does Invariant serve?',

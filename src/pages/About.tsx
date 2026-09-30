@@ -21,13 +21,13 @@ const advisors = [
 export default function About() {
   return (
     <article className="about-page">
-      <Seo title="About Invariant" description="Why Parthiv and Pranav are building autonomous agents for mission-critical compliance." canonical={`${SITE_URL}/about`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'About', url: `${SITE_URL}/about` }])]} />
+      <Seo title="About Invariant" description="Why Parthiv and Pranav are building autonomous agents for the physical economy, starting with the regulatory work behind space, energy, and infrastructure." canonical={`${SITE_URL}/about`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'About', url: `${SITE_URL}/about` }])]} />
       <div className="about-container">
         <header className="about-hero">
           <div>
             <p className="about-eyebrow">About Invariant</p>
             <h1>Engineering deserves<br />a clear path forward.</h1>
-            <p className="about-lead">We build autonomous agents for mission-critical compliance. So the work of approval can advance alongside the engineering.</p>
+            <p className="about-lead">We build autonomous agents for the physical economy, starting with the regulatory work that determines what gets built and when.</p>
             <Link className="about-text-link" to="/charter"><FigmaScrambleLabel>Read our charter</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link>
           </div>
           <figure className="about-mission-art" aria-label="A blue dithered satellite in orbit">

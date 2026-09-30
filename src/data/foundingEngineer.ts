@@ -2,7 +2,7 @@ export const FOUNDING_ENGINEER = {
   title: 'Founding Engineer',
   email: 'jobs@invariant-ai.com',
   pageTitle: 'Careers at Invariant | Founding Engineer',
-  description: 'Join Invariant as a founding engineer in San Francisco. Build production AI agents for mission-critical compliance. $140K base, 1.5% equity, relocation covered.',
+  description: 'Join Invariant as a founding engineer in San Francisco. Build production AI agents for the physical economy. $140K base, 1.5% equity, relocation covered.',
   responsibilities: [
     'Design and own the agent architecture that reads a regulatory corpus and drafts filing sections with citations that resolve back to the rule text.',
     'Set the eval practice for the team: behavioural evals written before the feature, and used to decide whether a change ships.',

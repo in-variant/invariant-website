@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BlockReveal from './BlockReveal'
+import BrandHeading from './BrandHeading'
 import FigmaLowerSections from './FigmaLowerSections'
 import FigmaType from './FigmaType'
-import FigmaScrambleLabel from './FigmaScrambleLabel'
 import DitherMorph from './DitherMorph'
 import DitherTint from './DitherTint'
 import useDitherHover from './useDitherHover'
 import FigmaSmoothScroll, { scrollFigmaTo } from './FigmaSmoothScroll'
 import { smallViewportHeight } from './screenHeight'
-import Nav from './Nav'
-import HeroEngineering from './HeroEngineering'
+import InvariantGlobeHero from './InvariantGlobeHero'
 import '../styles/figma-fonts.css'
 import './FigmaHomepage.css'
 import './FigmaMicroInteractions.css'
@@ -22,53 +21,13 @@ function Corners() {
   return <span className="figma-corners" aria-hidden="true">{['tl', 'tr', 'bl', 'br'].map(corner => <img key={corner} className={corner} src={asset('imgGroup127.svg')} alt="" />)}</span>
 }
 
-function Hero() {
-  return <section className="figma-hero" aria-labelledby="figma-hero-title">
-    <img className="figma-hero-image" src="/media/hero-enhanced-1920.webp?v=91f312f7" srcSet="/media/hero-enhanced-1920.webp?v=91f312f7 1920w, /media/hero-enhanced-2560.webp?v=91f312f7 2560w, /media/hero-enhanced-3840.webp?v=91f312f7 3840w" sizes="max(100vw, 178svh)" width="3840" height="2160" fetchPriority="high" alt="A spacecraft ascending above the blue and orange horizon of Earth" />
-    <HeroEngineering />
-    <Nav hero />
-    <div className="figma-hero-copy">
-      <p className="figma-label">Built for what’s next</p>
-      <h1 id="figma-hero-title"><FigmaType node="6386">Build Bold.<br />Get Approved.</FigmaType></h1>
-      <p className="figma-hero-description">Autonomous agents for<br />mission-critical compliance.</p>
-      <div className="figma-actions">
-        <Link className="figma-button" to="/contact"><FigmaScrambleLabel>Start your mission</FigmaScrambleLabel></Link>
-        <a className="figma-button figma-button-glass" href="#platform"><FigmaScrambleLabel>Explore Invariant</FigmaScrambleLabel><span className="figma-button-corners" aria-hidden="true" /></a>
-      </div>
-    </div>
-    <div className="figma-backers">
-      <p className="figma-label">Backed by</p>
-      <div className="figma-backers-logos" role="list" aria-label="Our backers">
-        <div className="figma-backer figma-backer-ef" role="listitem">
-          <img className="figma-backer-logo" src="/logos/backers/entrepreneurs-first.svg" alt="Entrepreneur First" width="174" height="12" />
-        </div>
-        <div className="figma-backer figma-backer-transpose" role="listitem">
-          <img className="figma-backer-logo" src="/logos/backers/transpose-platform.svg" alt="Transpose Platform" width="249" height="32" />
-        </div>
-        <div className="figma-backer figma-backer-boundless" role="listitem">
-          <svg className="figma-backer-logo figma-backer-provided" viewBox="190 268 633 136" role="img" aria-label="Boundless Ventures">
-            <defs>
-              <filter id="backer-boundless-invert" colorInterpolationFilters="sRGB"><feComponentTransfer><feFuncR type="linear" slope="-1" intercept="1" /><feFuncG type="linear" slope="-1" intercept="1" /><feFuncB type="linear" slope="-1" intercept="1" /></feComponentTransfer></filter>
-              <mask id="backer-boundless-ink" maskUnits="userSpaceOnUse" x="190" y="268" width="633" height="136" style={{ maskType: 'luminance' }}><image href="/logos/backers/boundless-provided.png" width="1012" height="675" filter="url(#backer-boundless-invert)" /></mask>
-            </defs>
-            <path d="M190 268h633v136H190z" fill="white" mask="url(#backer-boundless-ink)" />
-          </svg>
-        </div>
-        <div className="figma-backer figma-backer-npu" role="listitem">
-          <img className="figma-backer-logo figma-backer-provided" src="/logos/backers/npu-provided.svg" alt="NPU Ventures" width="168" height="58" />
-        </div>
-      </div>
-    </div>
-  </section>
-}
-
 function Problem() {
   return <div className="figma-problem-track">
     <section className="figma-problem" data-reveal-stage aria-labelledby="figma-problem-title">
     <div className="figma-problem-copy" data-reveal-stage-content>
       <p className="figma-label">The problem</p>
       <BlockReveal as="h2" id="figma-problem-title" className="figma-heading" gradient={revealGradient} mode="scroll" scrollTrack=".figma-problem-track">
-        <FigmaType node="6424" live>Mission-critical programs stall across fragmented requirements, disconnected evidence, regulatory delays, and approval gaps. For work in space, energy, data centers, and oil and gas, there's no unified path forward.</FigmaType>
+        <FigmaType node="6424" live>Satellites, power plants, and data centers can be ready to build while approvals are still unresolved. Across the physical economy, fragmented requirements and scattered evidence leave teams piecing together the path forward.</FigmaType>
       </BlockReveal>
     </div>
     </section>
@@ -168,8 +127,8 @@ function Solution() {
   return <section ref={sectionRef} className="figma-solution figma-container" id="platform" aria-labelledby="figma-solution-title">
     <div className="figma-solution-stage" ref={stageRef}>
     <div className="figma-section-intro">
-      <div><p className="figma-label">The solution</p><BlockReveal as="h2" id="figma-solution-title" className="figma-heading" gradient={revealGradient}><FigmaType node="6471">The regulatory execution layer<br className="figma-desktop-break" /> for mission-critical work.</FigmaType></BlockReveal></div>
-      <p className="figma-body">Invariant connects mission context, requirements, evidence, documentation, and expert oversight into one continuous path from mission to approval.</p>
+      <div><p className="figma-label">The solution</p><BlockReveal as="h2" id="figma-solution-title" className="figma-heading" gradient={revealGradient} lineStagger={.16}><BrandHeading names={['solution-requirements', 'solution-action']} /></BlockReveal></div>
+      <p className="figma-body">Invariant connects your project data, regulatory requirements, evidence, and filings in one workflow, with expert oversight from the first determination through approval.</p>
     </div>
     <div className="figma-platform" data-active={active}>
       <div className="figma-platform-grid figma-platform-grid-left" aria-hidden="true" />
@@ -195,7 +154,7 @@ function Solution() {
 // Each entry carries its own heading outline and its own window onto the shared
 // artwork sheet, so the cards can be reordered without the art drifting.
 const audiences = [
-  { label: 'Space', title: 'Mission-Critical Operations', description: 'Navigate complex regulatory requirements across missions, systems, and launch operations.', href: '/space-compliance', crop: 'space', node: '6562', frame: { width: 191.49, height: 201.85, left: 0, top: 0 }, alt: 'Blue dithered satellite in orbit' },
+  { label: 'Space', title: 'From Ground to Orbit', description: 'Navigate complex regulatory requirements across missions, systems, and launch operations.', href: '/space-compliance', crop: 'space', node: '6562', frame: { width: 191.49, height: 201.85, left: 0, top: 0 }, alt: 'Blue dithered satellite in orbit' },
   { label: 'Data Centers', title: 'Always-On Infrastructure', description: 'Keep critical infrastructure compliant across systems, operations, and evolving regulations.', href: '/data-center-compliance', crop: 'data', node: '6538', frame: { width: 191.49, height: 201.85, left: -5.24, top: -92.44 }, alt: 'Blue dithered data center server racks' },
   { label: 'Energy', title: 'Safety by Design', description: 'Manage rigorous compliance requirements with traceable evidence and expert oversight.', href: '/nuclear-compliance', crop: 'nuclear', node: '6570', frame: { width: 191.49, height: 201.85, left: -91.42, top: 0 }, alt: 'Blue dithered nuclear power station' },
   { label: 'Oil & Gas', title: 'Built for High Stakes', description: 'Coordinate regulatory requirements across complex assets, operations, and safety-critical environments.', href: '/oil-gas-compliance', crop: 'oil', node: '6545', frame: { width: 191.49, height: 201.85, left: -91.57, top: -92.44 }, alt: 'Blue dithered offshore oil platform' },
@@ -206,7 +165,7 @@ function AudienceCard({ audience }: { audience: typeof audiences[number] }) {
   return <Link to={audience.href} className={`figma-audience-card figma-audience-${audience.crop}`} {...hover.bind}>
     <Corners />
     <p className="figma-label">{audience.label}</p>
-    <h3 className="figma-card-heading"><FigmaType node={audience.node}>{audience.title}</FigmaType></h3>
+    <h3 className="figma-card-heading"><FigmaType node={audience.node} live={audience.crop === 'space'}>{audience.title}</FigmaType></h3>
     <p className="figma-body">{audience.description}</p>
     <div className="figma-audience-art dither-tint-host">
       <img src={asset('imgAudiencevisualsUpdate2.png')} alt={audience.alt} loading="lazy" />
@@ -220,7 +179,7 @@ function Audience() {
     <div className="figma-audience-intro">
       <p className="figma-label">The audience</p>
       <BlockReveal as="h2" id="figma-audience-title" className="figma-heading" gradient={revealGradient}><FigmaType node="6532">Built for the work<br />that cannot afford to fail.</FigmaType></BlockReveal>
-      <p className="figma-body">Invariant serves mission-critical teams where compliance, reliability, evidence, and expert oversight are essential to every operation.</p>
+      <p className="figma-body">For the teams building and operating the physical economy, from satellites and power plants to data centers and industrial infrastructure.</p>
     </div>
     <div className="figma-audience-grid">
       {audiences.map(audience => <AudienceCard key={audience.label} audience={audience} />)}
@@ -232,7 +191,7 @@ export default function FigmaHomepage() {
   return <div className="figma-home" id="top">
     <FigmaSmoothScroll />
     <a className="figma-skip-link" href="#platform">Skip to content</a>
-    <Hero />
+    <InvariantGlobeHero />
     <Problem />
     <Solution />
     <Audience />

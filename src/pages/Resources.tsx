@@ -27,7 +27,7 @@ export default function Resources() {
   return (
     <div className="resources-page">
       <Seo
-        title="Resources | Research, guides, and tools for mission-critical compliance"
+        title="Resources | Compliance for the Physical Economy"
         description="Research, regulatory guides, and planning tools for data centers, oil and gas, space, and nuclear programs. Explore the work behind the path to approval."
         canonical={`${SITE_URL}/resources`}
         jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'Resources', url: `${SITE_URL}/resources` }])]}

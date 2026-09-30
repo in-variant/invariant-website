@@ -49,7 +49,7 @@ const ORG_SCHEMA = {
   logo: `${SITE}${SITE_METADATA.image}`,
   image: `${SITE}${SITE_METADATA.image}`,
   description:
-    'Autonomous agents for mission-critical compliance across aerospace, energy, data centers, and oil and gas.',
+    'Autonomous agents for the physical economy, handling regulatory work across aerospace, energy, data centers, and oil and gas.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: { '@type': 'Organization', name: 'Entrepreneurs First', url: 'https://www.joinef.com' },
@@ -353,7 +353,7 @@ async function main() {
       slug: 'product',
       title: 'Platform | Invariant',
       description:
-        'See Invariant draft, cite, and review regulatory work against your project corpus. Autonomous agents for mission-critical compliance.',
+        'See how Invariant connects project documents, regulatory requirements, and filings. Autonomous agents for the physical economy.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
@@ -372,14 +372,14 @@ async function main() {
     },
     {
       slug: 'blog',
-      title: 'Articles | Research on mission-critical compliance',
+      title: 'Articles | Regulation and the Physical Economy',
       description:
         'Practical research on data-center, oil and gas, space, and nuclear compliance. Explore siting, permitting, operating records, and the evidence behind approvals.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
       slug: 'resources',
-      title: 'Resources | Research, guides, and tools for mission-critical compliance',
+      title: 'Resources | Compliance for the Physical Economy',
       description:
         'Research, regulatory guides, and planning tools for data centers, oil and gas, space, and nuclear programs. Explore the work behind the path to approval.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
@@ -387,7 +387,7 @@ async function main() {
     {
       slug: 'contact',
       title: 'Talk to an expert | Invariant',
-      description: 'Tell us about your mission and the regulatory work ahead. Talk with the Invariant team about autonomous agents for mission-critical compliance.',
+      description: 'Tell us what you are building and the approvals ahead. Talk with Invariant about autonomous agents for the physical economy.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {
@@ -413,9 +413,9 @@ async function main() {
     },
     {
       slug: 'about',
-      title: 'About Invariant: Autonomous AI agents for compliance in mission-critical industries',
+      title: 'About Invariant',
       description:
-        'Invariant builds autonomous AI agents for regulatory and qualification compliance in space, aerospace, and nuclear. Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures. Founded 2025.',
+        'Why Parthiv and Pranav are building autonomous agents for the physical economy, starting with the regulatory work behind space, energy, and infrastructure.',
       ogImage: `${SITE}${SITE_METADATA.image}`,
     },
     {

@@ -14,7 +14,7 @@ export default function Footer() {
     <div className="site-footer-inner">
       <CareersCallout />
       <div className="site-footer-grid">
-        <div className="site-footer-brand"><SiteBrand /><p>Autonomous agents for<br />mission-critical compliance.</p><a href="mailto:founders@invariant-ai.com" className="site-footer-email">founders@invariant-ai.com ↗</a></div>
+        <div className="site-footer-brand"><SiteBrand /><p>Autonomous agents for<br />the physical economy.</p><a href="mailto:founders@invariant-ai.com" className="site-footer-email">founders@invariant-ai.com ↗</a></div>
         {columns.map(column => <nav key={column.title} aria-label={column.title}><h2>{column.title}</h2><ul>{column.links.map(([label, href]) => <li key={href}>{href.startsWith('mailto:') ? <a href={href}>{label}</a> : <Link to={href}><FigmaScrambleLabel>{label}</FigmaScrambleLabel></Link>}</li>)}</ul></nav>)}
       </div>
       <div className="site-footer-bottom"><p>© {new Date().getFullYear()} Invariant. All rights reserved.</p><div><Link to="/trust">Security &amp; trust</Link><a href="mailto:founders@invariant-ai.com?subject=Privacy%20policy%20request">Privacy</a></div></div>

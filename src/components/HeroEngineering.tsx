@@ -28,7 +28,7 @@ const contour = (progress: number) => INITIAL.map((point, i) => {
 }).join(' ') + 'Z'
 type Phase = 'off' | 'forming' | 'revealing' | 'complete'
 
-export default function HeroEngineering() {
+export default function HeroEngineering({ onComplete }: { onComplete?: () => void }) {
   const rootRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
   const markRef = useRef<SVGGElement>(null)
@@ -37,9 +37,9 @@ export default function HeroEngineering() {
 
   useLayoutEffect(() => {
     const root = rootRef.current, path = pathRef.current, mark = markRef.current
-    const hero = root?.closest<HTMLElement>('.figma-hero')
+    const hero = root?.closest<HTMLElement>('section')
     const photo = hero?.querySelector<HTMLImageElement>('.figma-hero-image')
-    if (!root || !path || !mark || !hero || !photo) return
+    if (!root || !path || !mark || !hero) return
     const preference = matchMedia('(prefers-reduced-motion: reduce)')
     const events = new AbortController()
     // Reloading a scrolled homepage otherwise restores that scroll position before React
@@ -55,6 +55,7 @@ export default function HeroEngineering() {
       cancelAnimationFrame(frame)
       clearTimeout(deadline)
       update('complete')
+      onComplete?.()
     }
     const render = (now: number) => {
       frame = 0
@@ -83,10 +84,9 @@ export default function HeroEngineering() {
     if (show) {
       update('forming')
       frame = requestAnimationFrame(render)
-      Promise.allSettled([photo.decode(), document.fonts.load('500 24px "DIN"'), document.fonts.load('400 16px "Geist"')]).then(results => {
+      Promise.allSettled([photo?.decode(), document.fonts.load('500 24px "DIN"'), document.fonts.load('400 16px "Geist"')]).then(() => {
         if (disposed || finished) return
-        if (results[0].status === 'rejected') finish()
-        else ready = true
+        ready = true
       })
       deadline = window.setTimeout(finish, 2200)
     } else finish()
@@ -97,7 +97,7 @@ export default function HeroEngineering() {
     document.addEventListener('visibilitychange', () => { if (document.hidden) finish() }, { signal: events.signal })
     preference.addEventListener('change', finish, { signal: events.signal })
     return () => { disposed = true; cancelAnimationFrame(frame); clearTimeout(deadline); events.abort(); history.scrollRestoration = restoration }
-  }, [])
+  }, [onComplete])
 
   return <div className="hero-engineering" ref={rootRef} data-phase={phase} aria-hidden="true">
     <div className="hero-opening">

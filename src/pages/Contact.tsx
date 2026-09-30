@@ -52,7 +52,7 @@ export default function Contact() {
 
   return (
     <section className="contact-page" aria-labelledby="contact-title">
-      <Seo title="Talk to an expert | Invariant" description="Tell us about your mission and the regulatory work ahead. Talk with the Invariant team about autonomous agents for mission-critical compliance." canonical={`${SITE_URL}/contact`} />
+      <Seo title="Talk to an expert | Invariant" description="Tell us what you are building and the approvals ahead. Talk with Invariant about autonomous agents for the physical economy." canonical={`${SITE_URL}/contact`} />
       <div className="contact-layout">
         <div className="contact-intro">
           <p className="contact-eyebrow">Start a conversation</p>

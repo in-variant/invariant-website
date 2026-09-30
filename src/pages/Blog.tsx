@@ -18,7 +18,7 @@ export default function Blog() {
   return (
     <div className="resources-page resource-blog-page">
       <Seo
-        title="Articles | Research on mission-critical compliance"
+        title="Articles | Regulation and the Physical Economy"
         description="Practical research on data-center, oil and gas, space, and nuclear compliance. Explore siting, permitting, operating records, and the evidence behind approvals."
         canonical={`${SITE_URL}/blog`}
         jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'Resources', url: `${SITE_URL}/resources` }, { name: 'Articles', url: `${SITE_URL}/blog` }])]}
@@ -28,7 +28,7 @@ export default function Blog() {
         <p className="resource-eyebrow">Articles</p>
         <div className="resources-intro-grid">
           <h1>A closer look<br />at the work ahead.</h1>
-          <p>Research from our team on the regulations, engineering decisions, and economics behind mission-critical work.</p>
+          <p>Research from our team on the regulations, engineering decisions, and economics shaping the physical economy.</p>
         </div>
       </header>
       <section className="resource-container resource-blog-library" aria-label="Published articles">

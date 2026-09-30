@@ -32,7 +32,7 @@ export default function Verticals() {
             Who we serve
           </span>
           <h2 className="mt-5 max-w-md font-display text-4xl font-normal leading-[1.05] tracking-[-0.02em] text-cloud md:text-5xl">
-            We work with teams building the hardest things in mission-critical industries.
+            We work with the teams building and operating the physical economy.
           </h2>
           <p className="mt-5 max-w-md font-sans text-lg leading-relaxed text-cloud/60">
             Where compliance isn't optional, and failure isn't abstract.

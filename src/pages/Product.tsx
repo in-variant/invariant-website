@@ -133,5 +133,5 @@ function ProductCTA() {
 }
 
 export default function Product() {
-  return <div className="product-page"><Seo title="Platform | Invariant" description="See Invariant draft, cite, and review regulatory work against your project corpus. Autonomous agents for mission-critical compliance." canonical={`${SITE_URL}/product`} /><ProductDemo /><ProductCapabilities /><ProductSources /><ProductReadings /><ProductCTA /></div>
+  return <div className="product-page"><Seo title="Platform | Invariant" description="See how Invariant connects project documents, regulatory requirements, and filings. Autonomous agents for the physical economy." canonical={`${SITE_URL}/product`} /><ProductDemo /><ProductCapabilities /><ProductSources /><ProductReadings /><ProductCTA /></div>
 }

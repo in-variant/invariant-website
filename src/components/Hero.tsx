@@ -274,8 +274,8 @@ export default function Hero() {
             style={{ fontVariationSettings: '"opsz" 144, "GRAD" 0, "SOFT" 0, "wght" 400' }}
             className="font-display text-cloud text-[clamp(1.5rem,3.9vw,3.1rem)] leading-[1.08] tracking-[-0.02em]"
           >
-            <span className="block">The new standard for</span>
-            <span className="block">mission critical compliance.</span>
+            <span className="block">Autonomous agents for</span>
+            <span className="block">the physical economy.</span>
           </motion.h1>
 
           <motion.p

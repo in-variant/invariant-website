@@ -13,6 +13,12 @@ type BlockRevealProps = Omit<HTMLAttributes<HTMLElement>, 'color'> & {
   /** Delay in seconds after the heading enters the viewport. */
   delay?: number
   once?: boolean
+  /** Hold the entrance until a preceding intro has finished. */
+  enabled?: boolean
+  /** Seconds between successive lines in an entrance reveal. */
+  lineStagger?: number
+  /** A fast, uninterrupted wipe for the hero; other headings keep their timing. */
+  entrance?: 'standard' | 'swift'
   /** Reveal each measured visual line directly from scroll position. */
   mode?: 'enter' | 'scroll'
   /** Optional ancestor track whose sticky stage holds the text during the reveal. */
@@ -43,8 +49,12 @@ const timing = Array.from({ length: 201 }, (_, index) => {
   return 3 * (1 - t) * t * t + t * t * t
 })
 
-function progress(time: number, start: number) {
-  const amount = Math.max(0, Math.min(1, (time - start) / PASS_MS)) * 200
+function progress(time: number, start: number, duration = PASS_MS) {
+  // Lookup-table easing approaches the endpoints but never reaches them
+  // exactly. Snap them so a finished line cannot retain its dithered edge.
+  if (time <= start) return 0
+  if (time >= start + duration) return 1
+  const amount = Math.max(0, Math.min(1, (time - start) / duration)) * 200
   const index = Math.floor(amount)
   return timing[index] + ((timing[Math.min(index + 1, 200)] - timing[index]) * (amount - index))
 }
@@ -64,6 +74,9 @@ export default function BlockReveal({
   singlePass = Boolean(gradient?.length),
   delay = 0,
   once = true,
+  enabled = true,
+  lineStagger = 0,
+  entrance = 'standard',
   mode = 'enter',
   scrollTrack,
   className = '',
@@ -86,6 +99,10 @@ export default function BlockReveal({
     if (!context) return
 
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (!enabled && !preference.matches) {
+      root.dataset.revealState = 'pending'
+      return () => { delete root.dataset.revealState }
+    }
     let frame = 0
     let disposed = false
     let running = false
@@ -106,6 +123,8 @@ export default function BlockReveal({
     }
     const show = () => {
       stop()
+      content.style.removeProperty('clip-path')
+      maskPathRef.current?.setAttribute('d', '')
       root.dataset.revealState = 'done'
     }
 
@@ -118,6 +137,16 @@ export default function BlockReveal({
       canvas.height = Math.max(1, Math.round(height * density))
       context.setTransform(density, 0, 0, density, 0, 0)
       lines = []
+      const brandLines = content.querySelectorAll<HTMLElement>('[data-heading-line]')
+      if (brandLines.length && Array.from(brandLines).every(line => line.querySelector('img')?.complete)) {
+        lines = Array.from(brandLines, line => {
+          const box = line.getBoundingClientRect()
+          const scale = box.width / Number(line.dataset.outlineWidth)
+          const ink = JSON.parse(line.dataset.outlineBounds || '{}') as TextLine
+          return { x: box.left - bounds.left + ink.x * scale, y: box.top - bounds.top + ink.y * scale, width: ink.width * scale, height: ink.height * scale }
+        })
+        return
+      }
       const outlined = content.querySelector<HTMLElement>('[data-figma-lines]')
       const artwork = outlined?.querySelector('img')
       if (outlined && artwork && getComputedStyle(artwork).display !== 'none') {
@@ -151,6 +180,9 @@ export default function BlockReveal({
     }
 
     const paint = (line: TextLine, position: number, paintColor: string, seed: number, colors?: string[]) => {
+      // The feather extends beyond the block. At either endpoint the block is
+      // fully outside the line, so none of those edge pixels should remain.
+      if (position <= -1 || position >= 1) return
       const cell = Math.min(colors?.length ? 2.5 : 5, Math.max(2, line.height / 10))
       const feather = Math.min(38, line.width / 4)
       const left = position * line.width
@@ -325,21 +357,36 @@ export default function BlockReveal({
       root.dataset.revealState = 'pending'
       const foreground = secondaryColor || getComputedStyle(content).color
       const gradientColors = gradientKey ? gradientKey.split('|') : undefined
+      const swift = entrance === 'swift'
+      const revealAt = swift ? 240 : REVEAL_AT
+      const completeAt = swift ? 480 : COMPLETE_AT
       const start = performance.now() + Math.max(0, delay) * 1000
       const tick = (now: number) => {
         if (disposed) return
         const elapsed = now - start
         clear()
-        if (elapsed >= REVEAL_AT) root.dataset.revealState = 'revealed'
+        if (elapsed >= revealAt) root.dataset.revealState = 'revealed'
         if (elapsed >= 0) {
-          const accentPosition = progress(elapsed, 0) - 1 + progress(elapsed, REVEAL_AT + SEPARATION_MS)
-          const foregroundPosition = progress(elapsed, SEPARATION_MS) - 1 + progress(elapsed, REVEAL_AT)
-          lines.forEach(line => {
+          let mask = ''
+          lines.forEach((line, index) => {
+            const lineElapsed = elapsed - index * Math.max(0, lineStagger) * 1000
+            if (lineElapsed < 0) return
+            const accentPosition = swift
+              ? progress(lineElapsed, 0, completeAt) * 2 - 1
+              : progress(lineElapsed, 0) - 1 + progress(lineElapsed, REVEAL_AT + SEPARATION_MS)
+            const foregroundPosition = swift
+              ? accentPosition
+              : progress(lineElapsed, SEPARATION_MS) - 1 + progress(lineElapsed, REVEAL_AT)
             paint(line, accentPosition, color, 0, gradientColors)
             if (!singlePass) paint(line, foregroundPosition, foreground, 91)
+            if (lineElapsed >= revealAt) mask += `M${line.x - 1},${line.y - 1}h${line.width + 2}v${line.height + 2}h${-line.width - 2}Z`
           })
+          if (lineStagger > 0) {
+            content.style.clipPath = `url(#${maskId})`
+            maskPathRef.current?.setAttribute('d', mask)
+          }
         }
-        if (elapsed < COMPLETE_AT) frame = requestAnimationFrame(tick)
+        if (elapsed < completeAt + Math.max(0, lines.length - 1) * Math.max(0, lineStagger) * 1000) frame = requestAnimationFrame(tick)
         else {
           completed = true
           show()
@@ -357,6 +404,7 @@ export default function BlockReveal({
     if (preference.matches) show()
     else root.dataset.revealState = 'pending'
     preference.addEventListener('change', onPreferenceChange)
+    content.addEventListener('load', measure, true)
 
     // Font metrics determine each visual line, including naturally wrapped text.
     void document.fonts.ready.then(() => {
@@ -405,15 +453,17 @@ export default function BlockReveal({
       resizeObserver?.disconnect()
       contentObserver?.disconnect()
       preference.removeEventListener('change', onPreferenceChange)
+      content.removeEventListener('load', measure, true)
+      content.style.removeProperty('clip-path')
       delete root.dataset.revealState
     }
-  }, [color, secondaryColor, gradientKey, singlePass, delay, once, mode, scrollTrack, maskId])
+  }, [color, secondaryColor, gradientKey, singlePass, delay, once, enabled, lineStagger, entrance, mode, scrollTrack, maskId])
 
   return (
     <Tag {...attributes} ref={rootRef} className={`block-reveal ${className}`} data-reveal-mode={mode}>
       <span ref={contentRef} className="block-reveal__content">{children}</span>
       <canvas ref={canvasRef} className="block-reveal__canvas" aria-hidden="true" />
-      {mode === 'scroll' && <svg className="block-reveal__mask" width="0" height="0" aria-hidden="true" focusable="false">
+      {(mode === 'scroll' || lineStagger > 0) && <svg className="block-reveal__mask" width="0" height="0" aria-hidden="true" focusable="false">
         <defs><clipPath id={maskId} clipPathUnits="userSpaceOnUse"><path ref={maskPathRef} /></clipPath></defs>
       </svg>}
     </Tag>

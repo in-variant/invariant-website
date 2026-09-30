@@ -76,7 +76,7 @@ export default function Charter() {
             <p>A compliance requirement is rarely finished when somebody finds the right paragraph. It has to be interpreted against a particular design, supported by evidence, reflected consistently across documents, and kept current when the design changes.</p>
             <p>Much of that continuity lives in people’s heads. An engineer remembers why a number changed. A specialist knows which earlier decision matters. A programme lead keeps the dependencies straight in a spreadsheet. When someone moves on or a question comes back, the next person has to reconstruct the reasoning before the work can continue.</p>
             <p>Generating another document helps only if it moves that whole process forward.</p>
-            <p>We are building autonomous agents that carry context through the life of a mission: connecting technical information to requirements, evidence, documents, and the people responsible for the next decision.</p>
+            <p>We are building autonomous agents for the physical economy. They carry technical context from one step to the next, connecting requirements, evidence, documents, and the people responsible for each decision.</p>
             <p>An engineer revising a satellite’s mission should be able to see which obligations and filings need attention. A reviewer should be able to follow a claim back to the test or decision that supports it. A team should know what stands between today and its next approval, without piecing the answer together from a dozen inboxes.</p>
             <p>We have to build this alongside the engineers and regulatory specialists who make those decisions.</p>
           </section>
