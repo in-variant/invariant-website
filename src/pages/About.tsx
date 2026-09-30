@@ -52,16 +52,18 @@ export default function About() {
             <h2 id="about-founders-title">Parthiv &amp; Pranav.</h2>
             <div className="about-founder-grid">
               <div className="about-founder">
-                <div className="about-founder-portrait"><img src="/founders/parthiv.jpg" width="1066" height="1600" alt="Parthiv, co-founder of Invariant" loading="lazy" decoding="async" /></div>
-                <span className="about-founder-role">Co-founder</span>
-                <h3>Parthiv</h3>
-                <p>Parthiv came to this work through enterprise AI, building agents for compliance and insurance.</p>
+                <div className="about-founder-portrait"><img src="/founders/parthiv.jpg" width="1066" height="1600" alt="Parthiv Chandran, co-founder and CTO of Invariant" loading="lazy" decoding="async" /></div>
+                <span className="about-founder-role">Co-founder &amp; CTO</span>
+                <h3>Parthiv Chandran</h3>
+                <p>Parthiv was an early engineer at Aspora (YC W22), Metaforms, and Guidewire, building automation for compliance and insurance.</p>
+                <p>He shipped Metaforms Voice in two weeks, closed seven-figure deals, and built Rayo.</p>
               </div>
               <div className="about-founder">
-                <div className="about-founder-portrait"><img src="/founders/pranav.jpg" width="1064" height="1600" alt="Pranav, co-founder of Invariant" loading="lazy" decoding="async" /></div>
-                <span className="about-founder-role">Co-founder</span>
-                <h3>Pranav</h3>
-                <p>Pranav is chairing the development of American Nuclear Society criteria for applying computer vision and machine learning to nuclear plant inspection and monitoring.</p>
+                <div className="about-founder-portrait"><img src="/founders/pranav.jpg" width="1064" height="1600" alt="Pranav Goswami, co-founder and CEO of Invariant" loading="lazy" decoding="async" /></div>
+                <span className="about-founder-role">Co-founder &amp; CEO</span>
+                <h3>Pranav Goswami</h3>
+                <p>Pranav chairs the American Nuclear Society working group on machine learning for reactor inspection. He is the second-highest contributor to LFortran, a compiler used by NASA and supported by an €816K Sovereign Tech Agency grant.</p>
+                <p>He scaled Neuralis to $700K, previously worked in machine learning at Warner Bros., and studied computer science at IIT Jodhpur.</p>
               </div>
             </div>
           </div>
