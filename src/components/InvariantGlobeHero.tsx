@@ -5,6 +5,7 @@ import DotGlobe from './DotGlobe'
 import FigmaScrambleLabel from './FigmaScrambleLabel'
 import BlockReveal from './BlockReveal'
 import HeroEngineering from './HeroEngineering'
+import SiteCrosshair from './SiteCrosshair'
 import './InvariantGlobeHero.css'
 
 const revealGradient = ['#fb4d03', '#fffaf2', '#80a8c6', '#071b35']
@@ -15,6 +16,7 @@ export default function InvariantGlobeHero() {
   return <section className="invariant-globe-hero" aria-labelledby="figma-hero-title">
     <HeroEngineering onComplete={finishIntro} />
     <Nav />
+    <div className="globe-hero-guide" aria-hidden="true"><SiteCrosshair /></div>
     <div className="globe-hero-layout">
       <div className="globe-hero-content">
         <div className="globe-hero-copy">

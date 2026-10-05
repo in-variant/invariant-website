@@ -14,6 +14,15 @@
   min-height: max(600px, calc(100svh - 104px));
 }
 
+/* Clip the shared viewport guide to the hero, above its opaque panels. */
+.globe-hero-guide {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  clip-path: inset(0);
+  pointer-events: none;
+}
+
 .globe-hero-content {
   position: relative;
   isolation: isolate;

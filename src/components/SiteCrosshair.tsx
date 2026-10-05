@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import './SiteCrosshair.css'
 
-/** One shared background guide, kept below the site's content and hero. */
+/** Shared pointer guide for the page background and the clipped hero overlay. */
 export default function SiteCrosshair() {
   const ref = useRef<HTMLDivElement>(null)
 
