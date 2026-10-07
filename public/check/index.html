@@ -122,6 +122,9 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
 .cta:hover .go, .cta:focus-visible .go { background: var(--orange); color: #fff; }
 .more { margin-top: 14px; font-size: 14px; line-height: 1.4; color: var(--mid, #6b6b66); }
 .more a { color: var(--accent, #022fdb); text-decoration: none; border-bottom: 1px solid currentColor; }
+.cta.book { margin: 0 0 16px; padding: 14px 16px 15px; }
+.cta.book p { font-size: 16px; max-width: none; }
+.cta.book .go { margin-top: 11px; }
 .cta .dots { position: absolute; right: -10px; bottom: -10px; width: 150px; height: 110px; opacity: .45; background-image: radial-gradient(circle, #ffffff 1.3px, transparent 1.6px); background-size: 9px 9px; -webkit-mask-image: radial-gradient(circle at 85% 85%, #000 0 25%, transparent 72%); mask-image: radial-gradient(circle at 85% 85%, #000 0 25%, transparent 72%); }
 
 .foot { margin-top: 20px; display: grid; gap: 6px; font: 500 10.5px/1.5 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--mid); }
@@ -148,7 +151,7 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
   .brand svg { height: 25px; }
   .brand span { font-size: 30px; }
   .top-label { font-size: 12px; }
-  .cert { max-width: 1240px; grid-template-columns: minmax(0, var(--hero-w)) minmax(380px, 520px); justify-content: center; column-gap: 72px; align-items: start; padding: 32px var(--gutter) 56px; --hero-w: min(560px, calc((100svh - 150px) * var(--aspect-n, 0.818))); }
+  .cert { max-width: 1240px; grid-template-columns: minmax(0, var(--hero-w)) minmax(380px, 520px); justify-content: center; column-gap: 72px; align-items: start; padding: 32px var(--gutter) 56px; --hero-w: min(560px, calc((100svh - 262px) * var(--aspect-n, 0.818))); }
   .hero { position: sticky; top: 32px; width: var(--hero-w); }
   .info { padding-top: 6px; }
   .tag, .mission { font-size: 12px; }
@@ -166,6 +169,9 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
   .checks li { grid-template-columns: 56px minmax(0, 1fr); }
   .actions { margin-top: 24px; }
   .cta { margin-top: 24px; }
+  .cta.book { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 0 28px; padding: 18px 22px; }
+  .cta.book p { font-size: 19px; }
+  .cta.book .go { flex: none; margin-top: 0; }
   .lost h1 { font-size: 56px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -183,6 +189,11 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
 </header>
 
 <main class="cert" id="cert" hidden>
+  <a class="cta book reveal" style="--d:.1s" id="cta" href="https://cal.com/pranav-goswami/invariantai-seed-round" target="_blank" rel="noopener">
+    <span class="dots" aria-hidden="true"></span>
+    <p id="ctaText">Corrective action required: one 30-minute remediation session with the founders.</p>
+    <span class="go"><span id="ctaGo">Book remediation</span> <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11 11.5 4.5M6 4.5h5.5V10"/></svg></span>
+  </a>
   <section class="hero">
     <div class="panel" id="panel">
       <canvas id="portrait" role="img" aria-label="Dot portrait of the visitor"></canvas>
@@ -208,11 +219,6 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
       <button class="btn" id="shareBtn" type="button"><span>Share</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11.5 4.5M6 4.5h5.5V10"/></svg></button>
     </div>
 
-    <a class="cta reveal" style="--d:1s" id="cta" href="https://cal.com/pranav-goswami/invariantai-seed-round" target="_blank" rel="noopener">
-      <span class="dots" aria-hidden="true"></span>
-      <p id="ctaText">Corrective action required: one 30-minute remediation session with the founders.</p>
-      <span class="go"><span id="ctaGo">Book remediation</span> <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11 11.5 4.5M6 4.5h5.5V10"/></svg></span>
-    </a>
     <p class="more reveal" style="--d:1.02s">We do this for real satellites, reactors and data centers. <a href="https://invariant-ai.com">invariant-ai.com</a></p>
 
     <div class="foot reveal" style="--d:1.05s">
@@ -248,7 +254,8 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
 'use strict'
 // Invariant booth certificate. Everything this page shows comes from the URL fragment:
 //   #<base64url(deflate-raw(UTF-8(JSON)))>   (the same format as public/share-codec.js)
-// Nothing is fetched and nothing is stored.
+// The one thing fetched is the visitor's photo, when the link carries one: the booth uploaded it
+// to Invariant's Vercel Blob store. Nothing is stored by this page.
 
 const $ = id => document.getElementById(id)
 const C = { panel: '#163392', accent: '#022fdb', button: '#1939a6', coast: '#809aee', orange: '#fb4d03', red: '#e2011f', ink: '#303030', mid: '#62676f', mist: '#e6ebf6', rule: 'rgba(2,47,219,0.14)', navy: '#0b1430' }
@@ -341,6 +348,11 @@ function standardUnit() {
   return { portrait: { w, h, levels }, head: [18, 12.6, 7.4] }
 }
 
+// Only photos the booth uploaded to Invariant's own Vercel Blob store are shown, so a link cannot be
+// edited to put some other picture on an invariant-ai.com page. Empty: no photos at all.
+const PHOTO_HOST = ''
+const PHOTO_URL = new RegExp(`^https://${PHOTO_HOST.replace(/\./g, '\\.')}/check/[A-Za-z0-9_-]{22}\\.webp$`)
+
 function readModel(raw) {
   if (!raw || typeof raw !== 'object' || raw.v !== 1) return null
   const title = clean(raw.t, 48), reason = clean(raw.r, 150)
@@ -353,12 +365,15 @@ function readModel(raw) {
     const citation = clean(row[1], 48), note = clean(row[2], 120)
     return citation ? { status, citation, note } : null
   }).filter(Boolean)
+  const photo = PHOTO_HOST && typeof raw.i === 'string' && PHOTO_URL.test(raw.i) ? raw.i : null
   let portrait = readPortrait(raw.p)
   let head = null
-  if (!portrait) ({ portrait, head } = standardUnit())
+  if (!portrait && !photo) ({ portrait, head } = standardUnit())
   else if (Array.isArray(raw.f) && raw.f.length === 3 && raw.f.every(v => Number.isFinite(+v) && v !== null)) {
+    // With a photo the head is given in cells of the same 36 x 44 grid the photo is cut to.
+    const dims = portrait || { w: 36, h: 44 }
     const [x, y, r] = raw.f.map(Number)
-    if (r > 0.4 && r < portrait.w * 0.6 && x > -r && x < portrait.w + r && y > -r && y < portrait.h + r) head = [x, y, r]
+    if (r > 0.4 && r < dims.w * 0.6 && x > -r && x < dims.w + r && y > -r && y < dims.h + r) head = [x, y, r]
   }
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(raw.d || ''))
   const date = m && +m[2] >= 1 && +m[2] <= 12 ? { y: +m[1], mo: +m[2], d: +m[3] } : { y: 2026, mo: 10, d: 7 }
@@ -369,7 +384,7 @@ function readModel(raw) {
     reason: reason || (compliant ? 'Every check passed.' : 'At least one check failed. Rules are rules.'),
     compliant,
     score: Math.round(num(raw.s, 0, 100, compliant ? 92 : 31)),
-    checks, portrait, head,
+    checks, portrait, head, photo, photoImg: null,
     dateLong: `${date.d}\u00a0${MONTHS[date.mo - 1]}\u00a0${date.y}`,
     dateStamp: `${String(date.d).padStart(2, '0')} ${MONTHS[date.mo - 1].slice(0, 3)} ${date.y}`,
   }
@@ -413,8 +428,6 @@ function buildDots(model) {
 
 // Draw the panel: background, dots, costume. rect in canvas pixels. st carries the animation state.
 function drawPanel(g, rect, D, model, st) {
-  const s = rect.w / D.w
-  const pitch = s / DENSITY
   g.save()
   g.beginPath()
   g.roundRect(rect.x, rect.y, rect.w, rect.h, rect.radius ?? 0)
@@ -422,6 +435,58 @@ function drawPanel(g, rect, D, model, st) {
   g.fillStyle = C.panel
   g.fillRect(rect.x, rect.y, rect.w, rect.h)
 
+  const t = st.time || 0
+  const lens = st.lens && st.lens.a > 0.01 ? st.lens : null
+  const loupeR = rect.w * 0.2
+  if (model.photoImg) drawPhotoPanel(g, rect, model.photoImg, st, lens, loupeR, rect.w / D.w / DENSITY)
+  else drawDotsPanel(g, rect, D, st, lens, loupeR, t)
+
+  if (model.head && st.costume > 0) {
+    const s = rect.w / D.w
+    const [hx, hy, hr] = model.head
+    drawCostume(g, model.compliant, rect.x + hx * s, rect.y + hy * s, hr * s, st.costume, t)
+  }
+  if (lens) {
+    g.beginPath(); g.arc(lens.x, lens.y, loupeR, 0, Math.PI * 2)
+    g.lineWidth = Math.max(1, rect.w * 0.0035); g.strokeStyle = `rgba(255,255,255,${0.55 * lens.a})`; g.stroke()
+    g.beginPath(); g.arc(lens.x, lens.y, loupeR + rect.w * 0.012, -Math.PI * 0.32, -Math.PI * 0.12)
+    g.lineWidth = Math.max(1.5, rect.w * 0.008); g.strokeStyle = `rgba(251,77,3,${0.9 * lens.a})`; g.stroke()
+  }
+  g.restore()
+}
+
+// The visitor's photo from the booth. The intro scan line uncovers it from the top; the loupe
+// magnifies it under the finger.
+function drawPhotoPanel(g, rect, img, st, lens, loupeR, pitch) {
+  g.save()
+  g.imageSmoothingEnabled = true
+  g.imageSmoothingQuality = 'high'
+  g.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+  if (lens) {
+    const z = 1 + 0.7 * lens.a
+    g.save()
+    g.beginPath(); g.arc(lens.x, lens.y, loupeR, 0, Math.PI * 2); g.clip()
+    g.translate(lens.x, lens.y); g.scale(z, z); g.translate(-lens.x, -lens.y)
+    g.drawImage(img, rect.x, rect.y, rect.w, rect.h)
+    g.restore()
+  }
+  const sweep = st.sweep
+  if (sweep !== null && sweep !== undefined) {
+    const band = pitch * 2.2
+    g.fillStyle = C.panel
+    g.fillRect(rect.x, sweep + band, rect.w, Math.max(0, rect.y + rect.h - sweep - band))
+    g.fillStyle = C.orange
+    g.globalAlpha = 0.9
+    g.fillRect(rect.x, sweep - band * 0.35, rect.w, band * 0.7)
+    g.globalAlpha = 1
+  }
+  if (st.meteor) drawMeteor(g, rect, st.meteor)
+  g.restore()
+}
+
+function drawDotsPanel(g, rect, D, st, lens, loupeR, t) {
+  const s = rect.w / D.w
+  const pitch = s / DENSITY
   if (st.meteor) drawMeteor(g, rect, st.meteor)
 
   const BUCKETS = 6
@@ -429,9 +494,6 @@ function drawPanel(g, rect, D, model, st) {
   for (const k in paths) for (let b = 0; b < BUCKETS; b++) paths[k].push(new Path2D())
   const sweep = st.sweep // null, or y in px of the scan line
   const band = pitch * 2.2
-  const lens = st.lens && st.lens.a > 0.01 ? st.lens : null
-  const loupeR = rect.w * 0.2
-  const t = st.time || 0
 
   for (const dot of D.dots) {
     let x = rect.x + dot.gx * s, y = rect.y + dot.gy * s
@@ -480,19 +542,6 @@ function drawPanel(g, rect, D, model, st) {
     }
   }
   g.globalAlpha = 1
-
-  if (model.head && st.costume > 0) {
-    const [hx, hy, hr] = model.head
-    const cx = rect.x + hx * s, cy = rect.y + hy * s, cr = hr * s
-    drawCostume(g, model.compliant, cx, cy, cr, st.costume, t)
-  }
-  if (lens) {
-    g.beginPath(); g.arc(lens.x, lens.y, loupeR, 0, Math.PI * 2)
-    g.lineWidth = Math.max(1, rect.w * 0.0035); g.strokeStyle = `rgba(255,255,255,${0.55 * lens.a})`; g.stroke()
-    g.beginPath(); g.arc(lens.x, lens.y, loupeR + rect.w * 0.012, -Math.PI * 0.32, -Math.PI * 0.12)
-    g.lineWidth = Math.max(1.5, rect.w * 0.008); g.strokeStyle = `rgba(251,77,3,${0.9 * lens.a})`; g.stroke()
-  }
-  g.restore()
 }
 
 function drawMeteor(g, rect, m) {
@@ -557,7 +606,7 @@ function drawCostume(g, compliant, x, y, w, p, t) {
 // ---------- page ----------
 
 let MODEL = null, DOTS = null
-const view = { canvas: null, g: null, dpr: 1, w: 0, h: 0, start: 0, lens: { x: 0, y: 0, a: 0, target: 0 }, meteor: null, nextMeteor: 0, visible: true, raf: 0, image: null }
+const view = { canvas: null, g: null, dpr: 1, w: 0, h: 0, start: 0, started: false, lens: { x: 0, y: 0, a: 0, target: 0 }, meteor: null, nextMeteor: 0, visible: true, raf: 0, image: null }
 
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e }
 
@@ -582,7 +631,7 @@ function renderText(m) {
   $('title').textContent = m.title
   $('punch').textContent = m.reason
   $('issued').textContent = `Issued by Invariant at EF Demo Day, San Francisco, ${m.dateLong}`
-  $('portrait').setAttribute('aria-label', `Dot portrait, ${m.compliant ? 'wearing an astronaut helmet' : 'wearing a hard hat and safety goggles'}`)
+  $('portrait').setAttribute('aria-label', `${m.photo ? 'Photo of the visitor' : 'Dot portrait'}, ${m.compliant ? 'wearing an astronaut helmet' : 'wearing a hard hat and safety goggles'}`)
 
   const meter = $('meter')
   for (let i = 0; i < 20; i++) meter.append(el('i'))
@@ -626,6 +675,10 @@ function frame(now) {
     st.sweep = -view.h * 0.04 + e * view.h * 1.12
   }
   if (!REDUCED) st.costume = Math.max(0, Math.min(1, (t - COSTUME_AT) / COSTUME_MS))
+  // Until the intro starts the panel holds its first frame: covered, no costume. A photo link whose
+  // photo has not landed and that carries no dots has no figure to put a costume on.
+  if (!view.started) { st.sweep = -view.h * 0.04; st.costume = 0 }
+  if (!MODEL.photoImg && !DOTS.has) st.costume = 0
   // lens easing
   const L = view.lens
   L.a += (L.target - L.a) * 0.18
@@ -659,6 +712,7 @@ function slam(first) {
 }
 
 function startIntro() {
+  view.started = true
   view.start = performance.now()
   document.body.classList.add('go')
   if (REDUCED) {
@@ -866,11 +920,12 @@ async function renderImage(m) {
   const checksTop = bandTop - 22 - checksH
   const py = 148
   let ph = Math.min(checksTop - 84 - py, 700)
-  let pw = Math.round(ph * DOTS.w / DOTS.h)
-  if (pw > 520) { pw = 520; ph = Math.round(pw * DOTS.h / DOTS.w) }
+  const D = m.dots || DOTS
+  let pw = Math.round(ph * D.w / D.h)
+  if (pw > 520) { pw = 520; ph = Math.round(pw * D.h / D.w) }
   const px = M
 
-  drawPanel(g, { x: px, y: py, w: pw, h: ph, radius: 10 }, DOTS, m, { time: 0, twinkle: false, costume: 1, sweep: null, lens: null })
+  drawPanel(g, { x: px, y: py, w: pw, h: ph, radius: 10 }, D, m, { time: 0, twinkle: false, costume: 1, sweep: null, lens: null })
   // tag and mission
   setFont(g, 500, 17, F.mono, 1.3)
   const tagText = m.compliant ? 'CLEARED FOR LAUNCH' : 'LAUNCH SCRUBBED'
@@ -996,12 +1051,64 @@ async function renderImage(m) {
   return new Promise((resolve, reject) => c.toBlob(b => (b ? resolve(b) : reject(new Error('no image'))), 'image/png'))
 }
 
+// ---------- the visitor's photo ----------
+
+// Resolves to { img } or { img: null, stalled } after at most 8 seconds.
+function loadImage(url, cors) {
+  return new Promise(resolve => {
+    const img = new Image()
+    const timer = setTimeout(() => { img.onload = img.onerror = null; img.src = ''; resolve({ img: null, stalled: true }) }, 8000)
+    if (cors) img.crossOrigin = 'anonymous'
+    img.decoding = 'async'
+    img.onload = () => { clearTimeout(timer); resolve({ img: img.naturalWidth ? img : null }) }
+    img.onerror = () => { clearTimeout(timer); resolve({ img: null }) }
+    img.src = url
+  })
+}
+
+// Resolves once the photo is on the panel or the dots have taken its place. A photo that only
+// loads without CORS still shows on the page, but the saved image uses the dots.
+let photoReady = Promise.resolve()
+let photoForSave = true
+function loadVisitorPhoto(m) {
+  if (!m.photo) return
+  photoReady = (async () => {
+    let got = await loadImage(m.photo, true)
+    if (!got.img && !got.stalled) got = await loadImage(m.photo, true)
+    if (!got.img && !got.stalled) { got = await loadImage(m.photo, false); photoForSave = false }
+    if (got.img) {
+      m.photoImg = got.img
+      // A photo that lands after the intro started gets the scan line and costume again.
+      if (view.started && !REDUCED) view.start = performance.now()
+    } else {
+      $('portrait').setAttribute('aria-label', `Dot portrait, ${m.compliant ? 'wearing an astronaut helmet' : 'wearing a hard hat and safety goggles'}`)
+      if (!m.portrait) {
+        ;({ portrait: m.portrait, head: m.head } = standardUnit())
+        DOTS = buildDots(m)
+      }
+    }
+    if (REDUCED) frame(performance.now() + 99999); else kick()
+  })()
+}
+
+// The saved image cannot use a photo the browser loaded without CORS: use the dots.
+function dotsOnly(m) {
+  const alt = { ...m, photoImg: null }
+  if (!alt.portrait) Object.assign(alt, standardUnit())
+  alt.dots = buildDots(alt)
+  return alt
+}
+
 // ---------- save and share ----------
 
 let imagePromise = null
 const fileName = () => `invariant-compliance-check-${MODEL.no}.png`
 function getImage() {
-  if (!imagePromise) imagePromise = renderImage(MODEL).then(blob => ({ blob, file: new File([blob], fileName(), { type: 'image/png' }) }))
+  if (!imagePromise) {
+    imagePromise = photoReady
+      .then(() => renderImage(photoForSave || !MODEL.photoImg ? MODEL : dotsOnly(MODEL)))
+      .then(blob => ({ blob, file: new File([blob], fileName(), { type: 'image/png' }) }))
+  }
   return imagePromise
 }
 
@@ -1136,7 +1243,10 @@ async function boot() {
   wirePanel()
   $('saveBtn').addEventListener('click', onSave)
   $('shareBtn').addEventListener('click', onShare)
-  await Promise.race([fontsReady(), new Promise(r => setTimeout(r, 600))])
+  loadVisitorPhoto(model)
+  // The intro waits for the photo, up to 3 seconds; one arriving later appears when it lands.
+  const fonts = Promise.race([fontsReady(), new Promise(r => setTimeout(r, 600))])
+  await Promise.race([Promise.all([fonts, photoReady]), new Promise(r => setTimeout(r, 3000))])
   startIntro()
   // Make the shareable image once the intro has played, so Share opens instantly.
   setTimeout(() => {
