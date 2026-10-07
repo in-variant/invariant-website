@@ -125,6 +125,7 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
 .cta .dots { position: absolute; right: -10px; bottom: -10px; width: 150px; height: 110px; opacity: .45; background-image: radial-gradient(circle, #ffffff 1.3px, transparent 1.6px); background-size: 9px 9px; -webkit-mask-image: radial-gradient(circle at 85% 85%, #000 0 25%, transparent 72%); mask-image: radial-gradient(circle at 85% 85%, #000 0 25%, transparent 72%); }
 
 .foot { margin-top: 20px; display: grid; gap: 6px; font: 500 10.5px/1.5 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--mid); }
+.foot a { color: inherit; }
 
 .toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 20; transform: translate(-50%, 10px); padding: 11px 14px; font: 500 11.5px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: #fff; background: var(--panel); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; white-space: nowrap; }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
@@ -217,6 +218,7 @@ h1 { margin-top: 10px; font: 500 44px/.96 var(--display); letter-spacing: -.025e
     <div class="foot reveal" style="--d:1.05s">
       <p id="issued"></p>
       <p>Statuses are playful judgments from one photo. Every citation is real.</p>
+      <p>Photos: hard hat by Wasiul Bahar and safety glasses by Jacek Halicki, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via Wikimedia Commons (adapted). Astronaut helmet: NASA.</p>
     </div>
   </section>
 </main>
@@ -336,7 +338,7 @@ function standardUnit() {
     }
     levels[r * w + c] = v
   }
-  return { portrait: { w, h, levels }, head: [18, 12.8, 4.1] }
+  return { portrait: { w, h, levels }, head: [18, 12.6, 7.4] }
 }
 
 function readModel(raw) {
@@ -515,95 +517,41 @@ function drawMeteor(g, rect, m) {
 const easeOutBack = t => 1 + 2.2 * (t - 1) ** 3 + 1.2 * (t - 1) ** 2
 const easeOut = t => 1 - (1 - t) ** 3
 
-function drawCostume(g, compliant, x, y, r, p, t) {
+// Photographs of a real astronaut helmet, hard hat and safety glasses, placed as on the booth screen:
+// each image is widthPerHead head widths wide, with its anchor point on the eye-line centre.
+const COSTUMES = {}
+for (const key of ['hardhat', 'goggles', 'helmet']) {
+  fetch(`/check/assets/${key}.json`).then(r => (r.ok ? r.json() : null)).then(meta => {
+    if (!meta || !Array.isArray(meta.anchor) || !meta.widthPerHead) return
+    const img = new Image()
+    img.onload = () => { COSTUMES[key] = { meta, img }; if (MODEL) kick() }
+    img.src = `/check/assets/${key}.webp`
+  }).catch(() => {})
+}
+
+function drawPhoto(g, key, x, y, headW, alpha, dy, scale) {
+  const a = COSTUMES[key]
+  if (!a || alpha <= 0) return
+  const W = a.meta.widthPerHead * headW * scale, H = W * a.img.naturalHeight / a.img.naturalWidth
   g.save()
+  g.globalAlpha = Math.min(1, alpha)
+  if (a.meta.shadow) { g.shadowColor = 'rgba(0,0,0,0.38)'; g.shadowBlur = headW * 0.14; g.shadowOffsetY = headW * 0.06 }
+  g.imageSmoothingEnabled = true
+  g.imageSmoothingQuality = 'high'
+  g.drawImage(a.img, x - a.meta.anchor[0] * W, y + dy - a.meta.anchor[1] * H, W, H)
+  g.restore()
+}
+
+// x, y: eye-line centre in canvas pixels. w: head width in canvas pixels. p: animation progress.
+function drawCostume(g, compliant, x, y, w, p, t) {
+  const k = Math.max(0, Math.min(1, p))
   if (compliant) {
-    const k = easeOut(p)
-    g.globalAlpha = k
-    g.translate(x, y)
-    const sc = 1.22 - 0.22 * easeOutBack(Math.min(1, p))
-    g.scale(sc, sc)
-    drawHelmet(g, 0, 0, r, t)
+    drawPhoto(g, 'helmet', x, y, w, k * 3, -(1 - easeOut(k)) * w * 1.8, 1)
   } else {
-    const k = Math.min(1, p)
-    g.globalAlpha = Math.min(1, p * 2.5)
-    drawGoggles(g, x, y, r)
-    g.translate(0, -r * 2.6 * (1 - easeOutBack(k)))
-    drawHardHat(g, x, y, r)
+    const gk = Math.max(0, Math.min(1, (p - 0.3) / 0.7))
+    drawPhoto(g, 'goggles', x, y, w, gk * 2, 0, 1.06 - 0.06 * easeOut(gk))
+    drawPhoto(g, 'hardhat', x, y, w, k * 5, -w * 2.6 * (1 - easeOutBack(k)), 1)
   }
-  g.restore()
-}
-
-// Thin-line technical drawings, matching the booth screen: no cartoon fills.
-function drawHelmet(g, x, y, r, t) {
-  const R = r * 1.7, lw = Math.max(1.5, r * 0.07)
-  const vw = r * 1.24, vh = r * 1.02, vy = y - r * 0.02
-  g.save()
-  g.lineCap = 'round'
-  const grad = g.createLinearGradient(x, vy - vh, x, vy + vh)
-  grad.addColorStop(0, 'rgba(128,154,238,0.30)')
-  grad.addColorStop(1, 'rgba(128,154,238,0)')
-  g.beginPath(); g.ellipse(x, vy, vw, vh, 0, 0, Math.PI * 2)
-  g.fillStyle = grad; g.fill()
-  g.strokeStyle = '#ffffff'; g.lineWidth = lw; g.stroke()
-  g.beginPath(); g.arc(x, y, R, 0, Math.PI * 2)
-  g.lineWidth = lw * 1.3; g.stroke()
-  g.beginPath(); g.arc(x, y, R * 0.92, 0, Math.PI * 2)
-  g.lineWidth = lw * 0.6; g.strokeStyle = 'rgba(255,255,255,0.55)'; g.stroke()
-  g.strokeStyle = 'rgba(255,255,255,0.9)'
-  for (let i = 0; i < 31; i++) {
-    const a = Math.PI * (1.14 + 0.72 * i / 30), long = i % 5 === 0
-    g.lineWidth = long ? lw : lw * 0.6
-    g.beginPath()
-    g.moveTo(x + Math.cos(a) * R * 1.04, y + Math.sin(a) * R * 1.04)
-    g.lineTo(x + Math.cos(a) * R * (long ? 1.13 : 1.08), y + Math.sin(a) * R * (long ? 1.13 : 1.08))
-    g.stroke()
-  }
-  g.setLineDash([r * 0.12, r * 0.12]); g.lineWidth = lw * 0.6; g.strokeStyle = 'rgba(255,255,255,0.45)'
-  g.beginPath(); g.moveTo(x - R * 1.25, y); g.lineTo(x + R * 1.25, y); g.stroke()
-  g.setLineDash([])
-  const glint = 0.75 + 0.25 * Math.sin((t || 0) * 0.002)
-  g.beginPath(); g.ellipse(x, vy, vw * 0.78, vh * 0.74, 0, Math.PI * 1.12, Math.PI * 1.38)
-  g.lineWidth = lw * 1.6; g.strokeStyle = `rgba(255,255,255,${glint})`; g.stroke()
-  g.beginPath(); g.ellipse(x, y + R * 0.97, R * 0.88, R * 0.16, 0, 0, Math.PI)
-  g.lineWidth = lw; g.strokeStyle = '#ffffff'; g.stroke()
-  g.restore()
-}
-
-function drawHardHat(g, x, y, r) {
-  const base = y - r * 0.32, w = r * 1.18, hgt = r * 1.32, lw = Math.max(1.5, r * 0.08)
-  g.save()
-  g.lineCap = 'round'
-  g.beginPath()
-  g.moveTo(x - w, base)
-  g.bezierCurveTo(x - w, base - hgt * 1.02, x + w, base - hgt * 1.02, x + w, base)
-  g.fillStyle = 'rgba(251,77,3,0.22)'; g.fill()
-  g.strokeStyle = C.orange; g.lineWidth = lw * 1.3; g.stroke()
-  g.beginPath(); g.ellipse(x, base, r * 1.55, r * 0.2, 0, 0, Math.PI * 2)
-  g.lineWidth = lw; g.stroke()
-  g.beginPath()
-  g.moveTo(x - r * 0.09, base - hgt * 0.76); g.lineTo(x - r * 0.09, base)
-  g.moveTo(x + r * 0.09, base - hgt * 0.76); g.lineTo(x + r * 0.09, base)
-  g.lineWidth = lw * 0.7; g.stroke()
-  g.restore()
-}
-
-function drawGoggles(g, x, y, r) {
-  const gy = y - r * 0.05, fw = r * 1.02, fh = r * 0.4, lw = Math.max(1.5, r * 0.08)
-  g.save()
-  g.lineCap = 'round'
-  g.setLineDash([r * 0.14, r * 0.1]); g.strokeStyle = C.orange; g.lineWidth = lw
-  g.beginPath()
-  g.moveTo(x - r * 1.35, gy); g.lineTo(x - fw, gy)
-  g.moveTo(x + fw, gy); g.lineTo(x + r * 1.35, gy)
-  g.stroke()
-  g.setLineDash([])
-  g.beginPath(); g.roundRect(x - fw, gy - fh, fw * 2, fh * 2, fh * 0.9)
-  g.fillStyle = 'rgba(255,255,255,0.10)'; g.fill()
-  g.strokeStyle = '#ffffff'; g.lineWidth = lw * 1.2; g.stroke()
-  g.beginPath(); g.moveTo(x, gy - fh); g.lineTo(x, gy + fh)
-  g.lineWidth = lw * 0.7; g.strokeStyle = 'rgba(255,255,255,0.7)'; g.stroke()
-  g.restore()
 }
 
 // ---------- page ----------
