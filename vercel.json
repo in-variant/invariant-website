@@ -1,41 +1,108 @@
 {
   "redirects": [
-    { "source": "/space-compliance-china", "destination": "/space-compliance", "permanent": true },
-    { "source": "/glossary/nnsa-china", "destination": "/glossary", "permanent": true },
-    { "source": "/glossary/rosatom", "destination": "/glossary", "permanent": true },
-    { "source": "/glossary/rostekhnadzor", "destination": "/glossary", "permanent": true }
+    {
+      "source": "/space-compliance-china",
+      "destination": "/space-compliance",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/nnsa-china",
+      "destination": "/glossary",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/rosatom",
+      "destination": "/glossary",
+      "permanent": true
+    },
+    {
+      "source": "/glossary/rostekhnadzor",
+      "destination": "/glossary",
+      "permanent": true
+    },
+    {
+      "source": "/blog/oklahoma-5-mw-turnkey-mining-site-oge-for-sale",
+      "destination": "/blog/oklahoma-5-mw-turnkey-mining-site-for-sale",
+      "permanent": true
+    },
+    {
+      "source": "/blog/iowa-2-25-mw-ai-edge-site-at-power-plant-muscatine",
+      "destination": "/blog/iowa-2-mw-ai-edge-site-at-a-power-plant",
+      "permanent": true
+    },
+    {
+      "source": "/blog/arizona-1-5-gw-powered-land-ai-campus-aps",
+      "destination": "/blog/arizona-1-5-gw-powered-land-ai-campus",
+      "permanent": true
+    },
+    {
+      "source": "/blog/kentucky-30-mw-greenfield-data-center-site-aep",
+      "destination": "/blog/kentucky-30-mw-greenfield-data-center-site",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*).(png|jpg|jpeg|webp)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).(svg|ico)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, immutable"
+        }
+      ]
     },
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" },
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
       ]
     },
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" },
-        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
       ]
     },
     {
       "source": "/llms.txt",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" },
-        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
       ]
     }
   ]
