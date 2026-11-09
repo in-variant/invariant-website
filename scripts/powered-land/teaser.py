@@ -499,7 +499,7 @@ hub = {
         faq('How do you verify a powered site?', 'Utility documents first, then zoning and title, before any introduction. We flag anything we could not confirm.'),
     ],
     'sources': sources('pjm', 'ercot', 'miso'),
-    'relatedSlugs': ['arizona-1-5-gw-powered-land-ai-campus', 'north-carolina-18-mw-ai-campus-207-acres-for-sale'],
+    'relatedSlugs': ['arizona-1-5-gw-powered-land-ai-campus', 'north-carolina-18-mw-ai-campus-207-acres-for-sale', 'power-evidence-data-center-site-verification', 'utility-will-serve-letter-load-study-esa', 'texas-data-center-large-load-interconnection-2026', 'retired-power-plant-sites-for-data-centers'],
 }
 
 S = [x for x in S if x['slug'] not in ['finland-20-mw-data-center-site-heat-offtake-for-sale', 'norway-hydro-mining-sites-for-sale', 'bolivia-300-mw-greenfield-mining-site', 'caucasus-hydro-power-mining-site-for-sale']]
