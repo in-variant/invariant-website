@@ -2,6 +2,7 @@ import dataCenters from './industry-articles/data-centers.json'
 import oilGas from './industry-articles/oil-gas.json'
 import dataCenterOperations from './industry-articles/data-center-operations.json'
 import dataCenterFireSafety from './industry-articles/data-center-fire-safety.json'
+import poweredLandSites from './industry-articles/powered-land-sites.json'
 
 export type IndustryTopic = 'Data Centers' | 'Oil & Gas'
 export type ArticleBlock = (
@@ -22,8 +23,16 @@ export type IndustryArticle = {
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
   sources: { id: string; title: string; url: string; publisher: string }[]
   relatedSlugs: string[]
+  /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot. */
+  kind?: 'site-listing'
+  /** Region shown in the byline and used as schema spatialCoverage, e.g. "Arizona, United States". */
+  region?: string
 }
 
-export const INDUSTRY_ARTICLES = [...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
+export const INDUSTRY_ARTICLES = [...poweredLandSites, ...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
 export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ? '/data-center-compliance' : '/oil-gas-compliance'
 export const articleImage = (slug: string) => `/blog/industry/${slug}.webp`
+
+export const BOOKING_URL = 'https://calendar.app.google/ACLzeFhzNF9szwry8'
+export const SITES_PHONE = '+16282208972'
+export const SITES_PHONE_DISPLAY = '(628) 220-8972'

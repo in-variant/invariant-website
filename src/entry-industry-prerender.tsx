@@ -32,7 +32,7 @@ export function industryPages() {
         slug: `blog/${article.slug}`, title: `${article.title} | Invariant`, description: article.description, canonical, ogImage, ogType: 'article',
         source: 'src/pages/blog/IndustryArticle.tsx',
         bodyHtml: body(`/blog/${article.slug}`, <IndustryArticle articleSlug={article.slug} renderSeo={false} />),
-        jsonLd: [ORG_SCHEMA, EDITORIAL_TEAM, articleSchema({ title: article.title, description: article.description, url: canonical, datePublished: article.date, dateModified: article.date, image: ogImage, articleSection: `${article.topic} compliance`, spatialCoverage: ['United States'] }), breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: `${article.topic} compliance`, url: `${SITE_URL}${industryPath(article.topic)}` }, { name: article.title, url: canonical }]), faqSchema(article.faqs)],
+        jsonLd: [ORG_SCHEMA, EDITORIAL_TEAM, articleSchema({ title: article.title, description: article.description, url: canonical, datePublished: article.date, dateModified: article.date, image: ogImage, articleSection: article.kind === 'site-listing' ? 'Powered land and data center sites' : `${article.topic} compliance`, spatialCoverage: [article.region ?? 'United States'] }), breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: `${article.topic} compliance`, url: `${SITE_URL}${industryPath(article.topic)}` }, { name: article.title, url: canonical }]), faqSchema(article.faqs)],
       }
     }),
     ...INDUSTRY_HUBS.map(hub => ({
