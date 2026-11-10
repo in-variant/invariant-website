@@ -409,6 +409,19 @@ NEW.append(site('turnkey-tier-iii-data-centers-for-sale-and-lease',
     [faq('Do you have Tier III data centers for sale?', 'Yes, three, from 3.5 MW to 10 MW of critical IT load, for purchase or lease.')],
     [], [HUB, 'texas-44-mw-data-center-property-250-mw-expansion']))
 
+NEW.append(site('pennsylvania-350-mw-contracted-power-ai-campus-for-lease',
+    'Pennsylvania AI campus for lease: 350 MW under a signed utility service agreement',
+    'A Pennsylvania former power plant campus with 350 MW under a signed utility service agreement, 50 MW by end 2026 and 300 MW by end 2027, industrial zoning and room past 500 MW. Offered on a long-term lease. Details on a call.',
+    'Pennsylvania, United States',
+    [['Power', '350 MW under a signed utility electric service agreement, PJM'], ['Timing', 'First 50 MW by end 2026, 300 MW by end 2027'], ['Land', 'Industrial-zoned former power plant campus, flat, outside the floodplain'], ['On site', 'About 60 MW of energized legacy generation and an existing grid connection'], ['Deal', 'Long-term lease to a creditworthy tenant'], ['Path to scale', 'Expansion toward 500 MW+ under discussion with the utility']],
+    'We have a Pennsylvania AI campus with 350 MW under a signed utility service agreement. The first 50 MW is scheduled for the end of 2026 and the bulk of the load for the end of 2027. The site is a former power plant on industrial-zoned land, already grid-connected, and the owner wants a long-term lease with an investment-grade tenant.',
+    'Most powered land offered in 2026 has a load study or a queue position. This site has an executed service agreement with the utility for the full 350 MW and a dated delivery schedule, on a brownfield that has carried large power for decades. For a 100 MW to 350 MW AI deployment in PJM energizing in 2027, few sites are further along.',
+    'AI labs, neoclouds and modular AI infrastructure providers that need 100 MW to 350 MW in PJM in 2027 and want to lease rather than buy. Not suited to buyers who need all 350 MW energized before 2027.',
+    [faq('How much power is available at the Pennsylvania campus?', '350 MW under a signed electric service agreement: about 50 MW by the end of 2026 and 300 MW by the end of 2027, with expansion toward 500 MW being discussed.', 'pjm'),
+     faq('Can the site be bought?', 'The owner is offering it on a long-term lease. We confirm structure and terms on the call.')],
+    ['pjm'], [HUB, 'pennsylvania-500-mw-gas-and-grid-data-center-site', 'utility-will-serve-letter-load-study-esa']))
+NEW[-1]['date'] = '2026-11-09'
+
 S += NEW
 
 S.append(site('earlier-powered-site-and-hosting-listings',
@@ -447,6 +460,7 @@ S.append(site('earlier-powered-site-and-hosting-listings',
 
 ROWS = [
     ['Arizona', '1.5 GW Phase 1', '15,000+ acres', 'Grid 2027'],
+    ['Pennsylvania', '350 MW, signed utility service agreement', 'Former plant campus, lease', '50 MW end 2026, 300 MW end 2027'],
     ['Pennsylvania', '200 MW BTM gas + 300 MW grid', '120 ready acres', 'Phased'],
     ['Iowa', '20 MW to 500 MW+ PPA site', 'Non-zoned', 'Phased'],
     ['Nevada', '375 MW', '~350 acres', '2027 to 2028'],
@@ -477,11 +491,11 @@ ROWS = [
 hub = {
     'slug': HUB, 'topic': 'Data Centers', 'kind': 'site-listing', 'region': 'United States',
     'title': 'Powered land for sale: data center, AI and bitcoin mining sites available now (November 2026)',
-    'description': '35 US powered sites and 11 hosting options available through Invariant in November 2026, from a 1.5 GW Arizona AI campus to energized mining sites and hosting. Details on a call.',
+    'description': '36 US powered sites and 11 hosting options available through Invariant in November 2026, from a 1.5 GW Arizona AI campus to energized mining sites and hosting. Details on a call.',
     'date': DATE, 'readMinutes': 4,
-    'intro': 'Invariant has 35 US powered sites and 11 hosting options available as of November 2026, from a 1.5 GW AI campus in Arizona to energized 2 MW mining sites and open hosting capacity. Fifteen are in the 17 MW to 1.5 GW range that AI, HPC and hyperscale buyers ask for, and most can take load today. Below is what we can share publicly. Locations, utility documents and prices are shared on a call.',
+    'intro': 'Invariant has 36 US powered sites and 11 hosting options available as of November 2026, from a 1.5 GW AI campus in Arizona to energized 2 MW mining sites and open hosting capacity. Sixteen are in the 17 MW to 1.5 GW range that AI, HPC and hyperscale buyers ask for, and most can take load today. Below is what we can share publicly. Locations, utility documents and prices are shared on a call.',
     'takeaways': [
-        'Large campuses: Arizona 1.5 GW, Pennsylvania 500 MW, Iowa 500 MW, Nevada 375 MW, Ohio 300 MW, Indianapolis 200 MW, Wisconsin 150 MW.',
+        'Large campuses: Arizona 1.5 GW, Pennsylvania 500 MW and 350 MW (signed utility agreement), Iowa 500 MW, Nevada 375 MW, Ohio 300 MW, Indianapolis 200 MW, Wisconsin 150 MW.',
         'Energized now: North Carolina 18 MW, Kentucky 30 MW, Texas 44 MW, Oklahoma City 55 MW.',
         'Small and fast: turnkey mining and edge sites in Kentucky, Oklahoma, Texas and Iowa.',
         'Tell us your MW, region and energize-by date. We share matching sites, including ones not listed here.',
@@ -493,7 +507,7 @@ hub = {
             p('We keep locations and prices off this page on purpose. Owners ask for discretion, and a site that is shopped everywhere loses value. Book a call and we will walk you through the sites that fit your load, timeline and budget.')),
     ],
     'faqs': [
-        faq('Where can I find powered land for a data center in the US?', 'Invariant has powered sites in Arizona (1.5 GW), Nevada (375 MW), Ohio (300 MW), Indiana (200 MW), Wisconsin (150 MW), North Carolina (18 MW live) and more. Book a call or text (628) 220-8972 for details.'),
+        faq('Where can I find powered land for a data center in the US?', 'Invariant has powered sites in Arizona (1.5 GW), Pennsylvania (350 MW contracted), Nevada (375 MW), Ohio (300 MW), Indiana (200 MW), Wisconsin (150 MW), North Carolina (18 MW live) and more. Book a call or text (628) 220-8972 for details.'),
         faq('Which sites have power available today?', 'North Carolina, Kentucky (30 MW), a Texas metro property (44 MW), Oklahoma City (55 MW), Wisconsin (80 MW) and several turnkey mining sites.'),
         faq('Do you have off-market sites?', 'Yes. The sites on this page are a subset of what we work on. Tell us your requirements on a call.'),
         faq('How do you verify a powered site?', 'Utility documents first, then zoning and title, before any introduction. We flag anything we could not confirm.'),
