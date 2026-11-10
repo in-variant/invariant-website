@@ -4,10 +4,11 @@ import { GLOSSARY, entriesByTopic } from '../data/glossary'
 
 const URL = `${SITE_URL}/glossary`
 
-const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace', string> = {
+const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', string> = {
   space: 'Space',
   nuclear: 'Nuclear',
   aerospace: 'Aerospace',
+  'data-centers': 'Data center',
 }
 
 export default function Glossary() {
@@ -69,7 +70,7 @@ export default function Glossary() {
             </p>
           ) : (
             <div className="mt-12 space-y-12">
-              {(['space', 'nuclear', 'aerospace'] as const).map((topic) => {
+              {(['space', 'nuclear', 'aerospace', 'data-centers'] as const).map((topic) => {
                 const items = groups[topic]
                 if (!items?.length) return null
                 return (

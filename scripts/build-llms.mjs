@@ -42,6 +42,7 @@ const entries = glossary.entries || []
 const glossSpace = entries.filter((e) => e.topic === 'space')
 const glossNuclear = entries.filter((e) => e.topic === 'nuclear')
 const glossAerospace = entries.filter((e) => e.topic === 'aerospace')
+const glossDataCenters = entries.filter((e) => e.topic === 'data-centers')
 
 // ── Compose ──────────────────────────────────────────────────────────────────
 const out = []
@@ -127,6 +128,11 @@ if (entries.length) {
     out.push('')
     out.push('Aerospace:')
     for (const e of glossAerospace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
+  }
+  if (glossDataCenters.length) {
+    out.push('')
+    out.push('Data center sites and power:')
+    for (const e of glossDataCenters) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
   }
 }
 

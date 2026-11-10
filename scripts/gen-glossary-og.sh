@@ -26,6 +26,7 @@ while IFS=$'\t' read -r slug term topic; do
     space) EYEBROW="INVARIANT · SPACE GLOSSARY" ;;
     nuclear) EYEBROW="INVARIANT · NUCLEAR GLOSSARY" ;;
     aerospace) EYEBROW="INVARIANT · AEROSPACE GLOSSARY" ;;
+    data-centers) EYEBROW="INVARIANT · DATA CENTER GLOSSARY" ;;
     *) EYEBROW="INVARIANT · GLOSSARY" ;;
   esac
 

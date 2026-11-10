@@ -3,10 +3,11 @@ import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { getEntry, GLOSSARY } from '../data/glossary'
 import { renderLinkified } from '../components/linkifyGlossary'
 
-const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace', string> = {
+const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', string> = {
   space: 'Space',
   nuclear: 'Nuclear',
   aerospace: 'Aerospace',
+  'data-centers': 'Data center',
 }
 
 export default function GlossaryEntryPage() {
@@ -86,6 +87,14 @@ export default function GlossaryEntryPage() {
               ))
             })()}
           </div>
+
+          {entry.guide && (
+            <p className="mt-10 font-sans text-base">
+              <Link to={entry.guide.path} className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">
+                {entry.guide.label} ↗
+              </Link>
+            </p>
+          )}
 
           {related.length > 0 && (
             <section className="mt-12 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
