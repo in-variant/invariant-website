@@ -100,6 +100,7 @@ def links_block():
     return [
         {'type': 'links', 'label': 'Find a site by size', 'items': [{'label': f'{size_label(m)} data center site', 'slug': size_slug(m)} for m in SIZES]},
         {'type': 'links', 'label': 'Find a site by state', 'items': [{'label': f'Data center sites in {STATE[s]["name"]}', 'slug': state_slug(s)} for s in STATES]},
+        {'type': 'links', 'label': 'Find a site by type', 'items': [{'label': INTENT[k]['link'], 'slug': k} for k in INTENT]},
         {'type': 'links', 'label': 'Site selection guides', 'items': [
             {'label': 'How to find a data center site in the US', 'slug': PILLAR},
             {'label': 'All powered land for sale', 'slug': HUB},
@@ -520,7 +521,10 @@ def state_page(s):
             b['sourceIds'] = ids
             blocks.append(b)
         sections.append({'id': f'g{i}-' + h.lower().replace(' ', '-').replace('’', '').replace("'", '')[:40].strip('-'), 'heading': h, 'blocks': blocks})
-    sections.insert(0, {'id': 'sites-available', 'heading': f'Data center sites available in {name}', 'blocks': inv_table(d['inv'], f'These {name} sites are in Invariant’s current inventory. Specs are as marketed by the owner and are checked against utility documents before any introduction.')})
+    if d.get('nearby'):
+        sections.insert(0, {'id': 'sites-available', 'heading': f'Sites near {name} from our inventory', 'blocks': inv_table(d['inv'], f'Invariant has no public {name} listing today. We source {name} sites off-market for buyers who send requirements. These sites in neighboring states are available now. Specs are as marketed by the owner and are checked against utility documents before any introduction.')})
+    else:
+        sections.insert(0, {'id': 'sites-available', 'heading': f'Data center sites available in {name}', 'blocks': inv_table(d['inv'], f'These {name} sites are in Invariant’s current inventory. Specs are as marketed by the owner and are checked against utility documents before any introduction.')})
     sections.append({'id': 'screen', 'heading': f'How to screen a {name} data center site', 'blocks': [
         {'type': 'list', 'items': [
             'Confirm the serving utility and the grid operator, then ask which document backs the MW: a will-serve letter, a load study or a signed agreement.',
@@ -535,11 +539,12 @@ def state_page(s):
     srcs = list(dict.fromkeys(d['src'] + ['paces']))
     sources = [{'id': x, 'title': S[x][0], 'url': S[x][1], 'publisher': S[x][2]} for x in srcs] + [{'id': eid, 'title': esrc[0], 'url': esrc[1], 'publisher': esrc[2]}]
     faqs = [{'question': q, 'answer': a} for q, a in d['faq']]
-    faqs.append({'question': f'How do I find a data center site in {name}?', 'answer': f'Start from power evidence, not land: confirm the serving utility, the document behind the MW and substation headroom, then screen local approval and usable acres. Invariant does this for buyers and currently lists {name} sites at {mws}. Book a call or call (628) 220-8972.'})
+    tail = f'sources {name} sites off-market, with nearby sites at {mws}' if d.get('nearby') else f'currently lists {name} sites at {mws}'
+    faqs.append({'question': f'How do I find a data center site in {name}?', 'answer': f'Start from power evidence, not land: confirm the serving utility, the document behind the MW and substation headroom, then screen local approval and usable acres. Invariant does this for buyers and {tail}. Book a call or call (628) 220-8972.'})
     return {
         'slug': state_slug(s), 'topic': 'Data Centers', 'kind': 'site-listing', 'region': f'{name}, United States',
-        'title': f'Data center sites for sale in {name}: powered land and energized sites (2026)',
-        'description': f'{name} data center sites and powered land for sale or lease through Invariant: {mws}. How power, grid rules and local approval work in {name}.',
+        'title': f'Data center sites for sale in {name}: powered land and energized sites (2026)' if not d.get('nearby') else f'Data center sites in {name}: how to find powered land and what the grid allows (2026)',
+        'description': (f'{name} data center sites and powered land for sale or lease through Invariant: {mws}. How power, grid rules and local approval work in {name}.' if not d.get('nearby') else f'Looking for a data center site in {name}? How power, utility rules and local approval work in {name}, and how Invariant sources {name} sites off-market.')[:300],
         'date': DATE, 'readMinutes': 5, 'intro': d['intro'], 'takeaways': d['take'], 'sections': sections, 'faqs': faqs,
         'sources': sources, 'relatedSlugs': [INV[d['inv'][0]][1], PILLAR],
     }
@@ -588,6 +593,201 @@ def pillar():
         'relatedSlugs': [HUB, 'power-evidence-data-center-site-verification'],
     }
 
+# ---------------------------------------------------------------- expansion 2026-11-09: more states and search intents
+S.update({
+    'gs5': ('New utility rate class approved for data centers', 'https://annandaletoday.com/new-utility-rate-class-approved-for-data-centers/', 'Annandale Today'),
+    'pw-gateway': ('QTS drops appeal, ending plans for massive Prince William County data center', 'https://www.fox5dc.com/news/qts-drops-appeal-ending-plans-massive-prince-william-county-data-center', 'FOX 5 DC'),
+    'ga-psc': ('PSC approves rule to allow new power usage terms for data centers', 'https://psc.ga.gov/site/assets/files/8617/media_advisory_data_centers_rule_1-23-2025.pdf', 'Georgia Public Service Commission'),
+    'gpb-ordinances': ('Wave of data center ordinances sweep through Georgia counties', 'https://www.gpb.org/news/2025/10/22/wave-of-data-center-ordinances-sweep-through-ga-counties-how-strict-are-they', 'Georgia Public Broadcasting'),
+    'meta-entergy': ("Entergy to build three gas plants for Meta's biggest data center", 'https://www.insurancejournal.com/news/southcentral/2025/08/21/836573.htm', 'Bloomberg via Insurance Journal'),
+    'selc-xai': ('xAI built an illegal power plant to power its data center', 'https://www.selc.org/news/xai-built-an-illegal-power-plant-to-power-its-data-center/', 'Southern Environmental Law Center'),
+    'mn-law': ('New data center law: fees, tax changes and a very large customer class', 'https://www.house.mn.gov/NewLaws/story/2025/5641', 'Minnesota House of Representatives'),
+    'bitfarms': ('Bitfarms plans to turn former bitcoin mine near Moses Lake into AI data center', 'https://www.yoursourceone.com/columbia_basin/bitfarms-plans-to-turn-former-bitcoin-mine-near-moses-lake-into-ai-data-center/article_58d0d37e-122a-4d0a-b781-7461acf13b1e.html', 'Source ONE News'),
+    'riot': ('Riot energizes new Corsicana facility in Navarro County, Texas', 'https://www.riotplatforms.com/riot-energizes-new-corsicana-facility-in-navarro-county-texas/', 'Riot Platforms'),
+    'terawulf': ('TeraWulf announces Fluidstack expansion with 160 MW CB-5 lease at Lake Mariner', 'https://www.sec.gov/Archives/edgar/data/1083301/000110465925079463/tm2523651d3_ex99-1.htm', 'U.S. Securities and Exchange Commission (EDGAR)'),
+    'uptime-tier': ("Explaining the Uptime Institute's Tier Classification System", 'https://journal.uptimeinstitute.com/?p=3737', 'Uptime Institute'),
+    'bisnow-land': ('Data center land deals surged 141% in Q1, warping the market for everyone else', 'https://www.bisnow.com/news/national/data-center-development/data-center-sites-are-warping-the-market-for-developable-land-134771', 'Bisnow'),
+    'bisnow-powered': ('If you entitle it, they will come: how powered land plugs CRE into the data center boom', 'https://www.bisnow.com/news/national/data-center-development/powered-land-the-1m-an-acre-asset-fueling-the-data-center-frenzy-132995', 'Bisnow'),
+    'ercot-ll': ('Large load integration', 'https://www.ercot.com/services/rq/large-load-integration', 'ERCOT'),
+})
+CITE.update({'gs5': ('GS-5', 'rate class'), 'pw-gateway': ('Prince William',), 'ga-psc': ('Georgia Public Service Commission', 'Georgia PSC'), 'gpb-ordinances': ('ordinances',),
+    'meta-entergy': ('Entergy',), 'selc-xai': ('xAI', 'Memphis'), 'mn-law': ('Minnesota passed', 'very large customer'), 'bitfarms': ('Moses Lake', 'Bitfarms'),
+    'riot': ('Riot',), 'terawulf': ('TeraWulf', 'Fluidstack'), 'uptime-tier': ('Tier III', 'Tier classification'), 'bisnow-land': ('141%',), 'bisnow-powered': ('$1 million an acre', 'Bisnow'),
+    'ercot-ll': ('Large Load Interconnection',)})
+
+STATE.update({
+ 'virginia': dict(name='Virginia', code='VA', nearby=True, inv=['pa350', 'pa500', 'nc18', 'ky30'], src=['dominion', 'gs5', 'pw-gateway', 'ferc-rto'],
+   intro='Northern Virginia is the largest data center market in the world, and that is exactly why new sites there are hard to power. Dominion Energy runs a formal process for data center requests and now bills large loads under their own rate class. Buyers who need power sooner look south and west in the state, or across the border into Pennsylvania, North Carolina and Kentucky. Invariant sources Virginia sites off-market and lists powered sites in neighboring states.',
+   take=['Virginia is in PJM. Dominion Energy serves most of the large data center load.', 'Dominion runs a staged process for data center requests: evaluation, will-serve letter if needed, then site plan, load letter and ramp schedule.', 'A new rate class for very large customers changes the economics of any new Virginia site.', 'Local fights decide sites too: QTS dropped its appeal on a large Prince William County project.'],
+   grid=[('Power in Virginia', ['Dominion Energy publishes its data center request process. A buyer starts with an infrastructure evaluation and a preliminary power plan, and a formal project then needs a site plan, a load letter and a ramp schedule before Dominion plans the service. Regulators approved a separate rate class for the largest customers, often called GS-5, which brings its own minimum terms.', 'In Northern Virginia the constraint is transmission. Sites with power available in the next few years are scarce and priced that way.']),
+          ('Local approval in Virginia', ['Counties set the zoning, and recent cases show it can end a project. QTS dropped its appeal on a large planned campus in Prince William County after a court fight. Check the county record and any pending rezoning litigation before optioning land.'])],
+   faq=[('Can I still find a powered data center site in Virginia?', 'Yes, but sites with near-term power in Northern Virginia are scarce. Buyers often look elsewhere in Virginia or in neighboring PJM states such as Pennsylvania. Invariant sources Virginia sites off-market on request.'),
+        ('What is the Dominion data center process?', 'Dominion offers a site evaluation and preliminary power plan, a will-serve letter if needed, and then a formal process requiring a site plan, a load letter and a ramp schedule before it designs and builds service.')]),
+ 'georgia': dict(name='Georgia', code='GA', nearby=True, inv=['nc18', 'ky30', 'ky8'], src=['ga-psc', 'gpb-ordinances', 'ferc-rto'],
+   intro='Georgia has become one of the fastest-growing data center states in the US, led by the Atlanta region. It sits outside any RTO, and its main utility and regulators set the terms for large loads directly. In 2025 the Georgia Public Service Commission approved a rule letting the utility apply new terms to very large data center customers, and counties across the state passed their own data center ordinances. Invariant sources Georgia sites off-market and lists nearby powered sites.',
+   take=['Georgia is outside an RTO; the main utility and the Georgia PSC set large-load terms.', 'A 2025 PSC rule lets the utility set special terms for customers above 100 MW.', 'Many Georgia counties adopted data center ordinances in 2025. Screen the county before optioning land.', 'Invariant lists nearby sites in North Carolina and Kentucky and sources Georgia sites on request.'],
+   grid=[('Power in Georgia', ['In January 2025 the Georgia Public Service Commission approved a rule allowing new terms for data center customers with loads above 100 MW, including contract length and minimum billing, so that other customers are protected from the cost of serving them. That means a large Georgia site carries tariff terms a buyer should model up front.']),
+          ('County ordinances', ['Georgia Public Broadcasting reported a wave of data center ordinances across Georgia counties in 2025, with rules on setbacks, noise, water and where data centers can go. A parcel that looked like a by-right industrial use a year ago may now need a special use permit.'])],
+   faq=[('What are the Georgia PSC rules for data centers?', 'In January 2025 the Georgia PSC approved a rule allowing the utility to set special terms, such as longer contracts and minimum bills, for new customers with loads above 100 MW.'),
+        ('Is Georgia good for data centers?', 'For many buyers, yes: fiber, a large metro market and utilities building for load. County ordinances and the PSC large-load terms are the two things to check first.')]),
+ 'louisiana': dict(name='Louisiana', code='LA', nearby=True, inv=['tx44', 'tx17', 'okc55'], src=['meta-hyperion', 'meta-entergy', 'ferc-rto'],
+   intro='Louisiana went from a minor data center market to home of one of the largest AI campuses in the world. Meta’s Hyperion campus in Richland Parish started as a 2 GW plan and was expanded to 5 GW, with Entergy building new gas plants to serve it. That deal shows the Louisiana model: large rural land, a utility willing to build generation, and gas. Invariant sources Louisiana sites off-market and lists nearby sites in Texas and Oklahoma.',
+   take=['Most of Louisiana is in MISO, served largely by Entergy.', 'Meta’s Hyperion campus expanded from a 2 GW plan to 5 GW in 2026.', 'Entergy is building three gas plants to serve Meta’s campus. Dedicated generation is the template for very large Louisiana sites.', 'Invariant lists nearby sites in Texas and Oklahoma and sources Louisiana sites on request.'],
+   grid=[('The Hyperion example', ['Meta’s Hyperion campus started with about 2,250 acres for a 2 GW plan and grew to 5 GW after Meta added roughly 1,400 acres. Entergy agreed to build three gas plants to serve it. For a gigawatt buyer, Louisiana’s offer is land at scale plus a utility willing to build generation for one customer.']),
+          ('What to check in Louisiana', ['Flood zones, wetlands and soil conditions take a large share of gross acreage in parts of the state. Check usable acres early, along with gas supply and the utility’s cost-recovery terms for any new generation built for the load.'])],
+   faq=[('Why is Meta building in Louisiana?', 'Meta’s Hyperion campus in Richland Parish pairs very large rural acreage with new gas generation that Entergy agreed to build for the load. The campus grew from a 2 GW plan to 5 GW.'),
+        ('Can I find a large data center site in Louisiana?', 'Large rural sites exist, but most need new generation or transmission. Invariant sources Louisiana sites off-market and lists nearby powered sites in Texas and Oklahoma.')]),
+ 'tennessee': dict(name='Tennessee', code='TN', nearby=True, inv=['ky30', 'ky8', 'nc18'], src=['selc-xai', 'ferc-rto'],
+   intro='Most of Tennessee is served by the Tennessee Valley Authority, a federal utility, through local power companies. That makes the path to power different from an investor-owned utility. The state drew national attention when xAI built its Colossus AI cluster in Memphis and ran gas turbines on site, which led to a legal fight over air permits. Invariant sources Tennessee sites off-market and lists nearby powered sites in Kentucky and North Carolina.',
+   take=['Tennessee is largely TVA territory, served through local power companies.', 'Large loads need approval from both the local power company and TVA.', 'xAI’s Memphis site used on-site gas turbines that drew an air permit challenge. Plan behind-the-meter power with permits first.', 'Invariant lists nearby sites in Kentucky and North Carolina.'],
+   grid=[('Power in Tennessee', ['TVA sells power wholesale to local power companies, which serve end customers. A large data center load needs the local power company and TVA to agree to serve it, and TVA weighs large loads against its own generation plans.']),
+          ('The xAI lesson', ['The Southern Environmental Law Center said xAI ran gas turbines at its Memphis data center without the air permits they needed. Whatever the outcome, it shows the risk of bridging power on site before permits are in hand. Get the emissions calculation and permit path settled first.'])],
+   faq=[('Who provides power to data centers in Tennessee?', 'Mostly the Tennessee Valley Authority, through local power companies. Large loads need both to agree to serve them.'),
+        ('Can a Tennessee data center use on-site gas power?', 'Yes, with the right air permits. xAI’s Memphis site drew a legal challenge over turbines run without them, so settle the permit path before installing generation.')]),
+ 'illinois': dict(name='Illinois', code='IL', nearby=True, inv=['in200', 'wi150', 'mw85', 'ia500'], src=['comed', 'ferc-rto'],
+   intro='Illinois has a large data center market around Chicago and plenty of farmland with transmission downstate. The north is served by ComEd in PJM; much of central and southern Illinois is in MISO. ComEd has published detailed land requirements for the substations large loads need, which helps buyers size a site before talking to the utility. Invariant sources Illinois sites off-market and lists nearby sites in Indiana, Wisconsin, Iowa and the Midwest.',
+   take=['Northern Illinois (ComEd) is in PJM; central and southern Illinois are largely in MISO.', 'ComEd’s 2026 guidelines call for about 3.1 acres for a 138 kV interconnection substation and 8.5 to 16.5 acres at 345 kV.', 'The Chicago market is constrained; downstate sites trade power headroom for distance from the metro.', 'Invariant lists nearby sites in Indiana, Wisconsin, Iowa and the Midwest.'],
+   grid=[('ComEd’s substation rules', ['ComEd’s January 2026 guidelines call for at least 784 by 472 feet, about 8.5 acres, for a 345 kV interconnection substation on one line, expandable to about 16.5 acres, and about 3.1 acres at 138 kV, all before stormwater detention. The station must be reachable from at least two sides for future lines and sit within half a mile of the existing line. Those rules decide which corner of a parcel actually works.']),
+          ('Two grids in one state', ['Because Illinois is split between PJM and MISO, two sites an hour apart can face different study processes, capacity markets and timelines. Confirm the serving utility and grid operator before comparing them.'])],
+   faq=[('How much land does a data center substation need in Illinois?', 'ComEd’s 2026 guidelines call for about 3.1 acres at 138 kV and about 8.5 acres at 345 kV on one line, expandable to about 16.5 acres, before stormwater detention.'),
+        ('Is Illinois in PJM or MISO?', 'Both. ComEd territory in northern Illinois is in PJM. Much of central and southern Illinois, served by Ameren and others, is in MISO.')]),
+ 'missouri': dict(name='Missouri', code='MO', nearby=True, inv=['ks250', 'okc55', 'ia500'], src=['stcharles', 'ferc-rto'],
+   intro='Missouri sits between MISO and SPP and has open land, rail and gas, which has drawn data center proposals around St. Louis and Kansas City. Local politics has moved just as fast. In July 2026 St. Charles County approved a half-year ban on data center projects. Invariant sources Missouri sites off-market and lists nearby sites in Kansas, Oklahoma and Iowa.',
+   take=['Eastern Missouri is largely in MISO; western Missouri is largely in SPP.', 'St. Charles County approved a half-year ban on data center projects in July 2026.', 'Screen county and city moratoriums before any parcel work.', 'Invariant lists nearby sites in Kansas, Oklahoma and Iowa.'],
+   grid=[('Grid in Missouri', ['Missouri’s utilities sit in two grid operators: MISO in much of the east and SPP in much of the west. The study path and timeline depend on which one serves the site.']),
+          ('Moratoriums in Missouri', ['St. Charles County, outside St. Louis, approved a half-year ban on data center projects in July 2026 while it writes rules. Bans like this can stop a site even with power in hand. Check both the county and any city that could annex the parcel.'])],
+   faq=[('Is there a data center moratorium in Missouri?', 'St. Charles County approved a half-year ban on data center projects in July 2026. Check each county and city, since rules vary across the state.'),
+        ('Can I find a data center site in Missouri?', 'Yes. Invariant sources Missouri sites off-market and lists nearby sites in Kansas, Oklahoma and Iowa.')]),
+ 'minnesota': dict(name='Minnesota', code='MN', nearby=True, inv=['wi150', 'ia500', 'nd15'], src=['mn-law', 'ferc-rto'],
+   intro='Minnesota passed a dedicated data center law in 2025 that set fees, changed tax treatment and created a very large customer class for utilities. That gives buyers rules to plan around, and costs to model. Minnesota is in MISO and has a cool climate that helps cooling. Invariant sources Minnesota sites off-market and lists nearby sites in Wisconsin, Iowa and North Dakota.',
+   take=['Minnesota is in MISO.', 'A 2025 state law set data center fees, changed tax treatment and created a very large customer class.', 'Model the new customer class terms before pricing a Minnesota site.', 'Invariant lists nearby sites in Wisconsin, Iowa and North Dakota.'],
+   grid=[('Minnesota’s 2025 data center law', ['The Minnesota House summarized the 2025 law as setting fees on large data centers, changing tax treatment and creating a very large customer class so that utility costs for these loads are kept separate from other customers. Buyers should ask the serving utility how the new class applies to their load.']),
+          ('Climate and power', ['Minnesota’s cool climate cuts cooling energy, and MISO gives access to a large regional market. The utility study and the new customer class decide the timeline and cost.'])],
+   faq=[('What is the Minnesota data center law?', 'A 2025 state law that sets fees on large data centers, changes their tax treatment and creates a very large customer class for utilities to keep their costs separate.'),
+        ('Can I find a data center site in Minnesota?', 'Yes. Invariant sources Minnesota sites off-market and lists nearby sites in Wisconsin, Iowa and North Dakota.')]),
+ 'washington': dict(name='Washington', code='WA', nearby=True, inv=['or10', 'nv375', 'host'], src=['bitfarms', 'ferc-rto'],
+   intro='Central Washington has some of the cheapest hydro power in the US, which made Quincy, Wenatchee and Moses Lake a hub for cloud data centers and bitcoin miners. Former mining sites there are now being converted for AI. Bitfarms, for example, plans to turn a former mine near Moses Lake into an AI data center. Washington is outside any RTO. Invariant sources Washington sites off-market and lists nearby sites in Oregon and Nevada.',
+   take=['Washington is outside an RTO; public utility districts serve much of central Washington.', 'Columbia River hydro gives low-cost power, and spare capacity is now scarce.', 'Former mining sites are converting to AI. Bitfarms plans one near Moses Lake.', 'Invariant lists nearby sites in Oregon and Nevada.'],
+   grid=[('Power in central Washington', ['Public utility districts in central Washington sell Columbia River hydro power at low rates, which drew hyperscale and mining loads for years. Most have now set terms that limit or price new large loads. Ask the district for its current large-load policy before anything else.']),
+          ('Mining to AI conversions', ['Bitfarms said it plans to convert a former bitcoin mine near Moses Lake into an AI data center. Conversions like this keep the utility service and land and rebuild most of the rest. Check whether the service is firm and whether the district allows the change of use.'])],
+   faq=[('Why do data centers go to central Washington?', 'Low-cost Columbia River hydro power and a cool, dry climate. Spare capacity is now limited, so check the utility district’s current large-load policy first.'),
+        ('Can I find a data center site in Washington?', 'Yes. Invariant sources Washington sites off-market and lists nearby sites in Oregon and Nevada.')]),
+})
+STATES += ['virginia', 'georgia', 'louisiana', 'tennessee', 'illinois', 'missouri', 'minnesota', 'washington']
+
+INTENT = {
+ 'data-center-land-for-sale': dict(link='Data center land for sale', title='Data center land for sale in the US: how to tell powered land from raw land (2026)',
+   desc='Data center land for sale across the US. How to tell powered land from raw land, what drives price per acre, and the powered sites Invariant has available now.',
+   intro='Most land marketed for data centers is raw land near a transmission line. A smaller share is powered land, with a utility study, an agreement or an energized connection. The price gap between the two is large, and so is the risk. Data center land deals surged in early 2026 and powered sites command a premium. This page explains how to tell the two apart and lists the powered land Invariant has now, from a few acres to more than 15,000.',
+   take=['Raw land near a line is not powered land. Ask for the utility document behind any MW figure.', 'Data center land deals rose sharply in early 2026 and powered sites command a premium over raw land.', 'Size the land from the MW: roughly 50 to 150 gross acres for a 100 MW AI or hyperscale campus.', 'Invariant lists powered land from a few acres to 15,000+ acres.'],
+   sec=[('Raw land versus powered land', ['Raw land is a parcel with zoning potential and a line nearby. Powered land has a utility document that commits capacity, or an energized connection. In between sit sites with a named MW figure but no study for the buyer’s load. Price each one by the paper it has, not the map.']),
+        ('What drives price per acre', ['Bisnow reported that data center land deals surged 141% in the first quarter of 2026, and has described entitled, powered land as fetching close to $1 million an acre in hot markets. The premium follows the power document and the zoning, not the soil. Raw farmland a few miles away can trade at a small fraction of that.']),
+        ('How much land you need', ['Land follows load. A 138 kV substation takes about 3 acres and a 345 kV interconnection substation 8.5 to 16.5 acres under ComEd’s guidelines. AI and hyperscale campuses usually land between 0.5 and 2 MW per gross acre. Mining sites pack tighter.'])],
+   inv=['az15', 'oh300', 'nv375', 'pa500', 'in200', 'wi150', 'nc18', 'ky30'], src=['bisnow-land', 'bisnow-powered', 'comed', 'paces'],
+   faq=[('How much does data center land cost per acre?', 'It depends on the power and zoning. Bisnow has reported entitled, powered land approaching $1 million an acre in hot markets, while raw land without a utility document can trade far lower.'),
+        ('What is the difference between powered land and raw land?', 'Powered land has a utility document committing capacity, or an energized connection. Raw land has only proximity to lines and zoning potential.')]),
+ 'ai-data-center-site': dict(link='AI data center sites', title='AI data center site: finding power and land for a GPU cluster in the US (2026)',
+   desc='Find a site for an AI data center or GPU cluster in the US: power density, liquid cooling, MW per GPU, firm power and the AI-ready sites Invariant has available now.',
+   intro='An AI data center site has to deliver more power to less floor space than any facility before it. A single NVIDIA GB200 NVL72 rack draws about 120 kW and needs liquid cooling. What changes for site selection is the power: AI tenants need firm service, a fast ramp and room to grow, often from tens of MW to hundreds. Invariant matches AI buyers to sites with documented power, from energized 10 MW inference sites to a 1.5 GW campus.',
+   take=['A GB200 NVL72 rack draws about 120 kW. 1,000 GPUs need roughly 2 MW at the meter including cooling.', 'AI tenants need firm power. Curtailable mining rates do not work for most AI contracts.', 'Plan for liquid cooling and heat rejection outdoors; land per MW falls less than rack density suggests.', 'Invariant lists AI-ready sites from 10 MW inference to 1.5 GW training campuses.'],
+   sec=[('Power per GPU', ['At about 120 kW per 72-GPU rack, each GPU draws roughly 1.7 kW at the rack. Add cooling and power losses at a PUE of 1.3 and 1,000 GPUs need about 2.2 MW at the meter. A 100,000 GPU cluster needs over 200 MW. Training and inference differ: inference fits in 5 to 50 MW sites near users, training wants hundreds of MW in one place.']),
+        ('Firm power and redundancy', ['Many energized sites on the market were built for bitcoin mining on interruptible rates. AI tenants usually need firm service with backup. Read the power contract before pricing a conversion, and budget for generators, UPS and a second feed where the tenant requires them.']),
+        ('Cooling and land', ['Liquid cooling shrinks the building per MW but still rejects heat outside through dry coolers or towers. Substations and cooling yards scale with MW, so an AI campus still needs roughly 0.7 to 2 MW per gross acre.'])],
+   inv=['az15', 'pa350', 'oh300', 'in200', 'tx44', 'or10', 't3'], src=['nvl72', 'uptime-pue', 'crusoe', 'fairwater'],
+   faq=[('How much power does an AI data center need?', 'About 2.2 MW at the meter per 1,000 Blackwell-class GPUs at a PUE of 1.3. Inference sites run 5 to 50 MW; training campuses run hundreds of MW to gigawatts.'),
+        ('Can a bitcoin mining site become an AI data center?', 'Often, if the power is firm or can be made firm. The utility service and land carry over; most buildings and electrical systems get rebuilt for AI.')]),
+ 'bitcoin-mining-site-for-sale': dict(link='Bitcoin mining sites for sale', title='Bitcoin mining sites for sale in the US: energized sites and hosting (2026)',
+   desc='Bitcoin mining sites for sale or lease in the US: energized turnkey sites from 0.5 to 85 MW, hosting capacity, and what to check in the power contract before you buy.',
+   intro='Energized bitcoin mining sites are among the fastest power assets to buy in the US. Many have transformers in place, a utility account and containers or buildings ready. They also increasingly sell to AI buyers, which has pushed up prices. Invariant lists turnkey mining sites from 0.5 to 85 MW across Kentucky, Oklahoma, Pennsylvania, Iowa, Texas and the Midwest, plus hosting capacity.',
+   take=['Turnkey mining sites can be live immediately. Check the rate schedule and curtailment terms first.', 'Mining packs 2 to 5 MW per acre, far tighter than AI campuses.', 'In ERCOT, check Load Resource status and SB 6 curtailment rules.', 'Invariant lists mining sites from 0.5 to 85 MW and 11 hosting options.'],
+   sec=[('What to check on a mining site', ['Read the power contract: firm or interruptible, demand charges, minimum terms and who owns the transformers. Check the noise setback and any county rules, since air-cooled miners are loud. Confirm the site is not already shopped to an AI buyer with an exclusivity in place.']),
+        ('Texas mining sites', ['Many Texas miners earn revenue by curtailing in ERCOT’s demand response programs. SB 6 rules now apply to new loads of 75 MW and up, and ERCOT’s large load process governs expansions. A Texas mining site’s value depends on its place in that process.']),
+        ('Mining sites selling to AI', ['Public miners such as TeraWulf have signed large AI leases at their mining campuses. That has raised what owners expect for energized sites with room to grow. Riot’s Corsicana site shows the mining density benchmark: 265 acres for a planned 1 GW.'])],
+   inv=['ky8', 'ok5', 'pa5', 'ia2', 'hou3', 'mw85', 'tx17', 'or10', 'host'], src=['ercot-dr', 'sb6', 'terawulf', 'riot'],
+   faq=[('Where can I buy an energized bitcoin mining site?', 'Invariant lists turnkey sites in Kentucky (0.5 to 8 MW), Oklahoma (5 MW), Pennsylvania (5 MW), Iowa (2 MW to 7 MW), Houston (3 MW) and an 85 MW Midwest brownfield, plus hosting capacity.'),
+        ('How many acres does a bitcoin mine need?', 'Roughly 2 to 5 MW per gross acre. Riot’s Corsicana site planned 1 GW on 265 acres.')]),
+ 'energized-data-center-sites-available-now': dict(link='Energized sites available now', title='Energized data center sites available now: US sites with power on today (2026)',
+   desc='US data center sites with power energized today, from 2 MW to 80 MW, plus contracted sites energizing in 2026 and 2027. Skip the utility queue with Invariant.',
+   intro='The fastest way to get power for a data center in 2026 is to buy or lease a site that already has it. New large-load service can take three to seven years in constrained markets, and ERCOT has paused energization approvals for new data centers of 75 MW and up. Energized sites skip that queue. Invariant lists sites with power on today, from 2 MW turnkey yards to an 80 MW Wisconsin site, and contracted sites that energize in 2026 and 2027.',
+   take=['Energized sites skip utility queues that now run three to seven years for large new loads.', 'In Texas, ERCOT stopped approving energization of new data centers of 75 MW and up in August 2026. Energized sites are exempt from that wait.', 'Check that the existing contract allows your load profile and whether service is firm.', 'Invariant lists energized sites from 2 MW to 80 MW and contracted sites energizing in 2026 and 2027.'],
+   sec=[('Why energized sites cost more', ['A metered connection is the top rung of power evidence. It removes study, queue and construction risk. Buyers pay for that, and owners know it.', 'The queue is the alternative. In Texas, ERCOT has not approved energization of new data centers or crypto loads of 75 MW and up since August 3, 2026, while its Batch Zero study of the large-load queue runs. Elsewhere, new large-load service commonly takes years.']),
+        ('What to check on an energized site', ['Confirm the contract demand on the bill, the transformer ratings and whether the utility must re-study a change of use. Ask whether the rate is firm or interruptible and whether any curtailment program obligations come with the site.'])],
+   inv=['wi150', 'okc55', 'tx44', 'ky30', 'nc18', 'mw85', 'pa5', 'ok5', 'ky8', 'ia2', 'hou3'], src=['ercot-bz', 'paces'],
+   faq=[('Where can I find a data center site with power today?', 'Invariant lists energized sites in Wisconsin (80 MW now), Oklahoma (55 MW), Texas (44 MW), Kentucky (30 MW), North Carolina (18 MW) and turnkey mining sites from 2 to 8 MW.'),
+        ('Are energized sites affected by ERCOT’s energization pause?', 'Sites already energized and metered do not need a new approval to energize. A change of use or added load may still need a utility review.')]),
+ 'data-center-for-sale': dict(link='Data centers for sale', title='Data centers for sale and lease in the US: built facilities and powered shells (2026)',
+   desc='Built data centers for sale or lease in the US: Tier III facilities from 3.5 to 10 MW, large industrial shells with power, and what to check before buying a built facility.',
+   intro='Buying a built data center skips the utility queue and most permitting. You pay in price per MW and in living with the existing cooling and electrical design. Invariant lists built Tier III facilities from 3.5 to 10 MW and large powered industrial shells that convert to data centers, including a 1 million square foot Texas property with 44 MW now and 250 MW of expansion.',
+   take=['Built facilities skip the queue but lock in the cooling design.', 'Tier III means concurrently maintainable under Uptime Institute’s classification.', 'Powered industrial shells can convert faster than a greenfield build.', 'Invariant lists three Tier III facilities and large powered shells.'],
+   sec=[('Tier levels', ['Uptime Institute’s Tier classification grades a facility’s infrastructure. Tier III is concurrently maintainable: any component can be taken out for maintenance without shutting down IT. Ask whether the facility is certified or only designed to the tier.']),
+        ('Can a legacy facility run AI?', ['Most facilities built before 2022 were designed for 5 to 15 kW racks. AI racks at 120 kW need liquid cooling and much more power per square foot. A legacy hall often suits inference at lower density, or needs a cooling retrofit.'])],
+   inv=['t3', 'tx44', 'wi150', 'ny60'], src=['uptime-tier', 'nvl72'],
+   faq=[('Are there data centers for sale in the US?', 'Yes. Invariant lists three built Tier III facilities from 3.5 to 10 MW and large powered shells, including a Texas property with 44 MW now and a path to 250 MW more.'),
+        ('What does Tier III mean?', 'Under Uptime Institute’s classification, Tier III is concurrently maintainable: components can be serviced without shutting down IT.')]),
+ 'data-center-site-selection-checklist': dict(link='Site selection checklist', title='Data center site selection checklist: 12 checks before you option land (2026)',
+   desc='A data center site selection checklist for 2026: power evidence, substation headroom, large-load tariffs, moratoriums, usable acres, water, fiber and permits, in order.',
+   intro='Most data center site checklists list twenty factors with equal weight. In 2026 one of them, deliverable power by a date, decides most deals. This checklist puts the checks in the order that kills bad sites fastest, so you spend money on parcels, surveys and options only for sites that can close.',
+   take=['Check power evidence first. Everything else is wasted effort if the MW is not real.', 'Kill sites that are claimed, contaminated or under a moratorium before parcel work.', 'Model large-load tariff terms as part of price.', 'Grade each site A, B or C by power evidence.'],
+   sec=[('The checklist, in order', []),
+        ('Why order matters', ['Each check costs more than the one before it. A utility call is cheap; a wetland delineation, a survey and an option fee are not. Running them in this order kills most sites before they cost anything.'])],
+   checklist=['Set the MW (IT and facility), ramp and energize-by date.', 'Find the document behind the site’s MW: map, named MW, load study, signed agreement or metered service.', 'Confirm substation withdrawal headroom for your load under contingency.', 'Check the serving utility’s large-load tariff: study fees, collateral, minimum bill, term.', 'Kill sites that are already claimed, under option or operating for someone else.', 'Check environmental liability: coal ash, contamination, deed restrictions, liability-buyer owners.', 'Screen the county and any annexing city for moratoriums, ordinances and recent denials.', 'Confirm the zoning path: by-right, special use or rezoning.', 'Work out usable acres after wetlands, floodplain, slope, easements and setbacks; reserve the substation corner.', 'Confirm water for cooling and fire, or a low-water cooling design.', 'Confirm fiber routes and latency needs.', 'Lay out the permit path: air permits for generators, stormwater, building and fire.'],
+   inv=['pa350', 'oh300', 'in200', 'wi150'], src=['paces', 'lbnl', 'dcwatch', 'comed'],
+   faq=[('What is the most important factor in data center site selection?', 'Deliverable power by a date. Check the utility document behind the MW and the substation headroom before anything else.'),
+        ('What should a data center site selection checklist include?', 'Power evidence, substation headroom, tariff terms, claims and liabilities, moratoriums and zoning, usable acres, water, fiber and permits, in that order.')]),
+ 'data-center-site-selection-services': dict(link='Site selection services', title='Data center site selection services: how Invariant finds and verifies powered sites',
+   desc='Data center site selection services from Invariant: we find US sites from 1 MW to 1 GW+, verify the power against utility documents, and match buyers by MW, state and date.',
+   intro='Invariant finds data center sites for AI companies, neoclouds, colocation developers, miners and investors. We search from power evidence first, keep a live inventory of US powered sites, and check each site against utility documents before we introduce it. Tell us the MW, the states you would consider and the date you need power. We send the sites that fit, including off-market ones.',
+   take=['We start from power evidence, not land.', 'We keep a live US inventory from 0.5 MW to 1.5 GW.', 'Every site is graded A, B or C by the document behind its MW.', 'Book a call or call (628) 220-8972 with your requirements.'],
+   sec=[('How it works', ['You send the MW, states, energize-by date and budget. We screen our inventory and run a fresh search from power-evidence channels: retired plants, energized loads, utility and economic development marketed sites, planning filings and dockets. We kill sites that are claimed, contaminated or under a moratorium, then match land.', 'You get a short list graded A (documented power), B (a named power path with a date) or C (land near capacity), with the one document that would move each site up a tier.', 'We do it this way because proximity misleads. In a 2025 analysis of ERCOT, Paces found only about 17% of substations near suitable land had any withdrawal headroom.']),
+        ('Who we work with', ['AI labs and neoclouds needing 10 MW to gigawatts, colocation developers, bitcoin miners and hosting buyers, and investors underwriting powered land. Owners and brokers bring us sites; we verify them before they reach a buyer.'])],
+   inv=['az15', 'pa350', 'oh300', 'nv375', 'in200', 'wi150', 'okc55', 'tx44'], src=['paces', 'dominion'],
+   faq=[('Who can help me find a data center site?', 'Invariant finds and verifies US data center sites from 1 MW to over 1 GW and matches buyers by MW, state and energization date. Book a call or call (628) 220-8972.'),
+        ('How does Invariant verify a site’s power?', 'We grade every site by the document behind its MW, from a map up to a signed service agreement or metered service, and check zoning, title and liabilities before any introduction.')]),
+}
+
+def intent_page(slug):
+    d = INTENT[slug]
+    sections = []
+    for i, (h, paras) in enumerate(d['sec']):
+        blocks = []
+        if not paras and d.get('checklist'):
+            blocks.append({'type': 'list', 'items': d['checklist'], 'sourceIds': d['src'][:1]})
+        for p in paras:
+            b = {'type': 'paragraph', 'text': p}
+            ids = [k for k in d['src'] if any(w in p for w in CITE.get(k, ()))]
+            if ids: b['sourceIds'] = ids
+            blocks.append(b)
+        sections.append({'id': f'i{i}-' + h.lower().replace(' ', '-').replace('’', '').replace("'", '').replace('?', '')[:40].strip('-'), 'heading': h, 'blocks': blocks})
+    sections.append({'id': 'sites-available', 'heading': 'Sites available through Invariant now', 'blocks': inv_table(d['inv'], 'A selection from Invariant’s current US inventory that fits this search. Specs are as marketed by the owner and are checked against utility documents before any introduction.')})
+    sections.append({'id': 'browse', 'heading': 'Browse data center sites by size, state and type', 'blocks': links_block()})
+    faqs = [{'question': q, 'answer': a} for q, a in d['faq']]
+    faqs.append({'question': 'How do I get matching sites from Invariant?', 'answer': 'Book a call or call (628) 220-8972 with your MW, states and energize-by date. We send matching sites, including off-market ones.'})
+    srcs = list(dict.fromkeys(d['src']))
+    return {'slug': slug, 'topic': 'Data Centers', 'kind': 'site-listing', 'region': 'United States', 'title': d['title'], 'description': d['desc'],
+            'date': DATE, 'readMinutes': 5, 'intro': d['intro'], 'takeaways': d['take'], 'sections': sections, 'faqs': faqs,
+            'sources': [{'id': x, 'title': S[x][0], 'url': S[x][1], 'publisher': S[x][2]} for x in srcs], 'relatedSlugs': [PILLAR, HUB]}
+
+
+CITE.update({'dominion': ('Dominion',), 'stcharles': ('St. Charles',), 'nvl72': ('120 kW', 'NVL72'), 'uptime-pue': ('PUE',),
+    'ercot-bz': ('75 MW and up', 'August 2026'), 'paces': ('withdrawal headroom', 'Paces'), 'lbnl': ('large-load tariff',), 'dcwatch': ('moratorium',),
+    'comed': ('ComEd',), 'ferc-rto': ('PJM', 'MISO', 'SPP', 'RTO')})
+
+def cite_blocks(page):
+    """Attach sources to list blocks by content, then drop sources nothing cites (new pages only)."""
+    have = [x['id'] for x in page['sources']]
+    for sec in page['sections']:
+        for b in sec['blocks']:
+            if b['type'] in ('paragraph', 'list'):
+                text = b.get('text') or ' '.join(b.get('items', []))
+                ids = [k for k in have if any(w in text for w in CITE.get(k, ()))]
+                if ids: b['sourceIds'] = list(dict.fromkeys((b.get('sourceIds') or []) + ids))
+    return page
+
+def prune_sources(page):
+    used = {i for s_ in page['sections'] for b in s_['blocks'] for i in b.get('sourceIds', [])} | {i for f in page['faqs'] for i in f.get('sourceIds', [])}
+    page['sources'] = [x for x in page['sources'] if x['id'] in used]
+    return page
+
 def cite_faqs(page):
     have = {x['id'] for x in page['sources']}
     for f in page['faqs']:
@@ -595,7 +795,9 @@ def cite_faqs(page):
         if ids: f['sourceIds'] = sorted(ids)
     return page
 
-pages = [cite_faqs(p) for p in [pillar()] + [size_page(m) for m in SIZES] + [state_page(s) for s in STATES]]
+NEW = set(INTENT) | {state_slug(k) for k, v in STATE.items() if v.get('nearby')}
+pages = [cite_faqs(p) for p in [pillar()] + [size_page(m) for m in SIZES] + [state_page(s) for s in STATES] + [intent_page(k) for k in INTENT]]
+pages = [prune_sources(cite_faqs(cite_blocks(p))) if p['slug'] in NEW else p for p in pages]
 out = json.dumps(pages, indent=1, ensure_ascii=False)
 assert '—' not in out and '–' not in out, 'dash'
 open(sys.argv[1], 'w').write(out + '\n')
