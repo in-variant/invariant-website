@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const base = new URL('../src/data/', import.meta.url)
-const files = ['powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
+const files = ['data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
 const slugs = new Set(articles.map(article => article.slug))
 if (slugs.size !== articles.length) throw new Error('Duplicate industry article slug')
@@ -16,6 +16,7 @@ for (const article of articles) {
   if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
   for (const block of [...article.sections.flatMap(section => section.blocks), ...article.faqs]) {
     for (const id of block.sourceIds ?? []) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)
+    if (block.type === 'links') for (const item of block.items) if (!slugs.has(item.slug)) throw new Error(`Missing linked article ${item.slug}: ${article.slug}`)
     if (block.type === 'table' && block.rows.some(row => row.length !== block.columns.length)) throw new Error(`Uneven table: ${article.slug}`)
   }
   for (const slug of article.relatedSlugs) if (!slugs.has(slug)) throw new Error(`Missing related article ${slug}`)

@@ -14,8 +14,15 @@ function Citations({ ids, article }: { ids?: string[]; article: Article }) {
 
 function Block({ block, article }: { block: ArticleBlock; article: Article }) {
   if (block.type === 'paragraph') return <p>{block.text}<Citations ids={block.sourceIds} article={article} /></p>
+  if (block.type === 'links') return <nav className="industry-links" aria-label={block.label}><p className="industry-eyebrow">{block.label}</p><ul>{block.items.map(item => <li key={item.slug}><Link to={`/blog/${item.slug}`}>{item.label}</Link></li>)}</ul></nav>
   if (block.type === 'list') return <div className="industry-list"><ul>{block.items.map(item => <li key={item}>{item}</li>)}</ul><Citations ids={block.sourceIds} article={article} /></div>
   return <figure className="industry-table"><div role="region" aria-label="Comparison table" tabIndex={0}><table><thead><tr>{block.columns.map(column => <th key={column} scope="col">{column}</th>)}</tr></thead><tbody>{block.rows.map((row, i) => <tr key={i}>{row.map((cell, j) => j === 0 ? <th key={j} scope="row">{cell}</th> : <td key={j}>{cell}</td>)}</tr>)}</tbody></table></div><figcaption><Citations ids={block.sourceIds} article={article} /></figcaption></figure>
+}
+
+export function articleCrumbs(article: Article, canonical: string) {
+  const site = article.kind === 'site-listing' || article.kind === 'site-guide'
+  const middle = site ? { name: 'Data center sites', url: `${SITE_URL}/blog/find-data-center-site-us` } : { name: `${article.topic} compliance`, url: `${SITE_URL}${industryPath(article.topic)}` }
+  return article.slug === 'find-data-center-site-us' ? [{ name: 'Invariant', url: SITE_URL }, { name: article.title, url: canonical }] : [{ name: 'Invariant', url: SITE_URL }, middle, { name: article.title, url: canonical }]
 }
 
 export function SiteBookingBanner({ variant = 'top' }: { variant?: 'top' | 'foot' }) {
@@ -40,7 +47,7 @@ export default function IndustryArticle({ articleSlug, renderSeo = true }: { art
     {renderSeo && <Seo title={article.title} description={article.description} canonical={canonical} ogImage={`${SITE_URL}${articleImage(article.slug)}`} ogType="article" jsonLd={[
       ORG_SCHEMA, EDITORIAL_TEAM,
       articleSchema({ title: article.title, description: article.description, url: canonical, datePublished: article.date, dateModified: article.date, image: `${SITE_URL}${articleImage(article.slug)}`, articleSection: article.kind === 'site-listing' ? 'Powered land and data center sites' : article.kind === 'site-guide' ? 'Data center site selection' : `${article.topic} compliance`, spatialCoverage: [article.region ?? 'United States'] }),
-      breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: `${article.topic} compliance`, url: `${SITE_URL}${hub}` }, { name: article.title, url: canonical }]),
+      breadcrumbSchema(articleCrumbs(article, canonical)),
       faqSchema(article.faqs),
     ]} />}
     <BlogArticleHeader slug={article.slug} title={article.title} subtitle={article.description} />

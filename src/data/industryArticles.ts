@@ -4,12 +4,14 @@ import dataCenterOperations from './industry-articles/data-center-operations.jso
 import dataCenterFireSafety from './industry-articles/data-center-fire-safety.json'
 import poweredLandSites from './industry-articles/powered-land-sites.json'
 import siteSelectionGuides from './industry-articles/site-selection-guides.json'
+import siteFinder from './industry-articles/data-center-site-finder.json'
 
 export type IndustryTopic = 'Data Centers' | 'Oil & Gas'
 export type ArticleBlock = (
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'table'; columns: string[]; rows: string[][] }
+  | { type: 'links'; label: string; items: { label: string; slug: string }[] }
 ) & { sourceIds?: string[] }
 export type IndustryArticle = {
   slug: string
@@ -30,7 +32,7 @@ export type IndustryArticle = {
   region?: string
 }
 
-export const INDUSTRY_ARTICLES = [...poweredLandSites, ...siteSelectionGuides, ...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
+export const INDUSTRY_ARTICLES = [...siteFinder, ...poweredLandSites, ...siteSelectionGuides, ...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
 export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ? '/data-center-compliance' : '/oil-gas-compliance'
 export const articleImage = (slug: string) => `/blog/industry/${slug}.webp`
 

@@ -505,6 +505,10 @@ hub = {
         sec('how-we-work', 'How Invariant works with buyers',
             p('We start from power evidence, not land. Before we introduce a buyer, we check the utility paperwork (studies, service agreements, will-serve letters), the zoning and the title, and we tell you which items we could not confirm.'),
             p('We keep locations and prices off this page on purpose. Owners ask for discretion, and a site that is shopped everywhere loses value. Book a call and we will walk you through the sites that fit your load, timeline and budget.')),
+        # Cross-links to the size and state pages (see site_finder.py).
+        sec('find-by-size-or-state', 'Find a data center site by size or state',
+            p('Looking for a specific size or state? Each page below shows what that requirement needs from the utility, the land it takes and the sites from our inventory that fit.'),
+            *__import__('json').load(open(__import__('os').path.join(__import__('os').path.dirname(__file__), 'browse_links.json')))),
     ],
     'faqs': [
         faq('Where can I find powered land for a data center in the US?', 'Invariant has powered sites in Arizona (1.5 GW), Pennsylvania (350 MW contracted), Nevada (375 MW), Ohio (300 MW), Indiana (200 MW), Wisconsin (150 MW), North Carolina (18 MW live) and more. Book a call or text (628) 220-8972 for details.'),

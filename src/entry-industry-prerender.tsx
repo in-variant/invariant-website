@@ -4,11 +4,11 @@ import { HelmetProvider } from 'react-helmet-async'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import SiteCrosshair from './components/SiteCrosshair'
-import IndustryArticle from './pages/blog/IndustryArticle'
+import IndustryArticle, { articleCrumbs } from './pages/blog/IndustryArticle'
 import IndustryHub from './pages/IndustryHub'
 import Careers from './pages/Careers'
 import { FOUNDING_ENGINEER } from './data/foundingEngineer'
-import { INDUSTRY_ARTICLES, articleImage, industryPath } from './data/industryArticles'
+import { INDUSTRY_ARTICLES, articleImage } from './data/industryArticles'
 import { INDUSTRY_HUBS } from './data/industryHubs'
 import { SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, faqSchema } from './components/Seo'
 import type { ReactNode } from 'react'
@@ -32,7 +32,7 @@ export function industryPages() {
         slug: `blog/${article.slug}`, title: `${article.title} | Invariant`, description: article.description, canonical, ogImage, ogType: 'article',
         source: 'src/pages/blog/IndustryArticle.tsx',
         bodyHtml: body(`/blog/${article.slug}`, <IndustryArticle articleSlug={article.slug} renderSeo={false} />),
-        jsonLd: [ORG_SCHEMA, EDITORIAL_TEAM, articleSchema({ title: article.title, description: article.description, url: canonical, datePublished: article.date, dateModified: article.date, image: ogImage, articleSection: article.kind === 'site-listing' ? 'Powered land and data center sites' : article.kind === 'site-guide' ? 'Data center site selection' : `${article.topic} compliance`, spatialCoverage: [article.region ?? 'United States'] }), breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: `${article.topic} compliance`, url: `${SITE_URL}${industryPath(article.topic)}` }, { name: article.title, url: canonical }]), faqSchema(article.faqs)],
+        jsonLd: [ORG_SCHEMA, EDITORIAL_TEAM, articleSchema({ title: article.title, description: article.description, url: canonical, datePublished: article.date, dateModified: article.date, image: ogImage, articleSection: article.kind === 'site-listing' ? 'Powered land and data center sites' : article.kind === 'site-guide' ? 'Data center site selection' : `${article.topic} compliance`, spatialCoverage: [article.region ?? 'United States'] }), breadcrumbSchema(articleCrumbs(article, canonical)), faqSchema(article.faqs)],
       }
     }),
     ...INDUSTRY_HUBS.map(hub => ({
