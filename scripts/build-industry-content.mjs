@@ -27,4 +27,6 @@ const index = articles.map(article => ({
   dateTime: article.date, image: `/blog/industry/${article.slug}.webp`,
 }))
 writeFileSync(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
+const siteSlugs = articles.filter(article => article.kind === 'site-listing' || article.kind === 'site-guide').map(article => article.slug)
+writeFileSync(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
 console.log(`Validated and indexed ${articles.length} industry guides`)

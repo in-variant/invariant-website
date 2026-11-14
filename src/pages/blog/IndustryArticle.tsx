@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, faqSchema } from '../../components/Seo'
-import { INDUSTRY_ARTICLES, articleImage, industryPath, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
+import { INDUSTRY_ARTICLES, articleImage, industryPath, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
 import './IndustryArticle.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
@@ -33,6 +33,7 @@ export function SiteBookingBanner({ variant = 'top' }: { variant?: 'top' | 'foot
     <div className="industry-site-booking-actions">
       <a href={BOOKING_URL} target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a>
       <a href={`tel:${SITES_PHONE}`} className="industry-site-booking-phone">Call or text {SITES_PHONE_DISPLAY}</a>
+      <a href={`mailto:${SITES_EMAIL}?subject=${encodeURIComponent('Data center sites')}`} className="industry-site-booking-phone">Email {SITES_EMAIL}</a>
     </div>
   </aside>
 }
