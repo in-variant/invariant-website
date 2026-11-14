@@ -6,6 +6,9 @@ SRC.update({
     'hq': ('Hydro-Quebec', 'https://www.hydroquebec.com/', 'Hydro-Quebec'),
     'statnett': ('Statnett', 'https://www.statnett.no/en/', 'Statnett'),
     'eia-nd': ('EIA North Dakota electricity profile', 'https://www.eia.gov/electricity/state/northdakota/', 'U.S. Energy Information Administration'),
+    'eia-ga': ('EIA Georgia electricity profile', 'https://www.eia.gov/electricity/state/georgia/', 'U.S. Energy Information Administration'),
+    'eia-la': ('EIA Louisiana electricity profile', 'https://www.eia.gov/electricity/state/louisiana/', 'U.S. Energy Information Administration'),
+    'eia-fl': ('EIA Florida electricity profile', 'https://www.eia.gov/electricity/state/florida/', 'U.S. Energy Information Administration'),
     'eia-sc': ('EIA South Carolina electricity profile', 'https://www.eia.gov/electricity/state/southcarolina/', 'U.S. Energy Information Administration'),
 })
 
@@ -422,7 +425,44 @@ NEW.append(site('pennsylvania-350-mw-contracted-power-ai-campus-for-lease',
     ['pjm'], [HUB, 'pennsylvania-500-mw-gas-and-grid-data-center-site', 'utility-will-serve-letter-load-study-esa']))
 NEW[-1]['date'] = '2026-11-09'
 
+# 2026-11-14: three sites from market.invariant-ai.com (listed = yes), teaser only (Pranav).
+MARKET = []
+MARKET.append(site('georgia-700-mw-powered-land-1400-acre-data-center-megasite',
+    'Georgia powered land for sale: 1,400+ acre data center megasite, about 700 MW claimed',
+    'A Georgia megasite of more than 1,400 acres in one tract, marketed with about 700 MW on high-voltage transmission. Power claim checked against utility documents before any introduction. Details on a call.',
+    'Georgia, United States',
+    [['Power', 'About 700 MW on high-voltage transmission, as marketed by the seller, plus a smaller lower-voltage feed'], ['Land', 'More than 1,400 acres in one tract, mostly outside the floodplain'], ['Timing', 'Confirmed on a call'], ['Use', 'Hyperscale and large AI training campuses'], ['Zoning', 'Agricultural today; data center use needs a county rezoning we walk through on the call']],
+    'We have a Georgia megasite of more than 1,400 acres in a single tract, marketed with about 700 MW available on high-voltage transmission and a second, smaller feed at lower voltage. Large generation sits in the same part of the state. The land is open, mostly outside the floodplain and well drained.',
+    'Single tracts this size with high-voltage lines next to them are rare in the Southeast. The MW figure is the seller\'s, so before any introduction we check it against utility documents and tell you exactly what is confirmed and what is not.',
+    'Hyperscalers and developers who want several hundred MW on one campus in the Southeast and can carry a rezoning. Not a fit for buyers who need energized power this year.',
+    [faq('How much power is available at the Georgia megasite?', 'The seller markets about 700 MW on high-voltage transmission plus a smaller lower-voltage feed. We confirm what the utility has documented before any introduction.', 'eia-ga')],
+    ['eia-ga'], [HUB, 'data-center-sites-for-sale-georgia', 'power-evidence-data-center-site-verification']))
+
+MARKET.append(site('louisiana-80-mw-former-mill-site-800-acres-rail',
+    'Louisiana former mill site for sale: 80 MW of grid power under an executed agreement, about 800 acres',
+    'A Louisiana former heavy industrial site of about 800 acres with 80 MW of grid power under an executed agreement, onsite turbine generation, and highway and rail at the gate. Details on a call.',
+    'Louisiana, United States',
+    [['Power', '80 MW of grid power under an executed agreement, plus onsite turbine generation of similar size'], ['Land', 'About 800 acres, flat, with a sizable wetland share; the buildable footprint is mapped on the call'], ['Timing', 'Brownfield with an existing grid connection; availability confirmed on a call'], ['Use', 'AI inference, HPC and industrial loads'], ['Access', 'Highway and rail at the property line']],
+    'We have a former heavy industrial site in Louisiana of about 800 acres with 80 MW of grid power under an executed agreement and onsite turbine generation of a similar size. A highway and a rail line run along the property, and the grid connection that served the mill is still in place.',
+    'Most powered land comes with a study or a claim. This site has a contract behind its 80 MW, on a brownfield that carried heavy industrial load for decades, so the path to first power is shorter than a greenfield. The onsite generation adds a second source.',
+    'AI inference, HPC and industrial buyers who need 50 MW to 80 MW soon on a site with rail and room to grow. Not suited to buyers who need several hundred MW on day one.',
+    [faq('How much power is available at the Louisiana site?', '80 MW of grid power under an executed agreement, plus onsite turbine generation of a similar size.', 'eia-la')],
+    ['eia-la'], [HUB, 'data-center-sites-for-sale-louisiana', 'utility-will-serve-letter-load-study-esa']))
+
+MARKET.append(site('florida-retired-power-plant-site-1200-acres-data-center',
+    'Florida retired power plant site for redevelopment: about 1,200 acres with high-voltage transmission on site',
+    'A Florida retired power plant site of about 1,200 acres, offered for redevelopment, with high-voltage transmission on site, rail and port access. Details on a call.',
+    'Florida, United States',
+    [['Power', 'Former 1 GW+ generating site with high-voltage transmission on site; capacity for new load confirmed with the utility'], ['Land', 'About 1,200 acres, flat, part wetland'], ['Timing', 'Owner is taking redevelopment proposals; confirmed on a call'], ['Use', 'Large AI and industrial campuses'], ['Access', 'Rail on the property, interstate and port nearby']],
+    'We can take you through a retired power plant site in Florida of about 1,200 acres that its owner is offering for redevelopment. The plant generated more than a gigawatt and the high-voltage transmission that carried it is still on site. Rail runs onto the property and an interstate and a deepwater port are close by.',
+    'Retired plant sites are the fastest route to large power because the transmission is already built. The open question is how much of the former capacity a new load can take, since the owner plans to keep part of the site for new generation. We work that out with the utility before an introduction.',
+    'Developers and hyperscalers who want a large Southeast campus on built transmission and can work through a public redevelopment process. Not suited to buyers who need power energized in months.',
+    [faq('How much power can a data center get at the Florida plant site?', 'The plant generated more than a gigawatt and its high-voltage transmission is still in place. How much of that a new load can use is confirmed with the utility before any introduction.', 'eia-fl')],
+    ['eia-fl'], [HUB, 'retired-power-plant-sites-for-data-centers', 'power-evidence-data-center-site-verification']))
+for x in MARKET: x['date'] = '2026-11-14'
+
 S += NEW
+S += MARKET
 
 S.append(site('earlier-powered-site-and-hosting-listings',
     'Earlier US mining site and hosting listings (2023 to 2025): ask us for current status',
@@ -462,6 +502,9 @@ ROWS = [
     ['Arizona', '1.5 GW Phase 1', '15,000+ acres', 'Grid 2027'],
     ['Pennsylvania', '350 MW, signed utility service agreement', 'Former plant campus, lease', '50 MW end 2026, 300 MW end 2027'],
     ['Pennsylvania', '200 MW BTM gas + 300 MW grid', '120 ready acres', 'Phased'],
+    ['Georgia', 'About 700 MW, seller claim', '1,400+ acres, one tract', 'On a call'],
+    ['Florida', 'Retired 1 GW+ plant, transmission on site', '~1,200 acres', 'Redevelopment proposals'],
+    ['Louisiana', '80 MW, executed agreement, plus onsite turbines', '~800 acres, rail', 'Brownfield, on a call'],
     ['Iowa', '20 MW to 500 MW+ PPA site', 'Non-zoned', 'Phased'],
     ['Nevada', '375 MW', '~350 acres', '2027 to 2028'],
     ['Ohio', '300 MW approved', '300+ acres', '1H 2027'],
@@ -491,17 +534,18 @@ ROWS = [
 hub = {
     'slug': HUB, 'topic': 'Data Centers', 'kind': 'site-listing', 'region': 'United States',
     'title': 'Powered land for sale: data center, AI and bitcoin mining sites available now (November 2026)',
-    'description': '36 US powered sites and 11 hosting options available through Invariant in November 2026, from a 1.5 GW Arizona AI campus to energized mining sites and hosting. Details on a call.',
+    'description': '39 US powered sites and 11 hosting options available through Invariant in November 2026, from a 1.5 GW Arizona AI campus to energized mining sites and hosting. Details on a call.',
     'date': DATE, 'readMinutes': 4,
-    'intro': 'Invariant has 36 US powered sites and 11 hosting options available as of November 2026, from a 1.5 GW AI campus in Arizona to energized 2 MW mining sites and open hosting capacity. Sixteen are in the 17 MW to 1.5 GW range that AI, HPC and hyperscale buyers ask for, and most can take load today. Below is what we can share publicly. Locations, utility documents and prices are shared on a call.',
+    'intro': 'Invariant has 39 US powered sites and 11 hosting options available as of November 2026, from a 1.5 GW AI campus in Arizona to energized 2 MW mining sites and open hosting capacity. Nineteen are in the 17 MW to 1.5 GW range that AI, HPC and hyperscale buyers ask for, and most can take load today. Below is what we can share publicly. Locations, utility documents and prices are shared on a call.',
     'takeaways': [
-        'Large campuses: Arizona 1.5 GW, Pennsylvania 500 MW and 350 MW (signed utility agreement), Iowa 500 MW, Nevada 375 MW, Ohio 300 MW, Indianapolis 200 MW, Wisconsin 150 MW.',
-        'Energized now: North Carolina 18 MW, Kentucky 30 MW, Texas 44 MW, Oklahoma City 55 MW.',
+        'Large campuses: Arizona 1.5 GW, Pennsylvania 500 MW and 350 MW (signed utility agreement), Iowa 500 MW, Georgia 1,400+ acres (about 700 MW), Florida retired plant (1,200 acres), Nevada 375 MW, Ohio 300 MW, Indianapolis 200 MW, Wisconsin 150 MW.',
+        'Energized now: North Carolina 18 MW, Kentucky 30 MW, Texas 44 MW, Oklahoma City 55 MW. Contracted: Louisiana 80 MW on an 800-acre brownfield.',
         'Small and fast: turnkey mining and edge sites in Kentucky, Oklahoma, Texas and Iowa.',
         'Tell us your MW, region and energize-by date. We share matching sites, including ones not listed here.',
     ],
     'sections': [
-        sec('available-sites', 'Sites available right now', table(['Region', 'Power', 'Land', 'Timing'], ROWS)),
+        sec('available-sites', 'Sites available right now', table(['Region', 'Power', 'Land', 'Timing'], ROWS),
+            {'type': 'links', 'label': 'New this week', 'items': [{'slug': x['slug'], 'label': x['title'].split(':')[0]} for x in MARKET]}),
         sec('how-we-work', 'How Invariant works with buyers',
             p('We start from power evidence, not land. Before we introduce a buyer, we check the utility paperwork (studies, service agreements, will-serve letters), the zoning and the title, and we tell you which items we could not confirm.'),
             p('We keep locations and prices off this page on purpose. Owners ask for discretion, and a site that is shopped everywhere loses value. Book a call and we will walk you through the sites that fit your load, timeline and budget.')),
@@ -511,7 +555,7 @@ hub = {
             *__import__('json').load(open(__import__('os').path.join(__import__('os').path.dirname(__file__), 'browse_links.json')))),
     ],
     'faqs': [
-        faq('Where can I find powered land for a data center in the US?', 'Invariant has powered sites in Arizona (1.5 GW), Pennsylvania (350 MW contracted), Nevada (375 MW), Ohio (300 MW), Indiana (200 MW), Wisconsin (150 MW), North Carolina (18 MW live) and more. Book a call or text (628) 220-8972 for details.'),
+        faq('Where can I find powered land for a data center in the US?', 'Invariant has powered sites in Arizona (1.5 GW), Pennsylvania (350 MW contracted), Georgia (about 700 MW, 1,400+ acres), Louisiana (80 MW contracted), Florida (retired plant, 1,200 acres), Nevada (375 MW), Ohio (300 MW), Indiana (200 MW), Wisconsin (150 MW), North Carolina (18 MW live) and more. Book a call or text (628) 220-8972 for details.'),
         faq('Which sites have power available today?', 'North Carolina, Kentucky (30 MW), a Texas metro property (44 MW), Oklahoma City (55 MW), Wisconsin (80 MW) and several turnkey mining sites.'),
         faq('Do you have off-market sites?', 'Yes. The sites on this page are a subset of what we work on. Tell us your requirements on a call.'),
         faq('How do you verify a powered site?', 'Utility documents first, then zoning and title, before any introduction. We flag anything we could not confirm.'),
