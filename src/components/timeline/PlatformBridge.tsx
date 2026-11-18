@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
-const CALENDAR_URL = 'https://calendar.app.google/mZPkSD8mPEpFCNh89'
+const CALENDAR_URL = 'https://cal.com/pranav-goswami/website-30min'
 
 const STATUSES = [
   { text: 'Agent drafting', active: true },

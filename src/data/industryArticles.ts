@@ -36,7 +36,7 @@ export const INDUSTRY_ARTICLES = [...siteFinder, ...poweredLandSites, ...siteSel
 export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ? '/data-center-compliance' : '/oil-gas-compliance'
 export const articleImage = (slug: string) => `/blog/industry/${slug}.webp`
 
-export const BOOKING_URL = 'https://calendar.app.google/ACLzeFhzNF9szwry8'
+export const BOOKING_URL = 'https://cal.com/pranav-goswami/website-30min'
 export const SITES_PHONE = '+16282208972'
 export const SITES_PHONE_DISPLAY = '(628) 220-8972'
 /** Contact for site selection inbound (Pranav, 2026-11-14): site pages route here, not founders@. */
