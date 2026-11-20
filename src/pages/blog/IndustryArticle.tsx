@@ -25,13 +25,24 @@ export function articleCrumbs(article: Article, canonical: string) {
   return article.slug === 'find-data-center-site-us' ? [{ name: 'Invariant', url: SITE_URL }, { name: article.title, url: canonical }] : [{ name: 'Invariant', url: SITE_URL }, middle, { name: article.title, url: canonical }]
 }
 
+/** Invariant Market: the gated catalogue of US data center sites (Pranav, 2026-11-19). */
+export const MARKET_URL = 'https://market.invariant-ai.com'
+
+export function SiteMarketStrip() {
+  return <aside className="industry-site-market" aria-label="Find more data center sites">
+    <p><span className="industry-eyebrow">More sites</span>Over 100 US powered sites, each with a free teaser, risk and power reports, are on Invariant Market.</p>
+    <a href={MARKET_URL}>Find more sites at market.invariant-ai.com <span aria-hidden="true">↗</span></a>
+  </aside>
+}
+
 export function SiteBookingBanner({ variant = 'top' }: { variant?: 'top' | 'foot' }) {
   return <aside className={`industry-site-booking industry-site-booking--${variant}`} aria-label="Book a call for more powered sites">
     <p className="industry-eyebrow">{variant === 'top' ? 'Want more sites like this one?' : 'Looking for a different site?'}</p>
     <h2>{variant === 'top' ? 'To get more powered sites, book a call.' : 'Tell us the MW, the state and the date. We will send the sites that fit.'}</h2>
-    <p>We track powered land, energized mining sites and AI campuses across the US and abroad. Book 30 minutes and we will walk you through the ones that match your load, timeline and budget.</p>
+    <p>We track powered land, energized mining sites and AI campuses across the US and abroad. Book 30 minutes and we will walk you through the ones that match your load, timeline and budget. To find more sites yourself, browse the full catalogue at <a href={MARKET_URL} className="industry-site-booking-inline">market.invariant-ai.com</a>.</p>
     <div className="industry-site-booking-actions">
       <a href={BOOKING_URL} target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a>
+      <a href={MARKET_URL}>Find more sites at market.invariant-ai.com <span aria-hidden="true">↗</span></a>
       <a href={`tel:${SITES_PHONE}`} className="industry-site-booking-phone">Call or text {SITES_PHONE_DISPLAY}</a>
       <a href={`mailto:${SITES_EMAIL}?subject=${encodeURIComponent('Data center sites')}`} className="industry-site-booking-phone">Email {SITES_EMAIL}</a>
     </div>
@@ -62,6 +73,7 @@ export default function IndustryArticle({ articleSlug, renderSeo = true }: { art
       <div className="industry-article-body">
         <div className="industry-byline"><Link to="/about">Invariant editorial team</Link><span>{article.readMinutes} min read</span><span>{article.region ?? 'United States'}</span></div>
         {article.kind === 'site-listing' && <SiteBookingBanner />}
+        {article.kind === 'site-guide' && <SiteMarketStrip />}
         <p className="industry-lead">{article.intro}</p>
         <section className="industry-takeaways" aria-label="Before you start"><p className="industry-eyebrow">Before you start</p><ul>{article.takeaways.map(item => <li key={item}>{item}</li>)}</ul></section>
         {article.sections.map(section => <section key={section.id} id={section.id} className="industry-prose-section"><h2>{section.heading}</h2>{section.blocks.map((block, i) => <Block key={i} block={block} article={article} />)}</section>)}
