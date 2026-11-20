@@ -302,6 +302,7 @@ function writeRoute(template, slug, opts) {
   let out = customizeHtml(template, opts)
   if (opts.bodyHtml) out = out.replace('<div id="root"></div>', () => `<div id="root">${opts.bodyHtml}</div>`)
   const stylesheets = (opts.stylesheets ?? []).filter(file => !out.includes(`href="/${escapeAttr(file)}"`))
+  if (opts.markdown) out = out.replace('</head>', `<link rel="alternate" type="text/markdown" href="/${escapeAttr(slug)}.md" title="Markdown for AI agents">\n</head>`)
   if (stylesheets.length) out = out.replace('</head>', `${stylesheets.map(file => `<link rel="stylesheet" href="/${escapeAttr(file)}">`).join('\n')}\n</head>`)
   const dir = join(DIST, slug)
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
@@ -615,6 +616,7 @@ async function main() {
       canonical,
       ogImage: `${SITE}/og/glossary/${e.slug}.png`,
       ogType: 'article',
+      markdown: true,
       jsonLd: [
         ORG_SCHEMA,
         definedTerm(e),
@@ -648,7 +650,7 @@ async function main() {
       return chunk ? [...chunk.css ?? [], ...(chunk.imports ?? []).flatMap(dep => cssFor(dep, seen))] : []
     }
     for (const page of industryPages()) {
-      writeRoute(template, page.slug, { ...page, stylesheets: [...new Set(cssFor(page.source))] })
+      writeRoute(template, page.slug, { ...page, markdown: page.slug.startsWith('blog/'), stylesheets: [...new Set(cssFor(page.source))] })
       written++
     }
   } finally { await renderer.close() }
