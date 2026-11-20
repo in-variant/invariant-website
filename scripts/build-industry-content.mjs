@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const base = new URL('../src/data/', import.meta.url)
-const files = ['data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
+const files = ['site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
 const slugs = new Set(articles.map(article => article.slug))
 if (slugs.size !== articles.length) throw new Error('Duplicate industry article slug')
@@ -27,6 +27,6 @@ const index = articles.map(article => ({
   dateTime: article.date, image: `/blog/industry/${article.slug}.webp`,
 }))
 writeFileSync(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
-const siteSlugs = articles.filter(article => article.kind === 'site-listing' || article.kind === 'site-guide').map(article => article.slug)
+const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide'].includes(article.kind)).map(article => article.slug)
 writeFileSync(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
 console.log(`Validated and indexed ${articles.length} industry guides`)

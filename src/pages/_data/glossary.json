@@ -5365,6 +5365,159 @@
         "label": "How to find a data center site in the US",
         "path": "/blog/find-data-center-site-us"
       }
+    },
+    {
+      "slug": "utility-grade-power-study",
+      "term": "Utility-grade power study",
+      "topic": "data-centers",
+      "aliases": [
+        "utility grade power study",
+        "power study for a data center",
+        "data center power study",
+        "site power study"
+      ],
+      "short_definition": "A utility-grade power study is a power flow study of a site’s connection options, built to the planning methods utilities use (seasonal cases, study years, AC power flow at N-0 and N-1 under NERC TPL-001), that returns MW by connection point and year, the binding element, upgrades, cost and date.",
+      "full_definition": "A utility-grade power study answers how much load a site can take at each possible point of interconnection, in each study year, and what limits it. It rebuilds the transmission network around the site, checks the model against flows the ISO reports, injects the load, and runs AC power flow with single-element (N-1) contingency tests and selected harder events from NERC TPL-001.\n\nThe output is a MW figure per connection point and year, the line or transformer that binds, the upgrade that lifts it and the MW it unlocks, an indicative cost range and an energization date range. It is run before the utility's own load study, which is the only study that commits the utility, so the developer files at the right point with the right MW.",
+      "related_to": [
+        "n-1-contingency",
+        "power-flow-study",
+        "load-study",
+        "point-of-interconnection",
+        "data-center-site-feasibility-study"
+      ],
+      "citations": [
+        {
+          "label": "NERC TPL-001-5.1, transmission system planning performance requirements",
+          "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "Utility-grade power study for data centers",
+        "path": "/blog/utility-grade-power-study"
+      }
+    },
+    {
+      "slug": "n-1-contingency",
+      "term": "N-1 contingency",
+      "topic": "data-centers",
+      "aliases": [
+        "N-1",
+        "N minus 1",
+        "N-1 contingency analysis",
+        "single contingency",
+        "P1 event"
+      ],
+      "short_definition": "N-1 is the condition with one grid element (a line, transformer or generator) out of service. A new data center load passes N-1 if no element exceeds its emergency rating and no voltage leaves its range after any single outage.",
+      "full_definition": "NERC TPL-001 sets the events transmission planners test. P0 is all facilities in service. P1 is the loss of any single generator, line, transformer or shunt device, the event set usually called N-1. P2 to P7 cover bus and breaker faults, stuck breakers, common-tower outages and overlapping outages (P6, often called N-1-1).\n\nFor a data center, N-1 usually sets the MW a site can get: when one of two lines feeding a station trips, the other must carry the whole load at its emergency rating. The binding outage is often a transformer or parallel path one or two stations away rather than the nearest line.",
+      "related_to": [
+        "utility-grade-power-study",
+        "power-flow-study",
+        "substation-withdrawal-headroom"
+      ],
+      "citations": [
+        {
+          "label": "NERC TPL-001-5.1",
+          "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "N-1 contingency analysis for data centers",
+        "path": "/blog/n-1-contingency-analysis-data-center"
+      }
+    },
+    {
+      "slug": "power-flow-study",
+      "term": "Power flow study",
+      "topic": "data-centers",
+      "aliases": [
+        "load flow study",
+        "load flow analysis",
+        "power flow analysis",
+        "AC power flow"
+      ],
+      "short_definition": "A power flow (load flow) study solves the voltages and the flow on every line and transformer in a network for a given pattern of load and generation. For a data center it finds the MW at which the first thermal or voltage limit is crossed at a connection point.",
+      "full_definition": "Planners run power flows on base cases for each season and study year. An AC power flow includes reactive power and voltage; a DC power flow is a fast linear version used to screen many cases. Utility planning cases are protected as critical energy infrastructure information, so access needs an agreement with the ISO or FERC.\n\nA data center power flow study adds the load at each candidate point of interconnection, solves the network with all facilities in service and with each single element out, and reports the MW headroom, the binding element and the upgrades that would lift it.",
+      "related_to": [
+        "n-1-contingency",
+        "utility-grade-power-study",
+        "point-of-interconnection"
+      ],
+      "citations": [
+        {
+          "label": "18 CFR 388.113, critical energy and electric infrastructure information",
+          "url": "https://www.law.cornell.edu/cfr/text/18/388.113"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "Power flow study for a data center",
+        "path": "/blog/data-center-power-flow-study"
+      }
+    },
+    {
+      "slug": "data-center-site-feasibility-study",
+      "term": "Data center site feasibility study",
+      "topic": "data-centers",
+      "aliases": [
+        "site feasibility study",
+        "site feasibility screen",
+        "data center feasibility study",
+        "preliminary site assessment"
+      ],
+      "short_definition": "A data center site feasibility study is a first screen of a site from a coordinate and a target MW: power at nearby substations, flood zone, seismic hazard, wetlands and species, airspace, zoning and moratoriums, water, fiber and the parcel, ending in a go or no-go.",
+      "full_definition": "The feasibility study is the first of two due diligence steps. It is built to remove sites quickly and cheaply, before an option payment or a utility study deposit. Power is checked first because it removes the most sites: the serving utility, the nearest substations and lines at a usable voltage, and a screening MW range at each.\n\nFlood comes from FEMA's National Flood Hazard Layer, seismic values from the USGS hazard model and the ASCE Hazard Tool, wetlands from the National Wetlands Inventory, listed species from IPaC and airspace from FAA Part 77. Sites that pass go on to a utility-grade power study.",
+      "related_to": [
+        "utility-grade-power-study",
+        "data-center-site-selection",
+        "powered-land",
+        "data-center-moratorium"
+      ],
+      "citations": [
+        {
+          "label": "FEMA National Flood Hazard Layer",
+          "url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer"
+        },
+        {
+          "label": "Paces, grid planning for data centers",
+          "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "Data center site feasibility study",
+        "path": "/blog/data-center-site-feasibility-study"
+      }
+    },
+    {
+      "slug": "point-of-interconnection",
+      "term": "Point of interconnection",
+      "topic": "data-centers",
+      "aliases": [
+        "POI",
+        "point of interconnection (POI)",
+        "interconnection point",
+        "point of service"
+      ],
+      "short_definition": "The point of interconnection is where a data center’s facilities connect to the utility’s system: a bay at an existing substation, or a new switching station on a passing transmission line. The MW a site can get is studied separately at each one.",
+      "full_definition": "Choosing the point of interconnection is one of the first decisions in a large-load request. Two stations a mile apart can differ by hundreds of MW because of the lines and transformers behind them. Tapping a passing line requires a new switching station, which MISO's MTEP24 cost guide puts at about $15.8 million for a four-position 345 kV ring bus.\n\nA utility load study is run for a named point, so filing at the wrong one costs months. A pre-study that tests every realistic point first is how developers avoid that.",
+      "related_to": [
+        "utility-grade-power-study",
+        "load-study",
+        "power-flow-study"
+      ],
+      "citations": [
+        {
+          "label": "MISO transmission cost estimation guide for MTEP24",
+          "url": "https://cdn.misoenergy.org/20240501%20PSC%20Item%2004%20MISO%20Transmission%20Cost%20Estimation%20Guide%20for%20MTEP24632680.pdf"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "Distance to substation and transmission",
+        "path": "/blog/distance-to-transmission-line-data-center"
+      }
     }
   ]
 }

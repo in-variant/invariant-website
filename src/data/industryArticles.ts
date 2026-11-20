@@ -5,6 +5,7 @@ import dataCenterFireSafety from './industry-articles/data-center-fire-safety.js
 import poweredLandSites from './industry-articles/powered-land-sites.json'
 import siteSelectionGuides from './industry-articles/site-selection-guides.json'
 import siteFinder from './industry-articles/data-center-site-finder.json'
+import siteDueDiligence from './industry-articles/site-due-diligence.json'
 
 export type IndustryTopic = 'Data Centers' | 'Oil & Gas'
 export type ArticleBlock = (
@@ -26,15 +27,23 @@ export type IndustryArticle = {
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
   sources: { id: string; title: string; url: string; publisher: string }[]
   relatedSlugs: string[]
-  /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot; 'site-guide' pages carry the booking banner at the foot. */
-  kind?: 'site-listing' | 'site-guide'
+  /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot; 'site-guide' pages carry the booking banner at the foot; 'study-guide' pages (site due diligence) carry the power study request banner. */
+  kind?: 'site-listing' | 'site-guide' | 'study-guide'
+  /** Emits schema.org Service for pages that describe a service Invariant sells. */
+  service?: { name: string; serviceType: string; description: string }
+  /** Emits schema.org HowTo for pages that walk through a process. */
+  howTo?: { name: string; steps: { name: string; text: string }[] }
   /** Region shown in the byline and used as schema spatialCoverage, e.g. "Arizona, United States". */
   region?: string
 }
 
-export const INDUSTRY_ARTICLES = [...siteFinder, ...poweredLandSites, ...siteSelectionGuides, ...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
+export const INDUSTRY_ARTICLES = [...siteDueDiligence, ...siteFinder, ...poweredLandSites, ...siteSelectionGuides, ...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...oilGas] as IndustryArticle[]
 export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ? '/data-center-compliance' : '/oil-gas-compliance'
 export const articleImage = (slug: string) => `/blog/industry/${slug}.webp`
+
+/** Pillar for the site due diligence cluster (feasibility screen, then utility-grade power study). */
+export const DILIGENCE_PILLAR = 'data-center-site-due-diligence'
+export const isSiteKind = (kind?: string) => kind === 'site-listing' || kind === 'site-guide' || kind === 'study-guide'
 
 export const BOOKING_URL = 'https://cal.com/pranav-goswami/website-30min'
 export const SITES_PHONE = '+16282208972'

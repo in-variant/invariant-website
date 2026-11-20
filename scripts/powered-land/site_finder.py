@@ -101,6 +101,14 @@ def links_block():
         {'type': 'links', 'label': 'Find a site by size', 'items': [{'label': f'{size_label(m)} data center site', 'slug': size_slug(m)} for m in SIZES]},
         {'type': 'links', 'label': 'Find a site by state', 'items': [{'label': f'Data center sites in {STATE[s]["name"]}', 'slug': state_slug(s)} for s in STATES]},
         {'type': 'links', 'label': 'Find a site by type', 'items': [{'label': INTENT[k]['link'], 'slug': k} for k in INTENT]},
+        {'type': 'links', 'label': 'Site due diligence and power studies', 'items': [
+            {'label': 'Site due diligence: the two-step process', 'slug': 'data-center-site-due-diligence'},
+            {'label': 'Site feasibility screen in 24 hours', 'slug': 'data-center-site-feasibility-study'},
+            {'label': 'Utility-grade power study', 'slug': 'utility-grade-power-study'},
+            {'label': 'N-1 contingency analysis', 'slug': 'n-1-contingency-analysis-data-center'},
+            {'label': 'How to check substation capacity', 'slug': 'data-center-substation-capacity-check'},
+            {'label': 'Utility load study cost and timeline', 'slug': 'utility-load-study-cost-and-timeline'},
+        ]},
         {'type': 'links', 'label': 'Site selection guides', 'items': [
             {'label': 'How to find a data center site in the US', 'slug': PILLAR},
             {'label': 'All powered land for sale', 'slug': HUB},
@@ -739,6 +747,7 @@ INTENT = {
    intro='Invariant finds data center sites for AI companies, neoclouds, colocation developers, miners and investors. We search from power evidence first, keep a live inventory of US powered sites, and check each site against utility documents before we introduce it. Tell us the MW, the states you would consider and the date you need power. We send the sites that fit, including off-market ones.',
    take=['We start from power evidence, not land.', 'We keep a live US inventory from 0.5 MW to 1.5 GW.', 'Every site is graded A, B or C by the document behind its MW.', 'Book a call or call (628) 220-8972 with your requirements.'],
    sec=[('How it works', ['You send the MW, states, energize-by date and budget. We screen our inventory and run a fresh search from power-evidence channels: retired plants, energized loads, utility and economic development marketed sites, planning filings and dockets. We kill sites that are claimed, contaminated or under a moratorium, then match land.', 'You get a short list graded A (documented power), B (a named power path with a date) or C (land near capacity), with the one document that would move each site up a tier.', 'We do it this way because proximity misleads. In a 2025 analysis of ERCOT, Paces found only about 17% of substations near suitable land had any withdrawal headroom.']),
+        ('Due diligence on a site you already have', ['Already holding a site, or weighing a seller’s claims? We run the same checks as a service in two steps. A feasibility screen returns power at the nearest substations, flood, seismic, wetlands, airspace, zoning and parcel checks, with a go or no-go, within 24 hours. A utility-grade power study then runs AC power flow with N-1 contingency tests at each connection option and returns MW by year, the upgrades, an indicative cost and an energization date, usually within 48 hours.']),
         ('Who we work with', ['AI labs and neoclouds needing 10 MW to gigawatts, colocation developers, bitcoin miners and hosting buyers, and investors underwriting powered land. Owners and brokers bring us sites; we verify them before they reach a buyer.'])],
    inv=['az15', 'pa350', 'oh300', 'nv375', 'in200', 'wi150', 'okc55', 'tx44'], src=['paces', 'dominion'],
    faq=[('Who can help me find a data center site?', 'Invariant finds and verifies US data center sites from 1 MW to over 1 GW and matches buyers by MW, state and energization date. Book a call or call (628) 220-8972.'),

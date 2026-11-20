@@ -1,0 +1,3797 @@
+[
+ {
+  "slug": "data-center-site-due-diligence",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Data center site due diligence: feasibility screen first, then a utility-grade power study",
+  "description": "How data center site due diligence works in two steps: a feasibility screen (power, flood, seismic, wetlands, FAA, zoning) and a utility-grade power study with N-1 tests.",
+  "date": "2026-11-20",
+  "readMinutes": 10,
+  "intro": "Data center site due diligence answers two questions in order. Is this site worth more money and time? And how much power can it get, by when, and at what cost? Invariant splits the work the same way. Step one is a feasibility screen: from a coordinate and a MW figure we check power at the nearest substations, flood zone, seismic hazard, wetlands, airports, zoning and the parcel, and end in a go or no-go. Step two is a utility-grade power study for the sites that pass: an AC power flow with N-1 contingency tests at each connection option, the upgrades that lift the limit, an indicative cost and an energization date.",
+  "takeaways": [
+   "Screen many sites cheaply, then study the few that survive. Most sites fail on something you can check in a day.",
+   "Distance to a line is not capacity. Paces found only about 17% of ERCOT substations near suitable land had any withdrawal headroom.",
+   "A utility load study costs $10,000 to $100,000 or more and needs site control. Run your own study first so you file at the right point with the right MW.",
+   "Our MW figures are screening figures built to utility planning methods. The utility’s own study is what makes a number firm."
+  ],
+  "sections": [
+   {
+    "id": "the-two-steps-and-what-each-one-decides",
+    "heading": "The two steps and what each one decides",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Most site deals die for boring reasons: a floodway across the pad, a county moratorium, a substation that is already spoken for. None of those need a power flow to find. So the first pass is wide and fast, and the expensive work only goes to sites that have earned it."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "",
+       "Step 1: feasibility screen",
+       "Step 2: utility-grade power study"
+      ],
+      "rows": [
+       [
+        "Question",
+        "Should we keep going on this site?",
+        "How many MW, at which point, by when, for how much?"
+       ],
+       [
+        "Input",
+        "Coordinate or parcel, target MW, energize-by date",
+        "The same, plus phasing, power factor and any utility letters you hold"
+       ],
+       [
+        "Power work",
+        "Nearest substations and lines, screening MW range by year, binding constraint",
+        "Full AC power flow, N-0 and N-1 contingencies, short circuit, upgrade search"
+       ],
+       [
+        "Site work",
+        "Flood, seismic, wetlands, species, FAA, zoning, moratoriums, parcel, water, fiber",
+        "Zoning and permitting path, environmental and flood, airspace, county sentiment, ownership file"
+       ],
+       [
+        "Output",
+        "Go, no-go or conditional go, with the reason",
+        "A report you can take into an LOI: MW by connection point and year, upgrades, cost range, date range, utility path"
+       ],
+       [
+        "Turnaround",
+        "Within 24 hours",
+        "Usually within 48 hours"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Who buys this? Developers deciding which options to exercise, investors and lenders underwriting powered land, AI companies and neoclouds choosing between shortlisted sites, landowners who want to know what their land is worth to a data center, and brokers and advisers who want the work done behind their own name."
+     }
+    ]
+   },
+   {
+    "id": "step-1-the-feasibility-screen",
+    "heading": "Step 1: the feasibility screen",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The screen is a set of kill checks run in a fixed order, cheapest first. The power check comes first because it kills the most sites. A site 20 miles from any 138 kV or higher station rarely makes sense above a few MW, whatever else it has going for it."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Check",
+       "What we look at"
+      ],
+      "rows": [
+       [
+        "Power",
+        "Serving utility and ISO, nearest substations and lines with voltage and distance, a screening MW range at each for the next three study years, the constraint that sets it"
+       ],
+       [
+        "Flood",
+        "FEMA flood zone on the pad and the access road, base flood elevation where mapped, coastal surge and sea level exposure"
+       ],
+       [
+        "Seismic and ground",
+        "USGS ground motion, ASCE 7 site values, mapped faults, soils and slope"
+       ],
+       [
+        "Environment",
+        "Wetlands, listed species, contamination records nearby, and whether a Phase I ESA is the next step"
+       ],
+       [
+        "Airspace",
+        "Airports and heliports nearby and whether FAA notice is likely for the buildings, stacks or cranes"
+       ],
+       [
+        "Land and local",
+        "Parcel, owner and acreage, zoning, data center moratoriums and county sentiment"
+       ],
+       [
+        "Utilities",
+        "Water and wastewater, fiber routes, gas for on-site generation"
+       ],
+       [
+        "Verdict",
+        "Go, no-go or go with conditions, with the kill reason or the one question that decides it"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Every finding carries its source. Where we cannot settle something from records, the report says so and names the document or call that would settle it."
+     }
+    ]
+   },
+   {
+    "id": "step-2-the-utility-grade-power-study",
+    "heading": "Step 2: the utility-grade power study",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "A utility decides how much load a site can take by running a power flow on its planning model and testing what happens when a line or transformer trips. We run the same kind of study, on a model of the network we rebuild around your site, before you spend a study deposit or post security.",
+      "sourceIds": [
+       "tpl001"
+      ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Part",
+       "What it covers"
+      ],
+      "rows": [
+       [
+        "Network model",
+        "The transmission system around the site rebuilt for each study year, checked against flows the ISO publishes"
+       ],
+       [
+        "Cases",
+        "Summer peak, winter peak and light load, near-term and later study years, with competing loads in and out"
+       ],
+       [
+        "Load injection",
+        "Your MW, ramp and power factor at each candidate point of interconnection, including new switching stations on nearby lines"
+       ],
+       [
+        "Contingencies",
+        "AC power flow at N-0 and N-1 for every element in the study area (NERC TPL-001 P1), plus selected breaker and common-tower events"
+       ],
+       [
+        "Limits",
+        "Thermal limits against normal and emergency ratings, voltage limits, the element that binds first and at what MW"
+       ],
+       [
+        "Grid strength",
+        "Short circuit level and short circuit ratio at the point of interconnection, with a flag where dynamic studies are likely"
+       ],
+       [
+        "Upgrades",
+        "The fix for each violation and the MW it unlocks: reconductoring, a second transformer, a new bay, a new line"
+       ],
+       [
+        "Cost and date",
+        "Indicative cost ranges from unit costs and a dated energization range from the utility process and lead times"
+       ],
+       [
+        "Utility path",
+        "Tariff, study fees, security, minimum bills and the questions to bring to the pre-application meeting"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The answer comes out as a MW figure per connection point per study year, the line or transformer that sets each figure, and what it would take to lift it. That is the information you need to pick a point of interconnection, size a first phase and judge a seller’s claims."
+     }
+    ]
+   },
+   {
+    "id": "why-proximity-to-a-line-misleads",
+    "heading": "Why proximity to a line misleads",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The most common mistake in powered land is reading a transmission map as a capacity map. A 345 kV line beside the parcel tells you a tap is physically possible. It says nothing about whether the line, the next substation or the transformers upstream can carry another 200 MW when one element is out of service."
+     },
+     {
+      "type": "paragraph",
+      "text": "In a 2025 analysis of ERCOT, Paces found only about 17% of substations near suitable land had any withdrawal headroom.",
+      "sourceIds": [
+       "paces"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "We see the same pattern in our own studies. In one recent Gulf Coast study, the two nearest 138 kV substations could take only a few MW in the first study year, while a new 345 kV switching station on circuits running past the site could take about 200 MW. Same parcel. Very different answer depending on where you connect."
+     }
+    ]
+   },
+   {
+    "id": "where-our-study-sits-next-to-the-utility-s",
+    "heading": "Where our study sits next to the utility’s",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Utilities run their own studies once you apply with site control, and those are the only studies that commit them. AEP Ohio charges $10,000 to $100,000 for a data center study depending on size. Texas set a $100,000 study fee for large loads in ERCOT.",
+      "sourceIds": [
+       "aep-dct",
+       "ud-texas"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Our study does not replace that step. It makes it count: you file at the connection point most likely to work, at a MW figure the network can carry, with a list of questions that gets real answers in the pre-application meeting. Every report states that its figures are screening figures and that the utility’s study makes them firm."
+     },
+     {
+      "type": "paragraph",
+      "text": "Equity investors buy this kind of diligence too. Ankura’s case study of a 300 MW brownfield for an institutional investor covered 230 kV line and substation feasibility, ISO timing, zoning, gas supply, cooling water and a risk matrix.",
+      "sourceIds": [
+       "ankura"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "What is data center site due diligence?",
+    "answer": "It is the work that tells a buyer whether a site can be built on and powered, by when and at what cost. It covers power and interconnection, flood, seismic and ground conditions, wetlands and species, airspace, zoning and local approval, water, fiber and the parcel. Invariant runs it in two steps: a feasibility screen, then a utility-grade power study."
+   },
+   {
+    "question": "What is the difference between a feasibility study and a power study for a data center?",
+    "answer": "A feasibility screen checks whether a site has a fatal flaw and gives a first range of MW at nearby substations. A power study runs an AC power flow with N-1 contingency tests at each connection option and returns MW by year, the binding element, the upgrades needed, an indicative cost and an energization date."
+   },
+   {
+    "question": "How long does data center site due diligence take?",
+    "answer": "Invariant returns a feasibility screen within 24 hours of receiving a coordinate and a MW figure, and a utility-grade power study usually within 48 hours. A utility’s own load study takes months; AEP Ohio, for example, quotes 45 to 60 days for its data center study after an application is complete.",
+    "sourceIds": [
+     "aep-dct"
+    ]
+   },
+   {
+    "question": "Can a site be judged by its distance to a transmission line?",
+    "answer": "No. Distance shows a connection is physically possible, not that the network can carry the load. Paces found only about 17% of ERCOT substations near suitable land had withdrawal headroom.",
+    "sourceIds": [
+     "paces"
+    ]
+   },
+   {
+    "question": "How do I request a site screen from Invariant?",
+    "answer": "Email pranav@invariant-ai.com or call (628) 220-8972 with the coordinate or parcel, the target MW and the date you need power. You can also book a 30 minute call from any of these pages."
+   }
+  ],
+  "sources": [
+   {
+    "id": "tpl001",
+    "title": "TPL-001-5.1: Transmission system planning performance requirements",
+    "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf",
+    "publisher": "NERC"
+   },
+   {
+    "id": "ankura",
+    "title": "Brownfield to data center: technical due diligence to de-risk 300 MW of capacity",
+    "url": "https://ankura.com/insights/case-study-brownfield-to-data-center-technical-due-diligence-to-de-risk-300-mw-of-capacity/",
+    "publisher": "Ankura"
+   },
+   {
+    "id": "paces",
+    "title": "Grid planning for data centers and transmission investment",
+    "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
+    "publisher": "Paces"
+   },
+   {
+    "id": "aep-dct",
+    "title": "Data center tariff",
+    "url": "https://www.aepohio.com/company/about/rates/data-center-tariff",
+    "publisher": "AEP Ohio"
+   },
+   {
+    "id": "ud-texas",
+    "title": "Texas PUC adopts data center interconnection rules",
+    "url": "https://www.utilitydive.com/news/texas-puc-adopts-data-center-interconnection-rules/830899/",
+    "publisher": "Utility Dive"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "utility-grade-power-study",
+   "data-center-power-flow-study"
+  ],
+  "service": {
+   "name": "Data center site due diligence",
+   "serviceType": "Data center site feasibility screening and utility-grade power studies",
+   "description": "Two-step due diligence for data center sites in the US: a feasibility screen covering power, flood, seismic, wetlands, airspace, zoning and parcel, then a utility-grade power study with AC power flow and N-1 contingency tests, upgrade paths, indicative cost and energization date."
+  },
+  "howTo": {
+   "name": "How to run due diligence on a data center site",
+   "steps": [
+    {
+     "name": "Send the site",
+     "text": "Share a coordinate or parcel, the target MW, phasing and the energize-by date."
+    },
+    {
+     "name": "Feasibility screen",
+     "text": "Check power at nearby substations, flood, seismic, wetlands, airspace, zoning and the parcel, and decide go or no-go."
+    },
+    {
+     "name": "Utility-grade power study",
+     "text": "Run AC power flow with N-1 contingencies at each connection option and find the MW by year, upgrades, cost and date."
+    },
+    {
+     "name": "Take it to the utility",
+     "text": "File at the best connection point with the right MW and a list of questions for the pre-application meeting."
+    }
+   ]
+  }
+ },
+ {
+  "slug": "data-center-site-feasibility-study",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Data center site feasibility study: power, flood, seismic and zoning screen in 24 hours",
+  "description": "A data center site feasibility study from Invariant: power at nearby substations, flood zone, seismic, wetlands, FAA, zoning and parcel checks, with a go or no-go in 24 hours.",
+  "date": "2026-11-20",
+  "readMinutes": 7,
+  "intro": "A data center site feasibility study tells you whether a site deserves real money before you option it. Send Invariant a coordinate or parcel and a target MW. Within 24 hours you get the serving utility and ISO, the nearest substations and lines with a screening MW range for each of the next three study years, and checks on flood zone, seismic hazard, wetlands and species, airports, zoning, moratoriums, water, fiber and the parcel. It ends in a plain go, no-go or conditional go, with the reason.",
+  "takeaways": [
+   "The screen is built to kill sites fast. Power and flood remove more sites than anything else.",
+   "Every check names its source, so you can show your investment committee where a finding came from.",
+   "A screening MW range is not a utility commitment. It tells you whether a full power study is worth running.",
+   "Sites that pass go to step two, the utility-grade power study, with the same team and the same model."
+  ],
+  "sections": [
+   {
+    "id": "what-the-screen-covers",
+    "heading": "What the screen covers",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Check",
+       "What we look at"
+      ],
+      "rows": [
+       [
+        "Power",
+        "Serving utility and ISO, nearest substations and lines with voltage and distance, a screening MW range at each for the next three study years, the constraint that sets it"
+       ],
+       [
+        "Flood",
+        "FEMA flood zone on the pad and the access road, base flood elevation where mapped, coastal surge and sea level exposure"
+       ],
+       [
+        "Seismic and ground",
+        "USGS ground motion, ASCE 7 site values, mapped faults, soils and slope"
+       ],
+       [
+        "Environment",
+        "Wetlands, listed species, contamination records nearby, and whether a Phase I ESA is the next step"
+       ],
+       [
+        "Airspace",
+        "Airports and heliports nearby and whether FAA notice is likely for the buildings, stacks or cranes"
+       ],
+       [
+        "Land and local",
+        "Parcel, owner and acreage, zoning, data center moratoriums and county sentiment"
+       ],
+       [
+        "Utilities",
+        "Water and wastewater, fiber routes, gas for on-site generation"
+       ],
+       [
+        "Verdict",
+        "Go, no-go or go with conditions, with the kill reason or the one question that decides it"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The order matters. We run power first, then flood, then the rest, and stop writing when a site fails a hard check. You still get the full record, but the verdict is on page one."
+     }
+    ]
+   },
+   {
+    "id": "the-power-check-in-the-screen",
+    "heading": "The power check in the screen",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "We identify the serving utility and balancing area, then every substation and line within reach of the site at a voltage that can carry the load. As a rough guide, 69 kV serves loads up to about 60 MW, 138 kV up to about 200 MW, 230 kV up to about 400 MW and 345 kV up to about 1,000 MW. A radial station fails any load that needs N-1 service."
+     },
+     {
+      "type": "paragraph",
+      "text": "For each candidate point we estimate headroom from the line and transformer ratings around it, minus the load already announced or filed nearby, for each of the next three study years. The output is a low, mid and high MW figure and the element that sets it."
+     },
+     {
+      "type": "paragraph",
+      "text": "Hosting capacity maps rarely help here. Nearly all of them cover distribution feeders and generation, not large loads on the transmission system.",
+      "sourceIds": [
+       "hosting"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "the-physical-and-land-checks",
+    "heading": "The physical and land checks",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Flood comes from FEMA’s National Flood Hazard Layer: we check the zone under the pad, the access road and the substation route, and flag anything in a 1% annual chance zone.",
+      "sourceIds": [
+       "fema-nfhl",
+       "fema-zones"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Seismic comes from the USGS National Seismic Hazard Model and the ASCE Hazard Tool, which give the ground motion values a structural engineer will design to. Wetlands come from the National Wetlands Inventory and listed species from IPaC. Airspace comes from the FAA’s notice criteria under Part 77.",
+      "sourceIds": [
+       "usgs-nshm",
+       "asce-tool",
+       "nwi",
+       "ipac",
+       "part77"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Then the local layer: zoning, data center moratoriums and recent votes in the county, parcel ownership and size, water and wastewater, fiber routes and gas for on-site generation. Data Center Watch tracks projects blocked or delayed by local opposition; we check the county against it and against local news.",
+      "sourceIds": [
+       "dcwatch"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "what-you-get-and-how-fast",
+    "heading": "What you get and how fast",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "A one-page verdict: go, no-go or conditional go, with the reason or the one question that decides it.",
+       "A power table: candidate connection points, voltage, distance, screening MW range by year and binding constraint.",
+       "A site table: flood, seismic, wetlands, species, airspace, zoning, moratorium, water, fiber, parcel, each with its source.",
+       "Maps of the parcel, the substations and lines, and the flood and wetland layers.",
+       "Editable Word and Excel files with the PDF, so your team or your client can reuse them."
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Turnaround is within 24 hours of receiving a coordinate and a MW figure. Many sites at once? Send a list. We screen portfolios for brokers and funds, and we work behind an adviser’s name when asked."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "What is included in a data center site feasibility study?",
+    "answer": "Invariant’s feasibility screen covers power at the nearest substations and lines (a screening MW range for three study years and the binding constraint), FEMA flood zone, USGS and ASCE seismic values, wetlands, listed species, FAA airspace, zoning and moratoriums, water, fiber, gas and the parcel. It ends in a go, no-go or conditional go."
+   },
+   {
+    "question": "How much does a data center feasibility study cost?",
+    "answer": "Invariant charges a fixed fee per site, quoted before we start, with lower rates for portfolios. It costs a small fraction of a utility study deposit, which runs from $10,000 to $100,000 at AEP Ohio and $100,000 for large loads in ERCOT.",
+    "sourceIds": [
+     "aep-dct",
+     "ud-texas"
+    ]
+   },
+   {
+    "question": "How fast can I get a site feasibility screen?",
+    "answer": "Within 24 hours of sending a coordinate or parcel and a target MW to pranav@invariant-ai.com."
+   },
+   {
+    "question": "Does a feasibility screen tell me how many MW a site can get?",
+    "answer": "It gives a screening range at each nearby connection point and names what limits it. A firm number needs a power flow with contingency tests, which is step two, and in the end the utility’s own study."
+   },
+   {
+    "question": "Can you screen many sites at once?",
+    "answer": "Yes. Brokers, funds and developers send lists of sites and we return a ranked table with a verdict per site, then run full power studies on the ones they pick."
+   }
+  ],
+  "sources": [
+   {
+    "id": "fema-zones",
+    "title": "Flood zones",
+    "url": "https://www.fema.gov/glossary/flood-zones",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "fema-nfhl",
+    "title": "National Flood Hazard Layer",
+    "url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "usgs-nshm",
+    "title": "National Seismic Hazard Model",
+    "url": "https://www.usgs.gov/programs/earthquake-hazards/science/national-seismic-hazard-model",
+    "publisher": "USGS"
+   },
+   {
+    "id": "asce-tool",
+    "title": "ASCE Hazard Tool",
+    "url": "https://ascehazardtool.org/",
+    "publisher": "American Society of Civil Engineers"
+   },
+   {
+    "id": "nwi",
+    "title": "National Wetlands Inventory: Wetlands Mapper",
+    "url": "https://www.fws.gov/program/national-wetlands-inventory/wetlands-mapper",
+    "publisher": "U.S. Fish and Wildlife Service"
+   },
+   {
+    "id": "ipac",
+    "title": "IPaC: Information for Planning and Consultation",
+    "url": "https://ipac.ecosphere.fws.gov/",
+    "publisher": "U.S. Fish and Wildlife Service"
+   },
+   {
+    "id": "part77",
+    "title": "14 CFR Part 77: Safe, efficient use, and preservation of the navigable airspace",
+    "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-E/part-77",
+    "publisher": "Electronic Code of Federal Regulations"
+   },
+   {
+    "id": "hosting",
+    "title": "U.S. atlas of electric distribution system hosting capacity maps",
+    "url": "https://www.energy.gov/eere/us-atlas-electric-distribution-system-hosting-capacity-maps",
+    "publisher": "U.S. Department of Energy"
+   },
+   {
+    "id": "aep-dct",
+    "title": "Data center tariff",
+    "url": "https://www.aepohio.com/company/about/rates/data-center-tariff",
+    "publisher": "AEP Ohio"
+   },
+   {
+    "id": "ud-texas",
+    "title": "Texas PUC adopts data center interconnection rules",
+    "url": "https://www.utilitydive.com/news/texas-puc-adopts-data-center-interconnection-rules/830899/",
+    "publisher": "Utility Dive"
+   },
+   {
+    "id": "dcwatch",
+    "title": "Data Center Watch Q1 2026 report",
+    "url": "https://datacenterwatch.org/q1-2026",
+    "publisher": "Data Center Watch"
+   }
+  ],
+  "relatedSlugs": [
+   "utility-grade-power-study",
+   "data-center-site-due-diligence",
+   "data-center-flood-zone-screening"
+  ],
+  "service": {
+   "name": "Data center site feasibility screen",
+   "serviceType": "Data center site feasibility study",
+   "description": "A 24 hour screen of a US data center site from a coordinate and a MW figure: power at nearby substations, flood, seismic, wetlands, species, FAA airspace, zoning, moratoriums, water, fiber and parcel, ending in a go or no-go."
+  }
+ },
+ {
+  "slug": "utility-grade-power-study",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Utility-grade power study for data centers: N-1 power flow before you file with the utility",
+  "description": "A utility-grade power study for a data center site: AC power flow and N-1 contingency tests at each connection point, MW by year, upgrades, indicative cost and energization date.",
+  "date": "2026-11-20",
+  "readMinutes": 9,
+  "intro": "A utility-grade power study tells you how many MW a site can take at each possible connection point, in each study year, and what limits it. Invariant rebuilds the transmission network around your site, checks the model against flows the ISO publishes, injects your load and runs AC power flow with N-1 contingency tests in the way a utility planner would under NERC TPL-001. You get MW by connection point and year, the line or transformer that binds, the upgrade that lifts it, an indicative cost and an energization date range. Usually within 48 hours.",
+  "takeaways": [
+   "Built to utility planning methods: seasonal cases, study years, N-0 and N-1, thermal and voltage limits.",
+   "Every connection option is tested, including a new switching station on lines that pass the site.",
+   "Upgrades come with the MW they unlock, so you can see what a bigger first phase would cost.",
+   "It is a screening study. The utility’s own study makes a number firm, and the report says so."
+  ],
+  "sections": [
+   {
+    "id": "what-the-study-contains",
+    "heading": "What the study contains",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Part",
+       "What it covers"
+      ],
+      "rows": [
+       [
+        "Network model",
+        "The transmission system around the site rebuilt for each study year, checked against flows the ISO publishes"
+       ],
+       [
+        "Cases",
+        "Summer peak, winter peak and light load, near-term and later study years, with competing loads in and out"
+       ],
+       [
+        "Load injection",
+        "Your MW, ramp and power factor at each candidate point of interconnection, including new switching stations on nearby lines"
+       ],
+       [
+        "Contingencies",
+        "AC power flow at N-0 and N-1 for every element in the study area (NERC TPL-001 P1), plus selected breaker and common-tower events"
+       ],
+       [
+        "Limits",
+        "Thermal limits against normal and emergency ratings, voltage limits, the element that binds first and at what MW"
+       ],
+       [
+        "Grid strength",
+        "Short circuit level and short circuit ratio at the point of interconnection, with a flag where dynamic studies are likely"
+       ],
+       [
+        "Upgrades",
+        "The fix for each violation and the MW it unlocks: reconductoring, a second transformer, a new bay, a new line"
+       ],
+       [
+        "Cost and date",
+        "Indicative cost ranges from unit costs and a dated energization range from the utility process and lead times"
+       ],
+       [
+        "Utility path",
+        "Tariff, study fees, security, minimum bills and the questions to bring to the pre-application meeting"
+       ]
+      ],
+      "sourceIds": [
+       "tpl001"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The report reads answer first: the MW you can plan on, where, and from when. The method, the cases and the full contingency results follow for your engineers."
+     }
+    ]
+   },
+   {
+    "id": "how-we-run-it",
+    "heading": "How we run it",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "We start by building the network: substations, lines, transformers and generation around the site, with the ratings and the planned changes that will be in service by each study year, including generator retirements from EIA-860M and announced large loads nearby.",
+      "sourceIds": [
+       "eia-860m"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Then we check the base case. Area totals and flows on major paths must line up with what the ISO reports before any load goes in. A model that cannot reproduce today’s grid cannot tell you about 2029."
+     },
+     {
+      "type": "paragraph",
+      "text": "Then we add your load at each candidate point and push it up until something breaks. A linear transfer screen ranks the elements most exposed to the new load. A full AC solve at N-0 and N-1, over every element in the study area, finds the MW at which the first thermal or voltage limit is crossed. NERC calls the single-element outages P1 events; we add selected P2, P4, P5 and P7 events for the elements that bind.",
+      "sourceIds": [
+       "tpl001"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For each violation we try the fix a utility would likely propose, re-solve, and record the MW it unlocks. That gives three numbers per connection point: MW with no upgrades, MW with only the facilities to connect you, and MW with network upgrades."
+     }
+    ]
+   },
+   {
+    "id": "why-grid-strength-now-matters-for-ai-loads",
+    "heading": "Why grid strength now matters for AI loads",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Large AI training loads swing fast and ride through faults differently from older loads. NERC issued a Level 2 alert on large loads asking planners how they model and study them, and ERCOT has published work on modeling large data center loads.",
+      "sourceIds": [
+       "nerc-alert",
+       "ercot-grit"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "We report short circuit level and short circuit ratio at each connection point and flag where a utility is likely to ask for dynamic or electromagnetic transient studies. That flag can move a schedule by months."
+     }
+    ]
+   },
+   {
+    "id": "cost-and-time-to-power",
+    "heading": "Cost and time to power",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Indicative costs come from unit cost tables for lines and substation work. MISO’s MTEP24 guide, for example, gives about $1.9 to $2.3 million a mile for a new single-circuit 138 kV line and $3.2 to $4.1 million a mile at 345 kV, and about $15.8 million for a new four-position 345 kV ring bus. We carry ranges, never point figures.",
+      "sourceIds": [
+       "miso-cost"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The date range adds up the utility’s intake and study clock, the agreement, and the longer of the network build or long-lead equipment such as large transformers. In Texas that clock now runs through ERCOT’s batch process for large loads.",
+      "sourceIds": [
+       "batch0",
+       "ercot-lli"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "how-it-relates-to-the-utility-s-study",
+    "heading": "How it relates to the utility’s study",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Our study is not the utility’s case and does not commit the utility to anything. The utility’s study, run on its own planning model once you apply with site control, is what makes a number firm. What ours does is tell you where to apply, how much to ask for, which upgrades to expect and which questions to bring to the pre-application meeting."
+     },
+     {
+      "type": "paragraph",
+      "text": "That matters because applying is expensive. AEP Ohio charges up to $100,000 for a data center study; Texas charges $100,000 for large loads in ERCOT, with security on top. A wrong point of interconnection or an oversized request costs months.",
+      "sourceIds": [
+       "aep-dct",
+       "ud-texas"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "What is a utility-grade power study?",
+    "answer": "It is a power flow study of a site’s connection options built to the methods utilities use: seasonal cases, study years, AC power flow at N-0 and N-1 under NERC TPL-001, thermal and voltage limits, short circuit, and an upgrade search. Invariant’s version returns MW by connection point and year, the binding element, the upgrades and their cost, and an energization date range.",
+    "sourceIds": [
+     "tpl001"
+    ]
+   },
+   {
+    "question": "Is Invariant’s power study the same as the utility’s load study?",
+    "answer": "No. The utility’s study runs on its own planning model after you apply with site control, and it is the only study that commits the utility. Ours runs before that, so you apply at the right point with the right MW."
+   },
+   {
+    "question": "How long does a power study take?",
+    "answer": "Invariant usually returns a utility-grade power study within 48 hours of receiving the site and the load. Utility load studies take months; AEP Ohio quotes 45 to 60 days after a complete application.",
+    "sourceIds": [
+     "aep-dct"
+    ]
+   },
+   {
+    "question": "What do you need from me to run a power study?",
+    "answer": "A coordinate or parcel, the target MW and phasing, the energize-by date and, if you have them, any utility letters, power factor or on-site generation plans."
+   },
+   {
+    "question": "Do you work for brokers and advisers?",
+    "answer": "Yes. We run studies behind a broker’s or adviser’s name, deliver editable Word and Excel files, and do not contact their clients."
+   }
+  ],
+  "sources": [
+   {
+    "id": "tpl001",
+    "title": "TPL-001-5.1: Transmission system planning performance requirements",
+    "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf",
+    "publisher": "NERC"
+   },
+   {
+    "id": "nerc-alert",
+    "title": "Level 2 alert: large loads",
+    "url": "https://www.nerc.com/pa/rrm/bpsa/Alerts%20DL/NERC%20Alert%20Level%202%20%20Large%20Loads.pdf",
+    "publisher": "NERC"
+   },
+   {
+    "id": "miso-cost",
+    "title": "Transmission cost estimation guide for MTEP24",
+    "url": "https://cdn.misoenergy.org/20240501%20PSC%20Item%2004%20MISO%20Transmission%20Cost%20Estimation%20Guide%20for%20MTEP24632680.pdf",
+    "publisher": "MISO"
+   },
+   {
+    "id": "ercot-lli",
+    "title": "Large load integration",
+    "url": "https://www.ercot.com/services/rq/large-load-integration",
+    "publisher": "ERCOT"
+   },
+   {
+    "id": "ercot-grit",
+    "title": "Large load modeling",
+    "url": "https://www.ercot.com/about/grit/large-load-modeling",
+    "publisher": "ERCOT"
+   },
+   {
+    "id": "eia-860m",
+    "title": "Preliminary monthly electric generator inventory (EIA-860M)",
+    "url": "https://www.eia.gov/electricity/data/eia860m/",
+    "publisher": "U.S. Energy Information Administration"
+   },
+   {
+    "id": "batch0",
+    "title": "ERCOT approves new Batch Zero process for large load interconnections",
+    "url": "https://www.willkie.com/publications/2026/06/ercot-approves-implementing-new-batch-zero-process-for-large-load-interconnections",
+    "publisher": "Willkie Farr & Gallagher"
+   },
+   {
+    "id": "aep-dct",
+    "title": "Data center tariff",
+    "url": "https://www.aepohio.com/company/about/rates/data-center-tariff",
+    "publisher": "AEP Ohio"
+   },
+   {
+    "id": "ud-texas",
+    "title": "Texas PUC adopts data center interconnection rules",
+    "url": "https://www.utilitydive.com/news/texas-puc-adopts-data-center-interconnection-rules/830899/",
+    "publisher": "Utility Dive"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "n-1-contingency-analysis-data-center",
+   "utility-load-study-cost-and-timeline"
+  ],
+  "service": {
+   "name": "Utility-grade power study",
+   "serviceType": "Power flow and N-1 contingency study for data center interconnection",
+   "description": "A power study for a US data center site built to utility planning methods: network model per study year, AC power flow at N-0 and N-1, thermal and voltage limits, short circuit ratio, upgrade search, indicative cost and energization date."
+  },
+  "howTo": {
+   "name": "How a utility-grade power study is run",
+   "steps": [
+    {
+     "name": "Build the network model",
+     "text": "Model the transmission system around the site for each study year, with planned changes and nearby large loads."
+    },
+    {
+     "name": "Check the base case",
+     "text": "Match area totals and major path flows to what the ISO reports."
+    },
+    {
+     "name": "Inject the load",
+     "text": "Add the MW at each candidate connection point, including new switching stations."
+    },
+    {
+     "name": "Run contingencies",
+     "text": "Solve AC power flow at N-0 and N-1 and find the MW where the first limit is crossed."
+    },
+    {
+     "name": "Search for upgrades",
+     "text": "Apply the likely fix for each violation and record the MW it unlocks, with cost and date ranges."
+    }
+   ]
+  }
+ },
+ {
+  "slug": "data-center-power-flow-study",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Power flow study for a data center: what it tests and how to read the results",
+  "description": "What a power flow (load flow) study is for a data center interconnection, what it tests, what inputs it needs, and how to read the MW, the binding element and the upgrades.",
+  "date": "2026-11-20",
+  "readMinutes": 7,
+  "intro": "A power flow study, also called a load flow study, solves the voltages and the flow on every line and transformer in a network for a given pattern of load and generation. For a data center it answers one question: if this much load connects here, does any element go over its rating or any voltage go out of range, with everything in service and with any one element out? The MW at which the first limit is crossed is the site’s headroom at that point.",
+  "takeaways": [
+   "A power flow is a snapshot. Planners run several: summer and winter peak, light load, and more than one study year.",
+   "The answer depends on the connection point. Two substations a mile apart can differ by hundreds of MW.",
+   "The binding element is often not the nearest one. It can be a transformer two stations away.",
+   "Utilities study in tools such as Siemens PSS/E on their planning cases, which are protected as CEII."
+  ],
+  "sections": [
+   {
+    "id": "what-a-power-flow-solves",
+    "heading": "What a power flow solves",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Give the solver the network (buses, lines, transformers, their impedances and ratings), the generation dispatch and the loads, and it finds a consistent set of voltages and flows. An AC power flow includes reactive power and voltage. A DC power flow is a fast linear version used to screen many cases."
+     },
+     {
+      "type": "paragraph",
+      "text": "Utility planners run these on base cases built for each season and study year. The cases are protected as critical energy infrastructure information, so access needs an agreement with the ISO or FERC.",
+      "sourceIds": [
+       "pjm-cases",
+       "ceii"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "inputs-for-a-data-center-study",
+    "heading": "Inputs for a data center study",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "The site location and each candidate point of interconnection, including a new switching station on a passing line.",
+       "The load in MW for each phase and year, and its power factor.",
+       "The study years that match your ramp.",
+       "Planned grid changes in service by each year: new lines, upgrades, generator retirements.",
+       "Other large loads likely to connect nearby, because they use the same headroom."
+      ],
+      "sourceIds": [
+       "eia-860m"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "what-the-results-look-like",
+    "heading": "What the results look like",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Connection point",
+       "Year",
+       "MW, no upgrades",
+       "Binding element",
+       "Fix",
+       "MW after fix"
+      ],
+      "rows": [
+       [
+        "Substation A, 345 kV",
+        "Year 1",
+        "Example: 300",
+        "345/138 kV transformer at a neighbouring station, N-1",
+        "Second transformer",
+        "Example: 520"
+       ],
+       [
+        "Substation B, 138 kV",
+        "Year 1",
+        "Example: 40",
+        "138 kV line out of B, N-1",
+        "Reconductor 6 miles",
+        "Example: 110"
+       ],
+       [
+        "New switching station on line C, 345 kV",
+        "Year 3",
+        "Example: 600",
+        "Voltage at the new bus after loss of the parallel circuit",
+        "Capacitor bank",
+        "Example: 740"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The table above shows the format, not a real site. Read it by connection point and year. A high number in year three with a low number in year one tells you to phase the load or wait for a planned upgrade."
+     }
+    ]
+   },
+   {
+    "id": "common-mistakes-in-reading-a-power-flow",
+    "heading": "Common mistakes in reading a power flow",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Taking one season as the answer is the usual one. A site can be fine at summer peak and fail at light load when local generation is off. Another: ignoring the load queue. If two other data centers are filing at the same substation, the headroom you found is shared."
+     },
+     {
+      "type": "paragraph",
+      "text": "And a study that does not name its binding element is not worth much. You need the element to judge the fix and to ask the utility the right question."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "What is the difference between a power flow study and a load flow study?",
+    "answer": "They are the same thing. Both solve voltages and flows in a network for a given load and generation pattern."
+   },
+   {
+    "question": "What software is used for power flow studies?",
+    "answer": "Utilities and ISOs mostly use Siemens PSS/E and PowerWorld on their planning cases. Facility design tools such as ETAP are used inside the fence, not for transmission planning.",
+    "sourceIds": [
+     "psse"
+    ]
+   },
+   {
+    "question": "Does a power flow study include contingencies?",
+    "answer": "A planning study does. It solves the base case and then each single-element outage (N-1) and selected multi-element events under NERC TPL-001.",
+    "sourceIds": [
+     "tpl001"
+    ]
+   },
+   {
+    "question": "Who can run a power flow study for my data center site?",
+    "answer": "Invariant runs utility-grade power studies on US sites, usually within 48 hours. Email pranav@invariant-ai.com with the coordinate and MW."
+   }
+  ],
+  "sources": [
+   {
+    "id": "tpl001",
+    "title": "TPL-001-5.1: Transmission system planning performance requirements",
+    "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf",
+    "publisher": "NERC"
+   },
+   {
+    "id": "pjm-cases",
+    "title": "Power flow cases",
+    "url": "https://www.pjm.com/planning/rtep-development/powerflow-cases",
+    "publisher": "PJM"
+   },
+   {
+    "id": "ceii",
+    "title": "18 CFR 388.113: Critical energy and electric infrastructure information",
+    "url": "https://www.law.cornell.edu/cfr/text/18/388.113",
+    "publisher": "Legal Information Institute, Cornell Law School"
+   },
+   {
+    "id": "eia-860m",
+    "title": "Preliminary monthly electric generator inventory (EIA-860M)",
+    "url": "https://www.eia.gov/electricity/data/eia860m/",
+    "publisher": "U.S. Energy Information Administration"
+   },
+   {
+    "id": "psse",
+    "title": "PSS/E transmission planning software",
+    "url": "https://www.siemens.com/global/en/products/energy/grid-software/planning/pss-software/pss-e.html",
+    "publisher": "Siemens"
+   }
+  ],
+  "relatedSlugs": [
+   "utility-grade-power-study",
+   "n-1-contingency-analysis-data-center",
+   "data-center-substation-capacity-check"
+  ]
+ },
+ {
+  "slug": "n-1-contingency-analysis-data-center",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "N-1 contingency analysis for data centers: why a site’s MW depends on the outage, not the line",
+  "description": "N-1 contingency analysis explained for data center sites: what NERC TPL-001 P1 events are, why the limit is set with one element out, and how N-1 changes the MW you can get.",
+  "date": "2026-11-20",
+  "readMinutes": 6,
+  "intro": "N-1 contingency analysis tests whether the grid still works when any single element (one line, one transformer, one generator) is out of service. Utilities size a new data center connection so that no line or transformer goes over its emergency rating and no voltage leaves its range after any such outage. That is why the MW a site can get is usually set by an outage case, not by the normal-day flow, and why a line with spare capacity on a normal day can still say no.",
+  "takeaways": [
+   "N-1 means every single element in the study area, not only the largest one.",
+   "NERC TPL-001 calls these P1 events and also defines harder ones: breaker failures, common towers and overlapping outages.",
+   "The emergency rating applies after the outage; the normal rating applies before it.",
+   "A radial connection with one line in fails N-1 for any load that needs firm service."
+  ],
+  "sections": [
+   {
+    "id": "what-n-1-means-in-practice",
+    "heading": "What N-1 means in practice",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "NERC’s planning standard, TPL-001, sets the events a planner must test. P0 is everything in service. P1 is the loss of any single generator, line, transformer or shunt device. P2 to P7 cover a bus or breaker failure, a stuck breaker, a common tower and two overlapping outages (P6, often called N-1-1).",
+      "sourceIds": [
+       "tpl001"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For each event the planner checks every monitored element for thermal overloads against its emergency rating and every bus for voltage limits. The new load passes at a given MW only if every event passes."
+     }
+    ]
+   },
+   {
+    "id": "why-it-sets-the-mw-for-a-data-center",
+    "heading": "Why it sets the MW for a data center",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Picture a substation fed by two lines. On a normal day each carries half the load. Trip one, and the other carries all of it. The site’s headroom is how much load the surviving line can carry at its emergency rating, minus what it already carries. That is often half or less of what the normal-day picture suggests."
+     },
+     {
+      "type": "paragraph",
+      "text": "The binding outage is rarely the obvious one. In our studies it is often a transformer one or two stations away, or a parallel path that picks up flow when a distant line trips."
+     }
+    ]
+   },
+   {
+    "id": "what-n-1-analysis-can-and-cannot-tell-you",
+    "heading": "What N-1 analysis can and cannot tell you",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "It tells you the MW at which the first limit is crossed and which element crosses it. It does not tell you whether the utility will accept that the load be curtailed after an outage instead of building an upgrade. Some utilities now offer flexible or interruptible service for large loads, which changes the answer."
+     },
+     {
+      "type": "paragraph",
+      "text": "NERC has also asked planners to look harder at how large loads behave during faults, which can add dynamic studies on top of N-1.",
+      "sourceIds": [
+       "nerc-alert"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "What is N-1 in power systems?",
+    "answer": "N-1 is the condition with one element of the grid out of service. A system meets N-1 if it stays within thermal and voltage limits after the loss of any single line, transformer or generator.",
+    "sourceIds": [
+     "tpl001"
+    ]
+   },
+   {
+    "question": "What is the difference between N-1 and N-1-1?",
+    "answer": "N-1 is a single outage. N-1-1 is a second outage after the system has been adjusted for the first one. NERC TPL-001 lists it as a P6 event.",
+    "sourceIds": [
+     "tpl001"
+    ]
+   },
+   {
+    "question": "Does a data center need N-1 service?",
+    "answer": "Most large data centers ask for firm service, which means the connection must survive any single outage. Some accept curtailable service for part of the load to connect sooner."
+   },
+   {
+    "question": "Can you run an N-1 analysis on my site?",
+    "answer": "Yes. Invariant’s utility-grade power study runs AC N-1 at every connection option around the site, usually within 48 hours."
+   }
+  ],
+  "sources": [
+   {
+    "id": "tpl001",
+    "title": "TPL-001-5.1: Transmission system planning performance requirements",
+    "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf",
+    "publisher": "NERC"
+   },
+   {
+    "id": "nerc-alert",
+    "title": "Level 2 alert: large loads",
+    "url": "https://www.nerc.com/pa/rrm/bpsa/Alerts%20DL/NERC%20Alert%20Level%202%20%20Large%20Loads.pdf",
+    "publisher": "NERC"
+   }
+  ],
+  "relatedSlugs": [
+   "utility-grade-power-study",
+   "data-center-power-flow-study",
+   "data-center-substation-capacity-check"
+  ]
+ },
+ {
+  "slug": "data-center-substation-capacity-check",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "How to check if a substation has capacity for a data center",
+  "description": "How to check substation capacity for a data center: what you can learn from records, why hosting capacity maps miss large loads, and when you need a power flow study.",
+  "date": "2026-11-20",
+  "readMinutes": 6,
+  "intro": "You cannot read a substation’s spare capacity off a map, and most utilities will not tell you without a paid, site-controlled study. What you can do before that is narrow it down: find the stations within reach, check their voltage and how many lines feed them, estimate headroom from the ratings around them, subtract the load already filed nearby, and then run a power flow with N-1 tests on the ones that survive. That is what Invariant’s two-step due diligence does.",
+  "takeaways": [
+   "Voltage sets the ceiling. As a rough guide, 138 kV supports up to about 200 MW and 345 kV up to about 1,000 MW.",
+   "A station fed by one line is radial and fails any load that needs firm service.",
+   "Hosting capacity maps are almost all about distribution and generation, not large loads.",
+   "The load already queued at a station is mostly not disclosed, so it has to be estimated from filings."
+  ],
+  "sections": [
+   {
+    "id": "what-you-can-find-without-the-utility",
+    "heading": "What you can find without the utility",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "The serving utility for the parcel, from EIA-861 service territory data.",
+       "Substations and lines within reach, their voltage and how many lines connect at each.",
+       "Generator retirements and additions nearby from EIA-860M, which free up or take up capacity.",
+       "Announced data centers, industrial loads and rezoning filings near each station.",
+       "The utility’s large-load tariff, study fees and minimum bills."
+      ],
+      "sourceIds": [
+       "eia861",
+       "eia-860m"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "why-hosting-capacity-maps-do-not-answer-it",
+    "heading": "Why hosting capacity maps do not answer it",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Many utilities publish hosting capacity maps, and the Department of Energy keeps an atlas of them. Nearly all show how much generation or load a distribution feeder can take. A 50 MW or 500 MW data center connects to the transmission system, which those maps do not cover.",
+      "sourceIds": [
+       "hosting"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "what-the-utility-will-and-will-not-say",
+    "heading": "What the utility will and will not say",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Utilities usually confirm territory and will talk through a project informally. Dominion, for example, runs a data center request process with an early feasibility look before paid engineering. Specific spare capacity at a named station almost always waits for a paid, site-controlled study.",
+      "sourceIds": [
+       "dominion"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "That is why a pre-study matters. If you walk into the pre-application meeting knowing which station binds and why, you can ask a question the utility can answer: is the spare transformer capacity at station X already committed?"
+     }
+    ]
+   },
+   {
+    "id": "when-to-run-a-full-study",
+    "heading": "When to run a full study",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Run a power flow with contingency tests once a site passes the screen and you are about to spend real money on it: an option payment, a study deposit, or an LOI. Paces found only about 17% of ERCOT substations near suitable land had withdrawal headroom, so the screen will remove most candidates before then.",
+      "sourceIds": [
+       "paces"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "How do I find out how much capacity a substation has?",
+    "answer": "Narrow it down from records (voltage, line count, ratings, nearby loads and retirements), then run a power flow with N-1 tests. The utility confirms capacity only through its own study after you apply with site control."
+   },
+   {
+    "question": "Do utilities publish substation capacity?",
+    "answer": "Mostly no, for large loads. Hosting capacity maps cover distribution feeders and generation. Transmission planning cases are protected as CEII.",
+    "sourceIds": [
+     "hosting",
+     "ceii"
+    ]
+   },
+   {
+    "question": "What voltage does a data center need?",
+    "answer": "As a rough guide, 69 kV serves up to about 60 MW, 138 kV up to about 200 MW, 230 kV up to about 400 MW and 345 kV or higher beyond that. The real limit depends on the network around the station."
+   },
+   {
+    "question": "Can Invariant check a substation for me?",
+    "answer": "Yes. Send the coordinate and target MW; the feasibility screen returns a screening MW range at each nearby station within 24 hours."
+   }
+  ],
+  "sources": [
+   {
+    "id": "ceii",
+    "title": "18 CFR 388.113: Critical energy and electric infrastructure information",
+    "url": "https://www.law.cornell.edu/cfr/text/18/388.113",
+    "publisher": "Legal Information Institute, Cornell Law School"
+   },
+   {
+    "id": "hosting",
+    "title": "U.S. atlas of electric distribution system hosting capacity maps",
+    "url": "https://www.energy.gov/eere/us-atlas-electric-distribution-system-hosting-capacity-maps",
+    "publisher": "U.S. Department of Energy"
+   },
+   {
+    "id": "eia861",
+    "title": "Annual electric power industry report (EIA-861)",
+    "url": "https://www.eia.gov/electricity/data/eia861/",
+    "publisher": "U.S. Energy Information Administration"
+   },
+   {
+    "id": "eia-860m",
+    "title": "Preliminary monthly electric generator inventory (EIA-860M)",
+    "url": "https://www.eia.gov/electricity/data/eia860m/",
+    "publisher": "U.S. Energy Information Administration"
+   },
+   {
+    "id": "paces",
+    "title": "Grid planning for data centers and transmission investment",
+    "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
+    "publisher": "Paces"
+   },
+   {
+    "id": "dominion",
+    "title": "Data center requests",
+    "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
+    "publisher": "Dominion Energy"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "utility-grade-power-study",
+   "distance-to-transmission-line-data-center"
+  ]
+ },
+ {
+  "slug": "utility-load-study-cost-and-timeline",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "How much does a utility load study cost for a data center, and how long does it take?",
+  "description": "Utility load study cost and timeline for data centers in 2026: AEP Ohio, ERCOT and Dominion fees, security, study clocks, and how to avoid paying for the wrong study.",
+  "date": "2026-11-20",
+  "readMinutes": 6,
+  "intro": "A utility load study for a data center costs from $10,000 to $100,000 or more in study fees, before any security, and takes from about two months to a year. AEP Ohio charges $10,000 to $100,000 by load size and quotes 45 to 60 days. Texas charges $100,000 for large loads in ERCOT, with security on top and a batch process for timing. The money and months are spent on one connection point and one MW figure, so it pays to know both are right before you file.",
+  "takeaways": [
+   "Fees rise with the load size and usually need site control first.",
+   "Security and deposits can be far larger than the study fee.",
+   "New large-load tariffs bring minimum bills near 80 to 85% of contract demand for 12 years or more.",
+   "A pre-study tells you where to file and how much to ask for."
+  ],
+  "sections": [
+   {
+    "id": "study-fees-by-utility",
+    "heading": "Study fees by utility",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Utility or market",
+       "Threshold",
+       "Study fee",
+       "Clock"
+      ],
+      "rows": [
+       [
+        "AEP Ohio",
+        "25 MW and up, data center tariff",
+        "$10,000 (25 to 50 MW), $50,000 (50 to 100 MW), $100,000 (100 MW and up)",
+        "Study 45 to 60 days after a complete application"
+       ],
+       [
+        "Texas (ERCOT)",
+        "Large loads 75 MW and up",
+        "$100,000, plus financial security",
+        "ERCOT batch process for large loads"
+       ],
+       [
+        "Dominion Virginia",
+        "Data center requests",
+        "Early feasibility look, then paid engineering agreements",
+        "Engineering often runs most of a year"
+       ]
+      ],
+      "sourceIds": [
+       "aep-dct",
+       "ud-texas",
+       "batch0",
+       "dominion"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "These change often. Texas rewrote its large-load rules after SB 6 in 2025, and ERCOT moved large loads into batches in 2026.",
+      "sourceIds": [
+       "sb6",
+       "batch0"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "the-costs-after-the-study",
+    "heading": "The costs after the study",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Study fees are the small part. Once a study is done, construction agreements and security commit real money, and the electric service agreement sets a minimum bill. Berkeley Lab and Brattle found a median minimum billing demand of 80% of contract demand across new large-load tariffs; AEP Ohio sets up to 85% for up to 12 years.",
+      "sourceIds": [
+       "lbnl",
+       "aep-dct"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "how-to-avoid-paying-for-the-wrong-study",
+    "heading": "How to avoid paying for the wrong study",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The expensive mistakes are filing at a station that cannot take the load, or asking for more MW than the network can carry in your first year, which pushes you into network upgrades and a later date. Both show up in a pre-study."
+     },
+     {
+      "type": "paragraph",
+      "text": "Invariant’s utility-grade power study runs before you file. It tests each connection option with N-1, shows the MW per year and the upgrades behind any bigger number, and turns that into questions for the pre-application meeting. It costs a small fraction of a single utility study fee."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "How much does a data center load study cost?",
+    "answer": "Utility study fees run from $10,000 to $100,000 at AEP Ohio depending on size, and $100,000 for large loads in ERCOT, with security on top. Larger utilities and deposit tariffs can go higher.",
+    "sourceIds": [
+     "aep-dct",
+     "ud-texas"
+    ]
+   },
+   {
+    "question": "How long does a utility load study take?",
+    "answer": "AEP Ohio quotes 45 to 60 days after a complete application. Elsewhere it can take most of a year, and ERCOT now processes large loads in batches.",
+    "sourceIds": [
+     "aep-dct",
+     "batch0"
+    ]
+   },
+   {
+    "question": "Do I need site control to request a load study?",
+    "answer": "Most utilities require it for a formal study. Informal conversations and territory confirmation usually do not."
+   },
+   {
+    "question": "Can I get a power study before applying to the utility?",
+    "answer": "Yes. Invariant runs a utility-grade power study, usually within 48 hours, so you file at the right point with the right MW."
+   }
+  ],
+  "sources": [
+   {
+    "id": "batch0",
+    "title": "ERCOT approves new Batch Zero process for large load interconnections",
+    "url": "https://www.willkie.com/publications/2026/06/ercot-approves-implementing-new-batch-zero-process-for-large-load-interconnections",
+    "publisher": "Willkie Farr & Gallagher"
+   },
+   {
+    "id": "aep-dct",
+    "title": "Data center tariff",
+    "url": "https://www.aepohio.com/company/about/rates/data-center-tariff",
+    "publisher": "AEP Ohio"
+   },
+   {
+    "id": "dominion",
+    "title": "Data center requests",
+    "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
+    "publisher": "Dominion Energy"
+   },
+   {
+    "id": "ud-texas",
+    "title": "Texas PUC adopts data center interconnection rules",
+    "url": "https://www.utilitydive.com/news/texas-puc-adopts-data-center-interconnection-rules/830899/",
+    "publisher": "Utility Dive"
+   },
+   {
+    "id": "lbnl",
+    "title": "Electricity rate designs for large loads (August 2026)",
+    "url": "https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf",
+    "publisher": "Lawrence Berkeley National Laboratory and The Brattle Group"
+   },
+   {
+    "id": "sb6",
+    "title": "Senate Bill 6, 89th Legislature",
+    "url": "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00006F.htm",
+    "publisher": "Texas Legislature Online"
+   }
+  ],
+  "relatedSlugs": [
+   "utility-grade-power-study",
+   "utility-will-serve-letter-load-study-esa",
+   "texas-data-center-large-load-interconnection-2026"
+  ]
+ },
+ {
+  "slug": "distance-to-transmission-line-data-center",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Distance to substation and transmission for a data center site: what it costs and what it doesn’t tell you",
+  "description": "How distance to a substation or transmission line affects a data center site: cost per mile by voltage, switching station costs, right-of-way time, and why distance is not capacity.",
+  "date": "2026-11-20",
+  "readMinutes": 6,
+  "intro": "Distance to the nearest substation or transmission line is the first number everyone asks about a data center site, and it matters for cost and time. A new 345 kV line costs about $3.2 to $4.1 million a mile in MISO’s cost guide, and long lines can take years to permit. But distance is not capacity. A line beside the parcel needs a new switching station to tap, and the network behind it still has to carry the load with one element out.",
+  "takeaways": [
+   "Every mile adds cost and right-of-way risk. Short taps take about two years at best; long new lines take far longer.",
+   "Tapping a passing line means building a switching station, about $15.8 million for a four-position 345 kV ring bus in MISO’s guide.",
+   "Screen on substations and their networks, not on lines alone.",
+   "The best site is often the one a bit further away from a stronger station."
+  ],
+  "sections": [
+   {
+    "id": "what-distance-costs",
+    "heading": "What distance costs",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Item (MISO MTEP24 guide)",
+       "138 kV",
+       "230 kV",
+       "345 kV",
+       "500 kV"
+      ],
+      "rows": [
+       [
+        "New single circuit line, $ million per mile",
+        "1.9 to 2.3",
+        "2.0 to 2.6",
+        "3.2 to 4.1",
+        "4.1 to 5.1"
+       ],
+       [
+        "New double circuit line, $ million per mile",
+        "2.8 to 3.3",
+        "3.3 to 4.0",
+        "5.5 to 6.4",
+        "n/a"
+       ],
+       [
+        "Add a breaker-and-a-half position, $ million",
+        "2.3",
+        "3.0",
+        "4.9",
+        "7.3"
+       ],
+       [
+        "New four-position ring bus substation, $ million",
+        "9.1",
+        "11.1",
+        "15.8",
+        "22.9"
+       ]
+      ],
+      "sourceIds": [
+       "miso-cost"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Costs vary by region and terrain, and they escalate each year. We carry them as ranges in every study."
+     }
+    ]
+   },
+   {
+    "id": "how-we-measure-it",
+    "heading": "How we measure it",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Straight-line distance understates a real route. We multiply by about 1.3 to allow for roads, parcels and terrain, and check the route for floodplain, wetlands and crossings. We measure to substations at a voltage that can carry the load, not to the nearest line on a map.",
+      "sourceIds": [
+       "nwi",
+       "fema-nfhl"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "why-distance-is-not-capacity",
+    "heading": "Why distance is not capacity",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "In a 2025 analysis of ERCOT, Paces found only about 17% of substations near suitable land had any withdrawal headroom. A 345 kV line next to a parcel is the start of the question.",
+      "sourceIds": [
+       "paces"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "That is why step one of our due diligence screens on stations and their headroom, and step two runs a power flow with N-1 on each connection option."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "How close does a data center need to be to a substation?",
+    "answer": "There is no fixed number, but every mile of new line adds roughly $2 to $5 million depending on voltage, plus right-of-way time. Many large sites sit within a few miles of a 230 kV or 345 kV station.",
+    "sourceIds": [
+     "miso-cost"
+    ]
+   },
+   {
+    "question": "How much does it cost to build a transmission line to a data center?",
+    "answer": "MISO’s MTEP24 guide gives about $1.9 to $2.3 million a mile for a new single-circuit 138 kV line and $3.2 to $4.1 million a mile at 345 kV, before substation work.",
+    "sourceIds": [
+     "miso-cost"
+    ]
+   },
+   {
+    "question": "Is a site next to a transmission line a powered site?",
+    "answer": "No. It needs a switching station to tap the line, and the network behind it must carry the load under N-1. Only a study shows whether it can."
+   },
+   {
+    "question": "Can Invariant tell me the distance and cost for my site?",
+    "answer": "Yes. The feasibility screen gives distances to each candidate station and line; the power study adds cost and date ranges for each connection option."
+   }
+  ],
+  "sources": [
+   {
+    "id": "fema-nfhl",
+    "title": "National Flood Hazard Layer",
+    "url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "nwi",
+    "title": "National Wetlands Inventory: Wetlands Mapper",
+    "url": "https://www.fws.gov/program/national-wetlands-inventory/wetlands-mapper",
+    "publisher": "U.S. Fish and Wildlife Service"
+   },
+   {
+    "id": "miso-cost",
+    "title": "Transmission cost estimation guide for MTEP24",
+    "url": "https://cdn.misoenergy.org/20240501%20PSC%20Item%2004%20MISO%20Transmission%20Cost%20Estimation%20Guide%20for%20MTEP24632680.pdf",
+    "publisher": "MISO"
+   },
+   {
+    "id": "paces",
+    "title": "Grid planning for data centers and transmission investment",
+    "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
+    "publisher": "Paces"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "data-center-substation-capacity-check",
+   "utility-grade-power-study"
+  ]
+ },
+ {
+  "slug": "data-center-flood-zone-screening",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Data center flood zone screening: FEMA zones, base flood elevation and what to check",
+  "description": "How to screen a data center site for flood risk: FEMA flood zones (A, AE, V, X), the National Flood Hazard Layer, access roads, substations and sea level exposure.",
+  "date": "2026-11-20",
+  "readMinutes": 5,
+  "intro": "Screen a data center site for flood risk by checking the FEMA flood zone under the building pad, the substation, the access roads and the line route, not just the parcel centroid. Zones A and AE (and V on the coast) are the 1% annual chance flood, often called the 100-year flood. Shaded Zone X is the 0.2% annual chance flood. Most data center buyers treat any building footprint in a 1% zone as a kill or a costly fill-and-permit problem, and many avoid the 0.2% zone for critical equipment.",
+  "takeaways": [
+   "Check the pad, the substation site and the access road. A dry building on a flooded road is still offline.",
+   "FEMA maps show the regulatory flood, not every flood. Look at flood history and local drainage too.",
+   "On the coast, add storm surge and sea level rise over the life of the asset.",
+   "A floodway designation can block fill entirely, which is different from a flood zone."
+  ],
+  "sections": [
+   {
+    "id": "fema-flood-zones-in-plain-terms",
+    "heading": "FEMA flood zones in plain terms",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Zone",
+       "What it means",
+       "Typical treatment for a data center"
+      ],
+      "rows": [
+       [
+        "A, AE, AH, AO",
+        "1% annual chance flood (Special Flood Hazard Area)",
+        "Avoid for buildings and electrical gear, or plan fill, elevation and a floodplain permit"
+       ],
+       [
+        "V, VE",
+        "Coastal 1% flood with wave action",
+        "Avoid"
+       ],
+       [
+        "X (shaded)",
+        "0.2% annual chance flood, or 1% with shallow depths",
+        "Allowed with care; raise critical equipment"
+       ],
+       [
+        "X (unshaded)",
+        "Outside the 0.2% flood",
+        "Normal design"
+       ],
+       [
+        "D",
+        "Not studied",
+        "Get local data before relying on it"
+       ]
+      ],
+      "sourceIds": [
+       "fema-zones"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "A 1% annual chance sounds small. Over a 30-year life it works out to about a one in four chance of at least one such flood."
+     }
+    ]
+   },
+   {
+    "id": "where-to-look",
+    "heading": "Where to look",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "FEMA’s National Flood Hazard Layer and Flood Map Service Center hold the effective maps and base flood elevations. We overlay the parcel, the likely pad, the substation site and the access routes.",
+      "sourceIds": [
+       "fema-nfhl",
+       "fema-msc"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Near the coast we add NOAA’s sea level rise viewer, and inland we check soils for drainage and hydric soils, which often line up with wetlands.",
+      "sourceIds": [
+       "noaa-slr",
+       "soil"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "how-flood-fits-the-rest-of-the-screen",
+    "heading": "How flood fits the rest of the screen",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Flood is the second check in our feasibility screen, after power, because it removes the next largest share of sites. A site that passes both goes on to seismic, wetlands, airspace and zoning."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "Can you build a data center in a flood zone?",
+    "answer": "It is possible with fill, elevation and a floodplain permit, but most buyers avoid putting buildings or electrical equipment in a 1% annual chance zone, and floodways can block fill entirely.",
+    "sourceIds": [
+     "fema-zones"
+    ]
+   },
+   {
+    "question": "What flood zone is acceptable for a data center?",
+    "answer": "Unshaded Zone X is the norm. Shaded Zone X (0.2% annual chance) is often accepted with critical equipment raised. Zones A, AE and V are usually avoided.",
+    "sourceIds": [
+     "fema-zones"
+    ]
+   },
+   {
+    "question": "Where can I find the flood zone for a site?",
+    "answer": "In FEMA’s Flood Map Service Center or the National Flood Hazard Layer.",
+    "sourceIds": [
+     "fema-msc",
+     "fema-nfhl"
+    ]
+   },
+   {
+    "question": "Does Invariant check flood risk?",
+    "answer": "Yes. Flood zone, base flood elevation, access roads and coastal exposure are part of the 24 hour feasibility screen."
+   }
+  ],
+  "sources": [
+   {
+    "id": "fema-zones",
+    "title": "Flood zones",
+    "url": "https://www.fema.gov/glossary/flood-zones",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "fema-nfhl",
+    "title": "National Flood Hazard Layer",
+    "url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "fema-msc",
+    "title": "Flood Map Service Center",
+    "url": "https://msc.fema.gov/portal/home",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "noaa-slr",
+    "title": "Sea Level Rise Viewer",
+    "url": "https://coast.noaa.gov/slr/",
+    "publisher": "NOAA Office for Coastal Management"
+   },
+   {
+    "id": "soil",
+    "title": "Web Soil Survey",
+    "url": "https://websoilsurvey.nrcs.usda.gov/",
+    "publisher": "USDA Natural Resources Conservation Service"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "data-center-seismic-risk-screening",
+   "data-center-environmental-site-screening"
+  ]
+ },
+ {
+  "slug": "data-center-seismic-risk-screening",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Data center seismic risk screening: USGS hazard maps, ASCE 7 values and faults",
+  "description": "How to screen a data center site for seismic risk: the USGS National Seismic Hazard Model, ASCE 7 seismic design category, site soils and mapped faults.",
+  "date": "2026-11-20",
+  "readMinutes": 5,
+  "intro": "Screen a data center site for seismic risk with three sources: the USGS National Seismic Hazard Model for how hard the ground is likely to shake, the ASCE Hazard Tool for the design values a structural engineer will use, and USGS fault maps for any active fault near the pad. The result is a seismic design category from A (low) to F (highest) that drives structural cost, equipment anchoring and sometimes insurance. USGS’s 2023 model found nearly three quarters of the US could see damaging shaking.",
+  "takeaways": [
+   "Seismic design category depends on both the hazard and the soil. Soft soils amplify shaking.",
+   "Higher categories add structural steel, bracing and anchoring for racks, chillers and generators.",
+   "Mapped active faults through the pad are usually a kill.",
+   "Liquefaction-prone soils near rivers and coasts deserve a geotechnical look early."
+  ],
+  "sections": [
+   {
+    "id": "the-sources",
+    "heading": "The sources",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The USGS National Seismic Hazard Model estimates ground shaking across the US. Its 2023 update found nearly 75% of the country could experience damaging shaking.",
+      "sourceIds": [
+       "usgs-nshm",
+       "usgs-2023"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The ASCE Hazard Tool turns a coordinate into the ASCE 7 design values (spectral accelerations) along with wind, snow, ice and flood loads. USGS keeps a database of faults active in the Quaternary period.",
+      "sourceIds": [
+       "asce-tool",
+       "usgs-faults"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "what-changes-with-the-category",
+    "heading": "What changes with the category",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Seismic design category",
+       "What it usually means for a data center"
+      ],
+      "rows": [
+       [
+        "A or B",
+        "Low hazard; normal design"
+       ],
+       [
+        "C",
+        "Moderate; more detailing and anchoring"
+       ],
+       [
+        "D",
+        "High; added structural cost, anchored and braced equipment, closer review"
+       ],
+       [
+        "E or F",
+        "Very high or near an active fault; specialist design, often avoided"
+       ]
+      ],
+      "sourceIds": [
+       "asce-tool"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The category also depends on the building’s risk category and the site soil class, which a geotechnical report confirms. The screen gives the expected range; the geotech settles it."
+     }
+    ]
+   },
+   {
+    "id": "how-we-use-it-in-the-screen",
+    "heading": "How we use it in the screen",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "We pull the hazard values and fault distances for the coordinate, check soils for liquefaction risk, and flag the expected design category. In most of the central US this is a quick pass. In the West, around New Madrid and in parts of the Southeast it can move cost and schedule.",
+      "sourceIds": [
+       "soil"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "How do I check seismic risk for a data center site?",
+    "answer": "Use the USGS National Seismic Hazard Model for shaking, the ASCE Hazard Tool for ASCE 7 design values, and USGS fault maps for nearby active faults.",
+    "sourceIds": [
+     "usgs-nshm",
+     "asce-tool",
+     "usgs-faults"
+    ]
+   },
+   {
+    "question": "What is a seismic design category?",
+    "answer": "It is the ASCE 7 rating from A to F that combines ground motion, soil and the building’s risk category. It sets how much seismic detailing the structure and equipment need.",
+    "sourceIds": [
+     "asce-tool"
+    ]
+   },
+   {
+    "question": "Is Invariant’s seismic check a geotechnical report?",
+    "answer": "No. It is a screen from mapped data. A geotechnical investigation confirms soil class and liquefaction risk before design."
+   },
+   {
+    "question": "Is seismic part of the feasibility screen?",
+    "answer": "Yes, along with power, flood, wetlands, airspace, zoning and the parcel, returned within 24 hours."
+   }
+  ],
+  "sources": [
+   {
+    "id": "usgs-nshm",
+    "title": "National Seismic Hazard Model",
+    "url": "https://www.usgs.gov/programs/earthquake-hazards/science/national-seismic-hazard-model",
+    "publisher": "USGS"
+   },
+   {
+    "id": "usgs-2023",
+    "title": "New USGS map shows where damaging earthquakes are most likely to occur in US",
+    "url": "https://www.usgs.gov/news/national-news-release/new-usgs-map-shows-where-damaging-earthquakes-are-most-likely-occur-us",
+    "publisher": "USGS"
+   },
+   {
+    "id": "usgs-faults",
+    "title": "Quaternary faults",
+    "url": "https://www.usgs.gov/programs/earthquake-hazards/faults",
+    "publisher": "USGS"
+   },
+   {
+    "id": "asce-tool",
+    "title": "ASCE Hazard Tool",
+    "url": "https://ascehazardtool.org/",
+    "publisher": "American Society of Civil Engineers"
+   },
+   {
+    "id": "soil",
+    "title": "Web Soil Survey",
+    "url": "https://websoilsurvey.nrcs.usda.gov/",
+    "publisher": "USDA Natural Resources Conservation Service"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "data-center-flood-zone-screening",
+   "data-center-site-due-diligence"
+  ]
+ },
+ {
+  "slug": "data-center-environmental-site-screening",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Data center environmental screening: wetlands, endangered species and Phase I ESA",
+  "description": "How to screen a data center site for wetlands, listed species and contamination before you buy: National Wetlands Inventory, IPaC, EPA cleanup records and the Phase I ESA.",
+  "date": "2026-11-20",
+  "readMinutes": 5,
+  "intro": "An environmental screen for a data center site checks three things before you buy: wetlands and streams that would need a Clean Water Act permit to fill, federally listed species that could need consultation or seasonal limits, and contamination that could make you liable for cleanup. Start with the National Wetlands Inventory, the Fish and Wildlife Service’s IPaC tool and EPA cleanup records. Then commission a Phase I Environmental Site Assessment under ASTM E1527-21 before closing.",
+  "takeaways": [
+   "National Wetlands Inventory maps are a screen, not a jurisdictional determination. The Army Corps decides that.",
+   "IPaC lists species that may be present; a federal nexus such as a Corps permit triggers consultation.",
+   "A Phase I ESA to ASTM E1527-21 supports the All Appropriate Inquiries defence against cleanup liability.",
+   "Brownfields and retired plants carry the most contamination risk and often the best power."
+  ],
+  "sections": [
+   {
+    "id": "wetlands-and-water",
+    "heading": "Wetlands and water",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The Wetlands Mapper shows mapped wetlands and deepwater habitat. On a large campus even a few acres of wetland in the wrong place can force a redesign or a permit that takes months. We overlay it with the pad, the substation and the line route.",
+      "sourceIds": [
+       "nwi"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Hydric soils from the Web Soil Survey often flag unmapped wetlands, so we check those too.",
+      "sourceIds": [
+       "soil"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "listed-species",
+    "heading": "Listed species",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "IPaC returns the federally listed species and critical habitat that may be near a site. It is common for a site to list a bat or a bird species; what matters is whether there is habitat on the parcel and whether the project has a federal permit that triggers consultation. Tree clearing windows are the usual practical result.",
+      "sourceIds": [
+       "ipac"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "contamination-and-the-phase-i-esa",
+    "heading": "Contamination and the Phase I ESA",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "EPA’s Cleanups in My Community shows Superfund, brownfield and RCRA sites nearby. Retired plants and industrial sites often have coal ash, fuel or solvent history.",
+      "sourceIds": [
+       "epa-cimc"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Before closing, a Phase I ESA to ASTM E1527-21 is the standard way to meet EPA’s All Appropriate Inquiries rule and protect a buyer from cleanup liability. Parts of it must be done within 180 days of acquisition.",
+      "sourceIds": [
+       "astm",
+       "epa-aai"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "Do I need a Phase I environmental site assessment for a data center site?",
+    "answer": "If you are buying the land, yes in practice. A Phase I ESA to ASTM E1527-21 supports the All Appropriate Inquiries defence against cleanup liability, and lenders usually require one.",
+    "sourceIds": [
+     "astm",
+     "epa-aai"
+    ]
+   },
+   {
+    "question": "How do I check a site for wetlands?",
+    "answer": "Start with the National Wetlands Inventory Wetlands Mapper and hydric soils in the Web Soil Survey. A wetland delineation and Army Corps determination confirm it.",
+    "sourceIds": [
+     "nwi",
+     "soil"
+    ]
+   },
+   {
+    "question": "How do I check for endangered species on a site?",
+    "answer": "Run the location through the Fish and Wildlife Service’s IPaC tool, then check whether there is habitat on the parcel.",
+    "sourceIds": [
+     "ipac"
+    ]
+   },
+   {
+    "question": "Does Invariant’s screen include environmental checks?",
+    "answer": "Yes. Wetlands, listed species and nearby contamination records are part of the 24 hour feasibility screen, with a recommendation on whether a Phase I is the next step."
+   }
+  ],
+  "sources": [
+   {
+    "id": "nwi",
+    "title": "National Wetlands Inventory: Wetlands Mapper",
+    "url": "https://www.fws.gov/program/national-wetlands-inventory/wetlands-mapper",
+    "publisher": "U.S. Fish and Wildlife Service"
+   },
+   {
+    "id": "ipac",
+    "title": "IPaC: Information for Planning and Consultation",
+    "url": "https://ipac.ecosphere.fws.gov/",
+    "publisher": "U.S. Fish and Wildlife Service"
+   },
+   {
+    "id": "astm",
+    "title": "ASTM E1527-21: Standard practice for environmental site assessments, Phase I",
+    "url": "https://www.astm.org/e1527-21.html",
+    "publisher": "ASTM International"
+   },
+   {
+    "id": "epa-aai",
+    "title": "Brownfields All Appropriate Inquiries",
+    "url": "https://www.epa.gov/brownfields/brownfields-all-appropriate-inquiries",
+    "publisher": "US EPA"
+   },
+   {
+    "id": "epa-cimc",
+    "title": "Cleanups in My Community",
+    "url": "https://www.epa.gov/cleanups/cleanups-my-community",
+    "publisher": "US EPA"
+   },
+   {
+    "id": "soil",
+    "title": "Web Soil Survey",
+    "url": "https://websoilsurvey.nrcs.usda.gov/",
+    "publisher": "USDA Natural Resources Conservation Service"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "data-center-flood-zone-screening",
+   "retired-power-plant-sites-for-data-centers"
+  ]
+ },
+ {
+  "slug": "faa-height-limits-data-center-site",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "FAA height limits near airports: what a data center site needs to check",
+  "description": "FAA Part 77 for data center sites: when notice is required for buildings, stacks and cranes near airports, the 200 ft and 100:1 tests, and how to check a site.",
+  "date": "2026-11-20",
+  "readMinutes": 4,
+  "intro": "A data center near an airport may need to file FAA Form 7460-1 before construction. Under 14 CFR Part 77, notice is required for any structure over 200 feet above ground, and for lower structures that would break an imaginary slope from a nearby public-use airport, for example 100 to 1 for 20,000 feet from a runway longer than 3,200 feet. Cranes count. Generator stacks and cooling equipment can count. The FAA’s Notice Criteria Tool tells you from a coordinate and a height.",
+  "takeaways": [
+   "Most data center buildings are well under 200 feet, so the slope tests near airports are what usually apply.",
+   "Construction cranes often need their own filing.",
+   "File at least 45 days before construction; a determination of hazard can stop or change the design.",
+   "Heliports and private airstrips can matter too."
+  ],
+  "sections": [
+   {
+    "id": "the-part-77-tests",
+    "heading": "The Part 77 tests",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Test",
+       "Applies to"
+      ],
+      "rows": [
+       [
+        "Over 200 ft above ground level",
+        "Any structure anywhere"
+       ],
+       [
+        "100:1 slope for 20,000 ft",
+        "Public-use airports with a runway over 3,200 ft"
+       ],
+       [
+        "50:1 slope for 10,000 ft",
+        "Public-use airports with shorter runways"
+       ],
+       [
+        "25:1 slope for 5,000 ft",
+        "Public-use heliports"
+       ]
+      ],
+      "sourceIds": [
+       "part77"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "If a test is met, notice goes to the FAA on Form 7460-1 at least 45 days before construction starts. The FAA then issues a determination of no hazard, sometimes with marking and lighting conditions.",
+      "sourceIds": [
+       "part77"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "how-to-check-a-site",
+    "heading": "How to check a site",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Enter the coordinate, ground elevation and the tallest point (roof, stack, crane) into the FAA’s Notice Criteria Tool. It returns whether notice is required.",
+      "sourceIds": [
+       "faa-nct"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "In our feasibility screen we list airports and heliports nearby, run the tool at a typical building and crane height for the campus size, and flag any site where height will shape the design."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "Does a data center need FAA approval?",
+    "answer": "Only if it meets a Part 77 notice test: over 200 feet above ground, or breaking an airport slope surface. Then it files Form 7460-1 and needs a determination of no hazard.",
+    "sourceIds": [
+     "part77"
+    ]
+   },
+   {
+    "question": "Do construction cranes need FAA notice?",
+    "answer": "Yes, if the crane meets a Part 77 notice test. Cranes are often taller than the finished building.",
+    "sourceIds": [
+     "part77"
+    ]
+   },
+   {
+    "question": "How far from an airport does Part 77 apply?",
+    "answer": "Up to 20,000 feet from a runway longer than 3,200 feet at a public-use airport, on a 100 to 1 slope, plus the 200 foot test anywhere.",
+    "sourceIds": [
+     "part77"
+    ]
+   },
+   {
+    "question": "Is airspace part of Invariant’s screen?",
+    "answer": "Yes, alongside power, flood, seismic, wetlands, zoning and the parcel."
+   }
+  ],
+  "sources": [
+   {
+    "id": "faa-nct",
+    "title": "Notice Criteria Tool",
+    "url": "https://oeaaa.faa.gov/oeaaa/external/gisTools/gisAction.jsp",
+    "publisher": "FAA Obstruction Evaluation / Airport Airspace Analysis"
+   },
+   {
+    "id": "part77",
+    "title": "14 CFR Part 77: Safe, efficient use, and preservation of the navigable airspace",
+    "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-E/part-77",
+    "publisher": "Electronic Code of Federal Regulations"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "data-center-environmental-site-screening",
+   "data-center-site-due-diligence"
+  ]
+ },
+ {
+  "slug": "data-center-power-due-diligence-investors",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Power due diligence for data center investors and lenders: what to ask before you underwrite",
+  "description": "Data center power due diligence for investors and lenders: which utility documents count, what a power study should show, and the red flags in a powered land deal.",
+  "date": "2026-11-20",
+  "readMinutes": 6,
+  "intro": "For an investor or lender, power due diligence on a data center site comes down to one question: what document stands behind the MW figure in the model, and what would it take to make it firm? A seller’s will-serve letter is a lead. A utility load study for the marketed load at a named point is the first thing worth underwriting. Between the two, an independent power study tells you whether the number is plausible, which upgrades it assumes, and what date is realistic.",
+  "takeaways": [
+   "Underwrite the document, not the headline MW.",
+   "Ask which element limits the MW and which upgrades the date assumes.",
+   "Model the minimum bill and term in the service agreement, not just the energy price.",
+   "Check the county for moratoriums and recent votes before you fund an option."
+  ],
+  "sections": [
+   {
+    "id": "what-to-ask-the-seller",
+    "heading": "What to ask the seller",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "Which utility document supports the MW figure: indication, will-serve, load study, construction agreement or service agreement?",
+       "At which point of interconnection, at what voltage, and from which year?",
+       "Which upgrades does the date depend on, and who pays for them?",
+       "Is security posted, and in whose name?",
+       "What are the minimum bill and the term?",
+       "Are other large loads filing at the same station?"
+      ],
+      "sourceIds": [
+       "lbnl"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Our guide to the five rungs of power evidence explains how much each document is worth."
+     }
+    ]
+   },
+   {
+    "id": "what-an-independent-power-study-adds",
+    "heading": "What an independent power study adds",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "A seller’s study, if there is one, was run for the seller. An independent study tests every connection option, shows the MW by year with and without upgrades, and names the binding element. Where it agrees with the seller, you underwrite with more confidence. Where it does not, you know which question to ask."
+     },
+     {
+      "type": "paragraph",
+      "text": "Equity buyers already commission this. Ankura’s 300 MW brownfield case for an institutional investor covered line and substation feasibility, ISO timing, zoning, gas, water and a risk matrix.",
+      "sourceIds": [
+       "ankura"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "red-flags",
+    "heading": "Red flags",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "A MW figure with no named point of interconnection.",
+       "A date that ignores a planned upgrade or a batch study cycle.",
+       "Proximity to a line offered as proof of power.",
+       "A county with a moratorium or a recent failed rezoning.",
+       "No mention of a minimum bill."
+      ],
+      "sourceIds": [
+       "dcwatch"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "For landowners: a power study before you sell",
+        "slug": "power-study-before-selling-land-to-data-center"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "What power documents should a lender require for a data center site?",
+    "answer": "At minimum a utility load study for the marketed load at a named point, and ideally a signed construction agreement with security or an electric service agreement. A will-serve letter alone does not reserve capacity."
+   },
+   {
+    "question": "Should an investor commission an independent power study?",
+    "answer": "Yes, before funding an option or LOI. It shows whether the seller’s MW is plausible, which upgrades it depends on, and what date is realistic. Invariant usually returns one within 48 hours."
+   },
+   {
+    "question": "What is a minimum bill in a data center service agreement?",
+    "answer": "The amount owed each month regardless of use, tied to contract demand. Berkeley Lab and Brattle found a median of 80% across new large-load tariffs.",
+    "sourceIds": [
+     "lbnl"
+    ]
+   },
+   {
+    "question": "Can Invariant review a seller’s power claims?",
+    "answer": "Yes. Send the site and the seller’s documents; we screen it in 24 hours and run a full power study if it passes."
+   }
+  ],
+  "sources": [
+   {
+    "id": "ankura",
+    "title": "Brownfield to data center: technical due diligence to de-risk 300 MW of capacity",
+    "url": "https://ankura.com/insights/case-study-brownfield-to-data-center-technical-due-diligence-to-de-risk-300-mw-of-capacity/",
+    "publisher": "Ankura"
+   },
+   {
+    "id": "lbnl",
+    "title": "Electricity rate designs for large loads (August 2026)",
+    "url": "https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf",
+    "publisher": "Lawrence Berkeley National Laboratory and The Brattle Group"
+   },
+   {
+    "id": "dcwatch",
+    "title": "Data Center Watch Q1 2026 report",
+    "url": "https://datacenterwatch.org/q1-2026",
+    "publisher": "Data Center Watch"
+   }
+  ],
+  "relatedSlugs": [
+   "utility-grade-power-study",
+   "power-evidence-data-center-site-verification",
+   "utility-will-serve-letter-load-study-esa"
+  ]
+ },
+ {
+  "slug": "power-study-before-selling-land-to-data-center",
+  "topic": "Data Centers",
+  "kind": "study-guide",
+  "region": "United States",
+  "title": "Selling land to a data center developer? Get a power study first",
+  "description": "For landowners and brokers: why a power study changes what data center developers pay for land, what it should show, and how to get one before you market the site.",
+  "date": "2026-11-20",
+  "readMinutes": 5,
+  "intro": "Data center developers buy power, not acres. Land near a substation with a documented path to tens or hundreds of MW sells at a very different price from the same land with no power answer, and developers will discount for every unknown. A power study before you market the site tells you, and buyers, how many MW the site can likely take, where, and by when. It also tells you early if the answer is no, before you spend months with brokers.",
+  "takeaways": [
+   "A buyer’s first question is how many MW and by when. Have the answer.",
+   "Our study is a screening study; the utility’s own study comes later, usually funded by the buyer.",
+   "A study that names the connection point and the binding element is far more credible than a map.",
+   "Brokers can run studies on their listings and present them under their own name."
+  ],
+  "sections": [
+   {
+    "id": "why-power-sets-the-price",
+    "heading": "Why power sets the price",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Developers screen hundreds of sites and drop any without a credible power path. Paces found only about 17% of ERCOT substations near suitable land had withdrawal headroom, so buyers have learned not to trust proximity.",
+      "sourceIds": [
+       "paces"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "A site with a study showing, say, 150 MW at a named 345 kV station from a given year moves to the top of the pile. One without goes to the bottom, whatever the acreage."
+     }
+    ]
+   },
+   {
+    "id": "what-the-study-should-show",
+    "heading": "What the study should show",
+    "blocks": [
+     {
+      "type": "list",
+      "items": [
+       "The serving utility and ISO.",
+       "Each realistic connection point, its voltage and distance.",
+       "MW by year at each point, with and without upgrades.",
+       "The element that limits each figure and the likely fix.",
+       "An indicative cost and date range.",
+       "Flood, wetlands, zoning and other site checks a buyer will run anyway."
+      ]
+     }
+    ]
+   },
+   {
+    "id": "how-to-get-one",
+    "heading": "How to get one",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Send Invariant the parcel or a coordinate. We screen it within 24 hours and tell you whether a full power study is worth doing. If it is, the full study usually follows within 48 hours, in editable form so you or your broker can use it in marketing."
+     },
+     {
+      "type": "paragraph",
+      "text": "If you would rather sell to a buyer we know, we also keep a catalogue of powered sites and work with developers looking for them."
+     }
+    ]
+   },
+   {
+    "id": "browse",
+    "heading": "More due diligence guides",
+    "blocks": [
+     {
+      "type": "links",
+      "label": "Site due diligence guides",
+      "items": [
+       {
+        "label": "Site due diligence: the two-step process",
+        "slug": "data-center-site-due-diligence"
+       },
+       {
+        "label": "Step 1: site feasibility screen",
+        "slug": "data-center-site-feasibility-study"
+       },
+       {
+        "label": "Step 2: utility-grade power study",
+        "slug": "utility-grade-power-study"
+       },
+       {
+        "label": "What a power flow study is",
+        "slug": "data-center-power-flow-study"
+       },
+       {
+        "label": "N-1 contingency analysis",
+        "slug": "n-1-contingency-analysis-data-center"
+       },
+       {
+        "label": "How to check substation capacity",
+        "slug": "data-center-substation-capacity-check"
+       },
+       {
+        "label": "Utility load study cost and timeline",
+        "slug": "utility-load-study-cost-and-timeline"
+       },
+       {
+        "label": "Distance to substation and transmission",
+        "slug": "distance-to-transmission-line-data-center"
+       },
+       {
+        "label": "Flood zone screening",
+        "slug": "data-center-flood-zone-screening"
+       },
+       {
+        "label": "Seismic risk screening",
+        "slug": "data-center-seismic-risk-screening"
+       },
+       {
+        "label": "Wetlands, species and Phase I ESA",
+        "slug": "data-center-environmental-site-screening"
+       },
+       {
+        "label": "FAA height limits near airports",
+        "slug": "faa-height-limits-data-center-site"
+       },
+       {
+        "label": "Power due diligence for investors and lenders",
+        "slug": "data-center-power-due-diligence-investors"
+       }
+      ]
+     },
+     {
+      "type": "links",
+      "label": "More on site selection",
+      "items": [
+       {
+        "label": "Five rungs of power evidence",
+        "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Will-serve letter vs load study vs ESA",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Moratorium screening",
+        "slug": "data-center-moratorium-local-opposition-site-screening"
+       },
+       {
+        "label": "Site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Texas: SB 6 and Batch Zero",
+        "slug": "texas-data-center-large-load-interconnection-2026"
+       },
+       {
+        "label": "Find a data center site in the US",
+        "slug": "find-data-center-site-us"
+       },
+       {
+        "label": "Site selection services",
+        "slug": "data-center-site-selection-services"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "faqs": [
+   {
+    "question": "Does a power study increase land value for a data center sale?",
+    "answer": "It removes the biggest unknown a buyer prices in. Sites with a credible, documented power path are the ones developers shortlist."
+   },
+   {
+    "question": "Who pays for the utility’s load study when selling land?",
+    "answer": "Usually the buyer, after taking site control, because utilities need site control and a defined load. A pre-study by the seller shows the site is worth that step."
+   },
+   {
+    "question": "Can a broker get a power study on a listing?",
+    "answer": "Yes. Invariant runs studies for brokers and advisers and can deliver them under the broker’s name."
+   },
+   {
+    "question": "How do I start?",
+    "answer": "Email pranav@invariant-ai.com or call (628) 220-8972 with the parcel or coordinate and the acreage."
+   }
+  ],
+  "sources": [
+   {
+    "id": "paces",
+    "title": "Grid planning for data centers and transmission investment",
+    "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
+    "publisher": "Paces"
+   }
+  ],
+  "relatedSlugs": [
+   "data-center-site-feasibility-study",
+   "utility-grade-power-study",
+   "data-center-land-for-sale"
+  ]
+ }
+]
