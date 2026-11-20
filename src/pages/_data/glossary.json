@@ -5518,6 +5518,126 @@
         "label": "Distance to substation and transmission",
         "path": "/blog/distance-to-transmission-line-data-center"
       }
+    },
+    {
+      "slug": "neocloud",
+      "term": "Neocloud",
+      "topic": "data-centers",
+      "aliases": [
+        "neoclouds",
+        "GPU cloud",
+        "AI cloud provider",
+        "GPU cloud provider"
+      ],
+      "short_definition": "A neocloud is a cloud provider built mainly to rent GPU compute for AI training and inference, as distinct from general-purpose hyperscalers. Neoclouds lease, colocate or build data center capacity and sell it on to AI labs and enterprises.",
+      "full_definition": "Neoclouds sit between the AI labs that need compute and the data centers that hold power. Their margin depends on getting powered, cooled capacity by a date, so most start in colocation and move to leased buildings and their own campuses as they grow.\n\nBecause their customers sign against delivery dates, neoclouds carry power date risk in both directions: from the landlord or utility behind them and to the lab in front of them. That is why power longstop clauses and independent power checks have become part of their contracts.",
+      "related_to": [
+        "gpu-colocation",
+        "power-longstop-date",
+        "rack-density",
+        "powered-land"
+      ],
+      "citations": [
+        {
+          "label": "Microsoft signs $9.7 billion IREN deal for Nvidia GB300 capacity (TechInformed)",
+          "url": "https://techinformed.com/microsoft-signs-9-7-billion-iren-deal-for-nvidia-gb300-capacity/"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "Data center capacity for neoclouds and AI labs",
+        "path": "/blog/ai-compute-capacity-for-neoclouds"
+      }
+    },
+    {
+      "slug": "gpu-colocation",
+      "term": "GPU colocation",
+      "topic": "data-centers",
+      "aliases": [
+        "GPU colo",
+        "AI colocation",
+        "GPU colocation hosting"
+      ],
+      "short_definition": "GPU colocation is renting space, power and cooling in a data center for your own GPU servers. The provider runs the building; you own or lease the hardware. Density, cooling and the delivery date decide whether a hall can take a modern cluster.",
+      "full_definition": "Most colocation built before 2023 was designed for 5 to 15 kW per cabinet. Modern GPU racks run from about 20 kW (two DGX H100 systems) to about 120 kW (a GB200 NVL72), which needs direct-to-chip liquid cooling.\n\nThe questions that decide a GPU colocation deal are kW per cabinet and the cooling method, how much of the hall's power is energized versus contracted, the delivery date and what it depends on, and the remedy if that date slips.",
+      "related_to": [
+        "neocloud",
+        "rack-density",
+        "power-longstop-date"
+      ],
+      "citations": [
+        {
+          "label": "Nvidia offers 120 kW liquid-cooled Blackwell rack (eeNews Europe)",
+          "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "GPU colocation for AI labs and neoclouds",
+        "path": "/blog/gpu-colocation-for-ai-labs"
+      }
+    },
+    {
+      "slug": "rack-density",
+      "term": "Rack density",
+      "topic": "data-centers",
+      "aliases": [
+        "kW per rack",
+        "power density",
+        "kW per cabinet"
+      ],
+      "short_definition": "Rack density is the power drawn by one rack of IT equipment, in kW. GPU clusters run from about 20 kW to about 120 kW per rack, against 5 to 15 kW for typical enterprise racks, and density sets the cooling a data center needs.",
+      "full_definition": "An eight-GPU DGX H100 draws up to 10.2 kW and a DGX B200 up to 14.3 kW, so four per rack is about 41 kW and 57 kW. A GB200 NVL72 rack draws about 120 kW and is liquid cooled by design.\n\nAbove about 20 kW per rack, air cooling needs help from rear-door heat exchangers; above about 50 kW, direct-to-chip liquid cooling is the norm.",
+      "related_to": [
+        "gpu-colocation",
+        "neocloud",
+        "power-usage-effectiveness"
+      ],
+      "citations": [
+        {
+          "label": "NVIDIA DGX H100 system",
+          "url": "https://docs.nvidia.com/dgx/dgxh100-user-guide/introduction-to-dgxh100.html"
+        },
+        {
+          "label": "NVIDIA DGX B200 system",
+          "url": "https://docs.nvidia.com/dgx/dgxb200-user-guide/introduction-to-dgxb200.html"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "How much power a GPU cluster needs",
+        "path": "/blog/gpu-cluster-power-requirements"
+      }
+    },
+    {
+      "slug": "power-longstop-date",
+      "term": "Power longstop date",
+      "topic": "data-centers",
+      "aliases": [
+        "firm capacity longstop date",
+        "longstop date",
+        "power delivery longstop"
+      ],
+      "short_definition": "A power longstop date is the date in a data center lease or capacity contract by which firm power must be delivered. If it is missed, the tenant can terminate or receive a set remedy.",
+      "full_definition": "AI tenants added longstop clauses because compute deals keep failing on power dates. One data center lease filed with the SEC lets the tenant terminate if firm capacity is not delivered by a Firm Capacity Longstop Date, and gives the tenant written approval over the power plan.\n\nA longstop clause gives a remedy, not power. Tenants and lenders check the document behind the provider's MW, the connection and its dependencies before relying on the date.",
+      "related_to": [
+        "neocloud",
+        "gpu-colocation",
+        "will-serve-letter",
+        "load-study",
+        "utility-grade-power-study"
+      ],
+      "citations": [
+        {
+          "label": "Data center lease exhibit with a firm capacity longstop date (SEC)",
+          "url": "https://www.sec.gov/Archives/edgar/data/0002097508/000118518526004213/bldcex10-51i.htm"
+        }
+      ],
+      "last_updated": "2026-11-20",
+      "guide": {
+        "label": "Power longstop dates in GPU leases",
+        "path": "/blog/gpu-lease-power-longstop-diligence"
+      }
     }
   ]
 }

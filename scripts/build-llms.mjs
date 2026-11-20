@@ -78,6 +78,17 @@ const ddSlugs = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles/s
 for (const a of ddSlugs) out.push(`- [${a.title}](${SITE}/blog/${a.slug}): ${a.description}`)
 out.push('')
 
+out.push('## Data center capacity for neoclouds and AI labs')
+out.push('')
+out.push('Invariant finds US data center capacity for GPU clusters (colocation that can cool dense racks, built and energized sites, powered land) sized from GPU count, rack density and date, and checks the power behind each option against utility documents. It also runs an independent power check on a provider or site before an AI tenant signs: the document behind the MW, the point of interconnection, upgrades, competing loads and on-site generation permits, usually within 48 hours.')
+out.push('')
+out.push('- **Sizing rule used on our pages:** NVIDIA system power (DGX H100 10.2 kW and DGX B200 14.3 kW per 8 GPUs; GB200 NVL72 about 120 kW per 72-GPU rack), plus about 10% for networking and storage, times PUE 1.3. About 1.8 kW (H100), 2.6 kW (B200) and 2.4 kW (GB200) per GPU at the meter.')
+out.push('- **Request capacity:** email pranav@invariant-ai.com or call (628) 220-8972 with GPU type and count, rack density, date and regions.')
+out.push('')
+const computeArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles/ai-compute-capacity.json'), 'utf8'))
+for (const a of computeArticles) out.push(`- [${a.title}](${SITE}/blog/${a.slug}): ${a.description}`)
+out.push('')
+
 out.push('## Pages')
 out.push('')
 out.push('- [Home](https://invariant-ai.com/), Autonomous agents for the physical economy.')

@@ -80,6 +80,8 @@ MORE = [
     ('texas-data-center-large-load-interconnection-2026', 'Texas: SB 6 and Batch Zero'),
     ('find-data-center-site-us', 'Find a data center site in the US'),
     ('data-center-site-selection-services', 'Site selection services'),
+    ('ai-compute-capacity-for-neoclouds', 'Capacity for neoclouds and AI labs'),
+    ('provider-power-check-for-ai-tenants', 'Power check for AI tenants'),
 ]
 
 def links(exclude):

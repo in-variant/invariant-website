@@ -6,7 +6,7 @@ import CareersCallout from './CareersCallout'
 
 const columns = [
   { title: 'Platform', links: [['Overview', '/product'], ['Space', '/space-compliance'], ['Energy', '/nuclear-compliance'], ['Data Centers', '/data-center-compliance'], ['Oil & Gas', '/oil-gas-compliance'], ['Security', '/trust'], ['Talk to an expert', '/contact']] },
-  { title: 'Resources', links: [['All resources', '/resources'], ['Field notes', '/blog'], ['Research', '/research'], ['Regulatory guides', '/compliance'], ['Tools & calculators', '/calculators'], ['Site due diligence', '/blog/data-center-site-due-diligence'], ['Power studies', '/blog/utility-grade-power-study']] },
+  { title: 'Resources', links: [['All resources', '/resources'], ['Field notes', '/blog'], ['Research', '/research'], ['Regulatory guides', '/compliance'], ['Tools & calculators', '/calculators'], ['Site due diligence', '/blog/data-center-site-due-diligence'], ['Power studies', '/blog/utility-grade-power-study'], ['GPU capacity', '/blog/ai-compute-capacity-for-neoclouds']] },
   { title: 'Invariant', links: [['Why we exist', '/charter'], ['Our team', '/about'], ['Get in touch', '/contact'], ['Careers', '/careers']] },
 ]
 

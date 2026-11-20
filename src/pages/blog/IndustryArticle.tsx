@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, faqSchema, howToSchema } from '../../components/Seo'
-import { INDUSTRY_ARTICLES, articleImage, industryPath, isSiteKind, DILIGENCE_PILLAR, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
+import { INDUSTRY_ARTICLES, articleImage, industryPath, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
 import './IndustryArticle.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
@@ -22,11 +22,12 @@ function Block({ block, article }: { block: ArticleBlock; article: Article }) {
 export function articleCrumbs(article: Article, canonical: string) {
   const middle = article.kind === 'study-guide'
     ? { name: 'Site due diligence', url: `${SITE_URL}/blog/${DILIGENCE_PILLAR}` }
+    : article.kind === 'compute-guide' ? { name: 'AI compute capacity', url: `${SITE_URL}/blog/${COMPUTE_PILLAR}` }
     : isSiteKind(article.kind) ? { name: 'Data center sites', url: `${SITE_URL}/blog/find-data-center-site-us` } : { name: `${article.topic} compliance`, url: `${SITE_URL}${industryPath(article.topic)}` }
-  return article.slug === 'find-data-center-site-us' || article.slug === DILIGENCE_PILLAR ? [{ name: 'Invariant', url: SITE_URL }, { name: article.title, url: canonical }] : [{ name: 'Invariant', url: SITE_URL }, middle, { name: article.title, url: canonical }]
+  return article.slug === 'find-data-center-site-us' || article.slug === DILIGENCE_PILLAR || article.slug === COMPUTE_PILLAR ? [{ name: 'Invariant', url: SITE_URL }, { name: article.title, url: canonical }] : [{ name: 'Invariant', url: SITE_URL }, middle, { name: article.title, url: canonical }]
 }
 
-const SECTION_LABEL = { 'site-listing': 'Powered land and data center sites', 'site-guide': 'Data center site selection', 'study-guide': 'Data center site due diligence' } as const
+const SECTION_LABEL = { 'site-listing': 'Powered land and data center sites', 'site-guide': 'Data center site selection', 'study-guide': 'Data center site due diligence', 'compute-guide': 'AI compute capacity for neoclouds and AI labs' } as const
 
 /** Every JSON-LD block for an industry article; shared by the SPA and the prerender. */
 export function articleJsonLd(article: Article) {
@@ -47,6 +48,23 @@ export function articleJsonLd(article: Article) {
   })
   if (article.howTo) blocks.push(howToSchema({ name: article.howTo.name, description: article.description, url: canonical, steps: article.howTo.steps }))
   return blocks
+}
+
+/** Inbound for neoclouds and AI labs: GPU count, type and date are enough to start. */
+export function GpuCapacityBanner({ variant = 'top' }: { variant?: 'top' | 'foot' }) {
+  const subject = encodeURIComponent('GPU capacity request')
+  const body = encodeURIComponent('GPU type and count (or MW):\nRack density and cooling (air, liquid):\nDate you need power:\nRegions you would consider:\nColocation, powered shell or a site to build on:\n')
+  return <aside className={`industry-site-booking industry-site-booking--${variant}`} aria-label="Request GPU capacity">
+    <p className="industry-eyebrow">{variant === 'top' ? 'Need somewhere to put your GPUs?' : 'Tell us the cluster'}</p>
+    <h2>{variant === 'top' ? 'Tell us the GPU count and the date. We send capacity that fits.' : 'GPU count, rack density and a date. We come back with powered options and the evidence behind each.'}</h2>
+    <p>We track energized sites, built data centers and powered land across the US, from a few hundred kW to hundreds of MW, and check each one’s power against utility documents before we introduce it. For a provider or site you already have in mind, we run a power check on it so the date in your lease holds.</p>
+    <div className="industry-site-booking-actions">
+      <a href={`mailto:${SITES_EMAIL}?subject=${subject}&body=${body}`}>Request capacity <span aria-hidden="true">↗</span></a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a>
+      <a href={`tel:${SITES_PHONE}`} className="industry-site-booking-phone">Call or text {SITES_PHONE_DISPLAY}</a>
+      <a href={`mailto:${SITES_EMAIL}?subject=${subject}`} className="industry-site-booking-phone">Email {SITES_EMAIL}</a>
+    </div>
+  </aside>
 }
 
 /** Inbound for the due diligence cluster: a coordinate and a MW figure are enough to start. */
@@ -111,12 +129,13 @@ export default function IndustryArticle({ articleSlug, renderSeo = true }: { art
         {article.kind === 'site-listing' && <SiteBookingBanner />}
         {article.kind === 'site-guide' && <SiteMarketStrip />}
         {article.kind === 'study-guide' && <StudyRequestBanner />}
+        {article.kind === 'compute-guide' && <GpuCapacityBanner />}
         <p className="industry-lead">{article.intro}</p>
         <section className="industry-takeaways" aria-label="Before you start"><p className="industry-eyebrow">Before you start</p><ul>{article.takeaways.map(item => <li key={item}>{item}</li>)}</ul></section>
         {article.sections.map(section => <section key={section.id} id={section.id} className="industry-prose-section"><h2>{section.heading}</h2>{section.blocks.map((block, i) => <Block key={i} block={block} article={article} />)}</section>)}
         <section className="industry-prose-section industry-faq" aria-labelledby="questions"><h2 id="questions">Questions that come up.</h2>{article.faqs.map(faq => <details key={faq.question}><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}<Citations ids={faq.sourceIds} article={article} /></p></details>)}</section>
         <section id="sources" className="industry-prose-section industry-source-list"><h2>Sources and references.</h2><p>{article.kind === 'site-listing' ? 'Site specifications are as marketed by the seller and are checked against utility documents before any introduction. Public sources checked on' : 'Primary sources checked for this guide on'} <time dateTime={article.date}>{new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>. The location, equipment, and operating plan determine which requirements apply to a project.</p><ol>{article.sources.map(source => <li key={source.id} id={`source-${source.id}`}><span>{source.publisher}</span><a href={source.url}>{source.title} ↗</a></li>)}</ol></section>
-        {article.kind === 'study-guide' ? <StudyRequestBanner variant="foot" /> : isSiteKind(article.kind) ? <SiteBookingBanner variant="foot" /> : <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>}
+        {article.kind === 'study-guide' ? <StudyRequestBanner variant="foot" /> : article.kind === 'compute-guide' ? <GpuCapacityBanner variant="foot" /> : isSiteKind(article.kind) ? <SiteBookingBanner variant="foot" /> : <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>}
       </div>
     </div>
     <BlogRelatedReading slug={article.slug} relatedSlugs={article.relatedSlugs} />
