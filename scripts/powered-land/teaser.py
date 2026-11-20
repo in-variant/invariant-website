@@ -471,10 +471,10 @@ RETIRED = []
 def retired(slug, state, title_mw, mw_text, acres_text, iso, iso_src, eia, state_page, angle_extra, fit, region_word):
     return site(slug,
         f'{state} retired power plant site for data centers: {title_mw} former plant, transmission on site',
-        f'A retired {state} power plant site ({region_word}) with {mw_text} of former generation and high-voltage transmission still on site. Off-market; we approach the owner for qualified buyers. Details on a call or at market.invariant-ai.com.',
+        f'A retired {state} power plant site ({region_word}) with {mw_text} of former generation and high-voltage transmission still on site. Not listed for sale; we approach the owner for qualified buyers. Details on a call or at market.invariant-ai.com.',
         f'{state}, United States',
         [['Power', f'{mw_text} former generating capacity, high-voltage transmission on site; usable MW for new load confirmed with the utility'],
-         ['Land', acres_text], ['Grid', iso], ['Status', 'Off-market: the owner is not marketing it; we make the approach'],
+         ['Land', acres_text], ['Grid', iso], ['Status', 'Off-market: not listed for sale; we approach the owner on a buyer\'s behalf'],
          ['Use', 'AI, HPC and large colocation campuses']],
         f'We are tracking a retired power plant site in {region_word} {state} that once generated {mw_text}. The plant is shut, but the switchyard and the high-voltage lines that carried its output are still there. {angle_extra}',
         'Retired plants are the fastest path to large power because the transmission is already built and the interconnection once carried the full output. The open question is always how much of that capacity a new load can take and when, which we work out with the utility and the grid operator before an introduction.',
