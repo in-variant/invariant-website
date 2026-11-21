@@ -89,6 +89,17 @@ const computeArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-ar
 for (const a of computeArticles) out.push(`- [${a.title}](${SITE}/blog/${a.slug}): ${a.description}`)
 out.push('')
 
+out.push('## Data centres in India')
+out.push('')
+out.push('A sourced reference to data centres in India, checked on 21 November 2026: capacity by city, operators, national and state policy, approvals, power and grid connection, open access charges, land, water and physical risk. Every figure on these pages cites its source (PIB, ministries, regulators, state gazettes, tariff orders, and research houses where no official figure exists).')
+out.push('')
+out.push('- **Key figures:** about 1.6 to 1.8 GW of operational capacity in mid-2026 (government estimate about 1,575 MW, August 2026); Mumbai about 50%; Central Electricity Authority estimate of about 17 GW of data centre demand by 2031-32; no notified national data centre policy; infrastructure status for data centres of 5 MW IT load or more since October 2022.')
+out.push('- **What Invariant does for Indian sites:** checks how a site gets power (discom or transmission connection, open access route, nearest substations), screens seismic zone, flood history, groundwater status and airport height limits, and maps the central and state approvals with the authority behind each. Email pranav@invariant-ai.com with the state, the MW and the date power is needed.')
+out.push(`- [Data centre approvals in India: the full project map](${SITE}/data-centre-compliance-india): land, power, environmental clearance, CTE and CTO, diesel and fuel, groundwater, fire, airport height, electrical inspection, state policy registration and data rules, with the authority and primary source for each.`)
+const indiaArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles/india-data-centres.json'), 'utf8'))
+for (const a of indiaArticles) out.push(`- [${a.title}](${SITE}/blog/${a.slug}): ${a.description}`)
+out.push('')
+
 out.push('## Pages')
 out.push('')
 out.push('- [Home](https://invariant-ai.com/), Autonomous agents for the physical economy.')
@@ -136,7 +147,7 @@ out.push('## Data centers and oil and gas')
 out.push('- [Data-center compliance](https://invariant-ai.com/data-center-compliance): U.S. siting, power, air, water, construction and operating requirements.')
 out.push('- [Oil-and-gas compliance](https://invariant-ai.com/oil-gas-compliance): U.S. onshore permitting, methane requirements and operating evidence.')
 const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
-for (const article of industryArticles) out.push(`- [${article.title}](${SITE}/blog/${article.slug}): ${article.summary}`)
+for (const article of industryArticles.filter(article => !/(^|, )India$/.test(article.region ?? ''))) out.push(`- [${article.title}](${SITE}/blog/${article.slug}): ${article.summary}`)
 
 if (entries.length) {
   out.push('')

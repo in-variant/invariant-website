@@ -42,6 +42,7 @@ const BLOG = [
 const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const industryUrls = [
   ...['data-center-compliance', 'oil-gas-compliance'].map(slug => ({ loc: `/${slug}`, changefreq: 'monthly', priority: '0.85', lastmod: '2026-09-15' })),
+  { loc: '/data-centre-compliance-india', changefreq: 'monthly', priority: '0.85', lastmod: '2026-11-21' },
   ...industryArticles.map(article => ({ loc: `/blog/${article.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: article.dateTime })),
 ]
 
