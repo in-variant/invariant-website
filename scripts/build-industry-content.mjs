@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const base = new URL('../src/data/', import.meta.url)
-const files = ['ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
+const files = ['india-data-centres.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
 const slugs = new Set(articles.map(article => article.slug))
 if (slugs.size !== articles.length) throw new Error('Duplicate industry article slug')
@@ -24,9 +24,9 @@ for (const article of articles) {
 const index = articles.map(article => ({
   slug: article.slug, topic: article.topic, title: article.title, summary: article.description,
   date: new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-  dateTime: article.date, image: `/blog/industry/${article.slug}.webp`,
+  dateTime: article.date, image: `/blog/industry/${article.slug}.webp`, ...(article.region ? { region: article.region } : {}),
 }))
 writeFileSync(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
-const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide'].includes(article.kind)).map(article => article.slug)
+const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
 writeFileSync(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
 console.log(`Validated and indexed ${articles.length} industry guides`)

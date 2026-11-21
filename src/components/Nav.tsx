@@ -45,7 +45,7 @@ export default function Nav({ hero = false }: { hero?: boolean }) {
     return () => { document.removeEventListener('keydown', closeOnEscape); document.removeEventListener('pointerdown', closeOutside) }
   }, [open])
 
-  const active = (href: string) => pathname === href || (href === '/resources' && ['/blog', '/research', '/glossary', '/compliance', '/calculators', '/regulators', '/data-center-compliance', '/oil-gas-compliance'].some(path => pathname === path || pathname.startsWith(`${path}/`)))
+  const active = (href: string) => pathname === href || (href === '/resources' && ['/blog', '/research', '/glossary', '/compliance', '/calculators', '/regulators', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].some(path => pathname === path || pathname.startsWith(`${path}/`)))
   return <header ref={header} className={`site-nav ${hero ? 'site-nav--in-hero' : ''} ${solid || open ? 'site-nav--solid' : 'site-nav--hero'} ${open ? 'is-open' : ''}`}>
     <div className="site-nav-inner">
       <SiteBrand />

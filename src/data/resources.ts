@@ -11,6 +11,8 @@ export type ResourceArticle = {
   topic: ResourceTopic
   title: string
   summary: string
+  /** Set for guides with a stated region; India hubs filter on it. */
+  region?: string
 }
 
 // The published article titles, dates and assets are shared by both indexes.
@@ -79,6 +81,7 @@ const TOPICS: Record<string, ResourceTopic> = {
 
 export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/data-center-compliance', title: 'Data-center compliance: the full project map', summary: 'Connect siting, power, air, water and operating obligations in one U.S. compliance plan.', topic: 'Data Centers', kind: 'Guide' },
+  { path: '/data-centre-compliance-india', title: 'Data centre approvals in India: the full project map', summary: 'Connect land, power, environment, water, fire, electrical safety and data law approvals for a data centre in India.', topic: 'Data Centers', kind: 'Guide' },
   { path: '/oil-gas-compliance', title: 'Oil-and-gas compliance: from permits to field records', summary: 'Understand U.S. onshore permitting, methane requirements and the evidence behind operating obligations.', topic: 'Oil & Gas', kind: 'Guide' },
   ...industryArticles.map(article => ({ path: `/blog/${article.slug}`, title: article.title, summary: article.summary, topic: article.topic as ResourceTopic, kind: 'Guide' as const })),
   ...PAGES.filter((page) => page.live)

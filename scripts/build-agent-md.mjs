@@ -16,7 +16,7 @@ const DIST = join(ROOT, 'dist')
 const SITE = 'https://invariant-ai.com'
 const CONTACT = 'Site screens and power studies: pranav@invariant-ai.com, (628) 220-8972, https://cal.com/pranav-goswami/website-30min'
 
-const FILES = ['ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'site-selection-guides.json', 'powered-land-sites.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
+const FILES = ['ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'site-selection-guides.json', 'powered-land-sites.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
 const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles', f), 'utf8')))
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')

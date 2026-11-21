@@ -138,6 +138,7 @@ export default function App() {
             <Route path="/trust" element={<Trust />} />
             <Route path="/about" element={<About />} />
             <Route path="/data-center-compliance" element={<IndustryHub slug="data-center-compliance" />} />
+            <Route path="/data-centre-compliance-india" element={<IndustryHub slug="data-centre-compliance-india" />} />
             <Route path="/oil-gas-compliance" element={<IndustryHub slug="oil-gas-compliance" />} />
             <Route path="/blog/:slug" element={<IndustryArticle />} />
             <Route path="/regulators" element={<Regulators />} />
