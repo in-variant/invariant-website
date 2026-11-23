@@ -5,6 +5,11 @@ const URL = `${SITE_URL}/calculators`
 
 const TOOLS = [
   {
+    slug: 'data-center-power-capacity',
+    title: 'Data center power capacity calculator',
+    description: 'Estimate total facility MW and compare normal on-site power with the capacity available during a generator outage.',
+  },
+  {
     slug: 'faa-part-450-timeline',
     title: 'FAA Part 450 timeline estimator',
     description:
@@ -28,8 +33,8 @@ export default function CalculatorsIndex() {
   return (
     <>
       <Seo
-        title="Compliance calculators, FAA Part 450 and NRC license timelines"
-        description="Free interactive tools for estimating commercial space and nuclear regulatory timelines. FAA Part 450 launch licensing and NRC reactor licensing under Parts 50, 52, and 53."
+        title="Infrastructure and compliance calculators"
+        description="Free calculators for data center power capacity, FAA Part 450 launch licensing, NRC reactor license timelines, and satellite deorbit feasibility."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}
         jsonLd={[
@@ -39,7 +44,7 @@ export default function CalculatorsIndex() {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
             '@id': `${URL}#collection`,
-            name: 'Invariant compliance calculators',
+            name: 'Invariant infrastructure and compliance calculators',
             url: URL,
             isPartOf: { '@id': `${SITE_URL}/#website` },
             mainEntity: {
@@ -63,10 +68,10 @@ export default function CalculatorsIndex() {
         <div className="mx-auto max-w-3xl">
           <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Calculators</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl">
-            Compliance calculators.
+            Infrastructure and compliance calculators
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Interactive estimators for regulatory timelines, anchored to real precedent and primary-source data. First-order tools, not forecasts.
+            Estimate data center power demand, launch and nuclear licensing timelines, and satellite deorbit feasibility.
           </p>
 
           <ul className="mt-12 divide-y divide-ink/10">

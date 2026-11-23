@@ -33,6 +33,7 @@ const CORE = [
   { loc: '/calculators/faa-part-450-timeline', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/nrc-license-timeline', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/fcc-deorbit-feasibility', changefreq: 'monthly', priority: '0.85' },
+  { loc: '/calculators/data-center-power-capacity', lastmod: '2026-11-23', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators', changefreq: 'monthly', priority: '0.8' },
 ]
 

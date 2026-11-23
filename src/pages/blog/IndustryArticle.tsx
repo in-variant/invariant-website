@@ -16,7 +16,10 @@ function Citations({ ids, article }: { ids?: string[]; article: Article }) {
 
 function Block({ block, article, dataset }: { block: ArticleBlock; article: Article; dataset?: ResourceDataset }) {
   if (block.type === 'paragraph') return <p>{block.text}<Citations ids={block.sourceIds} article={article} /></p>
-  if (block.type === 'links') return <nav className="industry-links" aria-label={block.label || "Related guides"}>{block.label && <p className="industry-eyebrow">{block.label}</p>}<ul>{block.items.map(item => <li key={item.slug}><Link to={`/blog/${item.slug}`}>{item.label}</Link></li>)}</ul></nav>
+  if (block.type === 'links') return <nav className="industry-links" aria-label={block.label || "Related guides"}>{block.label && <p className="industry-eyebrow">{block.label}</p>}<ul>{block.items.map(item => {
+    const path = item.path ?? `/blog/${item.slug}`
+    return <li key={path}><Link to={path}>{item.label}</Link></li>
+  })}</ul></nav>
   if (block.type === 'list') return <div className="industry-list"><ul>{block.items.map(item => <li key={item}>{item}</li>)}</ul><Citations ids={block.sourceIds} article={article} /></div>
   if (block.type === 'download') {
     const firstDownload = dataset?.downloads[0].path === block.path

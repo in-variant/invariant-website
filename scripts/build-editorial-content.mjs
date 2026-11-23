@@ -34,6 +34,8 @@ for (const article of allArticles) {
   if (!/^[a-z0-9-]+$/.test(article.slug)) throw new Error(`Invalid slug: ${article.slug}`)
 }
 const publicBlogSlugs = new Set(slugs)
+const publicCalculatorPaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
+  .matchAll(/^\s*'(\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
 for (const collection of blogCollections) {
   if (!/^[a-z0-9-]+$/.test(collection.slug) || publicBlogSlugs.has(collection.slug)) {
     throw new Error(`Invalid or duplicate blog collection slug: ${collection.slug}`)
@@ -67,7 +69,11 @@ for (const article of articles) {
   if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
   for (const block of [...article.sections.flatMap(section => section.blocks), ...article.faqs]) {
     for (const id of [...(block.sourceIds ?? []), ...(block.rowSourceIds?.flat() ?? [])]) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)
-    if (block.type === 'links') for (const item of block.items) if (!publicBlogSlugs.has(item.slug)) throw new Error(`Missing linked blog page ${item.slug}: ${article.slug}`)
+    if (block.type === 'links') for (const item of block.items) {
+      const valid = item.path === undefined ? publicBlogSlugs.has(item.slug)
+        : item.slug === undefined && publicCalculatorPaths.has(item.path)
+      if (!valid) throw new Error(`Invalid or missing linked page ${item.path ?? item.slug}: ${article.slug}`)
+    }
     if (block.type === 'download' && (!/^\/blog\/[a-z0-9-]+\.[a-z0-9]+$/.test(block.path) || !existsSync(new URL(`../public${block.path}`, import.meta.url)))) throw new Error(`Invalid download ${block.path}: ${article.slug}`)
     if (block.type === 'table' && block.rows.some(row => row.length !== block.columns.length)) throw new Error(`Uneven table: ${article.slug}`)
     if (block.rowSourceIds && block.rowSourceIds.length !== block.rows.length) throw new Error(`Uneven table citations: ${article.slug}`)
