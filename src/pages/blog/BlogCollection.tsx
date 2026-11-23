@@ -6,6 +6,13 @@ import NotFound from '../NotFound'
 import '../Blog.css'
 import './BlogCollection.css'
 
+type CollectionGuide = {
+  slug: string
+  label: string
+  detail: string
+  group?: string
+}
+
 export default function BlogCollection() {
   const { pathname } = useLocation()
   const collection = collections.find(item => `/blog/${item.slug}` === pathname.replace(/\/$/, ''))
@@ -13,6 +20,20 @@ export default function BlogCollection() {
 
   const canonical = `${SITE_URL}/blog/${collection.slug}`
   const image = versionedCover(collection.image)
+  const collectionGuides: CollectionGuide[] = collection.guides
+  const guidesByGroup = new Map<string, CollectionGuide[]>()
+  for (const guide of collectionGuides) {
+    const heading = guide.group ?? ''
+    const guides = guidesByGroup.get(heading) ?? []
+    guides.push(guide)
+    guidesByGroup.set(heading, guides)
+  }
+  const guideGroups = [...guidesByGroup].map(([heading, guides]) => ({
+    heading,
+    guides,
+    id: heading.toLowerCase().match(/[a-z0-9]+/g)?.join('-') ?? 'other-guides',
+  }))
+  const namedGuideGroups = guideGroups.filter(group => group.heading)
   const crumbs = breadcrumbSchema([
     { name: 'Invariant', url: SITE_URL },
     { name: 'Blog', url: `${SITE_URL}/blog` },
@@ -36,7 +57,7 @@ export default function BlogCollection() {
           publisher: { '@id': `${SITE_URL}/#organization` },
           mainEntity: {
             '@type': 'ItemList',
-            itemListElement: collection.guides.map((guide, index) => ({
+            itemListElement: collectionGuides.map((guide, index) => ({
               '@type': 'ListItem',
               position: index + 1,
               name: guide.label,
@@ -77,6 +98,12 @@ export default function BlogCollection() {
           </figure>
         </header>
 
+        {namedGuideGroups.length > 1 && (
+          <nav className="blog-collection-jump" aria-label="Jump to a guide topic">
+            {namedGuideGroups.map(group => <a href={`#${group.id}`} key={group.id}>{group.heading}</a>)}
+          </nav>
+        )}
+
         <section className="blog-collection-checks" aria-labelledby="collection-checks">
           <h2 id="collection-checks">{collection.checklistTitle}</h2>
           <dl>
@@ -91,16 +118,21 @@ export default function BlogCollection() {
 
         <section className="blog-collection-guides" aria-labelledby="collection-guides">
           <h2 id="collection-guides">{collection.guidesTitle}</h2>
-          <ul>
-            {collection.guides.map(guide => (
-              <li key={guide.slug}>
-                <Link to={`/blog/${guide.slug}`} aria-describedby={`guide-detail-${guide.slug}`}>
-                  {guide.label}<span aria-hidden="true">↗</span>
-                </Link>
-                <p id={`guide-detail-${guide.slug}`}>{guide.detail}</p>
-              </li>
-            ))}
-          </ul>
+          {guideGroups.map(group => (
+            <div className="blog-collection-guide-group" key={group.id}>
+              {group.heading && <h3 id={group.id}>{group.heading}</h3>}
+              <ul>
+                {group.guides.map(guide => (
+                  <li key={guide.slug}>
+                    <Link to={`/blog/${guide.slug}`} aria-describedby={`guide-detail-${guide.slug}`}>
+                      {guide.label}<span aria-hidden="true">↗</span>
+                    </Link>
+                    <p id={`guide-detail-${guide.slug}`}>{guide.detail}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </section>
       </div>
     </div>

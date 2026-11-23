@@ -71,7 +71,10 @@ export default function Datasets() {
       <header className="resource-container resources-intro">
         <div className="resources-intro-grid">
           <h1>{title}</h1>
-          <p>{description} Each guide links to the original sources and explains the analysis.</p>
+          <div>
+            <p>{description} Each guide links to the original sources and explains the analysis.</p>
+            <Link className="dataset-method" to="/blog/physical-world-data-by-use-case">Browse data guides by use case <span aria-hidden="true">↗</span></Link>
+          </div>
         </div>
       </header>
       <div className="resource-container datasets-list">

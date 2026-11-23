@@ -12,6 +12,7 @@ export const contentRouteSources = {
   '/blog/property-underwriting': './pages/blog/BlogCollection.tsx',
   '/blog/commercial-real-estate-lending': './pages/blog/BlogCollection.tsx',
   '/blog/physical-world-data-api-evaluation': './pages/blog/BlogCollection.tsx',
+  '/blog/physical-world-data-by-use-case': './pages/blog/BlogCollection.tsx',
   '/blog/part100-vs-part53-siting': './pages/blog/Part100vsPart53.tsx',
   '/blog/seismic-design-shift': './pages/blog/SeismicDesignShift.tsx',
   '/blog/fermibench-sota': './pages/blog/FermiBenchSOTA.tsx',

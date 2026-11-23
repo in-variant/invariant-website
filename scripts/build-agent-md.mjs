@@ -88,6 +88,7 @@ function datasetCatalogMd() {
     '# Invariant research datasets', '',
     `Catalog page: ${SITE}/datasets`, '',
     'Download the data and read how each dataset was compiled. The dataset notes link to the original sources.', '',
+    `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
   ]
   for (const { slug, dateTime, dataset, url } of datasetEntries) {
     out.push(
@@ -148,7 +149,10 @@ for (const collection of blogCollections) {
       `[${collection.worksheet.label}](${SITE}${collection.worksheet.path}). ${collection.worksheet.detail}`, '',
     ] : []),
     `## ${collection.guidesTitle}`, '',
-    ...collection.guides.map(guide => `- [${guide.label}](${SITE}/blog/${guide.slug}): ${guide.detail}`), '',
+    ...collection.guides.flatMap((guide, index) => [
+      ...(guide.group && guide.group !== collection.guides[index - 1]?.group ? ['', `### ${guide.group}`, ''] : []),
+      `- [${guide.label}](${SITE}/blog/${guide.slug}). ${guide.detail}`,
+    ]), '',
   ].join('\n')
   writeFileSync(join(DIST, 'blog', `${collection.slug}.md`), md)
   full.push('', '---', '', md)
