@@ -43,7 +43,7 @@ function articleMd(a) {
         })
         out.push(`| ${b.columns.map(cell).join(' | ')} |`, `| ${b.columns.map(() => '---').join(' | ')} |`, ...rows, ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
       } else if (b.type === 'download') out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
-      else if (b.type === 'links') out.push(`**${b.label}:** ` + b.items.map(i => `[${i.label}](${SITE}/blog/${i.slug})`).join(' · '), '')
+      else if (b.type === 'links') out.push((b.label ? `**${b.label}:** ` : '') + b.items.map(i => `[${i.label}](${SITE}/blog/${i.slug})`).join(' · '), '')
     }
   }
   if (a.faqs?.length) {

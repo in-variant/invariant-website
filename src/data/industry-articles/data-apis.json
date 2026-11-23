@@ -2370,6 +2370,25 @@
             "text": "The downloadable Los Angeles checks can serve as two public reference cases for the identity and map steps. For a proprietary risk score, test whether the vendor reports what the score measures, its date and time horizon, and whether you can reproduce the same output for the same building and model version."
           }
         ]
+      },
+      {
+        "id": "california-renewal-protection",
+        "heading": "Check the wildfire bulletin separately at renewal",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For California renewals, check the insurer’s notice against the applicable Department of Insurance bulletin. Look up the insured ZIP and the policy in-force date. The Dove and Gann example shows why a single ZIP can require two declaration dates."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "label": "Compare the Dove and Gann wildfire insurance bulletins",
+                "slug": "california-wildfire-insurance-nonrenewal-moratorium"
+              }
+            ]
+          }
+        ]
       }
     ],
     "faqs": [
@@ -2488,7 +2507,8 @@
     "relatedSlugs": [
       "commercial-property-insurance-data-apis",
       "fema-flood-zone-history-for-underwriting",
-      "hail-history-by-address-for-underwriting"
+      "hail-history-by-address-for-underwriting",
+      "california-wildfire-insurance-nonrenewal-moratorium"
     ],
     "dataset": {
       "name": "Wildfire map and building matches for two Los Angeles properties",
@@ -2503,7 +2523,250 @@
         "library"
       ],
       "spatialCoverage": "Los Angeles, California, United States"
-    }
+    },
+    "updatedDate": "2026-11-23"
+  },
+  {
+    "slug": "california-wildfire-insurance-nonrenewal-moratorium",
+    "topic": "Data & APIs",
+    "title": "California wildfire insurance nonrenewal moratoriums by ZIP code",
+    "description": "Check California wildfire insurance nonrenewal rules for residential and commercial property, with dates and 37 ZIP-code records from the Dove and Gann fire bulletins.",
+    "date": "2026-11-23",
+    "readMinutes": 5,
+    "intro": "To check whether California’s wildfire insurance moratorium applies, look up the insured property’s ZIP code in the relevant Department of Insurance bulletin. Then confirm the policy was in force on the emergency declaration date, the type of policy and the reason for the notice. The Dove Fire bulletin lists 15 ZIP codes and starts its one-year period on October 15, 2026. The Gann Fire bulletin lists 22 and starts on August 6, 2026. Seven ZIP codes appear in both.",
+    "coverCaption": "AI-generated illustration of a fictional California foothill town.",
+    "takeaways": [
+      "Use the ZIP code of the insured location and record the declaration date and bulletin issue date.",
+      "For commercial property, check the policy type, property use, annual premium and the prior 12 months of employment where relevant.",
+      "Review each matching bulletin against the policy facts. Keep the wildfire hazard map and the insurer’s risk score in their own records."
+    ],
+    "sections": [
+      {
+        "id": "gann-dove-zip-codes",
+        "heading": "Dove and Gann Fire ZIP codes and declaration dates",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The lists below come from page 3 of the California Department of Insurance bulletins and were checked November 23, 2026. The dates in the table are the dates the bulletins use to start the one-year periods. Check the Department’s bulletin directory for later amendments.",
+            "sourceIds": [
+              "dove",
+              "gann",
+              "directory"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Fire and bulletin",
+              "Declaration date",
+              "ZIP codes"
+            ],
+            "rows": [
+              [
+                "Dove Fire. Bulletin 2026-11.",
+                "October 15, 2026",
+                "95222, 95228, 95247, 95251, 95305, 95310, 95321, 95327, 95329, 95346, 95361, 95370, 95372, 95379, 95383"
+              ],
+              [
+                "Gann Fire. Bulletin 2026-6.",
+                "August 6, 2026",
+                "95215, 95220, 95222, 95225, 95226, 95227, 95228, 95229, 95230, 95236, 95245, 95247, 95249, 95251, 95252, 95254, 95320, 95327, 95361, 95370, 95640, 95642"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dove"
+              ],
+              [
+                "gann"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Department’s online moratorium index labels the Dove entry November 9, 2026. Bulletin 2026-11, issued November 10, gives October 15 as the start date, and the Governor’s October 15 announcement confirms the Dove Fire proclamation. The download records the date in the bulletin.",
+            "sourceIds": [
+              "cdi-index",
+              "dove",
+              "dove-declaration"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the 37 ZIP-code records and source dates",
+            "path": "/blog/california-wildfire-insurance-nonrenewal-moratorium-zip-codes.csv",
+            "format": "CSV"
+          }
+        ]
+      },
+      {
+        "id": "commercial-eligibility",
+        "heading": "Which commercial property policies does SB 547 cover?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "California Insurance Code section 675.55 applies to eligible commercial property policies already in force at the time of the emergency declaration. The one-year protection concerns cancellation or nonrenewal based solely on the structure’s location in an area where a wildfire occurred. Section 675.1 addresses residential policies.",
+            "sourceIds": [
+              "sb547",
+              "dove"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For ordinary commercial property, the size exclusion requires both an annual premium of at least $25,000 and an average of at least 25 employees in the preceding 12 months. The statute overrides that size exclusion for policies covering loss or damage to real property used primarily for commercial residential or habitational purposes, such as apartment complexes and qualifying association property. Inland marine, transit and transportation policies are separately excluded. Section 675.55(b) sets out additional exceptions.",
+            "sourceIds": [
+              "sb547"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "overlapping-zip-example",
+        "heading": "A renewal in ZIP code 95370",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "ZIP code 95370 appears in both bulletins. Suppose a commercial property policy for a building there first took effect October 1, 2026. It was in force on the Dove declaration date and began after the Gann declaration date. Bring the Dove bulletin into the review and record the policy inception date alongside both matches. The reviewer still needs the policy type, applicable exclusions and the insurer’s stated reason.",
+            "sourceIds": [
+              "dove",
+              "gann",
+              "sb547"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For notices that meet the bulletin’s conditions, the Department directs insurers to offer to rescind wildfire-related cancellation or nonrenewal notices and offer reinstatement or renewal. A policyholder can ask the carrier to review the notice against the applicable bulletin and contact the Department for assistance when needed.",
+            "sourceIds": [
+              "dove",
+              "gann",
+              "cdi-index"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "review-file",
+        "heading": "What to save in the underwriting file",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Save the insured address and ZIP from the policy schedule, with the bulletin number and source page. Keep one record per fire and ZIP so overlapping events remain visible.",
+              "Record the declaration date, bulletin issue date, policy effective date, notice date, notice reason and proposed end date.",
+              "For commercial property, capture the policy form and principal use, and record the annual premium and average employment when the statutory exclusion requires them.",
+              "Route conflicting dates, uncertain address matches and policies covering multiple locations for review with the supporting records."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Department distinguishes CAL FIRE’s Fire Hazard Severity Zone maps, used for planning, from insurers’ wildfire risk models. The bulletin ZIP list answers a separate question about which areas the agency identified for a specific renewal protection.",
+            "sourceIds": [
+              "hazard-maps",
+              "dove"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "label": "Check wildfire hazard at the insured building",
+                "slug": "wildfire-risk-by-address-for-underwriting"
+              },
+              {
+                "label": "Compare commercial property underwriting data APIs",
+                "slug": "commercial-property-insurance-data-apis"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "When did the Dove Fire insurance moratorium start?",
+        "answer": "Bulletin 2026-11 starts the one-year protection on October 15, 2026, the date of the Governor’s emergency proclamation. The bulletin was issued November 10.",
+        "sourceIds": [
+          "dove",
+          "dove-declaration"
+        ]
+      },
+      {
+        "question": "Does the wildfire insurance moratorium cover commercial property?",
+        "answer": "California Insurance Code section 675.55 covers eligible commercial property policies in effect at the declaration. Check the bulletin ZIP, reason for the notice and the statutory exclusions. The premium and employment size exclusion has an exception for primarily habitational real property.",
+        "sourceIds": [
+          "sb547",
+          "dove"
+        ]
+      },
+      {
+        "question": "What happens when a ZIP code appears in two wildfire bulletins?",
+        "answer": "Review each bulletin against its own declaration date and policy facts. For example, 95370 appears in the Dove and Gann bulletins, whose one-year periods start on October 15 and August 6, 2026, respectively.",
+        "sourceIds": [
+          "dove",
+          "gann"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "dove",
+        "title": "Bulletin 2026-11, Dove Fire, November 10, 2026",
+        "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-11-One-Year-Moratorium-Dove-Fire.pdf",
+        "publisher": "California Department of Insurance"
+      },
+      {
+        "id": "gann",
+        "title": "Bulletin 2026-6, Gann Fire, August 14, 2026",
+        "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-6-One-Year-Moratorium.pdf",
+        "publisher": "California Department of Insurance"
+      },
+      {
+        "id": "dove-declaration",
+        "title": "October 15, 2026 announcement of the Dove Fire emergency proclamation",
+        "url": "https://www.gov.ca.gov/2026/10/15/governor-newsom-activates-statewide-response-amid-dangerous-fire-weather-signs-actions-to-speed-tropical-storm-rachel-recovery-and-wildfire-cleanup/",
+        "publisher": "Governor of California"
+      },
+      {
+        "id": "sb547",
+        "title": "Chaptered SB 547, adding California Insurance Code section 675.55",
+        "url": "https://legiscan.com/CA/text/SB547/id/3272909",
+        "publisher": "California Legislature, chaptered text via LegiScan"
+      },
+      {
+        "id": "cdi-index",
+        "title": "Mandatory one-year moratorium index and policyholder assistance",
+        "url": "https://www.insurance.ca.gov/01-consumers/140-catastrophes/MandatoryOneYearMoratoriumNonRenewals.cfm",
+        "publisher": "California Department of Insurance"
+      },
+      {
+        "id": "directory",
+        "title": "Insurance Commissioner bulletin directory",
+        "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/bulletins.cfm",
+        "publisher": "California Department of Insurance"
+      },
+      {
+        "id": "hazard-maps",
+        "title": "Consumer alert on CAL FIRE hazard maps and insurance",
+        "url": "https://www.insurance.ca.gov/0400-news/0102-alerts/2025/CAL-FIRE-hazard-maps-do-not-affect-insu.cfm",
+        "publisher": "California Department of Insurance"
+      }
+    ],
+    "dataset": {
+      "name": "Dove and Gann Fire insurance moratorium ZIP codes",
+      "description": "37 ZIP-and-fire records, covering 30 distinct ZIP codes, transcribed from page 3 of California Insurance Commissioner Bulletins 2026-6 and 2026-11. Includes source, issue date, emergency declaration date, one-year anniversary and verification date.",
+      "spatialCoverage": "California, United States",
+      "temporalCoverage": "2026-08-06/2027-10-15",
+      "sourceIds": [
+        "gann",
+        "dove"
+      ]
+    },
+    "relatedSlugs": [
+      "wildfire-risk-by-address-for-underwriting",
+      "commercial-property-insurance-data-apis",
+      "fema-flood-zone-history-for-underwriting"
+    ]
   },
   {
     "slug": "shovel-ready-industrial-site-checklist",
