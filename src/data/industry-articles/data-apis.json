@@ -1,5 +1,436 @@
 [
   {
+    "slug": "drive-time-demographics-census-trade-area",
+    "topic": "Data & APIs",
+    "region": "Detroit, Michigan",
+    "title": "How to Calculate Drive-Time Demographics With Census Data",
+    "description": "Estimate population, households, income and employment around a retail site. Compare a 10-minute drive with a three-mile radius at two Detroit grocery stores.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Aerial map of Detroit with drive, walking and radius boundaries for Micah’s Market and Whittier Bodega. The drive estimates are 236,500 and 140,200 residents, compared with 158,200 and 150,500 in the three-mile radius.",
+    "coverCaption": "The 10-minute drive adds roughly 78,000 estimated residents at Micah’s Market and removes roughly 10,000 at Whittier Bodega compared with the three-mile radius.",
+    "intro": "To calculate drive-time demographics, map the roads people can use to reach a site, then allocate Census estimates where the travel boundary cuts through a block group. We tested this at two Detroit grocery stores. The estimated population around Micah’s Market was 236,500 within a modeled 10-minute drive and 158,200 within a three-mile radius. At Whittier Bodega, the drive pulled in fewer residents than the radius did.",
+    "takeaways": [
+      "Compare the same travel mode, direction, and cutoff at every candidate site. A fixed radius can overstate the reachable population in one trade area and understate it in another.",
+      "Keep the Census release, tract or block group identifiers, allocation weights, and sampling margins with the estimate.",
+      "Use resident counts to compare the opportunity around each site. Add competitor locations, physical access, visits, and local observations before committing to a store."
+    ],
+    "sections": [
+      {
+        "id": "detroit-drive-time-benchmark",
+        "heading": "How does a 10-minute drive compare with a three-mile radius?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Micah’s Market at 15924 Fenkell Avenue and Whittier Bodega at 11009 Whittier Avenue opened through Detroit’s Green Grocer Program in 2026. We geocoded their public street addresses and drew a three-mile circle around each. We also mapped the areas from which people could reach each store within ten minutes by car or on foot. The table uses the same Census release for every boundary.",
+            "sourceIds": [
+              "micahs",
+              "whittier",
+              "geocoder",
+              "valhalla"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Catchment",
+              "Micah’s Market resident estimate",
+              "Whittier Bodega resident estimate"
+            ],
+            "rows": [
+              [
+                "Three-mile radius",
+                "158,200 ± 4,000",
+                "150,500 ± 3,500"
+              ],
+              [
+                "10-minute drive to the store",
+                "236,500 ± 4,400",
+                "140,200 ± 3,300"
+              ],
+              [
+                "10-minute walk to the store",
+                "5,500 ± 800",
+                "4,900 ± 900"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The difference at Micah’s Market was about 78,300 more residents for the drive boundary. At Whittier Bodega the drive reached about 10,300 fewer. The gap between stores was about 96,300 residents for the drive and 7,700 for the circle. In the 10-minute walk comparison, the difference was about 600 residents and the sampling margin on that difference was about 1,150. The walk results provide less basis to prefer one location by population alone.",
+            "sourceIds": [
+              "census-release",
+              "replicate-method"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The intervals in the table show ACS sampling uncertainty after holding the map and weighting method fixed. Travel speeds, street crossings, the actual store entrance, and the distribution of homes within a block group can shift the estimates independently of that margin."
+          }
+        ]
+      },
+      {
+        "id": "income-households-employed-residents",
+        "heading": "Which households and employment measures belong in a trade-area report?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Store",
+              "Boundary",
+              "Households",
+              "Share below $50,000",
+              "Employed residents"
+            ],
+            "rows": [
+              [
+                "Micah’s Market",
+                "Three-mile radius",
+                "61,800",
+                "59.6%",
+                "54,500"
+              ],
+              [
+                "Whittier Bodega",
+                "Three-mile radius",
+                "56,700",
+                "49.1%",
+                "59,600"
+              ],
+              [
+                "Micah’s Market",
+                "10-minute drive to the store",
+                "92,900",
+                "59.3%",
+                "82,600"
+              ],
+              [
+                "Whittier Bodega",
+                "10-minute drive to the store",
+                "53,600",
+                "49.1%",
+                "56,100"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Household income here is the share below $50,000 in 2024 dollars. We summed the published income bands, divided by total households, and repeated that calculation across the Census variance replicates. To estimate a catchment median, use income distribution bins and disclose the interpolation method. An average of block-group medians can give a different answer.",
+            "sourceIds": [
+              "income",
+              "replicate-method"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The three-mile circle showed more employed residents near Whittier Bodega, about 59,600 versus 54,500. The drive boundary reversed that comparison, with about 82,600 near Micah’s Market and 56,100 near Whittier Bodega. These are civilian employed residents aged 16 and over. For jobs located near the store or daytime activity, use a workplace-based source such as Census OnTheMap and retain its geography and year.",
+            "sourceIds": [
+              "employment",
+              "onthemap"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "route-boundaries-spatial-allocation",
+        "heading": "How do you join Census data to a drive-time polygon?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Begin with the entrance people will use. In this study the inputs were Census geocodes interpolated along street segments, and the routes were snapped to nearby network edges. Valhalla modeled inbound car and pedestrian trips over OpenStreetMap. Save the coordinates, mode, direction, cutoff, network date and returned polygon. The study used standard travel costs without traffic for a specific time of day.",
+            "sourceIds": [
+              "geocoder",
+              "valhalla",
+              "osm"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Intersect the boundary with the block groups for the ACS release. For a partially covered group, count the share of its 2020 Census block population whose internal points fall inside the boundary. Apply that share to its ACS counts of residents and employed residents. For household counts and income bands, use the share of 2020 housing units. An intersected area fraction fills in when a block group has no 2020 population or housing base for that weight.",
+            "sourceIds": [
+              "tiger-blocks",
+              "tiger-groups",
+              "census-release"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Apply the same weights to each of the 80 ACS survey replicates. To compare two catchments, subtract their estimates within each matched replicate before calculating the sampling margin on the difference. We also reran the counts using only the share of each block group’s area inside the polygon. At Micah’s Market the drive estimate rose by about 4,400 residents under that alternative. The difference shows how the allocation assumption can matter even when the road boundary stays fixed.",
+            "sourceIds": [
+              "replicate-method"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/drive-time-demographics-census-trade-area.geojson",
+            "format": "GeoJSON",
+            "label": "Download the two drive areas, two walk areas, and two radius boundaries"
+          },
+          {
+            "type": "download",
+            "path": "/blog/drive-time-demographics-census-trade-area.json",
+            "format": "JSON",
+            "label": "Download the Census inputs, allocation weights, estimates, and survey replicates"
+          }
+        ]
+      },
+      {
+        "id": "best-apis-for-drive-time-demographics",
+        "heading": "Which API should I use for drive-time demographics?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Need",
+              "Where to start",
+              "What to verify in a trial"
+            ],
+            "rows": [
+              [
+                "Compare a trade area with parcel and development context",
+                "Invariant Earth for parcel identity, tract household counts and county population or covered employment. Join those records with the route geometry and catchment demographics you select.",
+                "Check whether the returned geography matches the intended site. Keep tract households and county-level employment separate from the modeled catchment."
+              ],
+              [
+                "Return a managed demographic estimate for a travel boundary",
+                "ArcGIS GeoEnrichment accepts study areas and supports drive-time enrichment.",
+                "Ask for the input geometry, travel settings, data release and treatment of partial areas. Compare with one catchment you can reconstruct."
+              ],
+              [
+                "Calculate and retain the street-network boundary",
+                "Valhalla can model travel toward a destination. Mapbox Isochrone provides published driving, traffic, walking and cycling profiles.",
+                "Check whether the contour represents travel toward or away from the site and whether the profile accounts for traffic."
+              ],
+              [
+                "Rebuild the demographics and sampling margins",
+                "Use the Census ACS five-year detailed tables, variance replicate files, and TIGER/Line block-group geometry.",
+                "Keep matching releases, estimates and replicate indices. Check the allocation method on both a dense and a low-density catchment."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-fields"
+              ],
+              [
+                "esri"
+              ],
+              [
+                "valhalla",
+                "mapbox"
+              ],
+              [
+                "census-release",
+                "replicate-method",
+                "tiger-groups"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a grocery operator, the first useful comparison is often walkable households and the locations of nearby stores with similar offerings. A medical practice may start with catchment population and age bands, then add competing providers and actual travel at appointment times. A landlord comparing tenants can apply the same methods to separate residents, daytime employment, and measured visits. Keep a version of the inputs so changes in population can be distinguished from changes in the routing network.",
+            "sourceIds": [
+              "census-release",
+              "onthemap",
+              "valhalla"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related data guides",
+            "items": [
+              {
+                "slug": "retail-site-selection-trade-area-apis",
+                "label": "Compare retail trade areas with foot traffic and store openings"
+              },
+              {
+                "slug": "county-manufacturing-employment-data",
+                "label": "Compare local economies using jobs and establishments"
+              },
+              {
+                "slug": "census-tract-housing-vacancy-rent-burden",
+                "label": "Compare housing vacancy and rent burden across Census releases"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I get Census demographics for a 10-minute drive from an address?",
+        "answer": "Yes. Generate the travel-time polygon, intersect it with the Census geography for the selected release, and allocate estimates for partial block groups. Save the polygon and weighting method so someone can reproduce the result.",
+        "sourceIds": [
+          "valhalla",
+          "census-release",
+          "tiger-groups"
+        ]
+      },
+      {
+        "question": "What is the difference between a radius and a drive-time trade area?",
+        "answer": "A radius includes everything inside a straight-line distance. A drive-time area follows allowed routes, turns, and estimated travel costs. A radius is handy for a quick check. Before comparing retail sites, test whether the road-based boundary changes the answer.",
+        "sourceIds": [
+          "valhalla",
+          "mapbox"
+        ]
+      },
+      {
+        "question": "Does the Census sampling margin include routing or mapping errors?",
+        "answer": "No. It describes sampling uncertainty for the estimate under the chosen settings. A changed entrance, congestion, or different allocation of households within block groups can shift the estimate independently.",
+        "sourceIds": [
+          "replicate-method",
+          "valhalla"
+        ]
+      },
+      {
+        "question": "Does a drive-time population estimate tell me how many customers I will get?",
+        "answer": "It estimates residents associated with the modeled area. To estimate store demand, add competing businesses, the store’s offer and hours, site access and evidence of actual visits or spending.",
+        "sourceIds": [
+          "census-release",
+          "valhalla"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "micahs",
+        "title": "Micah’s Market opening and address",
+        "url": "https://www.degc.org/post/green-grocer-program-marks-second-ribbon-cutting-this-year-as-micah-s-market-brings-affordable-fresh",
+        "publisher": "Detroit Economic Growth Corporation",
+        "linkLabel": "Micah’s Market opening"
+      },
+      {
+        "id": "whittier",
+        "title": "Whittier Bodega opening and address",
+        "url": "https://www.degc.org/post/motor-city-match-and-green-grocer-program-help-detroiter-open-whittier-bodega-bringing-fresh-food-w",
+        "publisher": "Detroit Economic Growth Corporation",
+        "linkLabel": "Whittier Bodega opening"
+      },
+      {
+        "id": "geocoder",
+        "title": "Census Geocoder technical documentation",
+        "url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census Geocoder"
+      },
+      {
+        "id": "valhalla",
+        "title": "Valhalla isochrone request and inbound routing options",
+        "url": "https://valhalla.github.io/valhalla/api/isochrone/",
+        "publisher": "Valhalla project",
+        "linkLabel": "Valhalla isochrone reference"
+      },
+      {
+        "id": "osm",
+        "title": "OpenStreetMap attribution and data license",
+        "url": "https://www.openstreetmap.org/copyright",
+        "publisher": "OpenStreetMap Foundation",
+        "linkLabel": "OpenStreetMap contributors and license"
+      },
+      {
+        "id": "census-release",
+        "title": "2020–2024 ACS five-year detailed table files",
+        "url": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ACS 2020–2024 detailed tables"
+      },
+      {
+        "id": "tiger-blocks",
+        "title": "Michigan 2020 Census tabulation blocks with Census counts",
+        "url": "https://www2.census.gov/geo/tiger/TIGER2020/TABBLOCK20/tl_2020_26_tabblock20.zip",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Michigan 2020 blocks ZIP"
+      },
+      {
+        "id": "tiger-groups",
+        "title": "2024 TIGER/Line Shapefiles and geographic codes",
+        "url": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2024.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2024 TIGER/Line data"
+      },
+      {
+        "id": "income",
+        "title": "2024 ACS B19001 household income bands",
+        "url": "https://api.census.gov/data/2024/acs/acs5/groups/B19001.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ACS household income bands"
+      },
+      {
+        "id": "employment",
+        "title": "2024 ACS B23025 resident employment status",
+        "url": "https://api.census.gov/data/2024/acs/acs5/groups/B23025.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ACS resident employment table"
+      },
+      {
+        "id": "replicate-method",
+        "title": "2020–2024 ACS variance replicate table documentation",
+        "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/documentation/5-year/2020-2024_Variance_Replicate_Table_Documentation.pdf",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census sampling margin method"
+      },
+      {
+        "id": "onthemap",
+        "title": "OnTheMap workplace and residential employment analysis",
+        "url": "https://onthemap.ces.census.gov/",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census OnTheMap"
+      },
+      {
+        "id": "esri",
+        "title": "GeoEnrichment Enrich drive-time study area reference",
+        "url": "https://developers.arcgis.com/rest/geoenrichment/enrich/",
+        "publisher": "Esri",
+        "linkLabel": "ArcGIS GeoEnrichment"
+      },
+      {
+        "id": "mapbox",
+        "title": "Mapbox Isochrone API profiles and contours",
+        "url": "https://docs.mapbox.com/api/navigation/isochrone/",
+        "publisher": "Mapbox",
+        "linkLabel": "Mapbox Isochrone API"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Public Invariant Earth field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth API fields"
+      },
+      {
+        "id": "naip",
+        "title": "National Agriculture Imagery Program 2022 image service",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2022_CONUS/ImageServer",
+        "publisher": "U.S. Department of Agriculture",
+        "linkLabel": "USDA aerial imagery service"
+      }
+    ],
+    "relatedSlugs": [
+      "retail-site-selection-trade-area-apis",
+      "census-tract-housing-vacancy-rent-burden",
+      "county-manufacturing-employment-data",
+      "best-gis-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "Detroit grocery drive-time, walking, and radius demographics",
+      "description": "Six Detroit grocery catchments with modeled travel boundaries, Census block-group weights, population and household estimates, and ACS sampling margins.",
+      "spatialCoverage": "Detroit and nearby Michigan communities, United States",
+      "temporalCoverage": "2020/2026-11-23",
+      "sourceIds": [
+        "micahs",
+        "whittier",
+        "valhalla",
+        "osm",
+        "census-release",
+        "replicate-method",
+        "tiger-blocks",
+        "tiger-groups"
+      ]
+    }
+  },
+  {
     "slug": "geologic-maps-well-logs-site-due-diligence",
     "topic": "Data & APIs",
     "region": "Stayton, Oregon",
@@ -12298,6 +12729,10 @@
             "type": "links",
             "label": "Related data and site selection guides",
             "items": [
+              {
+                "slug": "drive-time-demographics-census-trade-area",
+                "label": "Calculate drive-time demographics with Census data"
+              },
               {"slug": "best-gis-apis-for-site-selection", "label": "Compare GIS APIs for U.S. site selection"},
               {"slug": "historical-parcel-boundaries-api", "label": "Trace property records when parcel IDs change"},
               {"slug": "regrid-alternatives-parcel-data-apis", "label": "Distinguish a mapped parcel from an individual unit"}
@@ -12861,6 +13296,7 @@
       "temporalCoverage": "2024-08-14/2026-11-23"
     },
     "relatedSlugs": [
+      "drive-time-demographics-census-trade-area",
       "best-gis-apis-for-site-selection",
       "data-center-water-stormwater-permits",
       "shovel-ready-industrial-site-checklist",
