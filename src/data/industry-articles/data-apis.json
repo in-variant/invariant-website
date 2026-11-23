@@ -1,5 +1,436 @@
 [
   {
+    "slug": "air-quality-data-apis-monitoring-emissions",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Air Quality Data APIs for Historical PM2.5 and Facility Emissions",
+    "description": "Compare air quality data APIs, historical PM2.5 at outdoor monitors, EPA design values, and facility emissions. Reproduce the June 2023 smoke episode.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Chart of EPA daily PM2.5 from June 4 to June 10, 2023 at Queens College 2, IS 52 in the Bronx, and Jersey City Firehouse. The peak on June 7 is 203.5 micrograms per cubic meter at Queens College 2.",
+    "coverCaption": "EPA AirData daily PM2.5 summaries for three selected monitor series. The chart includes flagged records where the source reports them. June 2023 episode context from New York State DEC.",
+    "intro": "Use EPA’s Air Quality System for historical observations at outdoor monitors. Use a current-conditions API for a recent reading or a modeled estimate at a coordinate. For a facility’s emissions, look up the inventory and the permit under the correct facility identifier. Invariant Earth helps an address-based review find the relevant monitoring site and multi-year design value, with the source and distance attached.",
+    "takeaways": [
+      "Save the monitor site ID, series code, method, averaging period, local date and event selection with every observation.",
+      "A PM2.5 design value summarizes three years using rules for a specific standard. Read it alongside the event history for operational planning.",
+      "Look up facility emissions and permits by their identifiers and vintage. A release in tons per year and a concentration in micrograms per cubic meter answer different questions."
+    ],
+    "sections": [
+      {
+        "id": "air-quality-history-by-address",
+        "heading": "How do I look up historical air quality by address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Find a representative monitor for the address. Check the pollutant, distance and station setting, then ask whether the monitor is measuring the conditions you need to understand. At each AQS site, the parameter occurrence code, or POC, identifies a series for that pollutant. For a daily PM2.5 comparison, use a consistent averaging period and preserve the reported treatment of flagged events.",
+            "sourceIds": [
+              "aqs-api",
+              "aqs-format",
+              "earth"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Canadian wildfire smoke affected the New York area in June 2023. In the AirData file, three selected 24-hour series at Queens College, IS 52 in the Bronx, and Jersey City Firehouse peaked on June 7 within the June 4–10 test window. These were outdoor concentrations at their respective monitoring sites.",
+            "sourceIds": [
+              "ny-dec",
+              "aqs-daily"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "AQS site",
+              "June 7 series",
+              "Daily PM2.5, µg/m³",
+              "Event type"
+            ],
+            "rows": [
+              [
+                "Queens College 2 · 36-081-0124",
+                "POC 4",
+                "203.5",
+                "Included"
+              ],
+              [
+                "Queens College 2 · 36-081-0124",
+                "POC 24, corrected series",
+                "201.7",
+                "None"
+              ],
+              [
+                "IS 52 · 36-005-0110",
+                "POC 4",
+                "178.2",
+                "Included"
+              ],
+              [
+                "Jersey City Firehouse · 34-017-1003",
+                "POC 3",
+                "110.4",
+                "Included"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "aqs-daily",
+                "aqs-format"
+              ],
+              [
+                "aqs-daily",
+                "aqs-format"
+              ],
+              [
+                "aqs-daily",
+                "aqs-format"
+              ],
+              [
+                "aqs-daily",
+                "aqs-format"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The two Queens College records share a site and date. The source labels POC 24 as corrected and gives it a different event field. Keep each row’s own series and method when comparing providers. None means the row has no flagged event in that summary. An event flag and EPA concurrence to exclude a sample from a regulatory calculation are separate records.",
+            "sourceIds": [
+              "aqs-daily",
+              "aqs-format",
+              "ee"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "CSV",
+            "path": "/blog/air-quality-data-apis-monitoring-emissions.csv",
+            "label": "Download 75 EPA source rows and the 21 records used in the chart"
+          }
+        ]
+      },
+      {
+        "id": "ambient-design-value",
+        "heading": "What is an EPA PM2.5 design value?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For PM2.5, EPA’s annual and 24-hour forms summarize three years differently. At Queens College 2, EPA’s 2023–2025 workbook lists a valid annual design value of 8.1 µg/m³ and a valid 24-hour design value of 22 µg/m³. The 24-hour statistic averages three annual 98th-percentile values under EPA procedures. The June 7 observation describes one day. A site reviewer deciding how to handle smoke days needs that daily history as well as the long-run statistics.",
+            "sourceIds": [
+              "design",
+              "design-method",
+              "aqs-daily"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a parcel review in Invariant Earth, request the exact PM2.5 design-value fields together with their matching AQS site IDs and distances. Check the year, the annual or 24-hour form, and the selected monitor before comparing properties. For a permitting decision, verify the applicable standards, designations and analysis requirements with the reviewing agency.",
+            "sourceIds": [
+              "earth",
+              "design-method"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "facility-emissions-data",
+        "heading": "Where can I look up a facility’s air emissions?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The EPA facility workbook for the 2023 inventory lists about 2.61 tons per year of direct primary PM2.5 emissions for the Newtown Creek Wastewater Resource Recovery Facility in Brooklyn, EIS ID 8038711. That is an annual inventory estimate of releases from the named facility. To assess contributions to outdoor levels at a nearby parcel, use a source-specific analysis with emissions, weather, chemistry and other contributors. The inventory entry by itself supplies no estimate of the facility’s contribution to the June smoke event.",
+            "sourceIds": [
+              "nei",
+              "nei-pm25",
+              "nei-file",
+              "ny-dec"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the facility’s name and registry identifiers to locate the applicable permit, then check its regulated equipment, authorized limits, effective dates and reporting record. For covered power units, EPA’s Clean Air Markets Program Data can provide time-stamped unit emissions and operating data. Inventory and permit records use different time periods and units, so save both with their original scope.",
+            "sourceIds": [
+              "nei",
+              "campd"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "JSON",
+            "path": "/blog/air-quality-data-apis-monitoring-emissions.json",
+            "label": "Download the EPA design values, facility entry and source references"
+          }
+        ]
+      },
+      {
+        "id": "air-quality-api-comparison",
+        "heading": "Which air quality API fits the decision?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Use it for",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Coordinate-based diligence with an EPA PM2.5 design value, monitor identity and distance.",
+                "Match the standard and vintage. Review the monitor and parcel separately."
+              ],
+              [
+                "EPA AQS and AirData",
+                "Historical measurements and summaries from agency monitoring networks.",
+                "Check site, parameter, POC, averaging period, completeness and exceptional-event selection."
+              ],
+              [
+                "AirNow",
+                "Recent reporting and public AQI or forecast context.",
+                "Keep the observation time and preliminary data status."
+              ],
+              [
+                "OpenAQ",
+                "Provider observations with sensor-level metadata and time-window queries.",
+                "Inspect the provider, unit and the coverage for each sensor."
+              ],
+              [
+                "Google Maps Platform Air Quality API",
+                "Current values, recent history and forecasts for a coordinate.",
+                "Verify grid resolution, timestamp, product history limit and any AQI definition."
+              ],
+              [
+                "Mireye Fetch",
+                "Air-quality context within a broader address or coordinate search.",
+                "Ask which source, time and geography produced the returned data."
+              ],
+              [
+                "EPA NEI and CAMPD",
+                "Facility emissions inventory and, for covered units, more frequent power-sector emissions records.",
+                "Match the facility and unit identifiers, reporting period and emissions basis."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "aqs-api",
+                "aqs-format"
+              ],
+              [
+                "airnow"
+              ],
+              [
+                "openaq"
+              ],
+              [
+                "google"
+              ],
+              [
+                "mireye"
+              ],
+              [
+                "nei",
+                "campd"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related property and environmental guides",
+            "items": [
+              {
+                "slug": "industrial-environmental-permit-history-by-parcel",
+                "label": "Trace the permit and facility identifiers for Newtown Creek"
+              },
+              {
+                "slug": "wildfire-risk-by-address-for-underwriting",
+                "label": "Check wildfire evidence for a property review"
+              },
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Compare GIS APIs for property and infrastructure screening"
+              },
+              {
+                "slug": "natural-gas-pipeline-capacity-site-service",
+                "label": "Verify gas delivery before relying on on-site generation"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How can I look up past air quality for a property address?",
+        "answer": "Match the address to a representative nearby monitor and retrieve the pollutant series for the requested dates. Check the averaging period, instrument series, station distance and any flagged events. A gridded estimate can provide additional context where monitor coverage is sparse.",
+        "sourceIds": [
+          "aqs-api",
+          "aqs-format",
+          "google"
+        ]
+      },
+      {
+        "question": "Is AQI the same as PM2.5 concentration?",
+        "answer": "AQI is an index used to communicate air quality. Concentration is a physical quantity, such as micrograms of PM2.5 per cubic meter of air. Store the pollutant, units, period and index definition before combining sources.",
+        "sourceIds": [
+          "airnow",
+          "aqs-format"
+        ]
+      },
+      {
+        "question": "What is the difference between outdoor PM2.5 and facility PM2.5 emissions?",
+        "answer": "Outdoor PM2.5 is a concentration measured at a monitor or estimated for a location. Facility emissions are mass released or estimated over a time period. An emissions inventory alone cannot quantify how much of a monitor reading came from that facility.",
+        "sourceIds": [
+          "aqs-format",
+          "nei-pm25",
+          "nei-file"
+        ]
+      },
+      {
+        "question": "Do exceptional event flags erase wildfire smoke observations?",
+        "answer": "An archive may include or exclude flagged samples in a summary depending on the selected mode. Keep the event-included records for reconstructing observed conditions and verify EPA concurrence for the relevant regulatory use.",
+        "sourceIds": [
+          "aqs-format",
+          "ee"
+        ]
+      }
+    ],
+    "dataset": {
+      "name": "EPA PM2.5 monitor series, design values, and emissions inventory sample",
+      "description": "Selected AirData rows from three monitors during June 2023, site-level 2023–2025 design values, and a facility-level PM2.5 inventory record from Brooklyn.",
+      "spatialCoverage": "New York City, New York, and Jersey City, New Jersey",
+      "temporalCoverage": "2023-01-01/2025-12-31",
+      "sourceIds": [
+        "aqs-daily",
+        "design",
+        "nei-file",
+        "nei-pm25"
+      ]
+    },
+    "sources": [
+      {
+        "id": "aqs-daily",
+        "title": "EPA AirData 2023 daily PM2.5 summaries, parameter 88101",
+        "url": "https://aqs.epa.gov/aqsweb/airdata/daily_88101_2023.zip",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "Download original AirData archive"
+      },
+      {
+        "id": "aqs-api",
+        "title": "Air Quality System API documentation",
+        "url": "https://aqs.epa.gov/aqsweb/documents/data_api.html",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA AQS API"
+      },
+      {
+        "id": "aqs-format",
+        "title": "AirData daily file format and event type definitions",
+        "url": "https://aqs.epa.gov/aqsweb/airdata/FileFormats.html",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "AQS file formats"
+      },
+      {
+        "id": "design",
+        "title": "EPA PM2.5 design values for 2023–2025, tables 5a and 5b",
+        "url": "https://www.epa.gov/system/files/documents/2026-06/pm25_designvalues_2023_2025_final_06_12_26.xlsx",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA 2025 design-value workbook"
+      },
+      {
+        "id": "design-method",
+        "title": "EPA design values and statistics overview",
+        "url": "https://www.epa.gov/air-trends/air-quality-design-values",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "Design-value definitions"
+      },
+      {
+        "id": "ee",
+        "title": "EPA treatment of flagged exceptional events and concurrence",
+        "url": "https://www.epa.gov/outdoor-air-quality-data/does-exclude-exceptional-events-option-exclude-only-epa-regionally",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "Exceptional event reporting"
+      },
+      {
+        "id": "ny-dec",
+        "title": "New York State DEC community air monitoring FAQ, June 2023 smoke episode",
+        "url": "https://dec.ny.gov/sites/default/files/2024-07/camfaq.pdf",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "DEC smoke episode analysis"
+      },
+      {
+        "id": "nei",
+        "title": "2023 National Emissions Inventory and data tools",
+        "url": "https://www.epa.gov/air-emissions-inventories/2023-national-emissions-inventory-nei",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "2023 National Emissions Inventory"
+      },
+      {
+        "id": "nei-pm25",
+        "title": "EPA PM2.5 designations emissions evidence and tons-per-year units",
+        "url": "https://www.epa.gov/particle-pollution-designations/particle-pollution-designations-data-2024-revised-annual-pm25-naaqs",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "Facility emissions methods and units"
+      },
+      {
+        "id": "nei-file",
+        "title": "2023 County and Facility Emissions for PM2.5 Designations, Facility sheet",
+        "url": "https://www.epa.gov/system/files/documents/2026-09/2023-county-and-facility-emissions-for-pm2.5-designations-09172026.xlsx",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "Original EPA facility workbook"
+      },
+      {
+        "id": "campd",
+        "title": "Clean Air Markets Program Data and CAM API",
+        "url": "https://campd.epa.gov/",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "Power-sector emissions data"
+      },
+      {
+        "id": "airnow",
+        "title": "AirNow use and preliminary validation of near-real-time data",
+        "url": "https://www.airnow.gov/about-the-data/",
+        "publisher": "AirNow",
+        "linkLabel": "AirNow data and validation"
+      },
+      {
+        "id": "openaq",
+        "title": "OpenAQ provider measurements and sensor-level coverage",
+        "url": "https://docs.openaq.org/resources/measurements",
+        "publisher": "OpenAQ",
+        "linkLabel": "OpenAQ measurement documentation"
+      },
+      {
+        "id": "google",
+        "title": "Google Maps Platform Air Quality API data and history scope",
+        "url": "https://developers.google.com/maps/documentation/air-quality/quick-reference",
+        "publisher": "Google Maps Platform",
+        "linkLabel": "Google Air Quality API"
+      },
+      {
+        "id": "mireye",
+        "title": "Mireye Fetch and air-quality location screen",
+        "url": "https://www.mireye.com/products/fetch",
+        "publisher": "Mireye",
+        "linkLabel": "Mireye Fetch"
+      },
+      {
+        "id": "earth",
+        "title": "Invariant Earth PM2.5 design values and monitor identity fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      }
+    ],
+    "relatedSlugs": [
+      "industrial-environmental-permit-history-by-parcel",
+      "wildfire-risk-by-address-for-underwriting",
+      "best-gis-apis-for-site-selection",
+      "natural-gas-pipeline-capacity-site-service"
+    ]
+  },
+  {
     "slug": "water-withdrawal-data-api-site-allocation",
     "topic": "Data & APIs",
     "region": "United States",
@@ -15509,6 +15940,10 @@
             "type": "links",
             "label": "Related property diligence guides",
             "items": [
+              {
+                "slug": "air-quality-data-apis-monitoring-emissions",
+                "label": "Compare historical air monitors, design values and facility emissions"
+              },
               {"slug": "best-gis-apis-for-site-selection", "label": "Compare GIS APIs for U.S. site selection"},
               {"slug": "historical-parcel-boundaries-api", "label": "Trace parcel records through a split or merger"},
               {"slug": "commercial-real-estate-data-apis-for-lenders", "label": "Build a property file for a credit decision"},

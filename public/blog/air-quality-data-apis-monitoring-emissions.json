@@ -1,0 +1,95 @@
+{
+  "name": "EPA PM2.5 monitor records, design values and one facility inventory entry",
+  "retrieved_on": "2026-11-23",
+  "airdata_sample": {
+    "source": "https://aqs.epa.gov/aqsweb/airdata/daily_88101_2023.zip",
+    "source_sha256": "4b40502e8147419643a1120c666c4aa952633094f21f65475844172bcc78833b",
+    "parameter_code": "88101",
+    "date_local_range": "2023-06-04/2023-06-10",
+    "selected_raw_rows": 75,
+    "chart_rows": 21,
+    "chart_scope": "For each site, one fixed POC using 24-HR BLK AVG and PM25 24-hour 2012. Show records with event type Included or None and their published arithmetic mean.",
+    "raw_event_types": "Keep None, Included, Excluded or Concurred Events Excluded as published. None does not establish absence of wildfire smoke.",
+    "national_rate_or_site_exposure_estimate": null
+  },
+  "design_values": {
+    "source": "https://www.epa.gov/system/files/documents/2026-06/pm25_designvalues_2023_2025_final_06_12_26.xlsx",
+    "source_sha256": "9932b97c11f0a15cc7c44a9d1789440b776197e6c1823adef0928cdf730cc89b",
+    "vintage": "Excel update 2026-06-12; design-value year 2025",
+    "sites": [
+      {
+        "aqs_site_id": "34-017-1003",
+        "site_name": "Jersey City Firehouse",
+        "annual": {
+          "valid_2023_2025_design_value_ugm3": 7.6,
+          "source_sheet": "Table5a. Site Status Annual",
+          "source_excel_row": 611
+        },
+        "24hr": {
+          "valid_2023_2025_design_value_ugm3": 21,
+          "source_sheet": "Table5b. Site Status 24-hr",
+          "source_excel_row": 618
+        }
+      },
+      {
+        "aqs_site_id": "36-005-0110",
+        "site_name": "IS 52, Bronx",
+        "annual": {
+          "valid_2023_2025_design_value_ugm3": 7.8,
+          "source_sheet": "Table5a. Site Status Annual",
+          "source_excel_row": 637
+        },
+        "24hr": {
+          "valid_2023_2025_design_value_ugm3": 20,
+          "source_sheet": "Table5b. Site Status 24-hr",
+          "source_excel_row": 644
+        }
+      },
+      {
+        "aqs_site_id": "36-081-0124",
+        "site_name": "Queens College 2",
+        "annual": {
+          "valid_2023_2025_design_value_ugm3": 8.1,
+          "source_sheet": "Table5a. Site Status Annual",
+          "source_excel_row": 657
+        },
+        "24hr": {
+          "valid_2023_2025_design_value_ugm3": 22,
+          "source_sheet": "Table5b. Site Status 24-hr",
+          "source_excel_row": 664
+        }
+      }
+    ]
+  },
+  "facility_inventory": {
+    "source": "https://www.epa.gov/system/files/documents/2026-09/2023-county-and-facility-emissions-for-pm2.5-designations-09172026.xlsx",
+    "source_sha256": "914daa985aa5ea52ece3f2037dc6e9cecb5295701e99861ca911d2f4493c12d8",
+    "source_sheet": "Facility",
+    "inventory_year": 2023,
+    "units": "tons per year",
+    "raw_selected_row": {
+      "EIS ID": 8038711,
+      "Agency ID": 2610100025,
+      "EPA Region": 2,
+      "State": "NY",
+      "County": "Kings",
+      "FIPS Code": 36047,
+      "Facility Name": "NEWTOWN CREEK WASTEWATER RESOURCE RECOVERY FACILITY",
+      "NAICS Code": 221320,
+      "Lat": 40.733531,
+      "Lon": -73.948378,
+      "CO": 10.228,
+      "NH3": 0.0018669,
+      "NOX": 9.2504998,
+      "PEC": 0.18726239,
+      "PM2.5 PRIMARY": 2.607755298,
+      "PMFINE": 0.91142431019,
+      "PNO3": 0.06355939481,
+      "POC": 1.1937354195,
+      "PSO4": 0.251773783499999,
+      "SO2": 7.045778658,
+      "VOC": 3.303499643
+    },
+    "scope": "Direct primary PM2.5 emissions inventory estimate. The row does not quantify concentrations at monitors or source contributions to the June 2023 smoke episode."
+  }
+}
