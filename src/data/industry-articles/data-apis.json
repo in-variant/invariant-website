@@ -11287,6 +11287,10 @@
             "type": "links",
             "label": "Trial materials",
             "items": [
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Test whether the address, building and tax lot agree on FEMA exposure"
+              },
               {"slug":"property-underwriting","label":"Get the underwriting API trial scorecard and public references"},
               {"slug":"ageospatial-alternatives-commercial-roof-underwriting","label":"Replay the Rosemead roof replacement at two decision dates"},
               {"slug":"fema-flood-zone-history-for-underwriting","label":"Find the FEMA map revision in effect at the decision date"},
@@ -12182,26 +12186,112 @@
     "slug": "best-flood-risk-data-apis",
     "topic": "Data & APIs",
     "region": "United States",
-    "title": "Flood Risk APIs for U.S. Properties",
-    "description": "Compare FEMA flood zone APIs and modeled flood depth for underwriting and site selection. Reproduce four tests using Hurricane Ida high-water marks.",
+    "title": "Flood Risk Data APIs for U.S. Properties",
+    "description": "Compare flood risk APIs for FEMA zones, parcel and building overlap, and modeled flood depth. Test a Brooklyn property against public GIS records.",
     "date": "2026-11-23",
     "readMinutes": 7,
-    "coverAlt": "2024 aerial view of Brooklyn connecting an Ida high-water mark in Gowanus, FEMA Zone AE, and a mark in Prospect Park, FEMA Zone X.",
-    "coverCaption": "Markers show two USGS survey points after Ida in 2021. Their FEMA zones come from a November 2026 query. Background is 2024 New York State aerial imagery.",
-    "intro": "Use Invariant Earth when you need a cited point-level FEMA flood screen alongside parcel and building context. Review the FEMA result and its vintage, then check the footprint against the effective map for a building-level decision. For the effective FEMA zone at a U.S. property, start with the National Flood Hazard Layer or an API that returns the original zone, subtype and map panel. For potential flood depth and damage, use a model that specifies the event probability, year and scenario. For evidence that water reached a location during a particular storm, look for surveyed marks or mapped inundation from that event. A property file can benefit from all three.",
+    "coverAlt": "Aerial map of 214 3rd Street in Gowanus, Brooklyn. The address point is in FEMA Zone X. Zone AE intersects 24.7 percent of the building footprint and 52.7 percent of the tax lot.",
+    "coverCaption": "Overlay using the NYC address point, building footprint and tax lot with FEMA’s effective hazard layer, queried November 23, 2026. Background imagery from NYS ITS Geospatial Services, 2024.",
+    "intro": "For a quick flood zone lookup by address, start with a cited FEMA point result from Invariant Earth or the National Flood Hazard Layer. For insurance, lending, or site selection, map the building and parcel separately. At the Gowanus Whole Foods in Brooklyn, the address point falls in Zone X while 24.7% of the building footprint and 52.7% of the tax lot intersect Zone AE. A flood depth model answers a different buyer question about how high water could rise under a specified event.",
     "takeaways": [
-      "Save the FEMA zone, subtype, Special Flood Hazard Area flag and panel effective date together.",
+      "Store the query geometry along with the FEMA zone, subtype, Special Flood Hazard Area flag and panel date. An address point, a building footprint and a tax lot can give different answers.",
       "Treat a surveyed high-water mark as evidence about one location and storm. Keep the surveyed water elevation and the height of the mark above ground in separate fields.",
       "Require a vertical datum whenever an API reports elevation. Preserve missing values and confirm why a base flood elevation is missing before using it."
     ],
     "sections": [
+      {
+        "id": "flood-zone-address-parcel-building",
+        "heading": "How can one address return different FEMA flood results?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the asset you need to make a decision about. The city resolved 214 3rd Street in Gowanus to building 3397192 and tax lot 3009780016. The address point and the building centroid both land in Zone X, outside the mapped Special Flood Hazard Area. The southwestern part of the building footprint intersects Zone AE. An API that checks only a coordinate would miss that part of the building.",
+            "sourceIds": [
+              "gowanus-store",
+              "gowanus-geosearch",
+              "gowanus-building",
+              "gowanus-lot",
+              "fema-zones"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Geometry",
+              "Effective FEMA result",
+              "Decision it supports"
+            ],
+            "rows": [
+              [
+                "NYC address point",
+                "Zone X, area of minimal mapped flood hazard",
+                "Fast address intake. The point identifies the FEMA polygon at one coordinate."
+              ],
+              [
+                "NYC building footprint",
+                "24.7% in Zone AE, approximately 11,562 square feet",
+                "Building review. Check the affected portion of the mapped footprint and get the relevant floor and equipment elevations."
+              ],
+              [
+                "NYC tax lot",
+                "52.7% in Zone AE, approximately 48,338 square feet",
+                "Site due diligence. Map the land, potential build area and access roads separately before planning improvements."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "gowanus-geosearch",
+                "fema-zones"
+              ],
+              [
+                "gowanus-building",
+                "fema-zones"
+              ],
+              [
+                "gowanus-lot",
+                "fema-zones"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "We intersected the full city geometries with the FEMA polygons in the New York Long Island State Plane coordinate system and divided each intersection area by its own denominator. We used the polygon coordinates for area because the building record’s stored area differs from its geometry. FEMA panel 3604970211F shows an effective date of September 5, 2007. The panel date and the November 23, 2026 query date describe different things. For a loan file, use the applicable flood determination process and check map changes separately.",
+            "sourceIds": [
+              "gowanus-building",
+              "gowanus-lot",
+              "fema-zones",
+              "fema-panels",
+              "fema-determination"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "GeoJSON",
+            "path": "/blog/gowanus-fema-address-parcel-building-overlay.geojson",
+            "label": "Download the address, building, parcel and FEMA intersections"
+          }
+        ]
+      },
       {
         "id": "compare-flood-apis",
         "heading": "Which flood risk API fits your workflow?",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "For regulatory mapping, compare the FEMA feature and panel you get back. For underwriting or site selection, get the building match and an estimate of how deep water could get, then review the assumptions. This comparison uses public documentation checked November 23, 2026. The test below uses FEMA and USGS data directly. Invariant publishes the comparison and makes Invariant Earth."
+            "text": "Start the trial with the same address and mapped building for every provider. Ask which geometry was actually checked and whether the response preserves the zone, source date and reason for missing values. Invariant publishes this guide and makes Invariant Earth. The Gowanus and Ida tests use the original public records. Provider capabilities below are based on public documentation.",
+            "sourceIds": [
+              "invariant-fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth fits workflows where a FEMA check belongs in the same property file as parcel and building context. Its public catalog documents the point-level Special Flood Hazard Area field, the parcel boundary and match method, and the mapped primary building area. Keep any nearest match visible in the file. For a building-level FEMA check, use the confirmed footprint and record each intersecting zone. Use the Gowanus download to validate that step.",
+            "sourceIds": [
+              "invariant-fields",
+              "gowanus-building",
+              "fema-zones"
+            ]
           },
           {
             "type": "table",
@@ -12213,41 +12303,72 @@
             ],
             "rows": [
               [
+                "Invariant Earth",
+                "Source-linked FEMA point screening with parcel identity, parcel boundary and building area in the same workflow.",
+                "Request the point-level within_floodplain_polygon field and review how the parcel and building were matched. Test the full footprint separately."
+              ],
+              [
                 "FEMA National Flood Hazard Layer",
-                "Effective flood hazard polygons, map panels and published base flood elevations where available.",
-                "Request layers 28 and 3 separately. Check the feature and panel dates, and inspect map changes when the workflow depends on a specific property."
-              ],
-              [
-                "National Flood Data",
-                "FEMA screening for addresses, points, parcels and custom polygons. Its docs list optional map-amendment results and elevation data.",
-                "Test two footprints at one address. Ask which search types return map changes and which fields require separate access."
-              ],
-              [
-                "First Street",
-                "Modeled flood depth and damage by probability, year and scenario.",
-                "Request depth for the same building under two return periods and save the year, scenario, percentile and depth unit."
-              ],
-              [
-                "Guidewire HazardHub",
-                "Flood fields alongside other commercial property and peril attributes.",
-                "Ask which fields come from FEMA. Request the source and method behind any separate risk score."
+                "Effective hazard polygons, map panels and mapped base flood elevations where published.",
+                "Query layers 28 and 3. Confirm the area feature, effective panel and applicable map changes."
               ],
               [
                 "Mireye",
-                "Cited location and parcel screening, including FEMA exposure.",
-                "Ask for the geometry used in the result, and test whether a point result changes when the footprint spans a boundary."
+                "Address or coordinate screening with a cited FEMA field in Fetch.",
+                "Compare the coordinate and source with any parcel or area result before you use a field at a different scale."
               ],
               [
-                "Invariant Earth",
-                "Cited point-level FEMA screening, with a published null policy for static base flood elevation.",
-                "Test the Gowanus sample. The public field convention specifies NAVD88 and calls for an absent result at a polygon whose only static BFE is in NGVD29."
+                "West Kite",
+                "Commercial site reports with FEMA zone and parcel share inside the mapped 1% annual chance floodplain.",
+                "Ask for the parcel denominator and check building exposure separately against the building polygon."
+              ],
+              [
+                "Regrid",
+                "Premium parcel fields for FEMA zone, subtype and map effective date. The raw field can carry multiple zones.",
+                "Check how the provider assigns the primary zone and how it expresses each overlapping share."
+              ],
+              [
+                "LightBox",
+                "FEMA hazard lookups linked to properties, buildings, assessments or addresses.",
+                "Request results for a building and its address on the same site. Inspect the returned identifiers and overlay geometry."
+              ],
+              [
+                "National Flood Data",
+                "FEMA map screening from a point, address, parcel or custom polygon.",
+                "Confirm support for the geometry and map-change records your process needs."
+              ],
+              [
+                "First Street",
+                "Modeled flood depth and damages under specified probabilities, years and scenarios.",
+                "Keep the depth reference, time horizon and scenario with the returned value. Confirm which structure or point the model used."
+              ],
+              [
+                "Guidewire HazardHub",
+                "Flood data alongside other property risk and peril information for underwriting.",
+                "Ask for the source and method behind each flood field used in the underwriting decision."
               ]
             ],
             "rowSourceIds": [
               [
+                "invariant-fields",
+                "fema-zones"
+              ],
+              [
                 "fema-zones",
                 "fema-panels",
                 "fema-determination"
+              ],
+              [
+                "mireye"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "regrid"
+              ],
+              [
+                "lightbox"
               ],
               [
                 "national-flood-data"
@@ -12257,13 +12378,6 @@
               ],
               [
                 "hazardhub"
-              ],
-              [
-                "mireye"
-              ],
-              [
-                "invariant-fields",
-                "fema-zones"
               ]
             ]
           }
@@ -12420,6 +12534,15 @@
     ],
     "faqs": [
       {
+        "question": "Is a flood zone lookup by address enough for a building?",
+        "answer": "A point lookup finds the FEMA zone where the verified coordinate lands. Check the full mapped footprint for building exposure. At 214 3rd Street in Brooklyn, the address point is in Zone X and 24.7% of the mapped building footprint intersects Zone AE.",
+        "sourceIds": [
+          "gowanus-geosearch",
+          "gowanus-building",
+          "fema-zones"
+        ]
+      },
+      {
         "question": "Does FEMA Zone X mean a property cannot flood?",
         "answer": "No. Check the subtype, which may indicate minimal mapped hazard, a moderate hazard area, or another map condition. During Ida, USGS documented flood marks at locations that a later FEMA query classified as unshaded Zone X.",
         "sourceIds": [
@@ -12515,9 +12638,10 @@
       },
       {
         "id": "mireye",
-        "title": "Location fetch and parcel enrichment",
-        "url": "https://docs.mireye.ai/introduction",
-        "publisher": "Mireye"
+        "title": "Mireye Fetch API and public FEMA point response",
+        "url": "https://www.mireye.com/products/fetch",
+        "publisher": "Mireye",
+        "linkLabel": "Mireye Fetch example"
       },
       {
         "id": "invariant-fields",
@@ -12530,12 +12654,64 @@
         "title": "2024 state orthoimagery map service",
         "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
         "publisher": "NYS ITS Geospatial Services"
+      },
+      {
+        "id": "gowanus-store",
+        "title": "Store location at 214 3rd Street, Brooklyn",
+        "url": "https://www.wholefoodsmarket.com/stores/thirdand3rd",
+        "publisher": "Whole Foods Market",
+        "linkLabel": "Store address"
+      },
+      {
+        "id": "gowanus-geosearch",
+        "title": "NYC GeoSearch result for 214 3rd Street",
+        "url": "https://geosearch.planninglabs.nyc/v2/search?text=214+3rd+Street+Brooklyn&size=3",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "City address point and building ID"
+      },
+      {
+        "id": "gowanus-building",
+        "title": "NYC building footprint BIN 3397192",
+        "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.geojson?%24where=base_bbl%3D%273009780016%27+OR+bin%3D%273397192%27",
+        "publisher": "NYC Office of Technology and Innovation",
+        "linkLabel": "City building footprint"
+      },
+      {
+        "id": "gowanus-lot",
+        "title": "NYC Digital Tax Map lot 3009780016",
+        "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/arcgis/rest/services/Digital_Tax_Map_VIEW/FeatureServer/5/query?where=BBL%3D3009780016&outFields=BBL%2CBORO%2CBLOCK%2CLOT%2CEFFECTIVE_TAX_YEAR%2COBJECTID&outSR=4326&returnGeometry=true&f=geojson",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "City tax-lot geometry"
+      },
+      {
+        "id": "west-kite",
+        "title": "West Kite public source and screening API reference",
+        "url": "https://westkite.com/docs/data",
+        "publisher": "West Kite",
+        "linkLabel": "West Kite site reports"
+      },
+      {
+        "id": "regrid",
+        "title": "Regrid parcel environment and risk schema",
+        "url": "https://support.regrid.com/docs/environment-risk",
+        "publisher": "Regrid",
+        "linkLabel": "Regrid flood fields"
+      },
+      {
+        "id": "lightbox",
+        "title": "LightBox National Flood Hazard Layer API documentation",
+        "url": "https://developer.lightboxre.com/apis/fema-national-flood-hazard-layer",
+        "publisher": "LightBox",
+        "linkLabel": "LightBox flood API docs"
       }
     ],
     "dataset": {
-      "name": "Hurricane Ida high-water marks and FEMA flood zones at four NYC locations",
-      "description": "Four USGS high-water marks compared with the effective FEMA flood zones at their published coordinates. Includes raw static elevation values, NYC panel dates, and the query URL for each point.",
+      "name": "FEMA parcel and building overlay in Gowanus and four NYC Hurricane Ida flood observations",
+      "description": "A mapped address, building, lot and FEMA polygon intersection in Gowanus, plus four USGS Hurricane Ida high-water marks compared with effective FEMA flood zones at the published coordinates.",
       "sourceIds": [
+        "gowanus-geosearch",
+        "gowanus-building",
+        "gowanus-lot",
         "ida",
         "fema-zones",
         "fema-panels"
@@ -12548,7 +12724,8 @@
       "commercial-property-insurance-data-apis",
       "best-gis-apis-for-site-selection",
       "wildfire-risk-by-address-for-underwriting"
-    ]
+    ],
+    "updatedDate": "2026-11-23"
   },
   {
     "slug": "commercial-mortgage-maturity-data-apis",

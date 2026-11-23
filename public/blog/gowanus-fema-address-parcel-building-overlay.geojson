@@ -1,0 +1,693 @@
+{
+  "type": "FeatureCollection",
+  "name": "214 3rd Street flood hazard overlay, Gowanus",
+  "address": "214 3rd Street, Brooklyn, NY",
+  "queried_on": "2026-11-23",
+  "coordinate_system": "OGC CRS84 longitude, latitude (GeoJSON coordinates)",
+  "area_calculation_crs": "EPSG:2263 NAD83 / New York Long Island (US survey feet)",
+  "area_method": "Project the original polygons, intersect each footprint or lot with the FEMA polygon, and divide the shared area by the corresponding full geometry area. Use computed polygon area throughout. Source SHAPE_AREA differs for the building and is retained as received.",
+  "panel": {
+    "number": "3604970211F",
+    "effective_date": "2007-09-05",
+    "row_as_published": {
+      "FIRM_PAN": "3604970211F",
+      "EFF_DATE": 1188950400000,
+      "DFIRM_ID": "360497",
+      "PANEL_TYP": "Community Based, Panel Printed"
+    }
+  },
+  "summary": [
+    {
+      "zone": "AE",
+      "zone_subtype_raw": null,
+      "is_special_flood_hazard_area": true,
+      "fema_fld_ar_id": "360497_2212",
+      "fema_objectid": 4445126,
+      "contains_city_address_point": false,
+      "contains_building_centroid": false,
+      "fema_static_bfe_source_value": 10,
+      "fema_vertical_datum_raw": "NGVD29",
+      "lot_overlap_sq_ft": 48337.92,
+      "lot_overlap_pct": 52.6709,
+      "building_overlap_sq_ft": 11562.4,
+      "building_overlap_pct": 24.6503
+    },
+    {
+      "zone": "X",
+      "zone_subtype_raw": "AREA OF MINIMAL FLOOD HAZARD",
+      "is_special_flood_hazard_area": false,
+      "fema_fld_ar_id": "360497_2184",
+      "fema_objectid": 4445098,
+      "contains_city_address_point": true,
+      "contains_building_centroid": true,
+      "fema_static_bfe_source_value": -9999,
+      "fema_vertical_datum_raw": "",
+      "lot_overlap_sq_ft": 43435.6,
+      "lot_overlap_pct": 47.3291,
+      "building_overlap_sq_ft": 35343.37,
+      "building_overlap_pct": 75.3497
+    }
+  ],
+  "geometry_scope_notes": [
+    "Lot and building are separately mapped. The footprint extends slightly beyond the tax lot and is used in full.",
+    "This is an intersection of dated source geometries for a screening test. Small differences at edges can reflect source geometry or datum transformations. Inspect the effective map, applicable map changes, and any required determination.",
+    "The NFHL data describe a mapped hazard zone. The overlay contains no measured or modeled flood depth at the store."
+  ],
+  "source_urls": {
+    "store": "https://www.wholefoodsmarket.com/stores/thirdand3rd",
+    "address": "https://geosearch.planninglabs.nyc/v2/search?text=214+3rd+Street+Brooklyn&size=3",
+    "building": "https://data.cityofnewyork.us/resource/5zhs-2jue.geojson?%24where=base_bbl%3D%273009780016%27+OR+bin%3D%273397192%27",
+    "parcel": "https://services6.arcgis.com/yG5s3afENB5iO9fj/arcgis/rest/services/Digital_Tax_Map_VIEW/FeatureServer/5/query?where=BBL%3D3009780016&outFields=BBL%2CBORO%2CBLOCK%2CLOT%2CEFFECTIVE_TAX_YEAR%2COBJECTID&outSR=4326&returnGeometry=true&f=geojson",
+    "nfhl": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.999%2C40.666%2C-73.979%2C40.682&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson",
+    "panels": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-73.9899%2C40.6745%2C-73.9875%2C40.6761&geometryType=esriGeometryEnvelope&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=pjson",
+    "aerial": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer"
+  },
+  "downloaded_sha256": {
+    "address.json": "db9282eda0ca6af2e4828e8dfd3e838f1c2305ca4de648d8174cc8700d4698e5",
+    "building.geojson": "f3bcacc5953301379da748412e5663483d9cea03c953ff14dc8f332a5c92f1c6",
+    "parcel.geojson": "660b6610c386b9013eb799a8bb2dbcdfbec3096133610fc0cd6007e4f18f5232",
+    "nfhl.geojson": "b5a11ac1cbaf1cff41e7e2dd6f42d3caff742f5b2689879e4b33d8694a5a531d",
+    "panels.json": "50aaf4ef7ed32df754ebd84022f4cdb29113aae0c025ec9153041dc699320d0e"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.988784,
+          40.674937
+        ]
+      },
+      "properties": {
+        "kind": "address_point",
+        "source_label": "214 3 STREET, Brooklyn, NY, USA",
+        "bbl": "3009780016",
+        "bin": "3397192",
+        "contains_in_both_city_geometries": true,
+        "source_url": "https://geosearch.planninglabs.nyc/v2/search?text=214+3rd+Street+Brooklyn&size=3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -73.98837390747,
+                40.675084738924
+              ],
+              [
+                -73.988348255551,
+                40.675070590138
+              ],
+              [
+                -73.988420109923,
+                40.674984190268
+              ],
+              [
+                -73.988349141763,
+                40.674946898179
+              ],
+              [
+                -73.988363208094,
+                40.674928756024
+              ],
+              [
+                -73.988325705149,
+                40.674912968898
+              ],
+              [
+                -73.988688837238,
+                40.674474664126
+              ],
+              [
+                -73.98932071118,
+                40.674778121548
+              ],
+              [
+                -73.98926444773,
+                40.674846033161
+              ],
+              [
+                -73.98928032875,
+                40.674853659303
+              ],
+              [
+                -73.989257518128,
+                40.674881192226
+              ],
+              [
+                -73.989241237358,
+                40.674873373333
+              ],
+              [
+                -73.989187107885,
+                40.674938709635
+              ],
+              [
+                -73.989124566593,
+                40.674908674265
+              ],
+              [
+                -73.98885566004,
+                40.67523325
+              ],
+              [
+                -73.988901798874,
+                40.67525540893
+              ],
+              [
+                -73.988819704568,
+                40.675354497261
+              ],
+              [
+                -73.988809553079,
+                40.675366749582
+              ],
+              [
+                -73.988696018986,
+                40.675312224908
+              ],
+              [
+                -73.988705955177,
+                40.675300231924
+              ],
+              [
+                -73.988708689138,
+                40.675296931804
+              ],
+              [
+                -73.988343435124,
+                40.675121518279
+              ],
+              [
+                -73.98837390747,
+                40.675084738924
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "building_footprint",
+        "area_sq_ft_from_geometry": 46905.78,
+        "source_shape_area_raw": "7583.73828125",
+        "source_edit_date": "2025-09-17T20:38:02.000Z",
+        "bbl": "3009780016",
+        "bin": "3397192",
+        "source_url": "https://data.cityofnewyork.us/resource/5zhs-2jue.geojson?%24where=base_bbl%3D%273009780016%27+OR+bin%3D%273397192%27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9883345673543,
+              40.6751230241132
+            ],
+            [
+              -73.9883651085959,
+              40.6750864174347
+            ],
+            [
+              -73.9883437843174,
+              40.675076142878
+            ],
+            [
+              -73.9884172378425,
+              40.6749881017634
+            ],
+            [
+              -73.9883355966417,
+              40.674948764618
+            ],
+            [
+              -73.9883500941319,
+              40.6749313880128
+            ],
+            [
+              -73.9883147567796,
+              40.6749143615522
+            ],
+            [
+              -73.9884469067782,
+              40.6747559666552
+            ],
+            [
+              -73.988788018637,
+              40.6743471057741
+            ],
+            [
+              -73.9888500828342,
+              40.6743769937594
+            ],
+            [
+              -73.9891087782672,
+              40.6745015717958
+            ],
+            [
+              -73.9894192334421,
+              40.6746510732434
+            ],
+            [
+              -73.9897237995557,
+              40.6747977366762
+            ],
+            [
+              -73.9891319047107,
+              40.6755071978664
+            ],
+            [
+              -73.9888273846599,
+              40.675360474563
+            ],
+            [
+              -73.988617490467,
+              40.6752593436731
+            ],
+            [
+              -73.9883672876757,
+              40.6751387895506
+            ],
+            [
+              -73.9883345673543,
+              40.6751230241132
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "tax_lot",
+        "area_sq_ft_from_geometry": 91773.52,
+        "bbl": "3009780016",
+        "source_url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/arcgis/rest/services/Digital_Tax_Map_VIEW/FeatureServer/5/query?where=BBL%3D3009780016&outFields=BBL%2CBORO%2CBLOCK%2CLOT%2CEFFECTIVE_TAX_YEAR%2COBJECTID&outSR=4326&returnGeometry=true&f=geojson"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9888500828342,
+              40.67437699375942
+            ],
+            [
+              -73.98910877826721,
+              40.674501571795815
+            ],
+            [
+              -73.9894192334421,
+              40.6746510732434
+            ],
+            [
+              -73.98972379955572,
+              40.674797736676204
+            ],
+            [
+              -73.9892019630598,
+              40.67542322498155
+            ],
+            [
+              -73.98906388953756,
+              40.6753180832207
+            ],
+            [
+              -73.98898442902167,
+              40.675149433978845
+            ],
+            [
+              -73.98887461027154,
+              40.67490869639295
+            ],
+            [
+              -73.98895038534637,
+              40.67474522428405
+            ],
+            [
+              -73.98892489123875,
+              40.67466458639283
+            ],
+            [
+              -73.98885813718104,
+              40.674606618947145
+            ],
+            [
+              -73.9887920903414,
+              40.674455540281265
+            ],
+            [
+              -73.98879289714965,
+              40.67434945510039
+            ],
+            [
+              -73.9888500828342,
+              40.67437699375942
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "fema_zone_within_tax_lot",
+        "zone": "AE",
+        "zone_subtype_raw": null,
+        "is_special_flood_hazard_area": true,
+        "fema_fld_ar_id": "360497_2212",
+        "fema_objectid": 4445126,
+        "contains_city_address_point": false,
+        "contains_building_centroid": false,
+        "fema_static_bfe_source_value": 10,
+        "fema_vertical_datum_raw": "NGVD29",
+        "lot_overlap_sq_ft": 48337.92,
+        "lot_overlap_pct": 52.6709,
+        "building_overlap_sq_ft": 11562.4,
+        "building_overlap_pct": 24.6503,
+        "source_url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.999%2C40.666%2C-73.979%2C40.682&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.98932071118,
+              40.674778121547995
+            ],
+            [
+              -73.98926444773,
+              40.67484603316101
+            ],
+            [
+              -73.98928032875,
+              40.674853659303
+            ],
+            [
+              -73.989257518128,
+              40.67488119222598
+            ],
+            [
+              -73.989241237358,
+              40.674873373333
+            ],
+            [
+              -73.989187107885,
+              40.67493870963501
+            ],
+            [
+              -73.989124566593,
+              40.67490867426499
+            ],
+            [
+              -73.98896336188889,
+              40.675103252111576
+            ],
+            [
+              -73.98887461027154,
+              40.67490869639295
+            ],
+            [
+              -73.98895038534637,
+              40.67474522428405
+            ],
+            [
+              -73.98892489123875,
+              40.67466458639283
+            ],
+            [
+              -73.98885813718104,
+              40.674606618947145
+            ],
+            [
+              -73.98883011142068,
+              40.67454251158545
+            ],
+            [
+              -73.98932071118,
+              40.674778121547995
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "fema_zone_within_building",
+        "zone": "AE",
+        "zone_subtype_raw": null,
+        "is_special_flood_hazard_area": true,
+        "fema_fld_ar_id": "360497_2212",
+        "fema_objectid": 4445126,
+        "contains_city_address_point": false,
+        "contains_building_centroid": false,
+        "fema_static_bfe_source_value": 10,
+        "fema_vertical_datum_raw": "NGVD29",
+        "lot_overlap_sq_ft": 48337.92,
+        "lot_overlap_pct": 52.6709,
+        "building_overlap_sq_ft": 11562.4,
+        "building_overlap_pct": 24.6503,
+        "source_url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.999%2C40.666%2C-73.979%2C40.682&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9883651085959,
+              40.675086417434706
+            ],
+            [
+              -73.9883437843174,
+              40.67507614287799
+            ],
+            [
+              -73.9884172378425,
+              40.674988101763404
+            ],
+            [
+              -73.9883355966417,
+              40.67494876461801
+            ],
+            [
+              -73.9883500941319,
+              40.6749313880128
+            ],
+            [
+              -73.9883147567796,
+              40.6749143615522
+            ],
+            [
+              -73.9884469067782,
+              40.674755966655205
+            ],
+            [
+              -73.988788018637,
+              40.67434710577412
+            ],
+            [
+              -73.98879289714965,
+              40.67434945510039
+            ],
+            [
+              -73.9887920903414,
+              40.674455540281265
+            ],
+            [
+              -73.98885813718104,
+              40.674606618947145
+            ],
+            [
+              -73.98892489123875,
+              40.67466458639283
+            ],
+            [
+              -73.98895038534637,
+              40.67474522428405
+            ],
+            [
+              -73.98887461027154,
+              40.67490869639295
+            ],
+            [
+              -73.98898442902167,
+              40.675149433978845
+            ],
+            [
+              -73.98906388953756,
+              40.6753180832207
+            ],
+            [
+              -73.9892019630598,
+              40.67542322498155
+            ],
+            [
+              -73.9891319047107,
+              40.67550719786639
+            ],
+            [
+              -73.9888273846599,
+              40.675360474563014
+            ],
+            [
+              -73.988617490467,
+              40.6752593436731
+            ],
+            [
+              -73.9883672876757,
+              40.6751387895506
+            ],
+            [
+              -73.9883345673543,
+              40.675123024113205
+            ],
+            [
+              -73.9883651085959,
+              40.675086417434706
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "fema_zone_within_tax_lot",
+        "zone": "X",
+        "zone_subtype_raw": "AREA OF MINIMAL FLOOD HAZARD",
+        "is_special_flood_hazard_area": false,
+        "fema_fld_ar_id": "360497_2184",
+        "fema_objectid": 4445098,
+        "contains_city_address_point": true,
+        "contains_building_centroid": true,
+        "fema_static_bfe_source_value": -9999,
+        "fema_vertical_datum_raw": "",
+        "lot_overlap_sq_ft": 43435.6,
+        "lot_overlap_pct": 47.3291,
+        "building_overlap_sq_ft": 35343.37,
+        "building_overlap_pct": 75.3497,
+        "source_url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.999%2C40.666%2C-73.979%2C40.682&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.988348255551,
+              40.675070590138006
+            ],
+            [
+              -73.988420109923,
+              40.67498419026799
+            ],
+            [
+              -73.988349141763,
+              40.67494689817901
+            ],
+            [
+              -73.988363208094,
+              40.674928756024
+            ],
+            [
+              -73.988325705149,
+              40.674912968898
+            ],
+            [
+              -73.988688837238,
+              40.67447466412602
+            ],
+            [
+              -73.98883011142068,
+              40.67454251158545
+            ],
+            [
+              -73.98885813718104,
+              40.674606618947145
+            ],
+            [
+              -73.98892489123875,
+              40.67466458639283
+            ],
+            [
+              -73.98895038534637,
+              40.67474522428405
+            ],
+            [
+              -73.98887461027154,
+              40.67490869639295
+            ],
+            [
+              -73.98896336188889,
+              40.675103252111576
+            ],
+            [
+              -73.98885566004002,
+              40.675233250000026
+            ],
+            [
+              -73.988901798874,
+              40.67525540893
+            ],
+            [
+              -73.988819704568,
+              40.67535449726099
+            ],
+            [
+              -73.988809553079,
+              40.675366749582004
+            ],
+            [
+              -73.988696018986,
+              40.675312224907984
+            ],
+            [
+              -73.988705955177,
+              40.675300231923984
+            ],
+            [
+              -73.988708689138,
+              40.67529693180402
+            ],
+            [
+              -73.988343435124,
+              40.675121518279006
+            ],
+            [
+              -73.98837390747,
+              40.67508473892399
+            ],
+            [
+              -73.988348255551,
+              40.675070590138006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "kind": "fema_zone_within_building",
+        "zone": "X",
+        "zone_subtype_raw": "AREA OF MINIMAL FLOOD HAZARD",
+        "is_special_flood_hazard_area": false,
+        "fema_fld_ar_id": "360497_2184",
+        "fema_objectid": 4445098,
+        "contains_city_address_point": true,
+        "contains_building_centroid": true,
+        "fema_static_bfe_source_value": -9999,
+        "fema_vertical_datum_raw": "",
+        "lot_overlap_sq_ft": 43435.6,
+        "lot_overlap_pct": 47.3291,
+        "building_overlap_sq_ft": 35343.37,
+        "building_overlap_pct": 75.3497,
+        "source_url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.999%2C40.666%2C-73.979%2C40.682&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson"
+      }
+    }
+  ]
+}

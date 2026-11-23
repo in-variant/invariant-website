@@ -1111,23 +1111,32 @@
   {
     "slug": "best-flood-risk-data-apis",
     "topic": "Data & APIs",
-    "title": "Flood Risk APIs for U.S. Properties",
-    "summary": "Compare FEMA flood zone APIs and modeled flood depth for underwriting and site selection. Reproduce four tests using Hurricane Ida high-water marks.",
+    "title": "Flood Risk Data APIs for U.S. Properties",
+    "summary": "Compare flood risk APIs for FEMA zones, parcel and building overlap, and modeled flood depth. Test a Brooklyn property against public GIS records.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
-    "image": "/blog/industry/best-flood-risk-data-apis.webp?v=f8c9a4cf",
+    "updatedDate": "2026-11-23",
+    "image": "/blog/industry/best-flood-risk-data-apis.webp?v=d051b7ce",
     "dataset": {
-      "name": "Hurricane Ida high-water marks and FEMA flood zones at four NYC locations",
-      "description": "Four USGS high-water marks compared with the effective FEMA flood zones at their published coordinates. Includes raw static elevation values, NYC panel dates, and the query URL for each point.",
+      "name": "FEMA parcel and building overlay in Gowanus and four NYC Hurricane Ida flood observations",
+      "description": "A mapped address, building, lot and FEMA polygon intersection in Gowanus, plus four USGS Hurricane Ida high-water marks compared with effective FEMA flood zones at the published coordinates.",
       "spatialCoverage": "Brooklyn and Staten Island, New York City",
       "temporalCoverage": "2021-09-01/2026-11-23",
       "sources": [
+        "https://geosearch.planninglabs.nyc/v2/search?text=214+3rd+Street+Brooklyn&size=3",
+        "https://data.cityofnewyork.us/resource/5zhs-2jue.geojson?%24where=base_bbl%3D%273009780016%27+OR+bin%3D%273397192%27",
+        "https://services6.arcgis.com/yG5s3afENB5iO9fj/arcgis/rest/services/Digital_Tax_Map_VIEW/FeatureServer/5/query?where=BBL%3D3009780016&outFields=BBL%2CBORO%2CBLOCK%2CLOT%2CEFFECTIVE_TAX_YEAR%2COBJECTID&outSR=4326&returnGeometry=true&f=geojson",
         "https://doi.org/10.5066/P9OMBJPQ",
         "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28",
         "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3"
       ],
       "downloads": [
+        {
+          "label": "Download the address, building, parcel and FEMA intersections",
+          "path": "/blog/gowanus-fema-address-parcel-building-overlay.geojson",
+          "format": "GeoJSON"
+        },
         {
           "label": "Download the four points, source queries and expected FEMA results",
           "path": "/blog/best-flood-risk-data-apis.geojson",
