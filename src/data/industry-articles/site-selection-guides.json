@@ -3334,18 +3334,128 @@
     "slug": "behind-the-meter-power-for-data-centers",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Behind-the-meter power for data centers: when on-site gas works and what to verify",
-    "description": "How on-site gas turbines, engines and fuel cells can power a data center before the grid arrives, and the gas, air permit, equipment and regulatory checks to run first.",
+    "title": "Behind-the-Meter Power for Data Centers: How to Verify Capacity and Timing",
+    "description": "Evaluate on-site gas power, fuel cells and co-located plants for a data center. Check usable MW, firm fuel, air permits and delivery dates before signing.",
     "date": "2026-11-09",
-    "readMinutes": 10,
-    "intro": "An on-site gas plant can make a data center site work when the grid date is years away, but only if four things line up: firm gas supply, an air permit sized for the whole campus, generation equipment with a real delivery slot, and a regulatory structure that lets the power reach the load. Verify each with a document. A pipeline on a map or a broker's \"gas available\" line is not that evidence. This guide covers what recent projects show, how the main BTM configurations compare and what to ask for on each.",
+    "updatedDate": "2026-11-23",
+    "readMinutes": 13,
+    "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
-      "Treat a BTM site as four approvals on four clocks: gas, air, equipment and regulation.",
+      "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
       "Ask the pipeline for firm capacity, pressure and gas quality in writing before any equipment order.",
       "Get the emissions calculation for the full build-out, since phased minor permits draw aggregation challenges.",
       "Plan the grid path from day one so the bridge generation has an end state."
     ],
     "sections": [
+      {
+        "id": "size-the-first-phase",
+        "heading": "How much on-site generation does a 50 MW data center need?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start by asking where the 50 MW is measured. A tenant may mean 50 MW for servers and networking equipment. The generation provider may mean 50 MW of installed equipment at the plant. The electrical load schedule should show the total at the facility intake, including cooling and electrical losses."
+          },
+          {
+            "type": "paragraph",
+            "text": "For a preliminary screen, a 50 MW IT phase and an assumed facility-to-IT power ratio of 1.25 imply 62.5 MW at the facility intake. A plant that can deliver 70 MW net in normal conditions and 55 MW after losing its largest unit falls 7.5 MW short in that outage case. Ask the supplier for the guaranteed net output at the same measurement point, under the required summer and outage conditions. Use the engineer’s design loads and reserve requirements for the procurement decision."
+          }
+        ]
+      },
+      {
+        "id": "odessa-power-agreement",
+        "heading": "What a 200 MW power agreement established in Odessa",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Texas Critical Data Center project in Odessa shows what changes when a developer signs for supply from an existing plant. New Era disclosed a 20-year agreement for 200 to 207 MW for Phase 1. The initial filing allows the seller to source power from the adjacent plant, other sources or the ERCOT grid. The November update describes a registered private use network for Phase 1 and a separate on-site gas proposal for Phase 2.",
+            "sourceIds": [
+              "odessa-8k",
+              "odessa-update"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Disclosure date",
+              "Record",
+              "What the record says",
+              "What to verify next"
+            ],
+            "rows": [
+              [
+                "September 21, 2026",
+                "Contracted supply",
+                "200 to 207 MW for Phase 1 under a 20-year agreement.",
+                "The agreement admits alternate supply, including the ERCOT grid."
+              ],
+              [
+                "November 12, 2026",
+                "Delivery prerequisite",
+                "The supplier’s obligations depend in part on a purchase and sale agreement for interconnection infrastructure.",
+                "Request the signed infrastructure agreement and track the delivery conditions against the tenant schedule."
+              ],
+              [
+                "November 12, 2026",
+                "December 31, 2027 deadline",
+                "The buyer may terminate without liability if power delivery has yet to start by this date.",
+                "Record the termination deadline separately from the commissioning date."
+              ],
+              [
+                "November 12, 2026",
+                "Power delivery forecast",
+                "Management expected delivery from the adjacent plant by the end of 2027.",
+                "Keep the forecast open until there is a dated commissioning and delivery record."
+              ],
+              [
+                "November 12, 2026",
+                "Payment during ramp-up",
+                "The buyer pays for the full contract quantity made available, even when it consumes less.",
+                "Compare the contracted payment schedule with tenant occupancy and IT deployment."
+              ],
+              [
+                "November 12, 2026",
+                "Phase 2",
+                "Management described future behind-the-meter gas generation and a nonbinding letter of intent covering a 550 MW expansion.",
+                "Keep expansion in the development pipeline until the supply documentation for that phase supports a stronger status."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "odessa-8k"
+              ],
+              [
+                "odessa-10q"
+              ],
+              [
+                "odessa-10q"
+              ],
+              [
+                "odessa-update"
+              ],
+              [
+                "odessa-10q"
+              ],
+              [
+                "odessa-update"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A buyer can record the Phase 1 quantity as contracted, subject to the delivery requirements in the filing. Keep the date tagged as a forecast until power reaches the contracted delivery point. The $/MWh rate alone also understates the ramp-up commitment when the buyer is paying for capacity before the tenant fills the main data halls.",
+            "sourceIds": [
+              "odessa-10q",
+              "odessa-update"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Odessa agreement records",
+            "path": "/blog/odessa-data-center-power-agreement-records.csv",
+            "format": "CSV"
+          }
+        ]
+      },
       {
         "id": "why-buyers-look-at-on-site-gas",
         "heading": "Why buyers are pricing sites with their own generation",
@@ -3866,6 +3976,10 @@
         ]
       },
       {
+        "question": "Can 50 MW of on-site generation support 50 MW of IT load?",
+        "answer": "The IT load is only part of the demand. In an illustrative design with a facility-to-IT power ratio of 1.25, 50 MW of IT requires 62.5 MW at the facility intake. Compare the site’s design load with guaranteed net supply under the required outage and weather conditions."
+      },
+      {
         "question": "How long does it take to get gas turbines for a data center?",
         "answer": "For large gas turbines, GE Vernova was booking reservations about four to five years out in 2026 and taking slots for 2031 delivery. Smaller units can arrive sooner, but get a dated quote or a reservation agreement before relying on any schedule.",
         "sourceIds": [
@@ -3973,13 +4087,40 @@
         "title": "Renewables remain cheapest, but their LCOE is rising: Lazard",
         "url": "https://www.utilitydive.com/news/renewables-remain-cheapest-lcoe-rising-lazard/825443/",
         "publisher": "Utility Dive"
+      },
+      {
+        "id": "odessa-8k",
+        "publisher": "New Era Energy & Digital",
+        "title": "Form 8-K announcing the Luminant power purchase agreement",
+        "url": "https://www.sec.gov/Archives/edgar/data/2028336/000121390026101642/ea0305716-8k_newera.htm"
+      },
+      {
+        "id": "odessa-10q",
+        "publisher": "New Era Energy & Digital",
+        "title": "Third-quarter Form 10-Q, Note 9 commitments and contingencies",
+        "url": "https://www.sec.gov/Archives/edgar/data/2028336/000119312526456806/nuai-20260930.htm"
+      },
+      {
+        "id": "odessa-update",
+        "publisher": "New Era Energy & Digital",
+        "title": "Third-quarter business update, Texas Critical Data Center",
+        "url": "https://s25.q4cdn.com/652716748/files/content_files/NUAI-Q3-Presentation_vF.pdf"
       }
     ],
     "relatedSlugs": [
       "retired-power-plant-sites-for-data-centers",
       "data-center-backup-generator-air-permits",
       "kansas-250-mw-behind-the-meter-gas-power-site"
-    ]
+    ],
+    "dataset": {
+      "name": "Odessa data center power agreement evidence",
+      "description": "Six dated records for the Texas Critical Data Center project in Odessa, Texas. The table distinguishes contracted Phase 1 power, prerequisites to delivery, a termination deadline, a delivery forecast, ramp-up payment terms and the Phase 2 proposal. Each row links to the originating company disclosure.",
+      "sourceIds": [
+        "odessa-8k",
+        "odessa-10q",
+        "odessa-update"
+      ]
+    }
   },
   {
     "slug": "data-center-land-acres-per-mw",
