@@ -1,17 +1,11 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ORG_SCHEMA, Seo, SITE_URL, breadcrumbSchema } from '../../components/Seo'
 import collections from '../../data/blog-collections.json'
+import { groupCollectionGuides } from '../../data/blogCollections'
 import { versionedCover } from '../../data/coverImages'
 import NotFound from '../NotFound'
 import '../Blog.css'
 import './BlogCollection.css'
-
-type CollectionGuide = {
-  slug: string
-  label: string
-  detail: string
-  group?: string
-}
 
 export default function BlogCollection() {
   const { pathname } = useLocation()
@@ -20,19 +14,8 @@ export default function BlogCollection() {
 
   const canonical = `${SITE_URL}/blog/${collection.slug}`
   const image = versionedCover(collection.image)
-  const collectionGuides: CollectionGuide[] = collection.guides
-  const guidesByGroup = new Map<string, CollectionGuide[]>()
-  for (const guide of collectionGuides) {
-    const heading = guide.group ?? ''
-    const guides = guidesByGroup.get(heading) ?? []
-    guides.push(guide)
-    guidesByGroup.set(heading, guides)
-  }
-  const guideGroups = [...guidesByGroup].map(([heading, guides]) => ({
-    heading,
-    guides,
-    id: heading.toLowerCase().match(/[a-z0-9]+/g)?.join('-') ?? 'other-guides',
-  }))
+  const collectionGuides = collection.guides
+  const guideGroups = groupCollectionGuides(collectionGuides)
   const namedGuideGroups = guideGroups.filter(group => group.heading)
   const crumbs = breadcrumbSchema([
     { name: 'Invariant', url: SITE_URL },
@@ -76,6 +59,13 @@ export default function BlogCollection() {
           <div>
             <h1>{collection.heading}</h1>
             <p>{collection.description}</p>
+            {collection.resourceLinks && (
+              <div className="blog-collection-resource-links">
+                {collection.resourceLinks.map(({ label, href }) => (
+                  <Link key={href} to={href}>{label} <span aria-hidden="true">↗</span></Link>
+                ))}
+              </div>
+            )}
             {collection.worksheet && (
               <div className="blog-collection-worksheet">
                 <a href={collection.worksheet.path} download>

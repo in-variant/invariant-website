@@ -4,6 +4,7 @@ import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords } from '../data/blogSearch'
+import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import './Resources.css'
 import './Datasets.css'
@@ -18,6 +19,7 @@ const searchIndex = RESEARCH_DATASETS.map(entry => {
     searchWords: new Set(articleSearchWords([
       dataset.name, dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
       entry.title, entry.region, entry.topic, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
+      ...dataset.sources.map(source => new URL(source).hostname),
     ].join(' '))),
   }
 })
@@ -73,7 +75,7 @@ export default function Datasets() {
           <h1>{title}</h1>
           <div>
             <p>{description} Each guide links to the original sources and explains the analysis.</p>
-            <Link className="dataset-method" to="/blog/physical-world-data-by-use-case">Browse data guides by use case <span aria-hidden="true">↗</span></Link>
+            <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse data guides by use case <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
       </header>
@@ -81,7 +83,7 @@ export default function Datasets() {
         <div className="dataset-controls">
           <label>
             <span>Search datasets</span>
-            <input type="search" placeholder="Flood, lending, grid capacity…" value={query} onChange={event => setQuery(event.target.value)} />
+            <input type="search" placeholder="EPA, lending, grid capacity…" value={query} onChange={event => setQuery(event.target.value)} />
           </label>
           <label>
             <span>File format</span>

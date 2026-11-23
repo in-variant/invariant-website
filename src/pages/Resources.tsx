@@ -4,6 +4,7 @@ import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
 import { RESOURCE_ARTICLES } from '../data/resources'
 import { RESOURCE_REFERENCES } from '../data/resource-directory'
+import { DATA_USE_CASE_GROUPS, DATA_USE_CASES_PATH } from '../data/blogCollections'
 import './Resources.css'
 
 const FORMATS = ['All', 'Guides', 'Tools'] as const
@@ -29,7 +30,7 @@ export default function Resources() {
     <div className="resources-page">
       <Seo
         title="Resources | Compliance for the Physical Economy"
-        description="Find data center sites, compare physical-world data APIs and download research datasets. Explore tools and regulatory guides for infrastructure projects."
+        description="Find guides and datasets for site selection, property underwriting, power, logistics, and public projects. Explore the Invariant Earth API and regulatory tools."
         canonical={`${SITE_URL}/resources`}
         jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'Resources', url: `${SITE_URL}/resources` }])]}
       />
@@ -41,6 +42,26 @@ export default function Resources() {
           <p>Research, regulatory guides, and practical tools for the teams taking ambitious engineering through approval.</p>
         </div>
       </header>
+
+      <section className="resource-container resources-data" aria-labelledby="resources-data-heading">
+        <div className="resources-section-heading">
+          <div>
+            <h2 id="resources-data-heading">Data for your next decision.</h2>
+            <p>Check what the records say about a site, an asset, or a market.</p>
+          </div>
+          <Link to={DATA_USE_CASES_PATH} className="resource-text-link">All data guides <ResourceArrow diagonal /></Link>
+        </div>
+        <ul className="resources-data-topics">
+          <li><Link to="/blog/site-selection-due-diligence">Site selection <ResourceArrow diagonal /></Link></li>
+          {DATA_USE_CASE_GROUPS.map(({ heading, id }) => (
+            <li key={id}><Link to={`${DATA_USE_CASES_PATH}#${id}`}>{heading} <ResourceArrow diagonal /></Link></li>
+          ))}
+        </ul>
+        <nav aria-label="Data downloads and API documentation" className="resources-data-links">
+          <Link to="/datasets" className="resource-text-link">Research datasets <ResourceArrow diagonal /></Link>
+          <a href="https://docs.invariant-ai.com/quickstart" className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
+        </nav>
+      </section>
 
       <section className="resource-container resources-feature-section" aria-labelledby="resources-feature-heading">
         <Link className="resources-feature" to="/blog/fermibench-sota">
@@ -77,8 +98,6 @@ export default function Resources() {
           </div>
           <nav aria-label="Research and planning resources" className="mb-7 flex flex-wrap gap-x-6 gap-y-3">
             <Link to="/blog/find-data-center-site-us" className="resource-text-link">Find a data center site <ResourceArrow diagonal /></Link>
-            <a href="https://docs.invariant-ai.com/quickstart" className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
-            <Link to="/datasets" className="resource-text-link">Research datasets <ResourceArrow diagonal /></Link>
             <Link to="/regulators" className="resource-text-link">Regulator directory <ResourceArrow diagonal /></Link>
             <Link to="/timeline" className="resource-text-link">Build a mission filing timeline <ResourceArrow diagonal /></Link>
           </nav>

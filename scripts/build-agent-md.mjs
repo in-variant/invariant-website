@@ -143,6 +143,9 @@ for (const collection of blogCollections) {
   const md = [
     `# ${collection.heading}`, '', collection.description, '',
     `URL: ${SITE}/blog/${collection.slug}  `, `Updated: ${collection.updatedDate} · Publisher: Invariant`, '',
+    ...(collection.resourceLinks ? [
+      ...collection.resourceLinks.map(({ label, href }) => `- [${label}](${new URL(href, SITE).href})`), '',
+    ] : []),
     `## ${collection.checklistTitle}`, '',
     ...collection.checks.map(check => `- **${check.title}.** ${check.detail}`), '',
     ...(collection.worksheet ? [
