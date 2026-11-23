@@ -1,5 +1,35 @@
 [
   {
+    "slug": "lidar-slope-developable-land",
+    "topic": "Data & APIs",
+    "title": "How to Calculate Parcel Slope and Screen Developable Land",
+    "summary": "Compare a 3-foot lidar grid with a 30-foot average and USGS 3DEP. See how resolution changes acres under a slope cutoff and download the source data.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "Stayton, Oregon",
+    "image": "/blog/industry/lidar-slope-developable-land.webp?v=340f2021",
+    "dataset": {
+      "name": "Slope and connected acreage on Stayton tax lot 1000",
+      "description": "Reproducible elevation windows, current tax lot boundary, source dates and datums, and results at three slope cutoffs for native lidar, its 30-foot average, and USGS terrain data.",
+      "spatialCoverage": "Tax lot 091W04B001000, Marion County, Oregon, United States",
+      "temporalCoverage": "2008-09-14/2026-11-23",
+      "sources": [
+        "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0",
+        "https://pubs.oregon.gov/dogami/ldq/p-LDQ.htm",
+        "https://pubs.oregon.gov/dogami/ldq/reports/2009_OLC_Willamette_Valley_Acceptance_Report.pdf",
+        "https://www.sciencebase.gov/catalog/item/6892b984d4be0244121f81f6",
+        "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n45w123/USGS_13_n45w123_20250804.xml"
+      ],
+      "downloads": [
+        {
+          "label": "Download both elevation windows, the parcel boundary, and the slope results",
+          "path": "/blog/lidar-slope-developable-land.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "wetlands-hydric-soils-land-development",
     "topic": "Data & APIs",
     "title": "How to Check a Property for Wetlands and Hydric Soils",

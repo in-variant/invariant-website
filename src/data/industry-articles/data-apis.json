@@ -1,5 +1,322 @@
 [
   {
+    "slug": "lidar-slope-developable-land",
+    "topic": "Data & APIs",
+    "region": "Stayton, Oregon",
+    "title": "How to Calculate Parcel Slope and Screen Developable Land",
+    "description": "Compare a 3-foot lidar grid with a 30-foot average and USGS 3DEP. See how resolution changes acres under a slope cutoff and download the source data.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "The same 19.74-acre parcel on 2022 aerial imagery. A 3-foot lidar grid shows 16.28 acres at or below 5% slope. Averaging the same elevations to a 30-foot grid shows 19.74 acres at or below 5%.",
+    "coverCaption": "One elevation source and the same parcel and cutoff in both panels. Orange cells exceed 5% on the native grid. Aerial imagery is from USDA NAIP.",
+    "intro": "To calculate how much land meets a slope cutoff, derive slope from a bare-earth elevation model and measure the qualifying area inside the parcel. Save the resolution, acquisition dates, cutoff, and largest adjoining area. On a 19.74-acre Oregon parcel, 16.28 acres met an illustrative 5% cutoff on a 3-foot lidar grid. Averaging the same source onto a 30-foot grid increased that estimate to 19.74 acres.",
+    "takeaways": [
+      "Use lidar-derived bare-earth elevation for slope. Keep dated aerial imagery alongside it to review roads, cover, and visible changes.",
+      "Calculate slope on elevation data that extend beyond the parcel, then clip the result. Measure the actual overlap of cells along the boundary.",
+      "Report the combined qualifying acreage and the largest adjoining area. Carry the elevation source and uncertainty into any layout or grading review."
+    ],
+    "sections": [
+      {
+        "id": "slope-acres-stayton-example",
+        "heading": "How much can elevation resolution change a slope estimate?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The study uses the current Marion County polygon for tax lot 091W04B001000 near Stayton. Oregon’s DOGAMI Stayton quadrangle includes a 3-foot bare-earth grid from the 2008–2009 Willamette Valley acquisition. We averaged complete 10-by-10 blocks from that grid to create the 30-foot comparison, then calculated slope on both. This tests what happened when we changed the grid size while using the same original elevations.",
+            "sourceIds": [
+              "parcel",
+              "dogami-index",
+              "dogami-acceptance",
+              "dogami-report",
+              "gdal"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Slope cutoff",
+              "Oregon lidar at 3 feet",
+              "Same lidar averaged to 30 feet",
+              "USGS 1/3 arc-second"
+            ],
+            "rows": [
+              [
+                "2% or less",
+                "10.77 acres",
+                "16.48 acres",
+                "16.18 acres"
+              ],
+              [
+                "5% or less",
+                "16.28 acres",
+                "19.74 acres",
+                "19.65 acres"
+              ],
+              [
+                "10% or less",
+                "18.68 acres",
+                "19.74 acres",
+                "19.74 acres"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 5%, the total estimate grew by 3.46 acres after averaging the fine grid. The largest group of qualifying cells that share an edge grew from 13.05 to 19.74 acres. For a buyer trying to fit a 15-acre footprint, the fine grid would prompt a closer review of where flatter ground adjoins. The raster figures describe slope alone. Utilities, access, drainage, wetlands and layout still matter.",
+            "sourceIds": [
+              "dogami-index",
+              "parcel"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The USGS product is a separately published elevation grid. Its cells measured about 7.32 metres east to west and 10.29 metres north to south at this site. The 19.65-acre result at 5% is useful for an initial screen. Changes in source, processing or grid alignment can also affect comparisons between the USGS and Oregon products.",
+            "sourceIds": [
+              "usgs-meta",
+              "usgs-crs"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/lidar-slope-developable-land.json",
+            "format": "JSON",
+            "label": "Download both elevation windows, the parcel boundary, and the slope results"
+          }
+        ]
+      },
+      {
+        "id": "how-to-calculate-parcel-slope",
+        "heading": "How do I calculate slope percentage and acreage from a DEM?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Download a bare-earth digital elevation model, or DEM, for the parcel and surrounding ground. Use the full buffered grid to estimate slope and apply the boundary afterward. Horn’s method uses a 3-by-3 group of cells, so clipping elevation first can leave gaps or alter the estimate around the edge.",
+            "sourceIds": [
+              "dogami-guide",
+              "gdal",
+              "usgs-download"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Slope in percent is 100 times the rise divided by the horizontal run. For a raster, estimate the gradients east to west and north to south and combine their magnitude. Match horizontal distance and elevation units. On a latitude and longitude grid, measure the east-to-west and north-to-south cell spacing in metres at the site. A 5% grade is about 2.86 degrees.",
+            "sourceIds": [
+              "gdal",
+              "usgs-crs"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Clip eligible cells to the parcel and sum the area of the intersections in an equal-area projection. Use a proportional weight for cells crossed by the lot boundary. Check that the clipped cells cover the entire lot and report any missing elevation coverage. For one connected-area estimate, count cells that share an edge and report the largest group by acreage.",
+            "sourceIds": [
+              "gdal",
+              "parcel"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lidar-datum-and-imagery-dates",
+        "heading": "How should I compare lidar and aerial imagery dates?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Oregon lidar delivery used for this lot lists a 2008–2009 acquisition range, NAVD88 elevations in international feet and the Geoid03 model. The USGS tile has a 2025 publication date and NAVD88 elevations in metres. A tile publication date can be newer than the underlying surveys. Check acquisition, vertical datum, units and surface type before comparing elevations across sources.",
+            "sourceIds": [
+              "dogami-acceptance",
+              "dogami-report",
+              "usgs-catalog",
+              "usgs-meta"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 2020 and 2022 USDA aerials use the same mapped footprint. The central field looks greener and the field tracks are more distinct in the 2020 image. Treat those as visual observations and check acquisition conditions before interpreting them. Use comparable elevation surveys to investigate a change in ground height.",
+            "sourceIds": [
+              "naip-2020",
+              "naip-2022",
+              "aerial-comparison"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "label": "Review the wetland inventory, soil map and agency determination for this parcel",
+                "slug": "wetlands-hydric-soils-land-development"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "slope-api-for-site-selection",
+        "heading": "What should a slope data API return for site selection?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s public field catalog documents point elevation and point slope, including how the 3DEP tile supports the slope calculation. For a parcel-wide screen, keep the boundary identifier, elevation product, capture and publication dates where available, grid spacing, slope units and cutoff. Return total qualifying acreage and the largest adjoining area with the calculation method.",
+            "sourceIds": [
+              "earth-fields",
+              "usgs-crs"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Align the slope cutoff with the intended building, yard, road or solar layout. Have the design team check candidate areas against a current survey, grading plan and the project’s drainage and geotechnical requirements.",
+            "sourceIds": [
+              "dogami-guide"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find slope data for a property?",
+        "answer": "Retrieve the parcel boundary and look up bare-earth elevation in the USGS National Map or the state lidar archive. Record the grid resolution and source date, calculate slope on a buffered window, then measure the results inside the parcel.",
+        "sourceIds": [
+          "usgs-download",
+          "dogami-index"
+        ]
+      },
+      {
+        "question": "Can USGS 10-metre terrain data show whether an entire parcel is flat?",
+        "answer": "It can support a regional screen. Check finer lidar where service roads, banks or small drainage features could affect the layout. In the Stayton test, 19.65 acres met a 5% cutoff on the USGS grid and 16.28 acres met it on the native 3-foot grid.",
+        "sourceIds": [
+          "usgs-meta",
+          "dogami-index"
+        ]
+      },
+      {
+        "question": "What is the difference between slope in degrees and percent grade?",
+        "answer": "Percent grade is 100 times the tangent of the slope angle. A slope of 5 degrees is about 8.75% grade. A 5% grade is about 2.86 degrees.",
+        "sourceIds": [
+          "gdal"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "parcel",
+        "title": "Marion County assessor parcel polygon service",
+        "url": "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0",
+        "publisher": "Marion County GIS",
+        "linkLabel": "Marion County parcel layer"
+      },
+      {
+        "id": "dogami-index",
+        "title": "Oregon lidar quadrangle downloads, including Stayton 44122-G7",
+        "url": "https://pubs.oregon.gov/dogami/ldq/p-LDQ.htm",
+        "publisher": "Oregon Department of Geology and Mineral Industries",
+        "linkLabel": "Oregon lidar quadrangle catalog"
+      },
+      {
+        "id": "dogami-guide",
+        "title": "DOGAMI Lidar Viewer layer and bare-earth documentation",
+        "url": "https://www.oregon.gov/dogami/lidar/Pages/help.aspx",
+        "publisher": "Oregon Department of Geology and Mineral Industries",
+        "linkLabel": "DOGAMI bare-earth data guidance"
+      },
+      {
+        "id": "dogami-acceptance",
+        "title": "DOGAMI Willamette Valley Delivery 9 acceptance report for Stayton and nearby quadrangles",
+        "url": "https://pubs.oregon.gov/dogami/ldq/reports/2009_OLC_Willamette_Valley_Acceptance_Report.pdf",
+        "publisher": "Oregon Department of Geology and Mineral Industries",
+        "linkLabel": "Delivery 9 acceptance report"
+      },
+      {
+        "id": "dogami-report",
+        "title": "Willamette Valley 2009 lidar data report, coordinate system and delivery acquisition dates",
+        "url": "https://pubs.oregon.gov/dogami/ldq/reports/Willamette_Valley_Lidar_Report_2009.pdf",
+        "publisher": "Oregon Department of Geology and Mineral Industries",
+        "linkLabel": "Willamette Valley lidar report"
+      },
+      {
+        "id": "usgs-download",
+        "title": "Download elevation data from the National Map",
+        "url": "https://www.usgs.gov/faqs/what-types-elevation-datasets-are-available-what-formats-do-they-come-and-where-can-i-download",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS elevation products"
+      },
+      {
+        "id": "usgs-crs",
+        "title": "USGS DEM projection, horizontal datum, vertical datum and resolution",
+        "url": "https://www.usgs.gov/faqs/what-projection-horizontal-datum-vertical-datum-and-resolution-a-usgs-digital-elevation-model",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "DEM projections and datums"
+      },
+      {
+        "id": "usgs-catalog",
+        "title": "USGS ScienceBase record for 1/3 arc-second tile n45w123 published in August 2025",
+        "url": "https://www.sciencebase.gov/catalog/item/6892b984d4be0244121f81f6",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS tile catalog record"
+      },
+      {
+        "id": "usgs-meta",
+        "title": "Metadata for the August 2025 USGS 1/3 arc-second DEM tile n45w123",
+        "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/historical/n45w123/USGS_13_n45w123_20250804.xml",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS tile metadata"
+      },
+      {
+        "id": "gdal",
+        "title": "GDAL terrain analysis documentation, slope calculation and unit scaling",
+        "url": "https://gdal.org/en/stable/programs/gdaldem.html",
+        "publisher": "GDAL",
+        "linkLabel": "Slope methods and units"
+      },
+      {
+        "id": "naip-2020",
+        "title": "USDA 2020 National Agriculture Imagery Program orthophotography",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2020_CONUS/ImageServer",
+        "publisher": "USDA Farm Production and Conservation",
+        "linkLabel": "2020 USDA aerial imagery"
+      },
+      {
+        "id": "naip-2022",
+        "title": "USDA 2022 National Agriculture Imagery Program orthophotography",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2022_CONUS/ImageServer",
+        "publisher": "USDA Farm Production and Conservation",
+        "linkLabel": "2022 USDA aerial imagery"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      },
+      {
+        "id": "aerial-comparison",
+        "title": "Aerial comparison of the Stayton parcel using USDA NAIP captures from 2020 and 2022",
+        "url": "https://invariant-ai.com/blog/industry/lidar-slope-developable-land-aerials.webp",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Compare the 2020 and 2022 aerial views of the same parcel"
+      }
+    ],
+    "dataset": {
+      "name": "Slope and connected acreage on Stayton tax lot 1000",
+      "description": "Reproducible elevation windows, current tax lot boundary, source dates and datums, and results at three slope cutoffs for native lidar, its 30-foot average, and USGS terrain data.",
+      "spatialCoverage": "Tax lot 091W04B001000, Marion County, Oregon, United States",
+      "temporalCoverage": "2008-09-14/2026-11-23",
+      "sourceIds": [
+        "parcel",
+        "dogami-index",
+        "dogami-acceptance",
+        "usgs-catalog",
+        "usgs-meta"
+      ]
+    },
+    "relatedSlugs": [
+      "wetlands-hydric-soils-land-development",
+      "best-gis-apis-for-site-selection",
+      "manufacturing-site-selection-100-buildable-acres"
+    ]
+  },
+  {
     "slug": "wetlands-hydric-soils-land-development",
     "topic": "Data & APIs",
     "region": "Stayton, Oregon",
