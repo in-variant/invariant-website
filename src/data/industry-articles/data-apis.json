@@ -1,5 +1,288 @@
 [
   {
+    "slug": "hourly-weather-data-for-data-center-cooling",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Historical Hourly Weather Data for Data Center Cooling",
+    "description": "Compare NOAA hourly temperature and dew point before modeling data center cooling. Reproduce the Phoenix and Dulles results for 2023 to 2025.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "A Landsat mosaic of the Phoenix metropolitan area showing its street grid, irrigated green fields and surrounding desert.",
+    "coverCaption": "Phoenix metropolitan area from Landsat 9 imagery acquired July 3 and July 10, 2024. U.S. Geological Survey.",
+    "intro": "Use Invariant Earth to compare the climate fields on a site shortlist. Use NOAA’s historical hourly station observations to see how heat and humidity varied before modeling a cooling system. In 2024, Phoenix Sky Harbor recorded 2,149 sampled hours at or above 95°F, compared with 86 at Washington Dulles. Dulles had 981 sampled hours with a dew point at or above 68°F, compared with 67 at Phoenix. The comparison uses outdoor weather at two airports and keeps missing hours visible.",
+    "takeaways": [
+      "Measure dry-bulb temperature and dew point together. Dry-bulb temperature describes the air temperature. Dew point describes its moisture content.",
+      "Keep time zone, station ID, report type, quality flags and the number of paired hours. A tally of reports can count the same hour more than once.",
+      "Use site-specific design weather, equipment performance and water constraints to evaluate cooling options. The example thresholds here are for comparison."
+    ],
+    "sections": [
+      {
+        "id": "get-historical-hourly-weather",
+        "heading": "Where can I download historical hourly temperature and humidity?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use NOAA NCEI’s GHCNh station files for observed temperature and dew point. NCEI publishes station-year pipe-delimited files and lists Parquet downloads. GHCNh replaces the older Integrated Surface Dataset. Use NOAA’s U.S. Climate Normals when you need a long-term reference instead of observations from particular hours.",
+            "sourceIds": [
+              "ghcnh",
+              "ghcnh-doc",
+              "normals"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Choose a station that represents the site’s elevation and exposure. Keep the observation time in UTC until you intentionally convert to local time. This comparison counts each UTC calendar year and uses airport observations as regional screening examples.",
+            "sourceIds": [
+              "ghcnh-doc"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "phoenix-and-dulles",
+        "heading": "What did the two stations record from 2023 to 2025?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We kept the last eligible routine aviation report in each UTC hour, requiring both dry-bulb temperature and dew point in the same record. We used NOAA’s documented passing quality codes and left unpaired hours missing. We counted 95°F air temperature and 68°F dew point separately and together. These round numbers make the two sites easy to compare.",
+            "sourceIds": [
+              "ghcnh-doc",
+              "phx-2024",
+              "iad-2024"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Station and year",
+              "Air ≥ 95°F",
+              "Dew point ≥ 68°F",
+              "Both",
+              "Paired hours / total"
+            ],
+            "rows": [
+              [
+                "Phoenix Sky Harbor · 2023",
+                "1,882",
+                "22",
+                "2",
+                "8,741 / 8,760"
+              ],
+              [
+                "Phoenix Sky Harbor · 2024",
+                "2,149",
+                "67",
+                "2",
+                "8,767 / 8,784"
+              ],
+              [
+                "Phoenix Sky Harbor · 2025",
+                "1,640",
+                "118",
+                "1",
+                "8,615 / 8,760"
+              ],
+              [
+                "Washington Dulles · 2023",
+                "37",
+                "782",
+                "12",
+                "8,760 / 8,760"
+              ],
+              [
+                "Washington Dulles · 2024",
+                "86",
+                "981",
+                "39",
+                "8,780 / 8,784"
+              ],
+              [
+                "Washington Dulles · 2025",
+                "16",
+                "1,180",
+                "15",
+                "8,607 / 8,760"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "Phoenix had 145 UTC hours without an eligible pair in 2025, and Dulles had 153. The separate heat and moisture comparisons that year hold even if every missing hour at the station with the lower count reached the corresponding threshold. The small counts for both conditions are more sensitive to missing observations."
+          },
+          {
+            "type": "download",
+            "path": "/blog/hourly-weather-data-for-data-center-cooling.json",
+            "format": "JSON",
+            "label": "Download the six station-year results, NOAA file links and quality rules"
+          }
+        ]
+      },
+      {
+        "id": "weather-normals-and-cooling-design",
+        "heading": "How do climate normals and outdoor observations fit into cooling design?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The 1991–2020 normal for the average July daily high is 106.5°F at Phoenix Sky Harbor and 87.6°F at Dulles. Use those values for a long-term baseline. An hourly series answers how often operating conditions co-occur, and the equipment model estimates what the plant consumes at those conditions.",
+            "sourceIds": [
+              "normal-phx",
+              "normal-iad",
+              "femp"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a design comparison, evaluate coincident dry-bulb and wet-bulb conditions, peak design weather, cooling equipment limits, and the expected IT load. Test water availability, backup operating modes and each design’s part-load behavior. Use outdoor station observations as weather inputs and apply the equipment’s own air and fluid requirements at the relevant operating points.",
+            "sourceIds": [
+              "femp"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For an Invariant Earth screening workflow, start with the annual dry-bulb normal, the catalog’s wet-bulb design proxy and the count of hours at or below 15°C in a typical meteorological year. Use the last two as screening inputs with their source and method. Apply coincident hourly conditions and the project team’s design criteria before selecting equipment.",
+            "sourceIds": [
+              "earth-climate",
+              "femp"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related cooling and site evidence",
+            "items": [
+              {
+                "slug": "liquid-cooling-gpu-data-center",
+                "label": "Review liquid cooling requirements for GPU facilities"
+              },
+              {
+                "slug": "water-sewer-data-apis-site-selection",
+                "label": "Check water and sewer service for a candidate site"
+              },
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Browse environmental and site selection guides"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What hourly weather fields matter for a cooling study?",
+        "answer": "Start with timestamped outdoor dry-bulb temperature, dew point and wet-bulb conditions, with station coverage and quality flags. Add the weather variables required by the equipment and operating mode being modeled.",
+        "sourceIds": [
+          "ghcnh-doc",
+          "femp"
+        ]
+      },
+      {
+        "question": "Can I use NOAA’s monthly normals to estimate economizer hours?",
+        "answer": "Monthly normals summarize typical conditions over a reference period. Estimate operating hours from coincident hourly weather and the controls and equipment limits of the proposed system.",
+        "sourceIds": [
+          "normals",
+          "femp"
+        ]
+      },
+      {
+        "question": "How should I handle multiple airport reports in the same hour?",
+        "answer": "Choose a consistent routine report and timing rule. For this comparison we require both temperatures in the same eligible report and take the last such report per UTC hour.",
+        "sourceIds": [
+          "ghcnh-doc"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "earth-climate",
+        "title": "Invariant Earth public climate field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Earth API climate fields"
+      },
+      {
+        "id": "ghcnh",
+        "title": "Global Historical Climatology Network hourly and bulk downloads",
+        "url": "https://www.ncei.noaa.gov/products/global-historical-climatology-network-hourly",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "NOAA hourly data"
+      },
+      {
+        "id": "ghcnh-doc",
+        "title": "GHCNh documentation for station files, UTC, quality flags and report types",
+        "url": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/doc/ghcnh_DOCUMENTATION.pdf",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "Hourly file documentation"
+      },
+      {
+        "id": "phx-2024",
+        "title": "Phoenix Sky Harbor GHCNh observations for 2024",
+        "url": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2024/psv/GHCNh_USW00023183_2024.psv",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "Phoenix 2024 station file"
+      },
+      {
+        "id": "iad-2024",
+        "title": "Washington Dulles GHCNh observations for 2024",
+        "url": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2024/psv/GHCNh_USW00093738_2024.psv",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "Dulles 2024 station file"
+      },
+      {
+        "id": "normal-phx",
+        "title": "Phoenix Sky Harbor 1991–2020 monthly maximum temperature normals",
+        "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=normals-monthly-1991-2020&stations=USW00023183&format=json&units=standard&dataTypes=MLY-TMAX-NORMAL&includeStationName=true",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "Phoenix normals"
+      },
+      {
+        "id": "normal-iad",
+        "title": "Washington Dulles 1991–2020 monthly maximum temperature normals",
+        "url": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=normals-monthly-1991-2020&stations=USW00093738&format=json&units=standard&dataTypes=MLY-TMAX-NORMAL&includeStationName=true",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "Dulles normals"
+      },
+      {
+        "id": "normals",
+        "title": "U.S. Climate Normals 1991–2020 and available hourly products",
+        "url": "https://www.ncei.noaa.gov/access/us-climate-normals/",
+        "publisher": "NOAA NCEI"
+      },
+      {
+        "id": "femp",
+        "title": "Best Practices Guide for Energy-Efficient Data Center Design",
+        "url": "https://www.energy.gov/cmei/femp/articles/best-practices-guide-energy-efficient-data-center-design",
+        "publisher": "U.S. Department of Energy",
+        "linkLabel": "DOE design guide"
+      },
+      {
+        "id": "cover",
+        "title": "Landsat 9 Image of Phoenix Metropolitan Area",
+        "url": "https://www.usgs.gov/media/images/landsat-9-image-phoenix-metropolitan-area",
+        "publisher": "U.S. Geological Survey"
+      }
+    ],
+    "dataset": {
+      "name": "NOAA hourly heat and dew point comparison for Phoenix and Dulles",
+      "description": "Six station-year summaries of paired Phoenix and Dulles dry-bulb and dew point observations from 2023 through 2025. Includes missing hours, filter rules, source file hashes and both July normals.",
+      "sourceIds": [
+        "ghcnh",
+        "ghcnh-doc",
+        "phx-2024",
+        "iad-2024",
+        "normal-phx",
+        "normal-iad"
+      ],
+      "spatialCoverage": "Phoenix Sky Harbor, Arizona, and Washington Dulles, Virginia, United States",
+      "temporalCoverage": "2023-01-01/2025-12-31"
+    },
+    "relatedSlugs": [
+      "water-sewer-data-apis-site-selection",
+      "liquid-cooling-gpu-data-center",
+      "best-gis-apis-for-site-selection"
+    ]
+  },
+  {
     "slug": "freight-analysis-framework-data",
     "topic": "Data & APIs",
     "region": "United States",

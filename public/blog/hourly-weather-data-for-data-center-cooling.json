@@ -1,0 +1,133 @@
+{
+  "name": "NOAA hourly heat and dew point comparison for Phoenix and Dulles",
+  "checked_on": "2026-11-23",
+  "observations": "NOAA NCEI Global Historical Climatology Network-hourly (GHCNh), Versions and data: https://www.ncei.noaa.gov/products/global-historical-climatology-network-hourly",
+  "normal_reference": "NOAA 1991–2020 monthly normals. MLY-TMAX-NORMAL for July, in degrees Fahrenheit, is the long-term July mean of daily maximum temperature.",
+  "method": {
+    "unit": "Celsius for hourly source temperature and dew point. Fahrenheit for the normals queried in standard units.",
+    "eligible_rows": "Both temperature_Report_Type and dew_point_temperature_Report_Type equal FM15. Both temperature and dew point must be available in the same row with GHCNh quality codes 0, 1, 4, 5 or 9. Blank quality flags and other codes are excluded. Pairs where dew point is above temperature are excluded.",
+    "hour_selection": "Group eligible rows by the first 13 characters of the UTC DATE field. Keep the latest eligible observation in each UTC hour. No values are interpolated.",
+    "thresholds": "Dry-bulb temperature at or above 35°C and dew point at or above 20°C, counted separately and jointly. These are illustrative screening thresholds.",
+    "missing": "Subtract paired hours from expected hours for the UTC calendar year, including February 29 in 2024. Report missing hours separately."
+  },
+  "stations": {
+    "USW00023183": {
+      "annual": [
+        {
+          "year": 2023,
+          "utc_hours": 8760,
+          "valid_paired_hours": 8741,
+          "hours_without_eligible_pair": 19,
+          "dry_bulb_at_least_35_c_hours": 1882,
+          "dew_point_at_least_20_c_hours": 22,
+          "both_thresholds_hours": 2,
+          "max_sampled_dry_bulb_c": "48.3",
+          "max_sampled_dew_point_c": "21.1",
+          "filter_counts": {
+            "nonroutine_or_missing_report_type": 2007,
+            "quality_code_excluded": 17,
+            "extra_routine_report_in_hour": 1
+          },
+          "source_psv": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2023/psv/GHCNh_USW00023183_2023.psv",
+          "sha256": "92ca5331bd4b5449290c2280422d50bd5522ae5baf51d73cc3ed7d7e41a2172d"
+        },
+        {
+          "year": 2024,
+          "utc_hours": 8784,
+          "valid_paired_hours": 8767,
+          "hours_without_eligible_pair": 17,
+          "dry_bulb_at_least_35_c_hours": 2149,
+          "dew_point_at_least_20_c_hours": 67,
+          "both_thresholds_hours": 2,
+          "max_sampled_dry_bulb_c": "47.2",
+          "max_sampled_dew_point_c": "23.9",
+          "filter_counts": {
+            "nonroutine_or_missing_report_type": 3239,
+            "quality_code_excluded": 14
+          },
+          "source_psv": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2024/psv/GHCNh_USW00023183_2024.psv",
+          "sha256": "b73101069d510ba2f22285627e5cd36801e1f03edcdc0aa27b995bdf87dec373"
+        },
+        {
+          "year": 2025,
+          "utc_hours": 8760,
+          "valid_paired_hours": 8615,
+          "hours_without_eligible_pair": 145,
+          "dry_bulb_at_least_35_c_hours": 1640,
+          "dew_point_at_least_20_c_hours": 118,
+          "both_thresholds_hours": 1,
+          "max_sampled_dry_bulb_c": "47.8",
+          "max_sampled_dew_point_c": "22.8",
+          "filter_counts": {
+            "nonroutine_or_missing_report_type": 3217,
+            "quality_code_excluded": 131
+          },
+          "source_psv": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2025/psv/GHCNh_USW00023183_2025.psv",
+          "sha256": "02c2acf54576f68ceaa7ad7871b20912df05b50fdfb6f97fdc0e368bc8cf8ed9"
+        }
+      ],
+      "station_name": "PHOENIX AP",
+      "july_normal_daily_max_f": "106.5",
+      "monthly_normals_query": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=normals-monthly-1991-2020&stations=USW00023183&format=json&units=standard&dataTypes=MLY-TMAX-NORMAL&includeStationName=true"
+    },
+    "USW00093738": {
+      "annual": [
+        {
+          "year": 2023,
+          "utc_hours": 8760,
+          "valid_paired_hours": 8760,
+          "hours_without_eligible_pair": 0,
+          "dry_bulb_at_least_35_c_hours": 37,
+          "dew_point_at_least_20_c_hours": 782,
+          "both_thresholds_hours": 12,
+          "max_sampled_dry_bulb_c": "37.2",
+          "max_sampled_dew_point_c": "25.0",
+          "filter_counts": {
+            "nonroutine_or_missing_report_type": 3140,
+            "quality_code_excluded": 1
+          },
+          "source_psv": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2023/psv/GHCNh_USW00093738_2023.psv",
+          "sha256": "237d0cbd78d31fafd8e07ad74277c828b9403be93d773e4cc4cc2b98142dfe7e"
+        },
+        {
+          "year": 2024,
+          "utc_hours": 8784,
+          "valid_paired_hours": 8780,
+          "hours_without_eligible_pair": 4,
+          "dry_bulb_at_least_35_c_hours": 86,
+          "dew_point_at_least_20_c_hours": 981,
+          "both_thresholds_hours": 39,
+          "max_sampled_dry_bulb_c": "37.8",
+          "max_sampled_dew_point_c": "25.0",
+          "filter_counts": {
+            "nonroutine_or_missing_report_type": 4472,
+            "quality_code_excluded": 5
+          },
+          "source_psv": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2024/psv/GHCNh_USW00093738_2024.psv",
+          "sha256": "ba91e750c30857bba365103fbf5b593dfa677c30d37f9571952dd7d2f7e559b8"
+        },
+        {
+          "year": 2025,
+          "utc_hours": 8760,
+          "valid_paired_hours": 8607,
+          "hours_without_eligible_pair": 153,
+          "dry_bulb_at_least_35_c_hours": 16,
+          "dew_point_at_least_20_c_hours": 1180,
+          "both_thresholds_hours": 15,
+          "max_sampled_dry_bulb_c": "36.1",
+          "max_sampled_dew_point_c": "25.6",
+          "filter_counts": {
+            "nonroutine_or_missing_report_type": 4240,
+            "quality_code_excluded": 127,
+            "extra_routine_report_in_hour": 1
+          },
+          "source_psv": "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/access/by-year/2025/psv/GHCNh_USW00093738_2025.psv",
+          "sha256": "3b02fe156e9f425b3f39eb70ee7c52867d0858a760d4b1ec5a8a9ea64755ecc3"
+        }
+      ],
+      "station_name": "WASHINGTON DULLES INTL AP",
+      "july_normal_daily_max_f": "87.6",
+      "monthly_normals_query": "https://www.ncei.noaa.gov/access/services/data/v1?dataset=normals-monthly-1991-2020&stations=USW00093738&format=json&units=standard&dataTypes=MLY-TMAX-NORMAL&includeStationName=true"
+    }
+  }
+}
