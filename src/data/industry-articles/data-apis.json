@@ -1,5 +1,374 @@
 [
   {
+    "slug": "farmland-crop-history-by-parcel",
+    "topic": "Data & APIs",
+    "region": "Boone County, Iowa",
+    "title": "How to Find Farmland Crop History by Parcel",
+    "description": "Use USDA crop maps to check five years of crop cover, verify narrow-field errors against Iowa State’s farm records, and compare soils and irrigation evidence.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Side by side maps compare Iowa State’s 2020 crop records with the USDA 30-metre crop map. The map’s dominant class matches 13 of 35 research plots with consistent reference records.",
+    "coverCaption": "Both maps show the same research plots. The farm records and crop classes describe 2020. The contextual aerial image is USDA NAIP 2023.",
+    "intro": "Start with the field boundary and clip each year of the USDA Cropland Data Layer to it. Record the area assigned to each crop, the raster resolution and which years have field records for comparison. At Iowa State’s Marsden Farm, the USDA map’s dominant class matched the 2020 crop records on 13 of 35 research plots with consistent records. The plots are about 18 metres wide, narrower than the 30-metre crop pixels used that year.",
+    "takeaways": [
+      "Keep crop class and mapped acreage for each year. An overall dominant crop can hide a rotation and combine distinct fields on one parcel.",
+      "Compare classification to grower or research records where field edges, narrow strips or cover crops affect an important decision.",
+      "Review soils, drainage, water use and irrigation authorization separately before valuing a property or underwriting production."
+    ],
+    "sections": [
+      {
+        "id": "how-to-get-five-years-of-crop-history",
+        "heading": "Where can I find the last five years of crop history for a property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "USDA NASS publishes annual crop classes through CroplandCROS and its national Cropland Data Layer downloads. Start with the growing area for the field in question, retaining the assessor parcel separately when it also contains a farmstead, roads or neighboring fields. Use an equal-area projection to clip the raster and report the acreage for each class, including uncultivated classes and any missing coverage.",
+            "sourceIds": [
+              "cdl-releases",
+              "cdl-service"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The examples below use the same 13.64-acre footprint of 36 Marsden research plots. We excluded the access and separation strips identified in the plot layout. We requested USDA’s categorical data on a 30-metre grid for 2021 through 2023 and a 10-metre grid for 2024 and 2025, following the original products’ nominal resolutions. The finer grid and changes in how USDA generated the classes can affect comparisons across those years.",
+            "sourceIds": [
+              "cdl-releases",
+              "cdl-2024",
+              "cdl-2025",
+              "plot-geometry",
+              "gis-id"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Crop year",
+              "Cell size",
+              "Corn",
+              "Soybeans",
+              "Grassland or pasture"
+            ],
+            "rows": [
+              [
+                "2021",
+                "30 m",
+                "3.82 acres",
+                "5.46 acres",
+                "3.83 acres"
+              ],
+              [
+                "2022",
+                "30 m",
+                "3.74 acres",
+                "4.80 acres",
+                "4.25 acres"
+              ],
+              [
+                "2023",
+                "30 m",
+                "0.82 acres",
+                "5.76 acres",
+                "6.00 acres"
+              ],
+              [
+                "2024",
+                "10 m",
+                "1.56 acres",
+                "4.43 acres",
+                "7.64 acres"
+              ],
+              [
+                "2025",
+                "10 m",
+                "0.67 acres",
+                "4.33 acres",
+                "6.16 acres"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The table shows three mapped classes. The download includes every class that intersects the plots, including 1.13 acres mapped as oats and 0.89 as alfalfa in 2025. The 2021 through 2025 rows describe USDA classifications over the historical plot footprint. Two farm reference records were available to cross-check the 2020 map.",
+            "sourceIds": [
+              "cdl-service",
+              "cdl-2025",
+              "farm-layout",
+              "farm-key"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/farmland-crop-history-by-parcel.json",
+            "format": "JSON",
+            "label": "Download the annual crop grids, plot comparisons, and soil map units"
+          }
+        ]
+      },
+      {
+        "id": "marsden-plot-crop-map-check",
+        "heading": "Can a crop map recover a field’s actual rotation?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Iowa State tested two-, three-, and four-year rotations at Marsden Farm. The rotations combine corn and soybeans with oats and companion forage in the longer systems. We matched the numbered plot geometries to the farm’s 2020 layout and crop key. One plot was excluded because the layout labels plot 33 as soybeans and the crop key labels it as the oat phase.",
+            "sourceIds": [
+              "iowa-study",
+              "farm-layout",
+              "farm-key",
+              "gis-id"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Of the 35 plots where the two farm records agree, the crop class covering the most area matched on 13. Sampling only the centre pixel matched on 12. For example, the farm records list soybeans on plot 43, where the USDA map classified about 88% of the plot as corn. The map’s smallest unit was wider than a typical plot, and the rotations included crops grown together. Treat these results as a check on the narrow Marsden research plots.",
+            "sourceIds": [
+              "farm-layout",
+              "farm-key",
+              "cdl-service",
+              "cdl-releases"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "When crop sequence affects a purchase or lease, ask for dated planting and harvest records tied to the same field boundaries. Keep the mapped class shares with the field-level reference and compare each year separately. An acreage-weighted dominant crop is useful for screening, while annual records preserve the alternation of crops.",
+            "sourceIds": [
+              "farm-layout",
+              "farm-key",
+              "cdl-service"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "farmland-soil-csr2",
+        "heading": "How do I check soil productivity for the same field?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Intersect the same field boundary with the USDA NRCS soil map units. For Iowa’s Corn Suitability Rating 2, or CSR2, multiply each current rating by the acres of overlap, add those products, and divide by the acreage with ratings. Save the rating source and the soil survey version with the calculation.",
+            "sourceIds": [
+              "sda",
+              "csr2"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Our 13.64-acre footprint intersected six Boone County soil map units and had an area-weighted CSR2 of 87.3. About 5.78 acres fell in units classified as prime farmland if drained. The rating describes relative corn-growing potential under the rating assumptions. For valuation, check drainage condition and historical yields separately.",
+            "sourceIds": [
+              "sda",
+              "csr2",
+              "csr2-formula"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "verify-farm-irrigation",
+        "heading": "How do I verify whether farmland is irrigated?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The 2022 Census of Agriculture reports 561 irrigated acres and 563 acres with irrigation systems or equipment present for Boone County. Those are two different county measures. Neither identifies the irrigated fields or proves what water is available to the research plots.",
+            "sourceIds": [
+              "irrigation-table"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a specific Iowa property, check the Department of Natural Resources water-use permit registry and get the underlying permit, any amendments and the annual water-use reports. Match the permit holder, withdrawal location, authorized amount, reporting period and the land actually served. Confirm the current equipment and recorded use with the operator.",
+            "sourceIds": [
+              "iowa-water",
+              "iowa-registry"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "crop-history-api",
+        "heading": "What should a parcel crop history API return?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s field catalog documents a five-year dominant crop at a 30-metre cell, with the annual history in the field notes, and SSURGO point fields for soil map unit and drainage class. For acreage or underwriting, request the field or parcel boundary and keep the annual grids or class shares with crop year, resolution and the calculation method. Report field records and any permit or usage evidence under their own sources.",
+            "sourceIds": [
+              "earth-fields",
+              "cdl-releases",
+              "sda",
+              "iowa-water"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I look up what was grown on a parcel?",
+        "answer": "Use the field boundary and the USDA Cropland Data Layer for each growing season. Clip each year to the same boundary, retain the mapped acreage by crop class, and check important years against planting or harvest records.",
+        "sourceIds": [
+          "cdl-releases",
+          "cdl-service"
+        ]
+      },
+      {
+        "question": "Does USDA crop data show a corn-soybean rotation?",
+        "answer": "Annual corn and soybean classes can indicate a rotation. Look at the sequence for each field over several years and keep both classes where the map shows them. A single dominant crop across years obscures the sequence.",
+        "sourceIds": [
+          "cdl-service",
+          "cdl-releases"
+        ]
+      },
+      {
+        "question": "Is Corn Suitability Rating 2 a yield estimate?",
+        "answer": "CSR2 is a relative rating for Iowa soil map units. Calculate an area-weighted rating for a tract and use actual field yield histories separately when estimating production.",
+        "sourceIds": [
+          "csr2",
+          "csr2-formula"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "cdl-releases",
+        "title": "USDA NASS national Cropland Data Layer downloads and nominal resolution by year",
+        "url": "https://www.nass.usda.gov/Research_and_Science/Cropland/Release/index.php",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "linkLabel": "Annual USDA crop maps"
+      },
+      {
+        "id": "cdl-service",
+        "title": "CroplandCROS categorical Cropland Data Layer image service",
+        "url": "https://pdi.scinet.usda.gov/image/rest/services/CDL_WM/ImageServer",
+        "publisher": "USDA CroplandCROS",
+        "linkLabel": "Crop map imagery service"
+      },
+      {
+        "id": "cdl-2024",
+        "title": "USDA crop data methods and the transition to 10 metres in 2024",
+        "url": "https://www.nass.usda.gov/research-and-science/cropland/sarsfaqs2",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "linkLabel": "Crop map resolution and methodology"
+      },
+      {
+        "id": "cdl-2025",
+        "title": "2025 Cropland Data Layer metadata and crop codes",
+        "url": "https://www.nass.usda.gov/Research_and_Science/Cropland/metadata/metadata_CDL25_FGDC-STD-001-1998.htm",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "linkLabel": "2025 crop map metadata"
+      },
+      {
+        "id": "iowa-study",
+        "title": "Marsden Long-Term Rotation Study design and rotations",
+        "url": "https://inrc.cals.iastate.edu/project-location/marsden-long-term-rotation-study",
+        "publisher": "Iowa Nutrient Research Center",
+        "linkLabel": "Marsden study design"
+      },
+      {
+        "id": "farm-layout",
+        "title": "2020 Marsden experiment field layout",
+        "url": "https://raw.githubusercontent.com/vanichols/maRsden/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/plotkey/plot-maps/2020_Marsden_plot-map.xlsx",
+        "publisher": "Iowa State University Marsden Farm research team",
+        "linkLabel": "2020 field layout"
+      },
+      {
+        "id": "farm-key",
+        "title": "2020 Marsden year, plot and harvest-crop key",
+        "url": "https://raw.githubusercontent.com/vanichols/maRsden/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/plotkey/rd_year-plot-trt-2020.xlsx",
+        "publisher": "Iowa State University Marsden Farm research team",
+        "linkLabel": "2020 crop key"
+      },
+      {
+        "id": "plot-geometry",
+        "title": "Marsden published GIS plot boundaries",
+        "url": "https://github.com/vanichols/maRsden/tree/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/elevation/raw-Jess",
+        "publisher": "Iowa State University Marsden Farm research team",
+        "linkLabel": "Research plot boundaries"
+      },
+      {
+        "id": "gis-id",
+        "title": "Marsden GIS record to experiment plot ID crosswalk",
+        "url": "https://raw.githubusercontent.com/vanichols/maRsden/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/elevation/code_proc-elevation.R",
+        "publisher": "Iowa State University Marsden Farm research team",
+        "linkLabel": "Plot ID crosswalk"
+      },
+      {
+        "id": "naip",
+        "title": "USDA 2023 National Agriculture Imagery Program orthophotography",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2023_CONUS/ImageServer",
+        "publisher": "USDA Farm Production and Conservation",
+        "linkLabel": "2023 aerial imagery"
+      },
+      {
+        "id": "sda",
+        "title": "Soil Data Access spatial and tabular query documentation",
+        "url": "https://sdmdataaccess.nrcs.usda.gov/documents/AdvancedQueries.html",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "NRCS soil polygons and attributes"
+      },
+      {
+        "id": "csr2",
+        "title": "Calculating a weighted average Corn Suitability Rating 2",
+        "url": "https://www.extension.iastate.edu/agdm/wholefarm/html/c2-87.html",
+        "publisher": "Iowa State University Extension and Outreach",
+        "linkLabel": "Iowa State CSR2 calculation guide"
+      },
+      {
+        "id": "csr2-formula",
+        "title": "Iowa State CSR2 equation, definitions and limitations",
+        "url": "https://www.agron.iastate.edu/glsi/files/2022/12/ISU-CSR2-formula-with-values-V1.1-09Mar15.pdf",
+        "publisher": "Iowa State University",
+        "linkLabel": "CSR2 rating formula"
+      },
+      {
+        "id": "irrigation-table",
+        "title": "2022 Census of Agriculture, Iowa county irrigation, Table 10",
+        "url": "https://www.nass.usda.gov/sites/default/files/publications/agcensus/2022/Full_Report/Volume_1,_Chapter_2_County_Level/Iowa/st19_2_010_010.pdf#page=2",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "linkLabel": "Boone County irrigation table"
+      },
+      {
+        "id": "iowa-water",
+        "title": "Iowa water allocation, permits, and annual water-use reporting",
+        "url": "https://www.iowadnr.gov/environmental-protection/water-quality/water-supply-engineering/water-allocation-use?type=click",
+        "publisher": "Iowa Department of Natural Resources",
+        "linkLabel": "Iowa water-use program"
+      },
+      {
+        "id": "iowa-registry",
+        "title": "Iowa Water Allocation Compliance and Online Permitting",
+        "url": "https://programs.iowadnr.gov/wacop/",
+        "publisher": "Iowa Department of Natural Resources",
+        "linkLabel": "Iowa water-use permit registry"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      }
+    ],
+    "dataset": {
+      "name": "Marsden Farm crop history, plot classification check, and Iowa soil productivity",
+      "description": "Thirty-six Marsden plot boundaries, six USDA annual crop raster windows, the 2020 farm record comparison, clipped soil units, and 2022 county irrigation context.",
+      "spatialCoverage": "Marsden Farm research plots and Boone County, Iowa, United States",
+      "temporalCoverage": "2020-01-01/2026-11-23",
+      "sourceIds": [
+        "cdl-service",
+        "farm-layout",
+        "farm-key",
+        "plot-geometry",
+        "sda",
+        "irrigation-table"
+      ]
+    },
+    "relatedSlugs": [
+      "lidar-slope-developable-land",
+      "wetlands-hydric-soils-land-development",
+      "historical-parcel-boundaries-api"
+    ]
+  },
+  {
     "slug": "lidar-slope-developable-land",
     "topic": "Data & APIs",
     "region": "Stayton, Oregon",

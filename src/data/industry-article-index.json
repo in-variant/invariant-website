@@ -1,5 +1,36 @@
 [
   {
+    "slug": "farmland-crop-history-by-parcel",
+    "topic": "Data & APIs",
+    "title": "How to Find Farmland Crop History by Parcel",
+    "summary": "Use USDA crop maps to check five years of crop cover, verify narrow-field errors against Iowa State’s farm records, and compare soils and irrigation evidence.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "Boone County, Iowa",
+    "image": "/blog/industry/farmland-crop-history-by-parcel.webp?v=cd9fde63",
+    "dataset": {
+      "name": "Marsden Farm crop history, plot classification check, and Iowa soil productivity",
+      "description": "Thirty-six Marsden plot boundaries, six USDA annual crop raster windows, the 2020 farm record comparison, clipped soil units, and 2022 county irrigation context.",
+      "spatialCoverage": "Marsden Farm research plots and Boone County, Iowa, United States",
+      "temporalCoverage": "2020-01-01/2026-11-23",
+      "sources": [
+        "https://pdi.scinet.usda.gov/image/rest/services/CDL_WM/ImageServer",
+        "https://raw.githubusercontent.com/vanichols/maRsden/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/plotkey/plot-maps/2020_Marsden_plot-map.xlsx",
+        "https://raw.githubusercontent.com/vanichols/maRsden/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/plotkey/rd_year-plot-trt-2020.xlsx",
+        "https://github.com/vanichols/maRsden/tree/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/elevation/raw-Jess",
+        "https://sdmdataaccess.nrcs.usda.gov/documents/AdvancedQueries.html",
+        "https://www.nass.usda.gov/sites/default/files/publications/agcensus/2022/Full_Report/Volume_1,_Chapter_2_County_Level/Iowa/st19_2_010_010.pdf#page=2"
+      ],
+      "downloads": [
+        {
+          "label": "Download the annual crop grids, plot comparisons, and soil map units",
+          "path": "/blog/farmland-crop-history-by-parcel.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "lidar-slope-developable-land",
     "topic": "Data & APIs",
     "title": "How to Calculate Parcel Slope and Screen Developable Land",
