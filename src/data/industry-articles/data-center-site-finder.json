@@ -6098,161 +6098,282 @@
   "topic": "Data Centers",
   "kind": "site-listing",
   "region": "United States",
-  "title": "500 MW data center site: where to find 500 MW of power for a hyperscale AI campus",
-  "description": "Find a 500 MW data center site in the US: 345 to 500 kV transmission, 250 to 750 acres, gas plus grid strategies, and 375 to 500 MW+ sites available now.",
+  "title": "500 MW Data Center Sites | Power, Land and Delivery Dates",
+  "description": "Compare marketed U.S. sites for a 500 MW data center. See facility versus IT load, what a utility agreement confirms, and how to check power by phase.",
   "date": "2026-11-09",
-  "readMinutes": 6,
-  "intro": "At 500 MW the site is a grid project first and a real estate deal second. Few US substations can take 500 MW without new transmission, so most 500 MW sites combine a large grid commitment with on-site generation or a retired plant’s infrastructure. Invariant tracks 500 MW candidates across PJM, MISO, SPP and the West, and currently lists a Pennsylvania site with 200 MW of gas plus 300 MW of grid, an Iowa site scaling past 500 MW and a 375 MW Nevada site.",
+  "updatedDate": "2026-11-23",
+  "readMinutes": 8,
+  "intro": "Start with the first power block and the date you need it. A site marketed at 500 MW can describe total utility service, a combination of utility and on-site supply, or a long-term expansion. Hut 8 illustrates the distinction at Beacon Point in Texas, where one 500 MW utility phase supports a lease for 352 MW of critical IT capacity.",
   "takeaways": [
-   "500 MW at the meter is about 385 MW of IT at a PUE of 1.3, roughly 3,200 AI racks at 120 kW, about 230,000 GPUs.",
-   "Expect 345 or 500 kV service, multiple lines, and transmission upgrades paid for or secured by the customer.",
-   "Gas plus grid is the common structure: on-site generation for the first phases, grid for the rest.",
-   "Land: 250 to 750 gross acres, more if solar or generation sits on site."
+   "State the requested facility MW, critical IT MW and delivery date for each phase.",
+   "At Beacon Point, the developer reports 500 MW of utility capacity and 352 MW of critical IT capacity in each of two phases.",
+   "A utility agreement, first electrical energization and first data hall delivery describe different milestones.",
+   "Before taking a land option, ask what service can transfer or be extended to your entity and who pays for upgrades."
   ],
   "sections": [
    {
-    "id": "what-fits",
-    "heading": "What 500 MW actually fits",
+    "id": "sites-available",
+    "heading": "Marketed sites for a 500 MW requirement",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Utilities sell facility load. Tenants buy IT load. At a PUE of 1.3, a 500 MW site leaves about 380 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is roughly 3,210 racks, or about 230,770 GPUs. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are a hyperscaler, a frontier AI lab or a large infrastructure developer.",
+      "text": "Ask which candidates can serve your first phase on time. This shortlist includes opportunities marketed at 500 MW or more and smaller blocks for a phased build. The public descriptions vary in the evidence they provide. Confirm the terms and current status directly before relying on a listing."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Marketed site",
+       "What the listing says",
+       "What to verify next"
+      ],
+      "rows": [
+       [
+        "Pennsylvania hybrid power site",
+        "200 MW of on-site gas and 300 MW of grid supply are marketed. The listing describes gas first and grid later.",
+        "Confirm dependable gas output and the grid delivery schedule. Check which periods permit both sources to serve the load."
+       ],
+       [
+        "Iowa phased supply opportunity",
+        "The listing describes a 20 MW starting opportunity and potential expansion above 500 MW.",
+        "Ask which first block has a binding supply commitment and what the expansion depends on."
+       ],
+       [
+        "Nevada development site",
+        "The listing markets 375 MW and about 350 buildable acres.",
+        "Use it as a smaller first-phase option and ask the utility what an expansion would require."
+       ],
+       [
+        "Pennsylvania campus for lease",
+        "The listing reports a 350 MW service agreement and gives milestones of 50 MW by end 2026 and 300 MW by end 2027.",
+        "Check the latest signed schedule for which blocks are incremental and which can serve your lease."
+       ],
+       [
+        "Arizona campus",
+        "The listing markets a proposed 1.5 GW first phase and targets grid service in 2027.",
+        "Request the underlying study, any service agreement, and the first block the utility has confirmed."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "pa-hybrid"
+       ],
+       [
+        "iowa-ppa"
+       ],
+       [
+        "nevada-375"
+       ],
+       [
+        "pa-lease"
+       ],
+       [
+        "arizona-campus"
+       ]
+      ]
+     },
+     {
+      "type": "links",
+      "label": "Read the published listings",
+      "items": [
+       {
+        "slug": "pennsylvania-500-mw-gas-and-grid-data-center-site",
+        "label": "Pennsylvania hybrid power site"
+       },
+       {
+        "slug": "iowa-20-to-500-mw-mining-site-long-term-ppa",
+        "label": "Iowa phased supply opportunity"
+       },
+       {
+        "slug": "nevada-375-mw-powered-land-230-kv-data-center-site",
+        "label": "Nevada development site"
+       },
+       {
+        "slug": "pennsylvania-350-mw-contracted-power-ai-campus-for-lease",
+        "label": "Pennsylvania campus for lease"
+       },
+       {
+        "slug": "arizona-1-5-gw-powered-land-ai-campus",
+        "label": "Arizona campus"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "what-fits",
+    "heading": "How much IT load does a 500 MW data center support?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "A 500 MW utility service describes power at the facility boundary. Critical IT load is the planned power for servers, storage and networking. For an early estimate, divide facility power by an assumed facility-to-IT ratio at the same operating point. DOE defines power usage effectiveness using energy over a reporting period. Use the engineer’s design-day loads for the utility request, including cooling and electrical losses.",
       "sourceIds": [
-       "nvl72"
+       "doe-pue"
       ]
      },
      {
       "type": "table",
       "columns": [
-       "500 MW site",
-       "What to expect"
+       "What you have or need",
+       "Illustrative result at a 1.30 facility-to-IT ratio"
       ],
       "rows": [
        [
-        "IT load at PUE 1.3",
-        "About 380 MW"
+        "500 MW facility load",
+        "About 385 MW IT, calculated as 500 ÷ 1.30."
        ],
        [
-        "AI racks at 120 kW",
-        "About 3,210"
-       ],
-       [
-        "Utility service",
-        "345 to 500 kV, a new switching station and multiple transmission lines; sometimes a new generator interconnection too."
-       ],
-       [
-        "Land",
-        "About 250 to 750 gross acres."
-       ],
-       [
-        "Time to power",
-        "Phased over 2 to 5 years even on the best sites."
-       ],
-       [
-        "Documents to ask for",
-        "Studies for the full load and each phase, transmission upgrade cost allocation, gas supply agreements if on-site generation is used, and the air permit path."
+        "500 MW critical IT load",
+        "About 650 MW facility load, calculated as 500 × 1.30."
        ]
       ]
-     },
-     {
-      "type": "paragraph",
-      "text": "These ranges are Invariant’s working figures from sites we have screened. They are not published standards, and individual utilities and designs land outside them."
      }
     ]
    },
    {
     "id": "s0-how-500-mw-campuses-get-built",
-    "heading": "How 500 MW campuses get built",
+    "heading": "Beacon Point shows what 500 MW means by phase",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Look at the public AI campuses. Crusoe’s Abilene campus reached 1.2 GW with a grid interconnection plus on-site batteries, solar and backup gas turbines. Meta’s Hyperion campus in Louisiana started as a 2 GW plan and expanded to 5 GW. Both paired land with dedicated generation. A 500 MW buyer should expect a similar mix.",
+      "text": "Beacon Point is a 525-acre campus in Nueces County, Texas. Hut 8 reports a campus interconnection agreement for 1,000 MW of utility capacity with AEP Texas. Its two leases cover 704 MW of critical IT capacity. In July, the developer gave an initial energization target of Q1 2027. The November update gave different dates for first data halls in the two phases.",
       "sourceIds": [
-       "crusoe",
-       "meta-hyperion"
+       "hut8-project",
+       "hut8-july",
+       "hut8-3q-release"
       ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Disclosure date",
+       "What it measured",
+       "Figure or target",
+       "Status or scope"
+      ],
+      "rows": [
+       [
+        "2026-07-20",
+        "Campus utility capacity",
+        "1,000 MW",
+        "Reported under agreement. Hut 8 reported an interconnection agreement with AEP Texas for the campus."
+       ],
+       [
+        "2026-07-20",
+        "Critical IT capacity, Phase 1 and Phase 2",
+        "352 MW each",
+        "Leased. The second lease brought contracted IT capacity at the campus to 704 MW."
+       ],
+       [
+        "2026-07-20",
+        "Initial energization",
+        "Q1 2027",
+        "Developer target. The July announcement gave a target for initial electrical energization."
+       ],
+       [
+        "2026-11-04",
+        "Construction as of September 30",
+        "500 MW utility capacity per phase",
+        "Under construction. The third-quarter filing classified both phases as under construction."
+       ],
+       [
+        "2026-11-04",
+        "Initial Phase 1 data hall delivery",
+        "Q3 2027",
+        "Developer target. The November operating update gave a date for the first Phase 1 data hall."
+       ],
+       [
+        "2026-11-04",
+        "Initial Phase 2 data hall delivery",
+        "Q2 2028",
+        "Developer target. The November operating update gave a separate first-hall date for Phase 2."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "hut8-july"
+       ],
+       [
+        "hut8-july"
+       ],
+       [
+        "hut8-july"
+       ],
+       [
+        "hut8-3q-filing"
+       ],
+       [
+        "hut8-3q-release"
+       ],
+       [
+        "hut8-3q-release"
+       ]
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the Beacon Point power milestones",
+      "path": "/blog/beacon-point-data-center-power-milestones.csv",
+      "format": "CSV"
+     },
+     {
+      "type": "paragraph",
+      "text": "For your campus, record the first capacity block at the meter, the first phase that can carry the required load, and the first hall delivery. Ask the utility and contractor for what must happen before each date. Use the last documented milestone when updating a lease or financing schedule."
      }
     ]
    },
    {
     "id": "s1-retired-plants-at-500-mw",
-    "heading": "Retired plants at 500 MW",
+    "heading": "Screen grid, on-site generation and former plants",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "A retired coal or gas plant can hold a switchyard, transmission rights of way and hundreds of acres. In PJM and MISO, replacement generation can reuse a retiring unit’s interconnection rights on set terms. The load side still needs its own study. Check coal ash, groundwater and recorded covenants before counting acres.",
+      "text": "Start with the serving utility’s proposed connection and a phase-by-phase study. For example, ERCOT directs entities seeking to connect at 75 MW or more through Batch Zero to check eligibility under its planning rules. Use the process and study status applicable to the specific connection.",
       "sourceIds": [
-       "pjm-replacement"
-      ]
-     }
-    ]
-   },
-   {
-    "id": "sites-available",
-    "heading": "500 MW data center sites available now",
-    "blocks": [
-     {
-      "type": "paragraph",
-      "text": "These sites from Invariant’s current inventory fit a 500 MW requirement, either at that size today or with a phase that covers it. Specs are as marketed by the owner and are checked against utility documents before any introduction."
-     },
-     {
-      "type": "table",
-      "columns": [
-       "Region",
-       "Power",
-       "Land",
-       "Timing"
-      ],
-      "rows": [
-       [
-        "Pennsylvania",
-        "200 MW BTM gas + 300 MW grid",
-        "120 ready acres",
-        "Phased"
-       ],
-       [
-        "Iowa",
-        "20 MW to 500 MW+ PPA site",
-        "Non-zoned",
-        "Phased"
-       ],
-       [
-        "Nevada",
-        "375 MW",
-        "~350 acres",
-        "2027 to 2028"
-       ],
-       [
-        "Pennsylvania",
-        "350 MW, signed utility service agreement",
-        "Former plant campus, lease",
-        "50 MW end 2026, 300 MW end 2027"
-       ],
-       [
-        "Arizona",
-        "1.5 GW marketed for Phase 1",
-        "15,000+ acres",
-        "2027 grid target"
-       ]
+       "ercot-large-load"
       ]
      },
      {
       "type": "paragraph",
-      "text": "Exact locations, the utility documents behind each MW figure and pricing are shared on a call. We also hold sites that are not listed publicly; owners ask for discretion and a site that is shopped everywhere loses value."
+      "text": "A gas bridge needs documented fuel delivery, permitted operating hours, and net electrical output under the design outage case. At a retired plant, ask what transmission or switching assets transfer and whether the utility has studied withdrawal at the proposed load. Reserve time for site-specific environmental and access diligence, including coal ash where applicable.",
+      "sourceIds": [
+       "pjm-replacement",
+       "epa-coal-ash"
+      ]
+     },
+     {
+      "type": "links",
+      "label": "Power due diligence",
+      "items": [
+       {
+        "slug": "behind-the-meter-power-for-data-centers",
+        "label": "Check on-site power capacity and timing"
+       },
+       {
+        "slug": "retired-power-plant-sites-for-data-centers",
+        "label": "Review former power plant site diligence"
+       },
+       {
+        "slug": "utility-will-serve-letter-load-study-esa",
+        "label": "Compare utility letters, studies and signed service agreements"
+       }
+      ]
      }
     ]
    },
    {
     "id": "how-we-search",
-    "heading": "How Invariant finds 500 MW sites",
+    "heading": "Send a load schedule for a site shortlist",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We search from power evidence first and land second. For a 500 MW request we start with stations and services that can carry the load, kill anything already claimed, operating for someone else, contaminated or under a moratorium, and only then look at parcels. Each surviving site is graded A (documented power), B (a named power path with a date) or C (land near capacity), with the one document that would move it up a tier."
+      "text": "Tell us the first-phase facility MW, the IT load, the service date, the ultimate campus load and the states you would consider. Include the acceptable outage exposure and whether a staged grid connection or on-site generation could work. Put the same load schedule in front of each owner and utility."
      },
      {
       "type": "paragraph",
-      "text": "Tell us the MW, the states you would consider and the date you need power. We send the 500 MW sites that fit, including ones that are not on this page."
+      "text": "Compare the first deliverable block, connection point, required network work, dates, deposits and customer obligations. Ask the developer for a site plan showing room for the data halls, cooling, substation, fiber entrances, setbacks and expansion. Beacon Point’s 525-acre figure covers its whole campus. Size other tracts from their own site plans.",
+      "sourceIds": [
+       "hut8-project"
+      ]
      }
     ]
    },
@@ -6545,46 +6666,108 @@
   ],
   "faqs": [
    {
-    "question": "How many acres does a 500 MW data center need?",
-    "answer": "Roughly 250 to 750 gross acres for the campus. On-site generation and solar can push that much higher."
+    "question": "How much IT capacity can 500 MW of utility power support?",
+    "answer": "At an assumed facility-to-IT ratio of 1.30, the planning estimate is about 385 MW of IT from 500 MW at the facility. Hut 8 reports 352 MW of critical IT capacity from 500 MW of utility capacity per Beacon Point phase. Obtain the project’s design loads and tariffs for a specific decision.",
+    "sourceIds": [
+     "doe-pue",
+     "hut8-july",
+     "hut8-3q-filing"
+    ]
    },
    {
-    "question": "Can a 500 MW data center run on behind-the-meter power?",
-    "answer": "Partly. Many large campuses use on-site gas or batteries for early phases while the grid connection is built. Turbine supply, pipeline capacity and air permits set the pace."
+    "question": "How many acres does a 500 MW data center need?",
+    "answer": "Start with a site plan for the number of halls, cooling equipment, substations, easements and setbacks, then check what the tract can fit. Hut 8 reports 525 acres for the entire two-phase Beacon Point campus, including both 500 MW utility phases.",
+    "sourceIds": [
+     "hut8-project",
+     "hut8-3q-filing"
+    ]
    },
    {
     "question": "Where can I find a 500 MW data center site?",
-    "answer": "Invariant lists a Pennsylvania site with 200 MW of behind-the-meter gas and 300 MW of grid, an Iowa site scaling to 500 MW and beyond, a 375 MW Nevada site and a 350 MW Pennsylvania campus with a signed service agreement. Details on a call."
+    "answer": "Public listings include a Pennsylvania hybrid project marketed at 200 MW of on-site gas plus 300 MW of grid supply, an Iowa opportunity marketed with possible expansion above 500 MW, and a larger Arizona development. Compare what can serve the first phase, then obtain a current agreement and schedule for the later blocks.",
+    "sourceIds": [
+     "pa-hybrid",
+     "iowa-ppa",
+     "arizona-campus"
+    ]
    },
    {
     "question": "How does Invariant help find a 500 MW data center site?",
-    "answer": "Invariant keeps a live inventory of US powered sites, screens each one against utility documents, and matches buyers to sites by MW, state and energization date. Book a call or call (628) 220-8972 with your 500 MW requirement and we send matching sites, including off-market ones."
+    "answer": "Share the load and service dates by phase, acceptable markets and any interim power options. Invariant can use that brief to screen sites and identify the utility, land and power records to request."
    }
   ],
   "sources": [
    {
-    "id": "crusoe",
-    "title": "Crusoe expands AI data center campus in Abilene to 1.2 gigawatts",
-    "url": "https://crusoe.ai/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts",
-    "publisher": "Crusoe"
+    "id": "pa-hybrid",
+    "title": "Pennsylvania hybrid power site",
+    "url": "https://invariant-ai.com/blog/pennsylvania-500-mw-gas-and-grid-data-center-site",
+    "publisher": "Invariant published listing"
    },
    {
-    "id": "gev",
-    "title": "GE Vernova gas turbine backlog climbs to 116 GW",
-    "url": "https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/",
-    "publisher": "Utility Dive"
+    "id": "iowa-ppa",
+    "title": "Iowa phased supply opportunity",
+    "url": "https://invariant-ai.com/blog/iowa-20-to-500-mw-mining-site-long-term-ppa",
+    "publisher": "Invariant published listing"
    },
    {
-    "id": "meta-hyperion",
-    "title": "Meta expands Louisiana data center campus to 5 GW",
-    "url": "https://baxtel.com/news/meta-expands-louisiana-data-center-campus-to-5gw",
-    "publisher": "Baxtel"
+    "id": "nevada-375",
+    "title": "Nevada development site",
+    "url": "https://invariant-ai.com/blog/nevada-375-mw-powered-land-230-kv-data-center-site",
+    "publisher": "Invariant published listing"
    },
    {
-    "id": "nvl72",
-    "title": "Nvidia offers 120 kW liquid-cooled Blackwell rack as industry standard",
-    "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-    "publisher": "eeNews Europe"
+    "id": "pa-lease",
+    "title": "Pennsylvania campus for lease",
+    "url": "https://invariant-ai.com/blog/pennsylvania-350-mw-contracted-power-ai-campus-for-lease",
+    "publisher": "Invariant published listing"
+   },
+   {
+    "id": "arizona-campus",
+    "title": "Arizona campus",
+    "url": "https://invariant-ai.com/blog/arizona-1-5-gw-powered-land-ai-campus",
+    "publisher": "Invariant published listing"
+   },
+   {
+    "id": "doe-pue",
+    "title": "Best Practices Guide for Energy-Efficient Data Center Design, Section 8.1",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf",
+    "publisher": "U.S. Department of Energy"
+   },
+   {
+    "id": "hut8-july",
+    "title": "July 20, 2026 announcement of the second Beacon Point lease",
+    "url": "https://www.sec.gov/Archives/edgar/data/1964789/000110465926084862/tm2620835d1_ex99-1.htm",
+    "publisher": "Hut 8 via SEC EDGAR"
+   },
+   {
+    "id": "hut8-3q-filing",
+    "title": "Third-quarter Form 10-Q, Beacon Point and capacity under construction",
+    "url": "https://www.sec.gov/Archives/edgar/data/1964789/000119312526446146/hut-20260930.htm",
+    "publisher": "Hut 8 via SEC EDGAR"
+   },
+   {
+    "id": "hut8-3q-release",
+    "title": "November 4, 2026 operating update and data hall delivery targets",
+    "url": "https://www.sec.gov/Archives/edgar/data/1964789/000110465926122347/tm2628741d1_ex99-1.htm",
+    "publisher": "Hut 8 via SEC EDGAR"
+   },
+   {
+    "id": "hut8-project",
+    "title": "Beacon Point project overview",
+    "url": "https://www.hut8.com/data-centers/beacon-point",
+    "publisher": "Hut 8"
+   },
+   {
+    "id": "ercot-large-load",
+    "title": "ERCOT large-load integration and eligibility path",
+    "url": "https://www.ercot.com/services/rq/large-load-integration",
+    "publisher": "ERCOT"
+   },
+   {
+    "id": "epa-coal-ash",
+    "title": "Coal ash rule and implementation resources",
+    "url": "https://www.epa.gov/coalash",
+    "publisher": "U.S. Environmental Protection Agency"
    },
    {
     "id": "pjm-replacement",
@@ -6596,7 +6779,16 @@
   "relatedSlugs": [
    "pennsylvania-500-mw-gas-and-grid-data-center-site",
    "find-data-center-site-us"
-  ]
+  ],
+  "dataset": {
+   "name": "Beacon Point data center power and delivery milestones",
+   "description": "Six dated disclosure records for Hut 8’s Beacon Point campus in Nueces County, Texas. They distinguish reported utility capacity, leased critical IT capacity, construction status, an initial energization target and the first data hall targets for the two phases.",
+   "sourceIds": [
+    "hut8-july",
+    "hut8-3q-filing",
+    "hut8-3q-release"
+   ]
+  }
  },
  {
   "slug": "1-gw-data-center-site",
