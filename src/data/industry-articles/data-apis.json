@@ -1,5 +1,348 @@
 [
   {
+    "slug": "zoning-data-apis-for-site-selection",
+    "topic": "Data & APIs",
+    "title": "Zoning data APIs for U.S. parcels and site selection",
+    "description": "Compare Zoneomics, Gridics, Regrid and city GIS APIs. Use a Staten Island tax lot with five mapped zoning districts to test a vendor’s parcel lookup.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "region": "United States",
+    "coverAlt": "Aerial map of 2239 Forest Avenue in Staten Island. Five colored areas show the share of the tax lot in each base zoning district. The published point falls in C8-1.",
+    "coverCaption": "2239 Forest Avenue, Staten Island. The white line traces the MapPLUTO tax lot. Colors show the clipped NYC zoning polygons. Aerial imagery from USDA, USGS and The National Map.",
+    "intro": "For a U.S. parcel zoning lookup, compare Zoneomics for point and area queries, Gridics for development standards in supported jurisdictions, and Regrid for zoning fields attached to parcel records. Keep the local government’s map and ordinance as your reference. At one Staten Island address, a point lookup gives one district, the city’s tax lot record lists three, and a boundary overlay finds five.",
+    "takeaways": [
+      "Decide whether you need zoning at a coordinate, a parcel summary, or each district intersecting the site.",
+      "Ask how the API handles small overlaps and where its source shows the adopted map and rule.",
+      "Verify the zoning lot, applicable rules and approvals with the local authority before committing to a use or floor area."
+    ],
+    "sections": [
+      {
+        "id": "compare-us-zoning-apis",
+        "heading": "Which zoning API fits the work?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give every provider the same parcel boundary and proposed use. The commercial comparison below uses published documentation. The five-district result comes from the city data queried for this article."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Documented starting point",
+              "What to check in a trial"
+            ],
+            "rows": [
+              [
+                "Zoneomics",
+                "Point and area lookups, with published options for use tables, controls and overlay data where available.",
+                "Submit the parcel polygon and ask for the geometry, source date and permitted-use reference for the affected portion."
+              ],
+              [
+                "Gridics",
+                "Parcel-level zoning, uses, setbacks and modeled development capacity.",
+                "Check jurisdiction coverage and ask which source rules and parcel assumptions drive a building envelope or floor-area result."
+              ],
+              [
+                "Regrid",
+                "Parcel IDs with local zoning codes, standardized categories on applicable plans and a matched zoning product.",
+                "Ask when you receive one parcel code, how the code is assigned and which product supplies more detail or a link to the city code."
+              ],
+              [
+                "Invariant Earth",
+                "A coordinate lookup returns parcel identity and a Regrid-sourced zoning code alongside other location fields.",
+                "Review the matched assessor parcel number. The published catalog allows a nearest-parcel fallback for parcel matching. Use the city district geometry to test the whole tract."
+              ],
+              [
+                "Municipal GIS and code",
+                "Local tax maps, district polygons, overlays and the adopted map and ordinance. Format and update process depend on the jurisdiction.",
+                "Confirm map and ordinance dates independently. Ask the authority which zoning lot and approvals apply to your plan."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "zoneomics",
+                "zoneomics-areas"
+              ],
+              [
+                "gridics"
+              ],
+              [
+                "regrid"
+              ],
+              [
+                "invariant"
+              ],
+              [
+                "mappluto",
+                "zoning-gis",
+                "city-code"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "staten-island-zoning-test",
+        "heading": "One Staten Island parcel, three different lookup results",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We used the MapPLUTO 26v2 boundary for 2239 Forest Avenue, Staten Island, borough-block-lot 5012500011. We also queried NYC Planning’s base zoning district polygons on November 23, 2026. The published parcel point falls in C8-1. MapPLUTO lists M1-1, C4-1 and C8-1 in that order and flags the parcel as split.",
+            "sourceIds": [
+              "mappluto",
+              "districts"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The polygon overlay finds five intersections. C4-1 and M1-1 each cover a little over 37% of the mapped tax lot. R3A and R3-2 together cover 7.17%. Both individual shares fall below the 10% minimum defined for MapPLUTO’s base district fields. The two largest districts switch order between the parcel fields and this overlay. The largest areas differ by only 0.35 percentage points in our calculation. Keep the original parcel fields and recomputed results with their own source dates.",
+            "sourceIds": [
+              "mappluto-metadata",
+              "districts"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Base district",
+              "Share of mapped tax lot",
+              "Where it appears"
+            ],
+            "rows": [
+              [
+                "C4-1",
+                "37.71%",
+                "Largest overlap in the polygon calculation. MapPLUTO lists it second."
+              ],
+              [
+                "M1-1",
+                "37.36%",
+                "MapPLUTO lists it first."
+              ],
+              [
+                "C8-1",
+                "17.76%",
+                "Contains the published parcel point. MapPLUTO lists it third."
+              ],
+              [
+                "R3A",
+                "4.32%",
+                "Appears in the geometry overlay."
+              ],
+              [
+                "R3-2",
+                "2.84%",
+                "Appears in the geometry overlay."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "We projected the boundary and zoning polygons to New York State Plane Long Island in U.S. survey feet, intersected each district with the tax lot and divided by the mapped polygon area. The total is approximately 378,715 square feet. MapPLUTO’s separate LotArea field is 376,110 square feet. Use the polygon area as the denominator when reproducing these shares. Displayed percentages may differ from 100% because of rounding.",
+            "sourceIds": [
+              "mappluto",
+              "mappluto-metadata",
+              "districts"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Staten Island parcel and five zoning intersections",
+            "path": "/blog/staten-island-zoning-district-audit.geojson",
+            "format": "GeoJSON"
+          }
+        ]
+      },
+      {
+        "id": "confirm-zoning-and-permitted-use",
+        "heading": "What should a zoning API return before you rely on it?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What to verify",
+              "What a usable result gives you"
+            ],
+            "rows": [
+              [
+                "Parcel identity",
+                "The exact boundary, assessor ID, match method and the coordinates used. A nearby match stays marked as nearby."
+              ],
+              [
+                "Districts and additional rules",
+                "Each base district and the geometry affecting the tract. Commercial overlays and special districts have their own records."
+              ],
+              [
+                "Which rules are in effect",
+                "The source map, ordinance section, effective date and any recent amendment. Keep a vendor’s refresh time in a separate field."
+              ],
+              [
+                "Proposed use",
+                "The local use classification and the approval process for the operation. A zoning district label alone leaves those questions open."
+              ],
+              [
+                "Site capacity",
+                "The zoning lot used in the calculation and any split-district rules, setbacks, height limits or approvals that change the result."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "New York City defines a zoning lot separately from a tax lot. A zoning lot can include multiple lots of record under specified conditions. The city also has separate provisions when a zoning lot crosses district boundaries. Confirm the zoning lot and ask for a written determination when a lease, construction budget or loan depends on the result.",
+            "sourceIds": [
+              "zoning-lot",
+              "split-lot-rules"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the site review",
+            "items": [
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Compare GIS APIs for parcel, hazard and infrastructure screening"
+              },
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Use the site selection checklist and evidence worksheet"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace the parcel through a split or merger"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I get zoning by address from an API?",
+        "answer": "Yes. Some APIs accept an address, then return the district at the matched point or a summary tied to the parcel. Ask which result you are getting and run a polygon check on split lots.",
+        "sourceIds": [
+          "zoneomics",
+          "mappluto-metadata"
+        ]
+      },
+      {
+        "question": "Why does one parcel have several zoning districts?",
+        "answer": "A mapped district boundary can cross a tax lot. A polygon overlay returns the intersecting districts and their shares. A parcel summary may omit small intersections under its published reporting rules.",
+        "sourceIds": [
+          "mappluto-metadata",
+          "districts"
+        ]
+      },
+      {
+        "question": "Can I estimate buildable floor area from a zoning API?",
+        "answer": "Use the API to screen a scenario. Verify the zoning lot, current rules, intended use and applicable approvals before applying a floor-area figure to a design or project budget.",
+        "sourceIds": [
+          "city-code",
+          "zoning-lot",
+          "split-lot-rules"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "mappluto",
+        "publisher": "NYC Department of City Planning",
+        "title": "MapPLUTO feature service and current tax lot boundaries",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/MAPPLUTO/FeatureServer/0"
+      },
+      {
+        "id": "mappluto-metadata",
+        "publisher": "NYC Department of City Planning",
+        "title": "MapPLUTO 26v2 shoreline-clipped field definitions",
+        "url": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/meta_mappluto.pdf"
+      },
+      {
+        "id": "districts",
+        "publisher": "NYC Department of City Planning",
+        "title": "Base zoning district polygons and layer metadata",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyzd/FeatureServer/0"
+      },
+      {
+        "id": "zoning-gis",
+        "publisher": "NYC Department of City Planning",
+        "title": "GIS zoning features and archived releases",
+        "url": "https://www.nyc.gov/content/planning/pages/resources/datasets/gis-zoning-features"
+      },
+      {
+        "id": "zoning-lot",
+        "publisher": "NYC Department of City Planning",
+        "title": "Zoning Resolution, definitions and zoning lot",
+        "url": "https://zr.planning.nyc.gov/article-i/chapter-2"
+      },
+      {
+        "id": "split-lot-rules",
+        "publisher": "NYC Department of City Planning",
+        "title": "Zoning Resolution, lots divided by district boundaries",
+        "url": "https://zr.planning.nyc.gov/article-vii/chapter-7"
+      },
+      {
+        "id": "city-code",
+        "publisher": "NYC Department of City Planning",
+        "title": "Current NYC Zoning Resolution",
+        "url": "https://zr.planning.nyc.gov/"
+      },
+      {
+        "id": "zoneomics",
+        "publisher": "Zoneomics",
+        "title": "Zoning API documentation and product fields",
+        "url": "https://www.zoneomics.com/api-documentation"
+      },
+      {
+        "id": "zoneomics-areas",
+        "publisher": "Zoneomics",
+        "title": "Zoning areas and polygon query",
+        "url": "https://www.zoneomics.com/api-documentation/zoning-point"
+      },
+      {
+        "id": "gridics",
+        "publisher": "Gridics",
+        "title": "Parcel-specific zoning data and development standards",
+        "url": "https://gridics.com/zoning-data-api/"
+      },
+      {
+        "id": "regrid",
+        "publisher": "Regrid",
+        "title": "Land use, zoning field definitions and matched product",
+        "url": "https://support.regrid.com/docs/land-use-zoning"
+      },
+      {
+        "id": "invariant",
+        "publisher": "Invariant",
+        "title": "Invariant Earth coordinate API and parcel field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields"
+      },
+      {
+        "id": "imagery",
+        "publisher": "U.S. Geological Survey",
+        "title": "The National Map NAIP Plus aerial imagery service",
+        "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer"
+      }
+    ],
+    "dataset": {
+      "name": "Five base zoning district intersections at 2239 Forest Avenue",
+      "description": "One Staten Island MapPLUTO tax lot, its published coordinate and five clipped NYC Planning base zoning district polygons, with shares, source queries and retrieval dates.",
+      "spatialCoverage": "Staten Island, New York City, United States",
+      "temporalCoverage": "2026-11-23",
+      "sourceIds": [
+        "mappluto",
+        "districts",
+        "mappluto-metadata"
+      ]
+    },
+    "relatedSlugs": [
+      "best-gis-apis-for-site-selection",
+      "historical-parcel-boundaries-api",
+      "shovel-ready-industrial-site-checklist"
+    ]
+  },
+  {
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
@@ -2855,6 +3198,7 @@
             "type": "links",
             "label": "Compare the field definitions",
             "items": [
+              {"slug":"zoning-data-apis-for-site-selection","label":"Test how zoning APIs handle a split-zoned parcel"},
               {
                 "label": "Mireye alternatives for property screening",
                 "slug": "mireye-alternatives-for-property-screening"
