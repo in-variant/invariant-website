@@ -140,7 +140,7 @@ def help_sec(text):
 # ---------------------------------------------------------------------------
 find_site = page(
     'find-data-centre-site-india',
-    'How to find a data centre site in India (2026): power first, then fibre, land, water and risk',
+    'How to find a data centre site in India: power, fibre, land and risk (2026)',
     'Pick an Indian data centre site in this order: written power evidence, fibre and cable landings, land and zoning, water, physical risk, then state policy. City by city comparison with sources.',
     'The best location for a data centre in India is the one that can show a dated power connection for the full load, not the one nearest a substation. Mumbai has half of India’s operational capacity and 13 cable landing stations, but the roughly 6 GW of grid capacity allocated to Navi Mumbai data centres is close to fully committed. Chennai and Hyderabad have spare colocation (vacancy of 26.7% and 28.0% in H1 2026), and Visakhapatnam has more than 4 GW announced. Screen power evidence first, then fibre, land and zoning, water, seismic and flood risk, and the state policy that applies.',
     [
@@ -202,7 +202,7 @@ find_site = page(
 # ---------------------------------------------------------------------------
 approvals = page(
     'data-centre-approvals-india',
-    'Approvals needed for a data centre in India (2026): permits, NOCs and who issues them',
+    'Approvals needed for a data centre in India: permits, NOCs and who issues them',
     'A data centre in India needs land and building approvals, environmental clearance above 20,000 sq m, pollution board consents, groundwater, airport height and fire NOCs, a diesel licence and electrical inspection.',
     'There is no single data centre licence in India. A project collects approvals from several authorities: land allotment and building plan approval from the state or local authority, environmental clearance under the EIA Notification 2006 if the built-up area is 20,000 sq m or more, Consent to Establish and Consent to Operate from the state pollution control board, a groundwater NOC, an airport height clearance, a fire NOC, a licence to store diesel and an electrical inspector’s approval before energisation. NITI Aayog’s October 2026 framework asks every state to publish a data centre approval matrix and run a single clearance portal because these sit with so many offices.',
     [
@@ -288,7 +288,7 @@ STEPS = [
 
 how_to = page(
     'how-to-set-up-data-centre-india',
-    'How to set up a data centre in India (2026): the sequence from entity to energisation',
+    'How to set up a data centre in India: from entity to energisation (2026)',
     'Setting up a data centre in India runs in nine steps: size the load, form the entity, pick a state, confirm power, secure land, design to Indian codes, get approvals, inspect and energise.',
     'To set up a data centre in India, fix the load and tier, form an Indian company (Khaitan & Co notes that 100% foreign investment is permitted under the automatic route for a company doing only data centre business), choose a state whose policy is actually open, and confirm a dated power connection before you buy land. Then secure the land, design to the National Building Code and IS 1893, collect the pre-construction approvals, build, pass fire and electrical inspection, and take Consent to Operate. Data centres of 5 MW IT load or more in a dedicated building have infrastructure status, which Anarock says has improved access to long-tenor financing. The order matters more than any single permit: a site without a dated power connection is not a site.',
     [
@@ -335,7 +335,7 @@ how_to = page(
 # ---------------------------------------------------------------------------
 cost = page(
     'data-centre-cost-per-mw-india',
-    'Data centre cost per MW in India (2026): ₹35 to 75 crore to build, plus land',
+    'Data centre cost per MW in India: ₹35 to 75 crore to build, plus land (2026)',
     'Building a data centre in India costs about US$7.4 million per MW on Cushman & Wakefield’s benchmark, and ₹35 to 75 crore per MW on SBI’s figures depending on scale, tier and cooling. Benchmarks, land, rents and financing.',
     'Published benchmarks put the cost of building a data centre in India at ₹35 crore to ₹75 crore per MW of IT load: SBI’s April 2026 sector report gives ₹35 to 45 crore for large facilities, ₹50 to 55 crore for an air-cooled Tier III build and up to ₹75 crore for AI with immersion cooling or Tier IV. Cushman & Wakefield benchmarks US$7.4 million per MW, about 23% below Malaysia and 26% below Australia, and assumes US$9.0 million per MW for incremental AI capacity in its projections. Anarock prices land separately, at ₹3 crore to ₹60 crore per acre across its size bands, and reports long-tenor debt at about 9.5 to 10.5%.',
     [
@@ -404,7 +404,7 @@ cost = page(
 # ---------------------------------------------------------------------------
 dd = page(
     'data-centre-site-due-diligence-india',
-    'Data centre site due diligence in India (2026): the feasibility checklist',
+    'Data centre site due diligence in India: the feasibility checklist (2026)',
     'Due diligence on an Indian data centre site checks title and land use, power evidence, seismic zone, flood and cyclone history, groundwater status, airport height limits and the approvals path.',
     'Due diligence on a data centre site in India answers one question first: can this parcel get the full load, at the voltage needed, on a date you can underwrite? After power come title and land use, groundwater (no new industry other than MSMEs gets a groundwater permit in an over-exploited unit under the 2020 CGWA guidelines), seismic zone under IS 1893, flood and cyclone history from IMD records, AAI height limits within 20 or 56 km of an airport, and the approvals the project will need. NITI Aayog’s October 2026 framework now asks states to verify power and water capacity before clearing data centre projects, so the same questions will come from the state.',
     [
@@ -457,7 +457,7 @@ dd = page(
 # ---------------------------------------------------------------------------
 land = page(
     'data-centre-land-india',
-    'Data centre land in India (2026): acres per MW, land prices, parks and powered land',
+    'Data centre land in India: acres per MW, land prices and powered land (2026)',
     'Data centre land in India runs ₹3 to 60 crore per acre and about half an acre per MW on Anarock’s bands. Prices, recent deals, data centre parks, FAR rules and what makes land powered.',
     'Data centre land in India costs from about ₹3 crore per acre for 100 to 500 MW parks to ₹35 to 60 crore per acre for small sites in Mumbai’s suburbs, on Anarock’s 2026 benchmarks. Its size bands imply roughly half an acre per MW of IT load (our calculation). Savills counted more than 120 acres of data centre land transacted in H1 2026, as reported by Communications Today. Land becomes powered land only when the utility has committed MW and a date in writing. State authorities such as YEIDA in Uttar Pradesh and MIDC in Maharashtra have dedicated data centre parks or plans for them.',
     [
@@ -583,7 +583,7 @@ risk = page(
 # ---------------------------------------------------------------------------
 water = page(
     'data-centre-water-india',
-    'Water for data centres in India (2026): groundwater NOC, water stress and state rules',
+    'Water for data centres in India: groundwater NOC, water stress and state rules',
     'Indian data centres need a CGWA or state groundwater NOC to draw groundwater, and new industries are barred in over-exploited units. Water use per MW, water-stressed cities and state incentives.',
     'A data centre in India that draws groundwater needs a NOC from the Central Ground Water Authority or the state groundwater authority under the guidelines of 24 September 2020, and no new industry other than an MSME gets one in an over-exploited unit. Whether a data centre counts as industry or as infrastructure, which is not barred in over-exploited units, has to be confirmed for each site. Anarock puts water use for cooling-tower data centres at about 25.5 million litres per MW per year. SBI names Bengaluru, Chennai and Gurugram as water-stressed data centre metros, and Uttar Pradesh’s 2026 policy directs data centres to adopt closed-loop systems and treated wastewater reuse.',
     [

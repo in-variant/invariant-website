@@ -119,7 +119,7 @@ ARTICLES = []
 # ─────────────────────────────── Companies ───────────────────────────────
 ARTICLES.append(article(
     'data-centre-companies-india',
-    'Data centre companies in India (2026): the largest operators, their capacity and recent deals',
+    'Data centre companies in India: the largest operators and recent deals (2026)',
     'The largest data centre companies in India by market share are NTT, Sify, STT GDC, Nxtra and CtrlS (Anarock, H1 2026), with Yotta, AdaniConneX and new entrants such as AirTrunk, TCS HyperVault and CoreWeave.',
     'India',
     'Five operators lead Anarock’s H1 2026 market share table for India: it puts NTT at 21%, Sify and STT GDC at 19% each, and Nxtra (Airtel) and CtrlS at 15% each, followed by Yotta at 5%. Other operators include AdaniConneX, Princeton Digital, Iron Mountain, Equinix, Digital Edge and CapitaLand, and hyperscalers build their own campuses. Deals in 2026 included a US$1 billion investment in Nxtra, up to Rs 7,000 crore from CPP Investments for CtrlS, AirTrunk’s acquisition of Lumina CloudInfra, and a planned 240 MW CoreWeave deployment at AdaniConneX.',
@@ -183,7 +183,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Mumbai vs Chennai vs Hyderabad ───────────────────────────────
 ARTICLES.append(article(
     'mumbai-vs-chennai-vs-hyderabad-data-centres',
-    'Mumbai vs Chennai vs Hyderabad for data centres (2026): capacity, power, policy, land and risk',
+    'Mumbai vs Chennai vs Hyderabad for data centres: power, policy and risk (2026)',
     'Mumbai has scale and cables but a nearly committed grid allocation; Chennai has cables and high vacancy but flood risk; Hyderabad has the second-largest pipeline and the lowest seismic zone of the three.',
     'India',
     'Mumbai, Chennai and Hyderabad are India’s three main choices for a large data centre, and each wins on a different test. Mumbai has about half of top-seven-city live capacity (Cushman & Wakefield), 13 cable landing stations and the lowest vacancy of the three, but Structure Research reports that committed capacity is approaching its Navi Mumbai grid allocation. Chennai has seven landing stations and 26.7% colocation vacancy, but carries flood risk, and its 2021 state policy covers data centres incorporated by 31 March 2026. Hyderabad has the second largest pipeline, Microsoft and AWS regions and Seismic Zone II, but as an inland city no cable landings.',
@@ -244,7 +244,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── India vs Singapore vs Johor ───────────────────────────────
 ARTICLES.append(article(
     'india-vs-singapore-vs-johor-data-centres',
-    'India vs Singapore vs Johor for data centres (2026): capacity, power, policy, water and cost',
+    'India vs Singapore vs Johor for data centres: power, policy and cost (2026)',
     'Singapore releases capacity through allocation calls, Malaysia’s TNB has signed GW-scale data centre supply deals, and India offers lower build cost, rents 30 to 35% below peers and a tax holiday to 2047.',
     'India',
     'India, Singapore and Johor in Malaysia are alternative locations for Asian cloud and AI capacity, under very different constraints. Singapore had about 1.4 GW across more than 70 data centres in 2024 and now releases new capacity through allocation calls; its second call in December 2025 offered at least 200 MW with a PUE of 1.25 at full load. Malaysia’s utility TNB had signed electricity supply agreements for 59 data centre projects totalling 8.3 GW by July 2026, while Johor introduced a higher water tariff for data centres in August 2025. India had roughly 1.8 GW live in H1 2026, build costs that Cushman & Wakefield puts about 23% below Malaysia, and a tax holiday to 2047 for foreign cloud companies using Indian data centres.',
@@ -290,7 +290,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── AI data centres ───────────────────────────────
 ARTICLES.append(article(
     'ai-data-centres-india',
-    'AI data centres in India (2026): gigawatt campuses, IndiaAI GPUs and power needs',
+    'AI data centres in India: gigawatt campuses, IndiaAI GPUs and power (2026)',
     'India’s AI data centre build-out includes gigawatt-scale campuses in Visakhapatnam and Jamnagar, while IndiaAI Mission compute passed 38,000 GPUs at Rs 65 per hour in February 2026 and 45,000 by June 2026.',
     'India',
     'AI demand is bringing gigawatt-scale campuses to India’s data centre market. Google broke ground on a gigawatt-scale AI hub in Visakhapatnam in April 2026, Reliance has begun building multi-gigawatt data centres at Jamnagar and is to build a 168 MW AI-ready data centre to be leased by Meta, OpenAI is TCS HyperVault’s first customer with 100 MW and plans to scale to 1 GW, and CoreWeave plans 240 MW at AdaniConneX in Navi Mumbai. The government’s IndiaAI Mission had more than 38,000 GPUs onboarded at Rs 65 per hour by February 2026 and more than 45,000 in its shared compute capacity by June 2026. Invest India and Cushman & Wakefield’s AI scenario puts India at about 8 GW by 2030.',
@@ -340,7 +340,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Investment ───────────────────────────────
 ARTICLES.append(article(
     'data-centre-investment-india',
-    'Data centre investment in India (2026): hyperscaler commitments, deals and what to diligence',
+    'Data centre investment in India: hyperscaler commitments and deals (2026)',
     'Invest India and Cushman & Wakefield count announced data centre investment in India above US$180 billion by September 2026, including Amazon, Microsoft, Google, Reliance and Adani. Check the power behind each campus.',
     'India',
     'Invest India and Cushman & Wakefield count disclosed data centre investment commitments in India of US$27 billion in 2023, US$29.6 billion in 2024, US$56.4 billion in 2025 and US$184 billion in January to September 2026. Amazon has committed US$48 billion for 2026 to 2030, Microsoft US$17.5 billion for 2026 to 2029, and Google about US$15 billion for its Visakhapatnam AI hub. Reliance announced a plan of about US$110 billion for AI computing infrastructure, and Cushman & Wakefield reports an Adani commitment of US$100 billion through 2035 for AI-ready data centres and associated infrastructure. The Budget 2026-27 added a tax holiday to 2047 for foreign cloud companies using Indian data centres.',

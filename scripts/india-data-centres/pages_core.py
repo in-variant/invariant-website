@@ -37,7 +37,7 @@ PILLAR_SOURCES = [
 
 pillar = article(
     PILLAR,
-    'Data centres in India (2026): capacity, cities, companies, policy and power',
+    'Data centres in India: capacity, cities, companies, policy and power (2026)',
     'India had about 1.6 to 1.8 GW of live data centre capacity in mid-2026, half of it in Mumbai. How many data centres there are, where, who runs them, the rules that apply and how they get power.',
     'India',
     'India had between 1.6 GW and 1.8 GW of operational data centre capacity in mid-2026, depending on who counts and what they count; the government told Parliament in August 2026 that capacity had grown from 375 MW in 2020 to about 1,575 MW. Mumbai holds about half of it. Cushman & Wakefield counted 147 data centres across the top seven cities in H1 2026, with 509 MW under construction and 3,351 MW more planned. Forecasts for 2030 run from about 5.6 GW to 8 GW. Crisil Ratings says the pace of the build-out will hinge on timely power connectivity, regulatory approvals and project execution.',

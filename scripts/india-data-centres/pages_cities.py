@@ -140,7 +140,7 @@ ARTICLES = []
 # ─────────────────────────────── Mumbai ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-mumbai',
-    'Data centres in Mumbai and Navi Mumbai (2026): capacity, sub-markets, power and land',
+    'Data centres in Mumbai and Navi Mumbai: capacity, sub-markets and power (2026)',
     'Mumbai had 890 MW of operational data centre capacity in H1 2026, about half of India’s top seven cities, most of it on Thane-Belapur Road in Navi Mumbai, where grid allocation is now the constraint.',
     'Mumbai, Maharashtra, India',
     'Mumbai is India’s largest data centre market. Cushman & Wakefield counted 890 MW of operational capacity in Mumbai in H1 2026, about 50% of the top seven cities, with 281 MW under construction and 1,445 MW planned. Thane-Belapur Road in Navi Mumbai holds 675 MW of it, and the city has 13 cable landing stations. Structure Research reports that MSEDCL has allocated about 6 GW of grid capacity to Navi Mumbai data centres, that committed and under-construction capacity is approaching that figure, and that new builds are moving to Panvel, Taloja and Rasayani.',
@@ -206,7 +206,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Chennai ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-chennai',
-    'Data centres in Chennai (2026): capacity, Ambattur and Siruseri, policy status and flood risk',
+    'Data centres in Chennai: capacity, Ambattur, Siruseri and flood risk (2026)',
     'Chennai had 214 MW of operational data centre capacity in H1 2026 (Cushman & Wakefield), mostly in Ambattur and Siruseri, with cable landings, high vacancy and a state policy that covered projects incorporated to 31 March 2026.',
     'Chennai, Tamil Nadu, India',
     'Chennai is India’s second-largest data centre market by both Cushman & Wakefield’s and Savills’ counts. Cushman & Wakefield counted 214 MW operational in H1 2026 across 18 facilities, about 12% of the top seven cities, with 26.7% colocation vacancy after significant new supply. Savills counts 320 MW IT. Most capacity is in Ambattur in the west and Siruseri on the OMR. The city has 7 cable landing stations with 2 under construction. Tamil Nadu’s Data Centre Policy 2021 applies to data centres incorporated from 1 April 2021 until 31 March 2026.',
@@ -268,7 +268,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Hyderabad ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-hyderabad',
-    'Data centres in Hyderabad (2026): capacity, the southern ORR corridor, hyperscalers and power',
+    'Data centres in Hyderabad: capacity, hyperscalers and power (2026)',
     'Hyderabad had 151 MW of operational data centre capacity in H1 2026 and the second-largest pipeline in India after Mumbai, with AWS building at Bharat Future City and Microsoft’s new India South Central region.',
     'Hyderabad, Telangana, India',
     'Hyderabad has India’s second-largest data centre pipeline after Mumbai. Cushman & Wakefield counted 151 MW operational in H1 2026, about 8% of the top seven cities, but 668 MW planned and 18% of all upcoming supply to 2030, second only to Mumbai. AWS launched its Hyderabad region in November 2022 and has started a greenfield campus at Bharat Future City, and Microsoft launched its India South Central region in Hyderabad on 21 September 2026. Telangana adopted a dedicated data centre policy in 2016, and officials have cited about 5 GW by 2029 or 2030.',
@@ -326,7 +326,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Noida / Delhi NCR ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-noida',
-    'Data centres in Noida and Delhi NCR (2026): Noida, Greater Noida, YEIDA and Gurugram',
+    'Data centres in Noida and Delhi NCR: Greater Noida, YEIDA and Gurugram (2026)',
     'Delhi NCR had 183 MW of operational data centre capacity in H1 2026, 156 MW of it in Noida. The UP Data Centre Policy 2026, the YEIDA data centre park and Noida airport height limits shape new sites.',
     'Delhi NCR, India',
     'Delhi NCR is India’s third data centre market by Cushman & Wakefield’s count: 183 MW operational in H1 2026, about 10% of the top seven cities, with 360 MW planned. Noida carries most of it, 156 MW in 12 facilities, while Gurugram has 18 MW. YEIDA lists a 100-acre Data Centre Park in Sector 28 on the Yamuna Expressway. The Uttar Pradesh Data Centre Policy 2026, notified on 9 July 2026, sets the incentives, and Noida International Airport, which began commercial operations on 15 June 2026, has advised that construction within 20 km needs an AAI height clearance.',
@@ -387,7 +387,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Bengaluru ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-bengaluru',
-    'Data centres in Bengaluru (2026): capacity, Whitefield, Hoskote and the water question',
+    'Data centres in Bengaluru: capacity, Whitefield, Hoskote and water (2026)',
     'Bengaluru had 162 MW of operational data centre capacity in H1 2026, mostly in Whitefield, with 28% vacancy. Karnataka’s 2026-31 policy plans parks at Hoskote, Mysuru and Mangaluru; water is the binding issue.',
     'Bengaluru, Karnataka, India',
     'Bengaluru is a mid-sized data centre market in a city Anarock describes as having a large concentration of IT firms, global capability centres and startups. Cushman & Wakefield counted 162 MW operational in H1 2026, about 9% of the top seven cities, with only 8 MW under construction and 28% colocation vacancy. Most capacity is in Whitefield in the east. Karnataka’s Sustainable Data Centre Policy 2026-31 targets 1 GW of IT load by 2031 and pays for low PUE and water efficiency. Water is the constraint: Newslaundry reports that most of the city’s data centres sit in its worst water-stressed areas.',
@@ -444,7 +444,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Pune ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-pune',
-    'Data centres in Pune (2026): capacity, Hinjewadi, PBD North and power',
+    'Data centres in Pune: capacity, Hinjewadi, PBD North and power (2026)',
     'Pune had 133 MW of operational data centre capacity in H1 2026 (Cushman & Wakefield), concentrated in the PBD North cluster and Hinjewadi, with a Microsoft Azure cloud region and Maharashtra’s data centre incentives.',
     'Pune, Maharashtra, India',
     'Cushman & Wakefield counted 133 MW of operational data centre capacity in Pune in H1 2026 across 12 facilities, about 7% of India’s operational capacity, with 31 MW under construction and 227 MW planned. Savills counts 182 MW IT, about 10% of the national total. Capacity is concentrated in the PBD North cluster and Hinjewadi. According to Cushman & Wakefield, Microsoft Azure has a cloud region in Pune and has acquired land for captive cloud developments, and Structure Research describes Pune as a core cloud region for one major hyperscaler because of its proximity to Mumbai. Maharashtra’s state data centre policies apply in Pune as in Mumbai.',
@@ -494,7 +494,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Visakhapatnam ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-visakhapatnam',
-    'Data centres in Visakhapatnam (2026): Google’s AI hub, gigawatt campuses, cables and the risks',
+    'Data centres in Visakhapatnam: Google’s AI hub, gigawatt campuses and risks (2026)',
     'Visakhapatnam has more than 4 GW of early-stage or announced data centre capacity, led by Google’s US$15 billion AI hub. The checks are power relative to the city’s demand, cyclone exposure, water and new cable landings.',
     'Visakhapatnam, Andhra Pradesh, India',
     'Invest India and Cushman & Wakefield map more than 4 GW of early-stage or announced data centre capacity in Visakhapatnam. Google committed about US$15 billion over 2026 to 2030 for its first India AI hub here, with AdaniConneX and Nxtra by Airtel, and broke ground at Tarluvada on 28 April 2026. Digital Connexion (1 GW), Colt DCS with RMZ (1.25 GW) and AirTrunk (up to 1.8 GW across two proposed campuses) have announced or proposed large developments. Crisil estimates that by FY2030 data centre capacity in Visakhapatnam could equal about 80% of the city’s current peak power demand.',
@@ -551,7 +551,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Gujarat ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-gujarat',
-    'Data centres in Gujarat (2026): Jamnagar, GIFT City, Ahmedabad and Dholera',
+    'Data centres in Gujarat: Jamnagar, GIFT City, Ahmedabad and Dholera (2026)',
     'Gujarat’s data centre projects include Reliance’s AI campus at Jamnagar, Yotta’s GIFT City facility and a planned 250 MW campus at Dholera. The 2026-29 state policy supports projects of 150 MW or more.',
     'Gujarat, India',
     'Gujarat’s data centre activity centres on a few large projects. Mukesh Ambani said in February 2026 that Reliance had begun building multi-gigawatt data centres at Jamnagar, with more than 120 MW expected online in the second half of 2026; Meta agreed in June 2026 to lease capacity at a 168 MW Reliance facility there. GIFT City hosts Yotta’s 1 MW G1 facility, and L&T Vyoma signed an MoU for a 250 MW green data centre at Dholera. The Viksit Gujarat Data Centre Policy 2026-29, launched on 9 July 2026, supports only projects of 150 MW or more, with incentives available until 7.5 GW of capacity is reached statewide.',
@@ -608,7 +608,7 @@ ARTICLES.append(article(
 # ─────────────────────────────── Kolkata ───────────────────────────────
 ARTICLES.append(article(
     'data-centres-in-kolkata',
-    'Data centres in Kolkata and East India (2026): New Town, Salt Lake, Bhubaneswar and policy',
+    'Data centres in Kolkata and East India: New Town, Salt Lake and Bhubaneswar (2026)',
     'Kolkata had 22 MW of operational data centre capacity in H1 2026, mostly in New Town. West Bengal’s 2021 policy classed data centres as essential services; its five-year term ran to September 2026.',
     'Kolkata, West Bengal, India',
     'Kolkata is the smallest of the seven city markets in Cushman & Wakefield’s H1 2026 count: 22 MW operational across six facilities, 18 MW in New Town and 4 MW in Salt Lake, with 13 MW under construction and 71 MW planned. Cushman & Wakefield attributes demand mainly to government and small and medium enterprises. West Bengal’s Data Centre Policy 2021 classed data centre organisations as essential services and treated their electricity as industrial; it was valid for five years from September 2021, and in May 2026 the state BJP president said the new government was formulating a new data centre policy. Odisha’s 2022 policy is another incentive regime in the region.',

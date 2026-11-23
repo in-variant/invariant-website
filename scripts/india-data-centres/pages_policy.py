@@ -114,7 +114,7 @@ ARTICLES = []
 # ---------------------------------------------------------------- national policy
 ARTICLES.append(article(
     'national-data-centre-policy-india',
-    'National data centre policy India 2026: the 2020 draft, the 2025 consultation and what applies now',
+    'National data centre policy in India: the 2020 draft and what applies now (2026)',
     'India has no notified national data centre policy as of November 2026. The 2020 MeitY draft never came into effect and talks reopened in August 2025. What applies instead, and what to watch.',
     'India',
     'India does not have a notified national data centre policy. The Ministry of Electronics and Information Technology (MeitY) issued a Draft Data Centre Policy in November 2020, and it was never notified. MeitY reopened consultations in August 2025, and we found no notified final policy when we checked on 21 November 2026. Until there is one, national rules for data centres come from infrastructure status (October 2022), the Budget 2026-27 tax holiday for foreign cloud companies using Indian data centres, and data protection and localisation law. Several states have their own data centre policies with exemptions and incentives.',
@@ -183,7 +183,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- central incentives
 ARTICLES.append(article(
     'data-centre-incentives-india-central',
-    'Data centre infrastructure status, tax holiday and SEZs in India: central incentives (2026)',
+    'Data centre incentives in India: infrastructure status, tax holiday and SEZs (2026)',
     'Central incentives for data centres in India: infrastructure status for 5 MW+ IT load since October 2022, the tax holiday to 2047 for cloud services, FDI rules, and what the SEZ changes do not cover.',
     'India',
     'At the national level, an Indian data centre gets three things. Since 11 October 2022, a data centre with a minimum capacity of 5 MW of IT load is an infrastructure sub-sector. From tax year 2026-27 to tax year 2046-47, foreign companies that provide cloud services globally using data centre services procured in India are exempt from Indian tax on that income, under the Finance Act 2026; the Taxation and Other Laws (Amendment) Act 2026, which received assent on 17 August 2026, eased its conditions. And law firms read the FDI policy as allowing 100% foreign investment under the automatic route for companies engaged only in the data centre business.',
@@ -305,7 +305,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- state comparison
 ARTICLES.append(article(
     'data-centre-policy-india-state-comparison',
-    'Data centre policy India 2026: state data centre policies compared (power, land, incentives, status)',
+    'Data centre policy in India: state data centre policies compared (2026)',
     'Which Indian states have a data centre policy in 2026, which have lapsed, and what each offers on capital subsidy, power tariff, stamp duty and open access. A dated state by state table with sources.',
     'India',
     'India has no notified national data centre policy, and several states have their own. As of 21 November 2026, Uttar Pradesh (2026), Gujarat (2026 to 2029), Maharashtra (IT/ITES Policy 2023 and the Integrated Green Data Centre Parks policy of October 2024), Andhra Pradesh (4.0, 2024 to 2029) and Odisha (2022) have published data centre policies or policy chapters. Tamil Nadu’s 2021 policy covered data centres incorporated up to 31 March 2026 and West Bengal’s 2021 policy was valid for five years from September 2021; we found no successor to either. Invest India and Cushman & Wakefield counted eleven states with dedicated data centre policies in force as of September 2026.',
@@ -382,7 +382,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Uttar Pradesh
 ARTICLES.append(article(
     'uttar-pradesh-data-centre-policy',
-    'Uttar Pradesh data centre policy 2026: parks, capital subsidy, power incentives and the 2021 policy',
+    'Uttar Pradesh data centre policy 2026: parks, capital subsidy and power incentives',
     'The UP Data Centre Policy 2026 runs five years from notification: interest subsidy up to ₹50 crore for parks, capital subsidy up to ₹20 crore and a 10-year electricity duty exemption for units, and wheeling relief.',
     'Uttar Pradesh, India',
     'Uttar Pradesh replaced its 2021 data centre policy with the UP Data Centre Policy 2026, notified by a government order of 9 July 2026 and in effect for five years from notification. It aims for an additional 2 GW or more of capacity and more than ₹2 lakh crore of investment, and classifies projects as parks of at least 40 MW, units above 2 MW and below 40 MW, and edge data centres. Parks can get an interest subsidy up to ₹50 crore and a dual-grid power subsidy; units can get a capital subsidy of 7% up to ₹20 crore and a 10-year electricity duty exemption. Wheeling and transmission charges are exempted by 50% to 100% for 25 years, depending on how the power is bought. Cushman & Wakefield counted 156 MW of operational data center capacity in Noida in mid-2026.',
@@ -445,7 +445,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Maharashtra
 ARTICLES.append(article(
     'maharashtra-data-centre-policy',
-    'Maharashtra data centre policy 2026: Green Integrated Data Centre Parks, IT/ITES Policy 2023 incentives and power',
+    'Maharashtra data centre policy 2026: green data centre parks and IT/ITES incentives',
     'Maharashtra covers data centres in its IT/ITES Policy 2023 and its Integrated Green Data Centre Parks policy, expanded to 20 parks in June 2026: stamp duty, a 20-year electricity duty exemption and a ₹1 per unit tariff subsidy.',
     'Maharashtra, India',
     'Maharashtra has no standalone data centre policy. Data centres are covered by the IT/ITES Policy 2023, declared by Government Resolution of 27 June 2023 and valid for five years, and by the Policy for Integrated Green Data Centre Parks, declared by Government Resolution of 9 October 2024 and amended in June 2026 to allow 20 parks across the state instead of 3. According to Cyril Amarchand Mangaldas, the IT policy gives 100% stamp duty exemption and a ₹1 per unit tariff subsidy for five years outside Zone I. A notification of 22 June 2026 exempts registered data centre units from electricity duty for 20 years. According to a Fox Mandal analysis of the June 2026 amendment, the parks policy cuts the green power requirement to 51% and gives the ₹1 per unit subsidy for 10 or 20 years to parks investing ₹30,000 crore or ₹60,000 crore. Mumbai holds about half of top-seven-city operational data center capacity.',
@@ -501,7 +501,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Tamil Nadu
 ARTICLES.append(article(
     'tamil-nadu-data-centre-policy',
-    'Tamil Nadu data centre policy: the 2021 policy after 31 March 2026, incentives and status',
+    'Tamil Nadu data centre policy: the 2021 policy, incentives and status (2026)',
     "Tamil Nadu's Data Centre Policy 2021 covered data centres incorporated up to 31 March 2026, with a ₹500 crore minimum and 30% renewable power. We found no successor as of November 2026.",
     'Tamil Nadu, India',
     'Tamil Nadu’s Data Centre Policy 2021 came into force on 23 November 2021 and applies to data centres incorporated from 1 April 2021 until 31 March 2026. Incentives needed eligible fixed assets of at least ₹500 crore and at least 30% renewable energy, and included a 100% electricity tax subsidy for five years, open access charges at 50%, a concessional cross subsidy surcharge and dual grid supply for loads of 50 MW or more. The policy is administered by ELCOT. As of 21 November 2026 we found no successor policy, so a data center project incorporated after 31 March 2026 should confirm its position with the state before relying on these terms.',
@@ -559,7 +559,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Telangana
 ARTICLES.append(article(
     'telangana-data-centre-policy',
-    'Telangana data centre policy: the 2016 policy, the 5 GW target and Hyderabad (2026)',
+    'Telangana data centre policy: the 2016 policy, incentives and Hyderabad (2026)',
     'Telangana adopted its Data Centres Policy in 2016, and no newer policy was found by November 2026. The state targets 5 GW of hyperscale capacity by 2029, and Hyderabad has India’s second-largest pipeline.',
     'Telangana, India',
     'Telangana issued its Data Centres Policy in 2016, which Cushman & Wakefield describes as the first dedicated state data centre policy in India, and we found no newer data centre policy or government order as of 21 November 2026. The state government has announced a target of 5 GW of hyperscale data centre capacity by 2029, according to Deccan Chronicle. Large projects have received project-specific incentives: according to ThePrint, Amazon was allocated 202 acres in Bharat Future City and 98 acres in Chandanvelly with incentives worth ₹125 crore. Hyderabad had 151 MW of operational data center capacity in mid-2026 and 18% of India’s upcoming pipeline, second only to Mumbai.',
@@ -608,7 +608,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Gujarat
 ARTICLES.append(article(
     'gujarat-data-centre-policy',
-    'Gujarat data centre policy 2026-29: 150 MW threshold, ₹1 per unit tariff subsidy and essential service status',
+    'Gujarat data centre policy 2026-29: 150 MW threshold and ₹1 per unit subsidy',
     'The Viksit Gujarat Data Centre Policy 2026-29, launched 9 July 2026, targets 7.5 GW: 150 MW minimum IT load, 51% renewable power, ₹1 per unit for 20 years and 20 years of electricity duty reimbursement.',
     'Gujarat, India',
     'Gujarat launched the Viksit Gujarat Data Centre Policy 2026-29 on 9 July 2026 and issued its Government Resolution on 7 August 2026, with a target of 7.5 GW and about ₹6 lakh crore of investment. It is in force for three years from notification, extendable, and incentives stop once 7.5 GW is installed. Only projects with an approved IT load of at least 150 MW qualify, and at least 51% of power for core operations must be renewable. According to Cyril Amarchand Mangaldas, incentives include a ₹1 per unit power tariff subsidy for 20 years, 100% electricity duty reimbursement for 20 years, an interest subsidy of up to 4% for 10 years, stamp duty exemption and SGST reimbursement, capped at 75% of eligible fixed capital investment, and data center operations are treated as an essential service under the Gujarat Essential Services Maintenance Act, 1972. These terms are as reported by a law firm and the press; we have not seen the notified Government Resolution.',
@@ -680,7 +680,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Karnataka
 ARTICLES.append(article(
     'karnataka-data-centre-policy',
-    'Karnataka data centre policy: Sustainable Data Centre Policy 2026-31 and the 2022 policy',
+    'Karnataka data centre policy 2026-31: incentives, water rules and the 2022 policy',
     'Karnataka’s cabinet approved a Sustainable Data Centre Policy 2026-31 in September 2026: ₹1,300.45 crore budget, 1 GW target, PUE incentive up to ₹20 crore and parks at Hoskote, Mangaluru and Mysuru.',
     'Karnataka, India',
     'Karnataka’s cabinet approved a Sustainable Data Centre Policy 2026-31 in September 2026, with a budget framework of ₹1,300.45 crore and a target of 1 GW of cumulative IT load by 2031, according to MediaNama. It links incentives to energy and water efficiency: up to ₹20 crore for a PUE of 1.00 to 1.20 sustained for three years, water use reimbursements and support for treated water, according to The News Minute. It proposes parks at Hoskote, Mangaluru and Mysuru on 30 plus 30 year leases with dual-grid power. We had not seen the gazette notification as of 21 November 2026. The earlier Karnataka Data Centre Policy 2022 gave capital, land and stamp duty support to data center projects outside Bengaluru.',
@@ -735,7 +735,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Andhra Pradesh
 ARTICLES.append(article(
     'andhra-pradesh-data-centre-policy',
-    'Andhra Pradesh data centre policy 4.0 (2024-29): incentives, mega project packages and Visakhapatnam',
+    'Andhra Pradesh data centre policy 4.0 (2024-29): incentives and mega projects',
     'Andhra Pradesh notified its Data Center Policy 4.0 on 14 November 2024. Projects above 50 MW can get tailor-made packages; in 2026 the state cleared four projects with ₹2.83 lakh crore of proposed investment.',
     'Andhra Pradesh, India',
     'Andhra Pradesh notified its Data Center Policy (4.0) 2024-29 through G.O.Ms.No.6 of the IT, Electronics and Communications Department on 14 November 2024. It is valid for five years from notification, or until a new policy is announced, whichever is later. Standard incentives are a choice between 100% net SGST reimbursement on capital goods and a 10% capital subsidy on plant and machinery, plus 100% stamp duty exemption on first sale and industrial power tariff. Projects above 50 MW, or above ₹5,000 crore of fixed capital investment in plant and equipment, can get tailor-made incentives case by case. In 2026 the state issued orders for four projects under the policy with ₹2,83,340 crore of proposed investment. Google’s first India AI hub, about USD 15 billion over 2026 to 2030, is in Visakhapatnam.',
@@ -788,7 +788,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Haryana
 ARTICLES.append(article(
     'haryana-data-centre-policy',
-    'Haryana data centre policy 2026: capex and opex support, categories and the 2022 policy',
+    'Haryana data centre policy 2026: capex and opex support and the 2022 policy',
     'Haryana notified its Data Centre Policy 2026 on 27 May 2026 for five years, with capex and opex support for hyperscale data centres above 10 MW and core data centres above 1 MW and up to 10 MW.',
     'Haryana, India',
     'Haryana notified the Haryana Data Centre Policy 2026 in the state gazette on 27 May 2026 (notification No. 20/12/2026-4IB-1). It is valid for five years, or until a new policy or amendment, whichever is earlier, and targets ₹10,000 crore of investment. Hyperscale data centres above 10 MW get capex reimbursement of 20% up to ₹25 crore per unit and opex reimbursement of 50% up to ₹8 crore a year for five years; core data centres of more than 1 MW and up to 10 MW get 10% up to ₹1 crore per MW and 30% up to ₹4 crore a year. Units that began operating after 7 July 2022 and before the 2026 policy fall under the Haryana State Data Centre Policy 2022. Gurugram had 18 MW of operational data center capacity in mid-2026.',
@@ -843,7 +843,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Rajasthan
 ARTICLES.append(article(
     'rajasthan-data-centre-policy',
-    'Rajasthan data centre policy 2025: investment target, status and where to find the official text',
+    'Rajasthan data centre policy 2025: investment target, status and official text',
     'Rajasthan’s Data Centre Policy 2025 was issued by the Industries and Commerce Department. The Chief Minister said it aims to attract about ₹20,000 crore over five years.',
     'Rajasthan, India',
     'Rajasthan has a Data Centre Policy 2025, issued by the Industries and Commerce (Group-1) Department under notification F.5(16)Ind/Gr-1/2025/05907. Chief Minister Bhajanlal Sharma said in April 2025 that it would bring about ₹20,000 crore of investment over five years. The Industries and Commerce Department is the nodal department for incentive applications, so check the incentive schedule in the notified text before relying on any summary. None of the seven cities that hold most of India’s operational data center capacity is in Rajasthan.',
@@ -886,7 +886,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Odisha
 ARTICLES.append(article(
     'odisha-data-centre-policy',
-    'Odisha data centre policy 2022: capital subsidy, power bill subsidy and SGST reimbursement',
+    'Odisha data centre policy 2022: capital subsidy, power subsidy and SGST refund',
     "Odisha's State Data Centre Policy 2022 offers a 20% capital subsidy up to ₹25 crore, a 30% power bill subsidy for five years, 10 years of electricity duty relief and 100% net SGST reimbursement for seven years.",
     'Odisha, India',
     'Odisha’s State Data Centre Policy 2022 offers data centre units a capital subsidy of 20% of fixed capital investment, excluding land, up to ₹25 crore; a 30% power bill subsidy for five years up to ₹2 crore; 100% electricity duty and electrical inspection fee exemption for 10 years up to 5 MVA of contract demand; and 100% net SGST reimbursement for up to seven years. Land comes at concessional IDCO rates, and transmission and wheeling charges are reimbursed for power from captive renewable plants in the state. The nodal agency is OCAC. Neither the policy text nor the official page states a validity period, so a data center project should confirm it is still open before applying.',
@@ -941,7 +941,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- West Bengal
 ARTICLES.append(article(
     'west-bengal-data-centre-policy',
-    'West Bengal data centre policy 2021: incentives, essential services status and what happens after 2026',
+    'West Bengal data centre policy 2021: incentives, essential services and status',
     "West Bengal's Data Centre Policy 2021, notified 6 September 2021 for five years, gives stamp duty and electricity duty relief, essential services status and dual grid power. Its term ended around September 2026.",
     'West Bengal, India',
     'West Bengal’s Data Centre Policy 2021 was notified on 6 September 2021 and is operative for five years or until a new policy or amendment replaces it, whichever is earlier, so its term ran to about September 2026. It gives 100% stamp duty and registration fee exemption, a five-year electricity duty waiver, industrial treatment of data centre electricity, dual grid power and classification of data centres as essential services. In May 2026 the state BJP president said the government was working on a new data centre policy; we found no successor as of 21 November 2026. Kolkata had 22 MW of operational data center capacity in mid-2026.',
@@ -996,7 +996,7 @@ ARTICLES.append(article(
 # ---------------------------------------------------------------- Madhya Pradesh
 ARTICLES.append(article(
     'madhya-pradesh-data-centre-policy',
-    'Madhya Pradesh data centre policy: no standalone policy, the IT, ITeS and ESDM Policy 2023 (2026 status)',
+    'Madhya Pradesh data centre policy: IT, ITeS and ESDM Policy 2023 incentives (2026)',
     'We found no standalone Madhya Pradesh data centre policy as of November 2026. Data centres fall under the IT, ITeS and ESDM Investment Promotion Policy 2023, which gives anchor data centres 25% capex support.',
     'Madhya Pradesh, India',
     'We found no standalone data centre policy in Madhya Pradesh as of 21 November 2026. Data centres are covered by a chapter of the state’s IT, ITeS and ESDM Investment Promotion Policy 2023, issued by the Department of Science and Technology on 29 September 2023 for five years or until a new policy, whichever is earlier. The first five anchor data centres with at least ₹500 crore of gross fixed capital investment can get 25% capex assistance up to ₹125 crore each, and the first five data centres of at least 5 MW get a power tariff reimbursement of ₹2 per unit for five years. The central government named Madhya Pradesh among states coming up as new data centre investment destinations in August 2026, and CtrlS broke ground on a data centre in Bhopal in April 2025.',

@@ -102,7 +102,7 @@ def help_sec(id='invariant'):
 # 1. Power hub -----------------------------------------------------------------------------------
 power_hub = article(
     'power-for-data-centres-india',
-    'Power for data centres in India (2026): grid supply, open access, captive and tariffs by state',
+    'Power for data centres in India: grid supply, open access and tariffs by state',
     'Data centres in India buy power from the discom, through open access or from captive plants. The routes, connection voltages, tariffs for Tamil Nadu and UP, and partly confirmed rates for three more states.',
     'India',
     'A data centre in India gets its power from the state distribution company (discom), at a voltage set by the state supply code for its contract demand, and can add renewable power through green energy open access or captive plants. Under the supply codes, loads above about 10 MVA connect at 110 kV to 230 kV; a bulk consumer of 50 MW or more can connect directly to the inter-state grid. Tariffs differ by state: Tamil Nadu charged ₹7.50/kWh plus ₹608/kVA a month from July 2025, and Uttar Pradesh ₹6.10 to ₹7.10/kVAh for 2026-27. The binding question for a site is rarely the tariff: it is whether the substation and line can deliver the MW, and by when.',
@@ -168,7 +168,7 @@ power_hub = article(
 # 2. Grid connection ------------------------------------------------------------------------------
 grid = article(
     'data-centre-grid-connection-india',
-    'Data centre grid connection in India (2026): voltage by load, 220 kV substations, dual grid and GNA',
+    'Data centre grid connection in India: voltage by load, dual grid and GNA (2026)',
     'How a data centre connects to the grid in India: voltage thresholds in state supply codes, who pays for lines and bays, dual-grid supply, inter-state access from 50 MW and the CERC dual connectivity draft.',
     'India',
     'A data centre in India connects through the state discom at a voltage its supply code ties to contract demand: in Tamil Nadu 110 kV from 10 to 50 MVA and 230 kV above 50 MVA; in Uttar Pradesh 132 or 220 kV above 10 MVA; in Telangana 132 kV or above beyond 10 to 20 MVA. In the codes we checked, dedicated lines, take-off bays and a second source are paid for by the consumer. Bulk consumers of 50 MW or more can apply for direct connection to the inter-state transmission system, and a CERC draft of 16 June 2026 would let data centres hold both state and inter-state connections for the same load. The date depends on substation and line work the codes do not time-bound.',
@@ -238,7 +238,7 @@ grid = article(
 # 3. Green energy open access ------------------------------------------------------------------------
 geoa = article(
     'green-energy-open-access-data-centres-india',
-    'Green energy open access for data centres in India (2026): GEOA rules, banking, ISTS waiver and group captive',
+    'Green energy open access for data centres in India: rules, banking and ISTS (2026)',
     'How data centres in India buy renewable power: Green Energy Open Access Rules 2022 (100 kW, 15-day deemed approval, monthly banking), the ISTS waiver phase-out to 2028, and group captive rules amended in March 2026.',
     'India',
     'Data centres in India buy renewable power mainly through green energy open access and captive or group captive plants. The Green Energy Open Access Rules 2022 open the route to any consumer with 100 kW or more of contracted demand, deem an application approved after 15 days, allow at least monthly banking of at least 30% of consumption, and remove additional surcharge for consumers paying fixed charges. The waiver of inter-state transmission charges for new solar and wind is being phased out, with full charges from July 2028. Captive rules amended in March 2026 keep the 26% ownership and 51% consumption tests and make it easier to hold plants through group companies.',
@@ -293,7 +293,7 @@ geoa = article(
 # 4. Open access charges by state ------------------------------------------------------------------
 oa = article(
     'open-access-charges-by-state-india',
-    'Open access charges by state (2026): cross subsidy surcharge, additional surcharge and wheeling for data centres',
+    'Open access charges by state in India: cross subsidy surcharge and wheeling (2026)',
     'What cross subsidy surcharge, additional surcharge, wheeling, transmission, standby and banking charges are, the caps in the 2022 green open access rules, and the state data centre policy waivers we could verify.',
     'India',
     'A data centre buying power through open access in India pays the network and the discom for the power it no longer buys from them: transmission and wheeling charges for using the wires, a cross subsidy surcharge and often an additional surcharge to compensate the discom, plus standby and banking charges. The Green Energy Open Access Rules 2022 cap what green open access consumers can be charged: no additional surcharge if they pay fixed charges, and a cross subsidy surcharge that cannot rise by more than 50% over 12 years. The figures themselves are set every year in each state commission’s tariff order, and several state data centre policies waive part of them.',
@@ -357,7 +357,7 @@ oa = article(
 # 5. Power demand ------------------------------------------------------------------------------------
 demand = article(
     'data-centre-power-demand-india',
-    'India data centre power demand to 2032: what CEA and the government project (2026)',
+    'India data centre power demand to 2032: what CEA and the government project',
     'Official projections of data centre electricity demand in India range from 13.56 GW to 26.3 GW by 2031-32, with CEA at about 17 GW. Why they differ, how they compare with peak demand, and where the load concentrates.',
     'India',
     'The Central Electricity Authority estimates data centre power demand in India at about 17 GW by 2031-32, the figure the government gave Parliament in August 2026. Other official figures differ: 13.56 GW by 2031-32 was cited in March 2026, and, as reported by Business Standard, the Minister of State for Power told Parliament in July 2026 that AI data centres would add 26.3 GW by 2031-32. Today data centre capacity is under 1% of installed power capacity, against an all-India peak that reached 256.1 GW in April 2026. The load is concentrated: Crisil Ratings estimates data centre capacity could equal about 60% of Mumbai’s current peak demand by FY2030.',
@@ -415,7 +415,7 @@ demand = article(
 # 6. Power study ------------------------------------------------------------------------------------
 study = article(
     'power-study-data-centre-india',
-    'Power study for a data centre site in India: load flow and N-1 against discom, STU and CTU networks',
+    'Power study for a data centre site in India: load flow and N-1 against the grid',
     'What a power study for an Indian data centre site covers: the discom, state and inter-state network, load flow and N-1 tests to state grid code criteria, what data is public, and what only the utility confirms.',
     'India',
     'A power study for a data centre site in India estimates how many MW each nearby substation can take, at which voltage, and what limits it, by modelling the discom, state transmission (STU) and, for 50 MW and above, inter-state (CTU) network around the site and testing it at N-0 and N-1. The test criteria come from the state grid code: Maharashtra’s requires the system to withstand the loss of a 132 kV or 220 kV double-circuit line, a 400 kV single circuit or a single interconnecting transformer without load curtailment. A screening study tells you where to apply, how much to ask for and which upgrades to expect. Only the discom’s sanction, or the nodal agency’s grant of inter-state access, makes a number firm.',
@@ -469,7 +469,7 @@ study = article(
 # 7. Backup power and DG sets -----------------------------------------------------------------------
 dg = article(
     'data-centre-backup-power-dg-sets-india',
-    'Diesel generator rules for data centres in India (2026): CPCB IV genset norms, pollution category and PESO diesel storage',
+    'Diesel generator rules for data centres in India: CPCB IV, consents and PESO (2026)',
     'Which rules govern data centre backup generators in India: CPCB IV norms for sets up to 800 kW, older standards above 800 kW, the genset-based pollution category, PESO diesel storage thresholds and Delhi NCR curbs.',
     'India',
     'Backup generators at an Indian data centre answer to three sets of rules: engine emission norms, the state pollution board’s consent category, and petroleum storage licensing. Emission limits notified by G.S.R. 804(E) of 3 November 2022, which CAQM calls CPCB IV, apply to new genset engines up to 800 kW from 1 July 2023; diesel engines above 800 kW fall under standards notified in 2002. Under CPCB’s January 2025 classification, a data centre whose only pollution source is gensets is Orange if it has 1 MVA or more on liquid fuel and Green if on gaseous fuel. If the diesel stored is Class B petroleum (confirm the class with PESO), storage above 2,500 litres needs a licence and above 25,000 litres a PESO licence.',
