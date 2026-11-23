@@ -1,5 +1,427 @@
 [
   {
+    "slug": "power-outage-road-closure-history",
+    "topic": "Data & APIs",
+    "region": "Haywood County, North Carolina",
+    "title": "How to Check Power Outage and Road Closure History",
+    "description": "Find historical outages and road closures near a facility. Compare county readings, state snapshots, and I-40 reopening records from Hurricane Helene.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Graph of public Haywood County outage observations with a peak of 23,076 on September 27, 2024, next to a 2022 aerial of the Pigeon River Gorge. I-40 reopened with one lane each way on March 1, 2025.",
+    "coverCaption": "The power observations are for Haywood County. The road reopening applies to the I-40 gorge segment. The 2022 USDA aerial shows the terrain before Helene.",
+    "intro": "To check disruption history near a facility, match local outage records to the service address and road reports to the routes people and freight actually use. County and state outage data help identify periods to investigate. After Hurricane Helene, Haywood County’s highest observed outage count was 23,076 customers on September 27, 2024. The damaged stretch of I-40 in the Pigeon River Gorge reopened with one lane in each direction on March 1, 2025.",
+    "takeaways": [
+      "Use county data to identify when to request exact service interruptions from the utility or facility operator.",
+      "Save the observation time, reporting geography, and source. Keep missing measurements separate from reported zeros.",
+      "Check reopening restrictions for the vehicles a facility needs. An open road can still have lane limits, detours or size restrictions."
+    ],
+    "sections": [
+      {
+        "id": "where-to-find-disruption-history",
+        "heading": "Where can I find outage and road closure history for a location?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Decision",
+              "Record to request or download",
+              "What it can establish"
+            ],
+            "rows": [
+              [
+                "Did this facility lose utility service?",
+                "Serving utility’s service interruption record for the premise or meter, plus facility power logs.",
+                "A service-level timeline. Compare with generator or transfer-switch logs to see whether the site itself lost power."
+              ],
+              [
+                "When did the surrounding area have outages?",
+                "ORNL EAGLE-I county observations, DOE situation reports, or DOE-417 incident summaries.",
+                "Observed customer counts by reporting geography or incidents that meet the applicable reporting criteria."
+              ],
+              [
+                "Could employees or trucks reach the site?",
+                "State or local DOT incident records and notices for the route, direction, entry point and vehicle class.",
+                "Reported closure, detour, reopening and restrictions for a specific road segment."
+              ]
+            ],
+            "rowSourceIds": [
+              [],
+              [
+                "eaglei",
+                "doe-index",
+                "doe417"
+              ],
+              [
+                "ncdot-tims",
+                "wzdx"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a facility, use the service address and serving utility to request premise-level records. For road access, trace the primary and backup routes from the actual site entrance. Check the direction of travel and whether the detour is usable by the trucks or other vehicles the site relies on.",
+            "sourceIds": [
+              "ncdot-tims",
+              "wzdx"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "helene-nc-haywood-power-observations",
+        "heading": "How did reported power outages change after Helene?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "EAGLE-I recorded its highest Haywood County count in the study window at 6:15 p.m. Eastern Daylight Time on September 27, 2024. The count was 23,076 customers. The window ran from September 25 through October 15 in local time. EAGLE-I provided values for 1,996 of the 2,016 quarter-hour slots. The download preserves all 20 missing observations and the one reported zero.",
+            "sourceIds": [
+              "eaglei",
+              "eaglei-version"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Department of Energy published separate statewide snapshots. We joined them to county values only when the recorded timestamps matched exactly. The resulting table shows counts from each source at the same time, with each source’s geographic scope intact.",
+            "sourceIds": [
+              "doe-index",
+              "eaglei-version",
+              "eaglei-method"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "2024 observation time, EDT",
+              "North Carolina, DOE",
+              "Haywood County, EAGLE-I"
+            ],
+            "rows": [
+              [
+                "September 27, 3:00 p.m.",
+                "896,206",
+                "21,524"
+              ],
+              [
+                "October 2, 3:00 p.m.",
+                "333,662",
+                "7,387"
+              ],
+              [
+                "October 9, 10:00 a.m.",
+                "83,340",
+                "302"
+              ],
+              [
+                "October 11, 10:00 a.m.",
+                "50,392",
+                "1,385"
+              ],
+              [
+                "October 15, 12:30 p.m.",
+                "13,104",
+                "13"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The statewide snapshots kept falling between October 9 and 11 while the county readings at those times rose. The county series is based on utility public outage maps. It can include later interruptions or changes in reporting. The two counts alone cannot establish which customers lost or regained power, or why.",
+            "sourceIds": [
+              "doe-13",
+              "doe-14",
+              "doe-15",
+              "eaglei-version"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/power-outage-road-closure-history.json",
+            "format": "JSON",
+            "label": "Download the county time series, 15 state snapshots, and I-40 closure milestones"
+          }
+        ]
+      },
+      {
+        "id": "i40-pigeon-river-gorge-reopening",
+        "heading": "When did I-40 reopen in the Pigeon River Gorge?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "NCDOT reported severe damage on September 27, 2024, and said it closed the interstate immediately. Traffic resumed March 1, 2025, a difference of 155 calendar days. NCDOT described a temporary pattern with one lane each way for about 12 miles between North Carolina Exit 7 and Tennessee Exit 447.",
+            "sourceIds": [
+              "road-permit",
+              "road-restrictions",
+              "road-actual",
+              "road-review"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Local date",
+              "Reported change",
+              "Effect on access"
+            ],
+            "rows": [
+              [
+                "September 27, 2024",
+                "Helene damage prompted closure.",
+                "Through traffic stopped on the affected segment."
+              ],
+              [
+                "December 20, 2024",
+                "NCDOT reported additional roadway damage.",
+                "The agency delayed its planned temporary reopening."
+              ],
+              [
+                "March 1, 2025",
+                "The temporary lanes opened.",
+                "One lane each way. North Carolina’s reopening guidance allowed standard 18-wheelers and excluded wide loads."
+              ],
+              [
+                "June 18–27, 2025",
+                "A separate rockslide closed the gorge segment again.",
+                "The interval between closure and reopening dates was nine calendar days."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "road-permit",
+                "road-review"
+              ],
+              [
+                "road-delay"
+              ],
+              [
+                "road-restrictions",
+                "road-actual"
+              ],
+              [
+                "repeat-closure"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For freight diligence, record the restrictions in effect at each reopening. NCDOT’s March guidance described a 35 mph limit on the North Carolina side and warned standard 18-wheelers against suggested local alternates beyond Exit 20. A historical opening date cannot answer whether the route is open today. For current conditions, check the relevant DOT traffic service.",
+            "sourceIds": [
+              "road-restrictions",
+              "ncdot-tims"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "outage-closure-data-for-site-reviews",
+        "heading": "What should an outage and road closure API return for a site?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Keep separate time fields for when an incident happened, when a count was observed, and when a source published or updated the record. Identify the geography and unit for power counts. Store the road segment and direction with closure state, restriction details, and whether an opening was scheduled or confirmed. Preserve gaps in coverage.",
+            "sourceIds": [
+              "doe-index",
+              "eaglei-version",
+              "wzdx",
+              "ncdot-tims"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s public field catalog documents nearby road names, classes and distances. Those fields can help identify candidate approaches before you check the official road event records for each route. When you assess resilience, keep documented service interruptions, utility-wide reliability statistics, and access interruptions attached to the right geography.",
+            "sourceIds": [
+              "earth-fields",
+              "eia861",
+              "ncdot-tims"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I find historical power outages by address?",
+        "answer": "Ask the serving utility for records associated with the service premise or meter, subject to the utility’s access rules. County and state data show surrounding conditions. Facility logs can establish how the site’s equipment and backup systems responded.",
+        "sourceIds": [
+          "eaglei",
+          "doe-index"
+        ]
+      },
+      {
+        "question": "Does a missing outage record mean the power was on?",
+        "answer": "A missing observation leaves the customer count unknown. Keep missing values separate from a measured zero and use utility or facility records for conclusions about an individual site.",
+        "sourceIds": [
+          "eaglei",
+          "eaglei-version"
+        ]
+      },
+      {
+        "question": "How do I find past road closures near a property?",
+        "answer": "Use the DOT incident or public notice archive for the road, direction and segment. Save the closure date, the confirmed reopening, restrictions, and links to the notices. Check the current feed separately for travel planning.",
+        "sourceIds": [
+          "ncdot-tims",
+          "road-restrictions",
+          "road-actual"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "doe-index",
+        "title": "Hurricane Helene Situation Reports, DOE public archive of 15 reports",
+        "url": "https://www.energy.gov/ceser/hurricane-helene-situation-reports",
+        "publisher": "U.S. Department of Energy",
+        "linkLabel": "DOE Helene situation reports"
+      },
+      {
+        "id": "doe-13",
+        "title": "Helene Situation Report 13, North Carolina outage snapshot October 9",
+        "url": "https://www.energy.gov/sites/default/files/2024-10/Hurricane%20Helene%20Public%20Situation%20Report%2013.pdf#page=2",
+        "publisher": "U.S. Department of Energy",
+        "linkLabel": "October 9 state outage table"
+      },
+      {
+        "id": "doe-14",
+        "title": "Helene Situation Report 14, North Carolina outage snapshot October 11",
+        "url": "https://www.energy.gov/sites/default/files/2024-10/Hurricane%20Helene%20Situation%20Report%2014.pdf#page=2",
+        "publisher": "U.S. Department of Energy",
+        "linkLabel": "October 11 state outage table"
+      },
+      {
+        "id": "doe-15",
+        "title": "Helene Situation Report 15, North Carolina outage snapshot October 15",
+        "url": "https://www.energy.gov/sites/default/files/2024-10/Hurricane%20Helene%20Situation%20Report%2015.pdf#page=2",
+        "publisher": "U.S. Department of Energy",
+        "linkLabel": "October 15 state outage table"
+      },
+      {
+        "id": "eaglei",
+        "title": "EAGLE-I Power Outage Data 2024 metadata and scope",
+        "url": "https://doi.ccs.ornl.gov/dataset/2be78213-ef9e-5433-b1b0-9762d051146c",
+        "publisher": "Oak Ridge National Laboratory",
+        "linkLabel": "EAGLE-I county outage metadata"
+      },
+      {
+        "id": "eaglei-version",
+        "title": "EAGLE-I Recorded Electricity Outages 2014–2025, version 4, including the raw 2024 CSV",
+        "url": "https://api.figshare.com/v2/articles/24237376/versions/4",
+        "publisher": "Oak Ridge National Laboratory",
+        "linkLabel": "Versioned EAGLE-I files and license"
+      },
+      {
+        "id": "eaglei-method",
+        "title": "EAGLE-I archival data dictionary, including UTC observation timestamps",
+        "url": "https://www.nature.com/articles/s41597-024-03095-5",
+        "publisher": "Oak Ridge National Laboratory researchers",
+        "linkLabel": "EAGLE-I time fields and methods"
+      },
+      {
+        "id": "doe417",
+        "title": "DOE-417 emergency disturbance reporting program and public annual summaries",
+        "url": "https://doe417.energy.gov/",
+        "publisher": "U.S. Department of Energy",
+        "linkLabel": "DOE-417 incident reports"
+      },
+      {
+        "id": "road-permit",
+        "title": "NCDOT Pigeon River Gorge restoration application, project location and September 2024 damage",
+        "url": "https://xfer.services.ncdot.gov/pdea/EnvironmentalPermits/Helene%20I-40%20Haywood%20Restoration/I-40%202025-06%20Application%20Package%20File%201%20of%202.pdf#page=2",
+        "publisher": "North Carolina Department of Transportation",
+        "linkLabel": "NCDOT project and damage record"
+      },
+      {
+        "id": "road-review",
+        "title": "NCDOT one-year Helene review, I-40 closure and temporary reopening",
+        "url": "https://www.ncdot.gov/news/press-releases/Pages/2025/2025-09-26-helene-ncdot-one-year-milestone.aspx",
+        "publisher": "North Carolina Department of Transportation",
+        "linkLabel": "NCDOT closure and recovery review"
+      },
+      {
+        "id": "road-delay",
+        "title": "NCDOT December 20, 2024 update, additional slide delays reopening",
+        "url": "https://www.ncdot.gov/news/press-releases/Pages/2024/2024-12-20-i-40-gorge-delay.aspx",
+        "publisher": "North Carolina Department of Transportation",
+        "linkLabel": "December closure update"
+      },
+      {
+        "id": "road-restrictions",
+        "title": "NCDOT March reopening configuration, segment endpoints, speed, and freight restrictions",
+        "url": "https://www.ncdot.gov/news/press-releases/Pages/2025/2025-02-26-i-40-reopens-unusual-conditions.aspx",
+        "publisher": "North Carolina Department of Transportation",
+        "linkLabel": "Temporary I-40 reopening restrictions"
+      },
+      {
+        "id": "road-actual",
+        "title": "NCDOT June follow-up confirming I-40 lanes opened March 1",
+        "url": "https://www.ncdot.gov/news/press-releases/Pages/2025/2025-06-03-ncdot-selects-sites-rebuild-I-40-helene.aspx",
+        "publisher": "North Carolina Department of Transportation",
+        "linkLabel": "Confirmed March 1 reopening"
+      },
+      {
+        "id": "repeat-closure",
+        "title": "Helene in Southern Appalachia timeline, June 2025 repeat I-40 closure and reopening",
+        "url": "https://storymaps.arcgis.com/stories/8887acbd2dbd4d28a68e79fe53cbfaa3",
+        "publisher": "NOAA National Centers for Environmental Information",
+        "linkLabel": "June repeat closure chronology"
+      },
+      {
+        "id": "ncdot-tims",
+        "title": "NCDOT Travel Information Management System public traffic web services",
+        "url": "https://tims.ncdot.gov/tims/V2/webservices",
+        "publisher": "North Carolina Department of Transportation",
+        "linkLabel": "North Carolina traffic incident API"
+      },
+      {
+        "id": "wzdx",
+        "title": "USDOT Work Zone Data Exchange road event data format",
+        "url": "https://github.com/usdot-jpo-ode/wzdx/blob/develop/spec-content/objects/WorkZoneRoadEvent.md",
+        "publisher": "U.S. Department of Transportation",
+        "linkLabel": "Road event dates and lane status"
+      },
+      {
+        "id": "eia861",
+        "title": "Form EIA-861 electricity industry data, utility reliability reporting",
+        "url": "https://www.eia.gov/electricity/data/eia861/",
+        "publisher": "U.S. Energy Information Administration",
+        "linkLabel": "Utility reliability data"
+      },
+      {
+        "id": "naip",
+        "title": "USDA 2022 National Agriculture Imagery Program aerial mosaic",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2022_CONUS/ImageServer",
+        "publisher": "USDA Farm Production and Conservation",
+        "linkLabel": "2022 pre-storm imagery"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      }
+    ],
+    "dataset": {
+      "name": "Helene electricity outages and I-40 closures by reporting scope",
+      "description": "Fifteen North Carolina DOE outage snapshots, the EAGLE-I 15-minute Haywood County window with gaps, and the separate I-40 closure and reopening history.",
+      "spatialCoverage": "North Carolina, Haywood County, and the I-40 North Carolina–Tennessee Pigeon River Gorge segment, United States",
+      "temporalCoverage": "2024-09-25/2025-06-27",
+      "sourceIds": [
+        "doe-index",
+        "eaglei",
+        "eaglei-version",
+        "road-actual",
+        "repeat-closure"
+      ]
+    },
+    "relatedSlugs": [
+      "warehouse-site-selection-rail-truck-access",
+      "data-center-substation-capacity-check",
+      "data-center-site-selection-checklist"
+    ]
+  },
+  {
     "slug": "farmland-crop-history-by-parcel",
     "topic": "Data & APIs",
     "region": "Boone County, Iowa",
