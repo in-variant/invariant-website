@@ -319,5 +319,5 @@ function H2({ children, small }: { children: ReactNode; small?: boolean }) {
 function formatDate(iso: string) {
   const d = new Date(iso)
   if (isNaN(d.getTime())) return iso
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 }
