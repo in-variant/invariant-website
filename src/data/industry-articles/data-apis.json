@@ -1,5 +1,244 @@
 [
   {
+    "slug": "freight-analysis-framework-data",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Freight Analysis Framework Data: FAF6 Downloads and Trade Flows",
+    "description": "Download FAF6 commodity flows and reproduce a Michigan case. Compare U.S. entry and destination tonnage with the separate BTS border crossings API.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Freight trucks crossing the Ambassador Bridge with the Detroit skyline behind them.",
+    "coverCaption": "Ambassador Bridge, August 26, 2022. U.S. Customs and Border Protection photo by Charles Csavossy.",
+    "intro": "Use the Freight Analysis Framework to compare estimated U.S. freight tonnage and value by origin, destination, mode and commodity. For the current FAF6 benchmark, start with the 2022 state or regional download. We used the state data to trace Canadian motorized vehicles and parts. An estimated 6.06 million tons entered the U.S. through Michigan, while about 3.67 million tons reached destinations in Michigan across all U.S. entry states.",
+    "takeaways": [
+      "For imports, the domestic origin field means where the cargo enters the U.S. The domestic destination is where that U.S. movement ends.",
+      "Use the BTS download or the tabulation tool for FAF estimates. Use the separate BTS Border Crossing Entry Data API if you need truck counts at a port.",
+      "Record the FAF version, estimate year, trade type, mode and units. FAF6.0 covers the 2022 benchmark. The earlier FAF5 release contains its own annual estimates and forecasts."
+    ],
+    "sections": [
+      {
+        "id": "get-faf6-data",
+        "heading": "Where do I download U.S. freight flows?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Download the FAF6.0 state or regional CSV archive from the Bureau of Transportation Statistics, or use its Data Tabulation Tool to export filtered tables. Start with the state data for a statewide corridor comparison. Use FAF regions when a metro-area estimate matters. The 2022 state file reports thousands of tons and millions of 2022 dollars.",
+            "sourceIds": [
+              "faf",
+              "faf-state",
+              "faf-guide"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the foreign mode and the domestic mode as separate columns. Imported freight can cross into the U.S. on one mode and continue on another. Treat rows in the Multiple Modes and Mail category as their own group. The category can include several kinds of transfers, so use a separate source to estimate the share using a specific terminal.",
+            "sourceIds": [
+              "faf-guide",
+              "faf-faq"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "michigan-faf-vehicle-imports",
+        "heading": "How much Canadian vehicle freight entered Michigan in 2022?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We filtered the FAF6.0 state CSV to imports, foreign origin Canada and SCTG code 36 for motorized and other vehicles, including parts. We then summed weight for four groups using the U.S. entry and destination fields. Each figure is a model estimate for 2022.",
+            "sourceIds": [
+              "faf-state",
+              "faf-guide"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Question",
+              "Additional state filters",
+              "Estimated 2022 weight"
+            ],
+            "rows": [
+              [
+                "How much entered the U.S. through Michigan?",
+                "Entry state Michigan. Any U.S. destination.",
+                "6.06 million tons"
+              ],
+              [
+                "How much reached a destination in Michigan?",
+                "Destination Michigan. Any U.S. entry state.",
+                "3.67 million tons"
+              ],
+              [
+                "How much both entered and reached its destination in Michigan?",
+                "Entry and destination Michigan.",
+                "3.43 million tons"
+              ],
+              [
+                "How much entered through Michigan and went to Ohio?",
+                "Entry Michigan. Destination Ohio.",
+                "419,265 tons"
+              ]
+            ],
+            "stackOnMobile": true,
+            "sourceIds": [
+              "faf-state"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "About 2.64 million tons entered through Michigan and went to other states. The 3.43 million tons that entered and ended in Michigan belong to both of the first two groups. Preserve the intersection when combining them. For site selection, compare the flows relevant to your proposed catchment and check the actual truck route or rail connection separately.",
+            "sourceIds": [
+              "faf-state",
+              "faf-guide"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-bts-border-counts",
+        "heading": "How many trucks crossed at Detroit and Port Huron?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In the BTS Border Crossing Entry Data, 12 months of 2022 records add up to 1,414,853 inbound truck crossings at Detroit and 873,605 at Port Huron. These are counts at ports of entry across all cargoes. The FAF numbers above are weights for one commodity group across a state, including every mode represented in the state rows. Choose the measure that matches your question.",
+            "sourceIds": [
+              "border-catalog",
+              "border-query",
+              "faf-guide"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/freight-analysis-framework-data.json",
+            "format": "JSON",
+            "label": "Download the four freight totals, border counts and exact source queries"
+          },
+          {
+            "type": "links",
+            "label": "Put the freight evidence to work",
+            "items": [
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Check truck access and rail service for a warehouse location"
+              },
+              {
+                "slug": "federal-contract-awards-data-api",
+                "label": "Track spending on transportation infrastructure"
+              },
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Browse the site selection and logistics guides"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is there a Freight Analysis Framework API?",
+        "answer": "BTS publishes FAF6 through downloadable state and regional files and the online Data Tabulation Tool. The separate BTS Border Crossing Entry Data has a public API for port-level crossing counts.",
+        "sourceIds": [
+          "faf",
+          "border-query"
+        ]
+      },
+      {
+        "question": "What is the difference between a port of entry and the U.S. destination in FAF?",
+        "answer": "The entry field records where imported goods enter the U.S. shipment segment. The U.S. destination records where that segment ends. The two can be in different states, as the Canada-to-Ohio flows through Michigan illustrate.",
+        "sourceIds": [
+          "faf-guide",
+          "faf-state"
+        ]
+      },
+      {
+        "question": "Can I use FAF6.0 to track year-over-year freight growth?",
+        "answer": "FAF6.0 is a 2022 benchmark. For trends, use compatible annual records and document the version, geography and dollar basis. FAF5 has annual estimates and forecasts with a different benchmark and a constant-dollar base of 2017.",
+        "sourceIds": [
+          "faf",
+          "faf5",
+          "faf-faq"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "faf",
+        "title": "Current Freight Analysis Framework data and download options",
+        "url": "https://www.bts.gov/faf",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "Current FAF release"
+      },
+      {
+        "id": "faf-state",
+        "title": "FAF6.0 state-level 2022 CSV archive",
+        "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip",
+        "publisher": "BTS and Oak Ridge National Laboratory",
+        "linkLabel": "State CSV archive"
+      },
+      {
+        "id": "faf-guide",
+        "title": "FAF6 User’s Guide and code tables",
+        "url": "https://faf.ornl.gov/faf6/data/FAF6%20User%20Guide.pdf",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "FAF6 data dictionary"
+      },
+      {
+        "id": "faf-faq",
+        "title": "FAF FAQs and dataset limitations",
+        "url": "https://www.bts.gov/faf/faqs",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "FAF limitations"
+      },
+      {
+        "id": "faf5",
+        "title": "FAF5 annual estimates and forecasts",
+        "url": "https://www.bts.gov/faf/faf5",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "FAF5 estimates and forecasts"
+      },
+      {
+        "id": "border-catalog",
+        "title": "Border Crossing Entry Data and scope",
+        "url": "https://data.bts.gov/Research-and-Statistics/Border-Crossing-Entry-Data/keg4-3bc2",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "Border Data catalog"
+      },
+      {
+        "id": "border-query",
+        "title": "Twenty-four monthly 2022 inbound truck counts for Detroit and Port Huron",
+        "url": "https://data.bts.gov/resource/keg4-3bc2.json?%24select=port_name%2Cport_code%2Cdate%2Cvalue&%24where=port_code+in+%28%273801%27%2C%273802%27%29+AND+measure%3D%27Trucks%27+AND+date+%3E%3D+%272022-01-01T00%3A00%3A00%27+AND+date+%3C+%272023-01-01T00%3A00%3A00%27&%24order=port_code%2Cdate",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "Reproduce the truck count"
+      },
+      {
+        "id": "photo",
+        "title": "Ambassador Bridge truck cargo traffic photographed on August 26, 2022",
+        "url": "https://www.flickr.com/photos/54593278@N03/53504385327/",
+        "publisher": "U.S. Customs and Border Protection"
+      }
+    ],
+    "dataset": {
+      "name": "FAF6 Canada vehicle freight through Michigan and BTS border truck counts",
+      "description": "Four 2022 FAF6.0 aggregates for vehicles and parts imported from Canada and 24 monthly BTS truck crossing records for Detroit and Port Huron, with state filters, original units and a file hash.",
+      "sourceIds": [
+        "faf",
+        "faf-state",
+        "faf-guide",
+        "border-catalog",
+        "border-query"
+      ],
+      "spatialCoverage": "Michigan and Ohio, United States",
+      "temporalCoverage": "2022-01-01/2022-12-31"
+    },
+    "relatedSlugs": [
+      "warehouse-site-selection-rail-truck-access",
+      "federal-contract-awards-data-api",
+      "best-gis-apis-for-site-selection"
+    ]
+  },
+  {
     "slug": "federal-contract-awards-data-api",
     "topic": "Data & APIs",
     "region": "United States",
@@ -9379,6 +9618,7 @@
             "type": "links",
             "label": "Related property and logistics guides",
             "items": [
+              {"slug": "freight-analysis-framework-data", "label": "Measure freight moving into and through a state"},
               {"slug": "site-selection-due-diligence", "label": "Use the site selection due diligence checklist"},
               {"slug": "manufacturing-site-selection-100-buildable-acres", "label": "Check industrial land, rail and utility connections"},
               {"slug": "truck-depot-charging-site-selection", "label": "Screen a truck depot for charging and utility service"},

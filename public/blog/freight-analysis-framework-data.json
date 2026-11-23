@@ -1,0 +1,208 @@
+{
+  "name": "FAF6 Canada vehicle freight through Michigan and BTS border truck counts",
+  "checked_on": "2026-11-23",
+  "faf": {
+    "citation": "U.S. Department of Transportation, Bureau of Transportation Statistics (BTS). (2022) Freight Analysis Framework, FAF6 [datasets]. https://doi.org/10.21949/fhgm-g335",
+    "version": "6.0",
+    "estimate_year": 2022,
+    "source_zip": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip",
+    "source_sha256": "50c6a8bb857b94998a634306234b805af6a114f7ce76ef0b02f34660d01a3e0d",
+    "csv_member": "FAF6.0_State.csv",
+    "shared_filters": {
+      "trade_type": "2",
+      "fr_orig": "801",
+      "sctg2": "36"
+    },
+    "groups": {
+      "michigan_entry": {
+        "extra_filters": {
+          "dms_origst": "26"
+        },
+        "rows": 138,
+        "tons_2022_thousand": "6063.492013",
+        "value_2022_usd_million": "37579.976676"
+      },
+      "michigan_destination": {
+        "extra_filters": {
+          "dms_destst": "26"
+        },
+        "rows": 32,
+        "tons_2022_thousand": "3668.815866",
+        "value_2022_usd_million": "23060.814112"
+      },
+      "michigan_entry_and_destination": {
+        "extra_filters": {
+          "dms_origst": "26",
+          "dms_destst": "26"
+        },
+        "rows": 4,
+        "tons_2022_thousand": "3427.034293",
+        "value_2022_usd_million": "20670.709454"
+      },
+      "michigan_entry_ohio_destination": {
+        "extra_filters": {
+          "dms_origst": "26",
+          "dms_destst": "39"
+        },
+        "rows": 4,
+        "tons_2022_thousand": "419.265378",
+        "value_2022_usd_million": "1532.029994"
+      }
+    },
+    "notes": "Filter each group independently, then sum tons_2022 and value_2022. Groups overlap. Weight is in thousands of tons and value in millions of 2022 US dollars. All published mode values are included."
+  },
+  "border_crossings": {
+    "source_query": "https://data.bts.gov/resource/keg4-3bc2.json?%24select=port_name%2Cport_code%2Cdate%2Cvalue&%24where=port_code+in+%28%273801%27%2C%273802%27%29+AND+measure%3D%27Trucks%27+AND+date+%3E%3D+%272022-01-01T00%3A00%3A00%27+AND+date+%3C+%272023-01-01T00%3A00%3A00%27&%24order=port_code%2Cdate",
+    "source_months": [
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-01-01T00:00:00.000",
+        "value": "111657"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-02-01T00:00:00.000",
+        "value": "88133"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-03-01T00:00:00.000",
+        "value": "131470"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-04-01T00:00:00.000",
+        "value": "117973"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-05-01T00:00:00.000",
+        "value": "123017"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-06-01T00:00:00.000",
+        "value": "120863"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-07-01T00:00:00.000",
+        "value": "110901"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-08-01T00:00:00.000",
+        "value": "129822"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-09-01T00:00:00.000",
+        "value": "120287"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-10-01T00:00:00.000",
+        "value": "123450"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-11-01T00:00:00.000",
+        "value": "126756"
+      },
+      {
+        "port_name": "Detroit",
+        "port_code": "3801",
+        "date": "2022-12-01T00:00:00.000",
+        "value": "110524"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-01-01T00:00:00.000",
+        "value": "65242"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-02-01T00:00:00.000",
+        "value": "72996"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-03-01T00:00:00.000",
+        "value": "84160"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-04-01T00:00:00.000",
+        "value": "74490"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-05-01T00:00:00.000",
+        "value": "78854"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-06-01T00:00:00.000",
+        "value": "76917"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-07-01T00:00:00.000",
+        "value": "68539"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-08-01T00:00:00.000",
+        "value": "75415"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-09-01T00:00:00.000",
+        "value": "71565"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-10-01T00:00:00.000",
+        "value": "74163"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-11-01T00:00:00.000",
+        "value": "71869"
+      },
+      {
+        "port_name": "Port Huron",
+        "port_code": "3802",
+        "date": "2022-12-01T00:00:00.000",
+        "value": "59395"
+      }
+    ],
+    "totals": {
+      "Detroit": 1414853,
+      "Port Huron": 873605
+    },
+    "notes": "Summed monthly records whose measure is Trucks. These are inbound truck crossings across all cargoes; do not use them to convert estimated category tonnage to a per-port payload or to assign weight to individual trucks."
+  }
+}

@@ -1,5 +1,35 @@
 [
   {
+    "slug": "freight-analysis-framework-data",
+    "topic": "Data & APIs",
+    "title": "Freight Analysis Framework Data: FAF6 Downloads and Trade Flows",
+    "summary": "Download FAF6 commodity flows and reproduce a Michigan case. Compare U.S. entry and destination tonnage with the separate BTS border crossings API.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/freight-analysis-framework-data.webp?v=858327e5",
+    "dataset": {
+      "name": "FAF6 Canada vehicle freight through Michigan and BTS border truck counts",
+      "description": "Four 2022 FAF6.0 aggregates for vehicles and parts imported from Canada and 24 monthly BTS truck crossing records for Detroit and Port Huron, with state filters, original units and a file hash.",
+      "spatialCoverage": "Michigan and Ohio, United States",
+      "temporalCoverage": "2022-01-01/2022-12-31",
+      "sources": [
+        "https://www.bts.gov/faf",
+        "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip",
+        "https://faf.ornl.gov/faf6/data/FAF6%20User%20Guide.pdf",
+        "https://data.bts.gov/Research-and-Statistics/Border-Crossing-Entry-Data/keg4-3bc2",
+        "https://data.bts.gov/resource/keg4-3bc2.json?%24select=port_name%2Cport_code%2Cdate%2Cvalue&%24where=port_code+in+%28%273801%27%2C%273802%27%29+AND+measure%3D%27Trucks%27+AND+date+%3E%3D+%272022-01-01T00%3A00%3A00%27+AND+date+%3C+%272023-01-01T00%3A00%3A00%27&%24order=port_code%2Cdate"
+      ],
+      "downloads": [
+        {
+          "label": "Download the four freight totals, border counts and exact source queries",
+          "path": "/blog/freight-analysis-framework-data.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "federal-contract-awards-data-api",
     "topic": "Data & APIs",
     "title": "Federal Contract Awards Data API: USAspending and SAM.gov",
