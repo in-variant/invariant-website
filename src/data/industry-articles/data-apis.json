@@ -1,5 +1,380 @@
 [
   {
+    "slug": "wetlands-hydric-soils-land-development",
+    "topic": "Data & APIs",
+    "region": "Stayton, Oregon",
+    "title": "How to Check a Property for Wetlands and Hydric Soils",
+    "description": "Use wetlands maps, hydric soils, and a Corps determination to screen land for development. Download the parcel and soil data from a real Oregon case.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Aerial map of tax lot 1000 near Stayton, Oregon. The 19.74-acre lot has zero mapped National Wetlands Inventory acres and overlaps a hydric soil map unit by 1.76 acres. A separate Corps record describes Wetland 4 as 1.87 acres.",
+    "coverCaption": "The county lot is outlined in cream, the hydric soil map unit is shaded gold within the lot, and the National Wetlands Inventory is in blue. Sources include USDA NAIP 2022 aerial imagery, Marion County GIS, USFWS, NRCS, and the Corps.",
+    "intro": "Start with the current parcel boundary and the area the project would disturb, including access and utility routes. Overlay the National Wetlands Inventory, local wetland inventories, and USDA soil polygons. Then check for a field delineation and federal or state decisions that cover the work area. On a 19.74-acre lot near Stayton, Oregon, the federal inventory had zero overlap. A USDA map unit with hydric soil components covered 1.76 acres of the lot, and a Corps record separately described a 1.87-acre wetland on the east side.",
+    "takeaways": [
+      "Clip inventory and soil polygons to the parcel or proposed disturbance boundary before reporting acreage. Keep each layer’s dates and scope with the result.",
+      "Hydric soil components flag places to investigate. A map unit’s representative component percentages cannot locate individual soils or delineate a wetland.",
+      "Check the field delineation and the agency review boundary before using an acreage figure in a layout, closing condition, or permit estimate."
+    ],
+    "sections": [
+      {
+        "id": "wetland-screening-records",
+        "heading": "Which maps and records should I check before developing land?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What to look for",
+              "How to use it"
+            ],
+            "rows": [
+              [
+                "County parcel and site plan",
+                "Current tax lot, survey boundary, grading, access and utility corridors",
+                "Set the desktop screening footprint. Use a survey or legal description to resolve boundary disputes."
+              ],
+              [
+                "National Wetlands Inventory and state or local inventories",
+                "Mapped wetland and water polygons, mapping date and coverage",
+                "Identify mapped features in and near the work area, including the approaches to crossings."
+              ],
+              [
+                "USDA SSURGO soil survey",
+                "Soil map unit, hydric ratings of its components and survey version",
+                "Identify soil map units that warrant field checks. Keep the lot overlap and representative component percentages as separate attributes."
+              ],
+              [
+                "Field delineation and agency decisions",
+                "Delineated feature boundaries, source dates, agency review area and feature findings",
+                "Work with the relevant agencies to determine which approvals the proposed grading, fill and crossings require."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "marion"
+              ],
+              [
+                "nwi",
+                "oregon-inventories"
+              ],
+              [
+                "sda-spatial",
+                "hydric-ratings"
+              ],
+              [
+                "corps-overview",
+                "oregon-delineation"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For acreage, use a suitable equal-area projection, clip the layers to the review boundary, and dissolve overlaps within each layer. Keep mapped wetland acres, soil map-unit acres, and independently verified field acres in separate columns. A wetland polygon’s full acreage can include land outside your property.",
+            "sourceIds": [
+              "nwi-service",
+              "sda-spatial"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stayton-lot-1000-wetlands",
+        "heading": "What did the maps miss on the Stayton property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The current Marion County boundary for lot 091W04B001000, abbreviated 091W04B01000 on the Corps map, measures 19.74 acres in our equal-area GIS calculation. We checked that polygon against the National Wetlands Inventory and SSURGO on November 23, 2026. The Corps made its determination for a separate 60.9-acre review area that included portions of multiple tax lots.",
+            "sourceIds": [
+              "marion",
+              "nwi-service",
+              "sda-spatial",
+              "corps-area",
+              "corps-map"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Evidence",
+              "Measured or reported acreage",
+              "Scope"
+            ],
+            "rows": [
+              [
+                "National Wetlands Inventory",
+                "0.00 acres",
+                "No inventory polygon intersected the current county lot in the downloaded layer."
+              ],
+              [
+                "USDA soil map unit 2224A",
+                "1.76 acres",
+                "Parcel overlap with Courtney gravelly silty clay loam, about 8.94% of the lot. The NRCS component list includes hydric soils."
+              ],
+              [
+                "Corps Wetland 4",
+                "1.87 acres",
+                "Published feature size in the January 2026 determination. The Corps locates it on the east side of lot 1000 and says it continues east beyond the agency review area."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nwi-service"
+              ],
+              [
+                "sda-spatial",
+                "hydric-ratings"
+              ],
+              [
+                "corps-wetlands",
+                "corps-map"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The soil map unit’s four listed components are rated hydric and total 97% by representative component percentage. SSURGO provides the boundary of the map unit. A field crew still has to locate soil conditions and any wetland edge within it. Our download includes the county geometry, the nearby inventory polygons, the clipped soil map units, and the separate Corps findings.",
+            "sourceIds": [
+              "sda-spatial",
+              "hydric-ratings",
+              "corps-wetlands"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/wetlands-hydric-soils-land-development.json",
+            "format": "JSON",
+            "label": "Download parcel and soil geometries, source queries, and Corps findings"
+          }
+        ]
+      },
+      {
+        "id": "read-a-wetland-determination",
+        "heading": "What does an approved jurisdictional determination tell a buyer?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Corps’ January 12, 2026 determination NWP-2025-00423 describes four wetlands totaling 8.72 acres by the individual sizes it reports. It classifies Wetlands 3 and 4, totaling 3.91 acres, as jurisdictional under Section 404. It classifies Wetlands 1 and 2, totaling 4.81 acres, as non-jurisdictional in that determination. The Corps says Wetlands 3 and 4 abut Ditch 1, which it also determined to be jurisdictional.",
+            "sourceIds": [
+              "corps-overview",
+              "corps-wetlands",
+              "corps-nonjurisdictional",
+              "corps-map"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Corps wrote that it did not find Ditch 1 in either the National Wetlands Inventory or the National Hydrography Dataset consulted for the review. The memo gives its length as 2,359 linear feet. The map’s red Corps annotation gives 2,395 linear feet. Use the same jurisdiction finding in the record, then reconcile the governing geometry and length before estimating crossing impacts or mitigation quantities.",
+            "sourceIds": [
+              "corps-ditch",
+              "corps-wetlands",
+              "corps-map"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Check Oregon’s state process separately for work near wetlands and waters. The Department of State Lands describes its own determination, delineation review, and removal-fill permit process. The federal memo gives federal findings for the stated review area. The project’s grading and crossings, along with applicable state and local requirements, determine the next review steps.",
+            "sourceIds": [
+              "corps-overview",
+              "oregon-identification",
+              "oregon-delineation",
+              "oregon-fill"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "wetlands-data-api-and-screening",
+        "heading": "How should a wetlands data API handle parcel screening?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s field catalog documents point-level checks for whether the point intersects an NWI polygon, distance to the nearest mapped wetland within 500 metres, and the SSURGO soil map-unit name and dominant-component drainage class. For parcel acreage, use the parcel and source polygons and calculate the intersection. The catalog’s wetland acreage represents the full selected inventory polygon.",
+            "sourceIds": [
+              "earth-fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In a GIS export or API response, retain the asset ID, boundary source, retrieval date, layer vintage where available, acres of intersection, and whether the provider returned data for the entire work area. Record the field delineation and any agency decision under their own identifiers. Use the result to decide where to commission fieldwork, check access or utilities, or revise the grading plan before pricing the site.",
+            "sourceIds": [
+              "nwi",
+              "sda-spatial",
+              "oregon-delineation"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find out if my land has wetlands?",
+        "answer": "Check the National Wetlands Inventory and state or local wetland maps against the parcel and work area. Review soil and site conditions, then ask the appropriate agency or qualified consultant about a field delineation if the project could affect wetlands or waters.",
+        "sourceIds": [
+          "nwi",
+          "oregon-identification"
+        ]
+      },
+      {
+        "question": "Does a blank National Wetlands Inventory map mean the site is clear?",
+        "answer": "A blank map or zero intersection means the particular inventory has no mapped polygon at that location. Inventory methods can miss resources. Site conditions, field delineation, and any applicable agency decisions still matter for development.",
+        "sourceIds": [
+          "nwi",
+          "corps-ditch",
+          "corps-wetlands"
+        ]
+      },
+      {
+        "question": "How do I calculate acres of mapped wetlands on a parcel?",
+        "answer": "Retrieve the parcel and inventory polygons, project both to a suitable equal-area coordinate system, dissolve duplicate or overlapping inventory polygons, and measure the intersection with the parcel. Save the input vintages and the analysis boundary.",
+        "sourceIds": [
+          "nwi-service",
+          "marion"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "marion",
+        "title": "Marion County assessor parcel polygon service",
+        "url": "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0",
+        "publisher": "Marion County GIS",
+        "linkLabel": "County tax lot layer"
+      },
+      {
+        "id": "nwi",
+        "title": "National Wetlands Inventory Wetlands Mapper, coverage and use limitations",
+        "url": "https://www.fws.gov/program/national-wetlands-inventory/wetlands-mapper",
+        "publisher": "U.S. Fish and Wildlife Service",
+        "linkLabel": "Inventory coverage and limits"
+      },
+      {
+        "id": "nwi-service",
+        "title": "National Wetlands Inventory polygon service",
+        "url": "https://fwspublicservices.wim.usgs.gov/wetlandsmapservice/rest/services/Wetlands/MapServer/0",
+        "publisher": "U.S. Fish and Wildlife Service",
+        "linkLabel": "Wetlands polygon layer"
+      },
+      {
+        "id": "sda-spatial",
+        "title": "Soil Data Access spatial and tabular query documentation",
+        "url": "https://sdmdataaccess.nrcs.usda.gov/documents/AdvancedQueries.html",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "SSURGO spatial and component queries"
+      },
+      {
+        "id": "hydric-ratings",
+        "title": "Soil survey hydric map-unit ratings and representative component percentages",
+        "url": "https://www.nrcs.usda.gov/publications/Lists%20of%20Hydric%20Soils%20-%20Query%20by%20Soil%20Survey%20Area%20Map%20Unit%20Rating.html",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "Hydric soil rating definitions"
+      },
+      {
+        "id": "oregon-inventories",
+        "title": "Oregon statewide and local wetlands inventories",
+        "url": "https://www.oregon.gov/dsl/wetlands-waters/Pages/inventories-maps.aspx",
+        "publisher": "Oregon Department of State Lands",
+        "linkLabel": "Oregon wetland inventories"
+      },
+      {
+        "id": "oregon-identification",
+        "title": "State wetland determinations and identification",
+        "url": "https://www.oregon.gov/dsl/wetlands-waters/Pages/Identification.aspx",
+        "publisher": "Oregon Department of State Lands",
+        "linkLabel": "Oregon wetland identification"
+      },
+      {
+        "id": "oregon-delineation",
+        "title": "Oregon delineation resources and report review",
+        "url": "https://www.oregon.gov/dsl/wetlands-waters/Pages/delineation-resources.aspx",
+        "publisher": "Oregon Department of State Lands",
+        "linkLabel": "Oregon delineation review"
+      },
+      {
+        "id": "oregon-fill",
+        "title": "Removing or filling material in Oregon wetlands and waters",
+        "url": "https://www.oregon.gov/dsl/wetlands-waters/Pages/removal-fill.aspx",
+        "publisher": "Oregon Department of State Lands",
+        "linkLabel": "Oregon removal-fill rules"
+      },
+      {
+        "id": "corps-overview",
+        "title": "January 12, 2026 approved jurisdictional determination NWP-2025-00423",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=",
+        "publisher": "U.S. Army Corps of Engineers, Portland District",
+        "linkLabel": "Corps determination"
+      },
+      {
+        "id": "corps-area",
+        "title": "Corps determination section 3, Stayton review area",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=#page=2",
+        "publisher": "U.S. Army Corps of Engineers, Portland District",
+        "linkLabel": "Corps review area"
+      },
+      {
+        "id": "corps-ditch",
+        "title": "Corps determination section 7, Ditch 1 analysis",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=#page=5",
+        "publisher": "U.S. Army Corps of Engineers, Portland District",
+        "linkLabel": "Ditch 1 memo"
+      },
+      {
+        "id": "corps-wetlands",
+        "title": "Corps determination section 7, Wetlands 3 and 4 and Ditch 1 inventory check",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=#page=6",
+        "publisher": "U.S. Army Corps of Engineers, Portland District",
+        "linkLabel": "Corps findings for Ditch 1 and Wetlands 3 and 4"
+      },
+      {
+        "id": "corps-nonjurisdictional",
+        "title": "Corps determination section 8, Wetlands 1 and 2",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=#page=8",
+        "publisher": "U.S. Army Corps of Engineers, Portland District",
+        "linkLabel": "Corps findings for Wetlands 1 and 2"
+      },
+      {
+        "id": "corps-map",
+        "title": "Figure 6a, Wetland Delineation Map Overview with Corps annotations",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=#page=11",
+        "publisher": "U.S. Army Corps of Engineers, Portland District",
+        "linkLabel": "Corps-annotated delineation map"
+      },
+      {
+        "id": "naip",
+        "title": "USDA 2022 National Agriculture Imagery Program orthophotography",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2022_CONUS/ImageServer",
+        "publisher": "USDA Farm Production and Conservation",
+        "linkLabel": "2022 aerial imagery"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      }
+    ],
+    "dataset": {
+      "name": "Wetland inventory and hydric soil comparison for Stayton tax lot 1000",
+      "description": "Marion County parcel, nearby National Wetlands Inventory polygons, clipped SSURGO soil map units and component ratings, and the Corps feature findings for the East Golf Club Road review.",
+      "spatialCoverage": "Tax lot 091W04B001000 and nearby mapped wetlands, Marion County, Oregon, United States",
+      "temporalCoverage": "2022-01-01/2026-11-23",
+      "sourceIds": [
+        "marion",
+        "nwi-service",
+        "sda-spatial",
+        "corps-overview",
+        "corps-map"
+      ]
+    },
+    "relatedSlugs": [
+      "best-gis-apis-for-site-selection",
+      "water-sewer-data-apis-site-selection",
+      "manufacturing-site-selection-100-buildable-acres"
+    ]
+  },
+  {
     "slug": "census-tract-housing-vacancy-rent-burden",
     "topic": "Data & APIs",
     "region": "Travis County, Texas",
