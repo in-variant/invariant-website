@@ -1,5 +1,35 @@
 [
   {
+    "slug": "ercot-day-ahead-real-time-price-data",
+    "topic": "Data & APIs",
+    "title": "ERCOT Day-Ahead and Real-Time Price Data",
+    "summary": "Download ERCOT historical hub prices and compare day-ahead and real-time settlement intervals. Reproduce the 25-hour Houston and West hub example.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "Texas, United States",
+    "image": "/blog/industry/ercot-day-ahead-real-time-price-data.webp?v=1c46d335",
+    "dataset": {
+      "name": "ERCOT Houston and West hub prices for the 25-hour November 2, 2025 operating day",
+      "description": "Fifty matched day-ahead and real-time hourly intervals across two ERCOT trading hubs. Includes 200 quarter-hour prices, repeated-hour flags, UTC boundaries, price summaries, and source archive fingerprints.",
+      "spatialCoverage": "ERCOT Houston and West trading hubs, Texas, United States",
+      "temporalCoverage": "2025-11-02",
+      "sources": [
+        "https://www.ercot.com/mp/data-products/data-product-details?id=NP4-180-ER",
+        "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-785-ER",
+        "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1177667469",
+        "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1177737535",
+        "https://www.ercot.com/services/comm/mkt_notices/M-A100725-01"
+      ],
+      "downloads": [
+        {
+          "label": "Download 50 aligned hourly records, 200 interval prices, and workbook fingerprints",
+          "path": "/blog/ercot-day-ahead-real-time-price-data.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "county-manufacturing-employment-data",
     "topic": "Data & APIs",
     "title": "County Manufacturing Employment Data from BLS QCEW",

@@ -1,0 +1,860 @@
+{
+  "title": "ERCOT day-ahead and real-time prices on the November 2, 2025 clock change",
+  "publisher": "Invariant Earth",
+  "source_retrieved_on": "2026-11-23",
+  "source_operator": "Electric Reliability Council of Texas",
+  "method": {
+    "source": "Filter the ERCOT historical hub and load zone ZIP workbooks to November 2, 2025 and the Houston and West trading hubs.",
+    "join_key": [
+      "operating_day",
+      "settlement_point",
+      "ercot_hour_ending",
+      "repeated_hour_flag"
+    ],
+    "real_time_intervals": "Listed in ERCOT delivery interval order 1 through 4. Each covers 15 minutes.",
+    "utc": "Start at the operating date midnight in America/Chicago, then add one hour in UTC for each sequential market period. Sort by hour ending and Repeated Hour Flag (N before Y).",
+    "comparison": "Take the arithmetic mean of the four equal real-time intervals per hour for a constant load. Multiply each 15-minute price by its metered or hypothetical MWh when the load varies.",
+    "daily_value": "For a flat 1 MW over 25 hours, sum 25 one-hour values. Each hourly value equals the price per MWh times 1 MWh.",
+    "scope": "Historical wholesale settlement point prices. Market settlement and served-site electricity bills depend on the schedule, quantities, pricing point and applicable contract and tariff."
+  },
+  "operating_day": "2025-11-02",
+  "market_time_zone": "America/Chicago",
+  "sources": {
+    "da": {
+      "ercot_product": "NP4-180-ER",
+      "archive_url": "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1177667469",
+      "archive_sha256": "30df71ebb306bbe8c6cc075598d2e5bd47079b8ab9e0442979f3331353618320",
+      "workbook": "rpt.00013060.0000000000000000.DAMLZHBSPP_2025.xlsx",
+      "worksheet": "Nov"
+    },
+    "rt": {
+      "ercot_product": "NP6-785-ER",
+      "archive_url": "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1177737535",
+      "archive_sha256": "522a26678575b93bbc7e2c040760eead52c4aae484e0f353c603d5b1a0378faa",
+      "workbook": "rpt.00013061.0000000000000000.RTMLZHBSPP_2025.xlsx",
+      "worksheet": "Nov"
+    }
+  },
+  "summary_by_settlement_point": {
+    "HB_HOUSTON": {
+      "day_ahead_mean_usd_per_mwh": "32.33",
+      "real_time_mean_usd_per_mwh": "22.8977",
+      "real_time_minus_day_ahead_mean_usd_per_mwh": "-9.4323",
+      "flat_1_mw_day_ahead_value_usd": "808.25",
+      "flat_1_mw_real_time_value_usd": "572.4425",
+      "omitting_repeated_hour_understates_flat_1_mw_day_ahead_value_usd": "46.86",
+      "omitting_repeated_hour_understates_flat_1_mw_real_time_value_usd": "30.0675"
+    },
+    "HB_WEST": {
+      "day_ahead_mean_usd_per_mwh": "34.1212",
+      "real_time_mean_usd_per_mwh": "20.4017",
+      "real_time_minus_day_ahead_mean_usd_per_mwh": "-13.7195",
+      "flat_1_mw_day_ahead_value_usd": "853.03",
+      "flat_1_mw_real_time_value_usd": "510.0425",
+      "omitting_repeated_hour_understates_flat_1_mw_day_ahead_value_usd": "53.35",
+      "omitting_repeated_hour_understates_flat_1_mw_real_time_value_usd": "35.5125"
+    }
+  },
+  "hourly_observations": [
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "01:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "54.83",
+      "real_time_intervals_usd_per_mwh": [
+        "49.44",
+        "47.45",
+        "61.57",
+        "49.17"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "51.9075",
+      "real_time_minus_day_ahead_usd_per_mwh": "-2.9225",
+      "interval_start_utc": "2025-11-02T05:00:00Z",
+      "interval_end_utc": "2025-11-02T06:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "02:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "45.35",
+      "real_time_intervals_usd_per_mwh": [
+        "51.76",
+        "39.27",
+        "39.96",
+        "39.48"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "42.6175",
+      "real_time_minus_day_ahead_usd_per_mwh": "-2.7325",
+      "interval_start_utc": "2025-11-02T06:00:00Z",
+      "interval_end_utc": "2025-11-02T07:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "02:00",
+      "repeated_hour_flag": "Y",
+      "day_ahead_usd_per_mwh": "46.86",
+      "real_time_intervals_usd_per_mwh": [
+        "29.21",
+        "29.34",
+        "30.35",
+        "31.37"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "30.0675",
+      "real_time_minus_day_ahead_usd_per_mwh": "-16.7925",
+      "interval_start_utc": "2025-11-02T07:00:00Z",
+      "interval_end_utc": "2025-11-02T08:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "03:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "51.04",
+      "real_time_intervals_usd_per_mwh": [
+        "31.55",
+        "29.03",
+        "29.09",
+        "30.08"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "29.9375",
+      "real_time_minus_day_ahead_usd_per_mwh": "-21.1025",
+      "interval_start_utc": "2025-11-02T08:00:00Z",
+      "interval_end_utc": "2025-11-02T09:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "04:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "50.15",
+      "real_time_intervals_usd_per_mwh": [
+        "30.19",
+        "31.44",
+        "31.56",
+        "31.53"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "31.18",
+      "real_time_minus_day_ahead_usd_per_mwh": "-18.97",
+      "interval_start_utc": "2025-11-02T09:00:00Z",
+      "interval_end_utc": "2025-11-02T10:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "05:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "48.18",
+      "real_time_intervals_usd_per_mwh": [
+        "28.01",
+        "29.06",
+        "28.66",
+        "31.53"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "29.315",
+      "real_time_minus_day_ahead_usd_per_mwh": "-18.865",
+      "interval_start_utc": "2025-11-02T10:00:00Z",
+      "interval_end_utc": "2025-11-02T11:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "06:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "44.43",
+      "real_time_intervals_usd_per_mwh": [
+        "30.36",
+        "31.16",
+        "30.09",
+        "30.75"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "30.59",
+      "real_time_minus_day_ahead_usd_per_mwh": "-13.84",
+      "interval_start_utc": "2025-11-02T11:00:00Z",
+      "interval_end_utc": "2025-11-02T12:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "07:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "36.90",
+      "real_time_intervals_usd_per_mwh": [
+        "29.53",
+        "28.62",
+        "28.56",
+        "27.31"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "28.505",
+      "real_time_minus_day_ahead_usd_per_mwh": "-8.395",
+      "interval_start_utc": "2025-11-02T12:00:00Z",
+      "interval_end_utc": "2025-11-02T13:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "08:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "26.34",
+      "real_time_intervals_usd_per_mwh": [
+        "27.36",
+        "21.74",
+        "16.62",
+        "11.42"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "19.285",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.055",
+      "interval_start_utc": "2025-11-02T13:00:00Z",
+      "interval_end_utc": "2025-11-02T14:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "09:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "14.23",
+      "real_time_intervals_usd_per_mwh": [
+        "9.32",
+        "2.78",
+        "0.01",
+        "0.00"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "3.0275",
+      "real_time_minus_day_ahead_usd_per_mwh": "-11.2025",
+      "interval_start_utc": "2025-11-02T14:00:00Z",
+      "interval_end_utc": "2025-11-02T15:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "10:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "6.53",
+      "real_time_intervals_usd_per_mwh": [
+        "1.16",
+        "1.43",
+        "1.48",
+        "0.98"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "1.2625",
+      "real_time_minus_day_ahead_usd_per_mwh": "-5.2675",
+      "interval_start_utc": "2025-11-02T15:00:00Z",
+      "interval_end_utc": "2025-11-02T16:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "11:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "6.48",
+      "real_time_intervals_usd_per_mwh": [
+        "1.04",
+        "0.67",
+        "0.81",
+        "0.94"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "0.865",
+      "real_time_minus_day_ahead_usd_per_mwh": "-5.615",
+      "interval_start_utc": "2025-11-02T16:00:00Z",
+      "interval_end_utc": "2025-11-02T17:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "12:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "8.14",
+      "real_time_intervals_usd_per_mwh": [
+        "1.11",
+        "1.11",
+        "1.18",
+        "1.29"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "1.1725",
+      "real_time_minus_day_ahead_usd_per_mwh": "-6.9675",
+      "interval_start_utc": "2025-11-02T17:00:00Z",
+      "interval_end_utc": "2025-11-02T18:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "13:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "9.25",
+      "real_time_intervals_usd_per_mwh": [
+        "1.33",
+        "2.32",
+        "1.77",
+        "1.68"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "1.775",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.475",
+      "interval_start_utc": "2025-11-02T18:00:00Z",
+      "interval_end_utc": "2025-11-02T19:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "14:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "9.51",
+      "real_time_intervals_usd_per_mwh": [
+        "1.25",
+        "1.40",
+        "1.63",
+        "2.10"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "1.595",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.915",
+      "interval_start_utc": "2025-11-02T19:00:00Z",
+      "interval_end_utc": "2025-11-02T20:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "15:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "10.48",
+      "real_time_intervals_usd_per_mwh": [
+        "4.77",
+        "5.19",
+        "5.96",
+        "3.51"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "4.8575",
+      "real_time_minus_day_ahead_usd_per_mwh": "-5.6225",
+      "interval_start_utc": "2025-11-02T20:00:00Z",
+      "interval_end_utc": "2025-11-02T21:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "16:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "12.93",
+      "real_time_intervals_usd_per_mwh": [
+        "1.59",
+        "2.67",
+        "3.55",
+        "6.61"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "3.605",
+      "real_time_minus_day_ahead_usd_per_mwh": "-9.325",
+      "interval_start_utc": "2025-11-02T21:00:00Z",
+      "interval_end_utc": "2025-11-02T22:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "17:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "27.29",
+      "real_time_intervals_usd_per_mwh": [
+        "18.18",
+        "24.56",
+        "46.68",
+        "74.63"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "41.0125",
+      "real_time_minus_day_ahead_usd_per_mwh": "13.7225",
+      "interval_start_utc": "2025-11-02T22:00:00Z",
+      "interval_end_utc": "2025-11-02T23:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "18:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "74.96",
+      "real_time_intervals_usd_per_mwh": [
+        "76.45",
+        "75.40",
+        "76.25",
+        "72.58"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "75.17",
+      "real_time_minus_day_ahead_usd_per_mwh": "0.21",
+      "interval_start_utc": "2025-11-02T23:00:00Z",
+      "interval_end_utc": "2025-11-03T00:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "19:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "65.11",
+      "real_time_intervals_usd_per_mwh": [
+        "52.60",
+        "33.62",
+        "27.83",
+        "26.27"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "35.08",
+      "real_time_minus_day_ahead_usd_per_mwh": "-30.03",
+      "interval_start_utc": "2025-11-03T00:00:00Z",
+      "interval_end_utc": "2025-11-03T01:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "20:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "46.84",
+      "real_time_intervals_usd_per_mwh": [
+        "24.47",
+        "24.13",
+        "24.43",
+        "26.56"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "24.8975",
+      "real_time_minus_day_ahead_usd_per_mwh": "-21.9425",
+      "interval_start_utc": "2025-11-03T01:00:00Z",
+      "interval_end_utc": "2025-11-03T02:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "21:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "32.66",
+      "real_time_intervals_usd_per_mwh": [
+        "29.57",
+        "28.68",
+        "27.49",
+        "29.22"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "28.74",
+      "real_time_minus_day_ahead_usd_per_mwh": "-3.92",
+      "interval_start_utc": "2025-11-03T02:00:00Z",
+      "interval_end_utc": "2025-11-03T03:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "22:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "28.18",
+      "real_time_intervals_usd_per_mwh": [
+        "25.48",
+        "20.83",
+        "20.09",
+        "20.64"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "21.76",
+      "real_time_minus_day_ahead_usd_per_mwh": "-6.42",
+      "interval_start_utc": "2025-11-03T03:00:00Z",
+      "interval_end_utc": "2025-11-03T04:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "23:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "27.78",
+      "real_time_intervals_usd_per_mwh": [
+        "19.75",
+        "22.03",
+        "14.90",
+        "14.95"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "17.9075",
+      "real_time_minus_day_ahead_usd_per_mwh": "-9.8725",
+      "interval_start_utc": "2025-11-03T04:00:00Z",
+      "interval_end_utc": "2025-11-03T05:00:00Z"
+    },
+    {
+      "settlement_point": "HB_HOUSTON",
+      "ercot_hour_ending": "24:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "23.80",
+      "real_time_intervals_usd_per_mwh": [
+        "15.73",
+        "16.52",
+        "16.77",
+        "16.22"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "16.31",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.49",
+      "interval_start_utc": "2025-11-03T05:00:00Z",
+      "interval_end_utc": "2025-11-03T06:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "01:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "60.89",
+      "real_time_intervals_usd_per_mwh": [
+        "53.52",
+        "49.72",
+        "63.92",
+        "50.64"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "54.45",
+      "real_time_minus_day_ahead_usd_per_mwh": "-6.44",
+      "interval_start_utc": "2025-11-02T05:00:00Z",
+      "interval_end_utc": "2025-11-02T06:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "02:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "50.55",
+      "real_time_intervals_usd_per_mwh": [
+        "57.75",
+        "42.51",
+        "45.91",
+        "47.48"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "48.4125",
+      "real_time_minus_day_ahead_usd_per_mwh": "-2.1375",
+      "interval_start_utc": "2025-11-02T06:00:00Z",
+      "interval_end_utc": "2025-11-02T07:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "02:00",
+      "repeated_hour_flag": "Y",
+      "day_ahead_usd_per_mwh": "53.35",
+      "real_time_intervals_usd_per_mwh": [
+        "34.14",
+        "34.23",
+        "35.49",
+        "38.19"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "35.5125",
+      "real_time_minus_day_ahead_usd_per_mwh": "-17.8375",
+      "interval_start_utc": "2025-11-02T07:00:00Z",
+      "interval_end_utc": "2025-11-02T08:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "03:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "57.05",
+      "real_time_intervals_usd_per_mwh": [
+        "36.02",
+        "33.96",
+        "32.67",
+        "33.70"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "34.0875",
+      "real_time_minus_day_ahead_usd_per_mwh": "-22.9625",
+      "interval_start_utc": "2025-11-02T08:00:00Z",
+      "interval_end_utc": "2025-11-02T09:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "04:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "55.91",
+      "real_time_intervals_usd_per_mwh": [
+        "35.88",
+        "42.69",
+        "42.52",
+        "36.01"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "39.275",
+      "real_time_minus_day_ahead_usd_per_mwh": "-16.635",
+      "interval_start_utc": "2025-11-02T09:00:00Z",
+      "interval_end_utc": "2025-11-02T10:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "05:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "58.13",
+      "real_time_intervals_usd_per_mwh": [
+        "30.58",
+        "31.71",
+        "31.44",
+        "35.12"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "32.2125",
+      "real_time_minus_day_ahead_usd_per_mwh": "-25.9175",
+      "interval_start_utc": "2025-11-02T10:00:00Z",
+      "interval_end_utc": "2025-11-02T11:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "06:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "50.33",
+      "real_time_intervals_usd_per_mwh": [
+        "37.14",
+        "35.75",
+        "34.21",
+        "35.40"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "35.625",
+      "real_time_minus_day_ahead_usd_per_mwh": "-14.705",
+      "interval_start_utc": "2025-11-02T11:00:00Z",
+      "interval_end_utc": "2025-11-02T12:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "07:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "42.51",
+      "real_time_intervals_usd_per_mwh": [
+        "36.77",
+        "34.49",
+        "34.34",
+        "31.46"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "34.265",
+      "real_time_minus_day_ahead_usd_per_mwh": "-8.245",
+      "interval_start_utc": "2025-11-02T12:00:00Z",
+      "interval_end_utc": "2025-11-02T13:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "08:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "28.61",
+      "real_time_intervals_usd_per_mwh": [
+        "30.77",
+        "17.86",
+        "16.59",
+        "11.42"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "19.16",
+      "real_time_minus_day_ahead_usd_per_mwh": "-9.45",
+      "interval_start_utc": "2025-11-02T13:00:00Z",
+      "interval_end_utc": "2025-11-02T14:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "09:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "14.77",
+      "real_time_intervals_usd_per_mwh": [
+        "9.32",
+        "2.78",
+        "0.01",
+        "0.00"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "3.0275",
+      "real_time_minus_day_ahead_usd_per_mwh": "-11.7425",
+      "interval_start_utc": "2025-11-02T14:00:00Z",
+      "interval_end_utc": "2025-11-02T15:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "10:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "5.91",
+      "real_time_intervals_usd_per_mwh": [
+        "0.15",
+        "0.10",
+        "-0.06",
+        "-0.26"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "-0.0175",
+      "real_time_minus_day_ahead_usd_per_mwh": "-5.9275",
+      "interval_start_utc": "2025-11-02T15:00:00Z",
+      "interval_end_utc": "2025-11-02T16:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "11:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "5.25",
+      "real_time_intervals_usd_per_mwh": [
+        "-0.51",
+        "-0.73",
+        "-0.60",
+        "-0.49"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "-0.5825",
+      "real_time_minus_day_ahead_usd_per_mwh": "-5.8325",
+      "interval_start_utc": "2025-11-02T16:00:00Z",
+      "interval_end_utc": "2025-11-02T17:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "12:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "6.51",
+      "real_time_intervals_usd_per_mwh": [
+        "-0.38",
+        "-0.38",
+        "-0.33",
+        "-0.26"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "-0.3375",
+      "real_time_minus_day_ahead_usd_per_mwh": "-6.8475",
+      "interval_start_utc": "2025-11-02T17:00:00Z",
+      "interval_end_utc": "2025-11-02T18:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "13:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "7.57",
+      "real_time_intervals_usd_per_mwh": [
+        "-0.04",
+        "0.11",
+        "0.23",
+        "0.22"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "0.13",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.44",
+      "interval_start_utc": "2025-11-02T18:00:00Z",
+      "interval_end_utc": "2025-11-02T19:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "14:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "8.10",
+      "real_time_intervals_usd_per_mwh": [
+        "0.09",
+        "0.09",
+        "0.14",
+        "0.31"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "0.1575",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.9425",
+      "interval_start_utc": "2025-11-02T19:00:00Z",
+      "interval_end_utc": "2025-11-02T20:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "15:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "8.37",
+      "real_time_intervals_usd_per_mwh": [
+        "0.34",
+        "0.51",
+        "0.61",
+        "0.35"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "0.4525",
+      "real_time_minus_day_ahead_usd_per_mwh": "-7.9175",
+      "interval_start_utc": "2025-11-02T20:00:00Z",
+      "interval_end_utc": "2025-11-02T21:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "16:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "10.91",
+      "real_time_intervals_usd_per_mwh": [
+        "0.10",
+        "0.06",
+        "0.13",
+        "0.18"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "0.1175",
+      "real_time_minus_day_ahead_usd_per_mwh": "-10.7925",
+      "interval_start_utc": "2025-11-02T21:00:00Z",
+      "interval_end_utc": "2025-11-02T22:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "17:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "26.65",
+      "real_time_intervals_usd_per_mwh": [
+        "5.81",
+        "16.45",
+        "41.86",
+        "74.61"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "34.6825",
+      "real_time_minus_day_ahead_usd_per_mwh": "8.0325",
+      "interval_start_utc": "2025-11-02T22:00:00Z",
+      "interval_end_utc": "2025-11-02T23:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "18:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "80.96",
+      "real_time_intervals_usd_per_mwh": [
+        "76.45",
+        "75.40",
+        "75.42",
+        "70.51"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "74.445",
+      "real_time_minus_day_ahead_usd_per_mwh": "-6.515",
+      "interval_start_utc": "2025-11-02T23:00:00Z",
+      "interval_end_utc": "2025-11-03T00:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "19:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "69.27",
+      "real_time_intervals_usd_per_mwh": [
+        "52.24",
+        "36.47",
+        "29.46",
+        "28.86"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "36.7575",
+      "real_time_minus_day_ahead_usd_per_mwh": "-32.5125",
+      "interval_start_utc": "2025-11-03T00:00:00Z",
+      "interval_end_utc": "2025-11-03T01:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "20:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "51.09",
+      "real_time_intervals_usd_per_mwh": [
+        "27.51",
+        "25.93",
+        "23.12",
+        "16.28"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "23.21",
+      "real_time_minus_day_ahead_usd_per_mwh": "-27.88",
+      "interval_start_utc": "2025-11-03T01:00:00Z",
+      "interval_end_utc": "2025-11-03T02:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "21:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "35.02",
+      "real_time_intervals_usd_per_mwh": [
+        "9.80",
+        "8.61",
+        "8.14",
+        "4.09"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "7.66",
+      "real_time_minus_day_ahead_usd_per_mwh": "-27.36",
+      "interval_start_utc": "2025-11-03T02:00:00Z",
+      "interval_end_utc": "2025-11-03T03:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "22:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "24.92",
+      "real_time_intervals_usd_per_mwh": [
+        "3.51",
+        "1.89",
+        "0.17",
+        "-0.69"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "1.22",
+      "real_time_minus_day_ahead_usd_per_mwh": "-23.70",
+      "interval_start_utc": "2025-11-03T03:00:00Z",
+      "interval_end_utc": "2025-11-03T04:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "23:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "22.06",
+      "real_time_intervals_usd_per_mwh": [
+        "-1.39",
+        "-2.62",
+        "-1.19",
+        "-0.74"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "-1.485",
+      "real_time_minus_day_ahead_usd_per_mwh": "-23.545",
+      "interval_start_utc": "2025-11-03T04:00:00Z",
+      "interval_end_utc": "2025-11-03T05:00:00Z"
+    },
+    {
+      "settlement_point": "HB_WEST",
+      "ercot_hour_ending": "24:00",
+      "repeated_hour_flag": "N",
+      "day_ahead_usd_per_mwh": "18.34",
+      "real_time_intervals_usd_per_mwh": [
+        "-1.24",
+        "-2.00",
+        "-3.17",
+        "-3.17"
+      ],
+      "real_time_hour_mean_usd_per_mwh": "-2.395",
+      "real_time_minus_day_ahead_usd_per_mwh": "-20.735",
+      "interval_start_utc": "2025-11-03T05:00:00Z",
+      "interval_end_utc": "2025-11-03T06:00:00Z"
+    }
+  ]
+}

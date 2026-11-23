@@ -1,5 +1,345 @@
 [
   {
+    "slug": "ercot-day-ahead-real-time-price-data",
+    "topic": "Data & APIs",
+    "region": "Texas, United States",
+    "title": "ERCOT Day-Ahead and Real-Time Price Data",
+    "description": "Download ERCOT historical hub prices and compare day-ahead and real-time settlement intervals. Reproduce the 25-hour Houston and West hub example.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Day-ahead and real-time electricity price lines for the Houston and West trading hubs on November 2, 2025. The two 02:00 intervals appear side by side in a shaded band.",
+    "coverCaption": "ERCOT’s Houston and West hub settlement prices across the November 2, 2025 operating day. Real-time points are hourly means of four 15-minute prices.",
+    "intro": "Download the Electric Reliability Council of Texas’s historical hub and load zone workbooks to compare day-ahead and real-time settlement prices. Keep the repeated-hour flag in your join. On November 2, 2025, the Houston hub had two periods labeled 02:00. Their day-ahead prices were $45.35 and $46.86 per MWh, and their real-time hourly means were $42.62 and $30.07. Dropping the second period understates the real-time wholesale energy value for a flat 1 MW load by $30.07 that day.",
+    "takeaways": [
+      "Match on operating date, settlement point, hour ending, and repeated-hour flag. Retain the interval number for 15-minute real-time prices.",
+      "Weight real-time prices by energy used in each interval when modeling a changing load. A simple hourly average is appropriate for a load that stays constant within that hour.",
+      "Use ERCOT price and load archives for market analysis. Invariant Earth can identify the mapped utility territory and report the state’s average industrial retail price for context."
+    ],
+    "sections": [
+      {
+        "id": "download-ercot-history",
+        "heading": "Where can I download ERCOT wholesale power market data?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What you need",
+              "ERCOT records",
+              "What to retain"
+            ],
+            "rows": [
+              [
+                "Historical hub or load zone prices",
+                "Download report 13060 for day-ahead and 13061 for real-time by calendar year.",
+                "Operating date, settlement point, market, hour ending, repeated-hour flag, interval, and archive vintage."
+              ],
+              [
+                "Resource-node or recent prices",
+                "Use the public day-ahead settlement price report and the 15-minute real-time report for resource nodes, hubs, and load zones. ERCOT’s Data Access Portal also provides access to covered reports.",
+                "Exact settlement point and product. A five-minute dispatch price and a 15-minute settlement price represent different records."
+              ],
+              [
+                "Actual system demand and forecasts",
+                "Use ERCOT’s Hourly Load Data Archives for actual weather-zone and system demand. The load page lists forecast-zone and weather-zone products.",
+                "Zone definition, actual or forecast status, interval, and forecast issue time where available."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "da-doc",
+                "rt-doc"
+              ],
+              [
+                "da-node",
+                "rt-node",
+                "api"
+              ],
+              [
+                "loads",
+                "forecasts"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "An ERCOT trading hub price can support a wholesale comparison or a hedge benchmark. Use the settlement point named in the contract or settlement records when evaluating a specific exposure. Match geographic definitions before combining price, system demand, weather zones, or site-level meter data.",
+            "sourceIds": [
+              "prices",
+              "api"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ercot-repeated-hour",
+        "heading": "How do I handle the ERCOT repeated hour?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "ERCOT published 25 hourly day-ahead prices and 100 quarter-hour real-time observations per hub on November 2, 2025. The 02:00 label appears twice, first with Repeated Hour Flag N and then with Y. In UTC, the normal occurrence ran from 06:00 to 07:00 and the repeated occurrence from 07:00 to 08:00. Preserve the original operating date and market label alongside the UTC boundaries.",
+            "sourceIds": [
+              "dst",
+              "da-2025",
+              "rt-2025"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Trading hub",
+              "Repeated-hour flag",
+              "Day-ahead price",
+              "Real-time hourly mean"
+            ],
+            "rows": [
+              [
+                "Houston",
+                "N",
+                "$45.35/MWh",
+                "$42.62/MWh"
+              ],
+              [
+                "Houston",
+                "Y",
+                "$46.86/MWh",
+                "$30.07/MWh"
+              ],
+              [
+                "West",
+                "N",
+                "$50.55/MWh",
+                "$48.41/MWh"
+              ],
+              [
+                "West",
+                "Y",
+                "$53.35/MWh",
+                "$35.51/MWh"
+              ]
+            ],
+            "sourceIds": [
+              "da-2025",
+              "rt-2025"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To reproduce the comparison, select the Nov tab in each workbook. Filter to HB_HOUSTON and HB_WEST on November 2. Keep all four real-time intervals for every hour and flag. The repeated Houston hour’s prices were $29.21, $29.34, $30.35, and $31.37 per MWh. Their mean is $30.0675 per MWh. On an operating day with a clock change, compare the count with the actual market-day duration before filling or dropping any row.",
+            "sourceIds": [
+              "dst",
+              "da-2025",
+              "rt-2025"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/ercot-day-ahead-real-time-price-data.json",
+            "format": "JSON",
+            "label": "Download 50 aligned hourly records, 200 interval prices, and workbook fingerprints"
+          }
+        ]
+      },
+      {
+        "id": "apply-ercot-market-prices",
+        "heading": "What does the market comparison tell a buyer?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a flat 1 MW over the 25-hour operating day, compare what the same 25 MWh would be worth under the two price series. At Houston, the day-ahead series gives $808.25 and the real-time series gives $572.44. At West, the values are $853.03 and $510.04. A real settlement depends on scheduled and metered volumes, contract terms, and the applicable settlement point. The example isolates the two price series from those other variables.",
+            "sourceIds": [
+              "da-2025",
+              "rt-2025",
+              "prices"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For an industrial site shortlist, use Invariant Earth to get mapped utility territory and the published statewide industrial retail average. The state average and hub series serve different purposes. To budget a particular site, get the applicable tariff and supplier terms, then model demand charges, delivery costs, and any price index against the expected load shape and service dates.",
+            "sourceIds": [
+              "earth-fields",
+              "retail-example"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Record the market design vintage before comparing prices across years. This example predates ERCOT’s December 5, 2025 launch of Real-Time Co-optimization Plus Batteries.",
+            "sourceIds": [
+              "market-change"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related Texas power and site guides",
+            "items": [
+              {
+                "slug": "texas-data-center-large-load-interconnection-2026",
+                "label": "Check the Texas large-load connection and utility study process"
+              },
+              {
+                "slug": "data-center-site-selection-checklist",
+                "label": "Compare phased power, land and approvals for a data center"
+              },
+              {
+                "slug": "grid-capacity-apis-load-headroom",
+                "label": "Check grid headroom and study evidence for a new load"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I download ERCOT historical day-ahead and real-time prices?",
+        "answer": "Use report 13060 for day-ahead hub and load zone prices and report 13061 for real-time. ERCOT publishes both as calendar-year workbooks. Use the separate settlement price reports for resource-node detail.",
+        "sourceIds": [
+          "da-doc",
+          "rt-doc",
+          "da-node",
+          "rt-node"
+        ]
+      },
+      {
+        "question": "Why does ERCOT have two 02:00 prices on November 2, 2025?",
+        "answer": "Texas clocks returned to standard time, giving ERCOT a 25-hour operating day. ERCOT’s price workbooks flag the second period labeled 02:00 with Y. Keep that flag in the key or convert each interval to unambiguous UTC boundaries.",
+        "sourceIds": [
+          "dst",
+          "da-2025",
+          "rt-2025"
+        ]
+      },
+      {
+        "question": "How do I compare hourly day-ahead prices with 15-minute real-time prices?",
+        "answer": "Match the same point and market hour first. Average four equal real-time intervals for a flat within-hour load. For varying load, calculate a price times MWh for every real-time interval and sum those values.",
+        "sourceIds": [
+          "da-doc",
+          "rt-node",
+          "rt-2025"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "prices",
+        "title": "ERCOT market prices and corrections",
+        "url": "https://www.ercot.com/mktinfo/prices",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "ERCOT market prices"
+      },
+      {
+        "id": "da-doc",
+        "title": "Historical DAM Load Zone and Hub Prices, report 13060",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP4-180-ER",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "Historical day-ahead report"
+      },
+      {
+        "id": "rt-doc",
+        "title": "Historical RTM Load Zone and Hub Prices, report 13061",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-785-ER",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "Historical real-time report"
+      },
+      {
+        "id": "da-2025",
+        "title": "2025 day-ahead hub and load zone price workbook, Nov sheet",
+        "url": "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1177667469",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "2025 day-ahead workbook ZIP"
+      },
+      {
+        "id": "rt-2025",
+        "title": "2025 real-time hub and load zone price workbook, Nov sheet",
+        "url": "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1177737535",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "2025 real-time workbook ZIP"
+      },
+      {
+        "id": "da-node",
+        "title": "Day-ahead settlement prices by resource node, hub and load zone",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP4-190-CD",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "Day-ahead settlement price report"
+      },
+      {
+        "id": "rt-node",
+        "title": "15-minute real-time settlement prices by resource node, hub and load zone",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-905-CD",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "Real-time settlement price report"
+      },
+      {
+        "id": "api",
+        "title": "Public API Applications and ERCOT Data Access Portal",
+        "url": "https://www.ercot.com/services/mdt/data-portal",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "ERCOT public API"
+      },
+      {
+        "id": "loads",
+        "title": "Hourly Load Data Archives",
+        "url": "https://www.ercot.com/gridinfo/load/load_hist",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "Historical hourly load archive"
+      },
+      {
+        "id": "forecasts",
+        "title": "ERCOT load reports and forecast products",
+        "url": "https://www.ercot.com/gridinfo/load/index.html",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "ERCOT load forecasts"
+      },
+      {
+        "id": "dst",
+        "title": "Market notice showing normal and repeated 02:00 periods on November 2, 2025",
+        "url": "https://www.ercot.com/services/comm/mkt_notices/M-A100725-01",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "ERCOT clock-change notice"
+      },
+      {
+        "id": "market-change",
+        "title": "December 5, 2025 implementation of Real-Time Co-optimization Plus Batteries",
+        "url": "https://www.ercot.com/news/release/12052025-ercot-goes-live",
+        "publisher": "Electric Reliability Council of Texas",
+        "linkLabel": "ERCOT market design change"
+      },
+      {
+        "id": "retail-example",
+        "title": "Example Texas non-residential provider-of-last-resort price formula",
+        "url": "https://interchange.puc.texas.gov/Documents/56035_164_1476099.PDF",
+        "publisher": "Public Utility Commission of Texas filing",
+        "linkLabel": "Example Texas retail rate components"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public utility and electricity fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Earth API field catalog"
+      }
+    ],
+    "dataset": {
+      "name": "ERCOT Houston and West hub prices for the 25-hour November 2, 2025 operating day",
+      "description": "Fifty matched day-ahead and real-time hourly intervals across two ERCOT trading hubs. Includes 200 quarter-hour prices, repeated-hour flags, UTC boundaries, price summaries, and source archive fingerprints.",
+      "sourceIds": [
+        "da-doc",
+        "rt-doc",
+        "da-2025",
+        "rt-2025",
+        "dst"
+      ],
+      "spatialCoverage": "ERCOT Houston and West trading hubs, Texas, United States",
+      "temporalCoverage": "2025-11-02"
+    },
+    "relatedSlugs": [
+      "texas-data-center-large-load-interconnection-2026",
+      "data-center-site-selection-checklist",
+      "grid-capacity-apis-load-headroom"
+    ]
+  },
+  {
     "slug": "county-manufacturing-employment-data",
     "topic": "Data & APIs",
     "region": "United States",
