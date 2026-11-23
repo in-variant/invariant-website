@@ -59,6 +59,7 @@ function documentHtml(template, { body, seo }, stylesheets, preloadModules = [])
     `<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<', '\\u003c')}</script>`,
   )
   const alternate = seo.markdown ? [`<link rel="alternate" type="text/markdown" href="${escapeHtml(seo.markdown)}" title="Markdown for AI agents" data-prerender-seo>`] : []
+  if (seo.feed) alternate.push(`<link rel="alternate" type="application/atom+xml" href="${escapeHtml(seo.feed)}" title="Invariant Blog" data-prerender-seo>`)
   const css = [...new Set(stylesheets)]
     .filter(file => !template.includes(`href="/${escapeHtml(file)}"`))
     .map(file => `<link rel="stylesheet" href="/${escapeHtml(file)}">`)

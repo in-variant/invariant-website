@@ -45,11 +45,17 @@
   text-wrap: pretty;
 }
 
-.blog-index-intro-copy > a {
+.blog-index-intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 16px;
+  margin-top: 11px;
+}
+
+.blog-index-intro-links a {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  margin-top: 11px;
   color: var(--blog-accent);
   font-size: 14px;
   font-weight: 560;
@@ -59,7 +65,7 @@
   transition: text-decoration-color 180ms ease;
 }
 
-.blog-index-intro-copy > a:hover {
+.blog-index-intro-links a:hover {
   text-decoration-color: currentColor;
 }
 

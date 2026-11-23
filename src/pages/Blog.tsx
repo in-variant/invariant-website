@@ -20,6 +20,7 @@ const featuredSlugs = new Set(FEATURED_ARTICLES.map((article) => article.slug))
 const BLOG_TITLE = 'Blog | Invariant'
 const BLOG_DESCRIPTION = 'Reporting and practical guides on power, land, infrastructure, and regulation. From the Invariant team.'
 const BLOG_IMAGE = `${SITE_URL}${FEATURED_ARTICLES[0].image}`
+const BLOG_FEED = '/feed.xml'
 const BLOG_SCHEMA = [
   ORG_SCHEMA,
   breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Blog', url: `${SITE_URL}/blog` }]),
@@ -120,13 +121,16 @@ export default function Blog() {
 
   return (
     <div className="blog-index">
-      <Seo title={BLOG_TITLE} description={BLOG_DESCRIPTION} canonical={`${SITE_URL}/blog`} ogImage={BLOG_IMAGE} jsonLd={BLOG_SCHEMA} />
+      <Seo title={BLOG_TITLE} description={BLOG_DESCRIPTION} canonical={`${SITE_URL}/blog`} ogImage={BLOG_IMAGE} jsonLd={BLOG_SCHEMA} feed={BLOG_FEED} />
       <div className="blog-index-inner">
         <header className="blog-index-intro">
           <h1>Blog</h1>
           <div className="blog-index-intro-copy">
             <p>{BLOG_DESCRIPTION}</p>
-            <Link to="/blog/energized-data-center-sites-available-now">Find available data center sites <Arrow size={14} /></Link>
+            <div className="blog-index-intro-links">
+              <Link to="/blog/energized-data-center-sites-available-now">Find available data center sites <Arrow size={14} /></Link>
+              <a href={BLOG_FEED}>Subscribe via feed</a>
+            </div>
           </div>
         </header>
         <section className="blog-index-feature" aria-labelledby="blog-featured">

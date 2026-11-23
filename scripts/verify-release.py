@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 CANONICAL = "https://invariant-ai.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+ATOM_NS = "{http://www.w3.org/2005/Atom}"
+FEED_PATH = "/feed.xml"
 SAMPLE = (
     "/", "/blog", "/resources", "/datasets",
     "/blog/data-center-site-selection-checklist",
@@ -33,7 +35,7 @@ CRAWLER_USER_AGENTS = (
 )
 CRAWLER_SMOKE_PATHS = frozenset((
     "/robots.txt", "/blog", "/blog/data-center-site-selection-checklist",
-    "/blog/data-center-site-selection-checklist.md", "/datasets", "/datasets.md",
+    "/blog/data-center-site-selection-checklist.md", "/datasets", "/datasets.md", FEED_PATH,
 ))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
@@ -63,6 +65,7 @@ class Page(HTMLParser):
         self.links = set()
         self.downloads = set()
         self.markdown = []
+        self.feeds = []
         self.schemas = []
         self.titles = []
         self.metadata = {key: [] for key in SEARCH_METADATA}
@@ -101,6 +104,8 @@ class Page(HTMLParser):
                 self.canonical.append(attr.get("href"))
             if rel == "alternate" and attr.get("type") == "text/markdown":
                 self.markdown.append(attr["href"])
+            if rel == "alternate" and attr.get("type") == "application/atom+xml":
+                self.feeds.append(attr["href"])
             if rel in {"stylesheet", "modulepreload"} or (rel == "preload" and attr.get("as") in {"font", "image", "script", "style"}):
                 self.add_asset(attr.get("href"))
         elif tag == "meta":
@@ -206,6 +211,9 @@ def verify(origin, job, expected_urls, preview, crawler=None):
             actual_urls = sitemap_urls(body)
             missing, extra = expected_urls - actual_urls, actual_urls - expected_urls
             require(not missing and not extra, f"sitemap differs by {len(missing)} missing and {len(extra)} extra URLs")
+        elif kind == "feed":
+            require_success(status, headers, "application/atom+xml")
+            require(body == expected, "Atom feed differs from dist/")
         elif kind == "asset":
             require_success(status, headers, None)
             mime = headers.get_content_type()
@@ -236,6 +244,7 @@ def verify(origin, job, expected_urls, preview, crawler=None):
                 require(preview or not header_noindex, "public page sends X-Robots-Tag noindex")
                 require(actual.schemas == expected.schemas, "structured data differs from dist/")
                 require(actual.markdown == expected.markdown, "Markdown alternate differs from dist/")
+                require(actual.feeds == expected.feeds, "Atom discovery link differs from dist/")
                 missing_links = {
                     link for link in expected.links - actual.links if CANONICAL + link in expected_urls
                 }
@@ -294,6 +303,36 @@ def verify_dataset_catalog(catalog, pages):
     require(actual_ids == expected_ids, "DataCatalog membership differs from the published Dataset pages")
 
 
+def verify_blog_feed(blog, xml, expected_urls):
+    require(blog.feeds == [FEED_PATH] and FEED_PATH in blog.links, "blog is missing its Atom feed links")
+    feed = ElementTree.fromstring(xml)
+    self_link = feed.find(f"{ATOM_NS}link[@rel='self']")
+    require(feed.tag == f"{ATOM_NS}feed" and self_link is not None and self_link.get("href") == CANONICAL + FEED_PATH,
+            "Atom feed has an invalid namespace or self URL")
+    lookup = {}
+    for filename in ("industry-article-index.json", "legacy-blog-articles.json"):
+        for article in json.loads((ROOT / "src/data" / filename).read_text(encoding="utf-8")):
+            lookup[f"{CANONICAL}/blog/{article['slug']}"] = article
+    entries = feed.findall(f"{ATOM_NS}entry")
+    ids = [entry.findtext(f"{ATOM_NS}id") for entry in entries]
+    require(set(ids) == lookup.keys() and len(ids) == len(lookup) and set(ids) <= expected_urls,
+            "Atom feed must include every canonical blog article once")
+    updated = []
+    for url, entry in zip(ids, entries):
+        article = lookup[url]
+        link = entry.find(f"{ATOM_NS}link[@rel='alternate']")
+        require(link is not None and link.get("href") == url, f"{url} has an incorrect Atom link")
+        require(entry.findtext(f"{ATOM_NS}title") == article["title"] and
+                entry.findtext(f"{ATOM_NS}summary") == article["summary"], f"{url} has incorrect Atom text")
+        published = f"{article['dateTime']}T00:00:00Z"
+        revised = f"{article.get('updatedDate', article['dateTime'])}T00:00:00Z"
+        require(entry.findtext(f"{ATOM_NS}published") == published and entry.findtext(f"{ATOM_NS}updated") == revised,
+                f"{url} has incorrect Atom dates")
+        updated.append(revised)
+    require(updated == sorted(updated, reverse=True) and feed.findtext(f"{ATOM_NS}updated") == updated[0],
+            "Atom feed has incorrect revision ordering")
+
+
 def build_jobs(expected_urls, full):
     path_set = {urlsplit(url).path for url in expected_urls}
     catalog = Page("/datasets", (DIST / "datasets/index.html").read_bytes())
@@ -314,6 +353,9 @@ def build_jobs(expected_urls, full):
         pages[path] = page
     verify_search_metadata(pages)
     verify_dataset_catalog(catalog, pages)
+    feed = (DIST / FEED_PATH.lstrip("/")).read_bytes()
+    verify_blog_feed(pages["/blog"], feed, expected_urls)
+    jobs.append((FEED_PATH, "feed", feed))
     if full:
         verify_discovery(pages)
     for path in sorted(alternate_files):

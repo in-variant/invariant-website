@@ -15,6 +15,7 @@ export type SeoProps = {
   noindex?: boolean
   ogType?: 'website' | 'article'
   markdown?: string
+  feed?: string
 }
 
 export const PrerenderSeo = createContext<((props: SeoProps) => void) | null>(null)
@@ -28,13 +29,14 @@ export function Seo({
   noindex,
   ogType = 'website',
   markdown,
+  feed,
 }: SeoProps) {
   const collectSeo = useContext(PrerenderSeo)
   useEffect(() => {
     document.head.querySelectorAll('[data-prerender-seo]').forEach(tag => tag.remove())
   }, [])
   if (collectSeo) {
-    collectSeo({ title, description, canonical, ogImage, jsonLd, noindex, ogType, markdown })
+    collectSeo({ title, description, canonical, ogImage, jsonLd, noindex, ogType, markdown, feed })
     return null
   }
   const fullTitle = title.includes('Invariant') ? title : `${title} | Invariant`
@@ -46,6 +48,7 @@ export function Seo({
       <meta name="description" content={description} />
       {canonical && <link rel="canonical" href={canonical} />}
       {markdown && <link rel="alternate" type="text/markdown" href={markdown} title="Markdown for AI agents" />}
+      {feed && <link rel="alternate" type="application/atom+xml" href={feed} title="Invariant Blog" />}
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
