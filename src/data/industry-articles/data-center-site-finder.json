@@ -2786,162 +2786,189 @@
   "topic": "Data Centers",
   "kind": "site-listing",
   "region": "United States",
-  "title": "30 MW data center site: where to find 30 MW of power for an AI or HPC build",
-  "description": "Find a 30 MW data center site in the US: what 30 MW of IT really needs at the meter, substation and land sizing, study fees and 30 MW sites available now.",
+  "title": "30 MW data center sites and power requirements",
+  "description": "Compare 30 MW data center prospects in Kentucky and Austin. Calculate utility demand from IT load and check the service date, tariff and lease status.",
   "date": "2026-11-09",
-  "readMinutes": 6,
-  "intro": "30 MW is a popular target for AI companies building their first owned site. It is large enough to need a customer substation and a utility study, and small enough that many utilities can still serve it without major transmission upgrades. That makes the right 30 MW site findable in months, if you search from substation headroom first. Invariant has a rezoned 30 MW greenfield in Kentucky and several expandable sites that cover the range.",
+  "readMinutes": 7,
+  "intro": "A data center with 30 MW of IT load needs about 39 MW of facility power at an assumed power usage effectiveness of 1.3. At that same ratio, 30 MW for the whole facility supports about 23 MW of IT. A Kentucky prospect and an Austin joint venture offering both advertise 30 MW, with different evidence and timelines. Confirm the basis of the MW, the power delivery date and who holds the service rights before you price either site.",
   "takeaways": [
-   "A 30 MW facility at a PUE of 1.3 carries about 23 MW of IT, roughly 190 AI racks at 120 kW, about 13,800 GPUs.",
-   "If someone says 30 MW, ask whether they mean IT load or facility load. The difference at 30 MW is 7 to 12 MW.",
-   "Plan for a 69 to 138 kV customer substation and 10 to 45 acres all in.",
-   "Study fees and site-control rules apply in many territories at 25 MW and above."
+   "State both critical IT load and peak utility demand when you ask for sites. Include the initial phase and the full buildout.",
+   "Check the status of the property and the power separately. A project can be marketed while service is still planned, or have power that a tenant has already leased.",
+   "Ask the utility for written service terms, the delivery point, required work, and the dates and conditions for each load phase."
   ],
   "sections": [
    {
-    "id": "what-fits",
-    "heading": "What 30 MW actually fits",
+    "id": "sites-available",
+    "heading": "Where to look for a 30 MW site",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Utilities sell facility load. Tenants buy IT load. At a PUE of 1.3, a 30 MW site leaves about 23 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is roughly 190 racks, or about 13,850 GPUs. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are an AI training or inference cluster, a neocloud expansion, an enterprise campus or a mining build.",
-      "sourceIds": [
-       "nvl72",
-       "uptime-pue"
-      ]
+      "text": "The Kentucky prospect and Austin offering are leads to screen. The Northern Virginia campus shows what a similarly sized project can look like and why checking lease status matters. The sources were reviewed November 23, 2026."
      },
      {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
-       "30 MW site",
-       "What to expect"
+       "Site",
+       "Published size",
+       "Market and power status",
+       "What to verify next"
       ],
       "rows": [
        [
-        "IT load at PUE 1.3",
-        "About 23 MW"
+        "Eastern Kentucky greenfield",
+        "16 acres. 30 MW.",
+        "Private prospect. Confirm current offering and utility terms. Seller markets immediate service.",
+        "Ask for the utility letter or agreement, the delivery point, the work remaining and the first date the buyer can draw power."
        ],
        [
-        "AI racks at 120 kW",
-        "About 190"
+        "Austin joint venture offering",
+        "18 acres. 30 MW.",
+        "Joint venture development offering. Q2 2028 in broker flyer.",
+        "Request Bluebonnet Electric Cooperative’s written service terms, project milestones and the obligations that transfer to the new entity."
        ],
        [
-        "Utility service",
-        "Customer substation at 69 to 138 kV, occasionally 230 kV."
+        "Skybox NOVA",
+        "10 acres. 30 MW.",
+        "Listed as leased by the operator. Service timing not stated on cited page.",
+        "Use the acreage as a layout reference and exclude the published block from an available-capacity shortlist."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "invariant-ky"
        ],
        [
-        "Land",
-        "About 10 to 45 gross acres."
+        "volterra-austin"
        ],
        [
-        "Time to power",
-        "Now for energized sites; 18 to 36 months for new service where a substation and line tap are needed."
-       ],
-       [
-        "Documents to ask for",
-        "A load study for the full 30 MW with a ramp schedule, a facilities cost estimate and the large-load tariff terms (minimum bill, contract term)."
+        "skybox-nova"
        ]
       ]
      },
      {
+      "type": "download",
+      "label": "Download the three site records and diligence questions",
+      "path": "/blog/30-mw-data-center-site-records.csv",
+      "format": "CSV"
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "label": "See the Kentucky prospect",
+        "slug": "kentucky-30-mw-greenfield-data-center-site"
+       },
+       {
+        "label": "Browse more Texas data center land",
+        "slug": "data-center-sites-for-sale-texas"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "what-fits",
+    "heading": "How much utility power does 30 MW of IT need?",
+    "blocks": [
+     {
       "type": "paragraph",
-      "text": "These ranges are Invariant’s working figures from sites we have screened. They are not published standards, and individual utilities and designs land outside them."
+      "text": "Power usage effectiveness, or PUE, is the ratio of total facility energy to energy used by IT equipment. For early screening, a design team can apply an assumed ratio to estimate utility demand. The table shows the arithmetic at three assumptions. Before ordering equipment or requesting service, have the engineer model coincident peak demand, hot-weather cooling, electrical losses and operating reserve.",
+      "sourceIds": [
+       "doe-pue"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Assumed ratio",
+       "Facility load for 30 MW of IT",
+       "IT load from 30 MW of facility power"
+      ],
+      "rows": [
+       [
+        "1.2",
+        "36.0 MW",
+        "25.0 MW"
+       ],
+       [
+        "1.3",
+        "39.0 MW",
+        "23.1 MW"
+       ],
+       [
+        "1.4",
+        "42.0 MW",
+        "21.4 MW"
+       ]
+      ]
      }
     ]
    },
    {
     "id": "s0-it-mw-versus-facility-mw-at-30-mw",
-    "heading": "IT MW versus facility MW at 30 MW",
+    "heading": "What goes in a 30 MW utility request?",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Uptime Institute put the average PUE in its survey at 1.58 for 2023, and 1.47 weighted by IT capacity, with new hyperscale builds designed at 1.4 or below. A buyer who needs 30 MW of IT at a PUE of 1.3 needs 39 MW at the meter. A site marketed as 30 MW may deliver 23 MW of IT. Settle which number you mean before you compare listings.",
-      "sourceIds": [
-       "uptime-pue"
+      "text": "Give the serving utility your location, first-phase IT load and estimated peak demand at the meter, the ramp by date, redundancy needs and any planned backup or on-site generation. Ask for the service voltage and point of delivery, firm or interruptible terms, equipment and network upgrades, costs, and who is responsible for each step."
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "label": "Compare a will-serve letter, load study and service agreement",
+        "slug": "utility-will-serve-letter-load-study-esa"
+       }
       ]
      }
     ]
    },
    {
     "id": "s1-large-load-tariffs-start-to-bite",
-    "heading": "Large-load tariffs start to bite",
+    "heading": "What a 30 MW utility contract can cost before full utilization",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Many utilities now apply special terms to data centers above about 25 MW. AEP Ohio’s data center tariff and study process are a public example. The Berkeley Lab and Brattle review of large-load tariffs found minimum bills near 80 to 85% of contract demand and terms of 12 to 15 years are common. Model those terms in the deal; they can matter more than the energy rate.",
+      "text": "Ohio Power’s published data center process illustrates the difference between the energy rate and the cost of reserving capacity. At a 30 MW utility service request, the published load-study fee is $10,000. After the ramp, a 30 MW contract has a capacity-based monthly minimum demand component of 19.25 MW. That comes from 15 MW plus 85% of the 5 MW above 25 MW. Prior billing demand can raise the applicable monthly minimum under the tariff.",
       "sourceIds": [
-       "aep-dct",
-       "lbnl"
-      ]
-     }
-    ]
-   },
-   {
-    "id": "sites-available",
-    "heading": "30 MW data center sites available now",
-    "blocks": [
-     {
-      "type": "paragraph",
-      "text": "These sites from Invariant’s current inventory fit a 30 MW requirement, either at that size today or with a phase that covers it. Specs are as marketed by the owner and are checked against utility documents before any introduction."
-     },
-     {
-      "type": "table",
-      "columns": [
-       "Region",
-       "Power",
-       "Land",
-       "Timing"
-      ],
-      "rows": [
-       [
-        "Kentucky",
-        "30 MW greenfield",
-        "~16 acres, rezoned",
-        "Now"
-       ],
-       [
-        "Texas metro",
-        "44 MW, +250 MW",
-        "~50 acres, 1M sq ft",
-        "Now"
-       ],
-       [
-        "North Carolina",
-        "18 MW live, path past 100 MW",
-        "~200 acres",
-        "Now"
-       ],
-       [
-        "Iowa",
-        "20 MW to 500 MW+ PPA site",
-        "Non-zoned",
-        "Phased"
-       ],
-       [
-        "US",
-        "20 earlier listings, 0.25 to 30 MW",
-        "Various",
-        "Status on a call"
-       ]
+       "aep-dct"
       ]
      },
      {
       "type": "paragraph",
-      "text": "Exact locations, the utility documents behind each MW figure and pricing are shared on a call. We also hold sites that are not listed publicly; owners ask for discretion and a site that is shopped everywhere loses value."
+      "text": "Price the planned load ramp and periods of low occupancy with the actual utility tariff. Ask about minimum bills, collateral, upgrade payments and obligations if the project slips or the buyer changes."
      }
     ]
    },
    {
     "id": "how-we-search",
-    "heading": "How Invariant finds 30 MW sites",
+    "heading": "How to narrow a 30 MW shortlist",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We search from power evidence first and land second. For a 30 MW request we start with stations and services that can carry the load, kill anything already claimed, operating for someone else, contaminated or under a moratorium, and only then look at parcels. Each surviving site is graded A (documented power), B (a named power path with a date) or C (land near capacity), with the one document that would move it up a tier."
+      "text": "Share the site type you can use, the states you will consider and the earliest date you need power. For an existing building, request metering history, lease availability, electrical one-lines and any conditions on transferring service. For powered land, start with the utility agreement and a dated schedule for the work on both sides of the meter."
      },
      {
       "type": "paragraph",
-      "text": "Tell us the MW, the states you would consider and the date you need power. We send the 30 MW sites that fit, including ones that are not on this page."
+      "text": "Lay out the halls, cooling, backup equipment, substation and roads on usable land after easements and drainage. The Skybox example shows one 10-acre design. Your footprint depends on equipment, cooling, setbacks and the service design.",
+      "sourceIds": [
+       "skybox-nova"
+      ]
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "label": "Read the data center site selection checklist",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
+        "label": "Estimate land needs and compare real layouts",
+        "slug": "data-center-land-acres-per-mw"
+       }
+      ]
      }
     ]
    },
@@ -3234,23 +3261,26 @@
   ],
   "faqs": [
    {
-    "question": "How many acres does a 30 MW data center need?",
-    "answer": "Roughly 10 to 45 gross acres, depending on cooling, stories, generator yards and substation layout. A 138 kV substation alone needs about 3 acres before stormwater detention."
-   },
-   {
-    "question": "Is 30 MW the IT load or the total load?",
-    "answer": "It depends on who is quoting. Utilities sell facility load. Tenants usually ask for IT load. At a PUE of 1.3, 30 MW of IT needs 39 MW at the meter.",
+    "question": "Where can I look for a 30 MW data center site?",
+    "answer": "Invariant published a seller-marketed 30 MW prospect on about 16 acres in eastern Kentucky. Volterra’s Austin flyer describes an 18-acre joint venture site with 30 MW of utility capacity marketed for Q2 2028. Ask for the current offering and the utility documents for your load and service date.",
     "sourceIds": [
-     "uptime-pue"
+     "invariant-ky",
+     "volterra-austin"
     ]
    },
    {
-    "question": "Where can I find a 30 MW data center site?",
-    "answer": "Invariant lists a 30 MW rezoned greenfield in Kentucky, a 44 MW Texas metro property with expansion, an 18 MW North Carolina campus with a path past 100 MW and an Iowa site from 20 MW. More are available off-market on a call."
+    "question": "How much utility power does 30 MW of IT load need?",
+    "answer": "At a planning ratio of 1.3, 30 MW of IT implies 39 MW of facility demand. At 1.2 the estimate is 36 MW, and at 1.4 it is 42 MW. Use a peak-load model for the utility request.",
+    "sourceIds": [
+     "doe-pue"
+    ]
    },
    {
-    "question": "How does Invariant help find a 30 MW data center site?",
-    "answer": "Invariant keeps a live inventory of US powered sites, screens each one against utility documents, and matches buyers to sites by MW, state and energization date. Book a call or call (628) 220-8972 with your 30 MW requirement and we send matching sites, including off-market ones."
+    "question": "How many acres does a 30 MW data center need?",
+    "answer": "Skybox lists a 30 MW campus on 10 acres in Northern Virginia. Size your parcel using a concept layout for the halls, cooling and electrical yards, access and setbacks. Compare usable acreage after easements, drainage and other constraints.",
+    "sourceIds": [
+     "skybox-nova"
+    ]
    }
   ],
   "sources": [
@@ -3261,34 +3291,46 @@
     "publisher": "AEP Ohio"
    },
    {
-    "id": "comed",
-    "title": "ComEd guidelines on land requirements for interconnection substations",
-    "url": "https://www.pjm.com/-/media/DotCom/planning/plan-standards/private-ce/comed-guidelines-on-land-requirements-for-interconnection-substations.pdf",
-    "publisher": "ComEd via PJM"
+    "id": "volterra-austin",
+    "title": "Austin 30 MW joint venture development flyer",
+    "publisher": "Volterra Advisors",
+    "url": "https://www.volterraadvisors.com/sites/austin30-teaser.pdf"
    },
    {
-    "id": "lbnl",
-    "title": "Electricity rate designs for large loads (August 2026)",
-    "url": "https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf",
-    "publisher": "Lawrence Berkeley National Laboratory and The Brattle Group"
+    "id": "skybox-nova",
+    "title": "Skybox NOVA campus and lease status",
+    "publisher": "Skybox Datacenters",
+    "url": "https://skyboxdatacenters.com/locations/skybox-nova"
    },
    {
-    "id": "nvl72",
-    "title": "Nvidia offers 120 kW liquid-cooled Blackwell rack as industry standard",
-    "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-    "publisher": "eeNews Europe"
+    "id": "invariant-ky",
+    "title": "Eastern Kentucky greenfield prospect",
+    "publisher": "Invariant",
+    "url": "https://invariant-ai.com/blog/kentucky-30-mw-greenfield-data-center-site"
    },
    {
-    "id": "uptime-pue",
-    "title": "Large data centers are mostly more efficient, analysis confirms",
-    "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/",
-    "publisher": "Uptime Institute"
+    "id": "doe-pue",
+    "title": "Best Practices Guide for Energy-Efficient Data Center Design, Section 8.1",
+    "publisher": "U.S. Department of Energy",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf"
    }
   ],
   "relatedSlugs": [
    "kentucky-30-mw-greenfield-data-center-site",
-   "find-data-center-site-us"
-  ]
+   "find-data-center-site-us",
+   "utility-will-serve-letter-load-study-esa"
+  ],
+  "updatedDate": "2026-11-23",
+  "dataset": {
+   "name": "30 MW U.S. data center site evidence and availability",
+   "description": "Three source-linked 30 MW site records checked November 23, 2026. The CSV captures published acreage, power basis, timing, offering status and first diligence question.",
+   "spatialCoverage": "Kentucky, Texas and Virginia, United States",
+   "sourceIds": [
+    "invariant-ky",
+    "volterra-austin",
+    "skybox-nova"
+   ]
+  }
  },
  {
   "slug": "40-mw-data-center-site",
