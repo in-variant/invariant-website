@@ -29,7 +29,7 @@ export default function Resources() {
     <div className="resources-page">
       <Seo
         title="Resources | Compliance for the Physical Economy"
-        description="Research, regulatory guides, and planning tools for data centers, oil and gas, space, and nuclear programs. Explore the work behind the path to approval."
+        description="Find data center sites, compare physical-world data APIs and download research datasets. Explore tools and regulatory guides for infrastructure projects."
         canonical={`${SITE_URL}/resources`}
         jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'Resources', url: `${SITE_URL}/resources` }])]}
       />
@@ -76,6 +76,8 @@ export default function Resources() {
             <p>Licensing pathways, technical requirements,<br className="resources-desktop-break" /> and tools to help you plan the work.</p>
           </div>
           <nav aria-label="Research and planning resources" className="mb-7 flex flex-wrap gap-x-6 gap-y-3">
+            <Link to="/blog/find-data-center-site-us" className="resource-text-link">Find a data center site <ResourceArrow diagonal /></Link>
+            <a href="https://docs.invariant-ai.com/quickstart" className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
             <Link to="/datasets" className="resource-text-link">Research datasets <ResourceArrow diagonal /></Link>
             <Link to="/regulators" className="resource-text-link">Regulator directory <ResourceArrow diagonal /></Link>
             <Link to="/timeline" className="resource-text-link">Build a mission filing timeline <ResourceArrow diagonal /></Link>

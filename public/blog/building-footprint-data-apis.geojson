@@ -1,0 +1,317 @@
+{
+  "type": "FeatureCollection",
+  "name": "Brooklyn Navy Yard address points and building footprints",
+  "retrieved_at": "2026-11-23T13:14:50+00:00",
+  "operator_address_source": "https://www.brooklynnavyyard.org/public-spaces/",
+  "nyc_footprint_records_with_feature_code_2100_on_tax_lot": 93,
+  "tax_lot_footprint_count_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?%24select=count%28%2A%29+as+records&%24where=base_bbl%3D%273020230001%27+AND+feature_code%3D%272100%27",
+  "operator_building_number_crosswalk": "https://www.brooklynnavyyard.org/wp-content/uploads/2025/11/Building-Number-Table-5.pdf",
+  "review_result": "The address 63 Flushing Avenue resolves to the footprint labeled 280. The city name lookup for 92 returns a separate polygon on the same tax lot. The download reports both candidates. A building-level workflow should verify the requested structure against the operator map or plan before using its geometry.",
+  "methods": {
+    "join": "Join the Brooklyn address returned by NYC GeoSearch PAD to NYC Building Footprints by BIN. Check that PAD BBL agrees with footprint BASE_BBL. Campus display labels from Brooklyn Navy Yard Development Corporation.",
+    "area": "Polygon area measured in EPSG:2263 on the NYC Building Footprint ArcGIS service. Units are square US survey feet. This is a horizontal footprint area.",
+    "containment": "Ray crossing test against the public NYC Open Data WGS84 footprint vertices. Coordinate order is longitude, latitude.",
+    "reuse": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "footprint-3335143",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -73.970847599743,
+                40.698255286465
+              ],
+              [
+                -73.970859655095,
+                40.698093153138
+              ],
+              [
+                -73.971026421654,
+                40.698100336301
+              ],
+              [
+                -73.97151107186,
+                40.698121210487
+              ],
+              [
+                -73.971510038921,
+                40.698135102438
+              ],
+              [
+                -73.971499165655,
+                40.698281347482
+              ],
+              [
+                -73.971494659013,
+                40.698341964365
+              ],
+              [
+                -73.971482695612,
+                40.69850285867
+              ],
+              [
+                -73.971470247804,
+                40.698670273462
+              ],
+              [
+                -73.971458425893,
+                40.69882928302
+              ],
+              [
+                -73.971454039373,
+                40.698888278105
+              ],
+              [
+                -73.971441611652,
+                40.699055420935
+              ],
+              [
+                -73.970790186971,
+                40.699027363197
+              ],
+              [
+                -73.970802493734,
+                40.698861858437
+              ],
+              [
+                -73.970806792754,
+                40.698804045728
+              ],
+              [
+                -73.970818826875,
+                40.698642215884
+              ],
+              [
+                -73.970831276313,
+                40.698474802063
+              ],
+              [
+                -73.97084321272,
+                40.698314282431
+              ],
+              [
+                -73.970847599743,
+                40.698255286465
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_role": "building_footprint",
+        "campus_destination_requested": "Building 77",
+        "street_address": "141 Flushing Avenue, Brooklyn, NY",
+        "bin": "3335143",
+        "tax_lot_bbl": "3020230001",
+        "oti_footprint_id": "216013",
+        "city_footprint_name": "77",
+        "pad_release": "26c",
+        "address_point_inside_its_footprint": true,
+        "footprint_area_us_survey_sq_ft": 61676.29,
+        "address_query": "https://geosearch.planninglabs.nyc/v2/search?text=141+Flushing+Avenue+Brooklyn",
+        "footprint_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=3335143",
+        "projected_geometry_query": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D3335143&outFields=BIN%2CBASE_BBL%2CDOITT_ID&returnGeometry=true&outSR=2263&f=json",
+        "match_role": "address_and_city_label_agree"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "address-3335143",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.971151,
+          40.698574
+        ]
+      },
+      "properties": {
+        "feature_role": "geocoded_address",
+        "campus_destination_requested": "Building 77",
+        "street_address": "141 Flushing Avenue, Brooklyn, NY",
+        "bin": "3335143",
+        "tax_lot_bbl": "3020230001",
+        "oti_footprint_id": "216013",
+        "city_footprint_name": "77",
+        "pad_release": "26c",
+        "address_point_inside_its_footprint": true,
+        "footprint_area_us_survey_sq_ft": 61676.29,
+        "address_query": "https://geosearch.planninglabs.nyc/v2/search?text=141+Flushing+Avenue+Brooklyn",
+        "footprint_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=3335143",
+        "projected_geometry_query": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D3335143&outFields=BIN%2CBASE_BBL%2CDOITT_ID&returnGeometry=true&outSR=2263&f=json",
+        "match_role": "address_and_city_label_agree"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "footprint-3335129",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -73.974815408288,
+                40.698437508766
+              ],
+              [
+                -73.975237255832,
+                40.698172239069
+              ],
+              [
+                -73.975614564619,
+                40.698519801276
+              ],
+              [
+                -73.975980373383,
+                40.698856767102
+              ],
+              [
+                -73.975558524465,
+                40.699122038598
+              ],
+              [
+                -73.974877932342,
+                40.698495104798
+              ],
+              [
+                -73.974815408288,
+                40.698437508766
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_role": "building_footprint",
+        "campus_destination_requested": "Building 92",
+        "street_address": "63 Flushing Avenue, Brooklyn, NY",
+        "bin": "3335129",
+        "tax_lot_bbl": "3020230001",
+        "oti_footprint_id": "286013",
+        "city_footprint_name": "280",
+        "pad_release": "26c",
+        "address_point_inside_its_footprint": true,
+        "footprint_area_us_survey_sq_ft": 49086.87,
+        "address_query": "https://geosearch.planninglabs.nyc/v2/search?text=63+Flushing+Avenue+Brooklyn",
+        "footprint_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=3335129",
+        "projected_geometry_query": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D3335129&outFields=BIN%2CBASE_BBL%2CDOITT_ID&returnGeometry=true&outSR=2263&f=json",
+        "match_role": "address_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "address-3335129",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.975398,
+          40.698647
+        ]
+      },
+      "properties": {
+        "feature_role": "geocoded_address",
+        "campus_destination_requested": "Building 92",
+        "street_address": "63 Flushing Avenue, Brooklyn, NY",
+        "bin": "3335129",
+        "tax_lot_bbl": "3020230001",
+        "oti_footprint_id": "286013",
+        "city_footprint_name": "280",
+        "pad_release": "26c",
+        "address_point_inside_its_footprint": true,
+        "footprint_area_us_survey_sq_ft": 49086.87,
+        "address_query": "https://geosearch.planninglabs.nyc/v2/search?text=63+Flushing+Avenue+Brooklyn",
+        "footprint_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=3335129",
+        "projected_geometry_query": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D3335129&outFields=BIN%2CBASE_BBL%2CDOITT_ID&returnGeometry=true&outSR=2263&f=json",
+        "match_role": "address_candidate"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "footprint-3335175",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -73.973336388278,
+                40.698443903391
+              ],
+              [
+                -73.97334352877,
+                40.698325664152
+              ],
+              [
+                -73.973366720102,
+                40.698326475479
+              ],
+              [
+                -73.973369639397,
+                40.698278145649
+              ],
+              [
+                -73.973343351726,
+                40.698277225544
+              ],
+              [
+                -73.97335210965,
+                40.698132219843
+              ],
+              [
+                -73.973540998794,
+                40.698138827253
+              ],
+              [
+                -73.973532369908,
+                40.698281706888
+              ],
+              [
+                -73.973507298533,
+                40.698280829424
+              ],
+              [
+                -73.973504959368,
+                40.698319550923
+              ],
+              [
+                -73.973670136247,
+                40.698318567644
+              ],
+              [
+                -73.973668930979,
+                40.698338529029
+              ],
+              [
+                -73.973711718002,
+                40.698340025555
+              ],
+              [
+                -73.9737046663,
+                40.698456787095
+              ],
+              [
+                -73.973336388278,
+                40.698443903391
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "feature_role": "building_footprint",
+        "match_role": "city_name_candidate",
+        "city_footprint_name": "92",
+        "bin": "3335175",
+        "tax_lot_bbl": "3020230001",
+        "oti_footprint_id": "411725",
+        "contains_geosearch_63_flushing_point": false,
+        "footprint_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?%24where=base_bbl%3D%273020230001%27+AND+name%3D%2792%27"
+      }
+    }
+  ]
+}

@@ -1,15 +1,363 @@
 [
   {
+    "slug": "building-footprint-data-apis",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Building Footprint Data APIs and Open Datasets",
+    "description": "Compare Invariant Earth, LightBox, Overture Maps and Microsoft. Test building footprints by address with a Brooklyn Navy Yard mismatch and three NYC polygons.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "2024 overhead photograph of industrial buildings along Flushing Avenue at the Brooklyn Navy Yard.",
+    "coverCaption": "Brooklyn Navy Yard along Flushing Avenue. Aerial imagery from NYS ITS Geospatial Services, 2024.",
+    "intro": "Use Invariant Earth when you need building footprint area in the same U.S. coordinate lookup as parcel boundaries, zoning and site hazards. For raw polygons, trial LightBox or download Overture Maps or Microsoft geometry. At Brooklyn Navy Yard, 63 Flushing Avenue is the operator’s address for Building 92. The city geocoder puts that address inside the polygon labeled 280. A lookup for the number 92 returns a different outline on the same tax lot.",
+    "takeaways": [
+      "To get a footprint from an address, resolve the location, retrieve candidate polygons and confirm which structure the customer means. A campus street address can belong to several buildings.",
+      "Use a projected coordinate system to measure footprint area. Keep that area separate from gross floor area, insurable square footage and the measurements used for a replacement-cost estimate.",
+      "Run the same tests across the counties, building types and historical dates you actually need. Save the returned geometry, source and match decision so another person can reproduce it."
+    ],
+    "sections": [
+      {
+        "id": "compare-building-footprint-apis",
+        "heading": "Which source should you start with?",
+        "blocks": [
+          {"type": "paragraph", "text": "Try primary_building_footprint_sqm and parcel_boundary_geojson together in Earth. The first measures the matched building outline and the second returns the land boundary. Request within_floodplain_polygon in the same lookup to see the FEMA result at the input coordinate. For a building-wide flood screen, intersect the verified building polygon with the flood layer.", "sourceIds": ["earth-quickstart", "earth-fields"]},
+          {
+            "type": "paragraph",
+            "text": "Start with how your team will use the data. A live U.S. address workflow needs identifiers and a way to resolve ambiguous results. A regional GIS model needs bulk geometry, a dated release and clear reuse terms. This comparison uses public provider documentation. The Brooklyn test below uses city records independently."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Best starting point",
+              "What to test"
+            ],
+            "rows": [
+              ["Invariant Earth", "Combine Overture-derived footprint area and building characteristics with parcel geometry and other site fields. Each field includes its source.", "Check the input coordinate and confirm the matched structure. The documented footprint-area field uses the containing building or the nearest one within 100 metres."],
+              [
+                "LightBox Structures API",
+                "U.S. building lookup by structure ID, parcel or geometry. Related addresses use linked LightBox identifiers.",
+                "Can you get all structures on a shared lot and identify which one matches the submission?"
+              ],
+              [
+                "Overture Maps Buildings",
+                "Bulk GeoParquet for large areas. Parent buildings and building parts are published separately.",
+                "Can you track the same structure across releases and keep parts out of the building count? Check source attribution and ODbL terms."
+              ],
+              [
+                "Microsoft Global ML Building Footprints",
+                "Download imagery-derived outlines by region and grid tile when you can host and query the data yourself.",
+                "Review omissions, merged roofs and new development against imagery from a known date. Plan your own address and parcel join."
+              ],
+              [
+                "Local city or county GIS",
+                "Check government-issued identifiers, footprint attributes and linked local records where the authority publishes them.",
+                "Check the update date, placeholder geometries and how the source handles a building that spans multiple lots."
+              ]
+            ],
+            "rowSourceIds": [
+              ["earth-fields"],
+              [
+                "lightbox"
+              ],
+              [
+                "overture"
+              ],
+              [
+                "microsoft"
+              ],
+              [
+                "city-metadata"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "brooklyn-navy-yard-test",
+        "heading": "A street address can land inside the wrong footprint",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We searched NYC GeoSearch for 141 and 63 Flushing Avenue in Brooklyn using the city’s Property Address Directory release 26c. We took each result with the requested house number, street and borough, then used its Building Identification Number (BIN) to query NYC Building Footprints. Both address points landed inside the footprint returned for their BIN. Both footprints carried the same base tax lot number, 3020230001.",
+            "sourceIds": [
+              "geosearch",
+              "query-141",
+              "query-63",
+              "city-footprints"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Input",
+              "City footprint result",
+              "Review outcome"
+            ],
+            "rows": [
+              [
+                "141 Flushing Avenue, Building 77",
+                "BIN 3335143, city label 77",
+                "The operator’s building label and city result agree."
+              ],
+              [
+                "63 Flushing Avenue, Building 92",
+                "BIN 3335129, city label 280",
+                "The address point is inside this outline. The operator’s crosswalk lists former 280 as Building 140, a separate building from 92."
+              ],
+              [
+                "City lot and name lookup for 92",
+                "BIN 3335175, city label 92",
+                "Separate candidate polygon on the same lot. It does not contain the point returned for 63 Flushing Avenue."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "operator",
+                "query-141",
+                "city-footprints"
+              ],
+              [
+                "operator",
+                "crosswalk",
+                "query-63",
+                "city-footprints"
+              ],
+              [
+                "city-name",
+                "city-metadata"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The lot had 93 records coded as Building in the footprint layer on November 23, 2026. A parcel ID alone leaves many possible structures. For an insurance submission or appraisal at 63 Flushing Avenue, preserve both candidate IDs, compare the outlines with the operator map or a current plan and keep the match open until you can verify the intended building. The city describes its footprint name field as unmaintained, which makes the name match evidence to review.",
+            "sourceIds": [
+              "lot-count",
+              "city-metadata",
+              "operator-map"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/building-footprint-data-apis.geojson",
+            "label": "Download the three footprints, two address points and source queries",
+            "format": "GeoJSON"
+          }
+        ]
+      },
+      {
+        "id": "calculate-footprint-area",
+        "heading": "How do you measure the area of a building footprint?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Measure the polygon in a local projected coordinate system with known units. We requested the NYC geometry in New York Long Island State Plane (EPSG:2263), then measured the enclosed area in square US survey feet. The outline for Building 77 measured about 61,676 square feet. NYC’s metadata advises against using the published Shape_Area value for this purpose.",
+            "sourceIds": [
+              "projected-geometry",
+              "city-metadata"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A footprint measures horizontal extent. A multistory building can have much more floor area than its footprint, and a roof traced in an aerial image can overhang the walls. For lending, use the appraisal or building plan to check the area used for underwriting. For insurance, establish the insured building and get the construction details and dimensions that the replacement-cost method requires."
+          }
+        ]
+      },
+      {
+        "id": "test-a-footprint-provider",
+        "heading": "What should a provider prove in a trial?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give every provider the same address list, parcels, building labels and known outcomes. Include a campus, a condo with a billing lot, a site with multiple sheds, and a property with a recorded demolition or addition. Ask for the original IDs, the polygons and the data vintage. Look at whether the system forwards uncertain matches for review and whether it can reproduce a result from the quote or credit date."
+          },
+          {
+            "type": "paragraph",
+            "text": "Score correct building matches, false matches and unresolved cases separately. Evaluate geometry only after verifying the structure. Compare candidate polygons against a trusted reference in the same projection. For a flood or zoning overlay, retain the exact footprint and map edition used so you can tell why the result changed after a new release."
+          },
+          {
+            "type": "links",
+            "label": "Related property and GIS evidence",
+            "items": [
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare underwriting data APIs and building identity checks"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Put building and parcel evidence into a commercial credit file"
+              },
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Compare GIS APIs for site selection"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace an earlier parcel through a split or merger"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I get a building footprint from a street address?",
+        "answer": "Geocode the address, retrieve footprint candidates by building ID, parcel or location, and confirm which structure the address refers to. On a campus, add the building number or entrance and compare with the operator’s map or property plan.",
+        "sourceIds": [
+          "geosearch",
+          "operator-map"
+        ]
+      },
+      {
+        "question": "Where can I download open building footprints in bulk?",
+        "answer": "Overture Maps publishes Buildings in GeoParquet with a separate building parts layer. Microsoft publishes imagery-derived polygons in regional downloads. Check source attribution, licensing, the imagery or release date and local coverage before adopting either.",
+        "sourceIds": [
+          "overture",
+          "microsoft"
+        ]
+      },
+      {
+        "question": "Is a footprint the same as a tax parcel?",
+        "answer": "A footprint outlines a structure viewed from above. A tax parcel describes land for assessment and administration. Brooklyn Navy Yard’s lot 3020230001 had 93 records coded as Building in the NYC footprint layer for this check.",
+        "sourceIds": [
+          "city-metadata",
+          "lot-count"
+        ]
+      },
+      {
+        "question": "Can I use a building footprint for total square footage?",
+        "answer": "Calculate the horizontal footprint area in a suitable projected coordinate system. Obtain gross floor area from building plans, an appraisal or an authoritative property record. A footprint leaves the number, size and use of floors open.",
+        "sourceIds": [
+          "city-metadata"
+        ]
+      }
+    ],
+    "sources": [
+      {"id": "earth-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth", "linkLabel": "Earth field catalog"},
+      {"id": "earth-quickstart", "title": "Quickstart for a cited coordinate lookup", "url": "https://docs.invariant-ai.com/quickstart", "publisher": "Invariant Earth", "linkLabel": "Try the Earth API"},
+      {
+        "id": "lightbox",
+        "title": "Structures API reference",
+        "url": "https://developer.lightboxre.com/apis/structures",
+        "publisher": "LightBox"
+      },
+      {
+        "id": "overture",
+        "title": "Buildings theme, sources and licensing",
+        "url": "https://docs.overturemaps.org/guides/buildings/",
+        "publisher": "Overture Maps Foundation"
+      },
+      {
+        "id": "microsoft",
+        "title": "Global ML Building Footprints and download guide",
+        "url": "https://github.com/microsoft/GlobalMLBuildingFootprints",
+        "publisher": "Microsoft"
+      },
+      {
+        "id": "geosearch",
+        "title": "GeoSearch API and Property Address Directory fields",
+        "url": "https://geosearch.planninglabs.nyc/docs/",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "query-141",
+        "title": "GeoSearch query for 141 Flushing Avenue",
+        "url": "https://geosearch.planninglabs.nyc/v2/search?text=141+Flushing+Avenue+Brooklyn",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "query-63",
+        "title": "GeoSearch query for 63 Flushing Avenue",
+        "url": "https://geosearch.planninglabs.nyc/v2/search?text=63+Flushing+Avenue+Brooklyn",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "city-footprints",
+        "title": "Building Footprints open data",
+        "url": "https://data.cityofnewyork.us/City-Government/BUILDING/5zhs-2jue/about_data",
+        "publisher": "NYC Office of Technology and Innovation"
+      },
+      {
+        "id": "city-name",
+        "title": "Footprint with city label 92 on lot 3020230001",
+        "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?%24where=base_bbl%3D%273020230001%27+AND+name%3D%2792%27",
+        "publisher": "NYC Open Data"
+      },
+      {
+        "id": "city-metadata",
+        "title": "NYC Building Footprints collection and field definitions",
+        "url": "https://github.com/CityOfNewYork/nyc-geo-metadata/blob/main/Metadata/Metadata_BuildingFootprints.md",
+        "publisher": "NYC Office of Technology and Innovation"
+      },
+      {
+        "id": "lot-count",
+        "title": "Count of footprint records coded as Building on the tax lot",
+        "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?%24select=count%28%2A%29+as+records&%24where=base_bbl%3D%273020230001%27+AND+feature_code%3D%272100%27",
+        "publisher": "NYC Open Data"
+      },
+      {
+        "id": "projected-geometry",
+        "title": "Building 77 geometry in New York Long Island State Plane",
+        "url": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D3335143&outFields=BIN%2CBASE_BBL%2CDOITT_ID&returnGeometry=true&outSR=2263&f=json",
+        "publisher": "NYC Office of Technology and Innovation"
+      },
+      {
+        "id": "operator",
+        "title": "Public spaces and addresses for Buildings 77 and 92",
+        "url": "https://www.brooklynnavyyard.org/public-spaces/",
+        "publisher": "Brooklyn Navy Yard Development Corporation"
+      },
+      {
+        "id": "crosswalk",
+        "title": "Campus crosswalk from historic to new building numbers",
+        "url": "https://www.brooklynnavyyard.org/wp-content/uploads/2025/11/Building-Number-Table-5.pdf",
+        "publisher": "Brooklyn Navy Yard Development Corporation"
+      },
+      {
+        "id": "operator-map",
+        "title": "2026 campus map with current and legacy building numbers",
+        "url": "https://www.brooklynnavyyard.org/wp-content/uploads/2026/07/Tear-Off-Map-07162026-w-Legacy-Numbers.pdf",
+        "publisher": "Brooklyn Navy Yard Development Corporation"
+      },
+      {
+        "id": "nys-aerial",
+        "title": "2024 New York State orthoimagery",
+        "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
+        "publisher": "NYS ITS Geospatial Services"
+      }
+    ],
+    "dataset": {
+      "name": "Brooklyn Navy Yard address points and building footprints",
+      "description": "Two NYC GeoSearch address points, three building footprint polygons and the exact city source queries. The dataset shows an address match to the former Building 280 and a separate candidate labeled 92 on the same tax lot.",
+      "sourceIds": [
+        "geosearch",
+        "city-footprints",
+        "operator",
+        "crosswalk"
+      ],
+      "spatialCoverage": "Brooklyn Navy Yard, Brooklyn, New York, United States"
+    },
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "best-gis-apis-for-site-selection",
+      "building-permit-data-apis"
+    ]
+  },
+  {
     "slug": "building-permit-data-apis",
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Data APIs for Commercial Property",
-    "description": "Compare Shovels, West Kite, ATTOM and city permit APIs. Use six Brooklyn permit rows to test project counts, work scope and roof replacement evidence.",
+    "description": "Compare Invariant Earth, Shovels, West Kite, ATTOM and city permit APIs. Use six Brooklyn records to test building matches, work scope and project counts.",
     "date": "2026-11-23",
     "readMinutes": 8,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
-    "intro": "Start with Shovels for searching permit activity, West Kite for permits linked to commercial property and owners, or ATTOM for a property lookup that already uses ATTOM IDs. Check critical findings with the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement.",
+    "intro": "Use Invariant Earth to connect permit research to a cited U.S. property record. One coordinate can return parcel identity and boundary, zoning, building characteristics and hazards. Join the original permit by building ID and verify its scope at the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement.",
     "takeaways": [
       "Keep the building, parcel, job filing and work permit IDs. An address match alone can attach work to the wrong structure on a shared lot.",
       "Record filing, issue, expiration and sign-off dates separately. A work description and a date only answer the question when they describe the right scope and milestone.",
@@ -20,6 +368,7 @@
         "id": "compare-permit-data-apis",
         "heading": "Which building permit API fits the job?",
         "blocks": [
+          {"type": "paragraph", "text": "Start in Invariant Earth with parcel_apn, parcel_match_type, parcel_zoning and primary_building_footprint_sqm. Use the parcel match to anchor your property file, then attach the original building, filing and permit IDs from the issuer. This lets you review work scope alongside the zoning and exposures at that location.", "sourceIds": ["earth-quickstart", "earth-fields"]},
           {
             "type": "paragraph",
             "text": "A portfolio monitoring team needs a way to search across markets and catch new records. A lender or underwriter reviewing one building needs the issuer’s record, the work scope and the status as of the credit or quote date. Use the table to choose what to trial. It describes public documentation reviewed November 23, 2026. The test case below queries NYC directly."
@@ -33,6 +382,7 @@
               "Trial question"
             ],
             "rows": [
+              ["Invariant Earth", "Build a cited property record for permit diligence. Fetch the parcel, zoning, building features and hazards together by coordinate.", "Check that the issuing agency’s building ID and work address refer to the structure you’re reviewing. Save the permit ID and the Earth field sources."],
               [
                 "Shovels",
                 "Search by geography and date range, with filters for work and property details.",
@@ -55,6 +405,7 @@
               ]
             ],
             "rowSourceIds": [
+              ["earth-fields"],
               [
                 "shovels"
               ],
@@ -274,6 +625,7 @@
       }
     ],
     "faqs": [
+      {"question": "How does Invariant Earth fit into building permit diligence?", "answer": "Use Invariant Earth to retrieve parcel identity, zoning, building characteristics and hazards together with sources. Link the issuer’s permit by its building and filing IDs to preserve the scope and dates of the work.", "sourceIds": ["earth-fields"]},
       {
         "question": "Which API should I use for building permits by address?",
         "answer": "Trial Shovels for area and date searches, West Kite for permits linked to commercial parcels and owners, or ATTOM for a property lookup within an ATTOM integration. Check the original permit for decision-critical results.",
@@ -306,6 +658,8 @@
       }
     ],
     "sources": [
+      {"id": "earth-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth", "linkLabel": "Earth field catalog"},
+      {"id": "earth-quickstart", "title": "Quickstart for a cited coordinate lookup", "url": "https://docs.invariant-ai.com/quickstart", "publisher": "Invariant Earth", "linkLabel": "Try the Earth API"},
       {
         "id": "shovels",
         "title": "Permit search API reference",
@@ -386,7 +740,7 @@
     "region": "United States",
     "coverAlt": "Aerial map of 2239 Forest Avenue in Staten Island. Five colored areas show the share of the tax lot in each base zoning district. The published point falls in C8-1.",
     "coverCaption": "2239 Forest Avenue, Staten Island. The white line traces the MapPLUTO tax lot. Colors show the clipped NYC zoning polygons. Aerial imagery from USDA, USGS and The National Map.",
-    "intro": "For a U.S. parcel zoning lookup, compare Zoneomics for point and area queries, Gridics for development standards in supported jurisdictions, and Regrid for zoning fields attached to parcel records. Keep the local government’s map and ordinance as your reference. At one Staten Island address, a point lookup gives one district, the city’s tax lot record lists three, and a boundary overlay finds five.",
+    "intro": "Use Invariant Earth to screen a U.S. location with a cited parcel ID, zoning code, parcel boundary and other site conditions in one lookup. Use city district geometry to measure zoning across a tract. For a U.S. parcel zoning lookup, compare Zoneomics for point and area queries, Gridics for development standards in supported jurisdictions, and Regrid for zoning fields attached to parcel records. Keep the local government’s map and ordinance as your reference. At one Staten Island address, a point lookup gives one district, the city’s tax lot record lists three, and a boundary overlay finds five.",
     "takeaways": [
       "Decide whether you need zoning at a coordinate, a parcel summary, or each district intersecting the site.",
       "Ask how the API handles small overlaps and where its source shows the adopted map and rule.",
@@ -729,7 +1083,7 @@
     "region": "United States",
     "coverAlt": "Aerial map of the I-70 and U.S. Route 42 interchange near London, Ohio, with Pilot 454 and TA London marked.",
     "coverCaption": "I-70 Exit 79 near London, Ohio. Pins use AFDC station coordinates. Aerial imagery from USGS, USDA and The National Map.",
-    "intro": "Use the U.S. Department of Energy’s AFDC API to locate charging stations and count installed ports. For a driver who needs a free connector now, use a timestamped availability feed from a mapping provider or charging network. The difference shows up at one Ohio interchange. The federal inventory lists 16 fast-charging ports across two stops. A routine sum of the equipment export returns 160 because it repeats the station total on each row.",
+    "intro": "Use Invariant Earth for site screening around a proposed charger location. One coordinate lookup can bring together parcel, road and utility context. Use charger feeds to plan trips and check connector availability. Use the U.S. Department of Energy’s AFDC API to locate charging stations and count installed ports. For a driver who needs a free connector now, use a timestamped availability feed from a mapping provider or charging network. The difference shows up at one Ohio interchange. The federal inventory lists 16 fast-charging ports across two stops. A routine sum of the equipment export returns 160 because it repeats the station total on each row.",
     "takeaways": [
       "Count installed ports once per station ID. Preserve repeated equipment rows when the source supplies no equipment ID.",
       "Keep connector compatibility, station access hours and live equipment status in separate fields.",
@@ -753,6 +1107,7 @@
               "What to test before buying"
             ],
             "rows": [
+              ["Invariant Earth", "Screen a proposed charging location with parcel, road access and electric service territory context.", "Check parcel match type and road class. Ask the serving utility to confirm the connection point and capacity for your charging load."],
               [
                 "U.S. DOE AFDC",
                 "U.S. station inventory with public access, location, connector types and installed DC fast port counts. An equipment CSV adds connector counts and rated power.",
@@ -780,6 +1135,7 @@
               ]
             ],
             "rowSourceIds": [
+              ["invariant-fields"],
               [
                 "afdc-stations",
                 "afdc-ports"
@@ -1082,11 +1438,12 @@
     "title": "Geoforge alternatives for data center power screening",
     "description": "Compare Geoforge, Paces, PVcase, GridCARE and Invariant. Use 49 PJM upgrade records to test the dates and assumptions behind a data center power forecast.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 7,
     "region": "United States",
     "coverAlt": "Illustrative aerial view of transmission towers and a construction lane crossing harvested fields.",
     "coverCaption": "AI-generated illustration of a transmission corridor in agricultural terrain.",
-    "intro": "Geoforge is a starting point for comparing potential connections and modeled offtake. Consider Paces for screening a portfolio, PVcase Prospect for checking grid constraints, GridCARE where the utility is evaluating flexible load, or Invariant for a study tied to a particular campus ramp. Give every provider the same test. Ask which upgrade puts power within reach, which date the report uses, and how the first phase changes when the upgrade moves.",
+    "intro": "Start with Invariant for a power study tied to the proposed campus, its load ramp and the dates each phase needs service. Compare Geoforge for candidate connections and modeled offtake, Paces for portfolio screening, PVcase Prospect for grid constraints and GridCARE for utility programs that evaluate flexible load. Give each provider the same test. Ask which facility limits service, when the relevant upgrade enters service and how a delay changes the first phase.",
     "takeaways": [
       "In one PJM plan, the same 765 kV line segment had a June 2030 required date and an October 2031 projected date, a gap of 517 days.",
       "AEP Ohio used separate service estimates for different groups of studied customers. One group needed an additional regional upgrade.",
@@ -1442,7 +1799,7 @@
     "region": "United States",
     "coverAlt": "Aerial view of the Rosemead Public Works warehouse with its county building footprint outlined.",
     "coverCaption": "2022 USDA NAIP imagery via CDFW. The outline marks the building identified on the city site map. The photo predates the 2025 roof work.",
-    "intro": "Ageospatial is worth evaluating when underwriters need to match insured buildings and collect evidence from imagery, maps and records. Moody’s, ZestyAI and Verisk offer dedicated roof products. Invariant Earth fits teams assembling their own property data workflow. To compare them, start with a submission that has two addresses and three different dates for the same roof project.",
+    "intro": "Use Invariant Earth to start underwriting with a cited building and parcel record, then attach the roof evidence to the structure that the submission covers. Compare Ageospatial for a workflow that collects imagery, maps and records, and Moody’s, ZestyAI and Verisk for dedicated roof products. Give each provider a submission with two addresses and three dates for the same roof project. Check which structure and event the result describes.",
     "takeaways": [
       "Compare products on the exact building and roof scope. The owner’s mailing address can point to a different property.",
       "A replacement project has an award date, a completion date and a date when the evidence became available to your team. Keep all three.",
@@ -1819,7 +2176,7 @@
     "readMinutes": 8,
     "coverAlt": "2024 aerial photograph of 25 Water Street in Lower Manhattan with its tax lot outlined and a construction crane on the roof.",
     "coverCaption": "25 Water Street during conversion. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant added the MapPLUTO 26v2 tax lot outline.",
-    "intro": "Try West Kite for commercial property records and owner research, ATTOM for property and transaction data in a workflow you already run, and Regrid for parcel identity and boundaries. Evaluate Invariant Earth when you need sourced site conditions alongside a parcel match. To choose among them, give each provider a building that changed use and ask it to reconstruct what happened. At 25 Water Street, a property lookup and the city’s occupancy records give different unit totals for the same conversion.",
+    "intro": "Use Invariant Earth to match a parcel and evaluate it against sourced terrain, hazards and nearby infrastructure in one API. Compare West Kite for commercial property records and owner research, ATTOM for property and transaction data, and Regrid for parcel geometry. At 25 Water Street, a property lookup and the city’s occupancy records give different unit totals for the same conversion. Ask each provider to show which records explain the change.",
     "takeaways": [
       "West Kite’s public lookup resolved three addresses to the same property and returned 1,323 units. MapPLUTO reports 1,323 total units and 1,320 residential units on that lot.",
       "DOB NOW has four issuances of the same general construction permit and ten occupancy issuance records under the related job. Keep each event and its date.",
@@ -2232,10 +2589,11 @@
     "title": "Mireye Alternatives for U.S. Property Screening",
     "description": "Compare Mireye, Invariant Earth, West Kite, and Regrid for U.S. property screening. Check how each handles parcel matches, hazards, and utility evidence.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 7,
     "coverAlt": "Illustrative aerial view of an industrial building beside winding wetlands.",
     "coverCaption": "AI-generated illustration of an industrial site beside wetlands.",
-    "intro": "For a Mireye alternative, start with what you need to screen. Try Invariant Earth when your workflow needs source-backed location fields and a visible parcel match. Try West Kite when you need a report that measures flood and wetland overlap across a lot. Try Regrid when the parcel boundary and identifier are the main records you need. Keep Mireye in the evaluation when you want public location fields and a separate parcel-enrichment workflow.",
+    "intro": "Use Invariant Earth when your workflow needs cited site conditions, parcel boundaries and the reason a parcel was matched. Compare Mireye for public location fields and parcel enrichment, West Kite for lot-level flood and wetland overlap, and Regrid for parcel geometry and identity. Run the same property through each workflow and check which location and source produced each result.",
     "takeaways": [
       "Compare the coordinates and geometry behind each field. The same field name can describe a different search or source.",
       "Both Mireye and Invariant use wetland_acres for an entire selected wetland polygon. To estimate affected acreage, calculate its intersection with the property or project area.",
@@ -3801,10 +4159,11 @@
     "title": "Best GIS APIs for U.S. site selection",
     "description": "Compare GIS APIs for parcels, zoning, flood exposure, and power screening. Test the difference between a location pin and a parcel with a real site.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 8,
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
-    "intro": "For U.S. site selection, start with the evidence your team needs to keep or rule out a site. Evaluate Regrid for parcel identity, West Kite for commercial property records, and Esri for mapping and routing. Evaluate Invariant Earth or Mireye when a screening workflow needs cited terrain, hazards, and nearby infrastructure. For a large electrical load, also compare project-level studies from Invariant and screening products such as Geoforge or Paces.",
+    "intro": "Use Invariant Earth to screen U.S. sites across parcels, terrain, hazards and infrastructure with sources for each field. Evaluate Regrid for parcel identity, West Kite for commercial property records, Esri for mapping and routing, and Mireye for location screening. For a large electrical load, compare project-level studies from Invariant with products such as Geoforge or Paces. Check whether the output identifies a plausible connection and what would have to change before it can serve the site.",
     "takeaways": [
       "Test the exact counties and fields where you plan to operate. A national map can still have uneven coverage for permits, zoning, or owner data.",
       "A site pin, a tax lot, and a proposed building can return different hazard results. Ask which geometry an API evaluated.",
@@ -4253,7 +4612,7 @@
     "readMinutes": 10,
     "coverAlt": "Aerial view of Brooklyn Army Terminal, with the small footprint returned by the city’s Building A identifier marked in gold for review.",
     "coverCaption": "The gold outline is the footprint returned by the city building-ID lookup. Aerial imagery from NYS ITS, spring 2024. Tax lot from NYC MapPLUTO 26v2.",
-    "intro": "Start with Cotality for building prefill and reconstruction cost. Evaluate Moody’s CAPE for imagery-derived roof attributes, Verisk for commercial underwriting reports, and Guidewire HazardHub for peril and fire-protection data. First Street provides modeled flood depth and damage. Ageospatial and Invariant Earth are options for teams that want to inspect the evidence behind property fields. Use the trial scorecard below to compare how providers handle shared addresses, roof records, and evidence that changes after the quote date.",
+    "intro": "Use Invariant Earth when your underwriting team needs to verify the parcel and inspect the sources behind building and hazard fields. Evaluate Cotality for building prefill and reconstruction cost, Moody’s CAPE for imagery-derived roof attributes, Verisk for commercial underwriting reports, and Guidewire HazardHub for peril and fire-protection data. First Street provides modeled flood depth and damage. Compare Ageospatial for building and property evidence workflows. Use the scorecard below to test shared addresses, roof records and evidence that changes after the quote date.",
     "takeaways": [
       "Match each line of the statement of values to a building before pulling construction or hazard attributes.",
       "Keep permit issuance, the work it authorizes, and evidence of completion as separate fields.",
@@ -4646,7 +5005,7 @@
     "readMinutes": 7,
     "coverAlt": "2024 aerial imagery of Midtown Manhattan with the General Motors Building tax lot outlined beside Central Park.",
     "coverCaption": "The General Motors Building’s full-block tax lot is Manhattan block 1294, lot 1. NYC MapPLUTO 26v2 geometry over 2024 New York State aerial imagery.",
-    "intro": "To find who owns a U.S. commercial property, match the address to a parcel, then read the deed history for that parcel. When the grantee is an LLC, use entity records to identify the company and dated filings or deal documents to verify who owns or controls it. The assessor, recorder and company filings each answer a different part of the question.",
+    "intro": "Start with Invariant Earth to match a U.S. coordinate to an assessor parcel and retrieve the published owner field for a containing parcel alongside the boundary and source. To find who owns a U.S. commercial property, match the address to a parcel, then read the deed history for that parcel. When the grantee is an LLC, use entity records to identify the company and dated filings or deal documents to verify who owns or controls it. The assessor, recorder and company filings each answer a different part of the question.",
     "takeaways": [
       "Run the recorder search by parcel number and verify the legal description. The address used to market the building can differ from the one on the deed.",
       "Preserve every document number. Two deeds recorded on the same day can describe successive transfers of the same lot.",
@@ -5072,10 +5431,11 @@
     "title": "Commercial real estate data APIs for lenders",
     "description": "Compare property data APIs for commercial lending. Use three recorded instruments from the Empire State Building to test a collateral file as of a credit decision.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 8,
     "coverAlt": "Aerial view of Midtown Manhattan with the Empire State Building tax lot outlined in gold.",
     "coverCaption": "Empire State Building, Manhattan tax lot 1008350041. The outline uses NYC MapPLUTO 26v2 over 2024 New York State aerial imagery. The records below are from 2013.",
-    "intro": "A commercial real estate lender can use property data APIs to identify collateral, find recorded instruments, and flag items for title, valuation, or flood review. Choose a provider for the job you need done. West Kite and LightBox can help find recorded property and transaction data. Regrid and Invariant Earth can help identify the parcel. For an earlier credit decision, ask which records had been recorded by that date and when the provider first made each record available.",
+    "intro": "Use Invariant Earth to match the collateral parcel and check cited building and flood evidence in one coordinate lookup. Use West Kite or LightBox to evaluate feeds for recorded property and transaction data and Regrid to work directly with parcel identity and boundaries. For an earlier credit decision, ask which instruments had been recorded by that date and when each provider first made them available.",
     "takeaways": [
       "Carry the parcel identifier and legal description into the credit file. An address alone can point to a building that spans several parcels.",
       "Keep the date on the instrument, the recording date, and the date your system obtained the record. Each supports a different question.",
@@ -5271,7 +5631,7 @@
     "readMinutes": 7,
     "coverAlt": "2024 aerial view of Brooklyn connecting an Ida high-water mark in Gowanus, FEMA Zone AE, and a mark in Prospect Park, FEMA Zone X.",
     "coverCaption": "Markers show two USGS survey points after Ida in 2021. Their FEMA zones come from a November 2026 query. Background is 2024 New York State aerial imagery.",
-    "intro": "For the effective FEMA zone at a U.S. property, start with the National Flood Hazard Layer or an API that returns the original zone, subtype and map panel. For potential flood depth and damage, use a model that specifies the event probability, year and scenario. For evidence that water reached a location during a particular storm, look for surveyed marks or mapped inundation from that event. A property file can benefit from all three.",
+    "intro": "Use Invariant Earth when you need a cited point-level FEMA flood screen alongside parcel and building context. Review the FEMA result and its vintage, then check the footprint against the effective map for a building-level decision. For the effective FEMA zone at a U.S. property, start with the National Flood Hazard Layer or an API that returns the original zone, subtype and map panel. For potential flood depth and damage, use a model that specifies the event probability, year and scenario. For evidence that water reached a location during a particular storm, look for surveyed marks or mapped inundation from that event. A property file can benefit from all three.",
     "takeaways": [
       "Save the FEMA zone, subtype, Special Flood Hazard Area flag and panel effective date together.",
       "Treat a surveyed high-water mark as evidence about one location and storm. Keep the surveyed water elevation and the height of the mark above ground in separate fields.",
@@ -5639,7 +5999,7 @@
     "readMinutes": 7,
     "coverAlt": "Timeline showing Orion’s original February 2027 maturity, the amended February 2029 maturity, and conditional options in February and August 2030.",
     "coverCaption": "Orion Properties disclosed the amendment on February 19, 2026. The two 2030 dates depend on borrowers exercising their options and meeting the agreement’s conditions.",
-    "intro": "To find when a U.S. commercial mortgage matures, start with the current schedule from your servicer or the trust’s latest loan-level report. Check any amendments and confirm whether the borrower exercised an extension option. A county mortgage index helps identify the instrument, but you may need the actual loan documents to establish the due date. For a portfolio spanning many lenders, ask any data provider exactly which loans it covers and which document supports each date.",
+    "intro": "Use Invariant Earth to put parcel, building and flood evidence in a commercial collateral file. Link that file to loan records from your servicer or a loan data provider before tracking maturity. To find when a U.S. commercial mortgage matures, start with the current schedule from your servicer or the trust’s latest loan-level report. Check any amendments and confirm whether the borrower exercised an extension option. A county mortgage index helps identify the instrument, but you may need the actual loan documents to establish the due date. For a portfolio spanning many lenders, ask any data provider exactly which loans it covers and which document supports each date.",
     "takeaways": [
       "Keep the original maturity, current stated maturity and conditional option dates in separate fields.",
       "Store the date an amendment took effect, the date its source was published, and the date your system obtained it.",
@@ -6294,7 +6654,7 @@
     "readMinutes": 9,
     "coverAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
     "coverCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024. The individual commercial unit does not have its own polygon in the queried tax-map layer.",
-    "intro": "Compare Regrid and LightBox for parcel boundaries, Realie and ATTOM for assessor-linked property records, and Korzy, Mireye or Invariant Earth for site context. Start with the same county records for every vendor. Our test at 432 Park Avenue found three tax IDs at one address, two almost identical outlines, and a separate commercial unit whose city record has no polygon in the queried layer.",
+    "intro": "Use Invariant Earth when the parcel needs to be evaluated against terrain, hazards and infrastructure. Compare Regrid and LightBox for parcel boundaries, Realie and ATTOM for assessor-linked property records, and Korzy and Mireye for site context. Start with the same county records for every vendor. Our test at 432 Park Avenue found three tax IDs at one address, two almost identical outlines, and a commercial unit without a polygon in the queried layer.",
     "takeaways": [
       "Use the same six inputs for each provider. Keep the county identifier, the provider identifier and the entity each one represents.",
       "Record whether a returned shape belongs to the requested unit, a parent lot or another match.",
@@ -7185,10 +7545,11 @@
     "title": "Retail site selection APIs for trade areas and foot traffic",
     "description": "Compare retail locations with travel-time areas, dated store openings, and comparable visit counts. A Harlem case shows how to use public transit data.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 7,
     "coverAlt": "Aerial map of two 125th Street subway complexes and Trader Joe’s Harlem. From September 2023 to September 2024, estimated A, B, C and D station entries rose 17.6 percent, and 2 and 3 station entries rose 18.0 percent.",
     "coverCaption": "Transit context on 125th Street in Harlem. Station points and entry estimates from the MTA. Store location from NYC GeoSearch. Aerial imagery from NYS ITS Geospatial Services, 2024.",
-    "intro": "Before signing a retail lease, find out who can reach the site, where customers at comparable stores actually come from, and what happened as nearby stores opened or closed. Those questions call for different data. Use routing for travel-time areas, a dated place directory for nearby stores, and comparable visit or pedestrian counts for activity. Keep the area, measure, and time window with every number so you can rerun the comparison.",
+    "intro": "Start in Invariant Earth to check the parcel, building characteristics and road context at a proposed store location. Then connect the site to routing, store history and visits to compare trade areas. Before signing a retail lease, find out who can reach the site, where customers at comparable stores actually come from, and what happened as nearby stores opened or closed. Those questions call for different data. Use routing for travel-time areas, a dated place directory for nearby stores, and comparable visit or pedestrian counts for activity. Keep the area, measure, and time window with every number so you can rerun the comparison.",
     "takeaways": [
       "Draw candidate areas using the same travel mode and time. For existing stores, use visitor origins to learn where customers may actually come from.",
       "Confirm openings and closures with dated retailer, landlord, or local records. A database creation date records when the entry appeared in that system.",
@@ -7204,12 +7565,14 @@
             "stackOnMobile": true,
             "columns": ["Buyer question", "Where to start", "What to check"],
             "rows": [
+              ["What is at this proposed store location?", "Invariant Earth parcel, building and road fields in one coordinate lookup.", "Verify the property match and the actual entrance. Use a routing or visit dataset for customer travel and activity."],
               ["Who can reach the site in ten minutes?", "Esri routing service areas for walking or driving. Use Census ACS estimates to describe households within a defined area.", "Use the actual customer entrance, travel mode, network vintage, and time-of-day assumptions. Ask how the provider assigns partially overlapping Census areas and shows uncertainty."],
               ["Where do people who visit a comparable store come from?", "Placer’s Trade Area report for estimated visitor origins. Its glossary distinguishes visits, unique visitors, and the sampled device panel.", "Request the store-level boundary and date range. Check how repeat trips are counted, what is suppressed, and which histories can be regenerated with a common model."],
               ["Which nearby stores opened or closed?", "Foursquare Open Source Places for location identity and dated releases. Verify events with dated first-party or public records.", "Match brand, address, unit, and coordinates. Keep the date the place entered the dataset and the verified operating date as separate fields."],
               ["How busy is the corridor at comparable times?", "Municipal pedestrian counts or transit agency data. NYC DOT counts pedestrians at sampled locations and the MTA publishes station entry estimates.", "Require a defined entrance, count line or property boundary. Preserve hours, days, and the instrument’s definition. For a specific storefront, ask for a comparable venue visit series or a direct count."]
             ],
-            "rowSourceIds": [["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases"], ["nyc-dot", "mta-monthly"]]
+            "rowSourceIds": [
+              ["invariant-fields"],["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases"], ["nyc-dot", "mta-monthly"]]
           },
           {
             "type": "paragraph",
@@ -7507,7 +7870,7 @@
     "readMinutes": 7,
     "coverAlt": "Aerial image of the Aligned data center site at Quantum Frederick Lot 106, with the lot outlined and county water and sewer map labels.",
     "coverCaption": "Quantum Frederick Lot 106. Frederick County parcel geometry over 2025 Maryland iMAP imagery. The service labels come from the county’s November 2026 map query.",
-    "intro": "Start with the parcel and the local water and sewer service maps. EPA drinking-water boundaries can help identify a system, and EPA wastewater records can identify a treatment plant and its permit. For a project, ask the utility for written confirmation of the volumes, connection points and delivery dates it can support. A service-area map answers where to ask. The written allocation and service conditions determine what the site can use.",
+    "intro": "Use Invariant Earth to screen the parcel against EPA drinking-water and sewer service boundaries. Check the returned source for each layer, then ask the mapped utility to confirm how it would serve the project. Start with the parcel and the local water and sewer service maps. EPA drinking-water boundaries can help identify a system, and EPA wastewater records can identify a treatment plant and its permit. For a project, ask the utility for written confirmation of the volumes, connection points and delivery dates it can support. A service-area map answers where to ask. The written allocation and service conditions determine what the site can use.",
     "takeaways": [
       "Match water and sewer separately. Keep the source, mapped classification and date for both.",
       "An empty EPA overlap can occur where a local plan already shows future service. Check the local record before ruling out the site.",
@@ -7872,7 +8235,7 @@
     "readMinutes": 8,
     "coverAlt": "National Grid feeder 36_35_39253 reports 3.18 MVA of summer load headroom, 4.98 MVA in winter, and 0.10 MW of solar export hosting capacity.",
     "coverCaption": "Selected National Grid New York records for feeder 36_35_39253, retrieved November 23, 2026. The values come from separate load and solar studies.",
-    "intro": "For a new load, start with the serving utility’s published load capacity for the asset and season. Use Substation Capacity to compare supported U.S. utility map records, or GridCapacity API for operator-published European data. Invariant Earth adds mapped grid and parcel context for a U.S. site. A modeled transmission screen or utility study answers a different question about the proposed connection. The difference is visible on one National Grid feeder with 3.18 MVA of summer load headroom, 4.98 MVA in winter, and 0.10 MW of solar export hosting capacity.",
+    "intro": "Use Invariant Earth to identify the mapped substations, transmission and parcels around a proposed U.S. load. For published capacity, use the serving utility’s record and check the season and equipment it covers. Substation Capacity collects supported U.S. utility map records, and GridCapacity API covers operator-published European data. One National Grid feeder shows why the metric matters. It has 3.18 MVA of summer load headroom, 4.98 MVA in winter and 0.10 MW of solar export hosting capacity.",
     "takeaways": [
       "Check direction, asset, season, source date, and units before comparing capacity results.",
       "A feeder, its upstream bank, and a proposed connection each need their own record.",
