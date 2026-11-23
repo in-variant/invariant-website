@@ -747,6 +747,40 @@
     }
   },
   {
+    "slug": "water-sewer-data-apis-site-selection",
+    "topic": "Data & APIs",
+    "title": "Water and Sewer Data APIs for Site Selection",
+    "summary": "Find the water and sewer utilities for a property. Compare service area APIs, plant capacity and written allocations using a documented Maryland site.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/water-sewer-data-apis-site-selection.webp?v=c82bd1d5",
+    "dataset": {
+      "name": "Quantum Frederick Lot 106 water and sewer evidence",
+      "description": "A documented Maryland site with county water and sewer classifications, an EPA boundary no-match and control, and dated potable-water allocations and wastewater plant planning figures.",
+      "spatialCoverage": "Adamstown and Frederick, Frederick County, Maryland",
+      "temporalCoverage": "2024-08-14/2026-11-23",
+      "sources": [
+        "https://www.frederickcountymd.gov/ArchiveCenter/ViewFile/Item/16171",
+        "https://fcgis.frederickcountymd.gov/server_pub/rest/services/Basemap/Parcels/MapServer/0/query?f=geojson&where=ADDRESS+LIKE+%275601+MANOR+WOODS%25%27+OR+%28TAXMAP+IN+%28%2794%27%2C%27094%27%2C%270094%27%29+AND+PARCEL+IN+%28%2771%27%2C%27071%27%2C%270071%27%29%29&outSR=4326&outFields=PIN%2CTAXMAP%2CPARCEL%2CLOT%2CADDRESS%2CSUBDIVDESC%2CGIS_ACRES%2CBOOKPAGE&resultRecordCount=150",
+        "https://fcgis.frederickcountymd.gov/server_pub/rest/services/PlanningAndPermitting/WaterSewerServiceAreas/MapServer/0/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=WP_Type%2CSERVICE_PROVIDER%2CTAXMAP%2CPARCEL%2CLOT",
+        "https://fcgis.frederickcountymd.gov/server_pub/rest/services/PlanningAndPermitting/WaterSewerServiceAreas/MapServer/2/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=SP_Type%2CSERVICE_PROVIDER%2CTAXMAP%2CPARCEL%2CLOT",
+        "https://frederickcountymd.gov/8653/Water-and-Sewerage-Plan",
+        "https://www.frederickcountymd.gov/DocumentCenter/View/353729/Water-Resources-Element-Adopted-Plan?bidId=",
+        "https://www.frederickcountymd.gov/AgendaCenter/ViewFile/Minutes/_05202026-1063",
+        "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PWSID%2CPWS_Name%2CSymbology_Field%2COriginal_Data_Provider%2CModel_Method",
+        "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0/query?f=json&geometry=-77.4106%2C39.4148&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PWSID%2CPWS_Name%2CSymbology_Field%2COriginal_Data_Provider%2CModel_Method"
+      ],
+      "downloads": [
+        {
+          "label": "Download the parcel match, utility queries and capacity records",
+          "path": "/blog/water-sewer-data-apis-site-selection.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "grid-capacity-apis-load-headroom",
     "topic": "Data & APIs",
     "title": "Best Grid Capacity APIs for Load Headroom and Site Screening",

@@ -3500,6 +3500,16 @@
             "items": [
               {"slug": "shovel-ready-industrial-site-checklist", "label": "Compare the evidence behind two certified industrial sites"}
             ]
+          },
+          {
+            "type": "links",
+            "label": "Utility data checks",
+            "items": [
+              {
+                "slug": "water-sewer-data-apis-site-selection",
+                "label": "Check the property’s water and sewer utilities and recorded allocations"
+              }
+            ]
           }
         ]
       },
@@ -7099,6 +7109,371 @@
       {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"}
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "commercial-real-estate-data-apis-for-lenders"]
+  },
+  {
+    "slug": "water-sewer-data-apis-site-selection",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Water and Sewer Data APIs for Site Selection",
+    "description": "Find the water and sewer utilities for a property. Compare service area APIs, plant capacity and written allocations using a documented Maryland site.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Aerial image of the Aligned data center site at Quantum Frederick Lot 106, with the lot outlined and county water and sewer map labels.",
+    "coverCaption": "Quantum Frederick Lot 106. Frederick County parcel geometry over 2025 Maryland iMAP imagery. The service labels come from the county’s November 2026 map query.",
+    "intro": "Start with the parcel and the local water and sewer service maps. EPA drinking-water boundaries can help identify a system, and EPA wastewater records can identify a treatment plant and its permit. For a project, ask the utility for written confirmation of the volumes, connection points and delivery dates it can support. A service-area map answers where to ask. The written allocation and service conditions determine what the site can use.",
+    "takeaways": [
+      "Match water and sewer separately. Keep the source, mapped classification and date for both.",
+      "An empty EPA overlap can occur where a local plan already shows future service. Check the local record before ruling out the site.",
+      "Keep the project’s maximum-day water allocation separate from annual consumption, plant-wide wastewater capacity and the site’s permitted sewer discharge."
+    ],
+    "sections": [
+      {
+        "id": "frederick-service-area-test",
+        "heading": "What do the water and sewer maps show at Quantum Frederick?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The January 2026 site-plan staff packet lists the Aligned project at 5601 Manor Woods Road, Tax Map 94, Parcel 71, Lot 106. The county parcel layer lists 5631 Manor Woods Road on Lot 106. We joined the records using the tax map, parcel, lot and plat reference (Book 111, Page 159). The site report covers the 74.89-acre lot. The plan’s water allocation covers the wider Quantum Frederick campus.",
+            "sourceIds": [
+              "staff",
+              "parcel",
+              "water-resource"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source checked",
+              "Result for Lot 106",
+              "What to carry into the site file"
+            ],
+            "rows": [
+              [
+                "County water and sewer service maps",
+                "At the lot centroid, the county layers returned W-3 DEV for water and S-3 DEV for sewer, each marked public. The January staff report uses W-3/S-3.",
+                "Save both classifications and the mapped point. Ask the county about connection and service dates."
+              ],
+              [
+                "EPA Community Water System Service Areas",
+                "The same point returned zero intersecting community drinking-water polygons. A downtown Frederick check point returned CITY OF FREDERICK, PWSID MD0100015.",
+                "Record no polygon match for the lot in the queried layer. Keep the county evidence and check the actual utility service conditions."
+              ],
+              [
+                "Frederick County Water Resources Element",
+                "The county reported campus allocations of 0.20 MGD potable water for domestic use and 1.10 MGD for cooling. Both are maximum-day figures.",
+                "Save the two purposes separately. Keep the allocation tied to the campus and the August 14, 2024 letter of understanding cited by the county."
+              ],
+              [
+                "County wastewater planning table",
+                "The plan listed 15.000 MGD permitted and design capacity and 7.340 MGD average flow for the Ballenger-McKinney plant (permit MD0021822).",
+                "Keep 7.660 MGD as the plan’s plant-wide difference based on 2021–23 average flow. Verify available and committed capacity and the discharge terms for the project."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "county-water",
+                "county-sewer",
+                "staff",
+                "local-plan"
+              ],
+              [
+                "epa-guide",
+                "epa-lot",
+                "epa-control"
+              ],
+              [
+                "water-resource"
+              ],
+              [
+                "water-resource",
+                "echo-plant"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The county plan also describes a route to use treated wastewater for cooling, subject to design, permitting and construction. In April 2026, county commission minutes described a separate cooling-water system that would initially use potable water, with a later transition to reclaimed water still in planning and permitting discussions at that time. Check subsequent approvals, delivery terms and the schedule before relying on reclaimed water.",
+            "sourceIds": [
+              "water-resource",
+              "reclaimed"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the parcel match, utility queries and capacity records",
+            "path": "/blog/water-sewer-data-apis-site-selection.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-utility-apis",
+        "heading": "Which water and sewer API should you use?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose a source for each check. A water system polygon, a sewershed and a treatment plant permit describe different things. The comparison uses public documentation checked on November 23, 2026. We ran the government map queries directly. Invariant publishes this comparison and makes Invariant Earth."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Product or source",
+              "Documented evidence",
+              "How to test it"
+            ],
+            "rows": [
+              [
+                "EPA drinking-water boundary service",
+                "Community drinking-water service-area polygons and public water system IDs. EPA distinguishes agency or utility boundaries from modeled ones.",
+                "Check the result and provenance for a known city location, then try an industrial lot with planned county service."
+              ],
+              [
+                "County or utility GIS",
+                "Local service or planning classifications where published, often with separate water and sewer layers.",
+                "Match the parcel first. Read the map legend and check whether the classification describes connected, planned or other service."
+              ],
+              [
+                "EPA ECHO",
+                "Wastewater facilities, federal discharge permit IDs and monitoring records.",
+                "Look up MD0021822. Confirm which plant the record covers, then obtain the utility’s current allocation and conveyance information."
+              ],
+              [
+                "West Kite",
+                "Utilities lookup covering water systems, sewer service areas and wastewater treatment plants where available.",
+                "Ask for the boundary source and vintage. Test whether it can distinguish a planned sewer area from a nearby treatment plant."
+              ],
+              [
+                "Invariant Earth",
+                "Point-in-polygon data for EPA community drinking-water systems with boundary provenance. Parcel fields can help anchor the lookup.",
+                "Check whether the mapped intersection is true or false and review the source. Check the county’s separate sewer and allocation records."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "epa-guide",
+                "epa-lot",
+                "epa-control"
+              ],
+              [
+                "local-plan",
+                "county-water",
+                "county-sewer"
+              ],
+              [
+                "echo",
+                "echo-plant"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "invariant"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "verify-water-and-sewer-capacity",
+        "heading": "What to ask the water and sewer utility before committing to a site",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Send the tract and building location with a schedule by phase. Describe domestic potable water, cooling makeup and fire flow separately. Include average, maximum-day and peak-hour demand where applicable.",
+              "Ask where each service can connect, which extensions are needed, who pays for them, and when they can be accepted. Check supply, storage and pressure as well as the treatment water volume.",
+              "Submit the estimated wastewater flow, peaks and character, including any cooling blowdown. Ask about conveyance, plant allocation, pretreatment, and approval limits for volume and quality.",
+              "For reclaimed water, confirm the provider, water quality, agreement, pipeline delivery date and backup supply. Date each source and obtain the written conditions for the project."
+            ],
+            "sourceIds": [
+              "county-engineering",
+              "local-plan",
+              "water-resource"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related site selection guides",
+            "items": [
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Keep a source-backed site shortlist"
+              },
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Compare APIs for parcel, utility and hazard layers"
+              },
+              {
+                "slug": "data-center-water-stormwater-permits",
+                "label": "Check water, industrial discharge and stormwater permits"
+              },
+              {
+                "slug": "utility-will-serve-letter-load-study-esa",
+                "label": "Check the power documents at the same site"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find the water and sewer utility for an address?",
+        "answer": "Match the address to the right parcel and inspect local water and sewer service maps separately. Use the EPA community drinking-water boundary and system identifier as a starting point for water. Confirm both services with the local utilities and ask for the parcel’s current connection or service conditions.",
+        "sourceIds": [
+          "epa-guide",
+          "local-plan"
+        ]
+      },
+      {
+        "question": "Does being in a water service area mean the utility can deliver the required water?",
+        "answer": "A mapped classification can show current or planned service. For a development, confirm the project’s water volumes, pressure, connection work and delivery dates with the utility. Ask for the signed allocation or service conditions.",
+        "sourceIds": [
+          "local-plan",
+          "water-resource",
+          "county-engineering"
+        ]
+      },
+      {
+        "question": "Can I use a treatment plant’s remaining capacity as the sewer allocation for a site?",
+        "answer": "Use the plant’s figures to understand system conditions. The project’s usable sewer capacity depends on committed demand, conveyance, peak flow, discharge quality and written utility terms. Ask for a project-level allocation.",
+        "sourceIds": [
+          "water-resource",
+          "echo",
+          "county-engineering"
+        ]
+      },
+      {
+        "question": "Is 1.30 MGD of maximum-day water allocation the same as average daily use?",
+        "answer": "No. At Quantum Frederick, the county plan reports 0.20 MGD for domestic use plus 1.10 MGD for cooling on a maximum day. Both are allocations for the campus. Use metered data or a dated operating estimate to calculate average or annual use.",
+        "sourceIds": [
+          "water-resource"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "staff",
+        "title": "Quantum Frederick Lot 106 site plan revision staff packet, January 2026",
+        "url": "https://www.frederickcountymd.gov/ArchiveCenter/ViewFile/Item/16171",
+        "publisher": "Frederick County Planning Commission"
+      },
+      {
+        "id": "parcel",
+        "title": "Parcel layer query by site address and tax map keys",
+        "url": "https://fcgis.frederickcountymd.gov/server_pub/rest/services/Basemap/Parcels/MapServer/0/query?f=geojson&where=ADDRESS+LIKE+%275601+MANOR+WOODS%25%27+OR+%28TAXMAP+IN+%28%2794%27%2C%27094%27%2C%270094%27%29+AND+PARCEL+IN+%28%2771%27%2C%27071%27%2C%270071%27%29%29&outSR=4326&outFields=PIN%2CTAXMAP%2CPARCEL%2CLOT%2CADDRESS%2CSUBDIVDESC%2CGIS_ACRES%2CBOOKPAGE&resultRecordCount=150",
+        "publisher": "Frederick County GIS"
+      },
+      {
+        "id": "county-water",
+        "title": "Lot 106 point query, County Water Service Area layer",
+        "url": "https://fcgis.frederickcountymd.gov/server_pub/rest/services/PlanningAndPermitting/WaterSewerServiceAreas/MapServer/0/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=WP_Type%2CSERVICE_PROVIDER%2CTAXMAP%2CPARCEL%2CLOT",
+        "publisher": "Frederick County GIS"
+      },
+      {
+        "id": "county-sewer",
+        "title": "Lot 106 point query, County Sewer Service Area layer",
+        "url": "https://fcgis.frederickcountymd.gov/server_pub/rest/services/PlanningAndPermitting/WaterSewerServiceAreas/MapServer/2/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=SP_Type%2CSERVICE_PROVIDER%2CTAXMAP%2CPARCEL%2CLOT",
+        "publisher": "Frederick County GIS"
+      },
+      {
+        "id": "local-plan",
+        "title": "Water and Sewerage Plan and classification map guidance",
+        "url": "https://frederickcountymd.gov/8653/Water-and-Sewerage-Plan",
+        "publisher": "Frederick County"
+      },
+      {
+        "id": "water-resource",
+        "title": "Adopted Water Resources Element, pages 2-21 and 3-5",
+        "url": "https://www.frederickcountymd.gov/DocumentCenter/View/353729/Water-Resources-Element-Adopted-Plan?bidId=",
+        "publisher": "Frederick County"
+      },
+      {
+        "id": "reclaimed",
+        "title": "Reclaimed water strategy discussion, April 15, 2026, pages 4–5",
+        "url": "https://www.frederickcountymd.gov/AgendaCenter/ViewFile/Minutes/_05202026-1063",
+        "publisher": "Frederick County Sustainability Commission"
+      },
+      {
+        "id": "epa-guide",
+        "title": "Public Water System Service Areas and boundary sources",
+        "url": "https://www.epa.gov/ground-water-and-drinking-water/public-water-system-service-areas",
+        "publisher": "U.S. EPA"
+      },
+      {
+        "id": "epa-lot",
+        "title": "Community water system boundary query at Lot 106",
+        "url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PWSID%2CPWS_Name%2CSymbology_Field%2COriginal_Data_Provider%2CModel_Method",
+        "publisher": "U.S. EPA"
+      },
+      {
+        "id": "epa-control",
+        "title": "Community water system boundary query for the Frederick City check point",
+        "url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Water_System_Boundaries/FeatureServer/0/query?f=json&geometry=-77.4106%2C39.4148&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PWSID%2CPWS_Name%2CSymbology_Field%2COriginal_Data_Provider%2CModel_Method",
+        "publisher": "U.S. EPA"
+      },
+      {
+        "id": "echo",
+        "title": "ECHO wastewater and stormwater web services",
+        "url": "https://echo.epa.gov/tools/web-services",
+        "publisher": "U.S. EPA"
+      },
+      {
+        "id": "echo-plant",
+        "title": "Discharge permit MD0021822 facility report",
+        "url": "https://echo.epa.gov/detailed-facility-report?fid=MD0021822",
+        "publisher": "U.S. EPA ECHO"
+      },
+      {
+        "id": "west-kite",
+        "title": "Utilities API documentation",
+        "url": "https://www.westkite.com/api/nearby",
+        "publisher": "West Kite"
+      },
+      {
+        "id": "invariant",
+        "title": "Public field catalog and water service area provenance",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth"
+      },
+      {
+        "id": "county-engineering",
+        "title": "Local water and sewer engineering and planning",
+        "url": "https://www.frederickcountymd.gov/107/Engineering-Planning",
+        "publisher": "Frederick County"
+      },
+      {
+        "id": "aerial",
+        "title": "Six-inch aerial imagery, 2025 coverage for Frederick County",
+        "url": "https://mdgeodata.md.gov/imagery/rest/services/SixInch/SixInchImagery/MapServer",
+        "publisher": "Maryland iMAP"
+      }
+    ],
+    "dataset": {
+      "name": "Quantum Frederick Lot 106 water and sewer evidence",
+      "description": "A documented Maryland site with county water and sewer classifications, an EPA boundary no-match and control, and dated potable-water allocations and wastewater plant planning figures.",
+      "sourceIds": [
+        "staff",
+        "parcel",
+        "county-water",
+        "county-sewer",
+        "local-plan",
+        "water-resource",
+        "reclaimed",
+        "epa-lot",
+        "epa-control"
+      ],
+      "spatialCoverage": "Adamstown and Frederick, Frederick County, Maryland",
+      "temporalCoverage": "2024-08-14/2026-11-23"
+    },
+    "relatedSlugs": [
+      "best-gis-apis-for-site-selection",
+      "data-center-water-stormwater-permits",
+      "shovel-ready-industrial-site-checklist",
+      "utility-will-serve-letter-load-study-esa"
+    ]
   },
   {
     "slug": "grid-capacity-apis-load-headroom",
