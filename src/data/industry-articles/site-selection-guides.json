@@ -3195,15 +3195,15 @@
     "topic": "Data Centers",
     "kind": "site-guide",
     "title": "Behind-the-Meter Power for Data Centers: How to Verify Capacity and Timing",
-    "description": "Evaluate on-site gas power, fuel cells and co-located plants for a data center. Check usable MW, firm fuel, air permits and delivery dates before signing.",
+    "description": "Size a data center’s on-site gas power and check firm fuel, air permits and delivery dates. See the Homer City approval record and what to ask for above 50 MW.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-23",
-    "readMinutes": 13,
+    "readMinutes": 15,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
       "Ask the pipeline for firm capacity, pressure and gas quality in writing before any equipment order.",
-      "Get the emissions calculation for the full build-out, since phased minor permits draw aggregation challenges.",
+      "Write the expected operating plan, ask the air agency to confirm the permit path, and track conditions that can delay first power.",
       "Plan the grid path from day one so the bridge generation has an end state."
     ],
     "sections": [
@@ -3222,8 +3222,148 @@
           {
             "type": "links",
             "items": [
-              {"path": "/calculators/data-center-power-capacity", "label": "Calculate facility demand and the shortfall during an outage"}
+              {
+                "path": "/calculators/data-center-power-capacity",
+                "label": "Calculate facility demand and the shortfall during an outage"
+              }
             ]
+          }
+        ]
+      },
+      {
+        "id": "permit-50-mw-gas-generation",
+        "heading": "How do you permit 50 MW or more of on-site gas generation?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the state or local air agency and an equipment and operating plan for the whole source. A 50 MW electrical rating alone does not determine whether a gas plant is a major air source. The agency considers the applicable source category, potential emissions by pollutant, location and governing rules. Ask which preconstruction review applies, then check operating-permit obligations and conditions for starting the units.",
+            "sourceIds": [
+              "epa-nsr",
+              "epa-titlev"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Before you commit",
+              "The record to request"
+            ],
+            "rows": [
+              [
+                "Define the project",
+                "An equipment list and operating plan covering normal operation, testing, startup, backup and later phases. Include controls, fuel, equipment ratings and proposed hours. Ask the authority to confirm the source boundary."
+              ],
+              [
+                "Confirm the permit path",
+                "The applicability analysis, including potential emissions under enforceable limits and the air quality attainment status for relevant pollutants. Identify major or minor New Source Review and the applicable unit standards."
+              ],
+              [
+                "Release construction",
+                "The issued permit and equipment schedule for the proposed work. Match permit conditions, technical review and any applicable orders to the construction package."
+              ],
+              [
+                "Put first power on the schedule",
+                "The permitted basis for commissioning and first operation by unit. Identify advance notices, stack tests, monitoring, emissions offsets or other conditions where required, plus the operating-permit path."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "epa-nsr"
+              ],
+              [
+                "epa-nsr"
+              ],
+              [
+                "epa-nsr"
+              ],
+              [
+                "epa-nsr",
+                "epa-titlev"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The equipment matters. EPA has separate standards for stationary reciprocating engines and combustion turbines. For turbines, review the applicability of Subpart KKKKa, including EPA’s 2026 correction, against each unit’s equipment specifications and construction, modification or reconstruction date. Full-time bridge power should appear as planned operation when the permitting team evaluates allowable uses.",
+            "sourceIds": [
+              "epa-turbine",
+              "epa-engines"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related permitting guide",
+            "items": [
+              {
+                "slug": "data-center-backup-generator-air-permits",
+                "label": "Check the operating limits for backup generators"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "homer-city-permit-records",
+        "heading": "Homer City shows what an issued air approval covers",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Pennsylvania DEP received the application on April 4, 2025 and issued Plan Approval 32-00457A on November 18, 2025. That is 228 calendar days for this application. The approval covers construction and conditional initial operation of seven combined-cycle turbines and up to ten simple-cycle turbines.",
+            "sourceIds": [
+              "homer-notice",
+              "homer-plan"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Document or condition",
+              "What it establishes"
+            ],
+            "rows": [
+              [
+                "Plan approval 32-00457A, Section B #003",
+                "Conditional temporary operation, initially up to 180 days from commencement. It requires notice at least five working days before completing the approved activity, including separate notices for sources starting on different schedules."
+              ],
+              [
+                "Plan approval 32-00457A, Section C #022",
+                "Before operating any source covered by the condition, the permittee must purchase and apply 369.035 tons per year of volatile organic compound emission reduction credits."
+              ],
+              [
+                "Title V renewal 32-00055, February 26, 2026",
+                "The review memo records removal of retired coal sources and approval of the transfer and use of credits for the gas plan. Check the source list and startup conditions for the units under review."
+              ],
+              [
+                "Appeal docket 2025-135-L",
+                "On November 23, 2026, the Environmental Hearing Board calendar listed a December 8 to 9 hearing. Check the live docket and applicable orders for a decision."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "homer-plan"
+              ],
+              [
+                "homer-plan"
+              ],
+              [
+                "homer-renewal"
+              ],
+              [
+                "homer-appeal"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "On a new project, assign an owner and a date to each condition before using a permit to support a first-power forecast. Carry a separate milestone for commercial delivery at the agreed electrical point."
+          },
+          {
+            "type": "download",
+            "path": "/blog/homer-city-air-permit-timeline.csv",
+            "label": "Download the Homer City air-permit timeline",
+            "format": "CSV"
           }
         ]
       },
@@ -3339,7 +3479,7 @@
           },
           {
             "type": "paragraph",
-            "text": "A BTM site doesn't remove the power question. It moves it. Instead of asking whether the utility has headroom, you are asking whether the gas, the air permit, the turbines and the regulator will all line up by the same date. Each of those can fail on its own schedule."
+            "text": "A buyer evaluating on-site power needs dated commitments for firm fuel, net output and equipment delivery, plus the approvals for the planned operating hours. Put those dates on the same schedule as the data halls."
           }
         ]
       },
@@ -3363,16 +3503,16 @@
           },
           {
             "type": "paragraph",
-            "text": "Stargate in Abilene took a different route. Floodlight and The Texas Tribune report the developers built 10 gas turbines and 62 backup diesel generators under minor Texas permits, with a 360 MW on-site gas plant, then applied for a major air permit to add 41 more turbines and 18 more generators. Crusoe describes the turbines as backup, though the permits allow continuous use. A former EPA enforcement chief quoted in the piece argued the project should have been permitted as one source.",
+            "text": "In Abilene, Texas, the air agency notified Crusoe in August 2026 that it had prepared a preliminary decision on a proposed electric generation facility. The notice identifies draft state and federal air permits and starts a public notice step. Look for the signed decision and compare the authorized equipment with the proposed new units.",
             "sourceIds": [
-              "tribune-abilene"
+              "tceq-abilene"
             ]
           },
           {
             "type": "paragraph",
-            "text": "Homer City, Pennsylvania, is the brownfield version. The developers announced up to 4.5 GW of gas generation on the 3,200-acre former coal plant site, seven GE Vernova turbines with first deliveries expected in 2026, gas from the Texas Eastern system about five miles away, and existing ties to PJM and NYISO. The coal unit, 1,884 MW, shut in mid-2023. Reuse of a retired plant site gave the project an existing grid connection and an industrial land use to build on.",
+            "text": "Pennsylvania DEP published a signed plan approval for construction and initial operation at the former Homer City Generating Station. The case above shows how the air agency treated the new plant, the temporary operation window and the required emission reduction credits.",
             "sourceIds": [
-              "homer-city"
+              "homer-plan"
             ]
           },
           {
@@ -3474,34 +3614,31 @@
       },
       {
         "id": "air-permits-and-water",
-        "heading": "Air permits, water and local opposition",
+        "heading": "Water supply and local approvals",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Air permitting sets the real size of an on-site plant. Under EPA's Title V program, a major source is one with the potential to emit 100 tons per year of any air pollutant, 10 tons per year of a single hazardous air pollutant, or 25 tons per year of combined HAPs. Thresholds drop in ozone nonattainment areas, as low as 10 tons per year of NOx in extreme areas. Major new sources in attainment areas also face Prevention of Significant Deterioration review, which requires best available control technology and public involvement.",
+            "text": "Match the cooling and water demand to the plant design. Compare the supply commitment, connection work and permitted withdrawal or discharge against the required service date. Pennsylvania DEP publishes separate water and air records for Homer City.",
             "sourceIds": [
-              "epa-titlev"
+              "homer-docket"
             ]
           },
           {
             "type": "paragraph",
-            "text": "Floodlight found that more than half of the Texas data centers it reviewed reported NOx estimates just under the thresholds that trigger fuller review, such as 249.1 or 99.8 tons per year. That is legal when the numbers are real. It also invites the aggregation argument raised at Abilene: regulators or opponents can claim that phased minor permits are one major project. Ask for the emissions calculation for the full campus, not phase one.",
+            "text": "Check local land use, pipeline and electrical works on their own schedules. Record hearings, appeal dates and orders alongside the issuing agency’s signed approvals.",
             "sourceIds": [
-              "tribune-abilene"
+              "homer-docket",
+              "homer-appeal"
             ]
           },
           {
-            "type": "paragraph",
-            "text": "Read the local record too. In both Memphis and Southaven, a notice of intent to sue came before the permit question was settled. Pull the air agency's comment docket for any nearby generation permit and check county minutes for opposition that has already organized.",
-            "sourceIds": [
-              "selc-xai"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Water gets missed. Combined cycle plants and some turbine inlet cooling designs need water, and a dry-cooled design costs output on hot days. Get the water source in writing: municipal allocation, groundwater permit or rights, or a reuse contract. Homer City's developers pointed to their own water supply as part of the pitch.",
-            "sourceIds": [
-              "homer-city"
+            "type": "links",
+            "label": "Plan the remaining diligence",
+            "items": [
+              {
+                "slug": "data-center-water-stormwater-permits",
+                "label": "Review cooling water, wastewater and construction permits"
+              }
             ]
           }
         ]
@@ -3853,11 +3990,13 @@
         ]
       },
       {
-        "question": "Do on-site gas turbines need an air permit?",
-        "answer": "Yes. The permit class depends on potential emissions. Under EPA's Title V rules, 100 tons per year of any pollutant, or 10 tons per year of a single hazardous air pollutant, makes a major source, with lower thresholds in some nonattainment areas. The xAI disputes in Memphis and Southaven show the cost of running turbines before the permit record is settled.",
+        "question": "How do data center developers permit 50 MW or more of on-site natural gas generation?",
+        "answer": "Take the equipment list, operating plan and potential emissions to the air agency. Confirm the construction permit path, applicable turbine or engine rules, and the conditions that must be met before commissioning and normal operation. Track Title V separately when applicable.",
         "sourceIds": [
-          "epa-titlev",
-          "selc-xai"
+          "epa-nsr",
+          "epa-turbine",
+          "epa-engines",
+          "epa-titlev"
         ]
       },
       {
@@ -3899,18 +4038,6 @@
         "title": "xAI built an illegal power plant to power its data center",
         "url": "https://www.selc.org/news/xai-built-an-illegal-power-plant-to-power-its-data-center/",
         "publisher": "Southern Environmental Law Center"
-      },
-      {
-        "id": "tribune-abilene",
-        "title": "Planned Texas data centers could emit more greenhouse gases than many countries",
-        "url": "https://www.texastribune.org/2026/07/09/texas-data-centers-ai-power-plants-pollution-state-permits/",
-        "publisher": "The Texas Tribune / Floodlight"
-      },
-      {
-        "id": "homer-city",
-        "title": "Largest US gas-fired power plant planned for data centers in Pennsylvania",
-        "url": "https://www.utilitydive.com/news/homer-city-gas-fired-power-station-data-center-firstenergy/744332/",
-        "publisher": "Utility Dive"
       },
       {
         "id": "aep-bloom",
@@ -3971,6 +4098,67 @@
         "publisher": "New Era Energy & Digital",
         "title": "Third-quarter business update, Texas Critical Data Center",
         "url": "https://s25.q4cdn.com/652716748/files/content_files/NUAI-Q3-Presentation_vF.pdf"
+      },
+      {
+        "id": "epa-nsr",
+        "title": "New Source Review basics",
+        "url": "https://www.epa.gov/nsr/new-source-review-basics",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA New Source Review"
+      },
+      {
+        "id": "epa-turbine",
+        "title": "Stationary turbine standards and rule history",
+        "url": "https://www.epa.gov/stationary-sources-air-pollution/stationary-gas-and-combustion-turbines-new-source-performance",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA turbine standards"
+      },
+      {
+        "id": "epa-engines",
+        "title": "Understanding the stationary engine rules",
+        "url": "https://www.epa.gov/stationary-engines/understanding-stationary-engines-rules",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA engine standards"
+      },
+      {
+        "id": "homer-docket",
+        "title": "Homer City redevelopment air and water documents",
+        "url": "https://www.pa.gov/agencies/dep/dep-regions/northwest-regional-office/homer-city-generation-redevelopment",
+        "publisher": "Pennsylvania Department of Environmental Protection",
+        "linkLabel": "PA DEP project docket"
+      },
+      {
+        "id": "homer-notice",
+        "title": "Published notice of plan approval 32-00457A",
+        "url": "https://www.pacodeandbulletin.gov/secure/pabulletin/data/vol55/55-48/1609b.html",
+        "publisher": "Pennsylvania Bulletin"
+      },
+      {
+        "id": "homer-plan",
+        "title": "Final plan approval 32-00457A",
+        "url": "https://files.dep.state.pa.us/RegionalResources/NWRO/NWROPortalFiles/Homer-City/Air/Final-AQ-Plan-Approval/FINAL%20PLAN%20APPROVAL%2032-00457A.pdf",
+        "publisher": "Pennsylvania Department of Environmental Protection",
+        "linkLabel": "PA DEP plan approval"
+      },
+      {
+        "id": "homer-renewal",
+        "title": "Title V renewal 32-00055, technical review memo",
+        "url": "https://files.dep.state.pa.us/RegionalResources/NWRO/NWROPortalFiles/Homer-City/Air/Final-AQ-Title-V/Technical%20Review%20Memo%2032-00055%20260226.pdf",
+        "publisher": "Pennsylvania Department of Environmental Protection",
+        "linkLabel": "PA DEP Title V memo"
+      },
+      {
+        "id": "homer-appeal",
+        "title": "Environmental Hearing Board schedule, docket 2025-135-L",
+        "url": "https://ehb.pa.gov/hearing-schedule",
+        "publisher": "Pennsylvania Environmental Hearing Board",
+        "linkLabel": "PA hearing calendar"
+      },
+      {
+        "id": "tceq-abilene",
+        "title": "August 5, 2026 preliminary decision notice for permit 182126",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&SearchID=&dID=10091291&searchType=External",
+        "publisher": "Texas Commission on Environmental Quality"
       }
     ],
     "relatedSlugs": [
@@ -3979,13 +4167,17 @@
       "kansas-250-mw-behind-the-meter-gas-power-site"
     ],
     "dataset": {
-      "name": "Odessa data center power agreement evidence",
-      "description": "Six dated records for the Texas Critical Data Center project in Odessa, Texas. The table distinguishes contracted Phase 1 power, prerequisites to delivery, a termination deadline, a delivery forecast, ramp-up payment terms and the Phase 2 proposal. Each row links to the originating company disclosure.",
+      "name": "Homer City air-permit timeline and evidence records",
+      "description": "Six dated Pennsylvania agency records for the Homer City gas generation plan. Includes application receipt, public review, plan approval, Title V renewal and a scheduled appeal hearing, with permit and docket IDs.",
       "sourceIds": [
-        "odessa-8k",
-        "odessa-10q",
-        "odessa-update"
-      ]
+        "homer-docket",
+        "homer-notice",
+        "homer-plan",
+        "homer-renewal",
+        "homer-appeal"
+      ],
+      "spatialCoverage": "Homer City Generating Station, Indiana County, Pennsylvania, United States",
+      "temporalCoverage": "2025-04-04/2026-12-08"
     }
   },
   {
