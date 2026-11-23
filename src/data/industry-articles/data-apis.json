@@ -1667,6 +1667,16 @@
                 "label": "Run the same vendor evaluation across workflows"
               }
             ]
+          },
+          {
+            "type": "links",
+            "label": "Property ownership research",
+            "items": [
+              {
+                "slug": "commercial-property-ownership-data-apis",
+                "label": "Trace deed ownership, LLCs and control at the GM Building"
+              }
+            ]
           }
         ]
       }
@@ -4230,6 +4240,428 @@
     "relatedSlugs": ["best-gis-apis-for-site-selection", "commercial-property-insurance-data-apis"]
   },
   {
+    "slug": "commercial-property-ownership-data-apis",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Commercial Property Ownership Data and APIs",
+    "description": "Find who owns a commercial property, trace an LLC to its documented investors, and compare deed and ownership APIs using the GM Building in New York.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "2024 aerial imagery of Midtown Manhattan with the General Motors Building tax lot outlined beside Central Park.",
+    "coverCaption": "The General Motors Building’s full-block tax lot is Manhattan block 1294, lot 1. NYC MapPLUTO 26v2 geometry over 2024 New York State aerial imagery.",
+    "intro": "To find who owns a U.S. commercial property, match the address to a parcel, then read the deed history for that parcel. When the grantee is an LLC, use entity records to identify the company and dated filings or deal documents to verify who owns or controls it. The assessor, recorder and company filings each answer a different part of the question.",
+    "takeaways": [
+      "Run the recorder search by parcel number and verify the legal description. The address used to market the building can differ from the one on the deed.",
+      "Preserve every document number. Two deeds recorded on the same day can describe successive transfers of the same lot.",
+      "Track equity percentage, decision rights, management and signing authority separately. Each needs its own dated evidence."
+    ],
+    "sections": [
+      {
+        "id": "gm-building-title-history",
+        "heading": "Who owns the General Motors Building in New York?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "BXP markets the property as 767 Fifth Avenue. MapPLUTO calls the tax lot 761 5 Avenue and lists 767 Fifth Partners LLC as the owner. Both June 2008 deed index records use 761 5 Avenue. The parcel key that connects these records is Manhattan block 1294, lot 1, or BBL 1012940001.",
+            "sourceIds": [
+              "property",
+              "pluto",
+              "legals",
+              "deed-one",
+              "deed-two"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Date or source",
+              "What the record shows",
+              "What it answers"
+            ],
+            "rows": [
+              [
+                "Deed recorded June 9, 2008, CRFN 2008000231217",
+                "Fifth Avenue 58/59 Acquisition Co. L.P. to 767 Fifth Interim Partners LLC. The index records $2.8 billion.",
+                "First deed in the same-day chain."
+              ],
+              [
+                "Deed recorded June 9, 2008, CRFN 2008000231218",
+                "767 Fifth Interim Partners LLC to 767 Fifth Partners LLC. The index records $0.",
+                "Second deed and grantee that matches the current assessor name. The $0 field does not establish a market price."
+              ],
+              [
+                "BXP closing announcement, June 10, 2008",
+                "Boston Properties, now BXP, reported a 60% interest in the venture and described its management and leasing role.",
+                "A disclosed ownership interest in the venture."
+              ],
+              [
+                "BXP Form 8-K, May 31, 2013 event",
+                "Two partners transferred their venture interests. Revised consent and decision rights gave BXP sufficient control to consolidate the venture, while its economic interest stayed at 60%.",
+                "A change in partners and control without an increase in BXP’s ownership percentage."
+              ],
+              [
+                "BPLP Exhibit 21 and BXP third-quarter 2026 Form 10-Q",
+                "The exhibit lists 767 Fifth Partners LLC and 767 Venture, LLC as Delaware entities. The latest quarterly filing reviewed reports BXP’s 60% interest in the consolidated venture.",
+                "Company identification and a dated confirmation of BXP’s disclosed stake."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "deed-one",
+                "parties-one",
+                "roles"
+              ],
+              [
+                "deed-two",
+                "parties-two",
+                "roles",
+                "pluto"
+              ],
+              [
+                "close"
+              ],
+              [
+                "control"
+              ],
+              [
+                "subsidiaries",
+                "quarter"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "ACRIS also indexes a real property transfer tax return for this lot recorded in February 2024, with 767 5th Avenue in the legal record. Keep its document code when sorting by date. A newer transfer tax return does not make it the newest deed. Read the relevant instrument and get a current title review before a closing.",
+            "sourceIds": [
+              "tax-return",
+              "legals",
+              "roles",
+              "acris"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the GM Building ownership chain and expected test results",
+            "path": "/blog/commercial-property-ownership-data-apis.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-commercial-ownership-apis",
+        "heading": "Which property ownership API fits your workflow?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start by deciding whether you need parcel ownership, recorded transfers or a link to the holding entity. Several APIs help with more than one step. These comparisons use public product documentation checked November 23, 2026. We queried NYC and SEC records directly for the worked example. Invariant publishes this guide and makes Invariant Earth."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider",
+              "Documented capability",
+              "Trial question"
+            ],
+            "rows": [
+              [
+                "West Kite",
+                "Property ownership research using deeds, business registries and SEC filings.",
+                "Does the 2013 governance change appear beside the ownership percentage, with the underlying SEC filing?"
+              ],
+              [
+                "Regrid",
+                "Parcel and assessor ownership. Enhanced Ownership can return the recorder’s deed owner as a separate field.",
+                "Can 761 and 767 Fifth Avenue be matched to the correct parcel while preserving the input address?"
+              ],
+              [
+                "LightBox",
+                "Transactions linked to property records, with date, document ID, grantor, grantee and deed details where available.",
+                "Can the transaction history return both June 9 deeds without merging them as duplicates?"
+              ],
+              [
+                "ATTOM",
+                "Property Detail Owner and fields for recorded ownership and partial interests.",
+                "Which fields are drawn from deeds or assessments, and what does the API return for an intermediate owner?"
+              ],
+              [
+                "OpenCorporates",
+                "Company search and company records with jurisdiction, registry number and source links where available.",
+                "Can you distinguish 767 Fifth Partners LLC from similarly named financing and venture entities?"
+              ],
+              [
+                "Invariant Earth",
+                "Point-to-parcel matching with source fields and an owner field for a containing parcel.",
+                "Check the match type and underlying parcel ID before joining to deeds or corporate filings. The owner field is withheld for a nearest-parcel fallback."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "west-kite"
+              ],
+              [
+                "regrid"
+              ],
+              [
+                "lightbox"
+              ],
+              [
+                "attom"
+              ],
+              [
+                "opencorporates",
+                "subsidiaries"
+              ],
+              [
+                "invariant"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "find-the-llc-behind-the-property",
+        "heading": "How to find the LLC or ownership group behind a building",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Resolve the property to the correct tax lot or lots. Save the jurisdiction, parcel key, geometry, and address variants from each source.",
+              "Fetch the recorder entries and original instruments. Keep document type, instrument number, grantor, grantee, estate or interest conveyed, and signing and recording dates.",
+              "Match the deed name to the entity’s jurisdiction and registry number. Treat the registered agent as a contact for service of process. Confirm owners, managers, investors and signing authority through the records that establish each role.",
+              "Use SEC filings, financing disclosures or deal documents when available. Carry the percentage, period, source and exact entity for each ownership or control statement. Mark gaps for review when you cannot complete the chain."
+            ],
+            "sourceIds": [
+              "acris",
+              "roles",
+              "registry",
+              "control"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related property data guides",
+            "items": [
+              {
+                "slug": "commercial-real-estate-lending",
+                "label": "Build a commercial real estate credit file"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare property data for lending and recorded instruments"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace parcel splits and mergers across dates"
+              },
+              {
+                "slug": "west-kite-alternatives-for-commercial-property-data",
+                "label": "Compare commercial property record providers"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How can I find the owner of a commercial building by address?",
+        "answer": "Find the parcel identifier in the local assessor or GIS system. Then search the recorder using that identifier, inspect the latest applicable conveyances, and compare the parties with the assessor’s owner field. Resolve conflicting results using the original records.",
+        "sourceIds": [
+          "pluto",
+          "acris"
+        ]
+      },
+      {
+        "question": "Can an LLC registry reveal who owns the underlying real estate?",
+        "answer": "A registry can confirm the company’s identity and public filings. The property deed establishes the grantee for a recorded transfer. To verify the company’s investors or control rights, look for dated agreements, regulatory disclosures or documents from the company.",
+        "sourceIds": [
+          "registry",
+          "deed-two",
+          "control"
+        ]
+      },
+      {
+        "question": "Why does a property have two deeds on the same day?",
+        "answer": "The property may pass through an intermediate party before reaching the final grantee. Keep each deed’s recording identifier and connect the first grantee to the next grantor. In the GM Building example, the two June 9, 2008 deeds record exactly that sequence.",
+        "sourceIds": [
+          "parties-one",
+          "parties-two",
+          "roles"
+        ]
+      },
+      {
+        "question": "Can control change while the ownership percentage stays the same?",
+        "answer": "Yes. In 2013, BXP reported that its 60% economic interest in the GM Building venture stayed the same when the venture’s partners and decision rights changed.",
+        "sourceIds": [
+          "control"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "pluto",
+        "title": "MapPLUTO 26v2, Manhattan block 1294 lot 1",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012940001&outFields=BBL%2CAddress%2COwnerName%2CBlock%2CLot%2CVersion&outSR=3857&f=geojson",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "acris",
+        "title": "ACRIS property and document search",
+        "url": "https://www.nyc.gov/site/finance/property/acris.page",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "legals",
+        "title": "ACRIS legal records for Manhattan block 1294 lot 1",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=1294&lot=1&%24limit=3000",
+        "publisher": "NYC Open Data"
+      },
+      {
+        "id": "roles",
+        "title": "ACRIS document and party role codes",
+        "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Document-Control-Codes/7isb-wh4c",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "deed-one",
+        "title": "First June 2008 deed, CRFN 2008000231217",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025001",
+        "publisher": "NYC ACRIS Master"
+      },
+      {
+        "id": "parties-one",
+        "title": "Grantor and grantee for CRFN 2008000231217",
+        "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025001&%24select=document_id%2Cparty_type%2Cname",
+        "publisher": "NYC ACRIS Parties"
+      },
+      {
+        "id": "deed-two",
+        "title": "Second June 2008 deed, CRFN 2008000231218",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025002",
+        "publisher": "NYC ACRIS Master"
+      },
+      {
+        "id": "parties-two",
+        "title": "Grantor and grantee for CRFN 2008000231218",
+        "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025002&%24select=document_id%2Cparty_type%2Cname",
+        "publisher": "NYC ACRIS Parties"
+      },
+      {
+        "id": "tax-return",
+        "title": "Real property transfer tax return, CRFN 2024000046756",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2024022300067001",
+        "publisher": "NYC ACRIS Master"
+      },
+      {
+        "id": "close",
+        "title": "June 2008 acquisition and 60% venture interest",
+        "url": "https://investors.bxp.com/news-releases/news-release-details/boston-properties-forms-joint-venture-and-completes-acquisition",
+        "publisher": "BXP"
+      },
+      {
+        "id": "control",
+        "title": "Form 8-K, May 31, 2013 venture transfer and decision rights",
+        "url": "https://www.sec.gov/Archives/edgar/data/1043121/000119312513244371/d548942d8k.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "subsidiaries",
+        "title": "Exhibit 21, BPLP subsidiary names and jurisdictions",
+        "url": "https://www.sec.gov/Archives/edgar/data/1037540/000103754026000006/bxpbplp-20251231ex211.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "quarter",
+        "title": "Form 10-Q for September 30, 2026, General Motors Building venture",
+        "url": "https://www.sec.gov/Archives/edgar/data/1043121/000103754026000043/bxp-20260930.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "property",
+        "title": "767 Fifth Avenue property profile",
+        "url": "https://www.bxp.com/properties/767-fifth-avenue",
+        "publisher": "BXP"
+      },
+      {
+        "id": "registry",
+        "title": "Public business entity information and registered agent records",
+        "url": "https://dos.ny.gov/faqs-corporations-business-entities",
+        "publisher": "New York Department of State"
+      },
+      {
+        "id": "west-kite",
+        "title": "Property ownership and entity research API",
+        "url": "https://westkite.com/docs/data",
+        "publisher": "West Kite"
+      },
+      {
+        "id": "regrid",
+        "title": "Assessor owner and recorded deed owner fields",
+        "url": "https://support.regrid.com/docs/enhanced-ownership",
+        "publisher": "Regrid"
+      },
+      {
+        "id": "lightbox",
+        "title": "Transactions API, document and party identifiers",
+        "url": "https://developer.lightboxre.com/apis/transactions",
+        "publisher": "LightBox"
+      },
+      {
+        "id": "attom",
+        "title": "Property Detail Owner endpoint",
+        "url": "https://api.developer.attomdata.com/docs",
+        "publisher": "ATTOM"
+      },
+      {
+        "id": "opencorporates",
+        "title": "Company and jurisdiction identifiers",
+        "url": "https://api.opencorporates.com/documentation/API-Reference",
+        "publisher": "OpenCorporates"
+      },
+      {
+        "id": "invariant",
+        "title": "Parcel match and owner fields with provenance",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth"
+      },
+      {
+        "id": "aerial",
+        "title": "2024 New York State aerial imagery",
+        "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
+        "publisher": "NYS ITS Geospatial Services"
+      }
+    ],
+    "dataset": {
+      "name": "GM Building parcel, deed chain and venture control",
+      "description": "Two same-day deed records for the General Motors Building, a later transfer tax index entry, and dated disclosures showing the distinction between BXP’s 60% ownership interest and control.",
+      "sourceIds": [
+        "pluto",
+        "legals",
+        "roles",
+        "deed-one",
+        "parties-one",
+        "deed-two",
+        "parties-two",
+        "tax-return",
+        "close",
+        "control",
+        "subsidiaries",
+        "quarter",
+        "property"
+      ],
+      "spatialCoverage": "Midtown Manhattan, New York City",
+      "temporalCoverage": "2008-06-09/2026-11-23"
+    },
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "west-kite-alternatives-for-commercial-property-data",
+      "historical-parcel-boundaries-api",
+      "commercial-mortgage-maturity-data-apis"
+    ]
+  },
+  {
     "slug": "commercial-real-estate-data-apis-for-lenders",
     "dataset": {
       "name": "Empire State Building recording-date benchmark",
@@ -4371,6 +4803,16 @@
               {
                 "label": "Verify a commercial mortgage maturity date",
                 "slug": "commercial-mortgage-maturity-data-apis"
+              }
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Property ownership research",
+            "items": [
+              {
+                "slug": "commercial-property-ownership-data-apis",
+                "label": "Trace deed ownership, LLCs and control at the GM Building"
               }
             ]
           }

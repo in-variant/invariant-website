@@ -1,0 +1,179 @@
+{
+  "name": "GM Building parcel, deed chain and venture control",
+  "checked_on": "2026-11-23",
+  "parcel": {
+    "bbl": "1012940001",
+    "borough": "Manhattan",
+    "block": "1294",
+    "lot": "1",
+    "mappluto_version": "26v2",
+    "assessor_address": "761 5 AVENUE",
+    "assessor_owner_name": "767 FIFTH PARTNERS LLC",
+    "operator_address": "767 Fifth Avenue",
+    "source": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012940001&outFields=BBL%2CAddress%2COwnerName%2CBlock%2CLot%2CVersion&outSR=3857&f=geojson"
+  },
+  "deeds": [
+    {
+      "document_id": "2008060800025001",
+      "crfn": "2008000231217",
+      "doc_type": "DEED",
+      "document_date": "2008-06-09T00:00:00.000",
+      "recorded_datetime": "2008-06-09T00:00:00.000",
+      "document_amt": "2800000000",
+      "index_address": "761 5 AVENUE",
+      "source_master": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025001",
+      "source_parties": "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025001&%24select=document_id%2Cparty_type%2Cname",
+      "parties": [
+        {
+          "acris_party_type": "1",
+          "role": "grantor",
+          "name": "FIFTH AVENUE 58/59 ACQUISITION CO. L.P."
+        },
+        {
+          "acris_party_type": "2",
+          "role": "grantee",
+          "name": "767 FIFTH INTERIM PARTNERS LLC"
+        }
+      ]
+    },
+    {
+      "document_id": "2008060800025002",
+      "crfn": "2008000231218",
+      "doc_type": "DEED",
+      "document_date": "2008-06-09T00:00:00.000",
+      "recorded_datetime": "2008-06-09T00:00:00.000",
+      "document_amt": "0",
+      "index_address": "761 5 AVENUE",
+      "source_master": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025002",
+      "source_parties": "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025002&%24select=document_id%2Cparty_type%2Cname",
+      "parties": [
+        {
+          "acris_party_type": "1",
+          "role": "grantor",
+          "name": "767 FIFTH INTERIM PARTNERS LLC"
+        },
+        {
+          "acris_party_type": "2",
+          "role": "grantee",
+          "name": "767 FIFTH PARTNERS LLC"
+        }
+      ]
+    }
+  ],
+  "later_tax_index_entry": {
+    "document_id": "2024022300067001",
+    "crfn": "2024000046756",
+    "doc_type": "RPTT",
+    "document_date": "2023-11-03T00:00:00.000",
+    "recorded_datetime": "2024-02-23T00:00:00.000",
+    "document_amt": "0"
+  },
+  "disclosures": [
+    {
+      "event_date": "2008-06-09",
+      "venture_stake_pct": 60,
+      "reported_relationship": "joint venture investor and property manager",
+      "source": "https://investors.bxp.com/news-releases/news-release-details/boston-properties-forms-joint-venture-and-completes-acquisition"
+    },
+    {
+      "event_date": "2013-05-31",
+      "venture_stake_pct": 60,
+      "reported_change": "two other venture partners transferred their interests and decision rights changed, giving BXP control for financial consolidation",
+      "source": "https://www.sec.gov/Archives/edgar/data/1043121/000119312513244371/d548942d8k.htm"
+    },
+    {
+      "report_period_end": "2026-09-30",
+      "filing_date": "2026-11-06",
+      "venture_stake_pct": 60,
+      "reported_relationship": "investor in consolidated joint venture",
+      "source": "https://www.sec.gov/Archives/edgar/data/1043121/000103754026000043/bxp-20260930.htm"
+    }
+  ],
+  "expected_results": [
+    "Use BBL 1012940001 to resolve the two addresses without dropping either source address.",
+    "Keep both 2008 deeds. First grantee equals second grantor. Second grantee matches the current assessor owner name.",
+    "Classify CRFN 2024000046756 as a real property transfer tax record based on DOC_TYPE RPTT.",
+    "Record a 2013 control change and no change to BXP’s reported 60% stake. Treat BXP and the grantee LLC as distinct entities."
+  ],
+  "scope": "Selected assessor, recorder index, and public company records. The download does not provide a complete chain of title, copies of the deeds, or current authority to sign.",
+  "sources": [
+    {
+      "id": "pluto",
+      "title": "MapPLUTO 26v2, Manhattan block 1294 lot 1",
+      "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012940001&outFields=BBL%2CAddress%2COwnerName%2CBlock%2CLot%2CVersion&outSR=3857&f=geojson",
+      "publisher": "NYC Department of City Planning"
+    },
+    {
+      "id": "legals",
+      "title": "ACRIS legal records for Manhattan block 1294 lot 1",
+      "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=1294&lot=1&%24limit=3000",
+      "publisher": "NYC Open Data"
+    },
+    {
+      "id": "roles",
+      "title": "ACRIS document and party role codes",
+      "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Document-Control-Codes/7isb-wh4c",
+      "publisher": "NYC Department of Finance"
+    },
+    {
+      "id": "deed-one",
+      "title": "First June 2008 deed, CRFN 2008000231217",
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025001",
+      "publisher": "NYC ACRIS Master"
+    },
+    {
+      "id": "parties-one",
+      "title": "Grantor and grantee for CRFN 2008000231217",
+      "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025001&%24select=document_id%2Cparty_type%2Cname",
+      "publisher": "NYC ACRIS Parties"
+    },
+    {
+      "id": "deed-two",
+      "title": "Second June 2008 deed, CRFN 2008000231218",
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025002",
+      "publisher": "NYC ACRIS Master"
+    },
+    {
+      "id": "parties-two",
+      "title": "Grantor and grantee for CRFN 2008000231218",
+      "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025002&%24select=document_id%2Cparty_type%2Cname",
+      "publisher": "NYC ACRIS Parties"
+    },
+    {
+      "id": "tax-return",
+      "title": "Real property transfer tax return, CRFN 2024000046756",
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2024022300067001",
+      "publisher": "NYC ACRIS Master"
+    },
+    {
+      "id": "close",
+      "title": "June 2008 acquisition and 60% venture interest",
+      "url": "https://investors.bxp.com/news-releases/news-release-details/boston-properties-forms-joint-venture-and-completes-acquisition",
+      "publisher": "BXP"
+    },
+    {
+      "id": "control",
+      "title": "Form 8-K, May 31, 2013 venture transfer and decision rights",
+      "url": "https://www.sec.gov/Archives/edgar/data/1043121/000119312513244371/d548942d8k.htm",
+      "publisher": "SEC EDGAR"
+    },
+    {
+      "id": "subsidiaries",
+      "title": "Exhibit 21, BPLP subsidiary names and jurisdictions",
+      "url": "https://www.sec.gov/Archives/edgar/data/1037540/000103754026000006/bxpbplp-20251231ex211.htm",
+      "publisher": "SEC EDGAR"
+    },
+    {
+      "id": "quarter",
+      "title": "Form 10-Q for September 30, 2026, General Motors Building venture",
+      "url": "https://www.sec.gov/Archives/edgar/data/1043121/000103754026000043/bxp-20260930.htm",
+      "publisher": "SEC EDGAR"
+    },
+    {
+      "id": "property",
+      "title": "767 Fifth Avenue property profile",
+      "url": "https://www.bxp.com/properties/767-fifth-avenue",
+      "publisher": "BXP"
+    }
+  ]
+}

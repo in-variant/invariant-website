@@ -412,6 +412,44 @@
     }
   },
   {
+    "slug": "commercial-property-ownership-data-apis",
+    "topic": "Data & APIs",
+    "title": "Commercial Property Ownership Data and APIs",
+    "summary": "Find who owns a commercial property, trace an LLC to its documented investors, and compare deed and ownership APIs using the GM Building in New York.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/commercial-property-ownership-data-apis.webp?v=fb6e9fed",
+    "dataset": {
+      "name": "GM Building parcel, deed chain and venture control",
+      "description": "Two same-day deed records for the General Motors Building, a later transfer tax index entry, and dated disclosures showing the distinction between BXP’s 60% ownership interest and control.",
+      "spatialCoverage": "Midtown Manhattan, New York City",
+      "temporalCoverage": "2008-06-09/2026-11-23",
+      "sources": [
+        "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012940001&outFields=BBL%2CAddress%2COwnerName%2CBlock%2CLot%2CVersion&outSR=3857&f=geojson",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=1294&lot=1&%24limit=3000",
+        "https://data.cityofnewyork.us/City-Government/ACRIS-Document-Control-Codes/7isb-wh4c",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025001",
+        "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025001&%24select=document_id%2Cparty_type%2Cname",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2008060800025002",
+        "https://data.cityofnewyork.us/resource/636b-3b5g.json?document_id=2008060800025002&%24select=document_id%2Cparty_type%2Cname",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2024022300067001",
+        "https://investors.bxp.com/news-releases/news-release-details/boston-properties-forms-joint-venture-and-completes-acquisition",
+        "https://www.sec.gov/Archives/edgar/data/1043121/000119312513244371/d548942d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1037540/000103754026000006/bxpbplp-20251231ex211.htm",
+        "https://www.sec.gov/Archives/edgar/data/1043121/000103754026000043/bxp-20260930.htm",
+        "https://www.bxp.com/properties/767-fifth-avenue"
+      ],
+      "downloads": [
+        {
+          "label": "Download the GM Building ownership chain and expected test results",
+          "path": "/blog/commercial-property-ownership-data-apis.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "commercial-real-estate-data-apis-for-lenders",
     "topic": "Data & APIs",
     "title": "Commercial real estate data APIs for lenders",
