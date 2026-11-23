@@ -3289,6 +3289,16 @@
                 "slug": "commercial-real-estate-lending"
               }
             ]
+          },
+          {
+            "type": "links",
+            "label": "Compare flood risk APIs",
+            "items": [
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Compare flood risk APIs using four real flood observations"
+              }
+            ]
           }
         ]
       }
@@ -4007,6 +4017,16 @@
                 "slug": "wildfire-risk-by-address-for-underwriting"
               }
             ]
+          },
+          {
+            "type": "links",
+            "label": "Compare flood risk APIs",
+            "items": [
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Compare flood risk APIs using four real flood observations"
+              }
+            ]
           }
         ]
       }
@@ -4401,6 +4421,374 @@
       {"id":"aerial","title":"2024 New York State orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
     "relatedSlugs": ["historical-parcel-boundaries-api","commercial-property-insurance-data-apis","best-gis-apis-for-site-selection","power-evidence-data-center-site-verification"]
+  },
+  {
+    "slug": "best-flood-risk-data-apis",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Flood Risk APIs for U.S. Properties",
+    "description": "Compare FEMA flood zone APIs and modeled flood depth for underwriting and site selection. Reproduce four tests using Hurricane Ida high-water marks.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "2024 aerial view of Brooklyn connecting an Ida high-water mark in Gowanus, FEMA Zone AE, and a mark in Prospect Park, FEMA Zone X.",
+    "coverCaption": "Markers show two USGS survey points after Ida in 2021. Their FEMA zones come from a November 2026 query. Background is 2024 New York State aerial imagery.",
+    "intro": "For the effective FEMA zone at a U.S. property, start with the National Flood Hazard Layer or an API that returns the original zone, subtype and map panel. For potential flood depth and damage, use a model that specifies the event probability, year and scenario. For evidence that water reached a location during a particular storm, look for surveyed marks or mapped inundation from that event. A property file can benefit from all three.",
+    "takeaways": [
+      "Save the FEMA zone, subtype, Special Flood Hazard Area flag and panel effective date together.",
+      "Treat a surveyed high-water mark as evidence about one location and storm. Keep the surveyed water elevation and the height of the mark above ground in separate fields.",
+      "Require a vertical datum whenever an API reports elevation. Preserve missing values and confirm why a base flood elevation is missing before using it."
+    ],
+    "sections": [
+      {
+        "id": "compare-flood-apis",
+        "heading": "Which flood risk API fits your workflow?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For regulatory mapping, compare the FEMA feature and panel you get back. For underwriting or site selection, get the building match and an estimate of how deep water could get, then review the assumptions. This comparison uses public documentation checked November 23, 2026. The test below uses FEMA and USGS data directly. Invariant publishes the comparison and makes Invariant Earth."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider or source",
+              "Start here for",
+              "What to test"
+            ],
+            "rows": [
+              [
+                "FEMA National Flood Hazard Layer",
+                "Effective flood hazard polygons, map panels and published base flood elevations where available.",
+                "Request layers 28 and 3 separately. Check the feature and panel dates, and inspect map changes when the workflow depends on a specific property."
+              ],
+              [
+                "National Flood Data",
+                "FEMA screening for addresses, points, parcels and custom polygons. Its docs list optional map-amendment results and elevation data.",
+                "Test two footprints at one address. Ask which search types return map changes and which fields require separate access."
+              ],
+              [
+                "First Street",
+                "Modeled flood depth and damage by probability, year and scenario.",
+                "Request depth for the same building under two return periods and save the year, scenario, percentile and depth unit."
+              ],
+              [
+                "Guidewire HazardHub",
+                "Flood fields alongside other commercial property and peril attributes.",
+                "Ask which fields come from FEMA. Request the source and method behind any separate risk score."
+              ],
+              [
+                "Mireye",
+                "Cited location and parcel screening, including FEMA exposure.",
+                "Ask for the geometry used in the result, and test whether a point result changes when the footprint spans a boundary."
+              ],
+              [
+                "Invariant Earth",
+                "Cited point-level FEMA screening, with a published null policy for static base flood elevation.",
+                "Test the Gowanus sample. The public field convention specifies NAVD88 and calls for an absent result at a polygon whose only static BFE is in NGVD29."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "fema-zones",
+                "fema-panels",
+                "fema-determination"
+              ],
+              [
+                "national-flood-data"
+              ],
+              [
+                "first-street"
+              ],
+              [
+                "hazardhub"
+              ],
+              [
+                "mireye"
+              ],
+              [
+                "invariant-fields",
+                "fema-zones"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ida-high-water-mark-test",
+        "heading": "What Hurricane Ida’s water marks show about FEMA Zones X and AE",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "On September 1, 2021, remnants of Hurricane Ida brought flash flooding to New York City. USGS later surveyed marks left by the water. At the Third Street Bridge in Gowanus, a mark on stairs near a generator stood 1.63 feet above ground. About 1.1 miles away near the Third Street Playground in Prospect Park, a mark on a lamp post stood 3.23 feet above ground. The two points are on the same NYC Flood Insurance Rate Map panel. The FEMA hazard layer we queried on November 23, 2026 returned Zone AE in Gowanus and unshaded Zone X in Prospect Park.",
+            "sourceIds": [
+              "ida",
+              "fema-zones",
+              "fema-panels"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "USGS survey location",
+              "Mark above local ground",
+              "FEMA result at the published coordinate"
+            ],
+            "rows": [
+              [
+                "Third Street Bridge, Gowanus (41191)",
+                "1.63 ft",
+                "Zone AE. Inside the Special Flood Hazard Area. Static base flood elevation of 10 ft in NGVD29."
+              ],
+              [
+                "Third Street Playground, Prospect Park (41610)",
+                "3.23 ft",
+                "Zone X, area of minimal mapped flood hazard. Outside the Special Flood Hazard Area."
+              ],
+              [
+                "Grocery loading dock wall, Elm Park (40946)",
+                "3.92 ft",
+                "Zone X, area of minimal mapped flood hazard. Outside the Special Flood Hazard Area."
+              ],
+              [
+                "Levy Playground, Port Richmond (40959)",
+                "2.21 ft",
+                "Zone A. Inside the Special Flood Hazard Area. No static base flood elevation in the returned polygon."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "ida",
+                "fema-zones",
+                "fema-panels"
+              ],
+              [
+                "ida",
+                "fema-zones",
+                "fema-panels"
+              ],
+              [
+                "ida",
+                "fema-zones",
+                "fema-panels"
+              ],
+              [
+                "ida",
+                "fema-zones",
+                "fema-panels"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "These are four selected test points. The mark describes the water at the place surveyed, which could be a lamp post or a wall beside the building. It supplies neither the depth on a finished floor nor the probability of another event. Apply a map-history check separately when you need the FEMA designation that was in force on a prior date.",
+            "sourceIds": [
+              "ida"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the four points, source queries and expected FEMA results",
+            "path": "/blog/best-flood-risk-data-apis.geojson",
+            "format": "GeoJSON"
+          },
+          {
+            "type": "links",
+            "label": "Map history and property underwriting",
+            "items": [
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Verify a FEMA flood map as of a past underwriting decision"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare APIs for the rest of the property submission"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flood-elevation-datum",
+        "heading": "Keep water depth separate from elevation",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Base flood elevation is a mapped water-surface elevation for the 1% annual-chance flood. It uses a named vertical datum, the reference surface for the height. At the Gowanus sample, FEMA’s static value is 10 feet in NGVD29. USGS recorded the observed water-surface elevation as 9.2 feet in NAVD88. Subtracting those figures directly would mix two reference surfaces. Use an appropriate datum transformation before comparing elevations and keep the original values. For first-floor exposure, obtain a floor elevation or certified building information tied to the correct structure.",
+            "sourceIds": [
+              "fema-zones",
+              "ida",
+              "vertical-datums",
+              "elevation-certificate"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A Zone A point can have no static base flood elevation even though the point is inside the mapped Special Flood Hazard Area. In this test, FEMA returns the sentinel value −9999 for the Levy Playground point. The download preserves that value and normalizes it to null. A missing static field may also require reading a flood profile or a separate elevation layer.",
+            "sourceIds": [
+              "fema-zones",
+              "fema-definitions"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "property-flood-api-checklist",
+        "heading": "What to require from a property flood API",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Match the actual structure. Save the exact point or footprint, address-match method and source vintage. Retain multiple intersections when a building crosses a mapped flood boundary.",
+              "Keep the effective panel, zone subtype, and parcel or footprint overlap. Retrieve applicable map changes and follow the required determination process for lending.",
+              "Record the flood model’s peril, probability, horizon, scenario and depth reference. Save the source version so a later model update remains visible in the file.",
+              "Track storm observations with the event date, survey location and quality. Use a separate field for areas where the provider checked and found no applicable record."
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related site screening guide",
+            "items": [
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Compare parcel, flood and infrastructure layers in a GIS API"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does FEMA Zone X mean a property cannot flood?",
+        "answer": "No. Check the subtype, which may indicate minimal mapped hazard, a moderate hazard area, or another map condition. During Ida, USGS documented flood marks at locations that a later FEMA query classified as unshaded Zone X.",
+        "sourceIds": [
+          "fema-definitions",
+          "ida",
+          "fema-zones"
+        ]
+      },
+      {
+        "question": "Is base flood elevation a depth above the ground?",
+        "answer": "Base flood elevation is a water-surface elevation referenced to a vertical datum. To compare it with ground or floor elevation, use the same datum and units. Some zones report a mapped depth instead, and others have no published static elevation at that point.",
+        "sourceIds": [
+          "fema-definitions",
+          "vertical-datums"
+        ]
+      },
+      {
+        "question": "Can I use a flood model instead of the FEMA map for a lender determination?",
+        "answer": "A flood model can inform underwriting. Use the applicable flood determination process and effective FEMA records for a lender’s regulatory determination. Match the structure and check any applicable map changes.",
+        "sourceIds": [
+          "fema-determination"
+        ]
+      },
+      {
+        "question": "How do I test a flood risk API before buying it?",
+        "answer": "Use points with known FEMA zones, a point with no published static elevation, a building that spans zones, and a dated storm observation. Check the raw source, input geometry, dates, units, datum and treatment of missing values.",
+        "sourceIds": [
+          "fema-zones",
+          "ida"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "ida",
+        "title": "September 2021 Ida high-water marks and data dictionary",
+        "url": "https://doi.org/10.5066/P9OMBJPQ",
+        "publisher": "U.S. Geological Survey"
+      },
+      {
+        "id": "fema-zones",
+        "title": "NFHL layer 28, effective mapped flood hazard zones",
+        "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "fema-panels",
+        "title": "NFHL layer 3, Flood Insurance Rate Map panel index",
+        "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "fema-definitions",
+        "title": "Flood zone identification and Special Flood Hazard Areas",
+        "url": "https://emilms.fema.gov/is_0253b/assets/FB474F19-D5D4-A1D4-41BE-8D58E1302D1A.pdf",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "fema-determination",
+        "title": "Flood hazard determination review",
+        "url": "https://www.fema.gov/fact-sheet/how-request-flood-hazard-determination-review-fema",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "vertical-datums",
+        "title": "Transform between NGVD 29 and NAVD 88 with VERTCON",
+        "url": "https://www.ngs.noaa.gov/VERTCON3/",
+        "publisher": "NOAA National Geodetic Survey"
+      },
+      {
+        "id": "elevation-certificate",
+        "title": "What an Elevation Certificate contains",
+        "url": "https://agents.floodsmart.gov/topics/writing-policies/elevation-certificates",
+        "publisher": "National Flood Insurance Program"
+      },
+      {
+        "id": "national-flood-data",
+        "title": "FEMA Flood Map API v3 reference",
+        "url": "https://docs.nationalflooddata.com/dataservice/v3/index.html",
+        "publisher": "National Flood Data"
+      },
+      {
+        "id": "first-street",
+        "title": "Flood probability, depth and damages API reference",
+        "url": "https://docs.firststreet.org/api/climate-risk-api/retrieving-data/flood-probability-and-damages",
+        "publisher": "First Street"
+      },
+      {
+        "id": "hazardhub",
+        "title": "Flood and other property risk variables",
+        "url": "https://www.guidewire.com/products/analytics/hazardhub-risk-data",
+        "publisher": "Guidewire HazardHub"
+      },
+      {
+        "id": "mireye",
+        "title": "Location fetch and parcel enrichment",
+        "url": "https://docs.mireye.ai/introduction",
+        "publisher": "Mireye"
+      },
+      {
+        "id": "invariant-fields",
+        "title": "Invariant Earth public field catalog and null semantics",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth"
+      },
+      {
+        "id": "aerial",
+        "title": "2024 state orthoimagery map service",
+        "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
+        "publisher": "NYS ITS Geospatial Services"
+      }
+    ],
+    "dataset": {
+      "name": "Hurricane Ida high-water marks and FEMA flood zones at four NYC locations",
+      "description": "Four USGS high-water marks compared with the effective FEMA flood zones at their published coordinates. Includes raw static elevation values, NYC panel dates, and the query URL for each point.",
+      "sourceIds": [
+        "ida",
+        "fema-zones",
+        "fema-panels"
+      ],
+      "spatialCoverage": "Brooklyn and Staten Island, New York City",
+      "temporalCoverage": "2021-09-01/2026-11-23"
+    },
+    "relatedSlugs": [
+      "fema-flood-zone-history-for-underwriting",
+      "commercial-property-insurance-data-apis",
+      "best-gis-apis-for-site-selection",
+      "wildfire-risk-by-address-for-underwriting"
+    ]
   },
   {
     "slug": "commercial-mortgage-maturity-data-apis",

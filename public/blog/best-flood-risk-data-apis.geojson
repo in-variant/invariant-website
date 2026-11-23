@@ -1,0 +1,277 @@
+{
+  "type": "FeatureCollection",
+  "name": "Four New York City Ida high-water marks and FEMA map matches",
+  "description": "A selected comparison of USGS-observed post-Ida marks and effective FEMA data returned at those points on November 23, 2026. The FEMA layer is a current snapshot. Panel effective date does not reconstruct the map at the storm date.",
+  "source_coverage": {
+    "event_date": "2021-09-01",
+    "selection": "Purposive cases testing two Zone X points, a Zone AE point with an NGVD29 static BFE, and a Zone A point with no static BFE. These cases do not estimate flood frequency or map accuracy."
+  },
+  "method": "Submit each USGS-published longitude, latitude pair (EPSG:4326) to FEMA NFHL layers 28 and 3 using intersects. Retain published subtype and SFHA flag, and pick the NYC study (DFIRM_ID 360497) from the panel candidates. Translate the unavailable BFE sentinel to null and retain the source value. No vertical datum transformation was applied.",
+  "source_files": [
+    {
+      "name": "FilteredHWMs_NewYork.csv",
+      "sha256": "c2ed5ed975a6b4914e1152f00732ab35853daa695f8118b0c516290131bc9af7",
+      "source": "https://doi.org/10.5066/P9OMBJPQ"
+    }
+  ],
+  "sources": [
+    {
+      "id": "ida",
+      "url": "https://doi.org/10.5066/P9OMBJPQ"
+    },
+    {
+      "id": "fema-zones",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28"
+    },
+    {
+      "id": "fema-panels",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3"
+    }
+  ],
+  "features": [
+    {
+      "id": 41191,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.989996,
+          40.675959
+        ]
+      },
+      "properties": {
+        "name": "Third Street Bridge, Gowanus, Brooklyn",
+        "purpose": "Mapped SFHA with a numeric static BFE published in NGVD29",
+        "high_water_mark_id": 41191,
+        "event_date": "2021-09-01",
+        "observed_mark_height_above_ground_ft": 1.63,
+        "observed_water_surface_elevation_ft": 9.2,
+        "observed_water_surface_vertical_datum": "NAVD88",
+        "mark_type": "Seed line",
+        "mark_quality": "Good: +/- 0.10 ft",
+        "survey_date": "2021-09-28",
+        "usgs_mark_location_description": "Seed line on stairs to big fenced in generator near Whole Foods Market on 3rd Ave.",
+        "usgs_horizontal_method": "Phone/Car GPS",
+        "fema_zone_fetched_on": "2026-11-23",
+        "fema_zone": "AE",
+        "fema_zone_subtype": null,
+        "fema_sfha": true,
+        "fema_polygon_id": "360497_2212",
+        "fema_source_citation_id": "360497_FIS1",
+        "fema_static_bfe_ft": 10.0,
+        "fema_static_bfe_vertical_datum": "NGVD29",
+        "fema_static_bfe_source_value": 10.0,
+        "fema_nyc_panel": {
+          "panel": "3604970211F",
+          "study": "360497",
+          "effective_date": "2007-09-05",
+          "panel_type": "Community Based, Panel Printed"
+        },
+        "fema_intersecting_panel_records": [
+          {
+            "panel": "3604970211F",
+            "study": "360497",
+            "effective_date": "2007-09-05",
+            "panel_type": "Community Based, Panel Printed"
+          }
+        ],
+        "source_queries": {
+          "zone": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.989996%2C40.675959&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CSOURCE_CIT&returnGeometry=false&f=json",
+          "panel": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-73.989996%2C40.675959&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json"
+        }
+      }
+    },
+    {
+      "id": 41610,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.973127,
+          40.667135
+        ]
+      },
+      "properties": {
+        "name": "Near the Third Street Playground, Prospect Park, Brooklyn",
+        "purpose": "Observed mark in unshaded Zone X on the same NYC FIRM panel as 41191",
+        "high_water_mark_id": 41610,
+        "event_date": "2021-09-01",
+        "observed_mark_height_above_ground_ft": 3.23,
+        "observed_water_surface_elevation_ft": 149.9,
+        "observed_water_surface_vertical_datum": "NAVD88",
+        "mark_type": "Seed line",
+        "mark_quality": "Good: +/- 0.10 ft",
+        "survey_date": "2021-09-28",
+        "usgs_mark_location_description": "Seed line on lamp post near playground entrance.",
+        "usgs_horizontal_method": "Phone/Car GPS",
+        "fema_zone_fetched_on": "2026-11-23",
+        "fema_zone": "X",
+        "fema_zone_subtype": "AREA OF MINIMAL FLOOD HAZARD",
+        "fema_sfha": false,
+        "fema_polygon_id": "360497_2184",
+        "fema_source_citation_id": "360497_FIS1",
+        "fema_static_bfe_ft": null,
+        "fema_static_bfe_vertical_datum": null,
+        "fema_static_bfe_source_value": -9999.0,
+        "fema_nyc_panel": {
+          "panel": "3604970211F",
+          "study": "360497",
+          "effective_date": "2007-09-05",
+          "panel_type": "Community Based, Panel Printed"
+        },
+        "fema_intersecting_panel_records": [
+          {
+            "panel": "3604970211F",
+            "study": "360497",
+            "effective_date": "2007-09-05",
+            "panel_type": "Community Based, Panel Printed"
+          }
+        ],
+        "source_queries": {
+          "zone": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-73.973127%2C40.667135&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CSOURCE_CIT&returnGeometry=false&f=json",
+          "panel": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-73.973127%2C40.667135&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json"
+        }
+      }
+    },
+    {
+      "id": 40946,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.135583,
+          40.625695
+        ]
+      },
+      "properties": {
+        "name": "Grocery loading dock wall, Elm Park, Staten Island",
+        "purpose": "Observed mark at a commercial loading dock wall in unshaded Zone X",
+        "high_water_mark_id": 40946,
+        "event_date": "2021-09-01",
+        "observed_mark_height_above_ground_ft": 3.92,
+        "observed_water_surface_elevation_ft": 25.3,
+        "observed_water_surface_vertical_datum": "NAVD88",
+        "mark_type": "Seed line",
+        "mark_quality": "Good: +/- 0.10 ft",
+        "survey_date": "2021-09-10",
+        "usgs_mark_location_description": "Seed line on wall next to Stop and Shop grocery store loading dock. Continuous seed line for ~15 ft. HWM flagging is ink marker.",
+        "usgs_horizontal_method": "Phone/Car GPS",
+        "fema_zone_fetched_on": "2026-11-23",
+        "fema_zone": "X",
+        "fema_zone_subtype": "AREA OF MINIMAL FLOOD HAZARD",
+        "fema_sfha": false,
+        "fema_polygon_id": "360497_2258",
+        "fema_source_citation_id": "360497_FIS1",
+        "fema_static_bfe_ft": null,
+        "fema_static_bfe_vertical_datum": null,
+        "fema_static_bfe_source_value": -9999.0,
+        "fema_nyc_panel": {
+          "panel": "3604970169F",
+          "study": "360497",
+          "effective_date": "2007-09-05",
+          "panel_type": "Community Based, Panel Printed"
+        },
+        "fema_intersecting_panel_records": [
+          {
+            "panel": "34039C0037F",
+            "study": "34039C",
+            "effective_date": "2006-09-20",
+            "panel_type": "Countywide, Not Printed"
+          },
+          {
+            "panel": "3604970169F",
+            "study": "360497",
+            "effective_date": "2007-09-05",
+            "panel_type": "Community Based, Panel Printed"
+          },
+          {
+            "panel": "34017C0094D",
+            "study": "34017C",
+            "effective_date": "2006-08-16",
+            "panel_type": "Countywide, Panel Printed"
+          },
+          {
+            "panel": "34013C0175F",
+            "study": "34013C",
+            "effective_date": "2007-06-04",
+            "panel_type": "Countywide, Not Printed"
+          }
+        ],
+        "source_queries": {
+          "zone": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.135583%2C40.625695&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CSOURCE_CIT&returnGeometry=false&f=json",
+          "panel": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.135583%2C40.625695&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json"
+        }
+      }
+    },
+    {
+      "id": 40959,
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.12885,
+          40.633801
+        ]
+      },
+      "properties": {
+        "name": "Levy Playground, Port Richmond, Staten Island",
+        "purpose": "Mapped Zone A with no static BFE in the intersecting zone polygon",
+        "high_water_mark_id": 40959,
+        "event_date": "2021-09-01",
+        "observed_mark_height_above_ground_ft": 2.21,
+        "observed_water_surface_elevation_ft": 15.5,
+        "observed_water_surface_vertical_datum": "NAVD88",
+        "mark_type": "Seed line",
+        "mark_quality": "Good: +/- 0.10 ft",
+        "survey_date": "2021-09-10",
+        "usgs_mark_location_description": "Seed line inside of playground wheel.",
+        "usgs_horizontal_method": "Phone/Car GPS",
+        "fema_zone_fetched_on": "2026-11-23",
+        "fema_zone": "A",
+        "fema_zone_subtype": null,
+        "fema_sfha": true,
+        "fema_polygon_id": "360497_35",
+        "fema_source_citation_id": "360497_FIS1",
+        "fema_static_bfe_ft": null,
+        "fema_static_bfe_vertical_datum": null,
+        "fema_static_bfe_source_value": -9999.0,
+        "fema_nyc_panel": {
+          "panel": "3604970169F",
+          "study": "360497",
+          "effective_date": "2007-09-05",
+          "panel_type": "Community Based, Panel Printed"
+        },
+        "fema_intersecting_panel_records": [
+          {
+            "panel": "34039C0037F",
+            "study": "34039C",
+            "effective_date": "2006-09-20",
+            "panel_type": "Countywide, Not Printed"
+          },
+          {
+            "panel": "3604970169F",
+            "study": "360497",
+            "effective_date": "2007-09-05",
+            "panel_type": "Community Based, Panel Printed"
+          },
+          {
+            "panel": "34017C0094D",
+            "study": "34017C",
+            "effective_date": "2006-08-16",
+            "panel_type": "Countywide, Panel Printed"
+          },
+          {
+            "panel": "34013C0175F",
+            "study": "34013C",
+            "effective_date": "2007-06-04",
+            "panel_type": "Countywide, Not Printed"
+          }
+        ],
+        "source_queries": {
+          "zone": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.12885%2C40.633801&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CSOURCE_CIT&returnGeometry=false&f=json",
+          "panel": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.12885%2C40.633801&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json"
+        }
+      }
+    }
+  ]
+}
