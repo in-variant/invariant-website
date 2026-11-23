@@ -1,5 +1,423 @@
 [
   {
+    "slug": "geologic-maps-well-logs-site-due-diligence",
+    "topic": "Data & APIs",
+    "region": "Stayton, Oregon",
+    "title": "How to Use Geologic Maps and Well Logs for Site Due Diligence",
+    "description": "Find geologic maps, water well logs, and geotechnical reports for industrial land. See which records answer questions about soils, bedrock, and groundwater.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Aerial map of a Stayton industrial tax lot in geologic unit Qg1. The chart shows on-site augers at 2–3 feet, water first found at 35 feet and a 5-foot static level in one nearby well, and a separate 15-foot static level in the other.",
+    "coverCaption": "The water levels apply to two nearby wells. The five site borings were dry to their termination depths of 2 to 3 feet.",
+    "intro": "Start with the parcel boundary, then pull the original geologic map, nearby well logs, and any geotechnical reports filed for the site. Each record answers a different question. At an industrial parcel in Stayton, Oregon, the regional map showed sand and gravel. One nearby well recorded water first found at 35 feet and a static water level of 5 feet, while five on-site hand augers reached only 2 to 3 feet.",
+    "takeaways": [
+      "Use the original map scale and publication date to judge how much detail a parcel overlay supports.",
+      "Keep water first encountered, static water level, and total drilled depth in separate fields.",
+      "Ask for fieldwork at the proposed building pads, trenches, or basins before relying on a site groundwater or bedrock depth."
+    ],
+    "sections": [
+      {
+        "id": "find-public-records",
+        "heading": "Where can I find geology and groundwater records for a property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the county tax lot or a survey boundary for the land you are evaluating. The USGS National Geologic Map Database and state geological surveys index source maps. State well report searches hold drillers’ construction records, and county or city development files may contain geotechnical reports, grading plans, or drainage studies for the same property.",
+            "sourceIds": [
+              "ngmdb",
+              "dogami",
+              "well-search",
+              "packet"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Question",
+              "Record to look for",
+              "What to record"
+            ],
+            "rows": [
+              [
+                "What material does the regional map show?",
+                "The state geology layer and the original map cited for that polygon.",
+                "Unit name, polygon or map identifier, original scale, and date."
+              ],
+              [
+                "How deep was water in nearby wells?",
+                "Original well logs and, where available, dated monitoring readings.",
+                "Well identifier, location precision, date, measurement reference, static level, and water-bearing intervals."
+              ],
+              [
+                "What did someone actually find on this property?",
+                "Boring logs and test locations in a project geotechnical report.",
+                "The tested locations and depths, refusal, groundwater observations, and how the investigation relates to the proposed work."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dogami",
+                "usgs-map"
+              ],
+              [
+                "well-search",
+                "well-guide"
+              ],
+              [
+                "borings"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stayton-geologic-map",
+        "heading": "What did the geologic map show for the Stayton parcel?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We joined Marion County tax lot 091W09DA01103 at 1319 W Washington Street to Oregon’s geologic compilation. The entire county polygon fell within Qg1, the map unit for sand and gravel deposited after the Missoula Floods. Oregon’s 2025 compilation traces this polygon to a 2001 USGS map at 1:250,000 scale. The overlap establishes what that map assigns to the property. Bedrock depth and the thickness of individual layers still require site evidence.",
+            "sourceIds": [
+              "parcel",
+              "dogami",
+              "usgs-map"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "static-water-level-vs-water-found",
+        "heading": "What is the difference between static water level and water first found?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A driller records the first water encounter as a depth during drilling. The static level records where water stands in the well under non-pumping conditions at the time of measurement. Those readings can be very different, even in the same well. Record the measurement date and the reference used for each depth before comparing nearby wells.",
+            "sourceIds": [
+              "well-guide",
+              "well-study-guide"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Filed well log",
+              "Static water level",
+              "Water first found",
+              "Drilled depth"
+            ],
+            "rows": [
+              [
+                "MARI 13574",
+                "5 feet on May 3, 1979",
+                "35 feet",
+                "39 feet"
+              ],
+              [
+                "MARI 13572",
+                "15 feet on May 8, 1965",
+                "No separate depth recorded on the form",
+                "40 feet"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "well-13574"
+              ],
+              [
+                "well-13572"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A later groundwater addendum describes two wells within half a mile and gives water encounter depths of 35 and 40 feet. The first scan confirms 35 feet in the encounter field. The second records 40 feet as both drilled and completed depth. The download preserves the addendum’s statement and leaves the second log’s encounter depth blank. The published drainage report separately cites a range of 5 to 15 feet for static water levels in the nearby wells.",
+            "sourceIds": [
+              "addendum",
+              "well-13574",
+              "well-13572",
+              "drainage"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "onsite-boring-records",
+        "heading": "What could the on-site borings tell a buyer?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The 2021 geotechnical report logged five hand augers on April 12. Three reached 2 feet and two reached 3 feet. Four logs report refusal, meaning the auger could not advance using that method. The report describes gravel and abundant river rocks in the tested materials. None of those shallow holes encountered groundwater.",
+            "sourceIds": [
+              "field-report",
+              "borings"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The two deeper augers supported infiltration testing for the proposed basins. A buyer considering an excavation below the explored depth should ask the project engineer what additional borings and groundwater observations the new design requires. Give the engineer the proposed pad elevations, trench and basin locations, finished excavation depths, and schedule so the investigation can address the actual work.",
+            "sourceIds": [
+              "field-report",
+              "drainage"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/geologic-maps-well-logs-site-due-diligence.json",
+            "format": "JSON",
+            "label": "Download the tax lot, geologic map match, well transcriptions, and five boring records"
+          }
+        ]
+      },
+      {
+        "id": "karst-subsidence-mine-screening",
+        "heading": "How should a buyer screen for karst, subsidence, or old mines?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Concern",
+              "First record to check",
+              "Follow-up for the proposed footprint"
+            ],
+            "rows": [
+              [
+                "Karst and sinkholes",
+                "State geology, any published karst or sinkhole inventory, and terrain depressions.",
+                "Have a qualified practitioner review the rock type, drainage, and planned structures to determine what investigation is warranted."
+              ],
+              [
+                "Gradual subsidence",
+                "Published measurements of land motion and agency reports on the cause and dates.",
+                "Check whether the measurement period and spatial coverage capture the proposed footprint. Ask about settlement tolerances for the structures and utilities."
+              ],
+              [
+                "Historical mine workings",
+                "State mine inventory and original workings maps where available.",
+                "Request map location, underground extent, and records of treatment or reclamation. A documented mine entrance may be outside the area above its workings."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "sinkholes"
+              ],
+              [
+                "subsidence"
+              ],
+              [
+                "mines"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use these as separate screening questions. The Stayton example evaluates records of surface geology and groundwater. Comparable diligence for a lender, underwriter, or acquisition team can turn each issue into a document request tied to the property and proposed work."
+          }
+        ]
+      },
+      {
+        "id": "invariant-earth-geotechnical-screening",
+        "heading": "Which Invariant Earth API fields help screen land at scale?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s public field catalog includes USDA general soil-map depth to bedrock, the shallowest restrictive layer in the dominant detailed soil-map component, and the latest published depth to water for the nearest eligible USGS monitoring location within 15 kilometers. The bedrock field may be a lower bound. The monitoring reading can be historical and applies to the monitoring location. Keep notes, dates, and missing values with the result when you compare parcels.",
+            "sourceIds": [
+              "earth-fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use these fields to prioritize which parcels need a state map, original well report, or site investigation. Store the original records under the same parcel identifier so the next reviewer can see exactly what changed and which findings came from fieldwork."
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can a nearby well show the groundwater depth on my parcel?",
+        "answer": "A nearby well can show what was measured in that well on a given date. Water level on the proposed site depends on local conditions, elevations and season. Use nearby logs to inform the field investigation and compare measurements against the design elevations.",
+        "sourceIds": [
+          "well-guide",
+          "field-report"
+        ]
+      },
+      {
+        "question": "Does auger refusal mean the crew reached bedrock?",
+        "answer": "Refusal means the tool could no longer advance under the field method used. Read the materials and termination notes before interpreting the refusal. At Stayton the shallow field logs describe gravel and river rocks.",
+        "sourceIds": [
+          "field-report",
+          "borings"
+        ]
+      },
+      {
+        "question": "Can I use a geologic map to estimate depth to bedrock?",
+        "answer": "Use the map to identify the mapped surface or near-surface unit and its publication scale. Request subsurface records or targeted investigation when excavation or foundation decisions depend on the elevation of bedrock.",
+        "sourceIds": [
+          "dogami",
+          "usgs-map"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "parcel",
+        "title": "Marion County public parcels GIS layer",
+        "url": "https://gis.co.marion.or.us/arcgis/rest/services/Public/Parcels/MapServer/0",
+        "publisher": "Marion County",
+        "linkLabel": "County parcel layer"
+      },
+      {
+        "id": "dogami",
+        "title": "Oregon Geologic Data Compilation, release 8",
+        "url": "https://www.oregon.gov/dogami/pubs/pages/dds/p-ogdc-8.aspx",
+        "publisher": "Oregon Department of Geology and Mineral Industries",
+        "linkLabel": "Oregon geologic compilation"
+      },
+      {
+        "id": "ngmdb",
+        "title": "National Geologic Map Database search",
+        "url": "https://ngmdb.usgs.gov/ngmdb/ngmdb_home.html",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "National Geologic Map Database"
+      },
+      {
+        "id": "usgs-map",
+        "title": "Willamette Valley Quaternary geologic units, plate 1",
+        "url": "https://pubs.usgs.gov/pp/1620/pdf/PP_1620_Plate_1.pdf",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "Original USGS source map"
+      },
+      {
+        "id": "well-search",
+        "title": "Oregon Well Report Query",
+        "url": "https://apps.wrd.state.or.us/apps/gw/well_log/Default.aspx",
+        "publisher": "Oregon Water Resources Department",
+        "linkLabel": "Oregon well report search"
+      },
+      {
+        "id": "well-guide",
+        "title": "Well report results and water level fields",
+        "url": "https://apps.wrd.state.or.us/apps/gw/wl_user_guide/UserGuide_Results.aspx",
+        "publisher": "Oregon Water Resources Department",
+        "linkLabel": "Oregon well report field guide"
+      },
+      {
+        "id": "well-study-guide",
+        "title": "Oregon well constructor study guide",
+        "url": "https://www.oregon.gov/owrd/WRDFormsPDF/WCC_%20WellConstructorApplicationAndStudyGuide.pdf",
+        "publisher": "Oregon Water Resources Department",
+        "linkLabel": "Well constructor instructions"
+      },
+      {
+        "id": "packet",
+        "title": "March 30, 2026 Stayton Planning Commission packet",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf",
+        "publisher": "City of Stayton",
+        "linkLabel": "Planning Commission packet"
+      },
+      {
+        "id": "drainage",
+        "title": "Preliminary drainage design report, depth to groundwater",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf#page=87",
+        "publisher": "City of Stayton filing",
+        "linkLabel": "Filed drainage report"
+      },
+      {
+        "id": "addendum",
+        "title": "Groundwater addendum in the preliminary drainage submission",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf#page=93",
+        "publisher": "City of Stayton filing",
+        "linkLabel": "Filed groundwater addendum"
+      },
+      {
+        "id": "well-13574",
+        "title": "Water well report MARI 13574 in public filing",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf#page=94",
+        "publisher": "Oregon Water Resources Department",
+        "linkLabel": "Filed MARI 13574 well log"
+      },
+      {
+        "id": "well-13572",
+        "title": "Water well report MARI 13572 in public filing",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf#page=95",
+        "publisher": "Oregon State Engineer",
+        "linkLabel": "Filed MARI 13572 well log"
+      },
+      {
+        "id": "field-report",
+        "title": "Stayton facility geotechnical report field exploration narrative",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf#page=102",
+        "publisher": "City of Stayton filing",
+        "linkLabel": "Field exploration narrative"
+      },
+      {
+        "id": "borings",
+        "title": "Hand-auger logs HA-1 through HA-5 in the filed geotechnical study",
+        "url": "https://www.staytonoregon.gov/upload/page/0080/03.30.2026%20Complete%20Packet.pdf#page=115",
+        "publisher": "City of Stayton filing",
+        "linkLabel": "Filed boring logs"
+      },
+      {
+        "id": "sinkholes",
+        "title": "USGS inventory of likely karst depressions and sinking streams in Tennessee and neighboring states",
+        "url": "https://pubs.usgs.gov/publication/sir20245134/full",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS karst mapping study"
+      },
+      {
+        "id": "subsidence",
+        "title": "Land Subsidence in the United States",
+        "url": "https://pubs.usgs.gov/publication/cir1182",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS subsidence report"
+      },
+      {
+        "id": "mines",
+        "title": "Mineral Information Layer for Oregon",
+        "url": "https://www.oregon.gov/dogami/milo/pages/index.aspx",
+        "publisher": "Oregon Department of Geology and Mineral Industries",
+        "linkLabel": "Oregon mine inventory"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Public Earth API field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth API fields"
+      },
+      {
+        "id": "naip",
+        "title": "National Agriculture Imagery Program 2022 image service",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2022_CONUS/ImageServer",
+        "publisher": "U.S. Department of Agriculture",
+        "linkLabel": "USDA imagery service"
+      }
+    ],
+    "relatedSlugs": [
+      "lidar-slope-developable-land",
+      "wetlands-hydric-soils-land-development",
+      "best-gis-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "Stayton industrial site geology, well logs and hand augers",
+      "description": "County tax lot geometry and a state geology intersect, measurements from two nearby well records, and termination depths from five field borings.",
+      "spatialCoverage": "Stayton, Marion County, Oregon, United States",
+      "temporalCoverage": "1965-05-08/2026-03-30",
+      "sourceIds": [
+        "parcel",
+        "dogami",
+        "usgs-map",
+        "packet",
+        "well-13574",
+        "well-13572",
+        "borings"
+      ]
+    }
+  },
+  {
     "slug": "power-outage-road-closure-history",
     "topic": "Data & APIs",
     "region": "Haywood County, North Carolina",
