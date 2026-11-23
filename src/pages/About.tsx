@@ -18,10 +18,21 @@ const advisors = [
   },
 ]
 
+const investors = [
+  { name: 'Entrepreneurs First', url: 'https://www.joinef.com/', profile: 'https://www.joinef.com/companies/invariant-ai/?pagenum=2' },
+  { name: 'Prompt Capital', url: 'https://promptcapital.com/' },
+  { name: 'Founders Capital', url: 'https://founders-capital.com/' },
+]
+
+const aboutOrganization = {
+  ...ORG_SCHEMA,
+  funder: investors.map(({ name, url }) => ({ '@type': 'Organization', name, url })),
+}
+
 export default function About() {
   return (
     <article className="about-page">
-      <Seo title="About Invariant" description="Why Parthiv and Pranav are building autonomous agents for the physical economy, starting with the regulatory work behind space, energy, and infrastructure." canonical={`${SITE_URL}/about`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'About', url: `${SITE_URL}/about` }])]} />
+      <Seo title="About Invariant" description="Why Parthiv and Pranav are building autonomous agents for the physical economy, starting with the regulatory work behind space, energy, and infrastructure." canonical={`${SITE_URL}/about`} jsonLd={[aboutOrganization, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'About', url: `${SITE_URL}/about` }])]} />
       <div className="about-container">
         <header className="about-hero">
           <div>
@@ -84,6 +95,15 @@ export default function About() {
               </div>)}
             </div>
           </div>
+        </section>
+
+        <section className="about-section about-investors" aria-labelledby="about-investors-title">
+          <h2 id="about-investors-title">Backed by</h2>
+          <ul>
+            {investors.map(({ name, url, profile }) => (
+              <li key={name}><a href={profile ?? url}>{name}<span aria-hidden="true">↗</span></a></li>
+            ))}
+          </ul>
         </section>
 
         <section className="about-invitation" aria-labelledby="about-invitation-title">
