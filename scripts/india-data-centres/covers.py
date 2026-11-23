@@ -2,9 +2,11 @@
 of scripts/powered-land/covers.py. Text only from the page registry, so no figure can drift from the page.
 
 Run from this folder:  python3 covers.py ../..
-To replace any of these with a photographic cover later, add a prompt for the slug to
-scripts/powered-land/cover_prompts.json and run gemini_covers.py for that slug.
+The live covers are Gemini photographs (prompts in scripts/powered-land/cover_prompts.json, generated
+with gemini_covers.py; the key comes only from the GEMINI_API_KEY environment variable and is never
+written to the repo). This script skips any slug that has a .gemini marker, so it never overwrites them.
 """
+import os
 import sys
 from PIL import Image, ImageDraw, ImageFont
 from common import PAGES
@@ -42,6 +44,7 @@ EYEBROW = {s: ('DATA CENTRE POLICY, INDIA' if s.endswith('-policy') or 'policy' 
 
 
 def cover(slug, big, sub, eyebrow, out):
+    if os.path.exists(out + '.gemini'): return
     im = Image.new('RGB', (W, H), (11, 21, 51)); d = ImageDraw.Draw(im)
     for x in range(0, W, 80): d.line([(x, 0), (x, H)], fill=(20, 36, 82))
     for y in range(0, H, 80): d.line([(0, y), (W, y)], fill=(20, 36, 82))
