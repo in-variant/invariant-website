@@ -1,0 +1,74 @@
+{
+  "name": "Dated pipeline capacity and gas service records for industrial sites",
+  "description": "Two operational capacity snapshots for one MRT delivery point, plus the Decatur Lateral certificate, named precedent volumes, and the scope of each number.",
+  "mrt_operational_capacity": [
+    {
+      "gas_day": "2026-11-11",
+      "effective_local_time_as_posted": "11/11/2026 9:00AM",
+      "post_datetime_as_posted": "11/23/2026 5:17PM",
+      "point_code": "805505",
+      "point_name": "GP CONSUMER OPERATIONS",
+      "gas_quantity_type": "DPQ",
+      "location_zone": "FLD",
+      "county": "ASHLEY",
+      "state": "AR",
+      "point_operator": "Georgia-Pacific Crossett LLC",
+      "design_capacity_mmbtu_per_gas_day": 35000,
+      "operating_capacity_mmbtu_per_gas_day": 40000,
+      "scheduled_quantity_mmbtu_per_gas_day": 4942,
+      "operationally_available_capacity_mmbtu_per_gas_day": 35058,
+      "source_url": "https://pipelines.energytransfer.com/ipost/capacity/operationally-available-by-location?asset=MRT&gasDay=11%2F11%2F2026&pointCd=805505&max=ALL&print=print",
+      "retrieved_on": "2026-11-23",
+      "source_sha256": "ac2cab9e3d002a64a7540acfde90108a6f2ae7c1314824c48e588bba2e4bcff6"
+    },
+    {
+      "gas_day": "2026-11-22",
+      "effective_local_time_as_posted": "11/22/2026 9:00AM",
+      "post_datetime_as_posted": "11/23/2026 5:17PM",
+      "point_code": "805505",
+      "point_name": "GP CONSUMER OPERATIONS",
+      "gas_quantity_type": "DPQ",
+      "location_zone": "FLD",
+      "county": "ASHLEY",
+      "state": "AR",
+      "point_operator": "Georgia-Pacific Crossett LLC",
+      "design_capacity_mmbtu_per_gas_day": 35000,
+      "operating_capacity_mmbtu_per_gas_day": 40000,
+      "scheduled_quantity_mmbtu_per_gas_day": 3954,
+      "operationally_available_capacity_mmbtu_per_gas_day": 36046,
+      "source_url": "https://pipelines.energytransfer.com/ipost/capacity/operationally-available-by-location?asset=MRT&gasDay=11%2F22%2F2026&pointCd=805505&max=ALL&print=print",
+      "retrieved_on": "2026-11-23",
+      "source_sha256": "0e8274d4a851b0d0da7bc8e3bf3666b7cd2ef63e0876e48d28eafe5c361584ea"
+    }
+  ],
+  "mrt_scope": "Each row describes a location and effective gas day. Operating capacity less scheduled quantity reproduces the reported available quantity in these two rows. Commercial access, point pressure, upstream capacity and downstream service are unresolved.",
+  "decatur_lateral": {
+    "dockets": [
+      "CP25-94-000",
+      "CP25-94-001"
+    ],
+    "certificate_on": "2026-03-19",
+    "source_url": "https://www.ferc.gov/sites/default/files/2026-03/CP25-94-000.pdf",
+    "source_sha256": "af9ec6fe5b9b5592cac81d22d2966301c89c340a67dcf4d31162b9a6476a2a25",
+    "firm_transportation_design_dth_per_day": 194400,
+    "design_initial_dth_per_day": 181400,
+    "precedent_agreements_reported_in_order": [
+      {
+        "shipper": "Archer-Daniels-Midland Company",
+        "dth_per_day": 144065,
+        "term_years": 20
+      },
+      {
+        "shipper": "Broadwing Energy, LLC",
+        "dth_per_day": 37335,
+        "term_years": 20
+      }
+    ],
+    "incremental_design_dth_per_day": 13000,
+    "certificate_conditions_observed": "Ordering Paragraph B includes service readiness within two years and a statement affirming execution of equivalent firm service agreements before starting construction.",
+    "open_season_result_in_march_order": null,
+    "commercial_availability_at_new_site": null,
+    "actual_in_service_date": null
+  },
+  "unit_note": "One dekatherm equals one MMBtu. Gas volumes depend on the heat content at the location. MMBtu/day is a daily energy quantity and does not specify the peak hourly rate or pressure."
+}

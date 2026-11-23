@@ -1,5 +1,514 @@
 [
   {
+    "slug": "natural-gas-pipeline-capacity-site-service",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Natural Gas Pipeline Capacity and Site Service",
+    "description": "Find gas pipelines and operators near a site. Compare posted capacity with firm transportation and check fuel volume, pressure and service dates for industrial or data center projects.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Decatur Lateral capacity case from the March 2026 FERC order. Out of 194,400 dekatherms per day in revised design, precedent agreements covered 181,400, and the order did not report the result of the open season for the extra 13,000.",
+    "coverCaption": "Decatur Lateral Project design capacity, precedent agreements and capacity offered in a second open season, as described in the March 19, 2026 FERC order.",
+    "intro": "To find natural gas service for a site, start with the serving utility or pipeline operator. Give them the site boundary, peak-hour demand, daily volume, minimum pressure and target service date. A pipeline map helps you find whom to call. A capacity posting shows the system for a gas day. The service decision turns on whether the provider can deliver at your meter and on which terms.",
+    "takeaways": [
+      "Map the network and identify the serving utility or a feasible direct tap. Ask about the lateral, meter and upgrades.",
+      "Read each capacity number at its own location, direction and date. Firm transportation rights have a separate contract and path.",
+      "For on-site generation, size fuel from net electrical output and the higher heating value heat rate, then send the operator a peak-hour profile."
+    ],
+    "sections": [
+      {
+        "id": "gas-service-by-address",
+        "heading": "How do I check natural gas service by address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with a parcel or proposed building pad. For a local distribution connection, ask the serving utility to identify the nearest usable main and what it can support. For a direct tap, ask the pipeline about the receipt and delivery path, the new lateral and the custody-transfer meter. If the design needs pressure above the delivery pressure, review the compression requirement with the engineer.",
+            "sourceIds": [
+              "eia",
+              "gas-distribution",
+              "epa-heat"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Check",
+              "What to put in the site file",
+              "Where to confirm it"
+            ],
+            "rows": [
+              [
+                "Serving operator",
+                "Parcel boundary, connection option and the identity of the local utility or transporter.",
+                "Utility service-area records, operator confirmation, and maps for initial screening."
+              ],
+              [
+                "Demand and pressure",
+                "Daily volume, peak-hour demand, ramp profile, minimum delivery pressure at the meter and by-phase schedule.",
+                "Design engineer and original equipment manufacturer, with pressure confirmed by the serving operator."
+              ],
+              [
+                "Supply and transportation",
+                "Gas supplier, primary receipt and delivery points, maximum daily quantity, service priority and outage terms.",
+                "Commodity and firm transportation agreements, applicable tariff and downstream delivery terms."
+              ],
+              [
+                "Buildout and date",
+                "Required lateral, easements, meter and upgrades, payment obligations and conditions before the service date.",
+                "Signed utility or pipeline service agreement and construction schedule."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "eia",
+                "earth"
+              ],
+              [
+                "epa-heat",
+                "gas-distribution"
+              ],
+              [
+                "release",
+                "contracts"
+              ],
+              [
+                "certificate",
+                "gas-distribution"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The local delivery question is common even when gas infrastructure is nearby. Ameren Illinois publishes a tariff for certain nonresidential customers whose incremental demand exceeds existing main capacity. The serving utility can tell you which service terms apply to your site.",
+            "sourceIds": [
+              "gas-distribution"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "natural-gas-ebbs",
+        "heading": "What can pipeline capacity postings tell you?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Interstate pipelines publish current and historical operating information on electronic bulletin boards. Start with the location identifier, flow direction and effective gas day. A receipt point is where the pipeline takes the gas. A delivery point is where it hands it off. Check the mainline segments and service notices along the path too.",
+            "sourceIds": [
+              "reporting",
+              "rex-points"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "MRT delivery point 805505",
+              "Design",
+              "Operating",
+              "Scheduled",
+              "Operationally available"
+            ],
+            "rows": [
+              [
+                "November 11, 2026",
+                "35,000",
+                "40,000",
+                "4,942",
+                "35,058"
+              ],
+              [
+                "November 22, 2026",
+                "35,000",
+                "40,000",
+                "3,954",
+                "36,046"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "mrt-11"
+              ],
+              [
+                "mrt-22"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Both rows are in MMBtu for the effective gas day at the posted Georgia-Pacific delivery location in Ashley County, Arkansas. In these snapshots, the operating quantity is 5,000 above the design field. Scheduled quantity fell by 988, so posted available capacity rose by 988. Preserve the operator’s reported fields and timestamps. A calculation from design capacity would give the wrong answer on both days.",
+            "sourceIds": [
+              "mrt-11",
+              "mrt-22"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For service next year, check capacity offerings, firm contract records and the current tariff, then ask the operator about your exact receipt and delivery path. Firm transportation gives the contracted priority on that path, subject to the agreement and tariff. The gas supply contract and last-mile delivery still need to cover the same dates and demand.",
+            "sourceIds": [
+              "reporting",
+              "release",
+              "contracts"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "decatur-lateral-firm-transport",
+        "heading": "What did a real industrial expansion require?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In March 2026, FERC authorized Rockies Express to build the Decatur Lateral in Macon County, Illinois, with two new delivery points. The revised design provided for up to 194,400 dekatherms per day. FERC reported two 20-year precedent agreements, covering 144,065 dekatherms per day for ADM and 37,335 for Broadwing Energy. The additional 13,000 came from a revised assumption about pressure loss through the meters. The certificate recorded a second open season for that capacity and gave no result for it.",
+            "sourceIds": [
+              "certificate",
+              "docket"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The order required the operator to affirm that it had signed equivalent firm service agreements before starting construction. A dated underwriting file should carry the order, the delivery point and the status of later filings separately. Ask for the applicable service agreement and proof the promised facilities are ready by the delivery date before treating a proposed gas volume as available to your site.",
+            "sourceIds": [
+              "certificate",
+              "docket"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/natural-gas-pipeline-capacity-site-service.json",
+            "format": "JSON",
+            "label": "Download the MRT capacity rows and Decatur Lateral source records"
+          }
+        ]
+      },
+      {
+        "id": "gas-requirement-by-mw",
+        "heading": "How much natural gas does a 50 MW site need?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At a net electrical output of 50 MW and an assumed higher heating value (HHV) heat rate of 9 MMBtu per MWh, the generator uses 450 MMBtu per hour. Running at that output for 24 hours requires 10,800 dekatherms. Using EIA’s 2025 national average of 1,037 Btu per cubic foot gives about 10.4 million cubic feet per day. Use the serving supplier’s heat content for a site estimate.",
+            "sourceIds": [
+              "epa-heat",
+              "dth",
+              "gas-heat"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Net output at full load",
+              "Daily fuel at 7.5 MMBtu/MWh",
+              "Daily fuel at 9.0",
+              "Daily fuel at 10.5"
+            ],
+            "rows": [
+              [
+                "25 MW",
+                "4,500 Dth",
+                "5,400 Dth",
+                "6,300 Dth"
+              ],
+              [
+                "50 MW",
+                "9,000 Dth",
+                "10,800 Dth",
+                "12,600 Dth"
+              ],
+              [
+                "100 MW",
+                "18,000 Dth",
+                "21,600 Dth",
+                "25,200 Dth"
+              ],
+              [
+                "250 MW",
+                "45,000 Dth",
+                "54,000 Dth",
+                "63,000 Dth"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The table assumes constant net output and uses illustrative HHV heat rates. A real service request needs the vendor’s heat-rate curve at site conditions, maximum hourly draw during ramp and operation, required inlet pressure and any concurrent process loads. For a boiler or kiln, use its fuel input directly. For a data center, size from the electrical load the generators must serve, including facility overhead.",
+            "sourceIds": [
+              "epa-heat"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/natural-gas-pipeline-capacity-site-service.csv",
+            "format": "CSV",
+            "label": "Download fuel scenarios for 25, 50, 100 and 250 MW"
+          }
+        ]
+      },
+      {
+        "id": "natural-gas-data-apis",
+        "heading": "Which gas data sources and APIs should I use?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth is useful when pipeline proximity needs to sit alongside the parcel, electric infrastructure and other site records. The field catalog gives you the nearest mapped interstate operator and distance, with missing data indicated separately. Use those fields to shortlist connections and record who must confirm delivery.",
+            "sourceIds": [
+              "earth"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "What it can provide",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "EIA-linked interstate pipeline operator and distance, plus parcel and other site context.",
+                "Check the field definition and source date. Ask the operator about the feasible connection and delivery terms."
+              ],
+              [
+                "Mireye Power Read",
+                "Gas pipeline distance in an address-level utility screen.",
+                "Check the geometry and whether the closest feature corresponds to the operator that can serve the parcel."
+              ],
+              [
+                "Geoforge Behind the Meter",
+                "A site report with gas headroom and fuel-cost context.",
+                "Compare the named meter, gas day and heat-rate assumptions with the operator’s postings and your plant load."
+              ],
+              [
+                "EIA and pipeline bulletin boards",
+                "Pipeline maps and project datasets from EIA. Point and segment postings from the operators.",
+                "Preserve the receipt or delivery direction, gas day, quantity and whether the value describes design, operations or scheduled use."
+              ],
+              [
+                "Serving utility or transporter",
+                "Connection study and the commercial terms for your meter, when the operator has evaluated the request.",
+                "Request written firm or interruptible terms, pressure, maximum hourly and daily quantities, delivery date and conditions."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "mireye"
+              ],
+              [
+                "geoforge"
+              ],
+              [
+                "eia",
+                "reporting",
+                "rex-points"
+              ],
+              [
+                "release",
+                "gas-distribution",
+                "certificate"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related Invariant guides",
+            "items": [
+              {
+                "slug": "water-sewer-data-apis-site-selection",
+                "label": "Verify water and sewer service at the same site"
+              },
+              {
+                "slug": "behind-the-meter-power-for-data-centers",
+                "label": "Plan an on-site power phase and its permitting"
+              },
+              {
+                "slug": "grid-capacity-apis-load-headroom",
+                "label": "Compare the utility grid capacity evidence on the same shortlist"
+              },
+              {
+                "slug": "manufacturing-site-selection-100-buildable-acres",
+                "label": "Screen industrial land for service, rail and usable area"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find natural gas pipelines near a property?",
+        "answer": "Use the EIA Energy Atlas or a cited pipeline proximity API to identify the mapped line and operator. Contact the serving utility or transporter with the parcel boundary and proposed demand to determine the connection options.",
+        "sourceIds": [
+          "eia",
+          "earth"
+        ]
+      },
+      {
+        "question": "What is operationally available capacity on a gas pipeline?",
+        "answer": "It is the quantity a pipeline posts as available at a location or segment for a stated gas day and scheduling context. Check the point, direction and timestamp. Use contract records and the operator’s response for a future firm commitment.",
+        "sourceIds": [
+          "mrt-11",
+          "mrt-22",
+          "reporting",
+          "release"
+        ]
+      },
+      {
+        "question": "How much gas does a 50 MW generator need per day?",
+        "answer": "At an illustrative HHV heat rate of 9 MMBtu per MWh, producing 50 MW continuously for 24 hours requires 10,800 dekatherms, or 450 MMBtu per hour. Use the equipment’s actual heat-rate curve and gas heat content for a project.",
+        "sourceIds": [
+          "epa-heat",
+          "dth",
+          "gas-heat"
+        ]
+      },
+      {
+        "question": "What is the difference between firm transportation and firm natural gas service?",
+        "answer": "Firm transportation reserves contractual priority to move gas along an agreed path. For delivered service at a site, verify who supplies the gas, the rights on each segment, the last-mile meter, pressure and the date service can start.",
+        "sourceIds": [
+          "release",
+          "contracts",
+          "gas-distribution"
+        ]
+      }
+    ],
+    "dataset": {
+      "name": "Dated pipeline capacity and gas service records for industrial sites",
+      "description": "Two operational capacity snapshots for one MRT delivery point, plus the Decatur Lateral certificate, named precedent volumes, and the scope of each number.",
+      "sourceIds": [
+        "mrt-11",
+        "mrt-22",
+        "certificate"
+      ],
+      "spatialCoverage": "Ashley County, Arkansas, and Macon County, Illinois, United States",
+      "temporalCoverage": "2026-03-19/2026-11-22"
+    },
+    "sources": [
+      {
+        "id": "certificate",
+        "title": "Certificate order 194 FERC ¶ 61,206, paragraphs 1 and 3 to 6 and Ordering Paragraph B",
+        "url": "https://www.ferc.gov/sites/default/files/2026-03/CP25-94-000.pdf",
+        "publisher": "Federal Energy Regulatory Commission",
+        "linkLabel": "Read the Decatur Lateral certificate"
+      },
+      {
+        "id": "docket",
+        "title": "Decatur Lateral Project docket CP25-94",
+        "url": "https://elibrary.ferc.gov/eLibrary/docketsheet?docket_number=CP25-94&sub_docket=all",
+        "publisher": "Federal Energy Regulatory Commission",
+        "linkLabel": "Read the project docket"
+      },
+      {
+        "id": "mrt-11",
+        "title": "MRT location capacity for November 11, 2026, delivery point 805505",
+        "url": "https://pipelines.energytransfer.com/ipost/capacity/operationally-available-by-location?asset=MRT&gasDay=11%2F11%2F2026&pointCd=805505&max=ALL&print=print",
+        "publisher": "Energy Transfer, Enable Mississippi River Transmission",
+        "linkLabel": "November 11 capacity posting"
+      },
+      {
+        "id": "mrt-22",
+        "title": "MRT location capacity for November 22, 2026, delivery point 805505",
+        "url": "https://pipelines.energytransfer.com/ipost/capacity/operationally-available-by-location?asset=MRT&gasDay=11%2F22%2F2026&pointCd=805505&max=ALL&print=print",
+        "publisher": "Energy Transfer, Enable Mississippi River Transmission",
+        "linkLabel": "November 22 capacity posting"
+      },
+      {
+        "id": "reporting",
+        "title": "18 CFR 284.13, reporting requirements for interstate natural gas pipelines",
+        "url": "https://www.ecfr.gov/current/title-18/chapter-I/subchapter-I/part-284/subpart-A/section-284.13",
+        "publisher": "Electronic Code of Federal Regulations",
+        "linkLabel": "Interstate reporting requirements"
+      },
+      {
+        "id": "release",
+        "title": "Firm and interruptible service and capacity release",
+        "url": "https://www.ferc.gov/fact-sheet-capacity-release",
+        "publisher": "Federal Energy Regulatory Commission",
+        "linkLabel": "FERC capacity release guidance"
+      },
+      {
+        "id": "contracts",
+        "title": "Form 549B Index of Customers data catalog",
+        "url": "https://data.ferc.gov/ferc-form-549b-index-of-customers/",
+        "publisher": "Federal Energy Regulatory Commission",
+        "linkLabel": "FERC contract index"
+      },
+      {
+        "id": "rex-points",
+        "title": "Rockies Express point-capacity postings",
+        "url": "https://pipeline.tallgrassenergylp.com/Pages/Point.aspx?pipeline=501&type=OA",
+        "publisher": "Tallgrass",
+        "linkLabel": "Rockies Express capacity postings"
+      },
+      {
+        "id": "gas-distribution",
+        "title": "GDS-6, Inadequate Capacity Delivery Service tariff",
+        "url": "https://www.ameren.com/-/media/rates/illinois/non-residential/gas-rates/distribution-delivery/aigs17rtgds6.ashx",
+        "publisher": "Ameren Illinois",
+        "linkLabel": "Ameren Illinois delivery tariff example"
+      },
+      {
+        "id": "epa-heat",
+        "title": "EPA Catalog of CHP Technologies, combustion turbines and reciprocating engines",
+        "url": "https://www.epa.gov/chp/chp-technologies",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA heat-rate reference"
+      },
+      {
+        "id": "dth",
+        "title": "EIA definition of a dekatherm",
+        "url": "https://www.eia.gov/tools/glossary/index.php?id=Decatherm",
+        "publisher": "U.S. Energy Information Administration",
+        "linkLabel": "Dekatherm unit definition"
+      },
+      {
+        "id": "gas-heat",
+        "title": "EIA heat content for natural gas volume to energy conversions",
+        "url": "https://www.eia.gov/tools/faqs/faq.php?id=45",
+        "publisher": "U.S. Energy Information Administration",
+        "linkLabel": "Natural gas heat-content calculation"
+      },
+      {
+        "id": "eia",
+        "title": "Natural gas pipeline maps, state-to-state capacity and project data",
+        "url": "https://www.eia.gov/naturalgas/data.php",
+        "publisher": "U.S. Energy Information Administration",
+        "linkLabel": "EIA natural gas datasets"
+      },
+      {
+        "id": "earth",
+        "title": "Invariant Earth public catalog of pipeline proximity and gas price fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth data fields"
+      },
+      {
+        "id": "mireye",
+        "title": "Mireye Power Read site screening template",
+        "url": "https://www.mireye.com/templates/power-read",
+        "publisher": "Mireye",
+        "linkLabel": "Mireye Power Read"
+      },
+      {
+        "id": "geoforge",
+        "title": "Geoforge Behind the Meter example report",
+        "url": "https://geoforge.ai/report/behind-the-meter",
+        "publisher": "Geoforge",
+        "linkLabel": "Geoforge example"
+      }
+    ],
+    "relatedSlugs": [
+      "water-sewer-data-apis-site-selection",
+      "behind-the-meter-power-for-data-centers",
+      "grid-capacity-apis-load-headroom",
+      "manufacturing-site-selection-100-buildable-acres"
+    ]
+  },
+  {
     "slug": "commercial-occupancy-vacancy-lease-rollover-data",
     "topic": "Data & APIs",
     "title": "Commercial Occupancy, Vacancy, and Lease Rollover Data",
@@ -14789,6 +15298,10 @@
             "type": "links",
             "label": "Related site selection guides",
             "items": [
+              {
+                "slug": "natural-gas-pipeline-capacity-site-service",
+                "label": "Check natural gas capacity, pressure and service for a site"
+              },
               {
                 "slug": "site-selection-due-diligence",
                 "label": "Keep a source-backed site shortlist"
