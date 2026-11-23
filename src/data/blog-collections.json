@@ -193,5 +193,79 @@
         "detail": "Identify the utility documents, capacity by phase and delivery conditions that support a powered-site assumption."
       }
     ]
+  },
+  {
+    "slug": "physical-world-data-api-evaluation",
+    "navLabel": "Compare data APIs",
+    "title": "How to Evaluate Physical-World Data APIs",
+    "heading": "Evaluating physical-world data APIs",
+    "description": "Give each vendor the same real records and check the answer against the source. Run eight tests for parcels, hazards, property records, insurance, grid capacity and EV charging.",
+    "updatedDate": "2026-11-23",
+    "image": "/blog/industry/regrid-alternatives-parcel-data-apis.webp",
+    "imageAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
+    "imageCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024.",
+    "checklistTitle": "How to run a vendor trial",
+    "checks": [
+      {
+        "title": "Freeze the inputs and date",
+        "detail": "Write down the decision, exact location or ID, geometry, requested fields and date. Give every provider the same inputs. Alongside known answers, include a record that moved, split or should come back unknown."
+      },
+      {
+        "title": "Set acceptance criteria before the demo",
+        "detail": "Save an authoritative record for each expected answer. Check entity match, units, source, effective date and data vintage. Track usable, ambiguous, missing and wrong results separately. Review every incorrect match that could change the decision."
+      },
+      {
+        "title": "Run it at production volume",
+        "detail": "Repeat the test across your actual counties and workload. Measure response times, failed requests and cost per usable result. Check retention, redistribution and audit rights for the data you will store or show, then document the gap owner and release decision."
+      }
+    ],
+    "worksheet": {
+      "path": "/blog/physical-world-data-api-evaluation-worksheet.csv",
+      "label": "Download the vendor evaluation worksheet",
+      "detail": "Eight worked test inputs, evidence criteria and fields to record each provider’s response."
+    },
+    "guidesTitle": "Eight tests with source records",
+    "guides": [
+      {
+        "slug": "regrid-alternatives-parcel-data-apis",
+        "label": "Match parcel and unit identity",
+        "detail": "At 432 Park Avenue, test which tax ID comes back and whose geometry was returned."
+      },
+      {
+        "slug": "historical-parcel-boundaries-api",
+        "label": "Replay a parcel split and merger",
+        "detail": "Use dated city tax maps to check what happens when a lot ID survives but its boundary changes."
+      },
+      {
+        "slug": "zoning-data-apis-for-site-selection",
+        "label": "Measure zoning across a split-zoned parcel",
+        "detail": "Compare the published point at 2239 Forest Avenue with all five districts across its tax lot."
+      },
+      {
+        "slug": "mireye-alternatives-for-property-screening",
+        "label": "Check what a hazard field measures",
+        "detail": "Use a site screening example to distinguish the area of a mapped wetland from the area it covers on a parcel."
+      },
+      {
+        "slug": "west-kite-alternatives-for-commercial-property-data",
+        "label": "Reconcile a commercial conversion",
+        "detail": "Compare property and occupancy records for the 25 Water Street conversion."
+      },
+      {
+        "slug": "ageospatial-alternatives-commercial-roof-underwriting",
+        "label": "Verify roof work as of an underwriting date",
+        "detail": "Keep contract award, the reported work completion and the date evidence entered the file separate."
+      },
+      {
+        "slug": "geoforge-alternatives-data-center-power",
+        "label": "Reconcile dates behind a large-load forecast",
+        "detail": "Read the required and projected dates on the same PJM upgrade and trace which milestone matters for customer service."
+      },
+      {
+        "slug": "ev-charging-station-data-apis",
+        "label": "Test installed ports and live availability",
+        "detail": "Compare the federal inventory with the answer a driver needs now."
+      }
+    ]
   }
 ]

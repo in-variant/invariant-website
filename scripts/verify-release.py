@@ -280,12 +280,14 @@ def build_jobs(expected_urls, full):
     require(set(candidates) <= path_set, "sample paths missing from the local build")
     jobs = [("/sitemap.xml", "sitemap", None)]
     alternate_files = set()
+    downloads = catalog.downloads.copy()
     assets = set()
     pages = {}
     for path in candidates:
         page = Page(path, (DIST / path.lstrip("/") / "index.html").read_bytes())
         jobs.append((path, "page", page))
         alternate_files.update(page.markdown)
+        downloads.update(page.downloads)
         assets.update(page.assets)
         pages[path] = page
     verify_search_metadata(pages)
@@ -293,7 +295,7 @@ def build_jobs(expected_urls, full):
         verify_discovery(pages)
     for path in sorted(alternate_files):
         jobs.append((path, "markdown", (DIST / path.lstrip("/")).read_bytes()))
-    for path in sorted(catalog.downloads | {"/robots.txt", "/llms.txt", "/llms-full.txt"}):
+    for path in sorted(downloads | {"/robots.txt", "/llms.txt", "/llms-full.txt"}):
         jobs.append((path, "file", (DIST / path.lstrip("/")).read_bytes()))
     for path in sorted(assets):
         asset_path = urlsplit(path).path
