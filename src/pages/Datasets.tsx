@@ -14,7 +14,25 @@ const catalog = {
   ...DATA_CATALOG,
   description,
   publisher: { '@id': `${SITE_URL}/#organization` },
-  dataset: RESEARCH_DATASETS.map(({ slug }) => ({ '@id': `${SITE_URL}/blog/${slug}#dataset` })),
+}
+
+const catalogPage = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': canonical,
+  url: canonical,
+  name: title,
+  description,
+  about: { '@id': DATA_CATALOG['@id'] },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: RESEARCH_DATASETS.map(({ slug, dataset }, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: dataset.name,
+      url: `${SITE_URL}/blog/${slug}#dataset`,
+    })),
+  },
 }
 
 export default function Datasets() {
@@ -25,7 +43,7 @@ export default function Datasets() {
         description={description}
         canonical={canonical}
         markdown="/datasets.md"
-        jsonLd={[ORG_SCHEMA, catalog, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: title, url: canonical }])]}
+        jsonLd={[ORG_SCHEMA, catalog, catalogPage, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: title, url: canonical }])]}
       />
       <header className="resource-container resources-intro">
         <div className="resources-intro-grid">

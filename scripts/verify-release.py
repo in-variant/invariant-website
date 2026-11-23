@@ -286,21 +286,35 @@ def verify_dataset_catalog(catalog, pages):
     require(len(schemas) == 1, "research page must describe one DataCatalog")
     schema = schemas[0]
     require(schema.get("url") == catalog.url and bool(schema.get("name")), "DataCatalog needs its canonical URL and name")
+    require("dataset" not in schema, "catalog lists links while individual guides describe the Datasets")
     identity = {key: schema[key] for key in ("@type", "@id", "name", "url")}
-    expected_ids = {item["@id"] for item in schema["dataset"]}
-    actual_ids = set()
+    collection_pages = [item for item in catalog.schemas if item.get("@type") == "CollectionPage"]
+    require(len(collection_pages) == 1, "research page needs one CollectionPage")
+    collection = collection_pages[0]
+    require(collection.get("url") == catalog.url and collection.get("about") == {"@id": schema["@id"]},
+            "CollectionPage needs to refer to the canonical DataCatalog")
+    listing = collection["mainEntity"]
+    require(listing.get("@type") == "ItemList", "CollectionPage needs an ItemList of dataset links")
+    expected_names = {}
+    for i, item in enumerate(listing["itemListElement"], 1):
+        require(item.get("@type") == "ListItem" and item.get("position") == i, "dataset list item is out of order")
+        require(item["url"] not in expected_names and item["name"], "dataset links must have distinct URLs and names")
+        expected_names[item["url"]] = item["name"]
+    actual_names = {}
     markdown = (DIST / "datasets.md").read_text(encoding="utf-8")
     for path, page in pages.items():
         if not path.startswith("/blog/"):
             continue
         for dataset in (item for item in page.schemas if item.get("@type") == "Dataset"):
             require(dataset.get("includedInDataCatalog") == identity, f"{page.url} has an incomplete DataCatalog reference")
+            require(dataset["url"] == dataset["@id"] == page.url + "#dataset", f"{page.url} has an invalid dataset URL")
+            require(path in catalog.links, f"{page.url} is missing from the HTML dataset catalog")
             require(f"]({dataset['url']})" in markdown, f"{page.url} is missing from the Markdown dataset catalog")
             for file in dataset["distribution"]:
                 require(f"]({file['contentUrl']})" in markdown,
                         f"{file['contentUrl']} is missing from the Markdown dataset catalog")
-            actual_ids.add(dataset["@id"])
-    require(actual_ids == expected_ids, "DataCatalog membership differs from the published Dataset pages")
+            actual_names[dataset["url"]] = dataset["name"]
+    require(actual_names and actual_names == expected_names, "catalog links differ from the published Dataset pages")
 
 
 def verify_blog_feed(blog, xml, expected_urls):
