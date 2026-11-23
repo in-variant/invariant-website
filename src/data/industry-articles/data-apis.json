@@ -1,5 +1,317 @@
 [
   {
+    "slug": "federal-contract-awards-data-api",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Federal Contract Awards Data API: USAspending and SAM.gov",
+    "description": "Query federal construction contracts by job location, follow award modifications and reconcile obligations with a 91-action USAspending case.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Cranes at the New Lock at the Soo construction site in Sault Ste. Marie, Michigan, at sunrise.",
+    "coverCaption": "New Lock at the Soo on August 6, 2026. U.S. Army Corps of Engineers photo by Kelsie Hall.",
+    "intro": "Use USAspending to find federal construction awards by where the work takes place and to track the money obligated as contracts change. Use SAM.gov for opportunity notices or the underlying procurement records. The U.S. Army Corps of Engineers’ New Lock at the Soo provides a worked example. As of November 23, 2026, 91 actions on the prime contract added up to $1,938,479,275 in net obligations. The award ceiling was $1,938,699,214.",
+    "takeaways": [
+      "Search by place of performance for work in a market. Search by recipient location to find vendors based there.",
+      "Track the generated award ID and use the transaction ID for individual actions. Add negative obligations, and keep zero-dollar changes when monitoring scope and schedule.",
+      "Keep the program budget, contract ceiling, net obligations and outlays as separate figures. Each answers a different spending question."
+    ],
+    "sections": [
+      {
+        "id": "which-federal-contract-api",
+        "heading": "Which federal contract API should I use?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "What you need",
+              "Where to start"
+            ],
+            "rows": [
+              [
+                "Search public awards and measure obligations",
+                "Use USAspending’s spending-by-award search and pull the transaction history for each award."
+              ],
+              [
+                "Find current solicitations and published award notices",
+                "Use the SAM.gov Opportunities API. A public API key is required."
+              ],
+              [
+                "Look up public procurement award and modification records",
+                "Use the SAM.gov Contract Awards API with the award or referenced contract identifier and a public API key."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "search-docs",
+                "transactions"
+              ],
+              [
+                "sam-opps"
+              ],
+              [
+                "sam-contracts"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "For a regional pipeline, define the work geography and agency first, then filter the award and industry or service codes. For trade opportunities and subcontracting, verify the prime contractor and follow its procurement channels. An award record identifies the prime awardee. Current bidding opportunities are separate notices.",
+            "sourceIds": [
+              "search-docs",
+              "sam-opps",
+              "api-record"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "reconcile-obligations",
+        "heading": "How did the Soo Lock contract’s obligations change?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Army Corps awarded the lock chamber construction contract on July 1, 2022. We queried the award W911XK22C0006 by its generated USAspending ID, then retrieved all rows from the transactions endpoint. This is the Phase 3 prime contract. The Army Corps describes the wider New Lock at the Soo project as a $3.219 billion investment in its September 2026 update.",
+            "sourceIds": [
+              "award",
+              "api-record",
+              "progress",
+              "transactions"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Award action",
+              "Signed obligation",
+              "What the action shows"
+            ],
+            "rows": [
+              [
+                "July 1, 2022 · 0",
+                "$1,068,052,150",
+                "The initial award for construction of the new lock."
+              ],
+              [
+                "April 12, 2023 · P00005",
+                "$0",
+                "A change order extended the delivery date after an option was exercised."
+              ],
+              [
+                "December 15, 2023 · P00007",
+                "+$210,189,500",
+                "The transaction exercises Option 1B under the original contract."
+              ],
+              [
+                "July 23, 2025 · P00020",
+                "−$1,079,113",
+                "A scope change at the monolith joints reduced the obligation."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "award"
+              ],
+              [
+                "award"
+              ],
+              [
+                "award"
+              ],
+              [
+                "award"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The 91 actions included 75 increases, six decreases and ten with a recorded zero. The decreases reduced obligations by $1,940,055 in total. Summing all signed amounts exactly reproduces the award’s reported $1,938,479,275. The separate base-and-all-options field shows the $1,938,699,214 ceiling. Use the appropriate outlay field for amounts paid and check its accounting coverage and reporting date.",
+            "sourceIds": [
+              "award",
+              "api-record",
+              "award-docs",
+              "spending-guide"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/federal-contract-awards-data-api.json",
+            "format": "JSON",
+            "label": "Download all 91 actions and the API requests used to reconcile them"
+          }
+        ]
+      },
+      {
+        "id": "work-location-filter",
+        "heading": "How do I search by job location instead of vendor location?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The award lists Sault Ste. Marie, Michigan, as its primary place of performance and Westerville, Ohio, as its recipient location. We ran the same contract search three times. Michigan as place of performance returned the award. Ohio as place of performance returned zero matches. Ohio as recipient location returned the award. For a list of projects happening in a market, use place of performance and check detailed project records for work spread across several places.",
+            "sourceIds": [
+              "api-record",
+              "search-docs",
+              "spending-guide"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the contract ID, location field, retrieval date and signed actions with each result so you can update it when a new modification arrives. For an Invariant site review, use the verified project location to connect the award to nearby parcels, transport and utility context. Keep award amounts and the dates behind site evidence in their original scopes."
+          },
+          {
+            "type": "links",
+            "label": "Related diligence workflows",
+            "items": [
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Verify truck and rail routes for logistics sites"
+              },
+              {
+                "slug": "industrial-environmental-permit-history-by-parcel",
+                "label": "Trace an industrial site’s permit history"
+              },
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Browse infrastructure and site selection guides"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is there a free API for federal contract awards?",
+        "answer": "USAspending’s public API provides award details and transaction history. SAM.gov also offers public opportunities and contract award APIs that require an API key.",
+        "sourceIds": [
+          "award",
+          "transactions",
+          "sam-opps",
+          "sam-contracts"
+        ]
+      },
+      {
+        "question": "How do I calculate cumulative contract obligations?",
+        "answer": "Fetch each transaction for the award and sum the signed federal action obligation values. Deobligations reduce the total. Retain the transaction ID and action date, and compare the full result to the award’s reported total obligation.",
+        "sourceIds": [
+          "transactions",
+          "api-record"
+        ]
+      },
+      {
+        "question": "What is the difference between a contract ceiling and an obligation?",
+        "answer": "The ceiling is the potential award value, including all options as reported. The obligation is the amount the government has legally committed. An outlay records payment.",
+        "sourceIds": [
+          "award-docs",
+          "spending-guide"
+        ]
+      },
+      {
+        "question": "How do I find federal infrastructure contract awards near me?",
+        "answer": "In USAspending, apply a place-of-performance filter and narrow by award type, time period, agency or relevant industry codes. Confirm the work location in the award detail or project record.",
+        "sourceIds": [
+          "search-docs",
+          "api-record"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "award",
+        "title": "USAspending award profile for W911XK22C0006",
+        "url": "https://www.usaspending.gov/award/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-",
+        "publisher": "USAspending",
+        "linkLabel": "Award profile"
+      },
+      {
+        "id": "api-record",
+        "title": "Live award detail response for W911XK22C0006",
+        "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-/",
+        "publisher": "USAspending",
+        "linkLabel": "Award JSON"
+      },
+      {
+        "id": "transactions",
+        "title": "Transactions API request and response definition",
+        "url": "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/transactions.md",
+        "publisher": "USAspending API",
+        "linkLabel": "Transactions API"
+      },
+      {
+        "id": "award-docs",
+        "title": "Award summary, base and all options, and obligation field definitions",
+        "url": "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/awards/award_id.md",
+        "publisher": "USAspending API",
+        "linkLabel": "Award fields"
+      },
+      {
+        "id": "search-docs",
+        "title": "Spending by award API and geography filters",
+        "url": "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/search/spending_by_award.md",
+        "publisher": "USAspending API",
+        "linkLabel": "Search filters"
+      },
+      {
+        "id": "spending-guide",
+        "title": "Analyst’s Guide to Federal Spending Data",
+        "url": "https://www.usaspending.gov/federal-spending-guide",
+        "publisher": "USAspending",
+        "linkLabel": "Federal spending guide"
+      },
+      {
+        "id": "sam-contracts",
+        "title": "SAM.gov Contract Awards API documentation",
+        "url": "https://open.gsa.gov/api/contract-awards/",
+        "publisher": "GSA",
+        "linkLabel": "Contract Awards API"
+      },
+      {
+        "id": "sam-opps",
+        "title": "SAM.gov Opportunities API documentation",
+        "url": "https://open.gsa.gov/api/get-opportunities-public-api/",
+        "publisher": "GSA",
+        "linkLabel": "Opportunities API"
+      },
+      {
+        "id": "progress",
+        "title": "New Lock at the Soo Phase 3 progress and overall project investment, September 29, 2026",
+        "url": "https://www.dvidshub.net/news/575917/new-lock-soo-phase-3-reaches-50-complete-milestone",
+        "publisher": "U.S. Army Corps of Engineers",
+        "linkLabel": "Corps project update"
+      },
+      {
+        "id": "photo",
+        "title": "New Lock at the Soo construction site at sunrise",
+        "url": "https://www.dvidshub.net/image/9972893/new-lock-soo-project-reaches-50-completion",
+        "publisher": "U.S. Army Corps of Engineers"
+      },
+      {
+        "id": "api-index",
+        "title": "USAspending endpoint directory",
+        "url": "https://api.usaspending.gov/docs/endpoints",
+        "publisher": "USAspending"
+      }
+    ],
+    "dataset": {
+      "name": "New Lock at the Soo federal contract obligations and location filters",
+      "description": "All 91 USAspending contract actions for the New Lock at the Soo Phase 3 construction award, with signed obligations, the award ceiling, and three reproducible work-location and recipient-location searches.",
+      "sourceIds": [
+        "award",
+        "api-record",
+        "transactions",
+        "search-docs"
+      ],
+      "spatialCoverage": "Sault Ste. Marie, Michigan, United States",
+      "temporalCoverage": "2022-07-01/2026-07-14"
+    },
+    "relatedSlugs": [
+      "industrial-environmental-permit-history-by-parcel",
+      "warehouse-site-selection-rail-truck-access",
+      "best-gis-apis-for-site-selection"
+    ]
+  },
+  {
     "slug": "nfip-flood-claims-data-api",
     "topic": "Data & APIs",
     "region": "United States",

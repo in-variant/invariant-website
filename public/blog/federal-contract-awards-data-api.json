@@ -1,0 +1,914 @@
+{
+  "name": "New Lock at the Soo federal contract obligations and location filters",
+  "checked_at": "2026-11-23T13:47:01.708677+00:00",
+  "award": {
+    "piid": "W911XK22C0006",
+    "generated_unique_award_id": "CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-",
+    "date_signed": "2022-07-01",
+    "type_description": "DEFINITIVE CONTRACT",
+    "total_obligation": "1938479275.0",
+    "base_and_all_options": "1938699214.0",
+    "base_exercised_options": "1938699214.0",
+    "recipient_name": "KOKOSING ALBERICI TRAYLOR, LLC",
+    "recipient_city": "WESTERVILLE",
+    "recipient_state": "OH",
+    "performance_city": "SAULT SAINTE MARIE",
+    "performance_state": "MI",
+    "performance_county_fips": "26033"
+  },
+  "observations": {
+    "transaction_rows": 91,
+    "positive_rows": 75,
+    "negative_rows": 6,
+    "zero_rows": 10,
+    "net_obligations_usd": "1938479275.00",
+    "deobligations_usd_signed": "-1940055.0",
+    "net_minus_award_total_usd": "0.00"
+  },
+  "replay": {
+    "award": {
+      "method": "GET",
+      "url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-/"
+    },
+    "actions": {
+      "method": "POST",
+      "url": "https://api.usaspending.gov/api/v2/transactions/",
+      "request_bodies": [
+        {
+          "award_id": "CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-",
+          "page": 1,
+          "limit": 500,
+          "sort": "action_date",
+          "order": "asc"
+        }
+      ]
+    },
+    "award_search": {
+      "method": "POST",
+      "url": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+      "tests": [
+        {
+          "request": {
+            "filters": {
+              "award_ids": [
+                "W911XK22C0006"
+              ],
+              "award_type_codes": [
+                "D"
+              ],
+              "time_period": [
+                {
+                  "start_date": "2022-07-01",
+                  "end_date": "2026-11-23"
+                }
+              ],
+              "place_of_performance_locations": [
+                {
+                  "country": "USA",
+                  "state": "MI"
+                }
+              ]
+            },
+            "fields": [
+              "Award ID",
+              "Recipient Name",
+              "Award Amount",
+              "Place of Performance State Code",
+              "Recipient State Code"
+            ],
+            "page": 1,
+            "limit": 10
+          },
+          "results": [
+            {
+              "internal_id": 349456479,
+              "Award ID": "W911XK22C0006",
+              "Recipient Name": "KOKOSING ALBERICI TRAYLOR, LLC",
+              "Award Amount": 1938479275.0,
+              "Place of Performance State Code": "MI",
+              "Recipient State Code": null,
+              "generated_internal_id": "CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-"
+            }
+          ]
+        },
+        {
+          "request": {
+            "filters": {
+              "award_ids": [
+                "W911XK22C0006"
+              ],
+              "award_type_codes": [
+                "D"
+              ],
+              "time_period": [
+                {
+                  "start_date": "2022-07-01",
+                  "end_date": "2026-11-23"
+                }
+              ],
+              "place_of_performance_locations": [
+                {
+                  "country": "USA",
+                  "state": "OH"
+                }
+              ]
+            },
+            "fields": [
+              "Award ID",
+              "Recipient Name",
+              "Award Amount",
+              "Place of Performance State Code",
+              "Recipient State Code"
+            ],
+            "page": 1,
+            "limit": 10
+          },
+          "results": []
+        },
+        {
+          "request": {
+            "filters": {
+              "award_ids": [
+                "W911XK22C0006"
+              ],
+              "award_type_codes": [
+                "D"
+              ],
+              "time_period": [
+                {
+                  "start_date": "2022-07-01",
+                  "end_date": "2026-11-23"
+                }
+              ],
+              "recipient_locations": [
+                {
+                  "country": "USA",
+                  "state": "OH"
+                }
+              ]
+            },
+            "fields": [
+              "Award ID",
+              "Recipient Name",
+              "Award Amount",
+              "Place of Performance State Code",
+              "Recipient State Code"
+            ],
+            "page": 1,
+            "limit": 10
+          },
+          "results": [
+            {
+              "internal_id": 349456479,
+              "Award ID": "W911XK22C0006",
+              "Recipient Name": "KOKOSING ALBERICI TRAYLOR, LLC",
+              "Award Amount": 1938479275.0,
+              "Place of Performance State Code": "MI",
+              "Recipient State Code": null,
+              "generated_internal_id": "CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-"
+            }
+          ]
+        }
+      ]
+    },
+    "notes": "Aggregate obligations by signed federal_action_obligation and unique transaction id, in USD. Base and all options is the award-level ceiling field. The three search tests use the award number and date range with one location filter each. These selected records cover this prime contract only."
+  },
+  "sources": [
+    "https://www.usaspending.gov/award/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-",
+    "https://api.usaspending.gov/api/v2/awards/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-/",
+    "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/transactions.md",
+    "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/awards/award_id.md",
+    "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/search/spending_by_award.md",
+    "https://www.dvidshub.net/news/575917/new-lock-soo-phase-3-reaches-50-complete-milestone"
+  ],
+  "transactions": [
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_0_-NONE-_0",
+      "action_date": "2022-07-01",
+      "modification_number": "0",
+      "action_type_description": null,
+      "federal_action_obligation": "1068052150.0",
+      "description": "CONSTRUCTION OF THE NEW THIRD LOCK, NEW LOCK AT THE SOO, SAULT STE. MARIE, MICHIGAN."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00001_-NONE-_0",
+      "action_date": "2022-09-20",
+      "modification_number": "P00001",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "2072000.0",
+      "description": "NEW LOCK AT THE SOO, NEW THIRD LOCK, SAULT STE. MARIE, MICHIGAN -  MODIFICATION TO EXERCISE OPTION 1C, NEW POWER PLANT BRIDGE RAMP."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00002_-NONE-_0",
+      "action_date": "2022-11-17",
+      "modification_number": "P00002",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "7400000.0",
+      "description": "EXERCISE OPTION 7, ALLIGATOR'S MOUTH EXTENSION"
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00003_-NONE-_0",
+      "action_date": "2023-01-09",
+      "modification_number": "P00003",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "197805350.0",
+      "description": "NEW LOCK AT THE SOO - MODIFICATION TO EXERCISE OPTION 1A"
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00004_-NONE-_0",
+      "action_date": "2023-04-06",
+      "modification_number": "P00004",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "70654000.0",
+      "description": "NEW LOCK AT THE SOO - MODIFICATION TO EXERCISE OPTION 2"
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00005_-NONE-_0",
+      "action_date": "2023-04-12",
+      "modification_number": "P00005",
+      "action_type_description": "CHANGE ORDER",
+      "federal_action_obligation": "0.0",
+      "description": "NEW LOCK AT THE SOO - MODIFICATION TO EXTEND THE DELIVERY DATE DUE TO EXERCISING OF OPTION 2."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00006_-NONE-_0",
+      "action_date": "2023-07-13",
+      "modification_number": "P00006",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "NEW LOCK AT THE SOO - MODIFICATION TO EXTEND THE OPTION 1B EXECUTION DATE"
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00001_-NONE-_0",
+      "action_date": "2023-08-14",
+      "modification_number": "A00001",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "171643.0",
+      "description": "A00001 DUCT BANK IVO NPP CRIB DAM.  DUCT BANK MUST BE RELOCATED DUE TO ITS PRESENCE NEAR THE EXISTING CRIB DAM, WHICH WILL BE RETROFITTED IN THE FUTURE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00002_-NONE-_0",
+      "action_date": "2023-09-15",
+      "modification_number": "A00002",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "173043.0",
+      "description": "A00002 NPP BRIDGE POSITIONING.  BRIDGE WAS DISCOVERED TO BE PLACED IN AN INCORRECT LOCATION RELATIVE TO THE NPP.  MODIFICATION CORRECTS LOCATION AND ADJUSTS SIZE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00003_-NONE-_0",
+      "action_date": "2023-09-19",
+      "modification_number": "A00003",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "145882.73",
+      "description": "A00003 MAINTENANCE PUMP VFD SUPPLY.  CONTRACT ADDS PUMPS FROM ONE TO TWO IN ORDER TO ENSURE REDUNDANCY IN DEWATERING IN CASE ONE PUMP FAILS OR IS DOWN FOR MAINTENANCE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00007_-NONE-_0",
+      "action_date": "2023-12-15",
+      "modification_number": "P00007",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "210189500.0",
+      "description": "EXERCISE OPTION 1B FROM THE NEW LOCK AT THE SOO - BASE CONTRACT"
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00004_-NONE-_0",
+      "action_date": "2024-01-12",
+      "modification_number": "A00004",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "A00007 CHANGES FROM STEEL GATES THAT REQUIRE LUBRICATION TO STAINLESS STEEL GATES THAT DO NOT REQUIRE LUBRICATION.  GATE IS UNDER WATER SO NO LUBRICATION IS DESIRED."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00005_-NONE-_0",
+      "action_date": "2024-02-27",
+      "modification_number": "A00005",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "95134.0",
+      "description": "A00005 CH0009 NPP BRIDGE ALIGNMENT AND CH00010 CWS MAINTENANCE PUMP.  BRIDGE WAS NOT ALIGNED CORRECTLY IN PLANS AND SPECS.  PUMPS WERE NOT SIZED CORRECTLY IN PLANS AND SPECS.  MOD FIXES THIS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00006_-NONE-_0",
+      "action_date": "2024-04-05",
+      "modification_number": "A00006",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "A00006 TUNNEL 6 CONNECTION TO SHAFT 5.  CONNECTION SHOWN IN THE DRAWINGS WAS INCORRECT.  NEW DRAWINGS PRODUCED AND INCORPORATED INTO THE CONTRACT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00008_-NONE-_0",
+      "action_date": "2024-05-01",
+      "modification_number": "P00008",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "1479500.0",
+      "description": "P00008 ROCK EXCAVATION QUANTITY SHAFT 6 AND CONNECTION TUNNEL.  PLANS HAD AN ERROR IN THE CALCULATION OF QUANTITY FOR EXCAVATION.  THIS MOD CORRECTS FOR THAT CORRECT QUANTITY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00007_-NONE-_0",
+      "action_date": "2024-05-02",
+      "modification_number": "A00007",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "32115.0",
+      "description": "A00007 OLD NPP BRIDGE REPAIR/STABILIZATION.  THE OLD NPP BRIDGE IS IN POOR CONDITION AND THERE IS A CONCERN THAT IT WILL NOT LAST UNTIL THE REPLACEMENT STRUCTURE IS READY.  THIS MOD PERFORMS SOME WORK TO REACH THAT GOAL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00008_-NONE-_0",
+      "action_date": "2024-06-18",
+      "modification_number": "A00008",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "177910.0",
+      "description": "A00008 NPP BRIDGE REBAR AND SCUPPERS.  BRIDGE DECK DOES NOT HAVE ENOUGH SCUPPERS TO ADDRESS DRAINAGE.  ADDITIONALLY, THE DECK WAS NOT LEVEL FOR DRAINAGE.  THIS MOD ADDS SCUPPERS, REBAR, AND ADJUSTS DECK SLOPE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00009_-NONE-_0",
+      "action_date": "2024-07-15",
+      "modification_number": "A00009",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "38991.0",
+      "description": "A00009 CENTER DIKE GRADING AT UNIT 10.  UNIT 10 WAS NOT SET FOR DRAINAGE CORRECTLY IN THE PLANS AND DID NOT SLOPE MATERIAL AROUND THE UNIT 10 POWER PLANT CORRECTLY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00009_-NONE-_0",
+      "action_date": "2024-07-19",
+      "modification_number": "P00009",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "976788.0",
+      "description": "P00009 CELL 6B CONCRETE FILL.  CHANGES CELL 6B TO CONCRETE FROM SAND AS SPECIFIED IN A PRE-BID ENQUIRY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00010_-NONE-_0",
+      "action_date": "2024-08-01",
+      "modification_number": "A00010",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "17626.0",
+      "description": "A00010 UNIT 10 DRAIN PIPE RELOCATION. A DRAINAGE PIPE WAS NOT SHOWN ON THE DRAWINGS BUT WAS SHOWN ON THE HISTORICAL DRAWINGS.  THIS MOD REPLACES THE OLD PIPE WITH NEW."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00010_-NONE-_0",
+      "action_date": "2024-08-07",
+      "modification_number": "P00010",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "795600.0",
+      "description": "P00010 DAVIS RECESS FILL.  DURING THE COURSE OF THE PROJECT, IT WAS DISCOVERED THAT THERE WERE A NUMBER OF RECESSES THAT WERE MISSED IN THE ORIGINAL CALCULATION OF QUANTITIES.  THIS INCREASES QUANTITIES OF FILL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00011_-NONE-_0",
+      "action_date": "2024-08-14",
+      "modification_number": "P00011",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "411911.0",
+      "description": "NEW LOCK AT THE SOO - MODIFICATION TO PURCHASE FEEDER CABLES & SPLICE KITS IN ADVANCE OF THE PLANNED ELECTRICAL OUTAGE TO ENSURE EVEN IF THE SPLICE FAILS ELECTRICITY TO THE LOCAL AREA CAN BE CORRECTED TIMELY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00011_-NONE-_0",
+      "action_date": "2024-08-30",
+      "modification_number": "A00011",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "86131.0",
+      "description": "A00011 DAVIS DEBRIS PIT WATER.  THE DAVIS DEBRIS PIT WAS FILLED WITH WATER THAT WAS DETERMINED TO HAVE HIGH CONCENTRATIONS OF LEAD IN IT.  THIS MOD REMOVES THE WATER AND TRANSPORTS TO A WASTE WATER PLANT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00012_-NONE-_0",
+      "action_date": "2024-09-11",
+      "modification_number": "P00012",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "222427000.0",
+      "description": "THIS OPTION EXERCISES THE WORK ASSOCIATED WITH THE CHAMBER LOCK OPERATIONAL LINE ITEM. WORK INCLUDES REMOVING THE COFFERDAM CELLS AFTER GATE INSTALLATION AND THE FLOORING TO THE LOCK."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00013_-NONE-_0",
+      "action_date": "2024-09-12",
+      "modification_number": "P00013",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "MODIFICATION FINALIZING THE YEAR 1 ADJUSTMENT OF THE ECONOMIC PRICE ADJUSTMENT CLAUSE BILATERALLY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00012_-NONE-_0",
+      "action_date": "2024-09-20",
+      "modification_number": "A00012",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "38790.0",
+      "description": "A00012 TEMPORARY DEWATERING CONDUIT.  INSTALL PVC CONDUIT TO ATTACH TO CONDUIT IN THE AREA IN ORDER TO FACILITATE DRAINAGE IN THE EMBANKMENT NEAR UNIT 10."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00014_-NONE-_0",
+      "action_date": "2024-10-07",
+      "modification_number": "P00014",
+      "action_type_description": "FUNDING ONLY ACTION",
+      "federal_action_obligation": "0.0",
+      "description": "ADMINISTRATIVE MOD TO UPDATE THE LINE OF ACCOUNTING FOR CONTRACT LINE ITEM NUMBER (CLIN) 0037. AS A RESULT, CLIN 0037 IS REPLACED BY CLIN 0039"
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00013_-NONE-_0",
+      "action_date": "2024-10-09",
+      "modification_number": "A00013",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "-30688.0",
+      "description": "A00013 MITER GATE LATCH DELETION.  THE GATES USED ON THE NEW LOCK NEED TO MATCH THAT ON THE NEW POE LOCK GATES. THESE GATES DO NOT HAVE THIS LATCH IN THE REDESIGN.  SO REMOVING IT FROM THE NEW LOCK PROJECT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00014_-NONE-_0",
+      "action_date": "2024-10-15",
+      "modification_number": "A00014",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "12389.0",
+      "description": "A00014 WEEP HOLES ON UPSTREAM CELLS 1 AND 2A.  THE UPSTREAM COFFERCELLS ARE CONTAINING WATER.  THESE WEEP HOLES SHOULD DRAIN THE CELLS TO EQUALIZE HYDROSTATIC PRESSURE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00015_-NONE-_0",
+      "action_date": "2024-10-22",
+      "modification_number": "A00015",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "14000.0",
+      "description": "A00015 TESTING OF DISCHARGE WATER.  WATER OUTLET FROM THE DEWATERED AREA WAS DISCOVERED TO BE A HIGH PH.  THIS CREATED A CONCERN THAT THERE COULD BE HAZARDOUS MATERIAL IN THE DISCHARGE, SO IT WAS TESTED."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00016_-NONE-_0",
+      "action_date": "2024-11-19",
+      "modification_number": "A00016",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "32536.0",
+      "description": "A00016 SOLUTIONS FOR DISCHARGE OF HIGH PH WATER. DETERMINES 3 SOLUTIONS TO REMEDY HIGH PH WATER THAT IS DISCHARGED FROM THE NEW LOCK DEWATERING."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00015_-NONE-_0",
+      "action_date": "2024-12-23",
+      "modification_number": "P00015",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "4445689.0",
+      "description": "NEW LOCK AT THE SOO - CH0021 NEW PUMP WELL DESIGN AND CONSTRUCTION CHANGES TO CORRECT WATER FLOW."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00017_-NONE-_0",
+      "action_date": "2025-01-09",
+      "modification_number": "A00017",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "71202.0",
+      "description": "A00017 TEMPORARY DEWATERING POWER.  ADJUSTS THE LOAD CENTER FOR THE TEMPORARY DEWATERING PUMPS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00018_-NONE-_0",
+      "action_date": "2025-01-10",
+      "modification_number": "A00018",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "179589.0",
+      "description": "A00018 SHIP ARRESTOR MATERIALS.  THE MATERIALS FOR THE SHIP ARRESTORS NEED TO CHANGED TO A DIFFERENT TYPE OF METAL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00019_-NONE-_0",
+      "action_date": "2025-01-13",
+      "modification_number": "A00019",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "156039.47",
+      "description": "A00019 CROSSOVER TUNNEL HAZARDOUS WATER.  WATER IN THE CROSSOVER TUNNEL UNDER THE LOCK WAS CONTAMINATED WITH LEAD AND HAD TO BE PUMPED OUT AND DISPOSED OF IN THE SAULT STE. MARIE MI WASTE WATER TREATMENT PLANT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00020_-NONE-_0",
+      "action_date": "2025-01-14",
+      "modification_number": "A00020",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "213874.0",
+      "description": "A0020 TEMPORARY CWS INTAKE LOCATION.  DUE TO THE HIGH PH DISCHARGE FROM DEWATERING, THE CWS INTAKE MUST BE MOVED SO THE INTAKE WATER DOES NOT DAMAGE COOLING EQUIPMENT FROM THE HIGH PH."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00016_-NONE-_0",
+      "action_date": "2025-01-30",
+      "modification_number": "P00016",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "5010903.0",
+      "description": "P00016 UNSUITABLE SOILS DOWNSTREAM DISPOSAL.  DURING EXCAVATION DOWNSTREAM NOSE PIER SOILS WITH WOOD PRESERVATIVE WAS DISCOVERED.  THESE SOILS HAD TO BE DISPOSED OF IN A LAND FILL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00021_-NONE-_0",
+      "action_date": "2025-02-10",
+      "modification_number": "A00021",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "73130.02",
+      "description": "A00021 SPRING NEST HOUSING.  WORK ON THE ARM IS ONGOING AND A CHANGE WAS NEEDED TO ENSURE THE ARM WILL WORK CORRECTLY WHEN BUILT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00022_-NONE-_0",
+      "action_date": "2025-02-12",
+      "modification_number": "A00022",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "228109.0",
+      "description": "A00022 DST ASBESTOS DIVIDERS.  THE DEEP SERVICE TUNNEL HAS ASBESTOS DIVIDERS SEPARATING THE CONDUCTORS.  THESE NEED TO BE REMOVED SO AS TO LIMIT ASBESTOS EXPOSURE TO WORKERS IN THE TUNNEL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00017_-NONE-_0",
+      "action_date": "2025-04-24",
+      "modification_number": "P00017",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "1293543.0",
+      "description": "P00017 BUS DIFFERENTIAL RELAY FOR SWITCHGEAR. MODIFICATION PROMOTES DESIGN CHANGES RELATED TO PROVIDE PROTECTION TO THE SWITCHGEAR FOR THE BASE, OPTION 2 AND OPTION 3 OF THE CONTRACT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00023_-NONE-_0",
+      "action_date": "2025-04-28",
+      "modification_number": "A00023",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "A00023 SHIP ARRESTOR WIRE ROPE BOOM MODIFICATIONS.  THE MODIFICATION ADJUSTS THE WIRE ROPE BOOM FOR MATERIALS CHANGES AND ADJUSTMENTS TO THE DESIGN TO RELIEVE SOME DESIGN ISSUES RECENTLY DISCOVERED."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00024_-NONE-_0",
+      "action_date": "2025-05-20",
+      "modification_number": "A00024",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "192574.0",
+      "description": "A00024 ELECTRICAL DISTRIBUTION FEEDER RELOCATION CLARIFICATIONS. CONTRACTOR AND USACE MET TO REVIEW EXPECTATIONS AND SOME CHANGES HAD TO BE ADDRESSED.  THIS MOD ADDRESSES THOSE CHANGES."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00025_-NONE-_0",
+      "action_date": "2025-05-21",
+      "modification_number": "A00025",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "6800.0",
+      "description": "A00025 SUBSTATION A LOW VOLTAGE CIRCUIT.  CIRCUIT DISCONNECT SWITCH WAS MISSED IN THE DESIGN.  THIS MODIFICATION ACCOUNTS FOR INCLUDING IT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00026_-NONE-_0",
+      "action_date": "2025-05-22",
+      "modification_number": "A00026",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "5063.0",
+      "description": "A00026 MITER GATE WALKWAY.  A WALKWAY WAS MISSED ALONG THE TOP OF THE MITER GATES.  THIS CHANGES THAT TO INCLUDE A WALKWAY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00027_-NONE-_0",
+      "action_date": "2025-05-27",
+      "modification_number": "A00027",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "404549.0",
+      "description": "A00027 PH DISCHARGE DEWATERING TESTING.  THIS MOD PROVIDES FOR TESTING EQUIPMENT AND MATERIAL TO TEST DISCHARGE WATER TO ENSURE THE PROJECT DOES NOT EXCEED NPDES DISCHARGE LIMITATIONS FOR PH."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00028_-NONE-_0",
+      "action_date": "2025-05-30",
+      "modification_number": "A00028",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "427500.0",
+      "description": "A00028 COAL BUNKER HTRW ABATEMENT.  DURING THE COURSE OF THE WORK, IT WAS DISCOVERED THAT THE OLD COAL BUNKER WAS WITHIN THE AREA OF THE LOCK MONOLITH THAT WOULD BE COVERED WITH CONCRETE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00018_-NONE-_0",
+      "action_date": "2025-06-16",
+      "modification_number": "P00018",
+      "action_type_description": "EXERCISE AN OPTION",
+      "federal_action_obligation": "93400000.0",
+      "description": "THIS ACTION EXERCISES OPTION 4 - DOWNSTREAM WORK, OPTION 5 - HANDSFREE MOORING, AND OPTION 6 - DOWNSTREAM SHIP ARRESTORS ON THE NEW LOCK AT THE SOO CONTRACT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00029_-NONE-_0",
+      "action_date": "2025-06-27",
+      "modification_number": "A00029",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "26377.0",
+      "description": "A00029 DEWATERING TUNNEL WATERSTOP. UPON REVIEW OF THE PLANS DURING CONSTRUCTION, IT WAS REALIZED THAT THERE WAS NO WATERSTOP, POTENTIALLY CAUSING EROSION ISSUES IN THE BASE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00019_-NONE-_0",
+      "action_date": "2025-07-09",
+      "modification_number": "P00019",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "663488.0",
+      "description": "NEW LOCK AT THE SOO - CH0039 AGREEMENT FOR ADDITIONAL EFFORT NECESSARY FOR DPW HTRW AND UNKNOWN PIPING."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00030_-NONE-_0",
+      "action_date": "2025-07-11",
+      "modification_number": "A00030",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "94720.78",
+      "description": "A00030 NWP PIPE SLEEVE CHAMFER.  THE CHAMFER OF THE INLET PIPES NEEDED TO BE ADJUSTED FOR HYDRAULIC EFFICIENCY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00031_-NONE-_0",
+      "action_date": "2025-07-15",
+      "modification_number": "A00031",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "283857.0",
+      "description": "A00031 SA HYDRAULIC BRAKING IMPROVEMENTS.  IMPROVES THE BRAKING CAPACITY OF THE LOCK SHIP ARRESTORS AFTER DESIGN EXPERIENCE SHOWS ISSUES."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00020_-NONE-_0",
+      "action_date": "2025-07-23",
+      "modification_number": "P00020",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "-1079113.0",
+      "description": "P00020 STEAL ANGLE AT MONOLITH JOINTS.  THE JOINTS OF THE MONOLITH WERE ORIGINALLY PLANNED TO HAVE STAINLESS STEEL ANGLES TO ADDRESS ALKALI SILICA REACTIVITY SPALLING THAT DOES NOT EXIST HERE SO REMOVED."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00032_-NONE-_0",
+      "action_date": "2025-07-28",
+      "modification_number": "A00032",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "14062.0",
+      "description": "A00032 SHAFT 6 FLOOR OPENINGS.  THE FLOOR OF THE SHAFT 6 BUILDING DOES NOT HAVE CONDUIT OPENINGS IN IT TO PROVIDE FOR CONDUCTOR TO DESCEND VERTICALLY TO THE FLOOR OF SHAFT 6.  THIS CORRECTS THIS ISSUE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00033_-NONE-_0",
+      "action_date": "2025-08-25",
+      "modification_number": "A00033",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "50814.0",
+      "description": "A00033 NPP DOOR SILL.  THE DOOR SILL TO THE NPP PLANT WAS FOUND TO HAVE DETERIORATED SILL WHERE IT MET WITH THE NEW BRIDGE.  THIS FIXES THAT SILL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00034_-NONE-_0",
+      "action_date": "2025-09-08",
+      "modification_number": "A00034",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "159707.0",
+      "description": "A00034 MITER GATE MISCELLANEOUS CHANGES.  THERE IS A PARALLEL PROJECT BUILDING A GATE THAT THIS PROJECT HAS TO MIRROR.  THIS CHANGE INCORPORATES LESSONS LEARNED FROM THAT PROJECT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00035_-NONE-_0",
+      "action_date": "2025-09-08",
+      "modification_number": "A00035",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "164831.0",
+      "description": "A00035 BUILDING 1 ASBESTOS BLOCK.  WHEN DEMOLISHING BUILDING 1, THE CONTRACTOR DISCOVERED THAT THE CONCRETE BLOCK CONTAINED ASBESTOS MATERIALS, WHICH HAD TO BE REMOVED AND DISPOSED OF ENVIRONMENTALLY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00036_-NONE-_0",
+      "action_date": "2025-09-09",
+      "modification_number": "A00036",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "50000.0",
+      "description": "A00036 ENGINEERING FOR CH64.  THIS MOD STARTS THE ENGINEERING DESIGN FOR WORK ASSOCIATED WITH CH64."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00037_-NONE-_0",
+      "action_date": "2025-09-09",
+      "modification_number": "A00037",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "44976.0",
+      "description": "A00037 CONNECTOR TUNNEL LIGHTING.  THE CONNECTOR TUNNEL LIGHTING WAS MISSED IN THE DESIGN REVIEW.  THIS MODIFICATION INSTALLS THE LIGHTING THAT IS NEEDED TO ILLUMINATE THE WORKSPACE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00038_-NONE-_0",
+      "action_date": "2025-09-11",
+      "modification_number": "A00038",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "-4709.0",
+      "description": "A00038 NEW PUMP WELL SUMP PUMP.  IT WAS DETERMINED THROUGH THE SUBMITTAL PROCESS THAT THE PUMP WAS OVERSIZED.  SO A CREDIT WAS CREATED TO RESIZE THE PUMP SMALLER AND RECOUP THE FUNDS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00039_-NONE-_0",
+      "action_date": "2025-09-11",
+      "modification_number": "A00039",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "11562.0",
+      "description": "A00039 SHAFT 6 MINI SPLIT HVAC.  THE SHAFT 6 WAS DESIGNED WITHOUT ANY HVAC, WHICH WILL NOT FACILITATE MAINTAINING A CONSTANT TEMPERATURE IN THE CONTROL BUILDING.  THIS MODIFICATION PROVIDES THAT HVAC."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00040_-NONE-_0",
+      "action_date": "2025-10-15",
+      "modification_number": "A00040",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "45801.0",
+      "description": "A00040 CELL 3 WEEP HOLES.  THE COFFER CELLS IN CELL 3 ARE FILLING WITH WATER.  THIS MODIFICATION ALLOWS FOR BUILDING DRAINAGE INTO THE CELL."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00041_-NONE-_0",
+      "action_date": "2025-11-10",
+      "modification_number": "A00041",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "7738.0",
+      "description": "A00041 DAVIS WELL DRAINAGE.  DURING REVIEW OF THE CONSTRUCTION DRAWINGS IT WAS DISCOVERED THAT THERE WAS AN ELEVATION ERROR.  THIS MOD CORRECTS THAT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00042_-NONE-_0",
+      "action_date": "2025-11-12",
+      "modification_number": "A00042",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "12178.0",
+      "description": "A00042 NWP ELECTRICAL SUB BASEMENT CHECK VALVE. IT WAS DISCOVERED THAT A CHECK VALVE WAS NOT IN THE DRAINAGE PIPE TO PREVENT BACKFLOW.  THIS MOD ADDS THAT VALVE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00021_-NONE-_0",
+      "action_date": "2025-11-14",
+      "modification_number": "P00021",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "1052273.0",
+      "description": "P00021 DAVIS WELL DISCHARGE PIPE.  THE PIPE WAS IN A VERY DETERIORATED CONDITION, REQUIRING EXTENSIVE WORK TO FILL PER THE SPEC REQUIREMENTS, THAT WAS NOT KNOWN AT THE TIME THE DRAWINGS/SPECS WERE DEVELOPED."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00043_-NONE-_0",
+      "action_date": "2025-11-18",
+      "modification_number": "A00043",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "112192.0",
+      "description": "A00043 OVERLOAD REGULATOR ARM.  THERE ARE FATIGUE CONCERNS WITH THE ORIGINAL DESIGN.  THIS DESIGN OVERCOMES THOSE CONCERNS TO ADDRESS THESE DESIGN ISSUES."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00022_-NONE-_0",
+      "action_date": "2025-11-28",
+      "modification_number": "P00022",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "30234165.65",
+      "description": "P00022 UNSUITABLE SOILS SCHEDULE RECOVERY.  RELATED TO CH0004 UNSUITABLE SOILS.  THIS WORK ENSURES THE CONTRACTOR CAN MEET THE ORIGINAL CONTRACT COMPLETION DATE DUE TO A DIFFERING SITE CONDITION."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00023_-NONE-_0",
+      "action_date": "2025-12-04",
+      "modification_number": "P00023",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "14268159.91",
+      "description": "P00023 REA CH4 UNSUITABLE SOILS WINTER WORK.  REA FOR COSTS INCURRED TO STAY ON SCHEDULE AFTER CH04 CAUSED THE CONTRACTOR TO INCUR DELAYS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00024_-NONE-_0",
+      "action_date": "2026-01-27",
+      "modification_number": "P00024",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "65471.05",
+      "description": "SEE CONTINUATION PAGE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00044_-NONE-_0",
+      "action_date": "2026-02-05",
+      "modification_number": "A00044",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "42419.0",
+      "description": "SEE CONTINUATION PAGE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00025_-NONE-_0",
+      "action_date": "2026-02-11",
+      "modification_number": "P00025",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "635633.0",
+      "description": "SEE CONTINUATION PAGE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00045_-NONE-_0",
+      "action_date": "2026-02-17",
+      "modification_number": "A00045",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "85996.0",
+      "description": "SEE CONTINUATION PAGE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00046_-NONE-_0",
+      "action_date": "2026-02-19",
+      "modification_number": "A00046",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "101945.0",
+      "description": "SEE CONTINUATION PAGE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00047_-NONE-_0",
+      "action_date": "2026-02-20",
+      "modification_number": "A00047",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "12583.0",
+      "description": "SEE CONTINUATION PAGE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00049_-NONE-_0",
+      "action_date": "2026-02-27",
+      "modification_number": "A00049",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "40000.0",
+      "description": "A00049/R00079/CH0110 RUAW SSP WALL DESIGN IS TO PROVIDE FUNDING FOR 65% DESIGN OF THE SSP WALL SO THAT THE CONTRACTOR CAN EFFECTIVELY AND MORE EFFICIENTLY BID CH0100 RUAW. THESE FUNDS WILL BE ACCOUNTED FOR DURING NEGOTIATIONS OF CH0100 RUAW."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00048_-NONE-_0",
+      "action_date": "2026-02-27",
+      "modification_number": "A00048",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "206010.0",
+      "description": "A00048/R00077/CH0016 SCCB WALL REQUEST FOR EQUITABLE ADJUSTMENT. DURING THE WORK, THE CONTRACTOR FOUND NUMEROUS VOID SPACES THAT WAS FILLED WITH SLURRY DURING THIS WORK. THIS MODIFICATION SATISFIES THIS REA FOR ADDITIONAL COMPENSATION REQUIRED."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00050_-NONE-_0",
+      "action_date": "2026-03-02",
+      "modification_number": "A00050",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "A00050/R00068/CH0067 CH67 MONOLITH SA1/SA2 REVISION IS TO ADJUST DRAWINGS CONCERNING THE SA1/SA2 MONOLITH. NO CHANGE IN CONTRACT PRICE OR DELIVERY DATE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00051_-NONE-_0",
+      "action_date": "2026-03-03",
+      "modification_number": "A00051",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "A00051/R00069/CH0085 CH85 GALVANIZED SIREN POLES IS TO CHANGE THE SIREN POLES FROM ALUMINUM TO GALVANIZED STEEL TO MATCH THE HIGH MAST LIGHT POLES ON THE PROJECT. NO CHANGE IN CONTRACT PRICE OR DELIVERY DATE."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00026_-NONE-_0",
+      "action_date": "2026-04-07",
+      "modification_number": "P00026",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "1211175.0",
+      "description": "P00026/R00080/CH0036 REQUEST FOR EQUITABLE ADJUSTMENT ROCK ANCHOR QUANTITIES. DURING THE ROCK ANCHOR INSTALLATION, THE CONTRACTOR HAD TO PERFORM EXTRA WORK DUE TO QUANTITY OVERRUNS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00027_-NONE-_0",
+      "action_date": "2026-04-15",
+      "modification_number": "P00027",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "1001375.39",
+      "description": "P00027/R00085/CH0111 OPTION 6 SHIP ARRESTOR CHANGES. THIS MODIFICATION INCLUDES CHANGES CH0031, CH0051, AND CH0054 INTO ONE CHANGE FOR OPTION 6 SHIP ARRESTOR UPDATES. THERE ARE ENGINEERING CHANGES THAT HAD TO BE COMPLETED RELATED TO OPTION 6."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00052_-NONE-_0",
+      "action_date": "2026-04-17",
+      "modification_number": "A00052",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "111100.0",
+      "description": "A00052/R00081/CH0047 COAL BUNKER FILL. AN ABANDONED COAL BUNKER LOCATED IN THE WALL OF THE OLD DAVIS CHAMBER, NEXT TO THE NEW PUMP WELL, HAS TO BE FILLED WITH CONCRETE TO ENSURE THE MONOLITH IS ABLE TO SUPPORT EQUIPMENT LOADS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00053_-NONE-_0",
+      "action_date": "2026-04-20",
+      "modification_number": "A00053",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "41069.0",
+      "description": "A00053/R00078/CH0099 DPW OPERATING FLOOR REVISIONS. UPDATES TO THE OPERATING FLOOR OF THE DAVIS PUMP WELL TO ENSURE PROPER FUNCTION."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00054_-NONE-_0",
+      "action_date": "2026-04-22",
+      "modification_number": "A00054",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "18678.0",
+      "description": "A00054/R00082/CH0102 MG GUDGEON AND ANCHORAGE PIN BUSHING. REVISE THE BUSHING MATERIAL FOR THE MITER GATE GUDGEON AND ANCHORAGE PINS FROM TO MEET CURRENT MANUFACTURING REQUIREMENTS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00055_-NONE-_0",
+      "action_date": "2026-04-27",
+      "modification_number": "A00055",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "3071.0",
+      "description": "A00055/R00083/CH0055 CONTROL HOUSE TRANSOM ENLARGEMENT. ENLARGE AND MODIFY THE ACCESS TO FACILITATE EQUIPMENT MOVEMENT AND VISIBILITY."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00028_-NONE-_0",
+      "action_date": "2026-05-08",
+      "modification_number": "P00028",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "-605606.0",
+      "description": "P00028/R00084/CH0027 NPW VFD MODEL. REVISE THE VFDS SPECIFIED IN THE CONTRACT FOR THE NEW PUMP WELL FROM THE POWER FLEX 7000 TO THE POWER FLEX 6000 DUE TO SIZING REQUIREMENTS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00056_-NONE-_0",
+      "action_date": "2026-05-21",
+      "modification_number": "A00056",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "29560.0",
+      "description": "A00056/R00086/CH0096 MISC METALS CONCRETE PANEL REVISIONS. CHANNEL ON THE LEADING EDGE WAS NOT SHOWN ON THE DRAWINGS CORRECTLY IN THE STD DRAWING FOR INSULATED CONCRETE PANELS AND NOW MATCHES EXISTING FACILITIES EDGE TREATMENT OF CONCRETE PANELS."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00057_-NONE-_0",
+      "action_date": "2026-06-04",
+      "modification_number": "A00057",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "31040.0",
+      "description": "A00057/R00087/CH00112 NPW LIGHTNING PROTECTION. ADDS LIGHTNING PROTECTION SYSTEM TO THE NORTH AND WEST SIDE OF NEW PUMP WELL BUILDING."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00058_-NONE-_0",
+      "action_date": "2026-06-08",
+      "modification_number": "A00058",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "70267.0",
+      "description": "A00058/R00088/CH0095 NPW MAINTENANCE MONORAIL REVISIONS. UPGRADES THE MAINTENANCE HOIST SYSTEM ON THE OPERATING FLOOR OF THE NEW PUMP WELL BUILDING."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00059_-NONE-_0",
+      "action_date": "2026-06-23",
+      "modification_number": "A00059",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "-129065.0",
+      "description": "A00059/R00089/CH0116 N AND S SABIN TUNNEL LINER PLATES. REMOVES THE LINER PLATES IN THE NORTH AND SOUTH SABIN TUNNELS TO THE NEW PUMP WELL INTERFACES."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00060_-NONE-_0",
+      "action_date": "2026-06-24",
+      "modification_number": "A00060",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "6481.0",
+      "description": "A00060/R00090/CH0125 UPSTREAM MITER GATE GUARDRAIL. THE UPSTREAM MITER GATE NEEDS A GUARDRAIL TO ELIMINATE A FALL HAZARD WHEN THE GATE IS IN THE RECESSED POSITION."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_A00061_-NONE-_0",
+      "action_date": "2026-07-07",
+      "modification_number": "A00061",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "-90874.0",
+      "description": "A00061/R00091/CH0121 REDUCTION OF CULVERT VALVE PLATFORMS. MODIFICATION CLARIFIES THE DESIGN INTENT AND REDUCES THE REQUIRED QUANTITY OF THE CULVERT VALVE MAINTENANCE PLATFORMS FROM 4 TO 1 UNIT."
+    },
+    {
+      "id": "CONT_TX_9700_-NONE-_W911XK22C0006_P00029_-NONE-_0",
+      "action_date": "2026-07-14",
+      "modification_number": "P00029",
+      "action_type_description": "SUPPLEMENTAL AGREEMENT FOR WORK WITHIN SCOPE",
+      "federal_action_obligation": "0.0",
+      "description": "P00029/R00093/CH0130 ADDRESSING DEI DISCRIMINATION BY FEDERAL CONTRACTORS. MODIFICATION ADDS REFERENCE FAR CLAUSE 52.222-90 ADDRESSING DEI DISCRIMINATION BY FEDERAL CONTRACTORS TO THE CONTRACT."
+    }
+  ]
+}
