@@ -4347,6 +4347,10 @@
               {
                 "label": "Commercial real estate lending guides",
                 "slug": "commercial-real-estate-lending"
+              },
+              {
+                "label": "Verify a commercial mortgage maturity date",
+                "slug": "commercial-mortgage-maturity-data-apis"
               }
             ]
           }
@@ -4397,6 +4401,357 @@
       {"id":"aerial","title":"2024 New York State orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
     "relatedSlugs": ["historical-parcel-boundaries-api","commercial-property-insurance-data-apis","best-gis-apis-for-site-selection","power-evidence-data-center-site-verification"]
+  },
+  {
+    "slug": "commercial-mortgage-maturity-data-apis",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Commercial Mortgage Maturity Data and APIs",
+    "description": "Find and verify a commercial mortgage maturity date. Compare CMBS APIs and test how they handle amendments, extension options, and dated source records.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Timeline showing Orion’s original February 2027 maturity, the amended February 2029 maturity, and conditional options in February and August 2030.",
+    "coverCaption": "Orion Properties disclosed the amendment on February 19, 2026. The two 2030 dates depend on borrowers exercising their options and meeting the agreement’s conditions.",
+    "intro": "To find when a U.S. commercial mortgage matures, start with the current schedule from your servicer or the trust’s latest loan-level report. Check any amendments and confirm whether the borrower exercised an extension option. A county mortgage index helps identify the instrument, but you may need the actual loan documents to establish the due date. For a portfolio spanning many lenders, ask any data provider exactly which loans it covers and which document supports each date.",
+    "takeaways": [
+      "Keep the original maturity, current stated maturity and conditional option dates in separate fields.",
+      "Store the date an amendment took effect, the date its source was published, and the date your system obtained it.",
+      "Use a stable loan identifier for the debt and a separate relationship to every property securing it. Count the balance once even when the loan covers multiple properties."
+    ],
+    "sections": [
+      {
+        "id": "orion-maturity-example",
+        "heading": "How a $355 million commercial mortgage changed maturity",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Orion Properties’ November 2026 Form 10-Q identifies an original $355 million securitized loan. At origination it was scheduled to mature on February 11, 2027. The February 17, 2026 modification moved the stated maturity to February 11, 2029. Orion filed the agreement on February 19. At September 30, Orion reported $316.5 million outstanding on the loan, which was secured by 18 properties.",
+            "sourceIds": [
+              "orion-index",
+              "orion-agreement",
+              "orion-quarter"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Date the loan could come due",
+              "What that date represents"
+            ],
+            "rows": [
+              [
+                "February 11, 2027",
+                "Original scheduled maturity, superseded by the February 2026 amendment."
+              ],
+              [
+                "February 11, 2029",
+                "Stated maturity under the signed amendment, reaffirmed in the report for the quarter ended September 30."
+              ],
+              [
+                "February 11, 2030",
+                "First borrower option, with conditions that include a $2.5 million principal prepayment."
+              ],
+              [
+                "August 11, 2030",
+                "Second borrower option, with conditions that include a $10 million principal prepayment."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "orion-quarter"
+              ],
+              [
+                "orion-agreement",
+                "orion-quarter"
+              ],
+              [
+                "orion-agreement"
+              ],
+              [
+                "orion-agreement"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The agreement identifies trust WFCM 2022-ONL and loan number 310960149. In a maturity report based on the September 30 balance, place the $316.5 million balance in February 2029 and show both options separately. In a replay of these SEC records as of February 18, the amendment had already been signed, but the February 19 filing was not yet in the public record. An archived vendor response is needed to establish what its users actually saw.",
+            "sourceIds": [
+              "orion-index",
+              "orion-agreement",
+              "orion-quarter"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Orion loan timeline and expected results",
+            "path": "/blog/commercial-mortgage-maturity-data-apis.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "maturity-data-sources",
+        "heading": "Where to look up a commercial mortgage maturity date",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Loan or record",
+              "Where to start",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Mortgage in a registered securitization that files loan-level exhibits",
+                "Search EDGAR for the trust and open its most recent loan-level exhibit, including any amended filings.",
+                "Match the asset or loan ID and inspect the reporting period, stated maturity and modification fields."
+              ],
+              [
+                "Borrower with public financial filings",
+                "Read debt footnotes and material agreement exhibits. Search both the borrower and the securitization trust.",
+                "Check which credit facility and balance the filing describes, and trace the maturity language to the signed amendment."
+              ],
+              [
+                "Bilateral, syndicated or privately held loan",
+                "Request the note, amendments and current schedule from the lender or servicer. Use county records to locate the recorded instruments.",
+                "Resolve competing dates with the holder or servicer, particularly when an extension or modification may be outstanding."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "schedule-al",
+                "revision"
+              ],
+              [
+                "orion-index",
+                "orion-agreement",
+                "orion-quarter"
+              ],
+              []
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Schedule AL distinguishes the original maturity, the reporting-period maturity and the maturity as of a modification. Preserve amended submissions too. The Wells Fargo Commercial Mortgage Trust 2025-C65 filed revised October 2026 exhibits two days after the first filing. That revision is a separate example of why a feed should retain multiple versions of the same reporting period.",
+            "sourceIds": [
+              "schedule-al",
+              "revision"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-maturity-apis",
+        "heading": "Which API should you evaluate for commercial mortgage maturities?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For loans in public commercial mortgage-backed securities (CMBS), compare the filters, reporting history and source links you can obtain for a known loan. A third-party feed can help build a maturity watchlist. For a privately held loan, ask the lender or servicer for the current schedule. The examples below reflect public documentation reviewed on November 23, 2026. Coverage and results for Orion were not tested with paid accounts."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider",
+              "Documented starting point",
+              "What to request in a trial"
+            ],
+            "rows": [
+              [
+                "West Kite",
+                "CMBS loan search with reported balance, maturity and associated properties. Its separate NYC recorded-loan index gives lender and amount without a maturity field.",
+                "Ask for the source month behind a maturity result and try a commercial loan that appears only in the county recorder index."
+              ],
+              [
+                "CMBS Wire",
+                "Loan search by maturity and loan-level history based on public trusts that report to the SEC.",
+                "Test how it handles an amended filing. Check its explicit coverage limits for private deals and held loans."
+              ],
+              [
+                "CRED iQ",
+                "An API and bulk data products for commercial real estate and debt.",
+                "Ask for loan-level maturity definitions, data coverage by loan type, and how the feed represents an exercised extension."
+              ],
+              [
+                "Trepp",
+                "A CMBS feed with deal, loan and property records.",
+                "Request snapshots before and after an amendment. Ask whether options, maturity and balance can be retrieved with their associated dates."
+              ],
+              [
+                "Invariant Earth",
+                "Geospatial and environmental fields for the properties securing the debt.",
+                "Join a separate loan source to parcel and flood evidence. Store the match method and send ambiguous collateral matches to review."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "west-kite"
+              ],
+              [
+                "cmbs-wire"
+              ],
+              [
+                "cred-iq"
+              ],
+              [
+                "trepp"
+              ],
+              [
+                "invariant-fields"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant publishes this comparison and makes Invariant Earth. The Orion download comes from public filings and is a test fixture for date handling. For an API comparison, run it alongside loans from the counties, securitizations and property types that matter to your book."
+          }
+        ]
+      },
+      {
+        "id": "maturity-watchlist-test",
+        "heading": "How to build a maturity watchlist you can audit",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Keep a loan identifier and a separate list of collateral IDs. For a loan split into notes or included in multiple trusts, define whether the report counts the whole loan or individual positions.",
+              "Store the stated maturity, separate extension options, current balance and the balance’s reporting date. Keep an estimated maturity in a separate field and include its method.",
+              "Store source accession, reporting period, agreement date, publication date and first-seen timestamp. Retain earlier versions and identify the records they supersede.",
+              "Group balances by stated maturity and show potential extensions in a separate view. Report missing dates and show which loans were excluded from the maturity buckets."
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related lending guides",
+            "items": [
+              {
+                "slug": "commercial-real-estate-lending",
+                "label": "Build a dated commercial real estate credit file"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare property data APIs for collateral diligence"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I find the maturity date of a commercial mortgage?",
+        "answer": "Ask the servicer for the current schedule and check it against the note and later amendments. For covered CMBS loans, look up the trust and loan ID in the latest asset-level filing. For public borrowers, Form 10-Q debt footnotes and material agreement exhibits can confirm changes.",
+        "sourceIds": [
+          "schedule-al",
+          "orion-agreement",
+          "orion-quarter"
+        ]
+      },
+      {
+        "question": "What is the difference between stated and extended maturity?",
+        "answer": "Stated maturity is the scheduled due date under the operative terms. A signed amendment can move that date. A conditional option gives the borrower a right to move the date further after meeting the conditions. Confirm exercise before using the option date as the current due date.",
+        "sourceIds": [
+          "orion-agreement"
+        ]
+      },
+      {
+        "question": "How often do commercial mortgage maturity dates update?",
+        "answer": "The loan can change when the parties amend it or the borrower exercises an extension. The update reaches your feed on the source’s reporting schedule, and the filer can revise a report later. Keep the effective date and publication date so you can see the lag.",
+        "sourceIds": [
+          "orion-index",
+          "orion-agreement",
+          "revision"
+        ]
+      },
+      {
+        "question": "Can I find every commercial mortgage maturity date in public data?",
+        "answer": "Publicly filed securitizations and disclosures from public borrowers cover part of the market. Private loans may require records from the lender or servicer. Track which loans have missing dates so they remain visible in portfolio reporting.",
+        "sourceIds": [
+          "schedule-al",
+          "cmbs-wire"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "orion-index",
+        "title": "Orion Properties Form 8-K filing index, February 19, 2026",
+        "url": "https://www.sec.gov/Archives/edgar/data/1873923/000187392326000023/0001873923-26-000023-index.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "orion-agreement",
+        "title": "Orion loan extension and modification agreement, Section 2.12",
+        "url": "https://www.sec.gov/Archives/edgar/data/1873923/000187392326000023/loanextensionandmodifica.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "orion-quarter",
+        "title": "Orion Properties third-quarter 2026 Form 10-Q, Note 6",
+        "url": "https://www.onlreit.com/investors/sec-filings/all-sec-filings/content/0001873923-26-000118/onl-20260930.htm",
+        "publisher": "Orion Properties"
+      },
+      {
+        "id": "schedule-al",
+        "title": "Schedule AL asset-level reporting fields, 17 CFR 229.1125",
+        "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec229-1125.pdf",
+        "publisher": "U.S. Government Publishing Office"
+      },
+      {
+        "id": "revision",
+        "title": "Wells Fargo Commercial Mortgage Trust 2025-C65 amended October report",
+        "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/wcm25c65_abseea-202610.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "west-kite",
+        "title": "Financing datasets and API queries",
+        "url": "https://westkite.com/docs/data",
+        "publisher": "West Kite"
+      },
+      {
+        "id": "cmbs-wire",
+        "title": "Loan maturity filters, filings and API coverage",
+        "url": "https://cmbs.news/developers/",
+        "publisher": "CMBS Wire"
+      },
+      {
+        "id": "cred-iq",
+        "title": "Bulk data and API product documentation",
+        "url": "https://pages.cred-iq.com/datafeed",
+        "publisher": "CRED iQ"
+      },
+      {
+        "id": "trepp",
+        "title": "CMBS data feed fields",
+        "url": "https://www.trepp.com/hubfs/docs/CMBSDataFeed.pdf",
+        "publisher": "Trepp"
+      },
+      {
+        "id": "invariant-fields",
+        "title": "Public API field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth"
+      }
+    ],
+    "dataset": {
+      "name": "Orion Properties CMBS maturity history test",
+      "description": "Four published maturity dates and expected watchlist results for one commercial mortgage. Includes the amendment’s agreement and filing dates, two conditional options, and the latest quarterly snapshot reviewed.",
+      "sourceIds": [
+        "orion-index",
+        "orion-agreement",
+        "orion-quarter"
+      ],
+      "spatialCoverage": "United States",
+      "temporalCoverage": "2022-02-10/2026-11-05"
+    },
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "historical-parcel-boundaries-api",
+      "commercial-property-insurance-data-apis"
+    ]
   },
   {
     "slug": "electric-truck-charging-southern-california",

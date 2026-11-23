@@ -1,0 +1,78 @@
+{
+  "name": "Orion Properties CMBS maturity history test",
+  "verifiedOn": "2026-11-23",
+  "borrowerGroup": "Orion Properties Inc.",
+  "loanIdInAgreement": "310960149",
+  "trustIdInAgreement": "WFCM 2022-ONL",
+  "currency": "USD",
+  "originationDate": "2022-02-10",
+  "originalPrincipal": 355000000,
+  "originalScheduledMaturity": "2027-02-11",
+  "amendment": {
+    "agreementDate": "2026-02-17",
+    "secFilingDate": "2026-02-19",
+    "statedMaturity": "2029-02-11",
+    "options": [
+      {
+        "date": "2030-02-11",
+        "principalPrepaymentAmongConditions": 2500000,
+        "statusInSources": "conditional_option"
+      },
+      {
+        "date": "2030-08-11",
+        "principalPrepaymentAmongConditions": 10000000,
+        "statusInSources": "conditional_option"
+      }
+    ],
+    "sourceIds": [
+      "orion-index",
+      "orion-agreement"
+    ]
+  },
+  "selectedSnapshot": {
+    "reportingDate": "2026-09-30",
+    "secFilingDate": "2026-11-05",
+    "outstandingPrincipal": 316500000,
+    "propertiesSecuringLoan": 18,
+    "statedMaturity": "2029-02-11",
+    "sourceId": "orion-quarter"
+  },
+  "expectedResults": [
+    {
+      "publicFilingCutoff": "2026-02-18",
+      "februaryAmendmentVisibleInSelectedSources": false
+    },
+    {
+      "publicFilingCutoff": "2026-02-19",
+      "februaryAmendmentVisibleInSelectedSources": true,
+      "statedMaturity": "2029-02-11"
+    },
+    {
+      "reportingDate": "2026-09-30",
+      "sourceFirstFiled": "2026-11-05",
+      "statedMaturityBucket": "2029-02",
+      "balanceCountedOnce": 316500000
+    }
+  ],
+  "scope": "Selected public filings. Dates do not establish private notice or the first time a vendor obtained an amendment. No option exercise is established by these sources.",
+  "sources": [
+    {
+      "id": "orion-index",
+      "title": "Orion Properties Form 8-K filing index, February 19, 2026",
+      "url": "https://www.sec.gov/Archives/edgar/data/1873923/000187392326000023/0001873923-26-000023-index.htm",
+      "publisher": "SEC EDGAR"
+    },
+    {
+      "id": "orion-agreement",
+      "title": "Orion loan extension and modification agreement, Section 2.12",
+      "url": "https://www.sec.gov/Archives/edgar/data/1873923/000187392326000023/loanextensionandmodifica.htm",
+      "publisher": "SEC EDGAR"
+    },
+    {
+      "id": "orion-quarter",
+      "title": "Orion Properties third-quarter 2026 Form 10-Q, Note 6",
+      "url": "https://www.onlreit.com/investors/sec-filings/all-sec-filings/content/0001873923-26-000118/onl-20260930.htm",
+      "publisher": "Orion Properties"
+    }
+  ]
+}
