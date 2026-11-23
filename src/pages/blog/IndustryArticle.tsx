@@ -177,18 +177,17 @@ function SiteSelectionRequestBanner({ variant = 'top' }: { variant?: 'top' | 'fo
   </aside>
 }
 
-export function SiteBookingBanner({ variant = 'top' }: { variant?: 'top' | 'foot' }) {
-  return <aside className={`industry-site-booking industry-site-booking--${variant}`} aria-label="Book a call for more powered sites">
-    <p className="industry-eyebrow">{variant === 'top' ? 'Want more sites like this one?' : 'Looking for a different site?'}</p>
-    <h2>{variant === 'top' ? 'To get more powered sites, book a call.' : 'Tell us the MW, the state and the date. We will send the sites that fit.'}</h2>
-    <p>We track powered land, energized mining sites and AI campuses across the US and abroad. Book 30 minutes and we will walk you through the ones that match your load, timeline and budget. To find more sites yourself, browse the full catalogue at <a href={MARKET_URL} className="industry-site-booking-inline">market.invariant-ai.com</a>.</p>
+function SiteBookingBanner() {
+  return <section id="site-enquiry" className="industry-site-booking industry-site-booking--foot" aria-label="Request a site shortlist" data-nosnippet="">
+    <h2>Request a data center site shortlist</h2>
+    <p>Tell us the load you need at the meter, where you’re looking and when you need service. We’ll walk through the sites that match your requirements and the evidence behind their reported power.</p>
     <div className="industry-site-booking-actions">
       <a href={BOOKING_URL} target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a>
       <a href={MARKET_URL}>Find more sites at market.invariant-ai.com <span aria-hidden="true">↗</span></a>
       <a href={`tel:${SITES_PHONE}`} className="industry-site-booking-phone">Call or text {SITES_PHONE_DISPLAY}</a>
       <a href={`mailto:${SITES_EMAIL}?subject=${encodeURIComponent('Data center sites')}`} className="industry-site-booking-phone">Email {SITES_EMAIL}</a>
     </div>
-  </aside>
+  </section>
 }
 
 export default function IndustryArticle({ article }: { article: Article }) {
@@ -198,22 +197,24 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const hub = INDUSTRY_HUBS[article.topic]
   const isIndiaGuide = article.kind === 'india-guide'
   const isDataGuide = article.topic === 'Data & APIs'
+  const isSiteListing = article.kind === 'site-listing'
+  const coverCaption = article.coverCaption ?? (isSiteListing ? 'AI-generated illustration.' : undefined)
   const isSiteSelectionService = article.kind === 'site-guide' && !!article.service
   const hasWorksheet = article.sections.some(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
   const reviewedDate = article.updatedDate ?? article.date
   return <article className="blog-article industry-article">
     <Seo title={article.title} description={article.description} canonical={canonical} markdown={`/blog/${article.slug}.md`} ogImage={image} ogType="article" jsonLd={articleJsonLd(article, canonical, image, dataset)} />
-    <BlogArticleHeader article={article.published} title={article.title} subtitle={article.description} coverCaption={article.coverCaption} coverAlt={article.coverAlt} />
+    <BlogArticleHeader article={article.published} title={article.title} subtitle={isSiteListing ? article.intro : article.description} coverCaption={coverCaption} coverAlt={article.coverAlt} siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined} />
     <div className="industry-article-layout">
       <aside className="industry-article-rail" aria-label="In this guide">
-        <Link to={isIndiaGuide ? INDIA_HUB : hub.path} className="industry-hub-link">{isIndiaGuide ? 'India data centre approvals' : isDataGuide ? 'All articles' : <>{article.topic}<br />{' '}compliance</>} <span aria-hidden="true">↗</span></Link>
+        {isSiteListing ? <Link to="/blog/find-data-center-site-us" className="industry-hub-link">Data center site finder <span aria-hidden="true">↗</span></Link> :
+          <Link to={isIndiaGuide ? INDIA_HUB : hub.path} className="industry-hub-link">{isIndiaGuide ? 'India data centre approvals' : isDataGuide ? 'All articles' : <>{article.topic}<br />{' '}compliance</>} <span aria-hidden="true">↗</span></Link>}
         <p>In this guide</p>
         <nav>{article.sections.map((section, i) => <a key={section.id} href={`#${section.id}`}><span>{String(i + 1).padStart(2, '0')}</span>{section.heading}</a>)}</nav>
         <a href="#sources" className="industry-sources-link">Sources and references ↗</a>
       </aside>
       <div className="industry-article-body">
         <div className="industry-byline"><Link to="/about">Invariant editorial team</Link><span>{article.readMinutes} min read</span><span>{article.region ?? 'United States'}</span></div>
-        {article.kind === 'site-listing' && <SiteBookingBanner />}
         {isSiteSelectionService && <SiteSelectionRequestBanner />}
         {article.kind === 'site-guide' && !isSiteSelectionService && (hasWorksheet ?
           <aside className="industry-site-market" aria-label="Site selection worksheet">
@@ -223,13 +224,13 @@ export default function IndustryArticle({ article }: { article: Article }) {
         {article.kind === 'study-guide' && <StudyRequestBanner />}
         {article.kind === 'compute-guide' && <GpuCapacityBanner />}
         {isIndiaGuide && <IndiaSiteBanner />}
-        <p className="industry-lead">{article.intro}</p>
-        <section className="industry-takeaways" aria-label="Before you start"><p className="industry-eyebrow">Before you start</p><ul>{article.takeaways.map(item => <li key={item}>{item}</li>)}</ul></section>
+        {!isSiteListing && <p className="industry-lead">{article.intro}</p>}
+        <section className="industry-takeaways" aria-label={isSiteListing ? 'Key site facts' : 'Before you start'}><p className="industry-eyebrow">{isSiteListing ? 'Key site facts' : 'Before you start'}</p><ul>{article.takeaways.map(item => <li key={item}>{item}</li>)}</ul></section>
         {article.sections.map(section => <section key={section.id} id={section.id} className="industry-prose-section"><h2>{section.heading}</h2>{section.blocks.map((block, i) => <Block key={i} block={block} article={article} dataset={dataset} />)}</section>)}
         <section className="industry-prose-section industry-faq" aria-labelledby="questions"><h2 id="questions">Questions that come up.</h2>{article.faqs.map(faq => <details key={faq.question}><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}<Citations ids={faq.sourceIds} article={article} /></p></details>)}</section>
         <section id="sources" className="industry-prose-section industry-source-list"><h2>Sources and references.</h2><p>{article.kind === 'site-listing' ? 'Site specifications are as marketed by the seller and are checked against utility documents before any introduction. Public sources checked on' : 'Primary sources checked for this guide on'} <time dateTime={reviewedDate}>{new Date(`${reviewedDate}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>.{!isDataGuide && ' The location, equipment, and operating plan determine which requirements apply to a project.'}</p><ol>{article.sources.map(source => <li key={source.id} id={`source-${source.id}`}><span>{source.publisher}</span><a href={source.url}>{source.title} ↗</a></li>)}</ol></section>
         {isDataGuide ? <div className="industry-article-contact"><h2>Try Invariant Earth on a site you know.</h2><p>Pick a US coordinate and inspect the source, dataset vintage, and status for each field.</p><a href="https://docs.invariant-ai.com/quickstart">Open the API quickstart <span aria-hidden="true">↗</span></a></div> :
-        isIndiaGuide ? <IndiaSiteBanner variant="foot" /> : isSiteSelectionService ? <SiteSelectionRequestBanner variant="foot" /> : article.kind === 'study-guide' ? <StudyRequestBanner variant="foot" /> : article.kind === 'compute-guide' ? <GpuCapacityBanner variant="foot" /> : isSiteKind(article.kind) ? <SiteBookingBanner variant="foot" /> : <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>}
+        isIndiaGuide ? <IndiaSiteBanner variant="foot" /> : isSiteSelectionService ? <SiteSelectionRequestBanner variant="foot" /> : article.kind === 'study-guide' ? <StudyRequestBanner variant="foot" /> : article.kind === 'compute-guide' ? <GpuCapacityBanner variant="foot" /> : isSiteKind(article.kind) ? <SiteBookingBanner /> : <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>}
       </div>
     </div>
     <BlogRelatedReading articles={article.relatedReading} />

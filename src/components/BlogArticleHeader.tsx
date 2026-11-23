@@ -7,11 +7,12 @@ type ArticleHeaderProps = {
   subtitle: string
   coverCaption?: string
   coverAlt?: string
+  siteDetailsId?: string
 }
 
-export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '' }: ArticleHeaderProps) {
+export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', siteDetailsId }: ArticleHeaderProps) {
   return (
-    <header className="blog-article-header">
+    <header className={`blog-article-header${siteDetailsId ? ' blog-article-header--site-listing' : ''}`}>
       <nav className="blog-article-breadcrumbs" aria-label="Breadcrumb">
         <Link to="/resources">Resources</Link><span aria-hidden="true">/</span><Link to="/blog">Articles</Link>
       </nav>
@@ -19,6 +20,12 @@ export default function BlogArticleHeader({ article, title, subtitle, coverCapti
         <div className="blog-article-meta"><span>{article.topic} / Field notes</span><time dateTime={article.dateTime}>{article.date}</time></div>
         <h1>{title}</h1>
         <p>{subtitle}</p>
+        {siteDetailsId && (
+          <nav className="blog-site-actions" aria-label="Site listing actions">
+            <a href={`#${siteDetailsId}`}>Read site details <span aria-hidden="true">↓</span></a>
+            <a href="#site-enquiry">Request a shortlist</a>
+          </nav>
+        )}
       </div>
       <div className="blog-article-cover">
         <img src={article.image} alt={coverAlt} width="1600" height="900" fetchPriority="high" decoding="async" />
