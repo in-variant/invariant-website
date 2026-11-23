@@ -1,5 +1,445 @@
 [
   {
+    "slug": "water-withdrawal-data-api-site-allocation",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Water Withdrawal Data APIs, Water Rights, and Site Allocation",
+    "description": "Compare U.S. water withdrawal APIs, water rights and utility allocation records. Reproduce a Loudoun and Fairfax County watershed query and see what to verify for a site.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Map of Loudoun and Fairfax counties with four shared watersheds highlighted. The USGS API returned 22 overlapping watersheds for Loudoun and 17 for Fairfax. Four appear in both responses.",
+    "coverCaption": "USGS modeled public-supply withdrawal queries for July 2020. The API returns whole watersheds. County outlines from Census TIGERweb show the boundaries for reference.",
+    "intro": "Use the USGS Water Availability Assessment API to compare modeled withdrawals across watersheds. For a project that will draw directly from a well or river, verify the applicable water right or withdrawal permit. For a utility connection, ask the supplier for the volume, pressure, connection point and service date it can commit to. Invariant Earth helps tie the site to a mapped water system and basin so the team can request the right records.",
+    "takeaways": [
+      "A county filter in the USGS Data Companion can return whole watersheds that cross county lines. Join on the watershed ID and month before comparing results.",
+      "Read the water right or withdrawal permit for the applicable location, allowed use, season and restrictions.",
+      "Verify the site’s peak-day demand, instantaneous flow, potable backup and wastewater terms with the supplier before relying on a service date."
+    ],
+    "sections": [
+      {
+        "id": "water-withdrawal-data-by-county",
+        "heading": "How do I get water withdrawal data by county or watershed?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The USGS National Water Availability Assessment Data Companion can return monthly modeled values for a watershed. We asked for the public-supply withdrawal variable pswdtot in 2020 using the county filter for Loudoun and Fairfax. The API returned complete records for 22 watersheds overlapping Loudoun and 17 overlapping Fairfax. Four watershed IDs appeared in both responses with identical values in every month. A HUC12 is a 12-digit identifier for a subwatershed.",
+            "sourceIds": [
+              "usgs-api",
+              "usgs-model",
+              "loudoun-query",
+              "fairfax-query"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "USGS query",
+              "Overlapping watersheds",
+              "Wholly contained watersheds"
+            ],
+            "rows": [
+              [
+                "Loudoun County, Virginia",
+                "22",
+                "5"
+              ],
+              [
+                "Fairfax County, Virginia",
+                "17",
+                "2"
+              ],
+              [
+                "Combined unique overlap results",
+                "35",
+                "Checked separately by county"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "loudoun-query",
+                "usgs-api"
+              ],
+              [
+                "fairfax-query",
+                "usgs-api"
+              ],
+              [
+                "loudoun-query",
+                "fairfax-query"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "If you add both overlap lists for July 2020 you count the four shared watersheds twice, adding 68.97 million gallons per day (MGD) to the unique-watershed sum. Deduplicating gives 35 unique watersheds. For a county total, use data published for the county or a defensible estimate from source locations. Selecting wholly contained watersheds leaves out portions of the county. Even a deduplicated sum includes the parts of watersheds outside both counties.",
+            "sourceIds": [
+              "usgs-api",
+              "loudoun-query",
+              "fairfax-query",
+              "usgs-series"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The model for this example runs through December 2020. USGS also publishes historical county-level compilations, including 2015 estimates across multiple sectors. Save the geography, model, variable, period and units with any figure. Keep withdrawn water separate from consumptive use, the portion that does not return to the water system of interest.",
+            "sourceIds": [
+              "usgs-model",
+              "usgs-series"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/water-withdrawal-data-api-site-allocation.csv",
+            "format": "CSV",
+            "label": "Download the 420 monthly rows for the 35 unique watersheds"
+          },
+          {
+            "type": "download",
+            "path": "/blog/water-withdrawal-data-api-site-allocation.json",
+            "format": "JSON",
+            "label": "Download exact API queries, source dates and the Loudoun Water records"
+          }
+        ]
+      },
+      {
+        "id": "permit-limit-and-plant-capacity",
+        "heading": "What does a water right or withdrawal permit establish?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a self-supply project, start with the regulator’s current record. Verify the authorized withdrawal location, source, holder, use, quantity and dates. Read the conditions on low flows, pumping, storage, seasonality and changes in ownership or use. Treat a reported withdrawal as historical use for the scope and period shown. Virginia’s reporting and permitting programs collect different information.",
+            "sourceIds": [
+              "deq-report",
+              "deq-permit",
+              "oregon"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At Loudoun Water, FEMA’s 2023 assessment described a conditional Potomac withdrawal under Virginia permit 10-2020. In the scenario without raw-water storage, when flow at the Point of Rocks gauge fell below 1,400 cubic feet per second, the stated limit was tied to Broad Run’s treated discharge the day before. That is an example of how a permit can depend on conditions. Obtain the current permit and any modifications before applying the rule.",
+            "sourceIds": [
+              "fema-permit"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Treatment capacity is a separate constraint. Loudoun Water’s 2026–2035 capital plan describes a 20 MGD starting capacity at Trap Rock and describes Phase II as 32.8 MGD in the project text. The project name and planning comments use 32 MGD. Keep both references and ask the utility which design capacity and commissioning date to use. The capital plan records planned work and does not assign capacity to a property.",
+            "sourceIds": [
+              "cip"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "project-water-allocation",
+        "heading": "What water allocation should a developer request?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask for the source and connection point by phase, the maximum day and peak instantaneous flow, available pressure, fire flow, and the utility’s start date and conditions. For reclaimed water, get a written allocation and verify the terms for potable backup, including what happens during an outage. For discharge, confirm permitted volume and water quality with the receiving system. A location inside a mapped service area is where to begin the conversation.",
+            "sourceIds": [
+              "loudoun-reuse",
+              "loudoun-construction",
+              "epa-areas"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Loudoun Water’s 2026 availability-charge guidelines distinguish maximum-day process water from average-day sewer. On an illustrative 100,000-square-foot water-cooled data center, the process-meter factors yield 100,000 gallons on the maximum water day and 12,500 gallons on the average sewer day. They omit the domestic meter. Use the project engineer’s cooling design and the utility’s approved flow and allocation before budgeting or committing to a site.",
+            "sourceIds": [
+              "loudoun-fee",
+              "loudoun-construction"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-water-data-api-sources",
+        "heading": "Which water data sources and APIs should I use?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth is a starting point when the decision begins with an address or parcel. Its public catalog documents the mapped community water system, the origin of that boundary, and the USGS long-run watershed supply-and-use index. Use the matched system and basin to find the supplier, permit records and the relevant local constraints.",
+            "sourceIds": [
+              "earth",
+              "epa-areas"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "What to use it for",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth and EPA",
+                "Identify a mapped water system and inspect the source of the boundary.",
+                "Confirm the proposed parcel, utility and planned connection with the provider."
+              ],
+              [
+                "USGS Water Availability Assessment Data Companion",
+                "Compare modeled withdrawals and other basin variables by time and hydrologic unit.",
+                "Keep the HUC12, units, model vintage and intersection rule."
+              ],
+              [
+                "WRI Aqueduct",
+                "Compare baseline and future water stress across markets.",
+                "Check the indicator, scale, scenario and assumptions before using it in site diligence."
+              ],
+              [
+                "State permit and water-right records",
+                "Look up a named permit, certificate, transfer or reported withdrawal.",
+                "Check status, identifiers, allowed use, diversion location, time limits and the signed record."
+              ],
+              [
+                "WaDE or WestDAAT",
+                "Research historical western water-record coverage across states.",
+                "The operator lists March 2026 as the last update. Verify current status with the issuing state."
+              ],
+              [
+                "Serving utility",
+                "Confirm an allocation, delivery date, pressure and wastewater terms for the project.",
+                "Save the signed terms and distinguish potable, reclaimed and backup supply."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth",
+                "epa-areas"
+              ],
+              [
+                "usgs-api",
+                "usgs-model"
+              ],
+              [
+                "aqueduct"
+              ],
+              [
+                "deq-permit",
+                "oregon"
+              ],
+              [
+                "wade"
+              ],
+              [
+                "loudoun-construction",
+                "loudoun-reuse"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related Invariant site-selection guides",
+            "items": [
+              {
+                "slug": "water-sewer-data-apis-site-selection",
+                "label": "Find the serving water and sewer providers"
+              },
+              {
+                "slug": "data-center-water-stormwater-permits",
+                "label": "Check cooling water, wastewater and stormwater permitting"
+              },
+              {
+                "slug": "natural-gas-pipeline-capacity-site-service",
+                "label": "Verify natural gas delivery for the same site"
+              },
+              {
+                "slug": "manufacturing-site-selection-100-buildable-acres",
+                "label": "Screen industrial land for utility, rail and development needs"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which API gives water withdrawals by county?",
+        "answer": "USGS offers historic county-level compilations. The National Water Availability Assessment Data Companion uses county filters to select modeled watersheds. For the Data Companion, inspect the returned watershed IDs and intersection mode before calculating a total.",
+        "sourceIds": [
+          "usgs-series",
+          "usgs-api"
+        ]
+      },
+      {
+        "question": "Where can I check water rights for an industrial site?",
+        "answer": "Look up the record with the issuing state or basin authority. Confirm its status, holder, authorized source and use, diversion location, rate and volume, effective dates and conditions. Verify transfer requirements for the proposed project.",
+        "sourceIds": [
+          "deq-permit",
+          "oregon"
+        ]
+      },
+      {
+        "question": "What is the difference between water withdrawal and water consumption?",
+        "answer": "A withdrawal measures water removed or diverted from a source. Consumptive use measures the part of the withdrawal that is not returned, for example water that evaporates or becomes part of a product. Keep the source’s spatial boundary and time period in the calculation.",
+        "sourceIds": [
+          "usgs-series"
+        ]
+      },
+      {
+        "question": "How do I confirm water availability for a proposed data center?",
+        "answer": "Give the supplier the site boundary, cooling design, peak flow by phase, needed pressure, service date, backup and wastewater requirements. Get the allocation and delivery conditions in writing. For self-supply, confirm the applicable permit and water source.",
+        "sourceIds": [
+          "loudoun-reuse",
+          "loudoun-construction",
+          "deq-permit"
+        ]
+      }
+    ],
+    "dataset": {
+      "name": "USGS water withdrawal overlap test and Loudoun Water allocation source records",
+      "description": "Monthly 2020 USGS data for 35 unique HUC12 watersheds overlapping Loudoun or Fairfax, exact queries, and source records for withdrawal conditions, treatment planning, and service estimation.",
+      "spatialCoverage": "Loudoun and Fairfax counties, Virginia, and overlapping watersheds",
+      "temporalCoverage": "2020-01-01/2026-11-23",
+      "sourceIds": [
+        "loudoun-query",
+        "fairfax-query",
+        "usgs-model",
+        "fema-permit",
+        "cip",
+        "loudoun-fee"
+      ]
+    },
+    "sources": [
+      {
+        "id": "usgs-api",
+        "title": "USGS NWDC API documentation and county intersection query semantics",
+        "url": "https://water.usgs.gov/nwaa-data/web-services/",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS water data API documentation"
+      },
+      {
+        "id": "usgs-model",
+        "title": "Public Supply Withdrawals Water-Use Model and data vintage",
+        "url": "https://api.water.usgs.gov/nwaa-data/models/wu-public-supply-wd",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS model metadata"
+      },
+      {
+        "id": "usgs-series",
+        "title": "Accessing USGS water-use data and historical estimates",
+        "url": "https://www.usgs.gov/mission-areas/water-resources/science/accessing-water-use-data",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "Historic and recent USGS datasets"
+      },
+      {
+        "id": "loudoun-query",
+        "title": "July and monthly 2020 overlap query for Loudoun County, FIPS 51107",
+        "url": "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51107&startdate=2020-01&enddate=2020-12&intersection=overlap&timeres=monthly&limit=600&format=json&skip=0",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "Loudoun API result"
+      },
+      {
+        "id": "fairfax-query",
+        "title": "July and monthly 2020 overlap query for Fairfax County, FIPS 51059",
+        "url": "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51059&startdate=2020-01&enddate=2020-12&intersection=overlap&timeres=monthly&limit=600&format=json&skip=0",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "Fairfax API result"
+      },
+      {
+        "id": "epa-areas",
+        "title": "Public water system service area boundaries and their limits",
+        "url": "https://www.epa.gov/ground-water-and-drinking-water/public-water-system-service-areas",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA water system boundaries"
+      },
+      {
+        "id": "earth",
+        "title": "Invariant Earth public field catalog, including water-system identity and basin context",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      },
+      {
+        "id": "deq-report",
+        "title": "Virginia DEQ reported annual withdrawals and reporting thresholds",
+        "url": "https://www.deq.virginia.gov/water/water-quantity/water-supply-planning/water-withdrawal-reporting",
+        "publisher": "Virginia Department of Environmental Quality",
+        "linkLabel": "Virginia withdrawal reporting"
+      },
+      {
+        "id": "deq-permit",
+        "title": "Virginia groundwater and surface-water withdrawal program",
+        "url": "https://www.deq.virginia.gov/water/water-withdrawal",
+        "publisher": "Virginia Department of Environmental Quality",
+        "linkLabel": "Virginia withdrawal permits"
+      },
+      {
+        "id": "fema-permit",
+        "title": "Final environmental assessment, section 2.1, prior conditions under VWP permit 10-2020",
+        "url": "https://www.fema.gov/sites/default/files/documents/fema_r3-pdmc-pj-03-va-2019-005-loudounwater-fea-signedfonsi-20231116.pdf#page=14",
+        "publisher": "Federal Emergency Management Agency",
+        "linkLabel": "FEMA assessment of withdrawal conditions"
+      },
+      {
+        "id": "cip",
+        "title": "2026–2035 Capital Improvement Plan, project PWS00007, printed page 118",
+        "url": "https://www.loudounwater.org/sites/default/files/2026-05/__2026-2035_CIP_FINAL_with203.pdf#page=120",
+        "publisher": "Loudoun Water",
+        "linkLabel": "Trap Rock Phase II project sheet"
+      },
+      {
+        "id": "loudoun-fee",
+        "title": "Estimated-flow guidelines, table 3, effective January 1, 2026",
+        "url": "https://www.loudounwater.org/rates-fees-charges-penalties",
+        "publisher": "Loudoun Water",
+        "linkLabel": "Loudoun Water estimated-flow guidelines"
+      },
+      {
+        "id": "loudoun-reuse",
+        "title": "Reclaimed water allocation, constraints and delivered volumes",
+        "url": "https://www.loudounwater.org/commercial-customers/reclaimed-water-program",
+        "publisher": "Loudoun Water",
+        "linkLabel": "Reclaimed Water Program"
+      },
+      {
+        "id": "loudoun-construction",
+        "title": "Development permit and connection document requirements",
+        "url": "https://www.loudounwater.org/developers-new-construction/permitting-your-approved-project",
+        "publisher": "Loudoun Water",
+        "linkLabel": "Loudoun Water permitting and allocation documents"
+      },
+      {
+        "id": "aqueduct",
+        "title": "Aqueduct 4.0 baseline and future regional water risk indicators",
+        "url": "https://www.wri.org/data/aqueduct-global-maps-40-data",
+        "publisher": "World Resources Institute",
+        "linkLabel": "Aqueduct source and model scope"
+      },
+      {
+        "id": "wade",
+        "title": "WaDE and WestDAAT archive status and state source guidance",
+        "url": "https://westernstateswater.org/wade/",
+        "publisher": "Western States Water Council",
+        "linkLabel": "WaDE archive and state portals"
+      },
+      {
+        "id": "oregon",
+        "title": "Water Rights Information System records and document caveats",
+        "url": "https://www.oregon.gov/owrd/programs/waterrights/wris/pages/default.aspx",
+        "publisher": "Oregon Water Resources Department",
+        "linkLabel": "Oregon Water Rights Information System"
+      },
+      {
+        "id": "census-boundaries",
+        "title": "Census TIGERweb State and County geometry service",
+        "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "County outlines used in the graphic"
+      }
+    ],
+    "relatedSlugs": [
+      "water-sewer-data-apis-site-selection",
+      "data-center-water-stormwater-permits",
+      "natural-gas-pipeline-capacity-site-service",
+      "manufacturing-site-selection-100-buildable-acres"
+    ]
+  },
+  {
     "slug": "natural-gas-pipeline-capacity-site-service",
     "topic": "Data & APIs",
     "region": "United States",
@@ -15298,6 +15738,10 @@
             "type": "links",
             "label": "Related site selection guides",
             "items": [
+              {
+                "slug": "water-withdrawal-data-api-site-allocation",
+                "label": "Compare withdrawal data, water rights and site allocation"
+              },
               {
                 "slug": "natural-gas-pipeline-capacity-site-service",
                 "label": "Check natural gas capacity, pressure and service for a site"

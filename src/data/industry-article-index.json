@@ -1,5 +1,41 @@
 [
   {
+    "slug": "water-withdrawal-data-api-site-allocation",
+    "topic": "Data & APIs",
+    "title": "Water Withdrawal Data APIs, Water Rights, and Site Allocation",
+    "summary": "Compare U.S. water withdrawal APIs, water rights and utility allocation records. Reproduce a Loudoun and Fairfax County watershed query and see what to verify for a site.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/water-withdrawal-data-api-site-allocation.webp?v=c446032f",
+    "dataset": {
+      "name": "USGS water withdrawal overlap test and Loudoun Water allocation source records",
+      "description": "Monthly 2020 USGS data for 35 unique HUC12 watersheds overlapping Loudoun or Fairfax, exact queries, and source records for withdrawal conditions, treatment planning, and service estimation.",
+      "spatialCoverage": "Loudoun and Fairfax counties, Virginia, and overlapping watersheds",
+      "temporalCoverage": "2020-01-01/2026-11-23",
+      "sources": [
+        "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51107&startdate=2020-01&enddate=2020-12&intersection=overlap&timeres=monthly&limit=600&format=json&skip=0",
+        "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51059&startdate=2020-01&enddate=2020-12&intersection=overlap&timeres=monthly&limit=600&format=json&skip=0",
+        "https://api.water.usgs.gov/nwaa-data/models/wu-public-supply-wd",
+        "https://www.fema.gov/sites/default/files/documents/fema_r3-pdmc-pj-03-va-2019-005-loudounwater-fea-signedfonsi-20231116.pdf#page=14",
+        "https://www.loudounwater.org/sites/default/files/2026-05/__2026-2035_CIP_FINAL_with203.pdf#page=120",
+        "https://www.loudounwater.org/rates-fees-charges-penalties"
+      ],
+      "downloads": [
+        {
+          "label": "Download the 420 monthly rows for the 35 unique watersheds",
+          "path": "/blog/water-withdrawal-data-api-site-allocation.csv",
+          "format": "CSV"
+        },
+        {
+          "label": "Download exact API queries, source dates and the Loudoun Water records",
+          "path": "/blog/water-withdrawal-data-api-site-allocation.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "natural-gas-pipeline-capacity-site-service",
     "topic": "Data & APIs",
     "title": "Natural Gas Pipeline Capacity and Site Service",

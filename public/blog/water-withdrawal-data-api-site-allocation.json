@@ -1,0 +1,95 @@
+{
+  "name": "USGS public-supply withdrawal query comparison and Loudoun Water allocation records",
+  "queried_on": "2026-11-23",
+  "model": "wu-public-supply-wd",
+  "variable": "pswdtot",
+  "source_unit": "million gallons per day",
+  "model_temporal_resolution": "monthly",
+  "model_available_through": "2020-12",
+  "api_queries": [
+    {
+      "snapshot": "loudoun-2020.json",
+      "query_url": "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51107&startdate=2020-01&enddate=2020-12&intersection=overlap&timeres=monthly&limit=600&format=json&skip=0",
+      "huc12_count": 22,
+      "retrieved_on": "2026-11-23",
+      "response_sha256": "0675af06134d6485b3a86c8138e95e79a071cf6793ba7061a8245585b4e5f456"
+    },
+    {
+      "snapshot": "fairfax-2020.json",
+      "query_url": "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51059&startdate=2020-01&enddate=2020-12&intersection=overlap&timeres=monthly&limit=600&format=json&skip=0",
+      "huc12_count": 17,
+      "retrieved_on": "2026-11-23",
+      "response_sha256": "9698b2355f7535db1d4d85618d1de312e23a9a84a951022ff3a68bf49026de03"
+    },
+    {
+      "snapshot": "loudoun-envelop.json",
+      "query_url": "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51107&startdate=2020-07&enddate=2020-07&intersection=envelop&timeres=monthly&limit=600&format=json&skip=0",
+      "huc12_count": 5,
+      "retrieved_on": "2026-11-23",
+      "response_sha256": "5e6cde165ef466ff83270031154ebc989409690d3a822cfd1ac1276017b56c65"
+    },
+    {
+      "snapshot": "fairfax-envelop.json",
+      "query_url": "https://api.water.usgs.gov/nwaa-data/data?model=wu-public-supply-wd&variable=pswdtot&location=countycd:51059&startdate=2020-07&enddate=2020-07&intersection=envelop&timeres=monthly&limit=600&format=json&skip=0",
+      "huc12_count": 2,
+      "retrieved_on": "2026-11-23",
+      "response_sha256": "4527dae9de066640eddae37364abf14fe89efed02d3fe2404167330dedfb5fa0"
+    }
+  ],
+  "shared_watersheds": [
+    {
+      "huc12": "020700080902",
+      "july_2020_mgd": 10.29485
+    },
+    {
+      "huc12": "020700080905",
+      "july_2020_mgd": 22.07018
+    },
+    {
+      "huc12": "020700100703",
+      "july_2020_mgd": 10.79464
+    },
+    {
+      "huc12": "020700100704",
+      "july_2020_mgd": 25.81214
+    }
+  ],
+  "july_diagnostic": {
+    "loudoun_overlap_list_sum_mgd": 105.4157415529,
+    "fairfax_overlap_list_sum_mgd": 457.7384018054,
+    "sum_of_both_lists_mgd": 563.1541433583,
+    "sum_after_deduplication_mgd": 494.1823333583,
+    "duplicate_watershed_sum_mgd": 68.97181,
+    "method": "Sum the full HUC12 rates for this example. This diagnoses repeated watershed IDs. Neither sum estimates a county or combined two-county withdrawal rate because watershed polygons can extend outside both counties."
+  },
+  "loudoun_source_records": {
+    "withdrawal_rule_described_in_2023_fema_assessment": {
+      "permit_identifier": "VWP IP #10-2020",
+      "low_flow_threshold_cubic_feet_per_second": 1400,
+      "scope": "No off-stream raw storage in the assessment alternative. Under the stated flow condition, maximum withdrawal was tied to the preceding day’s Broad Run treated discharge.",
+      "not_a_current_permit_determination": true,
+      "source": "https://www.fema.gov/sites/default/files/documents/fema_r3-pdmc-pj-03-va-2019-005-loudounwater-fea-signedfonsi-20231116.pdf#page=14",
+      "raw_pdf_sha256": "1d2f87f0353d8f376200c4d993ac638cbde0c93a71fdd9cace2a4a8743aab505"
+    },
+    "trap_rock_phase_ii_plan": {
+      "project_id": "PWS00007",
+      "capital_plan": "2026–2035",
+      "base_treatment_capacity_mgd_in_sheet": 20,
+      "planned_capacity_mgd_title": 32,
+      "planned_capacity_mgd_project_description": 32.8,
+      "source": "https://www.loudounwater.org/sites/default/files/2026-05/__2026-2035_CIP_FINAL_with203.pdf#page=120",
+      "raw_pdf_sha256": "a96eb7028fc30f8d0d860f620991ab7a5b430bf493fddbf549610f6ea801432c",
+      "verified_commissioned_phase_ii_capacity_mgd": null
+    },
+    "example_2026_water_cooled_data_center": {
+      "example_floor_area_square_feet": 100000,
+      "process_maximum_day_water_gpd_per_square_foot": 1,
+      "process_average_day_sewer_gpd_per_square_foot": 0.125,
+      "illustrative_max_day_process_water_gpd": 100000,
+      "illustrative_average_day_process_sewer_gpd": 12500,
+      "source": "https://www.loudounwater.org/rates-fees-charges-penalties",
+      "scope": "Loudoun Water publishes these inputs for estimating process-meter availability charges. Domestic meter is separate. These figures do not describe the metered operation, allocation, or peak instantaneous water requirement of a real site.",
+      "approved_site_allocation_gpd": null
+    }
+  }
+}
