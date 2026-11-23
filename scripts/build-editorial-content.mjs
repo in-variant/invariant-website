@@ -117,6 +117,16 @@ const index = articles.map(article => {
   }
 })
 writeIfChanged(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
+const searchDir = new URL('.generated-blog-search/', base)
+mkdirSync(searchDir, { recursive: true })
+const articleSearch = Object.fromEntries(articles.map(article => [
+  article.slug,
+  [
+    ...article.sections.map(section => section.heading),
+    ...article.faqs.map(faq => faq.question),
+  ].join(' '),
+]))
+writeIfChanged(new URL('details.json', searchDir), JSON.stringify(articleSearch))
 const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
 writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
 for (const [slug, csv] of worksheets) {

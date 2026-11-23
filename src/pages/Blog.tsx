@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { RESOURCE_ARTICLES, type ResourceArticle } from '../data/resources'
+import { articleSearchWords, prepareArticleSearch, searchArticles } from '../data/blogSearch'
 import collections from '../data/blog-collections.json'
 import { INDIA_HUB } from '../data/industryArticles'
 import './Blog.css'
@@ -62,24 +63,6 @@ function BlogCard({ article, variant = 'standard' }: { article: ResourceArticle;
   )
 }
 
-function normalizeSearch(value: string) {
-  return value.toLowerCase()
-    .replace(/(?<=\d),(?=\d{3}\b)/g, '')
-    .replace(/[‐‑–—-]/g, ' ')
-    .replace(/(\d)\s*(mw|gw|kw)\b/g, '$1 $2')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-const POWER_VALUE = /\b(\d+(?:\.\d+)?) (kw|mw|gw)\b/g
-const WATTS_PER_UNIT = { kw: 1e3, mw: 1e6, gw: 1e9 }
-
-function powerValues(text: string) {
-  return [...text.matchAll(POWER_VALUE)].map(([, amount, unit]) =>
-    Number((Number(amount) * WATTS_PER_UNIT[unit as keyof typeof WATTS_PER_UNIT]).toPrecision(15)),
-  )
-}
-
 function ArticleArchive({ articles, filtered }: { articles: ResourceArticle[]; filtered: boolean }) {
   if (articles.length === 0) return null
 
@@ -105,19 +88,27 @@ function ArticleArchive({ articles, filtered }: { articles: ResourceArticle[]; f
 export default function Blog() {
   const [topic, setTopic] = useState<typeof TOPICS[number]>('All articles')
   const [query, setQuery] = useState('')
-  const normalizedQuery = normalizeSearch(query)
-  const requestedPower = powerValues(normalizedQuery)
-  const terms = normalizedQuery.replace(POWER_VALUE, ' ').split(/\s+/).filter(Boolean)
-  const isFiltered = topic !== 'All articles' || normalizedQuery.length > 0
-  const articles = ARTICLES.filter((article) => {
-    if (!isFiltered) return !featuredSlugs.has(article.slug)
-    if (topic !== 'All articles' && topic !== article.topic) return false
-    const searchable = normalizeSearch(`${article.title} ${article.summary} ${article.topic} ${article.region ?? ''}`)
-    if (!terms.every(term => searchable.includes(term))) return false
-    if (requestedPower.length === 0) return true
-    const reportedPower = powerValues(searchable)
-    return requestedPower.every(power => reportedPower.includes(power))
-  })
+  const [searchDetails, setSearchDetails] = useState<Record<string, string> | null>()
+  const queryWords = articleSearchWords(query)
+  const searching = queryWords.length > 0
+  const isFiltered = topic !== 'All articles' || searching
+  const searchPending = searching && searchDetails === undefined
+  const searchIndex = useMemo(() => searching ? prepareArticleSearch(ARTICLES, searchDetails ?? {}) : [], [searchDetails, searching])
+
+  useEffect(() => {
+    if (!searchPending) return
+    let active = true
+    import('../data/.generated-blog-search/details.json').then(
+      ({ default: details }) => { if (active) setSearchDetails(details) },
+      () => { if (active) setSearchDetails(null) },
+    )
+    return () => { active = false }
+  }, [searchPending])
+
+  const candidates = searching ? searchArticles(searchIndex, queryWords) : ARTICLES
+  const articles = candidates.filter(article => isFiltered
+    ? topic === 'All articles' || topic === article.topic
+    : !featuredSlugs.has(article.slug))
 
   return (
     <div className="blog-index">
@@ -156,7 +147,10 @@ export default function Blog() {
               <div className="blog-index-filters" role="group" aria-label="Filter articles by topic">
               {TOPICS.map((value) => <button type="button" key={value} aria-pressed={topic === value} onClick={() => setTopic(value)}>{value}</button>)}
             </div>
-            <p className="blog-index-count" role="status">{articles.length} {articles.length === 1 ? 'article' : 'articles'}</p>
+            <p className="blog-index-count" role="status">
+              {searchPending ? 'Searching articles…' : `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`}
+              {searching && searchDetails === null && ' (titles and summaries only)'}
+            </p>
           </div>
           {articles.length > 0 && (
             <div className="blog-index-grid">
@@ -164,7 +158,7 @@ export default function Blog() {
             </div>
           )}
           <ArticleArchive key={String(isFiltered)} articles={articles.slice(CARD_LIMIT)} filtered={isFiltered} />
-          {articles.length === 0 && (
+          {articles.length === 0 && !searchPending && (
             <div className="blog-index-empty"><p>No articles match your search.</p><button type="button" onClick={() => { setTopic('All articles'); setQuery('') }}>Clear filters</button></div>
           )}
         </section>
