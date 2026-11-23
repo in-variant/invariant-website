@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { INDUSTRY_HUBS, hubIncludes } from '../data/industryHubs'
+import { versionedImage } from '../data/industryArticles'
 import { RESOURCE_ARTICLES } from '../data/resources'
 import { ResourceArticleCard } from '../components/ResourceCards'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
@@ -13,10 +14,10 @@ export default function IndustryHub({ slug, renderSeo = true }: { slug: string; 
   const label = hub.region === 'India' ? 'India data centre approvals' : `${hub.topic} compliance`
   const canonical = `${SITE_URL}/${hub.slug}`
   return <article className="industry-hub">
-    {renderSeo && <Seo title={hub.title} description={hub.description} canonical={canonical} ogImage={`${SITE_URL}${hub.image}`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: canonical, hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }]} />}
+    {renderSeo && <Seo title={hub.title} description={hub.description} canonical={canonical} ogImage={`${SITE_URL}${versionedImage(hub.image)}`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: canonical, hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }]} />}
     <header className="industry-hub-hero industry-hub-container">
       <div className="industry-hub-heading"><p className="industry-hub-eyebrow">{hub.region === 'India' ? 'Data centres / India' : `${hub.topic} / Compliance`}</p><h1>{hub.heading}</h1><p>{hub.intro}</p><a className="industry-hub-jump" href="#compliance-map">Explore the requirements <span aria-hidden="true">↓</span></a></div>
-      <figure><img src={hub.image} width="1600" height="900" alt={hub.region === 'India' ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" /></figure>
+      <figure><img src={versionedImage(hub.image)} width="1600" height="900" alt={hub.region === 'India' ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" /></figure>
     </header>
     {hub.topic === 'Data Centers' && !hub.region && <section className="industry-register industry-hub-container" aria-labelledby="register-heading">
       <div><p className="industry-hub-eyebrow">A working document</p><h2 id="register-heading">Start your compliance register.</h2></div>

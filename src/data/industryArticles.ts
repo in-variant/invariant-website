@@ -1,4 +1,5 @@
 import dataCenters from './industry-articles/data-centers.json'
+import coverVersions from './cover-versions.json'
 import oilGas from './industry-articles/oil-gas.json'
 import dataCenterOperations from './industry-articles/data-center-operations.json'
 import dataCenterFireSafety from './industry-articles/data-center-fire-safety.json'
@@ -46,7 +47,9 @@ export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ?
 export const INDIA_PILLAR = 'data-centres-in-india'
 export const INDIA_HUB = '/data-centre-compliance-india'
 export const isIndiaRegion = (region?: string) => /(^|, )India$/.test(region ?? '')
-export const articleImage = (slug: string) => `/blog/industry/${slug}.webp`
+/** Cover URL with a content-hash query (covers are cached as immutable for a year; see build-industry-content.mjs). */
+export const versionedImage = (path: string) => { const v = (coverVersions as Record<string, string>)[path]; return v ? `${path}?v=${v}` : path }
+export const articleImage = (slug: string) => versionedImage(`/blog/industry/${slug}.webp`)
 
 /** Pillar for the site due diligence cluster (feasibility screen, then utility-grade power study). */
 export const DILIGENCE_PILLAR = 'data-center-site-due-diligence'

@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 
 const base = new URL('../src/data/', import.meta.url)
 const files = ['india-data-centres.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'oil-gas.json']
@@ -21,10 +22,17 @@ for (const article of articles) {
   }
   for (const slug of article.relatedSlugs) if (!slugs.has(slug)) throw new Error(`Missing related article ${slug}`)
 }
+// Cover images are served with a one-year immutable cache, so each URL carries a short content hash:
+// a regenerated cover gets a new URL and browsers fetch it instead of showing the cached old one.
+const coverDir = new URL('../public/blog/industry/', import.meta.url)
+const coverVersions = Object.fromEntries(readdirSync(coverDir).filter(file => file.endsWith('.webp'))
+  .map(file => [`/blog/industry/${file}`, createHash('md5').update(readFileSync(new URL(file, coverDir))).digest('hex').slice(0, 8)]))
+writeFileSync(new URL('cover-versions.json', base), `${JSON.stringify(coverVersions, null, 2)}\n`)
+const versioned = path => coverVersions[path] ? `${path}?v=${coverVersions[path]}` : path
 const index = articles.map(article => ({
   slug: article.slug, topic: article.topic, title: article.title, summary: article.description,
   date: new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-  dateTime: article.date, image: `/blog/industry/${article.slug}.webp`, ...(article.region ? { region: article.region } : {}),
+  dateTime: article.date, image: versioned(`/blog/industry/${article.slug}.webp`), ...(article.region ? { region: article.region } : {}),
 }))
 writeFileSync(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
 const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)

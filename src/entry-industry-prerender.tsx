@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import SiteCrosshair from './components/SiteCrosshair'
 import IndustryArticle, { articleJsonLd } from './pages/blog/IndustryArticle'
 import IndustryHub from './pages/IndustryHub'
-import { INDUSTRY_ARTICLES, articleImage } from './data/industryArticles'
+import { INDUSTRY_ARTICLES, articleImage, versionedImage } from './data/industryArticles'
 import { INDUSTRY_HUBS, hubIncludes } from './data/industryHubs'
 import { SITE_URL, ORG_SCHEMA, breadcrumbSchema } from './components/Seo'
 import type { ReactNode } from 'react'
@@ -28,7 +28,7 @@ export function industryPages() {
       }
     }),
     ...INDUSTRY_HUBS.map(hub => ({
-      slug: hub.slug, title: `${hub.title} | Invariant`, description: hub.description, canonical: `${SITE_URL}/${hub.slug}`, ogImage: `${SITE_URL}${hub.image}`, ogType: 'website',
+      slug: hub.slug, title: `${hub.title} | Invariant`, description: hub.description, canonical: `${SITE_URL}/${hub.slug}`, ogImage: `${SITE_URL}${versionedImage(hub.image)}`, ogType: 'website',
       source: 'src/pages/IndustryHub.tsx',
       bodyHtml: body(`/${hub.slug}`, <IndustryHub slug={hub.slug} renderSeo={false} />),
       jsonLd: [ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: hub.region === 'India' ? 'India data centre approvals' : `${hub.topic} compliance`, url: `${SITE_URL}/${hub.slug}` }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: `${SITE_URL}/${hub.slug}`, hasPart: INDUSTRY_ARTICLES.filter(article => hubIncludes(hub, article)).map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }],
