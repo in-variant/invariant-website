@@ -1,0 +1,153 @@
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+
+const base = new URL('../src/data/', import.meta.url)
+const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
+const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
+const legacyArticles = JSON.parse(readFileSync(new URL('legacy-blog-articles.json', base), 'utf8'))
+const blogCollections = JSON.parse(readFileSync(new URL('blog-collections.json', base), 'utf8'))
+const writeIfChanged = (file, content) => {
+  if (!existsSync(file) || readFileSync(file, 'utf8') !== content) writeFileSync(file, content)
+}
+function writeEntryModules(directory, entries) {
+  const filenames = new Set(entries.map(entry => `${entry.slug}.json`))
+  mkdirSync(directory, { recursive: true })
+  for (const file of readdirSync(directory)) {
+    if (/^[a-z0-9-]+\.json$/.test(file) && !filenames.has(file)) unlinkSync(new URL(file, directory))
+  }
+  for (const entry of entries) {
+    writeIfChanged(new URL(`${entry.slug}.json`, directory), JSON.stringify(entry))
+  }
+}
+const worksheets = new Map()
+const datasets = new Map()
+const dataFormats = { CSV: 'csv', GeoJSON: 'geojson', JSON: 'json' }
+const worksheetColumns = ['Candidate or parcel', 'Status', 'Source or link', 'Evidence date', 'Assigned to', 'Follow-up due', 'Notes']
+const csvCell = value => {
+  const safe = /^[\s]*[=+@-]/.test(value) ? "'" + value : value
+  return '"' + safe.replaceAll('"', '""') + '"'
+}
+const allArticles = [...articles, ...legacyArticles]
+const slugs = new Set(allArticles.map(article => article.slug))
+if (slugs.size !== allArticles.length) throw new Error('Duplicate article slug')
+for (const article of allArticles) {
+  if (!/^[a-z0-9-]+$/.test(article.slug)) throw new Error(`Invalid slug: ${article.slug}`)
+}
+const publicBlogSlugs = new Set(slugs)
+for (const collection of blogCollections) {
+  if (!/^[a-z0-9-]+$/.test(collection.slug) || publicBlogSlugs.has(collection.slug)) {
+    throw new Error(`Invalid or duplicate blog collection slug: ${collection.slug}`)
+  }
+  if (!/^\/blog\/industry\/[a-z0-9-]+\.webp$/.test(collection.image) ||
+      !existsSync(new URL(`../public${collection.image}`, import.meta.url))) {
+    throw new Error(`Invalid cover for blog collection: ${collection.slug}`)
+  }
+  if (collection.worksheet && (
+    !/^\/blog\/[a-z0-9-]+\.csv$/.test(collection.worksheet.path) ||
+    !existsSync(new URL(`../public${collection.worksheet.path}`, import.meta.url))
+  )) {
+    throw new Error(`Invalid worksheet for blog collection: ${collection.slug}`)
+  }
+  const guides = collection.guides.map(guide => guide.slug)
+  if (!guides.length || new Set(guides).size !== guides.length || guides.some(slug => !slugs.has(slug))) {
+    throw new Error(`Missing or duplicate guide in blog collection: ${collection.slug}`)
+  }
+  publicBlogSlugs.add(collection.slug)
+}
+for (const article of articles) {
+  if (!['Data Centers', 'Oil & Gas', 'Data & APIs'].includes(article.topic)) throw new Error(`Invalid topic: ${article.slug}`)
+  if (JSON.stringify(article).includes('\u2014')) throw new Error(`Em dash in ${article.slug}`)
+  for (const field of ['title', 'description', 'intro', 'date']) if (!article[field]?.trim()) throw new Error(`Missing ${field}: ${article.slug}`)
+  if (article.updatedDate && (!/^\d{4}-\d{2}-\d{2}$/.test(article.updatedDate) || article.updatedDate < article.date)) {
+    throw new Error(`Invalid revision date: ${article.slug}`)
+  }
+  const ids = new Set(article.sources.map(source => source.id))
+  if (ids.size !== article.sources.length) throw new Error(`Duplicate source: ${article.slug}`)
+  for (const source of article.sources) if (new URL(source.url).protocol !== 'https:') throw new Error(`Invalid source URL: ${source.url}`)
+  if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
+  for (const block of [...article.sections.flatMap(section => section.blocks), ...article.faqs]) {
+    for (const id of [...(block.sourceIds ?? []), ...(block.rowSourceIds?.flat() ?? [])]) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)
+    if (block.type === 'links') for (const item of block.items) if (!publicBlogSlugs.has(item.slug)) throw new Error(`Missing linked blog page ${item.slug}: ${article.slug}`)
+    if (block.type === 'download' && (!/^\/blog\/[a-z0-9-]+\.[a-z0-9]+$/.test(block.path) || !existsSync(new URL(`../public${block.path}`, import.meta.url)))) throw new Error(`Invalid download ${block.path}: ${article.slug}`)
+    if (block.type === 'table' && block.rows.some(row => row.length !== block.columns.length)) throw new Error(`Uneven table: ${article.slug}`)
+    if (block.rowSourceIds && block.rowSourceIds.length !== block.rows.length) throw new Error(`Uneven table citations: ${article.slug}`)
+    if (block.type === 'table' && block.worksheet) {
+      if (worksheets.has(article.slug)) throw new Error(`Multiple worksheets for ${article.slug}`)
+      const columns = [...block.columns, ...worksheetColumns]
+      const rows = block.rows.map(row => [...row, ...worksheetColumns.map(() => '')])
+      worksheets.set(article.slug, [columns, ...rows].map(row => row.map(csvCell).join(',')).join('\n') + '\n')
+    }
+  }
+  for (const slug of article.relatedSlugs) if (!slugs.has(slug)) throw new Error(`Missing related article ${slug}`)
+  if (article.dataset) {
+    const { sourceIds, ...details } = article.dataset
+    const sources = sourceIds?.map(id => article.sources.find(source => source.id === id)?.url)
+    const downloads = article.sections.flatMap(section => section.blocks)
+      .filter(block => block.type === 'download')
+      .map(({ label, path, format }) => ({ label, path, format }))
+    const descriptionLength = details.description?.trim().length ?? 0
+    if (!details.name?.trim() || descriptionLength < 50 || descriptionLength > 5000 || !sources?.length || sources.includes(undefined)) {
+      throw new Error(`Invalid dataset metadata: ${article.slug}`)
+    }
+    if (!downloads.length || new Set(downloads.map(file => file.path)).size !== downloads.length ||
+      downloads.some(file => !Object.hasOwn(dataFormats, file.format) || !file.path.endsWith(`.${dataFormats[file.format]}`))) {
+      throw new Error(`Invalid dataset downloads: ${article.slug}`)
+    }
+    datasets.set(article.slug, { ...details, sources, downloads })
+  }
+}
+// Immutable image URLs change when the cover bytes change.
+const coverDir = new URL('../public/blog/industry/', import.meta.url)
+const coverVersions = Object.fromEntries(readdirSync(coverDir).filter(file => file.endsWith('.webp')).sort()
+  .map(file => [`/blog/industry/${file}`, createHash('md5').update(readFileSync(new URL(file, coverDir))).digest('hex').slice(0, 8)]))
+writeIfChanged(new URL('cover-versions.json', base), `${JSON.stringify(coverVersions, null, 2)}\n`)
+const index = articles.map(article => {
+  const cover = article.coverFile ?? `${article.slug}.webp`
+  const imagePath = `/blog/industry/${cover}`
+  const version = coverVersions[imagePath]
+  if (!/^[a-z0-9-]+\.webp$/.test(cover) || !version) {
+    throw new Error(`Invalid cover ${cover}: ${article.slug}`)
+  }
+  const image = `${imagePath}?v=${version}`
+  return {
+    slug: article.slug, topic: article.topic, title: article.title, summary: article.description,
+    date: new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+    dateTime: article.date, ...(article.region && { region: article.region }), ...(article.updatedDate && { updatedDate: article.updatedDate }), image,
+    ...(datasets.has(article.slug) && { dataset: datasets.get(article.slug) }),
+  }
+})
+writeIfChanged(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
+const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
+writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
+for (const [slug, csv] of worksheets) {
+  writeIfChanged(new URL(`../public/blog/${slug}.csv`, import.meta.url), csv)
+}
+const catalog = [...index, ...legacyArticles]
+function relatedReading(current, relatedSlugs = []) {
+  const candidates = catalog.filter(article => article.slug !== current.slug)
+  const selected = relatedSlugs.flatMap(slug => candidates.filter(article => article.slug === slug))
+  const fallback = candidates.filter(article => !selected.includes(article))
+    .sort((a, b) => Number(b.topic === current.topic) - Number(a.topic === current.topic))
+  return [...selected, ...fallback].slice(0, 2).map(({ slug, title, topic, image }) => ({ slug, title, topic, image }))
+}
+writeEntryModules(new URL('.generated-articles/', base), articles.map(({ relatedSlugs, dataset, coverFile, ...article }, i) => ({
+  ...article,
+  published: index[i],
+  relatedReading: relatedReading(index[i], relatedSlugs),
+})))
+writeEntryModules(new URL('.generated-legacy-articles/', base), legacyArticles.map(article => ({
+  ...article,
+  relatedReading: relatedReading(article),
+})))
+
+const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
+if (new Set(glossary.map(entry => entry.slug)).size !== glossary.length) throw new Error('Duplicate glossary entry slug')
+for (const entry of glossary) {
+  if (!/^[a-z0-9-]+$/.test(entry.slug)) throw new Error(`Invalid glossary slug: ${entry.slug}`)
+}
+writeEntryModules(new URL('.generated-glossary/entries/', base), glossary)
+const summaries = glossary.map(({ slug, term, aliases, short_definition, topic }) => ({
+  slug, term, aliases, short_definition, topic,
+}))
+writeIfChanged(new URL('.generated-glossary/index.json', base), JSON.stringify(summaries))
+console.log(`Validated and indexed ${articles.length} industry guides and ${glossary.length} glossary entries`)

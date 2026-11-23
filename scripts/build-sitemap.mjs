@@ -9,6 +9,9 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SITE = 'https://invariant-ai.com'
+const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
+const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
+const blogLastmod = [...industryArticles, ...blogCollections].map(entry => entry.updatedDate ?? entry.dateTime).sort().at(-1)
 
 // ── Live core pages ──────────────────────────────────────────────────────────
 const CORE = [
@@ -16,10 +19,11 @@ const CORE = [
   { loc: '/product', changefreq: 'monthly', priority: '0.8' },
   { loc: '/contact', changefreq: 'monthly', priority: '0.7' },
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
-  { loc: '/blog', changefreq: 'weekly', priority: '0.8' },
+  { loc: '/blog', lastmod: blogLastmod, changefreq: 'weekly', priority: '0.8' },
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
   { loc: '/research', changefreq: 'monthly', priority: '0.85' },
   { loc: '/resources', changefreq: 'weekly', priority: '0.85' },
+  { loc: '/datasets', changefreq: 'monthly', priority: '0.7' },
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },
   { loc: '/about', changefreq: 'monthly', priority: '0.7' },
@@ -33,17 +37,17 @@ const CORE = [
 ]
 
 const BLOG = [
+  ...blogCollections.map(collection => ({ loc: `/blog/${collection.slug}`, lastmod: collection.updatedDate, changefreq: 'monthly', priority: '0.8' })),
   { loc: '/blog/fermibench-sota', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/part100-vs-part53-siting', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/seismic-design-shift', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/nuclear-compliance-tam', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog/space-compliance-tam', changefreq: 'monthly', priority: '0.7' },
 ]
-const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const industryUrls = [
   ...['data-center-compliance', 'oil-gas-compliance'].map(slug => ({ loc: `/${slug}`, changefreq: 'monthly', priority: '0.85', lastmod: '2026-09-15' })),
   { loc: '/data-centre-compliance-india', changefreq: 'monthly', priority: '0.85', lastmod: '2026-11-21' },
-  ...industryArticles.map(article => ({ loc: `/blog/${article.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: article.dateTime })),
+  ...industryArticles.map(article => ({ loc: `/blog/${article.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: article.updatedDate ?? article.dateTime })),
 ]
 
 // ── Page registry (pillars + clusters) ───────────────────────────────────────
@@ -65,6 +69,7 @@ while ((m = blockRe.exec(registry))) {
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
 const glossaryUrls = (glossary.entries || []).map((e) => ({
   loc: `/glossary/${e.slug}`,
+  lastmod: e.last_updated,
   changefreq: 'monthly',
   priority: '0.7',
 }))
@@ -77,13 +82,12 @@ const seen = new Map()
 for (const u of all) seen.set(u.loc, u)
 const unique = Array.from(seen.values())
 
-const today = new Date().toISOString().slice(0, 10)
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${unique
   .map(
     (u) =>
-      `  <url><loc>${SITE}${u.loc}</loc><lastmod>${u.lastmod ?? today}</lastmod><changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
+      `  <url><loc>${SITE}${u.loc}</loc>${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}<changefreq>${u.changefreq}</changefreq><priority>${u.priority}</priority></url>`,
   )
   .join('\n')}
 </urlset>

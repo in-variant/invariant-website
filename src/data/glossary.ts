@@ -1,4 +1,6 @@
-import raw from '../pages/_data/glossary.json'
+import summaries from './.generated-glossary/index.json'
+
+export type GlossarySummary = Pick<GlossaryEntry, 'slug' | 'term' | 'aliases' | 'short_definition' | 'topic'>
 
 export type GlossaryEntry = {
   slug: string
@@ -14,14 +16,11 @@ export type GlossaryEntry = {
   guide?: { label: string; path: string }
 }
 
-export const GLOSSARY: GlossaryEntry[] = (raw.entries ?? []) as GlossaryEntry[]
+export const GLOSSARY: GlossarySummary[] = summaries as GlossarySummary[]
+export const getGlossarySummary = (slug: string) => GLOSSARY.find(entry => entry.slug === slug)
 
-export function getEntry(slug: string): GlossaryEntry | undefined {
-  return GLOSSARY.find((e) => e.slug === slug)
-}
-
-export function entriesByTopic(): Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', GlossaryEntry[]> {
-  const groups = { space: [] as GlossaryEntry[], nuclear: [] as GlossaryEntry[], aerospace: [] as GlossaryEntry[], 'data-centers': [] as GlossaryEntry[] }
+export function entriesByTopic() {
+  const groups: Record<GlossaryEntry['topic'], GlossarySummary[]> = { space: [], nuclear: [], aerospace: [], 'data-centers': [] }
   for (const e of GLOSSARY) groups[e.topic]?.push(e)
   return groups
 }

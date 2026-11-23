@@ -11,58 +11,50 @@ const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', st
   'data-centers': 'Data center',
 }
 
+const glossarySeo = {
+  title: 'Infrastructure and Compliance Glossary',
+  description: 'Source-backed definitions for data center siting, space, aerospace, and nuclear compliance.',
+  canonical: URL,
+  ogImage: `${SITE_URL}/og/glossary.png`,
+  jsonLd: [
+    ORG_SCHEMA,
+    breadcrumbSchema([{ name: 'Invariant', url: SITE_URL + '/' }, { name: 'Glossary', url: URL }]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'DefinedTermSet',
+      '@id': `${URL}#defined-term-set`,
+      name: 'Invariant Infrastructure and Compliance Glossary',
+      url: URL,
+      hasDefinedTerm: GLOSSARY.map(entry => ({
+        '@type': 'DefinedTerm',
+        '@id': `${URL}/${entry.slug}`,
+        name: entry.term,
+        alternateName: entry.aliases,
+        description: entry.short_definition,
+        url: `${URL}/${entry.slug}`,
+      })),
+    },
+  ],
+}
+
 export default function Glossary() {
   const groups = entriesByTopic()
   for (const k of Object.keys(groups) as (keyof typeof groups)[]) {
     groups[k].sort((a, b) => a.term.localeCompare(b.term))
   }
 
-  const definedTermSet =
-    GLOSSARY.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'DefinedTermSet',
-          '@id': `${URL}#glossary`,
-          name: 'Invariant Compliance Glossary',
-          description:
-            'Authoritative definitions of regulatory, standards, and qualification terms used across space, aerospace, and nuclear compliance.',
-          url: URL,
-          hasDefinedTerm: GLOSSARY.map((e) => ({
-            '@type': 'DefinedTerm',
-            '@id': `${SITE_URL}/glossary/${e.slug}`,
-            name: e.term,
-            alternateName: e.aliases,
-            description: e.short_definition,
-            inDefinedTermSet: `${URL}#glossary`,
-            url: `${SITE_URL}/glossary/${e.slug}`,
-          })),
-        }
-      : null
 
   return (
     <>
-      <Seo
-        title="Glossary of space, aerospace, and nuclear compliance terms"
-        description="Authoritative, citation-backed definitions of every regulatory, standards, and qualification term across FAA Part 450, FCC, NOAA, IN-SPACe, ECSS, NRC 10 CFR Parts 50/52/53, and more."
-        canonical={URL}
-        ogImage={`${SITE_URL}/og/glossary.png`}
-        jsonLd={[
-          ORG_SCHEMA,
-          breadcrumbSchema([
-            { name: 'Invariant', url: SITE_URL + '/' },
-            { name: 'Glossary', url: URL },
-          ]),
-          ...(definedTermSet ? [definedTermSet] : []),
-        ]}
-      />
+      <Seo {...glossarySeo} />
       <article className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
           <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Glossary</p>
           <h1 className="mt-5 font-serif text-4xl font-normal leading-[1.04] tracking-[-0.025em] text-ink md:text-5xl lg:text-6xl">
-            A glossary of space, aerospace, and nuclear compliance.
+            Infrastructure and compliance glossary
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Authoritative definitions of every regulatory, standards, and qualification term we work with, each one tied back to the primary source.
+            Definitions for data center siting, space, aerospace, and nuclear compliance, with links to the original sources.
           </p>
           {GLOSSARY.length === 0 ? (
             <p className="mt-10 font-sans text-base text-ink/60">

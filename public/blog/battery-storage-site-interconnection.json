@@ -1,0 +1,92 @@
+{
+  "title": "Battery import and export evidence from three connection studies",
+  "retrieved_date": "2026-11-22",
+  "method": "Record charging and discharge evidence as stated in the specified section of each study. The records use different operators, years, and project conditions. They describe study evidence rather than statements about current service rights.",
+  "public_study_records": [
+    {
+      "request_id": "AG2-272",
+      "project": "Tupelo Storage",
+      "location": "Pittsylvania County, Virginia",
+      "point_of_interconnection": "Berry Hill 138 kV",
+      "document_stage": "Phase II System Impact Study",
+      "published_date": "2026-06-03",
+      "source_url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_2/AG2-272/AG2-272_imp_PHASE_2.htm",
+      "source_locator": "General, Point of Interconnection, Cost Summary",
+      "source_sha256": "0c133e1eeb39906b0c9e2dfbbb4e2474811c87db90cd2eb9aaaacc46cbe23688",
+      "evidence": {
+        "maximum_facility_output_mw": 55,
+        "energy_capacity_mwh_as_reported": 220,
+        "studied_capacity_mw_as_reported": 21.3,
+        "grid_charging_flag_in_general_section": true,
+        "numeric_import_mw_in_general_section": null,
+        "allocated_interconnection_estimate_usd": 7643225,
+        "base_case_year": 2028
+      }
+    },
+    {
+      "request_id": "W3-093",
+      "project": "Deka Road",
+      "location": "Fleetwood, Pennsylvania",
+      "point_of_interconnection": "Existing East Penn South Main substation connection, 69 kV",
+      "document_stage": "Combined Feasibility/Impact Study",
+      "published_date": "2011-06",
+      "source_url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/feas_docs/w3093_fea.pdf",
+      "source_locator": "Page 2, Connection Facilities",
+      "source_sha256": "81bd51ae96775ea6f8f76b7b38f205785e0c574e45c487322eae5c839de532fc",
+      "evidence": {
+        "studied_export_mw": 3,
+        "studied_import_mw": 3.6,
+        "studied_capacity_mw_as_reported": 0,
+        "export_curtailable_for_reliability": true,
+        "connection_behind_existing_meter": true
+      }
+    },
+    {
+      "request_id": "CAA 2020-683",
+      "project": "Oneida Energy Storage",
+      "location": "Haldimand County, Ontario",
+      "point_of_interconnection": "Hydro One 230 kV circuits near Jarvis Transformer Station",
+      "document_stage": "Final System Impact Assessment with conditional approval finding",
+      "published_date": "2022-04-14",
+      "source_url": "https://www.ieso.ca/-/media/Files/IESO/caa/CAA_2020-683_Final_Report.pdf",
+      "source_locator": "Pages 5–7, project description, findings and connection requirements",
+      "source_sha256": "e9a3acae31114a38be16ae0f1103c1cc04c89e5489d7d202309520588c8bb9e4",
+      "evidence": {
+        "maximum_injection_in_assessments_mw": 250,
+        "maximum_withdrawal_in_assessments_mw": 250,
+        "energy_capacity_mwh_as_reported": 1000,
+        "reactive_power_requirement_as_percent_of_rated_active_power": 33,
+        "assessed_reactive_power_at_maximum_export_as_percent_of_rated_active_power": 28.4,
+        "operating_conditions": "Pre-construction study scope. Certain outages restricted capability to provide maximum active power alongside required reactive power."
+      }
+    }
+  ],
+  "illustrative_recharge_model": {
+    "description": "Independent toy model for two candidate operating windows. The model has no relationship to the projects in the study records.",
+    "target_export_mw": 100,
+    "target_export_mwh": 400,
+    "usable_export_energy_mwh_at_point_of_interconnection": 400,
+    "import_limit_mw": 50,
+    "round_trip_efficiency_at_point_of_interconnection": 0.9,
+    "starting_state": "Empty usable energy window before charging. Enough charge headroom is available for the calculation.",
+    "formula": "min(usable export energy, import MW × allowed charge hours × round-trip efficiency)",
+    "minimum_full_recharge_hours": 8.888889,
+    "scenarios": [
+      {
+        "charge_window_hours": 8,
+        "max_grid_energy_in_mwh": 400,
+        "recharge_supported_export_energy_mwh": 360,
+        "hours_at_full_export": 3.6,
+        "shortfall_mwh": 40
+      },
+      {
+        "charge_window_hours": 9,
+        "max_grid_energy_in_mwh": 450,
+        "recharge_supported_export_energy_mwh": 400,
+        "hours_at_full_export": 4.0,
+        "shortfall_mwh": 0
+      }
+    ],
+    "excluded": "Auxiliary demand and losses are included in the illustrative meter-to-meter efficiency. Ramp, reserve, efficiency variation, derating, and price are omitted."
+  }
+}

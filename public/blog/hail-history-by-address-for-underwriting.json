@@ -1,0 +1,393 @@
+{
+  "name": "Denver May 30, 2024 hail reports and radar estimates",
+  "checked_on": "2026-11-22",
+  "storm_local_date": "2024-05-30",
+  "scope": "Selected reports and an extract of archived radar estimates. Points A and B are illustrative sample coordinates. No building, claim, damage outcome or policy decision is identified.",
+  "method": {
+    "report_selection": "Search hail records from NCEI episode 191135 with numeric magnitude and published start coordinates in the local 8 p.m. to midnight window. Keep records within 5 km of each point. Distances use a 6371.0088 km Earth radius. The three selected records have extra provenance fields.",
+    "storm_events_times": "Parse each recorded start as fixed UTC−07:00 (MST-7), then convert to UTC and America/Denver separately.",
+    "radar_sampling": "Decode GRIB2 209/3/32 with ecCodes and use its nearest grid center without interpolation. The 240-minute product is a trailing peak estimate at each grid cell.",
+    "inch_conversion": "Divide millimeters by 25.4 and round to two decimals.",
+    "raw_value_codes": {
+      "-1": "missing",
+      "-3": "no radar coverage"
+    },
+    "grid_resolution_degrees": 0.01,
+    "radar_product_guide": "https://www.nssl.noaa.gov/projects/mrms/operational/tables.php",
+    "bulk_csv_fields": "https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/Storm-Data-Bulk-csv-Format.pdf"
+  },
+  "storm_events_source": {
+    "source_url": "https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/StormEvents_details-ftp_v1.0_d2024_c20261119.csv.gz",
+    "source_gzip_sha256": "c8cd847ae2e0feaf6966b531e2d221cc0649f76393953ca3ba2d1443ff7a1cfb",
+    "note": "This file is a later archive version and does not establish when an event record was first available."
+  },
+  "illustrative_points": {
+    "A": {
+      "lat_lon": [
+        39.788,
+        -104.889
+      ],
+      "observed_hail_at_roof_inches": null,
+      "roof_damage_observed": null
+    },
+    "B": {
+      "lat_lon": [
+        39.752,
+        -104.902
+      ],
+      "observed_hail_at_roof_inches": null,
+      "roof_damage_observed": null
+    }
+  },
+  "report_radius_query": {
+    "radius_km": 5,
+    "distance_between_points_km": 4.15,
+    "window_start_local_inclusive": "2024-05-30T20:00:00-06:00",
+    "window_end_local_exclusive": "2024-05-31T00:00:00-06:00",
+    "matching_records_by_point": {
+      "A": [
+        {
+          "event_id": 1176829,
+          "published_start_lat_lon": [
+            39.79,
+            -104.88
+          ],
+          "begin_time_utc": "2024-05-31T04:12:00+00:00",
+          "reported_hail_size_inches": 2.75,
+          "distance_km": 0.8
+        },
+        {
+          "event_id": 1176876,
+          "published_start_lat_lon": [
+            39.79,
+            -104.88
+          ],
+          "begin_time_utc": "2024-05-31T04:04:00+00:00",
+          "reported_hail_size_inches": 2.5,
+          "distance_km": 0.8
+        },
+        {
+          "event_id": 1176830,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:05:00+00:00",
+          "reported_hail_size_inches": 2.25,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176834,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:02:00+00:00",
+          "reported_hail_size_inches": 1.75,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176835,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:02:00+00:00",
+          "reported_hail_size_inches": 1.5,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176836,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:02:00+00:00",
+          "reported_hail_size_inches": 1.5,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176838,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:02:00+00:00",
+          "reported_hail_size_inches": 1.5,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176837,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:02:00+00:00",
+          "reported_hail_size_inches": 1.25,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176833,
+          "published_start_lat_lon": [
+            39.81,
+            -104.87
+          ],
+          "begin_time_utc": "2024-05-31T04:05:00+00:00",
+          "reported_hail_size_inches": 1.0,
+          "distance_km": 2.94
+        },
+        {
+          "event_id": 1176868,
+          "published_start_lat_lon": [
+            39.75,
+            -104.88
+          ],
+          "begin_time_utc": "2024-05-31T05:10:00+00:00",
+          "reported_hail_size_inches": 1.0,
+          "distance_km": 4.29
+        }
+      ],
+      "B": [
+        {
+          "event_id": 1176829,
+          "published_start_lat_lon": [
+            39.79,
+            -104.88
+          ],
+          "begin_time_utc": "2024-05-31T04:12:00+00:00",
+          "reported_hail_size_inches": 2.75,
+          "distance_km": 4.62
+        },
+        {
+          "event_id": 1176876,
+          "published_start_lat_lon": [
+            39.79,
+            -104.88
+          ],
+          "begin_time_utc": "2024-05-31T04:04:00+00:00",
+          "reported_hail_size_inches": 2.5,
+          "distance_km": 4.62
+        },
+        {
+          "event_id": 1176858,
+          "published_start_lat_lon": [
+            39.74,
+            -104.92
+          ],
+          "begin_time_utc": "2024-05-31T04:54:00+00:00",
+          "reported_hail_size_inches": 1.75,
+          "distance_km": 2.04
+        },
+        {
+          "event_id": 1176887,
+          "published_start_lat_lon": [
+            39.72,
+            -104.9
+          ],
+          "begin_time_utc": "2024-05-31T04:57:00+00:00",
+          "reported_hail_size_inches": 1.75,
+          "distance_km": 3.56
+        },
+        {
+          "event_id": 1176881,
+          "published_start_lat_lon": [
+            39.72,
+            -104.92
+          ],
+          "begin_time_utc": "2024-05-31T04:56:00+00:00",
+          "reported_hail_size_inches": 1.75,
+          "distance_km": 3.88
+        },
+        {
+          "event_id": 1176864,
+          "published_start_lat_lon": [
+            39.73,
+            -104.9
+          ],
+          "begin_time_utc": "2024-05-31T04:56:00+00:00",
+          "reported_hail_size_inches": 1.25,
+          "distance_km": 2.45
+        },
+        {
+          "event_id": 1176882,
+          "published_start_lat_lon": [
+            39.74,
+            -104.93
+          ],
+          "begin_time_utc": "2024-05-31T04:51:00+00:00",
+          "reported_hail_size_inches": 1.25,
+          "distance_km": 2.74
+        },
+        {
+          "event_id": 1176859,
+          "published_start_lat_lon": [
+            39.74,
+            -104.95
+          ],
+          "begin_time_utc": "2024-05-31T04:51:00+00:00",
+          "reported_hail_size_inches": 1.25,
+          "distance_km": 4.32
+        },
+        {
+          "event_id": 1176868,
+          "published_start_lat_lon": [
+            39.75,
+            -104.88
+          ],
+          "begin_time_utc": "2024-05-31T05:10:00+00:00",
+          "reported_hail_size_inches": 1.0,
+          "distance_km": 1.89
+        },
+        {
+          "event_id": 1176857,
+          "published_start_lat_lon": [
+            39.73,
+            -104.91
+          ],
+          "begin_time_utc": "2024-05-31T04:54:00+00:00",
+          "reported_hail_size_inches": 1.0,
+          "distance_km": 2.54
+        },
+        {
+          "event_id": 1176870,
+          "published_start_lat_lon": [
+            39.73,
+            -104.91
+          ],
+          "begin_time_utc": "2024-05-31T04:54:00+00:00",
+          "reported_hail_size_inches": 1.0,
+          "distance_km": 2.54
+        }
+      ]
+    }
+  },
+  "selected_reports": [
+    {
+      "event_id": 1176829,
+      "episode_id": 191135,
+      "raw_begin_date_time": "30-MAY-24 21:12:00",
+      "raw_time_zone": "MST-7",
+      "begin_time_utc": "2024-05-31T04:12:00+00:00",
+      "begin_time_denver_local": "2024-05-30T22:12:00-06:00",
+      "reported_begin_position_lat_lon": [
+        39.79,
+        -104.88
+      ],
+      "county": "DENVER",
+      "reported_location": "(DEN)DENVER INTL ARP",
+      "source_category": "Public",
+      "reported_hail_size_inches": 2.75,
+      "reported_property_damage_field": null,
+      "distance_to_illustrative_point_km": {
+        "A": 0.8,
+        "B": 4.62
+      }
+    },
+    {
+      "event_id": 1176870,
+      "episode_id": 191135,
+      "raw_begin_date_time": "30-MAY-24 21:54:00",
+      "raw_time_zone": "MST-7",
+      "begin_time_utc": "2024-05-31T04:54:00+00:00",
+      "begin_time_denver_local": "2024-05-30T22:54:00-06:00",
+      "reported_begin_position_lat_lon": [
+        39.73,
+        -104.91
+      ],
+      "county": "DENVER",
+      "reported_location": "DENVER",
+      "source_category": "Public",
+      "reported_hail_size_inches": 1.0,
+      "reported_property_damage_field": null,
+      "distance_to_illustrative_point_km": {
+        "A": 6.69,
+        "B": 2.54
+      }
+    },
+    {
+      "event_id": 1176874,
+      "episode_id": 191135,
+      "raw_begin_date_time": "30-MAY-24 21:18:00",
+      "raw_time_zone": "MST-7",
+      "begin_time_utc": "2024-05-31T04:18:00+00:00",
+      "begin_time_denver_local": "2024-05-30T22:18:00-06:00",
+      "reported_begin_position_lat_lon": [
+        39.75,
+        -104.82
+      ],
+      "county": "ADAMS",
+      "reported_location": "AURORA",
+      "source_category": "Trained Spotter",
+      "reported_hail_size_inches": 2.0,
+      "reported_property_damage_field": null,
+      "distance_to_illustrative_point_km": {
+        "A": 7.25,
+        "B": 7.01
+      }
+    }
+  ],
+  "radar_windows": [
+    {
+      "window_start_utc": "2024-05-30T22:00:00+00:00",
+      "window_end_utc": "2024-05-31T02:00:00+00:00",
+      "window_end_denver_local": "2024-05-30T20:00:00-06:00",
+      "source_url": "https://noaa-mrms-pds.s3.amazonaws.com/CONUS/MESH_Max_240min_00.50/20240531/MRMS_MESH_Max_240min_00.50_20240531-020000.grib2.gz",
+      "source_gzip_sha256": "f0febfc9139c95fef3ad6439ebb033ae268591e4ea1847a182d5fb3c1c114707",
+      "nearest_cell_samples": {
+        "A": {
+          "nearest_cell_center_lat_lon": [
+            39.785,
+            -104.885
+          ],
+          "nearest_cell_center_distance_km": 0.48,
+          "raw_value": -1.0,
+          "status": "missing",
+          "mesh_mm": null,
+          "mesh_inches": null
+        },
+        "B": {
+          "nearest_cell_center_lat_lon": [
+            39.755,
+            -104.905
+          ],
+          "nearest_cell_center_distance_km": 0.42,
+          "raw_value": -1.0,
+          "status": "missing",
+          "mesh_mm": null,
+          "mesh_inches": null
+        }
+      }
+    },
+    {
+      "window_start_utc": "2024-05-31T02:00:00+00:00",
+      "window_end_utc": "2024-05-31T06:00:00+00:00",
+      "window_end_denver_local": "2024-05-31T00:00:00-06:00",
+      "source_url": "https://noaa-mrms-pds.s3.amazonaws.com/CONUS/MESH_Max_240min_00.50/20240531/MRMS_MESH_Max_240min_00.50_20240531-060000.grib2.gz",
+      "source_gzip_sha256": "950552f3c4fa28693380717956369e446badd79eefcfc17669001a76c8fea4e5",
+      "nearest_cell_samples": {
+        "A": {
+          "nearest_cell_center_lat_lon": [
+            39.785,
+            -104.885
+          ],
+          "nearest_cell_center_distance_km": 0.48,
+          "raw_value": 36.0,
+          "status": "model estimate",
+          "mesh_mm": 36.0,
+          "mesh_inches": 1.42
+        },
+        "B": {
+          "nearest_cell_center_lat_lon": [
+            39.755,
+            -104.905
+          ],
+          "nearest_cell_center_distance_km": 0.42,
+          "raw_value": 14.0,
+          "status": "model estimate",
+          "mesh_mm": 14.0,
+          "mesh_inches": 0.55
+        }
+      }
+    }
+  ]
+}

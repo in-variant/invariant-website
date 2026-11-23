@@ -6,6 +6,7 @@ House rules (same as teaser.py): partial coverage only. Inventory rows show regi
 rough land and timing. No towns, utilities, substations, prices or deal terms. US only. No em or en dashes.
 """
 import json, sys
+from pathlib import Path
 
 DATE = '2026-11-09'
 PILLAR = 'find-data-center-site-us'
@@ -814,7 +815,16 @@ def cite_faqs(page):
 NEW = set(INTENT) | {state_slug(k) for k, v in STATE.items() if v.get('nearby')}
 pages = [cite_faqs(p) for p in [pillar()] + [size_page(m) for m in SIZES] + [state_page(s) for s in STATES] + [intent_page(k) for k in INTENT]]
 pages = [prune_sources(cite_faqs(cite_blocks(p))) if p['slug'] in NEW else p for p in pages]
+output_path = Path(sys.argv[1])
+# Keep dated editorial revisions when refreshing the generated site finder.
+if output_path.exists():
+    revisions = {
+        page['slug']: page
+        for page in json.loads(output_path.read_text(encoding='utf-8'))
+        if page.get('updatedDate')
+    }
+    pages = [revisions.get(page['slug'], page) for page in pages]
 out = json.dumps(pages, indent=1, ensure_ascii=False)
 assert '—' not in out and '–' not in out, 'dash'
-open(sys.argv[1], 'w').write(out + '\n')
+output_path.write_text(out + '\n', encoding='utf-8')
 print(len(pages), 'pages')

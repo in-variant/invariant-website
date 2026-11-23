@@ -1,4 +1,5 @@
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
+import POST from '../../data/.generated-legacy-articles/fermibench-sota.json'
 import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
 
 const POST_URL = 'https://invariant-ai.com/blog/fermibench-sota'
@@ -33,7 +34,7 @@ export default function FermiBenchSOTA() {
           ]),
         ]}
       />
-      <BlogArticleHeader slug="fermibench-sota" title="Invariant Sets State-of-the-Art on FermiBench" subtitle="0.97 nDCG@10 on the only published information retrieval benchmark for the nuclear domain" />
+      <BlogArticleHeader article={POST} title="Invariant Sets State-of-the-Art on FermiBench" subtitle="0.97 nDCG@10 on the only published information retrieval benchmark for the nuclear domain" />
       <div className="blog-article-body">
         {/* Lead */}
         <div className="mb-16 space-y-6">
@@ -337,7 +338,7 @@ export default function FermiBenchSOTA() {
           </div>
         </div>
       </div>
-      <BlogRelatedReading slug="fermibench-sota" />
+      <BlogRelatedReading articles={POST.relatedReading} />
     </article>
   )
 }

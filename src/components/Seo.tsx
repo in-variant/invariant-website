@@ -1,10 +1,12 @@
+import { createContext, useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import siteMetadata from '../data/siteMetadata.json'
+import type { ResourceDataset } from '../data/resources'
 
 export const SITE_URL = 'https://invariant-ai.com'
 export const DEFAULT_OG = `${SITE_URL}${siteMetadata.image}`
 
-type Props = {
+export type SeoProps = {
   title: string
   description: string
   canonical?: string
@@ -12,7 +14,10 @@ type Props = {
   jsonLd?: object | object[]
   noindex?: boolean
   ogType?: 'website' | 'article'
+  markdown?: string
 }
+
+export const PrerenderSeo = createContext<((props: SeoProps) => void) | null>(null)
 
 export function Seo({
   title,
@@ -22,7 +27,16 @@ export function Seo({
   jsonLd,
   noindex,
   ogType = 'website',
-}: Props) {
+  markdown,
+}: SeoProps) {
+  const collectSeo = useContext(PrerenderSeo)
+  useEffect(() => {
+    document.head.querySelectorAll('[data-prerender-seo]').forEach(tag => tag.remove())
+  }, [])
+  if (collectSeo) {
+    collectSeo({ title, description, canonical, ogImage, jsonLd, noindex, ogType, markdown })
+    return null
+  }
   const fullTitle = title.includes('Invariant') ? title : `${title} | Invariant`
   const url = canonical || SITE_URL
   const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
@@ -31,11 +45,12 @@ export function Seo({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {canonical && <link rel="canonical" href={canonical} />}
+      {markdown && <link rel="alternate" type="text/markdown" href={markdown} title="Markdown for AI agents" />}
       {noindex && <meta name="robots" content="noindex,nofollow" />}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content={url} />
+      {!noindex && <meta property="og:url" content={url} />}
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="Invariant" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -138,6 +153,37 @@ export const WEBSITE_SCHEMA = {
     target: `${SITE_URL}/probe?q={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
+}
+
+export const DATA_CATALOG_ID = `${SITE_URL}/datasets#catalog`
+
+const DATA_ENCODING = { CSV: 'text/csv', GeoJSON: 'application/geo+json', JSON: 'application/json' } as const
+
+export function datasetSchema(dataset: ResourceDataset, articleUrl: string, datePublished: string) {
+  const url = `${articleUrl}#dataset`
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    '@id': url,
+    url,
+    identifier: url,
+    name: dataset.name,
+    description: dataset.description,
+    datePublished,
+    creator: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: 'Invariant' },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    includedInDataCatalog: { '@id': DATA_CATALOG_ID },
+    isAccessibleForFree: true,
+    isBasedOn: dataset.sources,
+    ...(dataset.spatialCoverage && { spatialCoverage: { '@type': 'Place', name: dataset.spatialCoverage } }),
+    ...(dataset.temporalCoverage && { temporalCoverage: dataset.temporalCoverage }),
+    distribution: dataset.downloads.map(file => ({
+      '@type': 'DataDownload',
+      name: file.label,
+      encodingFormat: DATA_ENCODING[file.format],
+      contentUrl: `${SITE_URL}${file.path}`,
+    })),
+  }
 }
 
 export function articleSchema({

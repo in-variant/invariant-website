@@ -1,0 +1,186 @@
+{
+  "type": "FeatureCollection",
+  "title": "432 Park Avenue base lot, billing lot, and commercial condo unit",
+  "checked_on": "2026-11-22",
+  "scope": "City records for one Manhattan condominium. The tax map finds no separate polygon for the unit BBL in the queried layer. A footprint from the mapped parent lot must be identified as a parent geometry.",
+  "method": "Join the NYC Finance condominium and unit tables with the Digital Tax Map base lot and NYC Planning MapPLUTO billing lot. Measure area overlap as intersection divided by union in EPSG:2263. Features retain their published WGS 84 geometries.",
+  "reference": {
+    "condominium_number": 2352,
+    "base_bbl": "1012920033",
+    "billing_bbl": "1012927502",
+    "commercial_unit_bbl": "1012921303",
+    "unit_polygon_count_in_dtm": 0,
+    "base_billing_intersection_over_union_percent": 99.999712,
+    "projected_areas_us_survey_sqft": {
+      "base": 36465.21,
+      "billing": 36465.15
+    }
+  },
+  "sources": {
+    "condo_relationship": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/3/query?where=CONDO_BILLING_BBL%3D%271012927502%27&outFields=CONDO_BILLING_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CCONDO_NAME&f=json",
+    "condo_unit": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/4/query?where=UNIT_BBL%3D%271012921303%27&outFields=UNIT_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CCONDO_KEY%2CEFFECTIVE_TAX_YEAR&f=json",
+    "tax_map_polygons": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL+IN+%28%271012920033%27%2C%271012927502%27%2C%271012921303%27%29&outFields=BBL%2CCONDO_FLAG%2CEFFECTIVE_TAX_YEAR%2CBILL_BBL_FLAG&outSR=4326&f=geojson",
+    "exact_unit_polygon_count": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL%3D%271012921303%27&returnCountOnly=true&f=json",
+    "mappluto": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012927502&outFields=BBL%2CAddress%2CCondoNo%2CUnitsRes%2CUnitsTotal%2CNumBldgs%2CVersion&outSR=4326&f=geojson",
+    "commercial_unit_notice": "https://a836-edms.nyc.gov/dctm-rest/repositories/dofedmspts/StatementSearch?bbl=1012921303&stmtDate=20250115&stmtType=NPV"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.971518313449,
+              40.7618014762124
+            ],
+            [
+              -73.9717037930774,
+              40.7615470879492
+            ],
+            [
+              -73.9716326109685,
+              40.7615170446172
+            ],
+            [
+              -73.971552159981,
+              40.7614830886812
+            ],
+            [
+              -73.9716094842533,
+              40.7614044673602
+            ],
+            [
+              -73.9712888658684,
+              40.761269143796
+            ],
+            [
+              -73.9714145991549,
+              40.7610966972847
+            ],
+            [
+              -73.9722890432433,
+              40.7614657707688
+            ],
+            [
+              -73.9721059877046,
+              40.7617168391164
+            ],
+            [
+              -73.9720258882563,
+              40.7616830332628
+            ],
+            [
+              -73.971840411328,
+              40.7619374213373
+            ],
+            [
+              -73.9717652770284,
+              40.7619057104271
+            ],
+            [
+              -73.9717092139284,
+              40.7618820481393
+            ],
+            [
+              -73.9716385682702,
+              40.761852231199
+            ],
+            [
+              -73.9715750545874,
+              40.7618254240384
+            ],
+            [
+              -73.971518313449,
+              40.7618014762124
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "bbl": "1012920033",
+        "role": "digital_tax_map_base_lot"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9715183132651,
+              40.7618014769418
+            ],
+            [
+              -73.9717037938808,
+              40.7615470877886
+            ],
+            [
+              -73.9716326106303,
+              40.7615170447258
+            ],
+            [
+              -73.9715521596116,
+              40.7614830884788
+            ],
+            [
+              -73.9716094840745,
+              40.7614044678627
+            ],
+            [
+              -73.9712888661803,
+              40.7612691433862
+            ],
+            [
+              -73.9714145984808,
+              40.7610966974249
+            ],
+            [
+              -73.972289042825,
+              40.7614657712556
+            ],
+            [
+              -73.9721059880814,
+              40.7617168391346
+            ],
+            [
+              -73.9720258881633,
+              40.7616830328057
+            ],
+            [
+              -73.9718404108198,
+              40.7619374215529
+            ],
+            [
+              -73.9717652769448,
+              40.7619057108503
+            ],
+            [
+              -73.9717092143378,
+              40.7618820480187
+            ],
+            [
+              -73.9716385683333,
+              40.761852231143
+            ],
+            [
+              -73.9715750554718,
+              40.7618254245625
+            ],
+            [
+              -73.9715183132651,
+              40.7618014769418
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "bbl": "1012927502",
+        "role": "mappluto_billing_lot",
+        "dataset_version": "26v2"
+      }
+    }
+  ]
+}

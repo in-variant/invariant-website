@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom'
-import { RESOURCE_ARTICLES } from '../data/resources'
 import '../pages/blog/BlogArticle.css'
 
-export default function BlogArticleHeader({ slug, title, subtitle }: { slug: string; title: string; subtitle: string }) {
-  const article = RESOURCE_ARTICLES.find((entry) => entry.slug === slug)!
+type ArticleHeaderProps = {
+  article: { dateTime: string; date: string; topic: string; image: string }
+  title: string
+  subtitle: string
+  coverCaption?: string
+  coverAlt?: string
+}
+
+export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '' }: ArticleHeaderProps) {
   return (
     <header className="blog-article-header">
       <nav className="blog-article-breadcrumbs" aria-label="Breadcrumb">
@@ -15,23 +21,22 @@ export default function BlogArticleHeader({ slug, title, subtitle }: { slug: str
         <p>{subtitle}</p>
       </div>
       <div className="blog-article-cover">
-        <img src={article.image} alt="" width="1600" height="900" fetchPriority="high" decoding="async" />
+        <img src={article.image} alt={coverAlt} width="1600" height="900" fetchPriority="high" decoding="async" />
         <span aria-hidden="true" className="blog-article-cover-mark">Invariant / {article.topic}</span>
       </div>
+      {coverCaption && <p className="blog-article-image-caption">{coverCaption}</p>}
     </header>
   )
 }
 
-export function BlogRelatedReading({ slug, relatedSlugs }: { slug: string; relatedSlugs?: string[] }) {
-  const current = RESOURCE_ARTICLES.find((article) => article.slug === slug)!
-  const candidates = RESOURCE_ARTICLES.filter((article) => article.slug !== slug)
-  const selected = (relatedSlugs ?? []).flatMap(relatedSlug => candidates.filter(article => article.slug === relatedSlug))
-  const related = [...selected, ...candidates.filter(article => !selected.includes(article)).sort((a, b) => Number(b.topic === current.topic) - Number(a.topic === current.topic))].slice(0, 2)
+type RelatedArticle = { slug: string; title: string; topic: string; image: string }
+
+export function BlogRelatedReading({ articles }: { articles: RelatedArticle[] }) {
   return (
     <aside className="blog-related-reading" aria-label="Related articles">
       <div className="blog-related-heading"><h2>Keep reading.</h2><Link to="/blog">All articles <span aria-hidden="true">↗</span></Link></div>
       <div className="blog-related-grid">
-        {related.map((article) => <Link key={article.slug} className="blog-related-card" to={`/blog/${article.slug}`}>
+        {articles.map((article) => <Link key={article.slug} className="blog-related-card" to={`/blog/${article.slug}`}>
           <div><span>{article.topic}</span><h3>{article.title}</h3><span className="blog-related-read">Read the article <span aria-hidden="true">↗</span></span></div>
           <img src={article.image} alt="" width="160" height="180" loading="lazy" decoding="async" />
         </Link>)}

@@ -1,0 +1,75 @@
+{
+  "title": "Empire State Building: a recorded-document timing example",
+  "property": {
+    "label": "Empire State Building, Manhattan",
+    "borough_block_lot": "1008350041"
+  },
+  "checked_on": "2026-11-22",
+  "method": "Join NYC ACRIS Legals records for borough 1, block 835, lot 41 to selected Real Property Master rows by document ID. For each cutoff, include selected records whose legal recording date is on or before the cutoff date.",
+  "scope": "Three selected city records as shown by a later extract. The cutoff does not reconstruct actual publication or vendor ingestion dates, a complete title search, lien priority, property value, or outstanding debt. An indexed amount of zero is the field as recorded.",
+  "records": [
+    {
+      "document_id": "2013100700087001",
+      "city_register_file_number": "2013000417277",
+      "document_type_code": "DEED",
+      "document_date": "2013-10-07",
+      "recorded_date": "2013-10-08",
+      "calendar_days_to_record": 1,
+      "indexed_document_amount_usd": 111045119,
+      "sources": {
+        "master": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013100700087001",
+        "legals": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id%3D%272013100700087001%27+AND+borough%3D1+AND+block%3D835+AND+lot%3D41"
+      }
+    },
+    {
+      "document_id": "2013101700510005",
+      "city_register_file_number": "2013000434087",
+      "document_type_code": "ASST",
+      "document_date": "2013-10-07",
+      "recorded_date": "2013-10-21",
+      "calendar_days_to_record": 14,
+      "indexed_document_amount_usd": 0,
+      "sources": {
+        "master": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013101700510005",
+        "legals": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id%3D%272013101700510005%27+AND+borough%3D1+AND+block%3D835+AND+lot%3D41"
+      }
+    },
+    {
+      "document_id": "2013101700510006",
+      "city_register_file_number": "2013000434088",
+      "document_type_code": "AGMT",
+      "document_date": "2013-10-07",
+      "recorded_date": "2013-10-21",
+      "calendar_days_to_record": 14,
+      "indexed_document_amount_usd": 300000000,
+      "sources": {
+        "master": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013101700510006",
+        "legals": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id%3D%272013101700510006%27+AND+borough%3D1+AND+block%3D835+AND+lot%3D41"
+      }
+    }
+  ],
+  "expected_cutoffs": [
+    {
+      "cutoff": "2013-10-15",
+      "included_document_ids": [
+        "2013100700087001"
+      ]
+    },
+    {
+      "cutoff": "2013-10-22",
+      "included_document_ids": [
+        "2013100700087001",
+        "2013101700510005",
+        "2013101700510006"
+      ]
+    }
+  ],
+  "separate_issuer_disclosure": {
+    "form": "8-K",
+    "filing_date": "2013-10-07",
+    "accepted_at_utc": "2013-10-07T20:49:30.000Z",
+    "sec_accession_number": "0001193125-13-393077",
+    "source": "https://www.sec.gov/Archives/edgar/data/1541401/000119312513393077/d609499d8k.htm",
+    "filing_metadata_source": "https://data.sec.gov/submissions/CIK0001541401.json"
+  }
+}

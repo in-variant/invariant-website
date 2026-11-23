@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
+import POST from '../../data/.generated-legacy-articles/seismic-design-shift.json'
 import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
 
 const POST_URL = 'https://invariant-ai.com/blog/seismic-design-shift'
@@ -449,7 +450,7 @@ export default function SeismicDesignShift() {
           ]),
         ]}
       />
-      <BlogArticleHeader slug="seismic-design-shift" title="SSE/OBE → GMRS/SDC" subtitle="The seismic design shift from Part 100 Appendix A to Part 53 Section 53.480" />
+      <BlogArticleHeader article={POST} title="SSE/OBE → GMRS/SDC" subtitle="The seismic design shift from Part 100 Appendix A to Part 53 Section 53.480" />
       <div className="blog-article-wide">
         {/* Introduction */}
         <div className="max-w-3xl mx-auto mb-16 space-y-6">
@@ -818,7 +819,7 @@ export default function SeismicDesignShift() {
           </div>
         </div>
       </div>
-      <BlogRelatedReading slug="seismic-design-shift" />
+      <BlogRelatedReading articles={POST.relatedReading} />
     </article>
   )
 }

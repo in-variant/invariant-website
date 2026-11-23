@@ -1,0 +1,544 @@
+{
+  "type": "FeatureCollection",
+  "name": "Newtown Creek facility registry and tax lot comparison",
+  "evidence": {
+    "retrieved_date": "2026-11-22",
+    "sources": {
+      "epa_detailed_facility_api": "https://echodata.epa.gov/echo/dfr_rest_services.get_dfr?output=JSON&p_id=NY0026204",
+      "nyc_parcel_api": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D3025250001&outFields=BBL%2CAddress%2COwnerName%2CLotArea%2CVersion&outSR=4326&f=geojson",
+      "nyc_geosearch_api": "https://geosearch.planninglabs.nyc/v2/search?text=329+Greenpoint+Avenue+Brooklyn+NY&size=1",
+      "state_permit_cross_reference": "https://extapps.dec.ny.gov/docs/legal_protection_pdf/nycdepspdesr.pdf#page=1",
+      "state_air_permit_draft": "https://extapps.dec.ny.gov/data/dar/afs/permits/261010002500100_r0.pdf#page=1"
+    },
+    "identity": {
+      "borough_block_lot": "3025250001",
+      "mappluto_version": "26v2",
+      "mappluto_address": "327 GREENPOINT AVENUE",
+      "state_permit_address": "329-69 GREENPOINT AVE",
+      "state_facility_id": "2-6101-00025",
+      "epa_registry_id": "110000561268",
+      "epa_registry_address": "301 GREENPOINT AVE",
+      "water_permit_id": "NY0026204"
+    },
+    "join": {
+      "method": "Compare all seven coordinate-bearing ECHO Permits rows with one MapPLUTO tax lot. Normalize NAD83 locations to WGS84, use polygon covers for membership, and measure shortest distances to the tax lot using UTM 18N.",
+      "rows_tested": 7,
+      "inside_or_on_boundary": 5,
+      "outside": 2,
+      "registry_calculated_accuracy_as_reported": "372 Meters",
+      "scope": "Reported points alone do not locate a permitted footprint, regulated equipment, or the extent of any release. Preserve distinct operators and source IDs."
+    },
+    "dated_records": {
+      "echo_icis_npdes_extract_date": "2026-11-13",
+      "water_significant_noncompliance_flag_as_reported": "No",
+      "water_significant_noncompliance_flag_as_of": "2026-06-30",
+      "water_notice": {
+        "date": "2026-08-24",
+        "identifier": "NY-20026204260824",
+        "type": "Base Program - Notice of Violation",
+        "issuing_level": "State",
+        "source_id": "NY0026204"
+      },
+      "air_document": {
+        "permit_id": "2-6101-00025/00100",
+        "status_in_document": "Draft",
+        "effective_date_printed": null
+      }
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9465042420732,
+              40.7367970488215
+            ],
+            [
+              -73.9468567588888,
+              40.7361507985829
+            ],
+            [
+              -73.946991892281,
+              40.7359030626435
+            ],
+            [
+              -73.9472807847692,
+              40.7353734371226
+            ],
+            [
+              -73.9472735366836,
+              40.7353318352357
+            ],
+            [
+              -73.947310574139,
+              40.7352547005911
+            ],
+            [
+              -73.947326295805,
+              40.7352529995229
+            ],
+            [
+              -73.9473352801285,
+              40.7352512971295
+            ],
+            [
+              -73.9473453892804,
+              40.7352478834768
+            ],
+            [
+              -73.9473532533618,
+              40.7352436168002
+            ],
+            [
+              -73.9473622410594,
+              40.735237640704
+            ],
+            [
+              -73.9473701079454,
+              40.7352299575089
+            ],
+            [
+              -73.9473748855332,
+              40.7352214183959
+            ],
+            [
+              -73.9473454405754,
+              40.7351829685588
+            ],
+            [
+              -73.9473252634803,
+              40.7351376889955
+            ],
+            [
+              -73.947308495222,
+              40.735043725889
+            ],
+            [
+              -73.9472962329163,
+              40.7349301175581
+            ],
+            [
+              -73.9472951290366,
+              40.7349053476687
+            ],
+            [
+              -73.9472716847743,
+              40.7347327986366
+            ],
+            [
+              -73.9472593898887,
+              40.7346618969355
+            ],
+            [
+              -73.9472437110723,
+              40.7346097881342
+            ],
+            [
+              -73.9472168195289,
+              40.7345346094673
+            ],
+            [
+              -73.9471831598877,
+              40.7345029906912
+            ],
+            [
+              -73.9471764282928,
+              40.7344944463053
+            ],
+            [
+              -73.9471708221958,
+              40.7344833404245
+            ],
+            [
+              -73.9471427893065,
+              40.7344337861109
+            ],
+            [
+              -73.9471304642248,
+              40.7344013243596
+            ],
+            [
+              -73.9471117139707,
+              40.7344030244279
+            ],
+            [
+              -73.9471069948198,
+              40.734375938328
+            ],
+            [
+              -73.9451945006141,
+              40.7345594095941
+            ],
+            [
+              -73.9451026671303,
+              40.7345682178662
+            ],
+            [
+              -73.9447185635984,
+              40.7321595801635
+            ],
+            [
+              -73.9447919305181,
+              40.7321332178518
+            ],
+            [
+              -73.9481989334584,
+              40.7309011966756
+            ],
+            [
+              -73.9491209004194,
+              40.7308138927826
+            ],
+            [
+              -73.9500446771573,
+              40.7364402088457
+            ],
+            [
+              -73.9500430957684,
+              40.7364556447332
+            ],
+            [
+              -73.9500368469144,
+              40.736470385137
+            ],
+            [
+              -73.9500262663135,
+              40.7364836296558
+            ],
+            [
+              -73.9500119285196,
+              40.7364946600624
+            ],
+            [
+              -73.949994614213,
+              40.7365028796131
+            ],
+            [
+              -73.9499752590427,
+              40.7365078411293
+            ],
+            [
+              -73.9499549143427,
+              40.7365092757653
+            ],
+            [
+              -73.949934683767,
+              40.736507104856
+            ],
+            [
+              -73.949053830792,
+              40.7362239833311
+            ],
+            [
+              -73.9489525016434,
+              40.7361608723388
+            ],
+            [
+              -73.9488241804421,
+              40.7361196270111
+            ],
+            [
+              -73.9488100015148,
+              40.7361456121152
+            ],
+            [
+              -73.9487573900573,
+              40.7362420340349
+            ],
+            [
+              -73.9478529777356,
+              40.7359570647645
+            ],
+            [
+              -73.9471902786854,
+              40.7371715264331
+            ],
+            [
+              -73.9471832919788,
+              40.7371696473986
+            ],
+            [
+              -73.9471630850138,
+              40.737162804174
+            ],
+            [
+              -73.9471372657494,
+              40.7371525418521
+            ],
+            [
+              -73.9470934826358,
+              40.7371388556769
+            ],
+            [
+              -73.9470384726914,
+              40.7371208940508
+            ],
+            [
+              -73.947025003433,
+              40.7371123456419
+            ],
+            [
+              -73.9469823424093,
+              40.7371003672774
+            ],
+            [
+              -73.9467948623134,
+              40.7370370732325
+            ],
+            [
+              -73.9465804447397,
+              40.7369618094966
+            ],
+            [
+              -73.9464883915271,
+              40.7369293088377
+            ],
+            [
+              -73.9464670849911,
+              40.7369209170142
+            ],
+            [
+              -73.9464614523814,
+              40.7369147765765
+            ],
+            [
+              -73.9464479850243,
+              40.7369053743478
+            ],
+            [
+              -73.946446138386,
+              40.7369035661768
+            ],
+            [
+              -73.9465042420732,
+              40.7367970488215
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "BBL": 3025250001,
+        "Address": "327 GREENPOINT AVENUE",
+        "OwnerName": "NYC DEPARTMENT OF ENVIRONMENTAL PROTECTION",
+        "LotArea": 1998107,
+        "Version": "26v2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.945496,
+          40.732304
+        ]
+      },
+      "properties": {
+        "kind": "address_point",
+        "address": "329 GREENPOINT AVENUE, Brooklyn, NY, USA",
+        "geocoder_bbl": "3025250001",
+        "source": "NYC GeoSearch"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948378,
+          40.73353
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "FRS",
+        "statute": null,
+        "source_id": "110000561268",
+        "facility_name_as_reported": "NEWTOWN CREEK WATER POLLUTION CONTROL PLANT",
+        "street_as_reported": "301 GREENPOINT AVE",
+        "source_latitude": 40.73353,
+        "source_longitude": -73.948378,
+        "source_horizontal_datum": "NAD83",
+        "source_reference_point": null,
+        "source_collection_method": "INTERPOLATION-OTHER",
+        "source_status": null,
+        "source_expiration_date": null,
+        "point_covered_by_mapped_parcel": true,
+        "distance_to_mapped_parcel_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948378,
+          40.733531
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "ICIS-Air",
+        "statute": "CAA",
+        "source_id": "NY0000002610100025",
+        "facility_name_as_reported": "NEWTOWN CREEK WASTEWATER RESOURCE RECOVERY FACILITY",
+        "street_as_reported": "329-69 GREENPOINT AVE",
+        "source_latitude": 40.733531,
+        "source_longitude": -73.948378,
+        "source_horizontal_datum": "NAD83",
+        "source_reference_point": "Release Point",
+        "source_collection_method": "Unknown",
+        "source_status": "Operating",
+        "source_expiration_date": null,
+        "point_covered_by_mapped_parcel": true,
+        "distance_to_mapped_parcel_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.947778,
+          40.732778
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "RMP",
+        "statute": "CAA",
+        "source_id": "100000123966",
+        "facility_name_as_reported": "NEWTOWN CREEK WATER POLLUTION CONTROL PLANT",
+        "street_as_reported": "301 GREENPOINT AVENUE",
+        "source_latitude": 40.732778,
+        "source_longitude": -73.947778,
+        "source_horizontal_datum": "NAD83",
+        "source_reference_point": "UNKNOWN",
+        "source_collection_method": "INTERPOLATION - DIGITAL MAP SRCE (TIGER)",
+        "source_status": null,
+        "source_expiration_date": null,
+        "point_covered_by_mapped_parcel": true,
+        "distance_to_mapped_parcel_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948361,
+          40.735306
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "ICIS-NPDES",
+        "statute": "CWA",
+        "source_id": "NY0276570",
+        "facility_name_as_reported": "NEWTOWN CREEK WPCP",
+        "street_as_reported": "301 GREENPOINT AVENUE",
+        "source_latitude": 40.735306,
+        "source_longitude": -73.948361,
+        "source_horizontal_datum": "NAD83",
+        "source_reference_point": "Facility Center/Centroid",
+        "source_collection_method": "Interpolation-Map",
+        "source_status": "Terminated; Compliance Tracking Off",
+        "source_expiration_date": "05/31/2016",
+        "point_covered_by_mapped_parcel": true,
+        "distance_to_mapped_parcel_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.948333,
+          40.733528
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "ICIS-NPDES",
+        "statute": "CWA",
+        "source_id": "NY0026204",
+        "facility_name_as_reported": "NYCDEP - NEWTOWN CREEK WRRF",
+        "street_as_reported": "301 GREENPOINT AVE",
+        "source_latitude": 40.733528,
+        "source_longitude": -73.948333,
+        "source_horizontal_datum": "NAD83",
+        "source_reference_point": "Facility Center/Centroid",
+        "source_collection_method": "Interpolation-Map",
+        "source_status": "Effective",
+        "source_expiration_date": "06/30/2027",
+        "point_covered_by_mapped_parcel": true,
+        "distance_to_mapped_parcel_m": 0.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.946173,
+          40.731539
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "RCRAInfo",
+        "statute": "RCRA",
+        "source_id": "NY0000228049",
+        "facility_name_as_reported": "CON EDISON - NEWTOWN CRK WTR POLL PLT",
+        "street_as_reported": "329 GREENPOINT AVE",
+        "source_latitude": 40.731539,
+        "source_longitude": -73.946173,
+        "source_horizontal_datum": "WGS84",
+        "source_reference_point": null,
+        "source_collection_method": "Address Geocode",
+        "source_status": "Inactive (     )",
+        "source_expiration_date": null,
+        "point_covered_by_mapped_parcel": false,
+        "distance_to_mapped_parcel_m": 9.51
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.947414,
+          40.731077
+        ]
+      },
+      "properties": {
+        "kind": "EPA ECHO linked registry or program record",
+        "registry_id": "110000561268",
+        "system": "RCRAInfo",
+        "statute": "RCRA",
+        "source_id": "NYD980779730",
+        "facility_name_as_reported": "NYCDEP BWT NEWTOWN CREEK WPCP",
+        "street_as_reported": "329 GREENPOINT AVE",
+        "source_latitude": 40.731077,
+        "source_longitude": -73.947414,
+        "source_horizontal_datum": "WGS84",
+        "source_reference_point": null,
+        "source_collection_method": null,
+        "source_status": "Active (H    )",
+        "source_expiration_date": null,
+        "point_covered_by_mapped_parcel": false,
+        "distance_to_mapped_parcel_m": 10.83
+      }
+    }
+  ]
+}

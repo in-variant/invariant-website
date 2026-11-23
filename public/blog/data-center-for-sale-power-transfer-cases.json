@@ -1,0 +1,64 @@
+{
+  "name": "Power rights and tenant delivery in two U.S. data center transactions",
+  "checked_on": "2026-11-22",
+  "scope": "Issuer-reported historical facts, contract terms and targets from SEC filings. The projects illustrate diligence questions and are not presented as available inventory.",
+  "records": [
+    {
+      "issuer": "AIB Data Centers Inc.",
+      "site": "DFW1",
+      "region": "Texas, United States",
+      "source_urls": [
+        "https://www.sec.gov/Archives/edgar/data/2070542/000121390026099305/ea0305122-8k_aib.htm",
+        "https://www.sec.gov/Archives/edgar/data/2070542/000121390026120619/ea0311821-10q_aibdata.htm"
+      ],
+      "transaction": {
+        "type": "asset acquisition",
+        "reported_close_date": "2026-09-11"
+      },
+      "power_blocks": [
+        {
+          "asset": "Property A",
+          "reported_capacity_mw": 15,
+          "power_basis": "primary electric service",
+          "reported_status": "energized",
+          "reported_contract_condition": "The seller retained the economic benefit of the existing service until site decommissioning, which the issuer described for December 2026.",
+          "confirmed_date_for_buyer_to_use_service": null,
+          "source_url": "https://www.sec.gov/Archives/edgar/data/2070542/000121390026120619/ea0311821-10q_aibdata.htm",
+          "source_section": "Note 3 and MD&A, Texas Site (DFW1)"
+        },
+        {
+          "asset": "Property B",
+          "reported_capacity_mw_upper_bound": 40,
+          "power_basis": "additional primary electric service",
+          "reported_status": "facilities extension agreement, delivery upon completion of utility infrastructure",
+          "verified_energization_date": null,
+          "deferred_purchase_payment_usd": 6000000,
+          "payment_milestone": "Utility places the Property B facilities in service",
+          "source_url": "https://www.sec.gov/Archives/edgar/data/2070542/000121390026099305/ea0305122-8k_aib.htm",
+          "source_section": "Item 1.01 and Item 2.03"
+        }
+      ],
+      "buyer_review_question": "At what milestone does the buyer obtain the economic benefit of Property A service and what records would show that Property B service is in place?"
+    },
+    {
+      "issuer": "Host Digital Inc.",
+      "site": "Site I",
+      "region": "Northeastern Oklahoma, United States",
+      "source_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1948864/000121390026120876/ea0311804-10q_host.htm"
+      ],
+      "transaction": {
+        "type": "lease",
+        "reported_lease_signed_date": "2026-08-07",
+        "reported_lease_term_years": 15
+      },
+      "reported_facility_gross_mw": 55,
+      "reported_contracted_critical_it_mw": 43,
+      "reported_electrical_status": "energized",
+      "reported_tenant_delivery_target_quarter": "2027-Q1",
+      "verified_tenant_delivery_date": null,
+      "source_section": "Site I Lease and MD&A, Data Center Lease",
+      "buyer_review_question": "Which electrical, cooling and commissioning milestones govern handover of the contracted IT load?"
+    }
+  ]
+}

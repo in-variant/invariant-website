@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
-import { Seo, SITE_URL } from '../components/Seo'
+import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 import CharterFilm from '../components/CharterFilm'
 import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
 import '../styles/figma-fonts.css'
@@ -30,8 +30,8 @@ export default function Charter() {
   }, [])
 
   return <div className="invariant-charter">
-    <Seo title="Why We Exist | Invariant" description="Why we are building Invariant: autonomous agents for compliance across energy, data centers, space, and the wider physical economy. A letter from our founders." canonical={`${SITE_URL}/charter`} ogType="article" />
-    {createPortal(<div ref={progressRef} className="charter-reading-progress" aria-hidden="true" />, document.body)}
+    <Seo title="Why We Exist | Invariant" description="Why we are building Invariant: autonomous agents for compliance across energy, data centers, space, and the wider physical economy. A letter from our founders." canonical={`${SITE_URL}/charter`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Why we exist', url: `${SITE_URL}/charter` }])]} ogType="article" />
+    {typeof document !== 'undefined' && createPortal(<div ref={progressRef} className="charter-reading-progress" aria-hidden="true" />, document.body)}
     <div id="charter-content">
       <header className="charter-heading">
         <div className="charter-hero-copy">

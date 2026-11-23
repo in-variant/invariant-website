@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
-import { RESOURCE_ARTICLES, RESOURCE_REFERENCES } from '../data/resources'
+import { RESOURCE_ARTICLES } from '../data/resources'
+import { RESOURCE_REFERENCES } from '../data/resource-directory'
 import './Resources.css'
 
 const FORMATS = ['All', 'Guides', 'Tools'] as const
@@ -64,7 +65,7 @@ export default function Resources() {
           <Link to="/blog" className="resource-text-link">All articles <ResourceArrow /></Link>
         </div>
         <div className="resource-article-grid">
-          {[RESOURCE_ARTICLES[0], RESOURCE_ARTICLES.find(article => article.topic === 'Oil & Gas') ?? RESOURCE_ARTICLES[1], RESOURCE_ARTICLES.find(article => article.slug === 'fermibench-sota')!].map((article) => <ResourceArticleCard key={article.slug} article={article} />)}
+          {[RESOURCE_ARTICLES.find(article => article.topic === 'Data Centers')!, RESOURCE_ARTICLES.find(article => article.topic === 'Oil & Gas')!, RESOURCE_ARTICLES.find(article => article.slug === 'fermibench-sota')!].map((article) => <ResourceArticleCard key={article.slug} article={article} />)}
         </div>
       </section>
 
@@ -74,12 +75,17 @@ export default function Resources() {
             <div><p className="resource-eyebrow">The reference library</p><h2 id="resources-library-heading">Find your next step.</h2></div>
             <p>Licensing pathways, technical requirements,<br className="resources-desktop-break" /> and tools to help you plan the work.</p>
           </div>
+          <nav aria-label="Research and planning resources" className="mb-7 flex flex-wrap gap-x-6 gap-y-3">
+            <Link to="/datasets" className="resource-text-link">Research datasets <ResourceArrow diagonal /></Link>
+            <Link to="/regulators" className="resource-text-link">Regulator directory <ResourceArrow diagonal /></Link>
+            <Link to="/timeline" className="resource-text-link">Build a mission filing timeline <ResourceArrow diagonal /></Link>
+          </nav>
           <div className="resources-library-controls">
             <div className="resource-filters" role="group" aria-label="Filter by resource format">
               {FORMATS.map((value) => <button type="button" key={value} aria-pressed={format === value} onClick={() => { setFormat(value); setVisibleCount(PAGE_SIZE) }}>{value}</button>)}
             </div>
             <div className="resources-search-controls">
-              <label className="resource-topic-select"><span className="sr-only">Filter by industry</span><select value={topic} onChange={(event) => { setTopic(event.target.value); setVisibleCount(PAGE_SIZE) }}><option>All topics</option><option>Data Centers</option><option>Oil &amp; Gas</option><option>Space</option><option>Nuclear</option><option>Aerospace</option><option>Cross-industry</option></select><svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg></label>
+              <label className="resource-topic-select"><span className="sr-only">Filter by topic</span><select value={topic} onChange={(event) => { setTopic(event.target.value); setVisibleCount(PAGE_SIZE) }}><option>All topics</option><option>Data &amp; APIs</option><option>Data Centers</option><option>Oil &amp; Gas</option><option>Space</option><option>Nuclear</option><option>Aerospace</option><option>Cross-industry</option></select><svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg></label>
               <label className="resource-search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5" /><path d="m12 12 4 4" /></svg><span className="sr-only">Search guides and tools</span><input type="search" value={query} placeholder="Search the library" onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE) }} /></label>
             </div>
           </div>

@@ -1,9 +1,8 @@
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import NuclearMarket from '../../components/NuclearMarket'
 import { Seo, ORG_SCHEMA, SITE_URL, articleSchema, breadcrumbSchema } from '../../components/Seo'
-import { RESOURCE_ARTICLES } from '../../data/resources'
+import POST from '../../data/.generated-legacy-articles/nuclear-compliance-tam.json'
 
-const POST = RESOURCE_ARTICLES.find(article => article.slug === 'nuclear-compliance-tam')!
 const POST_URL = `${SITE_URL}/blog/${POST.slug}`
 const POST_IMAGE = `${SITE_URL}${POST.image}`
 
@@ -46,7 +45,7 @@ export default function NuclearComplianceTAM() {
           ]),
         ]}
       />
-      <BlogArticleHeader slug="nuclear-compliance-tam" title="The $35 Billion Problem Nobody Is Talking About in Nuclear" subtitle="The US nuclear industry is about to double in size. The compliance infrastructure required to make that expansion legal is the part nobody is pricing in." />
+      <BlogArticleHeader article={POST} title="The $35 Billion Problem Nobody Is Talking About in Nuclear" subtitle="The US nuclear industry is about to double in size. The compliance infrastructure required to make that expansion legal is the part nobody is pricing in." />
       <div className="blog-article-body">
         <div className="section-rule" />
 
@@ -249,7 +248,7 @@ export default function NuclearComplianceTAM() {
           </p>
         </div>
       </div>
-      <BlogRelatedReading slug="nuclear-compliance-tam" />
+      <BlogRelatedReading articles={POST.relatedReading} />
     </article>
   )
 }

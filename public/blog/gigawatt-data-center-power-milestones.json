@@ -1,0 +1,142 @@
+{
+  "name": "Power milestones at four U.S. gigawatt data center developments",
+  "description": "Seven dated developer and utility records covering energized buildings, planned grid capacity, onsite generation design, critical IT load, and regulatory approval at projects in Texas and Louisiana.",
+  "reviewedOn": "2026-11-22",
+  "guide": "https://invariant-ai.com/blog/1-gw-data-center-site",
+  "readingNotes": [
+    "Each record represents the scope of a particular dated announcement. A later announcement can revise an earlier milestone.",
+    "Capacity figures use the basis stated in each record. Do not sum rows across phases, projects or measurement boundaries.",
+    "A null capacity means the cited record gives no applicable MW figure. These are project references and do not describe inventory available to a buyer."
+  ],
+  "sources": [
+    {
+      "id": "abilene-live",
+      "publisher": "Crusoe",
+      "date": "2025-09-30",
+      "title": "Crusoe announces flagship Abilene data center is live",
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-flagship-abilene-data-center-is-live"
+    },
+    {
+      "id": "abilene-expansion",
+      "publisher": "Crusoe",
+      "date": "2026-03-27",
+      "title": "Crusoe announces a new 900 MW campus next to the original Abilene campus",
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-new-900-mw-ai-factory-campus-in-abilene-texas-to-support-microsoft-ai-infrastructure"
+    },
+    {
+      "id": "childress",
+      "publisher": "Crusoe",
+      "date": "2026-07-15",
+      "title": "Crusoe and Lancium announce a 1 GW campus in Childress",
+      "url": "https://www.crusoe.ai/resources/newsroom/crusoe-and-lancium-announce-1-gigawatt-ai-data-center-campus-in-childress-texas"
+    },
+    {
+      "id": "hyperion",
+      "publisher": "Meta",
+      "date": "2026-07-13",
+      "title": "Meta announces an expansion of its Richland Parish data center",
+      "url": "https://about.fb.com/news/2026/07/teachers-local-businesses-win-as-meta-expands-louisiana-data-center/"
+    },
+    {
+      "id": "hyperion-utility",
+      "publisher": "Entergy Louisiana",
+      "date": "2025-08-20",
+      "title": "Entergy reports regulatory approval for infrastructure serving Meta’s Louisiana campus",
+      "url": "https://www.entergy.com/news/entergy-louisiana-receives-lpsc-approval-for-major-infrastructure-investments-to-support-metas-data-center-and-improve-reliability"
+    }
+  ],
+  "records": [
+    {
+      "id": "abilene-original-first-phase",
+      "site": "Abilene original campus",
+      "region": "Texas",
+      "milestone": "Energized first two buildings",
+      "evidenceState": "developer_reported_energized",
+      "capacityMw": 200,
+      "capacityBasis": "Two buildings rated at 100 MW each",
+      "sourceIds": [
+        "abilene-live",
+        "abilene-expansion"
+      ],
+      "scope": "Crusoe reported the first two buildings energized. 200 MW is their combined rating. The sources give no meter reading or spare tenant capacity."
+    },
+    {
+      "id": "abilene-original-full-buildout",
+      "site": "Abilene original campus",
+      "region": "Texas",
+      "milestone": "Full eight-building campus",
+      "evidenceState": "developer_announced_buildout",
+      "capacityMw": 1200,
+      "capacityBasis": "Total power capacity for the original campus",
+      "sourceIds": [
+        "abilene-expansion"
+      ],
+      "scope": "The March 2026 announcement targeted completion of the second phase by year-end 2026. This is the campus total inclusive of the first two buildings."
+    },
+    {
+      "id": "abilene-adjacent-generation",
+      "site": "Abilene adjacent Microsoft campus",
+      "region": "Texas",
+      "milestone": "Onsite power plant design",
+      "evidenceState": "developer_announced_design",
+      "capacityMw": 900,
+      "capacityBasis": "Onsite generation design",
+      "sourceIds": [
+        "abilene-expansion"
+      ],
+      "scope": "The figure describes the planned plant for a separate campus next to the original Abilene development. The release gives no net output at the customer meter under design-day conditions."
+    },
+    {
+      "id": "abilene-adjacent-it",
+      "site": "Abilene adjacent Microsoft campus",
+      "region": "Texas",
+      "milestone": "Critical IT capacity design",
+      "evidenceState": "developer_announced_design",
+      "capacityMw": 672,
+      "capacityBasis": "Two buildings designed for 336 MW of critical IT load each",
+      "sourceIds": [
+        "abilene-expansion"
+      ],
+      "scope": "Calculated as 2 × 336 MW. The same campus appears in the generation record. These are different measurements of one development and cannot be added."
+    },
+    {
+      "id": "childress-full-buildout",
+      "site": "Childress campus",
+      "region": "Texas",
+      "milestone": "Full-scale grid connection as announced",
+      "evidenceState": "developer_announced_buildout",
+      "capacityMw": 1000,
+      "capacityBasis": "Grid-connected capacity at full scale",
+      "sourceIds": [
+        "childress"
+      ],
+      "scope": "The project announcement describes a 270-acre campus. It does not report the first block of energized load."
+    },
+    {
+      "id": "richland-compute-expansion",
+      "site": "Hyperion",
+      "region": "Louisiana",
+      "milestone": "Compute expansion announced",
+      "evidenceState": "developer_announced_expansion",
+      "capacityMw": 5000,
+      "capacityBasis": "Compute capacity, using Meta’s terminology",
+      "sourceIds": [
+        "hyperion"
+      ],
+      "scope": "The figure is Meta’s announced target in July 2026. The announcement does not give metered utility capacity or a phased service schedule."
+    },
+    {
+      "id": "richland-utility-infrastructure",
+      "site": "Hyperion",
+      "region": "Louisiana",
+      "milestone": "Utility reports regulatory approval for new generation and transmission",
+      "evidenceState": "utility_reported_regulatory_approval",
+      "capacityMw": null,
+      "capacityBasis": null,
+      "sourceIds": [
+        "hyperion-utility"
+      ],
+      "scope": "Entergy’s August 2025 release anticipated two Richland Parish plants in late 2028 and a Waterford plant by the end of 2029. These were utility project targets when announced. The release gives no MW allocation at the campus meter."
+    }
+  ]
+}

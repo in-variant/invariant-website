@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import posthog from '../posthog'
+import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 
 const API_URL: string = 'https://rag-gcp-520296708682.asia-south1.run.app/search'
 const API_HEALTH_URL = API_URL.replace(/\/search$/, '/')
@@ -180,6 +181,12 @@ export default function Probe() {
 
   return (
     <section className="min-h-[calc(100vh-60px)] flex flex-col">
+      <Seo
+        title="Probe: Search NRC ADAMS documents"
+        description="Search the Nuclear Regulatory Commission’s ADAMS document collection with Invariant’s semantic search interface."
+        canonical={`${SITE_URL}/probe`}
+        jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Probe', url: `${SITE_URL}/probe` }])]}
+      />
       {/* Search area */}
       <motion.div
         layout
@@ -188,7 +195,7 @@ export default function Probe() {
         }`}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <motion.p
+        <motion.h1
           layout
           className={`font-serif tracking-[-0.02em] text-ink mb-8 text-center ${
             centered
@@ -197,8 +204,8 @@ export default function Probe() {
           }`}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          Every NRC document, one query away.
-        </motion.p>
+          Search NRC ADAMS documents.
+        </motion.h1>
 
         <motion.div
           layout

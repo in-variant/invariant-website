@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
+import POST from '../../data/.generated-legacy-articles/part100-vs-part53-siting.json'
 import { Seo, articleSchema, ORG_SCHEMA, breadcrumbSchema } from '../../components/Seo'
 
 const POST_URL = 'https://invariant-ai.com/blog/part100-vs-part53-siting'
@@ -436,7 +437,7 @@ export default function Part100vsPart53() {
           ]),
         ]}
       />
-      <BlogArticleHeader slug="part100-vs-part53-siting" title="10 CFR Part 100 vs. Part 53 Subpart D" subtitle="A regulation-to-regulation comparison of nuclear siting criteria" />
+      <BlogArticleHeader article={POST} title="10 CFR Part 100 vs. Part 53 Subpart D" subtitle="A regulation-to-regulation comparison of nuclear siting criteria" />
       <div className="blog-article-wide">
         {/* Introduction */}
         <div className="max-w-3xl mx-auto mb-16 space-y-6">
@@ -675,7 +676,7 @@ export default function Part100vsPart53() {
           </div>
         </div>
       </div>
-      <BlogRelatedReading slug="part100-vs-part53-siting" />
+      <BlogRelatedReading articles={POST.relatedReading} />
     </article>
   )
 }

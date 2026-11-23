@@ -1,55 +1,19 @@
 #!/usr/bin/env node
-// GEO citation test loop.
-//
-// Queries multiple LLM providers for compliance prompts that our ICP would
-// actually type, and records whether invariant-ai.com is cited and where.
-//
-// Providers (all three required):
-//   OpenAI   (gpt-4o-search-preview, with built-in web search)
-//   Anthropic Claude (claude-opus-4-7 / claude-haiku-4-5 with web_search tool)
-//   Google Gemini (gemini-2.5-flash with google_search grounding)
-//
-// Auth (priority order, falls back per provider):
-//   OPENAI_API_KEY    or LP_OPENAI_API_KEY
-//   ANTHROPIC_API_KEY or LP_ANTHROPIC_API_KEY
-//   GEMINI_API_KEY    or LP_GEMINI_API_KEY  or GOOGLE_API_KEY
-//
-// Writes JSONL to drafts/geo-results/{YYYY-MM-DD}.jsonl, one row per (provider,
-// prompt). Prints a summary table at the end.
-
-import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'node:fs'
+// Measures web-grounded API answers. Google Search and Search Console are
+// separate measurements. Use --list to see the exact public inputs.
+// target_cited is the HTML URL. target_content_cited also accepts its Markdown
+// alternate. An unresolved source leaves a missing target unscored.
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { resolve } from 'node:path'
+import { loadEnvFile } from 'node:process'
+import { parseArgs } from 'node:util'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const ROOT = join(__dirname, '..')
+const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const SITE = 'invariant-ai.com'
+const buyerPrompts = JSON.parse(readFileSync(new URL('./geo-buyer-prompts.json', import.meta.url), 'utf8'))
 
-// Load .env from licensing-platform if our own env isn't populated.
-// Strips LP_ prefix so the rest of the script can use canonical names.
-;(function loadEnv() {
-  const candidates = [
-    join(ROOT, '..', 'licensing-platform', '.env'),
-    join(ROOT, '.env'),
-  ]
-  for (const path of candidates) {
-    if (!existsSync(path)) continue
-    const raw = readFileSync(path, 'utf8')
-    for (const line of raw.split(/\r?\n/)) {
-      const m = line.match(/^\s*([A-Z][A-Z0-9_]*)\s*=\s*(.*?)\s*$/)
-      if (!m) continue
-      let [, k, v] = m
-      // strip surrounding quotes
-      v = v.replace(/^['"]|['"]$/g, '')
-      // strip LP_ prefix; do not overwrite if a canonical key is already set
-      const canonical = k.replace(/^LP_/, '')
-      if (!process.env[canonical]) process.env[canonical] = v
-      if (!process.env[k]) process.env[k] = v
-    }
-  }
-})()
-
-const PROMPTS = [
+const COMPLIANCE_PROMPTS = [
   // Head queries we are competing for
   'what is nuclear compliance',
   'what is space compliance',
@@ -71,170 +35,284 @@ const PROMPTS = [
   'Helion-512 FermiBench',
 ]
 
-// ──────────────────────────── OpenAI (with web search) ────────────────────
-async function askOpenAI(prompt) {
-  const key = process.env.OPENAI_API_KEY
-  if (!key) return { skipped: 'no OPENAI_API_KEY' }
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-    body: JSON.stringify({
-      model: 'gpt-4o-search-preview',
-      messages: [{ role: 'user', content: prompt }],
-      web_search_options: {},
-    }),
-  })
-  if (!res.ok) return { error: `${res.status} ${(await res.text()).slice(0, 200)}` }
-  const j = await res.json()
-  const msg = j.choices?.[0]?.message
-  const text = msg?.content || ''
-  const citations = (msg?.annotations || [])
-    .map((a) => a.url_citation?.url)
-    .filter(Boolean)
-  return { text, citations }
-}
-
-// ─────────────────────────── Anthropic Claude (web search) ────────────────
-async function askClaude(prompt) {
-  const key = process.env.ANTHROPIC_API_KEY
-  if (!key) return { skipped: 'no ANTHROPIC_API_KEY' }
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': key,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 2000,
-      messages: [{ role: 'user', content: prompt }],
-      tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 5 }],
-    }),
-  })
-  if (!res.ok) return { error: `${res.status} ${(await res.text()).slice(0, 200)}` }
-  const j = await res.json()
-  const texts = []
-  const citations = new Set()
-  for (const block of j.content || []) {
-    if (block.type === 'text') texts.push(block.text)
-    for (const c of block.citations || []) if (c.url) citations.add(c.url)
-  }
-  return { text: texts.join('\n'), citations: [...citations] }
-}
-
-// ──────────────────────────────── Google Gemini ───────────────────────────
-async function askGemini(prompt) {
-  const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY
-  if (!key) return { skipped: 'no GEMINI_API_KEY' }
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      tools: [{ google_search: {} }],
-      generationConfig: { temperature: 0.2, maxOutputTokens: 2000 },
-    }),
-  })
-  if (!res.ok) return { error: `${res.status} ${(await res.text()).slice(0, 200)}` }
-  const j = await res.json()
-  const cand = j.candidates?.[0]
-  const text = (cand?.content?.parts || []).map((p) => p.text || '').join('\n')
-  const citations = new Set()
-  const grounding = cand?.groundingMetadata
-  for (const chunk of grounding?.groundingChunks || []) {
-    const u = chunk.web?.uri
-    if (u) citations.add(u)
-  }
-  for (const att of grounding?.groundingAttributions || []) {
-    const u = att.web?.uri
-    if (u) citations.add(u)
-  }
-  return { text, citations: [...citations] }
-}
-
-const PROVIDERS = [
-  { name: 'openai_gpt4o_search', fn: askOpenAI },
-  { name: 'claude_haiku_web', fn: askClaude },
-  { name: 'gemini_2_flash_search', fn: askGemini },
+const PROVIDERS = ['openai', 'claude', 'gemini']
+const BUYER_COMPARISONS = [
+  'ageospatial.com', 'geoforge.ai', 'korzy.co', 'mireye.ai', 'mireye.com', 'paxiv.com',
+  'realie.ai', 'regrid.com', 'scoutdata.com', 'westkite.com',
 ]
 
-// ─────────────────────────────── analysis helpers ─────────────────────────
-function citationPosition(citations, host) {
-  if (!citations) return null
-  for (let i = 0; i < citations.length; i++) {
-    const url = String(citations[i] || '')
-    if (url.includes(host)) return { position: i + 1, url }
+function comparisonDomains(domains) {
+  const normalized = [...new Set(domains.map(domain => domain.trim().toLowerCase().replace(/^www\./, '')))]
+  if (normalized.some(domain => !/^(?:[a-z0-9-]+\.)+[a-z]{2,}$/.test(domain) || matchesDomain(domain, SITE))) {
+    throw new Error('Comparison domains must be third-party domains such as regrid.com')
   }
-  return null
+  return normalized
 }
 
-function bodyMentions(text, host) {
-  if (!text) return false
-  return text.toLowerCase().includes(host.toLowerCase())
+function options() {
+  const { values } = parseArgs({ options: {
+    suite: { type: 'string', default: 'compliance' },
+    provider: { type: 'string', multiple: true },
+    prompt: { type: 'string', multiple: true },
+    'compare-domain': { type: 'string', multiple: true },
+    repeat: { type: 'string', default: '1' },
+    'env-file': { type: 'string' },
+    list: { type: 'boolean' },
+  } })
+  if (!['buyer', 'compliance'].includes(values.suite)) throw new Error('Choose --suite buyer or --suite compliance')
+  const prompts = values.suite === 'buyer' ? buyerPrompts : COMPLIANCE_PROMPTS.map((prompt, index) => ({
+    id: `compliance-${index + 1}`, vertical: 'Compliance', prompt, target: null,
+  }))
+  const selected = values.prompt ? prompts.filter(prompt => values.prompt.includes(prompt.id)) : prompts
+  if (values.prompt?.some(id => !selected.some(prompt => prompt.id === id))) throw new Error('Unknown prompt ID. Run with --list to see this suite.')
+  const providers = [...new Set(values.provider ?? PROVIDERS)]
+  if (providers.some(name => !PROVIDERS.includes(name))) throw new Error('Choose --provider openai, claude, or gemini')
+  const repeat = Number(values.repeat)
+  if (!Number.isSafeInteger(repeat) || repeat < 1) throw new Error('--repeat must be a positive integer')
+  const defaults = values.suite === 'buyer' ? BUYER_COMPARISONS : []
+  const comparisons = new Map(selected.map(item => [
+    item.id, comparisonDomains(values['compare-domain'] ?? item.compareDomains ?? defaults),
+  ]))
+  const compareDomains = [...new Set([...comparisons.values()].flat())]
+  return { ...values, selected, providers, repeat, comparisons, compareDomains }
 }
 
-// Match brand mentions even without the URL (e.g. "according to Invariant").
-function brandMentioned(text) {
-  if (!text) return false
-  return /\b(Invariant|Helion-?512|FermiBench)\b/i.test(text)
+async function request(url, headers, payload) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...headers },
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(90_000),
+  })
+  if (!res.ok) {
+    await res.body?.cancel()
+    throw new Error(`HTTP ${res.status}`)
+  }
+  return res.json()
+}
+
+async function askOpenAI(prompt, key, model) {
+  const result = await request('https://api.openai.com/v1/chat/completions', { Authorization: `Bearer ${key}` }, {
+    model,
+    messages: [{ role: 'user', content: prompt }],
+    web_search_options: { user_location: { type: 'approximate', approximate: { country: 'US' } } },
+  })
+  const choice = result.choices?.[0]
+  const message = choice?.message
+  const citations = (message?.annotations ?? []).flatMap(({ type, url_citation: citation }) =>
+    type === 'url_citation' && citation?.url ? [{ url: citation.url, title: citation.title }] : [],
+  )
+  return {
+    answer: message?.content ?? '',
+    citations,
+    grounded: citations.length > 0,
+    complete: choice?.finish_reason === 'stop' && !message?.refusal,
+    model: result.model,
+  }
+}
+
+async function askClaude(prompt, key, model) {
+  const result = await request('https://api.anthropic.com/v1/messages', { 'x-api-key': key, 'anthropic-version': '2023-06-01' }, {
+    model,
+    max_tokens: 3500,
+    messages: [{ role: 'user', content: prompt }],
+    tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 4, user_location: { type: 'approximate', country: 'US' } }],
+  })
+  const blocks = result.content ?? []
+  const text = blocks.filter(block => block.type === 'text')
+  const citations = text.flatMap(block => (block.citations ?? []).flatMap(citation =>
+    citation.type === 'web_search_result_location' && citation.url ? [{ url: citation.url, title: citation.title }] : [],
+  ))
+  const searches = blocks.filter(block => block.type === 'web_search_tool_result')
+  return {
+    answer: text.map(block => block.text).join('\n'),
+    citations,
+    grounded: citations.length > 0 || searches.some(block => Array.isArray(block.content) && block.content.length > 0),
+    complete: result.stop_reason === 'end_turn',
+    model: result.model,
+  }
+}
+
+async function askGemini(prompt, key, model) {
+  const result = await request(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, { 'x-goog-api-key': key }, {
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    tools: [{ google_search: {} }],
+    generationConfig: { maxOutputTokens: 4500 },
+  })
+  const candidate = result.candidates?.[0]
+  const grounding = candidate?.groundingMetadata
+  const indices = new Set((grounding?.groundingSupports ?? []).flatMap(support => support.groundingChunkIndices ?? []))
+  const citations = [...indices].flatMap(index => {
+    const source = grounding.groundingChunks?.[index]?.web
+    return source?.uri ? [{ url: source.uri, title: source.title }] : []
+  })
+  return {
+    answer: (candidate?.content?.parts ?? []).filter(part => !part.thought).map(part => part.text ?? '').join('\n'),
+    citations,
+    grounded: citations.length > 0,
+    complete: candidate?.finishReason === 'STOP',
+    model: result.modelVersion,
+  }
+}
+
+function parseWebUrl(value) {
+  try {
+    const url = new URL(value)
+    return ['http:', 'https:'].includes(url.protocol) ? url : null
+  } catch {
+    return null
+  }
+}
+
+async function resolveCitation(citation) {
+  const url = parseWebUrl(citation.url)
+  if (!url) return { ...citation, destination: null }
+  if (url.hostname !== 'vertexaisearch.cloud.google.com' || !url.pathname.startsWith('/grounding-api-redirect/')) {
+    return { ...citation, destination: url.href }
+  }
+  try {
+    const response = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(5000) })
+    const destination = parseWebUrl(response.headers.get('location'))
+    await response.body?.cancel()
+    return { ...citation, destination: destination?.href ?? null }
+  } catch {
+    return { ...citation, destination: null }
+  }
+}
+
+function distinctCitations(citations) {
+  return [...new Map(citations.map(citation => [citation.url, citation])).values()]
+}
+
+function matchesDomain(host, domain) {
+  return Boolean(host && (host === domain || host.endsWith('.' + domain)))
+}
+
+function firstDomainCitation(citations, domain) {
+  const index = citations.findIndex(citation => matchesDomain(parseWebUrl(citation.destination)?.hostname, domain))
+  return index < 0 ? null : { index: index + 1, url: citations[index].destination }
+}
+
+function destinationKey(destination) {
+  const url = parseWebUrl(destination)
+  return url ? url.hostname.replace(/^www\./, '') + url.pathname.replace(/\/$/, '') : null
+}
+
+function citationVerdict(checked, matched, unresolved) {
+  return checked ? (matched ? true : unresolved ? null : false) : null
+}
+
+function providerConfig(options) {
+  const isBuyer = options.suite === 'buyer'
+  const env = process.env
+  return {
+    openai: { key: env.OPENAI_API_KEY || env.LP_OPENAI_API_KEY, model: env.GEO_OPENAI_MODEL || 'gpt-5-search-api', search: 'OpenAI web search', location: 'US', run: askOpenAI },
+    claude: { key: env.ANTHROPIC_API_KEY || env.LP_ANTHROPIC_API_KEY, model: env.GEO_CLAUDE_MODEL || (isBuyer ? 'claude-haiku-5-5' : 'claude-haiku-4-5-20251001'), search: 'Claude web search', location: 'US', run: askClaude },
+    gemini: { key: env.GEMINI_API_KEY || env.LP_GEMINI_API_KEY || env.GOOGLE_API_KEY, model: env.GEO_GEMINI_MODEL || (isBuyer ? 'gemini-3.8-flash' : 'gemini-2.5-flash'), search: 'Google Search grounding', location: null, run: askGemini },
+  }
+}
+
+async function observe(item, provider, config, repeat, compareDomains) {
+  const base = {
+    ts: new Date().toISOString(), provider, model: config.model, search: config.search, search_location: config.location,
+    prompt_id: item.id, vertical: item.vertical, prompt: item.prompt, target_url: item.target ? `https://${SITE}${item.target}` : null, repeat,
+    comparison_domains: compareDomains,
+  }
+  if (!config.key) return { ...base, status: 'skipped', reason: 'No provider API key' }
+  let result
+  try {
+    result = await config.run(item.prompt, config.key, config.model)
+  } catch (error) {
+    const safeReason = /^HTTP \d{3}$/.test(error.message) ? error.message : error.name
+    return { ...base, status: 'error', reason: safeReason }
+  }
+  const citations = await Promise.all(distinctCitations(result.citations).map(resolveCitation))
+  const firstOwned = firstDomainCitation(citations, SITE)
+  const anyUnresolved = citations.some(citation => !citation.destination)
+  const complete = result.complete && result.grounded && Boolean(result.answer.trim())
+  const status = complete ? 'grounded' : 'no_complete_grounded_answer'
+  const targetKey = destinationKey(base.target_url)
+  const targets = new Set(citations.map(citation => destinationKey(citation.destination)))
+  const htmlMatch = Boolean(targetKey && targets.has(targetKey))
+  const markdownMatch = Boolean(targetKey && targets.has(`${targetKey}.md`))
+  const checkedTarget = complete && Boolean(targetKey)
+  return {
+    ...base, model: result.model || config.model, status,
+    owned_cited: citationVerdict(complete, Boolean(firstOwned), anyUnresolved),
+    target_cited: citationVerdict(checkedTarget, htmlMatch, anyUnresolved),
+    target_markdown_cited: citationVerdict(checkedTarget, markdownMatch, anyUnresolved),
+    target_content_cited: citationVerdict(checkedTarget, htmlMatch || markdownMatch, anyUnresolved),
+    first_owned_citation: firstOwned,
+    unresolved_citations: citations.filter(citation => !citation.destination).length,
+    comparisons: Object.fromEntries(compareDomains.map(domain => {
+      const first = firstDomainCitation(citations, domain)
+      return [domain, {
+        cited: citationVerdict(complete, Boolean(first), anyUnresolved),
+        first_citation: first,
+      }]
+    })),
+    brand_text: /\b(?:Invariant Earth|Invariant AI|FermiBench|Helion-?512)\b|(?:^|[^\w.-])invariant-ai\.com(?![\w.-])/i.test(result.answer),
+    citations, answer: result.answer,
+  }
 }
 
 async function main() {
-  const today = new Date().toISOString().slice(0, 10)
-  const outDir = join(ROOT, 'drafts', 'geo-results')
-  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true })
-  const outFile = join(outDir, `${today}.jsonl`)
+  const settings = options()
+  if (settings.list) {
+    console.log(JSON.stringify(settings.selected.map(item => ({
+      ...item, compareDomains: settings.comparisons.get(item.id),
+    })), null, 2))
+    return
+  }
+  const localEnv = resolve(ROOT, '.env')
+  if (settings['env-file']) loadEnvFile(resolve(settings['env-file']))
+  else if (existsSync(localEnv)) loadEnvFile(localEnv)
+  const configs = providerConfig(settings)
+  const timestamp = new Date().toISOString().replaceAll(':', '-')
+  const output = resolve(process.env.GEO_RESULTS_DIR || resolve(ROOT, 'drafts/geo-results'))
   const rows = []
-  const summary = {}
-  for (const prompt of PROMPTS) {
-    for (const { name, fn } of PROVIDERS) {
-      process.stdout.write(`[${name}] ${prompt} ... `)
-      let result
-      try {
-        result = await fn(prompt)
-      } catch (e) {
-        result = { error: String(e) }
-      }
-      const cited = result.citations ? citationPosition(result.citations, SITE) : null
-      const mention = bodyMentions(result.text, SITE) || brandMentioned(result.text)
-      const row = {
-        ts: new Date().toISOString(),
-        provider: name,
-        prompt,
-        cited,
-        mention,
-        n_citations: result.citations?.length ?? 0,
-        skipped: result.skipped,
-        error: result.error,
-        text_excerpt: result.text?.slice(0, 280),
-      }
-      rows.push(row)
-      if (result.skipped) process.stdout.write('skip\n')
-      else if (result.error) process.stdout.write(`err: ${result.error.slice(0, 80)}\n`)
-      else process.stdout.write(`cited=${cited ? `#${cited.position}` : 'no'} mention=${mention} cites=${row.n_citations}\n`)
-      summary[name] ||= { cited: 0, mentioned: 0, skipped: 0, err: 0, total: 0 }
-      summary[name].total++
-      if (result.skipped) summary[name].skipped++
-      else if (result.error) summary[name].err++
-      else {
-        if (cited) summary[name].cited++
-        if (mention) summary[name].mentioned++
+  for (const item of settings.selected) {
+    for (const provider of settings.providers) {
+      for (let repeat = 1; repeat <= settings.repeat; repeat++) {
+        const row = await observe(item, provider, configs[provider], repeat, settings.comparisons.get(item.id))
+        rows.push(row)
+        console.log(`${provider} ${item.id} #${repeat} ${row.status} ${row.reason ?? ''}`.trim())
       }
     }
   }
-  writeFileSync(outFile, rows.map((r) => JSON.stringify(r)).join('\n') + '\n')
-  console.log(`\nWrote ${outFile} (${rows.length} rows)\n`)
-  console.log('Provider          cited  mention  skip  err   total')
-  for (const [k, v] of Object.entries(summary)) {
-    console.log(
-      `  ${k.padEnd(28)}${String(v.cited).padStart(3)}  ${String(v.mentioned).padStart(7)}  ${String(v.skipped).padStart(4)}  ${String(v.err).padStart(3)}  ${String(v.total).padStart(5)}`,
-    )
+  const tally = (sample, field) => {
+    const measured = sample.filter(row => typeof row[field] === 'boolean')
+    return `${measured.filter(row => row[field]).length}/${measured.length}`
   }
+  console.table(settings.providers.map(provider => {
+    const sample = rows.filter(row => row.provider === provider)
+    return {
+      provider,
+      owned: tally(sample, 'owned_cited'),
+      target_html: tally(sample, 'target_cited'),
+      target_markdown: tally(sample, 'target_markdown_cited'),
+      target_content: tally(sample, 'target_content_cited'),
+      errors: sample.filter(row => row.status === 'error').length,
+      skipped: sample.filter(row => row.status === 'skipped').length,
+      total: sample.length,
+    }
+  }))
+  if (settings.compareDomains.length) {
+    console.table(settings.providers.flatMap(provider => settings.compareDomains.map(domain => {
+      const tracked = rows.filter(row => row.provider === provider && row.comparison_domains.includes(domain))
+      const measured = tracked
+        .filter(row => typeof row.comparisons?.[domain]?.cited === 'boolean')
+        .map(row => row.comparisons[domain])
+      return { provider, domain, cited: `${measured.filter(match => match.cited).length}/${measured.length}`, tracked: tracked.length }
+    })))
+  }
+  mkdirSync(output, { recursive: true })
+  const file = resolve(output, `${timestamp}-${settings.suite}.jsonl`)
+  writeFileSync(file, rows.map(row => JSON.stringify(row)).join('\n') + '\n', { flag: 'wx' })
+  console.log(`Wrote ${file}`)
 }
 
-main().catch((e) => {
-  console.error(e)
-  process.exit(1)
+main().catch(error => {
+  console.error(error.message)
+  process.exitCode = 1
 })

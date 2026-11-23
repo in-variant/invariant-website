@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
 import posthog from '../posthog'
-import { Seo, SITE_URL } from '../components/Seo'
+import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 import './Contact.css'
 
 const contactEmail = 'founders@invariant-ai.com'
@@ -52,7 +52,7 @@ export default function Contact() {
 
   return (
     <section className="contact-page" aria-labelledby="contact-title">
-      <Seo title="Talk to an expert | Invariant" description="Tell us what you are building and the approvals ahead. Talk with Invariant about autonomous agents for the physical economy." canonical={`${SITE_URL}/contact`} />
+      <Seo title="Talk to an expert | Invariant" description="Tell us what you are building and the approvals ahead. Talk with Invariant about autonomous agents for the physical economy." canonical={`${SITE_URL}/contact`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Contact', url: `${SITE_URL}/contact` }])]} />
       <div className="contact-layout">
         <div className="contact-intro">
           <p className="contact-eyebrow">Start a conversation</p>

@@ -1,0 +1,121 @@
+{
+  "name": "Rosemead commercial roof replacement evidence and test inputs",
+  "reviewedOn": "2026-11-22",
+  "projectId": "31031",
+  "comparison": "Independent check of public records for one municipal building. No vendor products were run against this property.",
+  "demoInput": {
+    "facilityName": "Public Works Office & Warehouse Building",
+    "insuredSiteAddress": "2714 River Avenue, Rosemead, CA 91770",
+    "ownerMailingAddress": "8838 E Valley Blvd., Rosemead, CA 91770",
+    "assumedQuoteDate": "2025-06-30",
+    "assumedRenewalDate": "2025-07-31"
+  },
+  "locationChecks": [
+    {
+      "sourceId": "census",
+      "longitude": -118.073043786571,
+      "latitude": 34.061646423652,
+      "countyOutlineMatches": [],
+      "intersectionSourceId": "street-intersect",
+      "note": "Address-range match returned by the Census geocoder. Used as a comparison coordinate."
+    },
+    {
+      "sourceId": "cams",
+      "longitude": -118.07254335924628,
+      "latitude": 34.0612468622948,
+      "countyAddressObjectId": 713247,
+      "assessorIdentificationNumber": "5282026900",
+      "countyBuildingIdInAddressRecord": null,
+      "countyOutlineMatches": [
+        2920695
+      ],
+      "intersectionSourceId": "outline",
+      "note": "County address point intersects the outline that corresponds visually to the project building on the city site map."
+    }
+  ],
+  "distanceBetweenCoordinatesMeters": 64,
+  "events": [
+    {
+      "type": "contract_award",
+      "eventDate": "2025-01-14",
+      "documentedBy": [
+        "award",
+        "notice"
+      ],
+      "meaning": "City awarded roof replacement work for project 31031."
+    },
+    {
+      "type": "reported_work_completion",
+      "eventDate": "2025-06-02",
+      "sourceDocumentDate": "2025-07-08",
+      "documentedBy": [
+        "notice"
+      ],
+      "meaning": "The notice attached to the July council packet lists June 2 as the date work was completed. Staff describe installation of a new metal roof."
+    },
+    {
+      "type": "council_acceptance",
+      "eventDate": "2025-07-08",
+      "documentedBy": [
+        "minutes"
+      ],
+      "meaning": "Council approved acceptance of the project and authorized recording a notice. The reviewed records do not establish the county recording date."
+    }
+  ],
+  "expectedReview": [
+    "Match the work site and the named warehouse, and retain the separate owner mailing address.",
+    "Use the city map to confirm the footprint after comparing both geocoders.",
+    "Preserve separate event and source-document dates. Leave roof completion unverified by these records in the June 30 snapshot.",
+    "For a later review with the July packet, retain June 2 as the reported completion date. Keep current roof condition and exact replacement cost separate."
+  ],
+  "sources": [
+    {
+      "id": "spec",
+      "publisher": "City of Rosemead",
+      "title": "Project 31031 technical provisions and site map, page TP-1",
+      "url": "https://cityofrosemead.granicus.com/MetaViewer.php?clip_id=3257&meta_id=235921&view_id=2#page=141"
+    },
+    {
+      "id": "award",
+      "publisher": "City of Rosemead",
+      "title": "January 14, 2025 council agenda, item 5.G",
+      "url": "https://cityofrosemead.granicus.com/MetaViewer.php?clip_id=3282&meta_id=237550&view_id=2"
+    },
+    {
+      "id": "notice",
+      "publisher": "City of Rosemead",
+      "title": "July 8, 2025 staff report and attached Notice of Completion for project 31031",
+      "url": "https://cityofrosemead.granicus.com/MetaViewer.php?clip_id=3376&meta_id=244443&view_id=2"
+    },
+    {
+      "id": "minutes",
+      "publisher": "City of Rosemead",
+      "title": "July 8, 2025 council minutes, consent item 4.E",
+      "url": "https://cityofrosemead.granicus.com/MetaViewer.php?clip_id=3402&meta_id=245720&view_id=2"
+    },
+    {
+      "id": "census",
+      "publisher": "U.S. Census Bureau",
+      "title": "Geocoder result for 2714 River Avenue",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=2714+River+Avenue%2C+Rosemead%2C+CA+91770&benchmark=Public_AR_Current&format=json"
+    },
+    {
+      "id": "cams",
+      "publisher": "Los Angeles County",
+      "title": "County address point and assessor parcel returned for 2714 River Avenue",
+      "url": "https://arcgis.gis.lacounty.gov/arcgis/rest/services/DRP/GISNET_Public/MapServer/402/query?where=Number%3D%272714%27+AND+UPPER%28StreetName%29%3D%27RIVER%27+AND+ZipCode%3D%2791770%27&outFields=OBJECTID%2CAIN%2CFullName%2CBldgID%2CBldgName%2CSource%2CSourceID%2CUpdateDate&outSR=4326&f=pjson"
+    },
+    {
+      "id": "outline",
+      "publisher": "Los Angeles County",
+      "title": "County building outline at the county address point",
+      "url": "https://arcgis.gis.lacounty.gov/arcgis/rest/services/DRP/GISNET_Public/MapServer/434/query?geometry=-118.07254335924628%2C34.0612468622948&geometryType=esriGeometryPoint&inSR=4326&outFields=OBJECTID%2CCODE&returnGeometry=false&f=pjson"
+    },
+    {
+      "id": "street-intersect",
+      "publisher": "Los Angeles County",
+      "title": "County building outline query at the Census coordinate",
+      "url": "https://arcgis.gis.lacounty.gov/arcgis/rest/services/DRP/GISNET_Public/MapServer/434/query?geometry=-118.073043786571%2C34.061646423652&geometryType=esriGeometryPoint&inSR=4326&outFields=OBJECTID%2CCODE&returnGeometry=false&f=pjson"
+    }
+  ]
+}

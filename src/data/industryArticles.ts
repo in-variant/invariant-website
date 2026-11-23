@@ -1,20 +1,20 @@
-import dataCenters from './industry-articles/data-centers.json'
-import coverVersions from './cover-versions.json'
-import oilGas from './industry-articles/oil-gas.json'
-import dataCenterOperations from './industry-articles/data-center-operations.json'
-import dataCenterFireSafety from './industry-articles/data-center-fire-safety.json'
-import poweredLandSites from './industry-articles/powered-land-sites.json'
-import siteSelectionGuides from './industry-articles/site-selection-guides.json'
-import siteFinder from './industry-articles/data-center-site-finder.json'
-import siteDueDiligence from './industry-articles/site-due-diligence.json'
-import computeCapacity from './industry-articles/ai-compute-capacity.json'
-import indiaDataCentres from './industry-articles/india-data-centres.json'
+import type { ResourceArticle } from './resources'
 
-export type IndustryTopic = 'Data Centers' | 'Oil & Gas'
+export type IndustryTopic = 'Data Centers' | 'Oil & Gas' | 'Data & APIs'
+export type ArticleDataset = {
+  name: string
+  description: string
+  sourceIds: string[]
+  spatialCoverage?: string
+  temporalCoverage?: string
+}
+export type DatasetDownload = { label: string; path: string; format: 'CSV' | 'GeoJSON' | 'JSON' }
+
 export type ArticleBlock = (
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
-  | { type: 'table'; columns: string[]; rows: string[][] }
+  | { type: 'table'; columns: string[]; rows: string[][]; worksheet?: boolean; stackOnMobile?: boolean; rowSourceIds?: string[][] }
+  | ({ type: 'download' } & DatasetDownload)
   | { type: 'links'; label: string; items: { label: string; slug: string }[] }
 ) & { sourceIds?: string[] }
 export type IndustryArticle = {
@@ -23,14 +23,18 @@ export type IndustryArticle = {
   title: string
   description: string
   date: string
+  updatedDate?: string
+  coverCaption?: string
+  coverAlt?: string
+  published: ResourceArticle
   readMinutes: number
   intro: string
   takeaways: string[]
   sections: { id: string; heading: string; blocks: ArticleBlock[] }[]
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
-  sources: { id: string; title: string; url: string; publisher: string }[]
-  relatedSlugs: string[]
-  /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot; 'site-guide' pages carry the booking banner at the foot; 'study-guide' pages (site due diligence) carry the power study request banner; 'compute-guide' pages (neoclouds and AI labs) carry the GPU capacity banner; 'india-guide' pages (data centres in India) carry the India site and approvals banner. */
+  sources: { id: string; title: string; url: string; publisher: string; linkLabel?: string }[]
+  relatedReading: Pick<ResourceArticle, 'slug' | 'title' | 'topic' | 'image'>[]
+  /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot; 'site-guide' pages carry the booking banner at the foot; 'study-guide' pages (site due diligence) carry the power study request banner; 'compute-guide' pages (neoclouds and AI labs) carry the GPU capacity banner. */
   kind?: 'site-listing' | 'site-guide' | 'study-guide' | 'compute-guide' | 'india-guide'
   /** Emits schema.org Service for pages that describe a service Invariant sells. */
   service?: { name: string; serviceType: string; description: string }
@@ -40,22 +44,25 @@ export type IndustryArticle = {
   region?: string
 }
 
-export const INDUSTRY_ARTICLES = [...computeCapacity, ...siteDueDiligence, ...siteFinder, ...poweredLandSites, ...siteSelectionGuides, ...dataCenters, ...dataCenterOperations, ...dataCenterFireSafety, ...indiaDataCentres, ...oilGas] as IndustryArticle[]
-export const industryPath = (topic: IndustryTopic) => topic === 'Data Centers' ? '/data-center-compliance' : '/oil-gas-compliance'
+const articleModules = import.meta.glob<IndustryArticle>('/src/data/.generated-articles/*.json', { import: 'default' })
 
-/** India cluster: every page whose region ends in "India" belongs to it (pillar, cities, states, guides). */
-export const INDIA_PILLAR = 'data-centres-in-india'
-export const INDIA_HUB = '/data-centre-compliance-india'
-export const isIndiaRegion = (region?: string) => /(^|, )India$/.test(region ?? '')
-/** Cover URL with a content-hash query (covers are cached as immutable for a year; see build-industry-content.mjs). */
-export const versionedImage = (path: string) => { const v = (coverVersions as Record<string, string>)[path]; return v ? `${path}?v=${v}` : path }
-export const articleImage = (slug: string) => versionedImage(`/blog/industry/${slug}.webp`)
+export const articleModulePath = (slug: string) => `/src/data/.generated-articles/${slug}.json`
+export const articleLoader = (slug: string) => articleModules[articleModulePath(slug)]
+
+export const INDUSTRY_HUBS = {
+  'Data Centers': { name: 'Data Centers compliance', path: '/data-center-compliance' },
+  'Oil & Gas': { name: 'Oil & Gas compliance', path: '/oil-gas-compliance' },
+  'Data & APIs': { name: 'Blog', path: '/blog' },
+} satisfies Record<IndustryTopic, { name: string; path: string }>
 
 /** Pillar for the site due diligence cluster (feasibility screen, then utility-grade power study). */
 export const DILIGENCE_PILLAR = 'data-center-site-due-diligence'
 /** Pillar for the neocloud and AI lab cluster (GPU capacity, colocation, power for clusters). */
 export const COMPUTE_PILLAR = 'ai-compute-capacity-for-neoclouds'
-export const isSiteKind = (kind?: string) => kind === 'site-listing' || kind === 'site-guide' || kind === 'study-guide' || kind === 'compute-guide' || kind === 'india-guide'
+export const isSiteKind = (kind?: string) => kind === 'site-listing' || kind === 'site-guide' || kind === 'study-guide' || kind === 'compute-guide'
+
+export const INDIA_PILLAR = 'data-centres-in-india'
+export const INDIA_HUB = '/data-centre-compliance-india'
 
 export const BOOKING_URL = 'https://cal.com/pranav-goswami/website-30min'
 export const SITES_PHONE = '+16282208972'

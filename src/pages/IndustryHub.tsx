@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { INDUSTRY_HUBS, hubIncludes } from '../data/industryHubs'
-import { versionedImage } from '../data/industryArticles'
+import { versionedCover } from '../data/coverImages'
 import { RESOURCE_ARTICLES } from '../data/resources'
 import { ResourceArticleCard } from '../components/ResourceCards'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
@@ -8,18 +8,20 @@ import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
 import './IndustryHub.css'
 import './Resources.css'
 
-export default function IndustryHub({ slug, renderSeo = true }: { slug: string; renderSeo?: boolean }) {
+export default function IndustryHub({ slug }: { slug: string }) {
   const hub = INDUSTRY_HUBS.find(item => item.slug === slug)!
   const articles = RESOURCE_ARTICLES.filter(article => hubIncludes(hub, article))
-  const label = hub.region === 'India' ? 'India data centre approvals' : `${hub.topic} compliance`
+  const isIndia = hub.region === 'India'
+  const label = isIndia ? 'India data centre approvals' : `${hub.topic} compliance`
   const canonical = `${SITE_URL}/${hub.slug}`
+  const image = versionedCover(hub.image)
   return <article className="industry-hub">
-    {renderSeo && <Seo title={hub.title} description={hub.description} canonical={canonical} ogImage={`${SITE_URL}${versionedImage(hub.image)}`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: canonical, hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }]} />}
+    <Seo title={hub.title} description={hub.description} canonical={canonical} ogImage={`${SITE_URL}${image}`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: canonical, hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }]} />
     <header className="industry-hub-hero industry-hub-container">
-      <div className="industry-hub-heading"><p className="industry-hub-eyebrow">{hub.region === 'India' ? 'Data centres / India' : `${hub.topic} / Compliance`}</p><h1>{hub.heading}</h1><p>{hub.intro}</p><a className="industry-hub-jump" href="#compliance-map">Explore the requirements <span aria-hidden="true">↓</span></a></div>
-      <figure><img src={versionedImage(hub.image)} width="1600" height="900" alt={hub.region === 'India' ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" /></figure>
+      <div className="industry-hub-heading"><p className="industry-hub-eyebrow">{isIndia ? 'Data centres / India' : `${hub.topic} / Compliance`}</p><h1>{hub.heading}</h1><p>{hub.intro}</p><a className="industry-hub-jump" href="#compliance-map">Explore the requirements <span aria-hidden="true">↓</span></a></div>
+      <figure><img src={image} width="1600" height="900" alt={isIndia ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" /></figure>
     </header>
-    {hub.topic === 'Data Centers' && !hub.region && <section className="industry-register industry-hub-container" aria-labelledby="register-heading">
+    {hub.topic === 'Data Centers' && !isIndia && <section className="industry-register industry-hub-container" aria-labelledby="register-heading">
       <div><p className="industry-hub-eyebrow">A working document</p><h2 id="register-heading">Start your compliance register.</h2></div>
       <div><p>Ten workstreams, with fields for the exact permit condition, equipment, owner, deadline and supporting record. Use it to turn an applicability decision into work someone owns.</p><p className="industry-register-note">A starting template for U.S. facilities. Complete the jurisdiction and applicability review for your site before using it as a compliance calendar.</p><a href="/downloads/data-center-compliance-register.csv" download>Download the register <span aria-hidden="true">↗</span></a><span className="industry-register-format">CSV · 10 workstreams · No signup</span></div>
     </section>}

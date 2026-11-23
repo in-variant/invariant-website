@@ -1,0 +1,521 @@
+{
+  "type": "FeatureCollection",
+  "title": "Two Brooklyn tax lot changes on November 20, 2026",
+  "observed_date": "2026-11-22",
+  "method": "Source geometries in WGS 84. Areas computed in EPSG:2263 in US survey square feet. Event directions confirmed in the NYC Digital Alteration Book and dated tax maps. Earlier and later geometry layers are distinct city products.",
+  "events": [
+    {
+      "event_id": "738545",
+      "type": "split",
+      "block": "3947",
+      "map_change_date": "2026-11-20",
+      "source_lot_actions": {
+        "3039470105": "New",
+        "3039470001": "Affected"
+      },
+      "map_library_before": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30394720260513174246",
+      "map_library_after": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30394720261120160044",
+      "source_queries": {
+        "old": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=geojson&where=BBL+IN+%283039470001%2C3039470105%29&outFields=BBL%2CLot%2CLotArea%2CVersion%2CAPPBBL%2CAPPDate%2CLandUse&outSR=4326",
+        "new": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?f=geojson&where=BBL+IN+%28%273039470001%27%2C%273039470105%27%29&outFields=BBL%2CBORO%2CBLOCK%2CLOT&outSR=4326",
+        "event": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D738545&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false",
+        "header": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/9/query?f=json&where=TRANS_NUM%3D738545&outFields=BBL%2CChange_Type%2CChange_Date%2CTRANS_NUM&returnGeometry=false",
+        "maps": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/8/query?f=json&where=ID+IN+%28%2730394720260513174246%27%2C%2730394720261120160044%27%29&outFields=ID%2CEFFECTIVE_DATE%2CEND_DATE%2CCURRENT_FLAG&returnGeometry=false"
+      },
+      "map_coverage_difference_sqft": 0.08,
+      "edges": [
+        {
+          "event_id": "738545",
+          "event_type": "split",
+          "map_change_date": "2026-11-20",
+          "observed_date": "2026-11-22",
+          "predecessor_bbl": "3039470001",
+          "successor_bbl": "3039470001",
+          "relationship": "retained_smaller",
+          "predecessor_record_id": "738545/before/3039470001",
+          "successor_record_id": "738545/after/3039470001",
+          "predecessor_area_sqft": 45289.67,
+          "successor_area_sqft": 24120.57,
+          "intersection_area_sqft": 24120.54,
+          "alteration_query": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D738545&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false"
+        },
+        {
+          "event_id": "738545",
+          "event_type": "split",
+          "map_change_date": "2026-11-20",
+          "observed_date": "2026-11-22",
+          "predecessor_bbl": "3039470001",
+          "successor_bbl": "3039470105",
+          "relationship": "new_from_split",
+          "predecessor_record_id": "738545/before/3039470001",
+          "successor_record_id": "738545/after/3039470105",
+          "predecessor_area_sqft": 45289.67,
+          "successor_area_sqft": 21169.09,
+          "intersection_area_sqft": 21169.08,
+          "alteration_query": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D738545&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false"
+        }
+      ]
+    },
+    {
+      "event_id": "739346",
+      "type": "merger",
+      "block": "3373",
+      "map_change_date": "2026-11-20",
+      "source_lot_actions": {
+        "3033730002": "Dropped",
+        "3033730057": "Affected",
+        "3033730001": "Dropped"
+      },
+      "map_library_before": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30337320110624104552",
+      "map_library_after": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30337320261120160402",
+      "source_queries": {
+        "old": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=geojson&where=BBL+IN+%283033730001%2C3033730002%2C3033730057%29&outFields=BBL%2CLot%2CVersion%2CLandUse&outSR=4326",
+        "new": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?f=geojson&where=BBL+IN+%28%273033730001%27%2C%273033730002%27%2C%273033730057%27%29&outFields=BBL%2CBORO%2CBLOCK%2CLOT&outSR=4326",
+        "event": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D739346&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false",
+        "header": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/9/query?f=json&where=TRANS_NUM%3D739346&outFields=BBL%2CChange_Type%2CChange_Date%2CTRANS_NUM&returnGeometry=false",
+        "maps": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/8/query?f=json&where=ID+IN+%28%2730337320110624104552%27%2C%2730337320261120160402%27%29&outFields=ID%2CEFFECTIVE_DATE%2CEND_DATE%2CCURRENT_FLAG&returnGeometry=false"
+      },
+      "map_coverage_difference_sqft": 0.02,
+      "edges": [
+        {
+          "event_id": "739346",
+          "event_type": "merger",
+          "map_change_date": "2026-11-20",
+          "observed_date": "2026-11-22",
+          "predecessor_bbl": "3033730001",
+          "successor_bbl": "3033730057",
+          "relationship": "absorbed",
+          "predecessor_record_id": "739346/before/3033730001",
+          "successor_record_id": "739346/after/3033730057",
+          "predecessor_area_sqft": 1979.0,
+          "successor_area_sqft": 6575.85,
+          "intersection_area_sqft": 1979.0,
+          "alteration_query": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D739346&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false"
+        },
+        {
+          "event_id": "739346",
+          "event_type": "merger",
+          "map_change_date": "2026-11-20",
+          "observed_date": "2026-11-22",
+          "predecessor_bbl": "3033730002",
+          "successor_bbl": "3033730057",
+          "relationship": "absorbed",
+          "predecessor_record_id": "739346/before/3033730002",
+          "successor_record_id": "739346/after/3033730057",
+          "predecessor_area_sqft": 2564.05,
+          "successor_area_sqft": 6575.85,
+          "intersection_area_sqft": 2564.04,
+          "alteration_query": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D739346&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false"
+        },
+        {
+          "event_id": "739346",
+          "event_type": "merger",
+          "map_change_date": "2026-11-20",
+          "observed_date": "2026-11-22",
+          "predecessor_bbl": "3033730057",
+          "successor_bbl": "3033730057",
+          "relationship": "retained_larger",
+          "predecessor_record_id": "739346/before/3033730057",
+          "successor_record_id": "739346/after/3033730057",
+          "predecessor_area_sqft": 2032.81,
+          "successor_area_sqft": 6575.85,
+          "intersection_area_sqft": 2032.8,
+          "alteration_query": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D739346&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false"
+        }
+      ]
+    }
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.8910260598457,
+              40.6766416056536
+            ],
+            [
+              -73.8912014088169,
+              40.6766092521575
+            ],
+            [
+              -73.891272953938,
+              40.6768851099269
+            ],
+            [
+              -73.8913366619402,
+              40.6771307496813
+            ],
+            [
+              -73.8913620582616,
+              40.6772286696244
+            ],
+            [
+              -73.8910397959745,
+              40.6772764101345
+            ],
+            [
+              -73.891004017715,
+              40.6772817090487
+            ],
+            [
+              -73.890651605859,
+              40.6773339152627
+            ],
+            [
+              -73.8904964398458,
+              40.6767393220591
+            ],
+            [
+              -73.8910260598457,
+              40.6766416056536
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "738545",
+        "record_id": "738545/before/3039470001",
+        "block": "3947",
+        "bbl": "3039470001",
+        "lot": "1",
+        "map_side": "before",
+        "source_layer": "MapPLUTO 26v2 shoreline clipped",
+        "computed_area_sqft": 45289.67,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30394720260513174246"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.8909008445124,
+              40.6766647080515
+            ],
+            [
+              -73.8909292259602,
+              40.6767702519153
+            ],
+            [
+              -73.8909568454808,
+              40.6767659465285
+            ],
+            [
+              -73.8909809907167,
+              40.6768589791395
+            ],
+            [
+              -73.8909080996441,
+              40.6768700980264
+            ],
+            [
+              -73.8910144569317,
+              40.6772801636068
+            ],
+            [
+              -73.8910040175905,
+              40.6772817095894
+            ],
+            [
+              -73.8906516059106,
+              40.6773339147197
+            ],
+            [
+              -73.8904964403203,
+              40.6767393213813
+            ],
+            [
+              -73.8909008445124,
+              40.6766647080515
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "738545",
+        "record_id": "738545/after/3039470001",
+        "block": "3947",
+        "bbl": "3039470001",
+        "lot": "1",
+        "map_side": "after",
+        "source_layer": "NYC Tax Lot Polygon",
+        "computed_area_sqft": 24120.57,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30394720261120160044"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.8909008445124,
+              40.6766647080515
+            ],
+            [
+              -73.8910260603523,
+              40.6766416052847
+            ],
+            [
+              -73.8912014087735,
+              40.6766092526886
+            ],
+            [
+              -73.8912729539596,
+              40.676885109885
+            ],
+            [
+              -73.8913366615574,
+              40.6771307493383
+            ],
+            [
+              -73.8913620581489,
+              40.6772286697153
+            ],
+            [
+              -73.8910397965617,
+              40.6772764095632
+            ],
+            [
+              -73.8910144569317,
+              40.6772801636068
+            ],
+            [
+              -73.8909080996441,
+              40.6768700980264
+            ],
+            [
+              -73.8909809907167,
+              40.6768589791395
+            ],
+            [
+              -73.8909568454808,
+              40.6767659465285
+            ],
+            [
+              -73.8909292259602,
+              40.6767702519153
+            ],
+            [
+              -73.8909008445124,
+              40.6766647080515
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "738545",
+        "record_id": "738545/after/3039470105",
+        "block": "3947",
+        "bbl": "3039470105",
+        "lot": "105",
+        "map_side": "after",
+        "source_layer": "NYC Tax Lot Polygon",
+        "computed_area_sqft": 21169.09,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30394720261120160044"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9180803410478,
+              40.6877245792352
+            ],
+            [
+              -73.9183010053983,
+              40.6874971959685
+            ],
+            [
+              -73.918359063305,
+              40.6875281148765
+            ],
+            [
+              -73.9181344434628,
+              40.6877551442339
+            ],
+            [
+              -73.9180803410478,
+              40.6877245792352
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "739346",
+        "record_id": "739346/before/3033730001",
+        "block": "3373",
+        "bbl": "3033730001",
+        "lot": "1",
+        "map_side": "before",
+        "source_layer": "MapPLUTO 26v2 shoreline clipped",
+        "computed_area_sqft": 1979.0,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30337320110624104552"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.918205905123,
+              40.6877955155507
+            ],
+            [
+              -73.9181344434628,
+              40.6877551442339
+            ],
+            [
+              -73.918359063305,
+              40.6875281148765
+            ],
+            [
+              -73.9184320243797,
+              40.6875669706828
+            ],
+            [
+              -73.918205905123,
+              40.6877955155507
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "739346",
+        "record_id": "739346/before/3033730002",
+        "block": "3373",
+        "bbl": "3033730002",
+        "lot": "2",
+        "map_side": "before",
+        "source_layer": "MapPLUTO 26v2 shoreline clipped",
+        "computed_area_sqft": 2564.05,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30337320110624104552"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.918037491751,
+              40.6877687333552
+            ],
+            [
+              -73.9180803410478,
+              40.6877245792352
+            ],
+            [
+              -73.9181344434628,
+              40.6877551442339
+            ],
+            [
+              -73.918205905123,
+              40.6877955155507
+            ],
+            [
+              -73.918301228073,
+              40.6878493664655
+            ],
+            [
+              -73.9183749101299,
+              40.687890991908
+            ],
+            [
+              -73.9183315241826,
+              40.687934844074
+            ],
+            [
+              -73.918037491751,
+              40.6877687333552
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "739346",
+        "record_id": "739346/before/3033730057",
+        "block": "3373",
+        "bbl": "3033730057",
+        "lot": "57",
+        "map_side": "before",
+        "source_layer": "MapPLUTO 26v2 shoreline clipped",
+        "computed_area_sqft": 2032.81,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30337320110624104552"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -73.9180803410446,
+              40.6877245790705
+            ],
+            [
+              -73.9183010055419,
+              40.6874971958037
+            ],
+            [
+              -73.9183590635217,
+              40.6875281147738
+            ],
+            [
+              -73.9184320242052,
+              40.6875669703027
+            ],
+            [
+              -73.9182059049225,
+              40.6877955156574
+            ],
+            [
+              -73.9183012276062,
+              40.6878493657992
+            ],
+            [
+              -73.9183749098367,
+              40.6878909924698
+            ],
+            [
+              -73.9183315237682,
+              40.687934843614
+            ],
+            [
+              -73.9180374917522,
+              40.6877687333341
+            ],
+            [
+              -73.9180803410446,
+              40.6877245790705
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "event_id": "739346",
+        "record_id": "739346/after/3033730057",
+        "block": "3373",
+        "bbl": "3033730057",
+        "lot": "57",
+        "map_side": "after",
+        "source_layer": "NYC Tax Lot Polygon",
+        "computed_area_sqft": 6575.85,
+        "map_url": "https://propertyinformationportal.nyc.gov/pdf/home/index/map_library/30337320261120160402"
+      }
+    }
+  ]
+}

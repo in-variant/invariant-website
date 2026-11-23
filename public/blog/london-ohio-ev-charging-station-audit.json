@@ -1,0 +1,251 @@
+{
+  "name": "AFDC fast charging inventory audit at I-70 Exit 79 in London, Ohio",
+  "scope": "Two public DC fast stations in the AFDC response for ZIP 43140. Captures station inventory and charging equipment records. Occupancy, current output and vehicle access were outside the audit.",
+  "portExportRetrievedAtUtc": "2026-11-23T07:31:35Z",
+  "sources": [
+    {
+      "endpoint": "https://developer.nlr.gov/api/alt-fuel-stations/v1.json",
+      "queryWithoutApiKey": {
+        "fuel_type": "ELEC",
+        "state": "OH",
+        "zip": "43140",
+        "status": "all",
+        "limit": 40
+      },
+      "responseSha256": "41a69977c6591327c51c7bfd82b8ae05e2662a869b4249b8cc3c55f678c4aacf"
+    },
+    {
+      "endpoint": "https://developer.nlr.gov/api/alt-fuel-stations/v1/ev-charging-units.csv",
+      "queryWithoutApiKey": {
+        "country": "US",
+        "state": "OH",
+        "zip": "43140",
+        "status": "all"
+      },
+      "responseSha256": "5883b9fee60f4fe2d900a4dd3f5123dcb5b084c4106905bd04ee8b9bd3b6af41"
+    }
+  ],
+  "fieldNotes": {
+    "stationStatusCode": "AFDC E describes station status. It carries no live occupancy information.",
+    "equipmentRows": "Selected columns from the EV charging units export. Duplicate-looking rows are kept. Array positions have no equipment or connector identity.",
+    "ratedKilowatts": "Nameplate power in the export. Actual delivery can vary with vehicle, simultaneous charging and site controls."
+  },
+  "stations": [
+    {
+      "afdcStationId": 322368,
+      "name": "Pilot Travel Center 454",
+      "addressAsReported": "1365 Sr 42 Ne",
+      "networkAsReported": "eVgo Network",
+      "latitude": 39.9595461,
+      "longitude": -83.3692316,
+      "accessCode": "public",
+      "accessHoursAsReported": "24 hours daily",
+      "stationStatusCode": "E",
+      "stationOpenDateAsReported": "2023-12-08",
+      "stationLastConfirmedDate": "2026-11-22",
+      "stationUpdatedAt": "2026-11-23T00:01:36Z",
+      "stationDcFastPortCount": 4,
+      "stationConnectorCodesAsReported": [
+        "J1772COMBO"
+      ],
+      "equipmentRows": [
+        {
+          "repeatedStationDcFastPortCount": 4,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 350.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 4,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 350.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 4,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 350.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 4,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 350.0
+            }
+          ]
+        }
+      ],
+      "distinctFullSourceEquipmentRows": 1,
+      "connectorOccurrencesByType": {
+        "CCS": 4
+      }
+    },
+    {
+      "afdcStationId": 388708,
+      "name": "TA US-42, London, OH",
+      "addressAsReported": "940 US-42",
+      "networkAsReported": "BP_PULSE",
+      "latitude": 39.953894,
+      "longitude": -83.378689,
+      "accessCode": "public",
+      "accessHoursAsReported": "24 hours daily",
+      "stationStatusCode": "E",
+      "stationOpenDateAsReported": "2025-03-26",
+      "stationLastConfirmedDate": "2026-11-23",
+      "stationUpdatedAt": "2026-11-23T05:05:40Z",
+      "stationDcFastPortCount": 12,
+      "stationConnectorCodesAsReported": [
+        "J1772COMBO",
+        "TESLA"
+      ],
+      "equipmentRows": [
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "J3400",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "J3400",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "J3400",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "J3400",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "J3400",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        },
+        {
+          "repeatedStationDcFastPortCount": 12,
+          "connectors": [
+            {
+              "type": "CCS",
+              "count": 1,
+              "ratedKilowatts": 400.0
+            }
+          ]
+        }
+      ],
+      "distinctFullSourceEquipmentRows": 2,
+      "connectorOccurrencesByType": {
+        "CCS": 7,
+        "J3400": 5
+      }
+    }
+  ],
+  "checks": {
+    "stationQueryRowsBeforeFiltering": 5,
+    "auditedStationCount": 2,
+    "dcFastPortsSummedOncePerStation": 16,
+    "dcFastPortCountIncorrectlySummedOverEquipmentRows": 160
+  }
+}

@@ -2,9 +2,8 @@ import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArti
 import SpaceMarket from '../../components/SpaceMarket'
 import RocketLaunchesMarket from '../../components/RocketLaunchesMarket'
 import { Seo, ORG_SCHEMA, SITE_URL, articleSchema, breadcrumbSchema } from '../../components/Seo'
-import { RESOURCE_ARTICLES } from '../../data/resources'
+import POST from '../../data/.generated-legacy-articles/space-compliance-tam.json'
 
-const POST = RESOURCE_ARTICLES.find(article => article.slug === 'space-compliance-tam')!
 const POST_URL = `${SITE_URL}/blog/${POST.slug}`
 const POST_IMAGE = `${SITE_URL}${POST.image}`
 
@@ -47,7 +46,7 @@ export default function SpaceComplianceTAM() {
           ]),
         ]}
       />
-      <BlogArticleHeader slug="space-compliance-tam" title="The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate" subtitle="The satellite count is the story. Nobody is reading it that way." />
+      <BlogArticleHeader article={POST} title="The $1.8 Trillion Space Industry Has a $52 Billion Toll Gate" subtitle="The satellite count is the story. Nobody is reading it that way." />
       <div className="blog-article-body">
         <div className="section-rule" />
 
@@ -238,7 +237,7 @@ export default function SpaceComplianceTAM() {
           </p>
         </div>
       </div>
-      <BlogRelatedReading slug="space-compliance-tam" />
+      <BlogRelatedReading articles={POST.relatedReading} />
     </article>
   )
 }

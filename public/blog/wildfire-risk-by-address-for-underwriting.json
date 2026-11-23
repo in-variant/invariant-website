@@ -1,0 +1,175 @@
+{
+  "name": "Wildfire map and building matches for two Los Angeles properties",
+  "description": "Two reproducible Los Angeles address and building checks against California’s 2025 local-responsibility wildfire map. Includes alternate address points, building IDs, raw zone codes, map matches and query sources.",
+  "guide": "https://invariant-ai.com/blog/wildfire-risk-by-address-for-underwriting",
+  "reviewedOn": "2026-11-22",
+  "scope": "Two public facilities selected to contrast building identity and mapped classes. The checks cover addresses, building outlines and public map layers. Property mitigation, losses and insurance terms require separate records.",
+  "sources": [
+    {
+      "id": "cams",
+      "title": "Countywide Address Management System address points",
+      "url": "https://arcgis.gis.lacounty.gov/arcgis/rest/services/DRP/GISNET_Public/MapServer/402",
+      "publisher": "Los Angeles County",
+      "linkLabel": "County address points"
+    },
+    {
+      "id": "footprints",
+      "title": "Building Footprints map service",
+      "url": "https://dpw.gis.lacounty.gov/dpw/rest/services/buildingfootprints/MapServer/0",
+      "publisher": "Los Angeles County",
+      "linkLabel": "County building outlines"
+    },
+    {
+      "id": "state-lra",
+      "title": "2025 Fire Hazard Severity Zones in Local Responsibility Areas as recommended by the State Fire Marshal",
+      "url": "https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/arcgis/rest/services/FHSALRA25_v1_All/FeatureServer/0",
+      "publisher": "CAL FIRE",
+      "linkLabel": "2025 local-area hazard layer"
+    },
+    {
+      "id": "responsibility",
+      "title": "California responsibility areas layer",
+      "url": "https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/arcgis/rest/services/State_Responsibility_Area/FeatureServer/0",
+      "publisher": "CAL FIRE",
+      "linkLabel": "Responsibility area boundaries"
+    },
+    {
+      "id": "city-layer",
+      "title": "Very High Fire Hazard Severity Zones layer, Special Areas map service",
+      "url": "https://maps.lacity.org/lahub/rest/services/Special_Areas/MapServer/11",
+      "publisher": "City of Los Angeles",
+      "linkLabel": "City Very High zone layer"
+    },
+    {
+      "id": "observatory",
+      "title": "Griffith Observatory public address",
+      "url": "https://griffithobservatory.lacity.gov/about/contact/",
+      "publisher": "Griffith Observatory"
+    },
+    {
+      "id": "library",
+      "title": "Central Library public address",
+      "url": "https://www.lapl.org/branches/central-library",
+      "publisher": "Los Angeles Public Library",
+      "linkLabel": "Central Library address"
+    }
+  ],
+  "method": {
+    "inputCrs": "EPSG:4326",
+    "distanceCrs": "EPSG:26911",
+    "distanceRounding": "Nearest meter",
+    "stateMapEdition": "2025 State Fire Marshal recommendations for Local Responsibility Areas",
+    "steps": [
+      "Match the facility’s published address to the CAMS address layer using the stored filter. Inspect all returned points.",
+      "Query the county Building Footprints layer with each point using esriSpatialRelIntersects. Match the full official address, review the footprint selected by the point, and retain the county building ID. The alternate Observatory point is outside the selected footprint.",
+      "Fetch the selected footprint using its county object ID and outSR=4326. Pass its Esri JSON polygon to the CAL FIRE responsibility area and 2025 LRA layers with inSR=4326. Query first with esriSpatialRelIntersects and then esriSpatialRelWithin. Each selected building was within the one intersecting feature in each layer.",
+      "Query the city Very High layer the same way as a secondary map check. This response does not establish an ordinance effective date.",
+      "For the two Observatory points, project both points and the selected footprint to NAD83 / UTM zone 11N and round the straight-line point separation and the alternate point’s shortest distance to the footprint to the nearest meter."
+    ]
+  },
+  "interpretation": {
+    "nonWildland": "An explicit category in the CAL FIRE layer. It is distinct from a no-result query and does not imply zero wildfire exposure.",
+    "unresolved": [
+      "Legal local map effective date for a particular policy or decision date",
+      "Current footprint or building updates since the source imagery",
+      "Building vulnerability and mitigation",
+      "Insurance terms and expected loss"
+    ],
+    "idScope": "Object IDs identify features in the queried service when checked and may change when a layer is republished. The county building ID is recorded separately."
+  },
+  "places": [
+    {
+      "id": "griffith-observatory",
+      "name": "Griffith Observatory",
+      "officialAddress": "2800 East Observatory Road, Los Angeles, CA 90027",
+      "addressSourceId": "observatory",
+      "camsAddressFilter": "Number='2800' AND PreDir='East' AND UPPER(StreetName)='OBSERVATORY' AND ZipCode='90027'",
+      "selectedAddressObjectId": 1255724,
+      "addressCandidates": [
+        {
+          "objectId": 1255724,
+          "fullAddress": "2800 E Observatory Rd Los Angeles 90027",
+          "sourceLabel": "LACO DPW Add",
+          "longitude": -118.30038649336942,
+          "latitude": 34.11838473076981,
+          "intersectsSelectedFootprint": true,
+          "stateLraFeatureId": 5538
+        },
+        {
+          "objectId": 1798183,
+          "fullAddress": "2800 E Observatory Dr Los Angeles 90027",
+          "sourceLabel": "LA City",
+          "longitude": -118.30043366749787,
+          "latitude": 34.118683109498726,
+          "intersectsSelectedFootprint": false,
+          "stateLraFeatureId": 5538,
+          "distanceToSelectedFootprintMetersRounded": 25
+        }
+      ],
+      "addressCandidateSeparationMetersRounded": 33,
+      "footprint": {
+        "objectId": 1761412,
+        "buildingId": "470757865499",
+        "geometrySource": "LARIAC2",
+        "geometrySourceYear": 2008,
+        "sourceStatus": "Unchanged"
+      },
+      "responsibility": {
+        "featureId": 11862,
+        "rawCategory": "LRA",
+        "footprintRelation": "within"
+      },
+      "stateLraResult": {
+        "featureId": 5538,
+        "rawCode": 3,
+        "rawLabel": "Very High",
+        "footprintRelation": "within"
+      },
+      "cityVeryHighLayerResult": {
+        "status": "within",
+        "featureId": 14
+      }
+    },
+    {
+      "id": "los-angeles-central-library",
+      "name": "Los Angeles Central Library",
+      "officialAddress": "630 W. 5th Street, Los Angeles, CA 90071",
+      "addressSourceId": "library",
+      "camsAddressFilter": "Number='630' AND PreDir='West' AND UPPER(StreetName)='5TH' AND ZipCode='90071'",
+      "selectedAddressObjectId": 1515068,
+      "addressCandidates": [
+        {
+          "objectId": 1515068,
+          "fullAddress": "630 W 5Th St Los Angeles 90071",
+          "sourceLabel": "LA City",
+          "longitude": -118.255040895339,
+          "latitude": 34.05028472369968,
+          "intersectsSelectedFootprint": true,
+          "stateLraFeatureId": 686
+        }
+      ],
+      "footprint": {
+        "objectId": 687260,
+        "buildingId": "484322840870",
+        "geometrySource": "LARIAC2",
+        "geometrySourceYear": 2008,
+        "sourceStatus": "Unchanged"
+      },
+      "responsibility": {
+        "featureId": 11862,
+        "rawCategory": "LRA",
+        "footprintRelation": "within"
+      },
+      "stateLraResult": {
+        "featureId": 686,
+        "rawCode": -3,
+        "rawLabel": "NonWildland",
+        "footprintRelation": "within"
+      },
+      "cityVeryHighLayerResult": {
+        "status": "no_intersection",
+        "featureId": null
+      }
+    }
+  ]
+}

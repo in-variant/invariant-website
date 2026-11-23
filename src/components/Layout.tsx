@@ -9,7 +9,8 @@ import '../styles/SiteTheme.css'
 export default function Layout() {
   const { pathname, hash } = useLocation()
   const isHome = pathname === '/'
-  const bespoke = ['/product', '/resources', '/blog', '/contact', '/careers', '/charter', '/about', '/trust', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].includes(pathname) || pathname.startsWith('/blog/')
+  const isReadingIndex = pathname === '/blog' || pathname === '/datasets'
+  const bespoke = ['/product', '/resources', '/datasets', '/blog', '/contact', '/careers', '/charter', '/about', '/trust', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].includes(pathname) || pathname.startsWith('/blog/')
   useLayoutEffect(() => {
     if (hash) {
       const frame = requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ behavior: 'instant' }))
@@ -20,9 +21,9 @@ export default function Layout() {
 
   return (
     <div className={`site-shell min-h-screen flex flex-col ${isHome ? 'site-shell--home' : ''}`}>
-      <SiteCrosshair />
+      {!isReadingIndex && <SiteCrosshair />}
       {!isHome && <Nav />}
-      {!isHome && <FigmaSmoothScroll key={pathname} />}
+      {!isHome && !isReadingIndex && <FigmaSmoothScroll key={pathname} />}
       <main id="main-content" className={`site-main flex-1 ${isHome ? 'site-main--home' : bespoke ? 'site-main--bespoke' : 'site-legacy'}`}>
         <Outlet />
       </main>

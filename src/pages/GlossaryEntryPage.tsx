@@ -1,6 +1,6 @@
-import { useParams, Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
-import { getEntry, GLOSSARY } from '../data/glossary'
+import { getGlossarySummary, type GlossaryEntry } from '../data/glossary'
 import { renderLinkified } from '../components/linkifyGlossary'
 
 const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', string> = {
@@ -10,49 +10,46 @@ const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', st
   'data-centers': 'Data center',
 }
 
-export default function GlossaryEntryPage() {
-  const { slug } = useParams<{ slug: string }>()
-  const entry = slug ? getEntry(slug) : undefined
-  if (!entry) return <Navigate to="/glossary" replace />
-
-  const url = `${SITE_URL}/glossary/${entry.slug}`
+function glossaryEntrySeo(entry: GlossaryEntry) {
+  const canonical = `${SITE_URL}/glossary/${entry.slug}`
   const definedTerm = {
     '@context': 'https://schema.org',
     '@type': 'DefinedTerm',
-    '@id': url,
+    '@id': canonical,
     name: entry.term,
     alternateName: entry.aliases,
     description: entry.short_definition,
-    url,
+    url: canonical,
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       '@id': `${SITE_URL}/glossary#defined-term-set`,
-      name: 'Invariant compliance glossary',
+      name: 'Invariant Infrastructure and Compliance Glossary',
       url: `${SITE_URL}/glossary`,
     },
   }
-  const related = (entry.related_to || [])
-    .map((s) => GLOSSARY.find((e) => e.slug === s))
-    .filter(Boolean) as typeof GLOSSARY
+  return {
+    title: `${entry.term}, definition`,
+    description: entry.short_definition,
+    canonical,
+    ogImage: `${SITE_URL}/og/glossary/${entry.slug}.png`,
+    jsonLd: [
+      ORG_SCHEMA,
+      definedTerm,
+      breadcrumbSchema([
+        { name: 'Invariant', url: `${SITE_URL}/` },
+        { name: 'Glossary', url: `${SITE_URL}/glossary` },
+        { name: entry.term, url: canonical },
+      ]),
+    ],
+  }
+}
 
-  const ogImage = `${SITE_URL}/og/glossary/${entry.slug}.png`
+export default function GlossaryEntryPage({ entry }: { entry: GlossaryEntry }) {
+  const related = (entry.related_to ?? []).map(getGlossarySummary).filter(item => item !== undefined)
+
   return (
     <>
-      <Seo
-        title={`${entry.term}, definition`}
-        description={entry.short_definition}
-        canonical={url}
-        ogImage={ogImage}
-        jsonLd={[
-          ORG_SCHEMA,
-          definedTerm,
-          breadcrumbSchema([
-            { name: 'Invariant', url: `${SITE_URL}/` },
-            { name: 'Glossary', url: `${SITE_URL}/glossary` },
-            { name: entry.term, url },
-          ]),
-        ]}
-      />
+      <Seo {...glossaryEntrySeo(entry)} ogType="article" markdown={`/glossary/${entry.slug}.md`} />
       <section className="bg-paper px-6 pb-24 pt-16 md:px-12 md:pb-32 md:pt-24 lg:px-20">
         <div className="mx-auto max-w-3xl">
           <Link
@@ -63,7 +60,7 @@ export default function GlossaryEntryPage() {
           </Link>
 
           <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
-            {TOPIC_LABEL[entry.topic]} compliance · Definition
+            {TOPIC_LABEL[entry.topic]} · Definition
           </p>
           <h1 className="mt-3 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.025em] text-ink md:text-5xl">
             {entry.term}
@@ -149,5 +146,5 @@ function formatDate(iso?: string) {
   if (!iso) return ''
   const d = new Date(iso)
   if (isNaN(d.getTime())) return iso
-  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 }

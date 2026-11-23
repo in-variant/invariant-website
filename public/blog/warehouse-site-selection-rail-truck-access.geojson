@@ -1,0 +1,73 @@
+{
+  "type": "FeatureCollection",
+  "name": "Joliet warehouse and trailer-yard access comparison",
+  "evidence": {
+    "retrieved_date": "2026-11-22",
+    "description": "Two CenterPoint property listing pins, listed trailer counts and rail access fields, the public intermodal terminal address, and toll evidence for the I-80 corridor used in the comparison.",
+    "pin_distance_method": "WGS84 ellipsoid inverse geodesic using the published map links, approximated to the nearest meter.",
+    "straight_line_distance_m": 399,
+    "straight_line_distance_miles": 0.248,
+    "driving_distance_as_established_by_selected_records": null,
+    "terminal": {
+      "name": "Global 4 Intermodal Terminal",
+      "address": "3000 CenterPoint Way, Joliet, IL 60436",
+      "source": "https://www.up.com/customers/premium/intmap/int-chi/joliet/",
+      "scope": "Carrier's published terminal address. Site-specific access is a separate check."
+    },
+    "road_access": {
+      "name": "Houbolt Road Extension",
+      "connects_as_described": "I-80 and CenterPoint Intermodal Center",
+      "extension_miles_as_described": 1.5,
+      "source": "https://houboltroadextension.com/",
+      "route_verified_for_specific_vehicle": false
+    },
+    "toll_example": {
+      "operator_schedule_effective": "2026-04-01",
+      "source": "https://houboltroadextension.com/tolling/",
+      "schedule_image": "https://houboltroadextension.com/wp-content/uploads/2026/03/toll-rates-2026-1.png",
+      "schedule_source_sha256": "4ef3d4175df5bed6b6b075a430f693ca0c5a8dbaf0e103347dda29a654d15003",
+      "toll_vehicle_class": 3,
+      "usd_per_crossing_with_eligible_transponder": 9.15,
+      "usd_per_crossing_without_transponder": 14.65,
+      "illustrative_tollable_crossings": 200,
+      "illustrative_total_transponder_usd": 1830.0,
+      "illustrative_total_without_transponder_usd": 2930.0
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1207498,
+          41.4522433
+        ]
+      },
+      "properties": {
+        "address": "3801 CenterPoint Way, Joliet, Illinois",
+        "source": "https://centerpoint.com/properties/3801-centerpoint-way/",
+        "point_basis": "Property owner’s published map pin. This is not a property boundary or truck entrance.",
+        "trailer_parking_spaces_as_listed": 133,
+        "rail_access_as_listed": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.1175968,
+          41.4549395
+        ]
+      },
+      "properties": {
+        "address": "3750 CenterPoint Way, Joliet, Illinois",
+        "source": "https://centerpoint.com/properties/3750-centerpoint-way/",
+        "point_basis": "Property owner’s published map pin. This is not a property boundary or truck entrance.",
+        "trailer_parking_spaces_as_listed": 256,
+        "rail_access_as_listed": false
+      }
+    }
+  ]
+}

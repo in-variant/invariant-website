@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/build-industry-content.mjs && node scripts/clean-content.mjs && node scripts/build-sitemap.mjs && node scripts/build-llms.mjs && tsc -b && tsc -p tsconfig.api.json && vite build && node scripts/prerender.mjs && node scripts/build-agent-md.mjs",
+    "build": "node scripts/clean-content.mjs && node scripts/build-editorial-content.mjs && node scripts/build-sitemap.mjs && node scripts/build-llms.mjs && tsc -b && tsc -p tsconfig.api.json && vite build && node scripts/prerender.mjs && node scripts/build-agent-md.mjs",
     "preview": "vite preview",
+    "verify:release": "python3 scripts/verify-release.py",
     "sitemap": "node scripts/build-sitemap.mjs",
     "llms": "node scripts/build-llms.mjs",
     "geo-test": "node scripts/geo-citation-test.mjs",

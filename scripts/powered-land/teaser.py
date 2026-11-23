@@ -1,5 +1,6 @@
 """Partial-coverage site pages: enough to rank and to qualify, the rest is held for the call."""
 import json, sys
+from pathlib import Path
 from common import DATE, SRC, sources, p, ul, table, sec, faq
 
 SRC.update({
@@ -457,11 +458,11 @@ MARKET.append(site('florida-retired-power-plant-site-1200-acres-data-center',
     'Florida retired power plant site for redevelopment: about 1,200 acres with high-voltage transmission on site',
     'A Florida retired power plant site of about 1,200 acres, offered for redevelopment, with high-voltage transmission on site, rail and port access. Details on a call.',
     'Florida, United States',
-    [['Power', 'Former 1 GW+ generating site with high-voltage transmission on site; capacity for new load confirmed with the utility'], ['Land', 'About 1,200 acres, flat, part wetland'], ['Timing', 'Owner is taking redevelopment proposals; confirmed on a call'], ['Use', 'Large AI and industrial campuses'], ['Access', 'Rail on the property, interstate and port nearby']],
+    [['Power', 'Former 1 GW+ generating site with high-voltage transmission on site. The public listing gives no confirmed MW for new load'], ['Land', 'About 1,200 acres, flat, part wetland'], ['Timing', 'Owner is taking redevelopment proposals; confirmed on a call'], ['Use', 'Large AI and industrial campuses'], ['Access', 'Rail on the property, interstate and port nearby']],
     'We can take you through a retired power plant site in Florida of about 1,200 acres that its owner is offering for redevelopment. The plant generated more than a gigawatt and the high-voltage transmission that carried it is still on site. Rail runs onto the property and an interstate and a deepwater port are close by.',
-    'Retired plant sites are the fastest route to large power because the transmission is already built. The open question is how much of the former capacity a new load can take, since the owner plans to keep part of the site for new generation. We work that out with the utility before an introduction.',
+    'The existing transmission makes the site worth screening for redevelopment. Confirm the land the owner may retain for generation, then ask the utility to study the proposed new load and identify the required upgrades.',
     'Developers and hyperscalers who want a large Southeast campus on built transmission and can work through a public redevelopment process. Not suited to buyers who need power energized in months.',
-    [faq('How much power can a data center get at the Florida plant site?', 'The plant generated more than a gigawatt and its high-voltage transmission is still in place. How much of that a new load can use is confirmed with the utility before any introduction.', 'eia-fl')],
+    [faq('How much power can a data center get at the Florida plant site?', 'The plant generated more than a gigawatt and its high-voltage transmission is still in place. The utility would need to evaluate the load and the point of delivery to establish usable MW, upgrades and a service date.', 'eia-fl')],
     ['eia-fl'], [HUB, 'retired-power-plant-sites-for-data-centers', 'power-evidence-data-center-site-verification']))
 for x in MARKET: x['date'] = '2026-11-14'
 
@@ -473,13 +474,13 @@ def retired(slug, state, title_mw, mw_text, acres_text, iso, iso_src, eia, state
         f'{state} retired power plant site for data centers: {title_mw} former plant, transmission on site',
         f'A retired {state} power plant site ({region_word}) with {mw_text} of former generation and high-voltage transmission still on site. Not listed for sale; we approach the owner for qualified buyers. Details on a call or at market.invariant-ai.com.',
         f'{state}, United States',
-        [['Power', f'{mw_text} former generating capacity, high-voltage transmission on site; usable MW for new load confirmed with the utility'],
+        [['Power', f'{mw_text} former generating capacity, high-voltage transmission on site. The public listing gives no confirmed MW for new load'],
          ['Land', acres_text], ['Grid', iso], ['Status', 'Off-market: not listed for sale; we approach the owner on a buyer\'s behalf'],
          ['Use', 'AI, HPC and large colocation campuses']],
         f'We are tracking a retired power plant site in {region_word} {state} that once generated {mw_text}. The plant is shut, but the switchyard and the high-voltage lines that carried its output are still there. {angle_extra}',
-        'Retired plants are the fastest path to large power because the transmission is already built and the interconnection once carried the full output. The open question is always how much of that capacity a new load can take and when, which we work out with the utility and the grid operator before an introduction.',
+        'Existing lines and a switchyard can help identify connection options. Ask the owner about access and the serving utility about the new load it can study, the upgrades it expects and the resulting service schedule.',
         fit,
-        [faq(f'How much power could a data center get at the {state} plant site?', f'The plant generated {mw_text}. How much a new load can draw, and when, depends on the utility study; we confirm it before any introduction.', eia)],
+        [faq(f'How much power could a data center get at the {state} plant site?', f'The plant generated {mw_text}. The utility would need to evaluate the load and the point of delivery to establish usable MW, upgrades and a service date.', eia)],
         [eia, iso_src], [HUB, state_page, 'retired-power-plant-sites-for-data-centers'],
         held=['Exact location, parcel and owner', 'Switchyard and interconnection details', 'Site risk and power reports', 'Approach to the owner and likely terms', 'Comparable sites that fit your load'])
 
@@ -548,80 +549,9 @@ S.append(site('earlier-powered-site-and-hosting-listings',
     ],
     held=['Current status from the owner', 'Exact location and utility', 'Power price and terms', 'Asking price', 'Comparable sites that are open now']))
 
-ROWS = [
-    ['Arizona', '1.5 GW Phase 1', '15,000+ acres', 'Grid 2027'],
-    ['Pennsylvania', '350 MW, signed utility service agreement', 'Former plant campus, lease', '50 MW end 2026, 300 MW end 2027'],
-    ['Pennsylvania', '200 MW BTM gas + 300 MW grid', '120 ready acres', 'Phased'],
-    ['Georgia', 'About 700 MW, seller claim', '1,400+ acres, one tract', 'On a call'],
-    ['Florida', 'Retired 1 GW+ plant, transmission on site', '~1,200 acres', 'Redevelopment proposals'],
-    ['Louisiana', '80 MW, executed agreement, plus onsite turbines', '~800 acres, rail', 'Brownfield, on a call'],
-    ['Virginia (PJM)', 'Retired ~1.2 GW plant, transmission on site', '~115 acres', 'Off-market, on a call'],
-    ['Illinois (PJM)', 'Retired ~800 MW plant, transmission on site', '~220 acres', 'Off-market, on a call'],
-    ['New York (NYISO)', 'Retired ~780 MW plant, transmission on site', '~35 acres', 'Off-market, on a call'],
-    ['Nevada', 'Retired ~640 MW plant, transmission on site', '~67 acres', 'Off-market, on a call'],
-    ['Missouri (SPP)', 'Retired ~560 MW plant, transmission on site', '~490 acres', 'Off-market, on a call'],
-    ['Iowa', '20 MW to 500 MW+ PPA site', 'Non-zoned', 'Phased'],
-    ['Nevada', '375 MW', '~350 acres', '2027 to 2028'],
-    ['Ohio', '300 MW approved', '300+ acres', '1H 2027'],
-    ['Kansas', 'Path to 250 MW BTM gas', 'Mineral acreage', 'Now'],
-    ['Indiana', '200 MW, load study done', '~80 acres', 'Substation planned'],
-    ['Wisconsin', '150 MW built, 80 MW now', '130 ready acres', 'Now'],
-    ['New York', '60 MW+ power plant', 'Plant site', 'Operating'],
-    ['Midwest', '85 MW brownfield', '~20 acres', 'Now'],
-    ['Oklahoma City', '55 MW contracted', '~80 acres', 'Now'],
-    ['Texas (Houston load zone)', '17 MW greenfield', '~2 acres', '4 to 6 months'],
-    ['Oregon', '10 MW hydro, to 100 MW+', 'Lease + land option', 'Now'],
-    ['US (3 facilities)', 'Tier III data centers, 3.5 to 10 MW', 'Built', 'Now'],
-    ['Texas metro', '44 MW, +250 MW', '~50 acres, 1M sq ft', 'Now'],
-    ['Kentucky', '30 MW greenfield', '~16 acres, rezoned', 'Now'],
-    ['North Carolina', '18 MW live, path past 100 MW', '~200 acres', 'Now'],
-    ['North Dakota', '15 MW off-grid, managed containers, 180-acre JV site', 'Various', 'Now'],
-    ['Kentucky', 'Seven turnkey sites, 0.5 to 8 MW', 'Mostly owned', 'Now'],
-    ['Pennsylvania', '5 MW turnkey', 'Land available', 'Now'],
-    ['Oklahoma', 'Two 5 MW turnkey sites', 'Owned acres', 'Now'],
-    ['Iowa', '2 MW turnkey, to 7 MW', 'Owned acre', 'Now'],
-    ['Houston', '3 MW ERCOT', 'Leased', 'Now'],
-    ['Iowa', '2 MW+ edge site', 'Leased', 'Now'],
-    ['US', '11 hosting sites', 'Hosted', 'Now'],
-    ['US', '20 earlier listings, 0.25 to 30 MW', 'Various', 'Status on a call'],
-]
-
-hub = {
-    'slug': HUB, 'topic': 'Data Centers', 'kind': 'site-listing', 'region': 'United States',
-    'title': 'Powered land for sale: data center, AI and bitcoin mining sites available now (November 2026)',
-    'description': '44 US powered sites and 11 hosting options available through Invariant in November 2026, from a 1.5 GW Arizona AI campus to energized mining sites and hosting. Details on a call.',
-    'date': DATE, 'readMinutes': 4,
-    'intro': 'Invariant has 44 US powered sites and 11 hosting options available as of November 2026, from a 1.5 GW AI campus in Arizona to energized 2 MW mining sites and open hosting capacity. Twenty-four are in the 17 MW to 1.5 GW range that AI, HPC and hyperscale buyers ask for, and most can take load today. Below is what we can share publicly. Locations, utility documents and prices are shared on a call. To find more sites, browse over 100 more on Invariant Market at market.invariant-ai.com.',
-    'takeaways': [
-        'Large campuses: Arizona 1.5 GW, Pennsylvania 500 MW and 350 MW (signed utility agreement), Iowa 500 MW, Georgia 1,400+ acres (about 700 MW), Florida retired plant (1,200 acres), Nevada 375 MW, Ohio 300 MW, Indianapolis 200 MW, Wisconsin 150 MW.',
-        'Energized now: North Carolina 18 MW, Kentucky 30 MW, Texas 44 MW, Oklahoma City 55 MW. Contracted: Louisiana 80 MW on an 800-acre brownfield.',
-        'Retired power plants with transmission on site: Virginia (about 1.2 GW), Illinois (about 800 MW), New York (about 780 MW), Nevada (about 640 MW), Missouri (about 560 MW).',
-        'Small and fast: turnkey mining and edge sites in Kentucky, Oklahoma, Texas and Iowa.',
-        'Find more sites: over 100 US powered sites with free teasers and unlockable reports at market.invariant-ai.com.',
-        'Tell us your MW, region and energize-by date. We share matching sites, including ones not listed here.',
-    ],
-    'sections': [
-        sec('available-sites', 'Sites available right now', table(['Region', 'Power', 'Land', 'Timing'], ROWS),
-            {'type': 'links', 'label': 'New this week', 'items': [{'slug': x['slug'], 'label': x['title'].split(':')[0]} for x in RETIRED + MARKET]}),
-        sec('how-we-work', 'How Invariant works with buyers',
-            p('We start from power evidence, not land. Before we introduce a buyer, we check the utility paperwork (studies, service agreements, will-serve letters), the zoning and the title, and we tell you which items we could not confirm.'),
-            p('We keep locations and prices off this page on purpose. Owners ask for discretion, and a site that is shopped everywhere loses value. Book a call and we will walk you through the sites that fit your load, timeline and budget.'),
-            p('To find more sites on your own, go to Invariant Market at https://market.invariant-ai.com. It carries over 100 US powered sites, each with a free teaser (state, acres, MW, voltage and evidence level), and risk, power and full site reports you can unlock per site.')),
-        # Cross-links to the size and state pages (see site_finder.py).
-        sec('find-by-size-or-state', 'Find a data center site by size or state',
-            p('Looking for a specific size or state? Each page below shows what that requirement needs from the utility, the land it takes and the sites from our inventory that fit.'),
-            *__import__('json').load(open(__import__('os').path.join(__import__('os').path.dirname(__file__), 'browse_links.json')))),
-    ],
-    'faqs': [
-        faq('Where can I find powered land for a data center in the US?', 'Invariant has powered sites in Arizona (1.5 GW), Pennsylvania (350 MW contracted), Georgia (about 700 MW, 1,400+ acres), Louisiana (80 MW contracted), Florida (retired plant, 1,200 acres), Nevada (375 MW, plus a retired plant), retired plants in Virginia, Illinois, New York and Missouri, Ohio (300 MW), Indiana (200 MW), Wisconsin (150 MW), North Carolina (18 MW live) and more. Book a call or text (628) 220-8972 for details.'),
-        faq('Which sites have power available today?', 'North Carolina, Kentucky (30 MW), a Texas metro property (44 MW), Oklahoma City (55 MW), Wisconsin (80 MW) and several turnkey mining sites.'),
-        faq('Where can I find more data center sites?', 'Go to Invariant Market at https://market.invariant-ai.com. It lists over 100 US powered sites with a free teaser for each, plus risk, power and full site reports.'),
-        faq('Do you have off-market sites?', 'Yes. The sites on this page are a subset of what we work on. Tell us your requirements on a call.'),
-        faq('How do you verify a powered site?', 'Utility documents first, then zoning and title, before any introduction. We flag anything we could not confirm.'),
-    ],
-    'sources': sources('pjm', 'ercot', 'miso'),
-    'relatedSlugs': ['arizona-1-5-gw-powered-land-ai-campus', 'north-carolina-18-mw-ai-campus-207-acres-for-sale', 'power-evidence-data-center-site-verification', 'utility-will-serve-letter-load-study-esa', 'texas-data-center-large-load-interconnection-2026', 'retired-power-plant-sites-for-data-centers'],
-}
+# Preserve the editorial directory when regenerating individual site teasers.
+catalog_path = Path(__file__).resolve().parents[2] / 'src/data/industry-articles/powered-land-sites.json'
+hub = next(article for article in json.loads(catalog_path.read_text(encoding='utf-8')) if article['slug'] == HUB)
 
 S = [x for x in S if x['slug'] not in ['finland-20-mw-data-center-site-heat-offtake-for-sale', 'norway-hydro-mining-sites-for-sale', 'bolivia-300-mw-greenfield-mining-site', 'caucasus-hydro-power-mining-site-for-sale']]
 out = [hub] + S

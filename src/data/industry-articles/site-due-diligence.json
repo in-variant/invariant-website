@@ -1458,91 +1458,112 @@
  },
  {
   "slug": "n-1-contingency-analysis-data-center",
+  "coverFile": "n-1-contingency-analysis-data-center-v2.webp",
   "topic": "Data Centers",
   "kind": "study-guide",
   "region": "United States",
-  "title": "N-1 contingency analysis for data centers: why a site’s MW depends on the outage, not the line",
-  "description": "N-1 contingency analysis explained for data center sites: what NERC TPL-001 P1 events are, why the limit is set with one element out, and how N-1 changes the MW you can get.",
+  "title": "How N-1 contingency analysis tests a data center’s power headroom",
+  "description": "A worked 60 MW example shows how a connection can pass with both lines in service and exceed its thermal limit after a single outage.",
   "date": "2026-11-20",
-  "readMinutes": 6,
-  "intro": "N-1 contingency analysis tests whether the grid still works when any single element (one line, one transformer, one generator) is out of service. Utilities size a new data center connection so that no line or transformer goes over its emergency rating and no voltage leaves its range after any such outage. That is why the MW a site can get is usually set by an outage case, not by the normal-day flow, and why a line with spare capacity on a normal day can still say no.",
+  "readMinutes": 4,
+  "intro": "An N-1 contingency analysis tests how the grid responds when one element goes out of service. For a proposed data center, a load that fits with both lines in service can overload the remaining line after an outage. The two-line example below starts with 120 MW of existing demand. A 60 MW addition passes the normal case, but the worst outage leaves room for only 35 MW of additional load.",
   "takeaways": [
-   "N-1 means every single element in the study area, not only the largest one.",
-   "NERC TPL-001 calls these P1 events and also defines harder ones: breaker failures, common towers and overlapping outages.",
-   "The emergency rating applies after the outage; the normal rating applies before it.",
-   "A radial connection with one line in fails N-1 for any load that needs firm service."
+   "Ask for the binding outage and the equipment or study criterion that limits the load.",
+   "Compare results at the same connection point, study year, and facility load in MW.",
+   "Check the utility’s service terms for milestones, required upgrades, and any curtailment conditions."
   ],
   "sections": [
    {
     "id": "what-n-1-means-in-practice",
-    "heading": "What N-1 means in practice",
+    "heading": "What N-1 tests",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "NERC’s planning standard, TPL-001, sets the events a planner must test. P0 is everything in service. P1 is the loss of any single generator, line, transformer or shunt device. P2 to P7 cover a bus or breaker failure, a stuck breaker, a common tower and two overlapping outages (P6, often called N-1-1).",
+      "text": "In NERC’s transmission planning standard, P0 is the normal system condition. P1 includes specified single events, such as the loss of a transmission circuit, a transformer, a generator, or a shunt device. Other categories cover events such as bus faults and overlapping outages. The criteria and events for a particular connection depend on the utility, the system, and the study scope.",
       "sourceIds": [
        "tpl001"
       ]
      },
      {
       "type": "paragraph",
-      "text": "For each event the planner checks every monitored element for thermal overloads against its emergency rating and every bus for voltage limits. The new load passes at a given MW only if every event passes."
+      "text": "For each applicable case, ask which equipment ratings and voltage limits the study uses and what system changes or operating actions it assumes. An outage can shift flow onto equipment several stations away. A standby generator at the facility changes the load seen by the grid only if its operation is represented in the case."
      }
     ]
    },
    {
     "id": "why-it-sets-the-mw-for-a-data-center",
-    "heading": "Why it sets the MW for a data center",
+    "heading": "A 60 MW request that passes until a line is out",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Picture a substation fed by two lines. On a normal day each carries half the load. Trip one, and the other carries all of it. The site’s headroom is how much load the surviving line can carry at its emergency rating, minus what it already carries. That is often half or less of what the normal-day picture suggests."
+      "text": "Take a simplified, lossless example with two parallel lines supplying 120 MW of existing demand. With both lines in service, assume Line A carries 60% of the load and Line B carries 40%. Use thermal limits of 170 MW and 155 MW respectively. When one line is out, assume the remaining line must carry all of the demand. Add a 60 MW facility at the same load point."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Study condition",
+       "Line A flow",
+       "Line B flow",
+       "Thermal result"
+      ],
+      "rows": [
+       [
+        "Both lines in service",
+        "108 MW",
+        "72 MW",
+        "Both within limits"
+       ],
+       [
+        "Line A out",
+        "Out of service",
+        "180 MW",
+        "Line B exceeds its limit by 25 MW"
+       ],
+       [
+        "Line B out",
+        "180 MW",
+        "Out of service",
+        "Line A exceeds its limit by 10 MW"
+       ]
+      ]
      },
      {
       "type": "paragraph",
-      "text": "The binding outage is rarely the obvious one. In our studies it is often a transformer one or two stations away, or a parallel path that picks up flow when a distant line trips."
-     }
-    ]
-   },
-   {
-    "id": "what-n-1-analysis-can-and-cannot-tell-you",
-    "heading": "What N-1 analysis can and cannot tell you",
-    "blocks": [
-     {
-      "type": "paragraph",
-      "text": "It tells you the MW at which the first limit is crossed and which element crosses it. It does not tell you whether the utility will accept that the load be curtailed after an outage instead of building an upgrade. Some utilities now offer flexible or interruptible service for large loads, which changes the answer."
-     },
-     {
-      "type": "paragraph",
-      "text": "NERC has also asked planners to look harder at how large loads behave during faults, which can add dynamic studies on top of N-1.",
+      "text": "Under these assumptions, Line B sets the limit when Line A is out. Subtract the existing 120 MW from its 155 MW limit and the modeled margin is 35 MW. The normal operating condition alone would miss that constraint. This example isolates one thermal limit. A real study can also find voltage or stability constraints, use different allowable ratings during outages, and test whether network changes resolve the problem.",
       "sourceIds": [
-       "nerc-alert"
+       "tpl001",
+       "ercot-stability"
       ]
      }
     ]
    },
    {
+    "id": "what-n-1-analysis-can-and-cannot-tell-you",
+    "heading": "What to ask when you read the result",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Get the point of interconnection, study year, starting demand, and case assumptions with each headroom figure. Ask whether the study represents nearby committed load and planned upgrades. A load that meets the thermal limits can still require voltage or stability analysis. ERCOT’s large-load stability guidance, for example, calls for peak and off-peak cases, relevant contingencies, and nearby loads with signed interconnection agreements.",
+      "sourceIds": [
+       "ercot-stability"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "If the first phase misses its target, ask the utility what would change the result. The options could include a different connection point, a smaller initial phase, an upgrade, or an operating limit. Confirm which options the utility will accept, what each phase can draw at the meter, and what has to happen before service can begin."
+     }
+    ]
+   },
+   {
     "id": "browse",
-    "heading": "More due diligence guides",
+    "heading": "More power diligence guides",
     "blocks": [
      {
       "type": "links",
-      "label": "Site due diligence guides",
+      "label": "Keep reading",
       "items": [
        {
-        "label": "Site due diligence: the two-step process",
-        "slug": "data-center-site-due-diligence"
-       },
-       {
-        "label": "Step 1: site feasibility screen",
-        "slug": "data-center-site-feasibility-study"
-       },
-       {
-        "label": "Step 2: utility-grade power study",
-        "slug": "utility-grade-power-study"
-       },
-       {
-        "label": "What a power flow study is",
+        "label": "What a power flow study tests",
         "slug": "data-center-power-flow-study"
        },
        {
@@ -1554,74 +1575,8 @@
         "slug": "utility-load-study-cost-and-timeline"
        },
        {
-        "label": "Distance to substation and transmission",
-        "slug": "distance-to-transmission-line-data-center"
-       },
-       {
-        "label": "Flood zone screening",
-        "slug": "data-center-flood-zone-screening"
-       },
-       {
-        "label": "Seismic risk screening",
-        "slug": "data-center-seismic-risk-screening"
-       },
-       {
-        "label": "Wetlands, species and Phase I ESA",
-        "slug": "data-center-environmental-site-screening"
-       },
-       {
-        "label": "FAA height limits near airports",
-        "slug": "faa-height-limits-data-center-site"
-       },
-       {
-        "label": "Power due diligence for investors and lenders",
-        "slug": "data-center-power-due-diligence-investors"
-       },
-       {
-        "label": "For landowners: a power study before you sell",
-        "slug": "power-study-before-selling-land-to-data-center"
-       }
-      ]
-     },
-     {
-      "type": "links",
-      "label": "More on site selection",
-      "items": [
-       {
-        "label": "Five rungs of power evidence",
-        "slug": "power-evidence-data-center-site-verification"
-       },
-       {
-        "label": "Will-serve letter vs load study vs ESA",
+        "label": "What utility documents support a power claim?",
         "slug": "utility-will-serve-letter-load-study-esa"
-       },
-       {
-        "label": "Moratorium screening",
-        "slug": "data-center-moratorium-local-opposition-site-screening"
-       },
-       {
-        "label": "Site selection checklist",
-        "slug": "data-center-site-selection-checklist"
-       },
-       {
-        "label": "Texas: SB 6 and Batch Zero",
-        "slug": "texas-data-center-large-load-interconnection-2026"
-       },
-       {
-        "label": "Find a data center site in the US",
-        "slug": "find-data-center-site-us"
-       },
-       {
-        "label": "Site selection services",
-        "slug": "data-center-site-selection-services"
-       },
-       {
-        "label": "Capacity for neoclouds and AI labs",
-        "slug": "ai-compute-capacity-for-neoclouds"
-       },
-       {
-        "label": "Power check for AI tenants",
-        "slug": "provider-power-check-for-ai-tenants"
        }
       ]
      }
@@ -1630,47 +1585,45 @@
   ],
   "faqs": [
    {
-    "question": "What is N-1 in power systems?",
-    "answer": "N-1 is the condition with one element of the grid out of service. A system meets N-1 if it stays within thermal and voltage limits after the loss of any single line, transformer or generator.",
+    "question": "What does N-1 mean in power systems?",
+    "answer": "It means evaluating the system with one element out of service. Specify which outage, which equipment and limits are monitored, and which operating actions are allowed.",
     "sourceIds": [
      "tpl001"
     ]
    },
    {
     "question": "What is the difference between N-1 and N-1-1?",
-    "answer": "N-1 is a single outage. N-1-1 is a second outage after the system has been adjusted for the first one. NERC TPL-001 lists it as a P6 event.",
+    "answer": "N-1 applies a single outage. In N-1-1, a second outage follows the first, with time for specified system adjustments in between. NERC’s P6 category covers specified overlapping single events.",
     "sourceIds": [
      "tpl001"
     ]
    },
    {
-    "question": "Does a data center need N-1 service?",
-    "answer": "Most large data centers ask for firm service, which means the connection must survive any single outage. Some accept curtailable service for part of the load to connect sooner."
-   },
-   {
-    "question": "Can you run an N-1 analysis on my site?",
-    "answer": "Yes. Invariant’s utility-grade power study runs AC N-1 at every connection option around the site, usually within 48 hours."
+    "question": "Does 35 MW of modeled headroom mean the site can get 35 MW?",
+    "answer": "The 35 MW applies only to the example’s thermal limits and operating assumptions. For a real connection, the utility can identify the required studies and document the available service, upgrades, and conditions."
    }
   ],
   "sources": [
    {
     "id": "tpl001",
     "title": "TPL-001-5.1: Transmission system planning performance requirements",
-    "url": "https://www.nerc.com/pa/Stand/Reliability%20Standards/TPL-001-5.1.pdf",
+    "url": "https://www.nerc.com/globalassets/standards/reliability-standards/tpl/tpl-001-5.1.pdf",
     "publisher": "NERC"
    },
    {
-    "id": "nerc-alert",
-    "title": "Level 2 alert: large loads",
-    "url": "https://www.nerc.com/pa/rrm/bpsa/Alerts%20DL/NERC%20Alert%20Level%202%20%20Large%20Loads.pdf",
-    "publisher": "NERC"
+    "id": "ercot-stability",
+    "title": "Whitepaper on ERCOT Large Load Stability Studies",
+    "url": "https://www.ercot.com/files/docs/2025/08/25/Large_Load_Stability_Whitepaper.pdf",
+    "publisher": "ERCOT"
    }
   ],
   "relatedSlugs": [
    "utility-grade-power-study",
    "data-center-power-flow-study",
    "data-center-substation-capacity-check"
-  ]
+  ],
+  "updatedDate": "2026-11-22",
+  "coverCaption": "Illustration of a fictional electrical substation."
  },
  {
   "slug": "data-center-substation-capacity-check",
@@ -3649,6 +3602,10 @@
        {
         "label": "Power check for AI tenants",
         "slug": "provider-power-check-for-ai-tenants"
+       },
+       {
+        "label": "Commercial real estate lending guides",
+        "slug": "commercial-real-estate-lending"
        }
       ]
      }

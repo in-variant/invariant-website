@@ -1,0 +1,352 @@
+{
+  "type": "FeatureCollection",
+  "title": "Commercial property underwriting fixture, Brooklyn Army Terminal Building A",
+  "checked_on": "2026-11-22",
+  "sample_submission": {
+    "building_name": "Brooklyn Army Terminal Building A",
+    "address": "140 58th Street, Brooklyn, NY 11220",
+    "city_building_id": "3257059",
+    "tax_lot_bbl": "3057780001"
+  },
+  "sources": {
+    "footprint_query": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=3257059&%24limit=2",
+    "city_asset_reference": "https://www.nyc.gov/assets/finance/downloads/pdf/20pdf/annual-municipal-report-2020.pdf",
+    "operator_building_specification": "https://brooklynarmyterminal.com/sites/default/files/2019-10/Brooklyn-Army-Terminal-Phase-V-Spec-Sheet.pdf",
+    "parcel_query": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D3057780001&outFields=BBL%2CAddress%2CVersion%2CLatitude%2CLongitude&outSR=4326&f=geojson",
+    "roof_permit_query": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?work_permit=B01209484-I1-GC&%24select=work_permit%2Cbin%2Cissued_date%2Cwork_type%2Cjob_description%2Cpermit_status",
+    "temporary_protection_permit_query": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=work_permit%3D%27B01301887-I1-PMM%27+and+issued_date%3D%272026-10-06T00%3A00%3A00.000%27&%24select=work_permit%2Cbin%2Cissued_date%2Cwork_type%2Cjob_description%2Cpermit_status"
+  },
+  "observed_sources": {
+    "operator_specification": {
+      "building_name": "Brooklyn Army Terminal Building A",
+      "stories": 8,
+      "height_ft": 89,
+      "approx_floor_area_sqft": 500000,
+      "published_build_year": 1918,
+      "renovation_years": [
+        2016,
+        2017
+      ]
+    },
+    "city_footprint_attributes": {
+      "bin": "3257059",
+      "base_bbl": "3057780001",
+      "doitt_id": "1298044",
+      "last_edited_date": "2022-09-06T16:47:55.000Z",
+      "height_roof": "14",
+      "construction_year": "2022"
+    },
+    "permit_records": [
+      {
+        "work_permit": "B01209484-I1-GC",
+        "bin": "3257059",
+        "issued_date": "2026-06-17T00:00:00.000",
+        "work_type": "General Construction",
+        "permit_status": "Permit Issued",
+        "scope_summary": "Exterior openings and re-roofing. Roof scope covers Building A and tank houses, excluding stair tower and mechanical penthouse roofs."
+      },
+      {
+        "work_permit": "B01301887-I1-PMM",
+        "bin": "3257059",
+        "issued_date": "2026-10-06T00:00:00.000",
+        "work_type": "Protection and Mechanical Methods",
+        "permit_status": "Permit Issued",
+        "scope_summary": "Temporary roof protection during construction."
+      }
+    ]
+  },
+  "expected_review": {
+    "parcel_identity": {
+      "status": "corroborated",
+      "value": "3057780001"
+    },
+    "intended_building_footprint": {
+      "status": "needs_review",
+      "value": null,
+      "reason": "Exact BIN returned a geometry record whose height and construction year disagree with the named building specification."
+    },
+    "last_roof_replacement_date": {
+      "status": "unverified",
+      "value": null,
+      "reason": "The re-roofing permit describes approved scope. This fixture does not include a completion or inspection record. The later record is for temporary protection."
+    },
+    "building_flood_zone": {
+      "status": "needs_review",
+      "value": null,
+      "reason": "An unresolved building outline cannot be assigned the parcel or pin result."
+    },
+    "current_sprinkler_coverage": {
+      "status": "unverified",
+      "value": null
+    },
+    "current_tenant_operations": {
+      "status": "unverified",
+      "value": null
+    },
+    "reconstruction_cost": {
+      "status": "unverified",
+      "value": null
+    },
+    "workflow_action": "manual_review"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -74.0248268962612,
+              40.646546588209
+            ],
+            [
+              -74.02494829411901,
+              40.646619520107905
+            ],
+            [
+              -74.0250672432014,
+              40.646690980979
+            ],
+            [
+              -74.0254111110537,
+              40.6468975643983
+            ],
+            [
+              -74.0257238885736,
+              40.646595587099
+            ],
+            [
+              -74.0264208132267,
+              40.647016774247305
+            ],
+            [
+              -74.02935584289541,
+              40.64878296705489
+            ],
+            [
+              -74.02966923238871,
+              40.64847989033219
+            ],
+            [
+              -74.0272775717839,
+              40.647016574208585
+            ],
+            [
+              -74.0260499633929,
+              40.64628076819939
+            ],
+            [
+              -74.0260616692956,
+              40.64626946852311
+            ],
+            [
+              -74.0261883416881,
+              40.6461515655399
+            ],
+            [
+              -74.0262242137207,
+              40.646118246316405
+            ],
+            [
+              -74.0262017773575,
+              40.6460986039317
+            ],
+            [
+              -74.02617821262672,
+              40.646056755017895
+            ],
+            [
+              -74.0261905378231,
+              40.6460328371534
+            ],
+            [
+              -74.0265357951052,
+              40.64569878103101
+            ],
+            [
+              -74.0268810498991,
+              40.645369849614
+            ],
+            [
+              -74.0272857116053,
+              40.6449811131561
+            ],
+            [
+              -74.0274359174714,
+              40.644836724334596
+            ],
+            [
+              -74.0276107800777,
+              40.6446624330595
+            ],
+            [
+              -74.0277789210304,
+              40.6445086444043
+            ],
+            [
+              -74.0282564374436,
+              40.644060949708404
+            ],
+            [
+              -74.0289877559131,
+              40.64450151374681
+            ],
+            [
+              -74.0290763089045,
+              40.644417781978404
+            ],
+            [
+              -74.0297459471828,
+              40.6448233382646
+            ],
+            [
+              -74.0301419033092,
+              40.645065814960695
+            ],
+            [
+              -74.03034604868272,
+              40.64518876124539
+            ],
+            [
+              -74.0305131818107,
+              40.645290360375505
+            ],
+            [
+              -74.03056810718302,
+              40.645239950028795
+            ],
+            [
+              -74.0306039758323,
+              40.64520748403619
+            ],
+            [
+              -74.0306936488784,
+              40.6451246061658
+            ],
+            [
+              -74.0306465357327,
+              40.645092161357596
+            ],
+            [
+              -74.0306487690237,
+              40.64507166041821
+            ],
+            [
+              -74.0307306062044,
+              40.645020390140296
+            ],
+            [
+              -74.0308471677029,
+              40.64488625551941
+            ],
+            [
+              -74.0308965175494,
+              40.64490845089419
+            ],
+            [
+              -74.0309312758246,
+              40.644896481760895
+            ],
+            [
+              -74.0309962841711,
+              40.644828986629484
+            ],
+            [
+              -74.0309368320727,
+              40.644788857467695
+            ],
+            [
+              -74.0309434181006,
+              40.6447825820243
+            ],
+            [
+              -74.0273593378183,
+              40.64262796925271
+            ],
+            [
+              -74.0271355115814,
+              40.642493405584
+            ],
+            [
+              -74.0266169144593,
+              40.64218162137329
+            ],
+            [
+              -74.02517793978662,
+              40.641316472374
+            ],
+            [
+              -74.025125704082,
+              40.6413667129276
+            ],
+            [
+              -74.0218456675637,
+              40.644521190250295
+            ],
+            [
+              -74.0240558794708,
+              40.6458874755202
+            ],
+            [
+              -74.023919713609,
+              40.64600156895499
+            ],
+            [
+              -74.0248268962612,
+              40.646546588209
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "role": "shoreline_clipped_tax_lot",
+        "bbl": "3057780001",
+        "address": "6224 2 AVENUE",
+        "mappluto_version": "26v2",
+        "area_m2": 216087.713
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                -74.023738064298,
+                40.645502881993
+              ],
+              [
+                -74.023610525168,
+                40.645425216944
+              ],
+              [
+                -74.023771217505,
+                40.645272116455
+              ],
+              [
+                -74.023898755347,
+                40.645349781327
+              ],
+              [
+                -74.023738064298,
+                40.645502881993
+              ]
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "role": "footprint_returned_by_bin",
+        "bin": "3257059",
+        "doitt_id": "1298044",
+        "candidate_height_ft": 14,
+        "candidate_construction_year": 2022,
+        "area_m2": 300.44,
+        "match_status": "needs_review"
+      }
+    }
+  ]
+}

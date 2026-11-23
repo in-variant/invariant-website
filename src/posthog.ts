@@ -7,14 +7,16 @@ import posthog from 'posthog-js'
 const projectToken = import.meta.env.VITE_POSTHOG_KEY || 'phc_ziumejoQLN2y4bXekfHeMDqwuStcFSfDLoGnJJknmgv7'
 const host = import.meta.env.VITE_POSTHOG_HOST || 'https://us.i.posthog.com'
 
-posthog.init(projectToken, {
-  api_host: host,
-  defaults: '2025-05-24',
-  capture_exceptions: {
-    capture_unhandled_errors: true,
-    capture_unhandled_rejections: true,
-    capture_console_errors: false,
-  },
-})
+if (typeof window !== 'undefined') {
+  posthog.init(projectToken, {
+    api_host: host,
+    defaults: '2025-05-24',
+    capture_exceptions: {
+      capture_unhandled_errors: true,
+      capture_unhandled_rejections: true,
+      capture_console_errors: false,
+    },
+  })
+}
 
 export default posthog
