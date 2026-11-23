@@ -1,5 +1,45 @@
 .datasets-page { padding-bottom: clamp(64px, 9vw, 136px); }
 .datasets-list { border-bottom: 1px solid var(--resource-rule); }
+.dataset-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 440px) minmax(140px, 180px);
+  align-items: end;
+  gap: 16px;
+}
+.dataset-controls label {
+  display: grid;
+  gap: 7px;
+  font-size: 14px;
+  color: #333;
+}
+.dataset-controls input, .dataset-controls select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--resource-rule);
+  border-radius: 3px;
+  padding: 0 12px;
+  background: #fff;
+  color: #202124;
+  font: inherit;
+}
+.dataset-controls :is(input, select):focus-visible {
+  outline: 2px solid var(--resource-blue);
+  outline-offset: 2px;
+}
+.dataset-list-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-block: 16px;
+  font-size: 14px;
+}
+.datasets-page .dataset-list-meta a, .dataset-empty button { color: var(--resource-blue); }
+.dataset-list-meta a:hover, .dataset-empty button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.dataset-empty { padding: 28px 0; border-top: 1px solid var(--resource-rule); }
+.dataset-empty button { min-height: 44px; background: none; border: 0; padding: 0; cursor: pointer; font: inherit; }
 .dataset-row {
   display: grid;
   grid-template-columns: minmax(134px, 200px) minmax(0, 1fr) auto;
@@ -19,6 +59,7 @@
 }
 .dataset-copy h2 { font-size: clamp(25px, 3vw, 36px); line-height: 1.1; }
 .datasets-page .dataset-copy p { max-width: 62ch; margin-block: 8px 10px; }
+.datasets-page .dataset-copy .dataset-place { font-size: 14px; color: #565a63; }
 .datasets-page .dataset-method { display: inline-flex; align-items: center; gap: 5px; color: var(--resource-blue); }
 .dataset-method .resource-arrow { width: 17px; height: 17px; }
 .dataset-method:hover .resource-arrow { transform: translate(2px, -2px); }
@@ -45,6 +86,7 @@
 }
 
 @media (max-width: 520px) {
+  .dataset-controls { grid-template-columns: minmax(0, 1fr); }
   .dataset-row { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .dataset-row > img { grid-row: auto; }
   .dataset-downloads { grid-column: auto; }

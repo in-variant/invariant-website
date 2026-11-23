@@ -6,6 +6,7 @@ import re
 import sys
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor
+from hashlib import sha256
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
@@ -20,6 +21,7 @@ CANONICAL = "https://invariant-ai.com"
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 ATOM_NS = "{http://www.w3.org/2005/Atom}"
 FEED_PATH = "/feed.xml"
+DATASET_INDEX_PATH = "/datasets.json"
 SAMPLE = (
     "/", "/blog", "/resources", "/datasets",
     "/blog/data-center-site-selection-checklist",
@@ -35,7 +37,7 @@ CRAWLER_USER_AGENTS = (
 )
 CRAWLER_SMOKE_PATHS = frozenset((
     "/robots.txt", "/blog", "/blog/data-center-site-selection-checklist",
-    "/blog/data-center-site-selection-checklist.md", "/datasets", "/datasets.md", FEED_PATH,
+    "/blog/data-center-site-selection-checklist.md", "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
 ))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
@@ -214,6 +216,9 @@ def verify(origin, job, expected_urls, preview, crawler=None):
         elif kind == "feed":
             require_success(status, headers, "application/atom+xml")
             require(body == expected, "Atom feed differs from dist/")
+        elif kind == "dataset-index":
+            require_success(status, headers, "application/json")
+            require(body == expected and header_noindex, "dataset index differs from dist/ or is missing noindex")
         elif kind == "asset":
             require_success(status, headers, None)
             mime = headers.get_content_type()
@@ -302,6 +307,12 @@ def verify_dataset_catalog(catalog, pages):
         expected_names[item["url"]] = item["name"]
     actual_names = {}
     markdown = (DIST / "datasets.md").read_text(encoding="utf-8")
+    manifest = json.loads((DIST / DATASET_INDEX_PATH.lstrip("/")).read_bytes())
+    require(manifest["url"] == catalog.url and DATASET_INDEX_PATH in catalog.downloads,
+            "JSON dataset index needs the canonical catalog and a visible download link")
+    records = {entry["url"]: entry for entry in manifest["datasets"]}
+    require(len(records) == len(manifest["datasets"]) and records.keys() == expected_names.keys(),
+            "JSON dataset index differs from the HTML listing")
     for path, page in pages.items():
         if not path.startswith("/blog/"):
             continue
@@ -310,9 +321,20 @@ def verify_dataset_catalog(catalog, pages):
             require(dataset["url"] == dataset["@id"] == page.url + "#dataset", f"{page.url} has an invalid dataset URL")
             require(path in catalog.links, f"{page.url} is missing from the HTML dataset catalog")
             require(f"]({dataset['url']})" in markdown, f"{page.url} is missing from the Markdown dataset catalog")
+            record = records[dataset["url"]]
+            require(record["name"] == dataset["name"] and record["description"] == dataset["description"]
+                    and record["sources"] == dataset["isBasedOn"], f"{page.url} has inconsistent JSON dataset metadata")
+            downloads = {file["url"]: file for file in record["downloads"]}
+            require(len(downloads) == len(record["downloads"]) and downloads.keys() == {
+                file["contentUrl"] for file in dataset["distribution"]
+            }, f"{page.url} has inconsistent JSON dataset download links")
             for file in dataset["distribution"]:
                 require(f"]({file['contentUrl']})" in markdown,
                         f"{file['contentUrl']} is missing from the Markdown dataset catalog")
+                entry = downloads[file["contentUrl"]]
+                contents = (DIST / urlsplit(entry["url"]).path.lstrip("/")).read_bytes()
+                require(entry["bytes"] == len(contents) and entry["sha256"] == sha256(contents).hexdigest(),
+                        f"{entry['url']} checksum or size differs from dist/")
             actual_names[dataset["url"]] = dataset["name"]
     require(actual_names and actual_names == expected_names, "catalog links differ from the published Dataset pages")
 
@@ -370,6 +392,8 @@ def build_jobs(expected_urls, full):
     feed = (DIST / FEED_PATH.lstrip("/")).read_bytes()
     verify_blog_feed(pages["/blog"], feed, expected_urls)
     jobs.append((FEED_PATH, "feed", feed))
+    jobs.append((DATASET_INDEX_PATH, "dataset-index", (DIST / DATASET_INDEX_PATH.lstrip("/")).read_bytes()))
+    downloads.discard(DATASET_INDEX_PATH)
     if full:
         verify_discovery(pages)
     for path in sorted(alternate_files):
