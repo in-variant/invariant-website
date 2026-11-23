@@ -1,5 +1,530 @@
 [
   {
+    "slug": "commercial-real-estate-sales-lease-comps-apis",
+    "topic": "Data & APIs",
+    "region": "Lower Manhattan, New York",
+    "title": "Commercial Real Estate Sales and Lease Comps APIs",
+    "description": "Compare commercial sales and lease comps APIs. Use recorded transfers, federal lease rows, and a public office lease to check prices and rent per square foot.",
+    "date": "2026-11-23",
+    "readMinutes": 9,
+    "coverAlt": "Aerial map of 32 Old Slip with the New York City tax lot outlined. A deed recorded 197.5 million dollars, a lease assignment recorded 477.5 million dollars, two federal rent observations were about 86 dollars per rentable square foot, and the newer private lease starts at about 60 dollars in fixed rent per rentable square foot.",
+    "coverCaption": "The numbers share an address. The 2015 city records report amounts for different instruments. The 2026 records use different rent definitions.",
+    "intro": "Use recorded transfers for sale comparables and signed deal terms for lease comparables. Start with a confirmed property and identify the interest sold or the space leased. At 32 Old Slip in Manhattan, a city deed recorded $197.5 million and a separate lease assignment recorded $477.5 million. Two federal leases in the same tower report about $86 per rentable square foot per year. A newly signed private lease starts at about $60 in fixed annual rent per rentable square foot, with additional charges and concessions handled separately.",
+    "takeaways": [
+      "Keep document type, property interest, and amount scope with every sale record.",
+      "For each lease, record the premises, dates, expense basis, and whether the quoted rate is asking, starting, current, or effective.",
+      "Check that the square footage measures the same thing as the amount. Building area and a suite’s rentable area serve different calculations."
+    ],
+    "sections": [
+      {
+        "id": "commercial-comp-data-sources",
+        "heading": "Which API should you use for commercial sale or lease comps?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What you need",
+              "Where to start",
+              "What to verify in a trial"
+            ],
+            "rows": [
+              [
+                "Identify the property and connect its underlying records",
+                "Invariant Earth for the assessor parcel number, situs address, mapped boundary, and match type. Join that identity to the original transactions and lease records.",
+                "Test a building with two street addresses and a parcel match near a boundary. Check that exports retain the authority’s property ID and the match method."
+              ],
+              [
+                "Find nearby recorded sales",
+                "West Kite documents nearby deed-based sales comparables and flags portfolio transfers. ATTOM documents sales history by property ID or address.",
+                "Test a deed, an assignment of a ground lease, and a multi-property transfer. Check whether sale, recording, and observation dates stay separate."
+              ],
+              [
+                "Find deal-level lease terms and comparable space",
+                "CompStak documents lease comparables, concessions, and term in Space Insights, with delivery options for sales and leases.",
+                "Trial a market and building type you know. Check verified starting rent, free rent, tenant improvements, and the premises’ rentable area."
+              ],
+              [
+                "Trace public documents and federal leases",
+                "Use a local recorder such as NYC ACRIS, the GSA lease inventory, and SEC EDGAR filings when public companies disclose lease terms.",
+                "Retain the original reference, source date and amount definition. Review the missing or redacted terms before underwriting."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "westkite",
+                "attom"
+              ],
+              [
+                "compstak"
+              ],
+              [
+                "acris-master",
+                "gsa-inventory",
+                "sec-8k"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Compare a provider on records you can verify. For sale comps, require the property interest, deed or instrument number, price scope, qualification, and area basis. For lease comps, ask for suite or floor identifiers, close and commencement dates, rate basis, concessions, and pass-through expenses."
+          }
+        ]
+      },
+      {
+        "id": "old-slip-property-identity",
+        "heading": "How do you match different addresses to the same building?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "NYC Planning Labs returns borough-block-lot 1000350001 for 32 Old Slip. The city’s PLUTO tax-lot file stores 77 Front Street for the same BBL. Both the city address point and the GSA coordinates fall inside the current Digital Tax Map polygon, even though they sit about 37 meters apart. The two addresses and the separate coordinates can be carried under one parcel key while keeping each source’s original value.",
+            "sourceIds": [
+              "geosearch",
+              "pluto",
+              "tax-map",
+              "gsa-xlsx"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a building-level analysis, keep a building ID alongside the parcel ID, and keep leases at the premises level. A parcel can contain several buildings, and offices in one building can be measured or leased independently. At this site, the PLUTO building area and each lease’s rentable square footage describe different scopes.",
+            "sourceIds": [
+              "pluto",
+              "sec-exhibit",
+              "gsa-xlsx"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "recorded-document-amounts",
+        "heading": "Why can one tax lot have two different recorded sale amounts?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We looked up Manhattan block 35, lot 1 in ACRIS Legals, then joined the property rows to the Master records by document ID. New York City recorded the following instruments on April 28, 2015. The tenant’s 2026 lease exhibit cites the same 2015 ground lease memorandum by City Register File Number.",
+            "sourceIds": [
+              "acris-legals",
+              "acris-master",
+              "acris-types",
+              "sec-exhibit"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Recorded instrument",
+              "City Register File Number",
+              "Document amount"
+            ],
+            "rows": [
+              [
+                "Deed",
+                "2015000141451",
+                "$197.5 million"
+              ],
+              [
+                "Assignment of lease",
+                "2015000141452",
+                "$477.5 million"
+              ],
+              [
+                "Memorandum of lease",
+                "2015000141442",
+                "$0 in the Master record"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "deed"
+              ],
+              [
+                "assignment"
+              ],
+              [
+                "ground-memo"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The deed and assignment amounts add to $675 million. Keep them as separately identified instruments and review the rights each transferred before using either amount in a comp set. For a portfolio transaction, use a documented allocation to the asset, or retain the portfolio total at the transaction level. Derive price per square foot only after aligning the price, transferred interest, and area basis.",
+            "sourceIds": [
+              "deed",
+              "assignment",
+              "acris-types",
+              "westkite"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/commercial-real-estate-sales-lease-comps-apis.json",
+            "format": "JSON",
+            "label": "Download the parcel match, ACRIS records, lease rows, and formulas"
+          }
+        ]
+      },
+      {
+        "id": "old-slip-lease-comparables",
+        "heading": "How do you compare commercial rent per square foot?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Divide annual rent by the rentable square feet covered by that rent. The GSA October 2026 inventory reports current annual rent and marks both federal lease rows at 32 Old Slip as fully serviced. In the November 2026 Form 8-K, Oppenheimer reports the approximate fixed rent that its subsidiary Viner agreed to pay for 221,339 rentable square feet. The filing describes additional rent and the rent commencement rule separately.",
+            "sourceIds": [
+              "gsa-xlsx",
+              "gsa-inventory",
+              "sec-8k"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Lease and period",
+              "Rentable sq ft",
+              "Annual amount",
+              "Annual $ per rentable sq ft",
+              "Rent basis"
+            ],
+            "rows": [
+              [
+                "GSA LNY00492",
+                "15,949",
+                "$1,371,203.08",
+                "$85.97",
+                "October 2026 current annual rent. Marked fully serviced."
+              ],
+              [
+                "GSA LNY00641",
+                "23,429",
+                "$2,021,200.06",
+                "$86.27",
+                "October 2026 current annual rent. Marked fully serviced."
+              ],
+              [
+                "Viner, years 1–5",
+                "221,339",
+                "About $13.3 million",
+                "$60.09",
+                "Approximate fixed annual rent after commencement."
+              ],
+              [
+                "Viner, years 6–10",
+                "221,339",
+                "About $14.4 million",
+                "$65.06",
+                "Approximate fixed annual rent after commencement."
+              ],
+              [
+                "Viner, years 11–15",
+                "221,339",
+                "About $15.5 million",
+                "$70.03",
+                "Approximate fixed annual rent after commencement."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "gsa-xlsx"
+              ],
+              [
+                "gsa-xlsx"
+              ],
+              [
+                "sec-8k"
+              ],
+              [
+                "sec-8k"
+              ],
+              [
+                "sec-8k"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The federal leases took effect in 2019 and 2021. Their October 2026 rent reflects those in-place contracts. Viner’s first step is starting fixed rent for a larger set of floors. Its rent commencement is the later of July 1, 2028, and six months after final delivery. Check the signing date, rent commencement, suite size, services and taxes before using the difference to price another space.",
+            "sourceIds": [
+              "gsa-xlsx",
+              "sec-8k",
+              "sec-exhibit"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To estimate net effective rent, work from the rent schedule over the lease term and account for concessions, such as free rent and tenant improvements, on a consistent basis. The downloadable arithmetic example uses the issuer’s rounded fixed rent steps, six months of initial free rent, and the disclosed two-month abatement in year ten. That gives about $213.6 million of undiscounted fixed rent over an assumed 186 months, or about $62.26 per rentable square foot per year on that fixed-rent basis. Expenses, further allowances, delivery timing, and discounting would require separate inputs.",
+            "sourceIds": [
+              "sec-8k",
+              "sec-exhibit"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/commercial-real-estate-sales-lease-comps-apis.csv",
+            "format": "CSV",
+            "label": "Download the 186-month fixed-rent illustration"
+          }
+        ]
+      },
+      {
+        "id": "commercial-comp-trial-checklist",
+        "heading": "Which fields belong in a defensible comp file?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Input",
+              "Keep these fields",
+              "Check in the source"
+            ],
+            "rows": [
+              [
+                "Property identity",
+                "Parcel ID, building ID, aliases, geocode and match type",
+                "The recorded property or occupied space matches the asset being valued."
+              ],
+              [
+                "Closed sale",
+                "Instrument type, consideration, interest sold, included assets, sale date, recording date",
+                "Price scope and interest are comparable. Flag related-party, nominal and portfolio transactions for review."
+              ],
+              [
+                "Signed lease",
+                "Suite or floors, rentable area, signing date, commencement, expiry, and options",
+                "The rate applies to that premises and time period. Keep expense treatment and free rent with it."
+              ],
+              [
+                "Asking or estimated value",
+                "Listing date, quote units, source, estimate method, and vintage",
+                "Treat asking rent and assessor values as separate evidence with their own purposes."
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related commercial property guides",
+            "items": [
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Verify mortgages and property identity for a commercial credit file"
+              },
+              {
+                "slug": "commercial-property-ownership-data-apis",
+                "label": "Trace property ownership and entity changes"
+              },
+              {
+                "slug": "commercial-mortgage-maturity-data-apis",
+                "label": "Join commercial mortgage maturity and collateral data"
+              },
+              {
+                "slug": "data-center-land-for-sale",
+                "label": "Compare recorded land prices with asking terms and options"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between sale comps and lease comps?",
+        "answer": "A sale comp describes what was paid for an identified property interest. A lease comp describes the cost and terms to occupy specified space. Compare each using matching area, dates, and economic terms.",
+        "sourceIds": [
+          "acris-types",
+          "sec-8k"
+        ]
+      },
+      {
+        "question": "How do you calculate annual commercial rent per square foot?",
+        "answer": "Divide the annual rent by the rentable area that payment covers. Label the result as starting, current, or effective rent and keep the expense and concession basis.",
+        "sourceIds": [
+          "gsa-inventory",
+          "sec-8k"
+        ]
+      },
+      {
+        "question": "Can you use the GSA lease inventory as private-market rent comps?",
+        "answer": "Use it as evidence of reported federal lease economics. For a private transaction, check date, building, space size and condition, expenses, concessions and services before making an adjustment.",
+        "sourceIds": [
+          "gsa-inventory",
+          "gsa-xlsx"
+        ]
+      },
+      {
+        "question": "Why does a deed search show different amounts for the same sale date?",
+        "answer": "Look up the underlying instruments and parties. A deed, ground lease assignment, mortgage, or portfolio transfer can have its own reported amount even when they are recorded for the same parcel.",
+        "sourceIds": [
+          "acris-types",
+          "deed",
+          "assignment"
+        ]
+      },
+      {
+        "question": "What evidence do you need to estimate net effective rent?",
+        "answer": "Start with the actual lease cash-flow schedule, free rent, allowances, costs and the assumed lease term. Record whether the calculation uses a simple average or discounted cash flows, and use the same method across the comps.",
+        "sourceIds": [
+          "sec-8k",
+          "compstak"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "earth",
+        "title": "Public Invariant Earth field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth API fields"
+      },
+      {
+        "id": "westkite",
+        "title": "West Kite recorded sales API reference",
+        "url": "https://westkite.com/docs/api/reference",
+        "publisher": "West Kite",
+        "linkLabel": "West Kite sales API reference"
+      },
+      {
+        "id": "attom",
+        "title": "ATTOM sales history and property API documentation",
+        "url": "https://api.developer.attomdata.com/docs",
+        "publisher": "ATTOM",
+        "linkLabel": "ATTOM API reference"
+      },
+      {
+        "id": "compstak",
+        "title": "CompStak commercial lease and sale data delivery and Space Insights API",
+        "url": "https://compstak.com/data-api",
+        "publisher": "CompStak",
+        "linkLabel": "CompStak data delivery"
+      },
+      {
+        "id": "acris-master",
+        "title": "ACRIS Real Property Master document records",
+        "url": "https://data.cityofnewyork.us/d/bnx9-e6tj",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS Master records"
+      },
+      {
+        "id": "acris-legals",
+        "title": "ACRIS Real Property Legals parcel links",
+        "url": "https://data.cityofnewyork.us/d/8h5j-fqxa",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS property and instrument links"
+      },
+      {
+        "id": "acris-types",
+        "title": "ACRIS Document Control Codes",
+        "url": "https://data.cityofnewyork.us/d/7isb-wh4c",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS instrument codes"
+      },
+      {
+        "id": "deed",
+        "title": "Deed, City Register File Number 2015000141451",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2015041401028010",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Recorded deed row"
+      },
+      {
+        "id": "assignment",
+        "title": "Lease assignment, City Register File Number 2015000141452",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2015041401028011",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Recorded assignment row"
+      },
+      {
+        "id": "ground-memo",
+        "title": "Ground lease memorandum, City Register File Number 2015000141442",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2015041401028001",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Ground lease memorandum row"
+      },
+      {
+        "id": "geosearch",
+        "title": "NYC Planning Labs address and tax-lot lookup for 32 Old Slip",
+        "url": "https://geosearch.planninglabs.nyc/v2/search?text=32%20Old%20Slip%2C%20Manhattan&size=3",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "32 Old Slip address match"
+      },
+      {
+        "id": "pluto",
+        "title": "PLUTO tax lot 1000350001, version 26v2",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=1000350001",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "PLUTO tax-lot record"
+      },
+      {
+        "id": "tax-map",
+        "title": "NYC Digital Tax Map tax lot polygons",
+        "url": "https://data.cityofnewyork.us/d/i38t-6if2",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "NYC Digital Tax Map"
+      },
+      {
+        "id": "gsa-inventory",
+        "title": "GSA monthly lease inventory and archive",
+        "url": "https://www.gsa.gov/real-estate/realty-and-lease-acquisition",
+        "publisher": "U.S. General Services Administration",
+        "linkLabel": "GSA lease inventory"
+      },
+      {
+        "id": "gsa-xlsx",
+        "title": "October 2026 GSA lease inventory workbook",
+        "url": "https://www.gsa.gov/system/files/October-2026-External.xlsx",
+        "publisher": "U.S. General Services Administration",
+        "linkLabel": "October GSA workbook"
+      },
+      {
+        "id": "sec-8k",
+        "title": "Oppenheimer Form 8-K, Item 1.01, November 9, 2026",
+        "url": "https://www.sec.gov/Archives/edgar/data/791963/000162828026071942/opy-20261105.htm",
+        "publisher": "Oppenheimer Holdings, filed with the SEC",
+        "linkLabel": "Oppenheimer 8-K"
+      },
+      {
+        "id": "sec-exhibit",
+        "title": "Office lease for Viner at 32 Old Slip, Exhibit 10.1",
+        "url": "https://www.sec.gov/Archives/edgar/data/791963/000162828026071942/rxr-oppenheimerx32oldsli.htm",
+        "publisher": "Oppenheimer Holdings, filed with the SEC",
+        "linkLabel": "Filed lease exhibit"
+      },
+      {
+        "id": "aerial",
+        "title": "2024 New York City aerial imagery and map tile license",
+        "url": "https://maps.nyc.gov/tiles/",
+        "publisher": "NYC Office of Technology and Innovation",
+        "linkLabel": "NYC 2024 aerial imagery"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "commercial-property-ownership-data-apis",
+      "commercial-mortgage-maturity-data-apis",
+      "data-center-land-for-sale"
+    ],
+    "dataset": {
+      "name": "32 Old Slip commercial transaction and lease records",
+      "description": "Tax lot and address match, New York City deed and lease-assignment amounts, two federal lease inventory entries, a public office lease schedule, and a fixed-rent illustration.",
+      "spatialCoverage": "32 Old Slip and 77 Front Street, Manhattan, New York, United States",
+      "temporalCoverage": "2007-08-29/2026-11-23",
+      "sourceIds": [
+        "tax-map",
+        "deed",
+        "assignment",
+        "ground-memo",
+        "gsa-xlsx",
+        "sec-8k",
+        "sec-exhibit"
+      ]
+    }
+  },
+  {
     "slug": "hospital-school-fire-service-area-data",
     "topic": "Data & APIs",
     "region": "Leawood, Kansas",
@@ -10804,6 +11329,10 @@
             "label": "Related property data guides",
             "items": [
               {
+                "slug": "commercial-real-estate-sales-lease-comps-apis",
+                "label": "Compare commercial sale amounts and lease terms"
+              },
+              {
                 "slug": "commercial-real-estate-lending",
                 "label": "Build a commercial real estate credit file"
               },
@@ -11144,6 +11673,10 @@
             "type": "links",
             "label": "Related diligence guides",
             "items": [
+              {
+                "slug": "commercial-real-estate-sales-lease-comps-apis",
+                "label": "Compare commercial sale amounts and lease terms"
+              },
               {"slug":"historical-parcel-boundaries-api","label":"Track a parcel split or merger across record dates"},
               {"slug":"commercial-property-insurance-data-apis","label":"Match the right building for property insurance"},
               {"slug":"power-evidence-data-center-site-verification","label":"Verify a data center’s power status before financing"}
