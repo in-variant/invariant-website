@@ -7,6 +7,7 @@ import { INDIA_HUB } from '../data/industryArticles'
 import './Blog.css'
 
 const ARTICLES = [...RESOURCE_ARTICLES].sort((a, b) => b.dateTime.localeCompare(a.dateTime))
+const CARD_LIMIT = 12
 const TOPICS = ['All articles', 'Data & APIs', 'Data Centers', 'Oil & Gas', 'Space', 'Nuclear'] as const
 const FEATURED_SLUGS = [
   'n-1-contingency-analysis-data-center',
@@ -31,7 +32,7 @@ const BLOG_SCHEMA = [
     publisher: { '@id': `${SITE_URL}/#organization` },
     hasPart: [
       ...collections.map(collection => ({ '@type': 'CollectionPage', name: collection.title, url: `${SITE_URL}/blog/${collection.slug}` })),
-      ...ARTICLES.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })),
+      ...FEATURED_ARTICLES.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })),
     ],
   },
 ]
@@ -61,18 +62,60 @@ function BlogCard({ article, variant = 'standard' }: { article: ResourceArticle;
 }
 
 function normalizeSearch(value: string) {
-  return value.toLowerCase().replace(/[‐‑–-]/g, ' ').replace(/(\d)(mw|gw|kw)\b/g, '$1 $2').trim()
+  return value.toLowerCase()
+    .replace(/(?<=\d),(?=\d{3}\b)/g, '')
+    .replace(/[‐‑–—-]/g, ' ')
+    .replace(/(\d)\s*(mw|gw|kw)\b/g, '$1 $2')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const POWER_VALUE = /\b(\d+(?:\.\d+)?) (kw|mw|gw)\b/g
+const WATTS_PER_UNIT = { kw: 1e3, mw: 1e6, gw: 1e9 }
+
+function powerValues(text: string) {
+  return [...text.matchAll(POWER_VALUE)].map(([, amount, unit]) =>
+    Number((Number(amount) * WATTS_PER_UNIT[unit as keyof typeof WATTS_PER_UNIT]).toPrecision(15)),
+  )
+}
+
+function ArticleArchive({ articles, filtered }: { articles: ResourceArticle[]; filtered: boolean }) {
+  if (articles.length === 0) return null
+
+  return (
+    <details className="blog-index-archive" open={filtered}>
+      <summary>
+        <span>{filtered ? 'More matching titles' : 'Browse earlier articles'} <span className="blog-index-archive-count">({articles.length})</span></span>
+      </summary>
+      <ul>
+        {articles.map(article => (
+          <li key={article.slug}>
+            <Link to={`/blog/${article.slug}`}>
+              <span>{article.title}</span>
+              <time dateTime={article.dateTime}>{article.date}</time>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
 }
 
 export default function Blog() {
   const [topic, setTopic] = useState<typeof TOPICS[number]>('All articles')
   const [query, setQuery] = useState('')
-  const terms = normalizeSearch(query).split(/\s+/).filter(Boolean)
-  const isFiltered = topic !== 'All articles' || terms.length > 0
+  const normalizedQuery = normalizeSearch(query)
+  const requestedPower = powerValues(normalizedQuery)
+  const terms = normalizedQuery.replace(POWER_VALUE, ' ').split(/\s+/).filter(Boolean)
+  const isFiltered = topic !== 'All articles' || normalizedQuery.length > 0
   const articles = ARTICLES.filter((article) => {
     if (!isFiltered) return !featuredSlugs.has(article.slug)
+    if (topic !== 'All articles' && topic !== article.topic) return false
     const searchable = normalizeSearch(`${article.title} ${article.summary} ${article.topic} ${article.region ?? ''}`)
-    return (topic === 'All articles' || article.topic === topic) && terms.every((term) => searchable.includes(term))
+    if (!terms.every(term => searchable.includes(term))) return false
+    if (requestedPower.length === 0) return true
+    const reportedPower = powerValues(searchable)
+    return requestedPower.every(power => reportedPower.includes(power))
   })
 
   return (
@@ -111,9 +154,12 @@ export default function Blog() {
             </div>
             <p className="blog-index-count" role="status">{articles.length} {articles.length === 1 ? 'article' : 'articles'}</p>
           </div>
-          <div className="blog-index-grid">
-            {articles.map((article) => <BlogCard key={article.slug} article={article} />)}
-          </div>
+          {articles.length > 0 && (
+            <div className="blog-index-grid">
+              {articles.slice(0, CARD_LIMIT).map(article => <BlogCard key={article.slug} article={article} />)}
+            </div>
+          )}
+          <ArticleArchive key={String(isFiltered)} articles={articles.slice(CARD_LIMIT)} filtered={isFiltered} />
           {articles.length === 0 && (
             <div className="blog-index-empty"><p>No articles match your search.</p><button type="button" onClick={() => { setTopic('All articles'); setQuery('') }}>Clear filters</button></div>
           )}
