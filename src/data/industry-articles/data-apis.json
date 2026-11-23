@@ -1,5 +1,536 @@
 [
   {
+    "slug": "hospital-school-fire-service-area-data",
+    "topic": "Data & APIs",
+    "region": "Leawood, Kansas",
+    "title": "How to Check Hospital, School, and Fire Coverage by Address",
+    "description": "Check hospital drive times, public school attendance zones, and fire service providers using separate sources. Compare the records at a Kansas housing development.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Aerial map of the Leawood study area with three modeled hospital routes and a 10-minute drive boundary. The site-area lookup shows Leawood Middle School and Leawood Fire as the county-mapped service provider.",
+    "coverCaption": "The route model starts at a public junction near Leawood Market Center. The school and fire records were checked at points within the planned site area.",
+    "intro": "To check hospital, school, and fire coverage for an address, use a road network for hospital access, an attendance map for public schools, and a service boundary for the responsible fire agency. At a proposed 64-townhome development in Leawood, Kansas, Prairie Star Middle was closer than Leawood Middle, the school indicated by the county attendance map. A hospital in the 10-minute drive area also had conflicting emergency-department records.",
+    "takeaways": [
+      "Keep a facility’s location, the services it reports, and modeled travel time in separate fields.",
+      "Check school attendance boundaries by grade, school year, and exact dwelling address. The closest campus is a poor substitute for this lookup.",
+      "Use county service polygons to identify the responsible fire agency. Check local dispatch and ambulance transport records for details about emergency response."
+    ],
+    "sections": [
+      {
+        "id": "community-service-data-by-address",
+        "heading": "Which maps answer which community-service questions?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Planning question",
+              "Start with",
+              "Evidence to retain"
+            ],
+            "rows": [
+              [
+                "How far is a hospital that offers the required service?",
+                "A hospital register, care-specific records, operator information, and a routed trip.",
+                "CMS Certification Number, address or entrance, service evidence, road network vintage, and travel assumptions."
+              ],
+              [
+                "Which public school serves a new dwelling?",
+                "School district and grade-specific attendance boundaries, followed by the district’s address lookup.",
+                "Exact home address, grade, school year, and the district’s assignment result."
+              ],
+              [
+                "Which fire or ambulance agency serves the site?",
+                "County fire service areas and the local agency’s standards of cover or dispatch documentation.",
+                "Responsible agency, date, and what the source covers, such as first response, automatic aid, or transport."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cms-general",
+                "cms-care",
+                "valhalla"
+              ],
+              [
+                "nces",
+                "blue-valley"
+              ],
+              [
+                "county-fire",
+                "standards",
+                "med-act"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The worked example uses Leawood Market Center, south of West 135th Street between Kenneth Road and State Line Road. City Ordinance 3210 approved the rezoning and preliminary plan on May 18, 2026. The staff report describes 64 proposed townhomes across the residential part of the plan. For the lookup we tested three reference points within the area shown on the filed plan. The hospital routes begin at the nearby public junction of Kenneth Road and West 137th Street.",
+            "sourceIds": [
+              "ordinance",
+              "plan",
+              "osm-node"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hospital-drive-time-and-ed-evidence",
+        "heading": "Which hospitals can you reach in a 10-minute drive?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We mapped a 10-minute drive area in Valhalla using the ordinary car profile and the published road network. The table compares three hospital street-address points. The run used standard travel costs and no traffic for a specific time of day. Use the hospital’s site map to locate the appropriate entrance when an access decision depends on the final destination.",
+            "sourceIds": [
+              "valhalla",
+              "geocoder",
+              "saint-lukes-map"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Hospital",
+              "State",
+              "Route distance",
+              "Modeled drive",
+              "CMS Emergency Services"
+            ],
+            "rows": [
+              [
+                "St. Joseph Medical Center",
+                "MO",
+                "4.09 miles",
+                "9.0 min",
+                "Yes"
+              ],
+              [
+                "Saint Luke’s South Hospital",
+                "KS",
+                "4.73 miles",
+                "9.1 min",
+                "No"
+              ],
+              [
+                "Menorah Medical Center",
+                "KS",
+                "4.82 miles",
+                "9.6 min",
+                "Yes"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cms-general",
+                "st-joseph"
+              ],
+              [
+                "cms-general",
+                "saint-lukes"
+              ],
+              [
+                "cms-general",
+                "menorah"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The October 26 CMS Hospital General Information file records “No” for Emergency Services at Saint Luke’s South Hospital, CMS Certification Number 170185. The hospital’s own page lists 24-hour emergency services. The separate CMS Timely and Effective Care file for the same ID reports a scored emergency-department measure, OP-18b, for January through December 2025. The three records give different views of the same facility. The public records used here leave the reason for the mismatch unresolved.",
+            "sourceIds": [
+              "cms-general",
+              "cms-care",
+              "cms-measures",
+              "saint-lukes"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Store the published flag alongside the dated measure and operator source. A facility-level performance measure describes its historical reporting period. A route is the modeled time on the road. Use separate records for a current entrance, operating status, transport protocols, or a wait estimate.",
+            "sourceIds": [
+              "cms-measures",
+              "saint-lukes-map",
+              "valhalla"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/hospital-school-fire-service-area-data.geojson",
+            "format": "GeoJSON",
+            "label": "Download the modeled drive area and three example hospital routes"
+          },
+          {
+            "type": "download",
+            "path": "/blog/hospital-school-fire-service-area-data.json",
+            "format": "JSON",
+            "label": "Download the hospital rows, school and fire boundary lookups, and routing inputs"
+          }
+        ]
+      },
+      {
+        "id": "school-attendance-boundary-vs-nearest",
+        "heading": "How do you find the assigned public school for a property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Johnson County’s district map places the three site reference points in Blue Valley USD 229. Its grade-specific layers show Mission Trail Elementary, Leawood Middle, and Blue Valley North High. The results agree across the sampled area. The district’s official locator asks for an exact home address. Use that lookup for each new dwelling and the year the household will enroll.",
+            "sourceIds": [
+              "county-district",
+              "county-elementary",
+              "county-middle",
+              "county-high",
+              "blue-valley"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "From the site reference point, the county’s Prairie Star Middle campus point is about 1.30 straight-line miles away. Leawood Middle is about 1.83 miles away. The attendance result is Leawood Middle. The point distances help compare proximity while the attendance layer answers the enrollment question.",
+            "sourceIds": [
+              "county-school-points",
+              "county-middle",
+              "blue-valley"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fire-department-coverage-and-ems",
+        "heading": "How do you check the fire department and ambulance service?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The county Fire Service Area layer returned Leawood Fire at all three site points. Leawood’s standards of cover describe shared county dispatch, automatic aid, and Johnson County MED-ACT ambulance transport. Consult the current agency records when a project needs dispatch area, response history, or transport assumptions.",
+            "sourceIds": [
+              "county-fire",
+              "standards",
+              "med-act"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The property file also has a separate review of site access for emergency vehicles. The city’s Fire Marshal memo, dated April 13, 2026, says that previous comments on the preliminary plan had been resolved. Keep that memo with the version of the plan it reviewed. The county provider boundary and the city plan review support different parts of the property file.",
+            "sourceIds": [
+              "fire-memo",
+              "plan",
+              "county-fire"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "local-and-national-community-services-apis",
+        "heading": "What data and APIs can you use to screen many properties?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Task",
+              "Starting source or API",
+              "Check before using the result"
+            ],
+            "rows": [
+              [
+                "Screen addresses for parcel and service context",
+                "Invariant Earth’s documented fields include Census school district, nearest CMS hospital, emergency evidence for the nearest eligible acute-care hospital, and nearest mapped fire station.",
+                "Keep distance fields, boundary membership, and source evidence distinct. Add district assignment and fire-provider coverage from the local authorities."
+              ],
+              [
+                "Join public hospital records",
+                "CMS Hospital General Information and Timely and Effective Care, joined by CMS Certification Number.",
+                "Retain the published flag, scored measures and covered dates, and the operator’s current information."
+              ],
+              [
+                "Map a public school district or find a campus",
+                "NCES EDGE district boundaries and school locations, then district or county attendance polygons.",
+                "Campus locations and district boundaries answer different questions. Check grade-specific assignment with the district."
+              ],
+              [
+                "Estimate travel to a facility or dispatch coverage",
+                "Valhalla for modeled trips. County GIS and agency records for fire and EMS coverage.",
+                "Match road travel to the entrance people will use. Retain the fire service polygon and dispatch assumptions as separate records."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "cms-general",
+                "cms-care"
+              ],
+              [
+                "nces",
+                "blue-valley"
+              ],
+              [
+                "valhalla",
+                "county-fire",
+                "standards"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a housing development, keep the planned street and dwelling address with the school lookup. For a healthcare site, compare service types and model travel to the actual entrance. For a lender or insurer, attach the fire service record and the applicable plan review to the parcel file. Recheck the result when an address, service boundary, or site plan changes."
+          },
+          {
+            "type": "links",
+            "label": "Related site-selection guides",
+            "items": [
+              {
+                "slug": "drive-time-demographics-census-trade-area",
+                "label": "Estimate the population within a modeled drive area"
+              },
+              {
+                "slug": "geologic-maps-well-logs-site-due-diligence",
+                "label": "Find geology, well and boring records for a site"
+              },
+              {
+                "slug": "power-outage-road-closure-history",
+                "label": "Review historical outages and road closures"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I know which fire department serves an address?",
+        "answer": "Look up the address in the county fire-service or emergency-response layer and confirm the result with the local authority. Read the agency’s coverage or dispatch documentation when you need details about how calls are handled.",
+        "sourceIds": [
+          "county-fire",
+          "standards"
+        ]
+      },
+      {
+        "question": "Is the nearest school the one a home is assigned to?",
+        "answer": "Check the school district’s address locator for the relevant grade and school year. A campus can be closer while falling outside the home’s attendance assignment.",
+        "sourceIds": [
+          "county-middle",
+          "blue-valley"
+        ]
+      },
+      {
+        "question": "How can a hospital show different emergency-service information in two public sources?",
+        "answer": "Keep the general facility flag, other CMS measures, and the hospital’s current service listing as separate records. Join by CMS Certification Number and compare the periods and location. These sources differed at the Saint Luke’s South campus in the Leawood example.",
+        "sourceIds": [
+          "cms-general",
+          "cms-care",
+          "saint-lukes"
+        ]
+      },
+      {
+        "question": "Can a car drive-time map estimate ambulance response time?",
+        "answer": "Ordinary car routing estimates travel over a street network. For ambulance response, use agency data on call handling, vehicle availability, dispatch and travel, and identify the period and area measured.",
+        "sourceIds": [
+          "valhalla",
+          "standards",
+          "med-act"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "ordinance",
+        "title": "Ordinance 3210 for Leawood Market Center, May 18, 2026",
+        "url": "https://leawood.civicweb.net/document/230938/",
+        "publisher": "City of Leawood",
+        "linkLabel": "May 18 city agenda and ordinance packet"
+      },
+      {
+        "id": "plan",
+        "title": "PC-025-2026 staff report, parcel identifiers and preliminary plan",
+        "url": "https://leawood.civicweb.net/document/230176/CASE%20PC-025-2026%20-%20LEAWOOD%20MARKET%20CENTER%20-%20Requ.pdf?handle=0EE3B0B072F54AAE82C6C2399427F32F",
+        "publisher": "City of Leawood",
+        "linkLabel": "Filed planning packet"
+      },
+      {
+        "id": "fire-memo",
+        "title": "April 13, 2026 Fire Marshal memo for PC-025-2026",
+        "url": "https://leawood.civicweb.net/document/230176/CASE%20PC-025-2026%20-%20LEAWOOD%20MARKET%20CENTER%20-%20Requ.pdf?handle=0EE3B0B072F54AAE82C6C2399427F32F#page=16",
+        "publisher": "City of Leawood",
+        "linkLabel": "Fire Marshal memo"
+      },
+      {
+        "id": "county-fire",
+        "title": "Layer 87, Fire Service Area",
+        "url": "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/87?f=pjson",
+        "publisher": "Johnson County AIMS",
+        "linkLabel": "County fire service layer"
+      },
+      {
+        "id": "county-district",
+        "title": "Layer 110, School District",
+        "url": "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/110?f=pjson",
+        "publisher": "Johnson County AIMS",
+        "linkLabel": "School district layer"
+      },
+      {
+        "id": "county-school-points",
+        "title": "Layer 111, Public Schools",
+        "url": "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/111?f=pjson",
+        "publisher": "Johnson County AIMS",
+        "linkLabel": "Public school campus layer"
+      },
+      {
+        "id": "county-high",
+        "title": "Layer 112, High School Attendance Boundaries",
+        "url": "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/112?f=pjson",
+        "publisher": "Johnson County AIMS",
+        "linkLabel": "High school attendance layer"
+      },
+      {
+        "id": "county-middle",
+        "title": "Layer 113, Middle School Attendance Boundaries",
+        "url": "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/113?f=pjson",
+        "publisher": "Johnson County AIMS",
+        "linkLabel": "Middle school attendance layer"
+      },
+      {
+        "id": "county-elementary",
+        "title": "Layer 114, Elementary School Attendance Boundaries",
+        "url": "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/114?f=pjson",
+        "publisher": "Johnson County AIMS",
+        "linkLabel": "Elementary attendance layer"
+      },
+      {
+        "id": "blue-valley",
+        "title": "Blue Valley USD 229 Find My School",
+        "url": "https://www.bluevalleyk12.org/community/findmyschool",
+        "publisher": "Blue Valley Schools",
+        "linkLabel": "Blue Valley address locator"
+      },
+      {
+        "id": "nces",
+        "title": "NCES EDGE school district boundary data",
+        "url": "https://nces.ed.gov/programs/edge/Geographic/DistrictBoundaries",
+        "publisher": "National Center for Education Statistics",
+        "linkLabel": "NCES district boundaries"
+      },
+      {
+        "id": "standards",
+        "title": "2025 Leawood Fire Department community risk assessment and standards of cover",
+        "url": "https://leawood.civicweb.net/document/218853/Receive%20the%202025%20Fire%20Department%20Community%20Risk.pdf?handle=56866C77C5E145C4AE28D1BEF24273BF#page=21",
+        "publisher": "City of Leawood",
+        "linkLabel": "Leawood dispatch and EMS report"
+      },
+      {
+        "id": "med-act",
+        "title": "Johnson County MED-ACT ambulance response and transport",
+        "url": "https://www.jocogov.org/department/med-act",
+        "publisher": "Johnson County",
+        "linkLabel": "Johnson County MED-ACT"
+      },
+      {
+        "id": "cms-general",
+        "title": "October 26, 2026 Hospital General Information file",
+        "url": "https://data.cms.gov/provider-data/sites/default/files/resources/d3bf87c5505155f549d603688414f3c6_1793059553/Hospital_General_Information_2.csv",
+        "publisher": "Centers for Medicare & Medicaid Services",
+        "linkLabel": "CMS hospital information CSV"
+      },
+      {
+        "id": "cms-care",
+        "title": "October 19, 2026 Timely and Effective Care hospital file",
+        "url": "https://data.cms.gov/provider-data/sites/default/files/resources/0437b5494ac61507ad90f2af6b8085a7_1792599910/Timely_and_Effective_Care-Hospital.csv",
+        "publisher": "Centers for Medicare & Medicaid Services",
+        "linkLabel": "CMS emergency department measures CSV"
+      },
+      {
+        "id": "cms-measures",
+        "title": "CMS hospital care measures and data collection periods",
+        "url": "https://data.cms.gov/provider-data/topics/hospitals/measures-and-current-data-collection-periods",
+        "publisher": "Centers for Medicare & Medicaid Services",
+        "linkLabel": "CMS measure definitions"
+      },
+      {
+        "id": "saint-lukes",
+        "title": "Saint Luke’s South Hospital services at 12300 Metcalf Avenue",
+        "url": "https://www.saintlukeskc.org/locations/saint-lukes-south-hospital",
+        "publisher": "Saint Luke’s",
+        "linkLabel": "Saint Luke’s South Hospital"
+      },
+      {
+        "id": "saint-lukes-map",
+        "title": "Saint Luke’s South Hospital campus and emergency entrance map",
+        "url": "https://www.saintlukeskc.org/sites/slkc/files/2026-03/3598584-SLS-Maps-Campus-Interior-WEB_2.pdf",
+        "publisher": "Saint Luke’s",
+        "linkLabel": "Saint Luke’s campus map"
+      },
+      {
+        "id": "st-joseph",
+        "title": "St. Joseph Medical Center emergency department address and services",
+        "url": "https://er-scheduling.stjosephkc.com/en",
+        "publisher": "St. Joseph Medical Center",
+        "linkLabel": "St. Joseph emergency department"
+      },
+      {
+        "id": "menorah",
+        "title": "Menorah Medical Center emergency department listing",
+        "url": "https://www.hcamidwest.com/locations/menorah-medical-center/about-us/contact-us",
+        "publisher": "HCA Midwest Health",
+        "linkLabel": "Menorah contact and services"
+      },
+      {
+        "id": "geocoder",
+        "title": "Census Geocoder technical documentation",
+        "url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census address geocoder"
+      },
+      {
+        "id": "valhalla",
+        "title": "Valhalla route API and driving cost model",
+        "url": "https://valhalla.github.io/valhalla/api/route/api-reference/",
+        "publisher": "Valhalla project",
+        "linkLabel": "Valhalla routing reference"
+      },
+      {
+        "id": "osm-node",
+        "title": "OpenStreetMap public junction at Kenneth Road and West 137th Street",
+        "url": "https://www.openstreetmap.org/node/10670771480",
+        "publisher": "OpenStreetMap contributors",
+        "linkLabel": "Mapped route origin"
+      },
+      {
+        "id": "earth",
+        "title": "Public Invariant Earth field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth API fields"
+      },
+      {
+        "id": "naip",
+        "title": "USGS National Map Imagery Only basemap",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS National Map imagery"
+      }
+    ],
+    "relatedSlugs": [
+      "drive-time-demographics-census-trade-area",
+      "geologic-maps-well-logs-site-due-diligence",
+      "power-outage-road-closure-history"
+    ],
+    "dataset": {
+      "name": "Leawood Market Center hospital, school, and fire service evidence",
+      "description": "Three modeled routes and a 10-minute drive contour, CMS hospital flags and process measures, county school and fire map lookups, and a dated project fire review.",
+      "spatialCoverage": "Leawood, Overland Park and Kansas City, Kansas City metropolitan area, United States",
+      "temporalCoverage": "2024-01-01/2026-11-23",
+      "sourceIds": [
+        "plan",
+        "fire-memo",
+        "county-fire",
+        "county-middle",
+        "cms-general",
+        "cms-care",
+        "valhalla",
+        "osm-node"
+      ]
+    }
+  },
+  {
     "slug": "drive-time-demographics-census-trade-area",
     "topic": "Data & APIs",
     "region": "Detroit, Michigan",
@@ -241,6 +772,10 @@
             "type": "links",
             "label": "Related data guides",
             "items": [
+              {
+                "slug": "hospital-school-fire-service-area-data",
+                "label": "Check school, hospital, and fire service coverage"
+              },
               {
                 "slug": "retail-site-selection-trade-area-apis",
                 "label": "Compare retail trade areas with foot traffic and store openings"

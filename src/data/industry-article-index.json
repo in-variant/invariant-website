@@ -1,5 +1,43 @@
 [
   {
+    "slug": "hospital-school-fire-service-area-data",
+    "topic": "Data & APIs",
+    "title": "How to Check Hospital, School, and Fire Coverage by Address",
+    "summary": "Check hospital drive times, public school attendance zones, and fire service providers using separate sources. Compare the records at a Kansas housing development.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "Leawood, Kansas",
+    "image": "/blog/industry/hospital-school-fire-service-area-data.webp?v=ff5d0a2a",
+    "dataset": {
+      "name": "Leawood Market Center hospital, school, and fire service evidence",
+      "description": "Three modeled routes and a 10-minute drive contour, CMS hospital flags and process measures, county school and fire map lookups, and a dated project fire review.",
+      "spatialCoverage": "Leawood, Overland Park and Kansas City, Kansas City metropolitan area, United States",
+      "temporalCoverage": "2024-01-01/2026-11-23",
+      "sources": [
+        "https://leawood.civicweb.net/document/230176/CASE%20PC-025-2026%20-%20LEAWOOD%20MARKET%20CENTER%20-%20Requ.pdf?handle=0EE3B0B072F54AAE82C6C2399427F32F",
+        "https://leawood.civicweb.net/document/230176/CASE%20PC-025-2026%20-%20LEAWOOD%20MARKET%20CENTER%20-%20Requ.pdf?handle=0EE3B0B072F54AAE82C6C2399427F32F#page=16",
+        "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/87?f=pjson",
+        "https://maps.jocogov.org/ArcGIS/rest/services/Districts/MapServer/113?f=pjson",
+        "https://data.cms.gov/provider-data/sites/default/files/resources/d3bf87c5505155f549d603688414f3c6_1793059553/Hospital_General_Information_2.csv",
+        "https://data.cms.gov/provider-data/sites/default/files/resources/0437b5494ac61507ad90f2af6b8085a7_1792599910/Timely_and_Effective_Care-Hospital.csv",
+        "https://valhalla.github.io/valhalla/api/route/api-reference/",
+        "https://www.openstreetmap.org/node/10670771480"
+      ],
+      "downloads": [
+        {
+          "label": "Download the modeled drive area and three example hospital routes",
+          "path": "/blog/hospital-school-fire-service-area-data.geojson",
+          "format": "GeoJSON"
+        },
+        {
+          "label": "Download the hospital rows, school and fire boundary lookups, and routing inputs",
+          "path": "/blog/hospital-school-fire-service-area-data.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "drive-time-demographics-census-trade-area",
     "topic": "Data & APIs",
     "title": "How to Calculate Drive-Time Demographics With Census Data",
