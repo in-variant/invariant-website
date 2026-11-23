@@ -3,7 +3,7 @@ import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArti
 import DatasetCitation from '../../components/DatasetCitation'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, datasetSchema, faqSchema, howToSchema } from '../../components/Seo'
 import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
-import type { ResourceDataset } from '../../data/resources'
+import { publishedDatasets } from '../../data/resources'
 import './IndustryArticle.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
@@ -14,7 +14,9 @@ function Citations({ ids, article }: { ids?: string[]; article: Article }) {
   })}</span>
 }
 
-function Block({ block, article, dataset }: { block: ArticleBlock; article: Article; dataset?: ResourceDataset }) {
+type PublishedDatasets = ReturnType<typeof publishedDatasets>
+
+function Block({ block, article, datasets }: { block: ArticleBlock; article: Article; datasets: PublishedDatasets }) {
   if (block.type === 'paragraph') return <p>{block.text}<Citations ids={block.sourceIds} article={article} /></p>
   if (block.type === 'links') return <nav className="industry-links" aria-label={block.label || "Related guides"}>{block.label && <p className="industry-eyebrow">{block.label}</p>}<ul>{block.items.map(item => {
     const path = item.path ?? `/blog/${item.slug}`
@@ -22,11 +24,11 @@ function Block({ block, article, dataset }: { block: ArticleBlock; article: Arti
   })}</ul></nav>
   if (block.type === 'list') return <div className="industry-list"><ul>{block.items.map(item => <li key={item}>{item}</li>)}</ul><Citations ids={block.sourceIds} article={article} /></div>
   if (block.type === 'download') {
-    const firstDownload = dataset?.downloads[0].path === block.path
+    const entry = datasets.find(({ dataset }) => dataset.downloads[0].path === block.path)
     return <>
-      {firstDownload && <p id="dataset" className="industry-dataset-title"><Link to={`/datasets#${article.slug}`}>{dataset.name}</Link></p>}
+      {entry && <p id={entry.anchor} className="industry-dataset-title"><Link to={`/datasets#${entry.id}`}>{entry.dataset.name}</Link></p>}
       <a className="industry-worksheet-download" href={block.path} download>{block.label} <span>{block.format}</span></a>
-      {firstDownload && <DatasetCitation name={dataset.name} datePublished={article.date} url={`${SITE_URL}/blog/${article.slug}#dataset`} />}
+      {entry && <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} />}
     </>
   }
   const stackOnMobile = block.worksheet || block.stackOnMobile
@@ -78,7 +80,7 @@ export function articleCrumbs(article: Article, canonical: string) {
 const SECTION_LABEL = { 'site-listing': 'Powered land and data center sites', 'site-guide': 'Data center site selection', 'study-guide': 'Data center site due diligence', 'compute-guide': 'AI compute capacity for neoclouds and AI labs', 'india-guide': 'Data centres in India' } as const
 
 /** Every JSON-LD block for an industry article; shared by the SPA and the prerender. */
-function articleJsonLd(article: Article, canonical: string, image: string, dataset?: ResourceDataset) {
+function articleJsonLd(article: Article, canonical: string, image: string, datasets: PublishedDatasets) {
   const blocks: object[] = [
     ORG_SCHEMA, EDITORIAL_TEAM,
     articleSchema({ title: article.title, description: article.description, url: canonical, datePublished: article.date, dateModified: article.updatedDate, image, articleSection: article.kind ? SECTION_LABEL[article.kind] : article.topic === 'Data & APIs' ? article.topic : INDUSTRY_HUBS[article.topic].name, spatialCoverage: [article.region ?? 'United States'] }),
@@ -93,7 +95,7 @@ function articleJsonLd(article: Article, canonical: string, image: string, datas
     potentialAction: { '@type': 'ReserveAction', target: BOOKING_URL, name: article.kind === 'site-guide' ? 'Discuss a site search' : 'Book a call to scope a study' },
   })
   if (article.howTo) blocks.push(howToSchema({ name: article.howTo.name, description: article.description, url: canonical, steps: article.howTo.steps }))
-  if (dataset) blocks.push(datasetSchema(dataset, canonical, article.date))
+  blocks.push(...datasets.map(({ dataset }) => datasetSchema(dataset, canonical, article.date)))
   return blocks
 }
 
@@ -192,7 +194,8 @@ function SiteBookingBanner() {
 
 export default function IndustryArticle({ article }: { article: Article }) {
   const canonical = `${SITE_URL}/blog/${article.slug}`
-  const { dataset, image: cover } = article.published
+  const { image: cover } = article.published
+  const datasets = publishedDatasets(article.published)
   const image = `${SITE_URL}${cover}`
   const hub = INDUSTRY_HUBS[article.topic]
   const isIndiaGuide = article.kind === 'india-guide'
@@ -203,7 +206,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const hasWorksheet = article.sections.some(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
   const reviewedDate = article.updatedDate ?? article.date
   return <article className="blog-article industry-article">
-    <Seo title={article.title} description={article.description} canonical={canonical} markdown={`/blog/${article.slug}.md`} ogImage={image} ogType="article" jsonLd={articleJsonLd(article, canonical, image, dataset)} />
+    <Seo title={article.title} description={article.description} canonical={canonical} markdown={`/blog/${article.slug}.md`} ogImage={image} ogType="article" jsonLd={articleJsonLd(article, canonical, image, datasets)} />
     <BlogArticleHeader article={article.published} title={article.title} subtitle={isSiteListing ? article.intro : article.description} coverCaption={coverCaption} coverAlt={article.coverAlt} siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined} />
     <div className="industry-article-layout">
       <aside className="industry-article-rail" aria-label="In this guide">
@@ -226,7 +229,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
         {isIndiaGuide && <IndiaSiteBanner />}
         {!isSiteListing && <p className="industry-lead">{article.intro}</p>}
         <section className="industry-takeaways" aria-label={isSiteListing ? 'Key site facts' : 'Before you start'}><p className="industry-eyebrow">{isSiteListing ? 'Key site facts' : 'Before you start'}</p><ul>{article.takeaways.map(item => <li key={item}>{item}</li>)}</ul></section>
-        {article.sections.map(section => <section key={section.id} id={section.id} className="industry-prose-section"><h2>{section.heading}</h2>{section.blocks.map((block, i) => <Block key={i} block={block} article={article} dataset={dataset} />)}</section>)}
+        {article.sections.map(section => <section key={section.id} id={section.id} className="industry-prose-section"><h2>{section.heading}</h2>{section.blocks.map((block, i) => <Block key={i} block={block} article={article} datasets={datasets} />)}</section>)}
         <section className="industry-prose-section industry-faq" aria-labelledby="questions"><h2 id="questions">Questions that come up.</h2>{article.faqs.map(faq => <details key={faq.question}><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}<Citations ids={faq.sourceIds} article={article} /></p></details>)}</section>
         <section id="sources" className="industry-prose-section industry-source-list"><h2>Sources and references.</h2><p>{article.kind === 'site-listing' ? 'Site specifications are as marketed by the seller and are checked against utility documents before any introduction. Public sources checked on' : 'Primary sources checked for this guide on'} <time dateTime={reviewedDate}>{new Date(`${reviewedDate}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>.{!isDataGuide && ' The location, equipment, and operating plan determine which requirements apply to a project.'}</p><ol>{article.sources.map(source => <li key={source.id} id={`source-${source.id}`}><span>{source.publisher}</span><a href={source.url}>{source.title} ↗</a></li>)}</ol></section>
         {isDataGuide ? <div className="industry-article-contact"><h2>Try Invariant Earth on a site you know.</h2><p>Pick a US coordinate and inspect the source, dataset vintage, and status for each field.</p><a href="https://docs.invariant-ai.com/quickstart">Open the API quickstart <span aria-hidden="true">↗</span></a></div> :

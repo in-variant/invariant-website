@@ -67,7 +67,8 @@ for (const article of articles) {
   if (ids.size !== article.sources.length) throw new Error(`Duplicate source: ${article.slug}`)
   for (const source of article.sources) if (new URL(source.url).protocol !== 'https:') throw new Error(`Invalid source URL: ${source.url}`)
   if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
-  for (const block of [...article.sections.flatMap(section => section.blocks), ...article.faqs]) {
+  const blocks = article.sections.flatMap(section => section.blocks)
+  for (const block of [...blocks, ...article.faqs]) {
     for (const id of [...(block.sourceIds ?? []), ...(block.rowSourceIds?.flat() ?? [])]) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)
     if (block.type === 'links') for (const item of block.items) {
       const valid = item.path === undefined ? publicBlogSlugs.has(item.slug)
@@ -85,22 +86,42 @@ for (const article of articles) {
     }
   }
   for (const slug of article.relatedSlugs) if (!slugs.has(slug)) throw new Error(`Missing related article ${slug}`)
-  if (article.dataset) {
-    const { sourceIds, ...details } = article.dataset
+  const additionalDatasets = article.additionalDatasets ?? []
+  const datasetAnchors = new Set(article.dataset ? ['dataset'] : [])
+  for (const { anchor, datePublished } of additionalDatasets) {
+    if (!/^dataset-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(anchor) || datasetAnchors.has(anchor) ||
+        article.sections.some(section => section.id === anchor) || !/^\d{4}-\d{2}-\d{2}$/.test(datePublished)) {
+      throw new Error(`Invalid dataset anchor or publication date: ${article.slug} (${anchor})`)
+    }
+    datasetAnchors.add(anchor)
+  }
+  const downloadBlocks = blocks.filter(block => block.type === 'download')
+  if (downloadBlocks.some(block => block.datasetAnchor && !datasetAnchors.has(block.datasetAnchor))) {
+    throw new Error(`Download refers to an unknown dataset: ${article.slug}`)
+  }
+  const registered = new Set()
+  function registerDataset({ sourceIds, ...details }) {
     const sources = sourceIds?.map(id => article.sources.find(source => source.id === id)?.url)
-    const downloads = article.sections.flatMap(section => section.blocks)
-      .filter(block => block.type === 'download' && block.includeInDataset !== false)
+    const downloads = downloadBlocks
+      .filter(block => (block.datasetAnchor ?? 'dataset') === (details.anchor ?? 'dataset'))
       .map(({ label, path, format }) => ({ label, path, format }))
     const descriptionLength = details.description?.trim().length ?? 0
     if (!details.name?.trim() || descriptionLength < 50 || descriptionLength > 5000 || !sources?.length || sources.includes(undefined)) {
       throw new Error(`Invalid dataset metadata: ${article.slug}`)
     }
-    if (!downloads.length || new Set(downloads.map(file => file.path)).size !== downloads.length ||
-      downloads.some(file => !Object.hasOwn(dataFormats, file.format) || !file.path.endsWith(`.${dataFormats[file.format]}`))) {
-      throw new Error(`Invalid dataset downloads: ${article.slug}`)
+    if (!downloads.length) throw new Error(`Missing dataset downloads: ${article.slug}`)
+    for (const { path, format } of downloads) {
+      if (registered.has(path) || !Object.hasOwn(dataFormats, format) || !path.endsWith(`.${dataFormats[format]}`)) {
+        throw new Error(`Invalid dataset download ${path}: ${article.slug}`)
+      }
+      registered.add(path)
     }
-    datasets.set(article.slug, { ...details, sources, downloads })
+    return { ...details, sources, downloads }
   }
+  datasets.set(article.slug, {
+    ...(article.dataset && { dataset: registerDataset(article.dataset) }),
+    ...(additionalDatasets.length && { additionalDatasets: additionalDatasets.map(registerDataset) }),
+  })
 }
 // Immutable image URLs change when the cover bytes change.
 const coverDir = new URL('../public/blog/industry/', import.meta.url)
@@ -119,7 +140,7 @@ const index = articles.map(article => {
     slug: article.slug, topic: article.topic, title: article.title, summary: article.description,
     date: new Date(`${article.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
     dateTime: article.date, ...(article.region && { region: article.region }), ...(article.updatedDate && { updatedDate: article.updatedDate }), image,
-    ...(datasets.has(article.slug) && { dataset: datasets.get(article.slug) }),
+    ...datasets.get(article.slug),
   }
 })
 writeIfChanged(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)

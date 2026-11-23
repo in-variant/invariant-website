@@ -65,6 +65,8 @@ class Page(HTMLParser):
         self.robots = []
         self.headings = []
         self.links = set()
+        self.fragment_links = set()
+        self.ids = []
         self.downloads = set()
         self.markdown = []
         self.feeds = []
@@ -84,6 +86,8 @@ class Page(HTMLParser):
 
     def handle_starttag(self, tag, attributes):
         attr = dict(attributes)
+        if attr.get("id"):
+            self.ids.append(attr["id"])
         if tag in NON_CONTENT_TEXT_TAGS:
             self.excluded_text_depth += 1
         if tag == "main":
@@ -98,6 +102,8 @@ class Page(HTMLParser):
             target = urlsplit(urljoin(self.url, attr["href"]))
             if target.netloc == urlsplit(CANONICAL).netloc:
                 self.links.add(target.path)
+                if target.fragment:
+                    self.fragment_links.add((target.path, target.fragment))
                 if "download" in attr:
                     self.downloads.add(target.path)
         elif tag == "link":
@@ -316,19 +322,28 @@ def verify_dataset_catalog(catalog, pages):
     for path, page in pages.items():
         if not path.startswith("/blog/"):
             continue
+        registered_downloads = set()
         for dataset in (item for item in page.schemas if item.get("@type") == "Dataset"):
             require(dataset.get("includedInDataCatalog") == identity, f"{page.url} has an incomplete DataCatalog reference")
-            require(dataset["url"] == dataset["@id"] == page.url + "#dataset", f"{page.url} has an invalid dataset URL")
-            require(path in catalog.links, f"{page.url} is missing from the HTML dataset catalog")
+            anchor = urlsplit(dataset["url"]).fragment
+            require(re.fullmatch(r"dataset(?:-[a-z0-9]+)*", anchor) and page.ids.count(anchor) == 1
+                    and dataset["url"] == dataset["@id"] == dataset["identifier"] == f"{page.url}#{anchor}"
+                    and dataset["url"] not in actual_names, f"{page.url} has an invalid or duplicate dataset URL")
+            require((path, anchor) in catalog.fragment_links, f"{dataset['url']} is missing from the HTML dataset catalog")
             require(f"]({dataset['url']})" in markdown, f"{page.url} is missing from the Markdown dataset catalog")
             record = records[dataset["url"]]
             require(record["name"] == dataset["name"] and record["description"] == dataset["description"]
-                    and record["sources"] == dataset["isBasedOn"], f"{page.url} has inconsistent JSON dataset metadata")
+                    and record["sources"] == dataset["isBasedOn"]
+                    and record.get("datePublished", record["guide"]["published"]) == dataset["datePublished"],
+                    f"{dataset['url']} has inconsistent JSON dataset metadata")
             downloads = {file["url"]: file for file in record["downloads"]}
             require(len(downloads) == len(record["downloads"]) and downloads.keys() == {
                 file["contentUrl"] for file in dataset["distribution"]
             }, f"{page.url} has inconsistent JSON dataset download links")
             for file in dataset["distribution"]:
+                require(file["contentUrl"] not in registered_downloads and urlsplit(file["contentUrl"]).path in page.downloads,
+                        f"{file['contentUrl']} is missing from the guide or belongs to two datasets")
+                registered_downloads.add(file["contentUrl"])
                 require(f"]({file['contentUrl']})" in markdown,
                         f"{file['contentUrl']} is missing from the Markdown dataset catalog")
                 entry = downloads[file["contentUrl"]]

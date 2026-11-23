@@ -25,7 +25,15 @@ const FILES = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence
 const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles', f), 'utf8')))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
-const datasetEntries = articleIndex.filter(article => article.dataset)
+const datasetEntries = articleIndex.flatMap(article => {
+  const { dataset, additionalDatasets = [] } = article
+  const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
+  return datasets.map(dataset => ({
+    ...article,
+    dataset,
+    url: `${SITE}/blog/${article.slug}#${dataset.anchor ?? 'dataset'}`,
+  }))
+})
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 
@@ -81,11 +89,11 @@ function datasetCatalogMd() {
     `Catalog page: ${SITE}/datasets`, '',
     'Download the data and read how each dataset was compiled. The dataset notes link to the original sources.', '',
   ]
-  for (const { slug, dateTime, dataset } of datasetEntries) {
+  for (const { slug, dateTime, dataset, url } of datasetEntries) {
     out.push(
       `## ${dataset.name}`, '', dataset.description, '',
-      `- [Dataset notes](${SITE}/blog/${slug}#dataset) · [Markdown guide](${SITE}/blog/${slug}.md)`,
-      `- Published: ${dateTime}`,
+      `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md)`,
+      `- Published: ${dataset.datePublished ?? dateTime}`,
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
       ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
       ...dataset.downloads.map(file => `- [${file.label} (${file.format})](${SITE}${file.path})`),
@@ -99,10 +107,10 @@ function datasetCatalogJson() {
   return {
     url: `${SITE}/datasets`,
     publisher: 'Invariant',
-    datasets: datasetEntries.map(({ slug, title, dateTime, updatedDate, dataset }) => {
-      const { downloads, ...metadata } = dataset
+    datasets: datasetEntries.map(({ slug, title, dateTime, updatedDate, dataset, url }) => {
+      const { anchor, downloads, ...metadata } = dataset
       return {
-        url: `${SITE}/blog/${slug}#dataset`,
+        url,
         ...metadata,
         guide: {
           title,

@@ -168,7 +168,7 @@ export const DATA_CATALOG = {
 const DATA_ENCODING = { CSV: 'text/csv', GeoJSON: 'application/geo+json', JSON: 'application/json' } as const
 
 export function datasetSchema(dataset: ResourceDataset, articleUrl: string, datePublished: string) {
-  const url = `${articleUrl}#dataset`
+  const url = `${articleUrl}#${dataset.anchor ?? 'dataset'}`
   return {
     '@context': 'https://schema.org',
     '@type': 'Dataset',
@@ -177,7 +177,7 @@ export function datasetSchema(dataset: ResourceDataset, articleUrl: string, date
     identifier: url,
     name: dataset.name,
     description: dataset.description,
-    datePublished,
+    datePublished: dataset.datePublished ?? datePublished,
     creator: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: 'Invariant' },
     publisher: { '@id': `${SITE_URL}/#organization` },
     includedInDataCatalog: DATA_CATALOG,

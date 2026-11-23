@@ -39,11 +39,11 @@ const catalogPage = {
   about: { '@id': DATA_CATALOG['@id'] },
   mainEntity: {
     '@type': 'ItemList',
-    itemListElement: RESEARCH_DATASETS.map(({ slug, dataset }, index) => ({
+    itemListElement: RESEARCH_DATASETS.map(({ notesPath, dataset }, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: dataset.name,
-      url: `${SITE_URL}/blog/${slug}#dataset`,
+      url: `${SITE_URL}${notesPath}`,
     })),
   },
 }
@@ -98,17 +98,17 @@ export default function Datasets() {
             <button type="button" onClick={() => { setQuery(''); setFormat('') }}>Clear filters</button>
           </div>
         )}
-        {matches.map(({ slug, dateTime, image, dataset }) => (
-          <article className="dataset-row" key={slug} id={slug}>
+        {matches.map(({ id, notesPath, datePublished, image, dataset }) => (
+          <article className="dataset-row" key={id} id={id}>
             <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
             <div className="dataset-copy">
               <h2>{dataset.name}</h2>
               <p>{dataset.description}</p>
               {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
-              <Link to={`/blog/${slug}#dataset`} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
+              <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
                 Dataset notes <ResourceArrow diagonal />
               </Link>
-              <DatasetCitation name={dataset.name} datePublished={dateTime} url={`${SITE_URL}/blog/${slug}#dataset`} />
+              <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
             </div>
             <div className="dataset-downloads">
               {dataset.downloads.map(file => (

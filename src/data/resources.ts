@@ -5,6 +5,8 @@ import type { ArticleDataset, DatasetDownload } from './industryArticles'
 export type ResourceTopic = 'Space' | 'Nuclear' | 'Aerospace' | 'Cross-industry' | 'Data Centers' | 'Oil & Gas' | 'Data & APIs'
 
 export type ResourceDataset = Omit<ArticleDataset, 'sourceIds'> & {
+  anchor?: string
+  datePublished?: string
   sources: string[]
   downloads: DatasetDownload[]
 }
@@ -20,6 +22,7 @@ export type ResourceArticle = {
   title: string
   summary: string
   dataset?: ResourceDataset
+  additionalDatasets?: ResourceDataset[]
 }
 
 // The published article titles, dates and assets are shared by both indexes.
@@ -28,6 +31,17 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   ...legacyArticles as ResourceArticle[],
 ]
 
-export const RESEARCH_DATASETS = RESOURCE_ARTICLES.flatMap(article =>
-  article.dataset ? [{ ...article, dataset: article.dataset }] : [],
-)
+export function publishedDatasets(article: ResourceArticle) {
+  const { dataset, additionalDatasets = [] } = article
+  const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
+  return datasets.map(dataset => ({
+    ...article,
+    dataset,
+    anchor: dataset.anchor ?? 'dataset',
+    id: dataset.anchor ? `${article.slug}-${dataset.anchor}` : article.slug,
+    notesPath: `/blog/${article.slug}#${dataset.anchor ?? 'dataset'}`,
+    datePublished: dataset.datePublished ?? article.dateTime,
+  }))
+}
+
+export const RESEARCH_DATASETS = RESOURCE_ARTICLES.flatMap(publishedDatasets)
