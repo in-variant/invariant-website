@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
@@ -51,8 +51,10 @@ const catalogPage = {
 }
 
 export default function Datasets() {
+  const [searchReady, setSearchReady] = useState(false)
   const [query, setQuery] = useState('')
   const [format, setFormat] = useState('')
+  useEffect(() => setSearchReady(true), [])
   const terms = articleSearchWords(query)
   const matches = searchIndex.filter(({ searchWords, dataset }) =>
     terms.every((term, index) => searchWords.has(term) || (
@@ -83,11 +85,11 @@ export default function Datasets() {
         <div className="dataset-controls">
           <label>
             <span>Search datasets</span>
-            <input type="search" placeholder="EPA, lending, grid capacity…" value={query} onChange={event => setQuery(event.target.value)} />
+            <input type="search" placeholder="EPA, lending, grid capacity…" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
           </label>
           <label>
             <span>File format</span>
-            <select value={format} onChange={event => setFormat(event.target.value)}>
+            <select disabled={!searchReady} value={format} onChange={event => setFormat(event.target.value)}>
               <option value="">All formats</option>
               {formats.map(value => <option key={value}>{value}</option>)}
             </select>
