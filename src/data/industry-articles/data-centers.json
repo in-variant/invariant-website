@@ -599,13 +599,14 @@
   {
     "slug": "data-center-water-stormwater-permits",
     "topic": "Data Centers",
-    "title": "Data center water and stormwater permits: resolve each flow before construction",
-    "description": "A US guide to data center water supply, wastewater discharge, construction and industrial stormwater, oil storage, and wetlands permitting dependencies.",
+    "title": "Data center water and stormwater permits",
+    "description": "What to verify for data center water supply, sewer discharge, construction dewatering and stormwater. Includes San José permit records and a downloadable checklist.",
     "date": "2026-09-15",
-    "readMinutes": 7,
-    "intro": "Start with a water balance and a drainage drawing. Show where each stream comes from, what changes its quality, where it goes, and who controls that destination. Include cooling, sanitation, equipment flushing, construction dewatering, rainfall, and spills. A water-service agreement answers a supply question. It does not establish that every resulting discharge is acceptable.",
+    "readMinutes": 9,
+    "intro": "Before committing to a data center site, get written confirmation of water and sewer capacity for each phase. Then map where cooling wastewater, temporary construction groundwater and stormwater will go. Each flow needs a named receiving authority, a documented route and any applicable approval. At Microsoft’s proposed 99 MW San José data center, the public record shows planned utility connections and a later encroachment permit for a pipe carrying treated construction groundwater to Coyote Creek.",
     "takeaways": [
       "Confirm supply and discharge arrangements separately, including temporary construction and commissioning flows.",
+      "Track dewatering before excavation. Verify the discharge destination, permission for the route, applicable discharge coverage, flow limits and sampling conditions.",
       "Determine construction and industrial stormwater applicability independently. A facility's name does not settle its operating classification.",
       "Screen the whole development footprint, including off-site connections, for water and wetland impacts.",
       "Carry approved flow, chemistry, drainage, and fuel-storage assumptions into the operating team's procedures."
@@ -640,6 +641,34 @@
           {
             "type": "paragraph",
             "text": "Send the receiving authority a discharge profile, not just an annual consumption estimate: flow, temperature, expected constituents, treatment chemicals, frequency, and any concentrated or intermittent releases. Those facts let the authority evaluate the proposed stream and identify missing information. Keep the response with the cooling-system design revision it evaluated."
+          }
+        ]
+      },
+      {
+        "id": "san-jose-water-approval-records",
+        "heading": "How San José’s data center water approvals took shape",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Microsoft’s proposal at 1657 Alviso-Milpitas Road calls for up to 99 MW of electrical load. The Valley Water notice posted July 21, 2026 describes new potable, fire and recycled water connections, plus separate sanitary sewer and storm drain connections. The agreement in that notice authorized changes to Valley Water’s visitor center and parking lot. Use the utility connections described in the notice to identify which service agreements and drawings to request.",
+            "sourceIds": [
+              "san-jose-project",
+              "san-jose-connections"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The notice posted November 16 records Valley Water’s October 20 approval of an encroachment permit for 315 feet of 12-inch pipe to carry treated construction groundwater to Coyote Creek. The notice describes a planned discharge of 100 to 200 gallons per minute for about a year, with upstream and downstream sampling. Those are planning figures in the notice. For the excavation schedule, obtain the applicable water-quality authorization and check its flow limits, treatment requirements and sampling conditions alongside the encroachment permit.",
+            "sourceIds": [
+              "san-jose-dewatering",
+              "npdes-basics"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the San José water records and verification checklist",
+            "path": "/blog/san-jose-data-center-water-permit-records.csv",
+            "format": "CSV"
           }
         ]
       },
@@ -824,6 +853,10 @@
           "spcc",
           "section-404"
         ]
+      },
+      {
+        "question": "What should I ask for before excavating a data center site that needs dewatering?",
+        "answer": "Ask the civil engineer for the expected pumping rate, duration, planned treatment and discharge point. Obtain any required property or encroachment approval for the pipe route and confirm the applicable discharge authorization with the receiving authority. Put the authorized flow, water-quality limits and sampling schedule in the construction plan."
       }
     ],
     "sources": [
@@ -892,11 +925,40 @@
         "title": "Does the Spill Prevention, Control, and Countermeasure Rule Apply to Your Facility?",
         "url": "https://www.epa.gov/oil-spills-prevention-and-preparedness-regulations/does-spill-prevention-control-and-countermeasure",
         "publisher": "US Environmental Protection Agency"
+      },
+      {
+        "id": "san-jose-project",
+        "title": "San Jose Data Center project and docket",
+        "publisher": "California Energy Commission",
+        "url": "https://www.energy.ca.gov/powerplant/backup-generating-system/san-jose-data-center"
+      },
+      {
+        "id": "san-jose-connections",
+        "title": "San Jose Data Center Notice of Determination, July 2026",
+        "publisher": "Santa Clara Valley Water District",
+        "url": "https://ceqanet.lci.ca.gov/2021020002/8"
+      },
+      {
+        "id": "san-jose-dewatering",
+        "title": "San Jose Data Center dewatering encroachment Notice of Determination",
+        "publisher": "Santa Clara Valley Water District",
+        "url": "https://ceqanet.lci.ca.gov/2021020002/10"
       }
     ],
     "relatedSlugs": [
       "data-center-refrigerant-compliance",
       "data-center-fuel-storage-spcc-tier-ii"
-    ]
+    ],
+    "updatedDate": "2026-11-23",
+    "dataset": {
+      "name": "San José data center water and dewatering records",
+      "description": "Six source-linked records from two Valley Water notices covering planned water, sewer and drainage connections and an approved construction dewatering encroachment, with verification questions for each.",
+      "spatialCoverage": "San José, California, United States",
+      "temporalCoverage": "2026-07-14/2026-10-20",
+      "sourceIds": [
+        "san-jose-connections",
+        "san-jose-dewatering"
+      ]
+    }
   }
 ]
