@@ -20158,17 +20158,79 @@
   "topic": "Data Centers",
   "kind": "site-guide",
   "region": "United States",
-  "title": "Data Center Site Selection Checklist and Free Worksheet",
-  "description": "Download a free 12-check worksheet for data center site selection. Compare phased power, land, water, fiber and permits before committing to a site.",
+  "title": "Data Center Site Selection Criteria and Checklist",
+  "description": "Compare phased power, buildable land, water, fiber, and approvals. Use the 12-check worksheet and a real Loudoun County permitting case to screen a site.",
   "date": "2026-11-09",
-  "readMinutes": 7,
-  "intro": "Start data center site selection with the load the facility must draw and the date it must be ready. For each phase, identify the serving utility, the proposed point of connection, and the best evidence for the delivery date. Then check whether the usable land, water, fiber, and approvals support that same plan. Run power, permitting, and site control in parallel when each can stop the project.",
+  "readMinutes": 9,
+  "intro": "The core data center site selection criteria are power by phase, buildable land, a workable permitting path, cooling water, and fiber. Start with the facility megawatts at the meter and the date each phase needs service. Then work out which required utility upgrade, site work, or approval could set the opening date. Compare land price, tariffs, and incentives among sites that could meet the schedule.",
   "takeaways": [
-   "Set facility power at the utility meter, IT load, and the latest acceptable service date for each phase.",
-   "Record who supplied each number, when it was issued, and what the document actually establishes.",
-   "Use the worksheet to assign each open question and decide which sites are worth advancing."
+   "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
+   "Check the utility connection, land and approval path in parallel. Record which event could move the opening date.",
+   "Use the worksheet to save the strongest evidence for each requirement and assign the next action."
   ],
   "sections": [
+   {
+    "id": "data-center-site-selection-process",
+    "heading": "How the data center site selection process works",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Set the requirements that could rule out a candidate before comparing scores. A latency-sensitive deployment can fail on a fiber route. A campus with evaporative cooling can fail on peak-day water supply. Decide which constraints are fixed and which can change with the design.",
+      "sourceIds": [
+       "siting"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Stage",
+       "What to do",
+       "What to bring to the next decision"
+      ],
+      "rows": [
+       [
+        "Set the project thresholds",
+        "Specify IT load, facility MW, dates by phase, required reliability, cooling design, and network needs.",
+        "A demand schedule with the meter location or service area, design assumptions, and deadlines."
+       ],
+       [
+        "Screen candidate tracts",
+        "Find the serving utilities and plot the site layout, usable ground, access, flood and wetland constraints, fiber entrances, and any crossing.",
+        "A boundary and concept plan that show where evidence is strong, which sites fall short, and which constraints need an inquiry."
+       ],
+       [
+        "Verify the schedule with the parties involved",
+        "Ask the utility and planning authority which connection, upgrades, permits, and hearings apply. Check the dates for customer construction and commissioning as well.",
+        "A dated schedule showing when each workstream can finish and which dependency can hold the phase."
+       ],
+       [
+        "Compare the sites that can work",
+        "Compare the all-in cost and obligations, including the utility tariff, upgrades, water, taxes, and options for future expansion.",
+        "A shortlist with open conditions, the person responsible for each, and the evidence due before a binding commitment."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "siting"
+       ],
+       [
+        "siting",
+        "wetlands",
+        "epa"
+       ],
+       [
+        "siting",
+        "aep"
+       ],
+       [
+        "siting",
+        "lbnl"
+       ]
+      ]
+     }
+    ]
+   },
    {
     "id": "i0-the-checklist,-in-order",
     "heading": "12 checks for comparing data center sites",
@@ -20213,8 +20275,8 @@
        ],
        [
         "6. Land use and local approvals",
-        "Planning staff response, zoning map and ordinance, approval procedure, applicable moratoria, and public hearing calendar.",
-        "A defined permitting path fits the required schedule. Start local engagement early."
+        "Planning staff response, zoning map and ordinance, applicable restrictions, application ID, next hearing or decision, and any separate substation case.",
+        "The approval path and the expected decision dates fit the proposed construction and service schedule."
        ],
        [
         "7. Usable land and ground conditions",
@@ -20294,6 +20356,45 @@
      {
       "type": "paragraph",
       "text": "Site B has the stronger first-phase case because the study identifies a connection, a date, and dependencies. The study is still preliminary. Record the easement, upgrade ownership, and conditions of service before calling the 2028 date committed. Use a separate row for the 2030 expansion."
+     }
+    ]
+   },
+   {
+    "id": "loudoun-approval-schedule",
+    "heading": "Loudoun County shows why the approval calendar matters",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The Loudoun County Board voted on November 17, 2026 to defer action on covered legislative applications for data centers and electrical substations. The county reported an effective date of September 15 and said 33 active legislative applications could be affected. County staff reviews and Planning Commission hearings could continue. The county described separate treatment for administrative applications, Route 28 Tax District properties, grid reliability, and cases approaching a decision deadline.",
+      "sourceIds": [
+       "loudoun-pause",
+       "pause-direction"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Dulles Technology Park is an example of what to look up next. The July staff report identifies a 37.24-acre zoning conversion in the Route 28 Tax District for three proposed data center buildings. In September, the Planning Commission recommended denial. The docket then appeared on the November 12 Board hearing agenda. For a site in the exempt district, the pause scope and the application’s approval are separate questions. Read the minutes or action report for the specific docket before putting a decision date into your schedule.",
+      "sourceIds": [
+       "dulles-packet",
+       "dulles-minutes",
+       "dulles-hearing",
+       "loudoun-pause"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Bring the tract boundary and application IDs to planning staff. Ask which application the current design depends on, whether any prior approval still covers it, and which milestone the Board or staff can confirm. Ask the same questions for the electrical facilities that serve the site. The county’s earlier pathway guide illustrates why a filing date, later design changes, and the application type can affect the route.",
+      "sourceIds": [
+       "loudoun-phase1",
+       "loudoun-pathway",
+       "loudoun-pause"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download eight Loudoun approval records with dates and docket references",
+      "path": "/blog/loudoun-data-center-approval-milestones.csv",
+      "format": "CSV"
      }
     ]
    },
@@ -20633,6 +20734,14 @@
     ]
    },
    {
+    "question": "What are the steps in data center site selection?",
+    "answer": "Set your required power, reliability, and delivery dates. Screen land and infrastructure against those thresholds. Verify the utility, permit, and construction schedules for each phase, then compare costs and contractual obligations across the sites that can meet them.",
+    "sourceIds": [
+     "siting",
+     "aep"
+    ]
+   },
+   {
     "question": "What does a utility load study establish?",
     "answer": "A load study evaluates a proposed request and can identify a service plan, upgrades, and conditions for a specific site. Read the study’s assumptions alongside the subsequent service terms to see what the utility has committed to and what is still contingent.",
     "sourceIds": [
@@ -20677,6 +20786,54 @@
     "title": "Guidance on the Redevelopment of Superfund and Brownfield Sites as AI Data Centers",
     "url": "https://www.epa.gov/system/files/documents/2026-01/guidance-on-the-redevelopment-of-superfund-and-brownfield-sites-as-ai-data-centers.pdf",
     "publisher": "U.S. Environmental Protection Agency"
+   },
+   {
+    "id": "loudoun-phase1",
+    "title": "Phase 1 zoning changes and grandfathering resolution",
+    "url": "https://www.loudoun.gov/6221/Phase-1-Project-Plan-for-Data-Center-Sta",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "loudoun-pathway",
+    "title": "Application pathway guide for legislative and administrative applications",
+    "url": "https://www.loudoun.gov/DocumentCenter/View/215836",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "pause-direction",
+    "title": "September 15 direction to prepare a pause resolution",
+    "url": "https://www.loudoun.gov/m/newsflash/home/detail/10874",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "pause-deferral",
+    "title": "October deferral of the proposed legislative pause",
+    "url": "https://www.loudoun.gov/m/newsflash/Home/Detail/10938",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "loudoun-pause",
+    "title": "November 17 Board vote and scope of the legislative pause",
+    "url": "https://www.loudoun.gov/m/NewsFlash/Home/Detail/10993",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "dulles-packet",
+    "title": "Dulles Technology Park July 9 staff report, LEGI-2024-0056",
+    "url": "https://loudoun.granicus.com/MetaViewer.php?clip_id=8211&meta_id=285248&view_id=92",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "dulles-minutes",
+    "title": "September 17 Planning Commission work session minutes",
+    "url": "https://loudoun.granicus.com/MetaViewer.php?clip_id=8264&meta_id=286857&view_id=80",
+    "publisher": "Loudoun County"
+   },
+   {
+    "id": "dulles-hearing",
+    "title": "November 12 Board public hearing agenda, Dulles Technology Park",
+    "url": "https://pub-loudoun.escribemeetings.com/Meeting.aspx?Agenda=Agenda&Id=91057f16-68ae-4bb1-9ecb-3dcc04467555&Item=2741&Tab=attachments&lang=English",
+    "publisher": "Loudoun County"
    }
   ],
   "relatedSlugs": [
@@ -20684,7 +20841,23 @@
    "data-center-site-selection-permitting",
    "data-center-site-due-diligence"
   ],
-  "updatedDate": "2026-11-22"
+  "updatedDate": "2026-11-23",
+  "dataset": {
+   "name": "Loudoun data center approval milestones and Dulles Technology Park docket",
+   "description": "Eight county records separating the adopted zoning framework, the legislative pause, and individual milestones for the Dulles Technology Park zoning conversion.",
+   "spatialCoverage": "Loudoun County, Virginia, United States",
+   "temporalCoverage": "2025-03-18/2026-11-17",
+   "sourceIds": [
+    "loudoun-phase1",
+    "loudoun-pathway",
+    "pause-direction",
+    "pause-deferral",
+    "loudoun-pause",
+    "dulles-packet",
+    "dulles-minutes",
+    "dulles-hearing"
+   ]
+  }
  },
  {
   "slug": "data-center-site-selection-services",
