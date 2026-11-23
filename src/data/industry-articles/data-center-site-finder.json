@@ -4,325 +4,258 @@
   "topic": "Data Centers",
   "kind": "site-listing",
   "region": "United States",
-  "title": "How to find a data center site in the US: powered land from 1 MW to 1 GW (2026)",
-  "description": "Find a data center site in the US by MW, state and energization date. Invariant lists powered sites from 1 MW to 1.5 GW and shows how to verify the power behind each one.",
+  "title": "Find a Data Center Site in the U.S. | Powered Land and Facilities",
+  "description": "Compare U.S. data center sites by reported live MW, expansion work and first service date. Browse by state or capacity and download the listing evidence.",
   "date": "2026-11-09",
   "readMinutes": 8,
-  "intro": "Invariant finds data center sites for buyers across the US, from energized 1 MW edge and mining sites to a 1.5 GW AI campus. The method is the same at every size: start from power evidence, rule out sites that cannot close, then match land. This page sets out what each size needs, how to grade a site’s power, the 2026 rules that change the search, and the sites we have now. Tell us your MW, states and date, and we send the ones that fit.",
+  "intro": "Start your search with the facility megawatts you need at the meter, the date you need them, and whether you want a fitted facility, powered shell, or land. Current listings show why the distinction matters. One North Dakota campus is marketed at 230 MW, but the offering includes power already in use, a studied expansion, and capacity at other sites.",
   "takeaways": [
-   "Search from power first. Land is rarely the constraint; deliverable MW on a date is.",
-   "Grade each site by the document behind its MW: map, proximity, named MW, utility study, signed agreement.",
-   "Size changes everything: 1 to 10 MW sits on distribution, 20 to 100 MW needs a substation, 200 MW and up is a transmission project.",
-   "Invariant lists US sites from 1 MW to 1.5 GW and finds off-market ones on request."
+   "For existing sites, ask which metered MW a new buyer can actually use after current load and commitments.",
+   "For an expansion, request the utility’s schedule by phase and the upgrades needed to deliver each block.",
+   "Match usable land, fiber routes, cooling and approval dates to the same phase and site layout."
   ],
   "sections": [
    {
-    "id": "start-from-power",
-    "heading": "Start from power, not land",
+    "id": "sites-available",
+    "heading": "U.S. data center sites by reported power status",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Most data center site searches start with a parcel and a line on a map. That is backwards. Land is plentiful almost everywhere in the US. Deliverable power on a known date is not. In a 2025 analysis of ERCOT, Paces found only about 17% of substations near suitable land had any withdrawal headroom. The rest of the land was stranded.",
-      "sourceIds": [
-       "paces"
+      "text": "We checked these listings on November 23, 2026. Before making an offer, confirm the current deal status, which service transfers, and which upgrades the buyer must fund."
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Site or offering",
+       "Power reported in the listing",
+       "What to request"
+      ],
+      "rows": [
+       [
+        "Eastern North Dakota campus",
+        "The 230 MW headline includes 100 MW reported energized and in use, a further 100 MW covered by a study and 30 MW across nearby sites.",
+        "A meter and customer schedule for each property, plus the service agreement and delivery conditions for expansion."
+       ],
+       [
+        "Hickory, North Carolina colocation facility",
+        "3 MW reported live. The listing ties 15 MW to a transformer build-out and shows a separate option up to 50 MW.",
+        "Meter readings, commitments to current customers and the utility scope and schedule for the proposed transformer."
+       ],
+       [
+        "Pittsburgh powered shell",
+        "The brochure lists 3.5 MW on site and proposes 40 MW more through two new distribution circuits.",
+        "The utility’s service terms and the fit-out scope needed before you can use the first hall."
+       ],
+       [
+        "Wisconsin data center property",
+        "80 MW advertised at a substation reported as built with a capacity of 150 MW.",
+        "A current offer showing uncommitted MW, service date and upgrades, plus a civil plan for usable acreage."
+       ],
+       [
+        "Ohio powered land",
+        "300 MW described as approved with a first-half 2027 energization target.",
+        "The current approval or agreement, first-phase MW, commissioning schedule and assignment terms."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "vocom"
+       ],
+       [
+        "vocom"
+       ],
+       [
+        "pittsburgh"
+       ],
+       [
+        "wisconsin"
+       ],
+       [
+        "ohio"
+       ]
       ]
      },
      {
+      "type": "download",
+      "path": "/blog/data-center-site-finder-listing-evidence.csv",
+      "label": "Download the U.S. site listing evidence",
+      "format": "CSV"
+     },
+     {
+      "type": "links",
+      "label": "Browse by deal type",
+      "items": [
+       {
+        "slug": "data-center-for-sale",
+        "label": "Find fitted U.S. data centers and powered shells"
+       },
+       {
+        "slug": "powered-land-for-sale-data-center-sites",
+        "label": "Explore powered land and phased development sites"
+       },
+       {
+        "slug": "energized-data-center-sites-available-now",
+        "label": "Review sites marketed with existing service"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "start-from-power",
+    "heading": "Write down the first phase before looking at sites",
+    "blocks": [
+     {
       "type": "paragraph",
-      "text": "So the search runs in this order. Pick the MW and the date. Find stations, plants and energized loads that can carry it. Kill anything claimed, contaminated or under a moratorium. Then look at parcels around what survives. Finally, grade each site by the document behind its MW."
+      "text": "Record the initial and ultimate demand at the meter, the first service date, and what the load must be able to do while a feeder or transformer is out of service. For an illustrative 20 MW IT phase at a power usage effectiveness of 1.25, use 25 MW at the facility intake for a first pass. Replace that assumption with the design load before submitting an application."
+     },
+     {
+      "type": "paragraph",
+      "text": "Give the shortlist the maximum time you can wait, the states or latency markets you can use, the building type, and any cooling or fiber requirements. Berkeley Lab’s siting review identifies power timing as a leading filter, alongside land, water, network access and local permission.",
+      "sourceIds": [
+       "lbnl"
+      ]
+     },
+     {
+      "type": "links",
+      "label": "Use the full diligence worksheet",
+      "items": [
+       {
+        "slug": "data-center-site-selection-checklist",
+        "label": "Compare 12 data center site selection criteria and download the worksheet"
+       }
+      ]
      }
     ]
    },
    {
     "id": "by-size",
-    "heading": "What each size of data center site needs",
+    "heading": "Choose a fitted facility, powered shell or development site",
     "blocks": [
      {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
-       "Size",
-       "Typical utility service",
-       "Land",
-       "Time to power"
+       "What you need",
+       "Where to look",
+       "Check before making an offer"
       ],
       "rows": [
        [
-        "1 MW",
-        "Utility distribution service. Usually a pad-mounted transformer stepping a 12 to 35 kV feeder down to 480 V",
-        "Under 1 acre for containers; a small warehouse or retrofit room for a built facility.",
-        "Weeks if the service exists"
+        "A first hall that can take equipment soon",
+        "Operating facilities and fitted space with a known tenant handover date.",
+        "Uncommitted conditioned IT capacity, cooling, redundancy and who keeps the service agreement."
        ],
        [
-        "5 MW",
-        "Medium-voltage distribution",
-        "About 1 to 5 acres depending on containers versus a built hall and whether backup generation sits on site.",
-        "Immediate for energized turnkey sites"
+        "An existing building you can fit out",
+        "Powered shells and industrial buildings with a documented service path.",
+        "Time to deliver the first blocks, scope and cost of electrical and mechanical fit-out, and any change-of-use approval."
        ],
        [
-        "10 MW",
-        "Dedicated 12.47 to 34.5 kV feeders",
-        "About 3 to 15 acres, depending on stories, cooling type and generator yards.",
-        "Now for built or energized sites"
-       ],
-       [
-        "20 MW",
-        "Customer substation fed at 69 to 138 kV",
-        "About 8 to 30 acres, including roughly 2.5 to 3 acres for the substation.",
-        "Now for energized sites"
-       ],
-       [
-        "30 MW",
-        "Customer substation at 69 to 138 kV",
-        "About 10 to 45 gross acres.",
-        "Now for energized sites; 18 to 36 months for new service where a substation and line tap are needed"
-       ],
-       [
-        "40 MW",
-        "Customer substation at 69 to 230 kV",
-        "About 15 to 60 gross acres.",
-        "Now to 12 months for energized brownfields; 2 to 4 years for new service in a constrained territory"
-       ],
-       [
-        "50 MW",
-        "Customer substation at 115 to 230 kV",
-        "About 25 to 100 gross acres.",
-        "Now for contracted or energized sites"
-       ],
-       [
-        "100 MW",
-        "138 to 345 kV transmission service with a dedicated substation",
-        "About 50 to 150 gross acres.",
-        "Now to 18 months for energized or contracted sites; 3 to 5 years is common for new 100 MW service in constrained markets"
-       ],
-       [
-        "200 MW",
-        "230 to 345 kV",
-        "About 100 to 300 gross acres.",
-        "Under 2 years for sites with studies done or power on site; 4 to 6 years for new 200 MW service in many markets"
-       ],
-       [
-        "300 MW",
-        "345 kV",
-        "About 150 to 450 gross acres.",
-        "1 to 2 years for contracted sites with phased ramps; 5 years or more for new 300 MW service in constrained markets"
-       ],
-       [
-        "500 MW",
-        "345 to 500 kV",
-        "About 250 to 750 gross acres.",
-        "Phased over 2 to 5 years even on the best sites"
-       ],
-       [
-        "1 GW",
-        "345 to 765 kV",
-        "About 500 to 2,000+ gross acres.",
-        "Phased over 3 to 7 years"
+        "A large campus built in phases",
+        "Land and redevelopment sites with a utility plan tied to the proposed point of delivery.",
+        "Commitments by phase, upgrade responsibilities, reliability, buildable acres and what early works can be permitted."
        ]
       ]
      },
      {
       "type": "paragraph",
-      "text": "These are Invariant’s working ranges from sites we have screened, not published standards. Each size has its own page with rack and GPU math, the documents to ask for, and sites available now."
+      "text": "The links below cover specific ranges from 1 MW through 1 GW. Use the engineer’s facility demand and site layout to check land and service requirements for your project."
      }
     ]
    },
    {
     "id": "evidence-ladder",
-    "heading": "Grade every site by its power evidence",
+    "heading": "What each power document establishes",
     "blocks": [
      {
-      "type": "list",
-      "items": [
-       "Rung 0: a map showing nearby lines.",
-       "Rung 1: proximity to a substation or line of the right voltage.",
-       "Rung 2: a named MW figure at a named station, or an existing large connection such as a retired plant or energized load.",
-       "Rung 3: a utility study or approval for this load.",
-       "Rung 4: a signed service or interconnection agreement with a date, or service already energized and metered."
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Evidence",
+       "What you can use it for",
+       "What to obtain next"
+      ],
+      "rows": [
+       [
+        "Transmission or substation map",
+        "Identify equipment and routes worth asking the utility about.",
+        "Confirm the serving utility and the point it will study for your load."
+       ],
+       [
+        "Load study or service plan",
+        "Review the studied capacity, assumptions and required work.",
+        "Get terms for the customer and phase, including upgrades, dates and costs."
+       ],
+       [
+        "Executed service agreement",
+        "Review contractual capacity, delivery conditions and required security.",
+        "Confirm the first usable block and whether the buyer can take the contract."
+       ],
+       [
+        "Meter or utility bills",
+        "Check which service is operating and the load already drawing it.",
+        "Confirm spare capacity, tenant obligations and facility acceptance."
+       ]
       ]
      },
      {
       "type": "paragraph",
-      "text": "Sites are then tiered A (documented power, rung 3 or 4), B (a named power path with a date) or C (land near capacity). A will-serve letter is usually rung 2: useful for screening, not a reservation of MW.",
+      "text": "AIB’s DFW1 filing shows why metered service and immediate buyer access can differ. The company reported 15 MW of existing primary service and rights to up to 40 MW more under an extension agreement. The prior owner retained the economic benefit of existing service until decommissioning, which the filing expected in December 2026. Read the transfer and handover conditions with the utility terms.",
       "sourceIds": [
-       "dominion"
+       "aib"
+      ]
+     },
+     {
+      "type": "links",
+      "label": "Check the supporting records",
+      "items": [
+       {
+        "slug": "utility-will-serve-letter-load-study-esa",
+        "label": "Compare will-serve letters, load studies and service agreements"
+       },
+       {
+        "slug": "power-evidence-data-center-site-verification",
+        "label": "Check the evidence behind a data center power claim"
+       }
       ]
      }
     ]
    },
    {
     "id": "rules-2026",
-    "heading": "Grid rules that change the search in 2026",
+    "heading": "Check the utility and approval process for the specific site",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "In Texas, SB 6 rules apply to new ERCOT loads of 75 MW and up, and since August 3, 2026 ERCOT has not approved energization of new data centers of that size while Batch Zero studies run. TCEQ has also paused data center permits statewide.",
+      "text": "In ERCOT territory, ask the serving utility whether the project falls under the large-load process and how it is classified. The Batch Zero rules distinguish base load, load studied in the batch and requests that need a future study process. An October TCEQ letter also describes a pause in issuance for permits tied to infrastructure directly supporting data centers. Ask the agencies which steps and dates apply to the property.",
       "sourceIds": [
-       "sb6",
-       "ercot-bz",
-       "gov-tceq"
+       "ercot",
+       "ercot-batch",
+       "tceq"
       ]
      },
      {
       "type": "paragraph",
-      "text": "Elsewhere, utilities are adding large-load tariffs with study fees, collateral, minimum bills near 80 to 85% of contract demand and terms of 12 to 15 years. AEP Ohio’s data center tariff is an early public example. PJM’s long-term forecast keeps rising on data center demand.",
+      "text": "In AEP Ohio territory, ask how the applicable tariff handles load studies, phased demand, minimum bills and collateral. Model the utility’s proposed schedule alongside rent or revenue by hall. Check the local zoning, water authority and fiber construction separately.",
       "sourceIds": [
-       "lbnl",
-       "aep-dct",
-       "pjm-fcst"
+       "aep"
       ]
      },
      {
-      "type": "paragraph",
-      "text": "Local approval is the other filter. Data Center Watch tracks projects blocked or delayed by local opposition, and counties from Missouri to Arizona have passed temporary bans or new rules.",
-      "sourceIds": [
-       "dcwatch",
-       "stcharles"
+      "type": "links",
+      "label": "Review a market-specific example",
+      "items": [
+       {
+        "slug": "texas-data-center-large-load-interconnection-2026",
+        "label": "Review Texas large-load interconnection and Batch Zero"
+       },
+       {
+        "slug": "data-center-sites-for-sale-ohio",
+        "label": "See Ohio site data and a worked tariff example"
+       }
       ]
-     }
-    ]
-   },
-   {
-    "id": "sites-available",
-    "heading": "Data center sites available through Invariant now",
-    "blocks": [
-     {
-      "type": "paragraph",
-      "text": "A selection of Invariant’s current US inventory, from energized 1 MW sites to a 1.5 GW campus. The full list is on the powered land page."
-     },
-     {
-      "type": "table",
-      "columns": [
-       "Region",
-       "Power",
-       "Land",
-       "Timing"
-      ],
-      "rows": [
-       [
-        "Arizona",
-        "1.5 GW marketed for Phase 1",
-        "15,000+ acres",
-        "2027 grid target"
-       ],
-       [
-        "Pennsylvania",
-        "350 MW, signed utility service agreement",
-        "Former plant campus, lease",
-        "50 MW end 2026, 300 MW end 2027"
-       ],
-       [
-        "Pennsylvania",
-        "200 MW BTM gas + 300 MW grid",
-        "120 ready acres",
-        "Phased"
-       ],
-       [
-        "Iowa",
-        "20 MW to 500 MW+ PPA site",
-        "Non-zoned",
-        "Phased"
-       ],
-       [
-        "Nevada",
-        "375 MW",
-        "~350 acres",
-        "2027 to 2028"
-       ],
-       [
-        "Ohio",
-        "300 MW marketed as approved",
-        "300+ acres",
-        "First-half 2027 target"
-       ],
-       [
-        "Indiana",
-        "200 MW, load study done",
-        "~80 acres",
-        "Substation planned"
-       ],
-       [
-        "Wisconsin",
-        "80 MW marketed at a reported 150 MW substation",
-        "130 acres marketed as developable",
-        "Confirm current service terms"
-       ],
-       [
-        "Midwest",
-        "85 MW brownfield",
-        "~20 acres",
-        "Now"
-       ],
-       [
-        "Oklahoma",
-        "55 MW contracted",
-        "~80 acres",
-        "Now"
-       ],
-       [
-        "Texas metro",
-        "44 MW, +250 MW",
-        "~50 acres, 1M sq ft",
-        "Now"
-       ],
-       [
-        "Kentucky",
-        "30 MW greenfield",
-        "~16 acres, rezoned",
-        "Now"
-       ],
-       [
-        "North Carolina",
-        "18 MW live, path past 100 MW",
-        "~200 acres",
-        "Now"
-       ],
-       [
-        "Texas (Houston load zone)",
-        "17 MW greenfield",
-        "~2 acres",
-        "4 to 6 months"
-       ],
-       [
-        "Oregon",
-        "10 MW hydro, to 100 MW+",
-        "Lease + land option",
-        "Now"
-       ],
-       [
-        "US (3 facilities)",
-        "Tier III data centers, 3.5 to 10 MW",
-        "Built",
-        "Now"
-       ],
-       [
-        "Pennsylvania",
-        "5 MW turnkey",
-        "Land available",
-        "Now"
-       ],
-       [
-        "Oklahoma",
-        "Two 5 MW turnkey sites",
-        "Owned acres",
-        "Now"
-       ],
-       [
-        "Kentucky",
-        "Seven turnkey sites, 0.5 to 8 MW",
-        "Mostly owned",
-        "Now"
-       ],
-       [
-        "US",
-        "11 hosting sites",
-        "Hosted",
-        "Now"
-       ]
-      ]
-     },
-     {
-      "type": "paragraph",
-      "text": "Exact locations, the utility documents behind each MW figure and pricing are shared on a call. We also hold sites that are not listed publicly; owners ask for discretion and a site that is shopped everywhere loses value."
      }
     ]
    },
@@ -577,10 +510,6 @@
       "label": "Site selection guides",
       "items": [
        {
-        "label": "How to find a data center site in the US",
-        "slug": "find-data-center-site-us"
-       },
-       {
         "label": "All powered land for sale",
         "slug": "powered-land-for-sale-data-center-sites"
        },
@@ -615,96 +544,115 @@
   ],
   "faqs": [
    {
-    "question": "How do I find a data center site in the US?",
-    "answer": "Start from power. Decide the MW and energization date, find substations, plants and energized loads that can carry it, screen out sites that are claimed, contaminated or under a moratorium, then look at parcels. Grade each site by the utility document behind its MW. Invariant does this for buyers and lists sites from 1 MW to 1.5 GW.",
+    "question": "How do I find a powered data center site in the U.S.?",
+    "answer": "Start with the meter load by phase, the first usable service date and your location requirements. Search across fitted facilities, powered shells and development sites. Shortlist leads whose existing service or utility plan fits the dates, then verify the rights a buyer can use."
+   },
+   {
+    "question": "Are there U.S. data center sites with power already energized?",
+    "answer": "Some public listings report operating service. Vocom advertises 100 MW energized and in use on an eastern North Dakota campus and 3 MW live at a Hickory facility. Request current meter records, existing customer obligations and written service transfer terms.",
     "sourceIds": [
-     "dcwatch"
+     "vocom"
     ]
    },
    {
-    "question": "Who helps companies find data center sites?",
-    "answer": "Site selection consultants, brokers, utilities and economic development groups all market sites. Invariant specializes in powered sites: it keeps a live US inventory from 1 MW to 1.5 GW, checks each against utility documents and matches buyers by MW, state and date. Book a call or call (628) 220-8972."
+    "question": "What should I send to request a data center site shortlist?",
+    "answer": "Send the facility MW at the meter by phase, service dates, target markets, preferred transaction structure, reliability needs, and water or fiber constraints. Include any existing site or utility records."
    },
    {
-    "question": "What is powered land?",
-    "answer": "Land where electric service for a large load exists or is documented: an energized connection, a signed utility agreement, a completed load study or the infrastructure of a former plant. Land near a line without a utility document is not powered land."
-   },
-   {
-    "question": "How long does it take to get power for a new data center?",
-    "answer": "From weeks for small energized sites to 3 to 7 years for new 100 MW to 1 GW service in constrained markets. Energized and contracted sites cut that time, which is why they trade at a premium."
-   },
-   {
-    "question": "What size data center sites does Invariant have?",
-    "answer": "Sites from energized 0.5 MW turnkey yards to a 1.5 GW AI campus, across Arizona, Pennsylvania, Ohio, Iowa, Nevada, Indiana, Wisconsin, Texas, Kentucky, Oklahoma, Kansas, North Carolina, North Dakota, New York and Oregon, plus US hosting."
+    "question": "Can land near transmission lines support a data center?",
+    "answer": "A nearby line helps identify a utility or connection to evaluate. Ask for a utility study and service plan for the specific load and point of delivery, with required upgrades and dates."
    }
   ],
   "sources": [
    {
-    "id": "paces",
-    "title": "Grid planning for data centers and transmission investment",
-    "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
-    "publisher": "Paces"
+    "id": "vocom",
+    "title": "U.S. data center offerings in North Dakota and Hickory",
+    "url": "https://www.vocom.ai/buy-a-data-center",
+    "publisher": "Vocom",
+    "linkLabel": "Vocom listings"
    },
    {
-    "id": "dominion",
-    "title": "Data center requests",
-    "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
-    "publisher": "Dominion Energy"
+    "id": "pittsburgh",
+    "title": "Pittsburgh powered shell listing brochure",
+    "url": "https://assets.ctfassets.net/o03ihmgd94o7/7MK1Wi5ZoAyzdmsuwf2bnO/f402caa2c422e968c5352a0ecc0e3175/Pittsburgh_Powered_Shell_Data_Center.pdf",
+    "publisher": "Five 9s Digital",
+    "linkLabel": "Broker brochure"
    },
    {
-    "id": "sb6",
-    "title": "Senate Bill 6, 89th Legislature",
-    "url": "https://capitol.texas.gov/tlodocs/89R/billtext/html/SB00006F.htm",
-    "publisher": "Texas Legislature Online"
+    "id": "ohio",
+    "title": "Ohio data center site marketed at 300 MW",
+    "url": "https://invariant-ai.com/blog/ohio-300-mw-powered-land-345-kv-data-center-site",
+    "publisher": "Invariant",
+    "linkLabel": "Ohio listing"
    },
    {
-    "id": "ercot-bz",
-    "title": "Batch Zero update, September 2026",
-    "url": "https://www.ercot.com/files/docs/2026/09/11/14-Batch-Zero-Update.pdf",
-    "publisher": "ERCOT"
+    "id": "wisconsin",
+    "title": "Wisconsin site marketed at 80 MW",
+    "url": "https://invariant-ai.com/blog/wisconsin-150-mw-data-center-mining-site-for-sale",
+    "publisher": "Invariant",
+    "linkLabel": "Wisconsin listing"
    },
    {
-    "id": "gov-tceq",
-    "title": "Governor Abbott directs TCEQ to halt data center permits",
-    "url": "https://gov.texas.gov/news/post/governor-abbott-directs-tceq-to-halt-data-center-permits",
-    "publisher": "Office of the Texas Governor"
+    "id": "aib",
+    "title": "AIB Data Centers Form 10-Q for September 30, 2026",
+    "url": "https://www.sec.gov/Archives/edgar/data/2070542/000121390026120619/ea0311821-10q_aibdata.htm",
+    "publisher": "AIB Data Centers",
+    "linkLabel": "SEC filing"
    },
    {
     "id": "lbnl",
-    "title": "Electricity rate designs for large loads (August 2026)",
-    "url": "https://eta-publications.lbl.gov/sites/default/files/2026-08/rate_designs_large_loads_2026.08.10.pdf",
-    "publisher": "Lawrence Berkeley National Laboratory and The Brattle Group"
+    "title": "Data Center Siting: Criteria, Policies, and Recent Trends",
+    "url": "https://eta-publications.lbl.gov/sites/default/files/2026-10/eif_webinar_siting_v2.pdf",
+    "publisher": "Lawrence Berkeley National Laboratory",
+    "linkLabel": "Berkeley Lab"
    },
    {
-    "id": "aep-dct",
-    "title": "Data center tariff",
-    "url": "https://www.aepohio.com/company/about/rates/data-center-tariff",
-    "publisher": "AEP Ohio"
+    "id": "ercot",
+    "title": "ERCOT Planning Guide, Section 9",
+    "url": "https://www.ercot.com/files/docs/2026/10/27/October-29-2026-Planning-Guide.pdf",
+    "publisher": "ERCOT",
+    "linkLabel": "ERCOT Planning Guide"
    },
    {
-    "id": "pjm-fcst",
-    "title": "PJM's updated 20-year forecast continues to see significant long-term load growth",
-    "url": "https://insidelines.pjm.com/pjms-updated-20-year-forecast-continues-to-see-significant-long-term-load-growth/",
-    "publisher": "PJM Inside Lines"
+    "id": "ercot-batch",
+    "title": "Large Load Integration and Batch Zero resources",
+    "url": "https://www.ercot.com/services/rq/large-load-integration/",
+    "publisher": "ERCOT",
+    "linkLabel": "Batch Zero"
    },
    {
-    "id": "dcwatch",
-    "title": "Data Center Watch Q1 2026 report",
-    "url": "https://datacenterwatch.org/q1-2026",
-    "publisher": "Data Center Watch"
+    "id": "tceq",
+    "title": "October 19, 2026 response to the Texas data center permitting directive",
+    "url": "https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf/@@download/file/TCEQ-response-Gov-Abbott-DC-directive.pdf",
+    "publisher": "Texas Commission on Environmental Quality",
+    "linkLabel": "TCEQ response"
    },
    {
-    "id": "stcharles",
-    "title": "St. Charles County approves half-year ban on data center projects",
-    "url": "https://www.stlpr.org/government-politics-issues/2026-07-14/st-charles-county-officials-approve-half-year-ban-on-data-center-projects-alter-senior-tax-freeze",
-    "publisher": "St. Louis Public Radio"
+    "id": "aep",
+    "title": "Data center tariff and application process",
+    "url": "https://www.aepohio.com/company/about/rates/data-center-tariff/",
+    "publisher": "AEP Ohio",
+    "linkLabel": "AEP Ohio tariff"
    }
   ],
   "relatedSlugs": [
-   "powered-land-for-sale-data-center-sites",
-   "power-evidence-data-center-site-verification"
+   "data-center-for-sale",
+   "data-center-site-selection-checklist",
+   "powered-land-for-sale-data-center-sites"
   ],
-  "updatedDate": "2026-11-23"
+  "updatedDate": "2026-11-23",
+  "dataset": {
+   "name": "Five U.S. data center listings and their reported power figures",
+   "description": "Eleven quoted power figures from five publicly marketed U.S. data center offerings. Distinguishes live service, study-based expansion, reported installed equipment and nearby sites, with the source and open diligence question for each figure.",
+   "datePublished": "2026-11-23",
+   "sourceIds": [
+    "vocom",
+    "pittsburgh",
+    "wisconsin",
+    "ohio"
+   ],
+   "spatialCoverage": "North Dakota, North Carolina, Pennsylvania, Wisconsin and Ohio, United States"
+  }
  },
  {
   "slug": "1-mw-data-center-site",
@@ -21075,6 +21023,10 @@
       "label": "Next steps",
       "items": [
        {
+        "label": "Compare U.S. sites by reported power and delivery requirements",
+        "slug": "find-data-center-site-us"
+       },
+       {
         "label": "Browse data centers for sale and lease",
         "slug": "data-center-for-sale"
        },
@@ -21652,6 +21604,10 @@
       "label": "Browse by requirement",
       "items": [
        {
+        "label": "Compare U.S. sites by reported power and delivery requirements",
+        "slug": "find-data-center-site-us"
+       },
+       {
         "label": "Browse data centers for sale or lease",
         "slug": "data-center-for-sale"
        },
@@ -21981,7 +21937,7 @@
    "data-center-site-due-diligence",
    "data-center-for-sale"
   ],
-  "updatedDate": "2026-11-22",
+  "updatedDate": "2026-11-23",
   "service": {
    "name": "Invariant data center site selection",
    "serviceType": "Data center site sourcing and power due diligence",
