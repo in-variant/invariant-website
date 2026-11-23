@@ -567,6 +567,10 @@
                 "label": "Screen a truck depot against a 5 MW utility limit"
               },
               {
+                "slug": "electric-truck-charging-southern-california",
+                "label": "Check truck charging stops and fleet access in Southern California"
+              },
+              {
                 "slug": "best-gis-apis-for-site-selection",
                 "label": "Compare GIS APIs for site selection"
               }
@@ -4395,6 +4399,136 @@
     "relatedSlugs": ["historical-parcel-boundaries-api","commercial-property-insurance-data-apis","best-gis-apis-for-site-selection","power-evidence-data-center-site-verification"]
   },
   {
+    "slug": "electric-truck-charging-southern-california",
+    "topic": "Data & APIs",
+    "region": "Southern California",
+    "title": "Electric Truck Charging in Southern California",
+    "description": "Find heavy-duty charging from the Port of Long Beach to Colton and Blythe. Compare operator-reported status, CCS and MCS, trailer access, and reservations.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Illustration of a tractor-trailer using a pull-through charging lane in a port freight yard.",
+    "coverCaption": "AI-generated illustration of a freight charging depot.",
+    "intro": "For electric truck charging near the Port of Long Beach, start with Forum Mobility’s FM Harbor on Pico Avenue or WattEV near Pier A. Greenlane in Colton lists 12 pull-through CCS chargers and 29 bobtail chargers. Farther east on I-10, Greenlane’s Blythe site serves selected customers. Before dispatch, confirm the connector, whether the trailer can stay attached, and whether your fleet can book a bay at the time you need.",
+    "takeaways": [
+      "Use the operator’s depot name and entrance when planning a port stop. Several charging sites use the same port name.",
+      "Track opening status, fleet eligibility, connector, lane layout and bookable slots as separate fields.",
+      "Estimate the average power the truck needs across its charging window and check it against the vehicle’s charge curve."
+    ],
+    "sections": [
+      {
+        "id": "truck-charging-stops",
+        "heading": "Where can electric trucks charge in Southern California?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We checked operator and public-agency records on November 23, 2026. These six sites show the difference between an operating facility, a restricted rollout, and a depot taking reservations ahead of its opening. Check the operator before a dispatch decision. This table records published equipment and access information."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Depot", "Operator-reported status", "What to check before routing"],
+            "rows": [
+              ["Forum Mobility FM Harbor, 260 Pico Avenue, Long Beach", "Operating and accepting new reservations. The network map lists 44 charging ports and 360 kW equipment. Forum announced two new MCS chargers at the November 5 ribbon-cutting.", "Confirm the connector and whether a compatible bay is available under your fleet’s account."],
+              ["WattEV Port of Long Beach, near Pier A", "Operating on the WattEV network map. The opening announcement described equipment for 26 trucks at once.", "Confirm the current gate address, available connectors and access procedure. The 26-truck figure describes the opening configuration."],
+              ["Greenlane Colton, 1650 Fairway Drive, Colton", "Open 24/7. The operator lists 12 pull-through 400 kW CCS chargers and 29 bobtail 240 kW CCS chargers.", "Request a pull-through bay for a trailer. The November public filing describes a separate MCS installation project."],
+              ["Greenlane Blythe, 241 S Neighbours Boulevard, Blythe", "Open to selected customers, with one pull-through charger listed.", "Confirm your fleet’s eligibility and a fallback before relying on this stop on I-10."],
+              ["Forum Mobility FM Santa Fe, 18601 S Santa Fe Avenue, Compton", "In development and taking reservations, with 14 MCS pull-through lanes and six CCS bobtail ports described by the operator.", "Confirm the commissioning and customer access dates before putting the depot on a live route."],
+              ["Greenlane Long Beach, 1265 Harbor Avenue, Long Beach", "Listed as coming soon.", "Use the operator’s address to keep this development separate from the existing Long Beach depots."]
+            ],
+            "rowSourceIds": [["forum-map", "forum-mcs"], ["wattev-map", "wattev-opening"], ["colton", "colton-notice"], ["blythe", "greenlane-map"], ["forum-map"], ["greenlane-map"]]
+          },
+          {
+            "type": "download",
+            "label": "Download the six charging depot records and source dates",
+            "path": "/blog/southern-california-electric-truck-charging-depots.csv",
+            "format": "CSV"
+          }
+        ]
+      },
+      {
+        "id": "mcs-commissioning",
+        "heading": "Which records show whether megawatt charging has opened?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Port of Long Beach’s May notice for FM Harbor describes a Megawatt Charging System (MCS) installation with two dispensers. Forum Mobility later reported a November 5 ribbon-cutting and an inaugural charging session. In Colton, a November 19 public notice describes two MCS dispensers as an installation project at an existing charging center. Greenlane’s location page lists its CCS equipment. Record the date and scope of each event and check the operator’s current booking channel for MCS access.",
+            "sourceIds": ["harbor-notice", "forum-mcs", "colton-notice", "colton"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Combined Charging System (CCS) and MCS use different connectors. Match the truck’s inlet to the bay the operator assigns. A fleet that stocks both vehicle types also needs separate rows for connector availability in dispatch.",
+            "sourceIds": ["charin"]
+          }
+        ]
+      },
+      {
+        "id": "charging-window",
+        "heading": "Will the truck get enough energy during its scheduled stop?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Suppose a tractor pulling a trailer needs 180 kWh added to its battery during a 45-minute stop. Allow 10 minutes to enter, connect and leave. In the remaining 35 minutes the battery needs about 309 kW on average, calculated as 180 ÷ (35 ÷ 60). A 240 kW unit would deliver at most 140 kWh in that window, even at its rated output for the entire session and before losses. At Colton, that points the dispatcher toward a pull-through 400 kW CCS bay for further checks."
+          },
+          {
+            "type": "paragraph",
+            "text": "A 400 kW rating is a screening input. Ask how much the truck actually accepts over its arrival and departure battery levels, whether the bay shares power, and whether the fleet has a reservation. Include a fallback stop with enough energy to reach it. Recheck any quoted price against the operator’s current fleet terms.",
+            "sourceIds": ["afdc"]
+          }
+        ]
+      },
+      {
+        "id": "route-planning-data",
+        "heading": "What should a fleet store for each charging stop?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Operator, depot ID, gate location, hours and fleet eligibility.",
+              "Connector, bay layout, trailer policy and simultaneous power limits.",
+              "A dated opening or commissioning record for each equipment group.",
+              "Reservation or live bay status with its timestamp, plus a fallback the truck can reach."
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Build on the charging records",
+            "items": [
+              {"slug":"ev-charging-station-data-apis","label":"Compare charging station inventory and live status APIs"},
+              {"slug":"truck-depot-charging-site-selection","label":"Screen a depot against its utility service limit"},
+              {"slug":"warehouse-site-selection-rail-truck-access","label":"Verify entrances, freight routes and trailer space"}
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {"question":"Where can I charge an electric semi-truck near the Port of Long Beach?","answer":"Forum Mobility’s FM Harbor at 260 Pico Avenue and WattEV near Pier A are two operating truck charging depots. Ask the operator which bays fit your truck and trailer, whether your account can use them, and whether a session is bookable.","sourceIds":["forum-map","wattev-map"]},
+      {"question":"Can I charge an electric truck with the trailer attached?","answer":"Look for a pull-through bay and confirm cable reach and entry and exit geometry for the full combination. At Colton, Greenlane lists dedicated pull-through charging separately from bays intended for tractors without trailers.","sourceIds":["colton"]},
+      {"question":"Can a CCS truck use an MCS charger?","answer":"CCS and MCS use different connectors. Check the inlet supported by your truck and select a compatible bay when you book.","sourceIds":["charin"]}
+    ],
+    "sources": [
+      {"id":"forum-map","title":"FM Harbor and FM Santa Fe network listings","publisher":"Forum Mobility","url":"https://forummobility.com/network-map/"},
+      {"id":"forum-mcs","title":"FM Harbor MCS launch and inaugural charging session","publisher":"Forum Mobility","url":"https://forummobility.com/news/forum-mobility-announces-first-ultra-fast-mcs-chargers-in-socal-port-gateway-at-fm-harbor/"},
+      {"id":"harbor-notice","title":"FM Harbor MCS installation, development permit 26-020","publisher":"Port of Long Beach, via CEQAnet","url":"https://ceqanet.lci.ca.gov/2026051023"},
+      {"id":"wattev-map","title":"Current WattEV depot list","publisher":"WattEV","url":"https://wattev.wattsystems.com/locations"},
+      {"id":"wattev-opening","title":"WattEV Port of Long Beach station opening","publisher":"Port of Long Beach","url":"https://www.youtube.com/watch?v=9ZhzRRWFooA"},
+      {"id":"greenlane-map","title":"Greenlane location list with access and project status","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/"},
+      {"id":"colton","title":"Colton charger ratings and lane types","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/colton-ca/"},
+      {"id":"colton-notice","title":"Notice for the Colton MCS expansion","publisher":"California Energy Commission, via CEQAnet","url":"https://ceqanet.lci.ca.gov/2026110675"},
+      {"id":"blythe","title":"Blythe access and location","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/blythe-ca/"},
+      {"id":"charin","title":"Preparing for MCS and CCS connector compatibility","publisher":"CharIN","url":"https://www.charin.global/news/how-to-prepare-for-the-megawatt-charging-system/"},
+      {"id":"afdc","title":"Charging equipment and factors that affect charge time","publisher":"U.S. Department of Energy AFDC","url":"https://afdc.energy.gov/fuels/electricity-stations"}
+    ],
+    "dataset": {
+      "name": "Electric truck charging depot evidence in Southern California",
+      "description": "Six operator-sourced freight charging depots with access status, equipment details, project milestones, source links and dispatch checks, reviewed November 23, 2026.",
+      "sourceIds": ["forum-map", "forum-mcs", "harbor-notice", "wattev-map", "wattev-opening", "greenlane-map", "colton", "colton-notice", "blythe"],
+      "spatialCoverage": "Southern California, United States",
+      "temporalCoverage": "2026-11-23"
+    },
+    "relatedSlugs": ["ev-charging-station-data-apis", "truck-depot-charging-site-selection", "warehouse-site-selection-rail-truck-access"]
+  },
+  {
     "slug": "truck-depot-charging-site-selection",
     "dataset": {
       "name": "Truck depot charging load profiles",
@@ -4513,6 +4647,7 @@
             "items": [
               {"slug":"best-gis-apis-for-site-selection","label":"Compare GIS APIs for screening a site"},
               {"slug":"ev-charging-station-data-apis","label":"Compare public charging inventory and live status APIs"},
+              {"slug":"electric-truck-charging-southern-california","label":"Check truck depot access and reservations in Southern California"},
               {"slug":"power-evidence-data-center-site-verification","label":"Check the evidence behind a site’s power claim"},
               {"slug":"utility-grade-power-study","label":"See what a utility-grade power study evaluates"}
             ]
