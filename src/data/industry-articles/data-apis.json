@@ -1,5 +1,337 @@
 [
   {
+    "slug": "county-manufacturing-employment-data",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "County Manufacturing Employment Data from BLS QCEW",
+    "description": "Download county manufacturing jobs and establishment counts. Compare three Detroit-area counties, reproduce their location quotients and handle suppressed values.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Historic aerial photograph of Ford’s River Rouge industrial complex, the Rouge River and surrounding rail yards.",
+    "coverCaption": "Ford’s River Rouge complex, circa 1927. Detroit Publishing Company collection, Library of Congress.",
+    "intro": "For county manufacturing employment, start with the Bureau of Labor Statistics’ Quarterly Census of Employment and Wages. It gives you worksite jobs, establishment counts and industry concentration. In March 2026, Wayne County, Michigan, had 45,124 private transportation equipment manufacturing jobs, the most among the three counties we checked. Macomb County had fewer jobs at 31,414 and the strongest concentration at 8.52 times the national share. Use Invariant Earth to bring broader county employment and physical site evidence into the same shortlist.",
+    "takeaways": [
+      "Compare employment, establishment counts and industry concentration together. They tell you how large the cluster is, how many operating locations it contains and how specialized the local economy is.",
+      "Use the same industry code, ownership class and reference month across counties and years. Check the code definition when crossing a classification change.",
+      "Preserve suppressed employment values as missing. In early 2026, Macomb County had five published motor vehicle manufacturing establishments and a suppressed job count."
+    ],
+    "sections": [
+      {
+        "id": "download-qcew-by-county",
+        "heading": "Where can I download manufacturing jobs by county?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Download a county-area CSV from BLS Open Data Access and use the area code, quarter and industry code as part of the record key. For the figures below, we took quarter one of 2024, 2025 and 2026 and used the third month’s employment, the quarter’s establishment count and the third month’s employment location quotient. Select NAICS 31–33 for manufacturing, 336 for transportation equipment manufacturing or 3361 for motor vehicle manufacturing. Our industry rows use private ownership and all establishment sizes.",
+            "sourceIds": [
+              "open-data",
+              "concepts",
+              "wayne-2026"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "QCEW employment counts covered jobs at the workplace in the pay period that includes the 12th of the month. Establishments generally correspond to operating locations, and one firm can have several. For a hiring plan, add occupation data, wages and the drive-time labor shed around the candidate site.",
+            "sourceIds": [
+              "concepts",
+              "oes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "detroit-area-manufacturing-jobs",
+        "heading": "Which Detroit-area county has the strongest manufacturing cluster?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We compared Macomb, Oakland and Wayne on the same NAICS 336 definition. Wayne led in total jobs in March 2026. Macomb had the highest location quotient. Oakland’s establishment count rose from 218 to 241 between the first quarters of 2024 and 2026 while March jobs fell from 22,514 to 20,729. Track both measures when deciding whether to investigate plant expansions, hiring or the depth of the local supplier base.",
+            "sourceIds": [
+              "wayne-2026",
+              "macomb-2026",
+              "oakland-2026",
+              "oakland-2024"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "County",
+              "March jobs, 2024",
+              "March jobs, 2026",
+              "Q1 establishments, 2026",
+              "March job concentration, 2026"
+            ],
+            "rows": [
+              [
+                "Macomb",
+                "33,282",
+                "31,414",
+                "169",
+                "8.52×"
+              ],
+              [
+                "Oakland",
+                "22,514",
+                "20,729",
+                "241",
+                "2.63×"
+              ],
+              [
+                "Wayne",
+                "49,437",
+                "45,124",
+                "189",
+                "5.60×"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "macomb-2024",
+                "macomb-2026"
+              ],
+              [
+                "oakland-2024",
+                "oakland-2026"
+              ],
+              [
+                "wayne-2024",
+                "wayne-2026"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A location quotient divides the industry’s share of all county jobs by its share of all U.S. jobs. BLS uses all industries and ownership classes for both totals. The March 2026 U.S. share for private transportation equipment manufacturing was about 1.12%, based on 1,736,688 industry jobs and 154,771,941 total jobs. A quotient of 8.52 means the industry represented 8.52 times the national share in Macomb.",
+            "sourceIds": [
+              "lq",
+              "us-2026",
+              "macomb-2026"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "suppressed-county-employment",
+        "heading": "How should I handle suppressed manufacturing employment?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The narrower motor vehicle manufacturing code changes the picture. Wayne had 29 establishments and 24,244 jobs under NAICS 3361 in the first quarter of 2026. Oakland had 17 establishments and 853 jobs. Macomb published five establishments and withheld employment. We kept the latter value as null. Check both employment and location quotient disclosure fields before reading numeric placeholders, and remember that the broader NAICS 336 total already includes 3361.",
+            "sourceIds": [
+              "macomb-2026",
+              "oakland-2026",
+              "wayne-2026",
+              "open-data",
+              "qcew-qa"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "When you need a continuous series, look for a broader industry or geography that BLS discloses across the full comparison period. Make that scope visible in the results. For a multi-year comparison, also confirm the industry definition and source vintage. BLS revises its quarterly releases, and changes in reporting geography or industry can move employment between categories.",
+            "sourceIds": [
+              "qcew-qa",
+              "researchers-guide"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/county-manufacturing-employment-data.json",
+            "format": "JSON",
+            "label": "Download the 12 BLS county and U.S. extracts with source links and disclosure flags"
+          }
+        ]
+      },
+      {
+        "id": "manufacturing-market-and-site-screening",
+        "heading": "How do I turn these counts into a manufacturing shortlist?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use job counts to size the existing cluster and location quotients to find specializations you might miss by sorting on job volume. Economic developers can compare the profiles with peer markets. Manufacturers can use them to pick areas for labor, supplier and freight diligence. Industrial investors can pair multi-year employment and establishment trends with project announcements, lease evidence and proposed construction before underwriting demand."
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s public field catalog includes countywide annual employment and year-over-year change, parcel IDs and distance to a mapped mainline rail corridor. Pair those fields with the detailed BLS extracts when moving from a county screen to named tracts. For each finalist, verify the usable land, serving railroad and utility commitments against what the facility needs and when it needs it.",
+            "sourceIds": [
+              "earth-fields"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related manufacturing and freight guides",
+            "items": [
+              {
+                "slug": "manufacturing-site-selection-100-buildable-acres",
+                "label": "Verify that a manufacturing site has 100 buildable acres"
+              },
+              {
+                "slug": "freight-analysis-framework-data",
+                "label": "Compare Michigan freight flows by commodity"
+              },
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Build a site selection evidence checklist"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the best public source for manufacturing employment by U.S. county?",
+        "answer": "BLS QCEW provides monthly employment and quarterly establishment counts by county and industry. Download a county-area CSV and filter to the NAICS detail and ownership class you need.",
+        "sourceIds": [
+          "open-data",
+          "concepts"
+        ]
+      },
+      {
+        "question": "What does a manufacturing location quotient above 1 mean?",
+        "answer": "The industry makes up a larger share of the county’s jobs than it does nationally. Use the employment count alongside the quotient to compare cluster size.",
+        "sourceIds": [
+          "lq"
+        ]
+      },
+      {
+        "question": "What does an N in QCEW disclosure code mean?",
+        "answer": "BLS withheld that measure. Preserve the disclosure flag and store employment as missing when the flag applies, even when the CSV contains a zero placeholder. Keep any separately published establishment count.",
+        "sourceIds": [
+          "open-data",
+          "qcew-qa"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Earth API field catalog"
+      },
+      {
+        "id": "open-data",
+        "title": "QCEW Open Data Access and CSV slice field definitions",
+        "url": "https://www.bls.gov/cew/additional-resources/open-data/csv-data-slices.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "QCEW CSV downloads"
+      },
+      {
+        "id": "concepts",
+        "title": "QCEW employment and establishment definitions",
+        "url": "https://www.bls.gov/opub/hom/cew/concepts.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "BLS definitions"
+      },
+      {
+        "id": "oes",
+        "title": "Occupational Employment and Wage Statistics",
+        "url": "https://www.bls.gov/oes/",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Occupational wages and employment"
+      },
+      {
+        "id": "lq",
+        "title": "QCEW location quotient details",
+        "url": "https://www.bls.gov/cew/about-data/location-quotients-explained.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "BLS location quotient method"
+      },
+      {
+        "id": "qcew-qa",
+        "title": "QCEW data uses, confidentiality and release revisions",
+        "url": "https://www.bls.gov/cew/questions-and-answers.htm",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "QCEW frequently asked questions"
+      },
+      {
+        "id": "researchers-guide",
+        "title": "Researchers Guide to Using QCEW Data",
+        "url": "https://www.bls.gov/cew/publications/reporters-guide/",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "BLS researcher guide"
+      },
+      {
+        "id": "macomb-2026",
+        "title": "Macomb County QCEW area slice, first quarter 2026",
+        "url": "https://data.bls.gov/cew/data/api/2026/1/area/26099.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Macomb County 2026 CSV"
+      },
+      {
+        "id": "oakland-2026",
+        "title": "Oakland County QCEW area slice, first quarter 2026",
+        "url": "https://data.bls.gov/cew/data/api/2026/1/area/26125.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Oakland County 2026 CSV"
+      },
+      {
+        "id": "oakland-2024",
+        "title": "Oakland County QCEW area slice, first quarter 2024",
+        "url": "https://data.bls.gov/cew/data/api/2024/1/area/26125.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Oakland County 2024 CSV"
+      },
+      {
+        "id": "wayne-2026",
+        "title": "Wayne County QCEW area slice, first quarter 2026",
+        "url": "https://data.bls.gov/cew/data/api/2026/1/area/26163.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Wayne County 2026 CSV"
+      },
+      {
+        "id": "us-2026",
+        "title": "United States QCEW area slice, first quarter 2026",
+        "url": "https://data.bls.gov/cew/data/api/2026/1/area/US000.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "United States 2026 CSV"
+      },
+      {
+        "id": "macomb-2024",
+        "title": "Macomb County QCEW area slice, first quarter 2024",
+        "url": "https://data.bls.gov/cew/data/api/2024/1/area/26099.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Macomb County 2024 CSV"
+      },
+      {
+        "id": "wayne-2024",
+        "title": "Wayne County QCEW area slice, first quarter 2024",
+        "url": "https://data.bls.gov/cew/data/api/2024/1/area/26163.csv",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "linkLabel": "Wayne County 2024 CSV"
+      },
+      {
+        "id": "cover",
+        "title": "Aerial view of the Ford plant at River Rouge, Michigan",
+        "url": "https://www.loc.gov/pictures/item/2016800582/",
+        "publisher": "Library of Congress"
+      }
+    ],
+    "dataset": {
+      "name": "Detroit-area manufacturing employment and establishment counts, 2024 to 2026",
+      "description": "Private manufacturing, transportation equipment and motor vehicle employment, establishment counts and location quotients for Macomb, Oakland and Wayne counties, with U.S. totals, BLS disclosure flags and source file fingerprints.",
+      "sourceIds": [
+        "open-data",
+        "lq",
+        "macomb-2026",
+        "oakland-2026",
+        "oakland-2024",
+        "wayne-2026",
+        "us-2026"
+      ],
+      "spatialCoverage": "Macomb County, Oakland County and Wayne County, Michigan, and the United States",
+      "temporalCoverage": "2024-01/2026-03"
+    },
+    "relatedSlugs": [
+      "manufacturing-site-selection-100-buildable-acres",
+      "freight-analysis-framework-data",
+      "best-gis-apis-for-site-selection"
+    ]
+  },
+  {
     "slug": "hourly-weather-data-for-data-center-cooling",
     "topic": "Data & APIs",
     "region": "United States",
@@ -9746,6 +10078,7 @@
             "type": "links",
             "label": "Related site diligence guides",
             "items": [
+              {"slug": "county-manufacturing-employment-data", "label": "Compare manufacturing jobs and industry concentration by county"},
               {"slug": "site-selection-due-diligence", "label": "Use the site selection due diligence checklist"},
               {"slug": "best-gis-apis-for-site-selection", "label": "Compare GIS APIs for U.S. site selection"},
               {"slug": "industrial-environmental-permit-history-by-parcel", "label": "Find industrial permits and enforcement records"},
