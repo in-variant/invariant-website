@@ -1,0 +1,81 @@
+{
+  "title": "Load and PV hosting capacity records for National Grid feeder 36_35_39253",
+  "retrieved_at": "2026-11-23T10:48:27+00:00",
+  "utility": "National Grid New York",
+  "feeder_id": "36_35_39253",
+  "substation_bank": "VAIL MILLS TB 1",
+  "nominal_voltage_kv": 13.2,
+  "scope": "Three published screening records for one distribution feeder. The utility guide labels electrification measurements in MVA and PV hosting capacity in MW. A site-specific connection study and service terms are separate evidence.",
+  "units_and_method_source": "https://systemdataportal.nationalgrid.com/NY/documents/National%20Grid%20New%20York%20System%20Data%20Portal%20User%20Guide.pdf",
+  "records": [
+    {
+      "case": "summer-load",
+      "direction": "load_withdrawal",
+      "unit": "MVA",
+      "reported_field": "feeder_load_capacity_headroom",
+      "reported_value": 3.1779668,
+      "source_refresh_date": "2026-03-25",
+      "source_query": "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/0/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=OBJECTID%2Cfeeder_cdf%2Csubstation_bank_name%2Cfeeder_voltage%2Cfeeder_rating%2Cfeeder_peak%2Cfeeder_load_capacity_headroom%2Csubstation_bank_rating%2Csubstation_bank_peak%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=json",
+      "selected_source_fields": {
+        "OBJECTID": 1202,
+        "feeder_cdf": "36_35_39253",
+        "substation_bank_name": "VAIL MILLS TB 1",
+        "feeder_voltage": 13.2,
+        "feeder_rating": 9.053776,
+        "feeder_peak": 5.875809,
+        "feeder_load_capacity_headroom": 3.1779668,
+        "substation_bank_rating": 32.1,
+        "substation_bank_peak": 17.02,
+        "sub_load_capacity_headroom": 15.08,
+        "refresh_date": 1774396800000
+      }
+    },
+    {
+      "case": "winter-load",
+      "direction": "load_withdrawal",
+      "unit": "MVA",
+      "reported_field": "feeder_load_capacity_headroom",
+      "reported_value": 4.9841495,
+      "source_refresh_date": "2026-03-25",
+      "source_query": "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/1/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=OBJECTID%2Cfeeder_cdf%2Csubstation_bank_name%2Cfeeder_voltage%2Cfeeder_rating%2Cfeeder_peak%2Cfeeder_load_capacity_headroom%2Csubstation_bank_rating%2Csubstation_bank_peak%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=json",
+      "selected_source_fields": {
+        "OBJECTID": 1202,
+        "feeder_cdf": "36_35_39253",
+        "substation_bank_name": "VAIL MILLS TB 1",
+        "feeder_voltage": 13.2,
+        "feeder_rating": 9.236681,
+        "feeder_peak": 4.252531,
+        "feeder_load_capacity_headroom": 4.9841495,
+        "substation_bank_rating": 35.7,
+        "substation_bank_peak": 13.489212,
+        "sub_load_capacity_headroom": 22.210789,
+        "refresh_date": 1774396800000
+      }
+    },
+    {
+      "case": "solar-export",
+      "direction": "pv_injection",
+      "unit": "MW",
+      "reported_field": "feeder_max_hc",
+      "reported_value": 0.1,
+      "source_refresh_date": "2026-03-31",
+      "source_query": "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Hosting_Capacity_Data/MapServer/0/query?where=Master_CDF%3D%2736_35_39253%27&outFields=OBJECTID%2CMaster_CDF%2Csubstation_bank_name%2Cfeeder_voltage%2Cfeeder_min_hc%2Cfeeder_max_hc%2Chca_refresh_date%2Cfeeder_dg_refresh_date&returnGeometry=false&f=json",
+      "selected_source_fields": {
+        "OBJECTID": 313,
+        "Master_CDF": "36_35_39253",
+        "substation_bank_name": "VAIL MILLS TB 1",
+        "feeder_voltage": 13.2,
+        "feeder_min_hc": 0.1,
+        "feeder_max_hc": 0.1,
+        "hca_refresh_date": 1774915200000,
+        "feeder_dg_refresh_date": 1790899200000
+      }
+    }
+  ],
+  "illustrative_conversion": {
+    "load_mw": 3,
+    "power_factor": 0.9,
+    "calculated_mva": 3.333333333333333,
+    "scope": "Conversion example only. The project and service parameters are illustrative."
+  }
+}

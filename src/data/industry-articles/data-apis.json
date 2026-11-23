@@ -5916,6 +5916,152 @@
     "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "commercial-real-estate-data-apis-for-lenders"]
   },
   {
+    "slug": "grid-capacity-apis-load-headroom",
+    "topic": "Data & APIs",
+    "region": "United States and Europe",
+    "title": "Best Grid Capacity APIs for Load Headroom and Site Screening",
+    "description": "Compare utility maps, grid capacity APIs, and power-flow studies. Replay three records for one feeder and see what the figures mean for a new load.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "National Grid feeder 36_35_39253 reports 3.18 MVA of summer load headroom, 4.98 MVA in winter, and 0.10 MW of solar export hosting capacity.",
+    "coverCaption": "Selected National Grid New York records for feeder 36_35_39253, retrieved November 23, 2026. The values come from separate load and solar studies.",
+    "intro": "For a new load, start with the serving utility’s published load capacity for the asset and season. Use Substation Capacity to compare supported U.S. utility map records, or GridCapacity API for operator-published European data. Invariant Earth adds mapped grid and parcel context for a U.S. site. A modeled transmission screen or utility study answers a different question about the proposed connection. The difference is visible on one National Grid feeder with 3.18 MVA of summer load headroom, 4.98 MVA in winter, and 0.10 MW of solar export hosting capacity.",
+    "takeaways": [
+      "Check direction, asset, season, source date, and units before comparing capacity results.",
+      "A feeder, its upstream bank, and a proposed connection each need their own record.",
+      "For a service decision, ask the utility to study the actual load, location, operating schedule, and delivery date."
+    ],
+    "sections": [
+      {
+        "id": "grid-capacity-api-comparison",
+        "heading": "Which grid capacity API should you use?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose the API by the decision and geography. The descriptions below come from public product and utility documentation. Invariant publishes this guide and makes Invariant Earth. We ran the three National Grid queries shown in the example."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Source", "Where to use it", "What to verify"],
+            "rows": [
+              ["National Grid New York", "Direct utility queries for seasonal electrification and PV hosting capacity on mapped distribution feeders.", "Feeder ID, direction, season and refresh date from the right layer. Use the utility guide to interpret the units."],
+              ["Con Edison", "Distribution screening in its service territory, including EV load capacity and separate generation data.", "Con Edison defines its EV value from feeder-head rating and the prior year’s peak. Confirm the feeder and when the inputs were measured."],
+              ["Substation Capacity", "Nearby feeder and substation lookups across supported U.S. utility sources, with metric type and snapshot in the documented response.", "Check whether the figure was published for the asset or derived from feeders. Ask how the API represents missing coverage."],
+              ["GridCapacity API", "Comparable operator records across covered European markets, with direction, units, horizon, and history depending on plan.", "Filter to withdrawal for a new load. Check the operator’s definitions of availability, comparability and firmness."],
+              ["LandGate offtake screening", "Modeled U.S. transmission screening with scenarios, limiting elements, and estimated network upgrades described by LandGate.", "Ask for the case year, the connection point actually modeled, and the load or outage assumptions before using its estimates."],
+              ["Invariant Earth", "U.S. coordinate-level context, including the nearest mapped substation distance, reported voltage, and nearby transmission lines.", "Use the asset and parcel context to frame the comparison. Obtain load capacity from a published utility record or a study of the proposed connection."]
+            ],
+            "rowSourceIds": [["ng-guide", "ng-load"], ["coned"], ["subcapacity"], ["gridcapacity"], ["landgate"], ["earth-fields", "earth-screen"]]
+          }
+        ]
+      },
+      {
+        "id": "same-feeder-three-values",
+        "heading": "One feeder can have several capacity figures",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried National Grid’s public layers on November 23, 2026 using the same feeder ID, 36_35_39253. All three responses identify Vail Mills TB 1 and 13.2 kV. The utility’s guide labels the seasonal load values in MVA and PV hosting capacity in MW. The source refresh date and our retrieval date describe separate events.",
+            "sourceIds": ["ng-guide", "ng-summer-query", "ng-winter-query", "ng-pv-query"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Record", "Reported feeder value", "Source refresh"],
+            "rows": [
+              ["Summer load headroom", "3.18 MVA, from the feeder headroom field", "March 25, 2026"],
+              ["Winter load headroom", "4.98 MVA, from the feeder headroom field", "March 25, 2026"],
+              ["PV export hosting capacity", "0.10 MW for both the published feeder minimum and maximum", "March 31, 2026"]
+            ],
+            "rowSourceIds": [["ng-summer-query"], ["ng-winter-query"], ["ng-pv-query"]]
+          },
+          {
+            "type": "paragraph",
+            "text": "The summer feed also reports 15.08 MVA of headroom at the substation bank. Keep that figure on the bank record. The feeder serving a proposed project can impose its own limit, and the bank can serve multiple feeders. For a 3 MW project operating at a power factor of 0.90, the illustrative demand is 3 ÷ 0.90, or about 3.33 MVA. That sits above the published summer feeder figure and below the winter figure, before the utility studies the actual connection.",
+            "sourceIds": ["ng-summer-query", "ng-winter-query", "ng-guide"]
+          },
+          {
+            "type": "download",
+            "label": "Download the three records and repeat the source queries",
+            "path": "/blog/national-grid-feeder-capacity-evidence.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "model-versus-screen",
+        "heading": "When does a project need a power-flow study?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use published headroom to prioritize which connections to ask about. For a large data center, factory, or charging depot, supply the proposed meter location, facility load by phase, power factor, load profile and required dates. A project-specific study tests the loads on a defined network model under relevant seasons and outages. Request the limiting line or transformer, the voltage or thermal limit, and the upgrades assumed in each case.",
+            "sourceIds": ["doe-atlas"]
+          },
+          {
+            "type": "paragraph",
+            "text": "In an N-1 case, the study removes an element such as a line or transformer and checks how the remaining network serves the load. Ask which operating cases and contingencies were actually run. Keep the resulting modeled headroom with its inputs, and record the utility’s written service scope, upgrades, and milestone dates when available."
+          },
+          {
+            "type": "links",
+            "label": "Evaluate the proposed connection",
+            "items": [
+              {"slug":"data-center-power-screening-tools","label":"Compare grid screening tools for a 200 MW data center"},
+              {"slug":"utility-grade-power-study","label":"What a utility-grade power-flow and contingency study evaluates"},
+              {"slug":"truck-depot-charging-site-selection","label":"Screen an electric truck depot against a 5 MW service limit"}
+            ]
+          }
+        ]
+      },
+      {
+        "id": "capacity-record-api-test",
+        "heading": "What fields should a grid capacity API preserve?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "The utility, asset ID, asset type, nominal voltage and the point or geometry used for the match.",
+              "The publisher’s field name, direction, unit, season, effective or refresh date, and retrieval time.",
+              "The test case behind a modeled value, including outages and assumed future projects or upgrades.",
+              "A separate state for numeric zero, a value withheld by the source, a missing result and a failed retrieval."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a practical vendor test, send the Vail Mills feeder ID to every provider that covers it. Ask where each value came from and whether the API still preserves the difference between the summer and winter cases and the PV export figure. Then test a site outside published coverage to see what the API returns when the answer is unknown."
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {"question":"Can a grid capacity API tell me how many megawatts a substation can deliver to my site?","answer":"Published grid capacity can guide a shortlist. For your site, ask the serving utility to assess the requested delivery point, operating profile, load ramp and timetable. Keep any study estimates and written utility service terms with their dates.","sourceIds":["doe-atlas"]},
+      {"question":"Is grid hosting capacity the same as load headroom?","answer":"Read the source’s definition. A solar hosting capacity figure describes generation exported into the grid. An electrification map can report room for additional load flowing out of it. National Grid publishes both separately for the same feeders.","sourceIds":["ng-guide","ng-load","ng-pv-query"]},
+      {"question":"How do I convert a load from MW to MVA?","answer":"Divide the real power in MW by the power factor to estimate apparent power in MVA. A 3 MW load at a power factor of 0.90 requires about 3.33 MVA. Use the proposed facility’s electrical assumptions for the study."}
+    ],
+    "sources": [
+      {"id":"ng-guide","title":"New York System Data Portal user guide, PV and electrification maps","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/NY/documents/National%20Grid%20New%20York%20System%20Data%20Portal%20User%20Guide.pdf"},
+      {"id":"ng-load","title":"Electrification Data REST service","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer"},
+      {"id":"ng-summer-query","title":"Summer electrification record for feeder 36_35_39253","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/0/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=feeder_cdf%2Cfeeder_load_capacity_headroom%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=pjson"},
+      {"id":"ng-winter-query","title":"Winter electrification record for feeder 36_35_39253","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/1/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=feeder_cdf%2Cfeeder_load_capacity_headroom%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=pjson"},
+      {"id":"ng-pv-query","title":"Solar hosting record for feeder 36_35_39253","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Hosting_Capacity_Data/MapServer/0/query?where=Master_CDF%3D%2736_35_39253%27&outFields=Master_CDF%2Cfeeder_min_hc%2Cfeeder_max_hc%2Chca_refresh_date&returnGeometry=false&f=pjson"},
+      {"id":"coned","title":"Hosting Capacity Platform and data definitions","publisher":"Con Edison","url":"https://www.coned.com/en/business-partners/hosting-capacity/about?language=en"},
+      {"id":"subcapacity","title":"Substation Capacity APIs and metric types","publisher":"Substation Capacity","url":"https://substationcapacity.com/api"},
+      {"id":"gridcapacity","title":"GridCapacity API reference for capacity records","publisher":"GridCapacity API","url":"https://gridcapacityapi.com/reference"},
+      {"id":"landgate","title":"Offtake capacity, modeled scenarios and upgrade reports","publisher":"LandGate","url":"https://www.landgate.com/energy-markets/offtake-capacity"},
+      {"id":"earth-fields","title":"Public field catalog for substations and transmission lines","publisher":"Invariant Earth","url":"https://api.invariant-ai.com/v1/meta/fields"},
+      {"id":"earth-screen","title":"Use coordinates to screen a site","publisher":"Invariant Earth","url":"https://docs.invariant-ai.com/screen-a-site"},
+      {"id":"doe-atlas","title":"U.S. Atlas of Electric Distribution System Hosting Capacity Maps","publisher":"U.S. Department of Energy","url":"https://www.energy.gov/cmei/vehicles/us-atlas-electric-distribution-system-hosting-capacity-maps"}
+    ],
+    "dataset": {
+      "name": "National Grid feeder load and solar hosting capacity records",
+      "description": "Three reproducible National Grid records for Vail Mills feeder 36_35_39253, with the source query, utility refresh date, power direction, and unit for each value.",
+      "sourceIds": ["ng-guide", "ng-summer-query", "ng-winter-query", "ng-pv-query"],
+      "spatialCoverage": "Vail Mills, New York, United States",
+      "temporalCoverage": "2026-03-25/2026-03-31"
+    },
+    "relatedSlugs": ["data-center-power-screening-tools", "utility-grade-power-study", "truck-depot-charging-site-selection"]
+  },
+  {
     "slug": "data-center-power-screening-tools",
     "dataset": {
       "name": "Aiken data center transmission and energization evidence",
@@ -6031,6 +6177,7 @@
               {"slug": "geoforge-alternatives-data-center-power", "label": "Compare Geoforge alternatives and check 49 PJM upgrade dates"},
               {"slug": "200-mw-data-center-site", "label": "Explore the requirements for a 200 MW data center site"},
               {"slug": "utility-grade-power-study", "label": "See what a power flow and contingency study evaluates"},
+              {"slug": "grid-capacity-apis-load-headroom", "label": "Compare grid capacity APIs and check load versus export values"},
               {"slug": "power-evidence-data-center-site-verification", "label": "Check utility documents behind a marketed power claim"},
               {"slug": "data-center-fiber-route-diversity", "label": "Verify physical fiber paths and cloud handoffs"}
             ]

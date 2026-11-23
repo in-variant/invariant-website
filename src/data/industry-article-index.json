@@ -653,6 +653,35 @@
     }
   },
   {
+    "slug": "grid-capacity-apis-load-headroom",
+    "topic": "Data & APIs",
+    "title": "Best Grid Capacity APIs for Load Headroom and Site Screening",
+    "summary": "Compare utility maps, grid capacity APIs, and power-flow studies. Replay three records for one feeder and see what the figures mean for a new load.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States and Europe",
+    "image": "/blog/industry/grid-capacity-apis-load-headroom.webp?v=e44161f5",
+    "dataset": {
+      "name": "National Grid feeder load and solar hosting capacity records",
+      "description": "Three reproducible National Grid records for Vail Mills feeder 36_35_39253, with the source query, utility refresh date, power direction, and unit for each value.",
+      "spatialCoverage": "Vail Mills, New York, United States",
+      "temporalCoverage": "2026-03-25/2026-03-31",
+      "sources": [
+        "https://systemdataportal.nationalgrid.com/NY/documents/National%20Grid%20New%20York%20System%20Data%20Portal%20User%20Guide.pdf",
+        "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/0/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=feeder_cdf%2Cfeeder_load_capacity_headroom%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=pjson",
+        "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/1/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=feeder_cdf%2Cfeeder_load_capacity_headroom%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=pjson",
+        "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Hosting_Capacity_Data/MapServer/0/query?where=Master_CDF%3D%2736_35_39253%27&outFields=Master_CDF%2Cfeeder_min_hc%2Cfeeder_max_hc%2Chca_refresh_date&returnGeometry=false&f=pjson"
+      ],
+      "downloads": [
+        {
+          "label": "Download the three records and repeat the source queries",
+          "path": "/blog/national-grid-feeder-capacity-evidence.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "data-center-power-screening-tools",
     "topic": "Data & APIs",
     "title": "Data center site selection tools for power capacity",
