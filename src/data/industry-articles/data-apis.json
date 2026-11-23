@@ -1,5 +1,328 @@
 [
   {
+    "slug": "census-tract-housing-vacancy-rent-burden",
+    "topic": "Data & APIs",
+    "region": "Travis County, Texas",
+    "title": "Census Tract Housing Vacancy and Rent Burden Data",
+    "description": "Find Census tract vacancy and rent burden in ACS tables B25002 and B25070. Compare changing boundaries and calculate margins of error with a worked Austin example.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Two maps of the same part of Travis County. Tract 11 in the first map is split into tracts 11.01, 11.02 and 11.03 in the second. Estimated vacancy falls from 19.65% to 9.93% on the combined footprint.",
+    "coverCaption": "The two maps use the same scale and footprint. Census TIGER/Line boundaries and American Community Survey table B25002.",
+    "intro": "Use American Community Survey table B25002 for total and vacant housing units and table B25070 for the share of renter households spending at least 30% of their income on gross rent. To compare two periods, put both estimates on the same tract footprint and carry the survey’s uncertainty through the calculation. In an Austin-area example, the estimated share of housing units that were vacant fell from 19.65% to 9.93%. The evidence was too imprecise to tell whether rent burden rose or fell.",
+    "takeaways": [
+      "Join ACS estimates to the tract identifiers and boundaries for their release year. Use the Census relationship file to match older and newer tract footprints.",
+      "Add the underlying counts before calculating a rate. Use the same calculation for each of the Census Bureau’s 80 variance replicates to estimate uncertainty.",
+      "For a planning memo or market comparison, report the survey period, denominator, geographic footprint and margin of error alongside each estimate."
+    ],
+    "sections": [
+      {
+        "id": "where-to-download-housing-data",
+        "heading": "Where can I download Census tract vacancy and rent burden data?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Measure",
+              "ACS table and calculation",
+              "What the result describes"
+            ],
+            "rows": [
+              [
+                "Share of housing units vacant",
+                "B25002, line 003 divided by line 001",
+                "The share of all housing units classified as vacant, including seasonal units and other vacancies."
+              ],
+              [
+                "Share of renters spending at least 30% of income on gross rent",
+                "B25070, sum lines 007 through 010. Divide by line 001 minus line 011.",
+                "The share of renter-occupied housing units for which the gross-rent-to-income ratio can be computed and reaches the cutoff."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "vacancy-table"
+              ],
+              [
+                "rent-table"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the five-year detailed tables at summary level 140 for tract estimates. The detailed-table downloads supply published counts and margins of error. The variance replicate archives include the additional values needed to calculate margins for derived rates and groups of tracts. Keep the 11-digit GEOID as text so a leading zero survives the join.",
+            "sourceIds": [
+              "variance",
+              "vintage-2019",
+              "vintage-2024"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-tracts-after-boundary-changes",
+        "heading": "How do I compare housing data after a census tract splits?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Check the tract vintages before you match identifiers. The 2015–2019 ACS uses 2010 Census tracts, and the 2020–2024 ACS uses 2020 Census tracts with selected updates. The Census relationship file lists how older and newer tracts overlap, with separate land and water areas.",
+            "sourceIds": [
+              "vintage-2019",
+              "vintage-2024",
+              "crosswalk"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Old Tract 11 in Travis County, Texas (48453001100) split into tracts 11.01, 11.02 and 11.03. The Census relationship file assigns all 2,437,645 m² of land and 239,536 m² of water in the old tract to those three and shows that each successor sits wholly within the old footprint. Add the three 2020–2024 counts before you calculate the newer rates.",
+            "sourceIds": [
+              "crosswalk"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a partial overlap, build a common geography from available finer-area counts or use a documented allocation method suited to the measure. The crosswalk gives an area of overlap. An area share alone cannot tell you what fraction of residents or housing units lived in that overlap.",
+            "sourceIds": [
+              "crosswalk"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "travis-county-housing-results",
+        "heading": "What changed in Travis County’s former Tract 11?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The combined area had an estimated 5,715 housing units in 2015–2019 and 7,172 in 2020–2024. Estimated vacancies fell from 1,123 to 712 while housing stock grew. The change in the vacancy share excludes zero at the 90% confidence level. The change in the count of vacant units is less certain.",
+            "sourceIds": [
+              "vacancy-table",
+              "variance",
+              "comparison"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Metric",
+              "2015–2019 ACS",
+              "2020–2024 ACS",
+              "Change and 90% margin of error"
+            ],
+            "rows": [
+              [
+                "Total housing units",
+                "5,715 ± 138",
+                "7,172 ± 562",
+                "+1,457 ± 579 units"
+              ],
+              [
+                "Vacant housing units",
+                "1,123 ± 351",
+                "712 ± 283",
+                "−411 ± 451 units"
+              ],
+              [
+                "Share of all housing units vacant",
+                "19.65% ± 6.04 points",
+                "9.93% ± 4.16 points",
+                "−9.72 ± 7.34 percentage points"
+              ],
+              [
+                "Share of renters spending at least 30% of income on gross rent",
+                "32.27% ± 7.70 points",
+                "30.64% ± 8.01 points",
+                "−1.63 ± 11.11 percentage points"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For rent burden, the estimated counts were 950 of 2,944 eligible renter households in the earlier period and 1,175 of 3,835 in the later period. The change in the share has an approximate 90% interval from a decline of 12.74 percentage points to an increase of 9.48 points. A planner can document the estimated rise in housing stock and lower vacancy share while recording the rent burden trend as indeterminate.",
+            "sourceIds": [
+              "rent-table",
+              "variance",
+              "comparison"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/census-tract-housing-vacancy-rent-burden.json",
+            "format": "JSON",
+            "label": "Download the tract crosswalk, Census estimates, 80 replicates and calculated results"
+          }
+        ]
+      },
+      {
+        "id": "calculate-acs-margin-of-error",
+        "heading": "How do I calculate the margin of error for a combined tract?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For each period, calculate the result from the published counts. Repeat the entire calculation for each of the 80 Census variance replicates, including the sums and division. Subtract the published-count result from each replicate result, square the differences, sum them and multiply by 4/80. The square root is the standard error. Multiply it by 1.645 for the 90% margin of error.",
+            "sourceIds": [
+              "variance-method"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a change between nonoverlapping periods, take the square root of the sum of the two squared margins. This gives an approximate 90% margin for the difference. If the resulting interval includes zero, report that the survey cannot establish a direction for the change. For near-zero or fully saturated rates, and for replicate denominators of zero, consult the Census Bureau’s special-case guidance.",
+            "sourceIds": [
+              "comparison",
+              "statistical-testing",
+              "variance-method"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "housing-data-api-workflow",
+        "heading": "What belongs in a housing data API response?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For address-based analysis, Invariant Earth’s field catalog documents a tract identifier and tract-level fields for occupied units, median home value and owner occupancy. Keep the vintage shown for each field with the response. For this historical comparison, join the two ACS releases and the Census geographic crosswalk, then store the numerator, denominator, margin and original source version with each derived rate.",
+            "sourceIds": [
+              "earth-fields",
+              "variance",
+              "crosswalk"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Housing planners can use the comparison to decide which neighborhoods need a closer look. Developers and market analysts can use it alongside dated leasing data when evaluating current supply. For a measure of units available for rent, check vacancy status in B25004 and the date of any listing or inventory feed.",
+            "sourceIds": [
+              "vacancy-status"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I get housing vacancy by census tract?",
+        "answer": "Download ACS five-year detailed table B25002 at tract level. Divide vacant units on line 003 by total housing units on line 001. Retain the survey period and calculate the margin for the ratio.",
+        "sourceIds": [
+          "vacancy-table",
+          "variance-method"
+        ]
+      },
+      {
+        "question": "Which Census table measures rent burden?",
+        "answer": "In ACS table B25070, add the four categories starting at 30.0% of gross rent as a share of household income. Divide by the total renter-occupied units in the table after excluding the Not computed category.",
+        "sourceIds": [
+          "rent-table"
+        ]
+      },
+      {
+        "question": "Is the ACS share of vacant housing the same as the rental vacancy rate?",
+        "answer": "The overall vacancy share includes all vacant housing units. For a rental market measure, use a definition that isolates units offered for rent and the corresponding rental inventory. Table B25004 breaks vacancies down by status.",
+        "sourceIds": [
+          "vacancy-table",
+          "vacancy-status"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "vacancy-table",
+        "title": "ACS 2020–2024 table B25002, Occupancy Status",
+        "url": "https://api.census.gov/data/2024/acs/acs5/groups/B25002.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Table B25002"
+      },
+      {
+        "id": "rent-table",
+        "title": "ACS 2020–2024 table B25070, Gross Rent as a Percentage of Household Income in the Past 12 Months",
+        "url": "https://api.census.gov/data/2024/acs/acs5/groups/B25070.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Table B25070"
+      },
+      {
+        "id": "vacancy-status",
+        "title": "ACS 2020–2024 table B25004, Vacancy Status",
+        "url": "https://api.census.gov/data/2024/acs/acs5/groups/B25004.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Table B25004"
+      },
+      {
+        "id": "crosswalk",
+        "title": "2020 Census tract relationship files and record layouts",
+        "url": "https://www.census.gov/geographies/reference-files/time-series/geo/relationship-files.2020.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census tract relationship files"
+      },
+      {
+        "id": "vintage-2019",
+        "title": "2019 ACS geography boundaries by year",
+        "url": "https://www.census.gov/programs-surveys/acs/geography-acs/geography-boundaries-by-year.2019.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2019 tract geography"
+      },
+      {
+        "id": "vintage-2024",
+        "title": "2024 ACS geography boundaries by year",
+        "url": "https://www.census.gov/programs-surveys/acs/geography-acs/geography-boundaries-by-year.2024.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2024 tract geography"
+      },
+      {
+        "id": "variance",
+        "title": "ACS variance replicate estimates, current and archived five-year downloads",
+        "url": "https://www.census.gov/programs-surveys/acs/data/variance-tables.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ACS variance replicate downloads"
+      },
+      {
+        "id": "variance-method",
+        "title": "2020–2024 ACS variance replicate table documentation",
+        "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/documentation/5-year/2020-2024_Variance_Replicate_Table_Documentation.pdf",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census replicate calculation method"
+      },
+      {
+        "id": "comparison",
+        "title": "Comparing 2024 American Community Survey data with earlier releases",
+        "url": "https://www.census.gov/programs-surveys/acs/guidance/comparing-acs-data/2024.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census comparison guidance"
+      },
+      {
+        "id": "statistical-testing",
+        "title": "Statistical testing with American Community Survey estimates",
+        "url": "https://www2.census.gov/programs-surveys/acs/tech_docs/statistical_testing/2025_Instructions_for_Stat_Testing_ACS.pdf",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census statistical testing instructions"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth field catalog"
+      }
+    ],
+    "dataset": {
+      "name": "Travis County Tract 11 housing vacancy and rent burden comparison",
+      "description": "Census tract crosswalk, B25002 and B25070 table rows and variance replicates, and derived housing and rent burden estimates for a common footprint in Travis County.",
+      "spatialCoverage": "2010 Census Tract 11, Travis County, Texas, United States",
+      "temporalCoverage": "2015-01-01/2024-12-31",
+      "sourceIds": [
+        "crosswalk",
+        "variance",
+        "variance-method",
+        "statistical-testing"
+      ]
+    },
+    "relatedSlugs": [
+      "best-gis-apis-for-site-selection",
+      "retail-site-selection-trade-area-apis",
+      "historical-parcel-boundaries-api"
+    ]
+  },
+  {
     "slug": "texas-data-center-tax-incentives",
     "topic": "Data & APIs",
     "region": "Texas, United States",
