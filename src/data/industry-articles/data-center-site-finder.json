@@ -20915,10 +20915,10 @@
   "kind": "site-guide",
   "region": "United States",
   "title": "Data Center Site Selection Criteria and Checklist",
-  "description": "Compare phased power, buildable land, water, fiber, and approvals. Use the 12-check worksheet and a real Loudoun County permitting case to screen a site.",
+  "description": "Screen a U.S. data center site before you option land. Download the 12-point worksheet for phased power, buildable acreage, cooling water, fiber, and permits.",
   "date": "2026-11-09",
   "readMinutes": 9,
-  "intro": "The core data center site selection criteria are power by phase, buildable land, a workable permitting path, cooling water, and fiber. Start with the facility megawatts at the meter and the date each phase needs service. Then work out which required utility upgrade, site work, or approval could set the opening date. Compare land price, tariffs, and incentives among sites that could meet the schedule.",
+  "intro": "Screen a data center site against the facility megawatts it needs at the meter, the date each phase needs power, and the land, water, fiber, and approvals required to open. Keep every phase on its own line in the worksheet. A site can have a credible path for the first building and an unresolved expansion. Compare price and incentives once you know which sites could meet the required dates.",
   "takeaways": [
    "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
    "Check the utility connection, land and approval path in parallel. Record which event could move the opening date.",
@@ -21083,7 +21083,7 @@
    },
    {
     "id": "i1-why-order-matters",
-    "heading": "A worked example of how to rank two sites",
+    "heading": "How to compare sites for a 40 MW first phase and an 80 MW campus",
     "blocks": [
      {
       "type": "paragraph",
@@ -21091,27 +21091,40 @@
      },
      {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
        "Candidate",
-       "Evidence on file",
+       "40 MW by June 2028",
+       "80 MW total by June 2030",
        "Decision"
       ],
       "rows": [
        [
         "Site A",
-        "Broker quotes 100 MW based on nearby transmission. The utility has yet to give a connection point or service date.",
-        "Hold. Ask the utility what it can study for the 40 MW request before making a non-refundable land commitment."
+        "Broker quotes 100 MW based on nearby transmission. No utility connection point or date in the evidence file.",
+        "No separate expansion study or provider schedule.",
+        "Hold. Ask the serving utility to identify a study path for the first phase."
        ],
        [
         "Site B",
-        "A preliminary utility study identifies 50 MW by June 2028, subject to a substation upgrade and an easement. The utility study does not address the second phase.",
-        "Advance first-phase diligence. Assign the easement and service terms. Keep the 80 MW case open until its connection and date are studied."
+        "A preliminary utility study identifies a 50 MW service plan by June 2028, subject to a substation upgrade and an easement.",
+        "The study covers the first phase. Full-buildout service is still open.",
+        "Advance first-phase diligence. Confirm the easement, upgrade scope, service terms, and a study for the full campus."
        ]
       ]
      },
      {
       "type": "paragraph",
-      "text": "Site B has the stronger first-phase case because the study identifies a connection, a date, and dependencies. The study is still preliminary. Record the easement, upgrade ownership, and conditions of service before calling the 2028 date committed. Use a separate row for the 2030 expansion."
+      "text": "Put the last acceptable opening date next to the expected completion dates for utility service, the customer substation, permits, and commissioning. Run the sequence of dependencies for each phase. For example, a June utility service date can still miss a June opening when commissioning follows energization. Identify which party can confirm each date and review how any open dependency affects the land decision."
+     },
+     {
+      "type": "links",
+      "label": "Evidence to request next",
+      "items": [
+       {"slug": "utility-will-serve-letter-load-study-esa", "label": "Read the utility letter, study, and service agreement"},
+       {"slug": "hourly-weather-data-for-data-center-cooling", "label": "Check hourly heat and humidity for the proposed cooling design"},
+       {"slug": "data-center-land-acres-per-mw", "label": "Test whether each building phase fits the tract"}
+      ]
      }
     ]
    },
@@ -21129,11 +21142,12 @@
      },
      {
       "type": "paragraph",
-      "text": "Dulles Technology Park is an example of what to look up next. The July staff report identifies a 37.24-acre zoning conversion in the Route 28 Tax District for three proposed data center buildings. In September, the Planning Commission recommended denial. The docket then appeared on the November 12 Board hearing agenda. For a site in the exempt district, the pause scope and the application’s approval are separate questions. Read the minutes or action report for the specific docket before putting a decision date into your schedule.",
+      "text": "Dulles Technology Park shows what to put on the project calendar. The July staff report identifies a 37.24-acre zoning conversion in the Route 28 Tax District for three proposed data center buildings. The Planning Commission recommended denial in September. At the November 12 hearing, the Board voted to send the conversion to its second March 2027 business meeting for action. Use March as the next reported decision milestone and check the posted agenda before using it as a firm date. The Route 28 pause exception leaves the site's own approval process in place.",
       "sourceIds": [
        "dulles-packet",
        "dulles-minutes",
        "dulles-hearing",
+       "dulles-vote",
        "loudoun-pause"
       ]
      },
@@ -21148,7 +21162,7 @@
      },
      {
       "type": "download",
-      "label": "Download eight Loudoun approval records with dates and docket references",
+      "label": "Download nine Loudoun approval records with dates and docket references",
       "path": "/blog/loudoun-data-center-approval-milestones.csv",
       "format": "CSV"
      }
@@ -21160,7 +21174,7 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Use the worksheet on available sites and record the status of the property and its power separately. Take an existing shortlist to a utility or engineering screen once your load and service dates are clear."
+      "text": "Use the worksheet on candidate sites and record property and power status separately. Invariant can take a new search or an existing shortlist and check each tract against the facility megawatts, service dates, site constraints, and source records you need to make a decision."
      },
      {
       "type": "links",
@@ -21594,6 +21608,13 @@
     "title": "November 12 Board public hearing agenda, Dulles Technology Park",
     "url": "https://pub-loudoun.escribemeetings.com/Meeting.aspx?Agenda=Agenda&Id=91057f16-68ae-4bb1-9ecb-3dcc04467555&Item=2741&Tab=attachments&lang=English",
     "publisher": "Loudoun County"
+   },
+   {
+    "id": "dulles-vote",
+    "title": "November 12 Board hearing captions, Dulles Technology Park motion at 05:47:22 and vote at 05:52:06",
+    "url": "https://video.isilive.ca/loudouncty/95-Board-of-Supervisors-Public-Hearing-2026-11-12-22-49.mp4.vtt",
+    "publisher": "Loudoun County",
+    "linkLabel": "Board motion and vote captions"
    }
   ],
   "relatedSlugs": [
@@ -21604,7 +21625,7 @@
   "updatedDate": "2026-11-23",
   "dataset": {
    "name": "Loudoun data center approval milestones and Dulles Technology Park docket",
-   "description": "Eight county records separating the adopted zoning framework, the legislative pause, and individual milestones for the Dulles Technology Park zoning conversion.",
+   "description": "Nine county records tracing the zoning framework, the legislative pause, and individual milestones for the Dulles Technology Park zoning conversion, including its recorded deferral.",
    "spatialCoverage": "Loudoun County, Virginia, United States",
    "temporalCoverage": "2025-03-18/2026-11-17",
    "sourceIds": [
@@ -21615,7 +21636,8 @@
     "loudoun-pause",
     "dulles-packet",
     "dulles-minutes",
-    "dulles-hearing"
+    "dulles-hearing",
+    "dulles-vote"
    ]
   }
  },
