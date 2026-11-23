@@ -2,6 +2,7 @@
 // Agent-readable copies of the site, written into dist/ after prerender:
 //   /blog/<slug>.md       one markdown file per industry article (site, due diligence, compliance guides)
 //   /glossary/<slug>.md   one markdown file per glossary entry
+//   /datasets.md         catalog of published research datasets and their downloads
 //   /llms-full.txt        every industry article in full, due diligence and power studies first
 // Agents and LLM crawlers fetch these instead of parsing HTML. Each HTML page links its .md
 // with <link rel="alternate" type="text/markdown"> (scripts/prerender.mjs).
@@ -21,6 +22,7 @@ const CONTACT = `Site screens and power studies: ${SITE_EMAIL}, (628) 220-8972, 
 const FILES = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'site-selection-guides.json', 'powered-land-sites.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
 const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles', f), 'utf8')))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
+const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 
@@ -70,8 +72,30 @@ function glossaryMd(e) {
   return out.join('\n')
 }
 
+function datasetCatalogMd() {
+  const out = [
+    '# Invariant research datasets', '',
+    `Catalog page: ${SITE}/datasets`, '',
+    'Download the data and read how each dataset was compiled. The dataset notes link to the original sources.', '',
+  ]
+  for (const { slug, dateTime, dataset } of articleIndex) {
+    if (!dataset) continue
+    out.push(
+      `## ${dataset.name}`, '', dataset.description, '',
+      `- [Dataset notes](${SITE}/blog/${slug}#dataset) · [Markdown guide](${SITE}/blog/${slug}.md)`,
+      `- Published: ${dateTime}`,
+      ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
+      ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
+      ...dataset.downloads.map(file => `- [${file.label} (${file.format})](${SITE}${file.path})`),
+      '',
+    )
+  }
+  return out.join('\n')
+}
+
 mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
+writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 const full = ['# Invariant: data, site selection, power and compliance guides', '', '> Full text of Invariant’s data and API guides, data center site and power diligence articles, and industry compliance guides. Find topics at https://invariant-ai.com/llms.txt. Each included article has a Markdown copy at its URL plus `.md`.', '', CONTACT, '']
 for (const collection of blogCollections) {
   const md = [

@@ -155,7 +155,12 @@ export const WEBSITE_SCHEMA = {
   },
 }
 
-export const DATA_CATALOG_ID = `${SITE_URL}/datasets#catalog`
+export const DATA_CATALOG = {
+  '@type': 'DataCatalog',
+  '@id': SITE_URL + '/datasets#catalog',
+  name: 'Research datasets',
+  url: SITE_URL + '/datasets',
+}
 
 const DATA_ENCODING = { CSV: 'text/csv', GeoJSON: 'application/geo+json', JSON: 'application/json' } as const
 
@@ -172,7 +177,7 @@ export function datasetSchema(dataset: ResourceDataset, articleUrl: string, date
     datePublished,
     creator: { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: 'Invariant' },
     publisher: { '@id': `${SITE_URL}/#organization` },
-    includedInDataCatalog: { '@id': DATA_CATALOG_ID },
+    includedInDataCatalog: DATA_CATALOG,
     isAccessibleForFree: true,
     isBasedOn: dataset.sources,
     ...(dataset.spatialCoverage && { spatialCoverage: { '@type': 'Place', name: dataset.spatialCoverage } }),

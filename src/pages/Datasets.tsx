@@ -1,22 +1,18 @@
 import { Link } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
-import { DATA_CATALOG_ID, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
+import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { RESEARCH_DATASETS } from '../data/resources'
 import './Resources.css'
 import './Datasets.css'
 
-const title = 'Research datasets'
+const { name: title, url: canonical } = DATA_CATALOG
 const description = 'Download and cite the data behind Invariant’s research on land, grid upgrades, property risk, lending and fleet charging.'
-const canonical = `${SITE_URL}/datasets`
 
 const catalog = {
   '@context': 'https://schema.org',
-  '@type': 'DataCatalog',
-  '@id': DATA_CATALOG_ID,
-  name: title,
+  ...DATA_CATALOG,
   description,
-  url: canonical,
   publisher: { '@id': `${SITE_URL}/#organization` },
   dataset: RESEARCH_DATASETS.map(({ slug }) => ({ '@id': `${SITE_URL}/blog/${slug}#dataset` })),
 }
@@ -28,6 +24,7 @@ export default function Datasets() {
         title={title}
         description={description}
         canonical={canonical}
+        markdown="/datasets.md"
         jsonLd={[ORG_SCHEMA, catalog, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: title, url: canonical }])]}
       />
       <header className="resource-container resources-intro">

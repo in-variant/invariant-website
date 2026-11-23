@@ -72,7 +72,7 @@ out.push('- [Invariant Earth API docs](https://docs.invariant-ai.com/): introduc
 out.push('- [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [full docs as Markdown](https://docs.invariant-ai.com/llms-full.txt).')
 out.push('- [Use with AI agents](https://docs.invariant-ai.com/agents): tool definitions for Claude and OpenAI.')
 out.push('- [Public field catalog](https://api.invariant-ai.com/v1/meta/fields) and [field response format](https://docs.invariant-ai.com/responses).')
-out.push(`- [Research datasets](${SITE}/datasets) with source notes and direct downloads in CSV, GeoJSON, and JSON.`)
+out.push(`- [Research datasets](${SITE}/datasets) and the [Markdown dataset catalog](${SITE}/datasets.md) with source notes and direct downloads in CSV, GeoJSON, and JSON.`)
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 for (const collection of blogCollections) {
   out.push(`- [${collection.title}](${SITE}/blog/${collection.slug}.md): ${collection.description}`)

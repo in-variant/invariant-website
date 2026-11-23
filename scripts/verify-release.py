@@ -33,7 +33,7 @@ CRAWLER_USER_AGENTS = (
 )
 CRAWLER_SMOKE_PATHS = frozenset((
     "/robots.txt", "/blog", "/blog/data-center-site-selection-checklist",
-    "/blog/data-center-site-selection-checklist.md",
+    "/blog/data-center-site-selection-checklist.md", "/datasets", "/datasets.md",
 ))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
@@ -272,6 +272,28 @@ def verify_search_metadata(pages):
         titles[title] = path
 
 
+def verify_dataset_catalog(catalog, pages):
+    schemas = [item for item in catalog.schemas if item.get("@type") == "DataCatalog"]
+    require(len(schemas) == 1, "research page must describe one DataCatalog")
+    schema = schemas[0]
+    require(schema.get("url") == catalog.url and bool(schema.get("name")), "DataCatalog needs its canonical URL and name")
+    identity = {key: schema[key] for key in ("@type", "@id", "name", "url")}
+    expected_ids = {item["@id"] for item in schema["dataset"]}
+    actual_ids = set()
+    markdown = (DIST / "datasets.md").read_text(encoding="utf-8")
+    for path, page in pages.items():
+        if not path.startswith("/blog/"):
+            continue
+        for dataset in (item for item in page.schemas if item.get("@type") == "Dataset"):
+            require(dataset.get("includedInDataCatalog") == identity, f"{page.url} has an incomplete DataCatalog reference")
+            require(f"]({dataset['url']})" in markdown, f"{page.url} is missing from the Markdown dataset catalog")
+            for file in dataset["distribution"]:
+                require(f"]({file['contentUrl']})" in markdown,
+                        f"{file['contentUrl']} is missing from the Markdown dataset catalog")
+            actual_ids.add(dataset["@id"])
+    require(actual_ids == expected_ids, "DataCatalog membership differs from the published Dataset pages")
+
+
 def build_jobs(expected_urls, full):
     path_set = {urlsplit(url).path for url in expected_urls}
     catalog = Page("/datasets", (DIST / "datasets/index.html").read_bytes())
@@ -291,6 +313,7 @@ def build_jobs(expected_urls, full):
         assets.update(page.assets)
         pages[path] = page
     verify_search_metadata(pages)
+    verify_dataset_catalog(catalog, pages)
     if full:
         verify_discovery(pages)
     for path in sorted(alternate_files):
