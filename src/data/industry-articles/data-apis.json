@@ -1,5 +1,338 @@
 [
   {
+    "slug": "texas-data-center-tax-incentives",
+    "topic": "Data & APIs",
+    "region": "Texas, United States",
+    "title": "Texas Data Center Tax Incentives and Property Tax Abatements",
+    "description": "Compare Texas data center sales tax exemptions with a signed Fort Worth property tax abatement. Verify tax bases, eligibility, deadlines, and actual credits.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Three separate evidence records for a data center tax review. Fort Worth’s signed agreement sets the local city rate, Tarrant County groups several tax accounts, and the Texas Comptroller certifies qualifying purchases.",
+    "coverCaption": "A property tax agreement, an appraisal district or county tax record, and a purchase exemption answer different questions about a project’s costs.",
+    "intro": "Texas data center incentives can affect the annual property tax bill and the sales tax charged on eligible purchases. Start with the signed agreement for the affected taxing unit and the Comptroller’s certification for the facility and purchaser. Fort Worth’s signed 2019 Winner LLC expansion agreement set a 20% city abatement for tax year 2022 on specified taxes, subject to investment and completion evidence. That city agreement and the state sales tax program have separate requirements.",
+    "takeaways": [
+      "For a local abatement, record the taxing unit, affected property, base year, covered tax years, conditions, and any remedy for missed commitments.",
+      "For a Texas sales tax exemption, identify the statutory section, facility certification, purchaser registration, and eligible cost items.",
+      "For underwriting, separate the signed rate and the county’s reported actuals. Tarrant County reports Winner LLC’s combined amounts without assigning the actual credit to the 2019 expansion."
+    ],
+    "sections": [
+      {
+        "id": "texas-data-center-incentive-records",
+        "heading": "Which records prove a data center tax incentive?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What it can establish",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Chapter 312 property tax abatement",
+                "The property and tax years a city or county agreed to abate, with performance conditions.",
+                "Signed agreement and amendments, legal description or account IDs, applicable taxing unit and tax year, appraisal and tax bill."
+              ],
+              [
+                "Chapter 380 or 381 economic development agreement",
+                "Any separately negotiated grant or rebate and the documented basis for payment.",
+                "Executed agreement, payment formula, compliance reports, term, and actual disbursements."
+              ],
+              [
+                "Texas data center sales tax exemption",
+                "A qualifying facility and registered party can claim exemption on eligible purchases under the applicable section.",
+                "Comptroller certification date, facility and purchaser registration numbers, Form 01-929, and invoices that identify the qualified costs."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "chapter312",
+                "local-db"
+              ],
+              [
+                "local-db",
+                "city-disclosure"
+              ],
+              [
+                "state",
+                "form",
+                "state-overview"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Search the Comptroller’s local agreement database by jurisdiction and legal entity, then pull the controlling agreement and any amendments from the municipality or county. Search the appraisal district and collector records for the property tax account. Keep a credit against assessed property and a separate economic development payment in separate lines of the pro forma.",
+            "sourceIds": [
+              "local-db",
+              "chapter312",
+              "city-disclosure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fort-worth-winner-abatement",
+        "heading": "What did the signed Fort Worth expansion agreement cover?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Fort Worth City Secretary Contract 52160 was signed by Winner LLC on April 8, 2019, and by the city on April 10, 2019. For 2022 it set a 20% abatement on city real property taxes attributable to the increase over 2019 values and on city taxes on qualifying new tangible personal property. The contract cites the separate city economic development agreement, Contract 46728 as amended. Read each agreement against the land and work it covers.",
+            "sourceIds": [
+              "city",
+              "city-signatures",
+              "city-disclosure"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The city required a Certificate of Completion for the real and personal property commitments. The signed agreement set baseline thresholds of $50 million of construction cost and $100 million of qualifying new tangible personal property cost, with defined adjustments requiring written approval. It reduced the rate to 10% when the company missed the commitment to spend 15% of construction costs with certified minority- or woman-owned businesses. Section 7.11 describes recovery of city taxes in the event of termination for failure to obtain the completion certificate.",
+            "sourceIds": [
+              "city-commitments",
+              "city-remedies"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Tarrant County’s separate report lists order 130032 with maximum rates of 60% for the county and 40% for the hospital district, a ten-year term, and a planned 2022 start. Its February 12, 2026 table reports $16,431,992.54 in county abatements and $10,708,657.83 in hospital district abatements on the combined Winner accounts, excluding tax year 2025. Those amounts sit on the original agreement row, with later rows marked as combined. The report does not isolate an actual credit for order 130032.",
+            "sourceIds": [
+              "county"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/texas-data-center-tax-incentives.json",
+            "format": "JSON",
+            "label": "Download the agreement terms, county reporting scope, and Texas eligibility rules"
+          }
+        ]
+      },
+      {
+        "id": "texas-sales-tax-exemption-eligibility",
+        "heading": "What are the Texas data center sales tax exemption requirements?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Texas Tax Code",
+              "Selected requirements",
+              "How the exemption applies"
+            ],
+            "rows": [
+              [
+                "§151.359 · Qualifying data center",
+                "At least 100,000 sq ft in a single building or portion, 20 qualifying jobs, and at least $200 million of eligible investment over five years from certification.",
+                "Eligible purchases are exempt from state sales and use tax. Applicable local sales and use tax still applies."
+              ],
+              [
+                "§151.3595 · Qualifying large data center project",
+                "At least 250,000 sq ft on a single or eligible contiguous parcel group, 40 qualifying jobs, and at least $500 million of eligible investment over five years. The applicant must agree to contract for at least 20 MW of transmission capacity.",
+                "Form 01-929 specifies state and local tax exemption for this section. The statute starts the investment period at the earlier of application or certification."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "state",
+                "form"
+              ],
+              [
+                "state",
+                "form"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Both pathways require a qualifying single occupant and facility and purchaser registrations. Eligible costs can include servers, electrical and cooling systems, and qualifying electricity. Review the statutory exclusions for general office or maintenance supplies, certain property incorporated into real estate, and short-term rentals. Source each invoice and determine who claims it.",
+            "sourceIds": [
+              "state",
+              "form",
+              "state-overview"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Check the section on the certificate when reconciling the state guidance. The Comptroller’s web overview repeats state-only wording under the large-project heading and describes the investment period from certification. Form 01-929 distinguishes the two sections’ tax scope, and §151.3595(d)(2)(B) sets the earlier-of clock for large projects. Get the applicable treatment confirmed for the project before including the exemption in a budget.",
+            "sourceIds": [
+              "state",
+              "form",
+              "state-overview"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "underwrite-tax-savings",
+        "heading": "How do I model the incentive for a site or loan?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Set up annual property tax lines by taxing unit and asset class. Start with the applicable taxable base, then apply the verified contract terms for each tax year. Use the assessor or collector record to corroborate any realized benefit. Put purchases and utility charges on a separate schedule and link each exemption to its certification and invoices."
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth’s parcel identifier, boundary, and source fields to check which tract you are reviewing. Join the agreement’s legal description and tax accounts against the appraisal district records before applying the terms to the parcel or facility. Examine extensions, remedies and assignment language with the documents for the current transaction.",
+            "sourceIds": [
+              "earth-fields",
+              "chapter312",
+              "city"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related diligence guides",
+            "items": [
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Build a commercial real estate collateral evidence file"
+              },
+              {
+                "slug": "data-center-site-selection-checklist",
+                "label": "Compare power, land, approvals, and tax assumptions in a shortlist"
+              },
+              {
+                "slug": "track-proposed-data-center-projects",
+                "label": "Trace projects from public applications to documented decisions"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find a Texas data center property tax abatement agreement?",
+        "answer": "Start with the Comptroller’s local development agreement search and the city or county contract archive. Obtain the signed agreement, all amendments, the legal description, and the relevant tax accounts before estimating the benefit.",
+        "sourceIds": [
+          "local-db",
+          "chapter312"
+        ]
+      },
+      {
+        "question": "Does a city property tax abatement make equipment purchases exempt from Texas sales tax?",
+        "answer": "Texas sales tax treatment requires the applicable Comptroller facility and purchaser registrations and Form 01-929. Verify the eligible property and statutory section for the purchase separately from the city’s agreement.",
+        "sourceIds": [
+          "state",
+          "form"
+        ]
+      },
+      {
+        "question": "How do I verify whether an abatement was actually received?",
+        "answer": "Get appraisal or collector records for the relevant account and tax year, and compare them with compliance records or reported amounts. A combined disclosure such as Tarrant County’s Winner LLC row cannot give an actual amount for one expansion by itself.",
+        "sourceIds": [
+          "county",
+          "chapter312"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "city",
+        "title": "Fort Worth City Secretary Contract 52160, Winner LLC 2019 expansion tax abatement",
+        "url": "https://www.tarrantcountytx.gov/content/dam/main/OpenBooks/2026_transparency_stars/tax-abatement-agreements/130032_WinnerLLCAbatementAgreement_accessible.pdf#page=8",
+        "publisher": "City of Fort Worth",
+        "linkLabel": "Signed city agreement"
+      },
+      {
+        "id": "city-signatures",
+        "title": "Fort Worth and Winner LLC signatures in the county public packet",
+        "url": "https://www.tarrantcountytx.gov/content/dam/main/OpenBooks/2026_transparency_stars/tax-abatement-agreements/130032_WinnerLLCAbatementAgreement_accessible.pdf#page=30",
+        "publisher": "City of Fort Worth",
+        "linkLabel": "Agreement signatures"
+      },
+      {
+        "id": "city-commitments",
+        "title": "Fort Worth construction and equipment conditions, sections 4–6",
+        "url": "https://www.tarrantcountytx.gov/content/dam/main/OpenBooks/2026_transparency_stars/tax-abatement-agreements/130032_WinnerLLCAbatementAgreement_accessible.pdf#page=13",
+        "publisher": "City of Fort Worth",
+        "linkLabel": "Investment and completion clauses"
+      },
+      {
+        "id": "city-remedies",
+        "title": "Fort Worth reduction and recovery provisions, sections 7.7 and 7.11",
+        "url": "https://www.tarrantcountytx.gov/content/dam/main/OpenBooks/2026_transparency_stars/tax-abatement-agreements/130032_WinnerLLCAbatementAgreement_accessible.pdf#page=20",
+        "publisher": "City of Fort Worth",
+        "linkLabel": "Reduction and recovery clauses"
+      },
+      {
+        "id": "county",
+        "title": "Tarrant County active tax abatements as of February 12, 2026",
+        "url": "https://www.tarrantcountytx.gov/content/dam/main/OpenBooks/2026_transparency_stars/economic_development/Tarrant_County_Tax_Abatements_26.pdf",
+        "publisher": "Tarrant County",
+        "linkLabel": "County abatement report"
+      },
+      {
+        "id": "city-disclosure",
+        "title": "Economic Development Transparency contract register",
+        "url": "https://www.fortworthtexas.gov/residents/transparency-information/economic-development-transparency",
+        "publisher": "City of Fort Worth",
+        "linkLabel": "Fort Worth contract register"
+      },
+      {
+        "id": "chapter312",
+        "title": "Texas Tax Code Chapter 312, Property Redevelopment and Tax Abatement Act",
+        "url": "https://tcss.legis.texas.gov/resources/TX/htm/TX.312.htm",
+        "publisher": "Texas Legislature",
+        "linkLabel": "Texas property tax abatement law"
+      },
+      {
+        "id": "local-db",
+        "title": "Chapter 312 and Chapters 380–381 local development agreement search",
+        "url": "https://comptroller.texas.gov/economy/development/search-tools/sb1340/",
+        "publisher": "Texas Comptroller",
+        "linkLabel": "Local development agreement database"
+      },
+      {
+        "id": "state",
+        "title": "Texas Tax Code Chapter 151, Sections 151.359 and 151.3595",
+        "url": "https://tcss.legis.texas.gov/resources/tx/htm/tx.151.htm",
+        "publisher": "Texas Legislature",
+        "linkLabel": "Texas sales tax law"
+      },
+      {
+        "id": "form",
+        "title": "Texas Comptroller Form 01-929, qualification and purchaser proof by section",
+        "url": "https://comptroller.texas.gov/forms/01-929.pdf",
+        "publisher": "Texas Comptroller",
+        "linkLabel": "Form 01-929"
+      },
+      {
+        "id": "state-overview",
+        "title": "State sales tax exemption overview for qualifying data centers and large projects",
+        "url": "https://comptroller.texas.gov/taxes/data-centers/",
+        "publisher": "Texas Comptroller",
+        "linkLabel": "Texas program guidance"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth public parcel field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Earth API field catalog"
+      }
+    ],
+    "dataset": {
+      "name": "Fort Worth data center property tax abatement and Texas sales tax qualification",
+      "description": "Signed Fort Worth agreement terms, separate Tarrant County reporting, and current Texas data center sales tax rules with source and section references.",
+      "spatialCoverage": "Fort Worth and Tarrant County, Texas, United States, with state program requirements",
+      "temporalCoverage": "2019-04-08/2026-11-23",
+      "sourceIds": [
+        "city",
+        "city-signatures",
+        "county",
+        "state",
+        "form"
+      ]
+    },
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "data-center-site-selection-checklist",
+      "track-proposed-data-center-projects"
+    ]
+  },
+  {
     "slug": "track-proposed-data-center-projects",
     "topic": "Data & APIs",
     "region": "Loudoun County, Virginia",
