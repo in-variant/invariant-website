@@ -12,6 +12,7 @@ import { parseArgs } from 'node:util'
 const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const SITE = 'invariant-ai.com'
 const buyerPrompts = JSON.parse(readFileSync(new URL('./geo-buyer-prompts.json', import.meta.url), 'utf8'))
+const collectionPrompts = JSON.parse(readFileSync(new URL('./geo-collection-prompts.json', import.meta.url), 'utf8'))
 
 const COMPLIANCE_PROMPTS = [
   // Head queries we are competing for
@@ -59,10 +60,12 @@ function options() {
     'env-file': { type: 'string' },
     list: { type: 'boolean' },
   } })
-  if (!['buyer', 'compliance'].includes(values.suite)) throw new Error('Choose --suite buyer or --suite compliance')
-  const prompts = values.suite === 'buyer' ? buyerPrompts : COMPLIANCE_PROMPTS.map((prompt, index) => ({
+  const compliancePrompts = COMPLIANCE_PROMPTS.map((prompt, index) => ({
     id: `compliance-${index + 1}`, vertical: 'Compliance', prompt, target: null,
   }))
+  const suites = new Map([['buyer', buyerPrompts], ['collections', collectionPrompts], ['compliance', compliancePrompts]])
+  const prompts = suites.get(values.suite)
+  if (!prompts) throw new Error(`Choose --suite ${[...suites.keys()].join(', ')}`)
   const selected = values.prompt ? prompts.filter(prompt => values.prompt.includes(prompt.id)) : prompts
   if (values.prompt?.some(id => !selected.some(prompt => prompt.id === id))) throw new Error('Unknown prompt ID. Run with --list to see this suite.')
   const providers = [...new Set(values.provider ?? PROVIDERS)]
@@ -203,7 +206,7 @@ function citationVerdict(checked, matched, unresolved) {
 }
 
 function providerConfig(options) {
-  const isBuyer = options.suite === 'buyer'
+  const isBuyer = options.suite !== 'compliance'
   const env = process.env
   return {
     openai: { key: env.OPENAI_API_KEY || env.LP_OPENAI_API_KEY, model: env.GEO_OPENAI_MODEL || 'gpt-5-search-api', search: 'OpenAI web search', location: 'US', run: askOpenAI },

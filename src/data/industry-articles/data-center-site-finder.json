@@ -514,6 +514,10 @@
         "slug": "powered-land-for-sale-data-center-sites"
        },
        {
+        "slug": "data-center-land-for-sale",
+        "label": "See data center land prices and comparable transactions"
+       },
+       {
         "label": "Five rungs of power evidence",
         "slug": "power-evidence-data-center-site-verification"
        },
@@ -17962,13 +17966,14 @@
   "topic": "Data Centers",
   "kind": "site-listing",
   "region": "United States",
-  "title": "Data Center Land for Sale in the U.S. and How to Verify Power",
-  "description": "Browse U.S. data center development sites by acreage, power and target date. See what to verify before paying for land, with three documented transactions.",
+  "title": "U.S. Data Center Land for Sale: Sites and Price per Acre",
+  "description": "Compare U.S. data center land by acreage, power and timing. See price per acre from closed deals, a signed purchase agreement and a land option.",
   "date": "2026-11-09",
-  "readMinutes": 8,
-  "intro": "Start with the acres your first phase can use and the power the utility can deliver by your required service date. This guide lists U.S. development sites by advertised acreage, power and timing, then uses three documented deals to show which records matter before you pay for an option or commit to a purchase.",
+  "readMinutes": 10,
+  "intro": "Use Invariant to shortlist U.S. data center land by target market, usable acres and the megawatts your first phase needs at the meter. The disclosed prices work out to about $335,000 per acre for Digital Realty’s Astra acquisition near Kansas City and $500,000 per acre for Bitdeer’s expansion tract near Rockdale. Compare those closed deals with the terms on land under option or contract, then check the power records for your specific tract.",
   "takeaways": [
    "Ask for the dated utility record behind each MW figure and the conditions for the first phase.",
+   "Compare closed sales, signed agreements and option prices separately. Use the acres priced in the document and check what rights are included.",
    "Match the deed and survey to the acres your site plan can use, including space and easements for utilities.",
    "Track the option, land closing, development approvals and service delivery as separate dates."
   ],
@@ -18084,6 +18089,115 @@
     ]
    },
    {
+    "id": "i1-what-drives-price-per-acre",
+    "heading": "How much does data center land cost per acre?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Disclosed 2026 closings in this sample work out to about $59,000 per acre for two purchases reported together near Atlanta, $335,000 per acre at Astra Enterprise Park and $500,000 per acre for Bitdeer’s Rockdale expansion tract. Compare deals in the same market with similar rights and a similar stage of utility work before setting a bid.",
+      "sourceIds": [
+       "astra-10q",
+       "bitdeer-acquisition"
+      ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Site and buyer",
+       "Transaction stage and price",
+       "Approximate price per acre",
+       "What the price covers"
+      ],
+      "rows": [
+       [
+        "Atlanta metro, Digital Realty",
+        "Two closed acquisitions, $21 million combined",
+        "$59,000",
+        "355 acres in aggregate. The filing gives neither an individual parcel price nor a utility service date."
+       ],
+       [
+        "Astra Enterprise Park, Digital Realty",
+        "Closed April 30, 2026. $482 million reported in the September 10-Q.",
+        "$335,000",
+        "1,440 acres. The buyer reported a utility agreement for 600 MW by early 2028. The delivery date is prospective."
+       ],
+       [
+        "Rockdale expansion, Bitdeer",
+        "Closed in August 2026. About $100 million cash.",
+        "$500,000",
+        "About 200 acres. The existing 563 MW figure is for the nearby facility. Request a service schedule specific to the new tract."
+       ],
+       [
+        "Stonecroft Boulevard, SCG",
+        "Signed purchase agreement for $166.8 million",
+        "$4 million",
+        "41.7 acres of a larger county property. The county anticipates the price being paid at the April 2027 closing, subject to conditions and extensions."
+       ],
+       [
+        "TerraVolt, Cassia County",
+        "Option at $30,000 per surveyed acre",
+        "$30,000",
+        "Estimated 903.3 acres for the eight cash-option parcels. Two other parcels are covered by a separate option."
+       ]
+      ],
+      "stackOnMobile": true,
+      "rowSourceIds": [
+       [
+        "astra-10q"
+       ],
+       [
+        "astra-10q",
+        "astra-power"
+       ],
+       [
+        "bitdeer-acquisition",
+        "bitdeer-close-month"
+       ],
+       [
+        "stonecroft-county"
+       ],
+       [
+        "cassia-options",
+        "cassia-agreement"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Digital Realty first announced about $475 million for Astra, valuing its operating partnership units using the June 18 share price. The later 10-Q reports $482 million total consideration. The table uses the later figure and the download preserves both dated observations of the same sale.",
+      "sourceIds": [
+       "astra-announcement",
+       "astra-10q"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/data-center-land-prices-us.csv",
+      "format": "CSV",
+      "label": "Download the land prices with acreage, deal stage and source records",
+      "datasetAnchor": "dataset-land-prices"
+     },
+     {
+      "type": "paragraph",
+      "text": "For your own shortlist, calculate both price per deeded acre and price per usable acre. A $20 million contract for 100 deeded acres works out to $200,000 per acre. With a 60-acre usable layout it is about $333,000 per usable acre, before utility contributions, site work and permitting. Use the survey and a layout that accounts for easements, setbacks, stormwater and space for the substation. Check which rights transfer and when an option fee becomes nonrefundable."
+     },
+     {
+      "type": "links",
+      "label": "Estimate your first-phase acreage and facility load",
+      "items": [
+       {
+        "slug": "data-center-land-acres-per-mw",
+        "label": "Size the land for your layout"
+       },
+       {
+        "path": "/calculators/data-center-power-capacity",
+        "label": "Convert IT load to facility MW at the meter"
+       }
+      ]
+     }
+    ]
+   },
+   {
     "id": "i0-raw-land-versus-powered-land",
     "heading": "How to tell what power a parcel can actually get",
     "blocks": [
@@ -18188,25 +18302,6 @@
       "label": "Download the land deal evidence and source sections",
       "path": "/blog/data-center-land-transaction-evidence.json",
       "format": "JSON"
-     }
-    ]
-   },
-   {
-    "id": "i1-what-drives-price-per-acre",
-    "heading": "How to compare data center land prices",
-    "blocks": [
-     {
-      "type": "paragraph",
-      "text": "Compare the same unit of land and the same package of rights. Stonecroft's proposed $4 million per acre applies to the county’s 41.7-acre conveyance. The $30,000 per surveyed acre on the Cassia cash parcels is an option exercise price. Both figures describe specific contract terms before closing.",
-      "sourceIds": [
-       "stonecroft-board",
-       "stonecroft-county",
-       "cassia-agreement"
-      ]
-     },
-     {
-      "type": "paragraph",
-      "text": "Use the purchase price and expected usable acreage for a first comparison. Add the project’s separately priced utility infrastructure, easements, required upgrades, site work and permitting costs. Price later power phases on their own milestones. Confirm which deposits become nonrefundable and what happens when a study, permit or easement falls outside the option period."
      }
     ]
    },
@@ -18524,10 +18619,10 @@
   "faqs": [
    {
     "question": "How much does data center land cost per acre?",
-    "answer": "The price depends on what conveys, the usable acreage and the remaining work. The Stonecroft purchase agreement priced approximately 41.7 acres at $4 million per acre. The Cassia cash option uses $30,000 per surveyed acre. Both figures apply to their specific deal terms.",
+    "answer": "In this 2026 sample, Astra Enterprise Park works out to about $335,000 per acre, based on Digital Realty’s reported consideration of $482 million for approximately 1,440 acres. Bitdeer’s Rockdale expansion tract was about $500,000 per acre, based on approximately $100 million for 200 acres. Compare the acreage, transaction stage and utility rights when using either deal.",
     "sourceIds": [
-     "stonecroft-board",
-     "cassia-agreement"
+     "astra-10q",
+     "bitdeer-acquisition"
     ]
    },
    {
@@ -18655,6 +18750,36 @@
     "url": "https://invariant-ai.com/blog/kentucky-30-mw-greenfield-data-center-site",
     "publisher": "Invariant",
     "linkLabel": "Kentucky property listing"
+   },
+   {
+    "id": "astra-10q",
+    "title": "September 2026 Form 10-Q, development land acquisitions",
+    "url": "https://www.sec.gov/Archives/edgar/data/1494877/000110465926120710/dlr-20260930x10q.htm",
+    "publisher": "Digital Realty"
+   },
+   {
+    "id": "astra-announcement",
+    "title": "June 22, 2026 Astra Enterprise Park acquisition announcement",
+    "url": "https://www.sec.gov/Archives/edgar/data/1494877/000119312526276844/d50837dex991.htm",
+    "publisher": "Digital Realty"
+   },
+   {
+    "id": "astra-power",
+    "title": "July 2026 prospectus supplement, Astra Enterprise Park utility power",
+    "url": "https://investor.digitalrealty.com/static-files/86669298-cf3e-4eb8-91f2-fafeaa9a95f5",
+    "publisher": "Digital Realty"
+   },
+   {
+    "id": "bitdeer-acquisition",
+    "title": "Rockdale land acquisition and Milam County power plans",
+    "url": "https://www.sec.gov/Archives/edgar/data/1899123/000121390026096425/ea030402101ex99-1.htm",
+    "publisher": "Bitdeer"
+   },
+   {
+    "id": "bitdeer-close-month",
+    "title": "September 2026 Form 6-K, August land closing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1899123/000121390026104638/ea030647301ex99-2.htm",
+    "publisher": "Bitdeer"
    }
   ],
   "relatedSlugs": [
@@ -18662,7 +18787,7 @@
    "data-center-site-selection-services",
    "data-center-for-sale"
   ],
-  "updatedDate": "2026-11-22",
+  "updatedDate": "2026-11-23",
   "dataset": {
    "name": "Land control and closing milestones in three U.S. data center deals",
    "description": "Dated source records for the Graham electrical infrastructure sale and separate land deal, the Cassia County parcel options, and the Stonecroft county purchase agreement.",
@@ -18678,7 +18803,26 @@
    ],
    "spatialCoverage": "Texas, Idaho and Virginia, United States",
    "temporalCoverage": "2026-03-17/2026-11-22"
-  }
+  },
+  "additionalDatasets": [
+   {
+    "anchor": "dataset-land-prices",
+    "datePublished": "2026-11-23",
+    "name": "U.S. data center land prices and transaction stages",
+    "description": "Six source observations covering reported closed acquisitions, a purchase agreement and a land option. Includes two disclosures about the same Astra acquisition, the land acreage each amount prices and power or scope notes.",
+    "sourceIds": [
+     "astra-10q",
+     "astra-announcement",
+     "astra-power",
+     "bitdeer-acquisition",
+     "bitdeer-close-month",
+     "stonecroft-county",
+     "cassia-agreement",
+     "cassia-options"
+    ],
+    "spatialCoverage": "United States"
+   }
+  ]
  },
  {
   "slug": "ai-data-center-site",
