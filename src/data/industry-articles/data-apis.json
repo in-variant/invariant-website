@@ -3827,12 +3827,12 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Best commercial property data APIs for insurance underwriting",
-    "description": "Compare commercial insurance prefill, hazard data, and property APIs. See how to verify building identity, roof work, and flood exposure before a quote.",
+    "description": "Compare ten commercial property underwriting data providers. Use seven public checks to test building matches, roof work, historical flood maps and hail evidence.",
     "date": "2026-11-22",
-    "readMinutes": 9,
+    "readMinutes": 10,
     "coverAlt": "Aerial view of Brooklyn Army Terminal, with the small footprint returned by the city’s Building A identifier marked in gold for review.",
     "coverCaption": "The gold outline is the footprint returned by the city building-ID lookup. Aerial imagery from NYS ITS, spring 2024. Tax lot from NYC MapPLUTO 26v2.",
-    "intro": "Start with Cotality for building prefill and reconstruction cost. Evaluate Moody’s CAPE for imagery-derived roof and building attributes, Verisk for commercial underwriting reports, and Guidewire HazardHub for peril and fire-protection inputs. First Street provides modeled flood depth and damage. Ageospatial and Invariant Earth are options for teams that want to inspect the evidence behind property fields. Whatever you buy, test a submission where a single address covers multiple buildings.",
+    "intro": "Start with Cotality for building prefill and reconstruction cost. Evaluate Moody’s CAPE for imagery-derived roof attributes, Verisk for commercial underwriting reports, and Guidewire HazardHub for peril and fire-protection data. First Street provides modeled flood depth and damage. Ageospatial and Invariant Earth are options for teams that want to inspect the evidence behind property fields. Use the trial scorecard below to compare how providers handle shared addresses, roof records, and evidence that changes after the quote date.",
     "takeaways": [
       "Match each line of the statement of values to a building before pulling construction or hazard attributes.",
       "Keep permit issuance, the work it authorizes, and evidence of completion as separate fields.",
@@ -3948,20 +3948,40 @@
       },
       {
         "id": "evaluate-on-your-book",
-        "heading": "Run the trial on your own book",
+        "heading": "How to evaluate an underwriting data API",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Build a small reference set with a single-building property, a campus where buildings share an address, a partial roof replacement, and an unmatched location. Retain the verified references for each. Send the same inputs to every provider and have the reviewing underwriters judge the returned building and evidence before you compare fill rates."
+            "text": "Start with the public scorecard in the underwriting guides. It gives every provider the same four cases and seven checks, with expected handling and links to the evidence. Record the product and version you tested, run the same requests, and keep the original responses. Use Pass, Fail, Needs review, or Unsupported for each check. An API passes a case such as Brooklyn Building A when it makes the uncertainty visible and leaves the affected field unresolved."
           },
           {
-            "type": "list",
+            "type": "links",
+            "label": "Trial materials",
             "items": [
-              "Measure how many submitted lines match the correct building. Count unresolved and incorrect matches separately. A confident match to the wrong building should be visible in the results.",
-              "Score the consequential fields individually, such as confirmed roof work and sprinkler coverage. Require the supporting record and relevant date for fields that change a quote.",
-              "Check how the provider handles corrections at renewal. See whether you can reproduce the inputs visible at the earlier quote date and review the later change.",
-              "Verify how the data can be retained for internal review and whether the license allows disclosure of supporting evidence to your client or carrier."
+              {"slug":"property-underwriting","label":"Get the underwriting API trial scorecard and public references"},
+              {"slug":"ageospatial-alternatives-commercial-roof-underwriting","label":"Replay the Rosemead roof replacement at two decision dates"},
+              {"slug":"fema-flood-zone-history-for-underwriting","label":"Find the FEMA map revision in effect at the decision date"},
+              {"slug":"hail-history-by-address-for-underwriting","label":"Compare Denver hail reports with radar estimates"}
             ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Then run a sample of your own book with a verified single-building control, shared addresses, partially replaced roofs, and unmatched inputs. Include different building uses, size bands and jurisdictions. Score matches against independently verified references. Keep ambiguous cases in the review queue and use them to test how the provider handles uncertainty."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Measure", "How to calculate it"],
+            "rows": [
+              ["Correct building match rate", "Divide verified correct matches by all submitted building lines with an independently verified building. Report wrong matches and unresolved lines separately against the same denominator."],
+              ["Evidence-backed field coverage", "For each requested field, divide the number of eligible trials with a usable value, source, date and correct scope by all trials eligible for that field. Include unsupported results in the denominator and record confirmed errors separately."],
+              ["Review rate", "Divide the number of lines referred to an underwriter by all submitted lines. Measure time from referral to disposition and record API latency separately."],
+              ["Replay at renewal", "Re-run a previous quote using the recorded inputs and date. Count a replay as successful when you can reproduce what the underwriter saw and explain any changes in the later review."]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Set the acceptance criteria before the trial. For fields that change a quote, specify which wrong-building matches or unsupported values require manual review. Confirm you can retain the original evidence and share what the carrier or client needs under the provider’s license."
           },
           {
             "type": "links",
@@ -3981,10 +4001,6 @@
               {
                 "label": "Verify wildfire risk by address and building",
                 "slug": "wildfire-risk-by-address-for-underwriting"
-              },
-              {
-                "label": "Commercial property underwriting guides",
-                "slug": "property-underwriting"
               }
             ]
           }
@@ -4032,8 +4048,8 @@
       {"id":"earth-responses","title":"API responses and field provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
       {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
-    "relatedSlugs": ["best-gis-apis-for-site-selection", "data-center-site-selection-checklist"],
-    "updatedDate": "2026-11-22"
+    "relatedSlugs": ["ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting"],
+    "updatedDate": "2026-11-23"
   },
   {
     "slug": "historical-parcel-boundaries-api",
