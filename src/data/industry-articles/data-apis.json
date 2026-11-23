@@ -1,5 +1,382 @@
 [
   {
+    "slug": "building-permit-data-apis",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Building Permit Data APIs for Commercial Property",
+    "description": "Compare Shovels, West Kite, ATTOM and city permit APIs. Use six Brooklyn permit rows to test project counts, work scope and roof replacement evidence.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
+    "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
+    "intro": "Start with Shovels for searching permit activity, West Kite for permits linked to commercial property and owners, or ATTOM for a property lookup that already uses ATTOM IDs. Check critical findings with the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement.",
+    "takeaways": [
+      "Keep the building, parcel, job filing and work permit IDs. An address match alone can attach work to the wrong structure on a shared lot.",
+      "Record filing, issue, expiration and sign-off dates separately. A work description and a date only answer the question when they describe the right scope and milestone.",
+      "Test your provider on the authorities, years and property types in your portfolio before paying for a national feed."
+    ],
+    "sections": [
+      {
+        "id": "compare-permit-data-apis",
+        "heading": "Which building permit API fits the job?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A portfolio monitoring team needs a way to search across markets and catch new records. A lender or underwriter reviewing one building needs the issuer’s record, the work scope and the status as of the credit or quote date. Use the table to choose what to trial. It describes public documentation reviewed November 23, 2026. The test case below queries NYC directly."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Where to start",
+              "Trial question"
+            ],
+            "rows": [
+              [
+                "Shovels",
+                "Search by geography and date range, with filters for work and property details.",
+                "Can you recover the original permit number and status for commercial work in each target jurisdiction?"
+              ],
+              [
+                "West Kite",
+                "Request permits as part of a commercial property record or search for permits in an area.",
+                "Can you distinguish one building from another when both sit on the same tax lot?"
+              ],
+              [
+                "ATTOM",
+                "Look up building permits within an existing ATTOM property integration.",
+                "Can you identify which event the effective date represents and recover separate dates needed for review?"
+              ],
+              [
+                "Issuing agency",
+                "Look up the work permit, filing and applicable inspection or closeout record.",
+                "Which local systems and work types are covered, and what history does each system expose?"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "shovels"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "attom"
+              ],
+              [
+                "nyc-systems"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant publishes this comparison and the NYC test case. For procurement, give each provider the same sample buildings and compare its returned records with the issuer. Keep the provider’s documented coverage separate from the results you observe in the trial."
+          }
+        ]
+      },
+      {
+        "id": "six-rows-four-permits",
+        "heading": "One Brooklyn tenant fit-out, six rows and four work permits",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried selected filings at 140 58th Street, the Brooklyn Army Terminal campus address. The selected rows share Building Identification Number 3414976 and tax lot 3057780001. The DOB NOW Approved Permits export returned six rows for the three filings below. The rows represent four distinct work permit numbers.",
+            "sourceIds": [
+              "bat",
+              "nyc-permits"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Filing",
+              "Scope and issue date",
+              "Rows and unique work permits"
+            ],
+            "rows": [
+              [
+                "B01440157-I1",
+                "General construction for an eighth-floor interior alteration, issued September 18, 2026.",
+                "1 row, 1 work permit"
+              ],
+              [
+                "B01440157-S1",
+                "Plumbing and sprinkler changes for part of the eighth floor, issued October 15, 2026.",
+                "4 rows, 2 work permits"
+              ],
+              [
+                "B01440157-S2",
+                "Mechanical systems work for the fit-out, issued September 18, 2026.",
+                "1 row, 1 work permit"
+              ]
+            ],
+            "sourceIds": [
+              "nyc-permits"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The plumbing and sprinkler filing repeats each work permit number on two work type rows. Deduplicating by permit number gives four permits. Grouping by filing gives three filings. Keep the six source rows for scope analysis. Count one fit-out here because the related filings and their descriptions link the work. For a portfolio, spot-check the project grouping before you count projects from a shared filing prefix."
+          },
+          {
+            "type": "download",
+            "path": "/blog/building-permit-data-apis.json",
+            "label": "Download the Brooklyn permit and filing records",
+            "format": "JSON"
+          },
+          {
+            "type": "paragraph",
+            "text": "The download includes the exact NYC query URLs, selected source rows, retrieval timestamps and a hash of each returned response. It is a sample of known filing IDs and excludes other work at the Terminal. Repeating the queries later can return updated statuses."
+          }
+        ]
+      },
+      {
+        "id": "roof-work-scope",
+        "heading": "A permit for rooftop equipment can look like a new roof",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A keyword search for roof and replacement can pick up HVAC work. We joined two more DOB NOW job filings to their permit rows using the filing number. The city’s work type and the written scope provide more detail than the word roof alone.",
+            "sourceIds": [
+              "nyc-filings",
+              "nyc-permits"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Filing",
+              "Work scope",
+              "Dates and status in the exports"
+            ],
+            "rows": [
+              [
+                "B00745065-I1",
+                "Replacement of two rooftop HVAC units in their existing locations.",
+                "Permit issued December 6, 2022. The filing shows sign-off on December 27, 2022 and a Letter of Completion issued."
+              ],
+              [
+                "B00791868-I1",
+                "Replacement of rooftop chillers.",
+                "Permit issued October 24, 2022. The selected filing row has no sign-off date."
+              ]
+            ],
+            "sourceIds": [
+              "nyc-filings",
+              "nyc-permits"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a roof-age field, ask for the document that identifies the roof assembly or area replaced, plus evidence of completion. A sign-off on mechanical work closes out a different scope. When an export leaves a sign-off field blank, check the issuer’s full record before classifying the job as open."
+          },
+          {
+            "type": "links",
+            "label": "Underwriting follow-up",
+            "items": [
+              {
+                "slug": "ageospatial-alternatives-commercial-roof-underwriting",
+                "label": "Test a commercial roof replacement claim"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial property underwriting APIs"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "preserve-permit-history",
+        "heading": "Which fields belong in a permit history?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Keep these fields",
+              "Why they matter"
+            ],
+            "rows": [
+              [
+                "Issuing authority, source URL and retrieval timestamp",
+                "Use them to compare a later correction or export against the evidence available for an earlier decision."
+              ],
+              [
+                "Source address, matched building ID and parcel ID",
+                "Check which structure the permit applies to when one tax lot has multiple buildings or addresses."
+              ],
+              [
+                "Project reference, filing ID and work permit number",
+                "Count projects, submissions and permits at their own level. Keep scope lines attached to the permit."
+              ],
+              [
+                "Filed, approved, issued, expired, signed off and occupancy dates",
+                "Retain each milestone and the original status label. Keep the exact source date that supports each conclusion."
+              ],
+              [
+                "Work type, scope text and affected space",
+                "Separate a full roof replacement from an equipment swap and a building conversion from a single tenant alteration."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A current export can report an old issue date and a newer status in the same row. Store dated snapshots or issuer event records when your team needs to replay a decision. Label facts by when the agency says they took effect and when you retrieved them. For lender or insurer reviews, save the exact evidence used with the decision file."
+          },
+          {
+            "type": "paragraph",
+            "text": "For historical New York City work, check both DOB NOW and the older Buildings Information System when the project calls for it. NYC’s main DOB NOW job filings dataset also omits certain work types that have separate feeds. A permit documents the construction scope. Where legal occupancy matters, check the applicable certificate and the spaces it covers.",
+            "sourceIds": [
+              "nyc-systems",
+              "nyc-filings",
+              "nyc-co"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "run-a-vendor-trial",
+        "heading": "Run a trial on buildings you already know",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Include a multi-building parcel, a recent tenant fit-out and a job that predates the current local filing system. Save the issuer records for each.",
+              "Compare the building match, permit IDs and individual milestone dates. Ask how missing records and uncertain address matches are returned.",
+              "Reconcile one multi-trade job. Check whether the API returns rows, permits or projects when it reports a count.",
+              "Test the result you would actually use. For a roof field, ask for the replaced assembly and completion evidence. For legal use, request the occupancy document.",
+              "Confirm update lag, historical versions, bulk access and rights to retain the original evidence in your workflow."
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the property review",
+            "items": [
+              {
+                "slug": "west-kite-alternatives-for-commercial-property-data",
+                "label": "Compare property-data providers with an occupancy case"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace parcel IDs after a split or merger"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Build a commercial lending evidence file"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which API should I use for building permits by address?",
+        "answer": "Trial Shovels for area and date searches, West Kite for permits linked to commercial parcels and owners, or ATTOM for a property lookup within an ATTOM integration. Check the original permit for decision-critical results.",
+        "sourceIds": [
+          "shovels",
+          "west-kite",
+          "attom"
+        ]
+      },
+      {
+        "question": "Why does a building permit search return duplicate rows?",
+        "answer": "An issuer can publish a row per work type or other part of the record. For the Brooklyn fit-out, six rows correspond to four distinct work permit numbers and three filings. Keep those counts separate.",
+        "sourceIds": [
+          "nyc-permits"
+        ]
+      },
+      {
+        "question": "Can I estimate roof replacement date from a permit?",
+        "answer": "Match the permit to the correct building and check that its scope covers the roof assembly or area you are evaluating. Then look for a separate completion or inspection record. Rooftop equipment permits describe a different scope.",
+        "sourceIds": [
+          "nyc-filings"
+        ]
+      },
+      {
+        "question": "Does a building permit establish legal occupancy in NYC?",
+        "answer": "Use the applicable Certificate of Occupancy or Temporary Certificate of Occupancy for legal use and occupancy coverage. Review which floors or spaces it applies to and any expiration or conditions.",
+        "sourceIds": [
+          "nyc-co"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "shovels",
+        "title": "Permit search API reference",
+        "url": "https://docs.shovels.ai/api-reference/permits/search-permits",
+        "publisher": "Shovels"
+      },
+      {
+        "id": "west-kite",
+        "title": "Building permits and property lookup",
+        "url": "https://www.westkite.com/api/permits",
+        "publisher": "West Kite"
+      },
+      {
+        "id": "attom",
+        "title": "Property Building Permits API reference",
+        "url": "https://api.developer.attomdata.com/docs",
+        "publisher": "ATTOM"
+      },
+      {
+        "id": "bat",
+        "title": "Brooklyn Army Terminal address and visitor information",
+        "url": "https://edc.nyc/visit",
+        "publisher": "New York City Economic Development Corporation"
+      },
+      {
+        "id": "nyc-permits",
+        "title": "DOB NOW: Build Approved Permits",
+        "url": "https://data.cityofnewyork.us/d/rbx6-tga4",
+        "publisher": "NYC Department of Buildings"
+      },
+      {
+        "id": "nyc-filings",
+        "title": "DOB NOW: Build Job Application Filings",
+        "url": "https://data.cityofnewyork.us/d/w9ak-ipjd",
+        "publisher": "NYC Department of Buildings"
+      },
+      {
+        "id": "nyc-systems",
+        "title": "Find Building Data",
+        "url": "https://www.nyc.gov/site/buildings/dob/find-building-data.page",
+        "publisher": "NYC Department of Buildings"
+      },
+      {
+        "id": "nyc-co",
+        "title": "Certificate of Occupancy",
+        "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/certificate-of-occupancy.page",
+        "publisher": "NYC Department of Buildings"
+      },
+      {
+        "id": "nys-aerial",
+        "title": "2024 New York State orthoimagery",
+        "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
+        "publisher": "NYS ITS Geospatial Services"
+      }
+    ],
+    "dataset": {
+      "name": "Brooklyn Army Terminal building permit and filing records",
+      "description": "Six NYC DOB NOW permit rows for an eighth-floor tenant fit-out, two rooftop mechanical permits and two related filing rows. The download includes source queries, retrieval dates and distinct permit counts.",
+      "sourceIds": [
+        "nyc-permits",
+        "nyc-filings"
+      ],
+      "spatialCoverage": "Brooklyn Army Terminal, Brooklyn, New York, United States",
+      "temporalCoverage": "2022-10-20/2026-11-23"
+    },
+    "relatedSlugs": [
+      "west-kite-alternatives-for-commercial-property-data",
+      "ageospatial-alternatives-commercial-roof-underwriting"
+    ]
+  },
+  {
     "slug": "zoning-data-apis-for-site-selection",
     "topic": "Data & APIs",
     "title": "Zoning data APIs for U.S. parcels and site selection",
@@ -1060,6 +1437,7 @@
     "title": "Ageospatial alternatives for commercial roof underwriting",
     "description": "Compare Ageospatial, Moody’s, ZestyAI, Verisk and Invariant Earth with a real test for building identity, roof replacement dates and source evidence.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 7,
     "region": "United States",
     "coverAlt": "Aerial view of the Rosemead Public Works warehouse with its county building footprint outlined.",
@@ -1253,6 +1631,10 @@
             "label": "Continue the underwriting review",
             "items": [
               {
+                "slug": "building-permit-data-apis",
+                "label": "Check the scope behind a roof-related permit"
+              },
+              {
                 "slug": "commercial-property-insurance-data-apis",
                 "label": "Compare the broader commercial property insurance APIs"
               },
@@ -1433,6 +1815,7 @@
     "title": "West Kite Alternatives for Commercial Property Data",
     "description": "Compare West Kite, ATTOM, Regrid, and Invariant Earth. Use a 25 Water Street case to test address matching, unit counts, permits, and occupancy history.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-23",
     "readMinutes": 8,
     "coverAlt": "2024 aerial photograph of 25 Water Street in Lower Manhattan with its tax lot outlined and a construction crane on the roof.",
     "coverCaption": "25 Water Street during conversion. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant added the MapPLUTO 26v2 tax lot outline.",
@@ -1644,6 +2027,10 @@
             "type": "links",
             "label": "Related guides",
             "items": [
+              {
+                "slug": "building-permit-data-apis",
+                "label": "Compare building permit APIs with a Brooklyn fit-out"
+              },
               {
                 "label": "Trace changes to parcel boundaries",
                 "slug": "historical-parcel-boundaries-api"

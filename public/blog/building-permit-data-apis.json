@@ -1,0 +1,191 @@
+{
+  "name": "Brooklyn Army Terminal building permit test case",
+  "address": "140 58th Street, Brooklyn, New York",
+  "bin": "3414976",
+  "bbl": "3057780001",
+  "scope": "Selected DOB NOW records on one building ID. This is a point-in-time retrieval of current records for known filing IDs, not a complete permit inventory or a historical status snapshot.",
+  "source": "NYC Department of Buildings via NYC Open Data",
+  "counts_for_fitout": {
+    "permit_rows": 6,
+    "unique_work_permit_numbers": 4,
+    "unique_filing_numbers": 3
+  },
+  "queries": {
+    "rooftop_filings": {
+      "dataset_id": "w9ak-ipjd",
+      "query": "https://data.cityofnewyork.us/resource/w9ak-ipjd.json?%24where=job_filing_number+in%28%27B00745065-I1%27%2C%27B00791868-I1%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cfiling_status%2Cfiling_date%2Capproved_date%2Cfirst_permit_date%2Csignoff_date&%24limit=100&%24order=job_filing_number",
+      "retrieved_at_utc": "2026-11-23T12:33:09+00:00",
+      "response_sha256": "40ed1d07abe60ec99c6d1c00655c5ca06d32c78b654d96d5a9867e6e71d7f81d",
+      "record_count": 2,
+      "rows": [
+        {
+          "job_filing_number": "B00745065-I1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "filing_status": "LOC Issued",
+          "filing_date": "2022-11-29T00:00:00.000",
+          "approved_date": "2022-11-30T11:54:01.000",
+          "first_permit_date": "2022-12-06T00:00:00.000",
+          "signoff_date": "2022-12-27T00:00:00.000"
+        },
+        {
+          "job_filing_number": "B00791868-I1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "filing_status": "Permit Entire",
+          "filing_date": "2022-10-20T00:00:00.000",
+          "approved_date": "2022-10-21T11:42:20.000",
+          "first_permit_date": "2022-10-24T00:00:00.000"
+        }
+      ]
+    },
+    "rooftop_permits": {
+      "dataset_id": "rbx6-tga4",
+      "query": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=job_filing_number+in%28%27B00745065-I1%27%2C%27B00791868-I1%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cwork_permit%2Cwork_type%2Cpermit_status%2Capproved_date%2Cissued_date%2Cexpired_date&%24limit=100&%24order=job_filing_number%2Cwork_permit%2Cwork_type",
+      "retrieved_at_utc": "2026-11-23T12:33:01+00:00",
+      "response_sha256": "dc539ca09927d67a6f0fec55a2db51140ca9605a4f77496f0f777d3a5679ba78",
+      "record_count": 2,
+      "rows": [
+        {
+          "job_filing_number": "B00745065-I1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B00745065-I1-MS",
+          "work_type": "Mechanical Systems",
+          "permit_status": "Signed-off",
+          "approved_date": "2022-11-30T00:00:00.000",
+          "issued_date": "2022-12-06T00:00:00.000",
+          "expired_date": "2022-12-31T05:00:00.000"
+        },
+        {
+          "job_filing_number": "B00791868-I1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B00791868-I1-MS",
+          "work_type": "Mechanical Systems",
+          "permit_status": "Permit Issued",
+          "approved_date": "2022-10-21T00:00:00.000",
+          "issued_date": "2022-10-24T00:00:00.000",
+          "expired_date": "2022-12-31T05:00:00.000"
+        }
+      ]
+    },
+    "fitout_permits": {
+      "dataset_id": "rbx6-tga4",
+      "query": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=job_filing_number+in%28%27B01440157-I1%27%2C%27B01440157-S1%27%2C%27B01440157-S2%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cwork_permit%2Cwork_type%2Cpermit_status%2Capproved_date%2Cissued_date%2Cexpired_date&%24limit=100&%24order=job_filing_number%2Cwork_permit%2Cwork_type",
+      "retrieved_at_utc": "2026-11-23T12:33:02+00:00",
+      "response_sha256": "b50651d0602e6dd814e78c31ce6d8f761f779a8a07fe6e7fa6d313eaa6253879",
+      "record_count": 6,
+      "rows": [
+        {
+          "job_filing_number": "B01440157-I1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-I1-GC",
+          "work_type": "General Construction",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-09-18T00:00:00.000",
+          "expired_date": "2027-06-16T00:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-EW-SP",
+          "work_type": "Plumbing",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2027-04-15T00:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-EW-SP",
+          "work_type": "Sprinklers",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2027-04-15T00:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-PL",
+          "work_type": "Plumbing",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2026-12-04T05:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-PL",
+          "work_type": "Sprinklers",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2026-12-04T05:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S2",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S2-MS",
+          "work_type": "Mechanical Systems",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-08T00:00:00.000",
+          "issued_date": "2026-09-18T00:00:00.000",
+          "expired_date": "2027-06-16T00:00:00.000"
+        }
+      ]
+    }
+  },
+  "editorial_scope_summaries_by_filing": {
+    "B00745065-I1": "Direct replacement of two rooftop HVAC units at their existing locations.",
+    "B00791868-I1": "Replacement of rooftop chillers.",
+    "B01440157-I1": "Eighth-floor interior alterations with existing use, occupancy and egress retained.",
+    "B01440157-S1": "Plumbing and sprinkler changes for a partial eighth-floor tenant fit-out.",
+    "B01440157-S2": "Mechanical systems work for the tenant fit-out."
+  },
+  "notes": [
+    "Work type rows can repeat a work permit number. Preserve them for scope analysis and use distinct work permit numbers for the permit count.",
+    "A missing signoff field is missing from the export. Verify the record in the issuer’s portal before drawing a conclusion about closeout.",
+    "The current status field can change after retrieval. Preserve snapshots and compare dated events when you reconstruct past knowledge."
+  ]
+}
