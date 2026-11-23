@@ -1,0 +1,138 @@
+{
+  "name": "County-level Hurricane Ida claims and payments in OpenFEMA",
+  "retrieved_on": "2026-11-23",
+  "upstream": {
+    "dataset": "OpenFEMA NFIP Redacted Claims v3",
+    "published_dataset_refresh": "2026-11-16T19:24:11.425Z",
+    "catalog": "https://www.fema.gov/api/open/v1/OpenFemaDataSets?%24filter=name+eq+%27NfipClaims%27",
+    "fields": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
+    "terms": "https://www.fema.gov/about/openfema/terms-conditions"
+  },
+  "method": {
+    "universe": "V3 rows whose reported countyCode matches 22095 or 34003 and whose dateOfLoss is August 28 through September 4, 2021, inclusive.",
+    "event_subset": "Rows whose floodEvent label is Hurricane Ida, case-insensitive. The excluded rows in these two samples have blank event labels. The state event codes are retained.",
+    "counts": "Pages ordered by id with 1,000 rows per request. Full row counts matched FEMA metadata and each returned id was unique in its county query. Net building rows with a recorded value above zero are counted separately.",
+    "payment_totals": "Reported payment columns are summed separately in nominal US dollars, preserving full cents. Null payment values are excluded and counted as missing.",
+    "scope": "An aggregate for the reported counties and date window. No address-level or policyholder data are included."
+  },
+  "aggregates": [
+    {
+      "county": "St. John the Baptist Parish, Louisiana",
+      "county_fips": "22095",
+      "as_of": "2026-11-16T00:00:00.000Z",
+      "queries": [
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=0",
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=1000",
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=2000",
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=3000"
+      ],
+      "groups": {
+        "date_window": {
+          "records": 3582,
+          "events": {
+            "Hurricane Ida | LA0421": 3573,
+            "(blank) | (blank)": 9
+          },
+          "positive_net_building_rows": 3233,
+          "totals_usd": {
+            "netBuildingPaymentAmount": "291230556.24",
+            "netContentsPaymentAmount": "82329832.98",
+            "netIccPaymentAmount": "1005000",
+            "amountPaidOnBuildingClaim": "291598181.99",
+            "amountPaidOnContentsClaim": "82352958.29",
+            "amountPaidOnIncreasedCostOfComplianceClaim": "1005000"
+          },
+          "null_by_field": {
+            "netBuildingPaymentAmount": 0,
+            "netContentsPaymentAmount": 0,
+            "netIccPaymentAmount": 0,
+            "amountPaidOnBuildingClaim": 99,
+            "amountPaidOnContentsClaim": 99,
+            "amountPaidOnIncreasedCostOfComplianceClaim": 99
+          }
+        },
+        "ida_tagged": {
+          "records": 3573,
+          "events": {
+            "Hurricane Ida | LA0421": 3573
+          },
+          "positive_net_building_rows": 3227,
+          "totals_usd": {
+            "netBuildingPaymentAmount": "290566776.55",
+            "netContentsPaymentAmount": "82166650.18",
+            "netIccPaymentAmount": "1005000",
+            "amountPaidOnBuildingClaim": "290934402.30",
+            "amountPaidOnContentsClaim": "82189775.49",
+            "amountPaidOnIncreasedCostOfComplianceClaim": "1005000"
+          },
+          "null_by_field": {
+            "netBuildingPaymentAmount": 0,
+            "netContentsPaymentAmount": 0,
+            "netIccPaymentAmount": 0,
+            "amountPaidOnBuildingClaim": 98,
+            "amountPaidOnContentsClaim": 98,
+            "amountPaidOnIncreasedCostOfComplianceClaim": 98
+          }
+        }
+      }
+    },
+    {
+      "county": "Bergen County, New Jersey",
+      "county_fips": "34003",
+      "as_of": "2026-11-16T00:00:00.000Z",
+      "queries": [
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=0",
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=1000"
+      ],
+      "groups": {
+        "date_window": {
+          "records": 1727,
+          "events": {
+            "(blank) | (blank)": 20,
+            "Hurricane Ida | NJ0421": 1707
+          },
+          "positive_net_building_rows": 1521,
+          "totals_usd": {
+            "netBuildingPaymentAmount": "63979368.06",
+            "netContentsPaymentAmount": "13186295.11",
+            "netIccPaymentAmount": "60000",
+            "amountPaidOnBuildingClaim": "64054401.06",
+            "amountPaidOnContentsClaim": "13189721.38",
+            "amountPaidOnIncreasedCostOfComplianceClaim": "60000"
+          },
+          "null_by_field": {
+            "netBuildingPaymentAmount": 0,
+            "netContentsPaymentAmount": 0,
+            "netIccPaymentAmount": 0,
+            "amountPaidOnBuildingClaim": 65,
+            "amountPaidOnContentsClaim": 65,
+            "amountPaidOnIncreasedCostOfComplianceClaim": 65
+          }
+        },
+        "ida_tagged": {
+          "records": 1707,
+          "events": {
+            "Hurricane Ida | NJ0421": 1707
+          },
+          "positive_net_building_rows": 1515,
+          "totals_usd": {
+            "netBuildingPaymentAmount": "63775549.95",
+            "netContentsPaymentAmount": "13171015.42",
+            "netIccPaymentAmount": "60000",
+            "amountPaidOnBuildingClaim": "63850582.95",
+            "amountPaidOnContentsClaim": "13174441.69",
+            "amountPaidOnIncreasedCostOfComplianceClaim": "60000"
+          },
+          "null_by_field": {
+            "netBuildingPaymentAmount": 0,
+            "netContentsPaymentAmount": 0,
+            "netIccPaymentAmount": 0,
+            "amountPaidOnBuildingClaim": 61,
+            "amountPaidOnContentsClaim": 61,
+            "amountPaidOnIncreasedCostOfComplianceClaim": 61
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,5 +1,266 @@
 [
   {
+    "slug": "nfip-flood-claims-data-api",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "FEMA Flood Claims Data API: NFIP v3 and County-Level Losses",
+    "description": "Use OpenFEMA’s current NFIP claims API. Compare Hurricane Ida records and net flood payments in two counties and download the reproducible totals.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Hurricane Ida’s clouds and eye seen from the International Space Station, with the station’s robotic arm in the foreground.",
+    "coverCaption": "Hurricane Ida seen from the International Space Station. Photograph from NASA.",
+    "intro": "Use Invariant Earth to check the FEMA flood map at a U.S. site, then use OpenFEMA’s NFIP Redacted Claims v3 to study payment history at county scale. In FEMA’s November 2026 extract, rows tagged to Hurricane Ida in the period we checked sum to about $290.6 million in net building payments in St. John the Baptist Parish, Louisiana, and $63.8 million in Bergen County, New Jersey. The totals describe payments in the federal insurance program and the same storm has a different event code in each state.",
+    "takeaways": [
+      "Use the current endpoint, /api/open/v3/NfipClaims. We tested it on November 23, 2026 and received a valid response. The old FimaNfipClaims v2 endpoint returned 404.",
+      "For event analysis, use the loss date, reported county code and storm designation together. Keep rows with blank event tags in a separate count.",
+      "Keep building, contents and Increased Cost of Compliance payments in separate fields. Retain the data vintage and use the published county field for geography."
+    ],
+    "sections": [
+      {
+        "id": "nfip-claims-v3-endpoint",
+        "heading": "Where do I get FEMA flood insurance claims data?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The live endpoint is https://www.fema.gov/api/open/v3/NfipClaims. Start with countyCode, dateOfLoss, floodEvent, eventDesignationNumber and netBuildingPaymentAmount. Request asOfDate with the data. The OpenFEMA catalog reports the refresh date separately and describes a monthly publication with a lag behind the system of record.",
+            "sourceIds": [
+              "catalog",
+              "api",
+              "fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For reproducible totals, filter by the Census county FIPS code and use an inclusive start and exclusive end date. Request a total count with $inlinecount, sort by id and fetch the remaining pages. Check for duplicate record IDs and confirm that the page counts match FEMA’s reported total in a consistent extract.",
+            "sourceIds": [
+              "st-john",
+              "bergen"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hurricane-ida-claims-by-county",
+        "heading": "What did NFIP pay after Hurricane Ida in two counties?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The National Hurricane Center documents Ida’s Louisiana landfall and later flooding in New Jersey. We selected loss dates from August 28 through September 4, 2021, and counted rows tagged Hurricane Ida within that window. All matching rows in these samples show an asOfDate of November 16, 2026. Amounts in the table are net payments after recovery, rounded to the nearest thousand dollars.",
+            "sourceIds": [
+              "ida",
+              "fields",
+              "st-john",
+              "bergen"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Reported county",
+              "Ida records and event code",
+              "Net building payments",
+              "Net contents payments"
+            ],
+            "rows": [
+              [
+                "St. John the Baptist Parish, Louisiana",
+                "3,573 rows · LA0421",
+                "$290,567,000",
+                "$82,167,000"
+              ],
+              [
+                "Bergen County, New Jersey",
+                "1,707 rows · NJ0421",
+                "$63,776,000",
+                "$13,171,000"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "st-john"
+              ],
+              [
+                "bergen"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "A date-only filter returned nine more rows in the Louisiana parish and twenty more in Bergen County. Those rows carried blank event labels in this extract. The benchmark preserves their contribution to the window total separately. There were 3,227 and 1,515 Ida-tagged rows with a positive net building payment, respectively. Use that count when your question is how many records show a positive building payment.",
+            "sourceIds": [
+              "st-john",
+              "bergen"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/nfip-flood-claims-data-api.json",
+            "format": "JSON",
+            "label": "Download county totals, exact API queries and calculation notes"
+          }
+        ]
+      },
+      {
+        "id": "use-claims-aggregates",
+        "heading": "How should a risk team interpret those totals?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The NFIP series reflects losses reported to the federal program. The amount paid depends on the properties that were insured, claims made, and coverage and payment terms. A county payment total answers a different question from economic damage or the number of buildings that flooded. To compare areas across years, carry the reporting vintage, insurance participation and the geography along with the result.",
+            "sourceIds": [
+              "catalog",
+              "fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For county reporting, use countyCode rather than assigning records geographically from rounded coordinates. FEMA intentionally reduces coordinate precision for privacy. Use the appropriate flood map edition or modeled hazard evidence to assess the footprint of a particular building. Invariant Earth publishes point-level FEMA fields with their source and vintage. The map and claims aggregate belong in separate measures.",
+            "sourceIds": [
+              "fields",
+              "terms",
+              "earth"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related flood evidence",
+            "items": [
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Compare FEMA zones, modeled depths and observed flood marks"
+              },
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Find the flood map in effect on a quote or review date"
+              },
+              {
+                "slug": "building-footprint-data-apis",
+                "label": "Check the building footprint before applying a hazard result"
+              },
+              {
+                "slug": "property-underwriting",
+                "label": "Open the property underwriting guide collection"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What replaced the FEMA FimaNfipClaims v2 API?",
+        "answer": "Use OpenFEMA’s v3 NfipClaims resource at https://www.fema.gov/api/open/v3/NfipClaims. The resource name changed as well as the version in the path.",
+        "sourceIds": [
+          "catalog",
+          "api"
+        ]
+      },
+      {
+        "question": "Can I look up a building’s claim history by address in the public file?",
+        "answer": "The public file is redacted. FEMA rounds latitude and longitude to one decimal place for privacy and recommends using its published county and state fields for aggregation.",
+        "sourceIds": [
+          "fields",
+          "terms"
+        ]
+      },
+      {
+        "question": "What is the difference between gross and net building payment?",
+        "answer": "OpenFEMA describes netBuildingPaymentAmount as amountPaidOnBuildingClaim less recoveries. Keep the field name with the total and distinguish it from payments for contents or Increased Cost of Compliance.",
+        "sourceIds": [
+          "fields"
+        ]
+      },
+      {
+        "question": "How do I count flood claims tied to the same hurricane in different states?",
+        "answer": "Use the reported storm name and loss date window, then check the event designation in each state. In these Ida queries FEMA used LA0421 and NJ0421. Report rows with blank codes separately.",
+        "sourceIds": [
+          "fields",
+          "st-john",
+          "bergen"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "catalog",
+        "title": "NFIP Redacted Claims dataset metadata and current endpoint",
+        "url": "https://www.fema.gov/api/open/v1/OpenFemaDataSets?%24filter=name+eq+%27NfipClaims%27",
+        "publisher": "OpenFEMA",
+        "linkLabel": "Dataset catalog"
+      },
+      {
+        "id": "fields",
+        "title": "NFIP Redacted Claims v3 field definitions",
+        "url": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
+        "publisher": "OpenFEMA",
+        "linkLabel": "FEMA field definitions"
+      },
+      {
+        "id": "api",
+        "title": "Current v3 endpoint with a one-row response",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24top=1&%24select=asOfDate",
+        "publisher": "OpenFEMA",
+        "linkLabel": "Live v3 API"
+      },
+      {
+        "id": "st-john",
+        "title": "St. John the Baptist Parish query for August 28 through September 4, 2021",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=0",
+        "publisher": "OpenFEMA",
+        "linkLabel": "Louisiana query"
+      },
+      {
+        "id": "bergen",
+        "title": "Bergen County query for August 28 through September 4, 2021",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24top=1000&%24inlinecount=allpages&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CdateOfLoss%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnetIccPaymentAmount%2CamountPaidOnBuildingClaim%2CamountPaidOnContentsClaim%2CamountPaidOnIncreasedCostOfComplianceClaim&%24orderby=id+asc&%24skip=0",
+        "publisher": "OpenFEMA",
+        "linkLabel": "New Jersey query"
+      },
+      {
+        "id": "ida",
+        "title": "Hurricane Ida tropical cyclone report",
+        "url": "https://www.nhc.noaa.gov/data/tcr/AL092021_Ida.pdf",
+        "publisher": "NOAA National Hurricane Center"
+      },
+      {
+        "id": "terms",
+        "title": "OpenFEMA terms and citation guidance",
+        "url": "https://www.fema.gov/about/openfema/terms-conditions",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "nasa-image",
+        "title": "Hurricane Ida from the International Space Station",
+        "url": "https://www.nasa.gov/image-article/hurricane-ida-makes-landfall-louisiana/",
+        "publisher": "NASA"
+      },
+      {
+        "id": "earth",
+        "title": "Invariant Earth data responses and vintages",
+        "url": "https://docs.invariant-ai.com/responses",
+        "publisher": "Invariant Earth"
+      }
+    ],
+    "dataset": {
+      "name": "County-level Hurricane Ida claims and payments in OpenFEMA",
+      "description": "Aggregate results for two county-code queries in OpenFEMA NFIP Claims v3. Includes Hurricane Ida and full loss-date windows, counts, net payments, source vintage and replayable paging queries.",
+      "sourceIds": [
+        "catalog",
+        "fields",
+        "st-john",
+        "bergen"
+      ],
+      "spatialCoverage": "St. John the Baptist Parish, Louisiana, and Bergen County, New Jersey, United States",
+      "temporalCoverage": "2021-08-28/2021-09-04"
+    },
+    "relatedSlugs": [
+      "best-flood-risk-data-apis",
+      "fema-flood-zone-history-for-underwriting",
+      "commercial-property-insurance-data-apis"
+    ]
+  },
+  {
     "slug": "building-footprint-data-apis",
     "topic": "Data & APIs",
     "region": "United States",
@@ -5795,6 +6056,10 @@
             "type": "links",
             "label": "Map history and property underwriting",
             "items": [
+              {
+                "slug": "nfip-flood-claims-data-api",
+                "label": "Compare what NFIP paid in two counties after Hurricane Ida"
+              },
               {
                 "slug": "fema-flood-zone-history-for-underwriting",
                 "label": "Verify a FEMA flood map as of a past underwriting decision"
