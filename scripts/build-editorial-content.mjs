@@ -89,7 +89,7 @@ for (const article of articles) {
     const { sourceIds, ...details } = article.dataset
     const sources = sourceIds?.map(id => article.sources.find(source => source.id === id)?.url)
     const downloads = article.sections.flatMap(section => section.blocks)
-      .filter(block => block.type === 'download')
+      .filter(block => block.type === 'download' && block.includeInDataset !== false)
       .map(({ label, path, format }) => ({ label, path, format }))
     const descriptionLength = details.description?.trim().length ?? 0
     if (!details.name?.trim() || descriptionLength < 50 || descriptionLength > 5000 || !sources?.length || sources.includes(undefined)) {
