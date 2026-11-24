@@ -1,5 +1,321 @@
 [
   {
+    "slug": "parcel-number-lookup-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find a Parcel Number (APN) by Address",
+    "description": "Find the assessor parcel number for a U.S. street address. Verify the tax parcel on a map, keep leading zeros, and run the same check by API.",
+    "date": "2026-11-23",
+    "readMinutes": 5,
+    "coverAlt": "Map with city address points inside two neighboring San Francisco parcels. Asian Art Museum is parcel 0353001 and Main Library is parcel 0354001.",
+    "coverCaption": "Civic Center, San Francisco. Dots mark city address points. Outlines show San Francisco Planning’s mapped base parcels.",
+    "intro": "To find a parcel number by address, search the local assessor’s property portal or parcel map using the street address. Open the match and copy the full assessor parcel number (APN), including leading zeros. Check that the map highlights the property you mean. Save the county or equivalent jurisdiction with the number, since parcel identifiers are assigned locally.",
+    "takeaways": [
+      "Search the physical property address. Include the unit when the record you need is for a specific condo.",
+      "Keep the APN as text. In San Francisco, lot 001 appears in many blocks, so the complete number includes the block.",
+      "For a portfolio, verify the address point, parcel match, and source date before joining tax, hazard, or permit records."
+    ],
+    "sections": [
+      {
+        "id": "county-lookup",
+        "heading": "Start with the assessor or local parcel map",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Identify the assessor’s jurisdiction. A mailing city or ZIP can cover properties in more than one county.",
+              "Search the assessor or county GIS portal by street address. Start without the unit to locate the building and add it to check a separately assessed condo.",
+              "Compare the returned address and parcel on the map. For vacant land, start from a verified map point or the parcel reference in the listing, deed, or assessor record.",
+              "Store the full number as text along with the jurisdiction, source link, and date you checked it. Confirm any formatting changes against the assessor’s record."
+            ],
+            "sourceIds": [
+              "sf-guide",
+              "parcel-standard"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "larkin-street",
+        "heading": "Two addresses on Larkin Street, two different APNs",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "San Francisco’s Enterprise Addressing System returned one address point for each of these Civic Center properties. We checked each number against the city’s active parcel records and intersected each address point with the Planning Department’s base parcel layer. Each point matched one mapped parcel, and the number agreed with the address record.",
+            "sourceIds": [
+              "address-query",
+              "active-query",
+              "planning-layer"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Property",
+              "Block",
+              "Lot",
+              "Full APN"
+            ],
+            "rows": [
+              [
+                "Main Library, 100 Larkin St",
+                "0354",
+                "001",
+                "0354001"
+              ],
+              [
+                "Asian Art Museum, 200 Larkin St",
+                "0353",
+                "001",
+                "0353001"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "library",
+                "library-match"
+              ],
+              [
+                "block-map",
+                "museum-match"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The street name, ZIP code, and lot number are the same. The block changes across Fulton Street. A spreadsheet import that drops the leading zero, or a join on lot 001 alone, breaks the match to the full number published in the city records.",
+            "sourceIds": [
+              "address-query",
+              "block-map",
+              "parcel-standard"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/parcel-number-lookup-by-address.json",
+            "format": "JSON",
+            "label": "Download the two matches and exact queries"
+          },
+          {
+            "type": "download",
+            "path": "/blog/parcel-number-lookup-by-address.geojson",
+            "format": "GeoJSON",
+            "label": "Download the address points and parcel geometries"
+          }
+        ]
+      },
+      {
+        "id": "which-parcel",
+        "heading": "Check which parcel the decision is about",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Situation",
+              "What to confirm"
+            ],
+            "rows": [
+              [
+                "Condo or stacked parcel",
+                "Use the unit’s assessment record for taxes or collateral. Keep the base parcel for a ground-level map check, and record the link between them."
+              ],
+              [
+                "Several buildings or lots at one address",
+                "Compare the site plan or property schedule with the parcel map. Keep a row for each affected parcel and record which buildings it covers."
+              ],
+              [
+                "Old permit, deed, or assessment",
+                "Check the parcel as of the document date. Trace any splits, mergers, or renumbering before joining it to the current map."
+              ],
+              [
+                "Mapped line near a proposed improvement",
+                "Use the assessor map for identification. Review the recorded map, legal description, or survey to establish the boundary needed for the decision."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "parcel-standard"
+              ],
+              [
+                "planning-layer"
+              ],
+              [
+                "parcel-history"
+              ],
+              [
+                "surveyor"
+              ]
+            ],
+            "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "api-lookup",
+        "heading": "Look up parcels for a list of addresses",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to geocode each address and enrich the verified coordinate with its containing parcel. Keep the original address, normalized address, match type, jurisdiction, and source metadata with the returned APN. Route approximate matches, boundary points, and records with no parcel result to manual review. The API walkthrough includes a Python example and shows how to request county acreage and mapped floodplain overlap where the sources support those fields.",
+            "sourceIds": [
+              "api-workflow"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related property workflows",
+            "items": [
+              {
+                "label": "Compare parcel data APIs on condos and lot changes",
+                "slug": "regrid-alternatives-parcel-data-apis"
+              },
+              {
+                "label": "Trace historical parcel boundaries",
+                "slug": "historical-parcel-boundaries-api"
+              },
+              {
+                "label": "Check earthquake hazard for the same library address",
+                "slug": "earthquake-risk-by-address-for-underwriting"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is an assessor parcel number?",
+        "answer": "An assessor parcel number, or APN, identifies a parcel in the local property records. Local offices may call it a parcel ID, tax parcel number, or block and lot. Save the jurisdiction with the identifier because formatting and assignment rules vary.",
+        "sourceIds": [
+          "parcel-standard",
+          "sf-guide"
+        ]
+      },
+      {
+        "question": "Can one street address have more than one parcel number?",
+        "answer": "Yes. A building can contain separately assessed condo units, and a campus can span several lots. Read the property or assessment records for the unit or site assembly you need. The ground-level map is a starting point.",
+        "sourceIds": [
+          "parcel-standard",
+          "planning-layer"
+        ]
+      },
+      {
+        "question": "Is the APN the same as a legal description?",
+        "answer": "The APN is a reference used to find property records. To establish the extent of a transfer or the legal boundary, review the recorded deed, subdivision or parcel map, and survey as appropriate.",
+        "sourceIds": [
+          "surveyor",
+          "block-map"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "sf-guide",
+        "title": "General Public User Guide, search by property address or block and lot",
+        "url": "https://media.api.sf.gov/documents/General_Public_User_Guide_Final_12.19.23_8.pdf",
+        "publisher": "San Francisco Office of the Assessor-Recorder",
+        "linkLabel": "Assessor lookup guide"
+      },
+      {
+        "id": "parcel-standard",
+        "title": "City parcel identifiers and base versus vertical lots",
+        "url": "https://sfdigitalservices.gitbook.io/data-standards-guide/standard-reference-data/basemap/parcels",
+        "publisher": "San Francisco Digital Services",
+        "linkLabel": "City parcel standard"
+      },
+      {
+        "id": "address-query",
+        "title": "Exact Enterprise Addressing System query for 100 and 200 Larkin Street",
+        "url": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Cblock%2Clot%2Cparcel_number%2Clongitude%2Clatitude%2Czip_code%2Cdata_as_of%2Cunit_number&%24where=address_number+in+%28100%2C200%29+and+street_name+%3D+%27LARKIN%27+and+street_type+%3D+%27ST%27&%24order=address%2Ceas_fullid",
+        "publisher": "DataSF",
+        "linkLabel": "Two city address rows"
+      },
+      {
+        "id": "active-query",
+        "title": "Current recorded parcel rows and geometries for 0353001 and 0354001",
+        "url": "https://data.sf.gov/resource/acdm-wktn.json?%24select=mapblklot%2Cblklot%2Cblock_num%2Clot_num%2Cactive%2Cdata_as_of%2Cshape&%24where=blklot+IN+%28%270354001%27%2C%270353001%27%29+AND+active&%24order=blklot",
+        "publisher": "DataSF",
+        "linkLabel": "Two active parcel rows"
+      },
+      {
+        "id": "planning-layer",
+        "title": "Parcels - MapBlockLot, layer 24",
+        "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "Planning parcel layer"
+      },
+      {
+        "id": "library",
+        "title": "Main Library street address",
+        "url": "https://sfpl.org/contact-us",
+        "publisher": "San Francisco Public Library",
+        "linkLabel": "Library address"
+      },
+      {
+        "id": "library-match",
+        "title": "Spatial intersect for the 100 Larkin Street address point",
+        "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41632622023333%2C37.779054193871154&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "Library point query"
+      },
+      {
+        "id": "museum-match",
+        "title": "Spatial intersect for the 200 Larkin Street address point",
+        "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41664267812143%2C37.780149775275625&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "Museum point query"
+      },
+      {
+        "id": "block-map",
+        "title": "200 Larkin Street case report, attachment with assessor block map for blocks 353 and 354",
+        "url": "https://commissions.sfplanning.org/hpcpackets/2015-015229COA_200LarkinSt_AsianArtMuseum.pdf",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "Assessor block map"
+      },
+      {
+        "id": "parcel-history",
+        "title": "Department of Public Works Active Parcel History",
+        "url": "https://data.sf.gov/d/6df5-4k8u",
+        "publisher": "DataSF",
+        "linkLabel": "Parcel history"
+      },
+      {
+        "id": "surveyor",
+        "title": "Subdivisions and Mapping, Office of the City and County Surveyor",
+        "url": "https://sfpublicworks.org/services/citysurveyor",
+        "publisher": "San Francisco Public Works",
+        "linkLabel": "Recorded maps and survey records"
+      },
+      {
+        "id": "api-workflow",
+        "title": "Look up a parcel by address with Geocode and Enrich",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Run the address-to-APN example"
+      }
+    ],
+    "relatedSlugs": [
+      "regrid-alternatives-parcel-data-apis",
+      "historical-parcel-boundaries-api",
+      "building-footprint-data-apis",
+      "earthquake-risk-by-address-for-underwriting"
+    ],
+    "dataset": {
+      "name": "San Francisco Civic Center address points and active parcel matches",
+      "description": "Two exact city address rows, two active parcel geometries, and independent Planning layer point intersections for 100 and 200 Larkin Street.",
+      "sourceIds": [
+        "address-query",
+        "active-query",
+        "planning-layer",
+        "library-match",
+        "museum-match",
+        "parcel-standard"
+      ],
+      "spatialCoverage": "Civic Center, San Francisco, California, United States"
+    }
+  },
+  {
     "slug": "building-energy-benchmarking-data-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -960,7 +1276,8 @@
       "commercial-property-insurance-data-apis",
       "hail-history-by-address-for-underwriting",
       "fema-flood-zone-history-for-underwriting",
-      "building-violations-by-address"
+      "building-violations-by-address",
+      "parcel-number-lookup-by-address"
     ],
     "dataset": {
       "name": "San Francisco address point liquefaction checks and USGS seismic design cases",
@@ -16338,7 +16655,7 @@
       {"id":"earth-fields","title":"Public Invariant Earth field catalog","url":"https://api.invariant-ai.com/v1/meta/fields","publisher":"Invariant Earth catalog"},
       {"id":"earth-provenance","title":"Source records and field response provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"}
     ],
-    "relatedSlugs": ["best-gis-apis-for-site-selection", "commercial-property-insurance-data-apis"]
+    "relatedSlugs": ["best-gis-apis-for-site-selection", "commercial-property-insurance-data-apis", "parcel-number-lookup-by-address"]
   },
   {
     "slug": "commercial-property-ownership-data-apis",
@@ -18976,7 +19293,8 @@
     "relatedSlugs": [
       "historical-parcel-boundaries-api",
       "best-gis-apis-for-site-selection",
-      "commercial-real-estate-data-apis-for-lenders"
+      "commercial-real-estate-data-apis-for-lenders",
+      "parcel-number-lookup-by-address"
     ],
     "updatedDate": "2026-11-22"
   },

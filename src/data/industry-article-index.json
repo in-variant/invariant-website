@@ -1,5 +1,72 @@
 [
   {
+    "slug": "parcel-number-lookup-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find a Parcel Number (APN) by Address",
+    "summary": "Find the assessor parcel number for a U.S. street address. Verify the tax parcel on a map, keep leading zeros, and run the same check by API.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/parcel-number-lookup-by-address.webp?v=e12dbb56",
+    "dataset": {
+      "name": "San Francisco Civic Center address points and active parcel matches",
+      "description": "Two exact city address rows, two active parcel geometries, and independent Planning layer point intersections for 100 and 200 Larkin Street.",
+      "spatialCoverage": "Civic Center, San Francisco, California, United States",
+      "sources": [
+        "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Cblock%2Clot%2Cparcel_number%2Clongitude%2Clatitude%2Czip_code%2Cdata_as_of%2Cunit_number&%24where=address_number+in+%28100%2C200%29+and+street_name+%3D+%27LARKIN%27+and+street_type+%3D+%27ST%27&%24order=address%2Ceas_fullid",
+        "https://data.sf.gov/resource/acdm-wktn.json?%24select=mapblklot%2Cblklot%2Cblock_num%2Clot_num%2Cactive%2Cdata_as_of%2Cshape&%24where=blklot+IN+%28%270354001%27%2C%270353001%27%29+AND+active&%24order=blklot",
+        "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24",
+        "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41632622023333%2C37.779054193871154&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson",
+        "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41664267812143%2C37.780149775275625&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson",
+        "https://sfdigitalservices.gitbook.io/data-standards-guide/standard-reference-data/basemap/parcels"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Exact Enterprise Addressing System query for 100 and 200 Larkin Street",
+          "publisher": "DataSF",
+          "url": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Cblock%2Clot%2Cparcel_number%2Clongitude%2Clatitude%2Czip_code%2Cdata_as_of%2Cunit_number&%24where=address_number+in+%28100%2C200%29+and+street_name+%3D+%27LARKIN%27+and+street_type+%3D+%27ST%27&%24order=address%2Ceas_fullid"
+        },
+        {
+          "title": "Current recorded parcel rows and geometries for 0353001 and 0354001",
+          "publisher": "DataSF",
+          "url": "https://data.sf.gov/resource/acdm-wktn.json?%24select=mapblklot%2Cblklot%2Cblock_num%2Clot_num%2Cactive%2Cdata_as_of%2Cshape&%24where=blklot+IN+%28%270354001%27%2C%270353001%27%29+AND+active&%24order=blklot"
+        },
+        {
+          "title": "Parcels - MapBlockLot, layer 24",
+          "publisher": "San Francisco Planning",
+          "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24"
+        },
+        {
+          "title": "Spatial intersect for the 100 Larkin Street address point",
+          "publisher": "San Francisco Planning",
+          "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41632622023333%2C37.779054193871154&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson"
+        },
+        {
+          "title": "Spatial intersect for the 200 Larkin Street address point",
+          "publisher": "San Francisco Planning",
+          "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41664267812143%2C37.780149775275625&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson"
+        },
+        {
+          "title": "City parcel identifiers and base versus vertical lots",
+          "publisher": "San Francisco Digital Services",
+          "url": "https://sfdigitalservices.gitbook.io/data-standards-guide/standard-reference-data/basemap/parcels"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the two matches and exact queries",
+          "path": "/blog/parcel-number-lookup-by-address.json",
+          "format": "JSON"
+        },
+        {
+          "label": "Download the address points and parcel geometries",
+          "path": "/blog/parcel-number-lookup-by-address.geojson",
+          "format": "GeoJSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "building-energy-benchmarking-data-by-address",
     "topic": "Data & APIs",
     "title": "Building Energy Benchmarking Data by Address",

@@ -1,0 +1,69 @@
+{
+  "name": "Two Larkin Street address-to-parcel matches",
+  "checked_at": "2026-11-23T22:16:49-08:00",
+  "municipality": "City and County of San Francisco",
+  "sources": {
+    "city_address_records": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Cblock%2Clot%2Cparcel_number%2Clongitude%2Clatitude%2Czip_code%2Cdata_as_of%2Cunit_number&%24where=address_number+in+%28100%2C200%29+and+street_name+%3D+%27LARKIN%27+and+street_type+%3D+%27ST%27&%24order=address%2Ceas_fullid",
+    "active_city_parcels": "https://data.sf.gov/resource/acdm-wktn.json?%24select=mapblklot%2Cblklot%2Cblock_num%2Clot_num%2Cactive%2Cdata_as_of%2Cshape&%24where=blklot+IN+%28%270354001%27%2C%270353001%27%29+AND+active&%24order=blklot",
+    "planning_layer_boundary_check": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?where=mapblklot+IN+%28%270354001%27%2C%270353001%27%29&outFields=mapblklot%2Cblock_num%2Clot_num&f=geojson&outSR=4326",
+    "city_parcel_reference": "https://sfdigitalservices.gitbook.io/data-standards-guide/standard-reference-data/basemap/parcels"
+  },
+  "method": "Exact street address with no unit, city APN lookup, and independent intersection of the city address point against the SF Planning base parcel layer. The address point also falls inside the corresponding DataSF active parcel geometry.",
+  "matches": [
+    {
+      "place": "Main Library",
+      "address_record": {
+        "eas_fullid": "282045-491245-314862",
+        "address": "100 LARKIN ST",
+        "block": "0354",
+        "lot": "001",
+        "parcel_number": "0354001",
+        "longitude": "-122.41632622023333",
+        "latitude": "37.779054193871154",
+        "zip_code": "94102",
+        "data_as_of": "2026-11-23T18:01:14.000"
+      },
+      "active_parcel_record": {
+        "mapblklot": "0354001",
+        "blklot": "0354001",
+        "block_num": "0354",
+        "lot_num": "001",
+        "active": true,
+        "data_as_of": "2026-10-01T03:56:00.000"
+      },
+      "planning_layer_point_query": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41632622023333%2C37.779054193871154&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson",
+      "planning_layer_returned_mapblklots": [
+        "0354001"
+      ],
+      "datasf_parcel_contains_address_point": true
+    },
+    {
+      "place": "Asian Art Museum",
+      "address_record": {
+        "eas_fullid": "453314-674072-499891",
+        "address": "200 LARKIN ST",
+        "block": "0353",
+        "lot": "001",
+        "parcel_number": "0353001",
+        "longitude": "-122.41664267812143",
+        "latitude": "37.780149775275625",
+        "zip_code": "94102",
+        "data_as_of": "2026-11-23T18:01:14.000"
+      },
+      "active_parcel_record": {
+        "mapblklot": "0353001",
+        "blklot": "0353001",
+        "block_num": "0353",
+        "lot_num": "001",
+        "active": true,
+        "data_as_of": "2026-10-01T03:56:00.000"
+      },
+      "planning_layer_point_query": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/24/query?geometry=-122.41664267812143%2C37.780149775275625&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=mapblklot%2Cblock_num%2Clot_num&returnGeometry=false&f=geojson",
+      "planning_layer_returned_mapblklots": [
+        "0353001"
+      ],
+      "datasf_parcel_contains_address_point": true
+    }
+  ],
+  "limits": "Two public buildings. The spatial test is a GIS cross-check. Results do not establish ownership, legal boundaries, or condominium unit assignment."
+}
