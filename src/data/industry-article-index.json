@@ -2840,11 +2840,11 @@
     "slug": "best-gis-apis-for-site-selection",
     "topic": "Data & APIs",
     "title": "Best GIS APIs for U.S. site selection",
-    "summary": "Compare GIS APIs for parcels, zoning, flood exposure, and power screening. Test the difference between a location pin and a parcel with a real site.",
+    "summary": "Compare GIS APIs for U.S. site selection. Run five requests against three documented sites to test parcel matching, flood overlap and evidence quality.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/best-gis-apis-for-site-selection.webp?v=46c73acd",
     "dataset": {
       "name": "Brooklyn Army Terminal flood-zone overlay",
@@ -2873,7 +2873,64 @@
           "format": "GeoJSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-gis-api-trial",
+        "name": "GIS API trial for parcel identity, off-parcel points and flood overlap",
+        "description": "Five API request bodies checked against Invariant Earth’s live schema and field catalogs. Includes three independent city and FEMA references for parcel identity, a shoreline boundary mismatch and flood overlap.",
+        "datePublished": "2026-11-24",
+        "spatialCoverage": "Brooklyn, New York, and San Francisco, California, United States",
+        "temporalCoverage": "2026-11-22/2026-11-24",
+        "sources": [
+          "https://api.invariant-ai.com/v1/meta/fields",
+          "https://api.invariant-ai.com/v1/enrich/fields",
+          "https://api.invariant-ai.com/openapi.json",
+          "https://invariant-ai.com/blog/best-gis-apis-for-site-selection.geojson",
+          "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json",
+          "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Public API field catalog",
+            "publisher": "Invariant Earth catalog",
+            "url": "https://api.invariant-ai.com/v1/meta/fields"
+          },
+          {
+            "title": "Live parcel enrichment fields and presets",
+            "publisher": "Invariant Earth",
+            "url": "https://api.invariant-ai.com/v1/enrich/fields"
+          },
+          {
+            "title": "Deployed Earth API specification for Fetch and Enrich",
+            "publisher": "Invariant Earth",
+            "url": "https://api.invariant-ai.com/openapi.json"
+          },
+          {
+            "title": "Brooklyn Army Terminal shoreline-clipped lot and flood overlay",
+            "publisher": "Invariant, using NYC Department of City Planning and FEMA records",
+            "url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection.geojson"
+          },
+          {
+            "title": "City address records and active parcels for two San Francisco buildings",
+            "publisher": "Invariant, using City and County of San Francisco records",
+            "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json"
+          },
+          {
+            "title": "NYC address, footprint and lot compared with the FEMA map in Gowanus",
+            "publisher": "Invariant, using New York City and FEMA records",
+            "url": "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download five GIS API requests and the three reference checks",
+            "path": "/blog/gis-api-parcel-and-flood-trial.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "hail-history-by-address-for-underwriting",

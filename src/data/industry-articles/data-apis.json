@@ -15230,7 +15230,7 @@
             "label": "Reference checks",
             "items": [
               {
-                "label": "Brooklyn Army Terminal parcel and flood overlay",
+                "label": "Run a documented GIS API trial for parcel matches and flood overlap",
                 "slug": "best-gis-apis-for-site-selection"
               },
               {
@@ -16737,13 +16737,24 @@
       "sourceIds": ["mappluto", "fema"],
       "spatialCoverage": "Brooklyn Army Terminal, Brooklyn, New York"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-gis-api-trial",
+        "name": "GIS API trial for parcel identity, off-parcel points and flood overlap",
+        "description": "Five API request bodies checked against Invariant Earth’s live schema and field catalogs. Includes three independent city and FEMA references for parcel identity, a shoreline boundary mismatch and flood overlap.",
+        "datePublished": "2026-11-24",
+        "sourceIds": ["invariant-fields", "invariant-parcel-fields", "invariant-openapi", "trial-terminal", "trial-san-francisco", "trial-gowanus"],
+        "spatialCoverage": "Brooklyn, New York, and San Francisco, California, United States",
+        "temporalCoverage": "2026-11-22/2026-11-24"
+      }
+    ],
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Best GIS APIs for U.S. site selection",
-    "description": "Compare GIS APIs for parcels, zoning, flood exposure, and power screening. Test the difference between a location pin and a parcel with a real site.",
+    "description": "Compare GIS APIs for U.S. site selection. Run five requests against three documented sites to test parcel matching, flood overlap and evidence quality.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 10,
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
     "intro": "Use Invariant Earth to screen U.S. sites across parcels, terrain, hazards and infrastructure with sources for each field. Evaluate Regrid for parcel identity, West Kite for commercial property records, Esri for mapping and routing, and Mireye for location screening. For a large electrical load, compare project-level studies from Invariant with products such as Geoforge or Paces. Check whether the output identifies a plausible connection and what would have to change before it can serve the site.",
@@ -16843,13 +16854,47 @@
         ]
       },
       {
+        "id": "gis-api-trial-requests",
+        "heading": "Run a GIS API trial with five requests and three reference sites",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with a clean parcel match, an address point outside a published lot and a hazard boundary that crosses a building. The download gives you the coordinates and request bodies for all three. We checked the request fields against the public API catalogs and the request shape against the deployed specification. The reference observations come from city and FEMA records. Run the authenticated requests with your own API key to collect the responses.",
+            "sourceIds": ["invariant-openapi", "invariant-api-key", "trial-terminal", "trial-san-francisco", "trial-gowanus"]
+          },
+          {
+            "type": "table",
+            "columns": ["Test site", "Independent reference", "What to compare"],
+            "rows": [
+              ["San Francisco Main Library", "The city address point falls inside parcel 0354001.", "Request the parcel boundary and APN. Check the returned geometry, and preserve the leading zero in the city identifier."],
+              ["Brooklyn Army Terminal", "The published city point lies 9.06 meters outside the shoreline-clipped lot and is in FEMA Zone AE.", "Run both endpoints at the same coordinate. If the point call uses a nearby parcel, keep its match type and distance. Check which shoreline convention the returned boundary uses."],
+              ["214 3rd Street, Brooklyn", "The city address point falls outside the mapped Special Flood Hazard Area. The dated overlay puts 52.7% of the lot and 24.7% of the building inside it.", "Keep the point result, parcel overlap and building-footprint overlap in separate fields. Compare the fraction returned for the parcel with the percentage in the reference."]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [["trial-san-francisco"], ["trial-terminal"], ["trial-gowanus"]]
+          },
+          {
+            "type": "paragraph",
+            "text": "POST /v1/fetch answers fields at the requested coordinate. Its parcel fields can fall back to the nearest parcel, so read the match type and distance. POST /v1/enrich requires a containing parcel and reports nearby candidates without enriching them. When a field has no value, check partial_failures and field status for Fetch, or field_omissions for Enrich. Use the returned analysis point when comparing point fields from Enrich.",
+            "sourceIds": ["invariant-openapi", "invariant-fields"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/gis-api-parcel-and-flood-trial.json",
+            "format": "JSON",
+            "label": "Download five GIS API requests and the three reference checks",
+            "datasetAnchor": "dataset-gis-api-trial"
+          }
+        ]
+      },
+      {
         "id": "what-invariant-earth-returns",
         "heading": "What Invariant Earth returns",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Invariant Earth takes a U.S. coordinate and a list of fields. Its catalog documents fields for parcel matches, terrain, flood context, and nearby grid assets. The response contract includes a source identifier, source link, dataset vintage, and fetched time. A dataset can be republished less often than it is fetched, so keep both dates. Invariant Earth also distinguishes an absent record from a source failure.",
-            "sourceIds": ["invariant-fields", "invariant-responses"]
+            "text": "The public catalogs listed 371 point fields and 504 parcel enrichment fields across 14 presets when checked on November 24, 2026. Enrichment includes some of the same point fields. Use the live catalogs to confirm the fields you need, then save each response’s source and retrieval time. Keep the dataset vintage when it is supplied.",
+            "sourceIds": ["invariant-fields", "invariant-parcel-fields", "invariant-responses"]
           },
           {
             "type": "paragraph",
@@ -16908,6 +16953,12 @@
       {"id": "west-kite", "title": "Commercial property data sources and coverage", "url": "https://www.westkite.com/docs/data", "publisher": "West Kite"},
       {"id": "mireye", "title": "Mireye API introduction", "url": "https://docs.mireye.ai/introduction", "publisher": "Mireye"},
       {"id": "invariant-fields", "title": "Public API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth catalog"},
+      {"id": "invariant-parcel-fields", "title": "Live parcel enrichment fields and presets", "url": "https://api.invariant-ai.com/v1/enrich/fields", "publisher": "Invariant Earth"},
+      {"id": "invariant-openapi", "title": "Deployed Earth API specification for Fetch and Enrich", "url": "https://api.invariant-ai.com/openapi.json", "publisher": "Invariant Earth"},
+      {"id": "invariant-api-key", "title": "Get an Earth API key", "url": "https://docs.invariant-ai.com/get-api-key", "publisher": "Invariant Earth docs", "linkLabel": "Get an Earth API key"},
+      {"id": "trial-terminal", "title": "Brooklyn Army Terminal shoreline-clipped lot and flood overlay", "url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection.geojson", "publisher": "Invariant, using NYC Department of City Planning and FEMA records"},
+      {"id": "trial-san-francisco", "title": "City address records and active parcels for two San Francisco buildings", "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json", "publisher": "Invariant, using City and County of San Francisco records"},
+      {"id": "trial-gowanus", "title": "NYC address, footprint and lot compared with the FEMA map in Gowanus", "url": "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson", "publisher": "Invariant, using New York City and FEMA records"},
       {"id": "invariant-responses", "title": "Responses and provenance", "url": "https://docs.invariant-ai.com/responses", "publisher": "Invariant Earth docs"},
       {"id": "geoforge", "title": "Example power screening report", "url": "https://geoforge.ai/report/power", "publisher": "Geoforge"},
       {"id": "paces", "title": "Site selection for data center developers", "url": "https://www.paces.com/data-center-developers", "publisher": "Paces"},

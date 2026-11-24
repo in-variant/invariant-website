@@ -1,0 +1,161 @@
+{
+  "name": "GIS API trial for parcel identity, off-parcel points and flood overlap",
+  "publisher": "Invariant",
+  "checked_on": "2026-11-24",
+  "instructions": "Use the same coordinates and benchmark records with every provider. This file contains request bodies and independent reference observations, not authenticated Invariant Earth results. If a response differs, check the geometry and source date before classifying it.",
+  "authentication": {
+    "header": "X-API-Key",
+    "documentation": "https://docs.invariant-ai.com/get-api-key"
+  },
+  "live_metadata": {
+    "point_catalog": {
+      "url": "https://api.invariant-ai.com/v1/meta/fields",
+      "sha256": "11a8aab1168556935bfba66b8bc091a37ecfbe1eeb6c068c660cc36cd3de042a",
+      "field_count": 371
+    },
+    "parcel_catalog": {
+      "url": "https://api.invariant-ai.com/v1/enrich/fields",
+      "sha256": "f8f8db341467c4f3f1e0dc7181aa2b8ea7e5bd8adef18382c7fc5b7ad46fc8a2",
+      "field_count": 504,
+      "preset_count": 14
+    },
+    "openapi": {
+      "url": "https://api.invariant-ai.com/openapi.json",
+      "sha256": "e88eb7c95a261692f43c4f64615123748525fa7caefd5278c6126a3f90a7202b"
+    }
+  },
+  "reference_downloads": {
+    "san-francisco": {
+      "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json",
+      "sha256": "57ea66ad19c421f4722bb09129e2b2efc15de8ea35f9605738ad49c3e9ac13f3"
+    },
+    "brooklyn-army-terminal": {
+      "url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection.geojson",
+      "sha256": "cefb7481b501e23924c5d6287033629be5e6c6ba68e83c5816484519299bb5c4"
+    },
+    "gowanus": {
+      "url": "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson",
+      "sha256": "2a85e203b90d704bb461be606e7aec34ca1566548a774341f474cefd79838dd9"
+    }
+  },
+  "response_checks": {
+    "fetch": [
+      "Inspect fields.<name>.status and partial_failures. For parcel lookups, keep the match type and distance beside the geometry."
+    ],
+    "enrich": [
+      "Inspect parcel_match.status, parcel_match.parcel and parcel_match.candidates. A nearby candidate is not enriched.",
+      "Read field_omissions for each requested field without a value. Check analysis_point when comparing point fields."
+    ],
+    "provenance": [
+      "Retain source_url, fetched_at and dataset_vintage when supplied. Keep the independent reference geometry date separately."
+    ]
+  },
+  "cases": [
+    {
+      "id": "san-francisco",
+      "place": "San Francisco Main Library",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "https://api.invariant-ai.com/v1/enrich",
+          "body": {
+            "lat": 37.779054193871154,
+            "lng": -122.41632622023333,
+            "fields": [
+              "parcelnumb",
+              "parcelnumb_no_formatting",
+              "geometry"
+            ]
+          }
+        }
+      ],
+      "reference": {
+        "published_city_apn": "0354001",
+        "address_point_inside_city_parcel": true,
+        "records_checked_at": "2026-11-23T22:16:49-08:00"
+      },
+      "review": "Compare the published APN with parcel_match.parcel.apn and the returned boundary. Preserve a leading zero when normalizing the identifier."
+    },
+    {
+      "id": "brooklyn-army-terminal",
+      "place": "Brooklyn Army Terminal",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "https://api.invariant-ai.com/v1/fetch",
+          "body": {
+            "lat": 40.6451992,
+            "lng": -74.0271955,
+            "fields": [
+              "parcel_id",
+              "parcel_geometry",
+              "parcel_match_type",
+              "parcel_match_distance_m",
+              "within_floodplain_polygon"
+            ]
+          }
+        },
+        {
+          "method": "POST",
+          "url": "https://api.invariant-ai.com/v1/enrich",
+          "body": {
+            "lat": 40.6451992,
+            "lng": -74.0271955,
+            "fields": [
+              "parcelnumb",
+              "geometry",
+              "parcel_flood_sfha_fraction"
+            ]
+          }
+        }
+      ],
+      "reference": {
+        "published_city_bbl": "3057780001",
+        "point_inside_shoreline_clipped_city_lot": false,
+        "point_distance_to_clipped_city_lot_m": 9.06,
+        "point_fema_zone": "AE",
+        "records_checked_on": "2026-11-22"
+      },
+      "review": "Require the workflow to distinguish documented geometry differences from a nearby fallback. A nearest point result does not establish containment. Compare the exact polygon and its shoreline convention first."
+    },
+    {
+      "id": "gowanus",
+      "place": "214 3rd Street, Gowanus",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "https://api.invariant-ai.com/v1/fetch",
+          "body": {
+            "lat": 40.674937,
+            "lng": -73.988784,
+            "fields": [
+              "within_floodplain_polygon"
+            ]
+          }
+        },
+        {
+          "method": "POST",
+          "url": "https://api.invariant-ai.com/v1/enrich",
+          "body": {
+            "lat": 40.674937,
+            "lng": -73.988784,
+            "fields": [
+              "parcelnumb",
+              "geometry",
+              "parcel_flood_sfha_fraction"
+            ]
+          }
+        }
+      ],
+      "reference": {
+        "published_city_bbl": "3009780016",
+        "address_point_in_sfha": false,
+        "fema_sfha_lot_overlap_pct": 52.6709,
+        "fema_sfha_building_overlap_pct": 24.6503,
+        "panel_number": "3604970211F",
+        "records_checked_on": "2026-11-23"
+      },
+      "review": "Compare parcel-level fractions against the dated lot overlay after adjusting units and geometry. For a building-level answer use the full footprint separately."
+    }
+  ]
+}
