@@ -2574,81 +2574,110 @@
   "topic": "Data Centers",
   "kind": "study-guide",
   "region": "United States",
-  "title": "Data center flood zone screening: FEMA zones, base flood elevation and what to check",
-  "description": "How to screen a data center site for flood risk: FEMA flood zones (A, AE, V, X), the National Flood Hazard Layer, access roads, substations and sea level exposure.",
+  "title": "Check FEMA flood zones by address for data centers",
+  "description": "Look up a data center address in FEMA’s flood maps. See two worked checks and learn how to verify the parcel, building pad, electrical yard and access route.",
   "date": "2026-11-20",
-  "readMinutes": 5,
-  "intro": "Screen a data center site for flood risk by checking the FEMA flood zone under the building pad, the substation, the access roads and the line route, not just the parcel centroid. Zones A and AE (and V on the coast) are the 1% annual chance flood, often called the 100-year flood. Shaded Zone X is the 0.2% annual chance flood. Most data center buyers treat any building footprint in a 1% zone as a kill or a costly fill-and-permit problem, and many avoid the 0.2% zone for critical equipment.",
+  "readMinutes": 7,
+  "intro": "To check a data center’s flood zone by address, search FEMA’s Flood Map Service Center and verify where the result lands. Then check the recorded parcel, building footprint, electrical yard and access road individually. We ran the address lookup for 100 Delawanna Avenue in Clifton and 501 Northwest Avenue in Northlake, and checked the recorded Clifton lot against FEMA’s flood polygons.",
   "takeaways": [
-   "Check the pad, the substation site and the access road. A dry building on a flooded road is still offline.",
-   "FEMA maps show the regulatory flood, not every flood. Look at flood history and local drainage too.",
-   "On the coast, add storm surge and sea level rise over the life of the asset.",
-   "A floodway designation can block fill entirely, which is different from a flood zone."
+   "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
+   "Keep the FEMA zone subtype, map panel, effective date and any applicable map revisions with the result.",
+   "Check the building, electrical yard and access route separately. Each can intersect a different hazard area.",
+   "Use the local floodplain administrator and a qualified engineer to resolve boundary, elevation and floodway questions before design or acquisition."
   ],
   "sections": [
    {
-    "id": "fema-flood-zones-in-plain-terms",
-    "heading": "FEMA flood zones in plain terms",
+    "id": "address-check-examples",
+    "heading": "FEMA flood zones for two data center addresses",
     "blocks": [
      {
+      "type": "paragraph",
+      "text": "We checked the effective National Flood Hazard Layer on November 24, 2026. The Census Geocoder uses street ranges. The tax lot comparison below used separately published New Jersey parcel geometry.",
+      "sourceIds": [
+       "census-geocoder",
+       "fema-nfhl",
+       "nj-parcel"
+      ]
+     },
+     {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
-       "Zone",
-       "What it means",
-       "Typical treatment for a data center"
+       "Data center address",
+       "FEMA result at the address point",
+       "Parcel evidence"
       ],
       "rows": [
        [
-        "A, AE, AH, AO",
-        "1% annual chance flood (Special Flood Hazard Area)",
-        "Avoid for buildings and electrical gear, or plan fill, elevation and a floodplain permit"
+        "100 Delawanna Avenue, Clifton, NJ",
+        "Zone X, area of minimal flood hazard. The matched point is about 2 m outside lot 1602_61.03_27.",
+        "The full mapped tax lot is also unshaded Zone X. It has 0% overlap with the mapped Special Flood Hazard Area. Passaic County FIRM panels 34031C0259G and 34031C0278G took effect April 17, 2020."
        ],
        [
-        "V, VE",
-        "Coastal 1% flood with wave action",
-        "Avoid"
-       ],
-       [
-        "X (shaded)",
-        "0.2% annual chance flood, or 1% with shallow depths",
-        "Allowed with care; raise critical equipment"
-       ],
-       [
-        "X (unshaded)",
-        "Outside the 0.2% flood",
-        "Normal design"
-       ],
-       [
-        "D",
-        "Not studied",
-        "Get local data before relying on it"
+        "501 Northwest Avenue, Northlake, IL (Aligned ORD-02)",
+        "Zone X, area of minimal flood hazard at the Census address-range point.",
+        "Point check only. Confirm the parcel and the facility and access geometries before relying on the result for the property."
        ]
       ],
-      "sourceIds": [
-       "fema-zones"
+      "rowSourceIds": [
+       [
+        "njeda-clifton",
+        "nj-parcel",
+        "clifton-zone",
+        "clifton-panels"
+       ],
+       [
+        "aligned-northlake",
+        "northlake-zone"
+       ]
       ]
      },
      {
       "type": "paragraph",
-      "text": "A 1% annual chance sounds small. Over a 30-year life it works out to about a one in four chance of at least one such flood."
+      "text": "FEMA publishes no static base flood elevation in the two returned point features. Both are dated map lookups. Building elevations, stormwater performance and routes into the facilities require separate checks.",
+      "sourceIds": [
+       "clifton-zone",
+       "northlake-zone"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the FEMA point and parcel checks",
+      "format": "JSON",
+      "path": "/blog/data-center-fema-flood-zone-address-checks.json"
      }
     ]
    },
    {
     "id": "where-to-look",
-    "heading": "Where to look",
+    "heading": "How to look up a flood zone by address",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "FEMA’s National Flood Hazard Layer and Flood Map Service Center hold the effective maps and base flood elevations. We overlay the parcel, the likely pad, the substation site and the access routes.",
+      "text": "Enter the complete address, city and ZIP in FEMA’s Flood Map Service Center. Open the effective map and record the zone, subtype, panel ID and effective date. Check for a Letter of Map Amendment or Revision that applies to the structure or parcel.",
       "sourceIds": [
-       "fema-nfhl",
-       "fema-msc"
+       "fema-msc",
+       "fema-nfhl"
       ]
      },
      {
       "type": "paragraph",
-      "text": "Near the coast we add NOAA’s sea level rise viewer, and inland we check soils for drainage and hydric soils, which often line up with wetlands.",
+      "text": "Identify the tax parcel using the assessor’s address and parcel ID. Compare the returned address point with the parcel and building geometry. If the address lands on a road or outside the lot, use a verified building or proposed pad location for the point check.",
+      "sourceIds": [
+       "census-geocoder",
+       "nj-parcel"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For a portfolio or API workflow, Earth can return a mapped point result and calculate the share of a matched parcel in the Special Flood Hazard Area. Keep both geographies in the result and use the downloadable cases to reproduce the source checks.",
+      "sourceIds": [
+       "earth-flood-workflow"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For a dry building pad with vulnerable access, check route elevations and low points between the site and the public network. For waterfront sites, review storm surge and future water levels alongside the effective map. Inland, review local drainage and soils where stormwater collects.",
       "sourceIds": [
        "noaa-slr",
        "soil"
@@ -2657,12 +2686,76 @@
     ]
    },
    {
+    "id": "fema-flood-zones-in-plain-terms",
+    "heading": "FEMA flood zones in plain terms",
+    "blocks": [
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "FEMA zone",
+       "What the map shows",
+       "What to investigate"
+      ],
+      "rows": [
+       [
+        "A, AE, AH, AO",
+        "Special Flood Hazard Area. These zones describe different 1% annual-chance flooding conditions.",
+        "Check the mapped elevation or depth, datum and applicable local floodplain requirements."
+       ],
+       [
+        "V, VE",
+        "Coastal Special Flood Hazard Area with wave action.",
+        "Check wave exposure, elevation and local coastal standards."
+       ],
+       [
+        "X with a shaded subtype",
+        "May show 0.2% annual-chance flood hazard, shallow 1% annual-chance flooding or other conditions identified by the map legend.",
+        "Read the exact subtype and panel legend. Check drainage and critical equipment elevations."
+       ],
+       [
+        "X, area of minimal flood hazard",
+        "Unshaded Zone X on the effective map.",
+        "Check local stormwater maps, observed flood history and access."
+       ],
+       [
+        "D",
+        "Undetermined flood hazard.",
+        "Find additional local or engineering evidence before grading the location."
+       ]
+      ],
+      "sourceIds": [
+       "fema-zones",
+       "fema-legend"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The 1% annual chance is the probability in each year. With independent years and constant flood odds, the chance of at least one event over 30 years is about 26%. A FEMA zone describes mapped conditions for the relevant flood study. Check site-specific grading and changing drainage conditions separately.",
+      "sourceIds": [
+       "fema-zones"
+      ]
+     }
+    ]
+   },
+   {
     "id": "how-flood-fits-the-rest-of-the-screen",
-    "heading": "How flood fits the rest of the screen",
+    "heading": "What to check before acquiring the site",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Flood is the second check in our feasibility screen, after power, because it removes the next largest share of sites. A site that passes both goes on to seismic, wetlands, airspace and zoning."
+      "text": "Overlay the planned data halls, switchgear, generators, substation, and the routes needed for service, fuel deliveries and emergency access. Compare site elevations with a published base flood elevation in the same vertical datum. Where FEMA has no static base flood elevation, record it as unavailable and get the applicable study or engineering survey.",
+      "sourceIds": [
+       "fema-nfhl",
+       "fema-msc"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Check the regulatory floodway separately from the flood zone. Under 44 CFR 60.3(d)(3), communities generally prohibit encroachments in an adopted regulatory floodway unless technical analyses demonstrate no increase in flood levels for the base flood. The regulation describes a separate conditional map-revision process for certain proposals that would increase flood levels. Confirm local requirements and the project’s path with the floodplain administrator.",
+      "sourceIds": [
+       "floodway-rule"
+      ]
      }
     ]
    },
@@ -2775,30 +2868,36 @@
   ],
   "faqs": [
    {
-    "question": "Can you build a data center in a flood zone?",
-    "answer": "It is possible with fill, elevation and a floodplain permit, but most buyers avoid putting buildings or electrical equipment in a 1% annual chance zone, and floodways can block fill entirely.",
-    "sourceIds": [
-     "fema-zones"
-    ]
-   },
-   {
-    "question": "What flood zone is acceptable for a data center?",
-    "answer": "Unshaded Zone X is the norm. Shaded Zone X (0.2% annual chance) is often accepted with critical equipment raised. Zones A, AE and V are usually avoided.",
-    "sourceIds": [
-     "fema-zones"
-    ]
-   },
-   {
-    "question": "Where can I find the flood zone for a site?",
-    "answer": "In FEMA’s Flood Map Service Center or the National Flood Hazard Layer.",
+    "question": "How do I find the FEMA flood zone for a data center address?",
+    "answer": "Search the complete address in FEMA’s Flood Map Service Center. Check where the point lands, then confirm the intended building and parcel separately. Record the flood zone subtype, effective panel and applicable Letters of Map Change.",
     "sourceIds": [
      "fema-msc",
-     "fema-nfhl"
+     "fema-nfhl",
+     "census-geocoder"
     ]
    },
    {
-    "question": "Does Invariant check flood risk?",
-    "answer": "Yes. Flood zone, base flood elevation, access roads and coastal exposure are part of the 24 hour feasibility screen."
+    "question": "Can you build a data center in a FEMA flood zone?",
+    "answer": "Permitting depends on the local ordinance, flood zone, floodway, proposed use and design. Ask the local floodplain administrator what standards and approvals apply. Review the pad, electrical gear and access plans with a qualified engineer.",
+    "sourceIds": [
+     "floodway-rule",
+     "fema-zones"
+    ]
+   },
+   {
+    "question": "Does Zone X mean a data center cannot flood?",
+    "answer": "Flooding can occur in Zone X. FEMA’s subtype and panel legend distinguish minimal mapped hazard from shaded categories. Check local flood history, drainage, access and any coverage gaps before using the map result in a decision.",
+    "sourceIds": [
+     "fema-zones",
+     "fema-legend"
+    ]
+   },
+   {
+    "question": "Does Invariant check flood risk by address or parcel?",
+    "answer": "Yes. The Earth API can look up a mapped FEMA point and return the Special Flood Hazard Area fraction for a matched parcel. You can use the results to identify where building, access or local drainage evidence is needed.",
+    "sourceIds": [
+     "earth-flood-workflow"
+    ]
    }
   ],
   "sources": [
@@ -2831,13 +2930,91 @@
     "title": "Web Soil Survey",
     "url": "https://websoilsurvey.nrcs.usda.gov/",
     "publisher": "USDA Natural Resources Conservation Service"
+   },
+   {
+    "id": "census-geocoder",
+    "title": "Census Geocoder and address-range data",
+    "url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
+    "publisher": "U.S. Census Bureau"
+   },
+   {
+    "id": "njeda-clifton",
+    "title": "Public record for the data center at 100 Delawanna Avenue",
+    "url": "https://www.njeda.gov/data-center-development-thrives-in-new-jersey/",
+    "publisher": "New Jersey Economic Development Authority"
+   },
+   {
+    "id": "nj-parcel",
+    "title": "Exact Clifton assessor parcel query for 100 Delawanna Avenue",
+    "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=geojson&where=MUN_NAME+%3D+%27CLIFTON+CITY%27+AND+PROP_LOC+%3D+%27100+DELAWANNA+AVE%27&outFields=OBJECTID%2CPAMS_PIN%2CPROP_LOC%2CMUN_NAME%2CPCLLASTUPD%2CCALC_ACRE&outSR=4326&returnGeometry=true",
+    "publisher": "New Jersey Office of GIS"
+   },
+   {
+    "id": "clifton-zone",
+    "title": "FEMA flood zone polygon query around the Clifton tax lot",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "clifton-panels",
+    "title": "FIRM panel geometry query around the Clifton tax lot",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "aligned-northlake",
+    "title": "Aligned ORD-02 published facility address",
+    "url": "https://aligneddc.com/chicago-data-centers/",
+    "publisher": "Aligned Data Centers"
+   },
+   {
+    "id": "northlake-zone",
+    "title": "FEMA flood zone at the Northlake Census address point",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "fema-legend",
+    "title": "Flood Insurance Rate Map Panel Technical Reference",
+    "url": "https://www.fema.gov/sites/default/files/documents/fema_firm-panel-technical-reference_112024.pdf",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "floodway-rule",
+    "title": "Floodplain management and regulatory floodway criteria, 44 CFR 60.3",
+    "url": "https://www.ecfr.gov/current/title-44/chapter-I/subchapter-B/part-60/subpart-A/section-60.3",
+    "publisher": "Electronic Code of Federal Regulations"
+   },
+   {
+    "id": "earth-flood-workflow",
+    "title": "Earth API workflow for FEMA point and parcel checks",
+    "url": "https://docs.invariant-ai.com/check-flood-zone-by-address",
+    "publisher": "Invariant"
    }
   ],
   "relatedSlugs": [
    "data-center-site-feasibility-study",
    "data-center-seismic-risk-screening",
-   "data-center-environmental-site-screening"
-  ]
+   "data-center-environmental-site-screening",
+   "best-flood-risk-data-apis"
+  ],
+  "updatedDate": "2026-11-24",
+  "dataset": {
+   "name": "FEMA flood zone checks for two public data center addresses",
+   "description": "Two Census address-range points checked against FEMA’s effective flood zones, with a Clifton assessor parcel, measured map overlap, FIRM panel references, exact requests and retrieval timestamps.",
+   "datePublished": "2026-11-24",
+   "spatialCoverage": "Clifton, New Jersey, and Northlake, Illinois, United States",
+   "temporalCoverage": "2026-11-24",
+   "sourceIds": [
+    "census-geocoder",
+    "njeda-clifton",
+    "nj-parcel",
+    "clifton-zone",
+    "clifton-panels",
+    "aligned-northlake",
+    "northlake-zone"
+   ]
+  }
  },
  {
   "slug": "data-center-seismic-risk-screening",

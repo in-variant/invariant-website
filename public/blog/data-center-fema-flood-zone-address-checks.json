@@ -1,0 +1,140 @@
+{
+  "title": "FEMA flood zone checks for two public data center addresses",
+  "observed_on": "2026-11-24",
+  "scope": "Dated source checks for two fixed sites. Use full site geometry, applicable Letters of Map Change and local records when making a design, coverage or operating decision.",
+  "method": "Census Public_AR_Current street-range geocode, followed by direct intersection of the WGS84 address point with FEMA NFHL layer 28. The Clifton tax lot was selected by exact assessor situs address. Area coverage and Special Flood Hazard Area fractions use parcel intersections in NAD83 / Conus Albers (EPSG:5070), with polygons unioned before the area is measured. The intersection ignored individual pieces under 0.01 square metres. FEMA NFHL layer 3 supplied Passaic County FIRM panel IDs and dates.",
+  "source_value_note": "FEMA code -9999 for STATIC_BFE is preserved in the records and indicates no published static base flood elevation in these features.",
+  "cases": [
+    {
+      "address": "100 Delawanna Ave, Clifton, NJ 07014",
+      "coordinates": {
+        "x": -74.126670736202,
+        "y": 40.829521494075
+      },
+      "geocoder_match": "100 DELAWANNA AVE, CLIFTON, NJ, 07014",
+      "census_side": {
+        "side": "R",
+        "tigerLineId": "635464763"
+      },
+      "point_zones": [
+        {
+          "OBJECTID": 14481812,
+          "FLD_AR_ID": "34031C_6268",
+          "FLD_ZONE": "X",
+          "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+          "SFHA_TF": "F",
+          "STATIC_BFE": -9999.0,
+          "V_DATUM": null
+        }
+      ],
+      "address_point_inside_parcel": false,
+      "point_to_parcel_m": 2.002,
+      "parcel": {
+        "OBJECTID": 975500,
+        "PAMS_PIN": "1602_61.03_27",
+        "PROP_LOC": "100 DELAWANNA AVE",
+        "MUN_NAME": "CLIFTON CITY",
+        "PCLLASTUPD": 1303362000000,
+        "CALC_ACRE": 5.69
+      },
+      "parcel_area_sqm": 23072.018,
+      "coverage_fraction": 1.0,
+      "sfha_fraction": 0.0,
+      "zone_intersections": [
+        {
+          "OBJECTID": 14481812,
+          "FLD_AR_ID": "34031C_6268",
+          "FLD_ZONE": "X",
+          "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+          "SFHA_TF": "F",
+          "STATIC_BFE": -9999,
+          "V_DATUM": null,
+          "parcel_area_sqm": 23072.018,
+          "parcel_area_fraction": 1.0
+        }
+      ],
+      "panels": [
+        {
+          "FIRM_PAN": "34031C0278G",
+          "EFF_DATE": 1587081600000,
+          "DFIRM_ID": "34031C",
+          "PANEL_TYP": "Countywide, Panel Printed",
+          "effective_date": "2020-04-17"
+        },
+        {
+          "FIRM_PAN": "34031C0259G",
+          "EFF_DATE": 1587081600000,
+          "DFIRM_ID": "34031C",
+          "PANEL_TYP": "Countywide, Panel Printed",
+          "effective_date": "2020-04-17"
+        }
+      ],
+      "sources": {
+        "address": {
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=100+Delawanna+Ave%2C+Clifton%2C+NJ+07014&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-24T12:00:03+00:00",
+          "sha256": "877f749159bd63d6bab6339e344fc77c44f7f5a7538b659b66733eab81c1c55d"
+        },
+        "parcel": {
+          "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=geojson&where=MUN_NAME+%3D+%27CLIFTON+CITY%27+AND+PROP_LOC+%3D+%27100+DELAWANNA+AVE%27&outFields=OBJECTID%2CPAMS_PIN%2CPROP_LOC%2CMUN_NAME%2CPCLLASTUPD%2CCALC_ACRE&outSR=4326&returnGeometry=true",
+          "retrieved_at": "2026-11-24T12:00:03+00:00",
+          "sha256": "96938af6fc6c672d41b211508af829879e641e3c3e1a2e43fdd7dd58394a13a1"
+        },
+        "zones": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true",
+          "retrieved_at": "2026-11-24T12:00:04+00:00",
+          "sha256": "4efe5e5ab37a9e045d213212a1f596634c0567301edadbbe7fd47229f9ea5483"
+        },
+        "panels": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326",
+          "retrieved_at": "2026-11-24T12:01:13+00:00",
+          "sha256": "3697012b674295d7dccac61c6991e2ca24628118ee265709eb3296f3d811a0dc"
+        },
+        "point_zone": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-74.126670736202%2C40.829521494075&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=false",
+          "retrieved_at": "2026-11-24T12:00:05+00:00",
+          "sha256": "e73dcd0c35c4c5f5ac9711c63166de25283c6d7f00555c0d0e336a246d77adc6"
+        }
+      },
+      "scope": "New Jersey tax lot and Census address-range point. The mapped building, electrical equipment and access route were outside the scope of the overlay."
+    },
+    {
+      "address": "501 Northwest Ave, Northlake, IL 60164",
+      "coordinates": {
+        "x": -87.919288029251,
+        "y": 41.913918308687
+      },
+      "geocoder_match": "501 NORTHWEST AVE, NORTHLAKE, IL, 60164",
+      "census_side": {
+        "side": "R",
+        "tigerLineId": "111867022"
+      },
+      "point_zones": [
+        {
+          "OBJECTID": 24558339,
+          "FLD_AR_ID": "17031C_7501",
+          "FLD_ZONE": "X",
+          "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+          "SFHA_TF": "F",
+          "STATIC_BFE": -9999.0,
+          "V_DATUM": null
+        }
+      ],
+      "parcel": null,
+      "sfha_fraction": null,
+      "scope": "Census address-range point only. Parcel identity, building, access and electrical infrastructure were not confirmed.",
+      "sources": {
+        "address": {
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=501+Northwest+Ave%2C+Northlake%2C+IL+60164&benchmark=Public_AR_Current&format=json",
+          "retrieved_at": "2026-11-24T12:01:49+00:00",
+          "sha256": "6c5b53040085a89572cab8eea08a7e209d81a6b416e15f25a2881b86b5a91272"
+        },
+        "point_zone": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+          "retrieved_at": "2026-11-24T12:01:50+00:00",
+          "sha256": "083b3092dbf7ae4d98e2c452b4522bce15bdb46babf1bc0d542bdc3d8543b01e"
+        }
+      }
+    }
+  ]
+}

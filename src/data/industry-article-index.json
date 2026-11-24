@@ -4486,12 +4486,73 @@
   {
     "slug": "data-center-flood-zone-screening",
     "topic": "Data Centers",
-    "title": "Data center flood zone screening: FEMA zones, base flood elevation and what to check",
-    "summary": "How to screen a data center site for flood risk: FEMA flood zones (A, AE, V, X), the National Flood Hazard Layer, access roads, substations and sea level exposure.",
+    "title": "Check FEMA flood zones by address for data centers",
+    "summary": "Look up a data center address in FEMA’s flood maps. See two worked checks and learn how to verify the parcel, building pad, electrical yard and access route.",
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
-    "image": "/blog/industry/data-center-flood-zone-screening.webp?v=39efb5b8"
+    "updatedDate": "2026-11-24",
+    "image": "/blog/industry/data-center-flood-zone-screening.webp?v=39efb5b8",
+    "dataset": {
+      "name": "FEMA flood zone checks for two public data center addresses",
+      "description": "Two Census address-range points checked against FEMA’s effective flood zones, with a Clifton assessor parcel, measured map overlap, FIRM panel references, exact requests and retrieval timestamps.",
+      "datePublished": "2026-11-24",
+      "spatialCoverage": "Clifton, New Jersey, and Northlake, Illinois, United States",
+      "temporalCoverage": "2026-11-24",
+      "sources": [
+        "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
+        "https://www.njeda.gov/data-center-development-thrives-in-new-jersey/",
+        "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=geojson&where=MUN_NAME+%3D+%27CLIFTON+CITY%27+AND+PROP_LOC+%3D+%27100+DELAWANNA+AVE%27&outFields=OBJECTID%2CPAMS_PIN%2CPROP_LOC%2CMUN_NAME%2CPCLLASTUPD%2CCALC_ACRE&outSR=4326&returnGeometry=true",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326",
+        "https://aligneddc.com/chicago-data-centers/",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Census Geocoder and address-range data",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html"
+        },
+        {
+          "title": "Public record for the data center at 100 Delawanna Avenue",
+          "publisher": "New Jersey Economic Development Authority",
+          "url": "https://www.njeda.gov/data-center-development-thrives-in-new-jersey/"
+        },
+        {
+          "title": "Exact Clifton assessor parcel query for 100 Delawanna Avenue",
+          "publisher": "New Jersey Office of GIS",
+          "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?f=geojson&where=MUN_NAME+%3D+%27CLIFTON+CITY%27+AND+PROP_LOC+%3D+%27100+DELAWANNA+AVE%27&outFields=OBJECTID%2CPAMS_PIN%2CPROP_LOC%2CMUN_NAME%2CPCLLASTUPD%2CCALC_ACRE&outSR=4326&returnGeometry=true"
+        },
+        {
+          "title": "FEMA flood zone polygon query around the Clifton tax lot",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true"
+        },
+        {
+          "title": "FIRM panel geometry query around the Clifton tax lot",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326"
+        },
+        {
+          "title": "Aligned ORD-02 published facility address",
+          "publisher": "Aligned Data Centers",
+          "url": "https://aligneddc.com/chicago-data-centers/"
+        },
+        {
+          "title": "FEMA flood zone at the Northlake Census address point",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the FEMA point and parcel checks",
+          "path": "/blog/data-center-fema-flood-zone-address-checks.json",
+          "format": "JSON"
+        }
+      ]
+    }
   },
   {
     "slug": "data-center-seismic-risk-screening",
