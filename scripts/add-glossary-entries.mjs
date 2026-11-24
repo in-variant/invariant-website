@@ -193,36 +193,6 @@ const NEW_ENTRIES = [
     last_updated: TODAY,
   },
   {
-    slug: 'helion-512',
-    term: 'Helion-512',
-    topic: 'nuclear',
-    aliases: ['Helion 512', 'Invariant Helion-512'],
-    short_definition:
-      'Helion-512 is the Invariant retrieval model that scores 0.9693 nDCG at 10 on FermiBench, the published state of the art on retrieval over the NRC regulatory corpus.',
-    full_definition:
-      "Helion-512 is the retrieval model developed by Invariant and evaluated on FermiBench, the published benchmark for retrieval over the United States Nuclear Regulatory Commission ADAMS corpus. Helion-512 scores 0.9693 nDCG at 10 on FermiBench, the published state of the art at the time of writing. The model uses 512-dimensional embeddings tuned on regulatory language and is integrated into the Invariant compliance platform for NRC, FAA, FCC, NOAA, AERB, and IN-SPACe workflows. The model card, methodology, and harness are documented at invariant-ai.com/blog/fermibench-sota.",
-    related_to: ['fermi-bench', 'adams'],
-    citations: [
-      { label: 'Invariant: FermiBench state of the art writeup', url: 'https://invariant-ai.com/blog/fermibench-sota' },
-    ],
-    last_updated: TODAY,
-  },
-  {
-    slug: 'fermi-bench',
-    term: 'FermiBench',
-    topic: 'nuclear',
-    aliases: ['Fermi Bench', 'Fermi-Bench'],
-    short_definition:
-      'FermiBench is the Invariant-published benchmark for retrieval over the NRC ADAMS regulatory corpus, with the public ADAMS search interface as the comparison probe. The Helion-512 model scores 0.9693 nDCG at 10.',
-    full_definition:
-      "FermiBench is a public benchmark constructed by Invariant for retrieval evaluation over the United States Nuclear Regulatory Commission ADAMS document corpus, the largest single nuclear regulatory corpus in the world. The benchmark uses the public ADAMS search interface as the comparison probe, scores retrieval with nDCG at 10, and reports recall at 1 for the controlling clause. The Invariant Helion-512 model scores 0.9693 nDCG at 10, the published state of the art at the time of writing. The benchmark is intended to make AI-for-nuclear-compliance vendor claims comparable on the underlying retrieval problem rather than on slideware. Full methodology is at invariant-ai.com/blog/fermibench-sota.",
-    related_to: ['helion-512', 'adams'],
-    citations: [
-      { label: 'Invariant: FermiBench writeup', url: 'https://invariant-ai.com/blog/fermibench-sota' },
-    ],
-    last_updated: TODAY,
-  },
-  {
     slug: 'atomic-canyon',
     term: 'Atomic Canyon',
     topic: 'nuclear',
@@ -231,7 +201,7 @@ const NEW_ENTRIES = [
       'Atomic Canyon is a US AI-for-nuclear-compliance company that ships Neutron, an ADAMS-indexed search product backed by the open-source FERMI sentence-embedding model family trained on the Oak Ridge Frontier supercomputer.',
     full_definition:
       "Atomic Canyon emerged from stealth on 11 March 2024 with Neutron, an AI search platform trained on the NRC's Agencywide Documents Access and Management System (ADAMS). The launch release cited 52 million pages of ADAMS content; Oak Ridge National Laboratory's later coverage cited the corpus as more than 3 million documents covering roughly 53 million pages of US reactor history since 1980. Founders Trey Lauderdale and Kristian Kielhofner came from healthcare and unified communications. The technical core is FERMI, a family of open-source sentence-embedding models trained for nuclear vocabulary on the Frontier exascale supercomputer at Oak Ridge.\n\nOn 24 February 2026, ORNL formally announced a memorandum of understanding with Atomic Canyon combining ORNL's HPC infrastructure with Atomic Canyon's AI to automate portions of the NRC license-application review process. Atomic Canyon also runs a parallel partnership with Idaho National Laboratory to build a comprehensive benchmark suite for nuclear RAG and LLM systems under permissive open-source licences. Atomic Canyon's flagship enterprise reference is Pacific Gas and Electric's Diablo Canyon Power Plant.",
-    related_to: ['adams', 'fermi-bench', 'helion-512'],
+    related_to: ['adams'],
     citations: [
       { label: 'Atomic Canyon', url: 'https://atomiccanyon.com' },
       { label: 'ORNL: Atomic Canyon MoU', url: 'https://www.ornl.gov/news/ornl-and-atomic-canyon-sign-memorandum-understanding-advance-ai-nuclear-energy' },
@@ -247,7 +217,7 @@ const NEW_ENTRIES = [
       'Inductive, operating as Nuclear Licensing Accelerator and headquartered in San Francisco, is an AI-for-nuclear-compliance startup that markets itself as "TurboTax for nuclear licensing" with a collaborative authoring workspace built on the OpenPRA schema.',
     full_definition:
       "Inductive, operating under the brand Nuclear Licensing Accelerator at nuclearcore.ai, pitches itself as TurboTax for nuclear licensing. The legal entity is Trueclean Energy Technologies Inc., headquartered in San Francisco. Co-founders Rahul Agarwal (API platform and cloud infrastructure software) and Mihai A. Diaconeasa (North Carolina State University Nuclear Engineering, 2023 ANS David Okrent Award) anchor the team. The product is a collaborative authoring workspace for licensing submittals with section-by-section drafting, requirement tracking, multi-user review, role-based access control, and audit logging. The underlying data layer uses the OpenPRA schema as the canonical representation for probabilistic risk assessment models, with conversion pipelines from SAPHIRE file formats.",
-    related_to: ['atomic-canyon', 'everstar', 'fermi-bench'],
+    related_to: ['atomic-canyon', 'everstar'],
     citations: [
       { label: 'Nuclear Licensing Accelerator', url: 'https://nuclearcore.ai' },
     ],
@@ -262,7 +232,7 @@ const NEW_ENTRIES = [
       "Everstar is a New York-based AI-for-nuclear-compliance startup whose Gordian product is a retrieval-augmented platform with deterministic compute paths for numerical claims, used in the NRIC HTGR demonstration with Idaho National Laboratory and Microsoft.",
     full_definition:
       "Everstar is a New York-based company founded by CEO Kevin Kong with a founding team drawn from financial-services AI and nuclear engineering. Its Gordian product is a retrieval-augmented generation platform paired with deterministic compute paths for numerical claims, so that any number reproduced from a regulatory or engineering source can be traced through the computation that produced it. Gordian was named in the Department of Energy press release on the National Reactor Innovation Center (NRIC) High-Temperature Gas-cooled Reactor demonstration at Idaho National Laboratory with Microsoft, which is the most visible public deployment of an AI-for-nuclear-compliance product as of mid-2026.",
-    related_to: ['atomic-canyon', 'inductive', 'fermi-bench'],
+    related_to: ['atomic-canyon', 'inductive'],
     citations: [
       { label: 'Everstar', url: 'https://everstar.ai' },
     ],

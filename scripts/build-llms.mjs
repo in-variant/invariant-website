@@ -41,8 +41,7 @@ const clustersNuclear = pages.filter((p) => p.type === 'cluster' && p.pillar ===
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
 const entries = glossary.entries || []
 const glossSpace = entries.filter((e) => e.topic === 'space')
-const archivedResearchTerms = new Set(['fermi-bench', 'helion-512'])
-const glossNuclear = entries.filter((e) => e.topic === 'nuclear' && !archivedResearchTerms.has(e.slug))
+const glossNuclear = entries.filter((e) => e.topic === 'nuclear')
 const glossAerospace = entries.filter((e) => e.topic === 'aerospace')
 const glossDataCenters = entries.filter((e) => e.topic === 'data-centers')
 

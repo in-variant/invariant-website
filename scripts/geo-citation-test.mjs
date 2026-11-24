@@ -33,7 +33,6 @@ const COMPLIANCE_PROMPTS = [
   // Brand / proof
   'companies that do AI for nuclear compliance',
   'companies that do AI for space compliance',
-  'Helion-512 FermiBench',
 ]
 
 const PROVIDERS = ['openai', 'claude', 'gemini']

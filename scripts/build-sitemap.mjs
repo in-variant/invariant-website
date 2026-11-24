@@ -42,7 +42,6 @@ const CORE = [
 
 const BLOG = [
   ...blogCollections.map(collection => ({ loc: `/blog/${collection.slug}`, lastmod: collection.updatedDate, changefreq: 'monthly', priority: '0.8' })),
-  { loc: '/blog/fermibench-sota', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/part100-vs-part53-siting', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/seismic-design-shift', changefreq: 'monthly', priority: '0.75' },
   { loc: '/blog/nuclear-compliance-tam', changefreq: 'monthly', priority: '0.7' },

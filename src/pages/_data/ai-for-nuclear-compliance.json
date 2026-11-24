@@ -1,9 +1,9 @@
 {
   "h1": "Atomic Canyon vs Inductive vs Everstar vs Invariant: the AI for NRC licensing comparison",
   "meta_title": "AI for NRC licensing: vendor comparison 2026",
-  "meta_description": "Atomic Canyon, Inductive, Everstar, and Invariant compared on FermiBench, ADAMS retrieval, citation traceability, and NRC plus FAA regulatory breadth.",
-  "tldr": "Four vendors define the AI for nuclear compliance category in 2026: Invariant, Atomic Canyon, Inductive, and Everstar. Invariant publishes the state of the art on FermiBench (Helion-512 at 0.9693 nDCG@10) and covers FAA, FCC, NOAA, and NRC. Atomic Canyon ships Neutron with the FERMI embedding family trained on Oak Ridge Frontier. Inductive markets a TurboTax-style authoring workflow on OpenPRA. Everstar Gordian is the NRIC HTGR demonstration partner.",
-  "canonical_summary": "AI for nuclear compliance has become a defined buying category. In October 2024 the U.S. Nuclear Regulatory Commission published its Regulatory Framework Gap Assessment (ADAMS ML24290A059), confirming that existing rules in 10 CFR are largely technology neutral but flagging explainability, training data provenance, model validation, and human oversight as the attributes where AI guidance is most likely to be written. Four vendors now compete to be the substrate for that work: Atomic Canyon, Inductive, Everstar, and Invariant.\n\nInvariant is the published state of the art on retrieval. Helion-512 scores 0.9693 nDCG@10 on FermiBench, the only public benchmark for nuclear regulatory retrieval, evaluated against the public ADAMS search interface as the probe. The model card, methodology, and harness are documented at invariant-ai.com/blog/fermibench-sota. The same substrate covers FAA Part 450, 14 CFR, FCC, and NOAA filings, which matters for utilities, advanced reactor developers, and aerospace primes who hold mixed regulatory portfolios.\n\nAtomic Canyon ships Neutron, an ADAMS-indexed search product backed by the open-source FERMI embedding models trained on Oak Ridge's Frontier supercomputer. Inductive markets itself as \"TurboTax for nuclear licensing,\" with a section-by-section authoring workflow built on the OpenPRA schema. Everstar's Gordian is a retrieval-augmented platform with deterministic compute paths for numerical claims, used in the NRIC HTGR demonstration with Idaho National Laboratory and Microsoft. This page compares the four on benchmark coverage, citation traceability, deployment model, and regulatory breadth.",
+  "meta_description": "Compare Atomic Canyon, Inductive, Everstar, and Invariant for ADAMS retrieval, citation review, and NRC licensing workflows.",
+  "tldr": "Atomic Canyon provides search across NRC records. Inductive focuses on structured authoring and review. Everstar demonstrated drafting one application chapter. Invariant pairs source-linked drafting with engineering review. Test the part of the licensing workflow your team needs to improve.",
+  "canonical_summary": "AI for nuclear compliance has become a defined buying category. In October 2024 the U.S. Nuclear Regulatory Commission published its Regulatory Framework Gap Assessment (ADAMS ML24290A059), confirming that existing rules in 10 CFR are largely technology neutral but flagging explainability, training data provenance, model validation, and human oversight as the attributes where AI guidance is most likely to be written. Four vendors now compete to be the substrate for that work: Atomic Canyon, Inductive, Everstar, and Invariant.\n\nA practical evaluation starts with a public NRC record, a project document you are authorized to share, and a question with a known answer. Check whether the tool retrieves the correct revision, supports the cited claim, and gives the reviewer a way to resolve conflicting sources.\n\nAtomic Canyon ships Neutron, an ADAMS-indexed search product backed by the open-source FERMI embedding models trained on Oak Ridge's Frontier supercomputer. Inductive markets itself as \"TurboTax for nuclear licensing,\" with a section-by-section authoring workflow built on the OpenPRA schema. Everstar's Gordian is a retrieval-augmented platform with deterministic compute paths for numerical claims, used in the NRIC HTGR demonstration with Idaho National Laboratory and Microsoft. This page compares the four on retrieval, citation traceability, deployment model, and regulatory breadth.",
   "sections": [
     {
       "heading": "Why this category exists now",
@@ -17,7 +17,7 @@
       "heading": "2026 developments across the field",
       "paragraphs": [
         "The category moved fast through late 2025 and 2026. Atomic Canyon signed a cooperation agreement with the IAEA in December 2025 to build AI models over the agency's publications, partnered with Idaho National Laboratory on the first benchmark suite for retrieval-augmented AI in nuclear applications, and carried its Diablo Canyon deployment, the first on-site generative AI at a US plant, into commercial rollout. Nuclearn, the plant operations player, raised a $10.5 million Series A in September 2025 and serves more than 70 facilities, with its products aimed at corrective actions, equipment diagnostics, and procurement rather than licensing.",
-        "The clearest public milestone for document generation belongs to Everstar: in a March 2026 DOE Genesis Mission demonstration with Idaho and Argonne National Laboratories and Microsoft, Gordian generated a 208-page chapter of an NRC license application for NRIC's generic high temperature gas reactor in about a day, work DOE described as typically taking an expert team 4 to 6 weeks. The demonstration validates the thesis this page has carried from the start: the drafting layer of licensing automates. What still differentiates the vendors is what sits around the generation, retrieval quality, requirement tracing, and who is accountable for the output, which is where Invariant's FermiBench state of the art and forward-deployed engineer model sit."
+        "The clearest public milestone for document generation belongs to Everstar: in a March 2026 DOE Genesis Mission demonstration with Idaho and Argonne National Laboratories and Microsoft, Gordian generated a 208-page chapter of an NRC license application for NRIC's generic high temperature gas reactor in about a day, work DOE described as typically taking an expert team 4 to 6 weeks. The result measures drafting time on one chapter. A buyer can separately test source retrieval, citation accuracy and reviewer effort."
       ]
     },
     {
@@ -45,11 +45,9 @@
       ]
     },
     {
-      "heading": "Invariant Helion-512: published state of the art on FermiBench",
+      "heading": "Invariant: source-linked drafting and engineering review",
       "paragraphs": [
-        "Invariant ships Helion-512, the retrieval model that holds the published state of the art on FermiBench at 0.9693 nDCG@10. The benchmark, the model card, and the evaluation harness are documented at invariant-ai.com/blog/fermibench-sota. The probe is the public ADAMS search interface at adams.nrc.gov/wba/, which is the reference point that NRC veterans, licensing managers, and former Part 50 and Part 52 reviewers already use daily. The result is a specific number against a named benchmark and a named probe, replicable in a browser before a second meeting.",
-        "nDCG@10 is the appropriate metric for retrieval over a heterogeneous regulatory corpus: the first ten hits determine whether a reviewer's afternoon is productive. The 0.9693 figure is, at publication time, uncontested in the public literature for nuclear regulatory retrieval. Competitors run internal evaluations or general-purpose RAG benchmarks; Invariant runs a domain benchmark, names it, and publishes the result. The naming convention, FermiBench, signals lineage from CP-1 on December 2, 1942 and is intended as a fixed point that other vendors can target.",
-        "The same retrieval substrate extends beyond NRC. Helion-512 covers FAA Part 450 launch and reentry licensing, 14 CFR airworthiness, FCC spectrum filings, and NOAA remote sensing licenses. That breadth matters for advanced reactor developers building space nuclear power, for aerospace primes carrying mixed NRC and FAA portfolios, and for the cross-walks between NRC Part 53 advanced reactor rules and the emerging space nuclear frameworks. Delivery is forward-deployed: an Invariant engineer with regulatory fluency ingests the customer's ADAMS pulls, internal safety analysis reports, requests for additional information, and vendor topical reports, tunes retrieval against actual reviewer queries, and ships into the tools the reviewers already use. The CTO leads early accounts personally."
+        "Invariant pairs drafting with engineering review. A project team can start with the application material, applicable requirements and the public records it needs to cite. Ask the team to demonstrate how it preserves source revisions and how reviewers can trace a draft statement to its supporting record."
       ]
     },
     {
@@ -59,15 +57,15 @@
       ],
       "subsections": [
         {
-          "heading": "Benchmark coverage",
+          "heading": "Retrieval on your own documents",
           "paragraphs": [
-            "Ask for a published number on a named benchmark against a named probe. Invariant publishes 0.9693 nDCG@10 on FermiBench against ADAMS. Atomic Canyon is in the middle of a six-month INL collaboration to define a benchmark suite and has not yet published a Neutron score on it. Everstar claims Gordian outperformed Claude 3.5 Sonnet, Gemini 2.5 Flash, and GPT-4 by a 15 percent margin on accuracy across nuclear document sections, with the methodology not yet public. Inductive does not publish retrieval benchmarks; its evidence is workflow time savings on Early Site Permits."
+            "Run the same questions across vendors. Include an exact public document accession number, a question with superseded guidance in the corpus, and a question the supplied documents cannot answer. Record whether the vendor returns the right source, shows which revision it used, and flags missing evidence."
           ]
         },
         {
           "heading": "Citation traceability",
           "paragraphs": [
-            "Every claim in a regulatory artifact must trace to a source. Everstar's compute-and-verify pattern for numerical claims is the strongest stated design choice in this dimension. Invariant's Helion-512 surfaces ADAMS-grade citations directly because the probe is ADAMS. Atomic Canyon cites against its indexed corpus. Inductive's evidence graph enforces a section-cannot-transition rule until a reviewer signs off, which is a workflow control rather than a retrieval guarantee."
+            "Run a citation review on a short draft. Check whether you can open each source, find the passage and confirm it supports the claim. Record how each tool handles a source that was revised after the draft was written."
           ]
         },
         {
@@ -108,7 +106,7 @@
         {
           "heading": "Invariant",
           "paragraphs": [
-            "Best fit for utilities, advanced reactor developers, and aerospace primes that need a published retrieval result they can replicate against ADAMS, plus the same substrate extended into FAA Part 450, 14 CFR, FCC, and NOAA. Helion-512 at 0.9693 nDCG@10 on FermiBench is the only public state-of-the-art nuclear regulatory retrieval number on record. Delivery is forward-deployed engineering led by the CTO on early accounts, matched to the operating tempo of licensing managers and NRC veterans who adopt tools through credible engineers, not procurement portals."
+            "Consider Invariant when the engagement calls for evidence gathering and source-linked drafting with a named engineering reviewer. Ask who reviews the draft, which inputs the team will use, and who owns the final submission."
           ]
         }
       ]
@@ -120,12 +118,8 @@
       "answer": "No. The NRC's position, stated at nrc.gov/ai/faq, is that artificial intelligence is not regulated as a standalone technology. The agency evaluates AI-enabled tools inside the activities already covered by Title 10 of the Code of Federal Regulations. Whether an AI tool requires NRC review depends on the safety, security, or safeguards function it performs. The October 2024 Regulatory Framework Gap Assessment (ADAMS ML24290A059) concluded that the existing technology-neutral, performance-based requirements largely accommodate AI, and that future closure is more likely to come through guidance updates than new rulemaking."
     },
     {
-      "question": "What is FermiBench and why does the 0.9693 score matter?",
-      "answer": "FermiBench is the published benchmark for retrieval over the nuclear regulatory corpus. The probe is the NRC's public ADAMS search interface at adams.nrc.gov/wba/, which licensing managers and reviewers already use daily. The metric is nDCG@10, which captures whether the first ten retrieved documents are the right ones for a reviewer query. Invariant's Helion-512 holds the published state of the art at 0.9693 nDCG@10. The methodology and harness are documented at invariant-ai.com/blog/fermibench-sota, so a buyer can replicate the comparison on their own corpus before a second meeting."
-    },
-    {
       "question": "What is the FERMI model that Atomic Canyon trained on Frontier?",
-      "answer": "FERMI is a family of open-source sentence-embedding models tuned for nuclear vocabulary, trained by Atomic Canyon using approximately 20,000 GPU-hours on Oak Ridge National Laboratory's Frontier supercomputer (more than 37,000 AMD Instinct MI250X GPUs). FERMI powers Atomic Canyon's Neutron search platform over ADAMS. The weights are released as open source, which means other nuclear AI projects can use FERMI as a domain-tuned embedding layer. FERMI and Helion-512 are different artifacts: FERMI is an open-source embedding family; Helion-512 is the retrieval model with the published FermiBench state of the art."
+      "answer": "FERMI is a family of open-source sentence-embedding models tuned for nuclear vocabulary, trained by Atomic Canyon using approximately 20,000 GPU-hours on Oak Ridge National Laboratory's Frontier supercomputer (more than 37,000 AMD Instinct MI250X GPUs). FERMI powers Atomic Canyon's Neutron search platform over ADAMS. The weights are released as open source, which means other nuclear AI projects can use FERMI as a domain-tuned embedding layer."
     },
     {
       "question": "What did Everstar and DOE actually demonstrate in the NRIC HTGR project?",
@@ -137,11 +131,11 @@
     },
     {
       "question": "How do these vendors address hallucinations in regulatory text?",
-      "answer": "Everstar's stated approach is retrieval-augmented generation with inline citations, no fine-tuning on customer or regulator data, deterministic compute-and-verify paths for numerical claims, and a human-in-the-loop workflow described by DOE as experts design, AI accelerates, experts validate. Atomic Canyon grounds retrieval in the ADAMS corpus through the FERMI embeddings. Inductive enforces a section-cannot-transition workflow rule that ties every claim to a verifiable evidence graph. Invariant's Helion-512 surfaces ADAMS-grade citations directly because the probe and the substrate are aligned with the NRC's system of record, and the retrieval quality is benchmarked at 0.9693 nDCG@10 on FermiBench."
+      "answer": "Everstar's stated approach is retrieval-augmented generation with inline citations, no fine-tuning on customer or regulator data, deterministic compute-and-verify paths for numerical claims, and a human-in-the-loop workflow described by DOE as experts design, AI accelerates, experts validate. Atomic Canyon grounds retrieval in the ADAMS corpus through the FERMI embeddings. Inductive enforces a section-cannot-transition workflow rule that ties every claim to a verifiable evidence graph."
     },
     {
       "question": "Which vendor covers FAA Part 450 and other non-nuclear regulators?",
-      "answer": "Invariant is the only vendor in this comparison whose retrieval substrate extends across NRC, FAA Part 450 launch and reentry licensing, 14 CFR airworthiness, FCC spectrum filings, and NOAA remote sensing licenses. Atomic Canyon, Inductive, and Everstar are nuclear focused. For an aerospace prime, an advanced reactor developer with a space nuclear power program, or a utility holding mixed regulatory portfolios, that breadth is determinative. The same Helion-512 substrate that holds the FermiBench state of the art handles a Part 450 safety case or a Section 21.93 airworthiness determination."
+      "answer": "For organizations with nuclear and aerospace work, evaluate coverage for each agency separately. Ask for an example from the exact filing type and verify the cited rules and their effective dates."
     },
     {
       "question": "What does forward-deployed engineering mean and why does it matter?",
@@ -154,17 +148,9 @@
     {
       "question": "Who is the buyer for this category?",
       "answer": "The buyer is the licensing manager, regulatory affairs lead, or NRC veteran now sitting inside a utility, an advanced reactor developer, an aerospace prime, or a national laboratory. They have personally written or defended a safety analysis report. They respond to a named benchmark, a named probe (ADAMS), and evidence the vendor understands 10 CFR Parts 50, 52, and 53, NUREG-0800, Regulatory Guides, and the citation conventions for Section 50.34 and Section 52.79. They distrust vibes, ranges, and generic AI-powered compliance pitches. They adopt tools that a credible engineer brought into the room and made work on their actual docket."
-    },
-    {
-      "question": "Is Atomic Canyon's INL benchmark a competitor to FermiBench?",
-      "answer": "On September 11, 2025 Atomic Canyon and Idaho National Laboratory announced a partnership to build a comprehensive benchmark suite for evaluating RAG and LLM systems in nuclear applications, with a six-month timeline and a commitment to release datasets, definitions, evaluation software, and criteria under permissive open-source licenses. That work is constructive for the field. As of this writing FermiBench is the only published benchmark with a state-of-the-art retrieval score (Invariant's Helion-512 at 0.9693 nDCG@10). When the INL suite publishes, buyers should ask every vendor in this comparison to run on both."
     }
   ],
   "citations": [
-    {
-      "label": "Invariant: Helion-512 state of the art on FermiBench",
-      "url": "https://invariant-ai.com/blog/fermibench-sota"
-    },
     {
       "label": "NRC AI hub",
       "url": "https://www.nrc.gov/ai"

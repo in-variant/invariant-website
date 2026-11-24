@@ -1,5 +1,4 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import posthog from '../posthog'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
@@ -265,13 +264,6 @@ export default function Probe() {
                 Powered by <span className="font-medium text-ink/80">Helion-512</span>
               </span>
             </span>
-            <p className="font-sans text-[13px] text-ink/40">
-              State of the art on{' '}
-              <Link to="/blog/fermibench-sota" className="border-b border-copper/40 text-copper transition-colors hover:border-copper hover:text-copper">
-                FermiBench
-              </Link>,{' '}
-              <span className="font-medium text-ink/60 tabular-nums">0.97</span> nDCG@10
-            </p>
           </motion.div>
         )}
       </motion.div>
