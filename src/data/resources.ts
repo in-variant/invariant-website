@@ -1,5 +1,6 @@
 import industryArticles from './industry-article-index.json'
 import legacyArticles from './legacy-blog-articles.json'
+import { publishedDatasets } from './publishedDatasets'
 import type { ArticleDataset, DatasetDownload } from './industryArticles'
 
 export type ResourceTopic = 'Space' | 'Nuclear' | 'Aerospace' | 'Cross-industry' | 'Data Centers' | 'Oil & Gas' | 'Data & APIs'
@@ -31,18 +32,5 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   ...industryArticles as ResourceArticle[],
   ...legacyArticles as ResourceArticle[],
 ]
-
-export function publishedDatasets(article: ResourceArticle) {
-  const { dataset, additionalDatasets = [] } = article
-  const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
-  return datasets.map(dataset => ({
-    ...article,
-    dataset,
-    anchor: dataset.anchor ?? 'dataset',
-    id: dataset.anchor ? `${article.slug}-${dataset.anchor}` : article.slug,
-    notesPath: `/blog/${article.slug}#${dataset.anchor ?? 'dataset'}`,
-    datePublished: dataset.datePublished ?? article.dateTime,
-  }))
-}
 
 export const RESEARCH_DATASETS = RESOURCE_ARTICLES.flatMap(publishedDatasets)
