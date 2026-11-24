@@ -1,0 +1,113 @@
+{
+  "name": "WFCM 2025-C65 original and amended October 2026 loan report comparison",
+  "checked_on": "2026-11-24",
+  "trust": "Wells Fargo Commercial Mortgage Trust 2025-C65",
+  "trust_cik": "0002086308",
+  "property": "Hilton Tucson East",
+  "asset_number": "16",
+  "currency": "USD",
+  "filings": [
+    {
+      "edition": "original",
+      "accession": "0001888524-26-019167",
+      "filed_on": "2026-10-27",
+      "accepted_as_displayed_by_edgar": "2026-10-27 12:25:19",
+      "period_of_report": "2026-10-19",
+      "index_url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/0001888524-26-019167-index.htm",
+      "exhibits": [
+        {
+          "number": 102,
+          "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/exh_102.xml",
+          "sha256": "d724327744dee1a9d8eec1ee149f8d223bcbde5109b710ac4944090e254bb747"
+        },
+        {
+          "number": 103,
+          "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/exh_103.xml",
+          "sha256": "da43dc3b46a94e74a1932d13f8b7642e2c574e1ce9d4435be35b4240d725f793"
+        }
+      ]
+    },
+    {
+      "edition": "amended",
+      "accession": "0001888524-26-019793",
+      "filed_on": "2026-10-29",
+      "accepted_as_displayed_by_edgar": "2026-10-29 13:27:38",
+      "period_of_report": "2026-10-19",
+      "index_url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/0001888524-26-019793-index.htm",
+      "supersedes": "0001888524-26-019167",
+      "exhibits": [
+        {
+          "number": 102,
+          "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/exh_102.xml",
+          "sha256": "2f12816b68320fb9d71cd5c95bf8669efc4e34c820fbb76089bb6410f191bb96"
+        },
+        {
+          "number": 103,
+          "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/exh_103.xml",
+          "sha256": "da43dc3b46a94e74a1932d13f8b7642e2c574e1ce9d4435be35b4240d725f793"
+        }
+      ]
+    }
+  ],
+  "replacement_notice": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/wcm25c65_abseea-202610.htm",
+  "method": "Read both Exhibit 102 files under the SEC CMBS asset-data XML namespace and match unique assetNumber values within the same issuing trust and filing report period. Compare the serialized asset records. Compare the two Exhibit 103 files by their original bytes. Amounts in the calculation are decimal strings in U.S. dollars. Null means the element was absent in that edition.",
+  "changed_ex_102_fields": [
+    {
+      "xml_element": "liquidationPrepaymentCode",
+      "original": null,
+      "amended": "1"
+    },
+    {
+      "xml_element": "liquidationPrepaymentDate",
+      "original": null,
+      "amended": "10-06-2026"
+    },
+    {
+      "xml_element": "reportPeriodEndActualBalanceAmount",
+      "original": "14989101.93000000",
+      "amended": "11328129.94000000"
+    },
+    {
+      "xml_element": "reportPeriodEndScheduledLoanBalanceAmount",
+      "original": "14989101.93000000",
+      "amended": "11328129.94000000"
+    },
+    {
+      "xml_element": "unscheduledPrincipalCollectedAmount",
+      "original": null,
+      "amended": "3660971.99000000"
+    }
+  ],
+  "unchanged_ex_102_fields": {
+    "reportingPeriodBeginningDate": "09-12-2026",
+    "reportingPeriodEndDate": "10-13-2026",
+    "maturityDate": "09-06-2035",
+    "paidThroughDate": "10-06-2026",
+    "scheduledPrincipalAmount": "10898.07000000",
+    "reportPeriodBeginningScheduleLoanBalanceAmount": "15000000.00000000"
+  },
+  "reconciliation": {
+    "comparable_assets": 23,
+    "changed_asset_numbers": [
+      "16"
+    ],
+    "original_asset_end_actual_balance_usd": "14989101.93",
+    "amended_asset_end_actual_balance_usd": "11328129.94",
+    "balance_decrease_usd": "3660971.99",
+    "reported_asset_end_actual_balances_sum_original_usd": "687666987.88",
+    "reported_asset_end_actual_balances_sum_amended_usd": "684006015.89",
+    "exhibit_103_bytes_identical": true
+  },
+  "expected_snapshots": [
+    {
+      "cutoff_date_end_of_day": "2026-10-28",
+      "applicable_accession": "0001888524-26-019167",
+      "reported_asset_balance_usd": "14989101.93"
+    },
+    {
+      "cutoff_date_end_of_day": "2026-10-29",
+      "applicable_accession": "0001888524-26-019793",
+      "reported_asset_balance_usd": "11328129.94"
+    }
+  ]
+}

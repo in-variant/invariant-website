@@ -19397,9 +19397,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Commercial Mortgage Maturity Data and APIs",
-    "description": "Find and verify a commercial mortgage maturity date. Compare CMBS APIs and test how they handle amendments, extension options, and dated source records.",
+    "description": "Verify commercial mortgage maturity dates and compare CMBS APIs. Use two SEC filings to test how a feed handles an amended loan balance.",
     "date": "2026-11-23",
-    "readMinutes": 7,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 9,
     "coverAlt": "Timeline showing Orion’s original February 2027 maturity, the amended February 2029 maturity, and conditional options in February and August 2030.",
     "coverCaption": "Orion Properties disclosed the amendment on February 19, 2026. The two 2030 dates depend on borrowers exercising their options and meeting the agreement’s conditions.",
     "intro": "Use Invariant Earth to put parcel, building and flood evidence in a commercial collateral file. Link that file to loan records from your servicer or a loan data provider before tracking maturity. To find when a U.S. commercial mortgage matures, start with the current schedule from your servicer or the trust’s latest loan-level report. Check any amendments and confirm whether the borrower exercised an extension option. A county mortgage index helps identify the instrument, but you may need the actual loan documents to establish the due date. For a portfolio spanning many lenders, ask any data provider exactly which loans it covers and which document supports each date.",
@@ -19524,11 +19525,53 @@
           },
           {
             "type": "paragraph",
-            "text": "Schedule AL distinguishes the original maturity, the reporting-period maturity and the maturity as of a modification. Preserve amended submissions too. The Wells Fargo Commercial Mortgage Trust 2025-C65 filed revised October 2026 exhibits two days after the first filing. That revision is a separate example of why a feed should retain multiple versions of the same reporting period.",
+            "text": "Schedule AL distinguishes the original maturity, the reporting-period maturity and the maturity as of a modification. Preserve each filing accession and its publication time so you can reconstruct what a credit team knew when it ran a report.",
             "sourceIds": [
-              "schedule-al",
-              "revision"
+              "schedule-al"
             ]
+          }
+        ]
+      },
+      {
+        "id": "test-an-amended-cmbs-filing",
+        "heading": "How can you track a correction to a monthly CMBS loan report?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use the trust, reporting period and asset number to match records. Keep the original filing and its accession, then link the replacement filing to it. Wells Fargo Commercial Mortgage Trust 2025-C65 filed its October report on October 27, 2026. Two days later it replaced both exhibits for the same report period. We compared the two asset files and found one changed record among 23, asset 16, Hilton Tucson East.",
+            "sourceIds": ["wfcm-original-index", "wfcm-amended-index", "revision", "wfcm-original-102", "wfcm-amended-102"]
+          },
+          {
+            "type": "table",
+            "columns": ["Asset 16 field", "October 27 filing", "October 29 filing"],
+            "rows": [
+              ["Period-end actual balance", "$14,989,101.93", "$11,328,129.94"],
+              ["Unscheduled principal collected", "Element absent in the XML", "$3,660,971.99"],
+              ["Reported maturity date", "September 6, 2035", "September 6, 2035"]
+            ],
+            "rowSourceIds": [
+              ["wfcm-original-102", "wfcm-amended-102"],
+              ["wfcm-original-102", "wfcm-amended-102"],
+              ["wfcm-original-102", "wfcm-amended-102"]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The $3,660,971.99 balance decrease matches the added unscheduled principal amount. The amendment also changed the scheduled ending balance and added a prepayment code and date. Its explanatory note replaces both exhibits, although the two copies of Exhibit 103 are byte-for-byte identical.",
+            "sourceIds": ["revision", "wfcm-original-102", "wfcm-amended-102", "wfcm-original-103", "wfcm-amended-103"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask your feed for asset 16 as known at the end of October 28 and again at the end of October 29. The first extract should reproduce the October 27 balance and identify the original accession. The second should use the amended balance and accession. Both should show September 6, 2035 as the reported maturity for that period. Check that the feed keeps the October 6 prepayment effective date separate from the date the amendment became public.",
+            "sourceIds": ["wfcm-original-index", "wfcm-amended-index", "wfcm-amended-102"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/wfcm-2025-c65-october-filing-amendment.json",
+            "format": "JSON",
+            "label": "Download the filing comparison and expected balances",
+            "datasetAnchor": "dataset-wfcm-amendment"
           }
         ]
       },
@@ -19695,6 +19738,12 @@
         "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/wcm25c65_abseea-202610.htm",
         "publisher": "SEC EDGAR"
       },
+      {"id": "wfcm-original-index", "title": "October 27 original filing index and acceptance time", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/0001888524-26-019167-index.htm", "publisher": "SEC EDGAR"},
+      {"id": "wfcm-amended-index", "title": "October 29 amended filing index and acceptance time", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/0001888524-26-019793-index.htm", "publisher": "SEC EDGAR"},
+      {"id": "wfcm-original-102", "title": "Original Exhibit 102 asset records (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/exh_102.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
+      {"id": "wfcm-amended-102", "title": "Replacement Exhibit 102 asset records (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/exh_102.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
+      {"id": "wfcm-original-103", "title": "Original Exhibit 103 asset-related document (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/exh_103.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
+      {"id": "wfcm-amended-103", "title": "Replacement Exhibit 103 asset-related document (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/exh_103.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
       {
         "id": "west-kite",
         "title": "Financing datasets and API queries",
@@ -19737,6 +19786,17 @@
       "spatialCoverage": "United States",
       "temporalCoverage": "2022-02-10/2026-11-05"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-wfcm-amendment",
+        "name": "WFCM 2025-C65 original and amended October 2026 loan report comparison",
+        "description": "A comparison of 23 CMBS asset records and their original and replacement SEC exhibits. Includes the Hilton Tucson East balance correction, five changed XML fields, file hashes and expected balances at two publication cutoffs.",
+        "spatialCoverage": "United States, including Hilton Tucson East in Tucson, Arizona",
+        "temporalCoverage": "2026-09-12/2026-10-29",
+        "datePublished": "2026-11-24",
+        "sourceIds": ["revision", "wfcm-original-index", "wfcm-amended-index", "wfcm-original-102", "wfcm-amended-102", "wfcm-original-103", "wfcm-amended-103"]
+      }
+    ],
     "relatedSlugs": [
       "commercial-mortgage-records-by-address",
       "commercial-real-estate-data-apis-for-lenders",
