@@ -320,6 +320,18 @@ def verify_search_metadata(pages):
         titles[title] = path
 
 
+def dataset_nodes(value):
+    if isinstance(value, dict):
+        types = value.get("@type")
+        if types == "Dataset" or isinstance(types, list) and "Dataset" in types:
+            yield value
+        for child in value.values():
+            yield from dataset_nodes(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from dataset_nodes(child)
+
+
 def verify_dataset_catalog(catalog, pages):
     schemas = [item for item in catalog.schemas if item.get("@type") == "DataCatalog"]
     require(len(schemas) == 1, "research page must describe one DataCatalog")
@@ -366,10 +378,13 @@ def verify_dataset_catalog(catalog, pages):
                 and entry["issued"]["date-parts"] == [[int(part) for part in published.split("-")]],
                 f"{url} has inconsistent citation metadata")
     for path, page in pages.items():
-        if not path.startswith("/blog/"):
-            continue
         registered_downloads = set()
-        for dataset in (item for item in page.schemas if item.get("@type") == "Dataset"):
+        for dataset in dataset_nodes(page.schemas):
+            require(path.startswith("/blog/"), f"{page.url} describes a Dataset outside its canonical guide")
+            name, description = dataset.get("name"), dataset.get("description")
+            require(isinstance(name, str) and name.strip() and isinstance(description, str)
+                    and 50 <= len(description.strip()) <= 5000,
+                    f"{page.url} has Dataset markup with a missing name or invalid description")
             require(dataset.get("includedInDataCatalog") == identity, f"{page.url} has an incomplete DataCatalog reference")
             anchor = urlsplit(dataset["url"]).fragment
             require(re.fullmatch(r"dataset(?:-[a-z0-9]+)*", anchor) and page.ids.count(anchor) == 1
@@ -382,6 +397,11 @@ def verify_dataset_catalog(catalog, pages):
                     and record["sources"] == dataset["isBasedOn"]
                     and record.get("datePublished", record["guide"]["published"]) == dataset["datePublished"],
                     f"{dataset['url']} has inconsistent JSON dataset metadata")
+            reuse = record.get("sourceReuse")
+            if reuse:
+                reuse_anchor = f"{anchor}-reuse"
+                require(dataset.get("usageInfo") == f"{page.url}#{reuse_anchor}" and page.ids.count(reuse_anchor) == 1,
+                        f"{dataset['url']} needs a visible usage note matching its structured data")
             downloads = {file["url"]: file for file in record["downloads"]}
             require(len(downloads) == len(record["downloads"]) and downloads.keys() == {
                 file["contentUrl"] for file in dataset["distribution"]
