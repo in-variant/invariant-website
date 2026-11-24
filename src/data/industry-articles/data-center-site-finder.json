@@ -14301,52 +14301,45 @@
   "topic": "Data Centers",
   "kind": "site-listing",
   "region": "Virginia, United States",
-  "title": "Virginia Data Center Sites and Powered Land",
-  "description": "Compare a public Virginia land offering and nearby powered sites. Check Dominion’s service process, the 2027 GS-5 rate class and five address-level records.",
+  "title": "Virginia Data Center Sites for Sale and Powered Land",
+  "description": "Compare two Virginia land offerings and a property with leased data center space. Check listing status, parcel zoning and what the utility still needs to confirm.",
   "date": "2026-11-09",
   "readMinutes": 6,
-  "intro": "Virginia’s surplus property office lists about 356 acres for sale in Dinwiddie County and identifies data centers as a possible use. The listing gives acreage and zoning but leaves utility MW and delivery dates open. For a Virginia site search, compare what the seller is offering with the utility’s first service block, the cost of reaching full power, and the county approvals available on the exact parcel.",
+  "intro": "Virginia’s surplus property office lists about 356 acres in Dinwiddie County, and a broker lists 186 acres on Gordon Road in Spotsylvania County. Both are marketed for potential data center development. A broker also lists an investment property with leased data center space in Lynchburg. As of November 23, 2026, the public records reviewed did not establish how many megawatts a new buyer could use at any of the three sites.",
   "takeaways": [
-   "The Central State Hospital offering in Dinwiddie has two advertised phases of about 207 and 149 acres. The state listing describes the land as R-1.",
-   "Ask Dominion for the dates and MW of initial and full service. A smaller commissioning block may arrive while the permanent connection is still being built.",
-   "Dominion Virginia’s new GS-5 class is scheduled to start January 1, 2027. Confirm the rate class and minimum demand charges before modeling a ramp.",
-   "Use an address and record number to match air permits and zoning orders. Get customer-specific capacity and transfer terms separately from the serving utility."
+   "The Dinwiddie offering has two advertised phases of roughly 207 and 149 acres. The state describes the land as R-1.",
+   "Spotsylvania County maps the Gordon Road parcel as Rural. The county GIS polygon measures about 184.1 acres against the 186 acres advertised.",
+   "The Lynchburg offering includes 12,000 square feet of leased data center space, according to the broker. Confirm lease rights and usable power before buying.",
+   "For a powered site, get the first service block in MW, its delivery date, and the upgrades required to reach full load. Check whether the service terms transfer to a new buyer."
   ],
   "sections": [
    {
     "id": "sites-available",
-    "heading": "Virginia land for sale to screen",
+    "heading": "Virginia data center and land offerings",
     "blocks": [
      {
-      "type": "paragraph",
-      "text": "The Virginia Department of General Services and its broker list the Central State Hospital surplus land at 4901 Boydton Plank Road. JLL shows about 356 acres for sale, with pricing on inquiry. Confirm which parcels are still offered and request the survey and environmental documents before underwriting the acreage.",
-      "sourceIds": [
-       "dgs-dinwiddie",
-       "jll-dinwiddie"
-      ]
-     },
-     {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
-       "Question",
-       "What the public offering shows",
-       "Before you shortlist"
+       "Property",
+       "Public listing and records",
+       "What to verify before making an offer"
       ],
       "rows": [
        [
-        "How much land is offered?",
-        "About 207 acres in Phase 1 and 149 acres in Phase 2.",
-        "Confirm the parcel boundaries, usable acreage and whether the phases are available separately."
+        "4901 Boydton Plank Road, Dinwiddie County",
+        "State surplus land for sale. DGS and JLL show about 356 acres in two phases. The state lists R-1 zoning.",
+        "Confirm which parcels and phases remain available, what county approvals are needed, and when the utility can serve the first load."
        ],
        [
-        "Can you build a data center?",
-        "The state describes the current zoning as R-1 and names data centers among potential uses.",
-        "Ask Dinwiddie County for the current zoning and a written determination on the required approvals."
+        "10725 Gordon Road, Spotsylvania County",
+        "Broker lists 186 acres for sale. The county maps parcel 34-A-14 as Rural. The broker’s map shows a 500 kV line crossing the parcel. The listing gives no service MW.",
+        "Confirm the sale status and survey acreage. Ask the county about zoning and the utility for a service schedule."
        ],
        [
-        "How many MW can the site get?",
-        "The state describes access to power infrastructure without giving a service quantity or date.",
-        "Ask the serving utility for the service point, first block at the meter, full-load date and upgrades."
+        "The Vault, 901 Main Street, Lynchburg",
+        "Broker lists an investment property with 12,000 square feet of leased data center space. The public offering leaves power disclosure to inquiry.",
+        "Review the leases, separately confirm existing meter capacity and tenant allocations, and ask which rights transfer at closing."
        ]
       ],
       "rowSourceIds": [
@@ -14355,10 +14348,13 @@
         "jll-dinwiddie"
        ],
        [
-        "dgs-dinwiddie"
+        "dcg-offerings",
+        "dcg-gordon-brochure",
+        "spost-gordon-parcel",
+        "spost-gordon-zoning"
        ],
        [
-        "dgs-dinwiddie"
+        "dcg-offerings"
        ]
       ]
      },
@@ -14367,8 +14363,31 @@
       "items": [
        {
         "slug": "data-center-site-selection-services",
-        "label": "Request a Virginia shortlist by first-phase MW and service date"
+        "label": "Get a Virginia shortlist for your MW and delivery date"
        }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The Gordon Road acreage check starts with tax map parcel 34-A-14 and GPIN 7477-62-8896. The county GIS reports 8,019,441 square feet, or about 184.1 acres. Intersecting that parcel geometry with the county zoning layer returned one mapped district, RU. Use the survey for acreage and get the county’s written determination before assuming the land can be developed as a data center.",
+      "sourceIds": [
+       "dcg-gordon-brochure",
+       "spost-gordon-parcel",
+       "spost-gordon-zoning"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "under-contract",
+    "heading": "Two leads already under contract",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The same broker marks a separate 107-acre Spotsylvania offering under contract. Prince Edward County reports that its 280-acre Heartland Innovative Technology Park near Farmville is under contract with AVAIO Digital. The county says project documents contemplate up to 300 MW and that Dominion’s review will determine the final power allocation.",
+      "sourceIds": [
+       "dcg-offerings",
+       "prince-edward-hit-status"
       ]
      }
     ]
@@ -14446,6 +14465,7 @@
      },
      {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
        "Address",
        "Public record",
@@ -14501,7 +14521,7 @@
      {
       "type": "download",
       "path": "/blog/virginia-data-center-site-evidence.csv",
-      "label": "Download the Virginia listing and address records",
+      "label": "Download Virginia offering, parcel and permit evidence",
       "format": "CSV"
      }
     ]
@@ -14516,6 +14536,7 @@
      },
      {
       "type": "table",
+      "stackOnMobile": true,
       "columns": [
        "Site lead",
        "Published power evidence",
@@ -14864,11 +14885,21 @@
   ],
   "faqs": [
    {
-    "question": "Is there Virginia land for sale that could suit a data center?",
-    "answer": "The state and JLL list about 356 acres of former Central State Hospital land for sale in Dinwiddie County. The state describes the zoning as R-1 and identifies data centers as a potential use. Confirm the land-use approval path and ask the utility for service MW and timing.",
+    "question": "Which Virginia data center land is listed for sale?",
+    "answer": "On November 23, 2026, Virginia DGS and JLL listed roughly 356 acres in Dinwiddie County, and The Data Center Group listed 186 acres on Gordon Road in Spotsylvania County. The public materials reviewed leave buyer-specific utility MW and service dates open.",
     "sourceIds": [
      "dgs-dinwiddie",
-     "jll-dinwiddie"
+     "jll-dinwiddie",
+     "dcg-offerings"
+    ]
+   },
+   {
+    "question": "Is the 186-acre Gordon Road site approved and powered?",
+    "answer": "Spotsylvania County maps tax parcel 34-A-14 as Rural. The broker’s map shows a 500 kV line crossing it, and the offering leaves the power details to inquiry. Ask the county for a zoning determination and the serving utility for the initial MW and service schedule.",
+    "sourceIds": [
+     "dcg-gordon-brochure",
+     "spost-gordon-zoning",
+     "dcg-offerings"
     ]
    },
    {
@@ -14906,6 +14937,40 @@
     "title": "4901 Boydton Plank Road land offering, listing 750980",
     "publisher": "JLL",
     "url": "https://property.jll.com/listings/4901-boydton-plank-rd-not-tracked-virginia"
+   },
+   {
+    "id": "dcg-offerings",
+    "title": "Gordon Road, The Vault and 107-acre Spotsylvania offering status",
+    "publisher": "The Data Center Group at Coldwell Banker Commercial Elite",
+    "linkLabel": "Broker inventory",
+    "url": "https://datacentergroup.co/"
+   },
+   {
+    "id": "dcg-gordon-brochure",
+    "title": "Gordon Road broker map with parcel 34-A-14 and transmission lines",
+    "publisher": "Coldwell Banker Commercial Elite",
+    "linkLabel": "Broker map",
+    "url": "https://datacentergroup.co/wp-content/uploads/2025/12/CleanShot-2025-12-23-at-06.53.46.png"
+   },
+   {
+    "id": "spost-gordon-parcel",
+    "title": "Tax parcel query for 34-A-14, GPIN 7477-62-8896 and mapped area",
+    "publisher": "Spotsylvania County GIS",
+    "linkLabel": "County parcel",
+    "url": "https://gis.spotsylvania.va.us/arcgis/rest/services/GeoHub/Tax_Parcels/MapServer/29/query?f=json&where=MAP_Pin%3D%2734-A-14%27&outFields=MAP_Pin%2CGPIN%2CShape.STArea%28%29&returnGeometry=true&outSR=2283"
+   },
+   {
+    "id": "spost-gordon-zoning",
+    "title": "County zoning district feature 99732 intersecting parcel 34-A-14",
+    "publisher": "Spotsylvania County GIS",
+    "linkLabel": "County zoning",
+    "url": "https://gis.spotsylvania.va.us/arcgis/rest/services/GeoHub/GeoHub/MapServer/39/query?f=json&where=OBJECTID%3D99732&outFields=OBJECTID%2CZONECLASS&returnGeometry=false"
+   },
+   {
+    "id": "prince-edward-hit-status",
+    "title": "HIT Park data center FAQ and property sale status",
+    "publisher": "Prince Edward County",
+    "url": "https://www.co.prince-edward.va.us/Economic-Development/HIT-Park-Data-Center-FAQ"
    },
    {
     "id": "deq-addresses",
@@ -14982,13 +15047,18 @@
   ],
   "updatedDate": "2026-11-23",
   "dataset": {
-   "name": "Virginia data center land offering and address evidence",
-   "description": "A Dinwiddie County land offering, four state air registrations and one Prince William County rezoning order. Each row has the address, record ID, source, date checked, and the site-specific utility evidence still needed.",
+   "name": "Virginia data center offerings, parcel checks and address records",
+   "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations and one rezoning order. Includes the Gordon Road parcel and zoning match, dates checked and the utility evidence a buyer still needs.",
    "datePublished": "2026-11-23",
-   "spatialCoverage": "Dinwiddie, Loudoun and Prince William counties, Virginia, United States",
+   "spatialCoverage": "Dinwiddie, Loudoun, Prince Edward, Prince William and Spotsylvania counties and Lynchburg, Virginia, United States",
    "sourceIds": [
     "dgs-dinwiddie",
     "jll-dinwiddie",
+    "dcg-offerings",
+    "dcg-gordon-brochure",
+    "spost-gordon-parcel",
+    "spost-gordon-zoning",
+    "prince-edward-hit-status",
     "deq-addresses",
     "deq-consent",
     "pwc-devlin",
