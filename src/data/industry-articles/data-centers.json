@@ -278,11 +278,11 @@
   {
     "slug": "data-center-backup-generator-air-permits",
     "topic": "Data Centers",
-    "title": "Air Permits for Data Center Backup Generators",
-    "description": "Check construction permits, Title V, and federal engine rules for data center backup generators. See an issued Virginia permit and its run-hour limits.",
+    "title": "Data Center Backup Generator Air Permits and Run-Hour Limits",
+    "description": "See which air permits and run-hour limits apply to data center backup generators. Read issued Virginia and Texas permits and download their permit records.",
     "date": "2026-09-15",
-    "readMinutes": 9,
-    "intro": "Before installing backup generators at a U.S. data center, determine whether the fleet needs a preconstruction air permit or qualifies for a state or local exemption. Assess Title V operating-permit applicability separately. Federal engine standards can apply in either case. Start with the full equipment list and the planned uses, from commissioning tests to emergency operation and temporary site power.",
+    "readMinutes": 11,
+    "intro": "Before installing backup generators at a U.S. data center, identify the state or local construction authorization, check whether the site needs a Title V operating permit, and determine which federal standards apply to each engine. To figure out how long a generator can run, start with the reason for the run. Check the federal rules for that use and the site permit’s limits for the engine and any group it belongs to.",
     "takeaways": [
       "Check the construction permit, the operating permit, and the federal rules for each engine.",
       "Price the controls and testing required for the proposed site before ordering the equipment.",
@@ -316,6 +316,45 @@
             "text": "Assess Title V operating-permit applicability separately. EPA uses pollutant-specific thresholds, including lower thresholds for some pollutants in nonattainment areas. A project can have a minor construction permit while its facility has a Title V operating permit. Keep the basis for both determinations.",
             "sourceIds": [
               "title-v"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "generator-run-hour-limits",
+        "heading": "How many hours can a data center run its backup generators?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Check the operating purpose, the time period and which equipment the limit covers. A calendar-year counter for readiness testing and a rolling 12-month counter for a group of generators can both apply to the same run. An assumed run time used to estimate emissions is a separate figure."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["What the number refers to", "What to check"],
+            "rows": [
+              [
+                "100 hours per calendar year under federal Subpart IIII",
+                "This is generally the allowance for qualifying maintenance and readiness testing of covered emergency diesel engines. Any eligible nonemergency hours count toward that total. The rule addresses emergency operation and limited exceptions for additional testing separately."
+              ],
+              [
+                "500 hours in EPA guidance for estimating potential emissions",
+                "This is a default assumption for an emissions calculation. The source or permitting authority can justify a different estimate. Use the site permit and operating rules to determine allowed uses and actual run limits."
+              ],
+              [
+                "75 hours per engine and combined limits in the Digital Loudoun permit",
+                "Use the conditions assigned to the engine and its group. The Virginia renewal has per-engine and combined limits, which the permit checks over the preceding 12 months."
+              ],
+              [
+                "10% in Texas Permit by Rule §106.511",
+                "Texas ties eligibility to the normal annual operating schedule of the primary equipment and restricts the purpose of operation. Check this condition alongside federal limits and any site-specific terms."
+              ]
+            ],
+            "rowSourceIds": [
+              ["federal-ci-operation"],
+              ["epa-emergency-pte"],
+              ["loudoun-title-v"],
+              ["texas-rule-text", "texas-pbr"]
             ]
           }
         ]
@@ -381,6 +420,34 @@
         ]
       },
       {
+        "id": "issued-texas-permit",
+        "heading": "How the Texas permit ties each engine to its authorization",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Texas issued Federal Operating Permit O4780 for Microsoft’s SN Campus permit area in Bexar County on May 13, 2026. Its authorization table lists Texas Permit by Rule §106.511 under registration 82486 for the generator and fire pump engines and their stacks. The cover page says any applicable New Source Review authorization for new or modified facilities must still be obtained.",
+            "sourceIds": ["texas-o4780", "texas-pbr"]
+          },
+          {
+            "type": "paragraph",
+            "text": "We counted 152 distinct IDs carrying that rule reference in the issued permit’s authorization attachment. The descriptions identify 73 generator engine records, three fire pump engine records and 76 stack records. We matched each stack to one engine using the equipment tag and model in the descriptions, checking the stated ratings where both rows provided one. The download preserves both IDs and the source pages.",
+            "sourceIds": ["texas-o4780"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the permit’s equipment ID as written and read the rating from the equipment description. For example, the row with ID 2MW7-2 describes a 3,000 kW generator engine. Before procurement or reporting, reconcile the permit description with the manufacturer’s data and the facility’s equipment list.",
+            "sourceIds": ["texas-o4780"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/texas-backup-generator-permit-o4780.csv",
+            "format": "CSV",
+            "label": "Download the Texas engine and stack records with source pages",
+            "datasetAnchor": "dataset-texas-air-permit"
+          }
+        ]
+      },
+      {
         "id": "fleet-register",
         "heading": "Build one equipment register for the entire campus",
         "blocks": [
@@ -421,7 +488,7 @@
           },
           {
             "type": "paragraph",
-            "text": "For emergency diesel engines covered by federal Subpart IIII, § 60.4211(f) sets a general 100-hour calendar-year cap for qualifying maintenance and readiness tests, including any eligible nonemergency hours counted under that rule. The rule provides for limited additional testing hours in specified circumstances. Apply the permitted-use conditions and the separate site limits when scheduling or classifying a run.",
+            "text": "Configure the operating log to track the reason for each run and every applicable counter. For a covered emergency diesel engine, this can include a federal calendar-year testing counter and a separate rolling site-permit counter. Check approval and documentation requirements before scheduling any additional readiness testing.",
             "sourceIds": [
               "federal-ci-operation"
             ]
@@ -691,6 +758,34 @@
         "linkLabel": "Issued Digital Loudoun permit"
       },
       {
+        "id": "texas-o4780",
+        "title": "Issued Federal Operating Permit O4780, May 13, 2026, cover and authorization attachment pp. 43–57",
+        "url": "https://www.tceq.texas.gov/assets/public/permitting/air/publicnotice/38509sop.pdf",
+        "publisher": "Texas Commission on Environmental Quality",
+        "linkLabel": "Issued Texas permit O4780"
+      },
+      {
+        "id": "texas-rule-text",
+        "title": "30 TAC §106.511, Portable and Emergency Engines and Turbines, May 15, 2026 copy",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&dID=9874530&searchType=External#page=81",
+        "publisher": "Texas Commission on Environmental Quality",
+        "linkLabel": "Texas §106.511 text"
+      },
+      {
+        "id": "texas-pbr",
+        "title": "Air PBR 106.511 applicability and rolling 12-month records",
+        "url": "https://www.tceq.texas.gov/permitting/air/permitbyrule/subchapter-w/portable_power.html",
+        "publisher": "Texas Commission on Environmental Quality",
+        "linkLabel": "Texas permit-by-rule guidance"
+      },
+      {
+        "id": "epa-emergency-pte",
+        "title": "Calculating Potential to Emit for Emergency Generators, pp. 3–4",
+        "url": "https://www.epa.gov/sites/default/files/2015-08/documents/emgen.pdf",
+        "publisher": "U.S. Environmental Protection Agency",
+        "linkLabel": "EPA potential-to-emit guidance"
+      },
+      {
         "id": "federal-ci-operation",
         "title": "40 CFR § 60.4211(f), operating conditions for emergency stationary compression ignition engines",
         "url": "https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-60/subpart-IIII/subject-group-ECFR420622b66d45c35/section-60.4211#p-60.4211(f)",
@@ -717,7 +812,7 @@
       "data-center-site-selection-permitting",
       "data-center-sites-for-sale-virginia"
     ],
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "dataset": {
       "name": "Digital Loudoun backup generator operating permit limits",
       "description": "Nine rows from Virginia DEQ’s 2025 Title V renewal for registration 73670, covering permit dates, six individual or combined run-hour limits, and the record-retention condition.",
@@ -726,7 +821,18 @@
         "loudoun-title-v"
       ],
       "spatialCoverage": "Ashburn, Loudoun County, Virginia, United States"
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-texas-air-permit",
+        "datePublished": "2026-11-24",
+        "name": "Texas permit O4780 engine and stack authorization records",
+        "description": "152 source-linked IDs in the issued authorization attachment. Includes 73 generator engines, three fire pump engines and 76 stacks. Each row includes the printed permit page, the PDF page, the cited registration and the stated kW when the permit description gives one. The stack-to-engine match is derived from the descriptions.",
+        "sourceIds": ["texas-o4780"],
+        "spatialCoverage": "Bexar County, Texas, United States",
+        "temporalCoverage": "2026-05-13"
+      }
+    ]
   },
   {
     "slug": "data-center-water-stormwater-permits",
