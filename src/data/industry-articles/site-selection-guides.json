@@ -4212,251 +4212,259 @@
     "slug": "data-center-land-acres-per-mw",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Data center acres per MW: land sizing for AI campuses, colocation and mining",
-    "description": "How many acres a data center needs per MW: PUE, rack density, substation and cooling footprints, real campus examples and a quick check of listing acreage against MW.",
+    "title": "Data Center Land Requirements: How Many Acres per MW?",
+    "description": "Size land for a 100 MW data center. Compare acres per megawatt, check contiguous buildable land and utility pads, and download a worked acreage budget.",
     "date": "2026-11-09",
-    "readMinutes": 10,
-    "intro": "A modern data center campus needs roughly 0.5 to 2 acres of gross land per MW of total facility load, and a bitcoin mine can get by on a quarter of that. Those are rules of thumb, not standards. The building itself is a small share of the site. Substations, cooling yards, generators, stormwater ponds, setbacks and land held for later phases take most of it. This guide shows how to size the land from the power number, what each piece of infrastructure takes, how announced campuses compare, and how to check whether a listing's acreage fits the MW it claims.",
+    "readMinutes": 8,
+    "intro": "For a 100 MW data center, first confirm whether the figure means IT load or total facility demand. A 100 MW IT campus with a design demand multiplier of 1.30 screens at about 130 MW at the facility boundary. Then check the largest connected buildable area against the halls, heat rejection, electrical yards, drainage, roads and expansion space. In the worked example below, 80 gross acres leave 56 acres after constraints. A larger utility substation pad makes that same parcel 7.5 acres short by area.",
     "takeaways": [
-      "Size land from total facility load (IT load times PUE), not from rack count or building area.",
-      "Buildings cover a small share of an AI campus. Fairwater puts about 1.2 million square feet of floor area on 315 acres.",
-      "Reserve about 3 acres for a 138 kV substation and 8.5 to 16.5 acres for 345 kV before laying out halls, using ComEd's 2026 guidelines as a reference.",
-      "Acreage almost never limits a site. Check usable acres for fit, then ask for the utility document behind the MW."
+      "Compare gross acres per IT MW with other IT figures. Compare acres per facility MW only when the published demand, land and phase align.",
+      "In the worked example, 18 constrained acres and another 10 acres overlap by four. The unique excluded area is 24 acres.",
+      "ComEd’s January 2026 reference uses about 8.5 acres for a 345 kV station on one line and 16.5 for two, before stormwater detention.",
+      "A parcel that passes the land test still needs a documented utility connection, demand by phase, delivery schedule and applicable conditions."
     ],
     "sections": [
       {
         "id": "start-with-the-load",
-        "heading": "Size the load before you size the land",
+        "heading": "Which MW number are you sizing for?",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Every acreage question starts with a power number, and there are two of them. IT load is what the servers draw. Total facility load adds cooling, power conversion losses, lighting and offices. The ratio between them is power usage effectiveness, or PUE. Uptime Institute put the average per-site PUE across its survey at 1.58 for 2023, and 1.47 when weighted by IT capacity, with large new hyperscale builds designed for 1.4 or lower and some cloud operators claiming 1.2 or lower at certain sites.",
+            "text": "IT load is the power delivered to computing equipment. Facility demand includes supporting systems such as cooling and power conversion. A listing might instead show a substation rating, a phased request or a developer’s full build target. Record which one it is before using the number."
+          },
+          {
+            "type": "paragraph",
+            "text": "Power usage effectiveness, or PUE, compares facility energy with IT energy over the same boundary and period. For early sizing, a project team can apply a separate design demand multiplier to calculate a coincident load. At 100 MW IT, a multiplier of 1.30 yields 130 MW facility demand. Confirm the design operating condition with the electrical team, especially during hot weather or a ramp. An annual average PUE alone does not establish peak utility service.",
             "sourceIds": [
-              "uptime-pue"
+              "pue"
             ]
-          },
-          {
-            "type": "paragraph",
-            "text": "So a 100 MW IT campus at a PUE of 1.3 needs about 130 MW at the meter. The utility sizes its service to the facility number. The land plan has to hold the gear for both: the halls for the IT load and the yards for everything that turns 130 MW into 100 MW of useful compute. Ask which number a listing means when it says \"100 MW.\" Brokers often don't say."
-          },
-          {
-            "type": "paragraph",
-            "text": "Rack density is the other input, and it has split the market in two. Uptime's 2025 survey found average densities still rising slowly, driven by racks in the 10 to 30 kW range, with few facilities above 30 kW.",
-            "sourceIds": [
-              "uptime-2025"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "AI racks sit far above that. NVIDIA's GB200 NVL72 rack is rated at about 120 kW and is direct liquid cooled, roughly double the rack designs that came before it.",
-            "sourceIds": [
-              "nvl72"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Higher density shrinks the white space per MW. It doesn't shrink the substation, the chillers or the dry coolers, because those scale with heat and power, not with how tightly servers are packed. That's why a dense AI campus can still need a lot of land. The building gets smaller per MW while the yard around it stays about the same size per MW."
           }
         ]
       },
       {
         "id": "what-takes-the-land",
-        "heading": "Most of a campus is not building",
+        "heading": "What the land plan needs to hold",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Microsoft's Fairwater AI campus in Mount Pleasant, Wisconsin is a useful reference. Microsoft describes three buildings with about 1.2 million square feet under roof on a 315-acre site. That is about 28 acres of floor area. Even if every square foot sat on one level, the roofs would cover less than a tenth of the land. The same post describes a water-cooled chiller plant, a closed-loop system and 172 twenty-foot fans on cooling fins along the buildings.",
-            "sourceIds": [
-              "microsoft-fairwater"
+            "text": "Budget the building footprint, equipment and storage yards, backup power, customer electrical gear, utility land, drainage, access, and construction staging. Gross floor area can span multiple floors. Use the building footprint in the site budget and test the dimensions of the pads instead of subtracting a blanket percentage."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Utility example",
+              "Published screening dimensions",
+              "Approximate acres",
+              "What the number covers"
+            ],
+            "rows": [
+              [
+                "ComEd, 138 kV on one line",
+                "413 × 324 ft",
+                "3.1",
+                "Interconnection substation site, before stormwater detention"
+              ],
+              [
+                "ComEd, 138 kV on two lines",
+                "413 × 551 ft",
+                "5.2",
+                "Interconnection substation site, before stormwater detention"
+              ],
+              [
+                "ComEd, 345 kV on one line",
+                "784 × 472 ft",
+                "8.5",
+                "Interconnection substation site, before stormwater detention"
+              ],
+              [
+                "ComEd, 345 kV on two lines",
+                "784 × 914 ft",
+                "16.5",
+                "Interconnection substation site, before stormwater detention"
+              ],
+              [
+                "PSE&G, 345 kV",
+                "Equipment area",
+                "2.5 to 5",
+                "Customer substation equipment space"
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "comed"
+              ],
+              [
+                "comed"
+              ],
+              [
+                "comed"
+              ],
+              [
+                "comed"
+              ],
+              [
+                "pseg"
+              ]
             ]
           },
           {
             "type": "paragraph",
-            "text": "A concept plan should show all of the following before anyone quotes MW per acre."
-          },
-          {
-            "type": "list",
-            "items": [
-              "On-site substation. ComEd's January 2026 guidelines call for at least 784 by 472 feet (about 8.5 acres) for a 345 kV interconnection substation on one line, expandable to 784 by 914 feet (about 16.5 acres), and 413 by 324 feet (about 3.1 acres) for 138 kV, all excluding stormwater detention.",
-              "Customer substation. PSE&G's data center guidance lists 2.5 acres of equipment space at 69, 138 and 230 kV, 2.5 to 5 acres at 345 kV and 7 acres at 500 kV.",
-              "Generator yards and fuel. Diesel or gas backup units, belly tanks or bulk fuel storage, and the separation and noise screening around them. Many campuses line the generators along the long walls of each hall.",
-              "Heat rejection. Air-cooled chillers, dry coolers, or cooling towers, on the roof or in a ground-level yard. Liquid-cooled AI halls still reject heat outside.",
-              "Water. Storage tanks for fire protection and, for evaporative designs, makeup water and treatment.",
-              "Stormwater detention. Ponds or vaults sized to local rules, which grow with every acre of roof and pavement.",
-              "Setbacks, buffers and screening. Zoning setbacks from property lines and residential uses, plus berms and landscaping that noise and visual conditions often require.",
-              "Roads, parking, security and laydown. Perimeter fencing, guard posts, truck access and construction staging.",
-              "Future phases. Pad sites held for the second and third buildings, and a second substation position."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "The substation figures come from two utilities and are not a national standard. Still, they set a floor. A 345 kV switching station plus a customer substation can take 10 to 20 acres before a single hall goes up.",
+            "text": "ComEd also calls for the one-line site to be expandable, access from at least two sides and a short transmission tie-in. Its dimensions are for its own interconnection substation geometry. PSE&G’s equipment space is a different scope. Ask who owns each pad, how access and drainage are provided, and whether the serving utility wants room for later circuits.",
             "sourceIds": [
               "comed",
               "pseg"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Behind-the-meter generation adds its own footprint: turbines or reciprocating engines, gas metering and regulation, switchyard, emissions controls and the setback from the property line that an air permit and a noise study usually require. Crusoe's 1.2 GW Abilene campus pairs a grid interconnection with behind-the-meter batteries and solar, and gas turbines for backup power. Solar needs far more acreage per MW than the data center it supports.",
-            "sourceIds": [
-              "crusoe"
             ]
           }
         ]
       },
       {
         "id": "mw-per-acre-by-type",
-        "heading": "MW per acre by facility type",
+        "heading": "Acres per MW from named campus disclosures",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "The ranges below are Invariant's working rules of thumb for gross acres, measured against total facility load at full build. They are not published standards. Real projects land outside them for good reasons, usually stories, cooling type or land held for later phases."
+            "text": "A ratio is useful when its land area, power definition and development phase refer to the same record. Use the disclosed label and keep planned, approved and energized capacities separate. The examples below show the arithmetic and what each number can support."
           },
           {
             "type": "table",
             "columns": [
-              "Facility type",
-              "Rule-of-thumb MW per gross acre",
-              "What drives the number"
+              "Project and scope",
+              "Reported acres",
+              "Published capacity",
+              "Acres per reported MW"
             ],
             "rows": [
               [
-                "Bitcoin mining (containers or air-cooled sheds)",
-                "2 to 5",
-                "Single-story, little redundancy, no generator yard, minimal parking. Density limited mainly by airflow, noise setbacks and the substation."
+                "Vantage Ashburn II, campus data sheet",
+                "18",
+                "96 MW critical IT",
+                "0.188 per IT MW"
               ],
               [
-                "Enterprise or colocation, suburban",
-                "0.5 to 2",
-                "Lower rack density, generator yard sized for full redundancy, more parking and office space, often one or two stories."
+                "Vantage Goodyear, full development",
+                "50",
+                "176 MW IT",
+                "0.284 per IT MW"
               ],
               [
-                "Enterprise or colocation, urban multi-story",
-                "2 to 6",
-                "Three or more stories, rooftop heat rejection, tight lot lines. The land is expensive, so the building goes up."
-              ],
-              [
-                "Hyperscale cloud campus",
-                "0.5 to 1.5",
-                "Many halls, large generator and chiller yards, buffers to neighbors and land held for future phases."
-              ],
-              [
-                "AI training campus (liquid cooled, 100+ kW racks)",
-                "0.7 to 2",
-                "Dense halls but large heat rejection yards, high-voltage substations and phased pads for multi-GW plans."
-              ],
-              [
-                "Campus with on-site gas generation",
-                "0.3 to 1",
-                "Adds the plant, gas yard, switchyard and air-permit setbacks. Solar or batteries on site push the ratio lower still."
-              ]
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Public campus numbers sit inside those bands. The examples below divide announced MW by announced acres. Treat them as rough: acreage and MW are reported at different dates, and \"capacity\" in a press release can mean IT load, facility load or a compute figure."
-          },
-          {
-            "type": "table",
-            "columns": [
-              "Campus (as announced)",
-              "Announced MW",
-              "Announced acres",
-              "Approx. MW per acre"
-            ],
-            "rows": [
-              [
-                "Riot Platforms, Corsicana, Texas (bitcoin mining)",
-                "1,000 planned, 400 MW first phase",
+                "Riot Corsicana, 2022 first-phase proposal on the whole acquired tract",
                 "265",
-                "About 3.8 at full build"
+                "400 MW planned development",
+                "0.663 per reported MW"
               ],
               [
-                "Crusoe, Abilene, Texas (AI campus)",
-                "1,200",
-                "1,100 for the wider Abilene Clean Campus",
-                "About 1.1, counting the whole campus"
+                "Riot Corsicana, 2024 planned full development on the whole acquired tract",
+                "265",
+                "1,000 MW planned development",
+                "0.265 per reported MW"
               ],
               [
-                "Meta Hyperion, Richland Parish, Louisiana (AI)",
-                "2,000 original plan, 5,000 expanded",
-                "2,250 original, about 1,400 added",
-                "About 0.9 original, about 1.4 expanded"
-              ],
-              [
-                "Microsoft Fairwater, Mount Pleasant, Wisconsin (AI)",
-                "Not published",
-                "315",
-                "Not computable"
+                "Compass Oglesby Road, approximate development area in the concept",
+                "400",
+                "400 MW proposed campus",
+                "1.00 per reported MW"
               ]
             ],
-            "sourceIds": [
-              "riot",
-              "crusoe",
-              "abilene-acres",
-              "meta-hyperion",
-              "microsoft-fairwater"
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "ashburn"
+              ],
+              [
+                "goodyear"
+              ],
+              [
+                "riot-plan"
+              ],
+              [
+                "riot-energized"
+              ],
+              [
+                "compass"
+              ]
             ]
           },
           {
             "type": "paragraph",
-            "text": "Riot's 265 acres were bought for a 1 GW mining site energized from a 400 MW substation in its first phase. Crusoe's eight buildings total about 4 million square feet, which is roughly 92 acres of floor area for 1.2 GW. Meta's original Hyperion plan was nine buildings with about 4 million square feet on 2,250 acres, and the campus was expanded to 5 GW in July 2026 after Meta added roughly 1,400 adjacent acres.",
+            "text": "At Corsicana, dividing the same 265 acres by 400 and 1,000 MW produces two different figures. The first one uses the whole acquired tract and the first-phase power target, not the area actually built out in that phase. Riot’s current location page displays 92 acres plus 256 MW energized and 400 MW approved to energize. The page does not reconcile those acres with the historical tract, so the dataset leaves that ratio blank.",
             "sourceIds": [
-              "riot",
-              "crusoe",
-              "meta-hyperion"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "land-is-rarely-binding",
-        "heading": "Land is rarely the binding constraint",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Run the numbers on almost any rural listing and the land is ample. A 300-acre parcel at 1 MW per acre holds 300 MW. The question is whether 300 MW can be delivered there, and by when."
-          },
-          {
-            "type": "paragraph",
-            "text": "Paces ran a power-flow analysis on ERCOT's 2028 summer-peak planning case and found that only about 17% of substations near land suitable for data centers had positive withdrawal headroom. In other words, most substations with good parcels next to them could not take new load without making existing overloads worse.",
-            "sourceIds": [
-              "paces"
+              "riot-plan",
+              "riot-energized",
+              "riot-current"
             ]
           },
           {
             "type": "paragraph",
-            "text": "That result matches what we see. Search from power evidence first and then find the parcel, not the other way round. We grade power claims on a ladder. Rung 0 is a map. Rung 1 is proximity to a line or substation of the right voltage. Rung 2 is a named MW figure at a named station from a utility or planning record, or an existing large connection such as a retired plant's export capacity or an energized load. Rung 3 is a utility study or approval for this load. Rung 4 is an executed service or interconnection agreement with a date, or service that is already energized and metered."
-          },
-          {
-            "type": "paragraph",
-            "text": "A broker's \"450 MW available\" sits at rung 2 until a current utility letter is in hand. Acreage doesn't move a site up the ladder at all."
+            "text": "At Red Oak, Compass describes roughly 400 acres of development west of Oglesby Road. The city’s ZC26-17 hearing notice lists nine parcels totaling 886.53 acres and includes parkland in the request. Save both extents with the documents and ask the seller for the current survey and plan. The notice does not establish electrical service or a project approval.",
+            "sourceIds": [
+              "compass",
+              "red-oak"
+            ]
           }
         ]
       },
       {
         "id": "usable-vs-gross-acres",
-        "heading": "Usable acres are smaller than gross acres",
+        "heading": "A worked land budget for 100 MW of IT",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Listings quote gross acres. A campus gets built on usable acres, and the gap between the two can be a third of the parcel or more. Take these off before dividing MW by acres:"
+            "text": "Start with an illustrative 80-acre tract. Suppose the wetlands buffer and a separate grading restriction cover 18 and 10 acres and share four acres. Their combined footprint is 24 acres. This leaves 56 acres. A GIS overlay should subtract the union of excluded areas and show how much of the remainder is in each connected piece."
           },
           {
-            "type": "list",
-            "items": [
-              "Wetlands and streams, which usually need a delineation and may need a federal permit to fill.",
-              "Mapped floodplain, where critical electrical and mechanical equipment belongs above the base flood elevation, if it goes there at all.",
-              "Steep slope, which adds grading cost and limits the large flat pads that halls and substations need.",
-              "Easements: existing transmission, pipeline, rail and road rights of way that cross the parcel and cannot be built on.",
-              "Zoning setbacks and any buffer conditions from a rezoning or special use permit.",
-              "Irregular shape. A long thin parcel can lose much of its area to setbacks on both sides."
-            ]
+            "type": "table",
+            "columns": [
+              "Land allocation",
+              "Example acres"
+            ],
+            "rows": [
+              [
+                "Halls and loading",
+                "12"
+              ],
+              [
+                "Cooling and backup power yards",
+                "10"
+              ],
+              [
+                "Utility substation pad",
+                "8.5"
+              ],
+              [
+                "Customer electrical yard",
+                "4"
+              ],
+              [
+                "Stormwater facilities",
+                "6"
+              ],
+              [
+                "Roads, fire access and staging",
+                "7"
+              ],
+              [
+                "Land held for expansion",
+                "8"
+              ],
+              [
+                "Base program",
+                "55.5"
+              ],
+              [
+                "With larger utility pad",
+                "63.5"
+              ]
+            ],
+            "stackOnMobile": true
           },
           {
             "type": "paragraph",
-            "text": "Utility siting rules bite here too. ComEd wants the interconnection substation reachable from at least two sides for future lines, with no river, forest, wetland or other transmission line on those sides, and within half a mile of the existing line. The developer also buys the land for the tie-line, the access road and the substation's own stormwater detention. A parcel that looks big on a map can fail those tests at the one corner near the line.",
+            "text": "With one 56-acre connected area, the 55.5-acre program clears the area check by 0.5 acres. The drawing may still fail on dimensions, slopes, construction sequence or access. If the same 56 acres are split into pieces of 34 and 22 acres, no piece holds the entire program. Test which uses can occupy different pads and how the access and utility routes connect them."
+          },
+          {
+            "type": "paragraph",
+            "text": "Change the utility pad from 8.5 to 16.5 acres while holding the rest of the program fixed. The site now needs 63.5 acres, a shortfall of 7.5 acres against the screened 56. Reserve stormwater separately. These are illustrative allocations and a comparison of areas. The utility and civil team determine actual dimensions and layout.",
             "sourceIds": [
               "comed"
             ]
@@ -4465,293 +4473,82 @@
       },
       {
         "id": "sites-from-our-inventory",
-        "heading": "Sites from our inventory that show the point",
+        "heading": "Download the project disclosures and worked example",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Listings in our inventory show why acreage alone says little about capacity."
+            "text": "The CSV gives the reported land and power observations. The JSON adds the four substation dimension calculations, the Red Oak parcel schedule and all of the assumptions in the illustrative land budget. Blank ratios mark cases where the acreage and power scopes cannot be matched."
           },
           {
-            "type": "table",
-            "columns": [
-              "Region",
-              "Power",
-              "Land",
-              "Status"
-            ],
-            "rows": [
-              [
-                "Arizona",
-                "Claims around 1 GW, no utility document yet",
-                "Very large tract",
-                "Candidate. Land is not the constraint"
-              ],
-              [
-                "Houston area",
-                "Tens of MW studied, available in 2027",
-                "Under 50 acres",
-                "Candidate. Dense but workable"
-              ],
-              [
-                "Kentucky",
-                "Several hundred MW of former plant capacity",
-                "Several hundred acres",
-                "Kept. Room for phases and buffers"
-              ]
-            ]
+            "type": "download",
+            "path": "/blog/data-center-land-acres-per-mw.json",
+            "format": "JSON",
+            "label": "Download project records and the worked land budget"
+          },
+          {
+            "type": "download",
+            "path": "/blog/data-center-land-acres-per-mw.csv",
+            "format": "CSV",
+            "label": "Download the seven land and power observations"
+          }
+        ]
+      },
+      {
+        "id": "land-is-rarely-binding",
+        "heading": "Run the land and power checks side by side",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "To put a tract under option, ask for a dated boundary, the buildable polygons, the proposed substation location and a phase-by-phase load schedule. Verify flood, drainage and other restrictions against their source maps and confirm them with the relevant survey or agency where needed. Invariant Earth can help assemble the mapped evidence. The engineer’s fit plan determines what can actually be built."
           },
           {
             "type": "paragraph",
-            "text": "Divide the claimed MW by the usable acres before anything else. A ratio far outside the ranges above means the MW or the acreage needs a second look. Exact figures, location and the documents behind each site are shared on a call."
+            "text": "For power, confirm the serving utility, proposed point of interconnection, service MW by phase, delivery dates, upgrades and their conditions. A nearby transmission line, an old generator interconnection or a seller’s power target does not establish import service for the new load."
           }
         ]
       },
       {
         "id": "sanity-check-a-listing",
-        "heading": "How to sanity-check a listing's acreage against its MW",
+        "heading": "What to ask for before relying on listed acres or MW",
         "blocks": [
-          {
-            "type": "paragraph",
-            "text": "This takes about ten minutes with a parcel map and the listing sheet."
-          },
           {
             "type": "list",
             "items": [
-              "Pin down which MW is quoted: IT load, facility load, or a utility service figure. Convert with a PUE of 1.2 to 1.5 if needed.",
-              "Find the usable acres. Subtract wetlands, floodplain, slope and easements from the gross figure.",
-              "Reserve the substation. Use about 3 acres at 138 kV and 8.5 to 16.5 acres at 345 kV as a starting reference, plus detention.",
-              "Divide facility MW by usable acres and compare with the table above for the facility type the buyer plans to build.",
-              "If the ratio is far above the band, the listing is overstating MW or assuming stories and rooftop cooling it hasn't designed. If it is far below, ask whether the extra land is for on-site generation, future phases or simply for sale at a higher price.",
-              "Then ignore the ratio and ask for the power document. Where does the MW figure sit on the evidence ladder?"
+              "Ask the seller for the legal boundary and identify any parcels outside the sale or option.",
+              "Confirm the applicable concept plan, setbacks and existing easements. Draw the largest connected buildable pads and check each pad’s usable dimensions.",
+              "Reserve utility and customer land, including access, expansion, tie-in corridors and drainage. Show the first phase and the ultimate electrical layout.",
+              "Match the utility’s written service scope to the phase load and the boundary it serves. Keep requested and committed MW in separate columns."
             ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Before parcel work goes far, clear the disqualifiers. Is the site already claimed, under option or operating? Is it listed with another buyer in diligence, or owned by an environmental-liability buyer? Is there coal ash or contamination, or a county moratorium? Any one of those ends the review regardless of acreage."
-          },
-          {
-            "type": "paragraph",
-            "text": "Invariant screens sites this way before any introduction. We sort them into three tiers: A for documented power, B for a named power path with a date, and C for land near capacity without either. Acreage is a check on the claim. The power document is the claim."
           }
         ]
       },
       {
         "id": "browse",
-        "heading": "Browse data center sites by size and state",
+        "heading": "Continue the site screen",
         "blocks": [
           {
             "type": "links",
-            "label": "Site due diligence and power studies",
+            "label": "Check land, power and available sites",
             "items": [
               {
-                "label": "Site due diligence: the two-step process",
-                "slug": "data-center-site-due-diligence"
-              },
-              {
-                "label": "Site feasibility screen in 24 hours",
-                "slug": "data-center-site-feasibility-study"
-              },
-              {
-                "label": "Utility-grade power study",
-                "slug": "utility-grade-power-study"
-              },
-              {
-                "label": "N-1 contingency analysis",
-                "slug": "n-1-contingency-analysis-data-center"
-              },
-              {
-                "label": "Flood zone screening",
-                "slug": "data-center-flood-zone-screening"
-              },
-              {
-                "label": "Power due diligence for investors",
-                "slug": "data-center-power-due-diligence-investors"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Find a site by size",
-            "items": [
-              {
-                "label": "1 MW data center site",
-                "slug": "1-mw-data-center-site"
-              },
-              {
-                "label": "5 MW data center site",
-                "slug": "5-mw-data-center-site"
-              },
-              {
-                "label": "10 MW data center site",
-                "slug": "10-mw-data-center-site"
-              },
-              {
-                "label": "20 MW data center site",
-                "slug": "20-mw-data-center-site"
-              },
-              {
-                "label": "30 MW data center site",
-                "slug": "30-mw-data-center-site"
-              },
-              {
-                "label": "40 MW data center site",
-                "slug": "40-mw-data-center-site"
-              },
-              {
-                "label": "50 MW data center site",
-                "slug": "50-mw-data-center-site"
-              },
-              {
-                "label": "100 MW data center site",
-                "slug": "100-mw-data-center-site"
-              },
-              {
-                "label": "200 MW data center site",
-                "slug": "200-mw-data-center-site"
-              },
-              {
-                "label": "300 MW data center site",
-                "slug": "300-mw-data-center-site"
-              },
-              {
-                "label": "500 MW data center site",
-                "slug": "500-mw-data-center-site"
-              },
-              {
-                "label": "1 GW data center site",
-                "slug": "1-gw-data-center-site"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Find a site by state",
-            "items": [
-              {
-                "label": "Data center sites in Texas",
-                "slug": "data-center-sites-for-sale-texas"
-              },
-              {
-                "label": "Data center sites in Pennsylvania",
-                "slug": "data-center-sites-for-sale-pennsylvania"
-              },
-              {
-                "label": "Data center sites in Ohio",
-                "slug": "data-center-sites-for-sale-ohio"
-              },
-              {
-                "label": "Data center sites in Arizona",
-                "slug": "data-center-sites-for-sale-arizona"
-              },
-              {
-                "label": "Data center sites in Iowa",
-                "slug": "data-center-sites-for-sale-iowa"
-              },
-              {
-                "label": "Data center sites in Nevada",
-                "slug": "data-center-sites-for-sale-nevada"
-              },
-              {
-                "label": "Data center sites in Indiana",
-                "slug": "data-center-sites-for-sale-indiana"
-              },
-              {
-                "label": "Data center sites in Wisconsin",
-                "slug": "data-center-sites-for-sale-wisconsin"
-              },
-              {
-                "label": "Data center sites in Kentucky",
-                "slug": "data-center-sites-for-sale-kentucky"
-              },
-              {
-                "label": "Data center sites in Oklahoma",
-                "slug": "data-center-sites-for-sale-oklahoma"
-              },
-              {
-                "label": "Data center sites in Kansas",
-                "slug": "data-center-sites-for-sale-kansas"
-              },
-              {
-                "label": "Data center sites in North Dakota",
-                "slug": "data-center-sites-for-sale-north-dakota"
-              },
-              {
-                "label": "Data center sites in New York",
-                "slug": "data-center-sites-for-sale-new-york"
-              },
-              {
-                "label": "Data center sites in Oregon",
-                "slug": "data-center-sites-for-sale-oregon"
-              },
-              {
-                "label": "Data center sites in North Carolina",
-                "slug": "data-center-sites-for-sale-north-carolina"
-              },
-              {
-                "label": "Data center sites in Virginia",
-                "slug": "data-center-sites-for-sale-virginia"
-              },
-              {
-                "label": "Data center sites in Georgia",
-                "slug": "data-center-sites-for-sale-georgia"
-              },
-              {
-                "label": "Data center sites in Louisiana",
-                "slug": "data-center-sites-for-sale-louisiana"
-              },
-              {
-                "label": "Data center sites in Tennessee",
-                "slug": "data-center-sites-for-sale-tennessee"
-              },
-              {
-                "label": "Data center sites in Illinois",
-                "slug": "data-center-sites-for-sale-illinois"
-              },
-              {
-                "label": "Data center sites in Missouri",
-                "slug": "data-center-sites-for-sale-missouri"
-              },
-              {
-                "label": "Data center sites in Minnesota",
-                "slug": "data-center-sites-for-sale-minnesota"
-              },
-              {
-                "label": "Data center sites in Washington",
-                "slug": "data-center-sites-for-sale-washington"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Find a site by type",
-            "items": [
-              {
-                "label": "Data center land for sale",
-                "slug": "data-center-land-for-sale"
-              },
-              {
-                "label": "AI data center sites",
-                "slug": "ai-data-center-site"
-              },
-              {
-                "label": "Bitcoin mining sites for sale",
-                "slug": "bitcoin-mining-site-for-sale"
-              },
-              {
-                "label": "Energized sites available now",
-                "slug": "energized-data-center-sites-available-now"
-              },
-              {
-                "label": "Data centers for sale",
-                "slug": "data-center-for-sale"
-              },
-              {
-                "label": "Site selection checklist",
+                "label": "Data center site selection checklist",
                 "slug": "data-center-site-selection-checklist"
               },
               {
-                "label": "Site selection services",
-                "slug": "data-center-site-selection-services"
+                "label": "How to verify a site’s power evidence",
+                "slug": "power-evidence-data-center-site-verification"
+              },
+              {
+                "label": "Find available data center sites",
+                "slug": "energized-data-center-sites-available-now"
+              },
+              {
+                "label": "Look for a 100 MW data center site",
+                "slug": "100-mw-data-center-site"
+              },
+              {
+                "label": "Review slope and contiguous buildable land",
+                "slug": "lidar-slope-developable-land"
               }
             ]
           }
@@ -4761,98 +4558,123 @@
     "faqs": [
       {
         "question": "How many acres does a 100 MW data center need?",
-        "answer": "As a rule of thumb, a 100 MW hyperscale or AI campus needs roughly 50 to 150 gross acres, including substation, cooling yards, generators, stormwater and buffers. A bitcoin mine of the same size can fit on 20 to 50 acres. A multi-story urban colocation building can use far less. These are working ranges, not standards, and usable acres matter more than gross acres."
+        "answer": "There is no required acreage ratio for a 100 MW data center. Work from IT and facility demand, then fit halls, utility and customer yards, cooling, roads and stormwater inside the contiguous usable area. The illustrative 100 MW IT case in this guide needs 55.5 to 63.5 acres of programmed land across two electrical layouts. Those are example quantities rather than a market range.",
+        "sourceIds": [
+          "comed"
+        ]
       },
       {
-        "question": "How many MW per acre is typical for a data center?",
-        "answer": "Most US campuses land between about 0.5 and 2 MW per gross acre of total facility load. Announced examples include Meta's original Hyperion plan at about 0.9 MW per acre and Riot's Corsicana mining site at about 3.8 MW per acre at full build. Stories, cooling type and land held for future phases explain most of the spread."
+        "question": "How do I calculate acres per MW for a data center parcel?",
+        "answer": "Divide the area in acres by the power in MW for the same phase and development boundary. Label the area as gross or usable, and label the MW as IT, facility demand or other stated capacity. At Vantage Goodyear, 50 acres divided by the planned 176 MW of IT capacity gives 0.284 acres per IT MW.",
+        "sourceIds": [
+          "goodyear"
+        ]
       },
       {
-        "question": "How much land does a data center substation take?",
-        "answer": "ComEd's January 2026 guidelines call for at least 784 by 472 feet, about 8.5 acres, for a 345 kV interconnection substation on one line, expandable to about 16.5 acres, and about 3.1 acres at 138 kV, excluding stormwater detention. PSE&G lists 2.5 acres of equipment space at 69 to 230 kV and 7 acres at 500 kV. Check the serving utility's own standard."
+        "question": "How much land does a data center substation need?",
+        "answer": "The land depends on voltage, line configuration, ownership and the utility’s site standard. ComEd gives 8.5 acres for a one-line 345 kV interconnection site and about 16.5 acres for two lines, excluding stormwater. PSE&G publishes a separate 2.5 to 5 acre equipment area for a 345 kV customer substation.",
+        "sourceIds": [
+          "comed",
+          "pseg"
+        ]
       },
       {
-        "question": "Do AI racks reduce the land a data center needs?",
-        "answer": "They reduce white space per MW, since a GB200 NVL72 rack draws about 120 kW versus 10 to 30 kW for typical racks. They do not reduce the substation, heat rejection or backup power, which scale with MW. Land per MW falls less than the rack numbers suggest."
-      },
-      {
-        "question": "How does Invariant check whether a site's acreage fits its MW?",
-        "answer": "Invariant works out usable acres, reserves room for the substation and detention, and compares facility MW per usable acre with the range for the planned facility type. Then it looks for the utility document behind the MW figure. A site only moves up a tier on power evidence, not on acreage."
+        "question": "Can gross land acreage tell me how much electric power is available?",
+        "answer": "Acreage helps size the buildable program. To verify service, use a utility document that identifies the site, point of interconnection, supported MW by phase, service date and conditions.",
+        "sourceIds": [
+          "comed",
+          "pseg"
+        ]
       }
     ],
     "sources": [
       {
-        "id": "uptime-pue",
-        "title": "Large data centers are mostly more efficient, analysis confirms",
-        "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/",
-        "publisher": "Uptime Institute"
+        "id": "ashburn",
+        "title": "Ashburn II campus data sheet, 18 acres and 96 MW of critical IT capacity",
+        "url": "https://vantage-dc.com/wp-content/uploads/2023/06/VDC_DataSheet_ASHBURN_II_VA2-1.pdf",
+        "publisher": "Vantage Data Centers"
       },
       {
-        "id": "uptime-2025",
-        "title": "Uptime Institute Global Data Center Survey 2025",
-        "url": "https://intelligence.uptimeinstitute.com/resource/uptime-institute-global-data-center-survey-2025",
-        "publisher": "Uptime Institute"
+        "id": "goodyear",
+        "title": "Phoenix campus overview, planned 176 MW of IT capacity on 50 acres",
+        "url": "https://vantage-dc.com/data-center-locations/north-america/phoenix-arizona/",
+        "publisher": "Vantage Data Centers"
       },
       {
-        "id": "nvl72",
-        "title": "Nvidia offers 120kW liquid cooled Blackwell rack as industry standard",
-        "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-        "publisher": "eeNews Europe"
+        "id": "riot-plan",
+        "title": "Corsicana announcement, 265 acres and the initial 400 MW development plan",
+        "url": "https://www.riotplatforms.com/riot-blockchain-announces-1-gw-development-in-navarro-county-texas/",
+        "publisher": "Riot Platforms"
       },
       {
-        "id": "microsoft-fairwater",
-        "title": "Inside the world's most powerful AI datacenter",
-        "url": "https://blogs.microsoft.com/blog/2025/09/18/inside-the-worlds-most-powerful-ai-datacenter/",
-        "publisher": "Microsoft"
+        "id": "riot-energized",
+        "title": "Corsicana first substation energization announcement, April 2024",
+        "url": "https://www.riotplatforms.com/riot-energizes-new-corsicana-facility-in-navarro-county-texas/",
+        "publisher": "Riot Platforms"
+      },
+      {
+        "id": "riot-current",
+        "title": "Corsicana current campus page with a separately reported acreage scope",
+        "url": "https://www.riotplatforms.com/locations/corsicana/",
+        "publisher": "Riot Platforms"
+      },
+      {
+        "id": "compass",
+        "title": "Oglesby Road campus concept, proposed load and development area",
+        "url": "https://www.compassdatacenters.com/red-oak-oglesby-road-campus/",
+        "publisher": "Compass Datacenters"
+      },
+      {
+        "id": "red-oak",
+        "title": "ZC26-17 hearing notice and tax parcel acreage schedule",
+        "url": "https://www.redoaktx.org/DocumentCenter/View/11044/Notice-of-Public-Hearing-for-Zoning-Change",
+        "publisher": "City of Red Oak"
       },
       {
         "id": "comed",
-        "title": "ComEd guidelines on land requirements for interconnection substations (Rev-2, January 2026)",
+        "title": "January 2026 interconnection substation land requirements, Rev. 2",
         "url": "https://www.pjm.com/-/media/DotCom/planning/plan-standards/private-ce/comed-guidelines-on-land-requirements-for-interconnection-substations.pdf",
         "publisher": "ComEd via PJM"
       },
       {
         "id": "pseg",
-        "title": "Powering your data center needs",
+        "title": "Data center service and customer substation equipment space by voltage",
         "url": "https://nj.pseg.com/businessandcontractorservices/constructionandrenovationservices/datacenters",
         "publisher": "PSE&G"
       },
       {
-        "id": "crusoe",
-        "title": "Crusoe expands AI data center campus in Abilene to 1.2 gigawatts",
-        "url": "https://crusoe.ai/newsroom/crusoe-expands-ai-data-center-campus-in-abilene-to-1-2-gigawatts",
-        "publisher": "Crusoe"
-      },
-      {
-        "id": "abilene-acres",
-        "title": "Crusoe to build AI data center in North Texas",
-        "url": "https://commercialsearch.com/news/crusoe-to-build-ai-data-center-in-north-texas",
-        "publisher": "Commercial Search"
-      },
-      {
-        "id": "meta-hyperion",
-        "title": "Meta expands Louisiana data center campus to 5GW",
-        "url": "https://baxtel.com/news/meta-expands-louisiana-data-center-campus-to-5gw",
-        "publisher": "Baxtel"
-      },
-      {
-        "id": "riot",
-        "title": "Riot energizes new Corsicana facility in Navarro County, Texas",
-        "url": "https://www.riotplatforms.com/riot-energizes-new-corsicana-facility-in-navarro-county-texas/",
-        "publisher": "Riot Platforms"
-      },
-      {
-        "id": "paces",
-        "title": "Grid planning for data centers and transmission investment",
-        "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
-        "publisher": "Paces"
+        "id": "pue",
+        "title": "Technical guidance on defining and reporting power usage effectiveness",
+        "url": "https://www.energystar.gov/ia/partners/prod_development/downloads/Data_Center_Metrics_Task_Force_Recommendations_V2.pdf",
+        "publisher": "ENERGY STAR"
       }
     ],
     "relatedSlugs": [
-      "data-center-site-selection-permitting",
+      "data-center-site-selection-checklist",
       "power-evidence-data-center-site-verification",
-      "data-center-water-stormwater-permits"
-    ]
+      "lidar-slope-developable-land"
+    ],
+    "updatedDate": "2026-11-23",
+    "coverAlt": "Illustrative 80-acre data center parcel with 24 acres of unique mapped constraints and 56 acres remaining. A 55.5-acre base program fits by area. A 63.5-acre expanded case exceeds the remaining area by 7.5 acres.",
+    "coverCaption": "Illustrative 100 MW IT land budget. The 345 kV utility pad changes from 8.5 to 16.5 acres. The example uses dimensions from ComEd’s January 2026 guidance and assumes all other allocations stay fixed.",
+    "dataset": {
+      "name": "Data center land and power disclosures with a worked site budget",
+      "datePublished": "2026-11-23",
+      "description": "Seven selected U.S. records with separately labeled land and MW scopes, four ComEd rectangle conversions, nine Red Oak parcel areas, and a reproducible illustrative 100 MW IT land budget.",
+      "spatialCoverage": "Selected sites in Virginia, Arizona and Texas, United States. Illinois substation guidance.",
+      "sourceIds": [
+        "ashburn",
+        "goodyear",
+        "riot-plan",
+        "riot-energized",
+        "riot-current",
+        "compass",
+        "red-oak",
+        "comed",
+        "pseg",
+        "pue"
+      ]
+    }
   },
   {
     "slug": "data-center-moratorium-local-opposition-site-screening",
