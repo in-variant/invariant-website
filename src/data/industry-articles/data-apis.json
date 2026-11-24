@@ -19434,10 +19434,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Commercial Mortgage Maturity Data and APIs",
-    "description": "Verify commercial mortgage maturity dates and compare CMBS APIs. Use two SEC filings to test how a feed handles an amended loan balance.",
+    "description": "Compare commercial mortgage maturity data and APIs. Test extensions, corrected CMBS filings and a refinance that replaced one loan with senior and mezzanine debt.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-24",
-    "readMinutes": 9,
+    "readMinutes": 10,
     "coverAlt": "Timeline showing Orion’s original February 2027 maturity, the amended February 2029 maturity, and conditional options in February and August 2030.",
     "coverCaption": "Orion Properties disclosed the amendment on February 19, 2026. The two 2030 dates depend on borrowers exercising their options and meeting the agreement’s conditions.",
     "intro": "Use Invariant Earth to put parcel, building and flood evidence in a commercial collateral file. Link that file to loan records from your servicer or a loan data provider before tracking maturity. To find when a U.S. commercial mortgage matures, start with the current schedule from your servicer or the trust’s latest loan-level report. Check any amendments and confirm whether the borrower exercised an extension option. A county mortgage index helps identify the instrument, but you may need the actual loan documents to establish the due date. For a portfolio spanning many lenders, ask any data provider exactly which loans it covers and which document supports each date.",
@@ -19515,6 +19515,75 @@
             "label": "Download the Orion loan timeline and expected results",
             "path": "/blog/commercial-mortgage-maturity-data-apis.json",
             "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "block-40-refinance-history",
+        "heading": "What changes in the watchlist when a commercial mortgage is refinanced?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At Block 40 in Hollywood, Florida, Stewards reported that the original mortgage matured on June 1, 2026. It reported $73.6 million outstanding on June 30 and repayment at the July 24 refinancing. The July 30 Form 8-K describes the new senior and mezzanine terms. Keep the old loan’s maturity and repayment dates alongside the two successor obligations.",
+            "sourceIds": [
+              "block-40-q3",
+              "block-40-closing",
+              "block-40-filing-index"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Obligation",
+              "What the filings report",
+              "What to keep in the watchlist"
+            ],
+            "rows": [
+              [
+                "Original Block 40 mortgage",
+                "$73.6 million outstanding on June 30. The issuer reported repayment and retirement July 24.",
+                "Close the original obligation on the reported repayment date. Retain the June 1 maturity and the June 30 balance."
+              ],
+              [
+                "New senior mortgage",
+                "$69 million drawn, with a mortgage lien on the real estate. Stated maturity August 7, 2028.",
+                "Create a new senior loan record linked to the same collateral and keep the extension options separately."
+              ],
+              [
+                "New mezzanine loan",
+                "Up to $10 million, backed by pledged equity in the mortgage borrower. Stated maturity August 7, 2028.",
+                "Use a separate borrower and collateral record. The disclosed extension options have conditions, including the corresponding senior extension."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "block-40-q3"
+              ],
+              [
+                "block-40-closing",
+                "block-40-q3"
+              ],
+              [
+                "block-40-closing",
+                "block-40-q3"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The June 30 financial statements, filed in August, classified the original loan as non-current because the replacement financing had closed before the statements were issued. For a June 30 loan history, preserve the balance-sheet classification, the original loan’s maturity and the July closing as separate facts. For a backtest of what a reviewer knew on a date, gate each fact by the filing that supports it.",
+            "sourceIds": [
+              "block-40-q2",
+              "block-40-filing-index"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/block-40-commercial-mortgage-refinance-history.csv",
+            "format": "CSV",
+            "label": "Download the five Block 40 loan and filing records",
+            "datasetAnchor": "dataset-block-40-refinance"
           }
         ]
       },
@@ -19810,6 +19879,30 @@
         "title": "Public API field catalog",
         "url": "https://api.invariant-ai.com/v1/meta/fields",
         "publisher": "Invariant Earth"
+      },
+      {
+        "id": "block-40-closing",
+        "title": "Stewards Form 8-K, Items 1.01 and 2.03, Block 40 closing terms",
+        "url": "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000236/swrd_8k07272026.htm",
+        "publisher": "Stewards, Inc. via SEC EDGAR"
+      },
+      {
+        "id": "block-40-filing-index",
+        "title": "Block 40 Form 8-K filing index, report and acceptance dates",
+        "url": "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000236/0001663577-26-000236-index.htm",
+        "publisher": "Stewards, Inc. via SEC EDGAR"
+      },
+      {
+        "id": "block-40-q2",
+        "title": "Stewards Form 10-Q for June 30, 2026, Note 13 and subsequent refinancing",
+        "url": "https://www.sec.gov/Archives/edgar/data/1795851/000179585126000003/swrd-20260630.htm",
+        "publisher": "Stewards, Inc. via SEC EDGAR"
+      },
+      {
+        "id": "block-40-q3",
+        "title": "Stewards Form 10-Q for September 30, 2026, Note 13, maturity and retirement",
+        "url": "https://www.sec.gov/Archives/edgar/data/1795851/000179585126000016/swrd-20260930.htm",
+        "publisher": "Stewards, Inc. via SEC EDGAR"
       }
     ],
     "dataset": {
@@ -19832,6 +19925,20 @@
         "temporalCoverage": "2026-09-12/2026-10-29",
         "datePublished": "2026-11-24",
         "sourceIds": ["revision", "wfcm-original-index", "wfcm-amended-index", "wfcm-original-102", "wfcm-amended-102", "wfcm-original-103", "wfcm-amended-103"]
+      },
+      {
+        "anchor": "dataset-block-40-refinance",
+        "name": "Block 40 commercial mortgage repayment and refinance history",
+        "description": "Five source-linked records from Stewards filings. They separate the original Block 40 mortgage at June 30, its July repayment, both replacement loans and the June balance sheet filed after closing.",
+        "spatialCoverage": "1818 Hollywood Boulevard, Hollywood, Florida, United States",
+        "temporalCoverage": "2026-06-01/2026-11-16",
+        "datePublished": "2026-11-24",
+        "sourceIds": [
+          "block-40-closing",
+          "block-40-filing-index",
+          "block-40-q2",
+          "block-40-q3"
+        ]
       }
     ],
     "relatedSlugs": [

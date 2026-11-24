@@ -3428,7 +3428,7 @@
     "slug": "commercial-mortgage-maturity-data-apis",
     "topic": "Data & APIs",
     "title": "Commercial Mortgage Maturity Data and APIs",
-    "summary": "Verify commercial mortgage maturity dates and compare CMBS APIs. Use two SEC filings to test how a feed handles an amended loan balance.",
+    "summary": "Compare commercial mortgage maturity data and APIs. Test extensions, corrected CMBS filings and a refinance that replaced one loan with senior and mezzanine debt.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
@@ -3528,6 +3528,49 @@
             "label": "Download the filing comparison and expected balances",
             "path": "/blog/wfcm-2025-c65-october-filing-amendment.json",
             "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-block-40-refinance",
+        "name": "Block 40 commercial mortgage repayment and refinance history",
+        "description": "Five source-linked records from Stewards filings. They separate the original Block 40 mortgage at June 30, its July repayment, both replacement loans and the June balance sheet filed after closing.",
+        "spatialCoverage": "1818 Hollywood Boulevard, Hollywood, Florida, United States",
+        "temporalCoverage": "2026-06-01/2026-11-16",
+        "datePublished": "2026-11-24",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000236/swrd_8k07272026.htm",
+          "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000236/0001663577-26-000236-index.htm",
+          "https://www.sec.gov/Archives/edgar/data/1795851/000179585126000003/swrd-20260630.htm",
+          "https://www.sec.gov/Archives/edgar/data/1795851/000179585126000016/swrd-20260930.htm"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Stewards Form 8-K, Items 1.01 and 2.03, Block 40 closing terms",
+            "publisher": "Stewards, Inc. via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000236/swrd_8k07272026.htm"
+          },
+          {
+            "title": "Block 40 Form 8-K filing index, report and acceptance dates",
+            "publisher": "Stewards, Inc. via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/1795851/000166357726000236/0001663577-26-000236-index.htm"
+          },
+          {
+            "title": "Stewards Form 10-Q for June 30, 2026, Note 13 and subsequent refinancing",
+            "publisher": "Stewards, Inc. via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/1795851/000179585126000003/swrd-20260630.htm"
+          },
+          {
+            "title": "Stewards Form 10-Q for September 30, 2026, Note 13, maturity and retirement",
+            "publisher": "Stewards, Inc. via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/1795851/000179585126000016/swrd-20260930.htm"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the five Block 40 loan and filing records",
+            "path": "/blog/block-40-commercial-mortgage-refinance-history.csv",
+            "format": "CSV"
           }
         ]
       }
