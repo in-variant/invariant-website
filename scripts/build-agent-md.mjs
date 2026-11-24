@@ -32,6 +32,8 @@ const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-r
 const workflowGroups = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-workflows.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
+const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
+const glossaryBySlug = new Map(glossary.map(entry => [entry.slug, entry]))
 const datasetEntries = articleIndex.flatMap(article => {
   const { dataset, additionalDatasets = [] } = article
   const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
@@ -102,7 +104,9 @@ function glossaryMd(e) {
   out.push(e.full_definition ?? '', '')
   if (e.citations?.length) out.push('## Sources', '', ...e.citations.map(c => `- [${c.label}](${c.url})`), '')
   if (e.guide) out.push(`Guide: [${e.guide.label}](${SITE}${e.guide.path})`, '')
-  if (e.related_to?.length) out.push('Related: ' + e.related_to.map(s => `[${s}](${SITE}/glossary/${s})`).join(', '), '')
+  const related = (e.related_to ?? []).map(slug => glossaryBySlug.get(slug)).filter(Boolean)
+  if (related.length) out.push('Related: ' + related.map(({ slug, term }) =>
+    `[${linkText(term)}](${SITE}/glossary/${slug})`).join(', '), '')
   return out.join('\n')
 }
 
@@ -273,6 +277,5 @@ for (const a of articles) {
 }
 writeFileSync(join(DIST, 'llms-full.txt'), full.join('\n'))
 
-const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
 for (const e of glossary) writeFileSync(join(DIST, 'glossary', `${e.slug}.md`), glossaryMd(e))
 console.log(`agent markdown: ${articles.length} articles, ${blogCollections.length} collections, ${glossary.length} glossary entries, llms-full.txt`)

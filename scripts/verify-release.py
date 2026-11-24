@@ -10,7 +10,7 @@ from hashlib import sha256
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import unquote, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 from xml.etree import ElementTree
 
@@ -286,6 +286,20 @@ def verify_discovery(pages):
             f"{', '.join(unreachable[:5])}")
 
 
+def verify_agent_links(files, pages):
+    local_links = re.compile(r"\]\(<?(https://invariant-ai\.com(?:/[^<>\s)]*)?)(?=[>\s)])")
+    for path in sorted(files):
+        contents = (DIST / path.lstrip("/")).read_text(encoding="utf-8")
+        for href in local_links.findall(contents):
+            target = urlsplit(href)
+            destination = unquote(target.path) or "/"
+            require(destination in pages or (DIST / destination.lstrip("/")).is_file(),
+                    f"{path} links to a missing file or canonical page: {href}")
+            fragment = unquote(target.fragment).split(":~:", 1)[0]
+            if fragment and destination in pages:
+                require(fragment in pages[destination].ids, f"{path} links to a missing fragment: {href}")
+
+
 def verify_search_metadata(pages):
     titles = {}
     for path, page in pages.items():
@@ -436,6 +450,7 @@ def build_jobs(expected_urls, full):
         downloads.discard(path)
     if full:
         verify_discovery(pages)
+        verify_agent_links(alternate_files | {"/llms.txt", "/llms-full.txt"}, pages)
     for path in sorted(alternate_files):
         jobs.append((path, "markdown", (DIST / path.lstrip("/")).read_bytes()))
     for path in sorted(downloads | {"/robots.txt", "/llms.txt", "/llms-full.txt"}):
