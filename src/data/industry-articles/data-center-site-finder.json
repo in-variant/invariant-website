@@ -19448,6 +19448,12 @@
         "About 200 acres. The existing 563 MW figure is for the nearby facility. Request a service schedule specific to the new tract."
        ],
        [
+        "DFW1, AIB Data Centers",
+        "Closed September 11, 2026. $17.23 million contractual price.",
+        "$586,000 for the package",
+        "About 29.385 acres, a building and site improvements, plus two agreements for electric service. One payment depends on a utility milestone."
+       ],
+       [
         "Stonecroft Boulevard, SCG",
         "Signed purchase agreement for $166.8 million",
         "$4 million",
@@ -19472,6 +19478,10 @@
        [
         "bitdeer-acquisition",
         "bitdeer-close-month"
+       ],
+       [
+        "aib-dfw1-land-quarterly",
+        "aib-dfw1-land-closing"
        ],
        [
         "stonecroft-county"
@@ -19512,6 +19522,44 @@
        {
         "path": "/calculators/data-center-power-capacity",
         "label": "Convert IT load to facility MW at the meter"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "dfw1-powered-land-purchase-price",
+    "heading": "What did AIB pay for DFW1 land and power rights?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "AIB agreed to a $17.23 million price for the DFW1 package, or about $586,000 per reported acre. The September 11 closing combined two adjoining Texas properties. The five-acre property came with a building, improvements and 15 MW of primary service, whose economic benefit the prior owner retained until decommissioning. The other 24.385 acres came through a company acquisition with an agreement for up to 40 MW once the utility completes the necessary facilities.",
+      "sourceIds": [
+       "aib-dfw1-land-closing",
+       "aib-dfw1-land-quarterly"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "AIB’s November quarterly filing shows how much the price per acre leaves out. AIB allocated $16.32 million to power interconnection rights, or 96.6% of the $16.90 million recorded acquisition cost. It allocated $418,358 to land. The recorded cost includes transaction costs and discounts the deferred payment, so it uses a different basis from the contractual purchase price.",
+      "sourceIds": [
+       "aib-dfw1-land-quarterly"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The contract ties a final $6 million payment to the date the utility puts the second property’s electric service facilities into service. For a comparable sale, record the acreage, the rights included in the price and the date the buyer can use each block of power. Keep closing cash and payments tied to future delivery separate in your comparison.",
+      "sourceIds": [
+       "aib-dfw1-land-quarterly"
+      ]
+     },
+     {
+      "type": "links",
+      "label": "Verify the power that transfers",
+      "items": [
+       {
+        "slug": "data-center-for-sale",
+        "label": "How two transactions handle power at closing and handover"
        }
       ]
      }
@@ -20085,6 +20133,20 @@
   ],
   "sources": [
    {
+    "id": "aib-dfw1-land-quarterly",
+    "title": "AIB September Form 10-Q, Note 3 on the DFW1 purchase and cost allocation",
+    "url": "https://www.sec.gov/Archives/edgar/data/2070542/000121390026120619/ea0311821-10q_aibdata.htm",
+    "publisher": "AIB Data Centers / SEC",
+    "linkLabel": "AIB acquisition cost allocation"
+   },
+   {
+    "id": "aib-dfw1-land-closing",
+    "title": "AIB Form 8-K, Items 1.01 and 2.01 on DFW1 agreements and closing",
+    "url": "https://www.sec.gov/Archives/edgar/data/2070542/000121390026099305/ea0305122-8k_aib.htm",
+    "publisher": "AIB Data Centers / SEC",
+    "linkLabel": "AIB signed terms and closing"
+   },
+   {
     "id": "graham-original",
     "title": "Graham purchase agreement, recitals and Sections 2.2 and 2.3",
     "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926082854/tm2620282d1_ex10-2.htm",
@@ -20315,13 +20377,15 @@
     "anchor": "dataset-land-prices",
     "datePublished": "2026-11-23",
     "name": "U.S. data center land prices and transaction stages",
-    "description": "Six source observations covering reported closed acquisitions, a purchase agreement and a land option. Includes two disclosures about the same Astra acquisition, the land acreage each amount prices and power or scope notes.",
+    "description": "Seven source observations covering closed acquisitions, a purchase agreement and a land option. Preserves two disclosures of the same Astra sale and identifies the power rights and deferred payment in AIB’s DFW1 transaction.",
     "sourceIds": [
      "astra-10q",
      "astra-announcement",
      "astra-power",
      "bitdeer-acquisition",
      "bitdeer-close-month",
+     "aib-dfw1-land-quarterly",
+     "aib-dfw1-land-closing",
      "stonecroft-county",
      "cassia-agreement",
      "cassia-options"
