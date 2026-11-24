@@ -13125,10 +13125,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Data APIs for Commercial Property",
-    "description": "Compare Invariant Earth and building permit APIs with New York and Seattle records. Test building matches, project counts, roof work and inspection dates.",
+    "description": "Compare Invariant Earth, Mireye, Shovels and other permit APIs. Test coverage by city, building matches, project counts and inspection dates.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-24",
-    "readMinutes": 9,
+    "readMinutes": 10,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
     "intro": "Use Invariant Earth to connect permit research to a cited U.S. property record. One coordinate can return parcel identity and boundary, zoning, building characteristics and hazards. Join the original permit by building ID and verify its scope at the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement.",
@@ -13158,6 +13158,11 @@
             "rows": [
               ["Invariant Earth", "Build a cited property record for permit diligence. Fetch the parcel, zoning, building features and hazards together by coordinate.", "Check that the issuing agency’s building ID and work address refer to the structure you’re reviewing. Save the permit ID and the Earth field sources."],
               [
+                "Mireye Permits",
+                "Search or count permits by area or parcel. Check office coverage and dates before querying.",
+                "Does the search cover the office, dates and work type you need? Can you retain both the source status and the normalized status?"
+              ],
+              [
                 "Shovels",
                 "Search by geography and date range, with filters for work and property details.",
                 "Can you recover the original permit number and status for commercial work in each target jurisdiction?"
@@ -13186,6 +13191,10 @@
             "rowSourceIds": [
               ["earth-fields"],
               [
+                "mireye-permits",
+                "mireye-permit-coverage"
+              ],
+              [
                 "shovels"
               ],
               [
@@ -13206,6 +13215,65 @@
           {
             "type": "paragraph",
             "text": "For procurement, give each provider the same sample buildings and compare its returned records with the issuer. Keep the provider’s documented coverage separate from the results you observe in the trial."
+          }
+        ]
+      },
+      {
+        "id": "check-permit-api-coverage-by-city",
+        "heading": "How do you check building permit API coverage by city?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the issuing office, the milestone you care about and its date range. We checked Mireye’s public office summaries for New York City and Seattle on November 24, 2026. Then we counted permit numbers in each city’s own export for issue dates after the last date in the corresponding office summary, through November 23.",
+            "sourceIds": [
+              "mireye-permit-coverage"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Issuing city",
+              "Mireye office summary",
+              "Newer issue dates in the city export"
+            ],
+            "rows": [
+              [
+                "New York City",
+                "Partial. Latest date in the office summary was November 20.",
+                "777 rows and 665 distinct work permit numbers issued November 21 to 23."
+              ],
+              [
+                "Seattle",
+                "Partial. Latest date in the office summary was November 19.",
+                "9 rows and 9 distinct permit numbers issued November 20 to 23."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "mireye-coverage-ny",
+                "nyc-newer-permit-count"
+              ],
+              [
+                "mireye-coverage-wa",
+                "seattle-newer-permit-count"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The date difference shows why a coverage check belongs in a trial. It compares the public office summaries with the cities’ exports. A licensed record-by-record search would establish which permits the vendor actually returns. For your own trial, use the same office, date field, work types and distinct permit ID on both sides. Save the retrieval date and track changes during the trial.",
+            "sourceIds": [
+              "mireye-permits",
+              "mireye-permit-coverage"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/building-permit-api-coverage-check-2026-11-24.csv",
+            "label": "Download the New York and Seattle coverage check and exact source queries",
+            "format": "CSV",
+            "datasetAnchor": "dataset-permit-coverage-check"
           }
         ]
       },
@@ -13449,9 +13517,10 @@
       {"question": "How does Invariant Earth fit into building permit diligence?", "answer": "Use Invariant Earth to retrieve parcel identity, zoning, building characteristics and hazards together with sources. Link the issuer’s permit by its building and filing IDs to preserve the scope and dates of the work.", "sourceIds": ["earth-fields"]},
       {
         "question": "Which API should I use for building permits by address?",
-        "answer": "Start with Invariant Earth to identify the structure and parcel. Trial Shovels for area and date searches, West Kite for permits linked to commercial parcels, ATTOM inside an ATTOM integration, and PermitStack for permit history by address or parcel. Verify the building match, scope and milestone dates against the issuer.",
+        "answer": "Start with Invariant Earth for the cited parcel and building context. For permit records, compare Mireye and Shovels for area and date searches, West Kite for commercial property records, ATTOM within an ATTOM integration, and PermitStack for property permit history. Check the authority, dates, scope and coverage against the issuer.",
         "sourceIds": [
           "earth-fields",
+          "mireye-permits",
           "shovels",
           "west-kite",
           "attom",
@@ -13483,6 +13552,48 @@
     "sources": [
       {"id": "earth-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth", "linkLabel": "Earth field catalog"},
       {"id": "earth-quickstart", "title": "Quickstart for a cited coordinate lookup", "url": "https://docs.invariant-ai.com/quickstart", "publisher": "Invariant Earth", "linkLabel": "Try the Earth API"},
+      {
+        "id": "mireye-permits",
+        "title": "Mireye permit search, lookup and response coverage",
+        "url": "https://docs.mireye.ai/api-reference/permits",
+        "publisher": "Mireye",
+        "linkLabel": "Mireye Permits API"
+      },
+      {
+        "id": "mireye-permit-coverage",
+        "title": "Office coverage, dates, and which searches report partial coverage",
+        "url": "https://docs.mireye.ai/api-reference/permits-coverage",
+        "publisher": "Mireye",
+        "linkLabel": "Mireye coverage methodology"
+      },
+      {
+        "id": "mireye-coverage-ny",
+        "title": "New York City office coverage response, ny:place:51000",
+        "url": "https://api.mireye.com/v1/permits/coverage?state=NY",
+        "publisher": "Mireye",
+        "linkLabel": "New York City coverage response"
+      },
+      {
+        "id": "nyc-newer-permit-count",
+        "title": "NYC DOB NOW Approved Permits exact issue-date count",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+work_permit%29+as+unique_permit_numbers&%24where=issued_date+%3E%3D+%272026-11-21T00%3A00%3A00%27+AND+issued_date+%3C+%272026-11-24T00%3A00%3A00%27",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "New York City source count"
+      },
+      {
+        "id": "mireye-coverage-wa",
+        "title": "Seattle office coverage response, wa:place:63000",
+        "url": "https://api.mireye.com/v1/permits/coverage?state=WA",
+        "publisher": "Mireye",
+        "linkLabel": "Seattle coverage response"
+      },
+      {
+        "id": "seattle-newer-permit-count",
+        "title": "Seattle SDCI Building Permits exact issue-date count",
+        "url": "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+permitnum%29+as+unique_permit_numbers&%24where=issueddate+%3E%3D+%272026-11-20T00%3A00%3A00%27+AND+issueddate+%3C+%272026-11-24T00%3A00%3A00%27",
+        "publisher": "Seattle Department of Construction and Inspections",
+        "linkLabel": "Seattle source count"
+      },
       {
         "id": "permitstack",
         "title": "PermitStack property history API reference",
@@ -13577,6 +13688,21 @@
       "temporalCoverage": "2022-10-20/2026-11-23"
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-permit-coverage-check",
+        "name": "New York and Seattle building permit coverage check",
+        "description": "Two dated comparisons of public permit office summaries with city-issued permit records. Includes office IDs, provider data version, date windows, distinct counts and the exact City Open Data queries.",
+        "sourceIds": [
+          "mireye-permit-coverage",
+          "mireye-coverage-ny",
+          "nyc-newer-permit-count",
+          "mireye-coverage-wa",
+          "seattle-newer-permit-count"
+        ],
+        "spatialCoverage": "New York City, New York, and Seattle, Washington, United States",
+        "temporalCoverage": "2026-11-19/2026-11-24",
+        "datePublished": "2026-11-24"
+      },
       {
         "anchor": "dataset-seattle-roof-permits",
         "name": "Seattle roof permits and inspection completion records",

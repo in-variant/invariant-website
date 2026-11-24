@@ -2257,7 +2257,7 @@
     "slug": "building-permit-data-apis",
     "topic": "Data & APIs",
     "title": "Building Permit Data APIs for Commercial Property",
-    "summary": "Compare Invariant Earth and building permit APIs with New York and Seattle records. Test building matches, project counts, roof work and inspection dates.",
+    "summary": "Compare Invariant Earth, Mireye, Shovels and other permit APIs. Test coverage by city, building matches, project counts and inspection dates.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
@@ -2293,6 +2293,55 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-permit-coverage-check",
+        "name": "New York and Seattle building permit coverage check",
+        "description": "Two dated comparisons of public permit office summaries with city-issued permit records. Includes office IDs, provider data version, date windows, distinct counts and the exact City Open Data queries.",
+        "spatialCoverage": "New York City, New York, and Seattle, Washington, United States",
+        "temporalCoverage": "2026-11-19/2026-11-24",
+        "datePublished": "2026-11-24",
+        "sources": [
+          "https://docs.mireye.ai/api-reference/permits-coverage",
+          "https://api.mireye.com/v1/permits/coverage?state=NY",
+          "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+work_permit%29+as+unique_permit_numbers&%24where=issued_date+%3E%3D+%272026-11-21T00%3A00%3A00%27+AND+issued_date+%3C+%272026-11-24T00%3A00%3A00%27",
+          "https://api.mireye.com/v1/permits/coverage?state=WA",
+          "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+permitnum%29+as+unique_permit_numbers&%24where=issueddate+%3E%3D+%272026-11-20T00%3A00%3A00%27+AND+issueddate+%3C+%272026-11-24T00%3A00%3A00%27"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Office coverage, dates, and which searches report partial coverage",
+            "publisher": "Mireye",
+            "url": "https://docs.mireye.ai/api-reference/permits-coverage"
+          },
+          {
+            "title": "New York City office coverage response, ny:place:51000",
+            "publisher": "Mireye",
+            "url": "https://api.mireye.com/v1/permits/coverage?state=NY"
+          },
+          {
+            "title": "NYC DOB NOW Approved Permits exact issue-date count",
+            "publisher": "NYC Department of Buildings",
+            "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+work_permit%29+as+unique_permit_numbers&%24where=issued_date+%3E%3D+%272026-11-21T00%3A00%3A00%27+AND+issued_date+%3C+%272026-11-24T00%3A00%3A00%27"
+          },
+          {
+            "title": "Seattle office coverage response, wa:place:63000",
+            "publisher": "Mireye",
+            "url": "https://api.mireye.com/v1/permits/coverage?state=WA"
+          },
+          {
+            "title": "Seattle SDCI Building Permits exact issue-date count",
+            "publisher": "Seattle Department of Construction and Inspections",
+            "url": "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+permitnum%29+as+unique_permit_numbers&%24where=issueddate+%3E%3D+%272026-11-20T00%3A00%3A00%27+AND+issueddate+%3C+%272026-11-24T00%3A00%3A00%27"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the New York and Seattle coverage check and exact source queries",
+            "path": "/blog/building-permit-api-coverage-check-2026-11-24.csv",
+            "format": "CSV"
+          }
+        ]
+      },
       {
         "anchor": "dataset-seattle-roof-permits",
         "name": "Seattle roof permits and inspection completion records",
