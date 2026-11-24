@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/clean-content.mjs && node scripts/build-editorial-content.mjs && node scripts/build-sitemap.mjs && node scripts/build-llms.mjs && tsc -b && tsc -p tsconfig.api.json && vite build && node scripts/prerender.mjs && node scripts/build-agent-md.mjs && node scripts/build-blog-feed.mjs",
+    "build": "node scripts/clean-content.mjs && node scripts/build-editorial-content.mjs --responsive-covers && node scripts/build-sitemap.mjs && node scripts/build-llms.mjs && tsc -b && tsc -p tsconfig.api.json && vite build && node scripts/prerender.mjs && node scripts/build-agent-md.mjs && node scripts/build-blog-feed.mjs",
     "preview": "vite preview",
     "verify:release": "python3 scripts/verify-release.py",
     "sitemap": "node scripts/build-sitemap.mjs",
@@ -52,6 +52,7 @@
     "autoprefixer": "^10.4.20",
     "playwright-core": "^1.61.1",
     "postcss": "^8.4.49",
+    "sharp": "0.35.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.0",
     "vite": "^6.0.0"

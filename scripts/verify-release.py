@@ -131,6 +131,10 @@ class Page(HTMLParser):
             self.add_asset(attr.get("src"))
         elif tag == "img":
             self.add_asset(attr.get("src"))
+            for candidate in attr.get("srcset", "").split(","):
+                fields = candidate.split()
+                if fields:
+                    self.add_asset(fields[0])
 
     def add_asset(self, reference):
         if reference:

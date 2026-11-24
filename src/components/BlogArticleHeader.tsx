@@ -7,10 +7,14 @@ type ArticleHeaderProps = {
   subtitle: string
   coverCaption?: string
   coverAlt?: string
+  coverImage?: { width: number; height: number; srcSet: string }
   siteDetailsId?: string
 }
 
-export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', siteDetailsId }: ArticleHeaderProps) {
+const articleWidth = 'min(1280px, calc(100vw - clamp(48px, 10.42vw, 200px)))'
+const listingSizes = `(min-width: 950px) calc((${articleWidth} - clamp(36px, 4vw, 64px)) / 2), ${articleWidth}`
+
+export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', coverImage, siteDetailsId }: ArticleHeaderProps) {
   return (
     <header className={`blog-article-header${siteDetailsId ? ' blog-article-header--site-listing' : ''}`}>
       <nav className="blog-article-breadcrumbs" aria-label="Breadcrumb">
@@ -28,7 +32,16 @@ export default function BlogArticleHeader({ article, title, subtitle, coverCapti
         )}
       </div>
       <div className="blog-article-cover">
-        <img src={article.image} alt={coverAlt} width="1600" height="900" fetchPriority="high" decoding="async" />
+        <img
+          src={article.image}
+          srcSet={coverImage?.srcSet}
+          sizes={coverImage ? (siteDetailsId ? listingSizes : articleWidth) : undefined}
+          alt={coverAlt}
+          width={coverImage?.width ?? 1600}
+          height={coverImage?.height ?? 900}
+          fetchPriority="high"
+          decoding="async"
+        />
         <span aria-hidden="true" className="blog-article-cover-mark">Invariant / {article.topic}</span>
       </div>
       {coverCaption && <p className="blog-article-image-caption">{coverCaption}</p>}

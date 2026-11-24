@@ -207,7 +207,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const reviewedDate = article.updatedDate ?? article.date
   return <article className="blog-article industry-article">
     <Seo title={article.title} description={article.description} canonical={canonical} markdown={`/blog/${article.slug}.md`} ogImage={image} ogType="article" jsonLd={articleJsonLd(article, canonical, image, datasets)} />
-    <BlogArticleHeader article={article.published} title={article.title} subtitle={isSiteListing ? article.intro : article.description} coverCaption={coverCaption} coverAlt={article.coverAlt} siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined} />
+    <BlogArticleHeader article={article.published} title={article.title} subtitle={isSiteListing ? article.intro : article.description} coverCaption={coverCaption} coverAlt={article.coverAlt} coverImage={article.coverImage} siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined} />
     <div className="industry-article-layout">
       <aside className="industry-article-rail" aria-label="In this guide">
         {isSiteListing ? <Link to="/blog/find-data-center-site-us" className="industry-hub-link">Data center site finder <span aria-hidden="true">↗</span></Link> :

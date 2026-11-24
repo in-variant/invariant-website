@@ -26,6 +26,7 @@ export type IndustryArticle = {
   updatedDate?: string
   coverCaption?: string
   coverAlt?: string
+  coverImage?: { width: number; height: number; srcSet: string }
   published: ResourceArticle
   readMinutes: number
   intro: string
