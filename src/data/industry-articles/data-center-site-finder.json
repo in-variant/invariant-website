@@ -14523,6 +14523,15 @@
       "path": "/blog/virginia-data-center-site-evidence.csv",
       "label": "Download Virginia offering, parcel and permit evidence",
       "format": "CSV"
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "slug": "data-center-land-for-sale",
+        "label": "Compare U.S. land prices, including Loudoun County"
+       }
+      ]
      }
     ]
    },
@@ -18347,10 +18356,10 @@
   "kind": "site-listing",
   "region": "United States",
   "title": "U.S. Data Center Land for Sale: Sites and Price per Acre",
-  "description": "Compare U.S. data center land by acreage, power and timing. See price per acre from closed deals, a signed purchase agreement and a land option.",
+  "description": "Compare U.S. sites by acreage, power and timing. Check sale prices per acre in Loudoun County and see which acquisition, contract or option each price covers.",
   "date": "2026-11-09",
-  "readMinutes": 10,
-  "intro": "Use Invariant to shortlist U.S. data center land by target market, usable acres and the megawatts your first phase needs at the meter. The disclosed prices work out to about $335,000 per acre for Digital Realty’s Astra acquisition near Kansas City and $500,000 per acre for Bitdeer’s expansion tract near Rockdale. Compare those closed deals with the terms on land under option or contract, then check the power records for your specific tract.",
+  "readMinutes": 12,
+  "intro": "Use Invariant to shortlist U.S. data center land by target market, usable acres and the megawatts your first phase needs at the meter. The disclosed prices work out to about $335,000 per acre for Digital Realty’s Astra acquisition near Kansas City and $500,000 per acre for Bitdeer’s expansion tract near Rockdale. Loudoun County reports a $4.1 million median per acre in its 2025 data center land table. Compare deals in the same market and check which acreage and utility rights each price covers.",
   "takeaways": [
    "Ask for the dated utility record behind each MW figure and the conditions for the first phase.",
    "Compare closed sales, signed agreements and option prices separately. Use the acres priced in the document and check what rights are included.",
@@ -18572,6 +18581,65 @@
        {
         "path": "/calculators/data-center-power-capacity",
         "label": "Convert IT load to facility MW at the meter"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "loudoun-data-center-land-sales",
+    "heading": "What did data center land sell for in Loudoun County?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Loudoun County’s 2026 appraisal guidelines report a median of $4.1 million per acre across 14 rows in the county’s 2025 data center land sales table. The listed rates range from about $1.96 million to $6.33 million per acre. These are observations from a local appraisal table. Some rows cover multiple parcels, and the table also lists improved data center sales separately.",
+      "sourceIds": ["loudoun-land-guidelines"]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": ["County record", "Acreage and price", "What to verify"],
+      "rows": [
+       [
+        "April 16, 2025 sale to Amazon Data Services",
+        "The $195 million sale covered 97.82 gross acres and 73.17 net acres in the county’s industrial sales report. That is about $1.99 million per gross acre or $2.67 million per net acre.",
+        "Check which parts of the property the appraisal excludes. Confirm usable acres for your own campus layout."
+       ],
+       [
+        "November 3, 2025 sale to SDC Twin Creeks Parent",
+        "The county lists a single $615.05 million price for 97.15 acres across seven parcel IDs, or $6.33 million per acre.",
+        "Keep the seven parcels together when comparing the sale. Check the deed schedule and any rights that transfer with the package."
+       ],
+       [
+        "February 4, 2025 entry for parcel 202-29-8575-000",
+        "Two county tables list the same $120,079,533 but different acreages. The data center table uses 26.03 acres and reports $4.61 million per acre. The transitional-parcel table uses 13.18 net acres and reports $9.11 million per net acre.",
+        "Confirm the acreage basis and transaction allocation before using either figure as a parcel-level comparable."
+       ]
+      ],
+      "rowSourceIds": [
+       ["loudoun-industrial-sales"],
+       ["loudoun-land-guidelines", "loudoun-industrial-sales"],
+       ["loudoun-land-guidelines", "loudoun-transitional-sales"]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The data center sales table repeats $120,079,533 on February 4 for parcel 161-26-9137-000. In the Deimos commission permit application, NOVEC identified 202-29-8575 as the proposed substation parcel and 161-26-9137 as the planned data center parcel across the road. Check the deeds and any price allocation before totaling the two entries. Ask the utility separately for the service terms and date for the campus.",
+      "sourceIds": ["loudoun-land-guidelines", "loudoun-deimos-filing"]
+     },
+     {
+      "type": "download",
+      "path": "/blog/loudoun-data-center-land-sales-2025.csv",
+      "format": "CSV",
+      "label": "Download the Loudoun land sales and acreage comparisons",
+      "datasetAnchor": "dataset-loudoun-land-sales"
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "slug": "data-center-sites-for-sale-virginia",
+        "label": "Compare marketed Virginia data center sites"
        }
       ]
      }
@@ -19010,6 +19078,11 @@
     ]
    },
    {
+    "question": "How much does data center land cost in Loudoun County, Virginia?",
+    "answer": "Loudoun County’s 2025 data center land sales table reports a median of $4.1 million per acre across 14 published rows. The range is about $1.96 million to $6.33 million per acre. For a specific parcel, check the purchase scope, the usable acreage and the power rights before comparing prices.",
+    "sourceIds": ["loudoun-land-guidelines"]
+   },
+   {
     "question": "What is the difference between powered land and raw land?",
     "answer": "Powered land is marketed with some evidence of power development, from a utility study through energized service. Ask for the underlying utility record to determine whether the MW are studied, contracted or usable today. Raw land may still be at the stage of confirming who serves it and where it could connect."
    },
@@ -19164,6 +19237,34 @@
     "title": "September 2026 Form 6-K, August land closing",
     "url": "https://www.sec.gov/Archives/edgar/data/1899123/000121390026104638/ea030647301ex99-2.htm",
     "publisher": "Bitdeer"
+   },
+   {
+    "id": "loudoun-land-guidelines",
+    "title": "2026 data center appraisal guidelines, 2025 land sales table, PDF p. 2",
+    "url": "https://www.loudoun.gov/DocumentCenter/View/219238/462-Data-Center-2026-Guidelines-PDF#page=2",
+    "publisher": "Loudoun County Commissioner of the Revenue",
+    "linkLabel": "Loudoun data center land sales"
+   },
+   {
+    "id": "loudoun-industrial-sales",
+    "title": "2026 MRHI sales comparables, gross and net acreage and grantee",
+    "url": "https://www.loudoun.gov/DocumentCenter/View/219212/400MRHI-Sales-for-2026-PDF#page=1",
+    "publisher": "Loudoun County Commissioner of the Revenue",
+    "linkLabel": "Loudoun industrial sales"
+   },
+   {
+    "id": "loudoun-transitional-sales",
+    "title": "2026 transitional parcel sales comparables, net acreage",
+    "url": "https://www.loudoun.gov/DocumentCenter/View/219213/400TP-Land-Sales-for-2026-PDF#page=1",
+    "publisher": "Loudoun County Commissioner of the Revenue",
+    "linkLabel": "Loudoun transitional land sales"
+   },
+   {
+    "id": "loudoun-deimos-filing",
+    "title": "Deimos substation commission permit application, CMPT-2024-0010, project justification",
+    "url": "https://loudoun.granicus.com/MetaViewer.php?clip_id=8078&meta_id=273558&view_id=90#page=18",
+    "publisher": "Loudoun County Planning Commission",
+    "linkLabel": "Deimos application record"
    }
   ],
   "relatedSlugs": [
@@ -19171,7 +19272,7 @@
    "data-center-site-selection-services",
    "data-center-for-sale"
   ],
-  "updatedDate": "2026-11-23",
+  "updatedDate": "2026-11-24",
   "dataset": {
    "name": "Land control and closing milestones in three U.S. data center deals",
    "description": "Dated source records for the Graham electrical infrastructure sale and separate land deal, the Cassia County parcel options, and the Stonecroft county purchase agreement.",
@@ -19189,6 +19290,15 @@
    "temporalCoverage": "2026-03-17/2026-11-22"
   },
   "additionalDatasets": [
+   {
+    "anchor": "dataset-loudoun-land-sales",
+    "datePublished": "2026-11-24",
+    "name": "Loudoun County data center land sales and acreage comparisons",
+    "description": "The 14 rows in Loudoun County’s 2025 data center land sales table plus two acreage comparisons from other county publications. The download retains parcel groups, reports the acreage basis, and flags repeated consideration that requires deed-level verification.",
+    "sourceIds": ["loudoun-land-guidelines", "loudoun-industrial-sales", "loudoun-transitional-sales", "loudoun-deimos-filing"],
+    "spatialCoverage": "Loudoun County, Virginia, United States",
+    "temporalCoverage": "2025-02-04/2025-12-17"
+   },
    {
     "anchor": "dataset-land-prices",
     "datePublished": "2026-11-23",
