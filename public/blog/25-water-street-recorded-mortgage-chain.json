@@ -1,0 +1,565 @@
+{
+  "name": "25 Water Street commercial mortgage recording chain",
+  "checked_on": "2026-11-23",
+  "check_date_timezone": "America/Los_Angeles",
+  "scope": "Selected NYC Department of Finance index rows for one Manhattan lot. This extract contains document metadata and typed references. Confirm signed documents, any later recordings, title, priority and payoff separately.",
+  "parcel": {
+    "bbl": "1000050010",
+    "reported_site_address": "25 Water Street",
+    "mappluto": {
+      "bbl": "1000050010.00000000",
+      "address": "115 BROAD STREET",
+      "bldgclass": "D5",
+      "landuse": "3",
+      "version": "26v3"
+    }
+  },
+  "source_queries": {
+    "master": {
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+      "sha256_of_response": "5d53aa7064c6e40415a455a22232771245a671b2a27c027c4068283f83808cd8"
+    },
+    "references": {
+      "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100",
+      "sha256_of_response": "21ab9fe2197d4af225039950410bfede86942d4f8c620e28741ce488c4fe9559"
+    },
+    "water-legals": {
+      "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=5&lot=10&%24select=document_id%2Cborough%2Cblock%2Clot&%24order=document_id&%24limit=3000",
+      "sha256_of_response": "7751b46f66b1b88ea954fe22562ff5e428289e386431fad9ac8d441db9ac34c3"
+    },
+    "pluto": {
+      "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Caddress%2Cbldgclass%2Clanduse%2Cversion&bbl=1000050010",
+      "sha256_of_response": "28a1c517476e46d08fe4e4cc20bfd85cee192a8f33c029db7a509b02c7a3835c"
+    },
+    "codes": {
+      "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24limit=500",
+      "sha256_of_response": "518363532df753ac364ce47c5d62dfbdbaf609b598845bfcfe2ec83b9739c625"
+    }
+  },
+  "invariant_earth_documented_parcel_fields": {
+    "source": "https://api.invariant-ai.com/v1/meta/fields",
+    "fields": [
+      {
+        "name": "parcel_id",
+        "layer": "parcels",
+        "type": "string",
+        "unit": null,
+        "source": "REGRID",
+        "source_url": "https://regrid.com/api",
+        "sources": [
+          "REGRID"
+        ],
+        "ttl_seconds": 2592000,
+        "description": "Regrid parcel id (ll_uuid) of the parcel containing the point, else the nearest within 250 m. ",
+        "null_meaning": "status \"absent\": no Regrid parcel contains the point or lies within 250 m. \"failed\": Regrid did not answer."
+      },
+      {
+        "name": "parcel_address",
+        "layer": "parcels",
+        "type": "string",
+        "unit": null,
+        "source": "REGRID",
+        "source_url": "https://regrid.com/api",
+        "sources": [
+          "REGRID"
+        ],
+        "ttl_seconds": 2592000,
+        "description": "Situs address of that parcel.",
+        "null_meaning": "status \"absent\": no Regrid parcel contains the point or lies within 250 m. \"failed\": Regrid did not answer."
+      }
+    ],
+    "scope": "Public field metadata only. No authenticated parcel lookup was performed."
+  },
+  "selected_instrument_types": {
+    "AGMT": "AGREEMENT",
+    "DEED": "DEED",
+    "TL&R": "TERMINATION OF ASSIGN OF L&R",
+    "ASST": "ASSIGNMENT, MORTGAGE",
+    "AL&R": "ASSIGNMENT OF LEASES AND RENTS",
+    "MTGE": "MORTGAGE"
+  },
+  "instrument_rows": [
+    {
+      "document_id": "2015020501427004",
+      "crfn": "2015000061069",
+      "doc_type": "MTGE",
+      "document_date": "2015-02-03T00:00:00.000",
+      "recorded_datetime": "2015-02-23T00:00:00.000",
+      "document_amt": "55650000",
+      "good_through_date": "2015-07-31T00:00:00.000",
+      "modified_date": "2015-02-23T00:00:00.000"
+    },
+    {
+      "document_id": "2015020501427005",
+      "crfn": "2015000061070",
+      "doc_type": "AGMT",
+      "document_date": "2015-02-03T00:00:00.000",
+      "recorded_datetime": "2015-02-23T00:00:00.000",
+      "document_amt": "250000000",
+      "good_through_date": "2015-07-31T00:00:00.000",
+      "modified_date": "2015-02-23T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118001",
+      "crfn": "2022000461982",
+      "doc_type": "DEED",
+      "document_date": "2022-12-21T00:00:00.000",
+      "recorded_datetime": "2022-12-28T00:00:00.000",
+      "document_amt": "250806808.08",
+      "good_through_date": "2022-12-31T00:00:00.000",
+      "modified_date": "2022-12-28T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118003",
+      "crfn": "2022000461984",
+      "doc_type": "ASST",
+      "document_date": "2022-12-21T00:00:00.000",
+      "recorded_datetime": "2022-12-28T00:00:00.000",
+      "document_amt": "0.00",
+      "good_through_date": "2022-12-31T00:00:00.000",
+      "modified_date": "2022-12-28T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118004",
+      "crfn": "2022000461985",
+      "doc_type": "AGMT",
+      "document_date": "2022-12-21T00:00:00.000",
+      "recorded_datetime": "2022-12-28T00:00:00.000",
+      "document_amt": "107012127.64",
+      "good_through_date": "2022-12-31T00:00:00.000",
+      "modified_date": "2022-12-28T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118005",
+      "crfn": "2022000461986",
+      "doc_type": "MTGE",
+      "document_date": "2022-12-21T00:00:00.000",
+      "recorded_datetime": "2022-12-28T00:00:00.000",
+      "document_amt": "208713753.40",
+      "good_through_date": "2022-12-31T00:00:00.000",
+      "modified_date": "2022-12-28T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118007",
+      "crfn": "2022000461988",
+      "doc_type": "MTGE",
+      "document_date": "2022-12-21T00:00:00.000",
+      "recorded_datetime": "2022-12-28T00:00:00.000",
+      "document_amt": "99274118.96",
+      "good_through_date": "2022-12-31T00:00:00.000",
+      "modified_date": "2022-12-28T00:00:00.000"
+    },
+    {
+      "document_id": "2023010900455001",
+      "crfn": "2023000008537",
+      "doc_type": "AL&R",
+      "document_date": "2022-12-21T00:00:00.000",
+      "recorded_datetime": "2023-01-10T00:00:00.000",
+      "document_amt": "415000000.00",
+      "good_through_date": "2023-01-31T00:00:00.000",
+      "modified_date": "2023-01-10T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203004",
+      "crfn": "2025000334866",
+      "doc_type": "TL&R",
+      "document_date": "2025-11-25T00:00:00.000",
+      "recorded_datetime": "2025-12-09T00:00:00.000",
+      "document_amt": "0",
+      "good_through_date": "2025-12-31T00:00:00.000",
+      "modified_date": "2025-12-09T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "crfn": "2025000334867",
+      "doc_type": "ASST",
+      "document_date": "2025-11-25T00:00:00.000",
+      "recorded_datetime": "2025-12-09T00:00:00.000",
+      "document_amt": "0",
+      "good_through_date": "2025-12-31T00:00:00.000",
+      "modified_date": "2025-12-09T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "crfn": "2025000334868",
+      "doc_type": "AGMT",
+      "document_date": "2025-11-25T00:00:00.000",
+      "recorded_datetime": "2025-12-09T00:00:00.000",
+      "document_amt": "415000000",
+      "good_through_date": "2025-12-31T00:00:00.000",
+      "modified_date": "2025-12-09T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "crfn": "2025000334869",
+      "doc_type": "AL&R",
+      "document_date": "2025-11-25T00:00:00.000",
+      "recorded_datetime": "2025-12-09T00:00:00.000",
+      "document_amt": "415000000",
+      "good_through_date": "2025-12-31T00:00:00.000",
+      "modified_date": "2025-12-09T00:00:00.000"
+    }
+  ],
+  "reference_rows": [
+    {
+      "document_id": "2015020501427005",
+      "reference_by_doc_id": "2015020501427004",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2015-07-31T00:00:00.000"
+    },
+    {
+      "document_id": "2015020501427005",
+      "reference_by_crfn_": "2010000016548",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2015-07-31T00:00:00.000"
+    },
+    {
+      "document_id": "2015020501427005",
+      "reference_by_crfn_": "2012000256051",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2015-07-31T00:00:00.000"
+    },
+    {
+      "document_id": "2015020501427005",
+      "reference_by_crfn_": "2013000399670",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2015-07-31T00:00:00.000"
+    },
+    {
+      "document_id": "2015020501427005",
+      "reference_by_crfn_": "2013000399672",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2015-07-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118003",
+      "reference_by_crfn_": "2010000016548",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118003",
+      "reference_by_crfn_": "2012000256051",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118003",
+      "reference_by_crfn_": "2013000399670",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118003",
+      "reference_by_crfn_": "2013000399672",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118003",
+      "reference_by_crfn_": "2015000061069",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118004",
+      "reference_by_crfn_": "2010000016548",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118004",
+      "reference_by_crfn_": "2012000256051",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118004",
+      "reference_by_crfn_": "2013000399670",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118004",
+      "reference_by_crfn_": "2013000399672",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022122300118004",
+      "reference_by_crfn_": "2015000061069",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2022-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2023010900455001",
+      "reference_by_crfn_": "2022000461985",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2023-01-31T00:00:00.000"
+    },
+    {
+      "document_id": "2023010900455001",
+      "reference_by_crfn_": "2022000461986",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2023-01-31T00:00:00.000"
+    },
+    {
+      "document_id": "2023010900455001",
+      "reference_by_crfn_": "2022000461988",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2023-01-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203004",
+      "reference_by_crfn_": "2023000008537",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2010000016548",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2012000256051",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2013000399670",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2013000399672",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2015000061069",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2022000461986",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203005",
+      "reference_by_crfn_": "2022000461988",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2010000016548",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2012000256051",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2013000399670",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2013000399672",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2015000061069",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2022000461986",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203006",
+      "reference_by_crfn_": "2022000461988",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_doc_id": "2025120800203006",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2010000016548",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2012000256051",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2013000399670",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2013000399672",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2015000061069",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2022000461986",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2025120800203007",
+      "reference_by_crfn_": "2022000461988",
+      "reference_by_reel_year": "0",
+      "reference_by_reel_nbr": "0",
+      "reference_by_reel_page": "0",
+      "good_through_date": "2025-12-31T00:00:00.000"
+    }
+  ],
+  "reconciliation": {
+    "december_2022_indexed_amounts_referenced_by_january_2023_rent_assignment": {
+      "assignment_document_id": "2023010900455001",
+      "related_document_ids": [
+        "2022122300118004",
+        "2022122300118005",
+        "2022122300118007"
+      ],
+      "sum_usd": "415000000.00",
+      "indexed_assignment_amount_usd": "415000000.00"
+    },
+    "december_2025_linked_rows": {
+      "agreement_id": "2025120800203006",
+      "rent_assignment_id": "2025120800203007",
+      "agreement_indexed_amount_usd": "415000000",
+      "rent_assignment_indexed_amount_usd": "415000000",
+      "arithmetic_sum_of_related_rows_usd": "830000000",
+      "prior_rent_assignment_termination_id": "2025120800203004",
+      "prior_rent_assignment_crfn": "2023000008537",
+      "reference_to_agreement_field": "reference_by_doc_id",
+      "dates": {
+        "2022122300118004": {
+          "document_date": "2022-12-21",
+          "recorded_datetime": "2022-12-28"
+        },
+        "2025120800203006": {
+          "document_date": "2025-11-25",
+          "recorded_datetime": "2025-12-09"
+        }
+      }
+    }
+  }
+}

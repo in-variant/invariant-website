@@ -1,5 +1,434 @@
 [
   {
+    "slug": "commercial-mortgage-records-by-address",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "title": "How to Find Commercial Mortgage Records by Address",
+    "description": "Find commercial mortgage records by address. Use NYC recorder data to trace assignments, agreements and releases, and avoid counting the same obligation twice.",
+    "date": "2026-11-23",
+    "readMinutes": 9,
+    "coverFile": "west-kite-alternatives-for-commercial-property-data.webp",
+    "coverAlt": "Aerial photograph of 25 Water Street in Lower Manhattan with the tax lot outlined.",
+    "coverCaption": "25 Water Street during conversion. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant added the MapPLUTO 26v2 tax lot outline.",
+    "intro": "Start with the parcel and recorder’s office. Then trace each mortgage, assignment, agreement and release by instrument number. At 25 Water Street in New York, the recorder indexed a $415 million agreement and a $415 million assignment of leases and rents on the same day in 2025. The rent assignment directly references the agreement. Adding those two rows would put $830 million in the file without evidence of two separate loans.",
+    "takeaways": [
+      "Confirm the parcel identifier and jurisdiction before searching. New York City lists the 25 Water Street property under 115 Broad Street in MapPLUTO.",
+      "Keep the document date, recorder date, instrument type and referenced records with each amount.",
+      "Use Invariant Earth to match collateral to a sourced parcel and attach site evidence. For a credit decision, verify recorded instruments with the recorder and obtain the appropriate title and servicer records."
+    ],
+    "sections": [
+      {
+        "id": "find-recorded-mortgages",
+        "heading": "How to look up commercial mortgage records for a property",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with a situs address, the property’s physical address, and resolve it to the tax parcel or legal description. Confirm the match before pulling financing records. The owner’s public filing uses 25 Water Street. MapPLUTO lists 115 Broad Street for Manhattan block 5, lot 10, borough-block-lot number 1000050010. Invariant Earth’s public API describes a parcel ID and parcel address for this type of match. Check whether the coordinate actually sits inside the parcel because the service can return a nearby parcel where there is no containing match.",
+            "sourceIds": [
+              "owner-address",
+              "pluto-row",
+              "earth-parcels"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "New York City’s Automated City Register Information System, or ACRIS, covers Manhattan, the Bronx, Brooklyn and Queens. It lets you search by parcel or City Register File Number, known as a CRFN. Join the Legals table to the Master table by document ID, then follow the References table by document ID or CRFN. For older entries, preserve reel and page. Check the recording jurisdiction elsewhere, including the Richmond County Clerk for Staten Island.",
+            "sourceIds": [
+              "acris",
+              "water-parcel",
+              "master-rows",
+              "reference-rows"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "water-street-chain",
+        "heading": "The 25 Water Street case and the repeated $415 million",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We joined the parcel, master records and cross-references for twelve selected instruments. A December 2022 agreement shows $107,012,127.64. Two separate mortgages recorded the same day show $208,713,753.40 and $99,274,118.96. Those values add to exactly $415 million. The $415 million rent assignment recorded in January 2023 references all three by file number. Among these rows, the assignment adds a record describing security tied to the financing. Treat the three amounts as a reconciliation of indexed instruments and read the agreements for the actual obligations.",
+            "sourceIds": [
+              "water-parcel",
+              "master-rows",
+              "reference-rows"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Recorder date",
+              "What the index shows",
+              "What to carry forward"
+            ],
+            "rows": [
+              [
+                "February 23, 2015",
+                "Mortgage 2015000061069 for $55.65 million and agreement 2015000061070 for $250 million.",
+                "The agreement references the new mortgage by document ID and four older recorded instruments by CRFN."
+              ],
+              [
+                "December 28, 2022",
+                "Agreement 2022000461985 and mortgages 2022000461986 and 2022000461988. Their three indexed amounts add to $415 million.",
+                "Retain all three document IDs. The separate zero-amount mortgage assignment points to five earlier records, including the 2015 mortgage."
+              ],
+              [
+                "January 10, 2023",
+                "Assignment of leases and rents 2023000008537 for $415 million.",
+                "It references the three December instruments directly."
+              ],
+              [
+                "December 9, 2025",
+                "The $415 million agreement 2025000334868 and $415 million assignment of leases and rents 2025000334869.",
+                "The rent assignment explicitly points to the same-day agreement. Keep both filings and review their shared financing once."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "master-rows",
+                "reference-rows"
+              ],
+              [
+                "master-rows",
+                "reference-rows"
+              ],
+              [
+                "master-rows",
+                "reference-rows"
+              ],
+              [
+                "master-rows",
+                "reference-rows"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 2025 group also contains a termination that explicitly references the January 2023 rent assignment. The city labels the record a termination of the assignment of leases and rents. A mortgage satisfaction or partial release carries a different instrument type and must be tied to the particular mortgage and property it covers. The 2025 agreement and rent assignment are dated November 25 and were recorded December 9. A review of what was recorded on December 1 should preserve that distinction.",
+            "sourceIds": [
+              "master-rows",
+              "reference-rows",
+              "code-list",
+              "state-rpp"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The financing arranger separately announced $535.8 million of acquisition and redevelopment financing in 2022. That describes the announced transaction. The three figures above reconcile particular recorder entries. A lender reporting the current principal, payoff or legal priority needs the correct agreement and current confirmation for the period under review.",
+            "sourceIds": [
+              "arranger",
+              "master-rows",
+              "reference-rows"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the 25 Water Street mortgage chain and exact source queries",
+            "path": "/blog/25-water-street-recorded-mortgage-chain.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "read-mortgage-and-release-types",
+        "heading": "Read an assignment, a release and a recorded amount",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Instrument or field",
+              "What to verify before using it"
+            ],
+            "rows": [
+              [
+                "Mortgage or modification",
+                "Match the legal description and look for referenced mortgages, stated principal, advances, and any consolidation. Check the document date and recorder date separately."
+              ],
+              [
+                "Assignment of mortgage",
+                "Read which interest moved, which recording it refers to, and whether an earlier holder assigned all or part of its interest. A zero index amount leaves principal unresolved."
+              ],
+              [
+                "Satisfaction or partial release",
+                "Retrieve the signed and recorded instrument. Match its covered mortgage and property to the file. A partial release may cover a specific tract or portion of the lien."
+              ],
+              [
+                "Recorded amount or estimated balance",
+                "Identify whether the value comes from the recorded instrument, a vendor estimate, a borrower report, or a current servicer statement. Store each with its source and date."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "code-list",
+                "state-rpp",
+                "recording-checklist"
+              ],
+              [
+                "code-list",
+                "state-rpp",
+                "recording-checklist"
+              ],
+              [
+                "state-rpp",
+                "state-partial"
+              ],
+              [
+                "master-rows",
+                "realie"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "commercial-mortgage-data-api-trial",
+        "heading": "How to test a commercial mortgage data API",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give vendors the same address and tax lot, then ask for the original source identifiers and linked records. Run the case as of December 1 and December 10, 2025 to see whether the product distinguishes the document date from the date it entered the public index. The provider descriptions below come from public documentation. The 25 Water Street rows come from the recorder."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Documented capability",
+              "What to try at 25 Water Street"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Cited parcel and site evidence for identifying and describing the collateral.",
+                "Resolve the parcel and verify the match. Join it to the city’s instrument records and preserve the dates from both sources."
+              ],
+              [
+                "West Kite",
+                "Its recorded-loans reference describes the latest recorded financing with lender, amount, and satisfaction filtering.",
+                "Ask whether the source returns the agreement and rent assignment as distinct documents linked to one financing and exposes their file numbers."
+              ],
+              [
+                "ATTOM",
+                "Its assignments and releases data describes earlier mortgage references and ATTOM property IDs for records it can match.",
+                "Ask for the document and date that support each link. Test whether ambiguous or unmatched records stay visible."
+              ],
+              [
+                "Realie",
+                "Its lending documentation describes recorded encumbrances and estimated lien balances.",
+                "Ask how the API distinguishes the 2025 recorded amount from an estimated balance and preserves county coverage and refresh dates."
+              ],
+              [
+                "NYC City Register",
+                "Original property register, document types, images, and indexed references for the boroughs it covers.",
+                "Retrieve the recorded instrument or certified copy required by the credit file. Ask title and servicing teams to confirm active obligations and payoff."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-parcels"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "attom"
+              ],
+              [
+                "realie"
+              ],
+              [
+                "acris",
+                "master-rows",
+                "reference-rows"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the credit review",
+            "items": [
+              {
+                "slug": "commercial-real-estate-lending",
+                "label": "Build a commercial real estate collateral file"
+              },
+              {
+                "slug": "commercial-mortgage-maturity-data-apis",
+                "label": "Verify the current maturity date and extension conditions"
+              },
+              {
+                "slug": "commercial-property-tax-delinquency-data",
+                "label": "Check tax delinquency and municipal lien evidence separately"
+              },
+              {
+                "slug": "west-kite-alternatives-for-commercial-property-data",
+                "label": "Replay the address and building match at 25 Water Street"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find a recorded mortgage by commercial property address?",
+        "answer": "Find the official tax parcel or legal description, then search the local recorder’s index. Save the instrument number and link later assignments, agreements, and releases back to the mortgage they identify.",
+        "sourceIds": [
+          "acris",
+          "master-rows",
+          "reference-rows"
+        ]
+      },
+      {
+        "question": "Does an assignment of leases and rents create a second loan?",
+        "answer": "The instrument identifies a security interest in leases and rents. Review the agreement or mortgage it references and track the two filings by their separate record IDs. At 25 Water Street, the $415 million rent assignment directly references the same-day $415 million agreement.",
+        "sourceIds": [
+          "code-list",
+          "master-rows",
+          "reference-rows"
+        ]
+      },
+      {
+        "question": "Can a mortgage API confirm current principal or payoff?",
+        "answer": "A recorder index can show the amount on a recorded instrument. Vendor balances may be estimates. Use a current servicer statement or payoff letter for the amount due as of the review date and confirm releases with the recorder and title team.",
+        "sourceIds": [
+          "master-rows",
+          "realie",
+          "state-rpp"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "acris",
+        "title": "Search and retrieve City Register records",
+        "url": "https://www.nyc.gov/site/finance/property/acris.page",
+        "publisher": "New York City Department of Finance",
+        "linkLabel": "ACRIS"
+      },
+      {
+        "id": "owner-address",
+        "title": "Owner filing identifying the project at 25 Water Street",
+        "url": "https://documents.dps.ny.gov/public/Common/ViewDoc.aspx?DocRefId=%7B802C378D-0000-CD10-829A-9BA07BD17120%7D",
+        "publisher": "New York State Department of Public Service",
+        "linkLabel": "Owner’s project filing"
+      },
+      {
+        "id": "pluto-row",
+        "title": "MapPLUTO 26v3 lot and official address query",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Caddress%2Cbldgclass%2Clanduse%2Cversion&bbl=1000050010",
+        "publisher": "NYC Open Data",
+        "linkLabel": "MapPLUTO parcel"
+      },
+      {
+        "id": "water-parcel",
+        "title": "ACRIS Legals lookup for Manhattan block 5 lot 10",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=5&lot=10&%24select=document_id%2Cborough%2Cblock%2Clot&%24order=document_id&%24limit=3000",
+        "publisher": "NYC Open Data",
+        "linkLabel": "ACRIS parcel join"
+      },
+      {
+        "id": "master-rows",
+        "title": "ACRIS Master query for the twelve selected instrument rows",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+        "publisher": "NYC Open Data",
+        "linkLabel": "Recorder instrument query"
+      },
+      {
+        "id": "reference-rows",
+        "title": "ACRIS References query for the selected instruments",
+        "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100",
+        "publisher": "NYC Open Data",
+        "linkLabel": "Recorded cross-references"
+      },
+      {
+        "id": "code-list",
+        "title": "ACRIS Document Control Codes",
+        "url": "https://data.cityofnewyork.us/d/7isb-wh4c",
+        "publisher": "NYC Open Data",
+        "linkLabel": "Document type codes"
+      },
+      {
+        "id": "recording-checklist",
+        "title": "City Register recording checklist, sections E through G",
+        "url": "https://www.nyc.gov/assets/finance/downloads/pdf/land_records/doc_recording_checklist.pdf",
+        "publisher": "New York City Department of Finance",
+        "linkLabel": "City recording checklist"
+      },
+      {
+        "id": "state-rpp",
+        "title": "New York Real Property Law section 321, recording discharge",
+        "url": "https://www.nysenate.gov/legislation/laws/RPP/321",
+        "publisher": "New York State Senate",
+        "linkLabel": "Recording discharge"
+      },
+      {
+        "id": "state-partial",
+        "title": "New York RPAPL section 1921-a, partial release",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1921-A",
+        "publisher": "New York State Senate",
+        "linkLabel": "Partial release statute"
+      },
+      {
+        "id": "arranger",
+        "title": "December 22, 2022 financing announcement for 25 Water Street",
+        "url": "https://www.nmrk.com/insights/press-releases/newmark-arranges-535-8-million-acquisition-and-redevelopment-financing-for-us-largest-ever-office-to-residential-conversion-2",
+        "publisher": "Newmark",
+        "linkLabel": "Arranger’s announcement"
+      },
+      {
+        "id": "earth-parcels",
+        "title": "Live parcel identifier, geometry matching behavior and address fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Live API field metadata"
+      },
+      {
+        "id": "west-kite",
+        "title": "Recorded loans reference and filters",
+        "url": "https://westkite.com/docs/api/reference#recorded_loans",
+        "publisher": "West Kite",
+        "linkLabel": "Recorded loans documentation"
+      },
+      {
+        "id": "attom",
+        "title": "Assignment and release records and property linkage",
+        "url": "https://cloud-help.attomdata.com/article/610-assignments-and-releases",
+        "publisher": "ATTOM",
+        "linkLabel": "Assignments and releases"
+      },
+      {
+        "id": "realie",
+        "title": "Mortgage, lien and estimated balance fields",
+        "url": "https://www.realie.ai/solutions/mortgage-lending",
+        "publisher": "Realie",
+        "linkLabel": "Lending data documentation"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "commercial-mortgage-maturity-data-apis",
+      "west-kite-alternatives-for-commercial-property-data"
+    ],
+    "dataset": {
+      "name": "25 Water Street commercial mortgage recording chain",
+      "description": "Twelve New York City recorder instrument rows, forty-one cross-reference rows, parcel matches, and reproducible calculations that separate mortgage, agreement and rent-assignment amounts at 25 Water Street.",
+      "sourceIds": [
+        "owner-address",
+        "water-parcel",
+        "pluto-row",
+        "master-rows",
+        "reference-rows",
+        "code-list",
+        "earth-parcels"
+      ],
+      "spatialCoverage": "25 Water Street, Manhattan, New York, United States",
+      "temporalCoverage": "2015-02-23/2025-12-09"
+    }
+  },
+  {
     "slug": "commercial-property-tax-delinquency-data",
     "topic": "Data & APIs",
     "region": "New York City, United States",
@@ -11494,6 +11923,7 @@
       "temporalCoverage": "2023-10-18/2026-11-22"
     },
     "relatedSlugs": [
+      "commercial-mortgage-records-by-address",
       "mireye-alternatives-for-property-screening",
       "commercial-real-estate-data-apis-for-lenders"
     ]
@@ -15096,6 +15526,7 @@
       }
     ],
     "relatedSlugs": [
+      "commercial-mortgage-records-by-address",
       "historical-parcel-boundaries-api",
       "commercial-property-insurance-data-apis",
       "best-gis-apis-for-site-selection",
@@ -15994,6 +16425,7 @@
       "temporalCoverage": "2022-02-10/2026-11-05"
     },
     "relatedSlugs": [
+      "commercial-mortgage-records-by-address",
       "commercial-real-estate-data-apis-for-lenders",
       "historical-parcel-boundaries-api",
       "commercial-property-insurance-data-apis"

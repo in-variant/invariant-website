@@ -1,5 +1,74 @@
 [
   {
+    "slug": "commercial-mortgage-records-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find Commercial Mortgage Records by Address",
+    "summary": "Find commercial mortgage records by address. Use NYC recorder data to trace assignments, agreements and releases, and avoid counting the same obligation twice.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "New York City, United States",
+    "image": "/blog/industry/west-kite-alternatives-for-commercial-property-data.webp?v=afddd887",
+    "dataset": {
+      "name": "25 Water Street commercial mortgage recording chain",
+      "description": "Twelve New York City recorder instrument rows, forty-one cross-reference rows, parcel matches, and reproducible calculations that separate mortgage, agreement and rent-assignment amounts at 25 Water Street.",
+      "spatialCoverage": "25 Water Street, Manhattan, New York, United States",
+      "temporalCoverage": "2015-02-23/2025-12-09",
+      "sources": [
+        "https://documents.dps.ny.gov/public/Common/ViewDoc.aspx?DocRefId=%7B802C378D-0000-CD10-829A-9BA07BD17120%7D",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=5&lot=10&%24select=document_id%2Cborough%2Cblock%2Clot&%24order=document_id&%24limit=3000",
+        "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Caddress%2Cbldgclass%2Clanduse%2Cversion&bbl=1000050010",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+        "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100",
+        "https://data.cityofnewyork.us/d/7isb-wh4c",
+        "https://api.invariant-ai.com/v1/meta/fields"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Owner filing identifying the project at 25 Water Street",
+          "publisher": "New York State Department of Public Service",
+          "url": "https://documents.dps.ny.gov/public/Common/ViewDoc.aspx?DocRefId=%7B802C378D-0000-CD10-829A-9BA07BD17120%7D"
+        },
+        {
+          "title": "ACRIS Legals lookup for Manhattan block 5 lot 10",
+          "publisher": "NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?borough=1&block=5&lot=10&%24select=document_id%2Cborough%2Cblock%2Clot&%24order=document_id&%24limit=3000"
+        },
+        {
+          "title": "MapPLUTO 26v3 lot and official address query",
+          "publisher": "NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Caddress%2Cbldgclass%2Clanduse%2Cversion&bbl=1000050010"
+        },
+        {
+          "title": "ACRIS Master query for the twelve selected instrument rows",
+          "publisher": "NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100"
+        },
+        {
+          "title": "ACRIS References query for the selected instruments",
+          "publisher": "NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100"
+        },
+        {
+          "title": "ACRIS Document Control Codes",
+          "publisher": "NYC Open Data",
+          "url": "https://data.cityofnewyork.us/d/7isb-wh4c"
+        },
+        {
+          "title": "Live parcel identifier, geometry matching behavior and address fields",
+          "publisher": "Invariant Earth",
+          "url": "https://api.invariant-ai.com/v1/meta/fields"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the 25 Water Street mortgage chain and exact source queries",
+          "path": "/blog/25-water-street-recorded-mortgage-chain.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "commercial-property-tax-delinquency-data",
     "topic": "Data & APIs",
     "title": "Property Tax Delinquency Data for Commercial Real Estate",
