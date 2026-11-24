@@ -1,5 +1,297 @@
 [
   {
+    "slug": "soil-productivity-by-parcel-nccpi-csr2",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Soil Productivity by Parcel with NCCPI and CSR2",
+    "description": "Calculate farmland soil productivity across a field or parcel. Replay an Iowa soil overlay with acreage-weighted USDA NCCPI v3 and Iowa CSR2.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Map of the Marsden Farm study footprint colored by six USDA soil map units, with 13.64 rated acres, a weighted NCCPI of 0.827, and a weighted Iowa CSR2 of 87.33.",
+    "coverCaption": "USDA soil polygons clipped to the 36 published Marsden Farm research plots. Colors distinguish map units. Plot boundaries from the Iowa State Marsden research team’s MIT-licensed maRsden data.",
+    "intro": "To calculate soil productivity for a field or parcel, intersect the boundary with the USDA soil map and weight each rating by its acres inside the boundary. In Iowa, use Corn Suitability Rating 2 (CSR2) for the state-specific corn suitability measure. For dryland commodity crops across states, the USDA National Commodity Crop Productivity Index (NCCPI) provides a national measure. Report the rated acreage with the average so a buyer can see what the result covers.",
+    "takeaways": [
+      "Keep the deed or assessor parcel, the field boundary and the land being valued as separate records when they differ.",
+      "At Marsden Farm, 13.64 research acres intersected six soil map units. The area-weighted NCCPI v3 was 0.827 and weighted Iowa CSR2 was 87.33.",
+      "A soil map unit can contain multiple named soil components. Weight the eligible components inside each map unit first, then weight the map units by acres.",
+      "Retain the soil survey vintage, rating measure, boundary and acres without a usable rating."
+    ],
+    "sections": [
+      {
+        "id": "what-boundary",
+        "heading": "Which acres should the score cover?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose the boundary for the question. A buyer comparing collateral may need the whole legal tract. The operator may need only the field acres going into a crop plan. Record the boundary source and explain exclusions such as a farmstead, roadway or water. If the file uses a traced field outline, compare it with the deed or assessor record before relying on the acreage.",
+            "sourceIds": [
+              "iowa-csr2"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a mapped soil unit, use the acres inside the chosen boundary. A quick point lookup can identify a soil name or drainage class. Use the polygon intersection to see the share of the site each unit actually covers.",
+            "sourceIds": [
+              "sda-spatial",
+              "earth-soils"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "marsden-overlay",
+        "heading": "A worked soil overlay at Iowa State’s Marsden Farm",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We unioned 36 published research plot boundaries and measured intersections in the EPSG:5070 equal-area projection. This example covers the plot footprint. USDA Soil Data Access returned six intersecting map units from survey area IA015 with a September 8, 2026 survey save date. All 13.64 acres were covered by rated units at the reporting precision. The displayed acres are rounded. The download keeps the precision used in the calculation.",
+            "sourceIds": [
+              "marsden",
+              "footprint",
+              "sda"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Soil map unit",
+              "Acres in the study",
+              "NCCPI v3 overall",
+              "Iowa CSR2"
+            ],
+            "rows": [
+              [
+                "L55 · Nicollet loam, 1 to 3 percent slopes",
+                "4.83",
+                "0.851",
+                "91"
+              ],
+              [
+                "L107 · Webster clay loam, Bemis moraine, 0 to 2 percent slopes",
+                "3.10",
+                "0.838",
+                "88"
+              ],
+              [
+                "L138B · Clarion loam, Bemis moraine, 2 to 6 percent slopes",
+                "2.94",
+                "0.795",
+                "88"
+              ],
+              [
+                "L95 · Harps clay loam, Bemis moraine, 0 to 2 percent slopes",
+                "1.52",
+                "0.805",
+                "75"
+              ],
+              [
+                "L507 · Canisteo clay loam, Bemis moraine, 0 to 2 percent slopes",
+                "1.15",
+                "0.814",
+                "87"
+              ],
+              [
+                "90 · Okoboji mucky silt loam, 0 to 1 percent slopes",
+                "0.08",
+                "0.719",
+                "56"
+              ]
+            ],
+            "sourceIds": [
+              "sda",
+              "footprint"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Nicollet loam contributed 4.83 acres at 0.851 NCCPI, about 35% of the study footprint. The Okoboji unit rated 0.719 and contributed about 0.084 acre. An address or field pin in either unit would return a local rating. The acreage-weighted 0.827 describes the full set of rated plots.",
+            "sourceIds": [
+              "sda",
+              "footprint"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/soil-productivity-by-parcel-nccpi-csr2.json",
+            "format": "JSON",
+            "label": "Download the soil map units, component rows and source queries"
+          }
+        ]
+      },
+      {
+        "id": "calculation",
+        "heading": "How to calculate the weighted rating",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "NCCPI v3 is a relative rating for nonirrigated commodity crops. For the overall version 3 rating, the USDA toolbox uses the component interpretation associated with rule 54955. We used the top-level numeric rating and weighted eligible rated major earthy components by their published component percentages within each map unit. Each unit in this example had one eligible major component with a rating.",
+            "sourceIds": [
+              "usda-guide",
+              "valu1",
+              "usda-valu"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For the second weighting, multiply each map unit’s rating by its acres of overlap, sum those products, and divide by the sum of rated acres. Repeat the calculation with the map unit’s published Iowa CSR2. Report the two values separately because each index has a different scale and purpose.",
+            "sourceIds": [
+              "iowa-csr2",
+              "usda-guide"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A partial result should carry the rated acres, the total footprint acres and the reason any acreage could not be rated. Keep an unrated unit separate from a soil with a low rating. Preserve the source snapshot and each map unit key so a later reviewer can reproduce the calculation.",
+            "sourceIds": [
+              "usda-valu",
+              "sda"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "what-to-check",
+        "heading": "What to verify before using soil ratings in a land decision",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Compare soil ratings with the acres currently farmed, verified field and yield records, drainage infrastructure, access and any irrigation or water documentation. Check the current lease or farm records for operational evidence. A relative dryland soil rating describes inherent potential over time. Use records for the specific property when you need actual yields or income.",
+            "sourceIds": [
+              "usda-guide",
+              "iowa-csr2"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "farmland-crop-history-by-parcel",
+                "label": "Check crop history for the same farm footprint"
+              },
+              {
+                "slug": "wetlands-hydric-soils-land-development",
+                "label": "Compare hydric soil screening and mapped wetlands"
+              },
+              {
+                "slug": "water-withdrawal-data-api-site-allocation",
+                "label": "Check documented water use and allocation"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I calculate NCCPI for my parcel?",
+        "answer": "Use the parcel or field polygon to clip USDA soil map units. Join each unit to its NCCPI version 3 rating and calculate the acreage-weighted average over the rated acres. Save the geometry, source vintage, rated acres and the geometry or records behind exceptions.",
+        "sourceIds": [
+          "sda-spatial",
+          "usda-valu"
+        ]
+      },
+      {
+        "question": "What is the difference between NCCPI and CSR2?",
+        "answer": "NCCPI ranks soils nationally for dryland commodity crop productivity. Iowa CSR2 rates Iowa soils for inherent corn suitability. Keep the rating scale and source with the result, and choose the measure that fits the decision.",
+        "sourceIds": [
+          "usda-guide",
+          "iowa-csr2"
+        ]
+      },
+      {
+        "question": "How do I handle acreage without a soil rating?",
+        "answer": "Exclude it from the average denominator and report it separately with the reason and the rated share of the footprint. A low rating is evidence about the soil. An unrated area is a coverage gap.",
+        "sourceIds": [
+          "usda-valu"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "usda-guide",
+        "title": "USDA National Commodity Crop Productivity Index User Guide, version 3",
+        "url": "https://www.nrcs.usda.gov/sites/default/files/2023-08/NCCPI-User-Guide.pdf",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "NCCPI v3 method"
+      },
+      {
+        "id": "sda",
+        "title": "Soil Data Access tabular and spatial web services",
+        "url": "https://sdmdataaccess.nrcs.usda.gov/webservicehelp.aspx",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "Soil Data Access"
+      },
+      {
+        "id": "sda-spatial",
+        "title": "Soil Data Access advanced spatial and tabular queries",
+        "url": "https://sdmdataaccess.nrcs.usda.gov/documents/AdvancedQueries.html",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "USDA spatial query guide"
+      },
+      {
+        "id": "valu1",
+        "title": "Soil Data Development Toolbox, component aggregation and NCCPI rule selection",
+        "url": "https://github.com/ncss-tech/SDDT-ArcGIS-Pro/blob/cea2c177ce056bc63ee967ae6cdae78385ef561b/sddt/construct/valu1.py#L1088-L1107",
+        "publisher": "National Cooperative Soil Survey technical team",
+        "linkLabel": "USDA toolbox rule selection"
+      },
+      {
+        "id": "usda-valu",
+        "title": "gSSURGO Valu1 and major-component NCCPI attributes",
+        "url": "https://www.nrcs.usda.gov/resources/data-and-reports/description-of-gridded-soil-survey-geographic-gssurgo-database",
+        "publisher": "USDA Natural Resources Conservation Service",
+        "linkLabel": "gSSURGO and Valu1"
+      },
+      {
+        "id": "iowa-csr2",
+        "title": "Calculating an acreage-weighted Iowa Corn Suitability Rating 2",
+        "url": "https://www.extension.iastate.edu/agdm/wholefarm/html/c2-87.html",
+        "publisher": "Iowa State University Extension and Outreach",
+        "linkLabel": "Iowa State CSR2 guide"
+      },
+      {
+        "id": "marsden",
+        "title": "Marsden Long-Term Rotation Study",
+        "url": "https://inrc.cals.iastate.edu/project-location/marsden-long-term-rotation-study",
+        "publisher": "Iowa Nutrient Research Center",
+        "linkLabel": "Marsden Farm research"
+      },
+      {
+        "id": "footprint",
+        "title": "Marsden published study plot geometries and source provenance",
+        "url": "https://invariant-ai.com/blog/farmland-crop-history-by-parcel#dataset",
+        "publisher": "Invariant",
+        "linkLabel": "Published plot footprint"
+      },
+      {
+        "id": "earth-soils",
+        "title": "Invariant Earth SSURGO drainage class point field",
+        "url": "https://docs.invariant-ai.com/fields/soil_drainage_class",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Soil drainage field reference"
+      }
+    ],
+    "relatedSlugs": [
+      "farmland-crop-history-by-parcel",
+      "wetlands-hydric-soils-land-development",
+      "water-withdrawal-data-api-site-allocation",
+      "commercial-real-estate-data-apis-for-lenders"
+    ],
+    "dataset": {
+      "name": "Marsden Farm NCCPI and CSR2 by soil map unit",
+      "description": "Six USDA soil map units clipped to the 36 published Marsden Farm research plots. Includes component ratings, acres, derived averages, survey date and the exact Soil Data Access queries.",
+      "sourceIds": [
+        "marsden",
+        "footprint",
+        "sda-spatial",
+        "valu1",
+        "iowa-csr2"
+      ],
+      "spatialCoverage": "Marsden Farm research plots, Boone County, Iowa, United States"
+    }
+  },
+  {
     "slug": "earthquake-risk-by-address-for-underwriting",
     "topic": "Data & APIs",
     "region": "United States",
@@ -6827,6 +7119,7 @@
       ]
     },
     "relatedSlugs": [
+      "soil-productivity-by-parcel-nccpi-csr2",
       "lidar-slope-developable-land",
       "wetlands-hydric-soils-land-development",
       "historical-parcel-boundaries-api"

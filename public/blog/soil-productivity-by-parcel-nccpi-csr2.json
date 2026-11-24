@@ -1,0 +1,350 @@
+{
+  "name": "Marsden Farm NCCPI and CSR2 by soil map unit",
+  "scope": "Union of 36 Iowa State Marsden Farm research plots in Boone County, Iowa. The study footprint is a field-scale example with its own published boundaries.",
+  "source_footprint": {
+    "record": "https://invariant-ai.com/blog/farmland-crop-history-by-parcel.json",
+    "key": "plot_boundaries",
+    "source_sha256": "4da7676004c7baf9e6657540b7c7d194fd6a8d2d5cdade1b1cfbd8292a836336",
+    "original_source": "https://github.com/vanichols/maRsden/tree/01476a18c01115f70f154cf7e94c1951205fbda1/data-raw/elevation/raw-Jess",
+    "license_notice": "# MIT License\n\nCopyright (c) 2019 Virginia Nichols\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "retrieved_at_utc": "2026-11-24T05:08:18+00:00",
+  "survey_area": "IA015",
+  "survey_saved_date": "2026-09-08",
+  "soil_data_access": {
+    "url": "https://sdmdataaccess.sc.egov.usda.gov/Tabular/post.rest",
+    "method": "POST",
+    "request_format": "JSON+COLUMNNAME",
+    "sql_queries": {
+      "mapunits_and_polygons": "SELECT m.mupolygonkey, m.mukey, m.mupolygongeo.STAsText() AS polygon_wkt, u.musym, u.muname, u.iacornsr AS iowa_csr2, u.farmlndcl, l.areasymbol, CONVERT(varchar(10), s.saverest, 23) AS survey_saved FROM SDA_Get_Mupolygonkey_from_intersection_with_WktWgs84('POLYGON ((-93.78624049641213 42.01286904925821, -93.78206238279688 42.01286904925821, -93.78206238279688 42.014543861566075, -93.78624049641213 42.014543861566075, -93.78624049641213 42.01286904925821))') AS k JOIN mupolygon AS m ON m.mupolygonkey = k.mupolygonkey JOIN mapunit AS u ON u.mukey = m.mukey JOIN legend AS l ON l.lkey = u.lkey LEFT JOIN sacatalog AS s ON s.areasymbol = l.areasymbol ORDER BY m.mukey, m.mupolygonkey",
+      "component_interpretations": "SELECT c.mukey, c.cokey, c.compname, c.compkind, c.majcompflag, c.comppct_r,\n  i.rulekey, i.mrulename, i.ruledepth, i.interphr AS nccpi_v3_overall\nFROM component AS c\nLEFT JOIN cointerp AS i ON c.cokey = i.cokey\n  AND i.rulekey = '54955' AND i.ruledepth = 0\nWHERE c.mukey IN (2550308, 2765522, 2834849, 2835012, 2835146, 2922007)\nORDER BY c.mukey, c.cokey"
+    },
+    "response_sha256": {
+      "mapunits_and_polygons": "8a793c0c733d16c311557beb011798b41da9ac7d8d33b6bbf24480e02ce84b79",
+      "component_interpretations": "2383e86059faf2db11b25aa4a57720753ad2b0a9f172aa242821df70b456379e"
+    }
+  },
+  "method": [
+    "Read the published plot geometries as WGS84 and transform them to NAD83 / Conus Albers (EPSG:5070). Union the 36 plots.",
+    "Project the USDA soil map polygons to the same CRS, intersect the footprint, and dissolve the intersections by map unit key. Verify the mapped union covers the footprint and that map units do not overlap at the reporting precision.",
+    "Use the top-level NCCPI version 3 overall rule 54955. For each map unit, weight interphr by comppct_r among major earthy components, using the eligible component percentages as the denominator. Confirm the eligible components have ratings before summarizing.",
+    "For each index, multiply each map-unit rating by its intersection acres and divide the sum by the rated acres. Preserve acreage without a rating as a separate value."
+  ],
+  "results": {
+    "plot_count": 36,
+    "intersecting_map_units": 6,
+    "footprint_acres": 13.636454432011638,
+    "rated_acres": 13.636454431899999,
+    "unrated_acres_at_reporting_precision": 0.0,
+    "weighted_nccpi_v3_overall": 0.8268916305900706,
+    "weighted_iowa_csr2": 87.32885334960386
+  },
+  "map_units": [
+    {
+      "mukey": "2834849",
+      "musym": "L55",
+      "muname": "Nicollet loam, 1 to 3 percent slopes",
+      "iowa_csr2": "91",
+      "areasymbol": "IA015",
+      "survey_saved": "2026-09-08",
+      "acres_within_footprint": 4.8329079786,
+      "nccpi_v3_overall_major_earthy_component_weighted": 0.851,
+      "major_earthy_component_pct": 85,
+      "components": [
+        {
+          "mukey": "2834849",
+          "cokey": "28627779",
+          "compname": "Nicollet",
+          "compkind": "Series",
+          "majcompflag": "Yes",
+          "comppct_r": "85",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.851"
+        },
+        {
+          "mukey": "2834849",
+          "cokey": "28627780",
+          "compname": "Clarion",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "10",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.795"
+        },
+        {
+          "mukey": "2834849",
+          "cokey": "28627781",
+          "compname": "Webster",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "5",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.838"
+        }
+      ]
+    },
+    {
+      "mukey": "2835012",
+      "musym": "L107",
+      "muname": "Webster clay loam, Bemis moraine, 0 to 2 percent slopes",
+      "iowa_csr2": "88",
+      "areasymbol": "IA015",
+      "survey_saved": "2026-09-08",
+      "acres_within_footprint": 3.104552869,
+      "nccpi_v3_overall_major_earthy_component_weighted": 0.838,
+      "major_earthy_component_pct": 90,
+      "components": [
+        {
+          "mukey": "2835012",
+          "cokey": "28627782",
+          "compname": "Canisteo",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "2",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.814"
+        },
+        {
+          "mukey": "2835012",
+          "cokey": "28627783",
+          "compname": "Webster",
+          "compkind": "Series",
+          "majcompflag": "Yes",
+          "comppct_r": "90",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.838"
+        },
+        {
+          "mukey": "2835012",
+          "cokey": "28627784",
+          "compname": "Nicollet",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "5",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.851"
+        },
+        {
+          "mukey": "2835012",
+          "cokey": "28627785",
+          "compname": "Okoboji",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "3",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.757"
+        }
+      ]
+    },
+    {
+      "mukey": "2765522",
+      "musym": "L138B",
+      "muname": "Clarion loam, Bemis moraine, 2 to 6 percent slopes",
+      "iowa_csr2": "88",
+      "areasymbol": "IA015",
+      "survey_saved": "2026-09-08",
+      "acres_within_footprint": 2.9394356573,
+      "nccpi_v3_overall_major_earthy_component_weighted": 0.795,
+      "major_earthy_component_pct": 85,
+      "components": [
+        {
+          "mukey": "2765522",
+          "cokey": "28627765",
+          "compname": "Storden",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "10",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.668"
+        },
+        {
+          "mukey": "2765522",
+          "cokey": "28627766",
+          "compname": "Nicollet",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "5",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.851"
+        },
+        {
+          "mukey": "2765522",
+          "cokey": "28627767",
+          "compname": "Clarion",
+          "compkind": "Series",
+          "majcompflag": "Yes",
+          "comppct_r": "85",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.795"
+        }
+      ]
+    },
+    {
+      "mukey": "2835146",
+      "musym": "L95",
+      "muname": "Harps clay loam, Bemis moraine, 0 to 2 percent slopes",
+      "iowa_csr2": "75",
+      "areasymbol": "IA015",
+      "survey_saved": "2026-09-08",
+      "acres_within_footprint": 1.5244384237,
+      "nccpi_v3_overall_major_earthy_component_weighted": 0.805,
+      "major_earthy_component_pct": 85,
+      "components": [
+        {
+          "mukey": "2835146",
+          "cokey": "28627795",
+          "compname": "Canisteo",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "10",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.813"
+        },
+        {
+          "mukey": "2835146",
+          "cokey": "28627796",
+          "compname": "Okoboji",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "5",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.757"
+        },
+        {
+          "mukey": "2835146",
+          "cokey": "28627797",
+          "compname": "Harps",
+          "compkind": "Series",
+          "majcompflag": "Yes",
+          "comppct_r": "85",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.805"
+        }
+      ]
+    },
+    {
+      "mukey": "2922007",
+      "musym": "L507",
+      "muname": "Canisteo clay loam, Bemis moraine, 0 to 2 percent slopes",
+      "iowa_csr2": "87",
+      "areasymbol": "IA015",
+      "survey_saved": "2026-09-08",
+      "acres_within_footprint": 1.1513141604,
+      "nccpi_v3_overall_major_earthy_component_weighted": 0.814,
+      "major_earthy_component_pct": 85,
+      "components": [
+        {
+          "mukey": "2922007",
+          "cokey": "28627897",
+          "compname": "Okoboji",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "8",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.757"
+        },
+        {
+          "mukey": "2922007",
+          "cokey": "28627898",
+          "compname": "Canisteo",
+          "compkind": "Series",
+          "majcompflag": "Yes",
+          "comppct_r": "85",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.814"
+        },
+        {
+          "mukey": "2922007",
+          "cokey": "28627899",
+          "compname": "Harps",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "2",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.805"
+        },
+        {
+          "mukey": "2922007",
+          "cokey": "28627900",
+          "compname": "Webster",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "5",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.838"
+        }
+      ]
+    },
+    {
+      "mukey": "2550308",
+      "musym": "90",
+      "muname": "Okoboji mucky silt loam, 0 to 1 percent slopes",
+      "iowa_csr2": "56",
+      "areasymbol": "IA015",
+      "survey_saved": "2026-09-08",
+      "acres_within_footprint": 0.0838053429,
+      "nccpi_v3_overall_major_earthy_component_weighted": 0.719,
+      "major_earthy_component_pct": 95,
+      "components": [
+        {
+          "mukey": "2550308",
+          "cokey": "28627759",
+          "compname": "Okoboji",
+          "compkind": "Series",
+          "majcompflag": "Yes",
+          "comppct_r": "95",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.719"
+        },
+        {
+          "mukey": "2550308",
+          "cokey": "28627760",
+          "compname": "Harps",
+          "compkind": "Series",
+          "majcompflag": "No ",
+          "comppct_r": "5",
+          "rulekey": "54955",
+          "mrulename": "NCCPI - National Commodity Crop Productivity Index (Ver 3.0)",
+          "ruledepth": "0",
+          "nccpi_v3_overall": "0.693"
+        }
+      ]
+    }
+  ]
+}
