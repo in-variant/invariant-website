@@ -14,7 +14,7 @@ export type ArticleBlock = (
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'table'; columns: string[]; rows: string[][]; worksheet?: boolean; stackOnMobile?: boolean; rowSourceIds?: string[][] }
-  | ({ type: 'download'; datasetAnchor?: string } & DatasetDownload)
+  | ({ type: 'download'; datasetAnchor?: string | null } & DatasetDownload)
   | { type: 'links'; label?: string; items: ({ label: string } & ({ slug: string; path?: never } | { path: string; slug?: never }))[] }
 ) & { sourceIds?: string[] }
 export type IndustryArticle = {

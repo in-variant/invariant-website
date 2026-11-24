@@ -106,7 +106,8 @@ for (const article of articles) {
     }
     datasetAnchors.add(anchor)
   }
-  const downloadBlocks = blocks.filter(block => block.type === 'download')
+  // A null anchor marks a standalone worksheet. Omitted anchors use the primary dataset.
+  const downloadBlocks = blocks.filter(block => block.type === 'download' && block.datasetAnchor !== null)
   if (downloadBlocks.some(block => block.datasetAnchor && !datasetAnchors.has(block.datasetAnchor))) {
     throw new Error(`Download refers to an unknown dataset: ${article.slug}`)
   }

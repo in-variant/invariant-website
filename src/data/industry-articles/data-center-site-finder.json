@@ -4475,6 +4475,10 @@
         "slug": "power-evidence-data-center-site-verification"
        },
        {
+        "label": "Set the land option deadline and latest acceptable service date",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
         "label": "Data center acreage and layout",
         "slug": "data-center-land-acres-per-mw"
        }
@@ -18457,6 +18461,10 @@
         "slug": "utility-will-serve-letter-load-study-esa"
        },
        {
+        "label": "Use the site-selection checklist before the land option expires",
+        "slug": "data-center-site-selection-checklist"
+       },
+       {
         "label": "See how acquisition and lease agreements define power delivery",
         "slug": "data-center-for-sale"
        }
@@ -21297,15 +21305,15 @@
   "topic": "Data Centers",
   "kind": "site-guide",
   "region": "United States",
-  "title": "Data Center Site Selection Criteria and Checklist",
-  "description": "Screen U.S. data center sites before you option land. Use the 12-point checklist and calculate the utility service deadline and required MW for each phase.",
+  "title": "Data Center Site Selection Checklist and Criteria",
+  "description": "Download the 12-point data center site selection checklist. Compare U.S. sites by power, timing, zoning, water and fiber before you commit to land.",
   "date": "2026-11-09",
-  "readMinutes": 9,
+  "readMinutes": 10,
   "intro": "Screen a data center site against the facility megawatts it needs at the meter, the date each phase needs power, and the land, water, fiber, and approvals required to open. Keep every phase on its own line in the worksheet. A site can have a credible path for the first building and an unresolved expansion. Compare price and incentives once you know which sites could meet the required dates.",
   "takeaways": [
    "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
    "Check the utility connection, land and approval path in parallel. Record which event could move the opening date.",
-   "Use the worksheet to save the strongest evidence for each requirement and assign the next action."
+   "Before the land option expires, compare the date the utility can support with the last day you can start commissioning."
   ],
   "sections": [
    {
@@ -21535,6 +21543,56 @@
         "label": "Test whether each building phase fits the tract"
        }
       ]
+     }
+    ]
+   },
+   {
+    "id": "land-option-decision",
+    "heading": "What to verify before a data center land option expires",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Before the option decision, compare the latest acceptable utility service date with the date the utility can support in writing. Work backward from the planned opening. Leave time for equipment testing, commissioning and schedule contingency. Put the option deadline, utility date and opening on the same calendar so the acquisition team can see which evidence it needs before the next payment."
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Check",
+       "Hypothetical first phase",
+       "What it means for the option decision"
+      ],
+      "rows": [
+       [
+        "Work backward from opening",
+        "40 MW at the meter and an opening on June 30, 2028. Allow 45 calendar days for commissioning and 15 for contingency after energization.",
+        "The latest acceptable utility service date is May 1, 2028 under this schedule."
+       ],
+       [
+        "Read the dates in the power record",
+        "A preliminary utility study shows 50 MW on June 1, 2028, subject to a substation upgrade and an easement.",
+        "The studied MW exceeds the phase requirement. The service date is 31 days later than the project can accept."
+       ],
+       [
+        "Decide what needs to be on file",
+        "The illustrative land option expires October 15, 2027. The later 80 MW phase has no utility date.",
+        "Hold the acquisition decision. Ask the utility for a dated first-phase plan and the status of the upgrade and easement. Record the later phase as open."
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For a real site, give the utility the same tract, point of service if known, and load dates the acquisition team is using. Dominion Energy Virginia starts its typical process with a site plan, load letter and load ramp schedule. Its published steps also include the power plan, engineering, right-of-way, permits and construction. Record which party controls each dependency and ask it to confirm dates in writing.",
+      "sourceIds": [
+       "dominion-data-center-requests"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the land option decision worksheet",
+      "path": "/blog/data-center-land-option-decision-worksheet.csv",
+      "format": "CSV",
+      "datasetAnchor": null
      }
     ]
    },
@@ -21951,6 +22009,12 @@
    }
   ],
   "sources": [
+   {
+    "id": "dominion-data-center-requests",
+    "title": "Virginia data center requests and steps to provide service",
+    "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
+    "publisher": "Dominion Energy Virginia"
+   },
    {
     "id": "siting",
     "title": "Data Center Siting: Criteria, Policies, and Recent Trends",
