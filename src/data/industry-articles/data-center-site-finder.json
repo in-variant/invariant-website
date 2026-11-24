@@ -19287,7 +19287,7 @@
   "kind": "site-listing",
   "region": "United States",
   "title": "U.S. Data Center Land for Sale: Sites and Price per Acre",
-  "description": "Compare U.S. sites by acreage, power and timing. Check sale prices per acre in Loudoun County and see which acquisition, contract or option each price covers.",
+  "description": "Compare U.S. data center land by acreage, power and timing. Check prices per acre and see which utility rights, earnouts and options went into the reported deals.",
   "date": "2026-11-09",
   "readMinutes": 12,
   "intro": "Use Invariant to shortlist U.S. data center land by target market, usable acres and the megawatts your first phase needs at the meter. The disclosed prices work out to about $335,000 per acre for Digital Realty’s Astra acquisition near Kansas City and $500,000 per acre for Bitdeer’s expansion tract near Rockdale. Loudoun County reports a $4.1 million median per acre in its 2025 data center land table. Compare deals in the same market and check which acreage and utility rights each price covers.",
@@ -19454,6 +19454,12 @@
         "About 29.385 acres, a building and site improvements, plus two agreements for electric service. One payment depends on a utility milestone."
        ],
        [
+        "Spartanburg, Lightstone and LightHouse affiliate",
+        "Closed December 11, 2025. $18 million cash at closing.",
+        "$118,000 for the package at closing",
+        "About 152 acres and assigned rights to 60 MW of electrical service. The seller could earn up to another $18 million for qualifying additional power."
+       ],
+       [
         "Stonecroft Boulevard, SCG",
         "Signed purchase agreement for $166.8 million",
         "$4 million",
@@ -19482,6 +19488,10 @@
        [
         "aib-dfw1-land-quarterly",
         "aib-dfw1-land-closing"
+       ],
+       [
+        "spartanburg-closing",
+        "spartanburg-annual"
        ],
        [
         "stonecroft-county"
@@ -19524,6 +19534,60 @@
         "label": "Convert IT load to facility MW at the meter"
        }
       ]
+     }
+    ]
+   },
+   {
+    "id": "land-price-power-rights-and-earnouts",
+    "heading": "How do power rights change the price of data center land?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "A data center land acquisition can include development rights that account for most of the purchase price. In Core Scientific’s Hunt County deal, the buyer allocated about 98% of the price to development rights. Other transactions tie future payments to the amount of power delivered or change the price of a purchase option when on-site generation starts.",
+      "sourceIds": ["hunt-county-allocation", "spartanburg-closing", "potter-ground-lease"]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Deal",
+       "What the filing reports",
+       "What to carry into a comparison"
+      ],
+      "rows": [
+       [
+        "Core Scientific, Hunt County, Texas",
+        "The buyer closed a $232.5 million acquisition in May 2026. Its September 10-Q allocated $4.7 million to land and $227.8 million to development rights. It expects the related electric service agreement to support about 430 MW of gross utility capacity.",
+        "The accounting allocation puts about 98% of consideration in development rights. Keep the total separate from raw-land comparables. Note 3 gives no acreage for a per-acre calculation."
+       ],
+       [
+        "Greenidge sale, Spartanburg, South Carolina",
+        "The buyer paid $18 million at closing for about 152 acres and an assignment of rights to 60 MW. The earnout pays $180,000 per additional MW made available before December 31, 2030, up to $18 million.",
+        "Carry about $118,000 per acre as cash paid at closing for the package. Keep the earnout separate. At the contract rate, 40 qualifying additional MW would add $7.2 million."
+       ],
+       [
+        "Zone Frontier, Potter County, Texas",
+        "The lease covers about 4,077 acres. The option covers a designated data center area of 200 to 800 acres. The exercise price is $100,000 per acre before on-site power generation reaches commercial operation and $135,000 per acre from that milestone onward.",
+        "Use the acreage covered by the option. The $35,000 per-acre step applies to that area. The initial data center ground rent is $6,000 per acre per year and begins when construction starts on that area."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "hunt-county-allocation"
+       ],
+       [
+        "spartanburg-closing",
+        "spartanburg-annual"
+       ],
+       [
+        "potter-ground-lease",
+        "potter-quarterly"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Compare cash at closing, deferred payments and option exercise prices on separate lines. Record the acres covered by each line and the event that triggers payment. For power rights, ask for the assignment language, the utility’s phase-by-phase schedule, and the costs the buyer still has to fund."
      }
     ]
    },
@@ -20310,6 +20374,41 @@
     "publisher": "Bitdeer"
    },
    {
+    "id": "hunt-county-allocation",
+    "title": "September 2026 Form 10-Q, Note 3, Hunt County acquisition and cost allocation",
+    "url": "https://www.sec.gov/Archives/edgar/data/1839341/000183934126000030/core-20260930.htm",
+    "publisher": "Core Scientific",
+    "linkLabel": "10-Q cost allocation"
+   },
+   {
+    "id": "spartanburg-closing",
+    "title": "December 11, 2025 Form 8-K, Spartanburg closing and terms for additional energization",
+    "url": "https://www.sec.gov/Archives/edgar/data/1844971/000162828025056519/gree-20251211.htm",
+    "publisher": "Greenidge Generation Holdings",
+    "linkLabel": "8-K closing and earnout"
+   },
+   {
+    "id": "spartanburg-annual",
+    "title": "2025 Form 10-K, Note 1, cash received for South Carolina land sale",
+    "url": "https://www.sec.gov/Archives/edgar/data/1844971/000184497126000011/R10.htm",
+    "publisher": "Greenidge Generation Holdings",
+    "linkLabel": "10-K cash at closing"
+   },
+   {
+    "id": "potter-ground-lease",
+    "title": "September 2026 Form 8-K, Item 1.01, Potter County lease acreage and purchase option",
+    "url": "https://www.sec.gov/Archives/edgar/data/1956741/000121390026105332/ea0306953-8k_zone.htm",
+    "publisher": "Zone Frontier",
+    "linkLabel": "8-K lease and option terms"
+   },
+   {
+    "id": "potter-quarterly",
+    "title": "September 2026 Form 10-Q, Ground Lease and Texas project status",
+    "url": "https://www.sec.gov/Archives/edgar/data/1956741/000121390026121558/ea0312107-10q_zone.htm",
+    "publisher": "Zone Frontier",
+    "linkLabel": "10-Q lease status"
+   },
+   {
     "id": "loudoun-land-guidelines",
     "title": "2026 data center appraisal guidelines, 2025 land sales table, PDF p. 2",
     "url": "https://www.loudoun.gov/DocumentCenter/View/219238/462-Data-Center-2026-Guidelines-PDF#page=2",
@@ -20377,7 +20476,7 @@
     "anchor": "dataset-land-prices",
     "datePublished": "2026-11-23",
     "name": "U.S. data center land prices and transaction stages",
-    "description": "Seven source observations covering closed acquisitions, a purchase agreement and a land option. Preserves two disclosures of the same Astra sale and identifies the power rights and deferred payment in AIB’s DFW1 transaction.",
+    "description": "Eleven observations of U.S. data center land prices, including closed sales, a purchase agreement and option terms. Records show the priced acreage, the rights included and the payment conditions. Two dated observations cover the same Astra transaction.",
     "sourceIds": [
      "astra-10q",
      "astra-announcement",
@@ -20386,6 +20485,11 @@
      "bitdeer-close-month",
      "aib-dfw1-land-quarterly",
      "aib-dfw1-land-closing",
+     "hunt-county-allocation",
+     "spartanburg-closing",
+     "spartanburg-annual",
+     "potter-ground-lease",
+     "potter-quarterly",
      "stonecroft-county",
      "cassia-agreement",
      "cassia-options"
