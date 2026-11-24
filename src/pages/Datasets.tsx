@@ -12,7 +12,7 @@ import './Resources.css'
 import './Datasets.css'
 
 const { name: title, url: canonical } = DATA_CATALOG
-const description = 'Download dated, source-linked research on site selection, power, property risk, lending and mobility.'
+const description = 'Download data from Invariant studies on site selection, power, property risk, lending and mobility. Each example includes its dates, methods and source records.'
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
   .map(({ image, notesPath }) => ({ ...study, image, notesPath })),
@@ -82,18 +82,18 @@ export default function Datasets() {
         <div className="resources-intro-grid">
           <h1>{title}</h1>
           <div>
-            <p>{description} Use the Invariant Earth API to look up parcels, hazards and infrastructure for your own site.</p>
+            <p>{description}</p>
             <nav aria-label="Research library and API" className="resources-data-links">
-              <a className="dataset-api-button" href={earthLinks.siteScreen}>Check your own site <ResourceArrow diagonal /></a>
+              <a className="dataset-api-button" href="#dataset-search">Search the library</a>
+              <Link className="dataset-method" to="/product">Explore the Earth API <ResourceArrow diagonal /></Link>
               <a className="dataset-method" href={earthLinks.fields}>Browse API fields <ResourceArrow diagonal /></a>
-              <a className="dataset-method" href="#dataset-search">Search the library</a>
             </nav>
           </div>
         </div>
       </header>
       <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
         <div className="dataset-featured-heading">
-          <h2 id="featured-studies-title">Featured studies</h2>
+          <h2 id="featured-studies-title">Research by workflow</h2>
           <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
         </div>
         <ul>
@@ -128,7 +128,7 @@ export default function Datasets() {
           </label>
         </div>
         <div className="dataset-list-meta">
-          <p role="status">{matches.length} {matches.length === 1 ? 'dataset' : 'datasets'}</p>
+          <p role="status">{matches.length} {terms.length || format ? 'matching' : 'published'} research {matches.length === 1 ? 'example' : 'examples'}</p>
           <div className="dataset-catalog-downloads">
             <a href="/datasets.csl.json" download>Download citations (CSL JSON) <span aria-hidden="true">↓</span></a>
             <a href="/datasets.json" download>Download catalog (JSON) <span aria-hidden="true">↓</span></a>

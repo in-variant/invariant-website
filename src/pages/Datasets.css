@@ -15,7 +15,6 @@
   font-size: 14px;
 }
 .datasets-page .dataset-api-button:hover { background: var(--inv-accent, #3d4d49); }
-.dataset-api-button .resource-arrow { width: 17px; height: 17px; }
 .dataset-featured { margin-bottom: clamp(40px, 6vw, 80px); }
 .dataset-featured-heading {
   display: flex;
@@ -195,6 +194,7 @@
 .datasets-page .dataset-downloads a:hover { border-color: var(--resource-blue); background: #f4f7ff; }
 
 @media (max-width: 940px) {
+  .dataset-featured ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dataset-row { grid-template-columns: minmax(110px, 160px) minmax(0, 1fr); gap: 16px 24px; }
   .dataset-row > img { grid-row: span 2; align-self: start; }
   .dataset-downloads { grid-column: 2; }

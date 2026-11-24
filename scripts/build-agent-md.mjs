@@ -158,11 +158,11 @@ function datasetCatalogMd() {
   const out = [
     '# Invariant research datasets', '',
     `Catalog page: ${SITE}/datasets`, '',
-    'Download the data, follow the original source records, and read how each dataset was compiled.', '',
+    `Download data from ${datasetEntries.length} published research examples. Each example includes its dates, methods and source records.`, '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
-    `[Check your own site](${product.links.siteScreen}) with the Invariant Earth API or [browse API fields](${product.links.fields}).`, '',
+    `[Explore the Invariant Earth API](${SITE}/product), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
-    '## Featured studies', '',
+    '## Research by workflow', '',
     ...featuredResearch.flatMap(({ slug, title, summary, workflow }) => {
       const study = primaryDatasets.get(slug)
       if (!study) throw new Error(`Missing primary research dataset for ${slug}`)
