@@ -5,6 +5,7 @@ This repository contains the public website and research examples for [Invariant
 - [API quickstart and authentication](https://docs.invariant-ai.com/quickstart)
 - [Earth API field catalog](https://docs.invariant-ai.com/api/field-catalog)
 - [Connect Earth to a coding agent over MCP](https://docs.invariant-ai.com/mcp/installation)
+- [Official MCP Registry entry (JSON)](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.in-variant%2Finvariant-earth/versions/latest)
 - [Research datasets and source records](https://invariant-ai.com/datasets)
 - [Data guides by industry and use case](https://invariant-ai.com/blog/physical-world-data-by-use-case)
 
