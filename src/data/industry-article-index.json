@@ -3964,11 +3964,11 @@
     "slug": "retail-site-selection-trade-area-apis",
     "topic": "Data & APIs",
     "title": "Retail site selection APIs for trade areas and foot traffic",
-    "summary": "Compare retail locations with travel-time areas, dated store openings, and comparable visit counts. A Harlem case shows how to use public transit data.",
+    "summary": "Compare retail locations with trade areas, store opening and closure records, and comparable foot traffic. See worked examples from New York and Chicago.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/retail-site-selection-trade-area-apis.webp?v=b9586424",
     "dataset": {
       "name": "Harlem 125th Street station entries and a dated store location",
@@ -4010,7 +4010,51 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-englewood-store-history",
+        "name": "Chicago Englewood grocery location, licenses and inspections",
+        "description": "Selected fields from four city license records and four food inspections for three businesses at 832 West 63rd Street. Includes exact queries and a dated observation of the broker’s sublease listing.",
+        "sourceReuse": {
+          "note": "Credit the City of Chicago for the license and inspection fields. The download includes selected fields and the queries used to retrieve them.",
+          "policyLabel": "Chicago data use terms",
+          "policyUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+        },
+        "spatialCoverage": "832 West 63rd Street, Englewood, Chicago, Illinois, United States",
+        "temporalCoverage": "2021-02-10/2026-11-24",
+        "datePublished": "2026-11-24",
+        "sources": [
+          "https://data.cityofchicago.org/d/r5kz-chrr",
+          "https://data.cityofchicago.org/d/4ijn-s7e5",
+          "https://www.edgemarkllc.com/properties/chicago-former-grocer-sublease-available/"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Chicago Business Licenses and status code definitions",
+            "publisher": "Chicago Business Affairs and Consumer Protection",
+            "url": "https://data.cityofchicago.org/d/r5kz-chrr"
+          },
+          {
+            "title": "Chicago Food Inspections and recorded outcomes",
+            "publisher": "Chicago Department of Public Health",
+            "url": "https://data.cityofchicago.org/d/4ijn-s7e5"
+          },
+          {
+            "title": "Former grocery store sublease listing at 832 West 63rd Street",
+            "publisher": "Edgemark Commercial Real Estate Services",
+            "url": "https://www.edgemarkllc.com/properties/chicago-former-grocer-sublease-available/"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Chicago store history and exact source queries",
+            "path": "/blog/chicago-englewood-store-history.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "industrial-environmental-permit-history-by-parcel",

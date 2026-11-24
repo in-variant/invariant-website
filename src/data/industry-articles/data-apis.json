@@ -21550,10 +21550,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Retail site selection APIs for trade areas and foot traffic",
-    "description": "Compare retail locations with travel-time areas, dated store openings, and comparable visit counts. A Harlem case shows how to use public transit data.",
+    "description": "Compare retail locations with trade areas, store opening and closure records, and comparable foot traffic. See worked examples from New York and Chicago.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
-    "readMinutes": 7,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 8,
     "coverAlt": "Aerial map of two 125th Street subway complexes and Trader Joe’s Harlem. From September 2023 to September 2024, estimated A, B, C and D station entries rose 17.6 percent, and 2 and 3 station entries rose 18.0 percent.",
     "coverCaption": "Transit context on 125th Street in Harlem. Station points and entry estimates from the MTA. Store location from NYC GeoSearch. Aerial imagery from NYS ITS Geospatial Services, 2024.",
     "intro": "Start in Invariant Earth to check the parcel, building characteristics and road context at a proposed store location. Then connect the site to routing, store history and visits to compare trade areas. Before signing a retail lease, find out who can reach the site, where customers at comparable stores actually come from, and what happened as nearby stores opened or closed. Those questions call for different data. Use routing for travel-time areas, a dated place directory for nearby stores, and comparable visit or pedestrian counts for activity. Keep the area, measure, and time window with every number so you can rerun the comparison.",
@@ -21575,11 +21575,11 @@
               ["What is at this proposed store location?", "Invariant Earth parcel, building and road fields in one coordinate lookup.", "Verify the property match and the actual entrance. Use a routing or visit dataset for customer travel and activity."],
               ["Who can reach the site in ten minutes?", "Esri routing service areas for walking or driving. Use Census ACS estimates to describe households within a defined area.", "Use the actual customer entrance, travel mode, network vintage, and time-of-day assumptions. Ask how the provider assigns partially overlapping Census areas and shows uncertainty."],
               ["Where do people who visit a comparable store come from?", "Placer’s Trade Area report for estimated visitor origins. Its glossary distinguishes visits, unique visitors, and the sampled device panel.", "Request the store-level boundary and date range. Check how repeat trips are counted, what is suppressed, and which histories can be regenerated with a common model."],
-              ["Which nearby stores opened or closed?", "Foursquare Open Source Places for location identity and dated releases. Verify events with dated first-party or public records.", "Match brand, address, unit, and coordinates. Keep the date the place entered the dataset and the verified operating date as separate fields."],
+              ["Which nearby stores opened or closed?", "Foursquare Open Source Places for location identity and dated releases. SafeGraph publishes inferred opening and closing months for tracked places.", "Match brand, address, unit, and coordinates. Keep the provider’s observation, its inferred operating date, and any direct evidence as separate fields."],
               ["How busy is the corridor at comparable times?", "Municipal pedestrian counts or transit agency data. NYC DOT counts pedestrians at sampled locations and the MTA publishes station entry estimates.", "Require a defined entrance, count line or property boundary. Preserve hours, days, and the instrument’s definition. For a specific storefront, ask for a comparable venue visit series or a direct count."]
             ],
             "rowSourceIds": [
-              ["invariant-fields"],["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases"], ["nyc-dot", "mta-monthly"]]
+              ["invariant-fields"],["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases", "safegraph-open-close"], ["nyc-dot", "mta-monthly"]]
           },
           {
             "type": "paragraph",
@@ -21632,6 +21632,48 @@
         ]
       },
       {
+        "id": "verify-store-openings-and-closures",
+        "heading": "How do you verify store openings and closures at the same address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At 832 West 63rd Street in Chicago, Whole Foods Market and Save A Lot appear under different city license accounts and site numbers. We matched the street address, then used each operator’s license and inspection records to tell their histories apart. Chicago uses AAI for an issued license and AAC for a license canceled during its term.",
+            "sourceIds": ["chicago-business-licenses", "chicago-food-inspections"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Date", "Source record", "What it establishes"],
+            "rows": [
+              ["December 12, 2022 and January 10, 2023", "Whole Foods Market, account 86298, site 46", "A food inspection recorded Out of Business in December. The city recorded cancellation of the selected retail food license in January."],
+              ["March 30 and April 5, 2023", "Save A Lot, account 482595, site 5", "The grocer passed a license reinspection in March. Chicago issued its initial retail food license in April."],
+              ["September 23, 2024", "Two inspections at the same street address", "Save A Lot passed. The inspector marked the separately licensed coffee business Out of Business."],
+              ["March 2026", "Save A Lot license renewal", "The city issued the renewal on March 9. It records a term from March 16, 2026 through March 15, 2028 and shows AAI in the November export."],
+              ["November 24, 2026", "Edgemark’s sublease listing", "The broker marketed the former grocery space for sublease. The city export still showed the license as issued."]
+            ],
+            "rowSourceIds": [
+              ["chicago-business-licenses", "chicago-food-inspections"],
+              ["chicago-business-licenses", "chicago-food-inspections"],
+              ["chicago-food-inspections"],
+              ["chicago-business-licenses"],
+              ["englewood-sublease"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the physical storefront, the business operating there and each license term as linked records. For a competitor count, check the retailer or landlord before marking the storefront open. Preserve the date of an inspection, the date a license changed and the day you saw a listing. Those dates answer different questions about the same location.",
+            "sourceIds": ["chicago-business-licenses", "chicago-food-inspections", "englewood-sublease"]
+          },
+          {
+            "type": "download",
+            "label": "Download the Chicago store history and exact source queries",
+            "path": "/blog/chicago-englewood-store-history.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-englewood-store-history"
+          }
+        ]
+      },
+      {
         "id": "make-a-comparable-store-history",
         "heading": "Build a store history you can compare across markets",
         "blocks": [
@@ -21662,7 +21704,7 @@
           },
           {
             "type": "paragraph",
-            "text": "Invariant Earth publishes parcel, building, and road context fields for coordinate-based screening. You can use those fields to help resolve the property, then join a routing, visit, or place history product using its appropriate geometry. Invariant publishes this guide. The provider comparison uses public documentation. The Harlem calculation uses open MTA records and does not rely on a commercial visitor estimate.",
+            "text": "Use Invariant Earth’s parcel, building, and road fields to resolve the property before joining a routing, visit, or place history dataset. Ask each provider whether its date describes an observed event, an estimate, or the day its database changed. The comparisons use public documentation. Use the Harlem transit counts and the Chicago city records as reference cases in your own trial.",
             "sourceIds": ["invariant-fields", "esri-routing", "placer-area", "mta-monthly"]
           },
           {
@@ -21696,6 +21738,11 @@
         "question": "How can I verify a store opening date from places data?",
         "answer": "Use the place record to locate the store and resolve the brand, address and unit. Confirm the operating date with a dated announcement or local evidence. A database creation date usually describes when the location entered that dataset.",
         "sourceIds": ["fsq", "urban-league"]
+      },
+      {
+        "question": "Can a business license show whether a store is open?",
+        "answer": "A business license shows the city’s record of an authorization and its term. To check whether a location is trading on a given date, confirm the operator, unit and date against a recent retailer, landlord or inspection record. Keep both dates in your store history.",
+        "sourceIds": ["chicago-business-licenses", "chicago-food-inspections", "englewood-sublease"]
       }
     ],
     "sources": [
@@ -21710,8 +21757,28 @@
       {"id": "placer-glossary", "title": "Definitions of visits, visitors, and device panel metrics", "url": "https://docs.placer.ai/reference/glossary", "publisher": "Placer.ai"},
       {"id": "fsq", "title": "Open Source Places schema and date fields", "url": "https://docs.foursquare.com/data-products/docs/places-os-data-schema", "publisher": "Foursquare"},
       {"id": "fsq-releases", "title": "Open Source Places release notes", "url": "https://docs.foursquare.com/data-products/docs/fsq-os-places-release-notes", "publisher": "Foursquare"},
+      {"id": "safegraph-open-close", "title": "How opening and closing months are inferred", "url": "https://docs.safegraph.com/docs/places-rich-attributes", "publisher": "SafeGraph"},
+      {"id": "chicago-business-licenses", "title": "Chicago Business Licenses and status code definitions", "url": "https://data.cityofchicago.org/d/r5kz-chrr", "publisher": "Chicago Business Affairs and Consumer Protection", "linkLabel": "Chicago license records"},
+      {"id": "chicago-food-inspections", "title": "Chicago Food Inspections and recorded outcomes", "url": "https://data.cityofchicago.org/d/4ijn-s7e5", "publisher": "Chicago Department of Public Health", "linkLabel": "Chicago food inspection records"},
+      {"id": "englewood-sublease", "title": "Former grocery store sublease listing at 832 West 63rd Street", "url": "https://www.edgemarkllc.com/properties/chicago-former-grocer-sublease-available/", "publisher": "Edgemark Commercial Real Estate Services", "linkLabel": "Broker’s sublease listing"},
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
       {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"}
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-englewood-store-history",
+        "name": "Chicago Englewood grocery location, licenses and inspections",
+        "description": "Selected fields from four city license records and four food inspections for three businesses at 832 West 63rd Street. Includes exact queries and a dated observation of the broker’s sublease listing.",
+        "sourceIds": ["chicago-business-licenses", "chicago-food-inspections", "englewood-sublease"],
+        "sourceReuse": {
+          "note": "Credit the City of Chicago for the license and inspection fields. The download includes selected fields and the queries used to retrieve them.",
+          "policyLabel": "Chicago data use terms",
+          "policyUrl": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+        },
+        "spatialCoverage": "832 West 63rd Street, Englewood, Chicago, Illinois, United States",
+        "temporalCoverage": "2021-02-10/2026-11-24",
+        "datePublished": "2026-11-24"
+      }
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "regrid-alternatives-parcel-data-apis", "foot-traffic-data-by-address"]
   },
