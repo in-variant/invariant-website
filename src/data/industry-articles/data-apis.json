@@ -3342,6 +3342,343 @@
     }
   },
   {
+    "slug": "commercial-mortgage-release-by-address",
+    "topic": "Data & APIs",
+    "region": "New York, New York",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "title": "How to Check a Commercial Mortgage Release by Address",
+    "description": "Use NYC ACRIS document and parcel records to distinguish a partial release from a mortgage satisfaction. Compare two Manhattan cases and download the source rows.",
+    "coverAlt": "Aerial photograph of the Manhattan block at 732 Eighth Avenue, with the present tax lot 4 outlined. The original mortgage index names air-rights lot 9004 at the same address, while the partial release lists part of lot 4.",
+    "coverCaption": "Current MapPLUTO lot 4 at 732 Eighth Avenue, over USDA aerial imagery via USGS. The outline shows the tax lot as mapped today. The recorder’s index gives no boundary for the released portion.",
+    "intro": "To check a commercial mortgage release, match the recorded release to the mortgage by file number and verify the property or interest the release describes. In two Manhattan records, NYC ACRIS uses the same partial-release document code. One lists part of the tax lot and the other lists the entire lot. The lot flag describes the property row. A full mortgage discharge requires a separate check of the recorded instrument and title history.",
+    "takeaways": [
+      "Start with the tax lot, then match the mortgage and release through the recorder’s file numbers.",
+      "Keep the parcel flag, air-rights flag and document type as separate fields.",
+      "Use the recording date to set the cutoff for a dated collateral review."
+    ],
+    "sections": [
+      {
+        "id": "find-a-commercial-release",
+        "heading": "How do you find a recorded commercial mortgage release?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Resolve the property to its borough, block and lot in NYC. Search the City Register by parcel identifier, then check the document detail for a mortgage, a partial release or a satisfaction. Use the City Register File Number (CRFN), assigned at recording, to follow the instrument references. Review the record image and schedules for the described property.",
+            "sourceIds": [
+              "acris-use",
+              "acris-detail",
+              "release-codes"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "ACRIS document type",
+              "What to check in the file"
+            ],
+            "rows": [
+              [
+                "Mortgage (MTGE)",
+                "Identify the recorded mortgage, the property interests it covers and how it links to later instruments. Treat the indexed original amount as a document value."
+              ],
+              [
+                "Partial release of mortgage (PREL)",
+                "Check the property or interest the release describes and which mortgage it references. One released lot may be part of a broader financing."
+              ],
+              [
+                "Satisfaction of mortgage (SAT)",
+                "Find the executed satisfaction, the mortgage it identifies and any assignments or other instruments relevant to the recorder’s discharge."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "release-codes"
+              ],
+              [
+                "release-codes",
+                "release-statute"
+              ],
+              [
+                "release-codes",
+                "satisfaction-statute"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "manhattan-release-examples",
+        "heading": "What did two Manhattan release records show?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The index for 732 Eighth Avenue shows a partial release recorded September 18, 2026. Its property row lists Manhattan block 1017, lot 4, with partial-lot code P. The release references the 2014 mortgage recorded as 2014000409510. That mortgage has nine property rows. The row at the same street address lists lot 9004 with air rights marked Y. A join on street address alone would conflate the two identifiers.",
+            "sourceIds": [
+              "release-master",
+              "release-references",
+              "release-legals",
+              "legals-definitions"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Index fact",
+              "732 Eighth Avenue",
+              "300 Lafayette Street"
+            ],
+            "rows": [
+              [
+                "Partial release file number",
+                "2026000267972",
+                "2026000291774"
+              ],
+              [
+                "Release property row",
+                "Block 1017, lot 4. P for partial lot.",
+                "Block 510, lot 38. E for entire lot."
+              ],
+              [
+                "Referenced mortgage file number",
+                "2014000409510",
+                "2019000160625"
+              ],
+              [
+                "Mortgage row at the same address",
+                "Block 1017, lot 9004. Air rights marked Y.",
+                "Block 510, lot 38. Air rights marked N."
+              ],
+              [
+                "Document date and recording date",
+                "September 9 and September 18, 2026",
+                "September 22 and October 14, 2026"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "release-master"
+              ],
+              [
+                "release-legals",
+                "legals-definitions"
+              ],
+              [
+                "release-references",
+                "release-master"
+              ],
+              [
+                "release-legals"
+              ],
+              [
+                "release-master"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 732 Eighth Avenue release also references a deed indexed to a Queens lot. Keep that reference and the mortgage reference as distinct records. Confirm the instrument type before using a reference as a mortgage match. The recorded instruments and their legal descriptions were outside this index review.",
+            "sourceIds": [
+              "release-references",
+              "release-master",
+              "release-legals"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/commercial-mortgage-release-by-address.json",
+            "label": "Download the ACRIS rows and both parcel matches",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-release-to-satisfaction",
+        "heading": "Does an entire-lot flag mean the mortgage was paid off?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At 300 Lafayette Street, the release has an entire-lot flag and still carries the partial-release document code. The two labels describe different parts of the record. The index also shows a zero document amount for both partial releases. For a payoff or discharge decision, obtain the relevant recorded satisfaction or other title evidence and confirm the loan status with the holder.",
+            "sourceIds": [
+              "release-codes",
+              "legals-definitions",
+              "release-master",
+              "satisfaction-statute"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 300 Lafayette release is dated September 22 and was recorded October 14, a 22-day difference. For a review with a September 30 recording cutoff, that row falls after the cutoff. The extract’s good-through field identifies the extract’s coverage date. A provider’s own first-seen timestamp tells you when the row was available in that provider’s system.",
+            "sourceIds": [
+              "release-master",
+              "acris-detail",
+              "legals-definitions"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "build-a-reusable-lender-check",
+        "heading": "How should a lender test the data on a portfolio?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to resolve the current parcel from an address and keep the match status and source with the collateral file. Join that parcel to the recorder’s document and reference tables. The two cases here use NYC’s published index records for the instruments.",
+            "sourceIds": ["earth-parcel-lookup", "release-master", "release-references"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Give the provider the original and current parcel identifiers plus the known mortgage file number. Ask for all references and their instrument types, the exact records behind each release flag, and both the document and recording dates. Include a test in which a street address matches while the lot or property interest differs. Check whether the workflow sends that case to review."
+          },
+          {
+            "type": "links",
+            "label": "Build the rest of the collateral file",
+            "items": [
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Trace related mortgages and rent assignments"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare commercial property data for lender workflows"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Track parcel identifiers through a split or merger"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I tell whether a commercial mortgage release clears an entire tax lot from the address?",
+        "answer": "Search by address to identify the parcel, then review the release’s legal description and the mortgage it references. NYC’s ACRIS Legals records report partial or entire lot and air-rights flags. The file number and the recorded instrument establish what document you are reviewing.",
+        "sourceIds": [
+          "acris-detail",
+          "legals-definitions",
+          "release-statute"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "earth-parcel-lookup",
+        "title": "Invariant Earth parcel lookup by address, match status and parcel fields",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant",
+        "linkLabel": "Look up a parcel with Earth"
+      },
+      {
+        "id": "release-master",
+        "title": "ACRIS master rows for two partial releases, two mortgages and one deed",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24order=document_id",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Five ACRIS master rows"
+      },
+      {
+        "id": "release-references",
+        "title": "ACRIS reference records for the two Manhattan releases",
+        "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24where=document_id+in+%28%272026091500463005%27%2C%272026100900079004%27%29&%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Cgood_through_date&%24order=document_id%2Creference_by_crfn_",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS reference rows"
+      },
+      {
+        "id": "release-legals",
+        "title": "ACRIS property rows tied to each of the five selected documents",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cair_rights%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS parcel rows"
+      },
+      {
+        "id": "release-codes",
+        "title": "ACRIS document codes PREL, SAT and MTGE",
+        "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27PREL%27%2C%27MTGE%27%2C%27SAT%27%29",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS instrument codes"
+      },
+      {
+        "id": "legals-definitions",
+        "title": "ACRIS Real Property Legals field descriptions for partial lot and air rights",
+        "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Legals/8h5j-fqxa/data",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Partial-lot and air-rights definitions"
+      },
+      {
+        "id": "acris-detail",
+        "title": "City Register detail view documentation for dates, identifiers and document images",
+        "url": "https://a836-acris.nyc.gov/AcrisHelp/docsearch/Documents/detailview.htm",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "City Register detail view"
+      },
+      {
+        "id": "acris-use",
+        "title": "City Register public ACRIS search guidance",
+        "url": "https://www.nyc.gov/site/finance/property/acris.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Search the City Register"
+      },
+      {
+        "id": "release-statute",
+        "title": "New York RPAPL § 1921-a, partial release from lien of mortgaged premises",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1921-A",
+        "publisher": "New York State Senate",
+        "linkLabel": "New York partial release statute"
+      },
+      {
+        "id": "satisfaction-statute",
+        "title": "New York Real Property Law § 321, recording discharge of mortgage",
+        "url": "https://www.nysenate.gov/legislation/laws/RPP/321",
+        "publisher": "New York State Senate",
+        "linkLabel": "New York discharge statute"
+      },
+      {
+        "id": "pluto-identity",
+        "title": "PLUTO 26v3 rows for 732 Eighth Avenue and 300 Lafayette Street",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%281010170004%2C1005100038%29&%24select=bbl%2Caddress%2Cbldgclass%2Cversion%2Clatitude%2Clongitude&%24order=bbl",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "Current tax-lot identity"
+      },
+      {
+        "id": "cover-geometry",
+        "title": "MapPLUTO 26v3 current polygon for Manhattan borough, block 1017, lot 4",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=geojson&where=BBL+%3D+1010170004&outFields=BBL%2CAddress%2CVersion&returnGeometry=true&outSR=4326",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "Current parcel polygon"
+      },
+      {
+        "id": "cover-imagery",
+        "title": "NAIP aerial imagery on The National Map",
+        "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer",
+        "publisher": "USGS and USDA",
+        "linkLabel": "Aerial imagery"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-mortgage-records-by-address",
+      "commercial-real-estate-data-apis-for-lenders",
+      "historical-parcel-boundaries-api"
+    ],
+    "dataset": {
+      "name": "Partial mortgage release records at two Manhattan addresses",
+      "description": "Five ACRIS master rows, three document references, thirteen recorder parcel rows and two PLUTO property matches. Includes document dates, recording dates, partial-lot and air-rights flags, and the current geometry at 732 Eighth Avenue.",
+      "sourceIds": [
+        "release-master",
+        "release-references",
+        "release-legals",
+        "release-codes",
+        "legals-definitions",
+        "pluto-identity",
+        "cover-geometry"
+      ],
+      "spatialCoverage": "732 Eighth Avenue and 300 Lafayette Street, Manhattan, New York City, United States",
+      "temporalCoverage": "2014-05-30/2026-10-14"
+    }
+  },
+  {
     "slug": "commercial-mortgage-records-by-address",
     "topic": "Data & APIs",
     "region": "New York City, United States",
@@ -3521,6 +3858,15 @@
                 "master-rows",
                 "realie"
               ]
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-mortgage-release-by-address",
+                "label": "Check a partial release against the mortgage and parcel records"
+              }
             ]
           }
         ]
@@ -20122,6 +20468,10 @@
             "type": "links",
             "label": "Related diligence guides",
             "items": [
+              {
+                "slug": "commercial-mortgage-release-by-address",
+                "label": "Verify which mortgage and parcel a partial release references"
+              },
               {
                 "slug": "commercial-real-estate-sales-lease-comps-apis",
                 "label": "Compare commercial sale amounts and lease terms"

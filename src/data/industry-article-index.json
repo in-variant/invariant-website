@@ -633,6 +633,75 @@
     }
   },
   {
+    "slug": "commercial-mortgage-release-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Check a Commercial Mortgage Release by Address",
+    "summary": "Use NYC ACRIS document and parcel records to distinguish a partial release from a mortgage satisfaction. Compare two Manhattan cases and download the source rows.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "New York, New York",
+    "image": "/blog/industry/commercial-mortgage-release-by-address.webp?v=c0b38c9c",
+    "dataset": {
+      "name": "Partial mortgage release records at two Manhattan addresses",
+      "description": "Five ACRIS master rows, three document references, thirteen recorder parcel rows and two PLUTO property matches. Includes document dates, recording dates, partial-lot and air-rights flags, and the current geometry at 732 Eighth Avenue.",
+      "spatialCoverage": "732 Eighth Avenue and 300 Lafayette Street, Manhattan, New York City, United States",
+      "temporalCoverage": "2014-05-30/2026-10-14",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24order=document_id",
+        "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24where=document_id+in+%28%272026091500463005%27%2C%272026100900079004%27%29&%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Cgood_through_date&%24order=document_id%2Creference_by_crfn_",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cair_rights%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot",
+        "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27PREL%27%2C%27MTGE%27%2C%27SAT%27%29",
+        "https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Legals/8h5j-fqxa/data",
+        "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%281010170004%2C1005100038%29&%24select=bbl%2Caddress%2Cbldgclass%2Cversion%2Clatitude%2Clongitude&%24order=bbl",
+        "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=geojson&where=BBL+%3D+1010170004&outFields=BBL%2CAddress%2CVersion&returnGeometry=true&outSR=4326"
+      ],
+      "sourceDetails": [
+        {
+          "title": "ACRIS master rows for two partial releases, two mortgages and one deed",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24order=document_id"
+        },
+        {
+          "title": "ACRIS reference records for the two Manhattan releases",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24where=document_id+in+%28%272026091500463005%27%2C%272026100900079004%27%29&%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Cgood_through_date&%24order=document_id%2Creference_by_crfn_"
+        },
+        {
+          "title": "ACRIS property rows tied to each of the five selected documents",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cair_rights%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot"
+        },
+        {
+          "title": "ACRIS document codes PREL, SAT and MTGE",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27PREL%27%2C%27MTGE%27%2C%27SAT%27%29"
+        },
+        {
+          "title": "ACRIS Real Property Legals field descriptions for partial lot and air rights",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Legals/8h5j-fqxa/data"
+        },
+        {
+          "title": "PLUTO 26v3 rows for 732 Eighth Avenue and 300 Lafayette Street",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%281010170004%2C1005100038%29&%24select=bbl%2Caddress%2Cbldgclass%2Cversion%2Clatitude%2Clongitude&%24order=bbl"
+        },
+        {
+          "title": "MapPLUTO 26v3 current polygon for Manhattan borough, block 1017, lot 4",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=geojson&where=BBL+%3D+1010170004&outFields=BBL%2CAddress%2CVersion&returnGeometry=true&outSR=4326"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the ACRIS rows and both parcel matches",
+          "path": "/blog/commercial-mortgage-release-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "commercial-mortgage-records-by-address",
     "topic": "Data & APIs",
     "title": "How to Find Commercial Mortgage Records by Address",

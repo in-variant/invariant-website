@@ -1,0 +1,416 @@
+{
+  "name": "Two Manhattan partial mortgage releases and their recorded references",
+  "checked_on": "2026-11-24",
+  "scope": "Selected NYC ACRIS index records and current PLUTO 26v3. The recorded instrument images and title chain were outside this review. Index matches do not establish legal coverage, principal balance, payoff or present lien status. The displayed map is current tax-lot geometry.",
+  "sources": {
+    "master": {
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24order=document_id",
+      "response": [
+        {
+          "document_id": "2014052701944001",
+          "crfn": "2014000186672",
+          "doc_type": "DEED",
+          "document_date": "2014-05-14T00:00:00.000",
+          "recorded_datetime": "2014-05-30T00:00:00.000",
+          "document_amt": "179000",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "crfn": "2014000409510",
+          "doc_type": "MTGE",
+          "document_date": "2014-12-03T00:00:00.000",
+          "recorded_datetime": "2014-12-12T00:00:00.000",
+          "document_amt": "55750000",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2019051700146014",
+          "crfn": "2019000160625",
+          "doc_type": "MTGE",
+          "document_date": "2019-05-15T00:00:00.000",
+          "recorded_datetime": "2019-05-21T00:00:00.000",
+          "document_amt": "28650537.40",
+          "good_through_date": "2019-05-31T00:00:00.000"
+        },
+        {
+          "document_id": "2026091500463005",
+          "crfn": "2026000267972",
+          "doc_type": "PREL",
+          "document_date": "2026-09-09T00:00:00.000",
+          "recorded_datetime": "2026-09-18T00:00:00.000",
+          "document_amt": "0",
+          "good_through_date": "2026-09-30T00:00:00.000"
+        },
+        {
+          "document_id": "2026100900079004",
+          "crfn": "2026000291774",
+          "doc_type": "PREL",
+          "document_date": "2026-09-22T00:00:00.000",
+          "recorded_datetime": "2026-10-14T00:00:00.000",
+          "document_amt": "0",
+          "good_through_date": "2026-10-31T00:00:00.000"
+        }
+      ]
+    },
+    "references": {
+      "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24where=document_id+in+%28%272026091500463005%27%2C%272026100900079004%27%29&%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Cgood_through_date&%24order=document_id%2Creference_by_crfn_",
+      "response": [
+        {
+          "document_id": "2026091500463005",
+          "reference_by_crfn_": "2014000186672",
+          "good_through_date": "2026-09-30T00:00:00.000"
+        },
+        {
+          "document_id": "2026091500463005",
+          "reference_by_crfn_": "2014000409510",
+          "good_through_date": "2026-09-30T00:00:00.000"
+        },
+        {
+          "document_id": "2026100900079004",
+          "reference_by_crfn_": "2019000160625",
+          "good_through_date": "2026-10-31T00:00:00.000"
+        }
+      ]
+    },
+    "legals": {
+      "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272014121000988008%27%2C%272026091500463005%27%2C%272014052701944001%27%2C%272019051700146014%27%2C%272026100900079004%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cair_rights%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot",
+      "response": [
+        {
+          "document_id": "2014052701944001",
+          "borough": "4",
+          "block": "12575",
+          "lot": "56",
+          "street_number": "137-16",
+          "street_name": "170TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "RP",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "5",
+          "street_number": "263",
+          "street_name": "WEST 45TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "VN",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "6",
+          "street_number": "259",
+          "street_name": "WEST 45TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "VN",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "7",
+          "street_number": "251",
+          "street_name": "WEST 45TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "CR",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "58",
+          "street_number": "N/A",
+          "street_name": "WEST 46TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "CR",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "101",
+          "street_number": "726",
+          "street_name": "8 AVENUE",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "CR",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "104",
+          "street_number": "267",
+          "street_name": "WEST 45TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "VN",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "105",
+          "street_number": "265",
+          "street_name": "WEST 45TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "VN",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "106",
+          "street_number": "261",
+          "street_name": "WEST 45TH   STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "VN",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2014121000988008",
+          "borough": "1",
+          "block": "1017",
+          "lot": "9004",
+          "street_number": "732",
+          "street_name": "8 AVENUE",
+          "air_rights": "Y",
+          "partial_lot": "E",
+          "property_type": "VN",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "2019051700146014",
+          "borough": "1",
+          "block": "510",
+          "lot": "38",
+          "street_number": "300",
+          "street_name": "LAFAYETTE STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "CR",
+          "good_through_date": "2019-05-31T00:00:00.000"
+        },
+        {
+          "document_id": "2026091500463005",
+          "borough": "1",
+          "block": "1017",
+          "lot": "4",
+          "street_number": "732",
+          "street_name": "8 AVENUE",
+          "air_rights": "N",
+          "partial_lot": "P",
+          "property_type": "CR",
+          "good_through_date": "2026-09-30T00:00:00.000"
+        },
+        {
+          "document_id": "2026100900079004",
+          "borough": "1",
+          "block": "510",
+          "lot": "38",
+          "street_number": "300",
+          "street_name": "LAFAYETTE STREET",
+          "air_rights": "N",
+          "partial_lot": "E",
+          "property_type": "OF",
+          "good_through_date": "2026-10-31T00:00:00.000"
+        }
+      ]
+    },
+    "pluto": {
+      "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%281010170004%2C1005100038%29&%24select=bbl%2Caddress%2Cbldgclass%2Cversion%2Clatitude%2Clongitude&%24order=bbl",
+      "response": [
+        {
+          "bbl": "1005100038.00000000",
+          "address": "298 LAFAYETTE STREET",
+          "bldgclass": "O3",
+          "version": "26v3",
+          "latitude": "40.7248336",
+          "longitude": "-73.9958727"
+        },
+        {
+          "bbl": "1010170004.00000000",
+          "address": "732 8 AVENUE",
+          "bldgclass": "K2",
+          "version": "26v3",
+          "latitude": "40.7593263",
+          "longitude": "-73.9879329"
+        }
+      ]
+    },
+    "geometry": {
+      "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=geojson&where=BBL+%3D+1010170004&outFields=BBL%2CAddress%2CVersion&returnGeometry=true&outSR=4326",
+      "response": {
+        "type": "FeatureCollection",
+        "crs": {
+          "type": "name",
+          "properties": {
+            "name": "EPSG:4326"
+          }
+        },
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    -73.9878096420562,
+                    40.7593148375489
+                  ],
+                  [
+                    -73.9878436782176,
+                    40.75926806802
+                  ],
+                  [
+                    -73.9880543334123,
+                    40.7593558712906
+                  ],
+                  [
+                    -73.9880197831991,
+                    40.7594033449928
+                  ],
+                  [
+                    -73.9878096420562,
+                    40.7593148375489
+                  ]
+                ]
+              ]
+            },
+            "properties": {
+              "BBL": 1010170004,
+              "Address": "732 8 AVENUE",
+              "Version": "26v3"
+            }
+          }
+        ]
+      }
+    },
+    "codes": {
+      "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27PREL%27%2C%27MTGE%27%2C%27SAT%27%29",
+      "response": [
+        {
+          "record_type": "D",
+          "doc__type": "MTGE",
+          "doc__type_description": "MORTGAGE",
+          "class_code_description": "MORTGAGES & INSTRUMENTS",
+          "party1_type": "MORTGAGOR/BORROWER",
+          "party2_type": "MORTGAGEE/LENDER"
+        },
+        {
+          "record_type": "D",
+          "doc__type": "PREL",
+          "doc__type_description": "PARTIAL RELEASE OF MORTGAGE",
+          "class_code_description": "MORTGAGES & INSTRUMENTS",
+          "party1_type": "PARTY ONE",
+          "party2_type": "PARTY TWO"
+        },
+        {
+          "record_type": "D",
+          "doc__type": "SAT",
+          "doc__type_description": "SATISFACTION OF MORTGAGE",
+          "class_code_description": "MORTGAGES & INSTRUMENTS",
+          "party1_type": "MORTGAGER/BORROWER",
+          "party2_type": "MORTGAGEE/LENDER"
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "address": "732 Eighth Avenue",
+      "release_crfn": "2026000267972",
+      "recorder_document_date": "2026-09-09",
+      "recording_date": "2026-09-18",
+      "days_document_date_to_recording": 9,
+      "release_parcel_index_bbls": [
+        "1010170004"
+      ],
+      "release_partial_lot_code": "P",
+      "release_indexed_document_amount_usd": "0",
+      "referenced_mortgage_crfn": "2014000409510",
+      "mortgage_indexed_original_document_amount_usd": "55750000",
+      "mortgage_parcel_index_bbls": [
+        "1010170005",
+        "1010170006",
+        "1010170007",
+        "1010170058",
+        "1010170101",
+        "1010170104",
+        "1010170105",
+        "1010170106",
+        "1010179004"
+      ],
+      "same_address_mortgage_parcel_index_bbls": [
+        "1010179004"
+      ],
+      "exact_bbl_overlap_between_release_and_original_mortgage_index": [],
+      "all_release_reference_targets": [
+        {
+          "crfn": "2014000186672",
+          "type": "DEED"
+        },
+        {
+          "crfn": "2014000409510",
+          "type": "MTGE"
+        }
+      ]
+    },
+    {
+      "address": "300 Lafayette Street",
+      "release_crfn": "2026000291774",
+      "recorder_document_date": "2026-09-22",
+      "recording_date": "2026-10-14",
+      "days_document_date_to_recording": 22,
+      "release_parcel_index_bbls": [
+        "1005100038"
+      ],
+      "release_partial_lot_code": "E",
+      "release_indexed_document_amount_usd": "0",
+      "referenced_mortgage_crfn": "2019000160625",
+      "mortgage_indexed_original_document_amount_usd": "28650537.40",
+      "mortgage_parcel_index_bbls": [
+        "1005100038"
+      ],
+      "same_address_mortgage_parcel_index_bbls": [
+        "1005100038"
+      ],
+      "exact_bbl_overlap_between_release_and_original_mortgage_index": [
+        "1005100038"
+      ],
+      "all_release_reference_targets": [
+        {
+          "crfn": "2019000160625",
+          "type": "MTGE"
+        }
+      ]
+    }
+  ],
+  "context_aerial": {
+    "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage?f=image&bbox=-8236441.399%2C4976802.256%2C-8236156.399%2C4977014.256&bboxSR=3857&imageSR=3857&size=1080%2C803&format=jpg&compressionQuality=93",
+    "bounds_3857": [
+      -8236441.399415938,
+      4976802.255867946,
+      -8236156.399415938,
+      4977014.255867946
+    ]
+  }
+}
