@@ -16298,9 +16298,10 @@
     "slug": "fema-flood-zone-history-for-underwriting",
     "topic": "Data & APIs",
     "title": "How to check FEMA flood zone history for commercial property underwriting",
-    "description": "Check which FEMA flood map applied on a quote or loan date. Use building footprints, effective dates and map revision records to audit commercial flood exposure.",
+    "description": "Check the FEMA flood zone on a quote or loan date. Trace effective map panels, Letters of Map Amendment and revalidation records to the property they cover.",
     "date": "2026-11-22",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 10,
     "region": "United States",
     "coverAlt": "Current FEMA map zones within the Huntington revision area, beside a timeline of the July 2021 issue date, December 2021 effective date and January 2024 Alexandria panel.",
     "coverCaption": "Current FEMA flood zones inside the Huntington revision boundary. The revision took effect in December 2021 and FEMA later incorporated it into a revised Alexandria panel.",
@@ -16308,6 +16309,7 @@
     "takeaways": [
       "Record the insured building, map panel and effective date, applicable FEMA case number, and when the result was retrieved.",
       "Track issue dates, effective dates and later panel publication separately. A single FEMA revision can have all three.",
+      "For a Letter of Map Amendment, verify the subject in the determination and trace any revalidation to the panel in effect on the decision date.",
       "Keep mapped flood zones, modeled depth, expected loss and any required lender determination in separate fields.",
       "Send ambiguous building matches, boundary touches and missing historic maps to review rather than counting them as outside the hazard area."
     ],
@@ -16449,6 +16451,46 @@
             "label": "Download the FEMA revision and clipped zones",
             "path": "/blog/fema-flood-zone-history-for-underwriting.geojson",
             "format": "GeoJSON"
+          }
+        ]
+      },
+      {
+        "id": "augusta-map-amendments",
+        "heading": "Does a FEMA Letter of Map Amendment apply to the whole parcel?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A Letter of Map Amendment (LOMA) can cover a structure, a whole lot or a defined part of a property. In Augusta, Georgia, FEMA’s January 8, 2016 determination for 2501 Reynolds Industrial Road applied to only the portion described by survey bearings and distances. The determination reported unshaded Zone X for that portion and flagged that other parts of the property remained in the Special Flood Hazard Area. In an underwriting file, match the insured building to the area the letter actually covers.",
+            "sourceIds": ["augusta-portion-letter", "loma-status-guide"]
+          },
+          {
+            "type": "paragraph",
+            "text": "The original letter names panel 13245C0020F. FEMA’s revalidation letter 16-04-5708V lists the same case under panel 13245C0020G, effective November 16, 2019. For two of the four cases we checked, Augusta’s GIS lists a different panel from the one in the federal revalidation. Join on the FEMA case number and community ID first, then save each source’s panel reference and check the newer map and change documents.",
+            "sourceIds": ["augusta-portion-letter", "augusta-revalidation", "augusta-gis-rows", "augusta-effective-panels"]
+          },
+          {
+            "type": "table",
+            "columns": ["FEMA case", "Subject in published records", "Augusta GIS panel", "FEMA revalidation panel"],
+            "rows": [
+              ["12-04-3236A", "Single structure, labeled storage by Augusta", "13245C0020G", "13245C0210G"],
+              ["12-04-5491A", "Single lot", "13245C0109G", "13245C0120G"],
+              ["14-04-3699A", "Single structure", "13245C0020G", "13245C0020G"],
+              ["15-04-A276A", "Surveyed portion of property", "13245C0020G", "13245C0020G"]
+            ],
+            "stackOnMobile": true,
+            "sourceIds": ["augusta-loma-points", "augusta-gis-rows", "augusta-revalidation"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Treat a point in FEMA’s amendment layer as a way to find a case. FEMA describes the coordinates as approximate. Its point index labels all four sample records “Not incorporated,” while the 2019 letter explicitly revalidates each case as of that letter’s effective date. Preserve both records and their dates. To assess a later decision, look for a newer panel, determination or revalidation and verify the legal property description in the original letter.",
+            "sourceIds": ["loma-status-guide", "augusta-loma-points", "augusta-revalidation"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/augusta-fema-loma-revalidation.json",
+            "format": "JSON",
+            "label": "Download the four Augusta case comparisons and source records",
+            "datasetAnchor": "dataset-augusta-loma"
           }
         ]
       },
@@ -16603,6 +16645,48 @@
         "publisher": "FEMA"
       },
       {
+        "id": "augusta-portion-letter",
+        "title": "FEMA LOMA 15-04-A276A, original determination and scope at Reynolds Industrial Road",
+        "url": "https://msc.fema.gov/portal/downloadProduct?productID=15-04-A276A-130158",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "augusta-structure-letter",
+        "title": "FEMA LOMA 14-04-3699A, original single-structure determination",
+        "url": "https://msc.fema.gov/portal/downloadProduct?productID=14-04-3699A-130158",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "augusta-revalidation",
+        "title": "FEMA Augusta revalidation letter 16-04-5708V, effective November 16, 2019",
+        "url": "https://msc.fema.gov/portal/downloadProduct?productID=16-04-5708V-130158",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "loma-status-guide",
+        "title": "LOMA point locations and revalidation statuses",
+        "url": "https://www.fema.gov/sites/default/files/documents/fema_loma-revalidation-statuses.pdf",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "augusta-loma-points",
+        "title": "National Flood Hazard Layer amendment point records for four Augusta cases",
+        "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/34/query?where=CASENUMBER+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=CASENUMBER%2CSTATUS%2CDATEENDED%2CDATEENDEDSTR%2CCID%2CDETERMINATIONTYPE%2CPDFHYPERLINKID%2CREVAL_STAT%2CLOTTYPE%2COUTCOME&returnGeometry=false&f=json&orderByFields=CASENUMBER",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "augusta-effective-panels",
+        "title": "National Flood Hazard Layer effective panel records for the Augusta comparison",
+        "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=FIRM_PAN+IN+%28%2713245C0020G%27%2C%2713245C0210G%27%2C%2713245C0120G%27%2C%2713245C0109G%27%29&outFields=FIRM_PAN%2CEFF_DATE&returnGeometry=false&f=json&orderByFields=FIRM_PAN",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "augusta-gis-rows",
+        "title": "City of Augusta GIS amendment information for four FEMA case numbers",
+        "url": "https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/358/query?where=Case_No+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=Case_No%2CLOMA%2CRemovedFrom%2CNew_Zone%2CFLOOD_ZONE%2CMap_Panel%2CDate_Issue%2CReval2017%2CCommunityNumber&returnGeometry=false&f=json&orderByFields=Case_No",
+        "publisher": "Augusta, Georgia GIS"
+      },
+      {
         "id": "agency-flood",
         "title": "Interagency Questions and Answers Regarding Flood Insurance",
         "url": "https://www.federalreserve.gov/frrs/regulations/interagency-questions-and-answers-regarding-flood-insurance.htm",
@@ -16628,6 +16712,17 @@
       "spatialCoverage": "Huntington and Alexandria, Virginia, United States",
       "temporalCoverage": "2021-07-28/2026-11-22"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-augusta-loma",
+        "name": "Augusta FEMA map amendment scope and revalidation checks",
+        "description": "Four joined FEMA and Augusta GIS case records, original determination scopes for two cases, and the panels and effective dates in FEMA’s revalidation letter. Includes two differences between city GIS and federal panel references.",
+        "datePublished": "2026-11-24",
+        "sourceIds": ["augusta-portion-letter", "augusta-structure-letter", "augusta-revalidation", "loma-status-guide", "augusta-loma-points", "augusta-effective-panels", "augusta-gis-rows"],
+        "spatialCoverage": "Augusta and Richmond County, Georgia, United States",
+        "temporalCoverage": "2012-04-24/2026-11-24"
+      }
+    ],
     "relatedSlugs": [
       "commercial-property-insurance-data-apis",
       "commercial-real-estate-data-apis-for-lenders",
@@ -19029,8 +19124,12 @@
           },
           {
             "type": "links",
-            "label": "Related site screening guide",
+            "label": "Continue the flood review",
             "items": [
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check whether a FEMA amendment covers the structure, lot or part of the property"
+              },
               {
                 "slug": "best-gis-apis-for-site-selection",
                 "label": "Compare parcel, flood and infrastructure layers in a GIS API"

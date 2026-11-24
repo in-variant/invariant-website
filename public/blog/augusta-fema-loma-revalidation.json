@@ -1,0 +1,208 @@
+{
+  "name": "Augusta FEMA map amendment and revalidation checks",
+  "publisher": "Invariant",
+  "checked_on": "2026-11-24",
+  "fema_community_id": "130158",
+  "selection": "Four selected LOMA cases in the same Augusta revalidation letter. Join the point index and city GIS by FEMA case number. Compare their dates and panel references with the issued documents.",
+  "limits": "This is a selected sample. GIS points are approximate. The original determination describes the asset or area covered. The revalidation letter records the status as of its own effective date. Check all later changes and the current determination before use in a decision.",
+  "sources": {
+    "fema_loma_point_query": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/34/query?where=CASENUMBER+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=CASENUMBER%2CSTATUS%2CDATEENDED%2CDATEENDEDSTR%2CCID%2CDETERMINATIONTYPE%2CPDFHYPERLINKID%2CREVAL_STAT%2CLOTTYPE%2COUTCOME&returnGeometry=false&f=json&orderByFields=CASENUMBER",
+    "augusta_loma_gis_query": "https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/358/query?where=Case_No+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=Case_No%2CLOMA%2CRemovedFrom%2CNew_Zone%2CFLOOD_ZONE%2CMap_Panel%2CDate_Issue%2CReval2017%2CCommunityNumber&returnGeometry=false&f=json&orderByFields=Case_No",
+    "fema_effective_panel_query": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=FIRM_PAN+IN+%28%2713245C0020G%27%2C%2713245C0210G%27%2C%2713245C0120G%27%2C%2713245C0109G%27%29&outFields=FIRM_PAN%2CEFF_DATE&returnGeometry=false&f=json&orderByFields=FIRM_PAN",
+    "fema_revalidation_letter": {
+      "url": "https://msc.fema.gov/portal/downloadProduct?productID=16-04-5708V-130158",
+      "sha256": "d609f926bcbbe46c6c6b0ea16c3b85fa17185a3fdfb1e193539fd16dea78c3c6",
+      "case_number": "16-04-5708V",
+      "effective_date": "2019-11-16"
+    },
+    "fema_status_guide": "https://www.fema.gov/sites/default/files/documents/fema_loma-revalidation-statuses.pdf"
+  },
+  "original_determinations": [
+    {
+      "case_number": "14-04-3699A",
+      "issue_date": "2014-05-08",
+      "original_panel": "13245C0020F",
+      "original_panel_effective_date": "2009-09-25",
+      "subject": "Single structure",
+      "subject_zone": "X (unshaded)",
+      "letter_flags_portions_remain_in_sfha": true,
+      "determination_page": 1,
+      "conditions_page": 2,
+      "document": {
+        "url": "https://msc.fema.gov/portal/downloadProduct?productID=14-04-3699A-130158",
+        "sha256": "647ca623820ca84fffb6d044b5cf8bce343f0c92822b9ae7d9473ee0fc9f2566"
+      }
+    },
+    {
+      "case_number": "15-04-A276A",
+      "issue_date": "2016-01-08",
+      "original_panel": "13245C0020F",
+      "original_panel_effective_date": "2009-09-25",
+      "subject": "Surveyed portion of property described by metes and bounds",
+      "subject_zone": "X (unshaded)",
+      "letter_flags_portions_remain_in_sfha": true,
+      "determination_page": 1,
+      "conditions_page": 2,
+      "document": {
+        "url": "https://msc.fema.gov/portal/downloadProduct?productID=15-04-A276A-130158",
+        "sha256": "777b4cdc8920a2ddea55c2b39d908e6c18555f92e7e823ff541bbc1a06d19546"
+      }
+    }
+  ],
+  "fema_panel_index_attributes": [
+    {
+      "FIRM_PAN": "13245C0020G",
+      "EFF_DATE": 1573776000000
+    },
+    {
+      "FIRM_PAN": "13245C0109G",
+      "EFF_DATE": 1573776000000
+    },
+    {
+      "FIRM_PAN": "13245C0120G",
+      "EFF_DATE": 1573776000000
+    },
+    {
+      "FIRM_PAN": "13245C0210G",
+      "EFF_DATE": 1573776000000
+    }
+  ],
+  "case_comparisons": [
+    {
+      "case_number": "12-04-3236A",
+      "issue_date": "2012-04-24",
+      "revalidation_case": "16-04-5708V",
+      "revalidation_effective_date": "2019-11-16",
+      "revalidation_pdf_page": 3,
+      "revalidation_panel": "13245C0210G",
+      "fema_panel_effective_date": "2019-11-15",
+      "city_panel": "13245C0020G",
+      "city_panel_matches_revalidation_panel": false,
+      "fema_point_index_attributes": {
+        "CASENUMBER": "12-04-3236A",
+        "STATUS": "Completed",
+        "DATEENDED": 1335225600000,
+        "DATEENDEDSTR": null,
+        "CID": "130158",
+        "DETERMINATIONTYPE": "DetermLetter",
+        "PDFHYPERLINKID": "12-04-3236A-130158",
+        "REVAL_STAT": "Not incorporated",
+        "LOTTYPE": "Single structure",
+        "OUTCOME": "Structure removed-Property partially inundated"
+      },
+      "augusta_gis_attributes": {
+        "Case_No": "12-04-3236A",
+        "LOMA": "LOMA",
+        "RemovedFrom": "Structure (storage)",
+        "New_Zone": "X (unshaded)",
+        "FLOOD_ZONE": "YES",
+        "Map_Panel": "13245C0020G",
+        "Date_Issue": 1335240000000,
+        "Reval2017": "Revalidated 11/16/2019 - Case No. 16-04-5708V",
+        "CommunityNumber": "130158"
+      }
+    },
+    {
+      "case_number": "12-04-5491A",
+      "issue_date": "2012-06-19",
+      "revalidation_case": "16-04-5708V",
+      "revalidation_effective_date": "2019-11-16",
+      "revalidation_pdf_page": 4,
+      "revalidation_panel": "13245C0120G",
+      "fema_panel_effective_date": "2019-11-15",
+      "city_panel": "13245C0109G",
+      "city_panel_matches_revalidation_panel": false,
+      "fema_point_index_attributes": {
+        "CASENUMBER": "12-04-5491A",
+        "STATUS": "Completed",
+        "DATEENDED": 1340064000000,
+        "DATEENDEDSTR": null,
+        "CID": "130158",
+        "DETERMINATIONTYPE": "DetermLetter",
+        "PDFHYPERLINKID": "12-04-5491A-130158",
+        "REVAL_STAT": "Not incorporated",
+        "LOTTYPE": "Single lot",
+        "OUTCOME": "Property removed"
+      },
+      "augusta_gis_attributes": {
+        "Case_No": "12-04-5491A",
+        "LOMA": "LOMA",
+        "RemovedFrom": "Property",
+        "New_Zone": "X (unshaded)",
+        "FLOOD_ZONE": "YES",
+        "Map_Panel": "13245C0109G",
+        "Date_Issue": 1340078400000,
+        "Reval2017": "Revalidated 11/16/2019 - Case No. 16-04-5708V",
+        "CommunityNumber": "130158"
+      }
+    },
+    {
+      "case_number": "14-04-3699A",
+      "issue_date": "2014-05-08",
+      "revalidation_case": "16-04-5708V",
+      "revalidation_effective_date": "2019-11-16",
+      "revalidation_pdf_page": 4,
+      "revalidation_panel": "13245C0020G",
+      "fema_panel_effective_date": "2019-11-15",
+      "city_panel": "13245C0020G",
+      "city_panel_matches_revalidation_panel": true,
+      "fema_point_index_attributes": {
+        "CASENUMBER": "14-04-3699A",
+        "STATUS": "Completed",
+        "DATEENDED": 1399507200000,
+        "DATEENDEDSTR": null,
+        "CID": "130158",
+        "DETERMINATIONTYPE": "DetermLetter",
+        "PDFHYPERLINKID": "14-04-3699A-130158",
+        "REVAL_STAT": "Not incorporated",
+        "LOTTYPE": "Single structure",
+        "OUTCOME": "Structure removed-Property partially inundated"
+      },
+      "augusta_gis_attributes": {
+        "Case_No": "14-04-3699A",
+        "LOMA": "LOMA",
+        "RemovedFrom": "Structure",
+        "New_Zone": "X (unshaded)",
+        "FLOOD_ZONE": "YES",
+        "Map_Panel": "13245C0020G",
+        "Date_Issue": 1399521600000,
+        "Reval2017": "Revalidated 11/16/2019 - Case No. 16-04-5708V",
+        "CommunityNumber": "130158"
+      }
+    },
+    {
+      "case_number": "15-04-A276A",
+      "issue_date": "2016-01-08",
+      "revalidation_case": "16-04-5708V",
+      "revalidation_effective_date": "2019-11-16",
+      "revalidation_pdf_page": 5,
+      "revalidation_panel": "13245C0020G",
+      "fema_panel_effective_date": "2019-11-15",
+      "city_panel": "13245C0020G",
+      "city_panel_matches_revalidation_panel": true,
+      "fema_point_index_attributes": {
+        "CASENUMBER": "15-04-A276A",
+        "STATUS": "Completed",
+        "DATEENDED": 1452211200000,
+        "DATEENDEDSTR": null,
+        "CID": "130158",
+        "DETERMINATIONTYPE": "DetermLetter",
+        "PDFHYPERLINKID": "15-04-A276A-130158",
+        "REVAL_STAT": "Not incorporated",
+        "LOTTYPE": "Single lot",
+        "OUTCOME": "Portion of property removed"
+      },
+      "augusta_gis_attributes": {
+        "Case_No": "15-04-A276A",
+        "LOMA": "LOMA",
+        "RemovedFrom": "Portion of Property",
+        "New_Zone": "X (unshaded)",
+        "FLOOD_ZONE": "YES",
+        "Map_Panel": "13245C0020G",
+        "Date_Issue": 1452229200000,
+        "Reval2017": "Revalidated 11/16/2019 - Case No. 16-04-5708V",
+        "CommunityNumber": "130158"
+      }
+    }
+  ]
+}

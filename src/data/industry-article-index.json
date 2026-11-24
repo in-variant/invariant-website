@@ -2725,10 +2725,11 @@
     "slug": "fema-flood-zone-history-for-underwriting",
     "topic": "Data & APIs",
     "title": "How to check FEMA flood zone history for commercial property underwriting",
-    "summary": "Check which FEMA flood map applied on a quote or loan date. Use building footprints, effective dates and map revision records to audit commercial flood exposure.",
+    "summary": "Check the FEMA flood zone on a quote or loan date. Trace effective map panels, Letters of Map Amendment and revalidation records to the property they cover.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/fema-flood-zone-history-for-underwriting.webp?v=6b77a3eb",
     "dataset": {
       "name": "Huntington levee flood map revision and effective zones",
@@ -2770,7 +2771,70 @@
           "format": "GeoJSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-augusta-loma",
+        "name": "Augusta FEMA map amendment scope and revalidation checks",
+        "description": "Four joined FEMA and Augusta GIS case records, original determination scopes for two cases, and the panels and effective dates in FEMA’s revalidation letter. Includes two differences between city GIS and federal panel references.",
+        "datePublished": "2026-11-24",
+        "spatialCoverage": "Augusta and Richmond County, Georgia, United States",
+        "temporalCoverage": "2012-04-24/2026-11-24",
+        "sources": [
+          "https://msc.fema.gov/portal/downloadProduct?productID=15-04-A276A-130158",
+          "https://msc.fema.gov/portal/downloadProduct?productID=14-04-3699A-130158",
+          "https://msc.fema.gov/portal/downloadProduct?productID=16-04-5708V-130158",
+          "https://www.fema.gov/sites/default/files/documents/fema_loma-revalidation-statuses.pdf",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/34/query?where=CASENUMBER+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=CASENUMBER%2CSTATUS%2CDATEENDED%2CDATEENDEDSTR%2CCID%2CDETERMINATIONTYPE%2CPDFHYPERLINKID%2CREVAL_STAT%2CLOTTYPE%2COUTCOME&returnGeometry=false&f=json&orderByFields=CASENUMBER",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=FIRM_PAN+IN+%28%2713245C0020G%27%2C%2713245C0210G%27%2C%2713245C0120G%27%2C%2713245C0109G%27%29&outFields=FIRM_PAN%2CEFF_DATE&returnGeometry=false&f=json&orderByFields=FIRM_PAN",
+          "https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/358/query?where=Case_No+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=Case_No%2CLOMA%2CRemovedFrom%2CNew_Zone%2CFLOOD_ZONE%2CMap_Panel%2CDate_Issue%2CReval2017%2CCommunityNumber&returnGeometry=false&f=json&orderByFields=Case_No"
+        ],
+        "sourceDetails": [
+          {
+            "title": "FEMA LOMA 15-04-A276A, original determination and scope at Reynolds Industrial Road",
+            "publisher": "FEMA",
+            "url": "https://msc.fema.gov/portal/downloadProduct?productID=15-04-A276A-130158"
+          },
+          {
+            "title": "FEMA LOMA 14-04-3699A, original single-structure determination",
+            "publisher": "FEMA",
+            "url": "https://msc.fema.gov/portal/downloadProduct?productID=14-04-3699A-130158"
+          },
+          {
+            "title": "FEMA Augusta revalidation letter 16-04-5708V, effective November 16, 2019",
+            "publisher": "FEMA",
+            "url": "https://msc.fema.gov/portal/downloadProduct?productID=16-04-5708V-130158"
+          },
+          {
+            "title": "LOMA point locations and revalidation statuses",
+            "publisher": "FEMA",
+            "url": "https://www.fema.gov/sites/default/files/documents/fema_loma-revalidation-statuses.pdf"
+          },
+          {
+            "title": "National Flood Hazard Layer amendment point records for four Augusta cases",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/34/query?where=CASENUMBER+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=CASENUMBER%2CSTATUS%2CDATEENDED%2CDATEENDEDSTR%2CCID%2CDETERMINATIONTYPE%2CPDFHYPERLINKID%2CREVAL_STAT%2CLOTTYPE%2COUTCOME&returnGeometry=false&f=json&orderByFields=CASENUMBER"
+          },
+          {
+            "title": "National Flood Hazard Layer effective panel records for the Augusta comparison",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=FIRM_PAN+IN+%28%2713245C0020G%27%2C%2713245C0210G%27%2C%2713245C0120G%27%2C%2713245C0109G%27%29&outFields=FIRM_PAN%2CEFF_DATE&returnGeometry=false&f=json&orderByFields=FIRM_PAN"
+          },
+          {
+            "title": "City of Augusta GIS amendment information for four FEMA case numbers",
+            "publisher": "Augusta, Georgia GIS",
+            "url": "https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/358/query?where=Case_No+IN+%28%2712-04-3236A%27%2C%2712-04-5491A%27%2C%2714-04-3699A%27%2C%2715-04-A276A%27%29&outFields=Case_No%2CLOMA%2CRemovedFrom%2CNew_Zone%2CFLOOD_ZONE%2CMap_Panel%2CDate_Issue%2CReval2017%2CCommunityNumber&returnGeometry=false&f=json&orderByFields=Case_No"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the four Augusta case comparisons and source records",
+            "path": "/blog/augusta-fema-loma-revalidation.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "best-gis-apis-for-site-selection",
