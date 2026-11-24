@@ -14861,7 +14861,7 @@
   "kind": "site-listing",
   "region": "Virginia, United States",
   "title": "Virginia Data Center Sites for Sale and Powered Land",
-  "description": "Compare Virginia data center land and existing facilities. See which Dominion documents show engineering, construction, or electric service by phase.",
+  "description": "Compare Virginia data center land listings and power records for specific addresses. See what Dominion service documents, operator specs and permits establish.",
   "date": "2026-11-09",
   "readMinutes": 8,
   "intro": "Virginia’s surplus property office lists about 356 acres in Dinwiddie County, and a broker lists 186 acres on Gordon Road in Spotsylvania County. Both are marketed for potential data center development. A broker also lists an investment property with leased data center space in Lynchburg. As of November 23, 2026, the public records reviewed did not establish how many megawatts a new buyer could use at any of the three sites.",
@@ -15079,14 +15079,14 @@
    },
    {
     "id": "virginia-address-records",
-    "heading": "What five Virginia data center address records show",
+    "heading": "Power and permit records for five Northern Virginia addresses",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "The air registration rows below reflect the November 23, 2026 check. The downloadable evidence table includes those observations and the original query, which failed to return the records when rechecked on November 24. The Virginia DEQ fact sheet explains the register’s status and address fields. The Prince William County order records a land-use approval. Ask the owner about transaction status and the serving utility for a capacity offer or service schedule specific to the building and customer.",
+      "text": "The table lists facilities and development sites buyers may encounter while researching Northern Virginia. We checked all four air registrations in Virginia DEQ’s daily register on November 24, 2026. The records below establish different things: registered equipment, operator specifications, land-use approval, or approval to build a transmission project. To estimate what a new customer can use, get the current allocation, delivery date and service terms for the exact building or parcel.",
       "sourceIds": [
        "deq-addresses",
-       "pwc-devlin"
+       "deq-virginia-query"
       ]
      },
      {
@@ -15100,54 +15100,59 @@
       "rows": [
        [
         "45901 Nokes Boulevard, Sterling",
-        "73160. The November 23 register check listed 21110 Ridgetop Circle LLC as Operating.",
-        "Ask the operator which buildings and service accounts cover the address."
+        "Csquare lists this address as part of IAD1, a five-pod campus that also includes 45845 Nokes Boulevard and 21110 Ridgetop Circle. The IAD1 specification lists 143.2 MW of utility capacity, 19.8 MW of UPS capacity and 37.5 MW of generator capacity. DEQ registration 73160 lists 45901 Nokes Boulevard as Operating.",
+        "The figures cover the campus. Ask Csquare for the unallocated critical IT capacity, delivery date and utility service account for the building you want."
        ],
        [
         "9905 Godwin Drive, Manassas",
-        "74262. The November 23 register check listed the Godwin Drive address as Operating under a registration that also appears on a consent order for 10051 Brickyard Way.",
-        "Identify the permitted equipment and utility meter for the specific building before attributing power to it."
+        "The City of Manassas reports that Digital Realty completed a 185,000-square-foot data center here in 2024. DEQ lists this address as Operating under registration 74262. The same registration appears on an order for 10051 Brickyard Way, which Digital Realty lists separately in its annual filing.",
+        "Ask the operator and Manassas Electric to confirm the retail service account and contracted MW at this address. The air registration covers emergency generators."
        ],
        [
         "8008 Devlin Road, Prince William County",
-        "21-02 / REZ2020-00011. The county approved Gainesville Tech Park rezoning with proffers. The order identifies GPIN 7496-78-6326.",
-        "Confirm today’s parcel, overlay eligibility and any subsequently approved plans."
+        "Prince William County rezoned the approximately 136-acre Gainesville Tech Park tract in 2021. The ordinance identifies the tract at the time as GPIN 7496-78-6326. In a separate 2025 order, Virginia approved Dominion’s 230 kV Hornbaker project. That order describes a NOVEC delivery point for an unnamed data center customer.",
+        "Confirm the current parcel boundaries and zoning with the county. Ask the serving utility which connection and service schedule apply to the site. The transmission order gives no allocation for this address."
        ],
        [
         "44480 Hastings Drive, Ashburn",
-        "73370. The November 23 register check listed Digital Realty’s Ashburn Campus as Operating, with Hastings Drive and Chilum Place addresses in a single record.",
-        "Match the right building to its service documents before using a campus figure."
+        "Digital Realty identifies this building as ACC4 and lists N+2 UPS redundancy. DEQ lists the Ashburn Campus as Operating under registration 73370, which groups several addresses on Hastings Drive and Chilum Place.",
+        "Ask for the available critical IT MW and delivery date at ACC4. The UPS redundancy rating describes the backup configuration."
        ],
        [
         "44664 Guilford Drive, Ashburn",
-        "73954. The November 23 register check listed VA1 Data Center as Operating and described engine-generators.",
+        "DEQ registration 73954 lists VA1 Data Center as Operating and describes engine-generators.",
         "Get the utility service and allocation for the building separately from its generator record."
        ]
       ],
       "rowSourceIds": [
        [
-        "deq-addresses"
+        "csquare-iad1",
+        "deq-virginia-query"
        ],
        [
-        "deq-addresses",
+        "manassas-godwin-completion",
+        "manassas-electric",
+        "digital-realty-2025-10k",
+        "deq-virginia-query",
         "deq-consent"
        ],
        [
         "pwc-devlin",
-        "pwc-overlay"
+        "scc-hornbaker-order"
        ],
        [
-        "deq-addresses"
+        "digital-realty-acc4",
+        "deq-virginia-query"
        ],
        [
-        "deq-addresses"
+        "deq-virginia-query"
        ]
       ]
      },
      {
       "type": "download",
       "path": "/blog/virginia-data-center-site-evidence.csv",
-      "label": "Download Virginia offering, parcel and permit evidence",
+      "label": "Download Virginia site, power and permit evidence",
       "format": "CSV"
      },
      {
@@ -15561,6 +15566,13 @@
     ]
    },
    {
+    "question": "How much power does Csquare report at 45901 Nokes Boulevard?",
+    "answer": "Csquare lists 143.2 MW of utility capacity for the three-address IAD1 campus, which includes 45901 Nokes Boulevard. The same specification lists 19.8 MW of UPS capacity and 37.5 MW of generator capacity for IAD1. Ask Csquare how much critical IT power is currently unallocated at the building and when it can be delivered.",
+    "sourceIds": [
+     "csquare-iad1"
+    ]
+   },
+   {
     "question": "Can a Virginia data center air permit tell me how many megawatts are available?",
     "answer": "An air permit describes the equipment and activities covered by the air program. Use the exact building address and permit identifier to match the record, then request a utility service schedule or existing service and allocation records for usable MW.",
     "sourceIds": [
@@ -15626,6 +15638,55 @@
     "title": "Consent order for Digital Realty Trust, registration 74262",
     "publisher": "Virginia Department of Environmental Quality",
     "url": "https://www.deq.virginia.gov/home/showpublisheddocument/35672/639124552960030000"
+   },
+   {
+    "id": "deq-virginia-query",
+    "title": "Air Sites daily register, exact query for four registrations",
+    "publisher": "Virginia Department of Environmental Quality",
+    "linkLabel": "DEQ register",
+    "url": "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?where=PLA_REG_NUM%20IN%20%2873160%2C74262%2C73370%2C73954%29&outFields=PLA_REG_NUM%2CPLA_NAME%2CSTATUS_GROUP%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CFAC_L_CITY%2CPLA_DESC&returnGeometry=false&f=json"
+   },
+   {
+    "id": "csquare-iad1",
+    "title": "Northern Virginia specification, IAD1 campus addresses and power ratings, PDF page 2",
+    "publisher": "Csquare",
+    "linkLabel": "IAD1 spec sheet",
+    "url": "https://csquare.com/hubfs/CenterSquare/docs/Centersquare-IAD-SpecSheet.pdf#page=2"
+   },
+   {
+    "id": "manassas-godwin-completion",
+    "title": "Economic Development Annual Report to Council, 9905 Godwin Drive construction and completion",
+    "publisher": "City of Manassas",
+    "linkLabel": "City completion report",
+    "url": "https://cms9files.revize.com/manassasva/City%20Manager/Annual%20Reports/2024%20Econ%20Dev%20Annual%202025.pdf"
+   },
+   {
+    "id": "manassas-electric",
+    "title": "City electric distribution system and utility contacts",
+    "publisher": "City of Manassas Electric Department",
+    "linkLabel": "Manassas Electric",
+    "url": "https://www.manassasva.gov/electric_water___sewer/electric_department.php"
+   },
+   {
+    "id": "digital-realty-2025-10k",
+    "title": "2025 Form 10-K, separate property entries for Godwin Drive and Brickyard Way",
+    "publisher": "Digital Realty via SEC EDGAR",
+    "linkLabel": "Digital Realty filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1494877/000110465926015365/dlr-20251231x10k.htm#:~:text=9905%20Godwin%20Drive"
+   },
+   {
+    "id": "digital-realty-acc4",
+    "title": "ACC4 Ashburn, 44480 Hastings Drive and UPS redundancy",
+    "publisher": "Digital Realty",
+    "linkLabel": "ACC4 property specs",
+    "url": "https://www.digitalrealty.com/data-centers/americas/northern-virginia/acc4"
+   },
+   {
+    "id": "scc-hornbaker-order",
+    "title": "Hornbaker 230 kV project final order, PUR-2025-00046, December 11, 2025",
+    "publisher": "Virginia State Corporation Commission via Dominion Energy",
+    "linkLabel": "SCC transmission order",
+    "url": "https://cdn-dominionenergy-prd-001.azureedge.net/-/media/content/about/power-line-projects/hornbaker-devlin/pdfs/hornbaker-scc-final-order.pdf?hash=5EB48F92CC91590B8B5C3F44C0CBF435&rev=7f5538f0ba6842ec87b070e3afe4f536"
    },
    {
     "id": "pwc-devlin",
@@ -15719,9 +15780,9 @@
   "updatedDate": "2026-11-24",
   "dataset": {
    "name": "Virginia data center offerings, parcel checks and address records",
-   "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations and one rezoning order. Includes the Gordon Road parcel and zoning match, dates checked and the utility evidence a buyer still needs.",
+   "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations, one rezoning ordinance and four operator, government and utility records. Includes campus power ratings, dated building records and the evidence still needed for a customer allocation.",
    "datePublished": "2026-11-23",
-   "spatialCoverage": "Dinwiddie, Loudoun, Prince Edward, Prince William and Spotsylvania counties and Lynchburg, Virginia, United States",
+   "spatialCoverage": "Dinwiddie, Loudoun, Prince Edward, Prince William and Spotsylvania counties, and the cities of Lynchburg and Manassas, Virginia, United States",
    "sourceIds": [
     "dgs-dinwiddie",
     "jll-dinwiddie",
@@ -15731,7 +15792,14 @@
     "spost-gordon-zoning",
     "prince-edward-hit-status",
     "deq-addresses",
+    "deq-virginia-query",
     "deq-consent",
+    "csquare-iad1",
+    "manassas-godwin-completion",
+    "manassas-electric",
+    "digital-realty-2025-10k",
+    "digital-realty-acc4",
+    "scc-hornbaker-order",
     "pwc-devlin",
     "pwc-overlay"
    ]

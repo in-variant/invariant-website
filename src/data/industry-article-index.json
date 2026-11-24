@@ -5715,7 +5715,7 @@
     "slug": "data-center-sites-for-sale-virginia",
     "topic": "Data Centers",
     "title": "Virginia Data Center Sites for Sale and Powered Land",
-    "summary": "Compare Virginia data center land and existing facilities. See which Dominion documents show engineering, construction, or electric service by phase.",
+    "summary": "Compare Virginia data center land listings and power records for specific addresses. See what Dominion service documents, operator specs and permits establish.",
     "date": "November 9, 2026",
     "dateTime": "2026-11-09",
     "region": "Virginia, United States",
@@ -5723,9 +5723,9 @@
     "image": "/blog/industry/data-center-sites-for-sale-virginia.webp?v=b7235293",
     "dataset": {
       "name": "Virginia data center offerings, parcel checks and address records",
-      "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations and one rezoning order. Includes the Gordon Road parcel and zoning match, dates checked and the utility evidence a buyer still needs.",
+      "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations, one rezoning ordinance and four operator, government and utility records. Includes campus power ratings, dated building records and the evidence still needed for a customer allocation.",
       "datePublished": "2026-11-23",
-      "spatialCoverage": "Dinwiddie, Loudoun, Prince Edward, Prince William and Spotsylvania counties and Lynchburg, Virginia, United States",
+      "spatialCoverage": "Dinwiddie, Loudoun, Prince Edward, Prince William and Spotsylvania counties, and the cities of Lynchburg and Manassas, Virginia, United States",
       "sources": [
         "https://dgs.virginia.gov/division-of-real-estate-and-facilities-management/real-estate-for-salelease/surplus-property-sales-and-lease",
         "https://property.jll.com/listings/4901-boydton-plank-rd-not-tracked-virginia",
@@ -5735,7 +5735,14 @@
         "https://gis.spotsylvania.va.us/arcgis/rest/services/GeoHub/GeoHub/MapServer/39/query?f=json&where=OBJECTID%3D99732&outFields=OBJECTID%2CZONECLASS&returnGeometry=false",
         "https://www.co.prince-edward.va.us/Economic-Development/HIT-Park-Data-Center-FAQ",
         "https://gisdata.deq.virginia.gov/mapper_ext/DataFactSheets/Air_Datasets/Active_Air_Sites_Fact_Sheet.pdf",
+        "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?where=PLA_REG_NUM%20IN%20%2873160%2C74262%2C73370%2C73954%29&outFields=PLA_REG_NUM%2CPLA_NAME%2CSTATUS_GROUP%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CFAC_L_CITY%2CPLA_DESC&returnGeometry=false&f=json",
         "https://www.deq.virginia.gov/home/showpublisheddocument/35672/639124552960030000",
+        "https://csquare.com/hubfs/CenterSquare/docs/Centersquare-IAD-SpecSheet.pdf#page=2",
+        "https://cms9files.revize.com/manassasva/City%20Manager/Annual%20Reports/2024%20Econ%20Dev%20Annual%202025.pdf",
+        "https://www.manassasva.gov/electric_water___sewer/electric_department.php",
+        "https://www.sec.gov/Archives/edgar/data/1494877/000110465926015365/dlr-20251231x10k.htm#:~:text=9905%20Godwin%20Drive",
+        "https://www.digitalrealty.com/data-centers/americas/northern-virginia/acc4",
+        "https://cdn-dominionenergy-prd-001.azureedge.net/-/media/content/about/power-line-projects/hornbaker-devlin/pdfs/hornbaker-scc-final-order.pdf?hash=5EB48F92CC91590B8B5C3F44C0CBF435&rev=7f5538f0ba6842ec87b070e3afe4f536",
         "https://eservice.pwcgov.org/documents/bocs/agendas/2021/0202/4-B.pdf",
         "https://www.pwcva.gov/department/planning-office/dpa2026-00006-data-center-opportunity-zone-overlay-district-dcozod"
       ],
@@ -5781,9 +5788,44 @@
           "url": "https://gisdata.deq.virginia.gov/mapper_ext/DataFactSheets/Air_Datasets/Active_Air_Sites_Fact_Sheet.pdf"
         },
         {
+          "title": "Air Sites daily register, exact query for four registrations",
+          "publisher": "Virginia Department of Environmental Quality",
+          "url": "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?where=PLA_REG_NUM%20IN%20%2873160%2C74262%2C73370%2C73954%29&outFields=PLA_REG_NUM%2CPLA_NAME%2CSTATUS_GROUP%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CFAC_L_CITY%2CPLA_DESC&returnGeometry=false&f=json"
+        },
+        {
           "title": "Consent order for Digital Realty Trust, registration 74262",
           "publisher": "Virginia Department of Environmental Quality",
           "url": "https://www.deq.virginia.gov/home/showpublisheddocument/35672/639124552960030000"
+        },
+        {
+          "title": "Northern Virginia specification, IAD1 campus addresses and power ratings, PDF page 2",
+          "publisher": "Csquare",
+          "url": "https://csquare.com/hubfs/CenterSquare/docs/Centersquare-IAD-SpecSheet.pdf#page=2"
+        },
+        {
+          "title": "Economic Development Annual Report to Council, 9905 Godwin Drive construction and completion",
+          "publisher": "City of Manassas",
+          "url": "https://cms9files.revize.com/manassasva/City%20Manager/Annual%20Reports/2024%20Econ%20Dev%20Annual%202025.pdf"
+        },
+        {
+          "title": "City electric distribution system and utility contacts",
+          "publisher": "City of Manassas Electric Department",
+          "url": "https://www.manassasva.gov/electric_water___sewer/electric_department.php"
+        },
+        {
+          "title": "2025 Form 10-K, separate property entries for Godwin Drive and Brickyard Way",
+          "publisher": "Digital Realty via SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/1494877/000110465926015365/dlr-20251231x10k.htm#:~:text=9905%20Godwin%20Drive"
+        },
+        {
+          "title": "ACC4 Ashburn, 44480 Hastings Drive and UPS redundancy",
+          "publisher": "Digital Realty",
+          "url": "https://www.digitalrealty.com/data-centers/americas/northern-virginia/acc4"
+        },
+        {
+          "title": "Hornbaker 230 kV project final order, PUR-2025-00046, December 11, 2025",
+          "publisher": "Virginia State Corporation Commission via Dominion Energy",
+          "url": "https://cdn-dominionenergy-prd-001.azureedge.net/-/media/content/about/power-line-projects/hornbaker-devlin/pdfs/hornbaker-scc-final-order.pdf?hash=5EB48F92CC91590B8B5C3F44C0CBF435&rev=7f5538f0ba6842ec87b070e3afe4f536"
         },
         {
           "title": "Gainesville Tech Park rezoning, Ordinance 21-02",
@@ -5798,7 +5840,7 @@
       ],
       "downloads": [
         {
-          "label": "Download Virginia offering, parcel and permit evidence",
+          "label": "Download Virginia site, power and permit evidence",
           "path": "/blog/virginia-data-center-site-evidence.csv",
           "format": "CSV"
         }
