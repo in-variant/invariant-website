@@ -6875,9 +6875,9 @@
   "kind": "site-listing",
   "region": "United States",
   "title": "1 GW Data Center Sites and Powered Land in the U.S.",
-  "description": "Compare U.S. gigawatt data center sites. See what the Arizona listing reports, where smaller phases could fit, and what to ask for before committing.",
+  "description": "Compare gigawatt data center land and first-phase options. Learn how to verify MW at the meter and trace a real utility schedule from agreement to interconnection.",
   "date": "2026-11-09",
-  "readMinutes": 6,
+  "readMinutes": 8,
   "intro": "Looking for a 1 GW data center site? Invariant markets an Arizona campus for sale or lease with 15,000+ acres and a reported utility study for a proposed 1.5 GW first phase. The public listing gives a 2027 grid target. To shortlist it, ask which acreage is currently offered, how many megawatts the utility can deliver to a buyer on the first service date, and what it would take to reach full load.",
   "takeaways": [
    "The Arizona listing gives a studied power figure and target year. Current availability, committed MW and a delivery schedule need confirmation.",
@@ -7009,10 +7009,11 @@
      },
      {
       "type": "paragraph",
-      "text": "Meta announced a 5 GW compute expansion at Hyperion in Louisiana. Entergy’s separate August 2025 announcement described regulatory approval for generation and transmission work serving the project. Those dated records answer different questions. One gives the developer’s compute target. The other describes the infrastructure the utility was authorized to build.",
+      "text": "Meta announced a 5 GW compute target for its Richland Parish expansion. The Louisiana Public Service Commission’s August 2025 order under U-37425 covered utility infrastructure for the original Laidley project. The adjacent Evest project has a separate power agreement and certification case.",
       "sourceIds": [
        "hyperion",
-       "hyperion-utility"
+       "laidley-order",
+       "evest-docket"
       ]
      },
      {
@@ -7020,6 +7021,45 @@
       "label": "Download seven dated gigawatt project records",
       "path": "/blog/gigawatt-data-center-power-milestones.json",
       "format": "JSON"
+     }
+    ]
+   },
+   {
+    "id": "evest-power-milestones",
+    "heading": "What does a gigawatt power agreement establish before energization?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Entergy disclosed an electric service agreement signed in March 2026 with Evest, a Meta subsidiary. Its third-quarter filing says the agreement depends on required approvals and the service obligations start after certain transmission facilities are built. As of November 24, 2026, the certification docket remained open. A procedural order scheduled Commission consideration for December 16, 2026.",
+      "sourceIds": ["evest-sec", "evest-docket", "evest-procedural-order"]
+     },
+     {
+      "type": "paragraph",
+      "text": "The application proposes seven generators at 754 MW each. Four units account for 3,016 MW in Richland Parish and three account for 2,262 MW in Pointe Coupee Parish. The resulting 5,278 MW is proposed generation. Entergy lists estimated in-service years of 2030 and 2031 for the units. For a site decision, ask separately for the first usable facility MW at the customer meter.",
+      "sourceIds": ["evest-staff-brief", "evest-sec"]
+     },
+     {
+      "type": "table",
+      "columns": ["Milestone", "Date in the record", "What the date refers to"],
+      "rows": [
+       ["Commission consideration", "December 16, 2026", "Date in the procedural order for Commission consideration of the certification request."],
+       ["Customer interconnection", "August 1, 2030", "Projected in-service date in Entergy’s schedule as cited by Commission staff."],
+       ["Smalling to El Dorado line", "December 30, 2030", "Projected in-service date for a separate 500 kV transmission line."],
+       ["West Fork Creek to St. Landry line and switching station", "December 1, 2031", "Projected in-service date for the later 500 kV facilities."]
+      ],
+      "stackOnMobile": true,
+      "rowSourceIds": [["evest-procedural-order"], ["evest-staff-brief"], ["evest-staff-brief"], ["evest-staff-brief"]]
+     },
+     {
+      "type": "paragraph",
+      "text": "Ask the utility which of these milestones gates each load block, which work can proceed in parallel, and who pays for the required construction. Record any earlier service in a separate row with the facility MW, limits and conditions. That lets you compare an interim ramp with the full campus plan."
+     },
+     {
+      "type": "download",
+      "label": "Download the Richland Parish power records and four milestone dates",
+      "path": "/blog/evest-richland-parish-power-milestones.json",
+      "format": "JSON",
+      "datasetAnchor": "dataset-evest-power-milestones"
      }
     ]
    },
@@ -7465,6 +7505,36 @@
     "url": "https://www.entergy.com/news/entergy-louisiana-receives-lpsc-approval-for-major-infrastructure-investments-to-support-metas-data-center-and-improve-reliability"
    },
    {
+    "id": "evest-sec",
+    "title": "Entergy 2026 third-quarter Form 10-Q, Additional Generation and Transmission Resources",
+    "publisher": "Entergy Louisiana / SEC",
+    "url": "https://www.sec.gov/Archives/edgar/data/1427437/000006598426000325/etr-20260930.htm"
+   },
+   {
+    "id": "evest-staff-brief",
+    "title": "November 12, 2026 LPSC staff brief, U-37882. Relief requested and transmission schedule",
+    "publisher": "Louisiana Public Service Commission Staff",
+    "url": "https://lpscpubvalence.lpsc.louisiana.gov/portal/PSC/ViewFile?fileId=hCRlbfVTXns%3D"
+   },
+   {
+    "id": "evest-procedural-order",
+    "title": "U-37882 procedural order directing the December 16, 2026 consideration schedule",
+    "publisher": "Louisiana Public Service Commission",
+    "url": "https://lpscpubvalence.lpsc.louisiana.gov/portal/PSC/DocumentDetails?documentId=180141"
+   },
+   {
+    "id": "evest-docket",
+    "title": "U-37882 public docket and certification filing",
+    "publisher": "Louisiana Public Service Commission",
+    "url": "https://lpscpubvalence.lpsc.louisiana.gov/portal/PSC/DocketDetails?docketId=32728"
+   },
+   {
+    "id": "laidley-order",
+    "title": "U-37425 order dated August 29, 2025 on the original North Louisiana project",
+    "publisher": "Louisiana Public Service Commission",
+    "url": "https://lpscpubvalence.lpsc.louisiana.gov/portal/PSC/DocumentDetails?documentId=176967"
+   },
+   {
     "id": "pue",
     "title": "Best Practices Guide for Energy-Efficient Data Center Design",
     "publisher": "Lawrence Berkeley National Laboratory",
@@ -7481,7 +7551,7 @@
    "arizona-1-5-gw-powered-land-ai-campus",
    "find-data-center-site-us"
   ],
-  "updatedDate": "2026-11-22",
+  "updatedDate": "2026-11-24",
   "dataset": {
    "name": "Power milestones at four U.S. gigawatt data center developments",
    "description": "Seven dated developer and utility records covering energized buildings, planned grid capacity, onsite generation design, critical IT load, and regulatory approval at projects in Texas and Louisiana.",
@@ -7494,7 +7564,18 @@
    ],
    "spatialCoverage": "Texas and Louisiana, United States",
    "temporalCoverage": "2025-08-20/2026-07-15"
-  }
+  },
+  "additionalDatasets": [
+   {
+    "anchor": "dataset-evest-power-milestones",
+    "name": "Richland Parish compute, generation and interconnection milestones",
+    "description": "Four power records and four dated milestones for the Richland Parish data center projects, separating Meta’s compute target, Entergy’s proposed generator ratings and the projected utility construction schedule.",
+    "datePublished": "2026-11-24",
+    "spatialCoverage": "Richland and Pointe Coupee parishes, Louisiana, United States",
+    "temporalCoverage": "2025-08-29/2026-11-24",
+    "sourceIds": ["evest-sec","evest-staff-brief","evest-procedural-order","evest-docket","laidley-order","hyperion"]
+   }
+  ]
  },
  {
   "slug": "data-center-sites-for-sale-texas",
@@ -15552,7 +15633,7 @@
   "title": "Louisiana Data Center Sites for Sale and Land to Screen",
   "description": "Compare four Louisiana land listings in Caddo, Claiborne, Ouachita and Tangipahoa parishes. See acreage, asking terms, utility and how to verify usable power.",
   "date": "2026-11-09",
-  "updatedDate": "2026-11-23",
+  "updatedDate": "2026-11-24",
   "readMinutes": 8,
   "intro": "Louisiana’s Site Selection Center lists industrial land for sale in West Shreveport, north Monroe and Tangipahoa Parish, plus a 350-acre tract marketed for data centers near Homer. Use these listings to build a shortlist. Before paying for an option, get the serving utility’s written position on your first phase in megawatts, the point of delivery and the date it can serve the load.",
   "takeaways": [
@@ -15647,11 +15728,17 @@
      },
      {
       "type": "paragraph",
-      "text": "Entergy filed a separate request for the adjacent Evest project in March 2026 under U-37882. The application seeks 5,278 MW of new generation along with storage and transmission. Entergy’s third-quarter update showed a December 2026 decision timetable. Check the live docket for the latest order before relying on that schedule.",
+      "text": "Entergy filed a separate request for the adjacent Evest project in March 2026 under U-37882. It seeks 5,278 MW of new generation along with storage and transmission. The docket remained open as of November 24. The utility schedule cited in the Commission staff’s November brief places the customer interconnection in August 2030 and two separate transmission milestones after that. Those are projected construction dates for the Evest project.",
       "sourceIds": [
        "lpsc-evest",
-       "entergy-evest-update",
+       "lpsc-evest-schedule",
        "lpsc-evest-docket"
+      ]
+     },
+     {
+      "type": "links",
+      "items": [
+       {"label": "Compare Evest’s interconnection date with its generation and transmission milestones", "slug": "1-gw-data-center-site"}
       ]
      },
      {
@@ -16088,6 +16175,12 @@
     "title": "Order U-37425 on the original Richland Parish generation and transmission package",
     "url": "https://lpscpubvalence.lpsc.louisiana.gov/portal/PSC/ViewFile?fileId=nDWn%2Fjuc2%2BA%3D",
     "publisher": "Louisiana Public Service Commission"
+   },
+   {
+    "id": "lpsc-evest-schedule",
+    "title": "November 12, 2026 U-37882 staff brief and projected transmission milestones",
+    "url": "https://lpscpubvalence.lpsc.louisiana.gov/portal/PSC/ViewFile?fileId=hCRlbfVTXns%3D",
+    "publisher": "Louisiana Public Service Commission Staff"
    },
    {
     "id": "lpsc-evest",
