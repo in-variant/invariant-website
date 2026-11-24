@@ -1,8 +1,8 @@
 {
-  "title": "FEMA flood zone checks for two public data center addresses",
+  "title": "FEMA flood zone checks for three public data center addresses",
   "observed_on": "2026-11-24",
-  "scope": "Dated source checks for two fixed sites. Use full site geometry, applicable Letters of Map Change and local records when making a design, coverage or operating decision.",
-  "method": "Census Public_AR_Current street-range geocode, followed by direct intersection of the WGS84 address point with FEMA NFHL layer 28. The Clifton tax lot was selected by exact assessor situs address. Area coverage and Special Flood Hazard Area fractions use parcel intersections in NAD83 / Conus Albers (EPSG:5070), with polygons unioned before the area is measured. The intersection ignored individual pieces under 0.01 square metres. FEMA NFHL layer 3 supplied Passaic County FIRM panel IDs and dates.",
+  "scope": "Dated point checks for three fixed sites and tax parcel overlays for Clifton and Atlanta. Use full project geometry, applicable Letters of Map Change and local records when making a design, coverage or operating decision.",
+  "method": "Clifton and Northlake use Census Public_AR_Current street-range geocodes. Atlanta uses the common point in the City of Atlanta’s current address records and their parcel ID. All three points were intersected with FEMA NFHL layer 28. The Clifton and Atlanta county tax parcels were separately matched by situs address or parcel ID. Parcel coverage and Special Flood Hazard Area fractions used intersections in NAD83 / Conus Albers (EPSG:5070), with polygons unioned before area measurement and pieces under 0.01 square metres excluded. FEMA NFHL layer 3 supplied the effective map panels.",
   "source_value_note": "FEMA code -9999 for STATIC_BFE is preserved in the records and indicates no published static base flood elevation in these features.",
   "cases": [
     {
@@ -122,7 +122,7 @@
       ],
       "parcel": null,
       "sfha_fraction": null,
-      "scope": "Census address-range point only. Parcel identity, building, access and electrical infrastructure were not confirmed.",
+      "scope": "FEMA zone and panel at the Census address-range point. Nearby mapped county parcels carry 505 and 525 Northwest Avenue. A parcel for the operator’s 501 address, the building, utility equipment and access routes remain unconfirmed.",
       "sources": {
         "address": {
           "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=501+Northwest+Ave%2C+Northlake%2C+IL+60164&benchmark=Public_AR_Current&format=json",
@@ -133,8 +133,136 @@
           "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
           "retrieved_at": "2026-11-24T12:01:50+00:00",
           "sha256": "083b3092dbf7ae4d98e2c452b4522bce15bdb46babf1bc0d542bdc3d8543b01e"
+        },
+        "panels": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json",
+          "retrieved_at": "2026-11-24T20:48:57+00:00",
+          "sha256": "0b395501f3f68a2357be65dda1e5b23c21ca02b70f2a24e8037607e7736e770b"
+        },
+        "nearby_parcel_addresses": {
+          "url": "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=json&geometry=-87.9212%2C41.9128%2C-87.9172%2C41.9152&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PIN10%2CTAXYR%2Cstreet_address%2CCITYNAME&orderByFields=PIN10",
+          "retrieved_at": "2026-11-24T20:48:58+00:00",
+          "sha256": "38a960d2e847d0e4d887dbe92a2eb5d1282acb343371f78ce9d94b9c1510d406"
         }
-      }
+      },
+      "panels": [
+        {
+          "FIRM_PAN": "17043C0091J",
+          "EFF_DATE": 1564617600000,
+          "DFIRM_ID": "17043C",
+          "PANEL_TYP": "Countywide, Panel Printed",
+          "effective_date": "2019-08-01"
+        },
+        {
+          "FIRM_PAN": "17031C0366J",
+          "EFF_DATE": 1219104000000,
+          "DFIRM_ID": "17031C",
+          "PANEL_TYP": "Countywide, Panel Printed",
+          "effective_date": "2008-08-19"
+        }
+      ],
+      "nearby_parcel_address_records": [
+        {
+          "PIN10": "1231100005",
+          "TAXYR": 2026,
+          "street_address": "505 NORTHWEST AVE",
+          "CITYNAME": "NORTHLAKE"
+        },
+        {
+          "PIN10": "1231100011",
+          "TAXYR": 2026,
+          "street_address": "525 NORTHWEST AVE",
+          "CITYNAME": "NORTHLAKE"
+        },
+        {
+          "PIN10": "1231301021",
+          "TAXYR": 2026,
+          "street_address": "505 NORTHWEST AVE",
+          "CITYNAME": "NORTHLAKE"
+        }
+      ]
+    },
+    {
+      "address": "55 Marietta Street NW, Atlanta, GA 30303",
+      "coordinates": {
+        "x": -84.39105900014447,
+        "y": 33.75589000003015
+      },
+      "address_point_provider": "City of Atlanta",
+      "current_city_address_records": 94,
+      "point_zones": [
+        {
+          "OBJECTID": 15661872,
+          "FLD_AR_ID": "13121C_11098",
+          "FLD_ZONE": "X",
+          "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+          "SFHA_TF": "F",
+          "STATIC_BFE": -9999.0,
+          "V_DATUM": null
+        }
+      ],
+      "address_point_inside_parcel": true,
+      "point_to_parcel_m": 0,
+      "parcel": {
+        "OBJECTID": 145698,
+        "ParcelID": "14 007800110419",
+        "TaxYear": 2027,
+        "Address": "55 MARIETTA ST NW",
+        "LandAcres": 0.4658
+      },
+      "parcel_area_sqm": 1894.228,
+      "coverage_fraction": 1.0,
+      "sfha_fraction": 0.0,
+      "zone_intersections": [
+        {
+          "OBJECTID": 15661872,
+          "FLD_AR_ID": "13121C_11098",
+          "FLD_ZONE": "X",
+          "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+          "SFHA_TF": "F",
+          "STATIC_BFE": -9999,
+          "V_DATUM": null,
+          "parcel_area_sqm": 1894.228,
+          "parcel_area_fraction": 1.0
+        }
+      ],
+      "panels": [
+        {
+          "FIRM_PAN": "13121C0244F",
+          "EFF_DATE": 1379462400000,
+          "DFIRM_ID": "13121C",
+          "PANEL_TYP": "Countywide, Panel Printed",
+          "effective_date": "2013-09-18"
+        }
+      ],
+      "sources": {
+        "address": {
+          "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/COA_Parcels_AddressPoints/FeatureServer/0/query?where=ADDRNUM%3D%2755%27+AND+ADDR_SN%3D%27MARIETTA%27+AND+ADDR_SD%3D%27NW%27+AND+STATUS%3D%27Current%27&f=json&outSR=4326&returnGeometry=true&outFields=FID%2CPARCELID%2CZIPCODE&orderByFields=FID",
+          "retrieved_at": "2026-11-24T20:48:37+00:00",
+          "sha256": "15d36bb9491bdda27b0ac6256eea7766bf94b57325bfa7066f310f86d9d82b97"
+        },
+        "parcel": {
+          "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=ParcelID%3D%2714+007800110419%27&f=geojson&returnGeometry=true&outSR=4326&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres",
+          "retrieved_at": "2026-11-24T20:48:37+00:00",
+          "sha256": "0efa7b2094be6350adbbf7e692450428f59e67598e5c0f3fffb2d76690c48f5e"
+        },
+        "zones": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson",
+          "retrieved_at": "2026-11-24T20:48:55+00:00",
+          "sha256": "e92d3235ca333363faba064b56aad97bddd8f9b9a3de6ab38e8d1e0a14a36473"
+        },
+        "panels": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&f=geojson",
+          "retrieved_at": "2026-11-24T20:48:57+00:00",
+          "sha256": "c04a09f9164251fd97fb8ee32d31bde71bfef86772c088328fec6c4804992d4b"
+        },
+        "point_zone": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-84.39105900014447%2C33.75589000003015&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=false&f=json",
+          "retrieved_at": "2026-11-24T20:48:38+00:00",
+          "sha256": "bc222ec2d0b431af3ed324883fa37b714f8c70b6b0e5416e105afd221fb75558"
+        }
+      },
+      "scope": "Atlanta address records and the mapped Fulton County tax parcel. Neither the data center footprint nor its electrical equipment, access route or local drainage were assessed."
     }
   ]
 }

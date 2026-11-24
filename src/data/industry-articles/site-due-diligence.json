@@ -2575,10 +2575,10 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "Check FEMA flood zones by address for data centers",
-  "description": "Look up a data center address in FEMA’s flood maps. See two worked checks and learn how to verify the parcel, building pad, electrical yard and access route.",
+  "description": "Check FEMA flood zones at three data center addresses in Clifton, Northlake and Atlanta. See where the address point and tax parcel match and how to verify the site.",
   "date": "2026-11-20",
   "readMinutes": 7,
-  "intro": "To check a data center’s flood zone by address, search FEMA’s Flood Map Service Center and verify where the result lands. Then check the recorded parcel, building footprint, electrical yard and access road individually. We ran the address lookup for 100 Delawanna Avenue in Clifton and 501 Northwest Avenue in Northlake, and checked the recorded Clifton lot against FEMA’s flood polygons.",
+  "intro": "Start a data center flood check with FEMA’s map and confirm where the address point lands. At 55 Marietta Street NW in Atlanta, the city’s address point and the full mapped tax parcel fall in unshaded Zone X. At 501 Northwest Avenue in Northlake, the address point also falls in Zone X, but the nearby county parcels use other street numbers. Check the parcel, building, electrical yard and access road separately before making a site decision.",
   "takeaways": [
    "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
    "Keep the FEMA zone subtype, map panel, effective date and any applicable map revisions with the result.",
@@ -2588,15 +2588,17 @@
   "sections": [
    {
     "id": "address-check-examples",
-    "heading": "FEMA flood zones for two data center addresses",
+    "heading": "FEMA flood zones for three data center addresses",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We checked the effective National Flood Hazard Layer on November 24, 2026. The Census Geocoder uses street ranges. The tax lot comparison below used separately published New Jersey parcel geometry.",
+      "text": "We checked FEMA’s effective National Flood Hazard Layer on November 24, 2026. The Clifton and Northlake checks use Census street-range points. For Atlanta, we matched the city’s address records to the Fulton County tax parcel and checked both the point and the entire parcel.",
       "sourceIds": [
        "census-geocoder",
        "fema-nfhl",
-       "nj-parcel"
+       "nj-parcel",
+       "atlanta-address-records",
+       "fulton-55-marietta"
       ]
      },
      {
@@ -2615,8 +2617,13 @@
        ],
        [
         "501 Northwest Avenue, Northlake, IL (Aligned ORD-02)",
-        "Zone X, area of minimal flood hazard at the Census address-range point.",
-        "Point check only. Confirm the parcel and the facility and access geometries before relying on the result for the property."
+        "Zone X, area of minimal flood hazard at the Census address-range point. The download includes both FEMA map panel records returned at that point.",
+        "Point check only. Cook County returned nearby parcels addressed as 505 and 525 Northwest Avenue. Ask for the parcel ID and site plan for 501 before screening the property."
+       ],
+       [
+        "55 Marietta Street NW, Atlanta, GA",
+        "Zone X, area of minimal flood hazard at the city’s address point. The point is inside Fulton County parcel 14 007800110419.",
+        "The full mapped parcel is also unshaded Zone X, with 0% overlap with the mapped Special Flood Hazard Area. FEMA panel 13121C0244F took effect September 18, 2013."
        ]
       ],
       "rowSourceIds": [
@@ -2628,16 +2635,26 @@
        ],
        [
         "aligned-northlake",
-        "northlake-zone"
+        "northlake-zone",
+        "northlake-panels",
+        "cook-northlake-parcels"
+       ],
+       [
+        "55-marietta-operator",
+        "atlanta-address-records",
+        "fulton-55-marietta",
+        "atlanta-fema-overlap",
+        "atlanta-fema-panel"
        ]
       ]
      },
      {
       "type": "paragraph",
-      "text": "FEMA publishes no static base flood elevation in the two returned point features. Both are dated map lookups. Building elevations, stormwater performance and routes into the facilities require separate checks.",
+      "text": "The FEMA point results had no published static base flood elevation. These checks record what the effective map shows at the screened locations. Building elevations, local stormwater and routes into each facility require separate checks.",
       "sourceIds": [
        "clifton-zone",
-       "northlake-zone"
+       "northlake-zone",
+       "atlanta-fema-overlap"
       ]
      },
      {
@@ -2974,6 +2991,48 @@
     "publisher": "FEMA"
    },
    {
+    "id": "northlake-panels",
+    "title": "FEMA map panel index records at the Northlake address point",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "cook-northlake-parcels",
+    "title": "Cook County’s current parcel records in the window around 501 Northwest Avenue",
+    "url": "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=json&geometry=-87.9212%2C41.9128%2C-87.9172%2C41.9152&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PIN10%2CTAXYR%2Cstreet_address%2CCITYNAME&orderByFields=PIN10",
+    "publisher": "Cook County GIS"
+   },
+   {
+    "id": "55-marietta-operator",
+    "title": "55 Marietta data center operator and street address",
+    "url": "https://55mariettast.com/",
+    "publisher": "55 Marietta"
+   },
+   {
+    "id": "atlanta-address-records",
+    "title": "Current Atlanta address records for 55 Marietta Street NW and their common parcel ID",
+    "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/COA_Parcels_AddressPoints/FeatureServer/0/query?where=ADDRNUM%3D%2755%27+AND+ADDR_SN%3D%27MARIETTA%27+AND+ADDR_SD%3D%27NW%27+AND+STATUS%3D%27Current%27&f=json&outSR=4326&returnGeometry=true&outFields=FID%2CPARCELID%2CZIPCODE&orderByFields=FID",
+    "publisher": "City of Atlanta"
+   },
+   {
+    "id": "fulton-55-marietta",
+    "title": "Fulton County tax parcel 14 007800110419 at 55 Marietta Street NW",
+    "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=ParcelID%3D%2714+007800110419%27&f=geojson&returnGeometry=true&outSR=4326&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres",
+    "publisher": "Fulton County GIS"
+   },
+   {
+    "id": "atlanta-fema-overlap",
+    "title": "FEMA flood zone polygon query for the 55 Marietta Street NW parcel",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson",
+    "publisher": "FEMA"
+   },
+   {
+    "id": "atlanta-fema-panel",
+    "title": "FEMA map panel geometry query for the 55 Marietta Street NW parcel",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&f=geojson",
+    "publisher": "FEMA"
+   },
+   {
     "id": "fema-legend",
     "title": "Flood Insurance Rate Map Panel Technical Reference",
     "url": "https://www.fema.gov/sites/default/files/documents/fema_firm-panel-technical-reference_112024.pdf",
@@ -3000,10 +3059,10 @@
   ],
   "updatedDate": "2026-11-24",
   "dataset": {
-   "name": "FEMA flood zone checks for two public data center addresses",
-   "description": "Two Census address-range points checked against FEMA’s effective flood zones, with a Clifton assessor parcel, measured map overlap, FIRM panel references, exact requests and retrieval timestamps.",
+   "name": "FEMA flood zone checks for three public data center addresses",
+   "description": "FEMA checks for three address points and the matched tax parcels in Clifton and Atlanta. Includes measured flood zone overlap, nearby Northlake parcel records, map panel dates and exact source queries.",
    "datePublished": "2026-11-24",
-   "spatialCoverage": "Clifton, New Jersey, and Northlake, Illinois, United States",
+   "spatialCoverage": "Clifton, New Jersey, Northlake, Illinois, and Atlanta, Georgia, United States",
    "temporalCoverage": "2026-11-24",
    "sourceIds": [
     "census-geocoder",
@@ -3012,7 +3071,14 @@
     "clifton-zone",
     "clifton-panels",
     "aligned-northlake",
-    "northlake-zone"
+    "northlake-zone",
+    "northlake-panels",
+    "cook-northlake-parcels",
+    "55-marietta-operator",
+    "atlanta-address-records",
+    "fulton-55-marietta",
+    "atlanta-fema-overlap",
+    "atlanta-fema-panel"
    ]
   }
  },

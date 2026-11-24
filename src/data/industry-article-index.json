@@ -4762,17 +4762,17 @@
     "slug": "data-center-flood-zone-screening",
     "topic": "Data Centers",
     "title": "Check FEMA flood zones by address for data centers",
-    "summary": "Look up a data center address in FEMA’s flood maps. See two worked checks and learn how to verify the parcel, building pad, electrical yard and access route.",
+    "summary": "Check FEMA flood zones at three data center addresses in Clifton, Northlake and Atlanta. See where the address point and tax parcel match and how to verify the site.",
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
     "updatedDate": "2026-11-24",
     "image": "/blog/industry/data-center-flood-zone-screening.webp?v=39efb5b8",
     "dataset": {
-      "name": "FEMA flood zone checks for two public data center addresses",
-      "description": "Two Census address-range points checked against FEMA’s effective flood zones, with a Clifton assessor parcel, measured map overlap, FIRM panel references, exact requests and retrieval timestamps.",
+      "name": "FEMA flood zone checks for three public data center addresses",
+      "description": "FEMA checks for three address points and the matched tax parcels in Clifton and Atlanta. Includes measured flood zone overlap, nearby Northlake parcel records, map panel dates and exact source queries.",
       "datePublished": "2026-11-24",
-      "spatialCoverage": "Clifton, New Jersey, and Northlake, Illinois, United States",
+      "spatialCoverage": "Clifton, New Jersey, Northlake, Illinois, and Atlanta, Georgia, United States",
       "temporalCoverage": "2026-11-24",
       "sources": [
         "https://www.census.gov/programs-surveys/geography/technical-documentation/complete-technical-documentation/census-geocoder.html",
@@ -4781,7 +4781,14 @@
         "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true",
         "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-74.12790924%2C40.82900274%2C-74.12466311%2C40.83094627&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326",
         "https://aligneddc.com/chicago-data-centers/",
-        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json",
+        "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=json&geometry=-87.9212%2C41.9128%2C-87.9172%2C41.9152&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PIN10%2CTAXYR%2Cstreet_address%2CCITYNAME&orderByFields=PIN10",
+        "https://55mariettast.com/",
+        "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/COA_Parcels_AddressPoints/FeatureServer/0/query?where=ADDRNUM%3D%2755%27+AND+ADDR_SN%3D%27MARIETTA%27+AND+ADDR_SD%3D%27NW%27+AND+STATUS%3D%27Current%27&f=json&outSR=4326&returnGeometry=true&outFields=FID%2CPARCELID%2CZIPCODE&orderByFields=FID",
+        "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=ParcelID%3D%2714+007800110419%27&f=geojson&returnGeometry=true&outSR=4326&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&f=geojson"
       ],
       "sourceDetails": [
         {
@@ -4818,6 +4825,41 @@
           "title": "FEMA flood zone at the Northlake Census address point",
           "publisher": "FEMA",
           "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+        },
+        {
+          "title": "FEMA map panel index records at the Northlake address point",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=false&f=json"
+        },
+        {
+          "title": "Cook County’s current parcel records in the window around 501 Northwest Avenue",
+          "publisher": "Cook County GIS",
+          "url": "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=json&geometry=-87.9212%2C41.9128%2C-87.9172%2C41.9152&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=PIN10%2CTAXYR%2Cstreet_address%2CCITYNAME&orderByFields=PIN10"
+        },
+        {
+          "title": "55 Marietta data center operator and street address",
+          "publisher": "55 Marietta",
+          "url": "https://55mariettast.com/"
+        },
+        {
+          "title": "Current Atlanta address records for 55 Marietta Street NW and their common parcel ID",
+          "publisher": "City of Atlanta",
+          "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/COA_Parcels_AddressPoints/FeatureServer/0/query?where=ADDRNUM%3D%2755%27+AND+ADDR_SN%3D%27MARIETTA%27+AND+ADDR_SD%3D%27NW%27+AND+STATUS%3D%27Current%27&f=json&outSR=4326&returnGeometry=true&outFields=FID%2CPARCELID%2CZIPCODE&orderByFields=FID"
+        },
+        {
+          "title": "Fulton County tax parcel 14 007800110419 at 55 Marietta Street NW",
+          "publisher": "Fulton County GIS",
+          "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=ParcelID%3D%2714+007800110419%27&f=geojson&returnGeometry=true&outSR=4326&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres"
+        },
+        {
+          "title": "FEMA flood zone polygon query for the 55 Marietta Street NW parcel",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&f=geojson"
+        },
+        {
+          "title": "FEMA map panel geometry query for the 55 Marietta Street NW parcel",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-84.3915092967%2C33.7555222995%2C-84.3906116584%2C33.7562868712&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&f=geojson"
         }
       ],
       "downloads": [
