@@ -148,6 +148,7 @@ out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculator
 out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand, check on-site generation in an outage, and calculate battery runtime for a constant shortfall.')
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 out.push('- [Net effective rent calculator](https://invariant-ai.com/calculators/net-effective-rent.md), Compare commercial lease offers with annual increases, free months and build-out allowances.')
+out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calculators/battery-recharge-window.md), Check whether a grid-scale battery can recharge for a planned dispatch under import and export limits.')
 
 out.push('')
 out.push('## Earlier nuclear references')

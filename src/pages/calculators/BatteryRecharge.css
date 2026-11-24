@@ -1,0 +1,25 @@
+.battery-input-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 5px 12px;
+}
+
+.battery-input-heading h2 { margin-bottom: 4px; }
+.battery-input-heading button {
+  min-height: 44px;
+  color: var(--calc-accent);
+  font-size: 14px;
+  font-weight: 600;
+  text-underline-offset: 4px;
+}
+.battery-input-heading button:hover:not(:disabled) { text-decoration: underline; }
+
+.battery-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.battery-windows { margin-top: 24px; border-top: 1px solid var(--calc-rule); padding-top: 18px; }
+.battery-windows h3 { margin: 0 0 5px; font-size: 18px; font-weight: 600; }
+.battery-windows p { margin: 0; color: var(--calc-muted); font-size: 14px; }
+.battery-windows fieldset { min-width: 0; margin: 16px 0 0; border: 0; padding: 0; }
+.battery-windows legend { margin-bottom: 6px; font-size: 14px; font-weight: 600; }
+.battery-warning { margin: 12px 0 0; color: #ffcfaf; font-weight: 550; }

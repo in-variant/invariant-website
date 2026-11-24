@@ -3,6 +3,7 @@ import industryArticles from './industry-article-index.json'
 import { RESEARCH_DATASETS, type ResourceTopic } from './resources'
 import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE } from './dataCenterPowerSchedule'
 import { LEASE_RENT_DESCRIPTION, LEASE_RENT_PATH, LEASE_RENT_TITLE } from './leaseRent'
+import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_PATH, BATTERY_RECHARGE_TITLE } from './batteryRecharge'
 
 export type ResourceReference = {
   path: string
@@ -27,6 +28,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert IT load to facility MW and check whether a battery can cover a generator shortfall until replacement power is available.', topic: 'Data Centers', kind: 'Tool' },
   { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
   { path: LEASE_RENT_PATH, title: LEASE_RENT_TITLE, summary: LEASE_RENT_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool' },
+  { path: BATTERY_RECHARGE_PATH, title: BATTERY_RECHARGE_TITLE, summary: BATTERY_RECHARGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'BESS charging duration grid import headroom utility-scale interconnection' },
   ...industryArticles.map(article => ({
     path: `/blog/${article.slug}`,
     title: article.title,
