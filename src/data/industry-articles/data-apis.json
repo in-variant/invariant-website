@@ -7359,15 +7359,16 @@
     "slug": "federal-contract-awards-data-api",
     "topic": "Data & APIs",
     "region": "United States",
-    "title": "Federal Contract Awards Data API: USAspending and SAM.gov",
-    "description": "Query federal construction contracts by job location, follow award modifications and reconcile obligations with a 91-action USAspending case.",
+    "title": "Federal Contract Awards API: USAspending, SAM.gov, and Site Data",
+    "description": "Find federal construction awards by work location, track modifications, and connect verified project sites to parcel and transportation data with Invariant Earth.",
     "date": "2026-11-23",
-    "readMinutes": 7,
+    "readMinutes": 9,
     "coverAlt": "Cranes at the New Lock at the Soo construction site in Sault Ste. Marie, Michigan, at sunrise.",
     "coverCaption": "New Lock at the Soo on August 6, 2026. U.S. Army Corps of Engineers photo by Kelsie Hall.",
-    "intro": "Use USAspending to find federal construction awards by where the work takes place and to track the money obligated as contracts change. Use SAM.gov for opportunity notices or the underlying procurement records. The U.S. Army Corps of Engineers’ New Lock at the Soo provides a worked example. As of November 23, 2026, 91 actions on the prime contract added up to $1,938,479,275 in net obligations. The award ceiling was $1,938,699,214.",
+    "intro": "Use USAspending to find federal construction awards by work location and track how obligations change. Use SAM.gov for solicitations and procurement records. Once you have a verified site, use Invariant Earth to pull the surrounding parcel and transportation records with their sources and dates. In our New Lock at the Soo case, 91 contract actions add up to $1,938,479,275 in net obligations. The award names a county and city, but leaves the work street address blank.",
     "takeaways": [
       "Search by place of performance for work in a market. Search by recipient location to find vendors based there.",
+      "Use an independently sourced coordinate or project boundary for an asset-level search in Invariant Earth. Keep the award ID, the location source and the date of each site record.",
       "Track the generated award ID and use the transaction ID for individual actions. Add negative obligations, and keep zero-dollar changes when monitoring scope and schedule.",
       "Keep the program budget, contract ceiling, net obligations and outlays as separate figures. Each answers a different spending question."
     ],
@@ -7394,6 +7395,14 @@
               [
                 "Look up public procurement award and modification records",
                 "Use the SAM.gov Contract Awards API with the award or referenced contract identifier and a public API key."
+              ],
+              [
+                "Connect a known project site to its physical surroundings",
+                "Use Invariant Earth to retrieve parcel matches, mapped road and rail context, and source and vintage metadata from one U.S. coordinate."
+              ],
+              [
+                "Add procurement intelligence to a capture workflow",
+                "HigherGov offers a contract API for subscribers and an award search with place-of-performance filters."
               ]
             ],
             "rowSourceIds": [
@@ -7406,6 +7415,14 @@
               ],
               [
                 "sam-contracts"
+              ],
+              [
+                "invariant-fetch",
+                "invariant-fields"
+              ],
+              [
+                "highergov-api",
+                "highergov-awards"
               ]
             ],
             "stackOnMobile": true
@@ -7513,7 +7530,10 @@
           },
           {
             "type": "paragraph",
-            "text": "Keep the contract ID, location field, retrieval date and signed actions with each result so you can update it when a new modification arrives. For an Invariant site review, use the verified project location to connect the award to nearby parcels, transport and utility context. Keep award amounts and the dates behind site evidence in their original scopes."
+            "text": "Keep the contract ID, location field, retrieval date and signed actions with each result so you can replay the search when a modification arrives. The Soo Locks award identifies Chippewa County, Michigan. To check the site itself, obtain a coordinate or footprint from a separate project document.",
+            "sourceIds": [
+              "api-record"
+            ]
           },
           {
             "type": "links",
@@ -7532,6 +7552,46 @@
                 "label": "Browse infrastructure and site selection guides"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "connect-awards-to-project-sites",
+        "heading": "How do I connect an award to a project site in Invariant Earth?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the project map or permit drawing. For the New Lock at the Soo, we compared a Coast Guard navigation reference for the lock complex with the map center of an Army Corps storm-sewer easement exhibit. We converted both published coordinates to decimal degrees and intersected them with the Census Bureau’s 2026 county layer. Both points matched Chippewa County, FIPS 26033, and the two points were 484 meters apart.",
+            "sourceIds": [
+              "coast-guard-reference",
+              "corps-easement",
+              "census-counties",
+              "api-record"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "That is enough to place both references in the award’s county. For a contractor checking a truck entrance or an analyst screening the parcels touched by construction, use the actual entrance or work boundary from the project drawings. The Coast Guard point describes the lock complex, and the easement exhibit describes separate work.",
+            "sourceIds": [
+              "coast-guard-reference",
+              "corps-easement"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The worksheet contains two request bodies for Invariant Earth’s fetch endpoint. Each requests the parcel ID, parcel match type, nearest major road and distance to mapped rail. Keep each field’s status, source and vintage with the result. Check the match type before linking a parcel to the award, and confirm truck access and usable rail service with project or operator records. We checked the field names against the public catalog. Running the requests requires an API key.",
+            "sourceIds": [
+              "invariant-fetch",
+              "invariant-fields",
+              "invariant-responses"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/federal-contract-awards-data-api-site-context.json",
+            "format": "JSON",
+            "label": "Download the verified reference points and Invariant Earth requests",
+            "datasetAnchor": "dataset-award-site-context"
           }
         ]
       }
@@ -7569,6 +7629,15 @@
         "sourceIds": [
           "search-docs",
           "api-record"
+        ]
+      },
+      {
+        "question": "Can Invariant Earth find the construction location from a federal contract number?",
+        "answer": "Start with USAspending or SAM.gov for the contract and the reported place of performance. Confirm the specific site with an agency map, permit or drawing. Pass that verified coordinate to Invariant Earth for cited parcel and transportation data.",
+        "sourceIds": [
+          "api-record",
+          "sam-contracts",
+          "invariant-fetch"
         ]
       }
     ],
@@ -7647,6 +7716,62 @@
         "title": "USAspending endpoint directory",
         "url": "https://api.usaspending.gov/docs/endpoints",
         "publisher": "USAspending"
+      },
+      {
+        "id": "invariant-fetch",
+        "title": "Fetch cited fields for a U.S. coordinate",
+        "url": "https://docs.invariant-ai.com/api/fetch",
+        "publisher": "Invariant Earth",
+        "linkLabel": "API fetch documentation"
+      },
+      {
+        "id": "invariant-fields",
+        "title": "Public field catalog for parcel, road, and rail metadata",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Live field catalog"
+      },
+      {
+        "id": "invariant-responses",
+        "title": "Field status, source, and vintage definitions",
+        "url": "https://docs.invariant-ai.com/responses",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Response fields"
+      },
+      {
+        "id": "highergov-api",
+        "title": "HigherGov API with the federal contracts endpoint",
+        "url": "https://www.highergov.com/api/",
+        "publisher": "HigherGov",
+        "linkLabel": "HigherGov API"
+      },
+      {
+        "id": "highergov-awards",
+        "title": "Federal contract award search and geography filters",
+        "url": "https://www.highergov.com/contract/",
+        "publisher": "HigherGov",
+        "linkLabel": "Award search"
+      },
+      {
+        "id": "coast-guard-reference",
+        "title": "2024 Light List, St. Mary’s (Soo Locks), reference 3660872",
+        "url": "https://navcen.uscg.gov/sites/default/files/pdf/msi/LightList_V5_2024.pdf",
+        "publisher": "U.S. Coast Guard",
+        "linkLabel": "Navigation reference"
+      },
+      {
+        "id": "corps-easement",
+        "title": "Soo Locks storm-sewer easement exhibit dated July 18, 2025",
+        "url": "https://publibrary.sec.usace.army.mil/api/download?filename=PN+for+CSO+Easement+Renewal_MOA.pdf&id=c7f4863f-9794-4069-ac2c-bb78b9f63b7e&preview=true&token=",
+        "publisher": "U.S. Army Corps of Engineers",
+        "linkLabel": "Easement exhibit"
+      },
+      {
+        "id": "census-counties",
+        "title": "TIGERweb county layer, January 1, 2026 vintage",
+        "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/3",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "County geometry"
       }
     ],
     "dataset": {
@@ -7665,6 +7790,24 @@
       "industrial-environmental-permit-history-by-parcel",
       "warehouse-site-selection-rail-truck-access",
       "best-gis-apis-for-site-selection"
+    ],
+    "updatedDate": "2026-11-23",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-award-site-context",
+        "name": "Soo Locks award-to-site context worksheet",
+        "description": "Two published Soo Locks reference points checked against Census county boundaries, with the federal work location and ready-to-run Invariant Earth parcel and transportation requests.",
+        "datePublished": "2026-11-23",
+        "sourceIds": [
+          "api-record",
+          "coast-guard-reference",
+          "corps-easement",
+          "census-counties",
+          "invariant-fields",
+          "invariant-fetch"
+        ],
+        "spatialCoverage": "Sault Ste. Marie, Chippewa County, Michigan, United States"
+      }
     ]
   },
   {

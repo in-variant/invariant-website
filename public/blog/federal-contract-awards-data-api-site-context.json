@@ -1,0 +1,138 @@
+{
+  "name": "Soo Locks award-to-site context worksheet",
+  "checked_at": "2026-11-23",
+  "award": {
+    "award_id": "CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-",
+    "award_url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-/",
+    "work_location": {
+      "city": "Sault Ste. Marie",
+      "state": "MI",
+      "county_fips": "26033",
+      "street_address": null
+    },
+    "recipient_location": {
+      "city": "Westerville",
+      "state": "OH"
+    }
+  },
+  "county_geometry": {
+    "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/3",
+    "vintage": "2026-01-01",
+    "predicate": "intersects",
+    "point_crs": "EPSG:4326"
+  },
+  "point_separation": {
+    "distance_m": 484.3,
+    "method": "Haversine with mean Earth radius 6371008.8 m"
+  },
+  "references": [
+    {
+      "label": "U.S. Coast Guard Light List reference for St. Mary’s (Soo Locks)",
+      "source_record_id": "3660872",
+      "latitude_dms": "46°30′9.529″ N",
+      "longitude_dms": "84°20′56.314″ W",
+      "source_url": "https://navcen.uscg.gov/sites/default/files/pdf/msi/LightList_V5_2024.pdf",
+      "scope": "A reference point for the lock complex.",
+      "lat": 46.50264694,
+      "lng": -84.34897611,
+      "census_county_point_query": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/3/query?where=1%3D1&geometry=-84.34897611%2C46.50264694&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=GEOID%2CNAME%2CSTATE&returnGeometry=false&f=json",
+      "matched_counties": [
+        {
+          "GEOID": "26033",
+          "NAME": "Chippewa County",
+          "STATE": "26"
+        }
+      ],
+      "invariant_earth_request_body": {
+        "lat": 46.50264694,
+        "lng": -84.34897611,
+        "fields": [
+          "parcel_id",
+          "parcel_match_type",
+          "nearest_major_road_name",
+          "nearest_major_road_distance_m",
+          "nearest_rail_line_distance_m"
+        ]
+      }
+    },
+    {
+      "label": "U.S. Army Corps of Engineers storm-sewer easement exhibit map center",
+      "source_record_id": "DACW35-2-23-3001",
+      "latitude_dms": "46°30′4″ N",
+      "longitude_dms": "84°20′35″ W",
+      "source_url": "https://publibrary.sec.usace.army.mil/api/download?filename=PN+for+CSO+Easement+Renewal_MOA.pdf&id=c7f4863f-9794-4069-ac2c-bb78b9f63b7e&preview=true&token=",
+      "scope": "The center of the easement exhibit map. The easement is a separate record from the construction contract.",
+      "lat": 46.50111111,
+      "lng": -84.34305556,
+      "census_county_point_query": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/3/query?where=1%3D1&geometry=-84.34305556%2C46.50111111&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=GEOID%2CNAME%2CSTATE&returnGeometry=false&f=json",
+      "matched_counties": [
+        {
+          "GEOID": "26033",
+          "NAME": "Chippewa County",
+          "STATE": "26"
+        }
+      ],
+      "invariant_earth_request_body": {
+        "lat": 46.50111111,
+        "lng": -84.34305556,
+        "fields": [
+          "parcel_id",
+          "parcel_match_type",
+          "nearest_major_road_name",
+          "nearest_major_road_distance_m",
+          "nearest_rail_line_distance_m"
+        ]
+      }
+    }
+  ],
+  "invariant_earth": {
+    "method": "POST",
+    "url": "https://api.invariant-ai.com/v1/fetch",
+    "docs_url": "https://docs.invariant-ai.com/api/fetch",
+    "auth_header": "X-API-Key",
+    "field_catalog_url": "https://api.invariant-ai.com/v1/meta/fields",
+    "response_docs_url": "https://docs.invariant-ai.com/responses",
+    "response_metadata_to_retain": [
+      "status",
+      "source",
+      "source_url",
+      "dataset_vintage",
+      "fetched_at"
+    ],
+    "public_field_catalog_checked": true,
+    "authenticated_requests_run": false,
+    "field_definitions": {
+      "parcel_id": {
+        "layer": "parcels",
+        "unit": null,
+        "source": "REGRID",
+        "source_url": "https://regrid.com/api"
+      },
+      "parcel_match_type": {
+        "layer": "parcels",
+        "unit": null,
+        "source": "REGRID",
+        "source_url": "https://regrid.com/api"
+      },
+      "nearest_major_road_name": {
+        "layer": "built_environment",
+        "unit": null,
+        "source": "OVERTURE_TRANSPORTATION",
+        "source_url": "https://docs.overturemaps.org/guides/transportation/"
+      },
+      "nearest_major_road_distance_m": {
+        "layer": "built_environment",
+        "unit": "meters",
+        "source": "OVERTURE_TRANSPORTATION",
+        "source_url": "https://docs.overturemaps.org/guides/transportation/"
+      },
+      "nearest_rail_line_distance_m": {
+        "layer": "utilities",
+        "unit": "meters",
+        "source": "BTS_NTAD_RAIL",
+        "source_url": "https://doi.org/10.21949/1528950"
+      }
+    }
+  },
+  "interpretation": "Both official reference points match the award’s county. Use the awarding agency’s footprint, haul route or permit drawing for project-specific decisions."
+}
