@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
@@ -67,7 +67,10 @@ export default function Datasets() {
   const [searchReady, setSearchReady] = useState(false)
   const [query, setQuery] = useState('')
   const [format, setFormat] = useState('')
-  const [topic, setTopic] = useState('')
+  const { search, hash } = useLocation()
+  const navigate = useNavigate()
+  const params = new URLSearchParams(search)
+  const topic = datasetTopics.find(({ label }) => label === params.get('topic'))?.label ?? ''
   const searchInput = useRef<HTMLInputElement>(null)
   useEffect(() => setSearchReady(true), [])
   const terms = articleSearchWords(query)
@@ -77,9 +80,15 @@ export default function Datasets() {
     (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
   )
+  function selectTopic(value: string) {
+    if (value) params.set('topic', value)
+    else params.delete('topic')
+    navigate({ search: params.toString(), hash })
+  }
+
   const clearFilters = () => {
     setQuery('')
-    setTopic('')
+    if (params.has('topic')) selectTopic('')
     setFormat('')
     searchInput.current?.focus()
   }
@@ -143,7 +152,7 @@ export default function Datasets() {
           </label>
           <label>
             <span>Topic</span>
-            <select disabled={!searchReady} value={topic} onChange={event => setTopic(event.target.value)}>
+            <select disabled={!searchReady} value={topic} onChange={event => selectTopic(event.target.value)}>
               <option value="">All topics</option>
               {datasetTopics.map(({ label }) => <option key={label}>{label}</option>)}
             </select>

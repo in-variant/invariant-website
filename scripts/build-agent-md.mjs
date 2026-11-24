@@ -172,6 +172,11 @@ function coverageMd() {
       coverageTopics.some(({ fields }) => fields.some(name => !names.has(name)))) {
     throw new Error('Earth field coverage summary or highlighted fields do not match the snapshot')
   }
+  for (const { researchTopic } of coverageTopics) {
+    if (!Object.hasOwn(datasetCatalog.topics, researchTopic) || !datasetCatalog.topics[researchTopic].length) {
+      throw new Error(`Missing research samples for coverage topic: ${researchTopic}`)
+    }
+  }
   const { links } = product
   return [
     '# Invariant Earth API data coverage', '',
@@ -183,10 +188,11 @@ function coverageMd() {
     `- [Download the dated field snapshot](${SITE}/data-coverage-fields.json).`,
     `- [Check response status and provenance](${links.responses}).`, '',
     '## Workflows and field examples', '',
-    ...coverageTopics.flatMap(({ title, description, fields, guide, guideLabel }) => [
+    ...coverageTopics.flatMap(({ title, description, fields, guide, guideLabel, researchTopic }) => [
       `### ${title}`, '', description, '',
       `Fields: ${fields.map(name => `\`${name}\``).join(', ')}.`, '',
-      `[${guideLabel}](${SITE}${guide})`, '',
+      `- [${guideLabel}](${SITE}${guide})`,
+      `- [View research samples](${SITE}/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search)`, '',
     ]),
   ].join('\n')
 }

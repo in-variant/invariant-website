@@ -145,14 +145,20 @@ export default function DataCoverage() {
       <section className="resource-container coverage-topics" aria-labelledby="coverage-workflows">
         <h2 id="coverage-workflows">Start with your workflow</h2>
         <div>
-          {topics.map(({ title, description, fields, guide, guideLabel }) => (
+          {topics.map(({ title, description, fields, guide, guideLabel, researchTopic }) => (
             <article key={title}>
               <h3>{title}</h3>
               <p>{description}</p>
               <ul>
                 {fields.map(name => <li key={name}><button type="button" disabled={!ready} onClick={() => searchFor(name)}><code>{name}</code></button></li>)}
               </ul>
-              <Link to={guide}>{guideLabel} <ResourceArrow diagonal /></Link>
+              <div className="coverage-topic-links">
+                <Link to={guide}>{guideLabel} <ResourceArrow diagonal /></Link>
+                <Link to={`/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search`}
+                  aria-label={`View research samples for ${title.toLowerCase()}`}>
+                  View research samples <ResourceArrow diagonal />
+                </Link>
+              </div>
             </article>
           ))}
         </div>
