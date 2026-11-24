@@ -6100,6 +6100,10 @@
         "heading": "Which API should you use for commercial sale or lease comps?",
         "blocks": [
           {
+            "type": "paragraph",
+            "text": "Start with Invariant Earth to identify the asset, then compare the sources that cover the transaction and market you need. For an automated feed, confirm that your license includes API or bulk delivery and the right to retain the fields you need. A broker platform with spreadsheet exports can work for a manual appraisal review."
+          },
+          {
             "type": "table",
             "stackOnMobile": true,
             "columns": [
@@ -6124,6 +6128,11 @@
                 "Trial a market and building type you know. Check verified starting rent, free rent, tenant improvements, and the premises’ rentable area."
               ],
               [
+                "Review sales and leases in a broker platform",
+                "CoStar documents verified sales and lease comps for brokers. Crexi Intelligence documents sales and lease comps and offers spreadsheet exports to eligible subscribers.",
+                "Check three known deals in your submarket and confirm which fields you can export. Ask for API or bulk-feed terms when the workflow needs recurring delivery."
+              ],
+              [
                 "Trace public documents and federal leases",
                 "Use a local recorder such as NYC ACRIS, the GSA lease inventory, and SEC EDGAR filings when public companies disclose lease terms.",
                 "Retain the original reference, source date and amount definition. Review the missing or redacted terms before underwriting."
@@ -6139,6 +6148,12 @@
               ],
               [
                 "compstak"
+              ],
+              [
+                "costar-comps",
+                "costar-brokers",
+                "crexi-comps",
+                "crexi-export"
               ],
               [
                 "acris-master",
@@ -6347,6 +6362,16 @@
             "path": "/blog/commercial-real-estate-sales-lease-comps-apis.csv",
             "format": "CSV",
             "label": "Download the 186-month fixed-rent illustration"
+          },
+          {
+            "type": "links",
+            "label": "Compare your own lease terms",
+            "items": [
+              {
+                "path": "/calculators/net-effective-rent",
+                "label": "Use the net effective rent calculator"
+              }
+            ]
           }
         ]
       },
@@ -6583,6 +6608,34 @@
         "url": "https://maps.nyc.gov/tiles/",
         "publisher": "NYC Office of Technology and Innovation",
         "linkLabel": "NYC 2024 aerial imagery"
+      },
+      {
+        "id": "costar-comps",
+        "title": "CoStar Sales Comps product, records and verification",
+        "url": "https://www.costar.com/products/sales-comps",
+        "publisher": "CoStar",
+        "linkLabel": "CoStar sale comps"
+      },
+      {
+        "id": "costar-brokers",
+        "title": "CoStar commercial property and lease comparison for brokers",
+        "url": "https://www.costar.com/campaign/brokers",
+        "publisher": "CoStar",
+        "linkLabel": "CoStar broker platform"
+      },
+      {
+        "id": "crexi-comps",
+        "title": "Crexi Intelligence commercial property records, sales and lease comps",
+        "url": "https://www.crexi.com/intelligence/data",
+        "publisher": "Crexi",
+        "linkLabel": "Crexi Intelligence"
+      },
+      {
+        "id": "crexi-export",
+        "title": "Crexi Help Center, comp and property record export",
+        "url": "https://learn.crexi.com/how-to-export-comps-property-records-crexi-help-center",
+        "publisher": "Crexi",
+        "linkLabel": "Crexi export documentation"
       }
     ],
     "relatedSlugs": [
@@ -6605,7 +6658,8 @@
         "sec-8k",
         "sec-exhibit"
       ]
-    }
+    },
+    "updatedDate": "2026-11-24"
   },
   {
     "slug": "hospital-school-fire-service-area-data",
@@ -22144,6 +22198,16 @@
               {"slug": "best-gis-apis-for-site-selection", "label": "Compare GIS APIs for U.S. site selection"},
               {"slug": "historical-parcel-boundaries-api", "label": "Trace property records when parcel IDs change"},
               {"slug": "regrid-alternatives-parcel-data-apis", "label": "Distinguish a mapped parcel from an individual unit"}
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Compare lease offers for shortlisted locations",
+            "items": [
+              {
+                "path": "/calculators/net-effective-rent",
+                "label": "Compare rent after free months and build-out allowances"
+              }
             ]
           }
         ]

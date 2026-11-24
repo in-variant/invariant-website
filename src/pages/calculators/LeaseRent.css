@@ -1,0 +1,83 @@
+.lease-compare-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.lease-compare-heading button {
+  min-height: 44px;
+  padding-inline: 12px;
+  border: 1px solid var(--calc-rule);
+  border-radius: var(--inv-radius, 4px);
+  background: #fff;
+  color: var(--calc-ink);
+}
+.lease-compare-heading button:hover:not(:disabled) { background: #e9f2ee; }
+.lease-hint { color: var(--calc-muted); margin-bottom: 18px; }
+
+.lease-offers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.lease-offer {
+  min-inline-size: 0;
+  padding: clamp(14px, 2.5vw, 28px);
+  border: 1px solid var(--calc-rule);
+  border-radius: var(--inv-radius, 4px);
+  background: #fff;
+}
+.lease-offer legend { padding-inline: 6px; font-size: 17px; font-weight: 550; }
+.lease-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 12px;
+}
+.lease-fields label {
+  display: grid;
+  align-content: space-between;
+  gap: 5px;
+  color: var(--calc-muted);
+  font-size: 13px;
+}
+.lease-fields input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 7px 9px;
+  border: 1px solid var(--calc-rule);
+  border-radius: var(--inv-radius, 4px);
+  background: #fbfdfa;
+  color: var(--calc-ink);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.lease-calc :is(input, button):focus-visible { outline: 2px solid var(--calc-accent); outline-offset: 2px; }
+
+.lease-output {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: var(--inv-radius, 4px);
+  background: #eef5f1;
+}
+.lease-output dl { margin: 0; }
+.lease-output dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3px 12px;
+  padding-block: 10px;
+  border-top: 1px solid var(--calc-rule);
+}
+.lease-output dl > div:first-child { display: block; border: 0; padding-top: 0; }
+.lease-output dl > div:last-child { padding-bottom: 0; }
+.lease-output dt, .lease-output dd span { color: var(--calc-muted); font-size: 13px; }
+.lease-output dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.lease-output strong { font-size: clamp(26px, 3.4vw, 38px); font-weight: 550; letter-spacing: -.045em; }
+.lease-error { color: #733d25; }
+
+@media (max-width: 760px) {
+  .lease-offers { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}

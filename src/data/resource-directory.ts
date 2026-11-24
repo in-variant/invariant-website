@@ -2,6 +2,7 @@ import { PAGES } from './page-registry'
 import industryArticles from './industry-article-index.json'
 import { RESEARCH_DATASETS, type ResourceTopic } from './resources'
 import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE } from './dataCenterPowerSchedule'
+import { LEASE_RENT_DESCRIPTION, LEASE_RENT_PATH, LEASE_RENT_TITLE } from './leaseRent'
 
 export type ResourceReference = {
   path: string
@@ -25,6 +26,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/oil-gas-compliance', title: 'Oil-and-gas compliance: from permits to field records', summary: 'Understand U.S. onshore permitting, methane requirements and the evidence behind operating obligations.', topic: 'Oil & Gas', kind: 'Guide' },
   { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert IT load to facility MW and check whether a battery can cover a generator shortfall until replacement power is available.', topic: 'Data Centers', kind: 'Tool' },
   { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
+  { path: LEASE_RENT_PATH, title: LEASE_RENT_TITLE, summary: LEASE_RENT_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool' },
   ...industryArticles.map(article => ({
     path: `/blog/${article.slug}`,
     title: article.title,
