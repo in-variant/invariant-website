@@ -11183,7 +11183,7 @@
   "kind": "site-listing",
   "region": "Wisconsin, United States",
   "title": "Wisconsin data center sites for sale and what to check before you buy",
-  "description": "Screen Wisconsin data center sites and powered land. See an 80 MW marketed listing, the We Energies large-customer tariff, and public permit milestones.",
+  "description": "Compare Wisconsin powered land, the We Energies large-customer tariff, and Port Washington’s separate transmission and water dockets before shortlisting a site.",
   "date": "2026-11-09",
   "readMinutes": 6,
   "intro": "A Wisconsin property is marketed with 80 MW available at a reportedly built 150 MW substation and 130 acres described as ready for development. Start by asking how much service the utility can commit to a new customer at the meter and by what date. Then check how that first phase would expand, which rate would apply and whether the buildable acreage fits your site plan.",
@@ -11191,7 +11191,7 @@
    "The listing advertises 80 MW. The 150 MW figure describes the reported substation capacity. Ask for the current offer and a separate expansion schedule.",
    "A project with 80 MW of IT load and a PUE of 1.25 needs 100 MW at the meter in the worked example below.",
    "We Energies’ Very Large Customer rate uses the eligible customer’s aggregated forecast of new electric load. Verify the serving utility and rate before pricing a bid.",
-   "The public Port Washington record shows how water and sewer plans, construction stormwater and generator permits move through separate reviews."
+   "In Port Washington, track the revised power application, redundant water main and site permits as separate approvals."
   ],
   "sections": [
    {
@@ -11322,6 +11322,68 @@
      {
       "type": "paragraph",
       "text": "On a new site, give municipal service, land disturbance and generator approvals their own dates. Ask which permits or agreements would transfer to the buyer and what a changed layout, equipment plan or load ramp would put back into review."
+     }
+    ]
+   },
+   {
+    "id": "port-washington-utility-dockets",
+    "heading": "What do the Port Washington power and water filings show?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "At Vantage’s Lighthouse campus, the Wisconsin Public Service Commission tracks the regional transmission expansion and a redundant water main in separate cases. Its public list showed both current applications under review when checked November 24, 2026.",
+      "sourceIds": [
+       "psc-case-status"
+      ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Docket",
+       "What the record shows",
+       "What to verify for the site schedule"
+      ],
+      "rows": [
+       [
+        "137-CE-221 · Original transmission case",
+        "The September 10, 2026 order revoked the original application’s completeness determination.",
+        "Follow the revised application and its schedule."
+       ],
+       [
+        "137-CE-229 · Revised transmission case",
+        "The proposal includes lines to the proposed Decker substation and other network upgrades. ATC estimated $2.48 billion to $2.72 billion depending on route.",
+        "Ask which upgrade milestones the utility ties to each load phase and who bears each cost."
+       ],
+       [
+        "4780-CW-105 · Redundant water main",
+        "The city proposed about 4.2 miles of 16-inch main to provide a second supply connection. Its application estimated $11.4 million and completion in October 2027, subject to approval.",
+        "Confirm when the existing and redundant supplies can each serve the facility and which approvals govern fire flow."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "psc-ozaukee-closed"
+       ],
+       [
+        "psc-ozaukee-current",
+        "psc-case-status"
+       ],
+       [
+        "psc-port-water",
+        "psc-case-status"
+       ]
+      ],
+      "stackOnMobile": true
+     },
+     {
+      "type": "paragraph",
+      "text": "For a site comparison, keep the electrical service date, required network construction and redundant water availability as separate milestones. Ask the utility for a written service schedule for the proposed load and the city for the water service agreement. Use the application estimates to scope follow-up, and rely on the applicable agreements and orders for commitments."
+     },
+     {
+      "type": "download",
+      "path": "/blog/wisconsin-port-washington-power-water-dockets.csv",
+      "format": "CSV",
+      "label": "Download the three Port Washington docket records"
      }
     ]
    },
@@ -11656,6 +11718,14 @@
     "sourceIds": [
      "wepc-vlc"
     ]
+   },
+   {
+    "question": "Is the Port Washington data center transmission project approved?",
+    "answer": "The commission’s case list showed the revised Ozaukee County transmission application, docket 137-CE-229, under review on November 24, 2026. The September 10 order revoked the completeness determination for the earlier application, docket 137-CE-221. Follow the revised docket and request utility confirmation for the load and service date you need.",
+    "sourceIds": [
+     "psc-ozaukee-closed",
+     "psc-case-status"
+    ]
    }
   ],
   "sources": [
@@ -11676,6 +11746,30 @@
     "title": "Microsoft completes its first Mount Pleasant data center facility",
     "url": "https://news.microsoft.com/source/2026/06/23/microsoft-completes-construction-on-first-datacenter-facility-in-mount-pleasant-wisconsin/",
     "publisher": "Microsoft"
+   },
+   {
+    "id": "psc-ozaukee-closed",
+    "title": "Ozaukee transmission docket 137-CE-221 and September 10 final order",
+    "url": "https://psc.wi.gov/Pages/CommissionActions/CasePages/OzaukeeTransmission.aspx",
+    "publisher": "Public Service Commission of Wisconsin"
+   },
+   {
+    "id": "psc-ozaukee-current",
+    "title": "Revised Ozaukee transmission application, docket 137-CE-229",
+    "url": "https://psc.wi.gov/Pages/CommissionActions/CasePages/OzaukeeDIP.aspx",
+    "publisher": "Public Service Commission of Wisconsin"
+   },
+   {
+    "id": "psc-port-water",
+    "title": "Port Washington redundant water main application, docket 4780-CW-105",
+    "url": "https://psc.wi.gov/Pages/CommissionActions/CasePages/PortWashington.aspx",
+    "publisher": "Public Service Commission of Wisconsin"
+   },
+   {
+    "id": "psc-case-status",
+    "title": "Highlighted construction cases and review status",
+    "url": "https://psc.wi.gov/Pages/CommissionActions/HighlightedCases.aspx",
+    "publisher": "Public Service Commission of Wisconsin"
    }
   ],
   "relatedSlugs": [
@@ -11684,7 +11778,20 @@
    "data-center-water-stormwater-permits",
    "find-data-center-site-us"
   ],
-  "updatedDate": "2026-11-22"
+  "updatedDate": "2026-11-24",
+  "dataset": {
+   "name": "Port Washington data center transmission and water dockets",
+   "description": "Three Wisconsin Public Service Commission records showing the closed and revised Ozaukee transmission dockets and a separate redundant water-main application, with applicant cost estimates and status checked November 24, 2026.",
+   "datePublished": "2026-11-24",
+   "spatialCoverage": "Port Washington and surrounding counties, Wisconsin, United States",
+   "temporalCoverage": "2025-09/2026-11-24",
+   "sourceIds": [
+    "psc-ozaukee-closed",
+    "psc-ozaukee-current",
+    "psc-port-water",
+    "psc-case-status"
+   ]
+  }
  },
  {
   "slug": "data-center-sites-for-sale-kentucky",
