@@ -22,6 +22,7 @@ SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 ATOM_NS = "{http://www.w3.org/2005/Atom}"
 FEED_PATH = "/feed.xml"
 DATASET_INDEX_PATH = "/datasets.json"
+DATASET_CITATIONS_PATH = "/datasets.csl.json"
 SAMPLE = (
     "/", "/blog", "/resources", "/datasets",
     "/blog/data-center-site-selection-checklist",
@@ -224,7 +225,7 @@ def verify(origin, job, expected_urls, preview, crawler=None):
             require(body == expected, "Atom feed differs from dist/")
         elif kind == "dataset-index":
             require_success(status, headers, "application/json")
-            require(body == expected and header_noindex, "dataset index differs from dist/ or is missing noindex")
+            require(body == expected and header_noindex, "dataset metadata differs from dist/ or is missing noindex")
         elif kind == "asset":
             require_success(status, headers, None)
             mime = headers.get_content_type()
@@ -319,6 +320,19 @@ def verify_dataset_catalog(catalog, pages):
     records = {entry["url"]: entry for entry in manifest["datasets"]}
     require(len(records) == len(manifest["datasets"]) and records.keys() == expected_names.keys(),
             "JSON dataset index differs from the HTML listing")
+    citation_entries = json.loads((DIST / DATASET_CITATIONS_PATH.lstrip("/")).read_bytes())
+    citations = {entry["id"]: entry for entry in citation_entries}
+    require(DATASET_CITATIONS_PATH in catalog.downloads and f"]({CANONICAL}{DATASET_CITATIONS_PATH})" in markdown,
+            "dataset catalogs need direct downloads for the citation library")
+    require(len(citations) == len(citation_entries) and citations.keys() == records.keys(),
+            "citation library must contain each dataset exactly once")
+    for url, record in records.items():
+        entry = citations[url]
+        published = record.get("datePublished", record["guide"]["published"])
+        require(entry["URL"] == url and entry["title"] == record["name"] and entry["type"] == "dataset"
+                and entry["author"] == [{"literal": "Invariant"}]
+                and entry["issued"]["date-parts"] == [[int(part) for part in published.split("-")]],
+                f"{url} has inconsistent citation metadata")
     for path, page in pages.items():
         if not path.startswith("/blog/"):
             continue
@@ -407,8 +421,9 @@ def build_jobs(expected_urls, full):
     feed = (DIST / FEED_PATH.lstrip("/")).read_bytes()
     verify_blog_feed(pages["/blog"], feed, expected_urls)
     jobs.append((FEED_PATH, "feed", feed))
-    jobs.append((DATASET_INDEX_PATH, "dataset-index", (DIST / DATASET_INDEX_PATH.lstrip("/")).read_bytes()))
-    downloads.discard(DATASET_INDEX_PATH)
+    for path in (DATASET_INDEX_PATH, DATASET_CITATIONS_PATH):
+        jobs.append((path, "dataset-index", (DIST / path.lstrip("/")).read_bytes()))
+        downloads.discard(path)
     if full:
         verify_discovery(pages)
     for path in sorted(alternate_files):

@@ -97,7 +97,10 @@ export default function Datasets() {
         </div>
         <div className="dataset-list-meta">
           <p role="status">{matches.length} {matches.length === 1 ? 'dataset' : 'datasets'}</p>
-          <a href="/datasets.json" download>Download catalog (JSON) <span aria-hidden="true">↓</span></a>
+          <div className="dataset-catalog-downloads">
+            <a href="/datasets.csl.json" download>Download citations (CSL JSON) <span aria-hidden="true">↓</span></a>
+            <a href="/datasets.json" download>Download catalog (JSON) <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
         {matches.length === 0 && (
           <div className="dataset-empty">

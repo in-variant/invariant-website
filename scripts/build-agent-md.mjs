@@ -4,6 +4,7 @@
 //   /glossary/<slug>.md   one markdown file per glossary entry
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
+//   /datasets.csl.json   dataset citations for reference managers
 //   /llms-full.txt        every industry article in full, due diligence and power studies first
 // Agents and LLM crawlers fetch these instead of parsing HTML. Each HTML page links its .md
 // with <link rel="alternate" type="text/markdown"> (scripts/prerender.mjs).
@@ -88,6 +89,7 @@ function datasetCatalogMd() {
     '# Invariant research datasets', '',
     `Catalog page: ${SITE}/datasets`, '',
     'Download the data and read how each dataset was compiled. The dataset notes link to the original sources.', '',
+    `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
   ]
   for (const { slug, dateTime, dataset, url } of datasetEntries) {
@@ -138,6 +140,15 @@ mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)
+const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({
+  id: url,
+  type: 'dataset',
+  title: dataset.name,
+  author: [{ literal: 'Invariant' }],
+  issued: { 'date-parts': [(dataset.datePublished ?? dateTime).split('-').map(Number)] },
+  URL: url,
+}))
+writeFileSync(join(DIST, 'datasets.csl.json'), `${JSON.stringify(datasetCitations, null, 2)}\n`)
 const full = ['# Invariant: data, site selection, power and compliance guides', '', '> Full text of Invariant’s data and API guides, data center site and power diligence articles, and industry compliance guides. Find topics at https://invariant-ai.com/llms.txt. Each included article has a Markdown copy at its URL plus `.md`.', '', CONTACT, '']
 for (const collection of blogCollections) {
   const md = [

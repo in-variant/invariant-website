@@ -5,12 +5,12 @@ export default function DatasetCitation({ name, datePublished, url }: { name: st
   const [message, setMessage] = useState('')
   const reference = `Invariant (${datePublished.slice(0, 4)}). ${name} [Data set].`
 
-  async function copy() {
+  async function copy(value: string, confirmation: string) {
     try {
-      await navigator.clipboard.writeText(`${reference} ${url}`)
-      setMessage('Citation copied')
+      await navigator.clipboard.writeText(value)
+      setMessage(confirmation)
     } catch {
-      setMessage('Select the citation text to copy it.')
+      setMessage('Select the citation or link above to copy it.')
     }
   }
 
@@ -20,7 +20,8 @@ export default function DatasetCitation({ name, datePublished, url }: { name: st
       <div className="dataset-citation-panel">
         <p>{reference} <a href={url}>{url}</a></p>
         <div className="dataset-citation-actions">
-          <button type="button" onClick={copy}>Copy citation</button>
+          <button type="button" onClick={() => copy(`${reference} ${url}`, 'Citation copied')}>Copy citation</button>
+          <button type="button" onClick={() => copy(url, 'Dataset link copied')}>Copy dataset link</button>
           <span role="status">{message}</span>
         </div>
       </div>
