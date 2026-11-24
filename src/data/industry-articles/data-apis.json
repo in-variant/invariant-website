@@ -16756,7 +16756,7 @@
     "readMinutes": 10,
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
-    "intro": "Use Invariant Earth to screen U.S. sites across parcels, terrain, hazards and infrastructure with sources for each field. Evaluate Regrid for parcel identity, West Kite for commercial property records, Esri for mapping and routing, and Mireye for location screening. For a large electrical load, compare project-level studies from Invariant with products such as Geoforge or Paces. Check whether the output identifies a plausible connection and what would have to change before it can serve the site.",
+    "intro": "Use Invariant Earth to screen known U.S. sites across parcels, terrain, hazards and infrastructure with sources for each field. When the search starts with a drawn area, identify which parcel boundaries intersect it, then screen the matches. The examples below show what changes when you query a point, a parcel or a building. For a large electrical load, use a project study to find which connection options warrant review by the utility.",
     "takeaways": [
       "Test the exact counties and fields where you plan to operate. A national map can still have uneven coverage for permits, zoning, or owner data.",
       "A site pin, a tax lot, and a proposed building can return different hazard results. Ask which geometry an API evaluated.",
@@ -16769,24 +16769,42 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Invariant makes Invariant Earth. The comparison below uses public product documentation reviewed on November 22, 2026. The Brooklyn example is our own calculation from city and federal data. We did not run an authenticated comparison of all providers, so the table describes documented capabilities and what to verify."
+            "text": "Invariant makes Invariant Earth. We reviewed public product documentation on November 22 and 24, 2026. The San Francisco and Brooklyn checks use city and federal records. The comparison describes documented capabilities and checks to run in a vendor trial."
           },
           {
             "type": "table",
             "stackOnMobile": true,
             "columns": ["Provider", "Good starting point for", "What to verify"],
             "rows": [
+              ["Invariant Earth", "Screening known sites with parcel, terrain, hazard and infrastructure fields, with source links, vintages and status.", "Run the same inputs through Fetch and Enrich. Check the parcel match near a boundary and retain the source and date for each field."],
               ["Esri ArcGIS Location Platform", "Geocoding, basemaps, routing, and publishing spatial layers.", "Check how geocodes resolve on large campuses. Confirm that the plan supports storing geocodes and serving your own data layers."],
-              ["Regrid", "Parcel boundaries and identifiers, APN lookups, and bulk property enrichment.", "Test a recent parcel split, then check county refresh dates and coverage for zoning, building footprints, and matched addresses."],
+              ["Regrid", "Parcel boundaries, APN lookups and searches by GeoJSON geometry.", "Test a recent split and a narrow polygon that crosses parcel boundaries. Check county refresh dates for the fields you need."],
+              ["GetParcelData", "Parcel searches by point, radius or WKT polygon.", "Check whether partial overlaps qualify and whether pagination returns every match. Confirm data vintage for the counties in scope."],
+              ["Parceled", "Parcel lookups, hosted parcel tiles and linked assessor, permit and zoning fields.", "Check parcel and permit coverage separately for each county. Test a parcel whose permit history you can verify."],
               ["West Kite", "Commercial property research across owners, deeds, assessments, permits, and site context.", "Start with its county-level coverage. Test whether the deed, permit, or mortgage that matters to your team is available for the exact property."],
               ["Mireye", "Location enrichment and screening with source information across land, hazards, and infrastructure.", "Ask for the source, spatial method, and missing-value behavior for the same point and parcel. Check which tools accept a polygon."],
-              ["Invariant Earth", "Combining location and parcel fields with source links, dataset vintages, and field-level status.", "Fetch fields for a known coordinate. Check how matching works near parcel boundaries and whether each field supports the time period you need."],
               ["Geoforge", "Shareable power screening reports with modeled load and generation headroom, queue context, and planned upgrades.", "Check the study year, load direction, and assumptions for each candidate connection. Ask how you can export the data behind the report."],
               ["Paces", "Finding and screening data center sites with power and development constraints in one workflow.", "Ask for a shortlist using your phased load and service dates. Verify how the workflow handles utility feedback, site control, and evidence for each milestone."],
               ["PVcase Prospect", "Map-based site screening, with withdrawal capacity studies for data center loads.", "Check which connection, load case, and study year the capacity layer represents. Verify the site and power questions that still need utility evidence."],
               ["Ageospatial", "Property and infrastructure intelligence for insurance and credit workflows.", "Give it a schedule with multiple buildings at one address. Inspect the evidence behind the building match and risk inputs."]
             ],
-            "rowSourceIds": [["esri"], ["regrid", "regrid-id"], ["west-kite"], ["mireye"], ["invariant-fields", "invariant-responses"], ["geoforge"], ["paces"], ["pvcase"], ["ageospatial"]]
+            "rowSourceIds": [["invariant-fields", "invariant-responses"], ["esri"], ["regrid", "regrid-id"], ["getparceldata"], ["parceled"], ["west-kite"], ["mireye"], ["geoforge"], ["paces"], ["pvcase"], ["ageospatial"]]
+          }
+        ]
+      },
+      {
+        "id": "find-parcels-intersecting-a-polygon",
+        "heading": "Find parcels that intersect a drawn area",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Our Civic Center test in San Francisco used a narrow rectangle to find parcels along Larkin Street. It intersected city lots 0353001 and 0354001, even though neither lot’s centroid fell inside the rectangle. Run the same geometry against an area-search API and check which parcels it returns, whether it includes edge touches and how it pages the result. Preserve the parcel numbers as text so both leading zeros survive.",
+            "sourceIds": ["sf-polygon-layer", "invariant-polygon-workflow"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Once you have the full parcel list, verify an interior point for each candidate. Use Earth to check the parcel match and enrich the selected sites with fields such as slope and flood classification. Save the area search and enrichment responses separately so you can trace which record supports each result.",
+            "sourceIds": ["invariant-polygon-workflow"]
           }
         ]
       },
@@ -16949,6 +16967,10 @@
       {"id": "esri", "title": "ArcGIS Location Platform services", "url": "https://developers.arcgis.com/products/arcgis-location-platform/", "publisher": "Esri"},
       {"id": "regrid", "title": "Parcel API endpoint overview", "url": "https://support.regrid.com/docs/api-endpoint-overview", "publisher": "Regrid"},
       {"id": "regrid-id", "title": "How the Regrid parcel ID is maintained", "url": "https://support.regrid.com/docs/regrid-id", "publisher": "Regrid ID policy"},
+      {"id": "getparceldata", "title": "Parcel search by APN, point, radius and polygon", "url": "https://getparceldata.com/api", "publisher": "GetParcelData"},
+      {"id": "parceled", "title": "Property datasets and documented API access", "url": "https://www.parceled.ai/data", "publisher": "Parceled"},
+      {"id": "sf-polygon-layer", "title": "Active city parcels used in the Civic Center test", "url": "https://data.sf.gov/d/acdm-wktn", "publisher": "DataSF"},
+      {"id": "invariant-polygon-workflow", "title": "Find parcels intersecting a polygon", "url": "https://docs.invariant-ai.com/find-parcels-intersecting-a-polygon", "publisher": "Invariant Earth", "linkLabel": "Run the San Francisco polygon test"},
       {"id": "west-kite", "title": "Commercial property data sources and coverage", "url": "https://www.westkite.com/docs/data", "publisher": "West Kite"},
       {"id": "mireye", "title": "Mireye API introduction", "url": "https://docs.mireye.ai/introduction", "publisher": "Mireye"},
       {"id": "invariant-fields", "title": "Public API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth catalog"},
