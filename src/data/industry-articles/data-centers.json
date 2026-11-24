@@ -279,7 +279,7 @@
     "slug": "data-center-backup-generator-air-permits",
     "topic": "Data Centers",
     "title": "Data Center Backup Generator Air Permits and Run-Hour Limits",
-    "description": "See which air permits and run-hour limits apply to data center backup generators. Read issued Virginia and Texas permits and download their permit records.",
+    "description": "Check air permits and run-hour limits for data center backup generators. See issued Virginia and Texas permits and how PJM emergency orders affect operating records.",
     "date": "2026-09-15",
     "readMinutes": 11,
     "intro": "Before installing backup generators at a U.S. data center, identify the state or local construction authorization, check whether the site needs a Title V operating permit, and determine which federal standards apply to each engine. To figure out how long a generator can run, start with the reason for the run. Check the federal rules for that use and the site permit’s limits for the engine and any group it belongs to.",
@@ -550,6 +550,37 @@
         ]
       },
       {
+        "id": "pjm-emergency-dispatch",
+        "heading": "When can PJM call data center backup generators during a grid emergency?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Two 2026 Department of Energy orders under Federal Power Act section 202(c) let PJM direct eligible backup resources to run as a last resort before or during an Energy Emergency Alert Level 3. Each order set its own dates and conditions. To classify a site run, match the actual dispatch instruction and engine IDs to the applicable order.",
+            "sourceIds": ["doe-pjm-may-backup", "doe-pjm-october-backup"]
+          },
+          {
+            "type": "table",
+            "columns": ["DOE order", "Effective period", "PJM’s reporting obligation"],
+            "rows": [
+              ["202-26-23", "May 18–20, 2026", "Notify DOE within one day after directing backup resources to run and list the resources directed."],
+              ["202-26-50", "October 13–16, 2026", "Notify DOE daily of the designated resources that operated under the order’s allowances."]
+            ],
+            "rowSourceIds": [["doe-pjm-may-backup"], ["doe-pjm-october-backup"]],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "EPA treats qualifying emergency-engine runs under the spring and summer 2026 orders as emergency operation under the cited federal engine rules. Those runs are outside the 50-hour federal non-emergency allowance for engines that have one. Review rolling permit limits separately. The October PJM order addressed applicable rolling-average limits for covered operation and carried its own monitoring and reporting terms.",
+            "sourceIds": ["epa-data-center-air", "doe-pjm-october-backup"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the order number and version, the utility or PJM instruction, the engine IDs and the time-stamped run log together. Record which permit counters apply, the basis for any exclusion and the record sent for reporting. Use a separate review for commercial demand response or routine bridge power.",
+            "sourceIds": ["doe-pjm-may-backup", "doe-pjm-october-backup", "backup-faq"]
+          }
+        ]
+      },
+      {
         "id": "state-and-local",
         "heading": "State requirements can change the equipment you buy",
         "blocks": [
@@ -656,6 +687,11 @@
           "federal-ci-operation",
           "epa-data-center-air"
         ]
+      },
+      {
+        "question": "Do grid emergency runs count toward the 50-hour federal non-emergency allowance?",
+        "answer": "EPA classified qualifying runs under the spring and summer 2026 DOE section 202(c) orders as emergency operation for covered engines. Those hours are outside the federal non-emergency allowance. Check the applicable order and site permit when accounting for each run, and keep the dispatch instruction with the engine logs.",
+        "sourceIds": ["epa-data-center-air", "doe-pjm-may-backup"]
       },
       {
         "question": "Can backup generators earn demand-response revenue?",
@@ -805,6 +841,18 @@
         "url": "https://www.epa.gov/stationary-sources-air-pollution/clean-air-act-resources-data-centers",
         "publisher": "U.S. Environmental Protection Agency",
         "linkLabel": "EPA data center air permitting resources"
+      },
+      {
+        "id": "doe-pjm-may-backup",
+        "publisher": "U.S. Department of Energy",
+        "title": "PJM emergency Order 202-26-23, May 18, 2026, paragraphs A–J",
+        "url": "https://www.energy.gov/documents/doe-emergency-order-no-202-26-23pdf"
+      },
+      {
+        "id": "doe-pjm-october-backup",
+        "publisher": "U.S. Department of Energy",
+        "title": "PJM emergency Order 202-26-50, October 12, 2026, pp. 6–8",
+        "url": "https://www.energy.gov/documents/doe-order-no-202-26-50"
       }
     ],
     "relatedSlugs": [
