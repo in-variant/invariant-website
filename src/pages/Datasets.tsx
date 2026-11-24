@@ -180,6 +180,7 @@ export default function Datasets() {
               </div>
               <details className="dataset-sources">
                 <summary>Source records ({dataset.sourceDetails.length})</summary>
+                {dataset.sourceReuse && <p className="dataset-reuse">{dataset.sourceReuse.note} <a href={dataset.sourceReuse.policyUrl}>{dataset.sourceReuse.policyLabel}</a></p>}
                 <ul>
                   {dataset.sourceDetails.map(source => (
                     <li key={`${source.url}:${source.title}`}>

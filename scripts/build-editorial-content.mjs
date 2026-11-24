@@ -122,6 +122,11 @@ for (const article of articles) {
         referencedSources.some(source => !source?.title?.trim() || !source.publisher?.trim())) {
       throw new Error(`Invalid dataset metadata: ${article.slug}`)
     }
+    const reuse = details.sourceReuse
+    if (reuse && (!reuse.note?.trim() || !reuse.policyLabel?.trim() ||
+        new URL(reuse.policyUrl).protocol !== 'https:')) {
+      throw new Error(`Invalid dataset source reuse note: ${article.slug}`)
+    }
     if (!downloads.length) throw new Error(`Missing dataset downloads: ${article.slug}`)
     for (const { path, format } of downloads) {
       if (registered.has(path) || !Object.hasOwn(dataFormats, format) || !path.endsWith(`.${dataFormats[format]}`)) {

@@ -195,6 +195,7 @@ export function datasetSchema(dataset: ResourceDataset, articleUrl: string, date
     includedInDataCatalog: DATA_CATALOG,
     isAccessibleForFree: true,
     isBasedOn: dataset.sources,
+    ...(dataset.sourceReuse && { usageInfo: `${url}-reuse` }),
     ...(dataset.spatialCoverage && { spatialCoverage: { '@type': 'Place', name: dataset.spatialCoverage } }),
     ...(dataset.temporalCoverage && { temporalCoverage: dataset.temporalCoverage }),
     distribution: dataset.downloads.map(file => ({

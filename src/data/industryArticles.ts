@@ -7,6 +7,7 @@ export type ArticleDataset = {
   sourceIds: string[]
   spatialCoverage?: string
   temporalCoverage?: string
+  sourceReuse?: { note: string; policyLabel: string; policyUrl: string }
 }
 export type DatasetDownload = { label: string; path: string; format: 'CSV' | 'GeoJSON' | 'JSON' }
 

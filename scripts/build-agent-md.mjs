@@ -45,6 +45,9 @@ const datasetEntries = articleIndex.flatMap(article => {
   }))
 })
 const primaryDatasets = new Map(datasetEntries.filter(entry => !entry.dataset.anchor).map(entry => [entry.slug, entry]))
+const sourceReuseByDownload = new Map(datasetEntries
+  .filter(({ dataset }) => dataset.sourceReuse)
+  .map(({ slug, dataset }) => [`${slug}:${dataset.downloads[0].path}`, dataset.sourceReuse]))
 const datasetTopics = new Map(datasetEntries.map(({ slug }) => [slug, []]))
 for (const [label, slugs] of Object.entries(datasetCatalog.topics)) {
   for (const slug of slugs) {
@@ -87,6 +90,8 @@ function articleMd(a) {
         out.push(`| ${b.columns.map(cell).join(' | ')} |`, `| ${b.columns.map(() => '---').join(' | ')} |`, ...rows, ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
       } else if (b.type === 'download') {
         out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
+        const reuse = sourceReuseByDownload.get(`${a.slug}:${b.path}`)
+        if (reuse) out.push(`${reuse.note} [${linkText(reuse.policyLabel)}](<${reuse.policyUrl}>)`, '')
         if (workflow && b.path === datasetDownload) {
           out.push(`[${workflow.label}](${workflow.url})`, '')
         }
@@ -205,6 +210,7 @@ function datasetCatalogMd() {
       `- Published: ${dataset.datePublished ?? dateTime}`,
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
       ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
+      ...(dataset.sourceReuse ? [`- ${dataset.sourceReuse.note} [${linkText(dataset.sourceReuse.policyLabel)}](<${dataset.sourceReuse.policyUrl}>)`] : []),
       ...dataset.downloads.map(file => `- [${file.label} (${file.format})](${SITE}${file.path})`),
       '', 'Source records', '',
       ...dataset.sourceDetails.map(({ publisher, title, url }) => `- ${publisher} · [${linkText(title)}](<${url}>)`),
