@@ -8223,6 +8223,15 @@
               "eia861",
               "ncdot-tims"
             ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "freight-analysis-framework-data",
+                "label": "Compare annual freight volumes before checking route disruptions"
+              }
+            ]
           }
         ]
       }
@@ -11400,15 +11409,16 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Freight Analysis Framework Data: FAF6 Downloads and Trade Flows",
-    "description": "Download FAF6 commodity flows and reproduce a Michigan case. Compare U.S. entry and destination tonnage with the separate BTS border crossings API.",
+    "description": "Download FAF6 freight data by state or metro area. Reproduce 2022 vehicle freight estimates for six Ohio destinations and compare them with border crossing counts.",
     "date": "2026-11-23",
-    "readMinutes": 6,
+    "readMinutes": 7,
     "coverAlt": "Freight trucks crossing the Ambassador Bridge with the Detroit skyline behind them.",
     "coverCaption": "Ambassador Bridge, August 26, 2022. U.S. Customs and Border Protection photo by Charles Csavossy.",
-    "intro": "Use the Freight Analysis Framework to compare estimated U.S. freight tonnage and value by origin, destination, mode and commodity. For the current FAF6 benchmark, start with the 2022 state or regional download. We used the state data to trace Canadian motorized vehicles and parts. An estimated 6.06 million tons entered the U.S. through Michigan, while about 3.67 million tons reached destinations in Michigan across all U.S. entry states.",
+    "intro": "Use the Freight Analysis Framework to compare estimated U.S. freight tonnage and value by origin, destination, mode and commodity. We used FAF6.0 to trace Canadian motorized vehicles and parts in 2022. An estimated 6.06 million tons entered the U.S. through Michigan. Of the roughly 419,265 tons that continued to Ohio, 52.4% went to two FAF regions around Cleveland and Columbus.",
     "takeaways": [
       "For imports, the domestic origin field means where the cargo enters the U.S. The domestic destination is where that U.S. movement ends.",
       "Use the BTS download or the tabulation tool for FAF estimates. Use the separate BTS Border Crossing Entry Data API if you need truck counts at a port.",
+      "Keep state remainder rows in the denominator when comparing how freight is distributed among metro areas.",
       "Record the FAF version, estimate year, trade type, mode and units. FAF6.0 covers the 2022 benchmark. The earlier FAF5 release contains its own annual estimates and forecasts."
     ],
     "sections": [
@@ -11488,6 +11498,68 @@
               "faf-state",
               "faf-guide"
             ]
+          }
+        ]
+      },
+      {
+        "id": "ohio-freight-destinations",
+        "heading": "Which Ohio markets received the most vehicle freight?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Cleveland–Akron–Canton freight region received an estimated 128,312 tons of Canadian vehicles and parts that entered through Michigan in 2022. The Columbus–Marion–Zanesville region followed at 91,465 tons. The rest-of-Ohio category also exceeded the Ohio portion of the Cincinnati region, so dropping the state remainder would hide a meaningful share of the flow.",
+            "sourceIds": [
+              "faf-regional",
+              "faf-zones"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Ohio destination",
+              "FAF6 code",
+              "Estimated tons",
+              "Share of Ohio total"
+            ],
+            "rows": [
+              ["Cleveland–Akron–Canton", "392", "128,312", "30.6%"],
+              ["Columbus–Marion–Zanesville", "393", "91,465", "21.8%"],
+              ["Remainder of Ohio", "399", "68,492", "16.3%"],
+              ["Cincinnati–Wilmington–Maysville, Ohio part", "391", "62,765", "15.0%"],
+              ["Dayton–Springfield–Kettering", "394", "38,697", "9.2%"],
+              ["Toledo–Findlay–Tiffin", "395", "29,533", "7.0%"]
+            ],
+            "stackOnMobile": true,
+            "sourceIds": [
+              "faf-regional",
+              "faf-zones"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In the FAF6 Data Tabulation Tool, select 2022 imports, Canada as the foreign origin, and commodity 36 for motorized and other vehicles including parts. Use regions as the level of geography. Select Michigan’s three U.S. entry regions and Ohio’s six domestic destination regions, including both state remainders. Keep all modes and report the weight by destination. The download includes the region codes, 30 matching regional rows and four matching state rows. The two files agree exactly before rounding, at about 419,265 tons and $1.532 billion in constant 2022 dollars.",
+            "sourceIds": [
+              "faf-dtt",
+              "faf-dtt-guide",
+              "faf-state",
+              "faf-regional",
+              "faf-zones"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the regional totals to decide which markets to investigate first. For a warehouse shortlist, verify routes to candidate gates, truck restrictions, rail service and customer locations separately. FAF estimates describe movement between regions and leave the exact crossing, route and facility unspecified.",
+            "sourceIds": [
+              "faf-guide",
+              "faf-faq"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/faf6-michigan-ohio-regional-flows.json",
+            "format": "JSON",
+            "label": "Download the regional freight rows, destination totals and state reconciliation",
+            "datasetAnchor": "dataset-regional-freight"
           }
         ]
       },
@@ -11574,6 +11646,34 @@
         "linkLabel": "State CSV archive"
       },
       {
+        "id": "faf-regional",
+        "title": "FAF6.0 regional 2022 CSV archive, FAF6.0.csv",
+        "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0.zip",
+        "publisher": "BTS and Oak Ridge National Laboratory",
+        "linkLabel": "Regional CSV archive"
+      },
+      {
+        "id": "faf-zones",
+        "title": "FAF6 zone IDs with 2022 Commodity Flow Survey area codes",
+        "url": "https://faf.ornl.gov/faf6/data/FAF6%20Zone%20ID%20with%202022%20CFS%20Area%20Code.xlsx",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "FAF6 region lookup"
+      },
+      {
+        "id": "faf-dtt",
+        "title": "FAF6 Data Tabulation Tool",
+        "url": "https://faf.ornl.gov/faf6/dtt_total.aspx",
+        "publisher": "BTS and Oak Ridge National Laboratory",
+        "linkLabel": "FAF6 Data Tabulation Tool"
+      },
+      {
+        "id": "faf-dtt-guide",
+        "title": "FAF6 Data Tabulation Tool guide, sections 2.3 and 3.3",
+        "url": "https://www.bts.gov/sites/bts.dot.gov/files/2026-10/FAF6-DTT-Getting-Started-Guide-2026_Report_20261026-1300.pdf",
+        "publisher": "Bureau of Transportation Statistics",
+        "linkLabel": "BTS import flow instructions"
+      },
+      {
         "id": "faf-guide",
         "title": "FAF6 User’s Guide and code tables",
         "url": "https://faf.ornl.gov/faf6/data/FAF6%20User%20Guide.pdf",
@@ -11628,6 +11728,23 @@
       "spatialCoverage": "Michigan and Ohio, United States",
       "temporalCoverage": "2022-01-01/2022-12-31"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-regional-freight",
+        "name": "FAF6 Canadian vehicle freight from Michigan entry regions to Ohio destinations",
+        "description": "Thirty 2022 FAF6.0 regional rows and four state rows for Canadian vehicles and parts entering through Michigan and ending in Ohio. Includes six destination totals, code lookups, exact filters and an unrounded state reconciliation.",
+        "datePublished": "2026-11-24",
+        "sourceIds": [
+          "faf-regional",
+          "faf-state",
+          "faf-zones",
+          "faf-guide"
+        ],
+        "spatialCoverage": "FAF regions in Michigan and Ohio, United States",
+        "temporalCoverage": "2022-01-01/2022-12-31"
+      }
+    ],
+    "updatedDate": "2026-11-24",
     "relatedSlugs": [
       "warehouse-site-selection-rail-truck-access",
       "federal-contract-awards-data-api",
@@ -11818,6 +11935,10 @@
             "type": "links",
             "label": "Related diligence workflows",
             "items": [
+              {
+                "slug": "freight-analysis-framework-data",
+                "label": "Compare commodity flows across markets served by freight infrastructure"
+              },
               {
                 "slug": "warehouse-site-selection-rail-truck-access",
                 "label": "Verify truck and rail routes for logistics sites"
@@ -21960,7 +22081,7 @@
             "type": "links",
             "label": "Related property and logistics guides",
             "items": [
-              {"slug": "freight-analysis-framework-data", "label": "Measure freight moving into and through a state"},
+              {"slug": "freight-analysis-framework-data", "label": "Compare freight tonnage across distribution markets"},
               {"slug": "site-selection-due-diligence", "label": "Use the site selection due diligence checklist"},
               {"slug": "manufacturing-site-selection-100-buildable-acres", "label": "Check industrial land, rail and utility connections"},
               {"slug": "truck-depot-charging-site-selection", "label": "Screen a truck depot for charging and utility service"},

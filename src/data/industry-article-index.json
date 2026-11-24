@@ -1878,10 +1878,11 @@
     "slug": "freight-analysis-framework-data",
     "topic": "Data & APIs",
     "title": "Freight Analysis Framework Data: FAF6 Downloads and Trade Flows",
-    "summary": "Download FAF6 commodity flows and reproduce a Michigan case. Compare U.S. entry and destination tonnage with the separate BTS border crossings API.",
+    "summary": "Download FAF6 freight data by state or metro area. Reproduce 2022 vehicle freight estimates for six Ohio destinations and compare them with border crossing counts.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/freight-analysis-framework-data.webp?v=858327e5",
     "dataset": {
       "name": "FAF6 Canada vehicle freight through Michigan and BTS border truck counts",
@@ -1929,7 +1930,52 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-regional-freight",
+        "name": "FAF6 Canadian vehicle freight from Michigan entry regions to Ohio destinations",
+        "description": "Thirty 2022 FAF6.0 regional rows and four state rows for Canadian vehicles and parts entering through Michigan and ending in Ohio. Includes six destination totals, code lookups, exact filters and an unrounded state reconciliation.",
+        "datePublished": "2026-11-24",
+        "spatialCoverage": "FAF regions in Michigan and Ohio, United States",
+        "temporalCoverage": "2022-01-01/2022-12-31",
+        "sources": [
+          "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0.zip",
+          "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip",
+          "https://faf.ornl.gov/faf6/data/FAF6%20Zone%20ID%20with%202022%20CFS%20Area%20Code.xlsx",
+          "https://faf.ornl.gov/faf6/data/FAF6%20User%20Guide.pdf"
+        ],
+        "sourceDetails": [
+          {
+            "title": "FAF6.0 regional 2022 CSV archive, FAF6.0.csv",
+            "publisher": "BTS and Oak Ridge National Laboratory",
+            "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0.zip"
+          },
+          {
+            "title": "FAF6.0 state-level 2022 CSV archive",
+            "publisher": "BTS and Oak Ridge National Laboratory",
+            "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip"
+          },
+          {
+            "title": "FAF6 zone IDs with 2022 Commodity Flow Survey area codes",
+            "publisher": "Bureau of Transportation Statistics",
+            "url": "https://faf.ornl.gov/faf6/data/FAF6%20Zone%20ID%20with%202022%20CFS%20Area%20Code.xlsx"
+          },
+          {
+            "title": "FAF6 User’s Guide and code tables",
+            "publisher": "Bureau of Transportation Statistics",
+            "url": "https://faf.ornl.gov/faf6/data/FAF6%20User%20Guide.pdf"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the regional freight rows, destination totals and state reconciliation",
+            "path": "/blog/faf6-michigan-ohio-regional-flows.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "federal-contract-awards-data-api",

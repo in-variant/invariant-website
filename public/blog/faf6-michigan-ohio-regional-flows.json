@@ -1,0 +1,598 @@
+{
+  "title": "FAF6.0 regional estimates for Canadian vehicle freight entering Michigan and ending in Ohio",
+  "publisher": "Invariant",
+  "benchmark_year": 2022,
+  "sources": {
+    "regional_archive": {
+      "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0.zip",
+      "sha256": "5322ca3ac1b1fd07d522bc00382a90c47261f80a3af52a4f6bcfbc7a6a503e29",
+      "csv_member": "FAF6.0.csv"
+    },
+    "state_archive": {
+      "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip",
+      "sha256": "50c6a8bb857b94998a634306234b805af6a114f7ce76ef0b02f34660d01a3e0d",
+      "csv_member": "FAF6.0_State.csv"
+    },
+    "zone_codes": {
+      "url": "https://faf.ornl.gov/faf6/data/FAF6%20Zone%20ID%20with%202022%20CFS%20Area%20Code.xlsx",
+      "sha256": "3a08b907a19ce6589c296376533caa1fe6485fc7417a563a86f11a362baa53b9"
+    },
+    "user_guide": {
+      "url": "https://faf.ornl.gov/faf6/data/FAF6%20User%20Guide.pdf"
+    }
+  },
+  "scope": {
+    "trade_type": {
+      "code": "2",
+      "label": "Import"
+    },
+    "fr_orig": {
+      "code": "801",
+      "label": "Canada"
+    },
+    "sctg2": {
+      "code": "36",
+      "label": "Motorized and other vehicles (including parts)"
+    },
+    "regional_filters": {
+      "dms_orig": [
+        "261",
+        "262",
+        "269"
+      ],
+      "dms_dest": [
+        "391",
+        "392",
+        "393",
+        "394",
+        "395",
+        "399"
+      ]
+    },
+    "state_filters": {
+      "dms_origst": "26",
+      "dms_destst": "39"
+    },
+    "mode_filters": "None. The source domestic and foreign mode fields are retained.",
+    "units": {
+      "tons_2022": "thousand tons",
+      "value_2022": "million constant 2022 US dollars"
+    },
+    "interpretation": "Regional flows are annual FAF model estimates. The domestic origin is the entry region for imports. Each destination is a FAF region or state remainder. The data does not specify a crossing, traveled route, shipment count, facility or customer."
+  },
+  "regions": {
+    "261": {
+      "short_name": "Detroit MI",
+      "cfs_area_name": "Detroit-Warren-Ann Arbor, MI CFS Area",
+      "cfs_area_code": "26-220"
+    },
+    "262": {
+      "short_name": "Grand Rapids MI",
+      "cfs_area_name": "Grand Rapids-Kentwood-Muskegon, MI CFS Area",
+      "cfs_area_code": "26-266"
+    },
+    "269": {
+      "short_name": "Rest of MI",
+      "cfs_area_name": "Remainder of Michigan",
+      "cfs_area_code": "26-99999"
+    },
+    "391": {
+      "short_name": "Cincinnati OH-KY-IN (OH Part)",
+      "cfs_area_name": "Cincinnati-Wilmington-Maysville, OH-KY-IN CFS Area (OH Part)",
+      "cfs_area_code": "39-178"
+    },
+    "392": {
+      "short_name": "Cleveland OH",
+      "cfs_area_name": "Cleveland-Akron-Canton, OH CFS Area",
+      "cfs_area_code": "39-184"
+    },
+    "393": {
+      "short_name": "Columbus OH",
+      "cfs_area_name": "Columbus-Marion-Zanesville, OH CFS Area",
+      "cfs_area_code": "39-198"
+    },
+    "394": {
+      "short_name": "Dayton OH",
+      "cfs_area_name": "Dayton-Springfield-Kettering, OH CFS Area",
+      "cfs_area_code": "39-212"
+    },
+    "395": {
+      "short_name": "Toledo OH",
+      "cfs_area_name": "Toledo-Findlay-Tiffin, OH CFS Area",
+      "cfs_area_code": "39-534"
+    },
+    "399": {
+      "short_name": "Rest of OH",
+      "cfs_area_name": "Remainder of Ohio",
+      "cfs_area_code": "39-99999"
+    }
+  },
+  "destination_totals": [
+    {
+      "dms_dest": "392",
+      "tons_2022": "128.312023"
+    },
+    {
+      "dms_dest": "393",
+      "tons_2022": "91.465205"
+    },
+    {
+      "dms_dest": "399",
+      "tons_2022": "68.492364"
+    },
+    {
+      "dms_dest": "391",
+      "tons_2022": "62.764968"
+    },
+    {
+      "dms_dest": "394",
+      "tons_2022": "38.697445"
+    },
+    {
+      "dms_dest": "395",
+      "tons_2022": "29.533373"
+    }
+  ],
+  "reconciliation": {
+    "regional_matching_rows": 30,
+    "state_matching_rows": 4,
+    "regional_totals": {
+      "tons_2022": "419.265378",
+      "value_2022": "1532.029994"
+    },
+    "state_totals": {
+      "tons_2022": "419.265378",
+      "value_2022": "1532.029994"
+    },
+    "regional_minus_state": {
+      "tons_2022": "0.000000",
+      "value_2022": "0.000000"
+    }
+  },
+  "regional_source_rows": [
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "391",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "59.550390",
+      "value_2022": "188.773341"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "391",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.000962",
+      "value_2022": "0.012046"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "391",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.007170",
+      "value_2022": "0.016113"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "391",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "3.203349",
+      "value_2022": "40.486144"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "269",
+      "dms_dest": "391",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.003097",
+      "value_2022": "0.060680"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "392",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "121.740382",
+      "value_2022": "385.914159"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "392",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.001966",
+      "value_2022": "0.024626"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "392",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.014657",
+      "value_2022": "0.032940"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "392",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "6.548687",
+      "value_2022": "82.766858"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "269",
+      "dms_dest": "392",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.006331",
+      "value_2022": "0.124050"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "393",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "86.780714",
+      "value_2022": "275.092832"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "393",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.001401",
+      "value_2022": "0.017554"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "393",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.010448",
+      "value_2022": "0.023481"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "393",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "4.668129",
+      "value_2022": "58.999052"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "269",
+      "dms_dest": "393",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.004513",
+      "value_2022": "0.088427"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "394",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "36.715512",
+      "value_2022": "116.387314"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "394",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.000593",
+      "value_2022": "0.007427"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "394",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.004421",
+      "value_2022": "0.009934"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "394",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "1.975010",
+      "value_2022": "24.961541"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "269",
+      "dms_dest": "394",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.001909",
+      "value_2022": "0.037412"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "395",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "28.020788",
+      "value_2022": "88.825241"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "395",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.000453",
+      "value_2022": "0.005668"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "395",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.003374",
+      "value_2022": "0.007582"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "395",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "1.507301",
+      "value_2022": "19.050315"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "269",
+      "dms_dest": "395",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.001457",
+      "value_2022": "0.028552"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "399",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "64.984453",
+      "value_2022": "205.999194"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "399",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.001049",
+      "value_2022": "0.013145"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "399",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.007824",
+      "value_2022": "0.017583"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "261",
+      "dms_dest": "399",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "3.495659",
+      "value_2022": "44.180566"
+    },
+    {
+      "fr_orig": "801",
+      "dms_orig": "269",
+      "dms_dest": "399",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.003379",
+      "value_2022": "0.066217"
+    }
+  ],
+  "state_source_rows": [
+    {
+      "fr_orig": "801",
+      "dms_origst": "26",
+      "dms_destst": "39",
+      "fr_dest": "",
+      "fr_inmode": "1",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "397.812925",
+      "value_2022": "1261.397419"
+    },
+    {
+      "fr_orig": "801",
+      "dms_origst": "26",
+      "dms_destst": "39",
+      "fr_dest": "",
+      "fr_inmode": "4",
+      "dms_mode": "1",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.006424",
+      "value_2022": "0.080466"
+    },
+    {
+      "fr_orig": "801",
+      "dms_origst": "26",
+      "dms_destst": "39",
+      "fr_dest": "",
+      "fr_inmode": "2",
+      "dms_mode": "2",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "0.047894",
+      "value_2022": "0.107633"
+    },
+    {
+      "fr_orig": "801",
+      "dms_origst": "26",
+      "dms_destst": "39",
+      "fr_dest": "",
+      "fr_inmode": "5",
+      "dms_mode": "5",
+      "fr_outmode": "",
+      "sctg2": "36",
+      "trade_type": "2",
+      "tons_2022": "21.398135",
+      "value_2022": "270.444476"
+    }
+  ]
+}
