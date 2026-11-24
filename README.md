@@ -34,6 +34,18 @@ python3 examples/earth-gis-trial.py gowanus --live
 
 The output keeps the reference observations and live responses in separate fields. Use [the response reference](https://docs.invariant-ai.com/responses) to interpret match type, missing fields, and source dates.
 
+## Replay a commercial mortgage recording cutoff
+
+The [commercial lending API guide](https://invariant-ai.com/blog/commercial-real-estate-data-apis-for-lenders#empire-state-building-recording-cutoff) uses three selected city recorder records at the Empire State Building. Replay the October 15 and October 22, 2013 snapshots and see which documents would appear early if you filtered by the date written on each instrument.
+
+```bash
+python3 examples/lending-recording-cutoff.py
+python3 examples/lending-recording-cutoff.py --as-of 2013-10-21
+python3 examples/lending-recording-cutoff.py --live
+```
+
+The first two commands use the bundled reference records and work offline. The optional live check reads NYC Open Data without a key and reports any fields that differ from the fixture. The example reconstructs the legal recording cutoff for those three instruments. Use vendor archives to check historical availability and the appropriate title and servicing records to verify priority and balances.
+
 ## Work on the website locally
 
 With Node.js 22 and npm installed:

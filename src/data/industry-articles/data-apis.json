@@ -14936,7 +14936,8 @@
     },
     "relatedSlugs": [
       "commercial-property-insurance-data-apis",
-      "fema-flood-zone-history-for-underwriting"
+      "fema-flood-zone-history-for-underwriting",
+      "commercial-real-estate-data-apis-for-lenders"
     ]
   },
   {
@@ -18701,9 +18702,9 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Commercial real estate data APIs for lenders",
-    "description": "Compare property data APIs for commercial lending. Use three recorded instruments from the Empire State Building to test a collateral file as of a credit decision.",
+    "description": "Compare commercial real estate data APIs and credit platforms. Replay three Empire State Building recorder records to test a collateral file as of a decision date.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "readMinutes": 8,
     "coverAlt": "Aerial view of Midtown Manhattan with the Empire State Building tax lot outlined in gold.",
     "coverCaption": "Empire State Building, Manhattan tax lot 1008350041. The outline uses NYC MapPLUTO 26v2 over 2024 New York State aerial imagery. The records below are from 2013.",
@@ -18716,7 +18717,7 @@
     "sections": [
       {
         "id": "compare-property-data-providers",
-        "heading": "Which property data API fits a lender’s workflow?",
+        "heading": "Which commercial property data provider fits a lender’s workflow?",
         "blocks": [
           {
             "type": "paragraph",
@@ -18731,6 +18732,11 @@
               "What to ask for in a trial"
             ],
             "rows": [
+              [
+                "Invariant Earth",
+                "Start with a sourced U.S. parcel match, owner fields, geometry, and mapped hazard context for your underwriting or portfolio system.",
+                "Use the public replay to test a dated recorder cutoff. Ask for parcel match method, field status and source vintage alongside the documents you join."
+              ],
               [
                 "West Kite",
                 "Commercial property research with recorded mortgages and securitized loan data. Its documentation lists recorded mortgages in New York City.",
@@ -18753,16 +18759,16 @@
               ],
               [
                 "Ageospatial",
-                "Property and infrastructure diligence marketed for credit teams.",
-                "Ask for the original source and observation date behind each finding. Check how the workflow exports a file and handles unresolved records."
-              ],
-              [
-                "Invariant Earth",
-                "Coordinate-based parcel and flood screening with field-level provenance and missing-data statuses.",
-                "Check the returned parcel identifier, match method, and source vintage. Join recorder documents separately and retain the exact evidence used in each decision."
+                "Markets a credit workflow for verifying the physical asset behind a loan, tracking changes during financing, and reviewing the portfolio.",
+                "Ask for a sample export showing the collateral identifier, the observation behind each change, the source date, and unresolved matches."
               ]
             ],
             "rowSourceIds": [
+              [
+                "invariant-fields",
+                "invariant-responses",
+                "cutoff-replay"
+              ],
               [
                 "west-kite"
               ],
@@ -18778,10 +18784,6 @@
               ],
               [
                 "ageospatial"
-              ],
-              [
-                "invariant-fields",
-                "invariant-responses"
               ]
             ]
           }
@@ -18857,6 +18859,15 @@
             "sourceIds": [
               "acris-legal",
               "acris-master"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Run the public Python replay with the bundled records, or use its live option to check the same parcel and instrument fields against NYC Open Data. The October 15 replay returns one of the three records. Using the document date would add two early. The output preserves the separately dated SEC disclosure so reviewers can see the earlier issuer record in its own context.",
+            "sourceIds": [
+              "cutoff-replay",
+              "sec-8k",
+              "sec-metadata"
             ]
           },
           {
@@ -19144,6 +19155,13 @@
         "title": "2024 New York State orthoimagery",
         "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
         "publisher": "NYS ITS Geospatial Services"
+      },
+      {
+        "id": "cutoff-replay",
+        "title": "Runnable Python example for the Empire State Building recorder cutoff",
+        "url": "https://github.com/in-variant/invariant-website/blob/main/examples/lending-recording-cutoff.py",
+        "publisher": "Invariant",
+        "linkLabel": "Run the public cutoff replay"
       }
     ],
     "relatedSlugs": [
