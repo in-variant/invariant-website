@@ -24,8 +24,9 @@ ATOM_NS = "{http://www.w3.org/2005/Atom}"
 FEED_PATH = "/feed.xml"
 DATASET_INDEX_PATH = "/datasets.json"
 DATASET_CITATIONS_PATH = "/datasets.csl.json"
+COVERAGE_FIELDS_PATH = "/data-coverage-fields.json"
 SAMPLE = (
-    "/", "/product", "/blog", "/resources", "/research", "/datasets",
+    "/", "/product", "/data-coverage", "/blog", "/resources", "/research", "/datasets",
     "/blog/data-center-site-selection-checklist",
     "/glossary/data-center-site-selection",
     "/calculators/nrc-license-timeline",
@@ -46,6 +47,7 @@ CRAWLER_SMOKE_PATHS = frozenset((
     "/blog/index.html", "/blog/data-center-site-selection-checklist/index.html",
     "/blog/data-center-site-selection-checklist.md", "/research", "/research.md",
     "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
+    "/data-coverage", "/data-coverage.md", COVERAGE_FIELDS_PATH,
 ))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
@@ -522,7 +524,7 @@ def build_jobs(sitemap, full):
     feed = (DIST / FEED_PATH.lstrip("/")).read_bytes()
     verify_blog_feed(pages["/blog"], feed, expected_urls)
     jobs.append((FEED_PATH, "feed", feed))
-    for path in (DATASET_INDEX_PATH, DATASET_CITATIONS_PATH):
+    for path in (DATASET_INDEX_PATH, DATASET_CITATIONS_PATH, COVERAGE_FIELDS_PATH):
         jobs.append((path, "dataset-index", (DIST / path.lstrip("/")).read_bytes()))
         downloads.discard(path)
     if full:

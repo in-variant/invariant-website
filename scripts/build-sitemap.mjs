@@ -25,6 +25,7 @@ const datasetLastmod = [datasetCatalog.updatedDate, ...datasetPublicationDates].
 const CORE = [
   { loc: '/', changefreq: 'weekly', priority: '1.0' },
   { loc: '/product', lastmod: product.updatedDate, changefreq: 'monthly', priority: '0.8' },
+  { loc: '/data-coverage', changefreq: 'monthly', priority: '0.8' },
   { loc: '/contact', changefreq: 'monthly', priority: '0.7' },
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', lastmod: blogLastmod, changefreq: 'weekly', priority: '0.8' },

@@ -117,7 +117,7 @@ export default function Product() {
           <p>{product.lede}</p>
           <div className="earth-product-actions">
             <a className="earth-product-button" href={links.keys}>Get an API key <ResourceArrow diagonal /></a>
-            <a className="earth-product-link" href={links.fields}>Browse API fields <ResourceArrow diagonal /></a>
+            <Link className="earth-product-link" to={links.coverage}>Check data coverage <ResourceArrow diagonal /></Link>
           </div>
           <AgentSetup />
         </div>
@@ -130,6 +130,7 @@ export default function Product() {
           <nav className="earth-product-workflows" aria-label="API walkthroughs">
             <a className="earth-product-link" href={links.parcelLookup}>Look up a parcel by address <ResourceArrow diagonal /></a>
             <a className="earth-product-link" href={links.quickstart}>Read the quickstart <ResourceArrow diagonal /></a>
+            <a className="earth-product-link" href={links.fields}>Field reference <ResourceArrow diagonal /></a>
           </nav>
         </div>
         <div className="earth-product-operations">

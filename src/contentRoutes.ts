@@ -17,6 +17,7 @@ export const contentRouteSources = {
   '/blog/seismic-design-shift': './pages/blog/SeismicDesignShift.tsx',
   '/pricing': './pages/Pricing.tsx',
   '/product': './pages/Product.tsx',
+  '/data-coverage': './pages/DataCoverage.tsx',
   '/probe': './pages/Probe.tsx',
   '/timeline': './pages/Timeline.tsx',
   '/space-compliance': './pages/SpaceCompliance.tsx',

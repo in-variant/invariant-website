@@ -32,6 +32,9 @@ const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-r
 const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
 const workflowGroups = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-workflows.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
+const coverage = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-summary.json'), 'utf8'))
+const coverageTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-topics.json'), 'utf8'))
+const coverageFields = JSON.parse(readFileSync(join(ROOT, 'public/data-coverage-fields.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
 const glossaryBySlug = new Map(glossary.map(entry => [entry.slug, entry]))
@@ -133,6 +136,7 @@ function productMd() {
     `- [Get an API key](${links.keys})`,
     `- [Quickstart](${links.quickstart})`,
     `- [Look up a parcel by address](${links.parcelLookup})`,
+    `- [Check API data coverage](${SITE}${links.coverage})`,
     `- [Browse API fields](${links.fields})`,
     `- [Live point fields](${links.pointFields}) and [live parcel fields and presets](${links.parcelFields})`, '',
     '## Choose what to query', '',
@@ -156,6 +160,34 @@ function productMd() {
     `- [Site due diligence](${SITE}${links.diligence})`,
     `- [Power-flow studies](${SITE}${links.power})`, '',
     `[Earlier regulatory workspace walkthrough](${SITE}/product#platform-demo)`, '',
+  ].join('\n')
+}
+
+function coverageMd() {
+  const names = new Set(coverageFields.map(field => field.name))
+  const shared = coverageFields.filter(({ definitions }) => definitions.point && definitions.parcel).length
+  if (names.size !== coverage.distinct || names.size !== coverageFields.length || shared !== coverage.shared ||
+      coverageFields.filter(({ definitions }) => definitions.point).length !== coverage.point ||
+      coverageFields.filter(({ definitions }) => definitions.parcel).length !== coverage.parcel ||
+      coverageTopics.some(({ fields }) => fields.some(name => !names.has(name)))) {
+    throw new Error('Earth field coverage summary or highlighted fields do not match the snapshot')
+  }
+  const { links } = product
+  return [
+    '# Invariant Earth API data coverage', '',
+    `[Search the coverage catalog](${SITE}${links.coverage}). Snapshot checked ${coverage.checkedDate}.`, '',
+    `The public manifests list ${coverage.distinct} distinct field names. ${coverage.point} are listed for point lookup and ${coverage.parcel} for parcel enrichment, with ${coverage.shared} names appearing in both.`, '',
+    'Check the definition for the operation you plan to call. A listed field can be unavailable at a given location.', '',
+    `- [Live point lookup manifest](${links.pointFields}) for \`POST /v1/fetch\`.`,
+    `- [Live parcel enrichment manifest](${links.parcelFields}) for \`POST /v1/enrich\`.`,
+    `- [Download the dated field snapshot](${SITE}/data-coverage-fields.json).`,
+    `- [Check response status and provenance](${links.responses}).`, '',
+    '## Workflows and field examples', '',
+    ...coverageTopics.flatMap(({ title, description, fields, guide, guideLabel }) => [
+      `### ${title}`, '', description, '',
+      `Fields: ${fields.map(name => `\`${name}\``).join(', ')}.`, '',
+      `[${guideLabel}](${SITE}${guide})`, '',
+    ]),
   ].join('\n')
 }
 
@@ -275,6 +307,7 @@ function datasetCatalogJson() {
 mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
 writeFileSync(join(DIST, 'product.md'), productMd())
+writeFileSync(join(DIST, 'data-coverage.md'), coverageMd())
 writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)

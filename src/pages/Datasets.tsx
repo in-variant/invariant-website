@@ -101,7 +101,7 @@ export default function Datasets() {
             <nav aria-label="Research library and API" className="resources-data-links">
               <Link className="dataset-api-button" to="/product">Explore the Earth API <ResourceArrow /></Link>
               <a className="dataset-method" href="#dataset-search">Browse samples</a>
-              <a className="dataset-method" href={earthLinks.fields}>Browse API fields <ResourceArrow diagonal /></a>
+              <Link className="dataset-method" to={earthLinks.coverage}>Check API data coverage <ResourceArrow diagonal /></Link>
             </nav>
           </div>
         </div>
