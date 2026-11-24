@@ -319,6 +319,340 @@
     }
   },
   {
+    "slug": "commercial-property-tax-abatement-by-address",
+    "topic": "Data & APIs",
+    "title": "How to verify a commercial property tax abatement by address",
+    "description": "Find the agreement, appraisal account and tax rates behind a commercial property tax abatement. Follow two Samsung equipment accounts in Taylor, Texas.",
+    "date": "2026-11-24",
+    "region": "United States",
+    "readMinutes": 7,
+    "coverAlt": "Aerial image of the early Samsung construction site next to farm fields and a road intersection in Taylor, Texas.",
+    "coverCaption": "Early site work at the Samsung Taylor campus in June 2022. Aerial imagery from USDA NAIP via USGS The National Map.",
+    "intro": "Start with the signed tax abatement agreement and its amendments. Then match the land, buildings and equipment to their appraisal accounts. For each account and tax year, check which taxing unit recognized the exemption and how much value it excluded. Those records let you estimate the levy reduction before you check the bill and any separate grant payments.",
+    "takeaways": [
+      "Retrieve each jurisdiction’s agreement and verify which property, tax years and conditions it covers.",
+      "Calculate the tax effect separately for each authority. In the two Samsung equipment accounts below, Taylor’s appraisal exemption was 92.5% of the reported value and Williamson County’s was 90%.",
+      "Keep the appraisal exemption, billed tax, cash reimbursements and potential recapture as separate amounts."
+    ],
+    "sections": [
+      {
+        "id": "find-the-agreement-and-appraisal-accounts",
+        "heading": "Which records prove an abatement applies to a property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use the address or parcel number to find the appraisal district’s accounts. Machinery and other business personal property may have separate accounts at the same address. Match the company, property description and taxing unit to the agreement. In Texas, start with the Comptroller’s local agreement database and Chapter 312 registry, then retrieve the signed agreement and amendments from the applicable authority.",
+            "sourceIds": [
+              "texas-abatement-registry",
+              "texas-abatement-reporting",
+              "wcad-workbook"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What to record"
+            ],
+            "rows": [
+              [
+                "Signed agreement and amendments",
+                "The taxing authority, effective dates, eligible property and value, rates by year, construction and employment conditions, cure period and recapture terms."
+              ],
+              [
+                "Appraisal roll or account detail",
+                "The tax year, real or business personal property account, appraised value, exemption amount and taxable value by authority."
+              ],
+              [
+                "Tax statement and collector history",
+                "Billed amounts, later adjustments and what was paid, with a date for each. Reconcile each authority to its own tax rate."
+              ],
+              [
+                "Grant or reimbursement records",
+                "The basis for the payment, performance conditions, payment date, and any limits or repayment terms."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "texas-abatement-reporting"
+              ],
+              [
+                "texas-abatement-process"
+              ],
+              [
+                "texas-abatement-process"
+              ],
+              [
+                "texas-abatement-registry"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "samsung-equipment-tax-roll",
+        "heading": "What did Taylor and Williamson County abate on two Samsung accounts?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At Samsung’s Taylor site, the city’s 2022 agreement and the county’s 2023 agreement apply separate Phase I percentages to qualifying new equipment. They also provide for separate equipment accounts and ten-year periods for qualifying annual renditions in Phase I. The 2025 county appraisal workbook shows two accounts at the same street address with first effective dates one year apart.",
+            "sourceIds": [
+              "taylor-original",
+              "williamson-agreement",
+              "wcad-workbook",
+              "wcad-account-one",
+              "wcad-account-two"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Equipment account",
+              "2025 taxing unit",
+              "Value abated",
+              "Rate per $100",
+              "Estimated levy reduction"
+            ],
+            "rows": [
+              [
+                "P511639, effective January 1, 2024",
+                "City of Taylor",
+                "$33,355,743 at 92.5%",
+                "$0.585",
+                "$195,131.10"
+              ],
+              [
+                "P511639, effective January 1, 2024",
+                "Williamson County",
+                "$32,454,237 at 90%",
+                "$0.369447",
+                "$119,901.20"
+              ],
+              [
+                "P515246, effective January 1, 2025",
+                "City of Taylor",
+                "$68,343,552 at 92.5%",
+                "$0.585",
+                "$399,809.78"
+              ],
+              [
+                "P515246, effective January 1, 2025",
+                "Williamson County",
+                "$66,496,429 at 90%",
+                "$0.369447",
+                "$245,669.06"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "wcad-account-one",
+                "wcad-workbook"
+              ],
+              [
+                "wcad-account-one",
+                "wcad-workbook"
+              ],
+              [
+                "wcad-account-two",
+                "wcad-workbook"
+              ],
+              [
+                "wcad-account-two",
+                "wcad-workbook"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The exemption value times the listed rate, divided by 100, gives about $960,511 in estimated 2025 levy reduction across these four lines. Both accounts still show their full equipment value on the Taylor ISD debt-service line. The Comptroller separately lists a Chapter 313 agreement for Taylor ISD maintenance and operations taxes. Keep those school records apart from the two city and county exemptions. Check the collector’s statements and the separate grant records before reporting what the project paid.",
+            "sourceIds": [
+              "wcad-account-one",
+              "wcad-account-two",
+              "taylor-isd-agreement"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/samsung-taylor-equipment-tax-abatement-2025.json",
+            "label": "Download the two appraisal accounts, tax rates and calculations",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "amendments-and-recapture",
+        "heading": "What did Taylor’s 2025 amendment change?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Taylor reported the Zone 9 agreement amendment at its June 12, 2025 council meeting. The signed document replaced the construction schedule. It calls for three million square feet of occupiable improvements and three million square feet of non-occupiable improvements by December 31, 2026. It calls for another million square feet of occupiable improvements by December 31, 2028. Read the definition of completion and the amendment’s conditions when matching those milestones to records.",
+            "sourceIds": [
+              "taylor-project-page",
+              "taylor-amendment"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The amended city agreement provides for repayment of the prior abated city taxes with interest after an uncured default on the 2028 milestone. For certain other defaults it uses a three-year lookback, also with interest. Keep the city and county agreements separate. Before closing, request the current signed documents, eligibility or compliance records, and any approvals that affect transfer.",
+            "sourceIds": [
+              "taylor-amendment",
+              "williamson-agreement"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "estimate-a-tax-abatement-for-a-site",
+        "heading": "How to model the benefit before committing to a site",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Build one line per appraisal account, taxing unit and year. Start with gross assessed value and enter the eligible increase or equipment value separately. Apply the agreement’s percentage and cap to that eligible amount. Use the adopted rate for that year and carry the remaining taxable value through the model. Model grants on their payment dates and check the effect of losing an exemption or missing a milestone."
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to match the site to its parcel. Join the appraisal accounts, the taxing units and dated agreements before applying an incentive to the purchase model. An equipment-account exemption can start on a different date from the land account or the next equipment delivery."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-property-tax-assessment-history-by-address",
+                "label": "Check the annual assessment and the property tax bill"
+              },
+              {
+                "slug": "manufacturing-site-selection-100-buildable-acres",
+                "label": "Screen manufacturing sites before negotiating incentives"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does a 90% tax abatement cut the entire property tax bill by 90%?",
+        "answer": "It exempts the share of eligible value covered by the agreement for the participating taxing unit. Check the other taxing units and property accounts separately, then reconcile the final bill.",
+        "sourceIds": [
+          "texas-abatement-process",
+          "wcad-account-one"
+        ]
+      },
+      {
+        "question": "Can a buyer assume the seller’s tax abatement?",
+        "answer": "Check the signed agreement’s assignment rules and conditions, along with any required consent. Match the buyer, transaction and covered property to the approval before including the benefit in the purchase model.",
+        "sourceIds": [
+          "williamson-agreement"
+        ]
+      },
+      {
+        "question": "How can I estimate the annual dollar value of a property tax exemption?",
+        "answer": "For each affected tax line, multiply the exempt value by the adopted rate and divide by 100 when the rate is quoted per $100 of taxable property. For the amount actually billed or paid, use the collector’s records.",
+        "sourceIds": [
+          "wcad-account-one",
+          "texas-abatement-process"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "texas-abatement-registry",
+        "title": "Local development agreement database",
+        "url": "https://comptroller.texas.gov/economy/development/search-tools/sb1340/",
+        "publisher": "Texas Comptroller of Public Accounts"
+      },
+      {
+        "id": "texas-abatement-reporting",
+        "title": "Chapter 312 reporting requirements for agreements and amendments",
+        "url": "https://comptroller.texas.gov/economy/development/prop-tax/ch312/reporting.php",
+        "publisher": "Texas Comptroller of Public Accounts"
+      },
+      {
+        "id": "texas-abatement-process",
+        "title": "Property tax abatement process and assessment-to-billing timeline",
+        "url": "https://comptroller.texas.gov/economy/development/prop-tax/ch312/about-abatements.php",
+        "publisher": "Texas Comptroller of Public Accounts"
+      },
+      {
+        "id": "wcad-workbook",
+        "title": "2025 abatement breakdown, Sheet1 rows 98–144",
+        "url": "https://www.wcad.org/wp-content/uploads/2026/02/Current-Year-Abatement-Breakdown-Details.xlsx",
+        "publisher": "Williamson Central Appraisal District"
+      },
+      {
+        "id": "wcad-account-one",
+        "title": "P511639, 2025 Entities & Exemptions table",
+        "url": "https://search.wcad.org/Property-Detail?PropertyQuickRefID=P511639&SearchTaxYear=2025",
+        "publisher": "Williamson Central Appraisal District"
+      },
+      {
+        "id": "wcad-account-two",
+        "title": "P515246, 2025 Entities & Exemptions table",
+        "url": "https://search.wcad.org/Property-Detail?PropertyQuickRefID=P515246&SearchTaxYear=2025",
+        "publisher": "Williamson Central Appraisal District"
+      },
+      {
+        "id": "taylor-original",
+        "title": "City of Taylor Zone 9 agreement, sections 3.2–3.4",
+        "url": "https://taylortx.gov/DocumentCenter/View/12399#page=6",
+        "publisher": "City of Taylor"
+      },
+      {
+        "id": "taylor-amendment",
+        "title": "First amendment to the Zone 9 abatement agreement, sections 2, 3 and 8",
+        "url": "https://taylortx.gov/DocumentCenter/View/15726#page=1",
+        "publisher": "City of Taylor"
+      },
+      {
+        "id": "taylor-project-page",
+        "title": "Taylor’s Samsung agreement and June 12, 2025 council update",
+        "url": "https://www.taylortx.gov/1276/Samsung-Austin-Semiconductor",
+        "publisher": "City of Taylor"
+      },
+      {
+        "id": "williamson-agreement",
+        "title": "County agreement, Phase I sections 3.2–3.4 and assignment section 9.9",
+        "url": "https://wilco.mygovcenter.com/uploads/cms/SamsungAustinSemiconductorLLC-1697133123142-1697133123302.pdf",
+        "publisher": "Williamson County"
+      },
+      {
+        "id": "taylor-isd-agreement",
+        "title": "Taylor ISD Chapter 313 agreement 1620 and amended records",
+        "url": "https://comptroller.texas.gov/economy/development/prop-tax/ch313/agreement-docs-details.php?id=1620",
+        "publisher": "Texas Comptroller of Public Accounts"
+      },
+      {
+        "id": "aerial",
+        "title": "USDA natural-color aerial imagery, near 1530 FM 973",
+        "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer",
+        "publisher": "U.S. Geological Survey and USDA"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-tax-assessment-history-by-address",
+      "commercial-property-tax-delinquency-data",
+      "manufacturing-site-selection-100-buildable-acres",
+      "texas-data-center-tax-incentives"
+    ],
+    "dataset": {
+      "name": "Samsung Taylor 2025 equipment tax abatement by account and taxing unit",
+      "description": "Four 2025 city and county appraisal exemption rows for two Samsung business personal property accounts. Reports year-specific taxable value, exemption and rates, reconstructs the levy change, and links the reported schedules to the separate signed agreements.",
+      "sourceIds": [
+        "wcad-workbook",
+        "wcad-account-one",
+        "wcad-account-two",
+        "taylor-original",
+        "taylor-amendment",
+        "williamson-agreement",
+        "taylor-isd-agreement"
+      ],
+      "spatialCoverage": "Samsung Taylor campus, Williamson County, Texas, United States",
+      "temporalCoverage": "2024-01-01/2025-12-31"
+    }
+  },
+  {
     "slug": "commercial-property-tax-assessment-history-by-address",
     "topic": "Data & APIs",
     "region": "United States",
