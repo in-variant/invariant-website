@@ -54,9 +54,14 @@
 .contact-submit { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; width: 100%; min-height: 50px; padding: 14px 18px; border: 1px solid var(--contact-blue); border-radius: 0; color: #fff; background: var(--contact-blue); font: 11px/1.5 'Geist Mono', monospace; text-transform: uppercase; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
 .contact-submit > span:last-child { font-size: 20px; line-height: 1; transition: transform .2s ease; }
 .contact-submit:hover { background: var(--contact-orange); border-color: var(--contact-orange); }
+.contact-submit--secondary { color: var(--contact-blue); background: #fff; }
+.contact-submit--secondary:hover { color: var(--contact-ink); background: #fcfdff; }
 .contact-submit:hover > span:last-child { transform: translate(2px, -2px); }
 .contact-submit:focus-visible, .contact-direct a:focus-visible { outline: 2px solid var(--contact-orange); outline-offset: 5px; }
 .contact-form-actions p { max-width: 320px; color: #787878; font-size: 11px; line-height: 1.5; }
+.contact-draft { display: grid; gap: 16px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--contact-rule); }
+.contact-draft > p { font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+.contact-draft textarea { background: #fcfdff; }
 @media (prefers-reduced-motion: no-preference) {
   .contact-intro, .contact-form-panel { animation: contact-arrive .55s cubic-bezier(.2, .7, .2, 1) both; }
   .contact-form-panel { animation-delay: .06s; }

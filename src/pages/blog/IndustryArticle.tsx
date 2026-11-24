@@ -4,6 +4,7 @@ import DatasetCitation from '../../components/DatasetCitation'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, datasetSchema, faqSchema, howToSchema } from '../../components/Seo'
 import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
 import { publishedDatasets } from '../../data/publishedDatasets'
+import { SITE_SEARCH_REQUEST_PATH } from '../../data/siteContact'
 import './IndustryArticle.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
@@ -162,20 +163,11 @@ export function SiteMarketStrip() {
 }
 
 function SiteSelectionRequestBanner({ variant = 'top' }: { variant?: 'top' | 'foot' }) {
-  const subject = encodeURIComponent('Data center site selection request')
-  const body = encodeURIComponent([
-    'Target markets or states:',
-    'Facility MW at the meter by phase:',
-    'Required service dates:',
-    'Buy or lease, and preferred site type:',
-    'Reliability, cooling or fiber requirements:',
-    'Sites already under consideration:',
-  ].join('\n'))
   return <aside className={`industry-site-booking industry-site-booking--${variant}`} aria-label="Request data center site selection">
     <h2>{variant === 'top' ? 'Request a data center site search' : 'Discuss your site requirements'}</h2>
     <p>Send the facility load by phase, the markets you’re considering and the dates you need service. Include any sites you already have under review.</p>
     <div className="industry-site-booking-actions">
-      <a href={`mailto:${SITES_EMAIL}?subject=${subject}&body=${body}`}>Send site requirements <span aria-hidden="true">↗</span></a>
+      <Link to={SITE_SEARCH_REQUEST_PATH}>Prepare site requirements <span aria-hidden="true">↗</span></Link>
       <a href={BOOKING_URL} target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a>
     </div>
   </aside>
@@ -186,6 +178,7 @@ function SiteBookingBanner() {
     <h2>Request a data center site shortlist</h2>
     <p>Tell us the load you need at the meter, where you’re looking and when you need service. We’ll walk through the sites that match your requirements and the evidence behind their reported power.</p>
     <div className="industry-site-booking-actions">
+      <Link to={SITE_SEARCH_REQUEST_PATH}>Prepare a site request <span aria-hidden="true">↗</span></Link>
       <a href={BOOKING_URL} target="_blank" rel="noopener">Book a call <span aria-hidden="true">↗</span></a>
       <a href={MARKET_URL}>Find more sites at market.invariant-ai.com <span aria-hidden="true">↗</span></a>
       <a href={`tel:${SITES_PHONE}`} className="industry-site-booking-phone">Call or text {SITES_PHONE_DISPLAY}</a>

@@ -3,6 +3,7 @@ import siteArticleSlugs from './site-article-slugs.json'
 /** Site selection inbound goes to Pranav, not founders@ (Pranav, 2026-11-14). */
 export const SITES_EMAIL = 'pranav@invariant-ai.com'
 export const DEFAULT_EMAIL = 'founders@invariant-ai.com'
+export const SITE_SEARCH_REQUEST_PATH = '/contact?request=site-selection'
 
 const SITE_PATHS = new Set((siteArticleSlugs as string[]).map(slug => `/blog/${slug}`))
 

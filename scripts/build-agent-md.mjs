@@ -100,7 +100,7 @@ function articleMd(a) {
   if (a.sources?.length) out.push('## Sources', '', ...a.sources.map(s => `- ${s.publisher}: [${s.title}](${s.url})`), '')
   if (a.relatedSlugs?.length) out.push('## Related', '', ...a.relatedSlugs.map(s => `- [${titles.get(s) ?? s}](${SITE}/blog/${s})`), '')
   if (a.kind === 'site-guide' && a.service) {
-    out.push('---', '', `[Email your site requirements](mailto:${SITE_EMAIL}) · [Book a site selection call](${SITE_BOOKING})`, '')
+    out.push('---', '', `[Prepare a site request](${SITE}/contact?request=site-selection) · [Book a site selection call](${SITE_BOOKING})`, '')
   } else if (a.kind === 'india-guide') {
     out.push('---', '', `[Email your India data centre project requirements](mailto:${SITE_EMAIL}) · [Book a call](${SITE_BOOKING})`, '')
   } else if (a.kind) out.push('---', '', CONTACT, '')
