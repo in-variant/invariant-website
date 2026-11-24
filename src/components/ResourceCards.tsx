@@ -9,12 +9,14 @@ export function ResourceArrow({ diagonal = false }: { diagonal?: boolean }) {
   )
 }
 
-export function ResourceArticleCard({ article }: { article: ResourceArticle }) {
+export function ResourceArticleCard({ article, srcSet }: { article: ResourceArticle; srcSet?: string }) {
   return (
     <article className="resource-article-card">
       <Link to={`/blog/${article.slug}`} className="resource-article-link">
         <div className="resource-article-image">
-          <img src={article.image} alt="" loading="lazy" decoding="async" width="1600" height="900" />
+          <img src={article.image} srcSet={srcSet}
+            sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 760px) 44vw, min(515px, 29vw)"
+            alt="" loading="lazy" decoding="async" width="1600" height="900" />
           <span className="resource-image-corner" aria-hidden="true"><ResourceArrow diagonal /></span>
         </div>
         <div className="resource-article-copy">

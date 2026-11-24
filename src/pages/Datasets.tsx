@@ -4,6 +4,7 @@ import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords } from '../data/blogSearch'
+import { coverSrcSets } from '../data/coverSrcSets'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
@@ -117,7 +118,9 @@ export default function Datasets() {
           {featured.map(({ slug, title, summary, image, notesPath, workflow, sample, workflowLabel }) => (
             <li key={slug}>
               <div className="dataset-featured-main">
-                <img src={image} alt="" width="1600" height="900" decoding="async" />
+                <img src={image} srcSet={coverSrcSets[image]}
+                  sizes="(max-width: 660px) max(68px, 20vw), clamp(90px, 12vw, 200px)"
+                  alt="" width="1600" height="900" decoding="async" />
                 <div className="dataset-featured-copy">
                   <h3><Link to={notesPath}>{title} <ResourceArrow diagonal /></Link></h3>
                   <p>{summary}</p>
@@ -171,7 +174,8 @@ export default function Datasets() {
         )}
         {matches.map(({ id, notesPath, datePublished, image, dataset, workflow }) => (
           <article className="dataset-row" key={id} id={id}>
-            <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
+            <img src={image} srcSet={coverSrcSets[image]} sizes="(max-width: 520px) calc(100vw - 48px), (max-width: 940px) 160px, 200px"
+              alt="" width="1600" height="900" loading="lazy" decoding="async" />
             <div className="dataset-copy">
               <h3>{dataset.name}</h3>
               <p>{dataset.description}</p>

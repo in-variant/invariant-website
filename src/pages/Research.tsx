@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
+import { coverSrcSets } from '../data/coverSrcSets'
 import { RESEARCH_DATASETS } from '../data/resources'
 import research from '../data/research-studies.json'
 import './Resources.css'
@@ -38,14 +39,18 @@ const collection = {
 }
 
 function StudyCard({ study, featured = false }: { study: typeof studies[number]; featured?: boolean }) {
-  const { title, topic, summary, imageAlt, imageCredit, entry } = study
+  const { title, topic, summary, chart, imageAlt, imageCredit, entry } = study
   const Heading = featured ? 'h2' : 'h3'
   return (
     <article className={featured ? 'research-study research-study--featured' : 'research-study'}>
-      <figure className="research-image">
+      <figure className={chart ? 'research-image research-image--chart' : 'research-image'}>
         <div>
           <img
             src={entry.image}
+            srcSet={coverSrcSets[entry.image]}
+            sizes={featured
+              ? '(max-width: 680px) calc(100vw - max(48px, 10.42vw)), min(864px, 49vw)'
+              : '(max-width: 680px) calc(100vw - max(48px, 10.42vw)), (max-width: 1000px) 44vw, min(520px, 29vw)'}
             alt={imageAlt ?? ''}
             width="1600"
             height="900"

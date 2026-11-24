@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ARTICLE_COLLECTIONS, ARTICLE_LIST, type ArticleListEntry } from '../data/articleList'
+import { coverSrcSets } from '../data/coverSrcSets'
 import { articleSearchWords, prepareArticleSearch, rankSearch } from '../data/blogSearch'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import { INDIA_HUB } from '../data/industryArticles'
@@ -24,6 +25,11 @@ const BLOG_TITLE = 'Blog | Invariant'
 const BLOG_DESCRIPTION = 'Reporting and practical guides on power, land, infrastructure, and regulation. From the Invariant team.'
 const BLOG_IMAGE = `${SITE_URL}${FEATURED_ARTICLES[0].image}`
 const BLOG_FEED = '/feed.xml'
+const COVER_SIZES = {
+  lead: '(max-width: 680px) calc(100vw - max(48px, 10vw)), min(736px, 56vw)',
+  secondary: '(max-width: 680px) calc(45vw - 5px), min(445px, 34vw)',
+  standard: '(max-width: 490px) calc(100vw - 48px), (max-width: 840px) 44vw, min(390px, 30vw)',
+}
 const BLOG_SCHEMA = [
   ORG_SCHEMA,
   breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Blog', url: `${SITE_URL}/blog` }]),
@@ -51,7 +57,7 @@ function BlogCard({ article, variant = 'standard' }: { article: ArticleListEntry
     <article className={`blog-index-card blog-index-card--${variant}`}>
       <Link to={`/blog/${article.slug}`} aria-labelledby={`title-${variant}-${article.slug}`}>
         <div className="blog-index-image">
-          <img src={article.image} alt="" width="1440" height="960"
+          <img src={article.image} srcSet={coverSrcSets[article.image]} sizes={COVER_SIZES[variant]} alt="" width="1440" height="960"
             loading={variant === 'standard' ? 'lazy' : undefined} fetchPriority={isLead ? 'high' : undefined} decoding="async" />
         </div>
         <div className="blog-index-card-content">

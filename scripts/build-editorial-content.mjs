@@ -169,6 +169,8 @@ writeIfChanged(new URL('industry-article-index.json', base), `${JSON.stringify(i
 const responsiveCovers = process.argv.includes('--responsive-covers')
   ? await (await import('./build-cover-variants.mjs')).buildCoverVariants([...new Set(index.map(article => article.image))])
   : new Map()
+const coverSrcSets = Object.fromEntries([...responsiveCovers].map(([image, { srcSet }]) => [image, srcSet]))
+writeIfChanged(new URL('.generated-cover-srcsets.json', base), JSON.stringify(coverSrcSets))
 const searchDir = new URL('.generated-blog-search/', base)
 mkdirSync(searchDir, { recursive: true })
 const articleList = [...index, ...legacyArticles].map(({ slug, title, topic, summary, date, dateTime, updatedDate, region, image, dataset, additionalDatasets = [] }) => ({

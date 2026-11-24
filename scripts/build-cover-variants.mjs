@@ -5,7 +5,7 @@ import sharp from 'sharp'
 const publicRoot = new URL('../public/', import.meta.url)
 const outputPath = '/blog/industry-variants/'
 const output = new URL(outputPath.slice(1), publicRoot)
-const widths = [480, 768, 1152]
+const widths = [256, 480, 768, 1152]
 
 export async function buildCoverVariants(images) {
   await mkdir(output, { recursive: true })

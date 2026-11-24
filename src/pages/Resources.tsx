@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
+import { coverSrcSets } from '../data/coverSrcSets'
 import { RESOURCE_ARTICLES, type ResourceTopic } from '../data/resources'
 import { RESOURCE_REFERENCES } from '../data/resource-directory'
 import { DATA_USE_CASE_GROUPS, DATA_USE_CASES_PATH } from '../data/blogCollections'
@@ -78,7 +79,7 @@ export default function Resources() {
           <Link to="/research" className="resource-text-link">Explore research <ResourceArrow /></Link>
         </div>
         <div className="resource-article-grid">
-          {featuredArticles.map((article) => <ResourceArticleCard key={article.slug} article={article} />)}
+          {featuredArticles.map((article) => <ResourceArticleCard key={article.slug} article={article} srcSet={coverSrcSets[article.image]} />)}
         </div>
       </section>
 
