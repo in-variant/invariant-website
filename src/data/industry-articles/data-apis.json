@@ -1,5 +1,476 @@
 [
   {
+    "slug": "commercial-property-tax-delinquency-data",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "title": "Property Tax Delinquency Data for Commercial Real Estate",
+    "description": "Check commercial property tax delinquency by parcel. Compare annual tax, unpaid charges, lien-sale notices and payoff evidence using a documented NYC case.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverFile": "commercial-real-estate-data-apis-for-lenders.webp",
+    "coverAlt": "Aerial view of Midtown Manhattan with the Empire State Building tax lot outlined in gold.",
+    "coverCaption": "Empire State Building tax lot outlined using NYC MapPLUTO 26v2 over 2024 New York State aerial imagery.",
+    "intro": "A commercial tax file can show an annual bill, a quarterly charge balance and a sold lien for the same parcel. Each answers a different question. In New York City’s 2025 sale, one Class 4 lot had a January charge line with a $65,537.44 balance in February and zero in June. The city’s separate lien record shows a $716,516.29 sale. Start with the tax lot and identify which record supports each status.",
+    "takeaways": [
+      "Match the assessor’s parcel ID before looking up a bill, balance or lien. Preserve the parcel ID used by each jurisdiction.",
+      "Compare charge balance and grace date in the same dated extract. Distinguish property tax, water and other charges.",
+      "Notice lists describe enforcement stages. New York City’s Final Sale file includes 1,270 Class 4 lots, of which 1,266 also appeared in its first Class 4 notice.",
+      "Before closing or releasing an escrow reserve, get a current collector record and the applicable lienholder payoff or release through the transaction team."
+    ],
+    "sections": [
+      {
+        "id": "what-to-check",
+        "heading": "How to check delinquent property taxes by parcel",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the county assessor or parcel API to resolve an address to the correct tax account. Confirm the unit or building separately when a mailing address can map to multiple lots. Then open the collector’s account for that parcel and review the charge type, the tax period, the grace date and the balance as of a specific date. In New York City, the standing account and dated bill show more recent activity than the quarterly extract.",
+            "sourceIds": [
+              "tax-billing",
+              "charge-metadata",
+              "earth-fields"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Record",
+              "What it establishes",
+              "What to request next"
+            ],
+            "rows": [
+              [
+                "Annual tax bill",
+                "The amount billed for the tax year. Use it for the operating and escrow model.",
+                "Get the collector’s balances, due dates and payments."
+              ],
+              [
+                "Quarterly charge extract",
+                "A dated balance for a specified charge and billing period. The NYC dictionary defines when a charge becomes late.",
+                "Compare grace date with extract date. Read the current account for later activity."
+              ],
+              [
+                "Notice or final sale list",
+                "The report stage and the listed parcel. The first notice and final sale are separate events.",
+                "Get the actual sale date and current disposition from the collector or servicer."
+              ],
+              [
+                "Current account and lien disposition",
+                "The latest statement plus any applicable payoff, redemption or release documentation.",
+                "Use the closing team to reconcile the parcel, effective date and scope of the documents."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "tax-billing",
+                "earth-fields"
+              ],
+              [
+                "charge-metadata"
+              ],
+              [
+                "lien-metadata",
+                "sale-process"
+              ],
+              [
+                "tax-billing",
+                "sale-process"
+              ]
+            ],
+            "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "notice-stage-audit",
+        "heading": "What NYC’s 2025 tax lien sale lists show",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We filtered the NYC Department of Finance list to its 2025 rows with tax class code 4. We counted unique borough, block and lot IDs in each published cycle and checked which IDs appeared in the 90-day notice. The dates below are the file’s publication months. The city records June 3, 2025 as the sale date.",
+            "sourceIds": [
+              "lien-class-four",
+              "lien-metadata",
+              "sale-process"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Report stage",
+              "Unique Class 4 lots",
+              "Also in the first Class 4 notice",
+              "Flagged as water debt only"
+            ],
+            "rows": [
+              [
+                "2025-02 · 90 Day Notice",
+                "5,955",
+                "5,955",
+                "415"
+              ],
+              [
+                "2025-03 · 60 Day Notice",
+                "5,139",
+                "5,139",
+                "429"
+              ],
+              [
+                "2025-04 · 30 Day Notice",
+                "4,271",
+                "4,271",
+                "321"
+              ],
+              [
+                "2025-05 · 10 Day Notice",
+                "3,753",
+                "3,753",
+                "317"
+              ],
+              [
+                "2025-06 · Final Sale",
+                "1,270",
+                "1,266",
+                "47"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "lien-class-four"
+              ],
+              [
+                "lien-class-four"
+              ],
+              [
+                "lien-class-four"
+              ],
+              [
+                "lien-class-four"
+              ],
+              [
+                "lien-class-four"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "Of the 5,955 Class 4 lots in the first file, 1,266 matched the same ID in the final Class 4 file, about 21%. Four final file IDs were outside the first Class 4 set. The list records appearance by stage. It supplies no resolution reason for lots absent from a later file. NYC’s Independent Budget Office reports its broader citywide analysis separately.",
+            "sourceIds": [
+              "lien-class-four",
+              "lien-metadata",
+              "ibo"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "case-commercial-lot",
+        "heading": "A zero charge balance after a recorded sale",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For commercial tax lot 1022380035, the January 2025 charge line had a $65,537.44 balance at the February 15 extract. The June 8 extract returned zero for the same charge code and period. Separately, the city account records a June 3 lien sale for $716,516.29 under lien ID 202501. The notice dataset lists the same lot in all five stages.",
+            "sourceIds": [
+              "lot-charges",
+              "lot-account",
+              "lot-notices"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Observation",
+              "Dated record",
+              "What to carry into the file"
+            ],
+            "rows": [
+              [
+                "February 15, 2025",
+                "January charge balance of $65,537.44.",
+                "Save the CHG code, January billing period and extract date."
+              ],
+              [
+                "June 3, 2025",
+                "Account records lien ID 202501 sold for $716,516.29.",
+                "Save the sale amount as a historical transaction. Request the applicable payoff or release."
+              ],
+              [
+                "June 8, 2025",
+                "Same January charge line reports a $0.00 balance.",
+                "Retain it as one city charge observation. Check the separate servicer status and current collector record."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "lot-charges"
+              ],
+              [
+                "lot-account"
+              ],
+              [
+                "lot-charges",
+                "lot-account"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "A lien sale gives the authorized buyer the right to collect the transferred debt under the city’s process. Keep each amount with its source and event so a reviewer can reconstruct the file. The governing requirements and available documents vary by jurisdiction.",
+            "sourceIds": [
+              "sale-process"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/nyc-commercial-tax-lien-stage-audit.json",
+            "format": "JSON",
+            "label": "Download the NYC notice counts and commercial lot evidence"
+          }
+        ]
+      },
+      {
+        "id": "tax-api-comparison",
+        "heading": "Which property tax data API fits the job?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant makes Invariant Earth. Start with Enrich to match a parcel and bring annual taxes into the same file as building and property context. Request parcelnumb, taxamt and taxyear. Save parcel_match, the returned source and the reported year. Inspect field_omissions when a requested value is absent. Pair this step with the collector’s account for current balance and the appropriate notice or servicing source for status.",
+            "sourceIds": [
+              "earth-fields",
+              "earth-enrich"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Source",
+              "Use it for",
+              "Test before relying on it"
+            ],
+            "rows": [
+              [
+                "Invariant Earth Enrich",
+                "Parcel identity and annual billed tax where available, with source and year.",
+                "Give it a known tax lot. Verify parcelnumb, taxamt, taxyear and any field omissions against the county’s record."
+              ],
+              [
+                "Regrid",
+                "Assessor-linked annual tax bill and tax year fields.",
+                "Check the reporting year, underlying jurisdiction and availability for your portfolio."
+              ],
+              [
+                "West Kite",
+                "Dated delinquency, sale and lands-available notices. Its tax notices page lists selected Florida and Texas counties.",
+                "Ask for the notice date, original list, covered counties and how it reports any later resolution."
+              ],
+              [
+                "Local treasurer or tax collector",
+                "Charge-level balances, payment status and related official records for the parcel.",
+                "Ask how the jurisdiction documents a paid balance, sale, redemption or release and what date each record covers."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-fields",
+                "earth-enrich"
+              ],
+              [
+                "regrid"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "tax-billing",
+                "sale-process"
+              ]
+            ],
+            "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "portfolio-implementation",
+        "heading": "What to store in a lender’s property record",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Keep parcel ID, jurisdiction, tax year, charge code, due and grace dates, amount and currency, extract timestamp, and the source URL. Store notice stages, sale amounts and payoff or redemption as separate events with their own dates. Keep the basis for each value so a prior review can be replayed from the right information.",
+            "sourceIds": [
+              "charge-metadata",
+              "lien-metadata",
+              "tax-billing"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use distinct review states for an outstanding balance, an observed sale, a verified resolution and unknown. An empty response can reflect incomplete coverage. NYC DOF documents a gap in its 2023 quarterly charge extracts. Preserve the unknown and obtain a collector or servicer record where the file requires it.",
+            "sourceIds": [
+              "charge-metadata",
+              "tax-billing"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare the data sources for a commercial credit file"
+              },
+              {
+                "slug": "commercial-property-ownership-data-apis",
+                "label": "Verify the parcel and owner of record"
+              },
+              {
+                "slug": "commercial-mortgage-maturity-data-apis",
+                "label": "Check dated mortgage maturity and amendments"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I check whether a commercial property has delinquent taxes?",
+        "answer": "Match the property to the collector’s tax account, then inspect the dated charge balance and the due or grace date. Check lien and servicing records separately for transferred debts.",
+        "sourceIds": [
+          "tax-billing",
+          "charge-metadata",
+          "sale-process"
+        ]
+      },
+      {
+        "question": "What does an annual property tax API field tell me?",
+        "answer": "It gives the tax billed for the stated year. Use a dated collector or treasurer balance and any relevant lien records to check what remains due.",
+        "sourceIds": [
+          "earth-fields",
+          "regrid",
+          "tax-billing"
+        ]
+      },
+      {
+        "question": "What is the difference between a tax delinquency notice and a final sale record?",
+        "answer": "A notice records the parcel at a dated collection stage. The final sale file records the sale stage. Confirm the exact event and any later resolution in the collector’s or servicer’s records.",
+        "sourceIds": [
+          "lien-metadata",
+          "sale-process"
+        ]
+      },
+      {
+        "question": "Should I treat a missing tax notice as a clear tax account?",
+        "answer": "Keep the status unknown until a source covers the jurisdiction, date and parcel. Check the current collector account and applicable lien evidence for a transaction.",
+        "sourceIds": [
+          "charge-metadata",
+          "tax-billing"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "lien-metadata",
+        "title": "Tax Lien Sale Lists and field definitions",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/Housing-Development/Tax-Lien-Sale-Lists/9rz4-mjek"
+      },
+      {
+        "id": "lien-class-four",
+        "title": "NYC 2025 Tax Class 4 notice and final sale rows",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cwater_debt_only&%24where=month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27+AND+tax_class_code+%3D+4&%24limit=30000&%24order=month%2Cborough%2Cblock%2Clot%2C%3Aid"
+      },
+      {
+        "id": "charge-metadata",
+        "title": "Property Charges Balance quarterly extract and field definitions",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/d/scjx-j6np"
+      },
+      {
+        "id": "lot-charges",
+        "title": "Quarterly charge extracts for borough, block and lot 1022380035",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/resource/scjx-j6np.json?%24select=parid%2Ccode%2Crectype%2Csum_liab%2Csum_coll%2Csum_bal%2Cdue_date%2Cdt_grace%2Cextractdt%2Cdt_pd_begin&%24where=parid+like+%271022380035%25%27+AND+extractdt+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+extractdt+%3C+%272026-12-01T00%3A00%3A00%27&%24limit=250&%24order=extractdt%2Ccode%2Cdt_pd_begin%2C%3Aid"
+      },
+      {
+        "id": "lot-notices",
+        "title": "2025 notice and sale rows for borough, block and lot 1022380035",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cbuilding_class%2Cwater_debt_only&%24where=borough+%3D+1+AND+block+%3D+2238+AND+lot+%3D+35+AND+month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27&%24order=month%2Ccycle"
+      },
+      {
+        "id": "lot-account",
+        "title": "Tax account history and recorded 2025 lien sale for lot 1022380035",
+        "publisher": "NYC Department of Finance",
+        "url": "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1022380035&taxyr=2026"
+      },
+      {
+        "id": "sale-process",
+        "title": "New York City lien sale process and June 2025 sale date",
+        "publisher": "NYC Department of Finance",
+        "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
+      },
+      {
+        "id": "tax-billing",
+        "title": "Property tax bills, account access and due dates",
+        "publisher": "NYC Department of Finance",
+        "url": "https://www.nyc.gov/site/finance/property/property-bills-and-payments.page"
+      },
+      {
+        "id": "ibo",
+        "title": "April 2026 report on the history and outcomes of New York City tax lien sales",
+        "publisher": "NYC Independent Budget Office",
+        "url": "https://www.ibo.nyc.gov/assets/ibo/downloads/pdf/taxes-and-other-revenues/2026/2026-april-nycs-tax-lien-sale.pdf"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Live parcel field definitions for parcelnumb, taxamt and taxyear",
+        "publisher": "Invariant Earth",
+        "url": "https://api.invariant-ai.com/v1/enrich/fields"
+      },
+      {
+        "id": "earth-enrich",
+        "title": "Enrich parcel match and field omissions response",
+        "publisher": "Invariant Earth",
+        "url": "https://docs.invariant-ai.com/api/enrich"
+      },
+      {
+        "id": "regrid",
+        "title": "Assessment and tax data dictionary",
+        "publisher": "Regrid",
+        "url": "https://support.regrid.com/docs/assessment-tax"
+      },
+      {
+        "id": "west-kite",
+        "title": "Tax notice data and published county coverage",
+        "publisher": "West Kite",
+        "url": "https://westkite.com/api/tax-notices"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "commercial-mortgage-maturity-data-apis",
+      "commercial-property-ownership-data-apis"
+    ],
+    "dataset": {
+      "name": "NYC 2025 Class 4 lien sale stages and commercial tax account evidence",
+      "description": "Five 2025 notice and sale stage counts for Class 4 NYC tax lots, with the exact city queries, one commercial parcel’s quarterly charge observations and its separately recorded lien sale.",
+      "datePublished": "2026-11-23",
+      "spatialCoverage": "New York City, New York, United States",
+      "temporalCoverage": "2025-02/2025-06",
+      "sourceIds": [
+        "lien-metadata",
+        "lien-class-four",
+        "charge-metadata",
+        "lot-charges",
+        "lot-notices",
+        "lot-account",
+        "sale-process"
+      ]
+    }
+  },
+  {
     "slug": "fire-station-distance-commercial-property-underwriting",
     "topic": "Data & APIs",
     "region": "United States",
@@ -13875,7 +14346,13 @@
     "dataset": {
       "name": "Empire State Building recording-date benchmark",
       "description": "Three recorded instruments and two expected results for a historical recorder query. The sample distinguishes the date of an instrument from the date the city recorded it.",
-      "sourceIds": ["deed", "assignment", "agreement", "acris-legal", "sec-8k"],
+      "sourceIds": [
+        "deed",
+        "assignment",
+        "agreement",
+        "acris-legal",
+        "sec-8k"
+      ],
       "spatialCoverage": "Empire State Building, Manhattan, New York",
       "temporalCoverage": "2013-10-07/2013-10-21"
     },
@@ -13906,16 +14383,65 @@
           {
             "type": "table",
             "stackOnMobile": true,
-            "columns": ["Provider", "Where to start", "What to ask for in a trial"],
-            "rows": [
-              ["West Kite", "Commercial property research with recorded mortgages and securitized loan data. Its documentation lists recorded mortgages in New York City.", "Ask for the full set of instruments behind a result. Check how it identifies assignments and which source supports any balance or maturity."],
-              ["LightBox", "Transaction and deed records linked to parcels, addresses, and assessments. Its Transactions API supports date and county filters.", "Ask which date a filter uses. Check a multi-parcel instrument and confirm that the same recorded amount appears only once in a portfolio rollup."],
-              ["ATTOM", "Property, assessor, transaction, and mortgage data. The Basic Profile endpoint includes information on the latest loan and transaction.", "Test the counties and commercial property types you lend on. Ask for the recording date, recorder identifier, and depth of mortgage history for each sample."],
-              ["Regrid", "Parcel geometry and identifiers, with enhanced ownership data offered separately.", "Test a recent parcel split and a multi-parcel property. Record which source supports ownership and whether the match survives a county refresh."],
-              ["Ageospatial", "Property and infrastructure diligence marketed for credit teams.", "Ask for the original source and observation date behind each finding. Check how the workflow exports a file and handles unresolved records."],
-              ["Invariant Earth", "Coordinate-based parcel and flood screening with field-level provenance and missing-data statuses.", "Check the returned parcel identifier, match method, and source vintage. Join recorder documents separately and retain the exact evidence used in each decision."]
+            "columns": [
+              "Provider",
+              "Where to start",
+              "What to ask for in a trial"
             ],
-            "rowSourceIds": [["west-kite"], ["lightbox"], ["attom"], ["regrid", "regrid-schema"], ["ageospatial"], ["invariant-fields", "invariant-responses"]]
+            "rows": [
+              [
+                "West Kite",
+                "Commercial property research with recorded mortgages and securitized loan data. Its documentation lists recorded mortgages in New York City.",
+                "Ask for the full set of instruments behind a result. Check how it identifies assignments and which source supports any balance or maturity."
+              ],
+              [
+                "LightBox",
+                "Transaction and deed records linked to parcels, addresses, and assessments. Its Transactions API supports date and county filters.",
+                "Ask which date a filter uses. Check a multi-parcel instrument and confirm that the same recorded amount appears only once in a portfolio rollup."
+              ],
+              [
+                "ATTOM",
+                "Property, assessor, transaction, and mortgage data. The Basic Profile endpoint includes information on the latest loan and transaction.",
+                "Test the counties and commercial property types you lend on. Ask for the recording date, recorder identifier, and depth of mortgage history for each sample."
+              ],
+              [
+                "Regrid",
+                "Parcel geometry and identifiers, with enhanced ownership data offered separately.",
+                "Test a recent parcel split and a multi-parcel property. Record which source supports ownership and whether the match survives a county refresh."
+              ],
+              [
+                "Ageospatial",
+                "Property and infrastructure diligence marketed for credit teams.",
+                "Ask for the original source and observation date behind each finding. Check how the workflow exports a file and handles unresolved records."
+              ],
+              [
+                "Invariant Earth",
+                "Coordinate-based parcel and flood screening with field-level provenance and missing-data statuses.",
+                "Check the returned parcel identifier, match method, and source vintage. Join recorder documents separately and retain the exact evidence used in each decision."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "west-kite"
+              ],
+              [
+                "lightbox"
+              ],
+              [
+                "attom"
+              ],
+              [
+                "regrid",
+                "regrid-schema"
+              ],
+              [
+                "ageospatial"
+              ],
+              [
+                "invariant-fields",
+                "invariant-responses"
+              ]
+            ]
           }
         ]
       },
@@ -13926,28 +14452,70 @@
           {
             "type": "paragraph",
             "text": "At the Empire State Building, the date written on three instruments was October 7, 2013. New York City recorded the deed on October 8. It recorded the selected assignment and agreement on October 21, 14 calendar days after their document date. A reconstructed October 15 recorder file includes the deed and excludes the other two. A filter on document date alone would pull all three into that file.",
-            "sourceIds": ["deed", "assignment", "agreement"]
+            "sourceIds": [
+              "deed",
+              "assignment",
+              "agreement"
+            ]
           },
           {
             "type": "table",
             "stackOnMobile": true,
-            "columns": ["Selected ACRIS record", "Document date", "Recorded date", "In the October 15 recorder file?"],
-            "rows": [
-              ["Deed · 2013000417277", "October 7, 2013", "October 8, 2013", "Yes"],
-              ["Assignment · 2013000434087", "October 7, 2013", "October 21, 2013", "No"],
-              ["Agreement · 2013000434088", "October 7, 2013", "October 21, 2013", "No"]
+            "columns": [
+              "Selected ACRIS record",
+              "Document date",
+              "Recorded date",
+              "In the October 15 recorder file?"
             ],
-            "rowSourceIds": [["deed"], ["assignment"], ["agreement"]]
+            "rows": [
+              [
+                "Deed · 2013000417277",
+                "October 7, 2013",
+                "October 8, 2013",
+                "Yes"
+              ],
+              [
+                "Assignment · 2013000434087",
+                "October 7, 2013",
+                "October 21, 2013",
+                "No"
+              ],
+              [
+                "Agreement · 2013000434088",
+                "October 7, 2013",
+                "October 21, 2013",
+                "No"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "deed"
+              ],
+              [
+                "assignment"
+              ],
+              [
+                "agreement"
+              ]
+            ]
           },
           {
             "type": "paragraph",
             "text": "Empire State Realty Trust had already filed an October 7 Form 8-K disclosing entry into a secured credit facility. A lender could use that disclosure as separate evidence of the transaction and keep the recorder status open. The agreement’s $300 million indexed amount describes the city record. The executed documents, servicing records, and a current payoff statement answer questions about the facility, outstanding balance, and amount due.",
-            "sourceIds": ["agreement", "sec-8k", "sec-metadata", "occ"]
+            "sourceIds": [
+              "agreement",
+              "sec-8k",
+              "sec-metadata",
+              "occ"
+            ]
           },
           {
             "type": "paragraph",
             "text": "To reproduce the check, filter NYC ACRIS Legals to Manhattan block 835, lot 41 and join Real Property Master on document ID. Keep those identifiers as text. Apply the recording cutoff to the resulting rows and preserve the dated evidence you used. The download uses three selected records from a later city extract. It reconstructs the legal recording cutoff. To prove what a particular vendor showed on October 15, you would need its archived response or a dated first-seen log.",
-            "sourceIds": ["acris-legal", "acris-master"]
+            "sourceIds": [
+              "acris-legal",
+              "acris-master"
+            ]
           },
           {
             "type": "download",
@@ -13964,15 +14532,58 @@
           {
             "type": "table",
             "stackOnMobile": true,
-            "columns": ["Evidence", "Record in the file", "What still needs a reviewer"],
-            "rows": [
-              ["Collateral identity", "Jurisdiction, parcel ID, matched address, building or unit, and source geometry.", "Compare the parcel match with the survey, title commitment, and legal description. Confirm which part of the property the loan will cover."],
-              ["Ownership", "Assessor owner with the roll date, plus the recorded deed and the parties where available.", "Resolve discrepancies with the title team. Verify the borrower’s interest and authority from the applicable documents."],
-              ["Recorded obligations", "Recorder ID, instrument type, named parties, indexed amount, document and recording dates, and references between instruments.", "Review the chain, exceptions, and priority with title counsel. Obtain current balance or payoff evidence from the appropriate party."],
-              ["Flood and environmental review", "The relevant location or structure, mapping source and vintage, and the reason for follow-up.", "Obtain the flood determination and other environmental diligence required by the lender’s process."],
-              ["Valuation", "Dated assessments and transaction evidence, with transaction type and the coverage of each comparable.", "Keep the lender’s appraisal or evaluation and its review in the file. Assessments and recorded consideration serve different purposes."]
+            "columns": [
+              "Evidence",
+              "Record in the file",
+              "What still needs a reviewer"
             ],
-            "rowSourceIds": [["occ", "acris-legal"], ["occ"], ["acris-master", "occ"], ["fema-form", "occ"], ["occ"]]
+            "rows": [
+              [
+                "Collateral identity",
+                "Jurisdiction, parcel ID, matched address, building or unit, and source geometry.",
+                "Compare the parcel match with the survey, title commitment, and legal description. Confirm which part of the property the loan will cover."
+              ],
+              [
+                "Ownership",
+                "Assessor owner with the roll date, plus the recorded deed and the parties where available.",
+                "Resolve discrepancies with the title team. Verify the borrower’s interest and authority from the applicable documents."
+              ],
+              [
+                "Recorded obligations",
+                "Recorder ID, instrument type, named parties, indexed amount, document and recording dates, and references between instruments.",
+                "Review the chain, exceptions, and priority with title counsel. Obtain current balance or payoff evidence from the appropriate party."
+              ],
+              [
+                "Flood and environmental review",
+                "The relevant location or structure, mapping source and vintage, and the reason for follow-up.",
+                "Obtain the flood determination and other environmental diligence required by the lender’s process."
+              ],
+              [
+                "Valuation",
+                "Dated assessments and transaction evidence, with transaction type and the coverage of each comparable.",
+                "Keep the lender’s appraisal or evaluation and its review in the file. Assessments and recorded consideration serve different purposes."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "occ",
+                "acris-legal"
+              ],
+              [
+                "occ"
+              ],
+              [
+                "acris-master",
+                "occ"
+              ],
+              [
+                "fema-form",
+                "occ"
+              ],
+              [
+                "occ"
+              ]
+            ]
           },
           {
             "type": "paragraph",
@@ -13987,7 +14598,10 @@
           {
             "type": "paragraph",
             "text": "Invariant Earth’s public catalog lists parcel identifiers, geometry, owner fields, match type and distance, and a mapped floodplain check at a U.S. coordinate. Keep the returned field status, dataset vintage, and source URL when you send the result to underwriting. Use the recorder and the lender’s required reviews for the deed, obligations, and legal determination. The case on this page is a direct public-record reconstruction.",
-            "sourceIds": ["invariant-fields", "invariant-responses"]
+            "sourceIds": [
+              "invariant-fields",
+              "invariant-responses"
+            ]
           },
           {
             "type": "links",
@@ -13997,9 +14611,18 @@
                 "slug": "commercial-real-estate-sales-lease-comps-apis",
                 "label": "Compare commercial sale amounts and lease terms"
               },
-              {"slug":"historical-parcel-boundaries-api","label":"Track a parcel split or merger across record dates"},
-              {"slug":"commercial-property-insurance-data-apis","label":"Match the right building for property insurance"},
-              {"slug":"power-evidence-data-center-site-verification","label":"Verify a data center’s power status before financing"}
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Track a parcel split or merger across record dates"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Match the right building for property insurance"
+              },
+              {
+                "slug": "power-evidence-data-center-site-verification",
+                "label": "Verify a data center’s power status before financing"
+              }
             ]
           },
           {
@@ -14037,46 +14660,157 @@
       {
         "question": "Which date should a commercial lender use for a historical recorder search?",
         "answer": "Use the legal recording date for a recording cutoff. Keep the date printed on the instrument in its own field. To reconstruct what a specific provider returned on the decision date, keep the dated response or a reliable first-seen record.",
-        "sourceIds": ["acris-master"]
+        "sourceIds": [
+          "acris-master"
+        ]
       },
       {
         "question": "Does an empty mortgage search mean the property has no liens?",
         "answer": "An empty search only describes the sources, jurisdiction, parcels, and dates that were checked. Ask which records and jurisdictions were covered and obtain the title evidence required for closing.",
-        "sourceIds": ["occ"]
+        "sourceIds": [
+          "occ"
+        ]
       },
       {
         "question": "Does the amount on a recorded instrument show today’s mortgage balance?",
         "answer": "A recorder index gives the amount associated with the instrument. For an outstanding balance, use a dated servicer or lender statement. Confirm the amount due at closing with a current payoff statement.",
-        "sourceIds": ["acris-master", "occ"]
+        "sourceIds": [
+          "acris-master",
+          "occ"
+        ]
       },
       {
         "question": "Can the credit team use a parcel flood overlay as its flood determination?",
         "answer": "A parcel overlay can flag a potential issue for review. Use the applicable determination process for the secured structure and retain the determination with the loan file.",
-        "sourceIds": ["fema-form", "occ"]
+        "sourceIds": [
+          "fema-form",
+          "occ"
+        ]
       }
     ],
     "sources": [
-      {"id":"west-kite","title":"Financing fields and county coverage","url":"https://westkite.com/docs/data","publisher":"West Kite"},
-      {"id":"lightbox","title":"Transactions API and date fields","url":"https://developer.lightboxre.com/apis/transactions","publisher":"LightBox"},
-      {"id":"attom","title":"Property API documentation and Basic Profile","url":"https://api.developer.attomdata.com/dlpv2docs","publisher":"ATTOM"},
-      {"id":"regrid","title":"Parcel data and enhanced ownership updates","url":"https://regrid.com/library/parcel-data-quality/how-to-evaluate-parcel-data-quality","publisher":"Regrid"},
-      {"id":"regrid-schema","title":"Parcel schema and refresh matching fields","url":"https://support.regrid.com/docs/schema-overview","publisher":"Regrid"},
-      {"id":"ageospatial","title":"Property intelligence for credit decisions","url":"https://www.ageospatial.com/","publisher":"Ageospatial"},
-      {"id":"invariant-fields","title":"Public API field catalog","url":"https://api.invariant-ai.com/v1/meta/fields","publisher":"Invariant Earth catalog"},
-      {"id":"invariant-responses","title":"Field response and provenance contract","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
-      {"id":"acris-legal","title":"ACRIS Real Property Legals, parcel join fields","url":"https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Legals/8h5j-fqxa","publisher":"NYC Department of Finance"},
-      {"id":"acris-master","title":"ACRIS Real Property Master, instrument and recording fields","url":"https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Master/bnx9-e6tj","publisher":"NYC Department of Finance"},
-      {"id":"deed","title":"Recorded deed, City Register File Number 2013000417277","url":"https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013100700087001","publisher":"NYC ACRIS deed"},
-      {"id":"assignment","title":"Recorded assignment, City Register File Number 2013000434087","url":"https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013101700510005","publisher":"NYC ACRIS assignment"},
-      {"id":"agreement","title":"Recorded agreement, City Register File Number 2013000434088","url":"https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013101700510006","publisher":"NYC ACRIS agreement"},
-      {"id":"sec-8k","title":"Empire State Realty Trust Form 8-K, Item 2.03","url":"https://www.sec.gov/Archives/edgar/data/1541401/000119312513393077/d609499d8k.htm","publisher":"SEC EDGAR"},
-      {"id":"sec-metadata","title":"Issuer submission history for accession 0001193125-13-393077","url":"https://data.sec.gov/submissions/CIK0001541401.json","publisher":"SEC filing metadata"},
-      {"id":"occ","title":"Comptroller’s Handbook, Commercial Real Estate Lending","url":"https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/commercial-real-estate-lending/index-commercial-real-estate-lending.html","publisher":"Office of the Comptroller of the Currency"},
-      {"id":"fema-form","title":"Guidance on lender flood hazard determinations","url":"https://www.fema.gov/fact-sheet/how-request-flood-hazard-determination-review-fema","publisher":"FEMA"},
-      {"id":"mappluto","title":"MapPLUTO 26v2 parcel geometry, BBL 1008350041","url":"https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1008350041&outFields=BBL%2CAddress%2CVersion&outSR=4326&f=geojson","publisher":"NYC Planning"},
-      {"id":"aerial","title":"2024 New York State orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
+      {
+        "id": "west-kite",
+        "title": "Financing fields and county coverage",
+        "url": "https://westkite.com/docs/data",
+        "publisher": "West Kite"
+      },
+      {
+        "id": "lightbox",
+        "title": "Transactions API and date fields",
+        "url": "https://developer.lightboxre.com/apis/transactions",
+        "publisher": "LightBox"
+      },
+      {
+        "id": "attom",
+        "title": "Property API documentation and Basic Profile",
+        "url": "https://api.developer.attomdata.com/dlpv2docs",
+        "publisher": "ATTOM"
+      },
+      {
+        "id": "regrid",
+        "title": "Parcel data and enhanced ownership updates",
+        "url": "https://regrid.com/library/parcel-data-quality/how-to-evaluate-parcel-data-quality",
+        "publisher": "Regrid"
+      },
+      {
+        "id": "regrid-schema",
+        "title": "Parcel schema and refresh matching fields",
+        "url": "https://support.regrid.com/docs/schema-overview",
+        "publisher": "Regrid"
+      },
+      {
+        "id": "ageospatial",
+        "title": "Property intelligence for credit decisions",
+        "url": "https://www.ageospatial.com/",
+        "publisher": "Ageospatial"
+      },
+      {
+        "id": "invariant-fields",
+        "title": "Public API field catalog",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth catalog"
+      },
+      {
+        "id": "invariant-responses",
+        "title": "Field response and provenance contract",
+        "url": "https://docs.invariant-ai.com/responses",
+        "publisher": "Invariant Earth docs"
+      },
+      {
+        "id": "acris-legal",
+        "title": "ACRIS Real Property Legals, parcel join fields",
+        "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Legals/8h5j-fqxa",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "acris-master",
+        "title": "ACRIS Real Property Master, instrument and recording fields",
+        "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Master/bnx9-e6tj",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "deed",
+        "title": "Recorded deed, City Register File Number 2013000417277",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013100700087001",
+        "publisher": "NYC ACRIS deed"
+      },
+      {
+        "id": "assignment",
+        "title": "Recorded assignment, City Register File Number 2013000434087",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013101700510005",
+        "publisher": "NYC ACRIS assignment"
+      },
+      {
+        "id": "agreement",
+        "title": "Recorded agreement, City Register File Number 2013000434088",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2013101700510006",
+        "publisher": "NYC ACRIS agreement"
+      },
+      {
+        "id": "sec-8k",
+        "title": "Empire State Realty Trust Form 8-K, Item 2.03",
+        "url": "https://www.sec.gov/Archives/edgar/data/1541401/000119312513393077/d609499d8k.htm",
+        "publisher": "SEC EDGAR"
+      },
+      {
+        "id": "sec-metadata",
+        "title": "Issuer submission history for accession 0001193125-13-393077",
+        "url": "https://data.sec.gov/submissions/CIK0001541401.json",
+        "publisher": "SEC filing metadata"
+      },
+      {
+        "id": "occ",
+        "title": "Comptroller’s Handbook, Commercial Real Estate Lending",
+        "url": "https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/commercial-real-estate-lending/index-commercial-real-estate-lending.html",
+        "publisher": "Office of the Comptroller of the Currency"
+      },
+      {
+        "id": "fema-form",
+        "title": "Guidance on lender flood hazard determinations",
+        "url": "https://www.fema.gov/fact-sheet/how-request-flood-hazard-determination-review-fema",
+        "publisher": "FEMA"
+      },
+      {
+        "id": "mappluto",
+        "title": "MapPLUTO 26v2 parcel geometry, BBL 1008350041",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1008350041&outFields=BBL%2CAddress%2CVersion&outSR=4326&f=geojson",
+        "publisher": "NYC Planning"
+      },
+      {
+        "id": "aerial",
+        "title": "2024 New York State orthoimagery",
+        "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
+        "publisher": "NYS ITS Geospatial Services"
+      }
     ],
-    "relatedSlugs": ["historical-parcel-boundaries-api","commercial-property-insurance-data-apis","best-gis-apis-for-site-selection","power-evidence-data-center-site-verification"]
+    "relatedSlugs": [
+      "historical-parcel-boundaries-api",
+      "commercial-property-insurance-data-apis",
+      "best-gis-apis-for-site-selection",
+      "power-evidence-data-center-site-verification",
+      "commercial-property-tax-delinquency-data"
+    ]
   },
   {
     "slug": "best-flood-risk-data-apis",

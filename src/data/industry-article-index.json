@@ -1,5 +1,75 @@
 [
   {
+    "slug": "commercial-property-tax-delinquency-data",
+    "topic": "Data & APIs",
+    "title": "Property Tax Delinquency Data for Commercial Real Estate",
+    "summary": "Check commercial property tax delinquency by parcel. Compare annual tax, unpaid charges, lien-sale notices and payoff evidence using a documented NYC case.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "New York City, United States",
+    "image": "/blog/industry/commercial-real-estate-data-apis-for-lenders.webp?v=1b5bf89a",
+    "dataset": {
+      "name": "NYC 2025 Class 4 lien sale stages and commercial tax account evidence",
+      "description": "Five 2025 notice and sale stage counts for Class 4 NYC tax lots, with the exact city queries, one commercial parcel’s quarterly charge observations and its separately recorded lien sale.",
+      "datePublished": "2026-11-23",
+      "spatialCoverage": "New York City, New York, United States",
+      "temporalCoverage": "2025-02/2025-06",
+      "sources": [
+        "https://data.cityofnewyork.us/Housing-Development/Tax-Lien-Sale-Lists/9rz4-mjek",
+        "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cwater_debt_only&%24where=month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27+AND+tax_class_code+%3D+4&%24limit=30000&%24order=month%2Cborough%2Cblock%2Clot%2C%3Aid",
+        "https://data.cityofnewyork.us/d/scjx-j6np",
+        "https://data.cityofnewyork.us/resource/scjx-j6np.json?%24select=parid%2Ccode%2Crectype%2Csum_liab%2Csum_coll%2Csum_bal%2Cdue_date%2Cdt_grace%2Cextractdt%2Cdt_pd_begin&%24where=parid+like+%271022380035%25%27+AND+extractdt+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+extractdt+%3C+%272026-12-01T00%3A00%3A00%27&%24limit=250&%24order=extractdt%2Ccode%2Cdt_pd_begin%2C%3Aid",
+        "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cbuilding_class%2Cwater_debt_only&%24where=borough+%3D+1+AND+block+%3D+2238+AND+lot+%3D+35+AND+month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27&%24order=month%2Ccycle",
+        "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1022380035&taxyr=2026",
+        "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Tax Lien Sale Lists and field definitions",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/Housing-Development/Tax-Lien-Sale-Lists/9rz4-mjek"
+        },
+        {
+          "title": "NYC 2025 Tax Class 4 notice and final sale rows",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cwater_debt_only&%24where=month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27+AND+tax_class_code+%3D+4&%24limit=30000&%24order=month%2Cborough%2Cblock%2Clot%2C%3Aid"
+        },
+        {
+          "title": "Property Charges Balance quarterly extract and field definitions",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/d/scjx-j6np"
+        },
+        {
+          "title": "Quarterly charge extracts for borough, block and lot 1022380035",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/scjx-j6np.json?%24select=parid%2Ccode%2Crectype%2Csum_liab%2Csum_coll%2Csum_bal%2Cdue_date%2Cdt_grace%2Cextractdt%2Cdt_pd_begin&%24where=parid+like+%271022380035%25%27+AND+extractdt+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+extractdt+%3C+%272026-12-01T00%3A00%3A00%27&%24limit=250&%24order=extractdt%2Ccode%2Cdt_pd_begin%2C%3Aid"
+        },
+        {
+          "title": "2025 notice and sale rows for borough, block and lot 1022380035",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cbuilding_class%2Cwater_debt_only&%24where=borough+%3D+1+AND+block+%3D+2238+AND+lot+%3D+35+AND+month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27&%24order=month%2Ccycle"
+        },
+        {
+          "title": "Tax account history and recorded 2025 lien sale for lot 1022380035",
+          "publisher": "NYC Department of Finance",
+          "url": "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1022380035&taxyr=2026"
+        },
+        {
+          "title": "New York City lien sale process and June 2025 sale date",
+          "publisher": "NYC Department of Finance",
+          "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the NYC notice counts and commercial lot evidence",
+          "path": "/blog/nyc-commercial-tax-lien-stage-audit.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "fire-station-distance-commercial-property-underwriting",
     "topic": "Data & APIs",
     "title": "How to Check Fire Station Distance and Protection Class by Address",

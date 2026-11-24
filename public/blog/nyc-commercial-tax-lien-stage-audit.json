@@ -1,0 +1,230 @@
+{
+  "name": "NYC 2025 Class 4 lien sale stages and one commercial tax account",
+  "reviewedOn": "2026-11-23",
+  "unitOfAnalysis": "NYC borough, block and lot (BBL). Match the five-digit block and four-digit lot using leading zeros.",
+  "sourceQueries": [
+    {
+      "id": "liens",
+      "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cwater_debt_only&%24where=month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27+AND+tax_class_code+%3D+4&%24limit=30000&%24order=month%2Cborough%2Cblock%2Clot%2C%3Aid",
+      "responseSha256": "2afc831d71ad01ffc6a4e24dfbfa0cced0831c413b8dfd6e6fdd96b8e2a91b1d"
+    },
+    {
+      "id": "lot-charges",
+      "url": "https://data.cityofnewyork.us/resource/scjx-j6np.json?%24select=parid%2Ccode%2Crectype%2Csum_liab%2Csum_coll%2Csum_bal%2Cdue_date%2Cdt_grace%2Cextractdt%2Cdt_pd_begin&%24where=parid+like+%271022380035%25%27+AND+extractdt+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+extractdt+%3C+%272026-12-01T00%3A00%3A00%27&%24limit=250&%24order=extractdt%2Ccode%2Cdt_pd_begin%2C%3Aid",
+      "responseSha256": "cde59f8ee70f4eb5ca64423a198c28ecd21f21fe8e02232e747e818b8db45825"
+    },
+    {
+      "id": "lot-lien",
+      "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cbuilding_class%2Cwater_debt_only&%24where=borough+%3D+1+AND+block+%3D+2238+AND+lot+%3D+35+AND+month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27&%24order=month%2Ccycle",
+      "responseSha256": "7f4b889516db47ea79664fe4d37eff1084f6c0bc2788bd6d4474b27a4bbf73f9"
+    }
+  ],
+  "sources": [
+    {
+      "id": "lien-metadata",
+      "title": "Tax Lien Sale Lists and field definitions",
+      "publisher": "NYC Department of Finance",
+      "url": "https://data.cityofnewyork.us/Housing-Development/Tax-Lien-Sale-Lists/9rz4-mjek"
+    },
+    {
+      "id": "lien-class-four",
+      "title": "NYC 2025 Tax Class 4 notice and final sale rows",
+      "publisher": "NYC Department of Finance",
+      "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cwater_debt_only&%24where=month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27+AND+tax_class_code+%3D+4&%24limit=30000&%24order=month%2Cborough%2Cblock%2Clot%2C%3Aid"
+    },
+    {
+      "id": "charge-metadata",
+      "title": "Property Charges Balance quarterly extract and field definitions",
+      "publisher": "NYC Department of Finance",
+      "url": "https://data.cityofnewyork.us/d/scjx-j6np"
+    },
+    {
+      "id": "lot-charges",
+      "title": "Quarterly charge extracts for borough, block and lot 1022380035",
+      "publisher": "NYC Department of Finance",
+      "url": "https://data.cityofnewyork.us/resource/scjx-j6np.json?%24select=parid%2Ccode%2Crectype%2Csum_liab%2Csum_coll%2Csum_bal%2Cdue_date%2Cdt_grace%2Cextractdt%2Cdt_pd_begin&%24where=parid+like+%271022380035%25%27+AND+extractdt+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+extractdt+%3C+%272026-12-01T00%3A00%3A00%27&%24limit=250&%24order=extractdt%2Ccode%2Cdt_pd_begin%2C%3Aid"
+    },
+    {
+      "id": "lot-notices",
+      "title": "2025 notice and sale rows for borough, block and lot 1022380035",
+      "publisher": "NYC Department of Finance",
+      "url": "https://data.cityofnewyork.us/resource/9rz4-mjek.json?%24select=month%2Ccycle%2Cborough%2Cblock%2Clot%2Ctax_class_code%2Cbuilding_class%2Cwater_debt_only&%24where=borough+%3D+1+AND+block+%3D+2238+AND+lot+%3D+35+AND+month+%3E%3D+%272025-01-01T00%3A00%3A00%27+AND+month+%3C+%272026-01-01T00%3A00%3A00%27&%24order=month%2Ccycle"
+    },
+    {
+      "id": "lot-account",
+      "title": "Tax account history and recorded 2025 lien sale for lot 1022380035",
+      "publisher": "NYC Department of Finance",
+      "url": "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1022380035&taxyr=2026"
+    },
+    {
+      "id": "sale-process",
+      "title": "New York City lien sale process and June 2025 sale date",
+      "publisher": "NYC Department of Finance",
+      "url": "https://www.nyc.gov/site/finance/property/property-lien-sales.page"
+    },
+    {
+      "id": "tax-billing",
+      "title": "Property tax bills, account access and due dates",
+      "publisher": "NYC Department of Finance",
+      "url": "https://www.nyc.gov/site/finance/property/property-bills-and-payments.page"
+    },
+    {
+      "id": "ibo",
+      "title": "April 2026 report on the history and outcomes of New York City tax lien sales",
+      "publisher": "NYC Independent Budget Office",
+      "url": "https://www.ibo.nyc.gov/assets/ibo/downloads/pdf/taxes-and-other-revenues/2026/2026-april-nycs-tax-lien-sale.pdf"
+    },
+    {
+      "id": "earth-fields",
+      "title": "Live parcel field definitions for parcelnumb, taxamt and taxyear",
+      "publisher": "Invariant Earth",
+      "url": "https://api.invariant-ai.com/v1/enrich/fields"
+    },
+    {
+      "id": "earth-enrich",
+      "title": "Enrich parcel match and field omissions response",
+      "publisher": "Invariant Earth",
+      "url": "https://docs.invariant-ai.com/api/enrich"
+    },
+    {
+      "id": "regrid",
+      "title": "Assessment and tax data dictionary",
+      "publisher": "Regrid",
+      "url": "https://support.regrid.com/docs/assessment-tax"
+    },
+    {
+      "id": "west-kite",
+      "title": "Tax notice data and published county coverage",
+      "publisher": "West Kite",
+      "url": "https://westkite.com/api/tax-notices"
+    }
+  ],
+  "method": [
+    "Filter the NYC Tax Lien Sale Lists dataset to calendar year 2025 and tax_class_code 4.",
+    "Count distinct BBLs within each published cycle. Match each group to the BBL set in the 90 Day Notice.",
+    "Normalize only YES and Y to true for the water-debt-only flag. The flag does not specify component amounts.",
+    "Read two quarterly extracts for the same CHG period on one Class 4 lot. Preserve the city’s raw values as strings with their record code and dates.",
+    "Read the NYC DOF account separately for the lien ID, sale date, status and sale amount."
+  ],
+  "scope": [
+    "The month field labels the report publication month. The actual transfer date is taken from the city’s account history.",
+    "Missing from a later list means the same BBL did not appear in that sampled tax class and report. The reason is unknown from these rows.",
+    "A zero charge balance after the transfer describes one city charge line. Get a current account and any servicer payoff or release for transaction decisions.",
+    "The city does not have a recoverable 2023 quarterly charge extract in this dataset. Missing observations are unknown."
+  ],
+  "class4NoticeStages": [
+    {
+      "reportedMonth": "2025-02",
+      "stage": "90 Day Notice",
+      "uniqueTaxLots": 5955,
+      "fromFirstClass4Notice": 5955,
+      "waterDebtOnlyFlaggedLots": 415
+    },
+    {
+      "reportedMonth": "2025-03",
+      "stage": "60 Day Notice",
+      "uniqueTaxLots": 5139,
+      "fromFirstClass4Notice": 5139,
+      "waterDebtOnlyFlaggedLots": 429
+    },
+    {
+      "reportedMonth": "2025-04",
+      "stage": "30 Day Notice",
+      "uniqueTaxLots": 4271,
+      "fromFirstClass4Notice": 4271,
+      "waterDebtOnlyFlaggedLots": 321
+    },
+    {
+      "reportedMonth": "2025-05",
+      "stage": "10 Day Notice",
+      "uniqueTaxLots": 3753,
+      "fromFirstClass4Notice": 3753,
+      "waterDebtOnlyFlaggedLots": 317
+    },
+    {
+      "reportedMonth": "2025-06",
+      "stage": "Final Sale",
+      "uniqueTaxLots": 1270,
+      "fromFirstClass4Notice": 1266,
+      "waterDebtOnlyFlaggedLots": 47
+    }
+  ],
+  "commercialLotCase": {
+    "bbl": "1022380035",
+    "taxClass": 4,
+    "buildingClassAsReported": "V1, zoned commercial",
+    "noticeStages": [
+      {
+        "reportMonth": "2025-02",
+        "stage": "90 Day Notice",
+        "waterDebtOnlyAsReported": "NO"
+      },
+      {
+        "reportMonth": "2025-03",
+        "stage": "60 Day Notice",
+        "waterDebtOnlyAsReported": "NO"
+      },
+      {
+        "reportMonth": "2025-04",
+        "stage": "30 Day Notice",
+        "waterDebtOnlyAsReported": "NO"
+      },
+      {
+        "reportMonth": "2025-05",
+        "stage": "10 Day Notice",
+        "waterDebtOnlyAsReported": "NO"
+      },
+      {
+        "reportMonth": "2025-06",
+        "stage": "Final Sale",
+        "waterDebtOnlyAsReported": "N"
+      }
+    ],
+    "selectedChargeRows": [
+      {
+        "parid": "1022380035",
+        "code": "CHG",
+        "rectype": "1",
+        "sum_liab": "63002.74",
+        "sum_coll": "0.00",
+        "sum_bal": "65537.44",
+        "due_date": "2025-01-01T00:00:00.000",
+        "dt_grace": "2025-01-01T00:00:00.000",
+        "extractdt": "2025-02-15T00:00:00.000",
+        "dt_pd_begin": "2025-01-01T00:00:00.000"
+      },
+      {
+        "parid": "1022380035",
+        "code": "CHG",
+        "rectype": "1",
+        "sum_liab": "0.00",
+        "sum_coll": "0.00",
+        "sum_bal": "0.00",
+        "due_date": "2025-01-01T00:00:00.000",
+        "dt_grace": "2025-01-01T00:00:00.000",
+        "extractdt": "2025-06-08T00:00:00.000",
+        "dt_pd_begin": "2025-01-01T00:00:00.000"
+      }
+    ],
+    "lienAccount": {
+      "lienId": "202501",
+      "soldOn": "2025-06-03",
+      "saleAmountUsd": "716516.29",
+      "statusAsReported": "S Sold",
+      "sourceUrl": "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1022380035&taxyr=2026"
+    }
+  },
+  "invariantEarthExample": {
+    "endpoint": "https://api.invariant-ai.com/v1/enrich",
+    "input": "A coordinate within the confirmed tax lot and an authenticated API key.",
+    "fields": [
+      "parcelnumb",
+      "taxamt",
+      "taxyear"
+    ],
+    "fileChecks": [
+      "Save parcel_match and the source on each field. Distinguish the tax year from the observation date. Inspect field_omissions for absent values."
+    ],
+    "scope": "Field names and scope verified through the live field catalog. The example shows the contract for parcel context and annual billed tax."
+  }
+}
