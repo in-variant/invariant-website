@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from hashlib import sha256
 from html.parser import HTMLParser
 from pathlib import Path
+from subprocess import run
 from urllib.error import HTTPError
 from urllib.parse import unquote, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -72,6 +73,7 @@ class Page(HTMLParser):
         self.robots = []
         self.headings = []
         self.links = set()
+        self.main_links = set()
         self.fragment_links = set()
         self.ids = []
         self.downloads = set()
@@ -107,6 +109,8 @@ class Page(HTMLParser):
             self.heading.append(" ")
         elif tag == "a" and attr.get("href"):
             target = urlsplit(urljoin(self.url, attr["href"]))
+            if self.in_main and target.scheme in {"http", "https"}:
+                self.main_links.add(target.geturl())
             if target.netloc == urlsplit(CANONICAL).netloc:
                 self.links.add(target.path)
                 if target.fragment:
@@ -214,6 +218,44 @@ def require_success(status, headers, mime):
         require(headers.get_content_type() == mime, f"expected {mime}, got {headers.get_content_type()}")
 
 
+def search_signature(page):
+    fields = (page.main_text, page.titles, page.metadata, page.schemas, sorted(page.main_links))
+    return sha256(json.dumps(fields, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+def capture_indexnow_baseline(destination):
+    status, headers, body = fetch(CANONICAL, "/sitemap.xml")
+    require_success(status, headers, "application/xml")
+    sitemap = sitemap_entries(body)
+
+    def snapshot(url):
+        path = urlsplit(url).path or "/"
+        require(url == CANONICAL + path, f"noncanonical URL in the live sitemap: {url}")
+        status, headers, body = fetch(CANONICAL, path)
+        require_success(status, headers, "text/html")
+        page = Page(path, body)
+        require(page.main_text and page.canonical == [url] and
+                not excludes_indexing(page.robots + headers.get_all("X-Robots-Tag", [])),
+                f"cannot capture an indexable canonical page for {url}")
+        return url, search_signature(page)
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        pages = dict(pool.map(snapshot, sorted(sitemap)))
+    destination.write_text(json.dumps({"origin": CANONICAL, "pages": pages}, indent=2) + "\n", encoding="utf-8")
+    print(f"Saved search content from {len(pages)} live canonical pages to {destination}.")
+
+
+def indexnow_changes(baseline_path, jobs):
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    previous = baseline["pages"]
+    require(baseline["origin"] == CANONICAL and isinstance(previous, dict) and bool(previous),
+            "expected a nonempty live baseline captured for the canonical origin")
+    current = {CANONICAL + path: search_signature(page) for path, kind, page in jobs if kind == "page"}
+    removed = {CANONICAL + path for path, kind, _ in jobs if kind == "missing" and path in RETIRED}
+    return sorted({url for url, signature in current.items() if previous.get(url) != signature}
+                  | (previous.keys() & removed))
+
+
 def verify(origin, job, expected_urls, preview, crawler=None):
     path, kind, expected = job
     try:
@@ -265,6 +307,7 @@ def verify(origin, job, expected_urls, preview, crawler=None):
                         f"initial HTML heading differs from dist/ (expected {expected.headings})")
                 require(actual.main_text and actual.main_text == expected.main_text and actual.main_text != actual.headings[0],
                         "initial HTML main text is missing or differs from dist/")
+                require(actual.main_links == expected.main_links, "initial HTML content links differ from dist/")
                 require(actual.canonical == [CANONICAL + path], "missing, duplicate, or incorrect canonical")
                 require(actual.titles == expected.titles, "search title is missing, duplicated, or differs from dist/")
                 for key, content in expected.metadata.items():
@@ -522,6 +565,12 @@ def main():
     parser.add_argument("--preserve-sitemap", type=Path, metavar="XML",
                         help="Require all URLs in a saved live sitemap to remain in the release")
     parser.add_argument("--preview", action="store_true", help="Allow a host-wide X-Robots-Tag noindex on preview HTML")
+    parser.add_argument("--capture-indexnow-baseline", type=Path, metavar="JSON",
+                        help="Snapshot the live canonical sitemap and page content before publishing")
+    parser.add_argument("--indexnow-from", type=Path, metavar="JSON",
+                        help="After full verification, list the changed URLs since a captured live baseline")
+    parser.add_argument("--submit-indexnow", action="store_true",
+                        help="Submit the verified changed URLs to IndexNow from the canonical origin")
     args = parser.parse_args()
     origin = args.origin.rstrip("/")
     url = urlsplit(origin)
@@ -529,14 +578,29 @@ def main():
         parser.error("origin must contain only the scheme, hostname, and optional port")
     if args.preview and url.hostname == urlsplit(CANONICAL).hostname:
         parser.error("run production verification without --preview")
+    if args.submit_indexnow and (origin != CANONICAL or not args.indexnow_from):
+        parser.error("--submit-indexnow requires the canonical origin and --indexnow-from")
+    if args.capture_indexnow_baseline:
+        if origin != CANONICAL or args.indexnow_from or args.full or args.preserve_sitemap:
+            parser.error("capture the baseline by itself against the canonical origin")
+        try:
+            capture_indexnow_baseline(args.capture_indexnow_baseline)
+        except (OSError, ValueError, KeyError, ElementTree.ParseError) as error:
+            sys.exit(f"Cannot capture live IndexNow baseline: {error}")
+        return 0
+    full = args.full or bool(args.indexnow_from)
     try:
         sitemap = sitemap_entries((DIST / "sitemap.xml").read_bytes())
         expected_urls = set(sitemap)
-        jobs, pages, assets = build_jobs(sitemap, args.full)
+        jobs, pages, assets = build_jobs(sitemap, full)
     except OSError as error:
         sys.exit(f"Cannot read the release from dist/. Run npm run build first. {error}")
     except (ValueError, KeyError, ElementTree.ParseError) as error:
         sys.exit(f"Invalid release in dist/: {error}")
+    try:
+        changed_urls = indexnow_changes(args.indexnow_from, jobs) if args.indexnow_from else []
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        sys.exit(f"Cannot read IndexNow baseline: {error}")
     if args.preserve_sitemap:
         try:
             baseline = set(sitemap_entries(args.preserve_sitemap.read_bytes()))
@@ -565,6 +629,12 @@ def main():
         if len(failures) > 25:
             print(f"… plus {len(failures) - 25} more failures.", file=sys.stderr)
         return 1
+    if args.indexnow_from:
+        print(f"IndexNow: {len(changed_urls)} changed or retired canonical URLs.", flush=True)
+        for changed_url in changed_urls:
+            print(changed_url, flush=True)
+    if args.submit_indexnow and changed_urls:
+        return run(["node", str(ROOT / "scripts/indexnow.mjs"), *changed_urls], check=False).returncode
     return 0
 
 

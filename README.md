@@ -57,3 +57,17 @@ npm run dev
 ```
 
 Run `npm run build` to generate the production pages, sitemap and article feeds in `dist/`.
+
+### Notify search engines after a release
+
+Capture the live HTML before publishing to identify changes even when a page was edited twice on the same date.
+
+```bash
+npm run verify:release -- https://invariant-ai.com --capture-indexnow-baseline /tmp/invariant-indexnow-before.json
+```
+
+After the exact build is live, verify it and notify IndexNow of the new, changed and retired canonical URLs. Omit `--submit-indexnow` to review the list without sending it.
+
+```bash
+npm run verify:release -- https://invariant-ai.com --indexnow-from /tmp/invariant-indexnow-before.json --submit-indexnow
+```
