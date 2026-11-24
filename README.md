@@ -13,7 +13,7 @@ This repository contains the public website and research examples for [Invariant
 
 The [GIS API trial](https://invariant-ai.com/blog/best-gis-apis-for-site-selection#gis-api-trial-requests) gives you the request bodies, dated city and FEMA references, and what to check in each response. Use it to evaluate parcel matching and flood overlap on the same sites across providers.
 
-From the repository root, run the example with Python 3.10 or newer. The default run checks the reference file’s SHA-256 and prints its dated observations and the matching request bodies. It works offline and needs no API key.
+Download the [versioned GIS trial](https://github.com/in-variant/invariant-website/releases/tag/earth-gis-trial-v1.0.0) to get the Python script, reference files and checksums in one ZIP. Run the examples from the extracted folder or the repository root with Python 3.10 or newer. Each default run verifies the selected reference file and prints the dated observations and matching requests offline.
 
 ```bash
 python3 examples/earth-gis-trial.py san-francisco
