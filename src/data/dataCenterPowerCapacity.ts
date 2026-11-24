@@ -7,7 +7,7 @@ export const DEFAULT_POWER_CASE = {
 
 export type PowerCase = typeof DEFAULT_POWER_CASE
 
-function hundredths(value: string) {
+export function hundredths(value: string) {
   if (!/^(?:\d+(?:\.\d{0,2})?|\.\d{1,2})$/.test(value)) return null
   const scaled = Math.round(Number(value) * 100)
   return Number.isSafeInteger(scaled) ? scaled : null

@@ -1,0 +1,85 @@
+.phase-schedule .power-calc-inner { padding-top: clamp(36px, 5vw, 72px); }
+.phase-schedule h1 { max-width: 25ch; font-size: clamp(34px, 5.1vw, 68px); }
+.phase-schedule .phase-schedule-hint {
+  color: var(--calc-muted);
+  max-width: 65ch;
+  line-height: 1.6;
+  margin: 0 0 21px;
+}
+.phase-schedule-phase {
+  min-inline-size: 0;
+  margin: 0 0 24px;
+  padding: 0 20px 20px;
+  border: 1px solid var(--calc-rule);
+  border-radius: 12px;
+  background: #fff;
+}
+.phase-schedule-phase legend {
+  margin-left: -6px;
+  padding: 0 6px;
+  color: var(--calc-ink);
+  font-size: 18px;
+  font-weight: 600;
+}
+.phase-schedule-inputs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin-block: 12px 20px;
+}
+.phase-schedule-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 6px;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 540;
+}
+.phase-schedule-field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: 9px;
+  border: 1px solid var(--calc-rule);
+  border-radius: 6px;
+  background: #fbfdfa;
+  color: var(--calc-ink);
+  font: inherit;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.phase-schedule-field input:focus-visible { outline: 2px solid var(--calc-accent); outline-offset: 2px; }
+.phase-schedule-field input:disabled { opacity: .72; }
+.phase-schedule-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid #d8e7df;
+  border-radius: 8px;
+  background: #d8e7df;
+}
+.phase-schedule-results > div { padding: 13px 14px; background: #ecf4ef; }
+.phase-schedule-results dt { color: var(--calc-muted); font-size: 13px; }
+.phase-schedule-results dd {
+  margin: 5px 0 0;
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 590;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.phase-schedule-results small { display: block; margin-top: 5px; font-size: 13px; font-weight: 530; }
+.phase-schedule-results [data-short='true'] { color: #8c380c; }
+@media (max-width: 840px) {
+  .phase-schedule-inputs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .phase-schedule-phase { padding-inline: 12px; }
+  .phase-schedule-inputs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; }
+  .phase-schedule-results { grid-template-columns: minmax(0, 1fr); }
+  .phase-schedule-results > div { padding: 10px 12px; }
+}

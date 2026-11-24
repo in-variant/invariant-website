@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, EDITORIAL_TEAM, breadcrumbSchema, SITE_URL } from '../../components/Seo'
+import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_SLUG, POWER_SCHEDULE_TITLE } from '../../data/dataCenterPowerSchedule'
 
 const URL = `${SITE_URL}/calculators`
 
@@ -8,6 +9,11 @@ const TOOLS = [
     slug: 'data-center-power-capacity',
     title: 'Data center power capacity calculator',
     description: 'Estimate total facility MW and compare normal on-site power with the capacity available during a generator outage.',
+  },
+  {
+    slug: POWER_SCHEDULE_SLUG,
+    title: POWER_SCHEDULE_TITLE,
+    description: POWER_SCHEDULE_DESCRIPTION,
   },
   {
     slug: 'faa-part-450-timeline',
@@ -34,7 +40,7 @@ export default function CalculatorsIndex() {
     <>
       <Seo
         title="Infrastructure and compliance calculators"
-        description="Free calculators for data center power capacity, FAA Part 450 launch licensing, NRC reactor license timelines, and satellite deorbit feasibility."
+        description="Free calculators for data center power capacity and service dates, FAA launch licensing, NRC reactor licensing, and satellite deorbit feasibility."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}
         jsonLd={[
@@ -71,7 +77,7 @@ export default function CalculatorsIndex() {
             Infrastructure and compliance calculators
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Estimate data center power demand, launch and nuclear licensing timelines, and satellite deorbit feasibility.
+            Estimate data center power demand and service deadlines, launch and nuclear licensing timelines, and satellite deorbit feasibility.
           </p>
 
           <ul className="mt-12 divide-y divide-ink/10">

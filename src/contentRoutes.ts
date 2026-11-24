@@ -52,6 +52,7 @@ export const contentRouteSources = {
   '/calculators': './pages/calculators/Index.tsx',
   '/calculators/fcc-deorbit-feasibility': './pages/calculators/FccDeorbitCalculator.tsx',
   '/calculators/data-center-power-capacity': './pages/calculators/DataCenterPowerCapacity.tsx',
+  '/calculators/data-center-power-delivery-schedule': './pages/calculators/DataCenterPowerSchedule.tsx',
   '/faa-ac-450-series': './pages/clusters/FaaAc450Series.tsx',
   '/part-53-subparts': './pages/clusters/Part53Subparts.tsx',
   '/nrc-rai-management': './pages/clusters/NrcRaiManagement.tsx',

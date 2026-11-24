@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../../components/Seo'
 import { DEFAULT_POWER_CASE, calculatePowerCapacity, type PowerCase } from '../../data/dataCenterPowerCapacity'
+import { POWER_SCHEDULE_PATH } from '../../data/dataCenterPowerSchedule'
 import './DataCenterPowerCapacity.css'
 
 const URL = `${SITE_URL}/calculators/data-center-power-capacity`
@@ -123,6 +124,7 @@ export default function DataCenterPowerCapacity() {
             <p>For sizing, use the engineer’s demand schedule or a ratio calculated for the design condition. Annual power usage effectiveness (PUE) measures energy over a year. Obtain net plant output after site derating, plant auxiliary loads, and losses to the intake. Include grid imports only where the utility can supply them in the scenario under review.</p>
             <p>Before using the result for procurement, have the engineer check reserves, fuel delivery, switching, common equipment, and load pickup.</p>
             <div className="power-calc-links">
+              <Link to={POWER_SCHEDULE_PATH}>Check when each phase needs power ↗</Link>
               <Link to={GUIDE}>Read the behind-the-meter power guide ↗</Link>
               <a href={DOE_GUIDE}>DOE data center design guide ↗</a>
             </div>

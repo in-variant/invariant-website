@@ -1,6 +1,7 @@
 import { PAGES } from './page-registry'
 import industryArticles from './industry-article-index.json'
 import type { ResourceTopic } from './resources'
+import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE } from './dataCenterPowerSchedule'
 
 export type ResourceReference = {
   path: string
@@ -21,6 +22,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/data-center-compliance', title: 'Data-center compliance: the full project map', summary: 'Connect siting, power, air, water and operating obligations in one U.S. compliance plan.', topic: 'Data Centers', kind: 'Guide' },
   { path: '/oil-gas-compliance', title: 'Oil-and-gas compliance: from permits to field records', summary: 'Understand U.S. onshore permitting, methane requirements and the evidence behind operating obligations.', topic: 'Oil & Gas', kind: 'Guide' },
   { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert critical IT load into facility power at the meter and estimate operating energy from PUE and utilization.', topic: 'Data Centers', kind: 'Tool' },
+  { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
   ...industryArticles.map(article => ({ path: `/blog/${article.slug}`, title: article.title, summary: article.summary, topic: article.topic as ResourceTopic, kind: 'Guide' as const })),
   ...PAGES.filter((page) => page.live)
     .sort((a, b) => (a.weight ?? 9) - (b.weight ?? 9))
