@@ -1,5 +1,347 @@
 [
   {
+    "slug": "commercial-property-tax-assessment-history-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Commercial Property Tax Assessment History by Address",
+    "description": "Find past commercial property tax assessments by address. Follow five years of Empire State Building tax-roll records and reconcile them with posted NYC tax charges.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Empire State Building actual and taxable assessed values for fiscal years 2023 to 2027. Both start at $407.8 million. In FY2027 actual assessed value is $577.4 million and taxable assessed value is $492.4 million.",
+    "coverCaption": "NYC Department of Finance final assessment roll records for Manhattan tax lot 1008350041. Amounts on the chart are assessed values in millions of dollars.",
+    "intro": "To find a commercial property’s tax assessment history, look up its parcel number in the local assessor’s map, then retrieve the published assessment for each tax year. Save the tax class, taxable value, and publication stage with each record. Use the tax collector’s account to check billed charges and payment status separately.",
+    "takeaways": [
+      "Join the assessor and tax account using the jurisdiction and parcel number. Keep address aliases with the file.",
+      "Use the final roll for a finalized tax-year comparison. Retain earlier notices for decisions made before it was published.",
+      "Read taxable assessed value, the adopted tax rate, and posted charges together before setting an operating expense or escrow assumption."
+    ],
+    "sections": [
+      {
+        "id": "how-to-find-assessment-history",
+        "heading": "How to look up past property tax assessments by address",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Search the local assessor or parcel map by the street address. Match the building and all of the parcels covered by the transaction.",
+              "Open the assessor’s current roll and historical archive. Record the tax year, tax class, parcel number and whether the value is tentative, final or revised.",
+              "Keep market value, actual assessed value, any phased-in assessment, taxable value and exemptions in separate fields.",
+              "Match the tax collector’s statements to that parcel and tax year. Keep billed charges, payments and balances in separate columns."
+            ],
+            "sourceIds": [
+              "assessments",
+              "roll",
+              "account"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "empire-state-building",
+        "heading": "Five years of Empire State Building assessments",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The landmarks designation lists the Empire State Building at 350 Fifth Avenue, Manhattan block 835, lot 41. The assessment records for the same tax lot list 338 as the lowest house number on 5 Avenue. Use Manhattan borough code 1 plus block 00835 and lot 0041 to form the ten-digit BBL, 1008350041. That identifier matches the assessment and the tax account.",
+            "sourceIds": [
+              "landmark",
+              "roll",
+              "dictionary",
+              "account"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Fiscal year ending",
+              "City market value",
+              "Actual assessed",
+              "Transitional assessed",
+              "Taxable assessed"
+            ],
+            "rows": [
+              [
+                "2023",
+                "$906.149M",
+                "$407.767M",
+                "$423.569M",
+                "$407.767M"
+              ],
+              [
+                "2024",
+                "$992.772M",
+                "$446.747M",
+                "$439.465M",
+                "$439.465M"
+              ],
+              [
+                "2025",
+                "$1,074.685M",
+                "$483.608M",
+                "$446.195M",
+                "$446.195M"
+              ],
+              [
+                "2026",
+                "$1,186.766M",
+                "$534.045M",
+                "$459.435M",
+                "$459.435M"
+              ],
+              [
+                "2027",
+                "$1,283.202M",
+                "$577.441M",
+                "$492.419M",
+                "$492.419M"
+              ]
+            ],
+            "sourceIds": [
+              "roll"
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The FY2023 taxable assessment followed the lower actual assessed value. By FY2024 the transitional value was lower, and it remained the basis through FY2027. In FY2027 the actual assessed value was $577,440,900 and the taxable assessed value was $492,419,019. The final taxable exemption field was zero for each of the five records.",
+            "sourceIds": [
+              "roll",
+              "transition"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For the FY2027 tentative row, the assessed figures appear in the tentative fields. The final fields still show zero. The Department of Finance dictionary defines period 1 as tentative and period 3 as final. Preserve that stage when building a historical view, especially when you need to show what was available on an earlier credit decision date.",
+            "sourceIds": [
+              "roll",
+              "dictionary"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/commercial-property-tax-assessment-history-by-address.csv",
+            "format": "CSV",
+            "label": "Download the five final assessments"
+          },
+          {
+            "type": "download",
+            "path": "/blog/commercial-property-tax-assessment-history-by-address.json",
+            "format": "JSON",
+            "label": "Download the assessment and tax-charge reconciliation"
+          }
+        ]
+      },
+      {
+        "id": "reconcile-tax-charge",
+        "heading": "How to reconcile the taxable value to posted charges",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Multiply the taxable assessment by the adopted rate for that fiscal year and class. NYC’s adopted Class 4 rates were 10.848% for FY2026 and 10.859% for FY2027. We compared the calculation with the two original entries coded TAX for each year in the public account. The account lists other charges and payments separately.",
+            "sourceIds": [
+              "rates",
+              "account",
+              "roll"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Fiscal year ending",
+              "Gross levy calculation",
+              "Two original TAX charges"
+            ],
+            "rows": [
+              [
+                "2026",
+                "$49,839,505.44",
+                "$24,722,195.68 + $25,117,309.76 = $49,839,505.44"
+              ],
+              [
+                "2027",
+                "$53,471,781.27",
+                "$26,708,807.60 + $26,762,973.68 = $53,471,781.28"
+              ]
+            ],
+            "sourceIds": [
+              "rates",
+              "account",
+              "roll"
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The FY2027 calculation is within one cent of the posted TAX total. The amount due January 1, 2027 was already listed when we checked on November 23, 2026. Use the posted charge column for the billing schedule and the payment and balance columns for collection status. For a new purchase or loan, also review abatements, exemptions, pending appeals, and any separate charges that could change the modeled expense.",
+            "sourceIds": [
+              "account",
+              "annual-tax",
+              "roll"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lending-and-valuation",
+        "heading": "What to keep in a lender or valuation file",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Keep the original assessment row, the parcel identifier, the assessed-value stage and the account statement used to verify the expense. Use market comps and underwriting assumptions for collateral value. The assessor’s market-value field is a tax input. For properties split across several parcels, record which portion of the billed expense belongs to the collateral.",
+            "sourceIds": [
+              "assessments",
+              "annual-tax"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to resolve street addresses to parcels and join the resulting identifiers to dated property records. Build the tax line from the local assessor and tax collector evidence available for that jurisdiction.",
+            "sourceIds": [
+              "parcel-api"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related lending checks",
+            "items": [
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare commercial property data APIs for lenders"
+              },
+              {
+                "slug": "commercial-property-tax-delinquency-data",
+                "label": "Check delinquency, recorded liens, and tax sales"
+              },
+              {
+                "slug": "commercial-real-estate-sales-lease-comps-apis",
+                "label": "Compare commercial real estate sales and lease comps"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I find an old commercial property tax assessment?",
+        "answer": "Use the assessor’s roll archive and search by parcel number and tax year. In New York City, search by borough, block, and lot and use the final roll when comparing published final values. Keep the original notice when you need to recover an earlier assessment stage.",
+        "sourceIds": [
+          "assessments",
+          "archive",
+          "dictionary"
+        ]
+      },
+      {
+        "question": "Can taxable value be lower than actual assessed value?",
+        "answer": "Yes. In the FY2027 Class 4 record for the Empire State Building, the lower transitional assessment set the taxable value because the record lists no exemption. Actual assessed value was $577,440,900 and taxable assessed value was $492,419,019. Review the published taxable field and the local treatment of exemptions.",
+        "sourceIds": [
+          "transition",
+          "roll"
+        ]
+      },
+      {
+        "question": "How do you calculate commercial property tax from an assessment?",
+        "answer": "Multiply the taxable value by the adopted rate for the class and tax year. Then check the actual account for abatements, additional charges, payments, and any corrections before using that amount in a closing or escrow calculation.",
+        "sourceIds": [
+          "annual-tax",
+          "rates",
+          "account"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "landmark",
+        "title": "Empire State Building designation, Manhattan block 835, lot 41",
+        "url": "https://s-media.nyc.gov/agencies/lpc/lp/2000.pdf",
+        "publisher": "NYC Landmarks Preservation Commission",
+        "linkLabel": "Landmark parcel designation"
+      },
+      {
+        "id": "roll",
+        "title": "Valuation and assessment rows for BBL 1008350041",
+        "url": "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271008350041%27&%24select=parid%2Cyear%2Crectype%2Croll_section%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot%2Cfintxbextot%2Cpymkttot%2Cpyacttot%2Cpytrntot%2Cpytxbtot%2Ctenmkttot%2Ctenacttot%2Ctentrntot%2Ctentxbtot%2Ccurmkttot%2Ccuracttot%2Ccurtrntot%2Ccurtxbtot&%24order=year+desc",
+        "publisher": "NYC Department of Finance through NYC Open Data",
+        "linkLabel": "Exact assessor query"
+      },
+      {
+        "id": "dictionary",
+        "title": "Property Assessment Data Dictionary, final fields and PERIOD codes",
+        "url": "https://data.cityofnewyork.us/api/views/8y4t-faws/files/2e925830-8a86-453a-9072-1e6045ed92a4",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Assessment data dictionary"
+      },
+      {
+        "id": "account",
+        "title": "Account history summary for BBL 1008350041, original TAX charges",
+        "url": "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1008350041&taxyr=2027",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Official tax account"
+      },
+      {
+        "id": "rates",
+        "title": "Adopted NYC property tax rates and historical rates",
+        "url": "https://home4.nyc.gov/site/finance/property/property-tax-rates.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Published tax rates"
+      },
+      {
+        "id": "transition",
+        "title": "Determining your transitional assessed value",
+        "url": "https://www.nyc.gov/site/finance/property/property-determining-your-transitional-assessed-value.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Transitional assessment rules"
+      },
+      {
+        "id": "annual-tax",
+        "title": "Calculating your annual property tax",
+        "url": "https://home4.nyc.gov/site/finance/property/property-calculating-your-annual-tax-blll.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Tax calculation steps"
+      },
+      {
+        "id": "assessments",
+        "title": "Property assessments and current final-roll releases",
+        "url": "https://home4.nyc.gov/site/finance/property/property-assessments.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Current assessment rolls"
+      },
+      {
+        "id": "archive",
+        "title": "Property assessment roll archives",
+        "url": "https://home4.nyc.gov/site/finance/property/property-assessment-roll-archives.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Prior-year assessment rolls"
+      },
+      {
+        "id": "parcel-api",
+        "title": "Look up a parcel by street address",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Try a parcel lookup"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "commercial-property-tax-delinquency-data",
+      "commercial-real-estate-sales-lease-comps-apis",
+      "parcel-number-lookup-by-address"
+    ],
+    "dataset": {
+      "name": "Empire State Building assessments and posted property tax charges",
+      "description": "Five final NYC assessment records for fiscal years 2023–2027 and four posted TAX charges for FY2026 and FY2027, with parcel identity, tentative-stage evidence, adopted rates and a gross levy reconciliation.",
+      "sourceIds": [
+        "roll",
+        "dictionary",
+        "account",
+        "rates",
+        "landmark"
+      ],
+      "spatialCoverage": "Empire State Building, Manhattan, New York City, United States",
+      "temporalCoverage": "2022-07-01/2027-06-30"
+    }
+  },
+  {
     "slug": "hurricane-wind-history-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -3222,7 +3564,8 @@
     "relatedSlugs": [
       "commercial-real-estate-data-apis-for-lenders",
       "commercial-mortgage-maturity-data-apis",
-      "commercial-property-ownership-data-apis"
+      "commercial-property-ownership-data-apis",
+      "commercial-property-tax-assessment-history-by-address"
     ],
     "dataset": {
       "name": "NYC 2025 Class 4 lien sale stages and commercial tax account evidence",
@@ -17881,7 +18224,8 @@
       "best-gis-apis-for-site-selection",
       "power-evidence-data-center-site-verification",
       "commercial-property-tax-delinquency-data",
-      "building-violations-by-address"
+      "building-violations-by-address",
+      "commercial-property-tax-assessment-history-by-address"
     ]
   },
   {

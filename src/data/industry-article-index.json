@@ -1,5 +1,67 @@
 [
   {
+    "slug": "commercial-property-tax-assessment-history-by-address",
+    "topic": "Data & APIs",
+    "title": "Commercial Property Tax Assessment History by Address",
+    "summary": "Find past commercial property tax assessments by address. Follow five years of Empire State Building tax-roll records and reconcile them with posted NYC tax charges.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/commercial-property-tax-assessment-history-by-address.webp?v=1a6ea87e",
+    "dataset": {
+      "name": "Empire State Building assessments and posted property tax charges",
+      "description": "Five final NYC assessment records for fiscal years 2023–2027 and four posted TAX charges for FY2026 and FY2027, with parcel identity, tentative-stage evidence, adopted rates and a gross levy reconciliation.",
+      "spatialCoverage": "Empire State Building, Manhattan, New York City, United States",
+      "temporalCoverage": "2022-07-01/2027-06-30",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271008350041%27&%24select=parid%2Cyear%2Crectype%2Croll_section%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot%2Cfintxbextot%2Cpymkttot%2Cpyacttot%2Cpytrntot%2Cpytxbtot%2Ctenmkttot%2Ctenacttot%2Ctentrntot%2Ctentxbtot%2Ccurmkttot%2Ccuracttot%2Ccurtrntot%2Ccurtxbtot&%24order=year+desc",
+        "https://data.cityofnewyork.us/api/views/8y4t-faws/files/2e925830-8a86-453a-9072-1e6045ed92a4",
+        "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1008350041&taxyr=2027",
+        "https://home4.nyc.gov/site/finance/property/property-tax-rates.page",
+        "https://s-media.nyc.gov/agencies/lpc/lp/2000.pdf"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Valuation and assessment rows for BBL 1008350041",
+          "publisher": "NYC Department of Finance through NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271008350041%27&%24select=parid%2Cyear%2Crectype%2Croll_section%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot%2Cfintxbextot%2Cpymkttot%2Cpyacttot%2Cpytrntot%2Cpytxbtot%2Ctenmkttot%2Ctenacttot%2Ctentrntot%2Ctentxbtot%2Ccurmkttot%2Ccuracttot%2Ccurtrntot%2Ccurtxbtot&%24order=year+desc"
+        },
+        {
+          "title": "Property Assessment Data Dictionary, final fields and PERIOD codes",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/api/views/8y4t-faws/files/2e925830-8a86-453a-9072-1e6045ed92a4"
+        },
+        {
+          "title": "Account history summary for BBL 1008350041, original TAX charges",
+          "publisher": "NYC Department of Finance",
+          "url": "https://a836-pts-access.nyc.gov/care/datalets/datalet.aspx?UseSearch=no&mode=acc_hist_summ&p.jur=065&pin=1008350041&taxyr=2027"
+        },
+        {
+          "title": "Adopted NYC property tax rates and historical rates",
+          "publisher": "NYC Department of Finance",
+          "url": "https://home4.nyc.gov/site/finance/property/property-tax-rates.page"
+        },
+        {
+          "title": "Empire State Building designation, Manhattan block 835, lot 41",
+          "publisher": "NYC Landmarks Preservation Commission",
+          "url": "https://s-media.nyc.gov/agencies/lpc/lp/2000.pdf"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the five final assessments",
+          "path": "/blog/commercial-property-tax-assessment-history-by-address.csv",
+          "format": "CSV"
+        },
+        {
+          "label": "Download the assessment and tax-charge reconciliation",
+          "path": "/blog/commercial-property-tax-assessment-history-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "hurricane-wind-history-by-address",
     "topic": "Data & APIs",
     "title": "Hurricane Wind History by Address for Property Underwriting",
