@@ -1,0 +1,96 @@
+{
+  "name": "California charging power sharing and vehicle inlet limits",
+  "case_observation_year": 2023,
+  "source_checked_on": "2026-11-24",
+  "source": {
+    "publisher": "California Public Utilities Commission",
+    "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf",
+    "pdf_sha256": "90d1fa71ba60e98f105608ac5214663f53c17063e540f3e473464bef11c38be6"
+  },
+  "reported_configurations": {
+    "paired-public-fast-charger": {
+      "program": "PG&E EV Fast Charge",
+      "printed_page": 271,
+      "pdf_page": 278,
+      "active_ports_if_shared": 2,
+      "power_per_shared_port_kw": 62.5,
+      "power_with_one_active_port_kw": 125,
+      "source_locator": "Site Visit Findings and Table 107, 62.5 kW paired equipment"
+    },
+    "dual-inlet-heavy-truck": {
+      "program": "Southern California Edison Charge Ready Transport",
+      "printed_page": 89,
+      "pdf_page": 96,
+      "charger_output_limits_kw": [90, 90],
+      "vehicle_inlet_limits_kw": [120, 60],
+      "source_locator": "Heavy-Duty and Drayage Vehicles and Figure 48"
+    },
+    "transit-cabinet": {
+      "program": "San Diego Gas & Electric Power Your Drive for Fleets",
+      "printed_page": 309,
+      "pdf_page": 316,
+      "active_connectors_if_fully_shared": 3,
+      "power_per_fully_shared_connector_kw": 60,
+      "power_with_one_active_connector_kw": 180,
+      "source_locator": "Site visit findings for the modular cabinet supplying three bus pantographs"
+    }
+  },
+  "calculation": {
+    "power_ceiling_kw": "For each active connection use the smaller of the allocated charger output and a known vehicle inlet limit. If the vehicle limit is unavailable, use the allocation as the charger-side ceiling. Sum active connections that serve the same vehicle.",
+    "output_energy_ceiling_kwh": "Multiply the power ceiling by the usable charging minutes divided by 60.",
+    "scope": "Illustrative constant-rate ceilings at the connector output. The source describes charger and vehicle configurations. These checks do not use observed session traces or estimate battery taper, conversion losses or queue time.",
+    "unknowns": "Keep other allocations unresolved. For example, the transit report describes one and three active connectors."
+  },
+  "checks": [
+    {
+      "id": "public-neighbor-idle",
+      "configuration": "paired-public-fast-charger",
+      "active_ports_on_shared_equipment": 1,
+      "charger_allocations_to_target_vehicle_kw": [125],
+      "target_vehicle_inlet_limits_kw": [null],
+      "usable_charging_minutes": 30,
+      "target_vehicle_power_ceiling_kw": 125,
+      "target_vehicle_output_energy_ceiling_kwh": 62.5
+    },
+    {
+      "id": "public-both-ports-in-use",
+      "configuration": "paired-public-fast-charger",
+      "active_ports_on_shared_equipment": 2,
+      "charger_allocations_to_target_vehicle_kw": [62.5],
+      "target_vehicle_inlet_limits_kw": [null],
+      "usable_charging_minutes": 30,
+      "target_vehicle_power_ceiling_kw": 62.5,
+      "target_vehicle_output_energy_ceiling_kwh": 31.25
+    },
+    {
+      "id": "truck-both-inlets-in-use",
+      "configuration": "dual-inlet-heavy-truck",
+      "active_ports_on_shared_equipment": 2,
+      "charger_allocations_to_target_vehicle_kw": [90, 90],
+      "target_vehicle_inlet_limits_kw": [120, 60],
+      "usable_charging_minutes": 30,
+      "target_vehicle_power_ceiling_kw": 150,
+      "target_vehicle_output_energy_ceiling_kwh": 75
+    },
+    {
+      "id": "single-bus-on-cabinet",
+      "configuration": "transit-cabinet",
+      "active_ports_on_shared_equipment": 1,
+      "charger_allocations_to_target_vehicle_kw": [180],
+      "target_vehicle_inlet_limits_kw": [null],
+      "usable_charging_minutes": 30,
+      "target_vehicle_power_ceiling_kw": 180,
+      "target_vehicle_output_energy_ceiling_kwh": 90
+    },
+    {
+      "id": "three-buses-on-cabinet",
+      "configuration": "transit-cabinet",
+      "active_ports_on_shared_equipment": 3,
+      "charger_allocations_to_target_vehicle_kw": [60],
+      "target_vehicle_inlet_limits_kw": [null],
+      "usable_charging_minutes": 30,
+      "target_vehicle_power_ceiling_kw": 60,
+      "target_vehicle_output_energy_ceiling_kwh": 30
+    }
+  ]
+}

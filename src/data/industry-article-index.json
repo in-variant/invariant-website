@@ -2427,10 +2427,11 @@
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
-    "summary": "Compare AFDC, TomTom, HERE, Google Places and OCPI. Use two Ohio fast-charging stops to test port counts, connector compatibility and live status.",
+    "summary": "Compare AFDC, TomTom, HERE, Google Places and OCPI. Test EV charging APIs for correct port counts, live availability and shared charging power.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/ev-charging-station-data-apis.webp?v=51b6a8ea",
     "dataset": {
       "name": "AFDC fast charging inventory audit at I-70 Exit 79 in London, Ohio",
@@ -2460,7 +2461,46 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-california-ev-power-sharing",
+        "datePublished": "2026-11-24",
+        "name": "California charging power sharing and vehicle inlet limits",
+        "description": "Three charging configurations documented during California utility program evaluations. Five repeatable calculations distinguish output allocation, vehicle inlet limits and the energy ceiling in a 30-minute charging window.",
+        "spatialCoverage": "California, United States",
+        "temporalCoverage": "2023",
+        "sources": [
+          "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=96",
+          "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=278",
+          "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=316"
+        ],
+        "sourceDetails": [
+          {
+            "title": "2023 evaluation, printed page 89, heavy-duty dual-inlet charging at a Southern California Edison program site",
+            "publisher": "California Public Utilities Commission",
+            "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=96"
+          },
+          {
+            "title": "2023 evaluation, printed page 271, PG&E public fast-charging pairs and Table 107",
+            "publisher": "California Public Utilities Commission",
+            "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=278"
+          },
+          {
+            "title": "2023 evaluation, printed page 309, shared transit charging cabinet",
+            "publisher": "California Public Utilities Commission",
+            "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=316"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download three power-sharing configurations and five calculation checks",
+            "path": "/blog/ev-charger-power-sharing-california.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "geoforge-alternatives-data-center-power",
@@ -3727,6 +3767,7 @@
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "Southern California",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/electric-truck-charging-southern-california.webp?v=b2e79831",
     "dataset": {
       "name": "Electric truck charging depot evidence in Southern California",

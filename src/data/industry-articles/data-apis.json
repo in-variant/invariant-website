@@ -14019,9 +14019,10 @@
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
-    "description": "Compare AFDC, TomTom, HERE, Google Places and OCPI. Use two Ohio fast-charging stops to test port counts, connector compatibility and live status.",
+    "description": "Compare AFDC, TomTom, HERE, Google Places and OCPI. Test EV charging APIs for correct port counts, live availability and shared charging power.",
     "date": "2026-11-23",
-    "readMinutes": 7,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 8,
     "region": "United States",
     "coverAlt": "Aerial map of the I-70 and U.S. Route 42 interchange near London, Ohio, with Pilot 454 and TA London marked.",
     "coverCaption": "I-70 Exit 79 near London, Ohio. Pins use AFDC station coordinates. Aerial imagery from USGS, USDA and The National Map.",
@@ -14222,6 +14223,40 @@
         ]
       },
       {
+        "id": "ev-charger-power-sharing",
+        "heading": "How much power can a free EV charging port deliver?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A free port can share power with another vehicle. Check the power available to the port while its neighbors are charging, then compare it with what the vehicle can accept. California utility program site visits documented three different charging configurations in 2023. Use them to test how a routing or fleet application handles shared power.",
+            "sourceIds": ["cpuc-truck-inlet", "cpuc-public-paired-ports", "cpuc-transit-cabinet"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Observed configuration", "Power available in the documented configuration", "What the planning tool should handle"],
+            "rows": [
+              ["Paired public fast charger, PG&E program", "Up to 125 kW for one capable vehicle or 62.5 kW per port with the pair in use.", "The same available port can have a different power limit when its neighbor is occupied."],
+              ["Dual-inlet heavy truck, Southern California Edison program", "The charger supplies up to 90 kW per output. The truck has 120 kW and 60 kW inlet limits, giving a 150 kW combined ceiling under this fixed split.", "Apply the smaller limit to each active inlet before adding the results."],
+              ["Shared bus charging cabinet, San Diego Gas & Electric program", "180 kW to one connector or 60 kW per connector when all three are active.", "Apply the cabinet limit and the allocation the operator reports for the active connectors."]
+            ],
+            "rowSourceIds": [["cpuc-public-paired-ports"], ["cpuc-truck-inlet"], ["cpuc-transit-cabinet"]]
+          },
+          {
+            "type": "paragraph",
+            "text": "On the paired public charger, 30 minutes at 125 kW gives a ceiling of 62.5 kWh at the charger output. At 62.5 kW it gives 31.25 kWh. Both calculations assume a constant rate. Estimate battery energy using the vehicle’s charge curve, losses and usable plug-in time. Where the provider cannot supply a simultaneous output rating, show the listed maximum and leave the shared-power estimate unresolved.",
+            "sourceIds": ["cpuc-public-paired-ports"]
+          },
+          {
+            "type": "download",
+            "datasetAnchor": "dataset-california-ev-power-sharing",
+            "label": "Download three power-sharing configurations and five calculation checks",
+            "path": "/blog/ev-charger-power-sharing-california.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
         "id": "ev-charging-site-planning",
         "heading": "Use surrounding land and road data for expansion decisions",
         "blocks": [
@@ -14268,6 +14303,11 @@
         "sourceIds": [
           "ocpi"
         ]
+      },
+      {
+        "question": "Can an available EV charger deliver less than its advertised kilowatts?",
+        "answer": "Yes. A power cabinet can split its output across several active ports, and the vehicle can impose a lower limit. One California evaluation documented a paired charger that could deliver 125 kW to a single capable vehicle or 62.5 kW per port with both in use.",
+        "sourceIds": ["cpuc-public-paired-ports", "cpuc-truck-inlet"]
       },
       {
         "question": "How do I count public DC fast-charging ports from AFDC?",
@@ -14346,6 +14386,24 @@
         "url": "https://api.invariant-ai.com/v1/meta/fields"
       },
       {
+        "id": "cpuc-truck-inlet",
+        "publisher": "California Public Utilities Commission",
+        "title": "2023 evaluation, printed page 89, heavy-duty dual-inlet charging at a Southern California Edison program site",
+        "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=96"
+      },
+      {
+        "id": "cpuc-public-paired-ports",
+        "publisher": "California Public Utilities Commission",
+        "title": "2023 evaluation, printed page 271, PG&E public fast-charging pairs and Table 107",
+        "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=278"
+      },
+      {
+        "id": "cpuc-transit-cabinet",
+        "publisher": "California Public Utilities Commission",
+        "title": "2023 evaluation, printed page 309, shared transit charging cabinet",
+        "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=316"
+      },
+      {
         "id": "fleet-planning",
         "publisher": "U.S. Department of Energy AFDC",
         "title": "Medium- and heavy-duty charging infrastructure planning",
@@ -14356,6 +14414,17 @@
         "publisher": "U.S. Geological Survey",
         "title": "The National Map NAIP Plus aerial imagery service",
         "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer"
+      }
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-california-ev-power-sharing",
+        "datePublished": "2026-11-24",
+        "name": "California charging power sharing and vehicle inlet limits",
+        "description": "Three charging configurations documented during California utility program evaluations. Five repeatable calculations distinguish output allocation, vehicle inlet limits and the energy ceiling in a 30-minute charging window.",
+        "spatialCoverage": "California, United States",
+        "temporalCoverage": "2023",
+        "sourceIds": ["cpuc-truck-inlet", "cpuc-public-paired-ports", "cpuc-transit-cabinet"]
       }
     ],
     "dataset": {
@@ -20432,6 +20501,7 @@
     "title": "Electric Truck Charging in Southern California",
     "description": "Find heavy-duty charging from the Port of Long Beach to Colton and Blythe. Compare operator-reported status, CCS and MCS, trailer access, and reservations.",
     "date": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "readMinutes": 7,
     "coverAlt": "Illustration of a tractor-trailer using a pull-through charging lane in a port freight yard.",
     "coverCaption": "AI-generated illustration of a freight charging depot.",
@@ -20500,6 +20570,11 @@
             "type": "paragraph",
             "text": "A 400 kW rating is a screening input. Ask how much the truck actually accepts over its arrival and departure battery levels, whether the bay shares power, and whether the fleet has a reservation. Include a fallback stop with enough energy to reach it. Recheck any quoted price against the operator’s current fleet terms.",
             "sourceIds": ["afdc"]
+          },
+          {
+            "type": "paragraph",
+            "text": "A California utility program evaluation documented a truck with 120 kW and 60 kW inlet limits connected to a charger that split its output at 90 kW per port. With both inlets active, the limits imply a combined ceiling of 150 kW. When requesting a matched truck and charger demonstration, ask for a session log with both inlet rates and elapsed charging time under the intended operating conditions.",
+            "sourceIds": ["cpuc-truck-inlet"]
           }
         ]
       },
@@ -20544,6 +20619,7 @@
       {"id":"colton-notice","title":"Notice for the Colton MCS expansion","publisher":"California Energy Commission, via CEQAnet","url":"https://ceqanet.lci.ca.gov/2026110675"},
       {"id":"blythe","title":"Blythe access and location","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/blythe-ca/"},
       {"id":"charin","title":"Preparing for MCS and CCS connector compatibility","publisher":"CharIN","url":"https://www.charin.global/news/how-to-prepare-for-the-megawatt-charging-system/"},
+      {"id":"cpuc-truck-inlet","title":"2023 evaluation, printed page 89, heavy-duty dual-inlet charging at a Southern California Edison program site","publisher":"California Public Utilities Commission","url":"https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=96"},
       {"id":"afdc","title":"Charging equipment and factors that affect charge time","publisher":"U.S. Department of Energy AFDC","url":"https://afdc.energy.gov/fuels/electricity-stations"}
     ],
     "dataset": {
