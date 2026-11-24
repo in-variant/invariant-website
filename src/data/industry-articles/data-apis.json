@@ -11762,6 +11762,296 @@
     ]
   },
   {
+    "slug": "txdot-bid-results-contract-awards",
+    "topic": "Data & APIs",
+    "region": "Texas, United States",
+    "title": "TxDOT Bid Results and Highway Contract Awards by CSJ",
+    "description": "Find TxDOT bid results by CSJ. Compare low bids, award and rejection decisions, contractor names and construction status in three real Texas highway records.",
+    "date": "2026-11-24",
+    "readMinutes": 5,
+    "coverAlt": "Illustration of a concrete highway bridge carrying traffic beside a new span under construction.",
+    "coverCaption": "AI-generated illustration of highway construction. The contract comparisons below use public TxDOT records.",
+    "intro": "To verify a Texas highway contract award, find the controlling CSJ in the Texas Transportation Commission’s minute order and read the decision column in Exhibit A. A September 2026 summary listed a $2,623,266.87 low bid for US 287 in Tarrant County. The detailed exhibit shows a named bidder and the same amount under “Contract Amount,” alongside a REJECT decision. Keep that bid in your history and leave the award amount blank for that letting.",
+    "takeaways": [
+      "Search by controlling CSJ and letting sequence. A later letting can give the same project a different bid and decision.",
+      "Keep the estimate, apparent low bid, award amount and payments in separate fields.",
+      "Use the notice to proceed or a recorded work-start date when you need evidence that construction can begin or has begun."
+    ],
+    "sections": [
+      {
+        "id": "check-txdot-bid-results",
+        "heading": "Where do I find TxDOT bid results and award decisions?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "TxDOT’s letting page lists bidding notices, addenda, award results and bid tabulations. Find the controlling CSJ, or control-section-job number, in the proposal. Then keep the letting date and sequence number alongside it. The commission’s award or rejection comes after the bids are opened and reviewed.",
+            "sourceIds": [
+              "letting",
+              "award-procedure"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Question",
+              "Record to check",
+              "What to capture"
+            ],
+            "rows": [
+              [
+                "Is there a job to pursue?",
+                "Project Tracker, the programmed-project dashboard and the letting notice.",
+                "Project limits, CSJ, anticipated or advertised letting date, and the latest addenda."
+              ],
+              [
+                "Who submitted the apparent low bid?",
+                "Bid tabulations for that letting.",
+                "Bidder names, amounts, bid count and the agency estimate."
+              ],
+              [
+                "Was the contract awarded?",
+                "Commission minute order and Exhibit A.",
+                "Decision, named contractor, amount and any conditions the order identifies."
+              ],
+              [
+                "Can work begin, and has it begun?",
+                "Executed agreement, notice to proceed and construction records.",
+                "Effective notice-to-proceed date and observed or reported work-start date as separate fields."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "planning",
+                "letting"
+              ],
+              [
+                "bid-tabs"
+              ],
+              [
+                "september-award"
+              ],
+              [
+                "award-procedure"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "three-contract-decisions",
+        "heading": "Three highway bids show why the decision column matters",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We matched three exhibit rows to TxDOT’s public project layer using the controlling CSJ. Each exhibit identifies a specific letting. The rows below preserve the result of that letting even when a later tracker stage changes.",
+            "sourceIds": [
+              "september-award",
+              "october-award",
+              "tracker-query"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Work location and CSJ",
+              "Low bid",
+              "Commission decision",
+              "Tracker stage on November 24, 2026"
+            ],
+            "rows": [
+              [
+                "US 287, Tarrant County. 0172-09-047",
+                "$2,623,266.87",
+                "Rejected on September 24. Seven bids.",
+                "Ready to Let. No contractor shown in the queried row."
+              ],
+              [
+                "County road, Hidalgo County. 0921-02-527",
+                "$1,118,074.05",
+                "Rejected on October 29. One bid.",
+                "Ready to Let. No contractor shown in the queried row."
+              ],
+              [
+                "US 80, Kaufman County. 0095-03-100",
+                "$55,012,735.47",
+                "Awarded on October 29 to Highway 19 Construction LLC. Ten bids.",
+                "Construction. Same contractor on the mapped row. Notice-to-proceed and work-start fields are empty."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "september-award",
+                "tracker-query"
+              ],
+              [
+                "october-award",
+                "tracker-query"
+              ],
+              [
+                "october-award",
+                "tracker-query"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For US 80, the October order shows a $55,640,546.00 estimate for the letting and a $55,012,735.47 award. The mapped project row shows a construction estimate of $7,333,221. Use the estimate and bid from the same exhibit row to compare bid against estimate. The documents do not allocate the whole contract amount to the individual mapped project row.",
+            "sourceIds": [
+              "october-award",
+              "tracker-query"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/txdot-bid-results-contract-awards.json",
+            "label": "Download the three matched TxDOT bid and project records",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "query-the-project-layer",
+        "heading": "How to use the TxDOT Project Tracker API by CSJ",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Query the public ArcGIS layer for CONTROL_SECT_JOB. Preserve the leading zero and use the nine-digit text key, such as 017209047 for 0172-09-047. The exact query in the download requests route, project limits, status, contractor, stage and dated construction fields. Save the raw attributes and retrieval time alongside the dated minute-order decision.",
+            "sourceIds": [
+              "tracker-fields",
+              "tracker-query"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The US 80 tracker row describes the westbound main lanes at Buffalo Creek and carries October 29 in its actual-let field. The October minute order describes October 6 and 7 as the bid-opening dates for the letting batch and October 29 as the date the order passed. Keep the tracker value as reported and confirm the individual opening date in the bid tabulation before using it in a timeline.",
+            "sourceIds": [
+              "october-award",
+              "tracker-query",
+              "bid-tabs"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the route limits or project footprint to plan where to look for subcontracting work, deliveries or nearby properties. For a parcel screen in Invariant Earth, use a polygon that covers the documented work area and verify the resulting parcels against the plans. Keep construction start and contract status tied to agency evidence.",
+            "sourceIds": [
+              "tracker-fields",
+              "award-procedure"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "federal-contract-awards-data-api",
+                "label": "Find federal awards and modifications by work location"
+              },
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Check how a highway project could affect a logistics site"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is the apparent low bidder the winning contractor?",
+        "answer": "Use the commission decision for the specific letting. The Tarrant County US 287 row shows a low bidder and a printed contract amount, but the decision is REJECT. Keep the low bid amount and record the rejected outcome.",
+        "sourceIds": [
+          "september-award",
+          "award-procedure"
+        ]
+      },
+      {
+        "question": "Does a TxDOT award mean construction has started?",
+        "answer": "Check the notice to proceed and the work-start record. In the November 24 query, the awarded US 80 project appeared in the Construction stage while both date fields were empty.",
+        "sourceIds": [
+          "tracker-query",
+          "award-procedure"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "september-award",
+        "title": "Minute Order 117282, September 24, 2026, PDF pages 1, 7 and 12",
+        "publisher": "Texas Transportation Commission",
+        "linkLabel": "September minute order",
+        "url": "https://www.txdot.gov/content/dam/docs/commission/2026/0924/4a.pdf"
+      },
+      {
+        "id": "october-award",
+        "title": "Minute Order 117307, October 29, 2026, PDF pages 1, 6, 9, 10 and 12",
+        "publisher": "Texas Transportation Commission",
+        "linkLabel": "October minute order",
+        "url": "https://www.txdot.gov/content/dam/docs/commission/2026/1029/4a.pdf"
+      },
+      {
+        "id": "tracker-query",
+        "title": "Exact TxDOT Projects Info REST query for the three controlling CSJs",
+        "publisher": "Texas Department of Transportation",
+        "linkLabel": "Exact Project Tracker query",
+        "url": "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/TxDOT_Projects_Info/FeatureServer/0/query?where=CONTROL_SECT_JOB+IN+%28%27017209047%27%2C%27092102527%27%2C%27009503100%27%2C%270172-09-047%27%2C%270921-02-527%27%2C%270095-03-100%27%29&outFields=CNSTR_CMPNY_NM%2CCNSTR_NTPD_DT%2CCNSTR_WKBG_DT%2CHWY_NBR%2CLIMITS_FROM%2CLIMITS_TO%2CCOMMISSION_AWARD_OF_CONTRACT%2CDIST_LET_DATE%2CLET_TYPE_DSCR%2CPROJ_STAT%2CPROJ_STG%2CACTUAL_LET_DATE%2CLAST_PROJ_UPDATE_DT%2CPROJ_NOTE%2CCNSTR_EST_AMT%2CCONTROL_SECT_JOB%2CPROJ_ID&returnGeometry=false&f=json"
+      },
+      {
+        "id": "tracker-fields",
+        "title": "TxDOT Projects Info published ArcGIS field definitions",
+        "publisher": "Texas Department of Transportation",
+        "linkLabel": "Tracker REST fields",
+        "url": "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/TxDOT_Projects_Info/FeatureServer/0"
+      },
+      {
+        "id": "letting",
+        "title": "Contract letting, official bidder inputs and post-letting results",
+        "publisher": "Texas Department of Transportation",
+        "linkLabel": "TxDOT letting calendar and results",
+        "url": "https://www.txdot.gov/business/road-bridge-maintenance/contract-letting.html"
+      },
+      {
+        "id": "bid-tabs",
+        "title": "Bid Tabulations Dashboard coverage and official bidding sources",
+        "publisher": "Texas Department of Transportation",
+        "linkLabel": "TxDOT bid tabulations",
+        "url": "https://www.txdot.gov/business/road-bridge-maintenance/contract-letting/bid-tabulations-dashboard.html"
+      },
+      {
+        "id": "award-procedure",
+        "title": "Post-letting manual, award of contract and notice to proceed",
+        "publisher": "Texas Department of Transportation",
+        "linkLabel": "TxDOT award and notice-to-proceed guidance",
+        "url": "https://www.txdot.gov/manuals/des/pse/chapter-8--post-letting-guidelines/section-3--award-contract.html"
+      },
+      {
+        "id": "planning",
+        "title": "Statewide Transportation Improvement Program dashboards",
+        "publisher": "Texas Department of Transportation",
+        "linkLabel": "TxDOT programmed projects",
+        "url": "https://www.txdot.gov/projects/planning/stip/stip-dashboards.html"
+      }
+    ],
+    "relatedSlugs": [
+      "federal-contract-awards-data-api",
+      "warehouse-site-selection-rail-truck-access",
+      "best-gis-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "TxDOT highway bid decisions matched to public Project Tracker records",
+      "description": "Three TxDOT bid and decision records, including a rejected low bid listed in the summary, matched to November 24 Project Tracker rows by controlling CSJ. Includes source page numbers, exact query, raw attributes and field notes.",
+      "sourceIds": [
+        "september-award",
+        "october-award",
+        "tracker-query",
+        "tracker-fields",
+        "award-procedure"
+      ],
+      "spatialCoverage": "Tarrant, Hidalgo and Kaufman counties, Texas, United States",
+      "temporalCoverage": "2026-09-24/2026-11-24"
+    }
+  },
+  {
     "slug": "federal-contract-awards-data-api",
     "topic": "Data & APIs",
     "region": "United States",
@@ -12197,6 +12487,7 @@
       "temporalCoverage": "2022-07-01/2026-07-14"
     },
     "relatedSlugs": [
+      "txdot-bid-results-contract-awards",
       "industrial-environmental-permit-history-by-parcel",
       "warehouse-site-selection-rail-truck-access",
       "best-gis-apis-for-site-selection"

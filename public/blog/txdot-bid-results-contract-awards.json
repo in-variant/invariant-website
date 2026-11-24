@@ -1,0 +1,179 @@
+{
+  "name": "TxDOT highway bid decisions matched to public Project Tracker records",
+  "description": "Three TxDOT bid and decision records, including a rejected low bid listed in the summary, matched to November 24 Project Tracker rows by controlling CSJ. Includes source page numbers, exact query, raw attributes and field notes.",
+  "published": "2026-11-24",
+  "source_checks": {
+    "tracker_retrieved_at": "2026-11-24T19:11:54+00:00",
+    "tracker_exact_query": "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/TxDOT_Projects_Info/FeatureServer/0/query?where=CONTROL_SECT_JOB+IN+%28%27017209047%27%2C%27092102527%27%2C%27009503100%27%2C%270172-09-047%27%2C%270921-02-527%27%2C%270095-03-100%27%29&outFields=CNSTR_CMPNY_NM%2CCNSTR_NTPD_DT%2CCNSTR_WKBG_DT%2CHWY_NBR%2CLIMITS_FROM%2CLIMITS_TO%2CCOMMISSION_AWARD_OF_CONTRACT%2CDIST_LET_DATE%2CLET_TYPE_DSCR%2CPROJ_STAT%2CPROJ_STG%2CACTUAL_LET_DATE%2CLAST_PROJ_UPDATE_DT%2CPROJ_NOTE%2CCNSTR_EST_AMT%2CCONTROL_SECT_JOB%2CPROJ_ID&returnGeometry=false&f=json",
+    "sources": [
+      {
+        "id": "september-award",
+        "url": "https://www.txdot.gov/content/dam/docs/commission/2026/0924/4a.pdf",
+        "title": "Minute Order 117282, September 24, 2026, PDF pages 1, 7 and 12"
+      },
+      {
+        "id": "october-award",
+        "url": "https://www.txdot.gov/content/dam/docs/commission/2026/1029/4a.pdf",
+        "title": "Minute Order 117307, October 29, 2026, PDF pages 1, 6, 9, 10 and 12"
+      },
+      {
+        "id": "tracker-query",
+        "url": "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/TxDOT_Projects_Info/FeatureServer/0/query?where=CONTROL_SECT_JOB+IN+%28%27017209047%27%2C%27092102527%27%2C%27009503100%27%2C%270172-09-047%27%2C%270921-02-527%27%2C%270095-03-100%27%29&outFields=CNSTR_CMPNY_NM%2CCNSTR_NTPD_DT%2CCNSTR_WKBG_DT%2CHWY_NBR%2CLIMITS_FROM%2CLIMITS_TO%2CCOMMISSION_AWARD_OF_CONTRACT%2CDIST_LET_DATE%2CLET_TYPE_DSCR%2CPROJ_STAT%2CPROJ_STG%2CACTUAL_LET_DATE%2CLAST_PROJ_UPDATE_DT%2CPROJ_NOTE%2CCNSTR_EST_AMT%2CCONTROL_SECT_JOB%2CPROJ_ID&returnGeometry=false&f=json",
+        "title": "Exact TxDOT Projects Info REST query for the three controlling CSJs"
+      },
+      {
+        "id": "tracker-fields",
+        "url": "https://services.arcgis.com/KTcxiTD9dsQw4r7Z/arcgis/rest/services/TxDOT_Projects_Info/FeatureServer/0",
+        "title": "TxDOT Projects Info published ArcGIS field definitions"
+      },
+      {
+        "id": "letting",
+        "url": "https://www.txdot.gov/business/road-bridge-maintenance/contract-letting.html",
+        "title": "Contract letting, official bidder inputs and post-letting results"
+      },
+      {
+        "id": "bid-tabs",
+        "url": "https://www.txdot.gov/business/road-bridge-maintenance/contract-letting/bid-tabulations-dashboard.html",
+        "title": "Bid Tabulations Dashboard coverage and official bidding sources"
+      },
+      {
+        "id": "award-procedure",
+        "url": "https://www.txdot.gov/manuals/des/pse/chapter-8--post-letting-guidelines/section-3--award-contract.html",
+        "title": "Post-letting manual, award of contract and notice to proceed"
+      },
+      {
+        "id": "planning",
+        "url": "https://www.txdot.gov/projects/planning/stip/stip-dashboards.html",
+        "title": "Statewide Transportation Improvement Program dashboards"
+      }
+    ]
+  },
+  "method": [
+    "Transcribe the decision and amount fields in the commission exhibit. Summary fields are recorded only when checked in the cited summary.",
+    "Join by controlling CSJ after removing hyphens. Delivery, execution and payment are outside these source records.",
+    "Currency is USD and values are stored as decimal strings. A null selected_award_amount_usd for a REJECT decision preserves the distinction from the printed bid amount.",
+    "Preserve raw tracker epoch milliseconds and nulls. Read each field source and project limits before comparing amounts or dates."
+  ],
+  "records": [
+    {
+      "csj": "0172-09-047",
+      "county": "Tarrant",
+      "route": "US 287",
+      "project_number": "F 2B26(073)",
+      "letting_sequence": "09263027",
+      "meeting_date": "2026-09-24",
+      "minute_order": "117282",
+      "minute_order_url": "https://www.txdot.gov/content/dam/docs/commission/2026/0924/4a.pdf",
+      "summary_pdf_page": 1,
+      "summary_low_bid_usd": "2623266.87",
+      "exhibit_pdf_page": 12,
+      "decision": "REJECT",
+      "engineer_estimate_usd": "3514144.18",
+      "low_bid_usd": "2623266.87",
+      "bid_count": 7,
+      "contract_amount_as_printed_usd": "2623266.87",
+      "contractor_as_printed": "O. TREVINO CONSTRUCTION, LLC",
+      "conditional_award_as_printed": "No",
+      "selected_award_amount_usd": null,
+      "tracker_attributes": {
+        "CNSTR_CMPNY_NM": null,
+        "CNSTR_NTPD_DT": null,
+        "CNSTR_WKBG_DT": null,
+        "HWY_NBR": "US 287",
+        "LIMITS_FROM": "FM 157",
+        "LIMITS_TO": "Heritage Pkwy",
+        "COMMISSION_AWARD_OF_CONTRACT": null,
+        "DIST_LET_DATE": null,
+        "LET_TYPE_DSCR": "Statewide Let",
+        "PROJ_STAT": "Active",
+        "PROJ_STG": "Ready to Let",
+        "ACTUAL_LET_DATE": null,
+        "LAST_PROJ_UPDATE_DT": 1795208126000,
+        "PROJ_NOTE": 1,
+        "CNSTR_EST_AMT": 2919363.27,
+        "CONTROL_SECT_JOB": "017209047",
+        "PROJ_ID": "A00220228"
+      }
+    },
+    {
+      "csj": "0921-02-527",
+      "county": "Hidalgo",
+      "route": "CR",
+      "project_number": "STP 2025(299)HESG",
+      "letting_sequence": "10263218",
+      "meeting_date": "2026-10-29",
+      "minute_order": "117307",
+      "minute_order_url": "https://www.txdot.gov/content/dam/docs/commission/2026/1029/4a.pdf",
+      "summary_pdf_page": null,
+      "summary_low_bid_usd": null,
+      "exhibit_pdf_page": 9,
+      "decision": "REJECT",
+      "engineer_estimate_usd": "621188.51",
+      "low_bid_usd": "1118074.05",
+      "bid_count": 1,
+      "contract_amount_as_printed_usd": "1118074.05",
+      "contractor_as_printed": "DIGG COMMERCIAL, LLC",
+      "conditional_award_as_printed": "See Attachment 1",
+      "selected_award_amount_usd": null,
+      "tracker_attributes": {
+        "CNSTR_CMPNY_NM": null,
+        "CNSTR_NTPD_DT": null,
+        "CNSTR_WKBG_DT": null,
+        "HWY_NBR": "E CANTON RD",
+        "LIMITS_FROM": "On Canton, 0.1 Mi W. of Cesar Chavez Rd.",
+        "LIMITS_TO": "0.1 Miles E. of Cesar Chavez Rd.",
+        "COMMISSION_AWARD_OF_CONTRACT": null,
+        "DIST_LET_DATE": null,
+        "LET_TYPE_DSCR": "Statewide Let",
+        "PROJ_STAT": "Active",
+        "PROJ_STG": "Ready to Let",
+        "ACTUAL_LET_DATE": null,
+        "LAST_PROJ_UPDATE_DT": 1794237207000,
+        "PROJ_NOTE": 0,
+        "CNSTR_EST_AMT": 138101,
+        "CONTROL_SECT_JOB": "092102527",
+        "PROJ_ID": "A00206514"
+      }
+    },
+    {
+      "csj": "0095-03-100",
+      "county": "Kaufman",
+      "route": "US 80",
+      "project_number": "BR 2B26(100)",
+      "letting_sequence": "10263001",
+      "meeting_date": "2026-10-29",
+      "minute_order": "117307",
+      "minute_order_url": "https://www.txdot.gov/content/dam/docs/commission/2026/1029/4a.pdf",
+      "summary_pdf_page": 1,
+      "summary_low_bid_usd": "55012735.47",
+      "exhibit_pdf_page": 10,
+      "decision": "AWARD",
+      "engineer_estimate_usd": "55640546.00",
+      "low_bid_usd": "55012735.47",
+      "bid_count": 10,
+      "contract_amount_as_printed_usd": "55012735.47",
+      "contractor_as_printed": "HIGHWAY 19 CONSTRUCTION LLC",
+      "conditional_award_as_printed": "No",
+      "selected_award_amount_usd": "55012735.47",
+      "tracker_attributes": {
+        "CNSTR_CMPNY_NM": "HIGHWAY 19 CONSTRUCTION LLC",
+        "CNSTR_NTPD_DT": null,
+        "CNSTR_WKBG_DT": null,
+        "HWY_NBR": "US 80",
+        "LIMITS_FROM": "US 80 WBML AT BUFFALO CREEK",
+        "LIMITS_TO": ".",
+        "COMMISSION_AWARD_OF_CONTRACT": null,
+        "DIST_LET_DATE": null,
+        "LET_TYPE_DSCR": "Statewide Let",
+        "PROJ_STAT": "Active",
+        "PROJ_STG": "Construction",
+        "ACTUAL_LET_DATE": 1793268000000,
+        "LAST_PROJ_UPDATE_DT": 1791320430000,
+        "PROJ_NOTE": 1,
+        "CNSTR_EST_AMT": 7333221,
+        "CONTROL_SECT_JOB": "009503100",
+        "PROJ_ID": "A00066929"
+      }
+    }
+  ]
+}
