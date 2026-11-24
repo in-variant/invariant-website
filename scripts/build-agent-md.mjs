@@ -253,13 +253,14 @@ function datasetCatalogMd() {
     `[Explore the Invariant Earth API](${SITE}/product), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
     '## Start with your workflow', '',
-    ...featuredResearch.flatMap(({ slug, title, summary, workflowLabel }) => {
+    ...featuredResearch.flatMap(({ slug, title, summary, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
       const workflow = researchWorkflows.get(slug)
       if (!study || !workflow) throw new Error(`Missing featured research dataset or workflow for ${slug}`)
       const sample = study.dataset.downloads[0]
       return [
         `- [${title}](${study.url}). ${summary}`,
+        `  - Research inputs: ${evidence}`,
         `  - [${workflowLabel}](${workflow.url})`,
         `  - [Download the ${sample.format} sample](${SITE}${sample.path})`,
       ]

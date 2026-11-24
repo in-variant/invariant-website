@@ -1219,6 +1219,86 @@
     }
   },
   {
+    "slug": "retail-trade-area-overlap",
+    "topic": "Data & APIs",
+    "title": "How to calculate retail trade area overlap",
+    "summary": "Measure the households two retail sites can both reach. Compare 10-, 15- and 20-minute drive times at two Detroit grocery stores, with downloadable Census estimates.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/retail-trade-area-overlap.webp?v=97e2f9b9",
+    "dataset": {
+      "name": "Detroit grocery trade-area overlap at 10, 15 and 20 minutes",
+      "description": "Disjoint modeled grocery drive-time areas in Detroit and estimated Michigan households and residents. Includes 80 matched ACS variance replicates, allocation weights, source versions and geometry for each travel cutoff.",
+      "spatialCoverage": "Detroit and surrounding Michigan communities, United States",
+      "temporalCoverage": "2020-01-01/2024-12-31",
+      "sourceReuse": {
+        "note": "Drive-time boundaries were generated with Valhalla using data from © OpenStreetMap contributors.",
+        "policyLabel": "OpenStreetMap attribution and data license",
+        "policyUrl": "https://www.openstreetmap.org/copyright"
+      },
+      "sources": [
+        "https://invariant-ai.com/blog/drive-time-demographics-census-trade-area.json",
+        "https://valhalla.github.io/valhalla/api/isochrone/api-reference/",
+        "https://www.openstreetmap.org/copyright",
+        "https://www2.census.gov/geo/tiger/TIGER2020/TABBLOCK20/tl_2020_26_tabblock20.zip",
+        "https://www2.census.gov/geo/tiger/TIGER2024/BG/tl_2024_26_bg.zip",
+        "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/150/B19001_26.csv.zip",
+        "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/150/B01003_26.csv.zip",
+        "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/documentation/5-year/2020-2024_Variance_Replicate_Table_Documentation.pdf"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Detroit grocery address matches, Census inputs and earlier route benchmark",
+          "publisher": "Invariant",
+          "url": "https://invariant-ai.com/blog/drive-time-demographics-census-trade-area.json"
+        },
+        {
+          "title": "Valhalla isochrone inputs, including reverse drive areas",
+          "publisher": "Valhalla",
+          "url": "https://valhalla.github.io/valhalla/api/isochrone/api-reference/"
+        },
+        {
+          "title": "OpenStreetMap attribution and data license",
+          "publisher": "OpenStreetMap contributors",
+          "url": "https://www.openstreetmap.org/copyright"
+        },
+        {
+          "title": "Michigan 2020 TIGER/Line tabulation blocks and housing counts",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://www2.census.gov/geo/tiger/TIGER2020/TABBLOCK20/tl_2020_26_tabblock20.zip"
+        },
+        {
+          "title": "Michigan 2024 TIGER/Line block groups",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://www2.census.gov/geo/tiger/TIGER2024/BG/tl_2024_26_bg.zip"
+        },
+        {
+          "title": "2020–2024 ACS table B19001, Michigan block-group variance replicates",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/150/B19001_26.csv.zip"
+        },
+        {
+          "title": "2020–2024 ACS table B01003, Michigan block-group variance replicates",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/150/B01003_26.csv.zip"
+        },
+        {
+          "title": "2020–2024 ACS variance replicate tables and sampling margins",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/documentation/5-year/2020-2024_Variance_Replicate_Table_Documentation.pdf"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the disjoint drive areas, household estimates and Census weights",
+          "path": "/blog/detroit-retail-trade-area-overlap.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "drive-time-demographics-census-trade-area",
     "topic": "Data & APIs",
     "title": "How to Calculate Drive-Time Demographics With Census Data",

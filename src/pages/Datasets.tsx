@@ -121,7 +121,7 @@ export default function Datasets() {
           <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
         </div>
         <ul>
-          {featured.map(({ slug, title, summary, image, notesPath, workflow, sample, workflowLabel }) => (
+          {featured.map(({ slug, title, summary, evidence, image, notesPath, workflow, sample, workflowLabel }) => (
             <li key={slug}>
               <div className="dataset-featured-main">
                 <img src={image} srcSet={coverSrcSets[image]}
@@ -130,6 +130,7 @@ export default function Datasets() {
                 <div className="dataset-featured-copy">
                   <h3><Link to={notesPath}>{title} <ResourceArrow diagonal /></Link></h3>
                   <p>{summary}</p>
+                  <p className="dataset-featured-evidence">{evidence}</p>
                 </div>
               </div>
               <div className="dataset-featured-actions">

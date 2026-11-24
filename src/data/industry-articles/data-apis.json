@@ -7527,6 +7527,283 @@
     }
   },
   {
+    "slug": "retail-trade-area-overlap",
+    "topic": "Data & APIs",
+    "title": "How to calculate retail trade area overlap",
+    "description": "Measure the households two retail sites can both reach. Compare 10-, 15- and 20-minute drive times at two Detroit grocery stores, with downloadable Census estimates.",
+    "date": "2026-11-24",
+    "region": "United States",
+    "readMinutes": 6,
+    "coverAlt": "Aerial map with the two 15-minute Detroit drive areas and three zones. Micah’s only reaches about 247,700 households, both reach 31,200, and Whittier’s only reaches 150,300.",
+    "coverCaption": "Estimated Michigan households by 15-minute drive area. Routes from Valhalla and © OpenStreetMap contributors, over USDA aerial imagery via USGS.",
+    "intro": "To calculate retail trade area overlap, intersect the two store boundaries and count the households in the shared area. Then count the candidate’s households outside the existing store’s boundary. That second number estimates how much household reach the proposed store adds under the chosen travel-time assumptions.",
+    "takeaways": [
+      "Create the two drive areas using the same travel mode, destination direction, time cutoff and traffic settings.",
+      "Count existing-only, shared and candidate-only households separately. When you total the two locations, count the shared households once.",
+      "Use the shared area to investigate possible sales transfer. Shopping behavior and sales forecasts need evidence from customers and comparable stores."
+    ],
+    "sections": [
+      {
+        "id": "calculate-overlapping-drive-areas",
+        "heading": "How do you calculate trade area overlap?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start at the customer entrance or access point for each store, then model inbound drive times. Subtract each drive area from the other and keep the intersection as a third area. For a proposed store near several existing locations, first combine the existing drive areas into one boundary.",
+            "sourceIds": [
+              "valhalla",
+              "tiger-groups"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Measure",
+              "Calculation",
+              "Use it to answer"
+            ],
+            "rows": [
+              [
+                "Shared households",
+                "Count households in the intersection.",
+                "How many households can reach both locations under the model?"
+              ],
+              [
+                "Additional household reach",
+                "Count households inside the candidate boundary and outside the existing boundary.",
+                "How much modeled reach would the candidate add?"
+              ],
+              [
+                "Candidate overlap share",
+                "Divide shared households by all households in the candidate boundary.",
+                "How much of the candidate’s reachable market can already reach the existing store?"
+              ],
+              [
+                "Total household reach",
+                "Count the union, or add the two store counts and subtract the shared count once.",
+                "How many distinct households can reach at least one store?"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For households, use each 2020 Census block’s internal point to assign its housing units to an area. Calculate the share of each block group’s housing units in the area and apply that share to its ACS household estimate. Use the share of land and water area when a block group has no housing units in the base data. Household overlap and square-mile overlap answer different questions because people are unevenly distributed.",
+            "sourceIds": [
+              "tiger-blocks",
+              "acs-households",
+              "tiger-groups"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "detroit-grocery-overlap",
+        "heading": "What changed between a 10- and 20-minute drive in Detroit?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We checked Micah’s Market and Whittier Bodega with the same Valhalla settings on November 24, 2026. The starting coordinates came from Census address-range matches. The runs modeled inbound travel and used no time-specific traffic inputs. The table uses 2020–2024 American Community Survey estimates allocated to the Michigan portions of each drive area.",
+            "sourceIds": [
+              "micahs",
+              "whittier",
+              "detroit-benchmark",
+              "valhalla",
+              "acs-households"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Inbound drive time",
+              "Households in both areas",
+              "Households in Whittier’s area only",
+              "Share of Whittier’s area households also in Micah’s"
+            ],
+            "rows": [
+              [
+                "10 minutes",
+                "0. The modeled polygons are disjoint.",
+                "58,800",
+                "0%"
+              ],
+              [
+                "15 minutes",
+                "31,200",
+                "150,300",
+                "17.2%"
+              ],
+              [
+                "20 minutes",
+                "145,800",
+                "197,400",
+                "42.5%"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 15 minutes, the two catchments cover about 429,200 distinct Michigan households. Adding both store estimates would count the overlapping 31,200 twice. Using block-group area shares instead of 2020 housing units puts the shared estimate at about 34,000. The original shared estimate has an ACS sampling margin of about 1,000 households at 90% confidence. That margin leaves out uncertainty from the drive-time model and from how households are allocated within each block group.",
+            "sourceIds": [
+              "acs-households",
+              "replicate-method",
+              "tiger-blocks"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/detroit-retail-trade-area-overlap.json",
+            "label": "Download the disjoint drive areas, household estimates and Census weights",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "from-overlap-to-retail-expansion",
+        "heading": "Does overlapping reach predict sales cannibalization?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Shared drive-time households are candidates for further study. Estimate sales transfer using aggregated customer origins, comparable-store openings and the two locations’ assortments, prices and access. Account for nearby competitors and how much demand the new store could win from them. Test travel times at the hours customers are likely to shop."
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the store entrances, routing date, boundaries, denominator and demographic release the same when you compare sites. Ask a vendor to return the polygons and inputs as well as the count so your team can reproduce the result."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "drive-time-demographics-census-trade-area",
+                "label": "Build comparable Census demographics for a drive area"
+              },
+              {
+                "slug": "retail-site-selection-trade-area-apis",
+                "label": "Combine trade areas with foot traffic and store history"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Should I measure overlap by area or households?",
+        "answer": "Use household overlap for a question about reachable residents. A square-mile share describes the geometry. An intersection can include water, industrial land or other areas with few households.",
+        "sourceIds": [
+          "tiger-blocks",
+          "acs-households"
+        ]
+      },
+      {
+        "question": "Why is the overlap percentage different depending on which store I start with?",
+        "answer": "The two catchments share the same intersection. Dividing that shared count by the candidate’s total answers how much of the candidate’s market is shared. Dividing by the existing store’s total answers a different question."
+      },
+      {
+        "question": "Can walking and driving trade areas be compared?",
+        "answer": "Keep the travel mode and cutoff visible on each result. For a walk-in format, calculate walking overlap separately. Use the modeled mode that best reflects how customers reach the site.",
+        "sourceIds": [
+          "valhalla"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "micahs",
+        "title": "Micah’s Market opening and location",
+        "url": "https://www.degc.org/post/green-grocer-program-marks-second-ribbon-cutting-this-year-as-micah-s-market-brings-affordable-fresh",
+        "publisher": "Detroit Economic Growth Corporation"
+      },
+      {
+        "id": "whittier",
+        "title": "Whittier Bodega opening and location",
+        "url": "https://www.degc.org/post/motor-city-match-and-green-grocer-program-help-detroiter-open-whittier-bodega-bringing-fresh-food-w",
+        "publisher": "Detroit Economic Growth Corporation"
+      },
+      {
+        "id": "detroit-benchmark",
+        "title": "Detroit grocery address matches, Census inputs and earlier route benchmark",
+        "url": "https://invariant-ai.com/blog/drive-time-demographics-census-trade-area.json",
+        "publisher": "Invariant"
+      },
+      {
+        "id": "valhalla",
+        "title": "Valhalla isochrone inputs, including reverse drive areas",
+        "url": "https://valhalla.github.io/valhalla/api/isochrone/api-reference/",
+        "publisher": "Valhalla"
+      },
+      {
+        "id": "osm",
+        "title": "OpenStreetMap attribution and data license",
+        "url": "https://www.openstreetmap.org/copyright",
+        "publisher": "OpenStreetMap contributors"
+      },
+      {
+        "id": "tiger-blocks",
+        "title": "Michigan 2020 TIGER/Line tabulation blocks and housing counts",
+        "url": "https://www2.census.gov/geo/tiger/TIGER2020/TABBLOCK20/tl_2020_26_tabblock20.zip",
+        "publisher": "U.S. Census Bureau"
+      },
+      {
+        "id": "tiger-groups",
+        "title": "Michigan 2024 TIGER/Line block groups",
+        "url": "https://www2.census.gov/geo/tiger/TIGER2024/BG/tl_2024_26_bg.zip",
+        "publisher": "U.S. Census Bureau"
+      },
+      {
+        "id": "acs-households",
+        "title": "2020–2024 ACS table B19001, Michigan block-group variance replicates",
+        "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/150/B19001_26.csv.zip",
+        "publisher": "U.S. Census Bureau"
+      },
+      {
+        "id": "acs-population",
+        "title": "2020–2024 ACS table B01003, Michigan block-group variance replicates",
+        "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/data/5-year/150/B01003_26.csv.zip",
+        "publisher": "U.S. Census Bureau"
+      },
+      {
+        "id": "replicate-method",
+        "title": "2020–2024 ACS variance replicate tables and sampling margins",
+        "url": "https://www2.census.gov/programs-surveys/acs/replicate_estimates/2024/documentation/5-year/2020-2024_Variance_Replicate_Table_Documentation.pdf",
+        "publisher": "U.S. Census Bureau"
+      },
+      {
+        "id": "aerial",
+        "title": "USDA NAIP natural-color aerial imagery",
+        "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer",
+        "publisher": "U.S. Geological Survey and USDA"
+      }
+    ],
+    "relatedSlugs": [
+      "drive-time-demographics-census-trade-area",
+      "retail-site-selection-trade-area-apis",
+      "foot-traffic-data-by-address"
+    ],
+    "dataset": {
+      "name": "Detroit grocery trade-area overlap at 10, 15 and 20 minutes",
+      "description": "Disjoint modeled grocery drive-time areas in Detroit and estimated Michigan households and residents. Includes 80 matched ACS variance replicates, allocation weights, source versions and geometry for each travel cutoff.",
+      "sourceIds": [
+        "detroit-benchmark",
+        "valhalla",
+        "osm",
+        "tiger-blocks",
+        "tiger-groups",
+        "acs-households",
+        "acs-population",
+        "replicate-method"
+      ],
+      "spatialCoverage": "Detroit and surrounding Michigan communities, United States",
+      "temporalCoverage": "2020-01-01/2024-12-31",
+      "sourceReuse": {
+        "note": "Drive-time boundaries were generated with Valhalla using data from © OpenStreetMap contributors.",
+        "policyLabel": "OpenStreetMap attribution and data license",
+        "policyUrl": "https://www.openstreetmap.org/copyright"
+      }
+    }
+  },
+  {
     "slug": "drive-time-demographics-census-trade-area",
     "topic": "Data & APIs",
     "region": "Detroit, Michigan",
@@ -7939,6 +8216,7 @@
       }
     ],
     "relatedSlugs": [
+      "retail-trade-area-overlap",
       "retail-site-selection-trade-area-apis",
       "census-tract-housing-vacancy-rent-burden",
       "county-manufacturing-employment-data",
@@ -22631,6 +22909,10 @@
               {
                 "slug": "drive-time-demographics-census-trade-area",
                 "label": "Calculate drive-time demographics with Census data"
+              },
+              {
+                "slug": "retail-trade-area-overlap",
+                "label": "Measure how many households two stores can both reach"
               },
               {"slug": "best-gis-apis-for-site-selection", "label": "Compare GIS APIs for U.S. site selection"},
               {"slug": "historical-parcel-boundaries-api", "label": "Trace property records when parcel IDs change"},
