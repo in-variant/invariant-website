@@ -1,5 +1,324 @@
 [
   {
+    "slug": "foot-traffic-data-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Foot Traffic Data by Address for Retail Site Selection",
+    "description": "Compare pedestrian counts near an address using NYC DOT data. See why two Midtown storefront locations rank differently on weekdays and Saturdays.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "intro": "Start with a count on the block and during the hours your store depends on. In September 2026, NYC DOT counted 13,925 pedestrian passages on Sixth Avenue between 50th and 51st streets during its weekday afternoon sample, against 12,747 on Fifth Avenue between the same cross streets. On Saturday midday, Fifth Avenue led with 17,264 passages against 9,818. The May samples gave the same ordering for each window.",
+    "coverAlt": "Two charts compare pedestrian passages per hour on Fifth and Sixth avenues. Sixth leads on weekday afternoons and Fifth leads Saturday midday in May and September 2026.",
+    "coverCaption": "Published pedestrian passages divided by the hours in each sampled window. Source NYC DOT Bi-Annual Pedestrian Counts, locations 65 and 66. Calculations by Invariant.",
+    "takeaways": [
+      "Use pedestrian passages to compare street exposure during matched windows. Measure the actual storefront approach separately.",
+      "Compare raw totals only for windows of equal duration. Use passages per hour when comparing an afternoon sample with a shorter Saturday sample.",
+      "Keep missing counts out of rankings. NYC DOT’s historical zero convention means a count was not collected. The selected Jay Street row omits all six 2026 fields.",
+      "For a store visitation trial, ask for the property boundary, visit definition, sample coverage and how the provider handles nearby activity."
+    ],
+    "sections": [
+      {
+        "id": "look-up-near-an-address",
+        "heading": "Find a count on the block you need",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Map the proposed entrance and identify the block, frontage, and pedestrian approaches. Then find the city’s published count location and compare the cross streets. A count from a nearby avenue can reflect a different route to transit or another concentration of stores. Save the sensor or count location ID with the place you are evaluating."
+          },
+          {
+            "type": "paragraph",
+            "text": "NYC DOT’s biannual count program samples pedestrian passages across a line on the sidewalk. Its methodology describes both sides of the street where applicable, a weekday morning window of 7 to 9 a.m., a weekday afternoon window of 4 to 7 p.m., and a Saturday window from noon to 2 p.m. The case locations are Fifth Avenue, ID 65, and Sixth Avenue, ID 66, both between 50th and 51st streets.",
+            "sourceIds": [
+              "dot-metadata",
+              "dot-query"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "midtown-case",
+        "heading": "Fifth and Sixth avenues change places by daypart",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "NYC DOT sample",
+              "Fifth Avenue",
+              "Sixth Avenue"
+            ],
+            "rows": [
+              [
+                "May 2026 weekday, 4–7 p.m.",
+                "12,892 in 3 hours · 4,297 per hour",
+                "16,178 in 3 hours · 5,393 per hour"
+              ],
+              [
+                "May 2026 Saturday, noon–2 p.m.",
+                "10,999 in 2 hours · 5,500 per hour",
+                "6,607 in 2 hours · 3,304 per hour"
+              ],
+              [
+                "September 2026 weekday, 4–7 p.m.",
+                "12,747 in 3 hours · 4,249 per hour",
+                "13,925 in 3 hours · 4,642 per hour"
+              ],
+              [
+                "September 2026 Saturday, noon–2 p.m.",
+                "17,264 in 2 hours · 8,632 per hour",
+                "9,818 in 2 hours · 4,909 per hour"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dot-query",
+                "dot-metadata"
+              ],
+              [
+                "dot-query",
+                "dot-metadata"
+              ],
+              [
+                "dot-query",
+                "dot-metadata"
+              ],
+              [
+                "dot-query",
+                "dot-metadata"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Sixth Avenue recorded 9.2% more passages in the September weekday afternoon window. Fifth Avenue recorded 75.8% more on Saturday midday. A store that depends on evening commuters and one that depends on Saturday shoppers could shortlist different blocks. Use multiple comparable counts at the proposed entrance before treating either sampled window as a typical week.",
+            "sourceIds": [
+              "dot-query"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "We used the NYC DOT release updated November 17, 2026. The table labels the campaigns by month. The selected records give no exact date for each count, so the comparison matches the sampling windows and campaigns. Hourly figures are count divided by window length and rounded here. The downloads retain the raw values and the calculation to two decimals.",
+            "sourceIds": [
+              "dot-revision",
+              "dot-query",
+              "dot-metadata"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/foot-traffic-data-by-address.csv",
+            "format": "CSV",
+            "label": "Download the matched pedestrian counts and hourly rates"
+          },
+          {
+            "type": "download",
+            "path": "/blog/foot-traffic-data-by-address.json",
+            "format": "JSON",
+            "label": "Download the three source rows and query details"
+          },
+          {
+            "type": "paragraph",
+            "text": "NYC DOT compiled the source counts. Invariant selected the rows and calculated the hourly averages. NYC DOT and the City of New York disclaim accuracy, suitability and liability for errors or omissions. Observe posted signs.",
+            "sourceIds": [
+              "dot-program"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "missing-counts",
+        "heading": "Keep missing observations visible",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The same query returns a location record for Jay Street between Willoughby Street and Metrotech Walk in Brooklyn. Its May and September 2026 count fields are absent. Retain the location with a blank observation and ask the publisher or collect a new count before comparing it. NYC DOT’s methodology also treats an explicit zero in this series as a marker for no count collected.",
+            "sourceIds": [
+              "dot-query",
+              "dot-metadata"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Store the count location, exact source field, sample window, raw count, normalized rate, and missing-value status. Track the date you checked the source. For a store opening, add local conditions that can change passersby, including construction, weather, transit closures and unusual events."
+          }
+        ]
+      },
+      {
+        "id": "choose-a-metric",
+        "heading": "Choose the measure that matches the decision",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Decision",
+              "Use",
+              "Trial check"
+            ],
+            "rows": [
+              [
+                "Which block gets more street exposure during opening hours?",
+                "City pedestrian counts or your own screenline counts in comparable windows.",
+                "Check the cross streets, both sides of the street where applicable, period and uptime."
+              ],
+              [
+                "How many people enter an existing store?",
+                "An entrance counter or authorized estimates of visits to the mapped location. Placer documents separate visit and visitor metrics.",
+                "Validate the entrance or property footprint, count employees and repeat visits consistently, and check for indoor or adjacent activity."
+              ],
+              [
+                "What demand can this store draw from the surrounding area?",
+                "Travel-time and demographic data, customer origins where available, and competitor locations.",
+                "Preserve the travel mode and period. Check the sales or visits evidence separately."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dot-metadata"
+              ],
+              [
+                "placer-visits",
+                "placer-coverage"
+              ],
+              []
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In a vendor trial, use a real short list with an inline store, a stand-alone location and a space in a dense or multistory building. Ask how the vendor handles places it cannot measure. Nearby street activity can help compare areas when the estimate for a particular venue is unavailable.",
+            "sourceIds": [
+              "placer-coverage"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to resolve candidate addresses and match them to parcels before joining a count or visit dataset. Keep the storefront entrance, count point and parcel geometry as separate records so you can review the match later.",
+            "sourceIds": [
+              "earth-address"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "retail-site-selection-trade-area-apis",
+                "label": "Compare data APIs for retail site selection"
+              },
+              {
+                "slug": "drive-time-demographics-census-trade-area",
+                "label": "Calculate drive-time demographics for the same site"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I get foot traffic data by address?",
+        "answer": "Use the address to locate the proposed entrance, then check the nearest published pedestrian count on the same block and during the hours you need. For actual store entries, use a door counter or a visit dataset with a verified property boundary.",
+        "sourceIds": [
+          "dot-dataset",
+          "dot-metadata",
+          "placer-visits"
+        ]
+      },
+      {
+        "question": "How do I compare a weekday afternoon count with a Saturday count?",
+        "answer": "Divide each observed count by its own sampling duration to compare the passage rate. Keep each day and time window visible. NYC DOT’s weekday afternoon sample spans three hours, while the Saturday midday sample spans two.",
+        "sourceIds": [
+          "dot-metadata"
+        ]
+      },
+      {
+        "question": "What does zero mean in the NYC DOT pedestrian count file?",
+        "answer": "NYC DOT’s methodology uses zero for a window in which the count was not collected. An omitted value has no published count either. Preserve both as unavailable when ranking sites.",
+        "sourceIds": [
+          "dot-metadata",
+          "dot-query"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "dot-query",
+        "title": "Selected NYC DOT pedestrian count records for locations 26, 65 and 66",
+        "url": "https://data.cityofnewyork.us/resource/cqsj-cfgu.json?%24select=loc%2Cobjectid%2Cborough%2Cstreet_nam%2Cfrom_stree%2Cto_street%2Cthe_geom%2Cmay26_am%2Cmay26_pm%2Cmay26_md%2Csept26_am%2Csept26_pm%2Csept26_md&%24where=loc+IN+%28%2726%27%2C%2765%27%2C%2766%27%29&%24order=loc",
+        "publisher": "New York City Department of Transportation",
+        "linkLabel": "Exact source rows"
+      },
+      {
+        "id": "dot-dataset",
+        "title": "Bi-Annual Pedestrian Counts table cqsj-cfgu",
+        "url": "https://data.cityofnewyork.us/Transportation/Bi-Annual-Pedestrian-Counts/cqsj-cfgu",
+        "publisher": "New York City Department of Transportation",
+        "linkLabel": "NYC pedestrian counts"
+      },
+      {
+        "id": "dot-revision",
+        "title": "Current NYC DOT table metadata and source rowsUpdatedAt value",
+        "url": "https://data.cityofnewyork.us/api/views/cqsj-cfgu.json",
+        "publisher": "New York City Department of Transportation",
+        "linkLabel": "Source release timestamp"
+      },
+      {
+        "id": "dot-metadata",
+        "title": "Bi-Annual Citywide Pedestrian Count sampling windows and missing-value conventions",
+        "url": "https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf",
+        "publisher": "New York City Department of Transportation",
+        "linkLabel": "NYC count methodology"
+      },
+      {
+        "id": "dot-program",
+        "title": "NYC DOT source and publication notice",
+        "url": "https://www.nyc.gov/html/dot/html/about/datafeeds.shtml",
+        "publisher": "New York City Department of Transportation",
+        "linkLabel": "NYC DOT source notice"
+      },
+      {
+        "id": "placer-visits",
+        "title": "Placer API metric definitions for visits, visitors and estimated foot traffic",
+        "url": "https://docs.placer.ai/reference/glossary",
+        "publisher": "Placer.ai",
+        "linkLabel": "Placer metric definitions"
+      },
+      {
+        "id": "placer-coverage",
+        "title": "Placer API coverage for flagged venues and Nearby Activity reports",
+        "url": "https://docs.placer.ai/reference/faqs-1",
+        "publisher": "Placer.ai",
+        "linkLabel": "Placer coverage notes"
+      },
+      {
+        "id": "earth-address",
+        "title": "Address and parcel lookup with Invariant Earth",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant Earth API",
+        "linkLabel": "Invariant Earth address workflow"
+      }
+    ],
+    "relatedSlugs": [
+      "retail-site-selection-trade-area-apis",
+      "drive-time-demographics-census-trade-area",
+      "parcel-number-lookup-by-address",
+      "best-gis-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "NYC DOT Midtown pedestrian passages by weekday and Saturday window",
+      "description": "Twelve observed windows on Fifth and Sixth avenues and six unpublished windows at a Jay Street location. Includes source fields, count-point coordinates, exact query and hourly rate calculations.",
+      "datePublished": "2026-11-23",
+      "spatialCoverage": "Midtown Manhattan and Jay Street, Brooklyn, New York City, United States",
+      "temporalCoverage": "2026-05/2026-09",
+      "sourceIds": [
+        "dot-query",
+        "dot-dataset",
+        "dot-revision",
+        "dot-metadata",
+        "dot-program"
+      ]
+    }
+  },
+  {
     "slug": "commercial-property-tax-assessment-history-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -20430,6 +20749,12 @@
             "label": "Download the 92 station-month records and source query",
             "path": "/blog/retail-site-selection-trade-area-apis.json",
             "format": "JSON"
+          },
+          {
+            "type": "links",
+            "items": [
+              {"slug": "foot-traffic-data-by-address", "label": "Compare observed sidewalk traffic on two Midtown blocks"}
+            ]
           }
         ]
       },
@@ -20515,7 +20840,7 @@
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
       {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"}
     ],
-    "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "regrid-alternatives-parcel-data-apis"]
+    "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "regrid-alternatives-parcel-data-apis", "foot-traffic-data-by-address"]
   },
   {
     "slug": "industrial-environmental-permit-history-by-parcel",

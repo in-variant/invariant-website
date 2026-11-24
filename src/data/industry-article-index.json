@@ -1,5 +1,68 @@
 [
   {
+    "slug": "foot-traffic-data-by-address",
+    "topic": "Data & APIs",
+    "title": "Foot Traffic Data by Address for Retail Site Selection",
+    "summary": "Compare pedestrian counts near an address using NYC DOT data. See why two Midtown storefront locations rank differently on weekdays and Saturdays.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/foot-traffic-data-by-address.webp?v=1a291609",
+    "dataset": {
+      "name": "NYC DOT Midtown pedestrian passages by weekday and Saturday window",
+      "description": "Twelve observed windows on Fifth and Sixth avenues and six unpublished windows at a Jay Street location. Includes source fields, count-point coordinates, exact query and hourly rate calculations.",
+      "datePublished": "2026-11-23",
+      "spatialCoverage": "Midtown Manhattan and Jay Street, Brooklyn, New York City, United States",
+      "temporalCoverage": "2026-05/2026-09",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/cqsj-cfgu.json?%24select=loc%2Cobjectid%2Cborough%2Cstreet_nam%2Cfrom_stree%2Cto_street%2Cthe_geom%2Cmay26_am%2Cmay26_pm%2Cmay26_md%2Csept26_am%2Csept26_pm%2Csept26_md&%24where=loc+IN+%28%2726%27%2C%2765%27%2C%2766%27%29&%24order=loc",
+        "https://data.cityofnewyork.us/Transportation/Bi-Annual-Pedestrian-Counts/cqsj-cfgu",
+        "https://data.cityofnewyork.us/api/views/cqsj-cfgu.json",
+        "https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf",
+        "https://www.nyc.gov/html/dot/html/about/datafeeds.shtml"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Selected NYC DOT pedestrian count records for locations 26, 65 and 66",
+          "publisher": "New York City Department of Transportation",
+          "url": "https://data.cityofnewyork.us/resource/cqsj-cfgu.json?%24select=loc%2Cobjectid%2Cborough%2Cstreet_nam%2Cfrom_stree%2Cto_street%2Cthe_geom%2Cmay26_am%2Cmay26_pm%2Cmay26_md%2Csept26_am%2Csept26_pm%2Csept26_md&%24where=loc+IN+%28%2726%27%2C%2765%27%2C%2766%27%29&%24order=loc"
+        },
+        {
+          "title": "Bi-Annual Pedestrian Counts table cqsj-cfgu",
+          "publisher": "New York City Department of Transportation",
+          "url": "https://data.cityofnewyork.us/Transportation/Bi-Annual-Pedestrian-Counts/cqsj-cfgu"
+        },
+        {
+          "title": "Current NYC DOT table metadata and source rowsUpdatedAt value",
+          "publisher": "New York City Department of Transportation",
+          "url": "https://data.cityofnewyork.us/api/views/cqsj-cfgu.json"
+        },
+        {
+          "title": "Bi-Annual Citywide Pedestrian Count sampling windows and missing-value conventions",
+          "publisher": "New York City Department of Transportation",
+          "url": "https://www.nyc.gov/html/dot/downloads/pdf/bi-annual-ped-count-readme.pdf"
+        },
+        {
+          "title": "NYC DOT source and publication notice",
+          "publisher": "New York City Department of Transportation",
+          "url": "https://www.nyc.gov/html/dot/html/about/datafeeds.shtml"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the matched pedestrian counts and hourly rates",
+          "path": "/blog/foot-traffic-data-by-address.csv",
+          "format": "CSV"
+        },
+        {
+          "label": "Download the three source rows and query details",
+          "path": "/blog/foot-traffic-data-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "commercial-property-tax-assessment-history-by-address",
     "topic": "Data & APIs",
     "title": "Commercial Property Tax Assessment History by Address",
