@@ -171,7 +171,7 @@
         }
       ]
     },
-    "notes": "Aggregate obligations by signed federal_action_obligation and unique transaction id, in USD. Base and all options is the award-level ceiling field. The three search tests use the award number and date range with one location filter each. These selected records cover this prime contract only."
+    "notes": "Aggregate obligations by signed federal_action_obligation and unique transaction id, in USD. Base and all options is the award-level ceiling field. The three search tests use the award number and date range with one location filter each. These selected records cover this prime contract only. The notice validation records the solicitation identifier returned in the award detail and compares it with the SAM.gov presolicitation and award notice. The original ceiling is from the notice."
   },
   "sources": [
     "https://www.usaspending.gov/award/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-",
@@ -179,7 +179,10 @@
     "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/transactions.md",
     "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/awards/award_id.md",
     "https://github.com/fedspendingtransparency/usaspending-api/blob/master/usaspending_api/api_contracts/contracts/v2/search/spending_by_award.md",
-    "https://www.dvidshub.net/news/575917/new-lock-soo-phase-3-reaches-50-complete-milestone"
+    "https://www.dvidshub.net/news/575917/new-lock-soo-phase-3-reaches-50-complete-milestone",
+    "https://sam.gov/opp/343208b4e0834eb38ca5d0f02ed378c8/view",
+    "https://sam.gov/opp/6ab529c2ddfd4c08a491a15f48509ae2/view",
+    "https://www.dvidshub.net/news/460713/chamber-wall-monoliths-option-1b-awarded-new-lock-soo"
   ],
   "transactions": [
     {
@@ -910,5 +913,30 @@
       "federal_action_obligation": "0.0",
       "description": "P00029/R00093/CH0130 ADDRESSING DEI DISCRIMINATION BY FEDERAL CONTRACTORS. MODIFICATION ADDS REFERENCE FAR CLAUSE 52.222-90 ADDRESSING DEI DISCRIMINATION BY FEDERAL CONTRACTORS TO THE CONTRACT."
     }
-  ]
+  ],
+  "notice_validation": {
+    "checked_at": "2026-11-24T22:09:50+00:00",
+    "record_url": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_W911XK22C0006_9700_-NONE-_-NONE-/",
+    "solicitation_field": "latest_transaction_contract_data.solicitation_identifier",
+    "solicitation_number": "W911XK21R0001",
+    "solicitation_notice_type": "Presolicitation (Updated)",
+    "solicitation_version_date": "2021-06-21",
+    "solicitation_notice_url": "https://sam.gov/opp/343208b4e0834eb38ca5d0f02ed378c8/view",
+    "award_notice_url": "https://sam.gov/opp/6ab529c2ddfd4c08a491a15f48509ae2/view",
+    "award_notice_date": "2022-07-01",
+    "award_notice_base_and_all_options_usd": 1872000000,
+    "award_id": "W911XK22C0006",
+    "initial_signed_obligation_usd": "1068052150.0",
+    "current_record_base_and_all_options_usd": "1938699214.0",
+    "current_record_net_obligations_usd": "1938479275.0",
+    "option_1b": {
+      "modification_number": "P00007",
+      "action_date": "2023-12-15",
+      "signed_obligation_usd": "210189500.0",
+      "announcement_date": "2023-12-21",
+      "announced_option_value_usd_rounded": 213800000,
+      "announcement_url": "https://www.dvidshub.net/news/460713/chamber-wall-monoliths-option-1b-awarded-new-lock-soo",
+      "note": "The signed action and public announcement report different figures. Neither record reconciles the difference."
+    }
+  }
 }
