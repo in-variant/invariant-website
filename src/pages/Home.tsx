@@ -61,6 +61,7 @@ export default function Home() {
         title={siteMetadata.title}
         description={siteMetadata.description}
         canonical="https://invariant-ai.com/"
+        ogImage={SITE_URL + siteMetadata.homeImage}
         jsonLd={[HOME_ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
       <FigmaHomepage />
