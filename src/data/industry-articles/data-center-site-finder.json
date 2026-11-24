@@ -18868,6 +18868,16 @@
       "label": "Download the land deal evidence and source sections",
       "path": "/blog/data-center-land-transaction-evidence.json",
       "format": "JSON"
+     },
+     {
+      "type": "links",
+      "label": "Related acquisition guide",
+      "items": [
+       {
+        "label": "See how staged closings affect power rights in New York and Texas",
+        "slug": "data-center-for-sale"
+       }
+      ]
      }
     ]
    },
@@ -20862,7 +20872,7 @@
   "title": "U.S. Data Centers for Sale and Lease",
   "description": "Compare U.S. data centers, powered shells and development projects for sale. See marketed power, documented deal terms and what to verify before a purchase.",
   "date": "2026-11-09",
-  "readMinutes": 11,
+  "readMinutes": 13,
   "intro": "U.S. buyers can find fitted data centers, powered shells, and development projects for sale. A Knoxville edge facility is advertised at $785,000 with 40 kW of installed UPS capacity. A Pittsburgh shell is marketed with 3.5 MW of on-site transformer capacity. A Labadie, Missouri development site is marketed at about 500 MW and still needs rezoning. Compare what you can use at handover and what still needs utility work or fit-out.",
   "takeaways": [
    "Confirm the uncommitted power a buyer or tenant can use at handover, at the agreed reliability level.",
@@ -21051,6 +21061,69 @@
       "format": "JSON",
       "label": "Download the development project comparables and source filings",
       "datasetAnchor": "dataset-development-projects"
+     }
+    ]
+   },
+   {
+    "id": "do-power-rights-transfer",
+    "heading": "Does power transfer when you buy a data center development site?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Check the buyer named in the utility agreement, the conditions for assigning it and the date each load phase can take service. A deed can transfer land before the electric-service agreement changes hands. An equipment purchase can close while utility and land conditions are still open. The New York and Texas deals between Plug Power and Stream show both sequences.",
+      "sourceIds": [
+       "gateway-july-report",
+       "limestone-august-closing"
+      ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Deal",
+       "What the filings establish",
+       "What the buyer would verify"
+      ],
+      "rows": [
+       [
+        "New York Gateway, Genesee County",
+        "The July amendment allowed an earlier land closing and required a $10 million escrow deposit for that step. It set March 31, 2027 as the outside date for the overall transaction. Under the original agreement, the substation would go to the county development agency, which could then enter agreements with NYPA and National Grid.",
+        "Check for the recorded deed, the separate substation transfer and the signed service arrangements for the buyer’s project. The February agreement’s 265 MW figure describes the seller’s substation package."
+       ],
+       [
+        "Graham, Texas",
+        "The seller reported that the high-voltage equipment sale closed for $40 million on August 7, 2026. The amendment treated the land and remaining interconnection assets as a separate closing. It described 164 MW as requested load under an interim agreement with Oncor.",
+        "Check the utility’s acceptance of assignment, which deposits and guarantees transfer, and the final agreement’s MW and dates. The November quarterly filing confirms the equipment proceeds."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "gateway-original",
+        "gateway-july-amendment",
+        "gateway-july-report"
+       ],
+       [
+        "limestone-amendment",
+        "limestone-august-closing",
+        "limestone-november-report"
+       ]
+      ],
+      "stackOnMobile": true
+     },
+     {
+      "type": "paragraph",
+      "text": "Keep a separate line in your closing schedule for each deed, bill of sale, utility consent and service milestone. In New York, the $10 million in land consideration would count toward the $142 million overall price if the full transaction closed. The amendment also described a seller repurchase option under specified conditions. The county posted a revised site plan submission in September. The cited records do not establish when a buyer took service.",
+      "sourceIds": [
+       "gateway-july-amendment",
+       "gateway-july-report",
+       "gateway-site-plan"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/data-center-staged-closings.json",
+      "format": "JSON",
+      "label": "Download the staged closings and filing references",
+      "datasetAnchor": "dataset-staged-closings"
      }
     ]
    },
@@ -21714,6 +21787,60 @@
     "url": "https://www.oncor.com/content/dam/oncorwww/documents/about-us/regulatory/tariff-and-rate-schedules/Tariff%20for%20Retail%20Delivery%20Service.pdf",
     "publisher": "Oncor Electric Delivery",
     "linkLabel": "Oncor facility extension forms"
+   },
+   {
+    "id": "gateway-original",
+    "title": "New York Gateway purchase agreement, recitals and §§8.9–8.16",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926020476/tm267395d1_ex10-1.htm",
+    "publisher": "Plug Power filing with the SEC"
+   },
+   {
+    "id": "gateway-first-amendment",
+    "title": "Gateway first amendment, effective June 30, 2026",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926093454/plug-20260630xex10d1.htm",
+    "publisher": "Plug Power filing with the SEC"
+   },
+   {
+    "id": "gateway-july-amendment",
+    "title": "Gateway second amendment, §§2–5",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926082854/tm2620282d1_ex10-1.htm",
+    "publisher": "Plug Power filing with the SEC"
+   },
+   {
+    "id": "gateway-july-report",
+    "title": "July Form 8-K on the Gateway and Limestone agreements",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926082854/tm2620282d1_8k.htm",
+    "publisher": "Plug Power filing with the SEC"
+   },
+   {
+    "id": "gateway-county-records",
+    "title": "Project Double Reed development review and September site plan submission",
+    "url": "https://www.gcedc.com/projects",
+    "publisher": "Genesee County Economic Development Center"
+   },
+   {
+    "id": "gateway-site-plan",
+    "title": "September 16, 2026 Project Double Reed site plan submission memo",
+    "url": "https://www.gcedc.com/file-library/100319/STREAMUSDataCentersLLC.SitePlanSubmissionMemo.9.16.26.pdf",
+    "publisher": "Stream Data Centers via the GCEDC"
+   },
+   {
+    "id": "limestone-amendment",
+    "title": "Graham purchase agreement amendment and Oncor security terms",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926093454/plug-20260630xex10d4.htm",
+    "publisher": "Plug Power filing with the SEC"
+   },
+   {
+    "id": "limestone-august-closing",
+    "title": "August Form 10-Q, Note 20, on the Graham equipment closing",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926093454/plug-20260630x10q.htm",
+    "publisher": "Plug Power filing with the SEC"
+   },
+   {
+    "id": "limestone-november-report",
+    "title": "November Form 10-Q, Note 4, confirming the equipment-sale proceeds",
+    "url": "https://www.sec.gov/Archives/edgar/data/1093691/000110465926124578/plug-20260930x10q.htm",
+    "publisher": "Plug Power filing with the SEC"
    }
   ],
   "relatedSlugs": [
@@ -21721,7 +21848,7 @@
    "data-center-land-for-sale",
    "data-center-site-selection-services"
   ],
-  "updatedDate": "2026-11-23",
+  "updatedDate": "2026-11-24",
   "dataset": {
    "name": "Power rights and delivery milestones in two data center transactions",
    "description": "Issuer-reported service, economic rights, conditions for utility delivery and critical IT capacity in the AIB DFW1 acquisition and the Host Digital Site I lease. Includes original SEC filing links and section references.",
@@ -21749,6 +21876,25 @@
     ],
     "spatialCoverage": "Missouri, Texas, Tennessee, and Oklahoma, United States",
     "temporalCoverage": "2026-05-05/2026-11-23"
+   },
+   {
+    "anchor": "dataset-staged-closings",
+    "name": "Staged data center closings in Genesee County and Graham",
+    "description": "Dated filing and county records tracing Plug Power and Stream’s New York Gateway and Graham transactions. Separates contracted or requested load, land consideration, infrastructure sale proceeds, and the evidence for service to the buyer.",
+    "datePublished": "2026-11-24",
+    "sourceIds": [
+     "gateway-original",
+     "gateway-first-amendment",
+     "gateway-july-amendment",
+     "gateway-july-report",
+     "gateway-county-records",
+     "gateway-site-plan",
+     "limestone-amendment",
+     "limestone-august-closing",
+     "limestone-november-report"
+    ],
+    "spatialCoverage": "Genesee County, New York, and Young County, Texas, United States",
+    "temporalCoverage": "2026-02-24/2026-11-09"
    }
   ]
  },
