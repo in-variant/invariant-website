@@ -16,7 +16,7 @@ const { name: title, url: canonical } = DATA_CATALOG
 const { description, access } = researchCatalog
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
-  .map(({ image, notesPath, workflow }) => ({ ...study, image, notesPath, workflow })),
+  .map(({ image, notesPath, workflow, dataset }) => ({ ...study, image, notesPath, workflow, sample: dataset.downloads[0] })),
 )
 const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
 const datasetTopics = Object.entries(researchCatalog.topics).map(([label, articles]) => ({
@@ -110,21 +110,25 @@ export default function Datasets() {
       </header>
       <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
         <div className="dataset-featured-heading">
-          <h2 id="featured-studies-title">Research by workflow</h2>
+          <h2 id="featured-studies-title">Start with your workflow</h2>
           <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
         </div>
         <ul>
-          {featured.map(({ slug, title, summary, image, notesPath, workflow }) => (
+          {featured.map(({ slug, title, summary, image, notesPath, workflow, sample, workflowLabel }) => (
             <li key={slug}>
-              <Link to={notesPath} className="dataset-featured-link">
-                <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
+              <div className="dataset-featured-main">
+                <img src={image} alt="" width="1600" height="900" decoding="async" />
                 <div className="dataset-featured-copy">
-                  <h3>{title}</h3>
+                  <h3><Link to={notesPath}>{title} <ResourceArrow diagonal /></Link></h3>
                   <p>{summary}</p>
-                  <span className="dataset-featured-notes">Read the study <ResourceArrow diagonal /></span>
                 </div>
-              </Link>
-              {workflow && <a className="dataset-featured-workflow" href={workflow.url}>{workflow.label} <ResourceArrow diagonal /></a>}
+              </div>
+              <div className="dataset-featured-actions">
+                {workflow && <a className="dataset-featured-workflow" href={workflow.url}>{workflowLabel} <ResourceArrow /></a>}
+                <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}>
+                  {sample.format} sample <span aria-hidden="true">↓</span>
+                </a>
+              </div>
             </li>
           ))}
         </ul>
