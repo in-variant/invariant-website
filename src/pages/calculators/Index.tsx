@@ -8,7 +8,7 @@ const TOOLS = [
   {
     slug: 'data-center-power-capacity',
     title: 'Data center power capacity calculator',
-    description: 'Estimate total facility MW and compare normal on-site power with the capacity available during a generator outage.',
+    description: 'Estimate facility MW, check the generator shortfall during an outage, and calculate how long a battery can cover it.',
   },
   {
     slug: POWER_SCHEDULE_SLUG,

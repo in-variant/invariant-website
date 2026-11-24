@@ -144,7 +144,7 @@ out.push('')
 out.push('### Calculators')
 out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline), Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
 out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline), Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
-out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity), Estimate facility demand from IT load and compare it with net power available in normal and generator outage cases.')
+out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand, check on-site generation in an outage, and calculate battery runtime for a constant shortfall.')
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 
 out.push('')

@@ -3205,7 +3205,7 @@
     "topic": "Data Centers",
     "kind": "site-guide",
     "title": "Behind-the-Meter Power for Data Centers: How to Verify Capacity and Timing",
-    "description": "Size a data center’s on-site gas power and check firm fuel, air permits and delivery dates. See the Homer City approval record and what to ask for above 50 MW.",
+    "description": "Verify how much on-site power reaches a data center by phase. Size a battery for an outage shortfall and see the air permit and fuel records to request.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-23",
     "readMinutes": 15,
@@ -3235,6 +3235,62 @@
               {
                 "path": "/calculators/data-center-power-capacity",
                 "label": "Calculate facility demand and the shortfall during an outage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "size-battery-for-islanded-campus",
+        "heading": "How much battery storage does a 500 MW islanded data center need?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Size the generator fleet for the net facility load after the outage cases you plan to ride through. Size the battery separately for the peak discharge power and energy needed until generation recovers or the load drops. At a campus that runs without the grid, test the loss of gas supply and shared equipment as well as a trip of the largest unit."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Illustrative 500 MW IT case",
+              "Power or energy at the facility intake"
+            ],
+            "rows": [
+              [
+                "500 MW IT × 1.20 facility-to-IT design ratio",
+                "600 MW facility load"
+              ],
+              [
+                "Six identical units at 110 MW net each, all available",
+                "660 MW net capacity"
+              ],
+              [
+                "One unit out, five remaining at their net limit after ramping",
+                "550 MW net capacity"
+              ],
+              [
+                "Shortfall for the next 30 minutes",
+                "50 MW discharge power and 25 usable MWh"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The 50 MW is the remaining deficit after the other units reach 550 MW. The first seconds can require more power. For example, with six units delivering 100 MW each before the trip, losing one leaves 500 MW until the others respond. The 25 MWh figure covers the steady shortfall for 30 minutes. Have the supplier show the full power and energy profile from trip to recovery, including cooling load, switching, battery losses and the state of charge available when the trip occurs.",
+            "sourceIds": [
+              "pnnl-dynamic-loads"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Identify what replaces the missing 50 MW by the end of the bridge. That can be another generator reaching rated output or a verified 50 MW reduction in demand. Run a separate case for a second trip before the battery can recharge. Obtain fuel delivery commitments and confirm which loads stay energized after losing shared switchgear or a gas regulator."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/calculators/data-center-power-capacity",
+                "label": "Calculate generator shortfall and battery runtime"
               }
             ]
           }
@@ -3675,7 +3731,7 @@
           },
           {
             "type": "paragraph",
-            "text": "An islanded data center has no grid to fall back on, so redundancy is part of the generation design. Size for N+1 at minimum on the generating units, and decide how you'll handle a gas supply outage, a failed transformer and planned maintenance. Grid-parallel operation lowers that burden but brings an interconnection agreement, protection studies and the utility's standby or backup service terms back into scope."
+            "text": "For an islanded campus, agree on the outages and maintenance states that must keep the load online. A spare generating unit addresses one unit failure. Test gas supply interruptions, failed transformers and shared electrical equipment separately. Grid-parallel operation adds interconnection and protection studies and utility standby service terms."
           },
           {
             "type": "paragraph",
@@ -4033,6 +4089,10 @@
       {
         "question": "How does Invariant evaluate a behind-the-meter site?",
         "answer": "Invariant applies the same power evidence ladder it uses for grid sites, with gas supply, air permits and equipment as the rungs. A pipeline on a map counts as proximity. A written capacity figure, a permit covering the full build-out and an equipment reservation move a site up a tier."
+      },
+      {
+        "question": "How long can a battery cover a 50 MW generator shortfall?",
+        "answer": "A battery with 25 MWh of usable energy at the facility intake can cover a constant 50 MW shortfall for 30 minutes, provided it can discharge at least 50 MW there. Check any higher power needed during the generator trip and define what supplies the load when the battery runs out."
       }
     ],
     "sources": [
@@ -4174,6 +4234,13 @@
         "title": "August 5, 2026 preliminary decision notice for permit 182126",
         "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&SearchID=&dID=10091291&searchType=External",
         "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "pnnl-dynamic-loads",
+        "title": "Electromagnetic Transient Modeling of Large Data Centers for Grid-Level Studies, sections 2 and 4",
+        "url": "https://www.energy.gov/sites/default/files/2026-01/Data_Center_EMT_Models.pdf",
+        "publisher": "Pacific Northwest National Laboratory",
+        "linkLabel": "PNNL on data center electrical loads and controls"
       }
     ],
     "relatedSlugs": [

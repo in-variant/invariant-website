@@ -39,7 +39,7 @@
   font-weight: 570;
 }
 
-.power-calc-header p, .power-calc-inputs > p, .power-calc-method p {
+.power-calc-header p, .power-calc-inputs > p, .power-calc-bridge-body > p, .power-calc-method p {
   max-width: 68ch;
   margin: 0;
   color: var(--calc-muted);
@@ -131,10 +131,34 @@
 .power-calc-copy button:disabled { opacity: .6; cursor: default; }
 .power-calc-copy span { color: #cee1dc; font-size: 13px; }
 
+.power-calc-bridge {
+  margin-top: 16px;
+  border: 1px solid var(--calc-rule);
+  border-radius: 12px;
+  background: #fff;
+}
+.power-calc-bridge summary {
+  padding: 18px clamp(20px, 4vw, 38px);
+  font-weight: 600;
+  cursor: pointer;
+}
+.power-calc-bridge summary::marker { color: var(--calc-accent); }
+.power-calc-bridge summary:focus-visible { outline: 2px solid var(--calc-accent); outline-offset: -4px; }
+.power-calc-bridge-body { padding: 0 clamp(20px, 4vw, 38px) 24px; }
+.power-calc-bridge .power-calc-fields { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; }
+.power-calc-bridge-result { margin-top: 18px; }
+.power-calc-bridge-result dl { display: flex; flex-wrap: wrap; gap: 14px 30px; margin: 0; }
+.power-calc-bridge-result dt { color: var(--calc-muted); font-size: 13px; }
+.power-calc-bridge-result dd { margin: 4px 0 0; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.power-calc-bridge-result p { margin: 0; color: var(--calc-muted); line-height: 1.5; }
+.power-calc-bridge-result .power-calc-bridge-status { margin-top: 14px; color: var(--calc-accent); font-weight: 600; }
+.power-calc-bridge-result .power-calc-bridge-status[data-short='true'] { color: #97451b; }
+
 .power-calc-method { margin-top: clamp(34px, 6vw, 66px); }
+.power-calc-method h3 { margin: 22px 0 8px; font-size: 18px; font-weight: 600; }
 .power-calc-method p + p { margin-top: 13px; }
 .power-calc-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 18px; }
 
 @media (max-width: 690px) {
-  .power-calc-grid { grid-template-columns: 1fr; }
+  .power-calc-grid, .power-calc-bridge .power-calc-fields { grid-template-columns: 1fr; }
 }

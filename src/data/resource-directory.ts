@@ -23,7 +23,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/data-centre-compliance-india', title: 'Data centre approvals in India: the full project map', summary: 'Connect land, power, environment, water, fire, electrical safety and data law approvals for a data centre in India.', topic: 'Data Centers', kind: 'Guide' },
   { path: '/data-center-compliance', title: 'Data-center compliance: the full project map', summary: 'Connect siting, power, air, water and operating obligations in one U.S. compliance plan.', topic: 'Data Centers', kind: 'Guide' },
   { path: '/oil-gas-compliance', title: 'Oil-and-gas compliance: from permits to field records', summary: 'Understand U.S. onshore permitting, methane requirements and the evidence behind operating obligations.', topic: 'Oil & Gas', kind: 'Guide' },
-  { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert critical IT load into facility power at the meter and estimate operating energy from PUE and utilization.', topic: 'Data Centers', kind: 'Tool' },
+  { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert IT load to facility MW and check whether a battery can cover a generator shortfall until replacement power is available.', topic: 'Data Centers', kind: 'Tool' },
   { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
   ...industryArticles.map(article => ({
     path: `/blog/${article.slug}`,
