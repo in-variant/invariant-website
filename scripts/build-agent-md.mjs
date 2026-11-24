@@ -26,6 +26,7 @@ const FILES = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence
 const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles', f), 'utf8')))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
+const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
 const datasetEntries = articleIndex.flatMap(article => {
   const { dataset, additionalDatasets = [] } = article
   const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
@@ -91,11 +92,19 @@ function datasetCatalogMd() {
     `Catalog page: ${SITE}/datasets`, '',
     'Download the data, follow the original source records, and read how each dataset was compiled.', '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
+    '[Explore API coverage](https://docs.invariant-ai.com/api/field-catalog)', '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
+    '## Featured studies', '',
+    ...featuredResearch.map(({ slug, title, summary }) => {
+      const study = datasetEntries.find(entry => entry.slug === slug && !entry.dataset.anchor)
+      if (!study) throw new Error(`Missing primary research dataset for ${slug}`)
+      return `- [${title}](${study.url}) · ${summary}`
+    }), '',
+    '## All research datasets', '',
   ]
   for (const { slug, dateTime, dataset, url } of datasetEntries) {
     out.push(
-      `## ${dataset.name}`, '', dataset.description, '',
+      `### ${dataset.name}`, '', dataset.description, '',
       `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md)`,
       `- Published: ${dataset.datePublished ?? dateTime}`,
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),

@@ -6,11 +6,16 @@ import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../co
 import { articleSearchWords } from '../data/blogSearch'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
+import featuredResearch from '../data/featured-research-datasets.json'
 import './Resources.css'
 import './Datasets.css'
 
 const { name: title, url: canonical } = DATA_CATALOG
-const description = 'Download and cite the data behind Invariant’s research on land, grid upgrades, property risk, lending and fleet charging.'
+const description = 'Download and cite the data behind Invariant’s research on sites, power, property risk, lending and mobility.'
+const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
+  .filter(entry => entry.id === study.slug)
+  .map(({ image, notesPath }) => ({ ...study, image, notesPath })),
+)
 const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
 const searchIndex = RESEARCH_DATASETS.map(entry => {
   const { dataset } = entry
@@ -76,15 +81,36 @@ export default function Datasets() {
         <div className="resources-intro-grid">
           <h1>{title}</h1>
           <div>
-            <p>{description} Open a record’s sources or read its guide for the analysis.</p>
+            <p>{description} Each study includes its sources and methods.</p>
             <nav aria-label="Data guides and API coverage" className="resources-data-links">
-              <a className="dataset-method" href="https://docs.invariant-ai.com/api/field-catalog">Explore Invariant Earth API fields <ResourceArrow diagonal /></a>
-              <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
+              <a className="dataset-api-button" href="https://docs.invariant-ai.com/api/field-catalog">Explore API coverage <ResourceArrow diagonal /></a>
+              <a className="dataset-method" href="#dataset-search">Search the library</a>
             </nav>
           </div>
         </div>
       </header>
-      <div className="resource-container datasets-list">
+      <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
+        <div className="dataset-featured-heading">
+          <h2 id="featured-studies-title">Featured studies</h2>
+          <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
+        </div>
+        <ul>
+          {featured.map(({ slug, title, summary, image, notesPath }) => (
+            <li key={slug}>
+              <Link to={notesPath} className="dataset-featured-link">
+                <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
+                <div className="dataset-featured-copy">
+                  <h3>{title}</h3>
+                  <p>{summary}</p>
+                  <ResourceArrow diagonal />
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="resource-container datasets-list" aria-labelledby="dataset-search">
+        <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
         <div className="dataset-controls">
           <label>
             <span>Search datasets</span>
@@ -115,7 +141,7 @@ export default function Datasets() {
           <article className="dataset-row" key={id} id={id}>
             <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
             <div className="dataset-copy">
-              <h2>{dataset.name}</h2>
+              <h3>{dataset.name}</h3>
               <p>{dataset.description}</p>
               {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
               <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
@@ -143,7 +169,7 @@ export default function Datasets() {
             </div>
           </article>
         ))}
-      </div>
+      </section>
     </div>
   )
 }
