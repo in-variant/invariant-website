@@ -77,7 +77,10 @@ export default function Datasets() {
           <h1>{title}</h1>
           <div>
             <p>{description} Open a record’s sources or read its guide for the analysis.</p>
-            <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse data guides by use case <span aria-hidden="true">↗</span></Link>
+            <nav aria-label="Data guides and API coverage" className="resources-data-links">
+              <a className="dataset-method" href="https://docs.invariant-ai.com/api/field-catalog">Explore Invariant Earth API fields <ResourceArrow diagonal /></a>
+              <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
+            </nav>
           </div>
         </div>
       </header>

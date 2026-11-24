@@ -1,6 +1,6 @@
 import FigmaHomepage from '../components/FigmaHomepage'
 import siteMetadata from '../data/siteMetadata.json'
-import { Seo, ORG_SCHEMA, WEBSITE_SCHEMA, EDITORIAL_TEAM, faqSchema, SITE_URL } from '../components/Seo'
+import { Seo, HOME_ORG_SCHEMA, WEBSITE_SCHEMA, EDITORIAL_TEAM, faqSchema, SITE_URL } from '../components/Seo'
 
 const HOME_FAQS = [
   {
@@ -61,7 +61,7 @@ export default function Home() {
         title={siteMetadata.title}
         description={siteMetadata.description}
         canonical="https://invariant-ai.com/"
-        jsonLd={[ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
+        jsonLd={[HOME_ORG_SCHEMA, EDITORIAL_TEAM, WEBSITE_SCHEMA, SITE_NAVIGATION, faqSchema(HOME_FAQS)]}
       />
       <FigmaHomepage />
     </>

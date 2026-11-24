@@ -69,7 +69,7 @@ export function Seo({
 
 // -------- JSON-LD schemas --------
 
-export const ORG_SCHEMA = {
+const orgIdentity = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': `${SITE_URL}/#organization`,
@@ -78,8 +78,6 @@ export const ORG_SCHEMA = {
   url: SITE_URL,
   logo: `${SITE_URL}/og/home.png`,
   image: DEFAULT_OG,
-  description:
-    'Autonomous agents for the physical economy, handling regulatory work across aerospace, energy, data centers, and oil and gas.',
   foundingDate: '2025',
   email: 'founders@invariant-ai.com',
   funder: {
@@ -87,7 +85,7 @@ export const ORG_SCHEMA = {
     name: 'Entrepreneurs First',
     url: 'https://www.joinef.com',
   },
-  sameAs: ['https://www.linkedin.com/company/invariant-ai', 'https://www.joinef.com'],
+  sameAs: ['https://www.linkedin.com/company/invariant-ai'],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'business',
@@ -95,6 +93,20 @@ export const ORG_SCHEMA = {
     url: `${SITE_URL}/contact`,
     availableLanguage: ['English'],
   },
+}
+
+export const ORG_SCHEMA = {
+  ...orgIdentity,
+  description:
+    'Invariant Earth provides source-linked data for U.S. properties and infrastructure. Invariant helps teams evaluate sites, power availability, and property risk.',
+}
+
+// The live homepage retains its current positioning until the new homepage is released.
+export const HOME_ORG_SCHEMA = {
+  ...orgIdentity,
+  description:
+    'Autonomous agents for the physical economy, handling regulatory work across aerospace, energy, data centers, and oil and gas.',
+  sameAs: [...orgIdentity.sameAs, 'https://www.joinef.com'],
   knowsAbout: [
     'Space compliance',
     'Nuclear compliance',
