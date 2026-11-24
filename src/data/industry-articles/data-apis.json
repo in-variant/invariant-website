@@ -14645,7 +14645,7 @@
     "title": "West Kite Alternatives for Commercial Property Data",
     "description": "Compare West Kite, ATTOM, Regrid, and Invariant Earth. Use a 25 Water Street case to test address matching, unit counts, permits, and occupancy history.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "readMinutes": 8,
     "coverAlt": "2024 aerial photograph of 25 Water Street in Lower Manhattan with its tax lot outlined and a construction crane on the roof.",
     "coverCaption": "25 Water Street during conversion. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant added the MapPLUTO 26v2 tax lot outline.",
@@ -14740,7 +14740,7 @@
                 "Use the matched property ID for research. Check the unit definition before using the number in a pro forma."
               ],
               [
-                "NYC MapPLUTO 26v2, lot 1000050010",
+                "NYC MapPLUTO 26v3, lot 1000050010",
                 "1,323 total units and 1,320 residential units.",
                 "Keep these two fields separately. The assessor aggregates the buildings on the tax lot."
               ],
@@ -14766,7 +14766,7 @@
           },
           {
             "type": "paragraph",
-            "text": "The public lookup’s number agrees with the assessor’s total-unit field. The public response alone does not establish where the provider obtained it. NYC’s Comptroller also reports 1,320 apartments at the conversion. Use the residential count for an apartment-level analysis and verify the current rent roll and occupancy documents for the deal.",
+            "text": "The public lookup’s number agreed with the assessor’s total-unit field in the November 22 check. The city’s November 24 query returned a newer MapPLUTO edition with the same two unit counts. The public response alone does not establish where the provider obtained it. NYC’s Comptroller also reports 1,320 apartments at the conversion. Use the residential count for an apartment-level analysis and verify the current rent roll and occupancy documents for the deal.",
             "sourceIds": [
               "nyc-comptroller",
               "mappluto"
@@ -14835,7 +14835,7 @@
           },
           {
             "type": "download",
-            "label": "Download the 25 Water Street property and conversion records",
+            "label": "Download the NYC address, permit and occupancy records for 25 Water Street",
             "path": "/blog/25-water-street-property-records.json",
             "format": "JSON"
           }
@@ -14983,8 +14983,8 @@
       {
         "id": "mappluto",
         "publisher": "NYC Department of City Planning",
-        "title": "MapPLUTO 26v2 query for tax lot 1000050010",
-        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2CBldgArea%2CComArea%2CLandUse%2CYearAlter1%2CYearAlter2%2COwnerName&outSR=4326&f=geojson",
+        "title": "Current MapPLUTO query for tax lot 1000050010",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json",
         "linkLabel": "MapPLUTO lot"
       },
       {
@@ -14998,14 +14998,14 @@
         "id": "occupancy",
         "publisher": "NYC Department of Buildings",
         "title": "DOB NOW occupancy issuance records for BIN 1000007",
-        "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007",
+        "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC",
         "linkLabel": "NYC occupancy records"
       },
       {
         "id": "permit-rows",
         "publisher": "NYC Department of Buildings",
         "title": "DOB NOW Building permits for BIN 1000007",
-        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=1000007",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=1000007&work_permit=M08013214-I1-GC&%24select=bin%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Capproved_date%2Cissued_date%2Cexpired_date%2Cpermit_status&%24order=issued_date+ASC%2Csequence_number+ASC",
         "linkLabel": "NYC permit records"
       },
       {
@@ -15038,10 +15038,9 @@
       }
     ],
     "dataset": {
-      "name": "25 Water Street property match, permit and occupancy records",
-      "description": "Three West Kite address matches, the MapPLUTO 26v2 tax lot summary, four general construction permit issuances and ten NYC DOB occupancy issuance records for the office-to-residential conversion at 25 Water Street.",
+      "name": "25 Water Street address aliases, permits and occupancy records",
+      "description": "Three addresses identified by the city, the MapPLUTO 26v3 tax lot summary, four general construction permit issuances and ten NYC Department of Buildings occupancy issuance records for the office-to-residential conversion at 25 Water Street.",
       "sourceIds": [
-        "west-try",
         "aliases",
         "mappluto",
         "permit-rows",

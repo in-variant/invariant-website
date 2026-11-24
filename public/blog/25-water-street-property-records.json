@@ -1,60 +1,29 @@
 {
-  "name": "25 Water Street property match, permit and occupancy records",
-  "reviewDate": "2026-11-22",
+  "name": "25 Water Street address aliases, permits and occupancy records",
+  "reviewDate": "2026-11-24",
   "property": {
     "city": "New York, New York",
     "siteAddress": "25 Water Street",
     "bbl": "1000050010",
     "bin": "1000007",
-    "job": "M08013214"
+    "job": "M08013214",
+    "cityDocumentedAddresses": [
+      "25 Water Street",
+      "115 Broad Street",
+      "4 New York Plaza"
+    ]
   },
   "sources": {
     "addressAliases": "https://www.bers.nyc.gov/assets/planning/download/pdf/plans-studies/office-reuse-task-force/presentation-appendix4-111622.pdf#page=12",
-    "westKiteLookup": "https://westkite.com/api",
-    "taxLot": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2CBldgArea%2CComArea%2CLandUse%2CYearAlter1%2CYearAlter2%2COwnerName&outSR=4326&f=geojson",
+    "taxLot": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json",
     "taxLotFieldDictionary": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/meta_mappluto.pdf",
-    "workPermits": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=1000007",
-    "occupancyFilings": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007",
+    "workPermits": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=1000007&work_permit=M08013214-I1-GC&%24select=bin%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Capproved_date%2Cissued_date%2Cexpired_date%2Cpermit_status&%24order=issued_date+ASC%2Csequence_number+ASC",
+    "occupancyFilings": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC",
     "certificateGuidance": "https://www.nyc.gov/site/buildings/property-or-business-owner/temporary-certificate-of-occupancy.page",
     "coverImagery": "https://www.arcgis.com/home/item.html?id=423f15185bd04f8dad8d99fba736772f"
   },
-  "westKitePublicLookups": [
-    {
-      "query": "25 Water Street, New York, NY",
-      "sourceUrl": "https://api.westkite.com/v1/try?q=25%20Water%20Street%2C%20New%20York%2C%20NY",
-      "matchedPropertyId": "property:08cdd016-2e36-8f6c-a4d6-705c9395e78b",
-      "returnedAddress": "115 BROAD STREET",
-      "exactMatch": true,
-      "propertyType": "Multifamily",
-      "unitsReported": 1323,
-      "buildingSquareFeet": 1044351,
-      "ownerOfRecord": "25 WATER OWNER, LLC"
-    },
-    {
-      "query": "4 New York Plaza, New York, NY",
-      "sourceUrl": "https://api.westkite.com/v1/try?q=4%20New%20York%20Plaza%2C%20New%20York%2C%20NY",
-      "matchedPropertyId": "property:08cdd016-2e36-8f6c-a4d6-705c9395e78b",
-      "returnedAddress": "115 BROAD STREET",
-      "exactMatch": true,
-      "propertyType": "Multifamily",
-      "unitsReported": 1323,
-      "buildingSquareFeet": 1044351,
-      "ownerOfRecord": "25 WATER OWNER, LLC"
-    },
-    {
-      "query": "115 Broad Street, New York, NY",
-      "sourceUrl": "https://api.westkite.com/v1/try?q=115%20Broad%20Street%2C%20New%20York%2C%20NY",
-      "matchedPropertyId": "property:08cdd016-2e36-8f6c-a4d6-705c9395e78b",
-      "returnedAddress": "115 BROAD STREET",
-      "exactMatch": true,
-      "propertyType": "Multifamily",
-      "unitsReported": 1323,
-      "buildingSquareFeet": 1044351,
-      "ownerOfRecord": "25 WATER OWNER, LLC"
-    }
-  ],
   "mapPluto": {
-    "edition": "26v2",
+    "edition": "26v3",
     "address": "115 BROAD STREET",
     "ownerOfRecord": "25 WATER OWNER, LLC",
     "totalUnits": 1323,
@@ -195,9 +164,9 @@
     }
   ],
   "notes": [
-    "Vendor results are observations from the unauthenticated lookup. They do not establish the source mapping or features of the authenticated product.",
+    "The NYC Office Adaptive Reuse Task Force identifies all three addresses on page 12 of its November 2022 presentation.",
     "Permit rows are selected for one general construction permit. The occupancy rows share its DOB NOW base job identifier.",
     "DOB Open Data reports count and filing labels. Check each actual certificate for the covered units, final status and current validity.",
-    "Dates come from source fields. Review date records when we read the sources."
+    "Record dates come from the source fields. The review date is when Invariant rechecked the city records."
   ]
 }
