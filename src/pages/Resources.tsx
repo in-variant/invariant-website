@@ -2,12 +2,14 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
+import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { RESOURCE_ARTICLES, type ResourceTopic } from '../data/resources'
 import { RESOURCE_REFERENCES } from '../data/resource-directory'
 import { DATA_USE_CASE_GROUPS, DATA_USE_CASES_PATH } from '../data/blogCollections'
+import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import './Resources.css'
 
-const FORMATS = ['All', 'Guides', 'Tools'] as const
+const FORMATS = ['All', 'Guides', 'Tools', 'Datasets'] as const
 type Format = typeof FORMATS[number]
 const PAGE_SIZE = 8
 const RESOURCE_TOPICS: ResourceTopic[] = ['Data & APIs', 'Data Centers', 'Oil & Gas']
@@ -20,14 +22,18 @@ export default function Resources() {
   const [topic, setTopic] = useState('All topics')
   const [query, setQuery] = useState('')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
-  const filtered = useMemo(() => {
-    const terms = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean)
-    return library.filter((resource) => {
-      const matchesFormat = format === 'All' || `${resource.kind}s` === format
-      const haystack = `${resource.title} ${resource.summary} ${resource.topic}`.toLocaleLowerCase()
-      return matchesFormat && (topic === 'All topics' || resource.topic === topic) && terms.every((term) => haystack.includes(term))
-    })
-  }, [format, topic, query])
+  const queryWords = articleSearchWords(query)
+  const searching = queryWords.length > 0
+  const { details, pending } = useArticleSearchDetails(searching && (format === 'All' || format === 'Guides'))
+  const searchIndex = useMemo(() => searching ? prepareSearch(library, resource => ({
+    title: resource.title,
+    metadata: `${resource.summary} ${resource.topic} ${resource.searchContext ?? ''}`,
+    details: resource.articleSlug ? details?.[resource.articleSlug] : undefined,
+  })) : [], [searching, details])
+  const candidates = searching ? rankSearch(searchIndex, queryWords) : library
+  const filtered = candidates.filter(resource =>
+    (format === 'All' || `${resource.kind}s` === format) && (topic === 'All topics' || resource.topic === topic),
+  )
   const clearFilters = () => { setFormat('All'); setTopic('All topics'); setQuery(''); setVisibleCount(PAGE_SIZE) }
 
   return (
@@ -79,7 +85,7 @@ export default function Resources() {
       <section className="resources-library" aria-labelledby="resources-library-heading">
         <div className="resource-container">
           <div className="resources-section-heading">
-            <h2 id="resources-library-heading">Browse tools and guides</h2>
+            <h2 id="resources-library-heading">Browse guides, tools, and datasets</h2>
           </div>
           <nav aria-label="Research and planning resources" className="mb-7 flex flex-wrap gap-x-6 gap-y-3">
             <Link to="/blog/find-data-center-site-us" className="resource-text-link">Find a data center site <ResourceArrow diagonal /></Link>
@@ -92,10 +98,14 @@ export default function Resources() {
             </div>
             <div className="resources-search-controls">
               <label className="resource-topic-select"><span className="sr-only">Filter by topic</span><select value={topic} onChange={(event) => { setTopic(event.target.value); setVisibleCount(PAGE_SIZE) }}><option>All topics</option>{RESOURCE_TOPICS.map(value => <option key={value}>{value}</option>)}</select><svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg></label>
-              <label className="resource-search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5" /><path d="m12 12 4 4" /></svg><span className="sr-only">Search guides and tools</span><input type="search" value={query} placeholder="Search the library" onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE) }} /></label>
+              <label className="resource-search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5" /><path d="m12 12 4 4" /></svg><span className="sr-only">Search guides, tools, and datasets</span><input type="search" value={query} placeholder="Search the library" onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE) }} /></label>
             </div>
           </div>
-          <p className="resources-result-count" role="status" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'resource' : 'resources'}{query.trim() ? ` matching “${query.trim()}”` : ''}</p>
+          <p className="resources-result-count" role="status">
+            {pending ? 'Searching the library…' : `${filtered.length} ${filtered.length === 1 ? 'resource' : 'resources'}`}
+            {!pending && searching && ` matching “${query.trim()}”`}
+            {searching && details === null && (format === 'All' || format === 'Guides') && ' (titles and descriptions only)'}
+          </p>
           <div className="resources-reference-list">
             {filtered.slice(0, visibleCount).map((resource) => (
               <Link className="resources-reference" key={resource.path} to={resource.path}>
@@ -105,7 +115,7 @@ export default function Resources() {
               </Link>
             ))}
           </div>
-          {filtered.length === 0 && <div className="resource-empty"><h3>No matching resources.</h3><button type="button" className="resource-outline-button" onClick={clearFilters}>Clear filters <ResourceArrow /></button></div>}
+          {filtered.length === 0 && !pending && <div className="resource-empty"><h3>No matching resources.</h3><button type="button" className="resource-outline-button" onClick={clearFilters}>Clear filters <ResourceArrow /></button></div>}
           {filtered.length > visibleCount && <div className="resources-load-more"><span>Showing {Math.min(visibleCount, filtered.length)} of {filtered.length}</span><button className="resource-outline-button" type="button" onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>Show more <span aria-hidden="true">+</span></button></div>}
         </div>
       </section>

@@ -159,7 +159,7 @@ function datasetCatalogMd() {
     `Catalog page: ${SITE}/datasets`, '',
     'Download the data, follow the original source records, and read how each dataset was compiled.', '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
-    `[Explore the Earth API](${SITE}/product) to check your own location.`, '',
+    `[Check your own site](${product.links.siteScreen}) with the Invariant Earth API or [browse API fields](${product.links.fields}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
     '## Featured studies', '',
     ...featuredResearch.flatMap(({ slug, title, summary, workflow }) => {

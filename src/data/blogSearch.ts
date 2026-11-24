@@ -25,20 +25,34 @@ export function articleSearchWords(value: string) {
     .map(word => word.length > 3 && /[^s]s$/.test(word) ? word.slice(0, -1) : word)
 }
 
+export function prepareSearch<T>(
+  entries: readonly T[],
+  textFor: (entry: T) => { title: string; metadata: string; details?: string },
+) {
+  return entries.map(entry => {
+    const { title, metadata, details = '' } = textFor(entry)
+    return {
+      entry,
+      title: articleSearchWords(title),
+      metadata: new Set(articleSearchWords(metadata)),
+      details: new Set(articleSearchWords(details)),
+    }
+  })
+}
+
 export function prepareArticleSearch(articles: ResourceArticle[], details: Record<string, string>) {
-  return articles.map(article => ({
-    article,
-    title: articleSearchWords(article.title),
-    metadata: new Set(articleSearchWords(`${article.summary} ${article.topic} ${article.region ?? ''} ${article.dataset?.name ?? ''}`)),
-    details: new Set(articleSearchWords(details[article.slug] ?? '')),
+  return prepareSearch(articles, article => ({
+    title: article.title,
+    metadata: `${article.summary} ${article.topic} ${article.region ?? ''} ${article.dataset?.name ?? ''}`,
+    details: details[article.slug],
   }))
 }
 
-export function searchArticles(index: ReturnType<typeof prepareArticleSearch>, queryWords: string[]) {
+export function rankSearch<T>(index: ReturnType<typeof prepareSearch<T>>, queryWords: string[]) {
   const terms = [...new Set(queryWords)]
   const phrase = ` ${queryWords.join(' ')} `
   const lastWord = queryWords[queryWords.length - 1]
-  return index.flatMap(({ article, title, metadata, details }) => {
+  return index.flatMap(({ entry, title, metadata, details }) => {
     let score = ` ${title.join(' ')} `.includes(phrase) ? 6 : 0
     for (const term of terms) {
       if (title.includes(term)) score += 8
@@ -48,6 +62,6 @@ export function searchArticles(index: ReturnType<typeof prepareArticleSearch>, q
         [...title, ...metadata, ...details].some(word => word.startsWith(term))) score += 1
       else return []
     }
-    return [{ article, score }]
-  }).sort((a, b) => b.score - a.score).map(({ article }) => article)
+    return [{ entry, score }]
+  }).sort((a, b) => b.score - a.score).map(({ entry }) => entry)
 }

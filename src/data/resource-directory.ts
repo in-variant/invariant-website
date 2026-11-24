@@ -1,6 +1,6 @@
 import { PAGES } from './page-registry'
 import industryArticles from './industry-article-index.json'
-import type { ResourceTopic } from './resources'
+import { RESEARCH_DATASETS, type ResourceTopic } from './resources'
 import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE } from './dataCenterPowerSchedule'
 
 export type ResourceReference = {
@@ -8,7 +8,9 @@ export type ResourceReference = {
   title: string
   summary: string
   topic: ResourceTopic
-  kind: 'Guide' | 'Tool'
+  kind: 'Guide' | 'Tool' | 'Dataset'
+  articleSlug?: string
+  searchContext?: string
 }
 
 const TOPICS: Record<string, ResourceTopic> = {
@@ -23,7 +25,15 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/oil-gas-compliance', title: 'Oil-and-gas compliance: from permits to field records', summary: 'Understand U.S. onshore permitting, methane requirements and the evidence behind operating obligations.', topic: 'Oil & Gas', kind: 'Guide' },
   { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert critical IT load into facility power at the meter and estimate operating energy from PUE and utilization.', topic: 'Data Centers', kind: 'Tool' },
   { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
-  ...industryArticles.map(article => ({ path: `/blog/${article.slug}`, title: article.title, summary: article.summary, topic: article.topic as ResourceTopic, kind: 'Guide' as const })),
+  ...industryArticles.map(article => ({
+    path: `/blog/${article.slug}`,
+    title: article.title,
+    summary: article.summary,
+    topic: article.topic as ResourceTopic,
+    kind: 'Guide' as const,
+    articleSlug: article.slug,
+    searchContext: `${article.region ?? ''} ${article.dataset?.name ?? ''}`,
+  })),
   ...PAGES.filter((page) => page.live)
     .sort((a, b) => (a.weight ?? 9) - (b.weight ?? 9))
     .map((page) => ({
@@ -75,4 +85,16 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
     topic: 'Cross-industry',
     kind: 'Guide',
   },
+  ...RESEARCH_DATASETS.map(({ id, dataset, topic, region }) => ({
+    path: `/datasets#${id}`,
+    title: dataset.name,
+    summary: dataset.description,
+    topic,
+    kind: 'Dataset' as const,
+    searchContext: [
+      dataset.spatialCoverage, dataset.temporalCoverage, region,
+      ...dataset.downloads.map(file => `${file.label} ${file.format}`),
+      ...dataset.sourceDetails.map(({ title, publisher }) => `${title} ${publisher}`),
+    ].join(' '),
+  })),
 ]

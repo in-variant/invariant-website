@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { RESOURCE_ARTICLES, type ResourceArticle } from '../data/resources'
-import { articleSearchWords, prepareArticleSearch, searchArticles } from '../data/blogSearch'
+import { articleSearchWords, prepareArticleSearch, rankSearch } from '../data/blogSearch'
+import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import collections from '../data/blog-collections.json'
 import { INDIA_HUB } from '../data/industryArticles'
 import './Blog.css'
@@ -90,24 +91,12 @@ function ArticleArchive({ articles, filtered, label }: { articles: ResourceArtic
 export default function Blog() {
   const [topic, setTopic] = useState<typeof TOPICS[number]>('All articles')
   const [query, setQuery] = useState('')
-  const [searchDetails, setSearchDetails] = useState<Record<string, string> | null>()
   const queryWords = articleSearchWords(query)
   const searching = queryWords.length > 0
   const isFiltered = topic !== 'All articles' || searching
-  const searchPending = searching && searchDetails === undefined
+  const { details: searchDetails, pending: searchPending } = useArticleSearchDetails(searching)
   const searchIndex = useMemo(() => searching ? prepareArticleSearch(ARTICLES, searchDetails ?? {}) : [], [searchDetails, searching])
-
-  useEffect(() => {
-    if (!searchPending) return
-    let active = true
-    import('../data/.generated-blog-search/details.json').then(
-      ({ default: details }) => { if (active) setSearchDetails(details) },
-      () => { if (active) setSearchDetails(null) },
-    )
-    return () => { active = false }
-  }, [searchPending])
-
-  const candidates = searching ? searchArticles(searchIndex, queryWords) : ARTICLES
+  const candidates = searching ? rankSearch(searchIndex, queryWords) : ARTICLES
   const articles = candidates.filter(article => isFiltered
     ? topic === 'All articles' || topic === article.topic
     : !featuredSlugs.has(article.slug) && !earlierSlugs.has(article.slug))

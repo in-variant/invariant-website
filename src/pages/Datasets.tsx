@@ -7,6 +7,7 @@ import { articleSearchWords } from '../data/blogSearch'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
+import { links as earthLinks } from '../data/earth-product.json'
 import './Resources.css'
 import './Datasets.css'
 
@@ -81,9 +82,10 @@ export default function Datasets() {
         <div className="resources-intro-grid">
           <h1>{title}</h1>
           <div>
-            <p>{description} To check your own location, start with the Invariant Earth API.</p>
+            <p>{description} Use the Invariant Earth API to look up parcels, hazards and infrastructure for your own site.</p>
             <nav aria-label="Research library and API" className="resources-data-links">
-              <Link className="dataset-api-button" to="/product">Explore the Earth API <ResourceArrow diagonal /></Link>
+              <a className="dataset-api-button" href={earthLinks.siteScreen}>Check your own site <ResourceArrow diagonal /></a>
+              <a className="dataset-method" href={earthLinks.fields}>Browse API fields <ResourceArrow diagonal /></a>
               <a className="dataset-method" href="#dataset-search">Search the library</a>
             </nav>
           </div>
