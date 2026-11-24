@@ -1,5 +1,378 @@
 [
   {
+    "slug": "fire-station-distance-commercial-property-underwriting",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Check Fire Station Distance and Protection Class by Address",
+    "description": "Find the closest qualifying fire station and verify hydrant evidence for commercial property insurance. Replay a Seattle case where the road route was 2.4 times the map distance.",
+    "date": "2026-11-23",
+    "readMinutes": 7,
+    "coverAlt": "Aerial map of Seattle’s Fishermen’s Terminal, the nearby fireboat station, and the 1.21-mile modeled road route from Station 20.",
+    "coverCaption": "Seattle’s Fishermen’s Terminal and the modeled Station 20 route. USDA NAIP imagery, 2023. Road data © OpenStreetMap contributors.",
+    "intro": "Start with the insured building and identify the station the applicable rating organization recognizes for that address. Then verify road distance and a creditable water supply. At Seattle’s Fishermen’s Terminal, the closest station point in the city map is a fireboat station. The closest mapped station with a listed engine is 0.50 miles away in a straight line and 1.21 miles by the modeled road route.",
+    "takeaways": [
+      "Keep the building or entrance separately from the parcel pin, especially at a campus or port.",
+      "Record straight-line distance and road distance as different measures. Capture the station name and apparatus listed in the source.",
+      "A mapped hydrant starts the water-supply check. Record the utility’s documented flow, pressure, and evidence date when the file calls for them.",
+      "Obtain the property’s Protection Class from the applicable rating organization or insurer and record the effective date."
+    ],
+    "sections": [
+      {
+        "id": "protection-class-by-address",
+        "heading": "What do you need to check Protection Class by address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Match the insured address to the correct building and likely apparatus entrance. A parcel centroid can send the route to the wrong street, particularly where a single tax lot contains several buildings. Once you have that starting point, keep the public records and the rating lookup in separate fields.",
+            "sourceIds": [
+              "wsrb",
+              "wsrb-location"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Check",
+              "Record to request",
+              "What to put in the file"
+            ],
+            "rows": [
+              [
+                "Responding station",
+                "Current station roster and the applicable property-level rating lookup.",
+                "Recognized station, apparatus or designation, road distance, and the date checked."
+              ],
+              [
+                "Hydrant and water supply",
+                "Mapped hydrant, utility record and any required flow or pressure test.",
+                "Creditable supply, test date, flow or pressure measurement, and the source."
+              ],
+              [
+                "Protection classification",
+                "The property result from the rating organization used by the carrier.",
+                "The classification, the address or building it covers, the provider, and the effective date."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "wsrb",
+                "verisk"
+              ],
+              [
+                "wsrb-location",
+                "flow"
+              ],
+              [
+                "wsrb",
+                "verisk"
+              ]
+            ],
+            "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "seattle-fire-station-distance",
+        "heading": "What changes when you check the road route?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We used the Port of Seattle’s published reference point for Fishermen’s Terminal at 3919 18th Avenue West and ranked all 36 point records in the city’s fire station layer by straight-line distance. We checked the apparatus listed in the fire department’s map, then modeled routes from the two nearest station points with a listed engine. The Port’s coordinate represents the terminal. A specific insured building may use a different entrance.",
+            "sourceIds": [
+              "port",
+              "city-gis",
+              "apparatus",
+              "route"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Municipal station point",
+              "Straight-line distance",
+              "Modeled road distance or role"
+            ],
+            "rows": [
+              [
+                "Station 3",
+                "0.46 mi (732 m)",
+                "The apparatus map lists a fireboat. No road route was modeled for this point."
+              ],
+              [
+                "Station 20",
+                "0.50 mi (805 m)",
+                "The apparatus map lists Engine 20. The car route measured 1.21 mi (1,953 m)."
+              ],
+              [
+                "Station 18",
+                "1.16 mi (1,868 m)",
+                "The apparatus map lists Engine 18. The car route measured 1.42 mi (2,293 m)."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "city-gis",
+                "apparatus"
+              ],
+              [
+                "city-gis",
+                "apparatus",
+                "route"
+              ],
+              [
+                "city-gis",
+                "apparatus",
+                "route"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The Station 20 route was 2.4 times the straight-line distance. The router snapped the station and terminal coordinates to mapped roads, about 19 and 12 meters away respectively. The road figures are from the public car profile between snapped points. Confirm the recognized response station and the acceptable entrance with the rating provider before using the distance in a quote.",
+            "sourceIds": [
+              "route",
+              "osm",
+              "wsrb"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/fire-station-distance-commercial-property-underwriting.geojson",
+            "format": "GeoJSON",
+            "label": "Download the station points, modeled routes, and API request"
+          }
+        ]
+      },
+      {
+        "id": "fire-protection-data-apis",
+        "heading": "Which source should you use for fire protection data?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Source",
+              "What it provides",
+              "Where it fits"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "A cited nearest-station name and geodesic distance for a U.S. coordinate. The catalog describes the Overture source and its filtering rules.",
+                "Use it for a first pass across addresses. Verify which station the rating provider recognizes and measure the relevant road route."
+              ],
+              [
+                "Washington Surveying and Rating Bureau",
+                "Protection Class for an individual Washington property and location report fields for recognized stations and hydrants.",
+                "Use the property lookup when the carrier relies on WSRB in Washington."
+              ],
+              [
+                "Verisk Public Protection Classification",
+                "The classification program evaluates community fire protection, including response and water supply.",
+                "Confirm the classification and rating input required by the carrier for the address."
+              ],
+              [
+                "Municipal GIS and the water utility",
+                "Station points, apparatus maps, and source records for fire flow or pressure when available.",
+                "Use them to check a disputed location or document water-supply evidence."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "invariant-fields",
+                "invariant-fetch"
+              ],
+              [
+                "wsrb",
+                "wsrb-location"
+              ],
+              [
+                "verisk"
+              ],
+              [
+                "city-gis",
+                "apparatus",
+                "flow"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The download includes an Invariant Earth request body for the Port reference coordinate. We checked the field names against the live public catalog. The Seattle measurements above come from the municipal station layer and the public router. The Invariant Earth request requires an API key.",
+            "sourceIds": [
+              "invariant-fields",
+              "invariant-fetch"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "verify-hydrant-water-supply",
+        "heading": "How do you verify the hydrant and water supply?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the location report or utility map, then ask for the record that answers the underwriting question. Seattle Public Utilities distinguishes existing flow-test results from modeled capacity at hydrant tees. Keep that distinction when recording the number. Confirm the relevant hydrant or other creditable supply, its status, and the date behind the evidence.",
+            "sourceIds": [
+              "wsrb-location",
+              "flow"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial property underwriting APIs"
+              },
+              {
+                "slug": "building-footprint-data-apis",
+                "label": "Match the exact building to the address"
+              },
+              {
+                "slug": "water-sewer-data-apis-site-selection",
+                "label": "Check which water utility serves the site"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I use the closest fire station on a map for underwriting?",
+        "answer": "Use the map to locate candidates. Verify the recognized responding station and the road distance for the insured address under the applicable property rating method.",
+        "sourceIds": [
+          "wsrb",
+          "verisk"
+        ]
+      },
+      {
+        "question": "Does a hydrant within 1,000 feet establish the property’s Protection Class?",
+        "answer": "The Washington location report tracks the distance to a hydrant as one input. The property classification also considers the community’s protection and the recognized station. Verify the address-level result with the rating provider or carrier.",
+        "sourceIds": [
+          "wsrb",
+          "wsrb-location"
+        ]
+      },
+      {
+        "question": "Why does road distance exceed the distance on the map?",
+        "answer": "Road routes follow mapped access, one-way streets, and crossings. At Fishermen’s Terminal, the modeled route from Station 20 was about 1.21 miles, compared with 0.50 miles in a straight line.",
+        "sourceIds": [
+          "port",
+          "city-gis",
+          "route"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "port",
+        "title": "Fishermen’s Terminal address and published coordinates",
+        "url": "https://www.portseattle.org/places/fishermens-terminal",
+        "publisher": "Port of Seattle",
+        "linkLabel": "Terminal reference point"
+      },
+      {
+        "id": "city-gis",
+        "title": "Seattle municipal fire station points",
+        "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Fire_Stations/FeatureServer/0",
+        "publisher": "City of Seattle",
+        "linkLabel": "Fire station layer"
+      },
+      {
+        "id": "apparatus",
+        "title": "Seattle Fire Department apparatus locations",
+        "url": "https://www.seattle.gov/Documents/Departments/Fire/About/SeattleFireMap.pdf",
+        "publisher": "Seattle Fire Department",
+        "linkLabel": "Apparatus map"
+      },
+      {
+        "id": "wsrb",
+        "title": "Washington Protection Class methodology and property factors",
+        "url": "https://www1.wsrb.com/protection-class-faq",
+        "publisher": "Washington Surveying and Rating Bureau",
+        "linkLabel": "Washington Protection Class"
+      },
+      {
+        "id": "wsrb-location",
+        "title": "Location Information Report for station and hydrant evidence",
+        "url": "https://help.wsrb.com/how-to-use-the-location-information-report",
+        "publisher": "Washington Surveying and Rating Bureau",
+        "linkLabel": "Location report"
+      },
+      {
+        "id": "verisk",
+        "title": "Public Protection Classification and fire protection factors",
+        "url": "https://www.verisk.com/4a5b23/siteassets/media/cp-v/resources/ppc-improvement-brochure.pdf",
+        "publisher": "Verisk",
+        "linkLabel": "Public Protection Classification"
+      },
+      {
+        "id": "flow",
+        "title": "Hydrant flow requests and modeled water-main capacity",
+        "url": "https://www.seattle.gov/utilities/construction-resources/water/fire-hydrants/hydrant-flow-request",
+        "publisher": "Seattle Public Utilities",
+        "linkLabel": "Hydrant flow records"
+      },
+      {
+        "id": "route",
+        "title": "OSRM road routing and distances between snapped points",
+        "url": "https://project-osrm.org/docs/v5.24.0/api/",
+        "publisher": "Open Source Routing Machine",
+        "linkLabel": "Routing API"
+      },
+      {
+        "id": "osm",
+        "title": "OpenStreetMap road data attribution and license",
+        "url": "https://www.openstreetmap.org/copyright",
+        "publisher": "OpenStreetMap",
+        "linkLabel": "Road data"
+      },
+      {
+        "id": "naip",
+        "title": "2023 National Agriculture Imagery Program imagery",
+        "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP2023_CONUS/ImageServer",
+        "publisher": "USDA NAIP",
+        "linkLabel": "Aerial imagery"
+      },
+      {
+        "id": "invariant-fields",
+        "title": "Live Invariant Earth station distance and name field definitions",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Live field catalog"
+      },
+      {
+        "id": "invariant-fetch",
+        "title": "Fetch sourced fields for a U.S. coordinate",
+        "url": "https://docs.invariant-ai.com/api/fetch",
+        "publisher": "Invariant Earth",
+        "linkLabel": "API fetch"
+      }
+    ],
+    "dataset": {
+      "name": "Fire station map and road distances to Fishermen’s Terminal",
+      "description": "The three nearest municipal station points to the Port’s reference location, two modeled car routes, the distance method and a sample Invariant Earth field request.",
+      "sourceIds": [
+        "port",
+        "city-gis",
+        "apparatus",
+        "route",
+        "osm",
+        "invariant-fields",
+        "invariant-fetch"
+      ],
+      "spatialCoverage": "Fishermen’s Terminal, Seattle, Washington, United States"
+    },
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "building-footprint-data-apis",
+      "water-sewer-data-apis-site-selection"
+    ]
+  },
+  {
     "slug": "air-quality-data-apis-monitoring-emissions",
     "topic": "Data & APIs",
     "region": "United States",
