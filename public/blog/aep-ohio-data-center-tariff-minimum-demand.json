@@ -1,0 +1,221 @@
+{
+  "name": "Ohio Power Schedule DCT billing demand for an illustrative 100 MW data center",
+  "checked_on": "2026-11-24",
+  "tariff": {
+    "book": "Ohio Power Company November 2026 tariff book, P.U.C.O. No. 22",
+    "source_url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf",
+    "source_file_sha256": "c489a1fc8cb3e70fd8d977bdf70d0af4cdf9d739a3fa3970eeacf9bd9bae95c2",
+    "schedule_sheet_revision_effective_on": "2026-08-28",
+    "sheet_pdf_pages_one_based": {
+      "223-1": 113,
+      "223-2": 114,
+      "223-3": 115,
+      "223-4": 116,
+      "223-5": 117,
+      "223-6": 118
+    },
+    "primary_schedule_codes": [
+      295,
+      795
+    ],
+    "primary_distribution_demand_usd_per_kw": "8.08",
+    "primary_customer_charge_usd_per_month": "186.30"
+  },
+  "scope": "Illustrative, single New Load contract in Schedule DCT, primary service voltage, conventional metered peak, no affiliated load and actual service energization assumed. All load observations are hypothetical. The base charge excludes riders, supply, reactive charges and taxes. It is not a utility bill or service offer.",
+  "formulas_all_demand_units_kw": {
+    "ramp": "Billed demand is the greater of the metered peak and 85 percent of the agreed Load Ramp Contract Capacity.",
+    "post_ramp_through_75000_kw": "Contract-tier floor is 15,000 plus 85 percent of capacity above 25,000.",
+    "post_ramp_above_75000_kw": "Contract-tier floor is 57,500 plus capacity above 75,000, capped at 85 percent of full contract capacity.",
+    "post_ramp_billing": "Use the greatest of metered peak, contract-tier floor or 85 percent of the highest billed demand in the preceding 11 months.",
+    "primary_base_charge": "Billed demand times 8.08 dollars per kW plus 186.30 dollars per month."
+  },
+  "contract_tier_examples": [
+    {
+      "capacity_kw": 30000,
+      "floor_kw": 19250
+    },
+    {
+      "capacity_kw": 50000,
+      "floor_kw": 36250
+    },
+    {
+      "capacity_kw": 75000,
+      "floor_kw": 57500
+    },
+    {
+      "capacity_kw": 100000,
+      "floor_kw": 82500
+    },
+    {
+      "capacity_kw": 120000,
+      "floor_kw": 102000
+    },
+    {
+      "capacity_kw": 150000,
+      "floor_kw": 127500
+    }
+  ],
+  "ramp_years": [
+    {
+      "ramp_year": 1,
+      "minimum_fraction_of_full_contract": 0.5,
+      "load_ramp_contract_capacity_kw": 50000,
+      "billing_demand_floor_kw": 42500
+    },
+    {
+      "ramp_year": 2,
+      "minimum_fraction_of_full_contract": 0.65,
+      "load_ramp_contract_capacity_kw": 65000,
+      "billing_demand_floor_kw": 55250
+    },
+    {
+      "ramp_year": 3,
+      "minimum_fraction_of_full_contract": 0.8,
+      "load_ramp_contract_capacity_kw": 80000,
+      "billing_demand_floor_kw": 68000
+    },
+    {
+      "ramp_year": 4,
+      "minimum_fraction_of_full_contract": 0.9,
+      "load_ramp_contract_capacity_kw": 90000,
+      "billing_demand_floor_kw": 76500
+    }
+  ],
+  "first_year_example_month": {
+    "metered_peak_kw": 35000,
+    "billed_demand_kw": 42500,
+    "primary_base_charge_usd": "343586.30"
+  },
+  "billed_demands_before_post_ramp_month_1_kw_oldest_first": [
+    85000,
+    85000,
+    85000,
+    85000,
+    85000,
+    85000,
+    85000,
+    85000,
+    85000,
+    85000,
+    85000
+  ],
+  "post_ramp_months": [
+    {
+      "post_ramp_month": 1,
+      "metered_peak_kw": 100000,
+      "previous_11_month_highest_billed_kw": 85000,
+      "ratchet_kw": 72250,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 100000,
+      "primary_base_charge_usd": "808186.30"
+    },
+    {
+      "post_ramp_month": 2,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 3,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 4,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 5,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 6,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 7,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 8,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 9,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 10,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 11,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 12,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 100000,
+      "ratchet_kw": 85000,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 85000,
+      "primary_base_charge_usd": "686986.30"
+    },
+    {
+      "post_ramp_month": 13,
+      "metered_peak_kw": 65000,
+      "previous_11_month_highest_billed_kw": 85000,
+      "ratchet_kw": 72250,
+      "contract_tier_floor_kw": 82500,
+      "billed_demand_kw": 82500,
+      "primary_base_charge_usd": "666786.30"
+    }
+  ]
+}

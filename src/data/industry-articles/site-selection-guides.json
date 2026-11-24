@@ -1,5 +1,397 @@
 [
   {
+    "slug": "aep-ohio-data-center-tariff-minimum-demand",
+    "topic": "Data Centers",
+    "kind": "study-guide",
+    "region": "Ohio, United States",
+    "title": "AEP Ohio Data Center Tariff: Minimum Demand and a 100 MW Example",
+    "description": "Calculate minimum billing demand under Ohio Power Schedule DCT. See the ramp floor, 11-month demand ratchet and base charges for a worked 100 MW example.",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "coverAlt": "Chart of a hypothetical 100 MW Ohio Power contract. After a 100 MW billed peak, monthly billing demand stays at 85 MW for 11 months while the meter peaks at 65 MW. It drops to 82.5 MW in month 13.",
+    "coverCaption": "Illustrative first 13 months after the ramp for one 100 MW New Load contract. Calculation from Ohio Power Schedule DCT, Sheets 223-3 and 223-4.",
+    "intro": "Under Ohio Power’s data center tariff, a single 100 MW New Load contract has an 82.5 MW demand floor after the ramp. A 100 MW billed peak can raise the floor to 85 MW for the next 11 months, even while the current meter peak is 65 MW. During the ramp, the billing floor is 85% of the agreed ramp capacity for the month.",
+    "takeaways": [
+      "Use the scheduled ramp capacity to calculate the first bills. Use the full contract and prior billed demand to calculate the bills after ramp.",
+      "Keep the measured peak, billed demand and electricity use in separate fields.",
+      "Ask Ohio Power for the eligibility, service voltage, applicable riders, collateral and dates that govern your site."
+    ],
+    "sections": [
+      {
+        "id": "who-pays-schedule-dct",
+        "heading": "Which data centers are covered by Schedule DCT?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Schedule DCT applies in Ohio Power’s service territory. The schedule tests for demand above 25,000 kW at a single location or qualifying contract capacity aggregated within the service territory. The example here assumes one energized New Load contract with no affiliated load. The tariff treats existing load and expansions separately.",
+            "sourceIds": [
+              "dct-one",
+              "dct-two",
+              "dct-four",
+              "dct-utility"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Contract capacity is the agreed amount at the meter. Billing demand is the kW quantity used to calculate applicable demand charges. Energy use is measured in kWh. For the model below, the metered demand is the highest 30-minute integrated demand during the billing month.",
+            "sourceIds": [
+              "dct-one",
+              "dct-three"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "load-ramp-minimum-billing",
+        "heading": "How does the load ramp change minimum billing demand?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ohio Power and the customer agree to the monthly ramp capacity. A ramp can last up to four years. The tariff sets the lowest ramp capacity allowed in each year, and the billing floor is 85% of the agreed ramp capacity. The table assumes the parties select the lowest permitted ramp capacity for a 100 MW contract.",
+            "sourceIds": [
+              "dct-one",
+              "dct-two",
+              "dct-four"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Ramp year",
+              "Lowest permitted agreed ramp capacity",
+              "Billing floor at that capacity"
+            ],
+            "rows": [
+              [
+                "Year 1",
+                "50 MW",
+                "42.5 MW"
+              ],
+              [
+                "Year 2",
+                "65 MW",
+                "55.25 MW"
+              ],
+              [
+                "Year 3",
+                "80 MW",
+                "68 MW"
+              ],
+              [
+                "Year 4",
+                "90 MW",
+                "76.5 MW"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dct-one",
+                "dct-four"
+              ],
+              [
+                "dct-one",
+                "dct-four"
+              ],
+              [
+                "dct-one",
+                "dct-four"
+              ],
+              [
+                "dct-one",
+                "dct-four"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At a 35 MW metered peak in the first year of this example, Ohio Power would use 42.5 MW to calculate demand charges. At the listed primary-voltage base rate, 42,500 kW × $8.08 plus the $186.30 monthly customer charge equals $343,586.30. Budget separately for riders, energy supply, reactive demand charges and taxes.",
+            "sourceIds": [
+              "dct-three",
+              "dct-four"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "post-ramp-demand-ratchet",
+        "heading": "How do the contract floor and the 11-month ratchet work?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "After the ramp, use the greatest of the current metered peak, the contract-tier minimum or 85% of the highest monthly billing demand during the preceding 11 months. The lookback uses billing demand, which may already include a floor. It can therefore differ from a lookback calculated from meter peaks alone.",
+            "sourceIds": [
+              "dct-three",
+              "dct-four"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Full contract capacity",
+              "Contract-tier minimum after ramp",
+              "Calculation"
+            ],
+            "rows": [
+              [
+                "30 MW",
+                "19.25 MW",
+                "15 MW plus 85% of 5 MW"
+              ],
+              [
+                "50 MW",
+                "36.25 MW",
+                "15 MW plus 85% of 25 MW"
+              ],
+              [
+                "75 MW",
+                "57.5 MW",
+                "15 MW plus 85% of 50 MW"
+              ],
+              [
+                "100 MW",
+                "82.5 MW",
+                "57.5 MW plus 25 MW"
+              ],
+              [
+                "120 MW",
+                "102 MW",
+                "57.5 MW plus 45 MW, capped at 85% of 120 MW"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dct-four"
+              ],
+              [
+                "dct-four"
+              ],
+              [
+                "dct-four"
+              ],
+              [
+                "dct-four"
+              ],
+              [
+                "dct-four"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "From 25,001 through 75,000 kW, the schedule starts at 15,000 kW and adds 85% of capacity above 25,000 kW. Above 75,000 kW, start at 57,500 kW and add all capacity above 75,000 kW, then apply the 85% cap to the contract-tier floor. The actual monthly billing demand can still be higher.",
+            "sourceIds": [
+              "dct-four"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "worked-100-mw-bill",
+        "heading": "Worked example for a 100 MW contract after the ramp",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Assume a 100 MW metered peak in the first month after the ramp, with a 65 MW peak in each of the next 12 months. The contract-tier minimum stays at 82.5 MW. The 100 MW billed peak raises the next 11 months to 85 MW. By month 13, 85 MW is the highest billed demand still in the lookback, making the ratchet 72.25 MW. The 82.5 MW contract floor then determines the billing demand.",
+            "sourceIds": [
+              "dct-three",
+              "dct-four"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Month after ramp",
+              "Metered peak",
+              "Billed demand",
+              "Primary base charge"
+            ],
+            "rows": [
+              [
+                "1",
+                "100 MW",
+                "100 MW",
+                "$808,186.30"
+              ],
+              [
+                "2 through 12",
+                "65 MW",
+                "85 MW",
+                "$686,986.30 per month"
+              ],
+              [
+                "13",
+                "65 MW",
+                "82.5 MW",
+                "$666,786.30"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dct-three",
+                "dct-four"
+              ],
+              [
+                "dct-three",
+                "dct-four"
+              ],
+              [
+                "dct-three",
+                "dct-four"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At the listed rate, the base charge falls by $20,200 when the 100 MW month leaves the lookback. The table includes the primary distribution demand rate and customer charge. A utility bill can also include transmission and other riders, energy supply, applicable reactive charges and taxes.",
+            "sourceIds": [
+              "dct-three",
+              "dct-four",
+              "dct-five"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/aep-ohio-data-center-tariff-minimum-demand.json",
+            "label": "Download the tariff inputs and 13-month calculation",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "before-signing",
+        "heading": "What should a buyer ask Ohio Power before signing?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Request a billing example using your service voltage and the actual dates of the utility work, commissioning and tenant ramp. Ask the utility to identify other loads it aggregates with your contract and the monthly billed demand history it uses. Review the signed electric service agreement and any separate construction or delay obligations.",
+            "sourceIds": [
+              "dct-two",
+              "dct-four",
+              "dct-six",
+              "dct-utility"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The tariff sets a minimum initial term of the ramp plus eight years. Check the exit rights and the 36 months of minimum charges specified for qualifying early termination. New Load customers that fall short of the tariff’s credit and liquidity tests must provide the applicable guarantee or collateral, based on 50% of total minimum charges for the term. Use the utility’s calculation for those amounts.",
+            "sourceIds": [
+              "dct-five",
+              "dct-six"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask the utility to state what happens if the planned service never energizes. Sheet 223-4 uses full contract capacity during the initial term when a customer fails to energize, unless the parties agree otherwise. Sheet 223-5 separately allows a customer to petition the commission for a contract-term adjustment when the electric infrastructure is missing at the estimated in-service date.",
+            "sourceIds": [
+              "dct-four",
+              "dct-five"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Verify the rest of the power package",
+            "items": [
+              {
+                "slug": "utility-will-serve-letter-load-study-esa",
+                "label": "Read the electric service agreement with the tariff"
+              },
+              {
+                "slug": "utility-load-study-cost-and-timeline",
+                "label": "Estimate the steps and timing of a utility load study"
+              },
+              {
+                "path": "/calculators/data-center-power-capacity",
+                "label": "Convert IT load to facility demand at the meter"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does the 85% cap limit every monthly demand bill?",
+        "answer": "The cap applies to the contract-tier minimum for capacities above 75 MW. The monthly billed demand can be higher because the utility also considers the current metered peak and the prior 11 months of billed demand. In the 100 MW example, month one is billed at 100 MW.",
+        "sourceIds": ["dct-three", "dct-four"]
+      },
+      {
+        "question": "How does the tariff treat two affiliated data center projects?",
+        "answer": "Ohio Power aggregates qualifying affiliated New Load in its service territory to calculate the contract-tier minimum. The tariff stacks the loads in energization order when it applies the minimum across contracts. Ask the utility for the breakdown by account and service date.",
+        "sourceIds": ["dct-four"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "dct-one",
+        "title": "November 2026 tariff book, first revised Sheet 223-1, load ramp definition",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=113",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Ramp capacity definition"
+      },
+      {
+        "id": "dct-two",
+        "title": "November 2026 tariff book, first revised Sheet 223-2, applicability and ramp duration",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=114",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Tariff applicability"
+      },
+      {
+        "id": "dct-three",
+        "title": "November 2026 tariff book, first revised Sheet 223-3, primary service charges and metered demand",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=115",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Primary rates and metered demand"
+      },
+      {
+        "id": "dct-four",
+        "title": "November 2026 tariff book, first revised Sheet 223-4, billing floors and prior demand",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=116",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Minimum demand and lookback"
+      },
+      {
+        "id": "dct-five",
+        "title": "November 2026 tariff book, first revised Sheet 223-5, initial contract term",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=117",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Initial contract term"
+      },
+      {
+        "id": "dct-six",
+        "title": "November 2026 tariff book, first revised Sheet 223-6, exit and collateral terms",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=118",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Exit and collateral terms"
+      },
+      {
+        "id": "dct-utility",
+        "title": "Data center tariff customer process and common questions",
+        "url": "https://www.aepohio.com/company/about/rates/data-center-tariff/",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Utility customer guidance"
+      }
+    ],
+    "relatedSlugs": [
+      "utility-will-serve-letter-load-study-esa",
+      "utility-load-study-cost-and-timeline",
+      "data-center-site-selection-checklist"
+    ],
+    "dataset": {
+      "name": "Ohio Power data center demand floors and a 100 MW billing example",
+      "description": "Reproducible Schedule DCT inputs, six contract-tier examples, four ramp-year floors and thirteen illustrative monthly billed demands with primary base charges. Includes exact sheet locations and the tariff PDF checksum.",
+      "sourceIds": [
+        "dct-one",
+        "dct-two",
+        "dct-three",
+        "dct-four"
+      ],
+      "spatialCoverage": "Ohio Power Company service territory, Ohio, United States"
+    }
+  },
+  {
     "slug": "spp-chills-data-center-power",
     "topic": "Data Centers",
     "kind": "study-guide",
@@ -1192,6 +1584,10 @@
           {
             "type": "links",
             "items": [
+              {
+                "label": "Work through Ohio Power’s 100 MW billing example",
+                "slug": "aep-ohio-data-center-tariff-minimum-demand"
+              },
               {
                 "label": "Check SPP CHILLS curtailment and firm service terms",
                 "slug": "spp-chills-data-center-power"
