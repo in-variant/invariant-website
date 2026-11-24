@@ -48,6 +48,7 @@ CRAWLER_SMOKE_PATHS = frozenset((
     "/blog/data-center-site-selection-checklist.md", "/research", "/research.md",
     "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
     "/data-coverage", "/data-coverage.md", COVERAGE_FIELDS_PATH,
+    "/blog/", "/product/", "/datasets/", "/data-coverage/",
 ))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
@@ -545,8 +546,12 @@ def build_jobs(sitemap, full):
         if path not in path_set:
             jobs.append((path, "shell", None))
     config = json.loads((ROOT / "vercel.json").read_text())
+    require(config.get("trailingSlash") is False, "the site must redirect trailing slashes to the canonical path")
     index_aliases = {path.rstrip("/") + "/index.html": path for path in candidates}
     jobs.extend((alias, "redirect", (308, path)) for alias, path in index_aliases.items())
+    jobs.extend((path + "/", "redirect", (308, path)) for path in candidates if path != "/")
+    site_request = "?request=site-selection&utm_source=release-check"
+    jobs.append(("/contact/" + site_request, "redirect", (308, "/contact" + site_request)))
     for rule in config["redirects"]:
         source = rule["source"]
         if source in index_aliases or ":" in source:
