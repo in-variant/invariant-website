@@ -39,15 +39,26 @@ export default function BlogArticleHeader({ article, title, subtitle, coverCapti
 type RelatedArticle = { slug: string; title: string; topic: string; image: string }
 
 export function BlogRelatedReading({ articles }: { articles: RelatedArticle[] }) {
+  if (!articles.length) return null
+
+  const featured = articles.slice(0, 2)
+  const more = articles.slice(2)
   return (
     <aside className="blog-related-reading" aria-label="Related articles">
       <div className="blog-related-heading"><h2>Keep reading.</h2><Link to="/blog">All articles <span aria-hidden="true">↗</span></Link></div>
       <div className="blog-related-grid">
-        {articles.map((article) => <Link key={article.slug} className="blog-related-card" to={`/blog/${article.slug}`}>
+        {featured.map((article) => <Link key={article.slug} className="blog-related-card" to={`/blog/${article.slug}`}>
           <div><span>{article.topic}</span><h3>{article.title}</h3><span className="blog-related-read">Read the article <span aria-hidden="true">↗</span></span></div>
           <img src={article.image} alt="" width="160" height="180" loading="lazy" decoding="async" />
         </Link>)}
       </div>
+      {more.length > 0 && (
+        <ul className="blog-related-list" role="list">
+          {more.map(({ slug, title }) => <li key={slug}>
+            <Link to={`/blog/${slug}`}>{title} <span aria-hidden="true">↗</span></Link>
+          </li>)}
+        </ul>
+      )}
     </aside>
   )
 }

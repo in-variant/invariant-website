@@ -85,7 +85,14 @@ for (const article of articles) {
       worksheets.set(article.slug, [columns, ...rows].map(row => row.map(csvCell).join(',')).join('\n') + '\n')
     }
   }
-  for (const slug of article.relatedSlugs) if (!slugs.has(slug)) throw new Error(`Missing related article ${slug}`)
+  if (new Set(article.relatedSlugs).size !== article.relatedSlugs.length) {
+    throw new Error(`Duplicate related article in ${article.slug}`)
+  }
+  for (const slug of article.relatedSlugs) {
+    if (!slugs.has(slug) || slug === article.slug) {
+      throw new Error(`Invalid related article ${slug} in ${article.slug}`)
+    }
+  }
   const additionalDatasets = article.additionalDatasets ?? []
   const datasetAnchors = new Set(article.dataset ? ['dataset'] : [])
   for (const { anchor, datePublished } of additionalDatasets) {
@@ -161,22 +168,18 @@ writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteS
 for (const [slug, csv] of worksheets) {
   writeIfChanged(new URL(`../public/blog/${slug}.csv`, import.meta.url), csv)
 }
-const catalog = [...index, ...legacyArticles]
-function relatedReading(current, relatedSlugs = []) {
-  const candidates = catalog.filter(article => article.slug !== current.slug)
-  const selected = relatedSlugs.flatMap(slug => candidates.filter(article => article.slug === slug))
-  const fallback = candidates.filter(article => !selected.includes(article))
-    .sort((a, b) => Number(b.topic === current.topic) - Number(a.topic === current.topic))
-  return [...selected, ...fallback].slice(0, 2).map(({ slug, title, topic, image }) => ({ slug, title, topic, image }))
-}
+const catalog = new Map([...index, ...legacyArticles].map(article => [article.slug, article]))
 writeEntryModules(new URL('.generated-articles/', base), articles.map(({ relatedSlugs, dataset, coverFile, ...article }, i) => ({
   ...article,
   published: index[i],
-  relatedReading: relatedReading(index[i], relatedSlugs),
+  relatedReading: relatedSlugs.map(slug => {
+    const { title, topic, image } = catalog.get(slug)
+    return { slug, title, topic, image }
+  }),
 })))
 writeEntryModules(new URL('.generated-legacy-articles/', base), legacyArticles.map(article => ({
   ...article,
-  relatedReading: relatedReading(article),
+  relatedReading: [],
 })))
 
 const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
