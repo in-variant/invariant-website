@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
@@ -34,6 +34,7 @@ function indexFields(fields: Field[]) {
 const pageSize = 12
 
 export default function DataCoverage() {
+  const { hash } = useLocation()
   const [query, setQuery] = useState('')
   const [operation, setOperation] = useState<Operation | ''>('')
   const [count, setCount] = useState(pageSize)
@@ -151,9 +152,9 @@ export default function DataCoverage() {
       <section className="resource-container coverage-topics" aria-labelledby="coverage-workflows">
         <h2 id="coverage-workflows">Start with your workflow</h2>
         <div>
-          {topics.map(({ title, description, fields, guide, guideLabel, researchTopic }) => (
-            <article key={title}>
-              <h3>{title}</h3>
+          {topics.map(({ id, title, description, fields, guide, guideLabel, researchTopic }) => (
+            <article key={id} id={id} aria-labelledby={`${id}-heading`} data-linked={hash === `#${id}` || undefined}>
+              <h3 id={`${id}-heading`}>{title}</h3>
               <p>{description}</p>
               <ul>
                 {fields.map(name => <li key={name}><button type="button" disabled={!ready} onClick={() => searchFor(name)}><code>{name}</code></button></li>)}

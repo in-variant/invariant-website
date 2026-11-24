@@ -6,6 +6,7 @@ const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
 const legacyArticles = JSON.parse(readFileSync(new URL('legacy-blog-articles.json', base), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(new URL('blog-collections.json', base), 'utf8'))
+const coverageTopics = JSON.parse(readFileSync(new URL('earth-coverage-topics.json', base), 'utf8'))
 const writeIfChanged = (file, content) => {
   if (!existsSync(file) || readFileSync(file, 'utf8') !== content) writeFileSync(file, content)
 }
@@ -38,8 +39,16 @@ for (const article of allArticles) {
   if (!/^[a-z0-9-]+$/.test(article.slug)) throw new Error(`Invalid slug: ${article.slug}`)
 }
 const publicBlogSlugs = new Set(slugs)
-const publicCalculatorPaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
+const linkablePaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
   .matchAll(/^\s*'(\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
+linkablePaths.add('/data-coverage')
+for (const { id } of coverageTopics) {
+  const path = `/data-coverage#${id}`
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id ?? '') || linkablePaths.has(path)) {
+    throw new Error(`Invalid or duplicate API coverage anchor: ${id}`)
+  }
+  linkablePaths.add(path)
+}
 for (const collection of blogCollections) {
   if (!/^[a-z0-9-]+$/.test(collection.slug) || publicBlogSlugs.has(collection.slug)) {
     throw new Error(`Invalid or duplicate blog collection slug: ${collection.slug}`)
@@ -79,7 +88,7 @@ for (const article of articles) {
     for (const id of [...(block.sourceIds ?? []), ...(block.rowSourceIds?.flat() ?? [])]) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)
     if (block.type === 'links') for (const item of block.items) {
       const valid = item.path === undefined ? publicBlogSlugs.has(item.slug)
-        : item.slug === undefined && publicCalculatorPaths.has(item.path)
+        : item.slug === undefined && linkablePaths.has(item.path)
       if (!valid) throw new Error(`Invalid or missing linked page ${item.path ?? item.slug}: ${article.slug}`)
     }
     if (block.type === 'download' && (!/^\/blog\/[a-z0-9-]+\.[a-z0-9]+$/.test(block.path) || !existsSync(new URL(`../public${block.path}`, import.meta.url)))) throw new Error(`Invalid download ${block.path}: ${article.slug}`)
