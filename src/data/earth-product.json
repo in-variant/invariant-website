@@ -1,0 +1,84 @@
+{
+  "title": "Invariant Earth API",
+  "description": "A U.S. data API for parcels, buildings, terrain, hazards, power and infrastructure. Check where each value came from and when it was retrieved.",
+  "updatedDate": "2026-11-23",
+  "lede": "Query U.S. parcels, buildings, terrain, hazards and infrastructure. Follow each returned value to its source and see when it was retrieved.",
+  "links": {
+    "docs": "https://docs.invariant-ai.com/",
+    "keys": "https://docs.invariant-ai.com/get-api-key",
+    "fields": "https://docs.invariant-ai.com/api/field-catalog",
+    "pointFields": "https://api.invariant-ai.com/v1/meta/fields",
+    "parcelFields": "https://api.invariant-ai.com/v1/enrich/fields",
+    "responses": "https://docs.invariant-ai.com/responses",
+    "mcp": "https://docs.invariant-ai.com/mcp/installation",
+    "mcpEndpoint": "https://api.invariant-ai.com/mcp",
+    "quickstart": "https://docs.invariant-ai.com/quickstart",
+    "research": "/research",
+    "datasets": "/datasets",
+    "guides": "/blog/physical-world-data-by-use-case",
+    "diligence": "/blog/site-selection-due-diligence",
+    "power": "/blog/utility-grade-power-study"
+  },
+  "operations": [
+    {
+      "title": "Get fields for a coordinate",
+      "method": "POST /v1/fetch",
+      "description": "Request field values for one U.S. point. Look up terrain, hazard exposure and mapped infrastructure. Each field has its own status and source.",
+      "docs": "https://docs.invariant-ai.com/api/fetch"
+    },
+    {
+      "title": "Get records for a parcel",
+      "method": "POST /v1/enrich",
+      "description": "Find the containing parcel and request its records and parcel-level metrics. Check the parcel match status before you use the result.",
+      "docs": "https://docs.invariant-ai.com/api/enrich"
+    }
+  ],
+  "examples": [
+    {
+      "audience": "Lending",
+      "title": "Trace related mortgage filings",
+      "description": "See how an agreement and a rent assignment at 25 Water Street were linked by the recorder.",
+      "href": "/blog/commercial-mortgage-records-by-address"
+    },
+    {
+      "audience": "Insurance",
+      "title": "Compare hail history by address",
+      "description": "Two Denver locations shared a coarse radar tile. The finer estimates showed different hail sizes.",
+      "href": "/blog/hail-history-by-address-for-underwriting"
+    },
+    {
+      "audience": "Land and GIS",
+      "title": "Follow a parcel through a split",
+      "description": "Compare seven dated geometries that show what changed around a Brooklyn tax lot.",
+      "href": "/blog/historical-parcel-boundaries-api"
+    },
+    {
+      "audience": "Energy development",
+      "title": "Track solar and storage requests",
+      "description": "Follow 58 requests from a historical snapshot to two California ISO queue reports.",
+      "href": "/blog/interconnection-queue-data"
+    }
+  ],
+  "setupPrompt": "Help me connect Invariant Earth to this agent or project. Read https://docs.invariant-ai.com/mcp/installation and use the setup for my client. The MCP server is https://api.invariant-ai.com/mcp. Ask me to sign in or use my client’s secret storage for the API key. Then test the connection by looking up elevation at latitude 39.0438, longitude -77.4874 and show the source and retrieval time. For direct API integration, follow https://docs.invariant-ai.com/quickstart and read https://api.invariant-ai.com/v1/meta/fields for supported fields.",
+  "sample": {
+    "endpoint": "https://api.invariant-ai.com/v1/fetch",
+    "location": "Ashburn, Virginia",
+    "request": {
+      "lat": 39.0438,
+      "lng": -77.4874,
+      "fields": [
+        "elevation"
+      ]
+    },
+    "field": {
+      "value": 89.63117218,
+      "unit": "meters",
+      "status": "ok",
+      "source": "USGS_3DEP_COG",
+      "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/13/TIFF/current/n40w078/USGS_13_n40w078.tif",
+      "confidence": "medium",
+      "fetched_at": "2026-11-22T03:26:14.082945Z",
+      "dataset_vintage": "USGS 3DEP 1/3 arc-second seamless DEM, current edition; tile n40w078; nominal resolution 10 m"
+    }
+  }
+}

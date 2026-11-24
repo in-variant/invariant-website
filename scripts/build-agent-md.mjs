@@ -2,6 +2,7 @@
 // Agent-readable copies of the site, written into dist/ after prerender:
 //   /blog/<slug>.md       one markdown file per industry article (site, due diligence, compliance guides)
 //   /glossary/<slug>.md   one markdown file per glossary entry
+//   /product.md          platform overview and agent setup
 //   /research.md         selected Invariant case studies, methods, and downloads
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
@@ -28,6 +29,7 @@ const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
+const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const datasetEntries = articleIndex.flatMap(article => {
   const { dataset, additionalDatasets = [] } = article
@@ -86,6 +88,37 @@ function glossaryMd(e) {
   if (e.guide) out.push(`Guide: [${e.guide.label}](${SITE}${e.guide.path})`, '')
   if (e.related_to?.length) out.push('Related: ' + e.related_to.map(s => `[${s}](${SITE}/glossary/${s})`).join(', '), '')
   return out.join('\n')
+}
+
+function productMd() {
+  const { links, sample } = product
+  return [
+    `# ${product.title}`, '', product.lede, '',
+    `URL: ${SITE}/product`,
+    `Updated: ${product.updatedDate}`, '',
+    `- [Get an API key](${links.keys})`,
+    `- [Quickstart](${links.quickstart})`,
+    `- [Browse API fields](${links.fields})`,
+    `- [Live point fields](${links.pointFields}) and [live parcel fields and presets](${links.parcelFields})`, '',
+    '## Choose what to query', '',
+    ...product.operations.map(({ title, method, description, docs }) => `- [${title}](${docs}) (${method}). ${description}`), '',
+    `## Documented API example for ${sample.location}`, '',
+    `Endpoint: ${sample.endpoint}. See the [response reference](${links.responses}).`, '',
+    'Request body', '', '```json', JSON.stringify(sample.request, null, 2), '```', '',
+    'Elevation field excerpt', '', '```json', JSON.stringify({ elevation: sample.field }, null, 2), '```', '',
+    '## Use Earth in your coding agent', '',
+    `[MCP setup instructions](${links.mcp}) for the server at ${links.mcpEndpoint}.`, '',
+    'Copy this setup prompt into your coding agent.', '', `> ${product.setupPrompt}`, '',
+    '## See what the records show', '',
+    ...product.examples.map(({ audience, title, description, href }) => `- ${audience}. [${title}](${SITE}${href}). ${description}`), '',
+    `- [Research datasets](${SITE}${links.datasets})`,
+    `- [Research case studies](${SITE}${links.research})`,
+    `- [All data guides](${SITE}${links.guides})`, '',
+    '## Verify a site or power plan', '',
+    `- [Site due diligence](${SITE}${links.diligence})`,
+    `- [Power-flow studies](${SITE}${links.power})`, '',
+    `[Earlier regulatory workspace walkthrough](${SITE}/product#platform-demo)`, '',
+  ].join('\n')
 }
 
 function researchMd() {
@@ -177,6 +210,7 @@ function datasetCatalogJson() {
 
 mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
+writeFileSync(join(DIST, 'product.md'), productMd())
 writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)
@@ -189,7 +223,7 @@ const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({
   URL: url,
 }))
 writeFileSync(join(DIST, 'datasets.csl.json'), `${JSON.stringify(datasetCitations, null, 2)}\n`)
-const full = ['# Invariant: data, site selection, power and compliance guides', '', '> Full text of Invariant’s data and API guides, data center site and power diligence articles, and industry compliance guides. Find topics at https://invariant-ai.com/llms.txt. Each included article has a Markdown copy at its URL plus `.md`.', '', CONTACT, '']
+const full = ['# Invariant: data, site selection, power and compliance guides', '', '> Full text of Invariant’s data and API guides, data center site and power diligence articles, and industry compliance guides. Find topics at https://invariant-ai.com/llms.txt. Each included article has a Markdown copy at its URL plus `.md`.', '', `[Invariant Earth product and agent setup](${SITE}/product.md)`, '', CONTACT, '']
 for (const collection of blogCollections) {
   const md = [
     `# ${collection.heading}`, '', collection.description, '',

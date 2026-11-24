@@ -9,6 +9,7 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SITE = 'https://invariant-ai.com'
+const { links } = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 
 // ── Parse page registry ──────────────────────────────────────────────────────
 const registry = readFileSync(join(ROOT, 'src/data/page-registry.ts'), 'utf8')
@@ -56,14 +57,15 @@ out.push('')
 out.push(`Read the [full data and site diligence guides](${SITE}/llms-full.txt). Each guide and glossary entry has a Markdown copy at its URL plus .md.`)
 out.push('')
 
-out.push('## Developer API: Invariant Earth API')
+out.push('## Invariant Earth API')
 out.push('')
-out.push('A REST API for US coordinates. Request specific fields through `POST /v1/fetch`. The catalog describes datasets for parcel matches, terrain, hazards, and infrastructure. The response contract includes field-level status, source URL, dataset vintage, fetch time, and confidence. Coverage depends on each field and location.')
+out.push('Use `POST /v1/fetch` to request fields for one U.S. coordinate and `POST /v1/enrich` for records and metrics tied to the containing parcel. Check the live field catalogs for coverage. Field-level source URLs, retrieval timestamps and data vintages let you verify the results.')
 out.push('')
-out.push('- [Invariant Earth API docs](https://docs.invariant-ai.com/): introduction, quickstart, API reference.')
+out.push(`- [Platform overview](${SITE}/product) and [Markdown setup guide](${SITE}/product.md).`)
+out.push(`- [Get an API key](${links.keys}) and follow the [quickstart](${links.quickstart}). Find the full [API documentation](${links.docs}).`)
+out.push(`- [Connect the MCP server to your AI agent](${links.mcp}). Server URL ${links.mcpEndpoint}.`)
+out.push(`- [Live point fields](${links.pointFields}) for Fetch and [live parcel fields and presets](${links.parcelFields}) for Enrich. Read the [response reference](${links.responses}) for provenance and status.`)
 out.push('- [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [full docs as Markdown](https://docs.invariant-ai.com/llms-full.txt).')
-out.push('- [Use with AI agents](https://docs.invariant-ai.com/agents): tool definitions for Claude and OpenAI.')
-out.push('- [Live point fields](https://api.invariant-ai.com/v1/meta/fields) for Fetch and [live parcel fields and presets](https://api.invariant-ai.com/v1/enrich/fields) for Enrich. See the [field response format](https://docs.invariant-ai.com/responses) for provenance and status.')
 out.push(`- [Research case studies](${SITE}/research). Findings, methods and downloads for selected studies are also available [as Markdown](${SITE}/research.md).`)
 out.push(`- [Research datasets](${SITE}/datasets). Read named source records and find downloads in the [Markdown catalog](${SITE}/datasets.md). The [JSON catalog](${SITE}/datasets.json) also includes SHA-256 checksums.`)
 out.push(`- [Invariant blog feed](${SITE}/feed.xml) with article URLs, summaries and revision dates.`)
@@ -111,9 +113,9 @@ for (const article of industryArticles.filter(isIndiaArticle)) {
 }
 out.push('')
 
-out.push('## Pages')
+out.push('## Earlier regulatory references')
 out.push('')
-out.push('- [Home](https://invariant-ai.com/), Autonomous agents for the physical economy.')
+out.push('- [Regulatory workspace walkthrough](https://invariant-ai.com/product#platform-demo).')
 for (const p of pillars) {
   out.push(`- [${p.title}](${SITE}/${p.slug}), ${p.description}`)
 }
@@ -133,10 +135,9 @@ if (clustersSpace.length) {
 }
 
 out.push('')
-out.push('### Product + research')
-out.push('- [Product](https://invariant-ai.com/product), What the agents produce: submissions, test plans, verification matrices.')
+out.push('### Regulatory tools and resources')
 out.push('- [Mission timeline](https://invariant-ai.com/timeline), Enter a space company website and get the full US and India regulatory filing plan, FCC, NOAA, ITAR and EAR, FAA, IN-SPACe, with real review clocks and fees.')
-out.push('- [Blog](https://invariant-ai.com/blog), regulation comparisons, field notes.')
+out.push('- [Blog](https://invariant-ai.com/blog), field notes and data guides.')
 out.push('- [Glossary](https://invariant-ai.com/glossary), Authoritative definitions of regulatory and qualification compliance terms.')
 out.push('- [Compliance library](https://invariant-ai.com/compliance), Every Invariant resource for space, nuclear, and aerospace.')
 out.push('- [Trust](https://invariant-ai.com/trust), Security and data-handling disclosures.')
