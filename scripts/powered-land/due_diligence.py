@@ -5,10 +5,11 @@ buyers search for (flood, seismic, wetlands, FAA, distance to transmission, N-1,
 Run: python3 due_diligence.py ../../src/data/industry-articles/site-due-diligence.json
 
 House rules: no em or en dashes, no client names or locations, every number carries a source or is our own
-method. Our power figures are screening figures; the utility's own study makes a number firm, and the pages
-say so. Never describe our study as the utility's own case. Never use the word "public" in copy.
+method. Our power figures are screening figures. Confirm capacity and delivery through the utility's
+written service terms and milestones. Never describe our study as the utility's own case.
 """
 import json, sys
+from pathlib import Path
 
 DATE = '2026-11-20'
 PILLAR = 'data-center-site-due-diligence'
@@ -590,7 +591,12 @@ PAGES.append(page('power-study-before-selling-land-to-data-center',
   faq('How do I start?', 'Email pranav@invariant-ai.com or call (628) 220-8972 with the parcel or coordinate and the acreage.')],
  [SCREEN, STUDY, 'data-center-land-for-sale'], read=5))
 
+output = Path(sys.argv[1])
+# Retain dated editorial revisions when refreshing the generated cluster.
+if output.exists():
+    revisions = {page['slug']: page for page in json.loads(output.read_text()) if page.get('updatedDate')}
+    PAGES = [revisions.get(page['slug'], page) for page in PAGES]
 out = json.dumps(PAGES, indent=1, ensure_ascii=False)
 assert '—' not in out and '–' not in out, 'em or en dash'
-open(sys.argv[1], 'w').write(out + '\n')
+output.write_text(out + '\n', encoding='utf-8')
 print(f'wrote {len(PAGES)} pages')

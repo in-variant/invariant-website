@@ -22,7 +22,11 @@ function writeEntryModules(directory, entries) {
 const worksheets = new Map()
 const datasets = new Map()
 const dataFormats = { CSV: 'csv', GeoJSON: 'geojson', JSON: 'json' }
-const worksheetColumns = ['Candidate or parcel', 'Status', 'Source or link', 'Evidence date', 'Assigned to', 'Follow-up due', 'Notes']
+const worksheetColumns = [
+  'Candidate or parcel', 'Status', 'Source or link', 'Evidence date', 'Assigned to', 'Follow-up due', 'Notes',
+  'Facility phase', 'Required facility MW at meter', 'Required utility service date',
+  'MW supported by cited record', 'Service date or range in cited record', 'Power evidence stage',
+]
 const csvCell = value => {
   const safe = /^[\s]*[=+@-]/.test(value) ? "'" + value : value
   return '"' + safe.replaceAll('"', '""') + '"'
