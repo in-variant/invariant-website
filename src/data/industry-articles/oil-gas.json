@@ -1,5 +1,363 @@
 [
   {
+    "slug": "methane-emissions-by-facility",
+    "topic": "Oil & Gas",
+    "region": "United States",
+    "title": "Methane Emissions by Facility: EPA Subpart W Data",
+    "description": "Look up reported methane emissions by facility and year in EPA FLIGHT or Envirofacts. Reproduce a Texas gas plant example and convert CO2e to methane mass.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "intro": "To look up annual methane emissions for a U.S. oil or gas facility, find its Greenhouse Gas Reporting Program ID in EPA FLIGHT. Select the reporting year and read the methane line under direct emissions. At the Shoup Gas Processing and Fractionation Plant in Texas, reported methane fell 20.1% from 2022 to 2023, while total direct greenhouse gases rose 0.3%. Both figures match EPA’s public records. They answer different questions.",
+    "coverAlt": "Bar charts of reported methane and total direct greenhouse gases at the Shoup gas plant. From 2022 to 2023 methane fell 20.1% while total greenhouse gases rose 0.3%.",
+    "coverCaption": "Shoup Gas Processing and Fractionation Plant, GHGRP facility 1005002. Invariant calculations from EPA Envirofacts and the 2023 release workbooks.",
+    "takeaways": [
+      "Use the GHGRP facility ID and reporting year to retrieve a record. Confirm the location and EPA registry ID before joining it to another dataset.",
+      "EPA’s example reports methane in metric tons of CO₂ equivalent. Divide the methane-only figure by the source’s AR4 factor of 25 to derive metric tons of methane.",
+      "Read Subpart C, Subpart W and supplier reporting as separate scopes. The supplier figure describes the fuel supplied on a different basis.",
+      "Keep a missing reporting year unknown. For a particular leak, look for a dated detection or investigation record."
+    ],
+    "sections": [
+      {
+        "id": "lookup",
+        "heading": "Find the right facility and year",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Search EPA FLIGHT by name or location and record the GHGRP ID, Facility Registry Service ID, reporting year and address. Shoup is GHGRP 1005002 and FRS 110005149507 at 802 McKinzie Road in Corpus Christi. Both identifiers match the 2021, 2022 and 2023 facility records used here.",
+            "sourceIds": [
+              "flight-shoup",
+              "facility-rows"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Compare the reporting unit before assigning a total to a physical site. Shoup is an onshore natural gas processing plant. In other segments, the reporting facility can span an operator’s well pads or gathering assets in a basin, a distribution system in a state, or a transmission operator’s U.S. network. For those records, an address or map point alone cannot locate the individual sources.",
+            "sourceIds": [
+              "reporting-unit"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The EPA workbook release and public API response used here stop at 2023 for Shoup. We checked on November 23, 2026. Keep years without a public record blank and record the date and source of the lookup.",
+            "sourceIds": [
+              "epa-data",
+              "facility-rows",
+              "emissions-rows"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "shoup-case",
+        "heading": "Reconcile Shoup’s methane and direct emissions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The 2023 emissions rows report 29,118.50 metric tons of methane CO₂e under Subpart W and 86.25 under Subpart C. Together they give 29,204.75 metric tons CO₂e from methane. Dividing by the source’s AR4 methane factor of 25 gives 1,168.19 metric tons of methane. FLIGHT rounds the methane CO₂e total to 29,205.",
+            "sourceIds": [
+              "emissions-rows",
+              "methane-code",
+              "ar4",
+              "flight-shoup"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Reporting year",
+              "Methane (metric tons CO₂e)",
+              "Methane mass (metric tons CH₄)",
+              "All direct gases (metric tons CO₂e)"
+            ],
+            "rows": [
+              [
+                "2021",
+                "28,339.75",
+                "1,133.59",
+                "230,659.190"
+              ],
+              [
+                "2022",
+                "36,546.50",
+                "1,461.86",
+                "213,398.334"
+              ],
+              [
+                "2023",
+                "29,204.75",
+                "1,168.19",
+                "214,027.554"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "emissions-rows",
+                "epa-workbooks"
+              ],
+              [
+                "emissions-rows",
+                "epa-workbooks"
+              ],
+              [
+                "emissions-rows",
+                "epa-workbooks"
+              ]
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/methane-emissions-by-facility.csv",
+            "label": "Download the three-year methane comparison",
+            "format": "CSV"
+          },
+          {
+            "type": "download",
+            "path": "/blog/methane-emissions-by-facility.json",
+            "label": "Download the 18 source rows, workbook cells and calculations",
+            "format": "JSON"
+          },
+          {
+            "type": "paragraph",
+            "text": "For each year, we summed the six gas and subpart rows and checked the methane, facility total, Subpart C and Subpart W figures against EPA’s Direct Point Emitters worksheet. The exact Shoup record is on row 5,139 in 2021, 5,161 in 2022 and 5,131 in 2023. The data download gives the sheet names and cell references.",
+            "sourceIds": [
+              "emissions-rows",
+              "epa-workbooks"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "scope",
+        "heading": "Keep three kinds of emissions figures separate",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "2023 figure at Shoup",
+              "Scope",
+              "Where to check"
+            ],
+            "rows": [
+              [
+                "29,204.75 metric tons CO₂e",
+                "Direct methane across Subparts C and W.",
+                "Methane by gas and reporting year."
+              ],
+              [
+                "30,694.994 metric tons CO₂e",
+                "All gases under Subpart W for this plant, including carbon dioxide, methane and nitrous oxide.",
+                "Petroleum and Natural Gas Systems process total."
+              ],
+              [
+                "5,192,676.7 metric tons CO₂e",
+                "Subpart NN supplier reporting for gas and natural gas liquids. This estimates emissions from the supplied products using the supplier reporting basis.",
+                "Suppliers worksheet in the 2023 file, cell R761. Keep it separate from the plant’s direct facility emissions."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "emissions-rows",
+                "epa-workbooks"
+              ],
+              [
+                "emissions-rows",
+                "epa-workbooks"
+              ],
+              [
+                "epa-workbooks",
+                "supplier-scope"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Subpart W figures can come from measurements, engineering calculations or emission factors, depending on the source. A remote-sensing observation may instead estimate a release rate in kilograms per hour at a specific time. Before turning a rate into a mass for an event, establish its duration and source attribution. A reported annual change alone cannot tell you which repair or operating change caused it.",
+            "sourceIds": [
+              "reporting-unit",
+              "event-records"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "api",
+        "heading": "Pull the same evidence through Envirofacts",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the facility table filtered by facility ID. Then query the gas-by-subpart table with the same ID. Select the year in the response, join the gas and subpart reference codes, and keep the source unit with every value. In this example, gas ID 2 is methane, subpart ID 1 is stationary combustion under C, and subpart ID 46 is petroleum and natural gas systems under W.",
+            "sourceIds": [
+              "api-docs",
+              "facility-rows",
+              "emissions-rows",
+              "methane-code",
+              "subpart-codes"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For diligence across facilities, keep the facility ID, reporting year, covered subparts, gas, unit, warming-potential basis and retrieval date. Record unresolved matches as gaps. Join air permits or operating records only after checking their facility identifiers and the activity each record covers."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "industrial-environmental-permit-history-by-parcel",
+                "label": "Trace industrial environmental permits by parcel"
+              },
+              {
+                "slug": "air-quality-data-apis-monitoring-emissions",
+                "label": "Compare ambient air monitors and facility emissions"
+              },
+              {
+                "slug": "oil-gas-methane-compliance",
+                "label": "Review EPA methane reporting and field records"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find a facility’s methane emissions?",
+        "answer": "Search EPA FLIGHT for the facility and select the reporting year. Record its GHGRP ID and match it to the methane line in the direct emissions table. Use Envirofacts for the underlying gas and subpart rows.",
+        "sourceIds": [
+          "epa-data",
+          "flight-shoup",
+          "emissions-rows"
+        ]
+      },
+      {
+        "question": "How do I convert methane CO₂e into metric tons of methane?",
+        "answer": "Divide the methane-only CO₂e by the global warming potential used in that source. For the Shoup records, EPA uses an AR4 factor of 25. Dividing 29,204.75 metric tons CO₂e by 25 gives 1,168.19 metric tons of methane.",
+        "sourceIds": [
+          "ar4",
+          "emissions-rows"
+        ]
+      },
+      {
+        "question": "Does a missing EPA record mean a facility emitted zero methane?",
+        "answer": "A missing record means the lookup did not produce a value for the facility and year. Check the latest published year, verify the reporting ID and confirm the scope of the program before assigning a value.",
+        "sourceIds": [
+          "epa-data",
+          "reporting-unit"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "epa-data",
+        "title": "GHGRP data sets and current public workbook release",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/ghgreporting/data-sets",
+        "linkLabel": "EPA data sets"
+      },
+      {
+        "id": "flight-shoup",
+        "title": "FLIGHT detail for Shoup, GHGRP 1005002, reporting year 2023",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://ghgdata.epa.gov/flight/details/1005002/2023/E",
+        "linkLabel": "Shoup in FLIGHT"
+      },
+      {
+        "id": "facility-rows",
+        "title": "Envirofacts facility records filtered to GHGRP 1005002",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://data.epa.gov/dmapservice/ghg.pub_dim_facility/facility_id/equals/1005002/json",
+        "linkLabel": "Facility records"
+      },
+      {
+        "id": "emissions-rows",
+        "title": "Envirofacts emissions-by-gas-and-subpart records for GHGRP 1005002",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://data.epa.gov/dmapservice/ghg.pub_facts_subp_ghg_emission/facility_id/equals/1005002/json",
+        "linkLabel": "Direct emissions rows"
+      },
+      {
+        "id": "methane-code",
+        "title": "Envirofacts gas dimension, gas ID 2",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://data.epa.gov/dmapservice/ghg.pub_dim_ghg/gas_id/equals/2/json",
+        "linkLabel": "Methane code"
+      },
+      {
+        "id": "subpart-codes",
+        "title": "Envirofacts subpart dimension for direct emitter and supplier programs",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://data.epa.gov/efservice/PUB_DIM_SUBPART/ROWS/0:50/JSON",
+        "linkLabel": "Subpart codes"
+      },
+      {
+        "id": "epa-workbooks",
+        "title": "2023 release ZIP with annual Direct Point Emitters and Suppliers worksheets",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/system/files/other-files/2024-10/2023_data_summary_spreadsheets.zip",
+        "linkLabel": "EPA workbooks"
+      },
+      {
+        "id": "ar4",
+        "title": "2023 Petroleum and Natural Gas Systems profile, AR4 basis and methane GWP",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/system/files/documents/2024-10/subpartw_profile_2023.pdf",
+        "linkLabel": "EPA AR4 basis"
+      },
+      {
+        "id": "api-docs",
+        "title": "Envirofacts Data Service API field filters and formats",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/enviro/envirofacts-data-service-api",
+        "linkLabel": "Envirofacts documentation"
+      },
+      {
+        "id": "reporting-unit",
+        "title": "Subpart W Information Sheet, reporting facility definitions",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/ghgreporting/subpart-w-information-sheet",
+        "linkLabel": "Subpart W reporting scope"
+      },
+      {
+        "id": "supplier-scope",
+        "title": "EPA explanation of direct emissions and natural gas supply reporting",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/ghgreporting/ghgrp-and-oil-and-gas-industry",
+        "linkLabel": "EPA supplier scope"
+      },
+      {
+        "id": "event-records",
+        "title": "EPA Methane Super Emitter Program, event reporting and detection",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.epa.gov/compliance/methane-super-emitter-program",
+        "linkLabel": "EPA event data"
+      }
+    ],
+    "relatedSlugs": [
+      "oil-gas-methane-compliance",
+      "industrial-environmental-permit-history-by-parcel",
+      "air-quality-data-apis-monitoring-emissions",
+      "oil-gas-permitting-compliance-checklist"
+    ],
+    "dataset": {
+      "name": "Shoup gas plant methane and direct greenhouse gas reconciliation",
+      "description": "Three annual EPA totals and 18 gas-by-subpart rows for Shoup, GHGRP facility 1005002. Includes exact EPA workbook cell references, AR4 conversion and the separate 2023 supplier figure.",
+      "datePublished": "2026-11-23",
+      "spatialCoverage": "Shoup Gas Processing and Fractionation Plant, Corpus Christi, Texas, United States",
+      "temporalCoverage": "2021/2023",
+      "sourceIds": [
+        "flight-shoup",
+        "facility-rows",
+        "emissions-rows",
+        "methane-code",
+        "subpart-codes",
+        "epa-workbooks",
+        "ar4",
+        "supplier-scope"
+      ]
+    }
+  },
+  {
     "slug": "oil-gas-permitting-compliance-checklist",
     "topic": "Oil & Gas",
     "title": "Oil and gas permitting: a U.S. onshore compliance checklist",
@@ -691,6 +1049,15 @@
             "sourceIds": [
               "colorado-intensity"
             ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "methane-emissions-by-facility",
+                "label": "Look up and verify reported methane emissions by facility"
+              }
+            ]
           }
         ]
       },
@@ -904,7 +1271,8 @@
       }
     ],
     "relatedSlugs": [
-      "oil-gas-permitting-compliance-checklist"
+      "oil-gas-permitting-compliance-checklist",
+      "methane-emissions-by-facility"
     ],
     "dataset": {
       "name": "EPA oil and gas methane reporting dates and rulemaking records",
