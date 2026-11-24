@@ -40,12 +40,15 @@ const datasetEntries = articleIndex.flatMap(article => {
     url: `${SITE}/blog/${article.slug}#${dataset.anchor ?? 'dataset'}`,
   }))
 })
+const primaryDatasets = new Map(datasetEntries.filter(entry => !entry.dataset.anchor).map(entry => [entry.slug, entry]))
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 const linkText = s => s.replace(/[\\[\]]/g, '\\$&')
 
 function articleMd(a) {
   const src = new Map(a.sources.map(s => [s.id, s]))
+  const workflow = featuredResearch.find(study => study.slug === a.slug)?.workflow
+  const datasetDownload = primaryDatasets.get(a.slug)?.dataset.downloads[0]?.path
   const cite = ids => ids?.length ? ' ' + ids.map(id => src.get(id)).filter(Boolean).map(s => `([${s.linkLabel ?? s.publisher}](${s.url}))`).join(' ') : ''
   const out = [`# ${a.title}`, '', `> ${a.description}`, '', `URL: ${SITE}/blog/${a.slug}  `, `Published: ${a.date}${a.updatedDate ? ` · Updated: ${a.updatedDate}` : ''} · Publisher: Invariant · Region: ${a.region ?? 'United States'}`, '', a.intro, '']
   if (a.takeaways?.length) out.push('## Key points', '', ...a.takeaways.map(t => `- ${t}`), '')
@@ -62,8 +65,12 @@ function articleMd(a) {
           return `| ${cells.join(' | ')} |`
         })
         out.push(`| ${b.columns.map(cell).join(' | ')} |`, `| ${b.columns.map(() => '---').join(' | ')} |`, ...rows, ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
-      } else if (b.type === 'download') out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
-      else if (b.type === 'links') out.push((b.label ? `**${b.label}:** ` : '') + b.items.map(i => `[${i.label}](${SITE}${i.path ?? `/blog/${i.slug}`})`).join(' · '), '')
+      } else if (b.type === 'download') {
+        out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
+        if (workflow && b.path === datasetDownload) {
+          out.push(`[${workflow.label}](${workflow.url})`, '')
+        }
+      } else if (b.type === 'links') out.push((b.label ? `**${b.label}:** ` : '') + b.items.map(i => `[${i.label}](${SITE}${i.path ?? `/blog/${i.slug}`})`).join(' · '), '')
     }
   }
   if (a.faqs?.length) {
@@ -152,13 +159,13 @@ function datasetCatalogMd() {
     `Catalog page: ${SITE}/datasets`, '',
     'Download the data, follow the original source records, and read how each dataset was compiled.', '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
-    '[Explore API coverage](https://docs.invariant-ai.com/api/field-catalog)', '',
+    `[Explore the Earth API](${SITE}/product) to check your own location.`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
     '## Featured studies', '',
-    ...featuredResearch.map(({ slug, title, summary }) => {
-      const study = datasetEntries.find(entry => entry.slug === slug && !entry.dataset.anchor)
+    ...featuredResearch.flatMap(({ slug, title, summary, workflow }) => {
+      const study = primaryDatasets.get(slug)
       if (!study) throw new Error(`Missing primary research dataset for ${slug}`)
-      return `- [${title}](${study.url}) · ${summary}`
+      return [`- [${title}](${study.url}). ${summary}`, `  - [${workflow.label}](${workflow.url})`]
     }), '',
     '## All research datasets', '',
   ]

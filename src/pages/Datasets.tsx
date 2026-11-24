@@ -11,7 +11,7 @@ import './Resources.css'
 import './Datasets.css'
 
 const { name: title, url: canonical } = DATA_CATALOG
-const description = 'Download and cite the data behind Invariant’s research on sites, power, property risk, lending and mobility.'
+const description = 'Download dated, source-linked research on site selection, power, property risk, lending and mobility.'
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
   .map(({ image, notesPath }) => ({ ...study, image, notesPath })),
@@ -81,9 +81,9 @@ export default function Datasets() {
         <div className="resources-intro-grid">
           <h1>{title}</h1>
           <div>
-            <p>{description} Explore the API for available fields, coverage and history across locations.</p>
-            <nav aria-label="Data guides and API coverage" className="resources-data-links">
-              <a className="dataset-api-button" href="https://docs.invariant-ai.com/api/field-catalog">Explore API coverage <ResourceArrow diagonal /></a>
+            <p>{description} To check your own location, start with the Invariant Earth API.</p>
+            <nav aria-label="Research library and API" className="resources-data-links">
+              <Link className="dataset-api-button" to="/product">Explore the Earth API <ResourceArrow diagonal /></Link>
               <a className="dataset-method" href="#dataset-search">Search the library</a>
             </nav>
           </div>
@@ -95,16 +95,17 @@ export default function Datasets() {
           <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
         </div>
         <ul>
-          {featured.map(({ slug, title, summary, image, notesPath }) => (
+          {featured.map(({ slug, title, summary, image, notesPath, workflow }) => (
             <li key={slug}>
               <Link to={notesPath} className="dataset-featured-link">
                 <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
                 <div className="dataset-featured-copy">
                   <h3>{title}</h3>
                   <p>{summary}</p>
-                  <ResourceArrow diagonal />
+                  <span className="dataset-featured-notes">Read the study <ResourceArrow diagonal /></span>
                 </div>
               </Link>
+              <a className="dataset-featured-workflow" href={workflow.url}>{workflow.label} <ResourceArrow diagonal /></a>
             </li>
           ))}
         </ul>

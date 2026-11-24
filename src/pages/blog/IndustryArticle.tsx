@@ -4,6 +4,7 @@ import DatasetCitation from '../../components/DatasetCitation'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, datasetSchema, faqSchema, howToSchema } from '../../components/Seo'
 import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
 import { publishedDatasets } from '../../data/publishedDatasets'
+import featuredResearch from '../../data/featured-research-datasets.json'
 import './IndustryArticle.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
@@ -25,10 +26,12 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
   if (block.type === 'list') return <div className="industry-list"><ul>{block.items.map(item => <li key={item}>{item}</li>)}</ul><Citations ids={block.sourceIds} article={article} /></div>
   if (block.type === 'download') {
     const entry = datasets.find(({ dataset }) => dataset.downloads[0].path === block.path)
+    const workflow = featuredResearch.find(({ slug }) => slug === entry?.id)?.workflow
     return <>
       {entry && <p id={entry.anchor} className="industry-dataset-title"><Link to={`/datasets#${entry.id}`}>{entry.dataset.name}</Link></p>}
       <a className="industry-worksheet-download" href={block.path} download>{block.label} <span>{block.format}</span></a>
       {entry && <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} />}
+      {workflow && <p><a className="industry-dataset-workflow" href={workflow.url}>{workflow.label} <span aria-hidden="true">↗</span></a></p>}
     </>
   }
   const stackOnMobile = block.worksheet || block.stackOnMobile

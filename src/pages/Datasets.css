@@ -35,16 +35,20 @@
   padding: 0;
   list-style: none;
 }
-.dataset-featured-link {
+.dataset-featured li {
   display: grid;
-  height: 100%;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr auto;
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--inv-border, #e0dbd0);
   border-radius: var(--inv-radius, 4px);
   background: var(--inv-paper, #faf8f4);
 }
-.dataset-featured-link:hover { border-color: var(--inv-accent, #3d4d49); }
+.dataset-featured-link {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.datasets-page .dataset-featured :focus-visible { outline-offset: -3px; }
 .dataset-featured-link > img {
   display: block;
   width: 100%;
@@ -54,20 +58,38 @@
   background: #eae8e2;
 }
 .dataset-featured-copy {
-  position: relative;
-  padding: 14px 36px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 16px 16px;
 }
 .datasets-page .dataset-featured-copy h3 { font-size: clamp(19px, 2vw, 25px); line-height: 1.15; }
 .datasets-page .dataset-featured-copy p { margin-top: 6px; font-size: 14px; color: var(--inv-muted, #565952); }
-.dataset-featured-copy > .resource-arrow {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  right: 12px;
-  top: 16px;
-  color: var(--inv-accent, #3d4d49);
+.dataset-featured-notes,
+.datasets-page .dataset-featured-workflow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--resource-blue);
+  font-size: 14px;
 }
-.dataset-featured-link:hover .resource-arrow { transform: translate(2px, -2px); }
+.dataset-featured-notes { margin-top: auto; padding-top: 12px; }
+.datasets-page .dataset-featured-workflow {
+  justify-content: space-between;
+  min-height: 46px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--inv-border, #e0dbd0);
+  background: #fff;
+  font-weight: 600;
+  transition: background-color .18s ease;
+}
+.dataset-featured :is(.dataset-featured-notes, .dataset-featured-workflow) .resource-arrow {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+.dataset-featured-link:hover .dataset-featured-notes { text-decoration: underline; text-underline-offset: 3px; }
+.datasets-page .dataset-featured-workflow:hover { background: #f4f7ff; }
 .datasets-page #dataset-search { margin-bottom: 16px; scroll-margin-top: 104px; }
 .datasets-list { border-bottom: 1px solid var(--resource-rule); }
 .dataset-controls {
@@ -197,6 +219,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .datasets-page .dataset-downloads a, .dataset-method .resource-arrow { transition: none; }
-  .dataset-featured-link:hover .resource-arrow { transform: none; }
+  .datasets-page .dataset-downloads a, .dataset-method .resource-arrow, .datasets-page .dataset-featured-workflow { transition: none; }
+  .dataset-featured a:hover .resource-arrow { transform: none; }
 }
