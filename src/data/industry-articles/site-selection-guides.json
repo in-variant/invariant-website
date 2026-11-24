@@ -3539,11 +3539,11 @@
     "slug": "behind-the-meter-power-for-data-centers",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Behind-the-Meter Power for Data Centers | Bridge Power",
-    "description": "Plan first power before a utility upgrade. Compare usable MW, fuel and commissioning, with air permit timelines from Texas and Pennsylvania.",
+    "title": "Behind-the-meter power for data centers",
+    "description": "Plan on-site bridge power before a utility upgrade. Compare net megawatts, firm fuel, commissioning and air permits using real data center projects.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-24",
-    "readMinutes": 17,
+    "readMinutes": 18,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
@@ -3841,6 +3841,44 @@
         ]
       },
       {
+        "id": "longhorn-air-permit-revisions",
+        "heading": "Longhorn in Abilene: which turbine capacity belongs to which permit?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Texas Commission on Environmental Quality (TCEQ) lists 360 MW under Longhorn’s amended air registration 177263 and a separate 1,330 MW proposal under application 182126. Both records refer to Longhorn Data Center in Abilene. The company and regulated entity identifiers differ. Match the permit to the equipment and buildings it covers before carrying a megawatt figure into a power schedule.",
+            "sourceIds": ["longhorn-turbine-register", "longhorn-revision-2025", "longhorn-expansion-summary"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Air record", "Equipment and operating hours", "Project MW in that record"],
+            "rows": [
+              ["177263 original, August 21, 2024. Abilene DC 1, LLC, RN112029079.", "Six Titan 350 turbines and six GE LM2500 turbines, all rated 35 MW in the technical review. The review lists 8,760 hours per rolling year for each Titan and up to 5,880 for each LM2500.", "420 MW summed from the reviewed unit ratings."],
+              ["177263 amendment, January 22, 2025. Same regulated entity.", "Five Titan 350 turbines at 38 MW each and five LM2500s at 34.1 MW each. The modification review raises the listed LM2500 operating hours to 8,760 per year.", "360 MW in the issued-permits workbook. The reviewed unit ratings sum to 360.5 MW."],
+              ["182126, application for buildings 9 and 10 filed November 7, 2025. Crusoe Energy Systems LLC, RN112029061.", "The pending-permits workbook lists 39 GE LM2500 or Aero DT35 turbines at 34.1 MW each. The agency issued a preliminary decision notice on August 5, 2026.", "1,330 MW in the pending workbook. TCEQ still listed the technically complete application on November 24, 2026."]
+            ],
+            "rowSourceIds": [
+              ["longhorn-original-2024", "longhorn-turbine-register"],
+              ["longhorn-revision-2025", "longhorn-turbine-register"],
+              ["longhorn-expansion-intake", "longhorn-expansion-summary", "longhorn-turbine-register", "tceq-abilene", "longhorn-pending-list"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The amendment reduced the reviewed fleet from 12 to 10 turbines while increasing the LM2500 operating hours. Those changes affect different parts of the schedule. Use the updated unit list when checking installed and reserve capacity. Use the operating conditions when checking the hours those units can serve the load. Before underwriting either phase, request the signed conditions, firm fuel, commissioned units and net output tests at the data center’s electrical intake.",
+            "sourceIds": ["longhorn-original-2024", "longhorn-revision-2025"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/longhorn-data-center-air-permit-history.json",
+            "label": "Download the Longhorn permit history and equipment ratings",
+            "format": "JSON",
+            "datasetAnchor": "dataset-longhorn-turbine-permits"
+          }
+        ]
+      },
+      {
         "id": "homer-city-permit-records",
         "heading": "Homer City shows what an issued air approval covers",
         "blocks": [
@@ -4037,13 +4075,6 @@
             "text": "The fight then moved across the state line. In April 2026 SELC and Earthjustice sued on behalf of the NAACP over 27 turbines, up to 495 MW, at xAI's Southaven, Mississippi facility. As of November 2026 we have not seen a final ruling. The lesson for a buyer is plain: installing turbines faster than the permit record creates litigation risk that can outlast the speed advantage.",
             "sourceIds": [
               "selc-xai"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "In Abilene, Texas, the air agency notified Crusoe in August 2026 that it had prepared a preliminary decision on a proposed electric generation facility. The notice identifies draft state and federal air permits and starts a public notice step. Look for the signed decision and compare the authorized equipment with the proposed new units.",
-            "sourceIds": [
-              "tceq-abilene"
             ]
           },
           {
@@ -4763,7 +4794,43 @@
       {
         "id": "tceq-abilene",
         "title": "August 5, 2026 preliminary decision notice for permit 182126",
-        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&SearchID=&dID=10091291&searchType=External",
+        "url": "https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-napd-english.pdf",
+        "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "longhorn-original-2024",
+        "title": "Registration 177263 original technical review, project 378588, pages 1–2",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&dID=8114426&searchType=External#page=1",
+        "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "longhorn-revision-2025",
+        "title": "Registration 177263 modification technical review, project 387309, pages 1–2",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&dID=8600163&searchType=External#page=1",
+        "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "longhorn-turbine-register",
+        "title": "Turbine permit workbook version 2026.10.7, issued row 47 and pending row 18",
+        "url": "https://www.tceq.texas.gov/downloads/permitting/air/memos/turbine-lst.xlsx/view",
+        "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "longhorn-expansion-intake",
+        "title": "Notice of receipt for the Longhorn buildings 9 and 10 air permit application",
+        "url": "https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-nori-english.pdf/%40%40download/file/182126-nori-english.pdf",
+        "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "longhorn-expansion-summary",
+        "title": "Plain-language summary for 182126, PSDTX1688 and GHGPSDTX263, regulated entity RN112029061",
+        "url": "https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-pls-english.pdf/%40%40download/file/182126-pls-english.pdf",
+        "publisher": "Texas Commission on Environmental Quality"
+      },
+      {
+        "id": "longhorn-pending-list",
+        "title": "New Source Review pending applications, Longhorn entry for 182126",
+        "url": "https://www.tceq.texas.gov/assets/public/permitting/air/reports/applications/nsr-pending-permits.html",
         "publisher": "Texas Commission on Environmental Quality"
       },
       {
@@ -4815,6 +4882,15 @@
         ],
         "spatialCoverage": "Martindale, Caldwell County, Texas, United States",
         "temporalCoverage": "2026-08-06/2026-11-20"
+      },
+      {
+        "anchor": "dataset-longhorn-turbine-permits",
+        "datePublished": "2026-11-24",
+        "name": "Longhorn Data Center turbine air permit revision history",
+        "description": "Three source-linked air permit records for Longhorn in Abilene. Includes original and amended turbine counts, unit ratings and operating hours for registration 177263, plus the separate proposal for buildings 9 and 10 under application 182126. The project MW published by TCEQ and the sum of reviewed unit ratings are stored separately.",
+        "sourceIds": ["longhorn-original-2024", "longhorn-revision-2025", "longhorn-turbine-register", "longhorn-expansion-intake", "longhorn-expansion-summary", "tceq-abilene", "longhorn-pending-list"],
+        "spatialCoverage": "Longhorn Data Center, Abilene, Taylor County, Texas, United States",
+        "temporalCoverage": "2024-08-15/2026-11-24"
       },
       {
         "anchor": "dataset-homer-city",
