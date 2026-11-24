@@ -1,5 +1,319 @@
 [
   {
+    "slug": "interconnection-queue-data",
+    "title": "Interconnection Queue Data for Solar and Battery Storage",
+    "description": "Find U.S. interconnection queue data, verify solar and battery project status, and trace 58 Kern County requests across Berkeley Lab and California ISO reports.",
+    "date": "2026-11-23",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "readMinutes": 8,
+    "coverAlt": "Of 58 Kern County requests active in Berkeley Lab’s year-end 2025 file, 37 were active, five completed and four withdrawn in CAISO’s older workbook. The separate Cluster 15 report listed 11 requests and showed one withdrawal.",
+    "coverCaption": "Kern County cohort from Queued Up 2026 by Lawrence Berkeley National Laboratory and GridTracker, CC BY 4.0. Follow-up from California ISO’s public queue reports. Chart and reconciliation by Invariant.",
+    "intro": "Use Berkeley Lab’s Queued Up workbook for historical U.S. transmission interconnection requests, then check project status in the operator’s latest report for the relevant study cycle. In Kern County, California, one historical file showed 58 solar and storage requests as active at the end of 2025. California ISO’s November report matched 46. The other 12 appeared in its separate Cluster 15 workbook.",
+    "takeaways": [
+      "Match requests by operator and queue ID. Keep the report date and worksheet with the status.",
+      "For a project near your site, confirm the proposed point of interconnection, net export requested and latest study or agreement.",
+      "Read solar MW, battery MW and net MW at the point of interconnection as separate fields. A hybrid can list 250 MW for each resource and request just 250 MW of net export."
+    ],
+    "sections": [
+      {
+        "id": "find-interconnection-queue-data",
+        "heading": "Where to get U.S. interconnection queue data",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "An interconnection queue lists requests to connect to a power system. Use the annual Berkeley Lab release to compare territories and recover an earlier view of the pipeline. It covers generation and storage requests seeking transmission connection. Use the serving utility’s own process for distribution connections, and look up large customer loads through the relevant load-service process.",
+            "sourceIds": [
+              "lbnl"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "What to use it for",
+              "Where to check the status"
+            ],
+            "rows": [
+              [
+                "Berkeley Lab and GridTracker, Queued Up",
+                "Historical comparisons of requests across U.S. transmission operators. Includes a project workbook and codebook.",
+                "Use the original queue ID and archived year-end status, then open the operator report."
+              ],
+              [
+                "California ISO",
+                "Individual queue IDs, study groups, reported dispositions and requested MW.",
+                "Check Cluster 14 and earlier, Cluster 15, or Cluster 16 according to the project."
+              ],
+              [
+                "PJM",
+                "Individual requests and study or agreement documents where posted.",
+                "Use the serial or cycle request list according to the project’s track."
+              ],
+              [
+                "ERCOT",
+                "Texas generation requests in the monthly Generator Interconnection Status report.",
+                "Record the monthly vintage and follow up with the transmission provider for project-specific documents."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "lbnl"
+              ],
+              [
+                "caiso"
+              ],
+              [
+                "pjm"
+              ],
+              [
+                "ercot"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kern-county-queue-history",
+        "heading": "What happened to 58 requests in Kern County?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We selected 58 California ISO rows from Berkeley Lab’s year-end 2025 data: 40 solar-plus-battery requests, 12 battery requests and six solar requests. Each had Kern as its reported county and active as its queue status. We matched the operator’s queue ID to each row and checked the county on both sides. California ISO publishes Cluster 15 separately from Cluster 14 and earlier.",
+            "sourceIds": [
+              "lbnl",
+              "caiso"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "California ISO source",
+              "Matched requests",
+              "What the report showed"
+            ],
+            "rows": [
+              [
+                "Cluster 14 and earlier, run November 23, 2026",
+                "46",
+                "37 active, five completed and four withdrawn."
+              ],
+              [
+                "Cluster 15, posted July 16, 2026",
+                "12",
+                "11 listed on the Cluster 15 worksheet and one on its withdrawn worksheet."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "caiso-legacy"
+              ],
+              [
+                "caiso-cluster-15"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Two examples show why a dated match matters. Queue 1335 appears on the November completed sheet with an actual online date of July 22, 2026. Queue 2329 appears on the separate Cluster 15 withdrawn sheet with a withdrawal date of July 1. Without the Cluster 15 check, that second request would simply be missing from the legacy report. Keep July’s Cluster 15 listing date alongside those 11 matches when using the results.",
+            "sourceIds": [
+              "caiso-legacy",
+              "caiso-cluster-15"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/kern-county-solar-storage-queue-status.json",
+            "format": "JSON",
+            "label": "Download the 58-request reconciliation with workbook row numbers"
+          },
+          {
+            "type": "paragraph",
+            "text": "The download includes the match decisions, source sheet names, workbook row numbers and file hashes. It preserves missing dates as empty values. This is a follow-up on a fixed year-end cohort. A count of every current request in Kern County would also need newer applications and separate treatment for overlapping reports.",
+            "sourceIds": [
+              "lbnl",
+              "caiso"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "net-interconnection-mw",
+        "heading": "Which MW figure belongs in a solar or storage screen?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The California ISO Cluster 16 workbook lists Airchair 1 under public project number 55357. It shows 250 MW of solar, 250 MW of battery storage and 250 MW net at the proposed connection. The project requests energy-only service and a May 2032 commercial operation date. For a site screen, record the 250 MW at the connection as requested export and keep the two resource figures for equipment and revenue analysis.",
+            "sourceIds": [
+              "caiso-cluster-16"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Before pricing a battery site, ask for the allowed grid import, discharge limit, charging hours and any curtailment or upgrade conditions in the study and agreement. When comparing sites around the same station, verify the actual bus or line segment. Then check what a withdrawal or later study changed before assuming the site can use the same amount of export."
+          },
+          {
+            "type": "links",
+            "label": "Verify the connection before committing land",
+            "items": [
+              {
+                "slug": "battery-storage-site-interconnection",
+                "label": "Check battery charging and discharge conditions"
+              },
+              {
+                "slug": "solar-farm-site-selection-gis",
+                "label": "Check solar land and compare two dated PJM study estimates"
+              },
+              {
+                "slug": "grid-capacity-apis-load-headroom",
+                "label": "Read load headroom and solar export ratings separately"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "evaluate-queue-data-api",
+        "heading": "How to evaluate an interconnection queue data API",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give each provider a fixed set of queue IDs, including a completed request, a withdrawal and a request in a separately published cluster. Compare the output with the operator’s original files. Check whether the response includes the study cycle and date, original status, point of interconnection, capacity units and the difference between a requested and an actual online date. A blank should stay blank when an older report or a different project key cannot establish the value."
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to assemble the parcel and mapped infrastructure evidence for prospective sites. Attach each operator record to its queue ID and retain each dated observation when the proposed connection or project status changes. Ask for the current study and agreement when the connection drives the price or schedule.",
+            "sourceIds": [
+              "earth-fields",
+              "earth-provenance"
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I download U.S. interconnection queue data?",
+        "answer": "Berkeley Lab and GridTracker’s Queued Up release provides the historical transmission generation and storage workbook. Check the original ISO, RTO or utility report for the latest information about a particular request.",
+        "sourceIds": [
+          "lbnl",
+          "caiso",
+          "pjm",
+          "ercot"
+        ]
+      },
+      {
+        "question": "How do I look up a solar project by queue number?",
+        "answer": "Find its operator, then search its published queue report for the project’s study cycle. In California ISO, Cluster 15 and Cluster 16 have separate public reports. Save the operator, queue number, report date and original status.",
+        "sourceIds": [
+          "caiso"
+        ]
+      },
+      {
+        "question": "Can I add solar and battery megawatts to calculate export at the grid connection?",
+        "answer": "Use the separately reported net MW at the connection when screening export. California ISO’s Airchair 1 request lists 250 MW of solar and 250 MW of storage with 250 MW net at the point of interconnection. Verify the studied or contracted limit for a commitment.",
+        "sourceIds": [
+          "caiso-cluster-16"
+        ]
+      },
+      {
+        "question": "What does a missing queue ID mean?",
+        "answer": "Check the coverage and vintage of the report before recording an outcome. In the Kern County comparison, 12 older snapshot IDs absent from one California ISO workbook all matched another workbook from the same operator.",
+        "sourceIds": [
+          "lbnl",
+          "caiso-legacy",
+          "caiso-cluster-15"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "lbnl",
+        "title": "Queued Up 2026 Edition, project-level data and codebook through December 31, 2025",
+        "url": "https://eta.lbl.gov/publications/queued-2026-edition-characteristics",
+        "publisher": "Lawrence Berkeley National Laboratory and GridTracker",
+        "linkLabel": "Queued Up workbook and codebook"
+      },
+      {
+        "id": "caiso",
+        "title": "Generator interconnection reports and study-cluster scope",
+        "url": "https://www.caiso.com/generation-transmission/generation/generator-interconnection",
+        "publisher": "California ISO",
+        "linkLabel": "Operator report directory"
+      },
+      {
+        "id": "caiso-legacy",
+        "title": "Public Queue Report, run November 23, 2026",
+        "url": "https://www.caiso.com/documents/publicqueuereport.xlsx",
+        "publisher": "California ISO",
+        "linkLabel": "Cluster 14 and earlier workbook"
+      },
+      {
+        "id": "caiso-cluster-15",
+        "title": "Cluster 15 Queue Report, posted July 16, 2026",
+        "url": "https://www.caiso.com/documents/cluster-15-interconnection-requests.xlsx",
+        "publisher": "California ISO",
+        "linkLabel": "Cluster 15 workbook"
+      },
+      {
+        "id": "caiso-cluster-16",
+        "title": "Cluster 16 Queue Report, posted October 16, 2026",
+        "url": "https://www.caiso.com/documents/cluster-16-queue-report.xlsx",
+        "publisher": "California ISO",
+        "linkLabel": "Cluster 16 workbook"
+      },
+      {
+        "id": "pjm",
+        "title": "Serial and Cycle Service Request Status coverage",
+        "url": "https://www.pjm.com/planning/service-requests",
+        "publisher": "PJM",
+        "linkLabel": "PJM service requests"
+      },
+      {
+        "id": "ercot",
+        "title": "Monthly Generator Interconnection Status Report",
+        "url": "https://www.ercot.com/gridinfo/resource/index",
+        "publisher": "ERCOT",
+        "linkLabel": "ERCOT generator queue"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth parcel and mapped infrastructure fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Live Invariant Earth fields"
+      },
+      {
+        "id": "earth-provenance",
+        "title": "API response provenance and timestamps",
+        "url": "https://docs.invariant-ai.com/responses",
+        "publisher": "Invariant Earth",
+        "linkLabel": "API source and date fields"
+      }
+    ],
+    "relatedSlugs": [
+      "solar-farm-site-selection-gis",
+      "battery-storage-site-interconnection",
+      "grid-capacity-apis-load-headroom",
+      "best-gis-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "Dated Kern County solar and storage interconnection queue reconciliation",
+      "description": "58 year-end 2025 Berkeley Lab queue requests matched to California ISO’s separate historical-cluster and Cluster 15 reports, with workbook row locators, status dates and a Cluster 16 net-export example.",
+      "sourceIds": [
+        "lbnl",
+        "caiso",
+        "caiso-legacy",
+        "caiso-cluster-15",
+        "caiso-cluster-16"
+      ],
+      "spatialCoverage": "Kern County, California, United States",
+      "temporalCoverage": "2025-12-31/2026-11-23"
+    }
+  },
+  {
     "slug": "building-violations-by-address",
     "topic": "Data & APIs",
     "region": "New York City, United States",
@@ -17863,7 +18177,7 @@
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
       {"id": "invariant-responses", "title": "Earth API responses and provenance", "url": "https://docs.invariant-ai.com/responses", "publisher": "Invariant"}
     ],
-    "relatedSlugs": ["best-gis-apis-for-site-selection", "utility-grade-power-study", "power-evidence-data-center-site-verification"]
+    "relatedSlugs": ["best-gis-apis-for-site-selection", "utility-grade-power-study", "power-evidence-data-center-site-verification", "interconnection-queue-data"]
   },
   {
     "slug": "battery-storage-site-interconnection",
@@ -18026,7 +18340,7 @@
       {"id": "ieso-oneida", "title": "Oneida Energy Storage, System Impact Assessment", "url": "https://www.ieso.ca/-/media/Files/IESO/caa/CAA_2020-683_Final_Report.pdf#page=6", "publisher": "Independent Electricity System Operator"},
       {"id": "oneida-operation", "title": "Oneida Energy Storage enters commercial operations", "url": "https://www.oneidaenergystorage.ca/news-release-may-2025", "publisher": "Oneida Energy Storage"}
     ],
-    "relatedSlugs": ["solar-farm-site-selection-gis", "best-gis-apis-for-site-selection", "utility-grade-power-study"]
+    "relatedSlugs": ["solar-farm-site-selection-gis", "best-gis-apis-for-site-selection", "utility-grade-power-study", "interconnection-queue-data"]
   },
   {
     "slug": "retail-site-selection-trade-area-apis",
@@ -18883,7 +19197,7 @@
       "spatialCoverage": "Vail Mills, New York, United States",
       "temporalCoverage": "2026-03-25/2026-03-31"
     },
-    "relatedSlugs": ["data-center-power-screening-tools", "utility-grade-power-study", "truck-depot-charging-site-selection"]
+    "relatedSlugs": ["data-center-power-screening-tools", "utility-grade-power-study", "truck-depot-charging-site-selection", "interconnection-queue-data"]
   },
   {
     "slug": "data-center-power-screening-tools",

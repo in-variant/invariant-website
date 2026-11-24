@@ -1,0 +1,950 @@
+{
+  "title": "Dated Kern County solar and storage interconnection queue reconciliation",
+  "checked_on": "2026-11-23",
+  "scope": {
+    "operator": "CAISO",
+    "state": "CA",
+    "county": "Kern",
+    "fixed_baseline_active_requests": 58
+  },
+  "method": [
+    "Filter Berkeley Lab’s named workbook sheet to entity CAISO, California, county exactly Kern, q_status active and type_clean Solar, Battery or Solar+Battery.",
+    "Match each unique trimmed queue ID to Queue Position in the public workbook tabs or Queue Number in Cluster 15. Check county on both sides. Cluster 16 uses a separate public project number and was used only for the net-MW example.",
+    "Keep the published record type and read Actual On-line Date for completed rows and Withdrawn Date or Withdrawal Date for withdrawn rows. The 11 additional rows were listed in the July Cluster 15 workbook, with status observed only at the published vintage. Source row numbers are one-based Excel sheet rows."
+  ],
+  "attribution": "Derived from Queued Up 2026 by Lawrence Berkeley National Laboratory and GridTracker, CC BY 4.0, and California ISO public queue reports. Invariant filtered, joined and calculated the status counts. Refer to each source’s terms.",
+  "workbooks": {
+    "lbnl": {
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2026-05/lbnl_ix_queue_data_file_thru2025.xlsx",
+      "edition_date": "2025-12-31",
+      "date_basis": "year-end snapshot",
+      "sha256": "794582d3281c6a305e9615fcfec3fae9dc85be2165216d33760b677e976a08b6",
+      "publisher": "Lawrence Berkeley National Laboratory and GridTracker",
+      "citation_url": "https://eta.lbl.gov/publications/queued-2026-edition-characteristics",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "mirror_used": "https://raw.githubusercontent.com/Noah-Parsons/western-queue-reporting/03ef363b7917845c46d46ffcb5fe6b19d4efc456/data/LBNL_Ix_Queue_Data_File_thru2025.xlsx",
+      "sheet": "03. Complete Queue Data"
+    },
+    "caiso-legacy": {
+      "url": "https://www.caiso.com/documents/publicqueuereport.xlsx",
+      "edition_date": "2026-11-23",
+      "date_basis": "workbook report run date",
+      "sha256": "d4acc9fbe2d59faaea4db33be0629143d84ac6f1f9a5f63f6f6d527380613611",
+      "publisher": "California Independent System Operator Corporation",
+      "terms": "https://www.caiso.com/privacy-terms-of-use"
+    },
+    "caiso-cluster-15": {
+      "url": "https://www.caiso.com/documents/cluster-15-interconnection-requests.xlsx",
+      "edition_date": "2026-07-16",
+      "date_basis": "public posting date",
+      "sha256": "015543982ac48684176f83bb05c93533aca95b99b0ce27e99d67ce6fee1428ca",
+      "publisher": "California Independent System Operator Corporation",
+      "terms": "https://www.caiso.com/privacy-terms-of-use"
+    },
+    "caiso-cluster-16": {
+      "url": "https://www.caiso.com/documents/cluster-16-queue-report.xlsx",
+      "edition_date": "2026-10-16",
+      "date_basis": "public posting date",
+      "sha256": "fe35c2352ab074ce6f3986f3fa1731a5cf0445a692af8ca1a63c18758b762b4b",
+      "publisher": "California Independent System Operator Corporation",
+      "terms": "https://www.caiso.com/privacy-terms-of-use"
+    }
+  },
+  "baseline_resource_counts": {
+    "Solar+Battery": 40,
+    "Battery": 12,
+    "Solar": 6
+  },
+  "outcome_counts": {
+    "active": 37,
+    "completed": 5,
+    "withdrawn": 4,
+    "listed in Cluster 15": 11,
+    "reported withdrawn in Cluster 15": 1
+  },
+  "requests": [
+    {
+      "queue_id": "1074",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37337,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 42,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1076",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 1857,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Completed Generation Projects",
+        "sheet_row": 175,
+        "status": "completed",
+        "effective_date": "2026-06-01"
+      }
+    },
+    {
+      "queue_id": "1212",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 38201,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 52,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1217",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 1978,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Completed Generation Projects",
+        "sheet_row": 199,
+        "status": "completed",
+        "effective_date": "2026-06-01"
+      }
+    },
+    {
+      "queue_id": "1260",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2015,
+        "status": "active",
+        "resource": "Solar"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 57,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1322",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37390,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 61,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1323",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37391,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 62,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1335",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37398,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Completed Generation Projects",
+        "sheet_row": 216,
+        "status": "completed",
+        "effective_date": "2026-07-22"
+      }
+    },
+    {
+      "queue_id": "1394",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37418,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Withdrawn Generation Projects",
+        "sheet_row": 1194,
+        "status": "withdrawn",
+        "effective_date": "2026-07-17"
+      }
+    },
+    {
+      "queue_id": "1397",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37419,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Completed Generation Projects",
+        "sheet_row": 222,
+        "status": "completed",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1419",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37428,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 76,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1493",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37452,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Completed Generation Projects",
+        "sheet_row": 235,
+        "status": "completed",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1495",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37453,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 87,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1499",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37455,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 88,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1510",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37461,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 90,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1518",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37466,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 91,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1587",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37504,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 102,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1596",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37511,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 104,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1604",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37516,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 105,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1631",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37530,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 112,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1632",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37531,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 113,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1736",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37582,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 132,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1740",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37585,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 133,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1744",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37589,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 134,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1751",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37592,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 137,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1779",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37611,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 145,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1790",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37617,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 150,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1791",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2368,
+        "status": "active",
+        "resource": "Solar"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 151,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1980",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37677,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 206,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1983",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37680,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 207,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1987",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37684,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 208,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "1994",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2523,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Withdrawn Generation Projects",
+        "sheet_row": 1622,
+        "status": "withdrawn",
+        "effective_date": "2026-04-20"
+      }
+    },
+    {
+      "queue_id": "1995",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2524,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Withdrawn Generation Projects",
+        "sheet_row": 1623,
+        "status": "withdrawn",
+        "effective_date": "2026-04-20"
+      }
+    },
+    {
+      "queue_id": "2001",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2531,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 209,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2015",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37699,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 210,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2018",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2538,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Withdrawn Generation Projects",
+        "sheet_row": 1644,
+        "status": "withdrawn",
+        "effective_date": "2026-05-28"
+      }
+    },
+    {
+      "queue_id": "2055",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37722,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 222,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2060",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2563,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 224,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2078",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37733,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 230,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2089",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 2578,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 233,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2246",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3068,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 55,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2247",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3074,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 86,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2300",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37802,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 36,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2301",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37810,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 80,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2311",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3128,
+        "status": "active",
+        "resource": "Solar"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 69,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2313",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3053,
+        "status": "active",
+        "resource": "Solar"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 38,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2319",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3096,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 78,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2321",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3123,
+        "status": "active",
+        "resource": "Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 83,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2329",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3055,
+        "status": "active",
+        "resource": "Solar"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Withdrawn",
+        "sheet_row": 74,
+        "status": "reported withdrawn in Cluster 15",
+        "effective_date": "2026-07-01"
+      }
+    },
+    {
+      "queue_id": "2342",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37840,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 30,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2343",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37841,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 61,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "2361",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37800,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-cluster-15",
+        "sheet": "Cluster 15 ",
+        "sheet_row": 51,
+        "status": "listed in Cluster 15",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "506",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37782,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 22,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "643R",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37854,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 26,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "653B",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37857,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 27,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "744",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 3411,
+        "status": "active",
+        "resource": "Solar"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 30,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "900",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37866,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 33,
+        "status": "active",
+        "effective_date": null
+      }
+    },
+    {
+      "queue_id": "972",
+      "berkeley_lab_year_end_2025": {
+        "sheet_row": 37875,
+        "status": "active",
+        "resource": "Solar+Battery"
+      },
+      "operator_lookup": {
+        "source": "caiso-legacy",
+        "sheet": "Grid GenerationQueue",
+        "sheet_row": 34,
+        "status": "active",
+        "effective_date": null
+      }
+    }
+  ],
+  "separate_cluster_16_example": {
+    "source": "caiso-cluster-16",
+    "sheet": "Cluster 16 Queue Report",
+    "sheet_row": 2,
+    "public_project_number": "55357",
+    "project_name": "Airchair 1",
+    "county": "Kern",
+    "solar_mw": 250,
+    "battery_mw": 250,
+    "net_mw_at_point_of_interconnection_requested": 250,
+    "requested_service": "Energy Only Requested",
+    "requested_commercial_operation_date": "2032-05-01"
+  }
+}
