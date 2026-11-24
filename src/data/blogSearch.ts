@@ -17,6 +17,7 @@ export function articleSearchWords(value: string) {
     .replace(/(?<!\d)\.|\.(?!\d)/g, ' ')
     .replace(/\bdata\s*cent(?:er|re)s?\b/g, 'data center')
     .replace(/\bpowerflow\b/g, 'power flow')
+    .replace(/\b(boundar|propert|stud)ies\b/g, '$1y')
     .replace(/\bpre\s+fill\b/g, 'prefill')
     .replace(/\bsemi\s*trucks?\b/g, 'truck')
     .replace(/\bcharg(?:e[dr]?s?|ing)\b/g, 'charge')
@@ -27,13 +28,14 @@ export function articleSearchWords(value: string) {
 
 export function prepareSearch<T>(
   entries: readonly T[],
-  textFor: (entry: T) => { title: string; metadata: string; details?: string },
+  textFor: (entry: T) => { title: string; relatedTitle?: string; metadata: string; details?: string },
 ) {
   return entries.map(entry => {
-    const { title, metadata, details = '' } = textFor(entry)
+    const { title, relatedTitle = '', metadata, details = '' } = textFor(entry)
     return {
       entry,
       title: articleSearchWords(title),
+      relatedTitle: articleSearchWords(relatedTitle),
       metadata: new Set(articleSearchWords(metadata)),
       details: new Set(articleSearchWords(details)),
     }
@@ -48,18 +50,24 @@ export function prepareArticleSearch(articles: ArticleListEntry[], details: Reco
   }))
 }
 
-export function rankSearch<T>(index: ReturnType<typeof prepareSearch<T>>, queryWords: string[]) {
+export function rankSearch<T>(
+  index: ReturnType<typeof prepareSearch<T>>,
+  queryWords: string[],
+  { numericPrefixes = false } = {},
+) {
   const terms = [...new Set(queryWords)]
   const phrase = ` ${queryWords.join(' ')} `
   const lastWord = queryWords[queryWords.length - 1]
-  return index.flatMap(({ entry, title, metadata, details }) => {
-    let score = ` ${title.join(' ')} `.includes(phrase) ? 6 : 0
+  const canMatchPrefix = numericPrefixes ? lastWord?.length >= 3 : /^[a-z]{3,}$/.test(lastWord)
+  return index.flatMap(({ entry, title, relatedTitle, metadata, details }) => {
+    let score = ` ${title.join(' ')} `.includes(phrase) || ` ${relatedTitle.join(' ')} `.includes(phrase) ? 6 : 0
     for (const term of terms) {
       if (title.includes(term)) score += 8
+      else if (relatedTitle.includes(term)) score += 6
       else if (metadata.has(term)) score += 4
       else if (details.has(term)) score += 2
-      else if (term === lastWord && /^[a-z]{3,}$/.test(term) &&
-        [...title, ...metadata, ...details].some(word => word.startsWith(term))) score += 1
+      else if (term === lastWord && canMatchPrefix &&
+        [...title, ...relatedTitle, ...metadata, ...details].some(word => word.startsWith(term))) score += 1
       else return []
     }
     return [{ entry, score }]

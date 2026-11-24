@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
-import { articleSearchWords } from '../data/blogSearch'
+import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { coverSrcSets } from '../data/coverSrcSets'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
@@ -24,19 +24,18 @@ const datasetTopics = Object.entries(researchCatalog.topics).map(([label, articl
   label,
   articles: new Set(articles),
 }))
-const searchIndex = RESEARCH_DATASETS.map(entry => {
-  const { dataset } = entry
-  const topics = datasetTopics.filter(topic => topic.articles.has(entry.slug)).map(topic => topic.label)
-  return {
-    ...entry,
-    topics,
-    searchWords: new Set(articleSearchWords([
-      dataset.name, dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
-      entry.title, entry.region, entry.topic, ...topics, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
-      ...dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`),
-    ].join(' '))),
-  }
-})
+const catalogEntries = RESEARCH_DATASETS.map(entry => ({
+  ...entry,
+  topics: datasetTopics.filter(topic => topic.articles.has(entry.slug)).map(topic => topic.label),
+}))
+const searchIndex = prepareSearch(catalogEntries, ({ dataset, title, region, topic, topics, workflow }) => ({
+  title: dataset.name,
+  relatedTitle: title,
+  metadata: [dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
+    region, topic, ...topics, workflow?.label, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
+  ].join(' '),
+  details: dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`).join(' '),
+}))
 
 const catalog = {
   '@context': 'https://schema.org',
@@ -73,10 +72,8 @@ export default function Datasets() {
   useEffect(() => setSearchReady(true), [])
   const terms = articleSearchWords(query)
   const isFiltered = Boolean(terms.length || topic || format)
-  const matches = searchIndex.filter(({ searchWords, topics, dataset }) =>
-    terms.every((term, index) => searchWords.has(term) || (
-      index === terms.length - 1 && term.length >= 3 && [...searchWords].some(word => word.startsWith(term))
-    )) &&
+  const candidates = terms.length ? rankSearch(searchIndex, terms, { numericPrefixes: true }) : catalogEntries
+  const matches = candidates.filter(({ topics, dataset }) =>
     (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
   )
