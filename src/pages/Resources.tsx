@@ -69,7 +69,7 @@ export default function Resources() {
       <section className="resources-notes resource-container" aria-labelledby="resources-notes-heading">
         <div className="resources-section-heading">
           <h2 id="resources-notes-heading">Featured research</h2>
-          <Link to="/blog" className="resource-text-link">All articles <ResourceArrow /></Link>
+          <Link to="/research" className="resource-text-link">Explore research <ResourceArrow /></Link>
         </div>
         <div className="resource-article-grid">
           {featuredArticles.map((article) => <ResourceArticleCard key={article.slug} article={article} />)}

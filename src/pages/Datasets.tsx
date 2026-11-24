@@ -81,7 +81,7 @@ export default function Datasets() {
         <div className="resources-intro-grid">
           <h1>{title}</h1>
           <div>
-            <p>{description} Each study includes its sources and methods.</p>
+            <p>{description} Explore the API for available fields, coverage and history across locations.</p>
             <nav aria-label="Data guides and API coverage" className="resources-data-links">
               <a className="dataset-api-button" href="https://docs.invariant-ai.com/api/field-catalog">Explore API coverage <ResourceArrow diagonal /></a>
               <a className="dataset-method" href="#dataset-search">Search the library</a>

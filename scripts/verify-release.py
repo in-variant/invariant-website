@@ -24,7 +24,7 @@ FEED_PATH = "/feed.xml"
 DATASET_INDEX_PATH = "/datasets.json"
 DATASET_CITATIONS_PATH = "/datasets.csl.json"
 SAMPLE = (
-    "/", "/blog", "/resources", "/datasets",
+    "/", "/blog", "/resources", "/research", "/datasets",
     "/blog/data-center-site-selection-checklist",
     "/glossary/data-center-site-selection",
     "/calculators/nrc-license-timeline",
@@ -38,7 +38,8 @@ CRAWLER_USER_AGENTS = (
 )
 CRAWLER_SMOKE_PATHS = frozenset((
     "/robots.txt", "/blog", "/blog/data-center-site-selection-checklist",
-    "/blog/data-center-site-selection-checklist.md", "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
+    "/blog/data-center-site-selection-checklist.md", "/research", "/research.md",
+    "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
 ))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")

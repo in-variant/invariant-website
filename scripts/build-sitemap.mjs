@@ -11,6 +11,7 @@ const ROOT = join(__dirname, '..')
 const SITE = 'https://invariant-ai.com'
 const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
+const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const blogLastmod = [...industryArticles, ...blogCollections].map(entry => entry.updatedDate ?? entry.dateTime).sort().at(-1)
 
 // ── Live core pages ──────────────────────────────────────────────────────────
@@ -21,7 +22,7 @@ const CORE = [
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', lastmod: blogLastmod, changefreq: 'weekly', priority: '0.8' },
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/research', changefreq: 'monthly', priority: '0.85' },
+  { loc: '/research', lastmod: research.updatedDate, changefreq: 'monthly', priority: '0.85' },
   { loc: '/resources', changefreq: 'weekly', priority: '0.85' },
   { loc: '/datasets', changefreq: 'monthly', priority: '0.7' },
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },

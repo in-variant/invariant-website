@@ -90,17 +90,14 @@ export default function Trust() {
 
           <Section index={4}>
             <p>
-              Our default infrastructure runs on a U.S.-based cloud provider with FedRAMP-aligned services. Model providers used today include Anthropic for general agentic work and our own Helion-512 retrieval model for nuclear regulatory text. The current subprocessor list is provided to customers under NDA.
+              Our default infrastructure runs on a U.S.-based cloud provider with FedRAMP-aligned services. The current subprocessor list is provided to customers under NDA.
             </p>
           </Section>
 
           <Section index={5}>
             <p>
-              We publish technical work as part of building trust with the customer base. Our domain-adapted retrieval model Helion-512 is the published state of the art on the FermiBench retrieval benchmark at 0.9693 nDCG@10. The full write-up and other research notes are at{' '}
-              <Link to="/research">
-                /research
-              </Link>
-              .
+              We publish case studies with the public records, methods and downloads used in each analysis. Read our{' '}
+              <Link to="/research">research on the physical economy</Link>.
             </p>
           </Section>
 

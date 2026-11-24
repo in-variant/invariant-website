@@ -2,6 +2,7 @@
 // Agent-readable copies of the site, written into dist/ after prerender:
 //   /blog/<slug>.md       one markdown file per industry article (site, due diligence, compliance guides)
 //   /glossary/<slug>.md   one markdown file per glossary entry
+//   /research.md         selected Invariant case studies, methods, and downloads
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
 //   /datasets.csl.json   dataset citations for reference managers
@@ -27,6 +28,7 @@ const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
+const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const datasetEntries = articleIndex.flatMap(article => {
   const { dataset, additionalDatasets = [] } = article
   const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
@@ -83,6 +85,31 @@ function glossaryMd(e) {
   if (e.citations?.length) out.push('## Sources', '', ...e.citations.map(c => `- [${c.label}](${c.url})`), '')
   if (e.guide) out.push(`Guide: [${e.guide.label}](${SITE}${e.guide.path})`, '')
   if (e.related_to?.length) out.push('Related: ' + e.related_to.map(s => `[${s}](${SITE}/glossary/${s})`).join(', '), '')
+  return out.join('\n')
+}
+
+function researchMd() {
+  if (!research.studies.length) throw new Error('Research must include at least one study')
+  const out = [
+    `# ${research.title}`, '', research.description, '',
+    `URL: ${SITE}/research`,
+    `Updated: ${research.updatedDate}`, '',
+    `- [Browse research datasets](${SITE}/datasets)`,
+    `- [Explore data guides](${SITE}/blog/physical-world-data-by-use-case)`, '',
+  ]
+  for (const { slug, anchor = 'dataset', topic, title, summary } of research.studies) {
+    const url = `${SITE}/blog/${slug}#${anchor}`
+    const matches = datasetEntries.filter(entry => entry.url === url)
+    if (matches.length !== 1) throw new Error(`Expected one research dataset at ${url}, found ${matches.length}`)
+    const { dataset } = matches[0]
+    out.push(
+      `## ${title}`, '', topic, '', summary, '',
+      `- [Sources and methods](${url})`,
+      ...dataset.downloads.map(file => `- [${linkText(file.label)} (${file.format})](${SITE}${file.path})`),
+      '',
+    )
+  }
+  out.push(`[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '')
   return out.join('\n')
 }
 
@@ -150,6 +177,7 @@ function datasetCatalogJson() {
 
 mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
+writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)
 const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({
