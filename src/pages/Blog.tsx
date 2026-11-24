@@ -9,11 +9,13 @@ import './Blog.css'
 
 const ARTICLES = [...RESOURCE_ARTICLES].sort((a, b) => b.dateTime.localeCompare(a.dateTime))
 const CARD_LIMIT = 12
-const TOPICS = ['All articles', 'Data & APIs', 'Data Centers', 'Oil & Gas', 'Space', 'Nuclear'] as const
+const TOPICS = ['All articles', 'Data & APIs', 'Data Centers', 'Oil & Gas'] as const
+const earlierArticles = ARTICLES.filter(article => article.topic === 'Space' || article.topic === 'Nuclear')
+const earlierSlugs = new Set(earlierArticles.map(article => article.slug))
 const FEATURED_SLUGS = [
   'n-1-contingency-analysis-data-center',
   'data-center-for-sale',
-  'fermibench-sota',
+  'commercial-property-insurance-data-apis',
 ]
 const FEATURED_ARTICLES = FEATURED_SLUGS.flatMap((slug) => ARTICLES.filter((article) => article.slug === slug))
 const featuredSlugs = new Set(FEATURED_ARTICLES.map((article) => article.slug))
@@ -63,13 +65,13 @@ function BlogCard({ article, variant = 'standard' }: { article: ResourceArticle;
   )
 }
 
-function ArticleArchive({ articles, filtered }: { articles: ResourceArticle[]; filtered: boolean }) {
+function ArticleArchive({ articles, filtered, label }: { articles: ResourceArticle[]; filtered: boolean; label?: string }) {
   if (articles.length === 0) return null
 
   return (
     <details className="blog-index-archive" open={filtered}>
       <summary>
-        <span>{filtered ? 'More matching titles' : 'Browse earlier articles'} <span className="blog-index-archive-count">({articles.length})</span></span>
+        <span>{label ?? (filtered ? 'More matching titles' : 'Browse earlier articles')} <span className="blog-index-archive-count">({articles.length})</span></span>
       </summary>
       <ul>
         {articles.map(article => (
@@ -108,7 +110,7 @@ export default function Blog() {
   const candidates = searching ? searchArticles(searchIndex, queryWords) : ARTICLES
   const articles = candidates.filter(article => isFiltered
     ? topic === 'All articles' || topic === article.topic
-    : !featuredSlugs.has(article.slug))
+    : !featuredSlugs.has(article.slug) && !earlierSlugs.has(article.slug))
 
   return (
     <div className="blog-index">
@@ -159,6 +161,7 @@ export default function Blog() {
             </div>
           )}
           <ArticleArchive key={String(isFiltered)} articles={articles.slice(CARD_LIMIT)} filtered={isFiltered} />
+          {!isFiltered && <ArticleArchive articles={earlierArticles} filtered={false} label="Earlier space and nuclear articles" />}
           {articles.length === 0 && !searchPending && (
             <div className="blog-index-empty"><p>No articles match your search.</p><button type="button" onClick={() => { setTopic('All articles'); setQuery('') }}>Clear filters</button></div>
           )}

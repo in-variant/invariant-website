@@ -95,12 +95,11 @@ export default function Compliance() {
           </section>
 
           <section className="mt-16 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">
-            <p className="font-sans text-[11px] uppercase tracking-[0.14em] text-copper">Research</p>
-            <p className="mt-4 font-sans text-base leading-relaxed text-ink/70">
-              Helion-512, our domain-adapted retrieval model, is the published state of the art on FermiBench at 0.9693 nDCG@10. The full write-up and the rest of our research notes are at {' '}
-              <Link to="/research" className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">/research</Link>
-              .
-            </p>
+            <h2 className="font-serif text-2xl text-ink">Regulatory tools</h2>
+            <ul className="mt-4 grid gap-3 font-sans text-base">
+              <li><Link to="/regulators" className="text-copper underline underline-offset-4">Find a regulatory agency</Link></li>
+              <li><Link to="/timeline" className="text-copper underline underline-offset-4">Build a mission filing timeline</Link></li>
+            </ul>
           </section>
         </div>
       </article>

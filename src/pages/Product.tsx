@@ -20,7 +20,7 @@ const SOURCE_GROUPS = [
 const READINGS = [
   { category: 'Drafting / Nuclear', title: 'How to write a PSAR', description: 'The structure, supporting evidence, and review criteria behind a Preliminary Safety Analysis Report.', href: '/how-to-write-a-psar' },
   { category: 'Review / Nuclear', title: 'Managing requests for additional information', description: 'A guide to organizing, answering, and tracking NRC questions through the review process.', href: '/nrc-rai-management' },
-  { category: 'Research / Retrieval', title: 'Testing regulatory retrieval with FermiBench', description: 'The benchmark, the evaluation, and what we learned about finding the right regulatory evidence.', href: '/blog/fermibench-sota' },
+  { category: 'Infrastructure / Data centers', title: 'Data center site due diligence', description: 'Check power, land, and approvals before committing to a site.', href: '/blog/site-selection-due-diligence' },
 ]
 
 function Brackets() {

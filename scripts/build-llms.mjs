@@ -157,9 +157,8 @@ out.push('- [Data center power capacity calculator](https://invariant-ai.com/cal
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 
 out.push('')
-out.push('## Research')
+out.push('## Earlier nuclear references')
 out.push('')
-out.push('- [Invariant Sets State-of-the-Art on FermiBench](https://invariant-ai.com/blog/fermibench-sota), Helion-512 reaches 0.97 nDCG@10 on the only published nuclear-domain IR benchmark.')
 out.push('- [10 CFR Part 100 vs Part 53 Subpart D: A Siting Comparison](https://invariant-ai.com/blog/part100-vs-part53-siting), A line-by-line comparison of the legacy and the new technology-inclusive frameworks.')
 out.push('- [SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53](https://invariant-ai.com/blog/seismic-design-shift), The deterministic two-tier framework is replaced by risk-tiered ground motions and seismic design categories.')
 out.push('')
