@@ -14776,15 +14776,16 @@
   "kind": "site-listing",
   "region": "Virginia, United States",
   "title": "Virginia Data Center Sites for Sale and Powered Land",
-  "description": "Compare two Virginia land offerings and a property with leased data center space. Check listing status, parcel zoning and what the utility still needs to confirm.",
+  "description": "Compare Virginia data center land and existing facilities. See which Dominion documents show engineering, construction, or electric service by phase.",
   "date": "2026-11-09",
-  "readMinutes": 6,
+  "readMinutes": 8,
   "intro": "Virginia’s surplus property office lists about 356 acres in Dinwiddie County, and a broker lists 186 acres on Gordon Road in Spotsylvania County. Both are marketed for potential data center development. A broker also lists an investment property with leased data center space in Lynchburg. As of November 23, 2026, the public records reviewed did not establish how many megawatts a new buyer could use at any of the three sites.",
   "takeaways": [
    "The Dinwiddie offering has two advertised phases of roughly 207 and 149 acres. The state describes the land as R-1.",
    "Spotsylvania County maps the Gordon Road parcel as Rural. The county GIS polygon measures about 184.1 acres against the 186 acres advertised.",
    "The Lynchburg offering includes 12,000 square feet of leased data center space, according to the broker. Confirm lease rights and usable power before buying.",
-   "For a powered site, get the first service block in MW, its delivery date, and the upgrades required to reach full load. Check whether the service terms transfer to a new buyer."
+   "For a powered site, get the first service block in MW, its delivery date, and the upgrades required to reach full load. Check whether the service terms transfer to a new buyer.",
+   "For a Dominion site, ask whether the seller has an engineering letter, a construction letter, or a signed electric service agreement with a load ramp."
   ],
   "sections": [
    {
@@ -14886,8 +14887,9 @@
      },
      {
       "type": "paragraph",
-      "text": "The Virginia State Corporation Commission approved GS-5 for the qualifying large-load class beginning January 1, 2027, with a demand threshold of 25 MW. The approved terms include minimum billing for certain customers of 85% of contracted distribution and transmission demand and 60% of contracted generation demand. A later SCC order adjusted the treatment of six accounts following opt-out legislation. Ask Dominion which schedule and billing floors apply to your account and how they are measured during ramp-up.",
+      "text": "Dominion’s GS-5 class begins January 1, 2027. The SCC’s order sets two tests: measured or contracted demand of at least 25 MW on a contiguous site, and a measured or expected load factor of at least 75%. The order sets minimum billing for certain customers at 85% of contracted distribution and transmission demand and 60% of contracted generation demand. A later order adjusted treatment for six accounts following opt-out legislation. Ask which charges and terms apply to your account at each step of the ramp.",
       "sourceIds": [
+       "gs5-final-order",
        "gs5",
        "gs5-adjustment"
       ]
@@ -14900,6 +14902,71 @@
         "label": "Compare a will-serve letter, a load study and a service agreement"
        }
       ]
+     }
+    ]
+   },
+   {
+    "id": "dominion-utility-documents",
+    "heading": "Which Dominion documents show power for a Virginia data center?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Ask for the signed document that matches the seller’s claim. Dominion filed three templates as Exhibit 27 on May 6, 2026, in Virginia SCC case PUR-2026-00011. The filing identifies the electric service agreement as an older template, printed in 2024. Use the documents to decide what evidence to request for your site.",
+      "sourceIds": [
+       "dominion-exhibit-27"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Utility document",
+       "What the filed template covers",
+       "What to request for your site"
+      ],
+      "rows": [
+       [
+        "Engineering letter of authorization",
+        "Authorizes conceptual engineering, including service options, cost estimates, permits, and a provisional construction timeline. The filed template calls for a $250,000 deposit and has a 90-day execution and deposit deadline.",
+        "Request the signed letter, payment confirmation, and the current engineering deliverables. Confirm the deposit and deadline in your own letter."
+       ],
+       [
+        "Construction letter of authorization",
+        "Covers detailed engineering, procurement and construction. The appendix separates equipment deposits, cost estimates and target energization. The schedule depends on equipment delivery, permits, easements and transmission outages.",
+        "Request the signed letter, current schedule, paid deposits, and outstanding utility work. Check who funds each item and what Dominion must approve before assignment."
+       ],
+       [
+        "Electric service agreement",
+        "Identifies the customer and delivery points. The older template includes an anticipated meter date and a separate load ramp in Exhibit B. It calls for Dominion’s written consent to assignment.",
+        "Request the executed agreement, exhibits, amendments and any load notices. Confirm service and billing by phase, the work still required, and written consent for the buyer."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "dominion-exhibit-27"
+       ],
+       [
+        "dominion-exhibit-27"
+       ],
+       [
+        "dominion-exhibit-27"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "A queue reference answers a different question. On October 23, 2026, the Virginia SCC continued its proceeding on Dominion’s proposed queue standards after taking notice of FERC’s October 9 order. PJM’s November 9 filing addressed the federally accepted Large Load definition and registry provisions. Ask the serving utility which process applies to your request and which document sets the MW and date at your delivery point.",
+      "sourceIds": [
+       "virginia-queue-october-order",
+       "pjm-november-registry"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the five utility document records and buyer checks",
+      "path": "/blog/virginia-dominion-data-center-service-milestones.csv",
+      "format": "CSV",
+      "datasetAnchor": "dataset-dominion-service-milestones"
      }
     ]
    },
@@ -15393,9 +15460,17 @@
     ]
    },
    {
-    "question": "When does Dominion Virginia’s GS-5 rate class start?",
-    "answer": "The Virginia State Corporation Commission scheduled GS-5 to start January 1, 2027. The approved threshold is 25 MW of demand for the qualifying class. Confirm your account classification and minimum demand charges with Dominion.",
+    "question": "Does a Dominion engineering letter reserve power for a data center?",
+    "answer": "The engineering letter in Dominion’s public filing authorizes a conceptual study. Ask for the executed electric service agreement, load ramp and amendments to find the contracted demand and dates by phase. Confirm the remaining utility work and any consent required for a sale.",
     "sourceIds": [
+     "dominion-exhibit-27"
+    ]
+   },
+   {
+    "question": "When does Dominion Virginia’s GS-5 rate class start?",
+    "answer": "The Virginia SCC set January 1, 2027, as the start date. The class covers measured or contracted demand of 25 MW or more on a contiguous site and a measured or expected load factor of at least 75%. Ask Dominion about your account’s classification and minimum charges.",
+    "sourceIds": [
+     "gs5-final-order",
      "gs5",
      "gs5-adjustment"
     ]
@@ -15520,6 +15595,34 @@
     "title": "Eastern Kentucky site listing and evidence to request",
     "publisher": "Invariant",
     "url": "https://invariant-ai.com/blog/kentucky-30-mw-greenfield-data-center-site"
+   },
+   {
+    "id": "dominion-exhibit-27",
+    "title": "Exhibit 27 with engineering, construction and electric service templates, PDF pages 4–19",
+    "publisher": "Dominion Energy Virginia",
+    "linkLabel": "Dominion Exhibit 27",
+    "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8c3f01%21.PDF"
+   },
+   {
+    "id": "virginia-queue-october-order",
+    "title": "October 23 order continuing Virginia large-load queue case PUR-2026-00011, pages 1–3",
+    "publisher": "Virginia State Corporation Commission",
+    "linkLabel": "Virginia SCC order",
+    "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8fc501%21.PDF"
+   },
+   {
+    "id": "pjm-november-registry",
+    "title": "November 9 Large Load Registry compliance filing, transmittal page 2",
+    "publisher": "PJM Interconnection",
+    "linkLabel": "PJM filing",
+    "url": "https://www.pjm.com/pjmfiles/directory/etariff/FercDockets/9976/20261109-er26-3515-002.pdf"
+   },
+   {
+    "id": "gs5-final-order",
+    "title": "Dominion biennial review final order, GS-5 rate class, printed page 23",
+    "publisher": "Virginia State Corporation Commission",
+    "linkLabel": "GS-5 final order",
+    "url": "https://www.scc.virginia.gov/docketsearch/DOCS/89g601%21.PDF"
    }
   ],
   "relatedSlugs": [
@@ -15528,7 +15631,7 @@
    "data-center-site-selection-services",
    "pennsylvania-350-mw-contracted-power-ai-campus-for-lease"
   ],
-  "updatedDate": "2026-11-23",
+  "updatedDate": "2026-11-24",
   "dataset": {
    "name": "Virginia data center offerings, parcel checks and address records",
    "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations and one rezoning order. Includes the Gordon Road parcel and zoning match, dates checked and the utility evidence a buyer still needs.",
@@ -15547,7 +15650,22 @@
     "pwc-devlin",
     "pwc-overlay"
    ]
-  }
+  },
+  "additionalDatasets": [
+   {
+    "anchor": "dataset-dominion-service-milestones",
+    "name": "Dominion data center service milestones and large-load filings",
+    "description": "Five dated evidence rows that distinguish engineering, construction, and electric service templates from Virginia’s large-load queue proceeding and PJM’s registry filing. Includes pinpoint citations and buyer checks.",
+    "datePublished": "2026-11-24",
+    "sourceIds": [
+     "dominion-exhibit-27",
+     "virginia-queue-october-order",
+     "pjm-november-registry"
+    ],
+    "spatialCoverage": "Dominion Energy Virginia service territory and PJM region, United States",
+    "temporalCoverage": "2026-05-06/2026-11-09"
+   }
+  ]
  },
  {
   "slug": "data-center-sites-for-sale-georgia",
