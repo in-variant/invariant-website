@@ -13597,9 +13597,10 @@
     "slug": "zoning-data-apis-for-site-selection",
     "topic": "Data & APIs",
     "title": "Zoning data APIs for U.S. parcels and site selection",
-    "description": "Compare Zoneomics, Gridics, Regrid and city GIS APIs. Use a Staten Island tax lot with five mapped zoning districts to test a vendor’s parcel lookup.",
+    "description": "Compare zoning APIs and city GIS. Use NYC parcel tests to see how a lookup handles split zoning and a commercial overlay that covers part of a lot.",
     "date": "2026-11-23",
-    "readMinutes": 6,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 7,
     "region": "United States",
     "coverAlt": "Aerial map of 2239 Forest Avenue in Staten Island. Five colored areas show the share of the tax lot in each base zoning district. The published point falls in C8-1.",
     "coverCaption": "2239 Forest Avenue, Staten Island. The white line traces the MapPLUTO tax lot. Colors show the clipped NYC zoning polygons. Aerial imagery from USDA, USGS and The National Map.",
@@ -13750,6 +13751,50 @@
         ]
       },
       {
+        "id": "brooklyn-commercial-zoning-overlay",
+        "heading": "How do you check a commercial zoning overlay by address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Match the address to its tax lot, then check the city’s commercial overlay layer for the site. In NYC, a C1 or C2 overlay can be mapped inside a residential district. The point tells you whether one location falls inside it. Intersect the overlay polygon with the lot to see how much of the site it covers, then compare the result with the space you plan to lease or build.",
+            "sourceIds": ["nyc-commercial-overlays", "zoning-lot"]
+          },
+          {
+            "type": "paragraph",
+            "text": "These three Union Street lots in Brooklyn share the R6A base district. We matched MapPLUTO 26v3 and the city’s Zoning Tax Lot Database by borough, block and lot, then measured the C1-4 overlap from the city’s GIS polygons on November 24, 2026.",
+            "sourceIds": ["mappluto", "nyc-zoning-tax-lot-records", "districts", "nyc-commercial-overlays"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Brooklyn address and tax lot ID", "Commercial overlay in tax lot record", "Overlay at mapped point", "Share of mapped lot inside overlay"],
+            "rows": [
+              ["676 Union Street, 3009550037", "None listed", "Outside", "0%"],
+              ["682 Union Street, 3009550040", "C1-4", "Inside C1-4", "46.50%"],
+              ["688 Union Street, 3009550042", "C1-4", "Inside C1-4", "About 100%"]
+            ],
+            "sourceIds": ["nyc-zoning-tax-lot-records", "nyc-commercial-overlays"]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 682 Union Street, the point and tax lot record both return C1-4, but the mapped overlay stops partway through the lot. A retailer evaluating space toward the back needs to locate that space on a floor plan and verify the zoning lot, current use classification and any applicable limits or approvals. NYC’s retail and services provisions distinguish general allowances from uses that have size limits, other conditions or special permit requirements.",
+            "sourceIds": ["nyc-commercial-overlays", "nyc-retail-uses"]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a vendor trial, ask for the base district, overlay code and geometry as separate outputs. Invariant Earth’s parcel zoning field gives the sourced parcel code for the initial screen. Use the city geometries to test the overlay share and ask how the provider reports a confirmed absence or an unresolved lookup.",
+            "sourceIds": ["invariant", "nyc-commercial-overlays"]
+          },
+          {
+            "type": "download",
+            "datasetAnchor": "dataset-brooklyn-commercial-overlay-trial",
+            "label": "Download the three lots, overlay geometry and exact city queries",
+            "path": "/blog/brooklyn-commercial-zoning-overlay-trial.geojson",
+            "format": "GeoJSON"
+          }
+        ]
+      },
+      {
         "id": "confirm-zoning-and-permitted-use",
         "heading": "What should a zoning API return before you rely on it?",
         "blocks": [
@@ -13830,6 +13875,11 @@
         ]
       },
       {
+        "question": "Can a property have a commercial overlay and a residential base district?",
+        "answer": "Yes. NYC maps C1 and C2 overlays within residential districts. Check the official overlay polygon against the intended premises. At 682 Union Street, the published point is inside the C1-4 overlay and the polygon covers about 46.5% of the mapped tax lot.",
+        "sourceIds": ["zoning-lot", "nyc-zoning-tax-lot-records", "nyc-commercial-overlays"]
+      },
+      {
         "question": "Can I estimate buildable floor area from a zoning API?",
         "answer": "Use the API to screen a scenario. Verify the zoning lot, current rules, intended use and applicable approvals before applying a floor-area figure to a design or project budget.",
         "sourceIds": [
@@ -13869,6 +13919,24 @@
         "publisher": "NYC Department of City Planning",
         "title": "Zoning Resolution, definitions and zoning lot",
         "url": "https://zr.planning.nyc.gov/article-i/chapter-2"
+      },
+      {
+        "id": "nyc-zoning-tax-lot-records",
+        "publisher": "NYC Department of City Planning",
+        "title": "NYC Zoning Tax Lot Database, filtered to three Union Street tax lots",
+        "url": "https://data.cityofnewyork.us/resource/fdkv-4t4z.json?%24where=bbl+in+%28%273009550037%27%2C%273009550040%27%2C%273009550042%27%29&%24order=bbl"
+      },
+      {
+        "id": "nyc-commercial-overlays",
+        "publisher": "NYC Department of City Planning",
+        "title": "NYC commercial overlay district GIS layer",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyco/FeatureServer/0"
+      },
+      {
+        "id": "nyc-retail-uses",
+        "publisher": "NYC Department of City Planning",
+        "title": "NYC Zoning Resolution § 32-16, Use Group VI retail and services",
+        "url": "https://zr.planning.nyc.gov/article-iii/chapter-2/32-16"
       },
       {
         "id": "split-lot-rules",
@@ -13917,6 +13985,17 @@
         "publisher": "U.S. Geological Survey",
         "title": "The National Map NAIP Plus aerial imagery service",
         "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer"
+      }
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-brooklyn-commercial-overlay-trial",
+        "datePublished": "2026-11-24",
+        "name": "C1-4 commercial overlay checks on three Union Street tax lots",
+        "description": "Three Brooklyn tax lots in the same R6A district with zero, partial and nearly full C1-4 overlay coverage. Includes city tax lot records, published location points, source polygons, calculated overlaps and exact source queries.",
+        "spatialCoverage": "Brooklyn, New York City, United States",
+        "temporalCoverage": "2026-11-24",
+        "sourceIds": ["mappluto", "districts", "nyc-zoning-tax-lot-records", "nyc-commercial-overlays"]
       }
     ],
     "dataset": {
@@ -21711,6 +21790,10 @@
             "type": "links",
             "label": "Related data and site selection guides",
             "items": [
+              {
+                "slug": "zoning-data-apis-for-site-selection",
+                "label": "Check for commercial zoning overlays before signing a lease"
+              },
               {
                 "slug": "drive-time-demographics-census-trade-area",
                 "label": "Calculate drive-time demographics with Census data"

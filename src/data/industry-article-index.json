@@ -2336,10 +2336,11 @@
     "slug": "zoning-data-apis-for-site-selection",
     "topic": "Data & APIs",
     "title": "Zoning data APIs for U.S. parcels and site selection",
-    "summary": "Compare Zoneomics, Gridics, Regrid and city GIS APIs. Use a Staten Island tax lot with five mapped zoning districts to test a vendor’s parcel lookup.",
+    "summary": "Compare zoning APIs and city GIS. Use NYC parcel tests to see how a lookup handles split zoning and a commercial overlay that covers part of a lot.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/zoning-data-apis-for-site-selection.webp?v=0cdcbd89",
     "dataset": {
       "name": "Five base zoning district intersections at 2239 Forest Avenue",
@@ -2375,7 +2376,52 @@
           "format": "GeoJSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-brooklyn-commercial-overlay-trial",
+        "datePublished": "2026-11-24",
+        "name": "C1-4 commercial overlay checks on three Union Street tax lots",
+        "description": "Three Brooklyn tax lots in the same R6A district with zero, partial and nearly full C1-4 overlay coverage. Includes city tax lot records, published location points, source polygons, calculated overlaps and exact source queries.",
+        "spatialCoverage": "Brooklyn, New York City, United States",
+        "temporalCoverage": "2026-11-24",
+        "sources": [
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/MAPPLUTO/FeatureServer/0",
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyzd/FeatureServer/0",
+          "https://data.cityofnewyork.us/resource/fdkv-4t4z.json?%24where=bbl+in+%28%273009550037%27%2C%273009550040%27%2C%273009550042%27%29&%24order=bbl",
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyco/FeatureServer/0"
+        ],
+        "sourceDetails": [
+          {
+            "title": "MapPLUTO feature service and current tax lot boundaries",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/MAPPLUTO/FeatureServer/0"
+          },
+          {
+            "title": "Base zoning district polygons and layer metadata",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyzd/FeatureServer/0"
+          },
+          {
+            "title": "NYC Zoning Tax Lot Database, filtered to three Union Street tax lots",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://data.cityofnewyork.us/resource/fdkv-4t4z.json?%24where=bbl+in+%28%273009550037%27%2C%273009550040%27%2C%273009550042%27%29&%24order=bbl"
+          },
+          {
+            "title": "NYC commercial overlay district GIS layer",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyco/FeatureServer/0"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the three lots, overlay geometry and exact city queries",
+            "path": "/blog/brooklyn-commercial-zoning-overlay-trial.geojson",
+            "format": "GeoJSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "ev-charging-station-data-apis",
