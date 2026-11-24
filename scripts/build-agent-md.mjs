@@ -29,6 +29,7 @@ const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
+const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
 const workflowGroups = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-workflows.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
@@ -44,6 +45,14 @@ const datasetEntries = articleIndex.flatMap(article => {
   }))
 })
 const primaryDatasets = new Map(datasetEntries.filter(entry => !entry.dataset.anchor).map(entry => [entry.slug, entry]))
+const datasetTopics = new Map(datasetEntries.map(({ slug }) => [slug, []]))
+for (const [label, slugs] of Object.entries(datasetCatalog.topics)) {
+  for (const slug of slugs) {
+    const topics = datasetTopics.get(slug)
+    if (!topics || topics.includes(label)) throw new Error(`Invalid or duplicate dataset topic "${label}" for ${slug}`)
+    topics.push(label)
+  }
+}
 const researchWorkflows = new Map()
 for (const { label, url, articles } of workflowGroups) {
   for (const slug of articles) {
@@ -171,7 +180,9 @@ function datasetCatalogMd() {
   const out = [
     '# Invariant research datasets', '',
     `Catalog page: ${SITE}/datasets`, '',
-    `Download data from ${datasetEntries.length} published research examples. Each example includes its dates, methods and source records.`, '',
+    datasetCatalog.description, '',
+    datasetCatalog.access, '',
+    `${datasetEntries.length} published research examples.`, '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
     `[Explore the Invariant Earth API](${SITE}/product), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
@@ -188,6 +199,7 @@ function datasetCatalogMd() {
     const workflow = researchWorkflows.get(slug)
     out.push(
       `### ${dataset.name}`, '', dataset.description, '',
+      ...(datasetTopics.get(slug).length ? [`- Topics: ${datasetTopics.get(slug).join(' · ')}`] : []),
       `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md)`,
       ...(workflow ? [`- [${workflow.label}](${workflow.url})`] : []),
       `- Published: ${dataset.datePublished ?? dateTime}`,
@@ -211,6 +223,7 @@ function datasetCatalogJson() {
       return {
         url,
         ...metadata,
+        topics: datasetTopics.get(slug),
         ...(researchWorkflows.has(slug) && { workflow: researchWorkflows.get(slug) }),
         guide: {
           title,

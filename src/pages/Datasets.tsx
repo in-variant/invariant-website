@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
@@ -7,24 +7,31 @@ import { articleSearchWords } from '../data/blogSearch'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
+import researchCatalog from '../data/research-dataset-catalog.json'
 import { links as earthLinks } from '../data/earth-product.json'
 import './Resources.css'
 import './Datasets.css'
 
 const { name: title, url: canonical } = DATA_CATALOG
-const description = 'Download data from Invariant studies on site selection, power, property risk, lending and mobility. Each example includes its dates, methods and source records.'
+const { description, access } = researchCatalog
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
   .map(({ image, notesPath, workflow }) => ({ ...study, image, notesPath, workflow })),
 )
 const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
+const datasetTopics = Object.entries(researchCatalog.topics).map(([label, articles]) => ({
+  label,
+  articles: new Set(articles),
+}))
 const searchIndex = RESEARCH_DATASETS.map(entry => {
   const { dataset } = entry
+  const topics = datasetTopics.filter(topic => topic.articles.has(entry.slug)).map(topic => topic.label)
   return {
     ...entry,
+    topics,
     searchWords: new Set(articleSearchWords([
       dataset.name, dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
-      entry.title, entry.region, entry.topic, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
+      entry.title, entry.region, entry.topic, ...topics, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
       ...dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`),
     ].join(' '))),
   }
@@ -60,14 +67,24 @@ export default function Datasets() {
   const [searchReady, setSearchReady] = useState(false)
   const [query, setQuery] = useState('')
   const [format, setFormat] = useState('')
+  const [topic, setTopic] = useState('')
+  const searchInput = useRef<HTMLInputElement>(null)
   useEffect(() => setSearchReady(true), [])
   const terms = articleSearchWords(query)
-  const matches = searchIndex.filter(({ searchWords, dataset }) =>
+  const isFiltered = Boolean(terms.length || topic || format)
+  const matches = searchIndex.filter(({ searchWords, topics, dataset }) =>
     terms.every((term, index) => searchWords.has(term) || (
       index === terms.length - 1 && term.length >= 3 && [...searchWords].some(word => word.startsWith(term))
     )) &&
+    (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
   )
+  const clearFilters = () => {
+    setQuery('')
+    setTopic('')
+    setFormat('')
+    searchInput.current?.focus()
+  }
 
   return (
     <div className="resources-page datasets-page">
@@ -84,8 +101,8 @@ export default function Datasets() {
           <div>
             <p>{description}</p>
             <nav aria-label="Research library and API" className="resources-data-links">
-              <a className="dataset-api-button" href="#dataset-search">Search the library</a>
-              <Link className="dataset-method" to="/product">Explore the Earth API <ResourceArrow diagonal /></Link>
+              <Link className="dataset-api-button" to="/product">Explore the Earth API <ResourceArrow /></Link>
+              <a className="dataset-method" href="#dataset-search">Browse samples</a>
               <a className="dataset-method" href={earthLinks.fields}>Browse API fields <ResourceArrow diagonal /></a>
             </nav>
           </div>
@@ -114,10 +131,18 @@ export default function Datasets() {
       </section>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
+        <p className="dataset-scope">{access}</p>
         <div className="dataset-controls">
           <label>
             <span>Search datasets</span>
-            <input type="search" placeholder="EPA, lending, grid capacity…" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
+            <input ref={searchInput} type="search" placeholder="EPA, lending, grid capacity…" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
+          </label>
+          <label>
+            <span>Topic</span>
+            <select disabled={!searchReady} value={topic} onChange={event => setTopic(event.target.value)}>
+              <option value="">All topics</option>
+              {datasetTopics.map(({ label }) => <option key={label}>{label}</option>)}
+            </select>
           </label>
           <label>
             <span>File format</span>
@@ -128,17 +153,17 @@ export default function Datasets() {
           </label>
         </div>
         <div className="dataset-list-meta">
-          <p role="status">{matches.length} {terms.length || format ? 'matching' : 'published'} research {matches.length === 1 ? 'example' : 'examples'}</p>
+          <div className="dataset-results">
+            <p role="status">{matches.length} {isFiltered ? 'matching' : 'published'} research {matches.length === 1 ? 'example' : 'examples'}</p>
+            {isFiltered && <button type="button" className="dataset-clear" onClick={clearFilters}>Clear filters</button>}
+          </div>
           <div className="dataset-catalog-downloads">
             <a href="/datasets.csl.json" download>Download citations (CSL JSON) <span aria-hidden="true">↓</span></a>
             <a href="/datasets.json" download>Download catalog (JSON) <span aria-hidden="true">↓</span></a>
           </div>
         </div>
         {matches.length === 0 && (
-          <div className="dataset-empty">
-            <p>No datasets match your search.</p>
-            <button type="button" onClick={() => { setQuery(''); setFormat('') }}>Clear filters</button>
-          </div>
+          <p className="dataset-empty">No datasets match your filters. Try a broader search or a different file format.</p>
         )}
         {matches.map(({ id, notesPath, datePublished, image, dataset, workflow }) => (
           <article className="dataset-row" key={id} id={id}>
