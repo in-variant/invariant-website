@@ -58,6 +58,9 @@ for (const collection of blogCollections) {
   if (!guides.length || new Set(guides).size !== guides.length || guides.some(slug => !slugs.has(slug))) {
     throw new Error(`Missing or duplicate guide in blog collection: ${collection.slug}`)
   }
+  if (collection.guides.some(guide => guide.group) && collection.guides.some(guide => !guide.group?.trim())) {
+    throw new Error(`Missing topic for a guide in grouped blog collection: ${collection.slug}`)
+  }
   publicBlogSlugs.add(collection.slug)
 }
 for (const article of articles) {

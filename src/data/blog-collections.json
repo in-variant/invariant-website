@@ -4,7 +4,7 @@
     "navLabel": "Data by use case",
     "title": "Physical-World Data Guides by Industry and Use Case",
     "heading": "Physical-world data by use case",
-    "description": "Find source-backed guides for property, lending, insurance, power, logistics, retail, and public projects. Start with the decision you need to make.",
+    "description": "Find source-backed data guides for property, lending, insurance, power, freight, EV charging, retail, agriculture, and public projects.",
     "resourceLinks": [
       {
         "label": "Try the Invariant Earth API",
@@ -13,6 +13,10 @@
       {
         "label": "Download research datasets",
         "href": "/datasets"
+      },
+      {
+        "label": "See how records change over time",
+        "href": "/research#record-history"
       }
     ],
     "updatedDate": "2026-11-24",
@@ -58,6 +62,12 @@
         "slug": "building-footprint-data-apis",
         "label": "Match building footprints to parcels",
         "detail": "Compare mapped structures and their identifiers before aggregating a site or underwriting a portfolio.",
+        "group": "Property and development"
+      },
+      {
+        "slug": "zoning-data-apis-for-site-selection",
+        "label": "Check zoning districts and commercial overlays by address",
+        "detail": "Use three Brooklyn lots to see where the overlay covers the mapped address, the whole parcel, or only part of it.",
         "group": "Property and development"
       },
       {
@@ -117,7 +127,8 @@
       {
         "slug": "soil-productivity-by-parcel-nccpi-csr2",
         "label": "Calculate soil productivity by parcel or field",
-        "detail": "Replay the USDA soil overlay at Iowa State’s Marsden Farm and compare acreage-weighted NCCPI with Iowa CSR2."
+        "detail": "Replay the USDA soil overlay at Iowa State’s Marsden Farm and compare acreage-weighted NCCPI with Iowa CSR2.",
+        "group": "Property and development"
       },
       {
         "slug": "commercial-real-estate-sales-lease-comps-apis",
@@ -216,6 +227,18 @@
         "group": "Lending, insurance, and risk"
       },
       {
+        "slug": "wildfire-risk-by-address-for-underwriting",
+        "label": "Check wildfire hazard at the right building",
+        "detail": "Match two Los Angeles properties to their mapped buildings, then check which official hazard map covers each location.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
+        "slug": "hail-history-by-address-for-underwriting",
+        "label": "Look up hail history for underwriting",
+        "detail": "Compare dated storm reports and radar cells near a property with the area’s long-run hail frequency.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
         "slug": "nfip-flood-claims-data-api",
         "label": "Use historical flood loss and claims data",
         "detail": "Compare redacted NFIP records and keep privacy geography distinct from a property’s own loss history.",
@@ -267,6 +290,12 @@
         "slug": "interconnection-queue-data",
         "label": "Track solar and battery interconnection requests",
         "detail": "Follow the same queue IDs from a year-end snapshot to two operator reports and verify net export at the connection.",
+        "group": "Power, utilities, and connectivity"
+      },
+      {
+        "slug": "battery-storage-site-interconnection",
+        "label": "Check grid import and export for a battery project",
+        "detail": "Compare when a battery may charge, when it may discharge, and which limits the proposed connection study covers.",
         "group": "Power, utilities, and connectivity"
       },
       {
@@ -326,7 +355,19 @@
       {
         "slug": "ev-charging-station-data-apis",
         "label": "Find EV charging inventory and availability",
-        "detail": "Keep installed connectors, planned projects, and live port status separate.",
+        "detail": "Check port counts, live status, connector compatibility and the power a vehicle can draw when nearby ports are in use.",
+        "group": "Industrial sites, freight, and mobility"
+      },
+      {
+        "slug": "electric-truck-charging-southern-california",
+        "label": "Find electric truck charging along a freight route",
+        "detail": "Compare Long Beach, Colton and Blythe stops by fleet access, trailer fit, CCS or MCS connectors and usable power.",
+        "group": "Industrial sites, freight, and mobility"
+      },
+      {
+        "slug": "truck-depot-charging-site-selection",
+        "label": "Screen a fleet charging depot against its utility limit",
+        "detail": "Compare dispatch windows and charging schedules to see whether 5 MW can serve the proposed fleet.",
         "group": "Industrial sites, freight, and mobility"
       },
       {
@@ -375,6 +416,12 @@
         "slug": "methane-emissions-by-facility",
         "label": "Look up reported methane by facility",
         "detail": "Use EPA facility IDs, direct emissions rows and reporting year to verify a gas plant’s methane total.",
+        "group": "Weather, water, and environmental records"
+      },
+      {
+        "slug": "oil-gas-methane-compliance",
+        "label": "Check oil and gas methane reporting and cost estimates",
+        "detail": "Find the EPA filing deadlines and trace which assumptions drive the proposed rule’s national compliance cost estimates.",
         "group": "Weather, water, and environmental records"
       },
       {
