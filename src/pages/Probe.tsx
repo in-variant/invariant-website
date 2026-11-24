@@ -261,7 +261,7 @@ export default function Probe() {
                 'bg-amber-400 animate-pulse'
               }`} />
               <span className="font-sans text-sm text-ink/50">
-                Powered by <span className="font-medium text-ink/80">Helion-512</span>
+                NRC public records
               </span>
             </span>
           </motion.div>

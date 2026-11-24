@@ -15,8 +15,6 @@ export const contentRouteSources = {
   '/blog/physical-world-data-by-use-case': './pages/blog/BlogCollection.tsx',
   '/blog/part100-vs-part53-siting': './pages/blog/Part100vsPart53.tsx',
   '/blog/seismic-design-shift': './pages/blog/SeismicDesignShift.tsx',
-  '/blog/nuclear-compliance-tam': './pages/blog/NuclearComplianceTAM.tsx',
-  '/blog/space-compliance-tam': './pages/blog/SpaceComplianceTAM.tsx',
   '/pricing': './pages/Pricing.tsx',
   '/product': './pages/Product.tsx',
   '/probe': './pages/Probe.tsx',

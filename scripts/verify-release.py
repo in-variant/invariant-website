@@ -33,6 +33,10 @@ MISSING = (
     "/__release-check-missing__", "/blog/__release-check-missing__",
     "/glossary/__release-check-missing__", "/blog/__release-check-missing__.geojson",
 )
+RETIRED = (
+    "/blog/fermibench-sota", "/glossary/fermi-bench", "/glossary/helion-512",
+    "/blog/nuclear-compliance-tam", "/blog/space-compliance-tam",
+)
 CRAWLER_USER_AGENTS = (
     "Googlebot/2.1", "bingbot/2.0", "OAI-SearchBot/1.4", "Claude-SearchBot/1.0", "PerplexityBot/1.0",
 )
@@ -500,7 +504,8 @@ def build_jobs(sitemap, full):
         code = 308 if rule["permanent"] else 307
         jobs.append((rule["source"], "redirect", (code, destination)))
     not_found = Page("/404.html", (DIST / "404.html").read_bytes())
-    jobs.extend((path, "missing", not_found) for path in MISSING)
+    require(path_set.isdisjoint(RETIRED), "retired content is still listed in the sitemap")
+    jobs.extend((path, "missing", not_found) for path in MISSING + RETIRED)
     return jobs, len(candidates), len(assets)
 
 
@@ -531,10 +536,13 @@ def main():
             baseline = set(sitemap_entries(args.preserve_sitemap.read_bytes()))
         except (OSError, ValueError, ElementTree.ParseError) as error:
             sys.exit(f"Cannot read baseline sitemap {args.preserve_sitemap}: {error}")
-        missing = sorted(baseline - expected_urls)
+        retired = baseline & {CANONICAL + path for path in RETIRED}
+        missing = sorted(baseline - expected_urls - retired)
         if missing:
             sys.exit(f"Release omits {len(missing)} URLs from the baseline sitemap:\n" + "\n".join(missing))
-        print(f"All {len(baseline)} baseline sitemap URLs are present in dist/.")
+        print(f"All {len(baseline - retired)} continuing sitemap URLs are present in dist/.")
+        if retired:
+            print(f"Expected HTTP 404 for {len(retired)} retired baseline URLs.")
 
     crawler_jobs = [(job, agent) for agent in CRAWLER_USER_AGENTS for job in jobs if job[0] in CRAWLER_SMOKE_PATHS]
     cases = [(job, None) for job in jobs] + crawler_jobs

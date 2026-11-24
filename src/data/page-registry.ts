@@ -356,10 +356,10 @@ export const PAGES: PageRef[] = [
   },
   {
     slug: 'ai-for-nuclear-compliance',
-    title: 'AI for nuclear compliance: Atomic Canyon vs Inductive vs Everstar vs Invariant',
+    title: 'AI for NRC licensing: vendor comparison',
     shortTitle: 'AI for nuclear compliance',
     description:
-      'A side-by-side comparison of the four AI vendors competing on NRC licensing work: Atomic Canyon Neutron, Inductive, Everstar Gordian, and Invariant Helion-512.',
+      'Compare ADAMS retrieval, citation review, and licensing workflows across four providers.',
     pillar: 'nuclear',
     type: 'cluster',
     live: true,
