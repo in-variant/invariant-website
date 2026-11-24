@@ -3540,7 +3540,7 @@
     "topic": "Data Centers",
     "kind": "site-guide",
     "title": "Behind-the-Meter Power for Data Centers | Bridge Power",
-    "description": "Compare gas turbines and fuel cells for first power before a utility upgrade. See two project timelines and check usable MW, fuel, permits and commissioning.",
+    "description": "Plan first power before a utility upgrade. Compare usable MW, fuel and commissioning, with air permit timelines from Texas and Pennsylvania.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-24",
     "readMinutes": 17,
@@ -3548,7 +3548,7 @@
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
       "Ask the pipeline for firm capacity, pressure and gas quality in writing before any equipment order.",
-      "Write the expected operating plan, ask the air agency to confirm the permit path, and track conditions that can delay first power.",
+      "Ask the air agency to confirm the permit path for the planned run hours. At Prime AUS02, Texas issued the air registration 106 days after filing, with a separate operating permit still to be obtained according to the review.",
       "Plan the grid path from day one so the bridge generation has an end state."
     ],
     "sections": [
@@ -3771,6 +3771,72 @@
                 "label": "Check the operating limits for backup generators"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "aus02-air-registration",
+        "heading": "Prime AUS02 in Texas: 106 days from application to air registration",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Texas Commission on Environmental Quality (TCEQ) received Prime Data Centers’ application on August 6, 2026, and issued standard permit registration 184914 on November 20, 2026. That was 106 calendar days for the proposed gas generation at AUS02 in Caldwell County. The signed registration authorizes emissions on the terms of the filed project. The agency’s technical review records that Prime will obtain a separate Title V operating permit.",
+            "sourceIds": [
+              "aus02-final",
+              "aus02-review"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What it establishes",
+              "What to check before scheduling first power"
+            ],
+            "rows": [
+              [
+                "August application, sections 1.2 and 4.2",
+                "Prime proposed 155 gas generators with 3.33 MW ratings. It describes 350 MW as the operating design’s maximum output and includes extra units for redundancy.",
+                "Request the guaranteed net output at the data center’s electrical intake under the planned outage and maintenance cases."
+              ],
+              [
+                "TCEQ technical review, project 413050",
+                "The review lists 516 MW for the proposed fleet and records that Prime will obtain a Title V operating permit.",
+                "Track the operating permit separately and confirm the requirements for starting each phase with the project’s permitting team."
+              ],
+              [
+                "November 20 signed registration and emissions table",
+                "The table authorizes up to 0.20 pounds of nitrogen oxides per hour per engine and 137.73 tons per year across the fleet.",
+                "Match the approved engine list and emissions controls to the equipment order. Check the plant’s commissioning schedule alongside the signed fuel and power delivery terms."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "aus02-application"
+              ],
+              [
+                "aus02-review"
+              ],
+              [
+                "aus02-final"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a site comparison, keep the 516 MW fleet rating, the 350 MW proposed operating maximum and the net power a buyer can rely on as three separate figures. The first two appear in the permit file. Establish the third with the electrical design, firm fuel terms, acceptance tests and the delivery agreement for each phase.",
+            "sourceIds": [
+              "aus02-application",
+              "aus02-review"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/prime-aus02-air-permit-records.csv",
+            "label": "Download the Prime AUS02 application, capacity and permit records",
+            "format": "CSV",
+            "datasetAnchor": "dataset-aus02-air-registration"
           }
         ]
       },
@@ -4640,6 +4706,27 @@
         "linkLabel": "EPA engine standards"
       },
       {
+        "id": "aus02-application",
+        "title": "Prime AUS02 standard permit application, sections 1.2 and 4.2",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&dID=10270580&searchType=External",
+        "publisher": "Prime Data Centers via TCEQ",
+        "linkLabel": "AUS02 application"
+      },
+      {
+        "id": "aus02-review",
+        "title": "AUS02 technical review, registration 184914 and project 413050",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&dID=10265257&searchType=External",
+        "publisher": "Texas Commission on Environmental Quality",
+        "linkLabel": "TCEQ technical review"
+      },
+      {
+        "id": "aus02-final",
+        "title": "November 20, 2026 signed AUS02 registration and maximum emissions table",
+        "url": "https://records.tceq.texas.gov/cs/idcplg?IdcService=TCEQ_EXTERNAL_SEARCH_GET_FILE&Rendition=Web&dID=10265258&searchType=External",
+        "publisher": "Texas Commission on Environmental Quality",
+        "linkLabel": "Signed registration and emissions limits"
+      },
+      {
         "id": "homer-docket",
         "title": "Homer City redevelopment air and water documents",
         "url": "https://www.pa.gov/agencies/dep/dep-regions/northwest-regional-office/homer-city-generation-redevelopment",
@@ -4715,6 +4802,19 @@
         ],
         "spatialCoverage": "Hilliard, Ohio, and Colorado Springs, Colorado, United States",
         "temporalCoverage": "2021-09/2027-09"
+      },
+      {
+        "anchor": "dataset-aus02-air-registration",
+        "datePublished": "2026-11-24",
+        "name": "Prime AUS02 air registration and generation records",
+        "description": "Five source-linked records from the August application to the November 20 Texas air registration. Separates the 516 MW fleet rating, 350 MW proposed operating maximum, nitrogen oxides limits and separate operating permit.",
+        "sourceIds": [
+          "aus02-application",
+          "aus02-review",
+          "aus02-final"
+        ],
+        "spatialCoverage": "Martindale, Caldwell County, Texas, United States",
+        "temporalCoverage": "2026-08-06/2026-11-20"
       },
       {
         "anchor": "dataset-homer-city",
