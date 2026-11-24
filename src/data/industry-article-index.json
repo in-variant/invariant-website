@@ -1,5 +1,85 @@
 [
   {
+    "slug": "earthquake-risk-by-address-for-underwriting",
+    "topic": "Data & APIs",
+    "title": "Earthquake Risk by Address for Commercial Property",
+    "summary": "Check earthquake hazard by address with USGS seismic design data and local liquefaction maps. Replay two San Francisco checks and download the source queries.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/earthquake-risk-by-address-for-underwriting.webp?v=eb2660d7",
+    "dataset": {
+      "name": "San Francisco address point liquefaction checks and USGS seismic design cases",
+      "description": "Two San Francisco public address lookups, two municipal liquefaction intersections and six USGS ASCE 7-22 design cases, with reproducible request URLs and source timestamps.",
+      "spatialCoverage": "San Francisco, California, United States",
+      "sources": [
+        "https://data.sf.gov/Geographic-Locations-and-Boundaries/San-Francisco-Addresses-with-Units-Enterprise-Addr/ramy-di5m",
+        "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D100+AND+street_name%3D%27LARKIN%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10",
+        "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D960+AND+street_name%3D%2704TH%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10",
+        "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39",
+        "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.41632622%2C37.779054194&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json",
+        "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.393097385%2C37.775369727&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json",
+        "https://earthquake.usgs.gov/ws/building-codes/asce7-22",
+        "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.779054194&longitude=-122.41632622&riskCategory=II&siteClass=D&title=Main+Library",
+        "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.775369727&longitude=-122.393097385&riskCategory=II&siteClass=D&title=Mission+Bay+Branch"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Enterprise Addressing System, coordinate and base address field definitions",
+          "publisher": "DataSF",
+          "url": "https://data.sf.gov/Geographic-Locations-and-Boundaries/San-Francisco-Addresses-with-Units-Enterprise-Addr/ramy-di5m"
+        },
+        {
+          "title": "Main Library EAS address point lookup",
+          "publisher": "DataSF",
+          "url": "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D100+AND+street_name%3D%27LARKIN%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10"
+        },
+        {
+          "title": "Mission Bay Branch EAS address point lookup",
+          "publisher": "DataSF",
+          "url": "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D960+AND+street_name%3D%2704TH%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10"
+        },
+        {
+          "title": "San Francisco Planning property information layer 39 for liquefaction",
+          "publisher": "San Francisco Planning",
+          "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39"
+        },
+        {
+          "title": "Main Library point query against the city liquefaction layer",
+          "publisher": "San Francisco Planning",
+          "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.41632622%2C37.779054194&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json"
+        },
+        {
+          "title": "Mission Bay Branch point query against the city liquefaction layer",
+          "publisher": "San Francisco Planning",
+          "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.393097385%2C37.775369727&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json"
+        },
+        {
+          "title": "USGS ASCE 7-22 seismic design web service",
+          "publisher": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/ws/building-codes/asce7-22"
+        },
+        {
+          "title": "Main Library ASCE 7-22 design values for assumed Site Class D",
+          "publisher": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.779054194&longitude=-122.41632622&riskCategory=II&siteClass=D&title=Main+Library"
+        },
+        {
+          "title": "Mission Bay Branch ASCE 7-22 design values for assumed Site Class D",
+          "publisher": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.775369727&longitude=-122.393097385&riskCategory=II&siteClass=D&title=Mission+Bay+Branch"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download both address checks and all six USGS requests",
+          "path": "/blog/earthquake-risk-by-address-for-underwriting.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "interconnection-queue-data",
     "topic": "Data & APIs",
     "title": "Interconnection Queue Data for Solar and Battery Storage",

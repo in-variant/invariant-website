@@ -1,5 +1,347 @@
 [
   {
+    "slug": "earthquake-risk-by-address-for-underwriting",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Earthquake Risk by Address for Commercial Property",
+    "description": "Check earthquake hazard by address with USGS seismic design data and local liquefaction maps. Replay two San Francisco checks and download the source queries.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Design spectral acceleration at one second for Site Classes C, CD and D at two San Francisco library address points. Only the Mission Bay Branch point intersects the city liquefaction layer.",
+    "coverCaption": "USGS ASCE 7-22 design cases using an assumed Risk Category II. The liquefaction check uses San Francisco Planning’s layer. Observations made November 23, 2026 local time.",
+    "intro": "Start with the building address, then check two different questions. How strongly could the site shake, and is the ground mapped as susceptible to failure during that shaking? USGS seismic design data help with the first. Local liquefaction, landslide and fault rupture maps help with the second. For underwriting, tie both checks to the building’s construction, foundation and retrofit records.",
+    "takeaways": [
+      "Resolve the address to the insured building and its parcel before interpreting hazard layers.",
+      "Keep shaking estimates, mapped ground failure and building condition in separate fields.",
+      "The two San Francisco points returned Seismic Design Category D in all six design cases. Only Mission Bay intersected the city’s mapped liquefaction layer.",
+      "Record the design standard, site class, risk category, map release or retrieval date, and source URL with every result."
+    ],
+    "sections": [
+      {
+        "id": "address-check",
+        "heading": "How to check earthquake hazard for an address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use the property schedule, parcel and footprint to reconcile the insured location. An address point can fall near an entrance or represent a whole complex. Compare each building footprint with the local map when the site spans several polygons or sits near a boundary."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Question",
+              "Source to check",
+              "Evidence to keep"
+            ],
+            "rows": [
+              [
+                "How strong is the shaking input?",
+                "USGS seismic design or hazard service.",
+                "Coordinates, edition or model vintage, output metric, units and all scenario inputs."
+              ],
+              [
+                "Is ground failure mapped here?",
+                "The relevant state or local liquefaction, landslide and fault rupture layers. In California, use CGS EQ Zapp for official zone maps.",
+                "Separate intersections for each layer, map release, geographic coverage and the feature boundary reviewed."
+              ],
+              [
+                "How might the specific building respond?",
+                "Building records, retrofit documentation and engineering reports.",
+                "Structural system, vintage, foundation, number of stories, completed work and remaining issues."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "design",
+                "risk"
+              ],
+              [
+                "cgs"
+              ],
+              [
+                "owner"
+              ]
+            ],
+            "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "san-francisco-comparison",
+        "heading": "Two San Francisco addresses with the same design category",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We matched the Main Library at 100 Larkin Street and Mission Bay Branch at 960 4th Street to San Francisco’s Enterprise Addressing System. We passed each address point to the city’s liquefaction layer, then ran USGS ASCE 7-22 with Risk Category II held constant and three illustrative soil classes. These are test inputs for comparison. Confirm the applicable code, occupancy and actual soil class for any real evaluation.",
+            "sourceIds": [
+              "library",
+              "address",
+              "city-layer",
+              "design"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Address point",
+              "City liquefaction layer",
+              "SD1 at Site Class C",
+              "SD1 at Site Class CD",
+              "SD1 at Site Class D"
+            ],
+            "rows": [
+              [
+                "Main Library, 100 Larkin St",
+                "Zero intersecting features",
+                "0.57 g",
+                "0.86 g",
+                "1.16 g"
+              ],
+              [
+                "Mission Bay Branch, 960 4th St",
+                "One intersecting feature",
+                "0.57 g",
+                "0.82 g",
+                "1.13 g"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "main-address",
+                "main-zone",
+                "main-d"
+              ],
+              [
+                "mission-address",
+                "mission-zone",
+                "mission-d"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "SD1 is the design spectral acceleration parameter at a one-second period, expressed in units of gravity. At the Main Library point, changing the assumed Site Class from C to D increased SD1 from 0.57 g to 1.16 g. The design category stayed D. The letter D appears twice here. One is the assumed soil classification and the other is the resulting seismic design category.",
+            "sourceIds": [
+              "main-d",
+              "design"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Mission Bay address point triggered a local liquefaction follow-up even though the design category was the same. For this type of review, resolve the full footprint and consult the current official map. A zero-feature return only describes the intersection test at that coordinate.",
+            "sourceIds": [
+              "mission-zone",
+              "main-zone",
+              "cgs"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/earthquake-risk-by-address-for-underwriting.json",
+            "format": "JSON",
+            "label": "Download both address checks and all six USGS requests"
+          }
+        ]
+      },
+      {
+        "id": "api-integration",
+        "heading": "What to store when integrating a seismic data API",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a point screen, the Invariant Earth API field seismic_design_category documents its ASCE 7-22 inputs as Site Class D and Risk Category II. Its seismic_pga_2pct_50yr_g field documents a gridded 2018 USGS National Seismic Hazard Model value at a reference site condition. Keep the output names and vintage with the readings. A gridded hazard value at a reference condition answers a different question from a code design parameter for an assumed soil class.",
+            "sourceIds": [
+              "earth-sdc",
+              "earth-pga",
+              "risk"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A comparable portfolio record keeps the building identifier, input geometry, each field’s source and retrieval time, and the state of the lookup. Keep distinct results for a returned value, a point outside a mapped zone, an area the source has not evaluated, and a failed lookup. For exceptions, save the document that resolved the gap, such as a foundation report or a completed retrofit permit.",
+            "sourceIds": [
+              "owner",
+              "cgs"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial property data APIs for underwriting"
+              },
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check flood zone history for the same building"
+              },
+              {
+                "slug": "building-violations-by-address",
+                "label": "Find violations and correction records by address"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I check earthquake risk by address?",
+        "answer": "You can screen the address for modeled ground shaking and mapped ground failure hazards. Building-level risk also depends on the structural system, foundations, retrofit work, occupancy and other exposure characteristics. Start with the address point and confirm the building footprint for decisions near a map boundary.",
+        "sourceIds": [
+          "risk",
+          "owner",
+          "cgs"
+        ]
+      },
+      {
+        "question": "What does a liquefaction zone mean for a commercial property?",
+        "answer": "Loose, saturated soil can lose strength during shaking. A zone intersection is a prompt to review the applicable map, foundation and site-specific geotechnical evidence. Check the official mapping and whether an investigation applies to the planned work.",
+        "sourceIds": [
+          "cgs",
+          "owner"
+        ]
+      },
+      {
+        "question": "Is seismic design category the same as a loss estimate?",
+        "answer": "Seismic design category is an output of a building design framework for specified assumptions. Estimating property loss also requires information about the building, its contents, and how they respond to earthquake hazards.",
+        "sourceIds": [
+          "design",
+          "risk"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "library",
+        "title": "San Francisco Public Library branch addresses",
+        "url": "https://sfpl.org/locations",
+        "publisher": "San Francisco Public Library",
+        "linkLabel": "Library locations"
+      },
+      {
+        "id": "address",
+        "title": "Enterprise Addressing System, coordinate and base address field definitions",
+        "url": "https://data.sf.gov/Geographic-Locations-and-Boundaries/San-Francisco-Addresses-with-Units-Enterprise-Addr/ramy-di5m",
+        "publisher": "DataSF",
+        "linkLabel": "Address point data"
+      },
+      {
+        "id": "city-layer",
+        "title": "San Francisco Planning property information layer 39 for liquefaction",
+        "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "City liquefaction layer"
+      },
+      {
+        "id": "cgs",
+        "title": "California Earthquake Hazards Zone Application and use notes",
+        "url": "https://www.conservation.ca.gov/cgs/sh/eqzapp",
+        "publisher": "California Geological Survey",
+        "linkLabel": "California EQ Zapp"
+      },
+      {
+        "id": "risk",
+        "title": "Introduction to the National Seismic Hazard Models and building risk",
+        "url": "https://www.usgs.gov/programs/earthquake-hazards/science/introduction-national-seismic-hazard-models",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS hazard model guidance"
+      },
+      {
+        "id": "design",
+        "title": "USGS ASCE 7-22 seismic design web service",
+        "url": "https://earthquake.usgs.gov/ws/building-codes/asce7-22",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS design service"
+      },
+      {
+        "id": "owner",
+        "title": "Commercial Property Owner’s Guide to Earthquake Safety",
+        "url": "https://www.ssc.ca.gov/wp-content/uploads/sites/5/2022/09/FINAL-Approved-Commercial-Property-Owners-Guide-to-Earthquake-Safety-2022.pdf",
+        "publisher": "California Seismic Safety Commission",
+        "linkLabel": "Commercial property guide"
+      },
+      {
+        "id": "earth-sdc",
+        "title": "Invariant Earth seismic design category field and input assumptions",
+        "url": "https://docs.invariant-ai.com/fields/seismic_design_category",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Design category field"
+      },
+      {
+        "id": "earth-pga",
+        "title": "Invariant Earth peak ground acceleration field and underlying model vintage",
+        "url": "https://docs.invariant-ai.com/fields/seismic_pga_2pct_50yr_g",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Peak acceleration field"
+      },
+      {
+        "id": "main-address",
+        "title": "Main Library EAS address point lookup",
+        "url": "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D100+AND+street_name%3D%27LARKIN%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10",
+        "publisher": "DataSF",
+        "linkLabel": "City address record"
+      },
+      {
+        "id": "main-zone",
+        "title": "Main Library point query against the city liquefaction layer",
+        "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.41632622%2C37.779054194&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "Liquefaction point query"
+      },
+      {
+        "id": "main-d",
+        "title": "Main Library ASCE 7-22 design values for assumed Site Class D",
+        "url": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.779054194&longitude=-122.41632622&riskCategory=II&siteClass=D&title=Main+Library",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS Site Class D query"
+      },
+      {
+        "id": "mission-address",
+        "title": "Mission Bay Branch EAS address point lookup",
+        "url": "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D960+AND+street_name%3D%2704TH%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10",
+        "publisher": "DataSF",
+        "linkLabel": "City address record"
+      },
+      {
+        "id": "mission-zone",
+        "title": "Mission Bay Branch point query against the city liquefaction layer",
+        "url": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.393097385%2C37.775369727&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json",
+        "publisher": "San Francisco Planning",
+        "linkLabel": "Liquefaction point query"
+      },
+      {
+        "id": "mission-d",
+        "title": "Mission Bay Branch ASCE 7-22 design values for assumed Site Class D",
+        "url": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.775369727&longitude=-122.393097385&riskCategory=II&siteClass=D&title=Mission+Bay+Branch",
+        "publisher": "U.S. Geological Survey",
+        "linkLabel": "USGS Site Class D query"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "hail-history-by-address-for-underwriting",
+      "fema-flood-zone-history-for-underwriting",
+      "building-violations-by-address"
+    ],
+    "dataset": {
+      "name": "San Francisco address point liquefaction checks and USGS seismic design cases",
+      "description": "Two San Francisco public address lookups, two municipal liquefaction intersections and six USGS ASCE 7-22 design cases, with reproducible request URLs and source timestamps.",
+      "sourceIds": [
+        "address",
+        "main-address",
+        "mission-address",
+        "city-layer",
+        "main-zone",
+        "mission-zone",
+        "design",
+        "main-d",
+        "mission-d"
+      ],
+      "spatialCoverage": "San Francisco, California, United States"
+    }
+  },
+  {
     "slug": "interconnection-queue-data",
     "title": "Interconnection Queue Data for Solar and Battery Storage",
     "description": "Find U.S. interconnection queue data, verify solar and battery project status, and trace 58 Kern County requests across Berkeley Lab and California ISO reports.",
@@ -15141,6 +15483,10 @@
               {
                 "label": "Verify wildfire risk by address and building",
                 "slug": "wildfire-risk-by-address-for-underwriting"
+              },
+              {
+                "label": "Check earthquake hazard and liquefaction by address",
+                "slug": "earthquake-risk-by-address-for-underwriting"
               }
             ]
           },

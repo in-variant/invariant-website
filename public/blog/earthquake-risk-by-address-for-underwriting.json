@@ -1,0 +1,108 @@
+{
+  "name": "San Francisco address point liquefaction checks and USGS seismic design cases",
+  "checked_on_local_date": "2026-11-23",
+  "check_timezone": "America/Los_Angeles",
+  "scope": "Two public library address points, tested against the San Francisco Planning liquefaction layer and the USGS ASCE 7-22 design service.",
+  "method": [
+    "Select one active base address at each reported library location in the Enterprise Addressing System.",
+    "Query San Francisco Planning layer 39 for a point intersection in WGS84. Geometry is not included in the response. The published result records the source match count.",
+    "Run the USGS design service at the address point under assumed site classes C, CD and D, keeping Risk Category II constant. Preserve the response timestamp and g units."
+  ],
+  "interpretation": "Address points support a first-pass screen. Building footprints, actual soil conditions, retrofit condition and loss are outside this comparison. Scenario inputs do not establish the code classifications for either building.",
+  "observations": [
+    {
+      "facility": "Main Library",
+      "city_address": "100 LARKIN ST",
+      "eas_base_id": "282045",
+      "city_parcel_reference": "0354001",
+      "city_address_data_as_of": "2026-11-23T18:01:14.000",
+      "address_lookup": "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D100+AND+street_name%3D%27LARKIN%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10",
+      "latitude": 37.779054194,
+      "longitude": -122.41632622,
+      "liquefaction_point_check": {
+        "intersects_city_layer": false,
+        "matched_feature_count": 0,
+        "source_query": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.41632622%2C37.779054194&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json"
+      },
+      "asce7_22_design_cases": [
+        {
+          "site_class_assumed": "C",
+          "risk_category_assumed": "II",
+          "design_category": "D",
+          "sds_g": 1.1,
+          "sd1_g": 0.57,
+          "service_model_version": "v5.0.x",
+          "response_time_utc": "2026-11-24T04:57:20Z",
+          "source_query": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.779054194&longitude=-122.41632622&riskCategory=II&siteClass=C&title=Main+Library"
+        },
+        {
+          "site_class_assumed": "CD",
+          "risk_category_assumed": "II",
+          "design_category": "D",
+          "sds_g": 1.19,
+          "sd1_g": 0.86,
+          "service_model_version": "v5.0.x",
+          "response_time_utc": "2026-11-24T04:57:20Z",
+          "source_query": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.779054194&longitude=-122.41632622&riskCategory=II&siteClass=CD&title=Main+Library"
+        },
+        {
+          "site_class_assumed": "D",
+          "risk_category_assumed": "II",
+          "design_category": "D",
+          "sds_g": 1.15,
+          "sd1_g": 1.16,
+          "service_model_version": "v5.0.x",
+          "response_time_utc": "2026-11-24T04:57:21Z",
+          "source_query": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.779054194&longitude=-122.41632622&riskCategory=II&siteClass=D&title=Main+Library"
+        }
+      ]
+    },
+    {
+      "facility": "Mission Bay Branch",
+      "city_address": "960 04TH ST",
+      "eas_base_id": "490559",
+      "city_parcel_reference": "8708110",
+      "city_address_data_as_of": "2026-11-23T18:01:14.000",
+      "address_lookup": "https://data.sf.gov/resource/ramy-di5m.json?%24where=address_number%3D960+AND+street_name%3D%2704TH%27+AND+unit_number+IS+NULL+AND+address_number_suffix+IS+NULL&%24select=eas_baseid%2Caddress%2Cpoint%2Cparcel_number%2Cdata_as_of&%24limit=10",
+      "latitude": 37.775369727,
+      "longitude": -122.393097385,
+      "liquefaction_point_check": {
+        "intersects_city_layer": true,
+        "matched_feature_count": 1,
+        "source_query": "https://sfplanninggis.org/arcgiswa/rest/services/PlanningData/MapServer/39/query?geometry=-122.393097385%2C37.775369727&inSR=4326&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID&f=json"
+      },
+      "asce7_22_design_cases": [
+        {
+          "site_class_assumed": "C",
+          "risk_category_assumed": "II",
+          "design_category": "D",
+          "sds_g": 1.05,
+          "sd1_g": 0.57,
+          "service_model_version": "v5.0.x",
+          "response_time_utc": "2026-11-24T04:57:39Z",
+          "source_query": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.775369727&longitude=-122.393097385&riskCategory=II&siteClass=C&title=Mission+Bay+Branch"
+        },
+        {
+          "site_class_assumed": "CD",
+          "risk_category_assumed": "II",
+          "design_category": "D",
+          "sds_g": 1.13,
+          "sd1_g": 0.82,
+          "service_model_version": "v5.0.x",
+          "response_time_utc": "2026-11-24T04:57:40Z",
+          "source_query": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.775369727&longitude=-122.393097385&riskCategory=II&siteClass=CD&title=Mission+Bay+Branch"
+        },
+        {
+          "site_class_assumed": "D",
+          "risk_category_assumed": "II",
+          "design_category": "D",
+          "sds_g": 1.1,
+          "sd1_g": 1.13,
+          "service_model_version": "v5.0.x",
+          "response_time_utc": "2026-11-24T04:57:41Z",
+          "source_query": "https://earthquake.usgs.gov/ws/building-codes/asce7-22/calculate?latitude=37.775369727&longitude=-122.393097385&riskCategory=II&siteClass=D&title=Mission+Bay+Branch"
+        }
+      ]
+    }
+  ]
+}
