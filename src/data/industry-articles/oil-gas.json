@@ -768,9 +768,9 @@
     "slug": "oil-gas-methane-compliance",
     "topic": "Oil & Gas",
     "title": "Oil and Gas Methane Compliance: OOOOb and Subpart W Reporting",
-    "description": "Check the November 30 OOOOb catch-up deadline and March 10 Subpart W reporting deadline. Compare EPA filings, rule changes and the records operators need.",
+    "description": "Check OOOOb’s November 30 and Subpart W’s March 10 reporting deadlines. See what to file and how EPA estimated the proposed methane rule’s costs.",
     "date": "2026-09-15",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "readMinutes": 8,
     "intro": "Oil and gas operators can have two EPA filings based on the same field records. Under OOOOb, November 30, 2026 is the catch-up deadline for Part 60 annual reports otherwise due before that date. Under the Greenhouse Gas Reporting Program, EPA moved covered reporting-year 2025 filings, including Subpart W, to March 10, 2027. Set each task by its rule, covered equipment or facility, and reporting period.",
     "takeaways": [
@@ -1067,6 +1067,46 @@
         ]
       },
       {
+        "id": "methane-rule-compliance-cost-estimates",
+        "heading": "How did EPA estimate oil and gas methane compliance costs?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "EPA’s October 2026 analysis compares the proposed OOOOb and OOOOc revisions with a baseline that includes the March 2024 final rule. For 2027 through 2050, it estimates avoided capital spending, changes in operation and maintenance, and the value of gas that would no longer be recovered. It then separately models how production, prices and site closures could change for producers and consumers.",
+            "sourceIds": ["epa-october-cost-analysis"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["EPA estimate for 2027–2050", "At 3% discount rate", "At 7% discount rate"],
+            "rows": [
+              ["Net compliance cost savings, present value", "$42 billion", "$29 billion"],
+              ["Net compliance cost savings, annualized equivalent", "$2.5 billion per year", "$2.5 billion per year"],
+              ["Change in economic surplus, present value", "$45 billion", "$32 billion"],
+              ["Change in economic surplus, annualized equivalent", "$2.7 billion per year", "$2.8 billion per year"]
+            ],
+            "sourceIds": ["epa-october-cost-analysis"]
+          },
+          {
+            "type": "paragraph",
+            "text": "These are national estimates in 2024 dollars, discounted to 2025. The $45 billion headline uses the 3% estimate that includes broader market effects. Timing matters to the compliance estimate. EPA assigns about $14 billion in undiscounted avoided capital spending to 2029 because the model concentrates existing-source compliance spending in that year. EPA notes that actual spending can be spread over a longer period.",
+            "sourceIds": ["epa-october-cost-analysis", "epa-october-2026-actions"]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a site budget, start with the equipment the current requirements cover. Use quotes and operating records to estimate capital replacement, monitoring and repair labor, maintenance, equipment life and recoverable gas. Date those costs using the site’s actual obligations. Model the October proposal separately so an estimated future saving does not remove a funded task under current rules.",
+            "sourceIds": ["epa-october-cost-analysis", "oooob-october-proposal"]
+          },
+          {
+            "type": "download",
+            "datasetAnchor": "dataset-epa-methane-cost-model",
+            "label": "Download EPA’s annual cost estimates and the present-value comparison",
+            "path": "/blog/epa-oil-gas-methane-cost-estimates.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
         "id": "change-control",
         "heading": "Change the workflow only after changing the legal basis",
         "blocks": [
@@ -1135,6 +1175,11 @@
         "sourceIds": [
           "epa-alt-tech"
         ]
+      },
+      {
+        "question": "What does EPA’s $45 billion estimate for the October 2026 methane proposal include?",
+        "answer": "It is the modeled national increase in economic surplus from 2027 through 2050 at a 3% discount rate. It includes changes in compliance costs, gas recovery and broader market effects. Net compliance cost savings alone are $42 billion at that rate. Both figures are in 2024 dollars, discounted to 2025.",
+        "sourceIds": ["epa-october-cost-analysis", "epa-october-2026-actions"]
       },
       {
         "question": "What proves that a leak event is closed?",
@@ -1263,6 +1308,18 @@
         "publisher": "Federal Register"
       },
       {
+        "id": "epa-october-cost-analysis",
+        "title": "October 2026 regulatory impact analysis, Chapter 4, Tables 4-1, 4-2 and 4-4",
+        "url": "https://www.epa.gov/system/files/documents/2026-10/san-12726-ong-reconsideration-2-nprm-ria.pdf#page=58",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
+        "id": "epa-october-2026-actions",
+        "title": "EPA's October 2026 proposed reconsideration and $45 billion headline estimate",
+        "url": "https://www.epa.gov/controlling-air-pollution-oil-and-natural-gas-operations/2026-actions-reduce-burden-oil-and-natural",
+        "publisher": "U.S. Environmental Protection Agency"
+      },
+      {
         "id": "wec-statute",
         "title": "42 U.S.C. 7436, methane emissions and waste reduction program",
         "url": "https://uscode.house.gov/us/usc/119-124/t42/s7436/",
@@ -1278,6 +1335,17 @@
     "relatedSlugs": [
       "oil-gas-permitting-compliance-checklist",
       "methane-emissions-by-facility"
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-epa-methane-cost-model",
+        "name": "EPA oil and gas methane proposal cost and economic surplus estimates",
+        "description": "Twenty-four annual compliance cost estimates at two discount rates, present-value and annualized comparisons, and the 2029 capital-spending detail from EPA’s October 2026 proposed-rule analysis. Values preserve the report’s baseline, dollar year and units.",
+        "datePublished": "2026-11-24",
+        "spatialCoverage": "United States",
+        "temporalCoverage": "2027/2050",
+        "sourceIds": ["epa-october-cost-analysis", "epa-october-2026-actions", "oooob-october-proposal"]
+      }
     ],
     "dataset": {
       "name": "EPA oil and gas methane reporting dates and rulemaking records",
