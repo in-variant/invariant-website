@@ -3,7 +3,7 @@
   "meta_title": "AI for NRC licensing: vendor comparison 2026",
   "meta_description": "Compare Atomic Canyon, Inductive, Everstar, and Invariant for ADAMS retrieval, citation review, and NRC licensing workflows.",
   "tldr": "Atomic Canyon provides search across NRC records. Inductive focuses on structured authoring and review. Everstar demonstrated drafting one application chapter. Invariant pairs source-linked drafting with engineering review. Test the part of the licensing workflow your team needs to improve.",
-  "canonical_summary": "AI for nuclear compliance has become a defined buying category. In October 2024 the U.S. Nuclear Regulatory Commission published its Regulatory Framework Gap Assessment (ADAMS ML24290A059), confirming that existing rules in 10 CFR are largely technology neutral but flagging explainability, training data provenance, model validation, and human oversight as the attributes where AI guidance is most likely to be written. Four vendors now compete to be the substrate for that work: Atomic Canyon, Inductive, Everstar, and Invariant.\n\nA practical evaluation starts with a public NRC record, a project document you are authorized to share, and a question with a known answer. Check whether the tool retrieves the correct revision, supports the cited claim, and gives the reviewer a way to resolve conflicting sources.\n\nAtomic Canyon ships Neutron, an ADAMS-indexed search product backed by the open-source FERMI embedding models trained on Oak Ridge's Frontier supercomputer. Inductive markets itself as \"TurboTax for nuclear licensing,\" with a section-by-section authoring workflow built on the OpenPRA schema. Everstar's Gordian is a retrieval-augmented platform with deterministic compute paths for numerical claims, used in the NRIC HTGR demonstration with Idaho National Laboratory and Microsoft. This page compares the four on retrieval, citation traceability, deployment model, and regulatory breadth.",
+  "canonical_summary": "AI for nuclear compliance has become a defined buying category. In October 2024 the U.S. Nuclear Regulatory Commission published its Regulatory Framework Gap Assessment (ADAMS ML24290A059), confirming that existing rules in 10 CFR are largely technology neutral but flagging explainability, training data provenance, model validation, and human oversight as the attributes where AI guidance is most likely to be written. Four vendors now compete to be the substrate for that work: Atomic Canyon, Inductive, Everstar, and Invariant.\n\nA practical evaluation starts with a public NRC record, a project document you are authorized to share, and a question with a known answer. Check whether the tool retrieves the correct revision, supports the cited claim, and gives the reviewer a way to resolve conflicting sources.\n\nAtomic Canyon offers Neutron for searching NRC records and documents a plant connects to the platform. Inductive markets itself as \"TurboTax for nuclear licensing,\" with a section-by-section authoring workflow built on the OpenPRA schema. Everstar's Gordian is a retrieval-augmented platform with deterministic compute paths for numerical claims, used in the NRIC HTGR demonstration with Idaho National Laboratory and Microsoft. This page compares the four on retrieval, citation traceability, deployment model, and regulatory breadth.",
   "sections": [
     {
       "heading": "Why this category exists now",
@@ -21,11 +21,11 @@
       ]
     },
     {
-      "heading": "Atomic Canyon: Neutron and the Oak Ridge partnership",
+      "heading": "Atomic Canyon Neutron for NRC and plant records",
       "paragraphs": [
-        "Atomic Canyon emerged from stealth on March 11, 2024 with Neutron, an AI search platform trained on the NRC's Agencywide Documents Access and Management System. The launch release cited 52 million pages of ADAMS content; Oak Ridge National Laboratory's later coverage cited the corpus as more than 3 million documents covering roughly 53 million pages of U.S. reactor history since 1980. Founders Trey Lauderdale and Kristian Kielhofner came from healthcare and unified communications, with prior exits at Voalte ($180M) and Star2Star Communications ($437M).",
-        "The technical core is FERMI, a family of open-source sentence-embedding models trained for nuclear vocabulary. Atomic Canyon was awarded approximately 20,000 GPU-hours on Frontier, the world's first exascale supercomputer, which uses more than 37,000 AMD Instinct MI250X GPUs. The company claims Neutron is 40 percent more accurate and twice as efficient as prior solutions in internal evaluations. A separate SKU, Neutron Enterprise, runs behind a customer firewall and adds optical character recognition, retrieval-augmented generation, and unified search across a plant's internal document set. The flagship enterprise reference is PG&E's Diablo Canyon Power Plant.",
-        "On February 24, 2026, ORNL formally announced a memorandum of understanding with Atomic Canyon at the Nuclear Opportunities Workshop in Knoxville, signed by ORNL Director Stephen Streiffer and Lauderdale. The MOU combines ORNL's high-performance computing with Atomic Canyon's AI to automate portions of the NRC license-application review process and to continue training FERMI on Frontier. A September 11, 2025 ANS Nuclear Newswire piece reported a parallel partnership with Idaho National Laboratory to build the first comprehensive benchmark suite for nuclear RAG and LLM systems, with a six-month timeline and a commitment to release the datasets and metrics under permissive open-source licenses."
+        "Atomic Canyon offers Neutron for searching NRC records and a plant’s connected documents. The company describes plain-language search and answers with citations. Its product page lists on-premises, cloud and hybrid deployments.",
+        "PG&E announced a deployment of Neutron Enterprise at Diablo Canyon in 2024. For a trial, test whether the tool locates the correct passage in scanned NRC records and finds the current revision of an internal document.",
+        "Oak Ridge National Laboratory announced a partnership with Atomic Canyon to explore automating parts of license application review. Ask during a trial which authoring and review steps the current product supports."
       ]
     },
     {
@@ -118,8 +118,8 @@
       "answer": "No. The NRC's position, stated at nrc.gov/ai/faq, is that artificial intelligence is not regulated as a standalone technology. The agency evaluates AI-enabled tools inside the activities already covered by Title 10 of the Code of Federal Regulations. Whether an AI tool requires NRC review depends on the safety, security, or safeguards function it performs. The October 2024 Regulatory Framework Gap Assessment (ADAMS ML24290A059) concluded that the existing technology-neutral, performance-based requirements largely accommodate AI, and that future closure is more likely to come through guidance updates than new rulemaking."
     },
     {
-      "question": "What is the FERMI model that Atomic Canyon trained on Frontier?",
-      "answer": "FERMI is a family of open-source sentence-embedding models tuned for nuclear vocabulary, trained by Atomic Canyon using approximately 20,000 GPU-hours on Oak Ridge National Laboratory's Frontier supercomputer (more than 37,000 AMD Instinct MI250X GPUs). FERMI powers Atomic Canyon's Neutron search platform over ADAMS. The weights are released as open source, which means other nuclear AI projects can use FERMI as a domain-tuned embedding layer."
+      "question": "How do I test whether an AI tool retrieves the right NRC record?",
+      "answer": "Pick an NRC accession number with a known answer in ADAMS and add a similar document from another revision to the trial. Ask the same question across tools. Record the accession number, revision and page for each citation, then open the record to verify it supports the answer."
     },
     {
       "question": "What did Everstar and DOE actually demonstrate in the NRIC HTGR project?",
@@ -131,7 +131,7 @@
     },
     {
       "question": "How do these vendors address hallucinations in regulatory text?",
-      "answer": "Everstar's stated approach is retrieval-augmented generation with inline citations, no fine-tuning on customer or regulator data, deterministic compute-and-verify paths for numerical claims, and a human-in-the-loop workflow described by DOE as experts design, AI accelerates, experts validate. Atomic Canyon grounds retrieval in the ADAMS corpus through the FERMI embeddings. Inductive enforces a section-cannot-transition workflow rule that ties every claim to a verifiable evidence graph."
+      "answer": "Everstar's stated approach is retrieval-augmented generation with inline citations, no fine-tuning on customer or regulator data, deterministic compute-and-verify paths for numerical claims, and a human-in-the-loop workflow described by DOE as experts design, AI accelerates, experts validate. Atomic Canyon describes cited answers from NRC and connected plant documents. Inductive enforces a section-cannot-transition workflow rule that ties every claim to a verifiable evidence graph."
     },
     {
       "question": "Which vendor covers FAA Part 450 and other non-nuclear regulators?",
@@ -184,16 +184,16 @@
       "url": "https://adams.nrc.gov/wba/"
     },
     {
-      "label": "Atomic Canyon Solutions: Neutron and Neutron Enterprise",
-      "url": "https://atomic-canyon.com/solutions"
+      "label": "Atomic Canyon Neutron product details",
+      "url": "https://www.atomic-canyon.com/product/"
     },
     {
       "label": "ORNL: Atomic Canyon partnership to accelerate nuclear licensing with AI",
       "url": "https://www.ornl.gov/news/oak-ridge-national-laboratory-atomic-canyon-accelerate-nuclear-licensing-ai"
     },
     {
-      "label": "ORNL: Frontier supercomputer ushers in new era of nuclear AI",
-      "url": "https://www.ornl.gov/news/frontier-supercomputer-ushers-new-era-nuclear-ai"
+      "label": "PG&E announcement of Neutron Enterprise deployment",
+      "url": "https://investor.pgecorp.com/news-events/press-releases/press-release-details/2024/PGE-Launches-First-Commercial-Deployment-of-On-Site-Generative-AI-Solution-for-the-Nuclear-Energy-Sector-at-Diablo-Canyon/default.aspx"
     },
     {
       "label": "ANS Nuclear Newswire: Atomic Canyon partners with INL on AI benchmarks",

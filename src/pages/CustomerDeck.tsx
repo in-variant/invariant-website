@@ -1014,7 +1014,6 @@ function WhyInvariantSlide() {
 
         <div className="flex flex-col items-center max-w-xl gap-6">
           {[
-            { text: 'helion-512, state-of-the-art on FermiBench. NDCG@10: 0.9693.', color: '#C4820E' },
             { text: 'Active MSA with an orbital launch and reentry client.', color: '#3A7CA5' },
             { text: 'We close on authorisation, not on hours billed.', color: '#5C6370' },
           ].map((item, i) => (

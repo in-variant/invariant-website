@@ -197,16 +197,14 @@ const NEW_ENTRIES = [
     term: 'Atomic Canyon',
     topic: 'nuclear',
     aliases: ['Atomic Canyon Neutron'],
-    short_definition:
-      'Atomic Canyon is a US AI-for-nuclear-compliance company that ships Neutron, an ADAMS-indexed search product backed by the open-source FERMI sentence-embedding model family trained on the Oak Ridge Frontier supercomputer.',
-    full_definition:
-      "Atomic Canyon emerged from stealth on 11 March 2024 with Neutron, an AI search platform trained on the NRC's Agencywide Documents Access and Management System (ADAMS). The launch release cited 52 million pages of ADAMS content; Oak Ridge National Laboratory's later coverage cited the corpus as more than 3 million documents covering roughly 53 million pages of US reactor history since 1980. Founders Trey Lauderdale and Kristian Kielhofner came from healthcare and unified communications. The technical core is FERMI, a family of open-source sentence-embedding models trained for nuclear vocabulary on the Frontier exascale supercomputer at Oak Ridge.\n\nOn 24 February 2026, ORNL formally announced a memorandum of understanding with Atomic Canyon combining ORNL's HPC infrastructure with Atomic Canyon's AI to automate portions of the NRC license-application review process. Atomic Canyon also runs a parallel partnership with Idaho National Laboratory to build a comprehensive benchmark suite for nuclear RAG and LLM systems under permissive open-source licences. Atomic Canyon's flagship enterprise reference is Pacific Gas and Electric's Diablo Canyon Power Plant.",
+    short_definition: "Atomic Canyon develops Neutron, a search and document review platform for the nuclear energy industry.",
+    full_definition: "Neutron searches NRC records and a plant’s connected documents. Its product page describes cited answers and deployments in customer environments. PG&E announced the deployment of Neutron Enterprise at Diablo Canyon in 2024. In a product trial, compare the returned references with the original ADAMS accession numbers and the latest revision of any internal records.",
     related_to: ['adams'],
     citations: [
-      { label: 'Atomic Canyon', url: 'https://atomiccanyon.com' },
-      { label: 'ORNL: Atomic Canyon MoU', url: 'https://www.ornl.gov/news/ornl-and-atomic-canyon-sign-memorandum-understanding-advance-ai-nuclear-energy' },
+      { label: 'Atomic Canyon', url: 'https://www.atomic-canyon.com/product/' },
+      { label: 'PG&E announcement of Neutron Enterprise deployment', url: 'https://investor.pgecorp.com/news-events/press-releases/press-release-details/2024/PGE-Launches-First-Commercial-Deployment-of-On-Site-Generative-AI-Solution-for-the-Nuclear-Energy-Sector-at-Diablo-Canyon/default.aspx' },
     ],
-    last_updated: TODAY,
+    last_updated: '2026-11-24',
   },
   {
     slug: 'inductive',

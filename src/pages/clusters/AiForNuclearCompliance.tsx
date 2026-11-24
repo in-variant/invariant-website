@@ -24,7 +24,6 @@ export default function AiForNuclearCompliance() {
         'Inductive nuclear licensing',
         'Everstar Gordian',
         'ADAMS search',
-        'FERMI embedding',
         'OpenPRA',
         'NRC AI strategic plan',
         'NRIC HTGR',
