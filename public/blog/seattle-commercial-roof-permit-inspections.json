@@ -1,0 +1,87 @@
+{
+  "name": "Seattle roof permits and inspection completion records",
+  "scope": "Selected nonresidential permits matched by Seattle permit number. Status and missing fields describe the retrieved export. No inference is made about unqueried permits or the actual roof installation date.",
+  "publisher": "Seattle Department of Construction and Inspections",
+  "source_field_definitions": "https://data.seattle.gov/Built-Environment/Building-Permits/76t5-zqzr/about_data",
+  "permit_and_inspection_search": "https://www.seattle.gov/construction-and-inspections/resources/research-a-project",
+  "query_url": "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=permitnum%2Cpermitclassmapped%2Cpermittypemapped%2Cpermittypedesc%2Cdescription%2Coriginaladdress1%2Coriginalcity%2Coriginalstate%2Coriginalzip%2Capplieddate%2Cissueddate%2Ccompleteddate%2Cstatuscurrent%2Cparentpermitnum%2Clink&%24where=permitnum+in+%28%276584417-CN%27%2C%277163023-RR%27%2C%276986192-CN%27%29&%24order=permitnum",
+  "retrieved_at_utc": "2026-11-24T19:41:26+00:00",
+  "response_sha256": "e974f4cb7e440a1b9b61f24d1c50806f335f44bd6e80874284a5357a6474983f",
+  "rows": [
+    {
+      "permitnum": "6584417-CN",
+      "permitclassmapped": "Non-Residential",
+      "permittypemapped": "Building",
+      "permittypedesc": "Addition/Alteration",
+      "description": "Reroof (5400 SF) and install 5 fall protectoin anchors to roof of Alki Community Center  subject to field inspection",
+      "originaladdress1": "5817 SW STEVENS ST",
+      "originalcity": "SEATTLE",
+      "originalstate": "WA",
+      "originalzip": "98116",
+      "applieddate": "2017-03-23T00:00:00.000",
+      "issueddate": "2017-03-23T00:00:00.000",
+      "completeddate": "2018-03-20T00:00:00.000",
+      "statuscurrent": "Completed",
+      "link": {
+        "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=6584417-CN"
+      }
+    },
+    {
+      "permitnum": "6986192-CN",
+      "permitclassmapped": "Non-Residential",
+      "permittypemapped": "Building",
+      "permittypedesc": "Addition/Alteration",
+      "description": "Alterations for rooftop telecommunication facility on existing library and equipment room on 5th floor (Lemieux Library  Seattle University)  per plans.",
+      "originaladdress1": "725 11TH AVE",
+      "originalstate": "WA",
+      "applieddate": "2023-11-16T00:00:00.000",
+      "issueddate": "2025-01-23T00:00:00.000",
+      "completeddate": "2025-05-05T00:00:00.000",
+      "statuscurrent": "Completed",
+      "link": {
+        "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=6986192-CN"
+      }
+    },
+    {
+      "permitnum": "7163023-RR",
+      "permitclassmapped": "Non-Residential",
+      "permittypemapped": "Roof",
+      "description": "Reroof of the existing Meadowbrook Community Center owned by Seattle Parks and Recreation.",
+      "originaladdress1": "10517 35TH AVE NE",
+      "originalcity": "SEATTLE",
+      "originalstate": "WA",
+      "originalzip": "98125",
+      "issueddate": "2026-09-16T00:00:00.000",
+      "statuscurrent": "Issued",
+      "link": {
+        "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=7163023-RR"
+      }
+    }
+  ],
+  "expected_results": [
+    {
+      "permit_number": "6584417-CN",
+      "property": "Alki Community Center",
+      "work_scope": "reroof of 5,400 square feet and five fall protection anchors",
+      "roof_work_in_permitted_scope": true,
+      "city_inspections_completed_date": "2018-03-20",
+      "verified_roof_installation_date": null
+    },
+    {
+      "permit_number": "6986192-CN",
+      "property": "Seattle University Lemieux Library",
+      "work_scope": "rooftop telecommunications and fifth-floor equipment room alteration",
+      "roof_work_in_permitted_scope": false,
+      "city_inspections_completed_date": "2025-05-05",
+      "verified_roof_installation_date": null
+    },
+    {
+      "permit_number": "7163023-RR",
+      "property": "Meadowbrook Community Center",
+      "work_scope": "reroof",
+      "roof_work_in_permitted_scope": true,
+      "city_inspections_completed_date": null,
+      "verified_roof_installation_date": null
+    }
+  ]
+}

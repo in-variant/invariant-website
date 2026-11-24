@@ -13125,9 +13125,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Data APIs for Commercial Property",
-    "description": "Compare Invariant Earth, Shovels, West Kite, ATTOM and city permit APIs. Use six Brooklyn records to test building matches, work scope and project counts.",
+    "description": "Compare Invariant Earth and building permit APIs with New York and Seattle records. Test building matches, project counts, roof work and inspection dates.",
     "date": "2026-11-23",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 9,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
     "intro": "Use Invariant Earth to connect permit research to a cited U.S. property record. One coordinate can return parcel identity and boundary, zoning, building characteristics and hazards. Join the original permit by building ID and verify its scope at the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement.",
@@ -13144,7 +13145,7 @@
           {"type": "paragraph", "text": "Start in Invariant Earth with parcel_apn, parcel_match_type, parcel_zoning and primary_building_footprint_sqm. Use the parcel match to anchor your property file, then attach the original building, filing and permit IDs from the issuer. This lets you review work scope alongside the zoning and exposures at that location.", "sourceIds": ["earth-quickstart", "earth-fields"]},
           {
             "type": "paragraph",
-            "text": "A portfolio monitoring team needs a way to search across markets and catch new records. A lender or underwriter reviewing one building needs the issuer’s record, the work scope and the status as of the credit or quote date. Use the table to choose what to trial. It describes public documentation reviewed November 23, 2026. The test case below queries NYC directly."
+            "text": "A portfolio monitoring team needs a way to search across markets and catch new records. A lender or underwriter reviewing one building needs the issuer’s record, the work scope and the status as of the credit or quote date. Use the table to choose what to trial. The comparisons use public provider documentation. The tests below query New York City and Seattle directly."
           },
           {
             "type": "table",
@@ -13172,6 +13173,11 @@
                 "Can you identify which event the effective date represents and recover separate dates needed for review?"
               ],
               [
+                "PermitStack",
+                "Look up permit history by address or parcel. Inspect the individual permit rows behind the property’s derived signals.",
+                "For a roofing match, can you return the source permit and distinguish the issue date from the date inspections were completed?"
+              ],
+              [
                 "Issuing agency",
                 "Look up the work permit, filing and applicable inspection or closeout record.",
                 "Which local systems and work types are covered, and what history does each system expose?"
@@ -13189,13 +13195,17 @@
                 "attom"
               ],
               [
-                "nyc-systems"
+                "permitstack"
+              ],
+              [
+                "nyc-systems",
+                "seattle-permit-history"
               ]
             ]
           },
           {
             "type": "paragraph",
-            "text": "Invariant publishes this comparison and the NYC test case. For procurement, give each provider the same sample buildings and compare its returned records with the issuer. Keep the provider’s documented coverage separate from the results you observe in the trial."
+            "text": "For procurement, give each provider the same sample buildings and compare its returned records with the issuer. Keep the provider’s documented coverage separate from the results you observe in the trial."
           }
         ]
       },
@@ -13314,6 +13324,44 @@
         ]
       },
       {
+        "id": "seattle-roof-permit-inspections",
+        "heading": "Which Seattle roof permits show completed inspections?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Seattle defines its Completed Date as the date when all inspections for the permit were completed. We checked three nonresidential records on November 24, 2026. The permit category, work description and completion date each tell you something different.",
+            "sourceIds": ["seattle-permits", "seattle-roof-rows"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Property and permit", "Work and permit category", "What the city records show"],
+            "rows": [
+              ["Alki Community Center, 6584417-CN", "The Building category includes a 5,400-square-foot reroof and five anchors.", "Issued March 23, 2017. Inspections completed March 20, 2018."],
+              ["Meadowbrook Community Center, 7163023-RR", "The Roof category describes a reroof.", "Issued September 16, 2026. The export shows Issued and has no completion date."],
+              ["Seattle University’s Lemieux Library, 6986192-CN", "The Building category describes rooftop telecom and an equipment room.", "Issued January 23, 2025. Inspections completed May 5, 2025 for that scope."]
+            ],
+            "rowSourceIds": [
+              ["seattle-roof-rows"],
+              ["seattle-roof-rows"],
+              ["seattle-roof-rows"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A Roof-only filter would miss Alki, and a rooftop keyword search would include the library’s telecom work. Carry Alki’s March 2018 date as permit inspection completion for the documented scope. To establish installation timing or remaining roof life, request the contractor’s completion documents and check which roof area they cover.",
+            "sourceIds": ["seattle-permits", "seattle-permit-history"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/seattle-commercial-roof-permit-inspections.json",
+            "format": "JSON",
+            "label": "Download the Seattle permit records and expected trial results",
+            "datasetAnchor": "dataset-seattle-roof-permits"
+          }
+        ]
+      },
+      {
         "id": "preserve-permit-history",
         "heading": "Which fields belong in a permit history?",
         "blocks": [
@@ -13369,7 +13417,7 @@
           {
             "type": "list",
             "items": [
-              "Include a multi-building parcel, a recent tenant fit-out and a job that predates the current local filing system. Save the issuer records for each.",
+              "Start with the Brooklyn fit-out and the Seattle roof records above. Add a multi-building parcel and a job that predates the current local filing system in a market you cover.",
               "Compare the building match, permit IDs and individual milestone dates. Ask how missing records and uncertain address matches are returned.",
               "Reconcile one multi-trade job. Check whether the API returns rows, permits or projects when it reports a count.",
               "Test the result you would actually use. For a roof field, ask for the replaced assembly and completion evidence. For legal use, request the occupancy document.",
@@ -13401,11 +13449,13 @@
       {"question": "How does Invariant Earth fit into building permit diligence?", "answer": "Use Invariant Earth to retrieve parcel identity, zoning, building characteristics and hazards together with sources. Link the issuer’s permit by its building and filing IDs to preserve the scope and dates of the work.", "sourceIds": ["earth-fields"]},
       {
         "question": "Which API should I use for building permits by address?",
-        "answer": "Trial Shovels for area and date searches, West Kite for permits linked to commercial parcels and owners, or ATTOM for a property lookup within an ATTOM integration. Check the original permit for decision-critical results.",
+        "answer": "Start with Invariant Earth to identify the structure and parcel. Trial Shovels for area and date searches, West Kite for permits linked to commercial parcels, ATTOM inside an ATTOM integration, and PermitStack for permit history by address or parcel. Verify the building match, scope and milestone dates against the issuer.",
         "sourceIds": [
+          "earth-fields",
           "shovels",
           "west-kite",
-          "attom"
+          "attom",
+          "permitstack"
         ]
       },
       {
@@ -13433,6 +13483,34 @@
     "sources": [
       {"id": "earth-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth", "linkLabel": "Earth field catalog"},
       {"id": "earth-quickstart", "title": "Quickstart for a cited coordinate lookup", "url": "https://docs.invariant-ai.com/quickstart", "publisher": "Invariant Earth", "linkLabel": "Try the Earth API"},
+      {
+        "id": "permitstack",
+        "title": "PermitStack property history API reference",
+        "url": "https://permit-stack.com/docs/#op-get_property_history",
+        "publisher": "PermitStack",
+        "linkLabel": "PermitStack API reference"
+      },
+      {
+        "id": "seattle-permits",
+        "title": "Building Permits field definitions and public domain notice",
+        "url": "https://data.seattle.gov/Built-Environment/Building-Permits/76t5-zqzr/about_data",
+        "publisher": "Seattle Department of Construction and Inspections",
+        "linkLabel": "Seattle permit field definitions"
+      },
+      {
+        "id": "seattle-roof-rows",
+        "title": "Exact Seattle Open Data query for the three permit IDs",
+        "url": "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=permitnum%2Cpermitclassmapped%2Cpermittypemapped%2Cpermittypedesc%2Cdescription%2Coriginaladdress1%2Coriginalcity%2Coriginalstate%2Coriginalzip%2Capplieddate%2Cissueddate%2Ccompleteddate%2Cstatuscurrent%2Cparentpermitnum%2Clink&%24where=permitnum+in+%28%276584417-CN%27%2C%277163023-RR%27%2C%276986192-CN%27%29&%24order=permitnum",
+        "publisher": "Seattle Department of Construction and Inspections",
+        "linkLabel": "Exact query for the three Seattle permits"
+      },
+      {
+        "id": "seattle-permit-history",
+        "title": "Find permit status, inspections and project documents",
+        "url": "https://www.seattle.gov/construction-and-inspections/resources/research-a-project",
+        "publisher": "Seattle Department of Construction and Inspections",
+        "linkLabel": "Seattle permit and inspection records"
+      },
       {
         "id": "shovels",
         "title": "Permit search API reference",
@@ -13498,6 +13576,17 @@
       "spatialCoverage": "Brooklyn Army Terminal, Brooklyn, New York, United States",
       "temporalCoverage": "2022-10-20/2026-11-23"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-seattle-roof-permits",
+        "name": "Seattle roof permits and inspection completion records",
+        "description": "Three Seattle nonresidential permit rows showing a reroof with completed inspections, an issued reroof, and a completed rooftop telecom alteration. Includes the raw fields, exact query and expected results for an API trial.",
+        "sourceIds": ["seattle-permits", "seattle-roof-rows", "seattle-permit-history"],
+        "spatialCoverage": "Seattle, Washington, United States",
+        "temporalCoverage": "2017-03-23/2026-11-24",
+        "datePublished": "2026-11-24"
+      }
+    ],
     "relatedSlugs": [
       "west-kite-alternatives-for-commercial-property-data",
       "ageospatial-alternatives-commercial-roof-underwriting",

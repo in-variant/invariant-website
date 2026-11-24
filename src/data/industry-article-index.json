@@ -2257,10 +2257,11 @@
     "slug": "building-permit-data-apis",
     "topic": "Data & APIs",
     "title": "Building Permit Data APIs for Commercial Property",
-    "summary": "Compare Invariant Earth, Shovels, West Kite, ATTOM and city permit APIs. Use six Brooklyn records to test building matches, work scope and project counts.",
+    "summary": "Compare Invariant Earth and building permit APIs with New York and Seattle records. Test building matches, project counts, roof work and inspection dates.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-24",
     "image": "/blog/industry/building-permit-data-apis.webp?v=03e936d9",
     "dataset": {
       "name": "Brooklyn Army Terminal building permit and filing records",
@@ -2290,7 +2291,46 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-seattle-roof-permits",
+        "name": "Seattle roof permits and inspection completion records",
+        "description": "Three Seattle nonresidential permit rows showing a reroof with completed inspections, an issued reroof, and a completed rooftop telecom alteration. Includes the raw fields, exact query and expected results for an API trial.",
+        "spatialCoverage": "Seattle, Washington, United States",
+        "temporalCoverage": "2017-03-23/2026-11-24",
+        "datePublished": "2026-11-24",
+        "sources": [
+          "https://data.seattle.gov/Built-Environment/Building-Permits/76t5-zqzr/about_data",
+          "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=permitnum%2Cpermitclassmapped%2Cpermittypemapped%2Cpermittypedesc%2Cdescription%2Coriginaladdress1%2Coriginalcity%2Coriginalstate%2Coriginalzip%2Capplieddate%2Cissueddate%2Ccompleteddate%2Cstatuscurrent%2Cparentpermitnum%2Clink&%24where=permitnum+in+%28%276584417-CN%27%2C%277163023-RR%27%2C%276986192-CN%27%29&%24order=permitnum",
+          "https://www.seattle.gov/construction-and-inspections/resources/research-a-project"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Building Permits field definitions and public domain notice",
+            "publisher": "Seattle Department of Construction and Inspections",
+            "url": "https://data.seattle.gov/Built-Environment/Building-Permits/76t5-zqzr/about_data"
+          },
+          {
+            "title": "Exact Seattle Open Data query for the three permit IDs",
+            "publisher": "Seattle Department of Construction and Inspections",
+            "url": "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=permitnum%2Cpermitclassmapped%2Cpermittypemapped%2Cpermittypedesc%2Cdescription%2Coriginaladdress1%2Coriginalcity%2Coriginalstate%2Coriginalzip%2Capplieddate%2Cissueddate%2Ccompleteddate%2Cstatuscurrent%2Cparentpermitnum%2Clink&%24where=permitnum+in+%28%276584417-CN%27%2C%277163023-RR%27%2C%276986192-CN%27%29&%24order=permitnum"
+          },
+          {
+            "title": "Find permit status, inspections and project documents",
+            "publisher": "Seattle Department of Construction and Inspections",
+            "url": "https://www.seattle.gov/construction-and-inspections/resources/research-a-project"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Seattle permit records and expected trial results",
+            "path": "/blog/seattle-commercial-roof-permit-inspections.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "zoning-data-apis-for-site-selection",
