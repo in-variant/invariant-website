@@ -15,7 +15,7 @@ const { name: title, url: canonical } = DATA_CATALOG
 const description = 'Download data from Invariant studies on site selection, power, property risk, lending and mobility. Each example includes its dates, methods and source records.'
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
-  .map(({ image, notesPath }) => ({ ...study, image, notesPath })),
+  .map(({ image, notesPath, workflow }) => ({ ...study, image, notesPath, workflow })),
 )
 const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
 const searchIndex = RESEARCH_DATASETS.map(entry => {
@@ -107,7 +107,7 @@ export default function Datasets() {
                   <span className="dataset-featured-notes">Read the study <ResourceArrow diagonal /></span>
                 </div>
               </Link>
-              <a className="dataset-featured-workflow" href={workflow.url}>{workflow.label} <ResourceArrow diagonal /></a>
+              {workflow && <a className="dataset-featured-workflow" href={workflow.url}>{workflow.label} <ResourceArrow diagonal /></a>}
             </li>
           ))}
         </ul>
@@ -140,16 +140,19 @@ export default function Datasets() {
             <button type="button" onClick={() => { setQuery(''); setFormat('') }}>Clear filters</button>
           </div>
         )}
-        {matches.map(({ id, notesPath, datePublished, image, dataset }) => (
+        {matches.map(({ id, notesPath, datePublished, image, dataset, workflow }) => (
           <article className="dataset-row" key={id} id={id}>
             <img src={image} alt="" width="1600" height="900" loading="lazy" decoding="async" />
             <div className="dataset-copy">
               <h3>{dataset.name}</h3>
               <p>{dataset.description}</p>
               {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
-              <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
-                Dataset notes <ResourceArrow diagonal />
-              </Link>
+              <div className="dataset-row-links">
+                <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
+                  Dataset notes <ResourceArrow diagonal />
+                </Link>
+                {workflow && <a href={workflow.url} className="dataset-method">{workflow.label} <ResourceArrow diagonal /></a>}
+              </div>
               <details className="dataset-sources">
                 <summary>Source records ({dataset.sourceDetails.length})</summary>
                 <ul>

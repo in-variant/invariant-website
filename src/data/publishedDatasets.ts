@@ -1,4 +1,9 @@
 import type { ResourceArticle } from './resources'
+import workflowGroups from './research-dataset-workflows.json'
+
+const researchWorkflows = new Map(workflowGroups.flatMap(({ articles, label, url }) =>
+  articles.map(slug => [slug, { label, url }] as const),
+))
 
 export function publishedDatasets(article: ResourceArticle) {
   const { dataset, additionalDatasets = [] } = article
@@ -10,5 +15,6 @@ export function publishedDatasets(article: ResourceArticle) {
     id: dataset.anchor ? `${article.slug}-${dataset.anchor}` : article.slug,
     notesPath: `/blog/${article.slug}#${dataset.anchor ?? 'dataset'}`,
     datePublished: dataset.datePublished ?? article.dateTime,
+    workflow: researchWorkflows.get(article.slug),
   }))
 }

@@ -29,6 +29,7 @@ const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
+const workflowGroups = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-workflows.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const datasetEntries = articleIndex.flatMap(article => {
@@ -41,13 +42,21 @@ const datasetEntries = articleIndex.flatMap(article => {
   }))
 })
 const primaryDatasets = new Map(datasetEntries.filter(entry => !entry.dataset.anchor).map(entry => [entry.slug, entry]))
+const researchWorkflows = new Map()
+for (const { label, url, articles } of workflowGroups) {
+  for (const slug of articles) {
+    if (!primaryDatasets.has(slug) || researchWorkflows.has(slug)) throw new Error(`Invalid or duplicate research workflow for ${slug}`)
+    if (new URL(url).pathname === `/blog/${slug}`) throw new Error(`Research workflow links to itself for ${slug}`)
+    researchWorkflows.set(slug, { label, url })
+  }
+}
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 const linkText = s => s.replace(/[\\[\]]/g, '\\$&')
 
 function articleMd(a) {
   const src = new Map(a.sources.map(s => [s.id, s]))
-  const workflow = featuredResearch.find(study => study.slug === a.slug)?.workflow
+  const workflow = researchWorkflows.get(a.slug)
   const datasetDownload = primaryDatasets.get(a.slug)?.dataset.downloads[0]?.path
   const cite = ids => ids?.length ? ' ' + ids.map(id => src.get(id)).filter(Boolean).map(s => `([${s.linkLabel ?? s.publisher}](${s.url}))`).join(' ') : ''
   const out = [`# ${a.title}`, '', `> ${a.description}`, '', `URL: ${SITE}/blog/${a.slug}  `, `Published: ${a.date}${a.updatedDate ? ` · Updated: ${a.updatedDate}` : ''} · Publisher: Invariant · Region: ${a.region ?? 'United States'}`, '', a.intro, '']
@@ -163,17 +172,20 @@ function datasetCatalogMd() {
     `[Explore the Invariant Earth API](${SITE}/product), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
     '## Research by workflow', '',
-    ...featuredResearch.flatMap(({ slug, title, summary, workflow }) => {
+    ...featuredResearch.flatMap(({ slug, title, summary }) => {
       const study = primaryDatasets.get(slug)
-      if (!study) throw new Error(`Missing primary research dataset for ${slug}`)
+      const workflow = researchWorkflows.get(slug)
+      if (!study || !workflow) throw new Error(`Missing featured research dataset or workflow for ${slug}`)
       return [`- [${title}](${study.url}). ${summary}`, `  - [${workflow.label}](${workflow.url})`]
     }), '',
     '## All research datasets', '',
   ]
   for (const { slug, dateTime, dataset, url } of datasetEntries) {
+    const workflow = researchWorkflows.get(slug)
     out.push(
       `### ${dataset.name}`, '', dataset.description, '',
       `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md)`,
+      ...(workflow ? [`- [${workflow.label}](${workflow.url})`] : []),
       `- Published: ${dataset.datePublished ?? dateTime}`,
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
       ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
@@ -195,6 +207,7 @@ function datasetCatalogJson() {
       return {
         url,
         ...metadata,
+        ...(researchWorkflows.has(slug) && { workflow: researchWorkflows.get(slug) }),
         guide: {
           title,
           published: dateTime,
