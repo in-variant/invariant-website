@@ -19,7 +19,7 @@ const searchIndex = RESEARCH_DATASETS.map(entry => {
     searchWords: new Set(articleSearchWords([
       dataset.name, dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
       entry.title, entry.region, entry.topic, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
-      ...dataset.sources.map(source => new URL(source).hostname),
+      ...dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`),
     ].join(' '))),
   }
 })
@@ -76,7 +76,7 @@ export default function Datasets() {
         <div className="resources-intro-grid">
           <h1>{title}</h1>
           <div>
-            <p>{description} Each guide links to the original sources and explains the analysis.</p>
+            <p>{description} Open a record’s sources or read its guide for the analysis.</p>
             <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse data guides by use case <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
@@ -118,6 +118,17 @@ export default function Datasets() {
               <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
                 Dataset notes <ResourceArrow diagonal />
               </Link>
+              <details className="dataset-sources">
+                <summary>Source records ({dataset.sourceDetails.length})</summary>
+                <ul>
+                  {dataset.sourceDetails.map(source => (
+                    <li key={`${source.url}:${source.title}`}>
+                      <a href={source.url}>{source.title}</a>
+                      <span>{source.publisher}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
               <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
             </div>
             <div className="dataset-downloads">

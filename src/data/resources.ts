@@ -8,6 +8,7 @@ export type ResourceDataset = Omit<ArticleDataset, 'sourceIds'> & {
   anchor?: string
   datePublished?: string
   sources: string[]
+  sourceDetails: { title: string; publisher: string; url: string }[]
   downloads: DatasetDownload[]
 }
 

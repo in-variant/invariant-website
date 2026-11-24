@@ -101,12 +101,13 @@ for (const article of articles) {
   }
   const registered = new Set()
   function registerDataset({ sourceIds, ...details }) {
-    const sources = sourceIds?.map(id => article.sources.find(source => source.id === id)?.url)
+    const referencedSources = sourceIds?.map(id => article.sources.find(source => source.id === id))
     const downloads = downloadBlocks
       .filter(block => (block.datasetAnchor ?? 'dataset') === (details.anchor ?? 'dataset'))
       .map(({ label, path, format }) => ({ label, path, format }))
     const descriptionLength = details.description?.trim().length ?? 0
-    if (!details.name?.trim() || descriptionLength < 50 || descriptionLength > 5000 || !sources?.length || sources.includes(undefined)) {
+    if (!details.name?.trim() || descriptionLength < 50 || descriptionLength > 5000 || !referencedSources?.length ||
+        referencedSources.some(source => !source?.title?.trim() || !source.publisher?.trim())) {
       throw new Error(`Invalid dataset metadata: ${article.slug}`)
     }
     if (!downloads.length) throw new Error(`Missing dataset downloads: ${article.slug}`)
@@ -116,7 +117,8 @@ for (const article of articles) {
       }
       registered.add(path)
     }
-    return { ...details, sources, downloads }
+    const sourceDetails = referencedSources.map(({ title, publisher, url }) => ({ title, publisher, url }))
+    return { ...details, sources: sourceDetails.map(({ url }) => url), sourceDetails, downloads }
   }
   datasets.set(article.slug, {
     ...(article.dataset && { dataset: registerDataset(article.dataset) }),

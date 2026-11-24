@@ -37,6 +37,7 @@ const datasetEntries = articleIndex.flatMap(article => {
 })
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
+const linkText = s => s.replace(/[\\[\]]/g, '\\$&')
 
 function articleMd(a) {
   const src = new Map(a.sources.map(s => [s.id, s]))
@@ -88,7 +89,7 @@ function datasetCatalogMd() {
   const out = [
     '# Invariant research datasets', '',
     `Catalog page: ${SITE}/datasets`, '',
-    'Download the data and read how each dataset was compiled. The dataset notes link to the original sources.', '',
+    'Download the data, follow the original source records, and read how each dataset was compiled.', '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
   ]
@@ -100,6 +101,8 @@ function datasetCatalogMd() {
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
       ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
       ...dataset.downloads.map(file => `- [${file.label} (${file.format})](${SITE}${file.path})`),
+      '', 'Source records', '',
+      ...dataset.sourceDetails.map(({ publisher, title, url }) => `- ${publisher} · [${linkText(title)}](<${url}>)`),
       '',
     )
   }

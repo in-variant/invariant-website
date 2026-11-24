@@ -327,6 +327,11 @@ def verify_dataset_catalog(catalog, pages):
     require(len(citations) == len(citation_entries) and citations.keys() == records.keys(),
             "citation library must contain each dataset exactly once")
     for url, record in records.items():
+        attribution = record["sourceDetails"]
+        require([source["url"] for source in attribution] == record["sources"] and attribution
+                and all(source["title"].strip() and source["publisher"].strip()
+                        and f"](<{source['url']}>)" in markdown for source in attribution),
+                f"{url} has missing or inaccurate source records")
         entry = citations[url]
         published = record.get("datePublished", record["guide"]["published"])
         require(entry["URL"] == url and entry["title"] == record["name"] and entry["type"] == "dataset"
