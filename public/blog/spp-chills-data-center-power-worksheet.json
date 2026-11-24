@@ -1,0 +1,124 @@
+{
+  "name": "SPP CHILLS tariff milestones and a 100 MW curtailment worksheet",
+  "scope": "Three source-backed tariff milestones and five illustrative facility-load cases. The worksheet separates firm grid imports, conditional grid imports, on-site output and interruptible facility load.",
+  "reviewed_on": "2026-11-24",
+  "tariff_timeline": [
+    {
+      "date": "2026-06-05",
+      "observation": "FERC accepts SPP’s tariff revisions subject to a compliance filing. The order sets a July 1 effective date.",
+      "source_id": "ferc-june",
+      "locator": "Paragraph 1 and ordering paragraphs A and B"
+    },
+    {
+      "date": "2026-07-06",
+      "observation": "SPP files the revised terms. The filing explains separate metering for firm and conditional loads sharing a delivery point.",
+      "source_id": "spp-july",
+      "locator": "Transmittal Section F and Attachment BC, Section 2.2"
+    },
+    {
+      "date": "2026-10-26",
+      "observation": "FERC accepts the compliance filing with the July 1 effective date.",
+      "source_id": "ferc-october",
+      "locator": "Page 1"
+    }
+  ],
+  "worksheet": {
+    "basis": "Illustrative facility power in MW. No measured or modeled interconnection results. Co-availability of imports and any on-site supply is an assumption.",
+    "planned_facility_load_mw": 100,
+    "minimum_continuous_facility_load_mw": 60,
+    "firm_grid_import_mw_assumed": 35,
+    "conditional_import_mw_assumed": 65,
+    "shortfall_equation": "max(0, remaining_facility_load_mw - available_supply_mw)",
+    "cases": [
+      {
+        "scenario": "Normal service",
+        "firm_grid_mw": 35,
+        "conditional_grid_mw": 65,
+        "net_onsite_mw": 0,
+        "load_shed_mw": 0,
+        "remaining_facility_load_mw": 100,
+        "available_supply_mw": 100,
+        "shortfall_mw": 0
+      },
+      {
+        "scenario": "Conditional import cut to 20 MW",
+        "firm_grid_mw": 35,
+        "conditional_grid_mw": 20,
+        "net_onsite_mw": 0,
+        "load_shed_mw": 40,
+        "remaining_facility_load_mw": 60,
+        "available_supply_mw": 55,
+        "shortfall_mw": 5
+      },
+      {
+        "scenario": "All conditional import curtailed",
+        "firm_grid_mw": 35,
+        "conditional_grid_mw": 0,
+        "net_onsite_mw": 0,
+        "load_shed_mw": 40,
+        "remaining_facility_load_mw": 60,
+        "available_supply_mw": 35,
+        "shortfall_mw": 25
+      },
+      {
+        "scenario": "Full curtailment with 20 MW of on-site output",
+        "firm_grid_mw": 35,
+        "conditional_grid_mw": 0,
+        "net_onsite_mw": 20,
+        "load_shed_mw": 40,
+        "remaining_facility_load_mw": 60,
+        "available_supply_mw": 55,
+        "shortfall_mw": 5
+      },
+      {
+        "scenario": "Full curtailment with 25 MW of on-site output",
+        "firm_grid_mw": 35,
+        "conditional_grid_mw": 0,
+        "net_onsite_mw": 25,
+        "load_shed_mw": 40,
+        "remaining_facility_load_mw": 60,
+        "available_supply_mw": 60,
+        "shortfall_mw": 0
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "ferc-june",
+      "title": "FERC’s June 5 CHILLS order, ER26-1323-000 and ER26-1323-001",
+      "url": "https://spp.org/documents/76880/20260605_order%20-%20revisions%20to%20add%20the%20conditional%20high%20impact%20large%20load%20service_er26-1323.pdf",
+      "publisher": "Federal Energy Regulatory Commission",
+      "document_date": "2026-06-05",
+      "sha256": "f35a6491193b19c26df0382f27bd17c66668af392e21b8bd2fcbfa5c8df69ce7"
+    },
+    {
+      "id": "spp-july",
+      "title": "SPP’s July 6 filing with the revised tariff and service form, ER26-1323-002",
+      "url": "https://spp.org/Documents/77151/20260706_Compliance%20Filing%20-%20Revisions%20to%20Add%20the%20Conditional%20High%20Impact%20Large%20Load%20Service_ER26-1323-002.pdf",
+      "publisher": "Southwest Power Pool",
+      "document_date": "2026-07-06",
+      "sha256": "be8513a62dc45d6dc400c5dc195993472b66a91201ce87bf5a5697544e217bbe"
+    },
+    {
+      "id": "ferc-october",
+      "title": "FERC’s October 26 letter accepting the July filing, ER26-1323-002",
+      "url": "https://spp.org/Documents/78171/20261026_Order%20on%20Compliance%20Filing%20-%20Revisions%20to%20Add%20the%20Conditional%20High%20Impact%20Large%20Load%20Service_ER26-1323-002.pdf",
+      "publisher": "Federal Energy Regulatory Commission",
+      "document_date": "2026-10-26",
+      "sha256": "a1986408eca79b2bd7e9b0f500df73f9e7c86842f36337d4eae5dde78378ca1f"
+    },
+    {
+      "id": "spp-large-load",
+      "title": "SPP large-load study paths and tariff viewer",
+      "url": "https://www.spp.org/engineering/large-load/",
+      "publisher": "Southwest Power Pool"
+    },
+    {
+      "id": "spp-september",
+      "title": "SPP’s separate September 2 curtailment proposal, ER26-3685-000",
+      "url": "https://spp.org/documents/77674/20260902_revisions%20to%20clarify%20the%20conditional%20high%20impact%20large%20load%20policy_er26-3685-000.pdf",
+      "publisher": "Southwest Power Pool",
+      "document_date": "2026-09-02"
+    }
+  ]
+}

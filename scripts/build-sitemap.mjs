@@ -13,7 +13,13 @@ const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-a
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
+const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
 const blogLastmod = [...industryArticles, ...blogCollections].map(entry => entry.updatedDate ?? entry.dateTime).sort().at(-1)
+
+const datasetPublicationDates = industryArticles.flatMap(({ dataset, additionalDatasets = [], dateTime }) =>
+  (dataset ? [dataset, ...additionalDatasets] : additionalDatasets).map(sample => sample.datePublished ?? dateTime),
+)
+const datasetLastmod = [datasetCatalog.updatedDate, ...datasetPublicationDates].sort().at(-1)
 
 // ── Live core pages ──────────────────────────────────────────────────────────
 const CORE = [
@@ -25,7 +31,7 @@ const CORE = [
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
   { loc: '/research', lastmod: research.updatedDate, changefreq: 'monthly', priority: '0.85' },
   { loc: '/resources', changefreq: 'weekly', priority: '0.85' },
-  { loc: '/datasets', changefreq: 'monthly', priority: '0.7' },
+  { loc: '/datasets', lastmod: datasetLastmod, changefreq: 'monthly', priority: '0.7' },
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },
   { loc: '/about', lastmod: '2026-11-23', changefreq: 'monthly', priority: '0.7' },
