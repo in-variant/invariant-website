@@ -172,6 +172,7 @@ export default function Datasets() {
               <h3>{dataset.name}</h3>
               <p>{dataset.description}</p>
               {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
+              {dataset.temporalCoverage && <p className="dataset-place">Record dates: {dataset.temporalCoverage.replace('/', ' to ')}</p>}
               <div className="dataset-row-links">
                 <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
                   Dataset notes <ResourceArrow diagonal />
