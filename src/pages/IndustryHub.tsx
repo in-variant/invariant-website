@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { INDUSTRY_HUBS, hubIncludes } from '../data/industryHubs'
 import { versionedCover } from '../data/coverImages'
-import { RESOURCE_ARTICLES } from '../data/resources'
+import { ARTICLE_LIST } from '../data/articleList'
 import { ResourceArticleCard } from '../components/ResourceCards'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
@@ -10,7 +10,7 @@ import './Resources.css'
 
 export default function IndustryHub({ slug }: { slug: string }) {
   const hub = INDUSTRY_HUBS.find(item => item.slug === slug)!
-  const articles = RESOURCE_ARTICLES.filter(article => hubIncludes(hub, article))
+  const articles = ARTICLE_LIST.filter(article => hubIncludes(hub, article))
   const isIndia = hub.region === 'India'
   const label = isIndia ? 'India data centre approvals' : `${hub.topic} compliance`
   const canonical = `${SITE_URL}/${hub.slug}`

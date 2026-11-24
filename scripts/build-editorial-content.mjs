@@ -171,6 +171,12 @@ const responsiveCovers = process.argv.includes('--responsive-covers')
   : new Map()
 const searchDir = new URL('.generated-blog-search/', base)
 mkdirSync(searchDir, { recursive: true })
+const articleList = [...index, ...legacyArticles].map(({ slug, title, topic, summary, date, dateTime, updatedDate, region, image, dataset, additionalDatasets = [] }) => ({
+  slug, title, topic, summary, date, dateTime, updatedDate, region, image,
+  datasetNames: [dataset?.name, ...additionalDatasets.map(item => item.name)].filter(Boolean).join(' '),
+}))
+const collectionList = blogCollections.map(({ slug, title, navLabel }) => ({ slug, title, navLabel }))
+writeIfChanged(new URL('article-list.json', searchDir), JSON.stringify({ articles: articleList, collections: collectionList }))
 const articleSearch = Object.fromEntries(articles.map(article => [
   article.slug,
   [

@@ -1,14 +1,13 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
-import { RESOURCE_ARTICLES, type ResourceArticle } from '../data/resources'
+import { ARTICLE_COLLECTIONS, ARTICLE_LIST, type ArticleListEntry } from '../data/articleList'
 import { articleSearchWords, prepareArticleSearch, rankSearch } from '../data/blogSearch'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
-import collections from '../data/blog-collections.json'
 import { INDIA_HUB } from '../data/industryArticles'
 import './Blog.css'
 
-const ARTICLES = [...RESOURCE_ARTICLES].sort((a, b) => b.dateTime.localeCompare(a.dateTime))
+const ARTICLES = [...ARTICLE_LIST].sort((a, b) => b.dateTime.localeCompare(a.dateTime))
 const CARD_LIMIT = 12
 const TOPICS = ['All articles', 'Data & APIs', 'Data Centers', 'Oil & Gas'] as const
 const earlierArticles = ARTICLES.filter(article => article.topic === 'Space' || article.topic === 'Nuclear')
@@ -36,7 +35,7 @@ const BLOG_SCHEMA = [
     url: `${SITE_URL}/blog`,
     publisher: { '@id': `${SITE_URL}/#organization` },
     hasPart: [
-      ...collections.map(collection => ({ '@type': 'CollectionPage', name: collection.title, url: `${SITE_URL}/blog/${collection.slug}` })),
+      ...ARTICLE_COLLECTIONS.map(collection => ({ '@type': 'CollectionPage', name: collection.title, url: `${SITE_URL}/blog/${collection.slug}` })),
       ...FEATURED_ARTICLES.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })),
     ],
   },
@@ -46,7 +45,7 @@ function Arrow({ size = 19 }: { size?: number }) {
   return <svg viewBox="0 0 20 20" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.35" aria-hidden="true"><path d="M5 15 15 5M6 5h9v9" /></svg>
 }
 
-function BlogCard({ article, variant = 'standard' }: { article: ResourceArticle; variant?: 'lead' | 'secondary' | 'standard' }) {
+function BlogCard({ article, variant = 'standard' }: { article: ArticleListEntry; variant?: 'lead' | 'secondary' | 'standard' }) {
   const isLead = variant === 'lead'
   return (
     <article className={`blog-index-card blog-index-card--${variant}`}>
@@ -66,7 +65,7 @@ function BlogCard({ article, variant = 'standard' }: { article: ResourceArticle;
   )
 }
 
-function ArticleArchive({ articles, filtered, label }: { articles: ResourceArticle[]; filtered: boolean; label?: string }) {
+function ArticleArchive({ articles, filtered, label }: { articles: ArticleListEntry[]; filtered: boolean; label?: string }) {
   if (articles.length === 0) return null
 
   return (
@@ -121,7 +120,7 @@ export default function Blog() {
           {FEATURED_ARTICLES.map((article, i) => <BlogCard key={article.slug} article={article} variant={i === 0 ? 'lead' : 'secondary'} />)}
         </section>
         <nav className="blog-index-collections" aria-label="Guide collections">
-          {collections.map(collection => (
+          {ARTICLE_COLLECTIONS.map(collection => (
             <Link key={collection.slug} to={`/blog/${collection.slug}`}>{collection.navLabel} <Arrow size={15} /></Link>
           ))}
           <Link to={INDIA_HUB}>Data centre approvals in India <Arrow size={15} /></Link>

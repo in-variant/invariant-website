@@ -1,4 +1,4 @@
-import type { ResourceArticle } from './resources'
+import type { ArticleListEntry } from './articleList'
 
 const FILLER_WORDS = new Set('a an and are as at be can do does for from how i in is it me near of on or should the to use was were what when where which who will with you'.split(' '))
 const WATTS = { k: 1e3, m: 1e6, g: 1e9 } as const
@@ -40,10 +40,10 @@ export function prepareSearch<T>(
   })
 }
 
-export function prepareArticleSearch(articles: ResourceArticle[], details: Record<string, string>) {
+export function prepareArticleSearch(articles: ArticleListEntry[], details: Record<string, string>) {
   return prepareSearch(articles, article => ({
     title: article.title,
-    metadata: `${article.summary} ${article.topic} ${article.region ?? ''} ${article.dataset?.name ?? ''}`,
+    metadata: `${article.summary} ${article.topic} ${article.region ?? ''} ${article.datasetNames}`,
     details: details[article.slug],
   }))
 }
