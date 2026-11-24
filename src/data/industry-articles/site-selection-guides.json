@@ -3204,11 +3204,11 @@
     "slug": "behind-the-meter-power-for-data-centers",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Behind-the-Meter Power for Data Centers: How to Verify Capacity and Timing",
-    "description": "Verify how much on-site power reaches a data center by phase. Size a battery for an outage shortfall and see the air permit and fuel records to request.",
+    "title": "Behind-the-Meter Power for Data Centers | Bridge Power",
+    "description": "Compare gas turbines and fuel cells for first power before a utility upgrade. See two project timelines and check usable MW, fuel, permits and commissioning.",
     "date": "2026-11-09",
-    "updatedDate": "2026-11-23",
-    "readMinutes": 15,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 17,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
@@ -3217,6 +3217,67 @@
       "Plan the grid path from day one so the bridge generation has an end state."
     ],
     "sections": [
+      {
+        "id": "bridge-power-before-utility-upgrades",
+        "heading": "How can a data center get power before a utility upgrade?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Bridge power can serve the first phase while the utility upgrades the grid. Start with the utility service that will be usable by the tenant’s opening date. Then size on-site generation for the gap, including the equipment and fuel outages the facility must ride through. Ask for the guaranteed net megawatts at the facility intake, an equipment delivery slot, firm gas service, permits for the planned run hours, and a commissioning schedule. The operating plan also needs to show how the facility will switch to permanent utility service."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Technology and project",
+              "What the record establishes",
+              "What it means for a buyer"
+            ],
+            "rows": [
+              [
+                "Solid oxide fuel cells, Amazon campus in Hilliard, Ohio",
+                "The siting record describes 72.9 MW of nominal net generation, about 228 fuel cell units and a 6.4-acre project area. The facility is designed to run in parallel with the grid without exporting. September 2027 was the applicant’s in-service target.",
+                "Check the latest load and construction schedule, executed gas service and site acceptance tests. The dated design and schedule document the proposal."
+              ],
+              [
+                "Aeroderivative gas turbines, Martin Drake site in Colorado Springs",
+                "The utility began installing the units in September 2021 and first reported test generation in March 2023. All six entered service in May 2023. The utility describes 157 MW of peak generation while it upgrades its grid.",
+                "This is an operating utility project. Compare the full construction and commissioning period with your schedule, including gas delivery and electrical work."
+              ]
+            ],
+            "rowSourceIds": [
+              ["hilliard-siting", "hilliard-air"],
+              ["drake-installation", "drake-operation", "drake-oem"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Hilliard’s September 2026 notice says the city withdrew its challenge to the issued air permit and describes the fuel cell facility as under construction. The notice concerns the air permit. For a tenant opening date, request a current power delivery schedule and the conditions for the first handover.",
+            "sourceIds": ["hilliard-air"]
+          },
+          {
+            "type": "paragraph",
+            "text": "GE Vernova lists a five-minute fast start for certain LM2500XPRESS configurations under reference conditions. That figure describes how quickly installed equipment can start. For a project schedule, compare the date when each proposal can deliver power to the campus and measure the net output at the same point, in the same weather and outage conditions.",
+            "sourceIds": ["lm2500-specs"]
+          },
+          {
+            "type": "download",
+            "label": "Download the Hilliard and Martin Drake project timeline",
+            "path": "/blog/bridge-power-project-timelines.csv",
+            "format": "CSV",
+            "datasetAnchor": "dataset-bridge-power"
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/calculators/data-center-power-delivery-schedule",
+                "label": "Compare on-site and utility power delivery dates"
+              }
+            ]
+          }
+        ]
+      },
       {
         "id": "size-the-first-phase",
         "heading": "How much on-site generation does a 50 MW data center need?",
@@ -3598,7 +3659,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "The table lays out the common setups. Use it to decide which documents to ask for, not which option is best. The answer changes with gas basin, air district and utility."
+            "text": "Compare each configuration against the site’s fuel supply, air district and utility service. Start with the documents in the last column."
           },
           {
             "type": "table",
@@ -3611,7 +3672,7 @@
             "rows": [
               [
                 "Aeroderivative or industrial gas turbines, islanded",
-                "Fast to site in modular blocks; no utility study needed for first power",
+                "Modular blocks can serve a phase designed for independent operation",
                 "Air permit size, turbine supply, full fuel exposure, no grid backstop",
                 "Signed equipment slots, permit class for the full build-out, firm gas transport, N+1 design"
               ],
@@ -3624,7 +3685,7 @@
               [
                 "Fuel cells (for example solid oxide)",
                 "Low local NOx, modular, utility-owned options exist",
-                "Higher cost per MWh in most cases, still gas-dependent",
+                "Gas service, maintenance terms and stack replacement costs",
                 "Who owns the units, tariff or contract approval, gas pressure and quality spec"
               ],
               [
@@ -3720,7 +3781,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Large gas turbines are the long pole. GE Vernova reported 116 GW of gas equipment backlog and slot reservations at the end of the second quarter of 2026, up from 83 GW at the end of 2025. It is booking reservations about four to five years out and taking slots for 2031 delivery. A seller who says turbines are available should show a reservation agreement with a delivery quarter.",
+            "text": "Equipment availability can govern first power. GE Vernova reported 122 GW of gas equipment backlog and slot reservations at the end of the third quarter of 2026, up from 116 GW at the end of the second quarter. Ask the supplier for a dated reservation for the specified units, a delivery quarter and the work required after delivery.",
             "sourceIds": [
               "gev-backlog"
             ]
@@ -4055,7 +4116,7 @@
       },
       {
         "question": "How long does it take to get gas turbines for a data center?",
-        "answer": "For large gas turbines, GE Vernova was booking reservations about four to five years out in 2026 and taking slots for 2031 delivery. Smaller units can arrive sooner, but get a dated quote or a reservation agreement before relying on any schedule.",
+        "answer": "Delivery depends on the model, the manufacturing slot and the package. GE Vernova reported 122 GW of gas equipment backlog and reservations at the end of September 2026. Get a dated quote or reservation for the specified units and schedule separate milestones for installation, testing and turnover.",
         "sourceIds": [
           "gev-backlog"
         ]
@@ -4104,9 +4165,48 @@
       },
       {
         "id": "gev-backlog",
-        "title": "GE Vernova gas turbine backlog climbs to 116 GW",
-        "url": "https://www.utilitydive.com/news/ge-vernova-gas-turbine-backlog-climbs-to-116-gw/826039/",
-        "publisher": "Utility Dive"
+        "title": "Third-quarter 2026 results, gas equipment backlog and reservations",
+        "url": "https://www.gevernova.com/sites/default/files/gev_webcast_pressrelease_10282026.pdf?text=full#page=1",
+        "publisher": "GE Vernova"
+      },
+      {
+        "id": "hilliard-siting",
+        "title": "Scioto Darby Creek Road fuel cell staff report, Case 25-0649-EL-BLN",
+        "url": "https://hilliardohio.gov/wp-content/uploads/2025/10/OPSB-Report-Certificate-and-Conditions.pdf",
+        "publisher": "Ohio Power Siting Board",
+        "linkLabel": "Ohio siting report"
+      },
+      {
+        "id": "hilliard-air",
+        "title": "September 15, 2026 notice withdrawing the fuel cell air permit appeal",
+        "url": "https://hilliardohio.gov/city-of-hilliard-ends-fuel-cell-permit-appeal-calls-for-stronger-local-input/",
+        "publisher": "City of Hilliard"
+      },
+      {
+        "id": "drake-installation",
+        "title": "Martin Drake installation and March 2023 test generation",
+        "url": "https://www.csu.org/blog/natual-gas-units-to-be-commissioned-by-may-2023",
+        "publisher": "Colorado Springs Utilities",
+        "linkLabel": "Utility construction update"
+      },
+      {
+        "id": "drake-operation",
+        "title": "Martin Drake six-unit commissioning and peaking capacity",
+        "url": "https://www.csu.org/electric-service/system",
+        "publisher": "Colorado Springs Utilities",
+        "linkLabel": "Utility operating fleet"
+      },
+      {
+        "id": "drake-oem",
+        "title": "LM2500XPRESS equipment installed at Martin Drake",
+        "url": "https://www.gevernova.com/gas-power/resources/case-studies/colorado-springs-coal-to-gas-conversion",
+        "publisher": "GE Vernova"
+      },
+      {
+        "id": "lm2500-specs",
+        "title": "LM2500XPRESS reference performance and fast start specifications",
+        "url": "https://www.gevernova.com/content/dam/gepower-new/global/en_US/downloads/gas-new-site/products/gas-turbines/lm2500-60hz-fact-sheet-product-specifications.pdf",
+        "publisher": "GE Vernova"
       },
       {
         "id": "selc-xai",
@@ -4258,6 +4358,20 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-bridge-power",
+        "datePublished": "2026-11-24",
+        "name": "Hilliard fuel cell and Martin Drake gas turbine project timelines",
+        "description": "Eight source-linked observations compare the proposed Hilliard fuel cell schedule with the Martin Drake utility project’s observed installation, test generation and commissioning. Forecast dates and dated observations are labeled separately.",
+        "sourceIds": [
+          "hilliard-siting",
+          "hilliard-air",
+          "drake-installation",
+          "drake-operation"
+        ],
+        "spatialCoverage": "Hilliard, Ohio, and Colorado Springs, Colorado, United States",
+        "temporalCoverage": "2021-09/2027-09"
+      },
       {
         "anchor": "dataset-homer-city",
         "datePublished": "2026-11-23",
