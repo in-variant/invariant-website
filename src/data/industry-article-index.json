@@ -1,5 +1,73 @@
 [
   {
+    "slug": "building-energy-benchmarking-data-by-address",
+    "topic": "Data & APIs",
+    "title": "Building Energy Benchmarking Data by Address",
+    "summary": "Find building energy use and EUI by address. Learn why two NYC reports for the same building differ and download the original rows and API queries.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/building-energy-benchmarking-data-by-address.webp?v=77981ae7",
+    "dataset": {
+      "name": "Energy benchmarking reports for 280 Broadway and Brooklyn Army Terminal",
+      "description": "Four exact NYC API queries and 14 annual energy disclosure rows. Includes two overlapping building-ID series, campus reporting scope, raw null and estimate flags, and reproducible EUI calculations.",
+      "spatialCoverage": "280 Broadway, Manhattan, and Brooklyn Army Terminal, Brooklyn, New York City, United States",
+      "temporalCoverage": "2022/2025",
+      "sources": [
+        "https://data.cityofnewyork.us/d/5zyy-y8am",
+        "https://data.cityofnewyork.us/resource/5zyy-y8am.json?address_1=280+Broadway&%24order=report_year%2Cproperty_id&%24limit=100",
+        "https://data.cityofnewyork.us/resource/5zyy-y8am.json?nyc_building_identification=1079215&%24order=report_year%2Cproperty_id&%24limit=100",
+        "https://data.cityofnewyork.us/resource/5zyy-y8am.json?nyc_borough_block_and_lot=3057780001&%24order=report_year%2Cproperty_id&%24limit=100",
+        "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1079215&%24select=bin%2Cbase_bbl%2Cdoitt_id&%24limit=20",
+        "https://www.energystar.gov/buildings/benchmark/understand-metrics/what-eui"
+      ],
+      "sourceDetails": [
+        {
+          "title": "NYC Building Energy and Water Data Disclosure for Local Law 84, calendar year 2022 onward",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/d/5zyy-y8am"
+        },
+        {
+          "title": "Exact 280 Broadway address query, all returned report years",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/5zyy-y8am.json?address_1=280+Broadway&%24order=report_year%2Cproperty_id&%24limit=100"
+        },
+        {
+          "title": "Exact identifier 1079215 query, ordered by report year and Portfolio Manager ID",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/5zyy-y8am.json?nyc_building_identification=1079215&%24order=report_year%2Cproperty_id&%24limit=100"
+        },
+        {
+          "title": "Brooklyn Army Terminal campus records for tax lot 3057780001",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/5zyy-y8am.json?nyc_borough_block_and_lot=3057780001&%24order=report_year%2Cproperty_id&%24limit=100"
+        },
+        {
+          "title": "NYC BUILDING lookup for BIN 1079215 and its base tax lot",
+          "publisher": "NYC Office of Technology and Innovation via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1079215&%24select=bin%2Cbase_bbl%2Cdoitt_id&%24limit=20"
+        },
+        {
+          "title": "What is energy use intensity (EUI)?",
+          "publisher": "ENERGY STAR",
+          "url": "https://www.energystar.gov/buildings/benchmark/understand-metrics/what-eui"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download source queries, archived rows and checks",
+          "path": "/blog/building-energy-benchmarking-data-by-address.json",
+          "format": "JSON"
+        },
+        {
+          "label": "Download the 14 annual disclosure rows",
+          "path": "/blog/building-energy-benchmarking-data-by-address.csv",
+          "format": "CSV"
+        }
+      ]
+    }
+  },
+  {
     "slug": "soil-productivity-by-parcel-nccpi-csr2",
     "topic": "Data & APIs",
     "title": "Soil Productivity by Parcel with NCCPI and CSR2",

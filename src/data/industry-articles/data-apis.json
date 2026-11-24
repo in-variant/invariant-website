@@ -1,5 +1,351 @@
 [
   {
+    "slug": "building-energy-benchmarking-data-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Building Energy Benchmarking Data by Address",
+    "description": "Find building energy use and EUI by address. Learn why two NYC reports for the same building differ and download the original rows and API queries.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Line chart for NYC building identifier 1079215. In 2025 one report lists a site EUI of 112.5 and the other lists 55.1 kBtu per square foot. The chart traces both reports from 2022 through 2025.",
+    "coverCaption": "Two Portfolio Manager property records for 280 Broadway share one New York City building identifier. Each line follows one reporting property. Source data from NYC Department of Buildings.",
+    "intro": "To look up a commercial building’s energy use by address, start with the local benchmarking disclosure. Match the address to the building and tax lot, then keep each reporting property ID and year. At 280 Broadway in Manhattan, two reports share a building ID. In 2025, one reported 112.5 kBtu per square foot and the other reported 55.1. Before using either figure in an acquisition or retrofit estimate, find out which meters and floor area it covers.",
+    "takeaways": [
+      "An address, a tax lot, a physical building, and a Portfolio Manager property describe different things. Keep all four when you have them.",
+      "At 280 Broadway, the two 2025 reports that share a building ID use 148,868 and 242,062 square feet of calculated building area.",
+      "At Brooklyn Army Terminal, the 2025 campus report lists 17 distinct building identifiers and a building count of 16. Keep the campus reading at campus level until someone reconciles the scope.",
+      "A public disclosure provides an annual observation. Request meter and billing records to estimate operating costs, verify peak demand, or model a retrofit."
+    ],
+    "sections": [
+      {
+        "id": "lookup",
+        "heading": "How to find energy use by address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Find the city disclosure and search for the address as it appears in the source. Look up the local building identifier and tax lot separately. Query those IDs as well, including older address spellings or formatted tax-lot numbers when the official records support them. Keep the unedited source values beside the normalized ones. In New York City, the BIN identifies the building and the BBL identifies the borough, block and lot. Portfolio Manager assigns a separate property ID to the reporting record.",
+            "sourceIds": [
+              "nyc",
+              "footprint"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Record the year of consumption, when you retrieved the record, the Portfolio Manager property and parent IDs, floor area, fuel mix, energy use, and any estimated-meter or gap flags. When one field contains several IDs, split the list and preserve the original string. Validate the identifiers against the city records before creating a join.",
+            "sourceIds": [
+              "nyc",
+              "portfolio"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Site EUI divides annual energy used at the property by its floor area. Source EUI also accounts for upstream energy losses. Weather-normalized site EUI adjusts energy use to typical weather conditions. Choose one metric and one use type for a peer comparison. Preserve a missing value as missing.",
+            "sourceIds": [
+              "epa"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "broadway",
+        "heading": "What the API returned for 280 Broadway",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The address query returned ten records for calendar years 2022 to 2025. The exact building-ID query returned eight. Two Portfolio Manager properties each had four dated reports with BIN 1079215. The city’s building record tied that BIN to base tax lot 1001530001. The address query also returned two rows for a third property. Those rows put the seven-digit number 1079215 in the tax-lot field and had no usable site EUI. Keep those rows for review.",
+            "sourceIds": [
+              "address",
+              "bin",
+              "footprint"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Reporting property",
+              "2024 site EUI",
+              "2025 site EUI",
+              "2025 calculated building area",
+              "2025 energy estimate flag"
+            ],
+            "rows": [
+              [
+                "2664521 · Abro - 280 Broadway",
+                "128.9",
+                "112.5",
+                "148,868 sq ft",
+                "No"
+              ],
+              [
+                "21355198 · DCAS Sun Building",
+                "46.5",
+                "55.1",
+                "242,062 sq ft",
+                "Yes"
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "bin"
+              ],
+              [
+                "bin"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Site EUI is in kBtu per square foot per year. Both reports say “Whole Property,” but the raw 2025 energy totals are 16.75 million and 13.34 million kBtu, respectively. Dividing each raw total by its own calculated building area reproduces the disclosed EUI after rounding. The Abro series fell 12.7% from 2024 to 2025 while the DCAS series rose 18.5%. Those are changes within two published reporting records. Ask for their meter lists, building area worksheets and any shared utility account before attributing either change to the whole building. Averaging the two scores would obscure the difference in coverage.",
+            "sourceIds": [
+              "bin"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "campus",
+        "heading": "What changes when one report covers a campus?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Brooklyn Army Terminal’s campus appears under Portfolio Manager property 14758903 and BBL 3057780001. The source counts five buildings in 2022 and 16 in each of the next three years. The 2022 row flags a possible meter gap and gives no site EUI. The 2025 row gives 85.8 kBtu per square foot and lists 17 distinct BINs alongside the reported building count of 16. Neither a matching BIN nor a matching tax lot allocates the campus energy to a single structure. Ask for the parent and child property inventory and the shared meter assignment before assigning that value to an asset.",
+            "sourceIds": [
+              "campus",
+              "nyc"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sources-and-apis",
+        "heading": "Which API should you use?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Source",
+              "Use it for",
+              "Check before relying on it"
+            ],
+            "rows": [
+              [
+                "NYC Open Data",
+                "Public annual energy disclosure by reporting property, address, and municipal identifiers.",
+                "Reporting year, multiple IDs in one field, missing metrics, and separate property IDs at a shared address."
+              ],
+              [
+                "Seattle or Chicago open data",
+                "Public disclosures for covered buildings and properties in those cities.",
+                "Seattle uses its own OSE building ID. Chicago publishes its own property IDs and can report a campus together. Keep the jurisdiction in the key."
+              ],
+              [
+                "ENERGY STAR Portfolio Manager Web Services",
+                "Exchange property, meter, and performance data for accounts with sharing access.",
+                "Get permission for the correct property and meter series. The API’s sharing model determines what your account can retrieve."
+              ],
+              [
+                "Invariant Earth",
+                "Attach a parcel ID and building footprint area to the location before joining the annual disclosures.",
+                "The point catalog provides location context. Pull the reporting property’s energy history from the city or a shared account and keep its source alongside the join."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "nyc"
+              ],
+              [
+                "seattle",
+                "chicago"
+              ],
+              [
+                "portfolio"
+              ],
+              [
+                "earth"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For acquisition or lending, reconcile the meters to the borrower’s operating statements and confirm which charges the owner pays. For retrofit screening, keep the pre-project meter boundary and floor area so the baseline can be repeated. For electrification, obtain interval demand and equipment information before sizing service. Annual energy in kWh and peak electrical demand in kW describe different measurements.",
+            "sourceIds": [
+              "epa",
+              "portfolio",
+              "nyc"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "replay",
+        "heading": "Download the source rows and repeat the checks",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The CSV holds 14 selected annual disclosure rows. The JSON keeps the address, building ID, campus tax lot and official building queries separate, with retrieval timestamps and the field names used in the comparison. The article uses the snapshot retrieved on November 23, 2026 U.S. Pacific time. Later runs may return revised city records.",
+            "sourceIds": [
+              "address",
+              "bin",
+              "campus",
+              "footprint"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/building-energy-benchmarking-data-by-address.json",
+            "label": "Download source queries, archived rows and checks",
+            "format": "JSON"
+          },
+          {
+            "type": "download",
+            "path": "/blog/building-energy-benchmarking-data-by-address.csv",
+            "label": "Download the 14 annual disclosure rows",
+            "format": "CSV"
+          },
+          {
+            "type": "links",
+            "label": "Continue the property review",
+            "items": [
+              {
+                "label": "Match buildings to parcels",
+                "slug": "building-footprint-data-apis"
+              },
+              {
+                "label": "Check permits for renovation evidence",
+                "slug": "building-permit-data-apis"
+              },
+              {
+                "label": "Compare commercial occupancy and lease rollover",
+                "slug": "commercial-occupancy-vacancy-lease-rollover-data"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I find a commercial building’s historical energy use by address?",
+        "answer": "Many cities publish annual benchmarking records for covered buildings. Start with the municipal disclosure, then match the address to the local building ID and the reporting property ID. For monthly bills or an uncovered building, request authorized access to the utility or Portfolio Manager account.",
+        "sourceIds": [
+          "nyc",
+          "seattle",
+          "portfolio"
+        ]
+      },
+      {
+        "question": "Why can two reports for the same building have different energy use intensity?",
+        "answer": "They can cover different floor areas, meters, tenants, fuels, or periods. At 280 Broadway the city publishes two reporting IDs with the same building ID and different gross floor areas. Ask what each number covers before applying it to the full building.",
+        "sourceIds": [
+          "bin",
+          "epa"
+        ]
+      },
+      {
+        "question": "Can I use site EUI to estimate peak electrical demand?",
+        "answer": "Site EUI is annual delivered energy per square foot. It does not tell you the largest electrical load in kW. Ask for maximum demand and interval meter data for the same service boundary.",
+        "sourceIds": [
+          "epa",
+          "nyc"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nyc",
+        "title": "NYC Building Energy and Water Data Disclosure for Local Law 84, calendar year 2022 onward",
+        "url": "https://data.cityofnewyork.us/d/5zyy-y8am",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "NYC disclosure and data dictionary"
+      },
+      {
+        "id": "address",
+        "title": "Exact 280 Broadway address query, all returned report years",
+        "url": "https://data.cityofnewyork.us/resource/5zyy-y8am.json?address_1=280+Broadway&%24order=report_year%2Cproperty_id&%24limit=100",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "280 Broadway address records"
+      },
+      {
+        "id": "bin",
+        "title": "Exact identifier 1079215 query, ordered by report year and Portfolio Manager ID",
+        "url": "https://data.cityofnewyork.us/resource/5zyy-y8am.json?nyc_building_identification=1079215&%24order=report_year%2Cproperty_id&%24limit=100",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "280 Broadway building-ID records"
+      },
+      {
+        "id": "campus",
+        "title": "Brooklyn Army Terminal campus records for tax lot 3057780001",
+        "url": "https://data.cityofnewyork.us/resource/5zyy-y8am.json?nyc_borough_block_and_lot=3057780001&%24order=report_year%2Cproperty_id&%24limit=100",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "Campus tax-lot records"
+      },
+      {
+        "id": "footprint",
+        "title": "NYC BUILDING lookup for BIN 1079215 and its base tax lot",
+        "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1079215&%24select=bin%2Cbase_bbl%2Cdoitt_id&%24limit=20",
+        "publisher": "NYC Office of Technology and Innovation via NYC Open Data",
+        "linkLabel": "Official building record"
+      },
+      {
+        "id": "epa",
+        "title": "What is energy use intensity (EUI)?",
+        "url": "https://www.energystar.gov/buildings/benchmark/understand-metrics/what-eui",
+        "publisher": "ENERGY STAR",
+        "linkLabel": "EUI definition"
+      },
+      {
+        "id": "portfolio",
+        "title": "Portfolio Manager Web Services, property and meter sharing",
+        "url": "https://portfoliomanager.energystar.gov/webservices/home/api",
+        "publisher": "ENERGY STAR Portfolio Manager",
+        "linkLabel": "Portfolio Manager API"
+      },
+      {
+        "id": "seattle",
+        "title": "Seattle Building Energy Benchmarking Data",
+        "url": "https://data.seattle.gov/d/teqw-tu6e",
+        "publisher": "City of Seattle",
+        "linkLabel": "Seattle disclosure"
+      },
+      {
+        "id": "chicago",
+        "title": "Chicago Energy Benchmarking, property or campus data by year",
+        "url": "https://data.cityofchicago.org/d/xq83-jr8c",
+        "publisher": "City of Chicago",
+        "linkLabel": "Chicago disclosure"
+      },
+      {
+        "id": "earth",
+        "title": "Current Invariant Earth point field definitions",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Live field catalog"
+      }
+    ],
+    "relatedSlugs": [
+      "building-footprint-data-apis",
+      "building-permit-data-apis",
+      "commercial-occupancy-vacancy-lease-rollover-data",
+      "building-violations-by-address"
+    ],
+    "dataset": {
+      "name": "Energy benchmarking reports for 280 Broadway and Brooklyn Army Terminal",
+      "description": "Four exact NYC API queries and 14 annual energy disclosure rows. Includes two overlapping building-ID series, campus reporting scope, raw null and estimate flags, and reproducible EUI calculations.",
+      "spatialCoverage": "280 Broadway, Manhattan, and Brooklyn Army Terminal, Brooklyn, New York City, United States",
+      "temporalCoverage": "2022/2025",
+      "sourceIds": [
+        "nyc",
+        "address",
+        "bin",
+        "campus",
+        "footprint",
+        "epa"
+      ]
+    }
+  },
+  {
     "slug": "soil-productivity-by-parcel-nccpi-csr2",
     "topic": "Data & APIs",
     "region": "United States",
