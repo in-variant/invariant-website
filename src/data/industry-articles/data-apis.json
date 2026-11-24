@@ -1,5 +1,409 @@
 [
   {
+    "slug": "building-violations-by-address",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "title": "How to Find Building Violations by Address",
+    "description": "Look up building violations by address or building ID. Compare NYC DOB and OATH data, and verify open status, penalty balances and correction records separately.",
+    "date": "2026-11-23",
+    "readMinutes": 8,
+    "coverFile": "building-permit-data-apis.webp",
+    "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings and waterfront.",
+    "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024.",
+    "intro": "To find building violations by address, identify the building and the local agency that issued the record. In New York City, search the Buildings Information System and DOB NOW Public Portal, then check the individual summons or violation number. For an OATH summons, read the hearing outcome, balance and correction status separately. In one Brooklyn Army Terminal example, the city’s data returned four summonses marked active with a zero balance on every row.",
+    "takeaways": [
+      "Match the address to a building identifier before pulling a report. A single tax lot or campus address can cover several structures.",
+      "Keep an open summons on the review list until you verify its disposition with the city. Record the date that you checked it alongside the result.",
+      "Use Invariant Earth to resolve the parcel and check building data. Use the agency’s violation number for the hearing and correction records that belong in the decision file."
+    ],
+    "sections": [
+      {
+        "id": "look-up-building-violations",
+        "heading": "How to look up building violations in NYC",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start in the Buildings Information System (BIS). Search by street address or by Building Identification Number (BIN), the city’s identifier for an individual building. Save the borough, block and lot as well. They identify the tax lot for the acquisition or loan file, and New York City Planning’s address tools can list the building IDs on a lot. Check each building that belongs to the deal.",
+            "sourceIds": [
+              "bis",
+              "bin-guide"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Open DOB NOW Public Portal and search its Violations section by address or BIN. DOB publishes different records in the two portals. Use the original agency record when a result affects a purchase, repair budget or renewal. For a summons, search the OATH number on the DOB summons page and check whether the city accepted a Certificate of Correction or dismissed the case at a hearing.",
+            "sourceIds": [
+              "dob-now",
+              "summons-guide"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What you need",
+              "Where to search",
+              "What to keep"
+            ],
+            "rows": [
+              [
+                "Older DOB civil penalties",
+                "BIS and the DOB Violations API.",
+                "Full violation number, category, issue date and any recorded disposition."
+              ],
+              [
+                "More recent DOB civil penalties",
+                "DOB NOW and the DOB Safety Violations API.",
+                "Violation number, compliance type, and latest agency record. Check for duplicates across both DOB exports."
+              ],
+              [
+                "DOB summonses adjudicated through OATH",
+                "BIS, the DOB summons lookup and the DOB ECB Violations API.",
+                "Summons number, city status, hearing outcome, certification status and balance as separate fields."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "legacy-feed"
+              ],
+              [
+                "safety-feed"
+              ],
+              [
+                "oath-feed"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "brooklyn-army-terminal-violation-snapshot",
+        "heading": "At one Brooklyn building, four active summonses showed a zero balance",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Brooklyn Army Terminal campus uses 140 58th Street. A city permit row at that address gives BIN 3414976 and tax lot 3057780001. We used that BIN to query three city feeds on November 23, 2026. The OATH export returned five summons rows, four marked active. Each of those four had a reported balance of zero. The older DOB export returned one dismissed plumbing violation. The DOB Safety query returned zero rows.",
+            "sourceIds": [
+              "bat",
+              "permit-address",
+              "oath-summonses",
+              "legacy-violations",
+              "safety-violations"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "City record",
+              "What the export showed",
+              "How to treat it in a review"
+            ],
+            "rows": [
+              [
+                "OATH 37002346R, issued June 20, 2017",
+                "Active. Hearing field DEFAULT. Certification field NO COMPLIANCE RECORDED. Reported balance $0.",
+                "Ask for the latest disposition and any accepted correction. Keep the balance in its own field."
+              ],
+              [
+                "OATH 35110753J, issued October 30, 2014",
+                "Resolved. Hearing field WRITTEN OFF. Certification field CERTIFICATE ACCEPTED. Reported balance $0.",
+                "Record the accepted certificate alongside the resolved status."
+              ],
+              [
+                "DOB V*081122P22-02569, issued August 11, 2022",
+                "Dismissed. The older DOB export lists December 7, 2022 as the disposition date.",
+                "Keep the original identifier, issue date and disposition date in the building history."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "oath-summonses"
+              ],
+              [
+                "oath-summonses"
+              ],
+              [
+                "legacy-violations"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "These are the exported fields for one building ID on one retrieval date. They describe what the feeds displayed. For an active item, ask DOB whether the reported status is current and request the case documents before relying on it as evidence of a physical condition. For the wider campus, repeat the lookup for the other buildings in scope.",
+            "sourceIds": [
+              "dob-now",
+              "summons-guide"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/brooklyn-army-terminal-building-violation-records.json",
+            "format": "JSON",
+            "label": "Download the four exact queries and their returned fields"
+          }
+        ]
+      },
+      {
+        "id": "review-open-building-violations",
+        "heading": "What to request before closing, binding or starting work",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a purchase, ask the seller for the original notice, amendments, and proof the issuing agency accepted the correction. For a loan, record which building the exception applies to and who will confirm it before funding. For underwriting, use the notice to identify the system or work involved, then ask for the inspection report and repair documentation. For a renovation, check how the condition affects the proposed work and whether the city recorded completion.",
+            "sourceIds": [
+              "dob-violations",
+              "summons-guide",
+              "occupancy"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the record type with the ID. A complaint, permit, violation, hearing decision and certificate each answer a different question. Store issue and disposition dates as source fields. Record the date you retrieved the row so a later change in the export can be compared against the original evidence.",
+            "sourceIds": [
+              "building-history"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the property review",
+            "items": [
+              {
+                "slug": "building-permit-data-apis",
+                "label": "Verify the permit scope and whether the work was completed"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare building and risk data for underwriting"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Build a sourced commercial collateral file"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "building-violations-api",
+        "heading": "How to evaluate a building violations API",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give each provider the same addresses, including a campus and one property with a documented dismissal or correction. Compare the results with the issuing agency’s records. Check whether the provider preserves the original ID, which agency and work types it covers, what its timestamps mean, and how often it checks for updates. For exported statuses, keep the original label alongside any category you assign to it."
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth can supply sourced parcel IDs, parcel addresses and the primary building footprint area for location matching. Start there when you have a portfolio of coordinates. Confirm the individual structure and BIN before attaching the city’s case records. Keep source timestamps and the parcel matching evidence with the exception so someone can review it later.",
+            "sourceIds": [
+              "earth-fields",
+              "earth-response",
+              "bin-guide"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Test the building match",
+            "items": [
+              {
+                "slug": "building-footprint-data-apis",
+                "label": "Match a shared campus address to the building in scope"
+              },
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Use the parcel match to trace recorded financing"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I check NYC building violations for free?",
+        "answer": "Search the city’s Buildings Information System and DOB NOW Public Portal by address or BIN. Search the individual summons number for the OATH record. Use the three NYC Open Data feeds for repeat checks and keep the original identifiers.",
+        "sourceIds": [
+          "bis",
+          "dob-now",
+          "summons-guide"
+        ]
+      },
+      {
+        "question": "Can a DOB summons still be open with a zero balance?",
+        "answer": "Yes. Balance, hearing outcome and certification of correction are different fields. The Brooklyn Army Terminal sample returned four rows marked active with a zero balance. Confirm dismissal or accepted correction with DOB when the status affects a decision.",
+        "sourceIds": [
+          "oath-summonses",
+          "summons-guide"
+        ]
+      },
+      {
+        "question": "What is the difference between a DOB violation and an OATH summons?",
+        "answer": "NYC DOB publishes civil penalties in its older DOB Violations and newer DOB Safety Violations feeds. DOB’s summonses adjudicated by OATH appear in a separate feed called DOB ECB Violations.",
+        "sourceIds": [
+          "legacy-feed",
+          "safety-feed",
+          "oath-feed"
+        ]
+      },
+      {
+        "question": "Does an empty violation API response clear a building?",
+        "answer": "An empty response means that the selected feed returned no matching rows for that query. In the Brooklyn example, the DOB Safety feed returned nothing while the OATH feed returned five records for the same BIN. Check the city’s portals and the other buildings on the lot.",
+        "sourceIds": [
+          "safety-violations",
+          "oath-summonses",
+          "dob-now"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "bis",
+        "title": "Buildings Information System and lookup methods",
+        "url": "https://nyc-business.nyc.gov/nycbusiness/description/buildings-information-system",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "BIS lookup"
+      },
+      {
+        "id": "bin-guide",
+        "title": "Article 320 information guide, Building Identification Numbers, page 23",
+        "url": "https://www.nyc.gov/assets/buildings/pdf/article_320_guide.pdf",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "Building ID guide"
+      },
+      {
+        "id": "dob-now",
+        "title": "DOB NOW Public Portal FAQs, violation search and BIS coverage",
+        "url": "https://www.nyc.gov/site/buildings/industry/dob-now-public-portal-faqs.page",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "DOB NOW search guidance"
+      },
+      {
+        "id": "summons-guide",
+        "title": "OATH summons lookup and Certificate of Correction instructions",
+        "url": "https://www.nyc.gov/site/buildings/safety/oath-summonses.page",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "Summons and correction status"
+      },
+      {
+        "id": "dob-violations",
+        "title": "DOB violations and dismissal records",
+        "url": "https://www.nyc.gov/site/buildings/safety/dob-violations.page",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "DOB violation guidance"
+      },
+      {
+        "id": "legacy-feed",
+        "title": "DOB Violations, older civil penalties",
+        "url": "https://data.cityofnewyork.us/d/3h2n-5cm9",
+        "publisher": "NYC Open Data",
+        "linkLabel": "Older DOB feed"
+      },
+      {
+        "id": "safety-feed",
+        "title": "DOB Safety Violations, identification and coverage",
+        "url": "https://data.cityofnewyork.us/d/855j-jady",
+        "publisher": "NYC Open Data",
+        "linkLabel": "DOB Safety feed"
+      },
+      {
+        "id": "oath-feed",
+        "title": "DOB ECB Violations, agency coverage and fields",
+        "url": "https://data.cityofnewyork.us/d/6bgk-3dad",
+        "publisher": "NYC Open Data",
+        "linkLabel": "OATH summons feed"
+      },
+      {
+        "id": "bat",
+        "title": "Brooklyn Army Terminal campus address and map",
+        "url": "https://edc.nyc/visit",
+        "publisher": "New York City Economic Development Corporation",
+        "linkLabel": "Campus address"
+      },
+      {
+        "id": "permit-address",
+        "title": "Permit address and building ID lookup for BIN 3414976",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=3414976&%24select=bin%2Chouse_no%2Cstreet_name%2Cblock%2Clot&%24limit=1",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "Exact address query"
+      },
+      {
+        "id": "legacy-violations",
+        "title": "Older DOB Violation records for BIN 3414976",
+        "url": "https://data.cityofnewyork.us/resource/3h2n-5cm9.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cnumber%2Cviolation_category%2Cissue_date%2Cdisposition_date&%24order=issue_date%2Cnumber&%24limit=1000",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "Exact older DOB query"
+      },
+      {
+        "id": "safety-violations",
+        "title": "DOB Safety Violation records for BIN 3414976",
+        "url": "https://data.cityofnewyork.us/resource/855j-jady.json?bin=3414976&%24select=bin%2Cviolation_number&%24order=violation_number&%24limit=1000",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "Exact DOB Safety query"
+      },
+      {
+        "id": "oath-summonses",
+        "title": "Summons status, hearing result, correction status and balance for BIN 3414976",
+        "url": "https://data.cityofnewyork.us/resource/6bgk-3dad.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cecb_violation_number%2Cdob_violation_number%2Cissue_date%2Cecb_violation_status%2Chearing_status%2Ccertification_status%2Cpenality_imposed%2Camount_paid%2Cbalance_due&%24order=issue_date%2Cecb_violation_number&%24limit=1000",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "Exact OATH query"
+      },
+      {
+        "id": "building-history",
+        "title": "How to get a building history in BIS and DOB NOW",
+        "url": "https://www.nyc.gov/site/buildings/tenant/get-building-history.page",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "Building history guidance"
+      },
+      {
+        "id": "occupancy",
+        "title": "Certificates of Occupancy and completion records",
+        "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/certificate-of-occupancy.page",
+        "publisher": "NYC Department of Buildings",
+        "linkLabel": "Occupancy records"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Public Invariant Earth field catalog with parcel and building fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth fields"
+      },
+      {
+        "id": "earth-response",
+        "title": "Field-level provenance and timestamps",
+        "url": "https://docs.invariant-ai.com/responses",
+        "publisher": "Invariant Earth",
+        "linkLabel": "API response format"
+      },
+      {
+        "id": "aerial",
+        "title": "New York State 2024 aerial imagery",
+        "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
+        "publisher": "NYS ITS Geospatial Services",
+        "linkLabel": "2024 aerial imagery"
+      }
+    ],
+    "relatedSlugs": [
+      "building-permit-data-apis",
+      "building-footprint-data-apis",
+      "commercial-property-insurance-data-apis",
+      "commercial-real-estate-data-apis-for-lenders"
+    ],
+    "dataset": {
+      "name": "Brooklyn Army Terminal building violation and correction-status records",
+      "description": "Four exact NYC queries for one building ID, including five OATH summonses, one dismissed civil violation, one permit address match, and zero results from the DOB Safety feed.",
+      "sourceIds": [
+        "permit-address",
+        "legacy-violations",
+        "safety-violations",
+        "oath-summonses",
+        "summons-guide"
+      ],
+      "spatialCoverage": "BIN 3414976, Brooklyn Army Terminal, Brooklyn, New York City",
+      "temporalCoverage": "2014-10-30/2026-11-23"
+    }
+  },
+  {
     "slug": "commercial-mortgage-records-by-address",
     "topic": "Data & APIs",
     "region": "New York City, United States",
@@ -10072,7 +10476,8 @@
     },
     "relatedSlugs": [
       "west-kite-alternatives-for-commercial-property-data",
-      "ageospatial-alternatives-commercial-roof-underwriting"
+      "ageospatial-alternatives-commercial-roof-underwriting",
+      "building-violations-by-address"
     ]
   },
   {
@@ -14479,7 +14884,7 @@
       {"id":"earth-responses","title":"API responses and field provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
       {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
-    "relatedSlugs": ["ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting"],
+    "relatedSlugs": ["ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address"],
     "updatedDate": "2026-11-23"
   },
   {
@@ -15531,7 +15936,8 @@
       "commercial-property-insurance-data-apis",
       "best-gis-apis-for-site-selection",
       "power-evidence-data-center-site-verification",
-      "commercial-property-tax-delinquency-data"
+      "commercial-property-tax-delinquency-data",
+      "building-violations-by-address"
     ]
   },
   {

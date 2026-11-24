@@ -1,0 +1,149 @@
+{
+  "title": "Brooklyn Army Terminal building violation and correction-status records",
+  "snapshot_date_local": "2026-11-23",
+  "timezone": "America/New_York",
+  "scope": {
+    "building_id": "3414976",
+    "parcel_bbl": "3057780001",
+    "campus_address": "140 58th Street, Brooklyn, NY"
+  },
+  "method": "Query the published city records for one BIN. Capture city field names as returned, including penality_imposed. Missing certification is absent from the source response. The selected-field snapshot describes city records at retrieval and does not cover every building on the lot.",
+  "reuse": {
+    "source": "NYC Open Data",
+    "guide": "https://opendata.cityofnewyork.us/wp-content/uploads/NYC_OpenData_TechnicalStandardsManual.pdf",
+    "locator": "Section 2.3.2, Data Ownership"
+  },
+  "summary": {
+    "oath_rows": 5,
+    "oath_active_rows": 4,
+    "oath_active_rows_with_reported_zero_balance": 4,
+    "older_dob_rows": 1,
+    "dob_safety_rows": 0
+  },
+  "queries": {
+    "permit-address": {
+      "dataset_id": "rbx6-tga4",
+      "dataset_url": "https://data.cityofnewyork.us/d/rbx6-tga4",
+      "query_url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=3414976&%24select=bin%2Chouse_no%2Cstreet_name%2Cblock%2Clot&%24limit=1",
+      "retrieved_at": "2026-11-24T03:49:27+00:00",
+      "raw_sha256": "bf864f0ff588ca705faecbfc86c9968c810dfd767bd72410defa31d9d4ae6a52",
+      "rows": [
+        {
+          "bin": "3414976",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "block": "5778",
+          "lot": "1"
+        }
+      ]
+    },
+    "legacy-violations": {
+      "dataset_id": "3h2n-5cm9",
+      "dataset_url": "https://data.cityofnewyork.us/d/3h2n-5cm9",
+      "query_url": "https://data.cityofnewyork.us/resource/3h2n-5cm9.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cnumber%2Cviolation_category%2Cissue_date%2Cdisposition_date&%24order=issue_date%2Cnumber&%24limit=1000",
+      "retrieved_at": "2026-11-24T03:49:27+00:00",
+      "raw_sha256": "ed495fa7b98c9bd3aaa23c6cc3f5047d939c413bb6d8925612223b2a4773f527",
+      "rows": [
+        {
+          "bin": "3414976",
+          "boro": "3",
+          "block": "05778",
+          "lot": "00001",
+          "number": "V*081122P22-02569",
+          "violation_category": "V*-DOB VIOLATION - DISMISSED",
+          "issue_date": "20220811",
+          "disposition_date": "20221207"
+        }
+      ]
+    },
+    "safety-violations": {
+      "dataset_id": "855j-jady",
+      "dataset_url": "https://data.cityofnewyork.us/d/855j-jady",
+      "query_url": "https://data.cityofnewyork.us/resource/855j-jady.json?bin=3414976&%24select=bin%2Cviolation_number&%24order=violation_number&%24limit=1000",
+      "retrieved_at": "2026-11-24T03:49:27+00:00",
+      "raw_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "rows": []
+    },
+    "oath-summonses": {
+      "dataset_id": "6bgk-3dad",
+      "dataset_url": "https://data.cityofnewyork.us/d/6bgk-3dad",
+      "query_url": "https://data.cityofnewyork.us/resource/6bgk-3dad.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cecb_violation_number%2Cdob_violation_number%2Cissue_date%2Cecb_violation_status%2Chearing_status%2Ccertification_status%2Cpenality_imposed%2Camount_paid%2Cbalance_due&%24order=issue_date%2Cecb_violation_number&%24limit=1000",
+      "retrieved_at": "2026-11-24T03:49:39+00:00",
+      "raw_sha256": "93cdab2fd7cd15b2e238f6d9a2d3a890b287db412828742f46730282fc866ace",
+      "rows": [
+        {
+          "bin": "3414976",
+          "boro": "3",
+          "block": "05778",
+          "lot": "0001",
+          "ecb_violation_number": "35110753J",
+          "dob_violation_number": "103014CN07KS01",
+          "issue_date": "20141030",
+          "ecb_violation_status": "RESOLVE",
+          "hearing_status": "WRITTEN OFF",
+          "certification_status": "CERTIFICATE ACCEPTED",
+          "penality_imposed": "2500",
+          "amount_paid": "0",
+          "balance_due": "0"
+        },
+        {
+          "bin": "3414976",
+          "boro": "3",
+          "block": "05778",
+          "lot": "0001",
+          "ecb_violation_number": "37002346R",
+          "dob_violation_number": "08282017CN307KD315",
+          "issue_date": "20170620",
+          "ecb_violation_status": "ACTIVE",
+          "hearing_status": "DEFAULT",
+          "certification_status": "NO COMPLIANCE RECORDED",
+          "penality_imposed": "10000",
+          "amount_paid": "12300",
+          "balance_due": "0"
+        },
+        {
+          "bin": "3414976",
+          "boro": "3",
+          "block": "05778",
+          "lot": "0001",
+          "ecb_violation_number": "37002347Z",
+          "dob_violation_number": "08282017CN307KD316",
+          "issue_date": "20170620",
+          "ecb_violation_status": "ACTIVE",
+          "hearing_status": "ADMIT/IN-VIO",
+          "penality_imposed": "10000",
+          "amount_paid": "15752",
+          "balance_due": "0"
+        },
+        {
+          "bin": "3414976",
+          "boro": "3",
+          "block": "05778",
+          "lot": "0001",
+          "ecb_violation_number": "37012067N",
+          "dob_violation_number": "080118LL307CW31",
+          "issue_date": "20180801",
+          "ecb_violation_status": "ACTIVE",
+          "hearing_status": "POP/IN-VIO",
+          "penality_imposed": "0",
+          "amount_paid": "0",
+          "balance_due": "0"
+        },
+        {
+          "bin": "3414976",
+          "boro": "3",
+          "block": "05778",
+          "lot": "0001",
+          "ecb_violation_number": "35577659M",
+          "dob_violation_number": "052221LLFALJ03",
+          "issue_date": "20210522",
+          "ecb_violation_status": "ACTIVE",
+          "hearing_status": "POP/IN-VIO",
+          "penality_imposed": "1250",
+          "amount_paid": "0",
+          "balance_due": "0"
+        }
+      ]
+    }
+  }
+}

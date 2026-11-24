@@ -1,5 +1,62 @@
 [
   {
+    "slug": "building-violations-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find Building Violations by Address",
+    "summary": "Look up building violations by address or building ID. Compare NYC DOB and OATH data, and verify open status, penalty balances and correction records separately.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "New York City, United States",
+    "image": "/blog/industry/building-permit-data-apis.webp?v=03e936d9",
+    "dataset": {
+      "name": "Brooklyn Army Terminal building violation and correction-status records",
+      "description": "Four exact NYC queries for one building ID, including five OATH summonses, one dismissed civil violation, one permit address match, and zero results from the DOB Safety feed.",
+      "spatialCoverage": "BIN 3414976, Brooklyn Army Terminal, Brooklyn, New York City",
+      "temporalCoverage": "2014-10-30/2026-11-23",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=3414976&%24select=bin%2Chouse_no%2Cstreet_name%2Cblock%2Clot&%24limit=1",
+        "https://data.cityofnewyork.us/resource/3h2n-5cm9.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cnumber%2Cviolation_category%2Cissue_date%2Cdisposition_date&%24order=issue_date%2Cnumber&%24limit=1000",
+        "https://data.cityofnewyork.us/resource/855j-jady.json?bin=3414976&%24select=bin%2Cviolation_number&%24order=violation_number&%24limit=1000",
+        "https://data.cityofnewyork.us/resource/6bgk-3dad.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cecb_violation_number%2Cdob_violation_number%2Cissue_date%2Cecb_violation_status%2Chearing_status%2Ccertification_status%2Cpenality_imposed%2Camount_paid%2Cbalance_due&%24order=issue_date%2Cecb_violation_number&%24limit=1000",
+        "https://www.nyc.gov/site/buildings/safety/oath-summonses.page"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Permit address and building ID lookup for BIN 3414976",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=3414976&%24select=bin%2Chouse_no%2Cstreet_name%2Cblock%2Clot&%24limit=1"
+        },
+        {
+          "title": "Older DOB Violation records for BIN 3414976",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/3h2n-5cm9.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cnumber%2Cviolation_category%2Cissue_date%2Cdisposition_date&%24order=issue_date%2Cnumber&%24limit=1000"
+        },
+        {
+          "title": "DOB Safety Violation records for BIN 3414976",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/855j-jady.json?bin=3414976&%24select=bin%2Cviolation_number&%24order=violation_number&%24limit=1000"
+        },
+        {
+          "title": "Summons status, hearing result, correction status and balance for BIN 3414976",
+          "publisher": "NYC Department of Buildings via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/6bgk-3dad.json?bin=3414976&%24select=bin%2Cboro%2Cblock%2Clot%2Cecb_violation_number%2Cdob_violation_number%2Cissue_date%2Cecb_violation_status%2Chearing_status%2Ccertification_status%2Cpenality_imposed%2Camount_paid%2Cbalance_due&%24order=issue_date%2Cecb_violation_number&%24limit=1000"
+        },
+        {
+          "title": "OATH summons lookup and Certificate of Correction instructions",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://www.nyc.gov/site/buildings/safety/oath-summonses.page"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the four exact queries and their returned fields",
+          "path": "/blog/brooklyn-army-terminal-building-violation-records.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "commercial-mortgage-records-by-address",
     "topic": "Data & APIs",
     "title": "How to Find Commercial Mortgage Records by Address",
