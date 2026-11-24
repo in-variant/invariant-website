@@ -1,5 +1,351 @@
 [
   {
+    "slug": "dominion-virginia-gs5-data-center-tariff",
+    "topic": "Data Centers",
+    "kind": "study-guide",
+    "region": "Virginia, United States",
+    "title": "Dominion Virginia GS-5 Data Center Tariff: What Gets Billed?",
+    "description": "Compare Virginia GS-5 demand charges and Ohio Schedule DCT for a 100 MW data center. See how Dominion’s summer peak affects a winter bill.",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "coverAlt": "Compared with a November 100 MW peak, a July 100 MW peak raises Virginia’s modeled December on-peak generation billing basis from 65 to 75 MW. Distribution and transmission billing stay at 100 and 85 MW in both cases.",
+    "coverCaption": "Modeled December billing demand under Dominion Schedule GS-5 with a prior 100 MW peak in July or November.",
+    "intro": "Dominion Energy Virginia’s GS-5 schedule is filed for usage from January 1, 2027. It can use different demand figures for distribution, transmission and generation on the same bill. For a qualifying primary-voltage customer with a 100 MW contract and a 65 MW December peak, an earlier 100 MW July peak produces 100 MW of distribution demand, 85 MW of transmission demand and 75 MW of on-peak generation demand.",
+    "takeaways": [
+      "Ask for the service voltage and the tariff governing each account. Distribution demand under GS-5 applies below 69 kV.",
+      "Retain the month and time-of-day category of every major peak. A summer on-peak reading can affect generation charges after the summer ends.",
+      "Compare Virginia and Ohio on the same meter assumptions. The two tariff schedules use different historical inputs."
+    ],
+    "sections": [
+      {
+        "id": "who-qualifies",
+        "heading": "Who qualifies for Dominion’s GS-5 rate?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The filing sets an effective date of January 1, 2027. SCC staff accepted the revised sheets on October 14, 2026 under case PUR-2025-00058. The schedule generally combines a threshold of at least 25 MW of contracted or measured demand on contiguous property with a qualifying load factor. Existing accounts are tested against billing history. For new or expanded service, Dominion uses expected load factor. Ask the utility how it applies the tests to each account.",
+            "sourceIds": [
+              "va-accepted",
+              "va-gs5-applicability"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The commission’s order and the filed eligibility section use a 75% threshold inclusive of that value. The filed load-factor definition in Paragraph VIII says the factor exceeds 75%. For an account at exactly 75%, ask Dominion to confirm its classification in writing.",
+            "sourceIds": ["va-final-order", "va-gs5-applicability", "va-gs5-billing"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Load factor relates average electricity demand to the measured peak. Section XXVII separately sets special terms for high-load customers, including some accounts in other rate classes. Check those terms even when the account may take service outside GS-5.",
+            "sourceIds": [
+              "va-gs5-applicability",
+              "va-gs5-billing",
+              "va-high-load"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "three-billing-demand-rules",
+        "heading": "How does GS-5 calculate billed demand?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For this comparison, Dominion supplies and delivers power to one qualifying account at primary voltage below 69 kV. The account has a 100 MW contracted billing demand, expressed as 100,000 kW in the calculations. The contract floors apply to this example. Legacy service and competitive supply can change the billing rules.",
+            "sourceIds": [
+              "va-gs5-lookback",
+              "va-gs5-generation",
+              "va-high-load"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Demand charge",
+              "Billing demand under the filed tariff"
+            ],
+            "rows": [
+              [
+                "Distribution below 69 kV",
+                "Use the higher of the full measured 30-minute peak over the current and previous 11 billing months or 85% of contracted demand."
+              ],
+              [
+                "Transmission",
+                "Use the greatest of this month’s on-peak reading, 75% of the highest June through September on-peak reading within the preceding 11 months or 85% of contracted demand."
+              ],
+              [
+                "On-peak generation excluding PJM purchased capacity",
+                "Use the same meter and summer readings as transmission, with a 60% contract floor."
+              ],
+              [
+                "On-peak PJM purchased capacity",
+                "Use the higher of this month’s on-peak reading and the 75% summer lookback."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "va-gs5-lookback"
+              ],
+              [
+                "va-gs5-lookback"
+              ],
+              [
+                "va-gs5-lookback",
+                "va-gs5-generation"
+              ],
+              [
+                "va-gs5-generation"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Read the peak windows before assigning a meter interval to a charge. The filed schedule uses 10 a.m. to 10 p.m. weekdays from June through September and 7 a.m. to 10 p.m. weekdays from October through May.",
+            "sourceIds": [
+              "va-gs5-hours"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "july-versus-november",
+        "heading": "What does a July peak change on the December bill?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Compare two 30-day December billing examples. The current all-hours and on-peak maximums are both 65 MW. In the first case a 100 MW on-peak interval occurred in July. In the second it occurred in November. All other monthly maxima in the table’s lookback are 65 MW. The peak still counts for distribution in both cases, while the summer lookback counts it for generation only in the July case.",
+            "sourceIds": [
+              "va-gs5-lookback",
+              "va-gs5-generation",
+              "va-gs5-billing"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "December billing basis",
+              "100 MW in July",
+              "100 MW in November"
+            ],
+            "rows": [
+              [
+                "Dominion distribution",
+                "100 MW",
+                "100 MW"
+              ],
+              [
+                "Dominion transmission",
+                "85 MW",
+                "85 MW"
+              ],
+              [
+                "Dominion on-peak generation",
+                "75 MW",
+                "65 MW"
+              ],
+              [
+                "Dominion on-peak PJM purchased capacity",
+                "75 MW",
+                "65 MW"
+              ],
+              [
+                "Ohio Schedule DCT distribution",
+                "85 MW",
+                "85 MW"
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "va-gs5-lookback"
+              ],
+              [
+                "va-gs5-lookback"
+              ],
+              [
+                "va-gs5-lookback",
+                "va-gs5-generation"
+              ],
+              [
+                "va-gs5-generation"
+              ],
+              [
+                "ohio-dct"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At the filed primary-voltage rates of $7.246 per kW for base on-peak generation and $1.397 per kW for on-peak PJM purchased capacity, the two lines together come to $648,225 with the July peak and $561,795 with the November peak. The $86,430 difference covers those two lines only. Off-peak demand, delivery, energy, riders, reactive charges and taxes are outside this calculation. Dominion prorates specified charges for billing periods other than 30 days.",
+            "sourceIds": [
+              "va-gs5-rates",
+              "va-gs5-generation",
+              "va-gs5-billing"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/dominion-virginia-gs5-data-center-tariff.json",
+            "label": "Download both demand histories, tariff inputs and calculations",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "ohio-virginia-site-comparison",
+        "heading": "What should buyers compare across Ohio and Virginia?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ohio’s post-ramp DCT formula uses billed demand from the prior 11 months. An earlier 100 MW billed peak yields an 85 MW lookback value in Ohio in either example. Dominion’s distribution line uses the full metered peak in its lookback below 69 kV. Its on-peak generation formula instead uses only the relevant summer billing months for the historical calculation. Carry the meter, billing history and service voltage into your comparison before applying the rates.",
+            "sourceIds": [
+              "va-gs5-lookback",
+              "va-gs5-generation",
+              "ohio-dct"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask for the executed electric service agreement and the contracted billing demand by account and phase. Request a sample invoice that identifies the base rates, supplier treatment, applicable riders and any minimums or credits. Check separate collateral and termination terms when you compare a new agreement with an assignment or expansion.",
+            "sourceIds": [
+              "va-gs5-applicability",
+              "va-gs5-generation",
+              "va-high-load"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Compare other utility and site records",
+            "items": [
+              {
+                "slug": "aep-ohio-data-center-tariff-minimum-demand",
+                "label": "Calculate Ohio Power’s 11-month demand ratchet"
+              },
+              {
+                "slug": "utility-will-serve-letter-load-study-esa",
+                "label": "Read the service agreement and its tariff together"
+              },
+              {
+                "slug": "data-center-sites-for-sale-virginia",
+                "label": "Check the power evidence on Virginia site leads"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does GS-5 always bill 85% of the capacity a data center contracts?",
+        "answer": "The 85% figure is a contracted demand floor for applicable distribution and transmission charges. An applicable measured peak or lookback can result in higher billed demand. Under GS-5, distribution demand is billed only when normal service delivery is below 69 kV.",
+        "sourceIds": [
+          "va-gs5-lookback"
+        ]
+      },
+      {
+        "question": "Does the 60% generation floor apply to the on-peak PJM purchased capacity charge?",
+        "answer": "For the bundled-service example, the on-peak PJM purchased capacity line uses the greater of the current on-peak meter reading and the 75% summer lookback. The 60% contract floor applies to the separate base on-peak generation demand line.",
+        "sourceIds": [
+          "va-gs5-generation",
+          "va-gs5-lookback"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "va-final-order",
+        "title": "Virginia SCC final order of November 25, 2025, GS-5 eligibility, p. 23",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/89g601%21.PDF#page=23",
+        "publisher": "Virginia State Corporation Commission",
+        "linkLabel": "SCC final order on eligibility"
+      },
+      {
+        "id": "va-accepted",
+        "title": "October 14, 2026 acceptance letter for case PUR-2025-00058",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f5h01%21.PDF#page=1",
+        "publisher": "Virginia State Corporation Commission",
+        "linkLabel": "October 14 filing acceptance"
+      },
+      {
+        "id": "va-gs5-applicability",
+        "title": "October 5 compliance filing, Schedule GS-5 eligibility and assignments, PDF pp. 326–328",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=326",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "Filed GS-5 eligibility"
+      },
+      {
+        "id": "va-gs5-rates",
+        "title": "Schedule GS-5, Paragraph II.B.1, primary on-peak generation rates, PDF p. 329",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=329",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "Primary-voltage generation rates"
+      },
+      {
+        "id": "va-gs5-hours",
+        "title": "Schedule GS-5, Paragraph III, on-peak hours, PDF p. 330",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=330",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "On-peak hours"
+      },
+      {
+        "id": "va-gs5-lookback",
+        "title": "Schedule GS-5, Paragraphs IV and VI.A–B, lookbacks and billing determinants, PDF pp. 331–332",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=331",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "Distribution and summer lookbacks"
+      },
+      {
+        "id": "va-gs5-generation",
+        "title": "Schedule GS-5, Paragraph VI.B–D, generation and supplier rules, PDF p. 332",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=332",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "Generation and supplier rules"
+      },
+      {
+        "id": "va-gs5-billing",
+        "title": "Schedule GS-5, Paragraph VII, billing period proration, PDF p. 333",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=333",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "30-day rate and proration"
+      },
+      {
+        "id": "va-high-load",
+        "title": "Section XXVII, high-load eligibility, contract demand and collateral, PDF pp. 4–9",
+        "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF#page=4",
+        "publisher": "Dominion Energy Virginia",
+        "linkLabel": "Separate high-load terms"
+      },
+      {
+        "id": "ohio-dct",
+        "title": "November 2026 tariff book, Schedule DCT, Sheet 223-4, PDF p. 116",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=116",
+        "publisher": "Ohio Power Company",
+        "linkLabel": "Ohio’s post-ramp formula"
+      }
+    ],
+    "relatedSlugs": [
+      "aep-ohio-data-center-tariff-minimum-demand",
+      "utility-will-serve-letter-load-study-esa",
+      "data-center-sites-for-sale-virginia"
+    ],
+    "dataset": {
+      "name": "Dominion GS-5 and Ohio DCT billed demand for two 100 MW peak histories",
+      "description": "Two illustrative 12-month meter histories, source-pinned tariff pages, December billing demand under Virginia and Ohio rules and two Dominion on-peak generation charges.",
+      "sourceIds": [
+        "va-accepted",
+        "va-gs5-applicability",
+        "va-gs5-rates",
+        "va-gs5-hours",
+        "va-gs5-lookback",
+        "va-gs5-generation",
+        "va-gs5-billing",
+        "ohio-dct"
+      ],
+      "spatialCoverage": "Dominion Energy Virginia and Ohio Power Company service territories, United States"
+    }
+  },
+  {
     "slug": "aep-ohio-data-center-tariff-minimum-demand",
     "topic": "Data Centers",
     "kind": "study-guide",
@@ -294,6 +640,10 @@
             "type": "links",
             "label": "Verify the rest of the power package",
             "items": [
+              {
+                "slug": "dominion-virginia-gs5-data-center-tariff",
+                "label": "Compare the same load using Dominion Virginia’s tariff"
+              },
               {
                 "slug": "utility-will-serve-letter-load-study-esa",
                 "label": "Read the electric service agreement with the tariff"
@@ -1587,6 +1937,10 @@
               {
                 "label": "Work through Ohio Power’s 100 MW billing example",
                 "slug": "aep-ohio-data-center-tariff-minimum-demand"
+              },
+              {
+                "label": "See how Dominion Virginia calculates demand charges",
+                "slug": "dominion-virginia-gs5-data-center-tariff"
               },
               {
                 "label": "Check SPP CHILLS curtailment and firm service terms",

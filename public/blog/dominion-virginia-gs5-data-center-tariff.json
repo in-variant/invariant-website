@@ -1,0 +1,231 @@
+{
+  "name": "Dominion GS-5 December demand with a July or November peak",
+  "checked_on": "2026-11-24",
+  "source_documents": [
+    {
+      "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f0d01%21.PDF",
+      "docket": "PUR-2025-00058",
+      "filing_date": "2026-10-05",
+      "effective_for_usage_on_or_after": "2027-01-01",
+      "one_based_pdf_pages": [
+        4,
+        5,
+        326,
+        327,
+        329,
+        330,
+        331,
+        332,
+        333
+      ],
+      "sha256": "f3c40ee3fd88a11655f9b8b60ea4baf382b9823c74bc560c5b4fd531ff6818f1"
+    },
+    {
+      "url": "https://www.scc.virginia.gov/docketsearch/DOCS/8f5h01%21.PDF",
+      "docket": "PUR-2025-00058",
+      "acceptance_date": "2026-10-14",
+      "one_based_pdf_pages": [
+        1
+      ],
+      "sha256": "36e64f9cd9a2e31cb4182f8a03325237e9a55a59623d037058ec3c578341a1be"
+    },
+    {
+      "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf",
+      "schedule": "DCT, first revised sheets 223-3 and 223-4",
+      "one_based_pdf_pages": [
+        115,
+        116
+      ],
+      "sha256": "c489a1fc8cb3e70fd8d977bdf70d0af4cdf9d739a3fa3970eeacf9bd9bae95c2"
+    }
+  ],
+  "assumptions": {
+    "contracted_billing_demand_kw": 100000,
+    "billing_month": 12,
+    "billing_period_days": 30,
+    "virginia_service_voltage_kv": 34.5,
+    "virginia_rate_category": "Primary service voltage",
+    "virginia_supply": "Dominion provides supply and delivery",
+    "virginia_eligibility": "One qualifying account on Schedule GS-5, contracted demand floors apply. Load factor is assumed to qualify and is not derived from the peak series.",
+    "ohio_eligibility": "One energized New Load contract after the ramp, no affiliated load, highest prior billed demand was 100 MW.",
+    "excluded_from_generation_charge_comparison": "Off-peak demand, delivery charges, energy, customer charge, rkVA, riders and taxes.",
+    "scope": "Illustrative historical peaks and published tariff formulas. This is a comparison of demand determinants and two on-peak generation charges, not a bill or a service offer."
+  },
+  "dominion_rates_usd_per_kw_30_days": {
+    "base_on_peak_generation": "7.246",
+    "on_peak_pjm_purchased_capacity_expense": "1.397"
+  },
+  "method": {
+    "distribution_below_69_kv": "Maximum of the current and preceding eleven monthly measured peaks and 85 percent of contracted demand.",
+    "transmission": "Maximum of this month’s on-peak measured demand, 75 percent of the maximum on-peak measured demand in June through September within the prior eleven billing months, and 85 percent of contracted demand.",
+    "on_peak_base_generation": "Maximum of this month’s on-peak measured demand, the same 75 percent summer lookback, and 60 percent of contracted demand.",
+    "on_peak_pjm_purchased_capacity": "Maximum of this month’s on-peak measured demand and the same 75 percent summer lookback.",
+    "ohio_post_ramp_billing": "Maximum of current metered peak, the applicable contract-tier floor, and 85 percent of the highest previously billed demand in the last eleven months."
+  },
+  "scenarios": [
+    {
+      "previous_100mw_peak_month": 7,
+      "monthly_measured_peaks": [
+        {
+          "month": 1,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 2,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 3,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 4,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 5,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 6,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 7,
+          "all_hours_30_min_peak_kw": 100000,
+          "on_peak_30_min_peak_kw": 100000
+        },
+        {
+          "month": 8,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 9,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 10,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 11,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 12,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        }
+      ],
+      "virginia": {
+        "trailing_all_hours_metered_peak_kw": 100000,
+        "previous_summer_on_peak_kw": 100000,
+        "summer_lookback_candidate_kw": 75000,
+        "distribution_billed_kw": 100000,
+        "transmission_billed_kw": 85000,
+        "on_peak_base_generation_billed_kw": 75000,
+        "on_peak_pjm_purchased_capacity_billed_kw": 75000,
+        "on_peak_base_generation_usd": "543450.00",
+        "on_peak_pjm_purchased_capacity_usd": "104775.00",
+        "on_peak_generation_two_lines_usd": "648225.00"
+      },
+      "ohio": {
+        "highest_previous_11_month_billed_kw": 100000,
+        "contract_tier_minimum_kw": 82500,
+        "billed_distribution_demand_kw": 85000
+      }
+    },
+    {
+      "previous_100mw_peak_month": 11,
+      "monthly_measured_peaks": [
+        {
+          "month": 1,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 2,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 3,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 4,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 5,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 6,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 7,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 8,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 9,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 10,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        },
+        {
+          "month": 11,
+          "all_hours_30_min_peak_kw": 100000,
+          "on_peak_30_min_peak_kw": 100000
+        },
+        {
+          "month": 12,
+          "all_hours_30_min_peak_kw": 65000,
+          "on_peak_30_min_peak_kw": 65000
+        }
+      ],
+      "virginia": {
+        "trailing_all_hours_metered_peak_kw": 100000,
+        "previous_summer_on_peak_kw": 65000,
+        "summer_lookback_candidate_kw": 48750,
+        "distribution_billed_kw": 100000,
+        "transmission_billed_kw": 85000,
+        "on_peak_base_generation_billed_kw": 65000,
+        "on_peak_pjm_purchased_capacity_billed_kw": 65000,
+        "on_peak_base_generation_usd": "470990.00",
+        "on_peak_pjm_purchased_capacity_usd": "90805.00",
+        "on_peak_generation_two_lines_usd": "561795.00"
+      },
+      "ohio": {
+        "highest_previous_11_month_billed_kw": 100000,
+        "contract_tier_minimum_kw": 82500,
+        "billed_distribution_demand_kw": 85000
+      }
+    }
+  ]
+}
