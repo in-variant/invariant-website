@@ -13256,16 +13256,16 @@
   {
     "slug": "hail-history-by-address-for-underwriting",
     "topic": "Data & APIs",
-    "title": "How to Check Hail History by Address for Commercial Insurance",
-    "description": "Compare NOAA hail reports and radar estimates at a building. A Denver example shows what a five-kilometer search can tell a commercial underwriter.",
+    "title": "Hail History by Address and APIs for Commercial Insurance",
+    "description": "Compare hail history APIs with a real Denver storm. Check NOAA radar, nearby reports and FEMA tract frequency before using a result in property underwriting.",
     "date": "2026-11-22",
     "region": "United States",
-    "readMinutes": 6,
+    "readMinutes": 9,
     "coverAlt": "Radar map for May 30, 2024 in Denver. Sample points A and B both match a nearby 2.75-inch hail report. Their nearest radar cells show 1.42 and 0.55 inches.",
     "coverCaption": "Four-hour peak radar estimates and selected reports for the Denver storm. A and B are sample locations. Source data from NOAA MRMS and NCEI Storm Events.",
     "intro": "To check hail history by address, locate the building on the policy or submission. Then search dated hail reports around it and read the radar grid over the building for the same time window. Nearby reports document what was reported at other locations. Radar estimates help decide where to look more closely. Roof condition comes from records or an inspection tied to the building.",
     "takeaways": [
-      "Keep the matched building, the search radius and the storm time window with the result.",
+      "Use Invariant Earth for the property match and tract-level hail frequency. Compare dated weather records at the matched coordinates.",
       "Store the distance and reported hail size separately from the radar estimate at the building.",
       "Record missing radar data and unresolved roof condition explicitly."
     ],
@@ -13363,6 +13363,168 @@
         ]
       },
       {
+        "id": "hail-history-api-trial",
+        "heading": "How to compare hail history APIs on the same two points",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Run the same coordinates and storm window through each provider. Save the geometry each result actually describes. A tract frequency helps screen the portfolio. A radar cell or reported event helps review a particular storm. For building-level underwriting, link both to the confirmed roof and its inspection or repair history."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Public check on the Denver case",
+              "Point A",
+              "Point B"
+            ],
+            "rows": [
+              [
+                "FEMA National Risk Index, December 2025",
+                "Tract 08031004111, 8.12 events per year",
+                "Tract 08031004112, 8.12 events per year"
+              ],
+              [
+                "Half Mile Hail, May 31 UTC, 2024 lookup",
+                "One shared 0.1° tile with eight radar rows",
+                "Same tile and same eight rows"
+              ],
+              [
+                "Parceled public historical hail availability",
+                "hailAreas returned false",
+                "hailAreas returned true"
+              ],
+              [
+                "NOAA MRMS four-hour peak at the nearest grid center",
+                "1.42 inches",
+                "0.55 inches"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nri-a",
+                "nri-b",
+                "nri-method"
+              ],
+              [
+                "half-a",
+                "half-b",
+                "half-doc"
+              ],
+              [
+                "parceled-a",
+                "parceled-b",
+                "parceled-doc"
+              ],
+              [
+                "event-grid",
+                "mrms-table"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The two FEMA annualized frequencies agree to two decimals, even though the coordinates fall in different tracts. Half Mile Hail returned one detection day for the same tile in both 2024 lookups. The eight rows for that date contained seven distinct combinations of time, radar, cell identifier and location. Count distinct storm days or deduplicated records as the job requires. Half Mile Hail uses NOAA’s NEXRAD Level III hail detections. The finer NOAA estimates above come from the separate MRMS MESH product.",
+            "sourceIds": [
+              "nri-a",
+              "nri-b",
+              "half-doc",
+              "half-a",
+              "half-b",
+              "swdi",
+              "mrms-table"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Parceled describes hail history as an intersection of MESH swaths with parcels. We checked the documented public availability endpoint. Its anonymous response supplied no event date for either point. A true flag is a reason to request history for that parcel, and a false flag is a reason to resolve availability before scoring the property. Both points had dated evidence in the independent NOAA check.",
+            "sourceIds": [
+              "parceled-doc",
+              "parceled-a",
+              "parceled-b",
+              "event-grid"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Denver hail API trial and exact queries",
+            "path": "/blog/denver-hail-history-api-trial.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-denver-hail-api-trial"
+          }
+        ]
+      },
+      {
+        "id": "compare-hail-history-api-providers",
+        "heading": "Which hail history API fits an underwriting workflow?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth for cited parcel and building context and the tract-level hail frequency that helps prioritize a portfolio. For a dated event, pair that property record with a source that exposes the storm time and the radius, radar cell or parcel intersection behind its result. The public checks above cover FEMA, Half Mile Hail and Parceled availability. The other capabilities below come from published product documentation.",
+            "sourceIds": [
+              "earth-hail-meta",
+              "nri-method"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source or API",
+              "Use it for",
+              "What to ask for in a trial"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Parcel and building context plus FEMA tract-level hail frequency in events per year.",
+                "Return the matched parcel and building evidence, the source vintage and hail_annual_frequency. Verify the roof separately when an address spans multiple structures."
+              ],
+              [
+                "Parceled",
+                "Parcel intersections with radar-estimated hail swaths.",
+                "For matching parcels, request dated event history, the swath unit and size threshold, and the meaning of missing coverage in that market."
+              ],
+              [
+                "PerilIQ",
+                "Nearby observed weather reports with a configurable radius and source links.",
+                "Get the original NWS report and distance. Check whether a date filter follows the report date, local calendar day or UTC."
+              ],
+              [
+                "Verisk Benchmark",
+                "Location-specific weather history for claims and underwriting. Its sample shows separate estimates at an address and within one and five miles.",
+                "Request all three result scopes and the date of loss. Keep the address estimate separate from each radius maximum."
+              ],
+              [
+                "NOAA Storm Events, SWDI and MRMS",
+                "Original reports, radar detections and archived grids for a reproducible reference check.",
+                "Save event IDs and exact file versions. Record the cell resolution, time window, and the original missing-data code."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-hail-meta"
+              ],
+              [
+                "parceled-doc"
+              ],
+              [
+                "periliq-doc"
+              ],
+              [
+                "verisk-benchmark-api",
+                "verisk-benchmark-sample"
+              ],
+              [
+                "bulk",
+                "swdi",
+                "mrms-table"
+              ]
+            ]
+          }
+        ]
+      },
+      {
         "id": "commercial-roof-review",
         "heading": "What to keep in the underwriting file",
         "blocks": [
@@ -13441,6 +13603,14 @@
         "sourceIds": [
           "mrms-table"
         ]
+      },
+      {
+        "question": "Does annualized hail frequency show what happened at an address on a specific day?",
+        "answer": "FEMA’s annualized hail frequency estimates long-run events per year across a Census tract. To check a date of loss, use dated report and radar records for the location and retain the matched building and roof evidence.",
+        "sourceIds": [
+          "nri-method",
+          "earth-hail-meta"
+        ]
       }
     ],
     "sources": [
@@ -13492,6 +13662,104 @@
         "url": "https://noaa-mrms-pds.s3.amazonaws.com/CONUS/MESH_Max_240min_00.50/20240531/MRMS_MESH_Max_240min_00.50_20240531-060000.grib2.gz",
         "publisher": "NOAA Open Data Dissemination",
         "linkLabel": "Storm-window radar file"
+      },
+      {
+        "id": "earth-hail-meta",
+        "title": "Invariant Earth live field metadata for parcel, building and annualized hail frequency",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Live API field metadata"
+      },
+      {
+        "id": "nri-method",
+        "title": "National Risk Index technical documentation, December 2025, hail methods",
+        "url": "https://www.fema.gov/sites/default/files/documents/fema_national-risk-index_technical-documentation.pdf",
+        "publisher": "FEMA",
+        "linkLabel": "FEMA methodology"
+      },
+      {
+        "id": "nri-a",
+        "title": "December 2025 National Risk Index point intersection for sample A",
+        "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.889%2C39.788&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false",
+        "publisher": "FEMA",
+        "linkLabel": "FEMA tract at A"
+      },
+      {
+        "id": "nri-b",
+        "title": "December 2025 National Risk Index point intersection for sample B",
+        "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.902%2C39.752&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false",
+        "publisher": "FEMA",
+        "linkLabel": "FEMA tract at B"
+      },
+      {
+        "id": "half-doc",
+        "title": "Half Mile Hail public API documentation and lookup geometry",
+        "url": "https://halfmilehail.com/api-docs",
+        "publisher": "Half Mile Hail",
+        "linkLabel": "Half Mile Hail API documentation"
+      },
+      {
+        "id": "half-a",
+        "title": "Half Mile Hail public 2024 lookup for sample A",
+        "url": "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.788&lon=-104.889&from=2024&to=2024&detail=2024-05-31",
+        "publisher": "Half Mile Hail",
+        "linkLabel": "Half Mile Hail result A"
+      },
+      {
+        "id": "half-b",
+        "title": "Half Mile Hail public 2024 lookup for sample B",
+        "url": "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.752&lon=-104.902&from=2024&to=2024&detail=2024-05-31",
+        "publisher": "Half Mile Hail",
+        "linkLabel": "Half Mile Hail result B"
+      },
+      {
+        "id": "parceled-doc",
+        "title": "Parceled hail history inputs, geometry and public coverage check",
+        "url": "https://www.parceled.ai/data/hail-history",
+        "publisher": "Parceled",
+        "linkLabel": "Parceled hail history documentation"
+      },
+      {
+        "id": "parceled-a",
+        "title": "Parceled public availability check for sample A",
+        "url": "https://www.parceled.ai/api/v1/check-availability?lat=39.788&lng=-104.889",
+        "publisher": "Parceled",
+        "linkLabel": "Parceled availability at A"
+      },
+      {
+        "id": "parceled-b",
+        "title": "Parceled public availability check for sample B",
+        "url": "https://www.parceled.ai/api/v1/check-availability?lat=39.752&lng=-104.902",
+        "publisher": "Parceled",
+        "linkLabel": "Parceled availability at B"
+      },
+      {
+        "id": "swdi",
+        "title": "Severe Weather Data Inventory coverage and probable conditions",
+        "url": "https://www.ncei.noaa.gov/products/severe-weather-data-inventory",
+        "publisher": "NOAA NCEI",
+        "linkLabel": "NOAA severe weather inventory"
+      },
+      {
+        "id": "periliq-doc",
+        "title": "Storm Data API documentation, observation sources and radius parameters",
+        "url": "https://periliq.com/storm-data-api/",
+        "publisher": "PerilIQ",
+        "linkLabel": "PerilIQ API documentation"
+      },
+      {
+        "id": "verisk-benchmark-api",
+        "title": "Benchmark weather history API for hail, wind and lightning",
+        "url": "https://www.verisk.com/49936c/siteassets/media/downloads/property-estimating/benchmark-for-hail-wind-and-lightning.pdf",
+        "publisher": "Verisk",
+        "linkLabel": "Benchmark API overview"
+      },
+      {
+        "id": "verisk-benchmark-sample",
+        "title": "Benchmark sample hail history report with property and radius estimates",
+        "url": "https://www.verisk.com/4a4a83/siteassets/media/downloads/property-estimating/benchmark-hail-history-report-sample.pdf",
+        "publisher": "Verisk",
+        "linkLabel": "Benchmark sample report"
       }
     ],
     "relatedSlugs": [
@@ -13510,7 +13778,30 @@
       ],
       "spatialCoverage": "Denver metropolitan area, Colorado, United States",
       "temporalCoverage": "2024-05-30/2024-05-31"
-    }
+    },
+    "updatedDate": "2026-11-23",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-denver-hail-api-trial",
+        "datePublished": "2026-11-23",
+        "name": "Denver hail history API trial across two locations",
+        "description": "Two Denver sample points with FEMA tract frequency, a dated NOAA radar-cell estimate, public Half Mile Hail tile results and anonymous Parceled coverage flags. Includes query parameters, retrieval metadata and response checksums.",
+        "sourceIds": [
+          "nri-a",
+          "nri-b",
+          "nri-method",
+          "half-doc",
+          "half-a",
+          "half-b",
+          "parceled-doc",
+          "parceled-a",
+          "parceled-b",
+          "earth-hail-meta",
+          "event-grid"
+        ],
+        "spatialCoverage": "Denver, Colorado, United States"
+      }
+    ]
   },
   {
     "slug": "commercial-property-insurance-data-apis",
@@ -13661,7 +13952,7 @@
               {"slug":"property-underwriting","label":"Get the underwriting API trial scorecard and public references"},
               {"slug":"ageospatial-alternatives-commercial-roof-underwriting","label":"Replay the Rosemead roof replacement at two decision dates"},
               {"slug":"fema-flood-zone-history-for-underwriting","label":"Find the FEMA map revision in effect at the decision date"},
-              {"slug":"hail-history-by-address-for-underwriting","label":"Compare Denver hail reports with radar estimates"}
+              {"slug":"hail-history-by-address-for-underwriting","label":"Run a hail history API trial using the same two Denver points"}
             ]
           },
           {

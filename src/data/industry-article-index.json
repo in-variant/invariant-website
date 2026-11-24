@@ -2140,11 +2140,12 @@
   {
     "slug": "hail-history-by-address-for-underwriting",
     "topic": "Data & APIs",
-    "title": "How to Check Hail History by Address for Commercial Insurance",
-    "summary": "Compare NOAA hail reports and radar estimates at a building. A Denver example shows what a five-kilometer search can tell a commercial underwriter.",
+    "title": "Hail History by Address and APIs for Commercial Insurance",
+    "summary": "Compare hail history APIs with a real Denver storm. Check NOAA radar, nearby reports and FEMA tract frequency before using a result in property underwriting.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
+    "updatedDate": "2026-11-23",
     "image": "/blog/industry/hail-history-by-address-for-underwriting.webp?v=319d2eb5",
     "dataset": {
       "name": "Denver May 30, 2024 hail reports and radar estimates",
@@ -2192,7 +2193,93 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-denver-hail-api-trial",
+        "datePublished": "2026-11-23",
+        "name": "Denver hail history API trial across two locations",
+        "description": "Two Denver sample points with FEMA tract frequency, a dated NOAA radar-cell estimate, public Half Mile Hail tile results and anonymous Parceled coverage flags. Includes query parameters, retrieval metadata and response checksums.",
+        "spatialCoverage": "Denver, Colorado, United States",
+        "sources": [
+          "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.889%2C39.788&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false",
+          "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.902%2C39.752&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false",
+          "https://www.fema.gov/sites/default/files/documents/fema_national-risk-index_technical-documentation.pdf",
+          "https://halfmilehail.com/api-docs",
+          "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.788&lon=-104.889&from=2024&to=2024&detail=2024-05-31",
+          "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.752&lon=-104.902&from=2024&to=2024&detail=2024-05-31",
+          "https://www.parceled.ai/data/hail-history",
+          "https://www.parceled.ai/api/v1/check-availability?lat=39.788&lng=-104.889",
+          "https://www.parceled.ai/api/v1/check-availability?lat=39.752&lng=-104.902",
+          "https://api.invariant-ai.com/v1/meta/fields",
+          "https://noaa-mrms-pds.s3.amazonaws.com/CONUS/MESH_Max_240min_00.50/20240531/MRMS_MESH_Max_240min_00.50_20240531-060000.grib2.gz"
+        ],
+        "sourceDetails": [
+          {
+            "title": "December 2025 National Risk Index point intersection for sample A",
+            "publisher": "FEMA",
+            "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.889%2C39.788&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false"
+          },
+          {
+            "title": "December 2025 National Risk Index point intersection for sample B",
+            "publisher": "FEMA",
+            "url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.902%2C39.752&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false"
+          },
+          {
+            "title": "National Risk Index technical documentation, December 2025, hail methods",
+            "publisher": "FEMA",
+            "url": "https://www.fema.gov/sites/default/files/documents/fema_national-risk-index_technical-documentation.pdf"
+          },
+          {
+            "title": "Half Mile Hail public API documentation and lookup geometry",
+            "publisher": "Half Mile Hail",
+            "url": "https://halfmilehail.com/api-docs"
+          },
+          {
+            "title": "Half Mile Hail public 2024 lookup for sample A",
+            "publisher": "Half Mile Hail",
+            "url": "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.788&lon=-104.889&from=2024&to=2024&detail=2024-05-31"
+          },
+          {
+            "title": "Half Mile Hail public 2024 lookup for sample B",
+            "publisher": "Half Mile Hail",
+            "url": "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.752&lon=-104.902&from=2024&to=2024&detail=2024-05-31"
+          },
+          {
+            "title": "Parceled hail history inputs, geometry and public coverage check",
+            "publisher": "Parceled",
+            "url": "https://www.parceled.ai/data/hail-history"
+          },
+          {
+            "title": "Parceled public availability check for sample A",
+            "publisher": "Parceled",
+            "url": "https://www.parceled.ai/api/v1/check-availability?lat=39.788&lng=-104.889"
+          },
+          {
+            "title": "Parceled public availability check for sample B",
+            "publisher": "Parceled",
+            "url": "https://www.parceled.ai/api/v1/check-availability?lat=39.752&lng=-104.902"
+          },
+          {
+            "title": "Invariant Earth live field metadata for parcel, building and annualized hail frequency",
+            "publisher": "Invariant Earth",
+            "url": "https://api.invariant-ai.com/v1/meta/fields"
+          },
+          {
+            "title": "MRMS 240-minute hail swath ending May 31, 2024 at 06:00 UTC",
+            "publisher": "NOAA Open Data Dissemination",
+            "url": "https://noaa-mrms-pds.s3.amazonaws.com/CONUS/MESH_Max_240min_00.50/20240531/MRMS_MESH_Max_240min_00.50_20240531-060000.grib2.gz"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Denver hail API trial and exact queries",
+            "path": "/blog/denver-hail-history-api-trial.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "commercial-property-insurance-data-apis",

@@ -1,0 +1,142 @@
+{
+  "name": "Denver hail history API trial across two locations",
+  "checked_on": "2026-11-23",
+  "check_date_timezone": "America/Los_Angeles",
+  "scope": "Two illustrative coordinates from one Denver storm. Results assess the meaning and geometry of selected public outputs. The comparison does not establish portfolio-wide accuracy, roof-level hail or roof damage.",
+  "event_window": {
+    "utc_start_inclusive": "2024-05-31T02:00:00Z",
+    "utc_end_exclusive": "2024-05-31T06:00:00Z",
+    "local_date": "2024-05-30",
+    "local_timezone": "America/Denver"
+  },
+  "interpretation": {
+    "fema_tract": "Area-weighted long-run annualized frequency in events per year over the tract.",
+    "half_mile_hail": "Tile-level test of NOAA NCEI SWDI nx3hail. Signature deduplication uses UTC timestamp, radar, cell identifier and published latitude and longitude, so it does not establish a count of storms.",
+    "parceled": "Anonymous availability endpoint. Neither boolean identifies a storm, a coverage period or a roof outcome. The authenticated history endpoint was not tested.",
+    "invariant_earth": "Live metadata was read without calling an authenticated location endpoint. The FEMA matches are independently queried reference values."
+  },
+  "source_documents": [
+    "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0",
+    "https://www.fema.gov/sites/default/files/documents/fema_national-risk-index_technical-documentation.pdf",
+    "https://api.invariant-ai.com/v1/meta/fields",
+    "https://halfmilehail.com/api-docs",
+    "https://www.parceled.ai/data/hail-history",
+    "https://www.ncei.noaa.gov/products/severe-weather-data-inventory"
+  ],
+  "invariant_earth_field_metadata": {
+    "request": "https://api.invariant-ai.com/v1/meta/fields",
+    "response_sha256": "11a8aab1168556935bfba66b8bc091a37ecfbe1eeb6c068c660cc36cd3de042a",
+    "field": {
+      "name": "hail_annual_frequency",
+      "layer": "hazards",
+      "type": "float",
+      "unit": "events/year",
+      "source": "FEMA_NRI",
+      "source_url": "https://hazards.fema.gov/nri/",
+      "sources": [
+        "FEMA_NRI"
+      ],
+      "ttl_seconds": 7776000,
+      "description": "Hail events per year, area-weighted over the containing Census tract (FEMA NRI HAIL_AFREQ). ",
+      "null_meaning": "status \"absent\": FEMA does not assess this hazard for the tract (frequency and exposure area both null), or no tract contains the point. \"failed\": NRI did not answer, returned several tracts, a release other than December 2025, or an unusable value."
+    }
+  },
+  "comparison": {
+    "A": {
+      "point": {
+        "latitude": 39.788,
+        "longitude": -104.889
+      },
+      "fema_tract": {
+        "request": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.889%2C39.788&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false",
+        "response_sha256": "8671de9ec7a9964cd23d46bce78314866af501568030d6c144d218ab4027daae",
+        "attributes": {
+          "NRI_ID": "T08031004111",
+          "TRACTFIPS": "08031004111",
+          "COUNTY": "Denver",
+          "STATE": "Colorado",
+          "HAIL_AFREQ": 8.11621760478243,
+          "NRI_VER": "December 2025"
+        }
+      },
+      "half_mile_hail_public_response": {
+        "request": "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.788&lon=-104.889&from=2024&to=2024&detail=2024-05-31",
+        "response_sha256": "f315a2fc850902d317de54cc095cfc1d089c0918a142a6c263aee9b0eb640f22",
+        "provider_retrieved_at": "2026-11-24T02:46:27.125Z",
+        "source_product": "NOAA NCEI Severe Weather Data Inventory (SWDI), dataset nx3hail — NEXRAD Level-III Hail Detection Algorithm",
+        "source_service": "https://www.ncei.noaa.gov/swdiws/csv/nx3hail/",
+        "tile_bounds_wgs84": {
+          "minLon": -104.95,
+          "maxLon": -104.85,
+          "minLat": 39.75,
+          "maxLat": 39.85
+        },
+        "hail_days_returned_for_2024": 1,
+        "utc_detection_date": "2024-05-31",
+        "radar_detection_rows_reported": 8,
+        "distinct_timestamp_radar_cell_location_signatures": 7
+      },
+      "parceled_public_availability": {
+        "request": "https://www.parceled.ai/api/v1/check-availability?lat=39.788&lng=-104.889",
+        "response_sha256": "cedd105234d88bde1b4e83337d15b083b11d4c3c2bbdc9b15df4df19d9cf4026",
+        "anonymous": true,
+        "hailAreas": false,
+        "currentHailAreas": false
+      }
+    },
+    "B": {
+      "point": {
+        "latitude": 39.752,
+        "longitude": -104.902
+      },
+      "fema_tract": {
+        "request": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer/0/query?f=json&geometry=-104.902%2C39.752&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=NRI_ID%2CTRACTFIPS%2CCOUNTY%2CSTATE%2CHAIL_AFREQ%2CNRI_VER&returnGeometry=false",
+        "response_sha256": "49e347a21c1453933512c4ee26049dce3545ea8a5fe4f0095631158e24c48eea",
+        "attributes": {
+          "NRI_ID": "T08031004112",
+          "TRACTFIPS": "08031004112",
+          "COUNTY": "Denver",
+          "STATE": "Colorado",
+          "HAIL_AFREQ": 8.116217604782433,
+          "NRI_VER": "December 2025"
+        }
+      },
+      "half_mile_hail_public_response": {
+        "request": "https://halfmilehail.com/.netlify/functions/hail-history?lat=39.752&lon=-104.902&from=2024&to=2024&detail=2024-05-31",
+        "response_sha256": "e434d2f2eeb4c04b9d27e80f0443080309ff456659a3b6cc7e2d0aee2d113b73",
+        "provider_retrieved_at": "2026-11-24T02:46:27.058Z",
+        "source_product": "NOAA NCEI Severe Weather Data Inventory (SWDI), dataset nx3hail — NEXRAD Level-III Hail Detection Algorithm",
+        "source_service": "https://www.ncei.noaa.gov/swdiws/csv/nx3hail/",
+        "tile_bounds_wgs84": {
+          "minLon": -104.95,
+          "maxLon": -104.85,
+          "minLat": 39.75,
+          "maxLat": 39.85
+        },
+        "hail_days_returned_for_2024": 1,
+        "utc_detection_date": "2024-05-31",
+        "radar_detection_rows_reported": 8,
+        "distinct_timestamp_radar_cell_location_signatures": 7
+      },
+      "parceled_public_availability": {
+        "request": "https://www.parceled.ai/api/v1/check-availability?lat=39.752&lng=-104.902",
+        "response_sha256": "52cacb75ab665d214a9e06f978287d22e3faeeda78022bd397bc1892619c507b",
+        "anonymous": true,
+        "hailAreas": true,
+        "currentHailAreas": false
+      }
+    }
+  },
+  "original_storm_evidence": {
+    "url": "https://invariant-ai.com/blog/hail-history-by-address-for-underwriting.json",
+    "sha256": "5e386c8505d37509d882781853d09de4d0089f7b542f6992147841616ee48b1f",
+    "nearest_mrms_grid_estimated_hail_inches": {
+      "A": 1.42,
+      "B": 0.55
+    },
+    "max_hail_report_inches_within_5_km": {
+      "A": 2.75,
+      "B": 2.75
+    }
+  }
+}
