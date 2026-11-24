@@ -161,20 +161,32 @@ function productMd() {
 
 function researchMd() {
   if (!research.studies.length) throw new Error('Research must include at least one study')
+  const { heading, description, examples } = research.recordHistory
   const out = [
     `# ${research.title}`, '', research.description, '',
     `URL: ${SITE}/research`,
     `Updated: ${research.updatedDate}`, '',
     `- [Browse research datasets](${SITE}/datasets)`,
     `- [Explore data guides](${SITE}/blog/physical-world-data-by-use-case)`, '',
+    `## ${heading}`, '', description, '',
   ]
+  for (const { slug, anchor = 'dataset', topic, title, linkLabel, observations } of examples) {
+    const url = `${SITE}/blog/${slug}#${anchor}`
+    if (!datasetEntries.some(entry => entry.url === url)) throw new Error(`Missing record history dataset at ${url}`)
+    out.push(
+      `### ${title}`, '', topic, '',
+      ...observations.map(({ date, text }) => `- ${date}. ${text}`), '',
+      `[${linkLabel}](${url})`, '',
+    )
+  }
+  out.push('## Selected studies', '')
   for (const { slug, anchor = 'dataset', topic, title, summary } of research.studies) {
     const url = `${SITE}/blog/${slug}#${anchor}`
     const matches = datasetEntries.filter(entry => entry.url === url)
     if (matches.length !== 1) throw new Error(`Expected one research dataset at ${url}, found ${matches.length}`)
     const { dataset } = matches[0]
     out.push(
-      `## ${title}`, '', topic, '', summary, '',
+      `### ${title}`, '', topic, '', summary, '',
       `- [Sources and methods](${url})`,
       ...dataset.downloads.map(file => `- [${linkText(file.label)} (${file.format})](${SITE}${file.path})`),
       '',

@@ -14,6 +14,8 @@ const studies = research.studies.flatMap(study =>
     .map(entry => ({ ...study, entry })),
 )
 const [featured, ...moreStudies] = studies
+const { recordHistory } = research
+const recordDate = new Intl.DateTimeFormat('en-US', { dateStyle: 'medium', timeZone: 'UTC' })
 
 const collection = {
   '@context': 'https://schema.org',
@@ -106,6 +108,29 @@ export default function Research() {
       <div className="resource-container research-featured">
         <StudyCard study={featured} featured />
       </div>
+      <section id="record-history" className="resource-container research-history" aria-labelledby="record-history-title">
+        <h2 id="record-history-title">{recordHistory.heading}</h2>
+        <p>{recordHistory.description}</p>
+        <div className="research-history-grid">
+          {recordHistory.examples.map(({ slug, anchor = 'dataset', topic, title, linkLabel, observations }) => (
+            <article className="research-history-example" key={slug}>
+              <p className="research-topic">{topic}</p>
+              <h3>{title}</h3>
+              <dl>
+                {observations.map(({ date, text }) => (
+                  <div key={date}>
+                    <dt><time dateTime={date}>{recordDate.format(new Date(date))}</time></dt>
+                    <dd>{text}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="research-study-links">
+                <Link to={`/blog/${slug}#${anchor}`}>{linkLabel} <ResourceArrow diagonal /></Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
       <section className="resource-container research-library" aria-labelledby="research-library-title">
         <h2 id="research-library-title">Selected studies</h2>
         <div className="research-study-grid">
