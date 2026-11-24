@@ -23698,6 +23698,264 @@
     "relatedSlugs": ["manufacturing-site-selection-100-buildable-acres", "truck-depot-charging-site-selection", "best-gis-apis-for-site-selection"]
   },
   {
+    "slug": "business-broadband-availability-by-address",
+    "topic": "Data & APIs",
+    "title": "How to check business broadband availability by address",
+    "description": "Find reported business fiber, cable and fixed wireless at a property. Compare two San Francisco addresses and verify installation, upload speeds and service terms before signing.",
+    "date": "2026-11-24",
+    "region": "United States",
+    "readMinutes": 6,
+    "coverFile": "parcel-number-lookup-by-address.webp",
+    "coverAlt": "Mapped address points and parcel boundaries for Main Library and the Asian Art Museum in San Francisco’s Civic Center.",
+    "coverCaption": "The Main Library and Asian Art Museum address points from San Francisco’s Enterprise Addressing System.",
+    "intro": "To check business broadband at a property, match the street address and suite, then look for provider reports for that location. Read the last-mile technology and the advertised upload speed as well as the download speed. Ask the carrier for a written serviceability quote before relying on the result for a lease or opening date.",
+    "takeaways": [
+      "Match the building and suite first. An area-level result gives you providers to investigate.",
+      "Keep business and consumer offers separate. Check technology, advertised download and upload, and the date of the records.",
+      "For a lease or build, get a written quote for the exact service address, installation timing, costs and performance terms."
+    ],
+    "sections": [
+      {
+        "id": "fcc-business-address-lookup",
+        "heading": "What can you check on the FCC National Broadband Map?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Search the exact address, select the location point, and open the Fixed Broadband results. Filter for business service and the technology you need, such as fiber to the premises. Record the data as-of date, provider, technology and the paired advertised download and upload values. An FCC gray location identifies a building likely to use specialized commercial service. Ask enterprise sales for a quote at that address.",
+            "sourceIds": [
+              "fcc-address-map",
+              "fcc-fixed-availability"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For many addresses, the FCC publishes fixed availability downloads with location IDs and service attributes. Keep the provider record tied to its source location ID and vintage. For a bulk join to street addresses or location geometry, check your rights to the Broadband Serviceable Location Fabric and match the versions. The FCC map lets you check individual addresses without rebuilding the Fabric.",
+            "sourceIds": [
+              "fcc-address-map",
+              "fcc-downloads"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "two-larkin-street-addresses",
+        "heading": "Two addresses on Larkin Street returned different wireline options",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We joined the city address points for San Francisco’s Main Library and Asian Art Museum to the California Public Utilities Commission’s December 2024 broadband map layers. The points are on the same street. The provider layers returned different results, and the consumer speed layer reports a maximum for a census block.",
+            "sourceIds": [
+              "sf-address-points",
+              "cpuc-provider-layer",
+              "cpuc-consumer-layer",
+              "cpuc-map-faq"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Address point",
+              "Business wireline rows intersecting the point",
+              "Consumer census-block speed result"
+            ],
+            "rows": [
+              [
+                "100 Larkin Street, Main Library",
+                "Xfinity cable at 1,200 Mbps down and 35 Mbps up. AT&T California ADSL at 10 Mbps down and 1 Mbps up.",
+                "1,200 Mbps maximum advertised downstream in census block 060750124051006."
+              ],
+              [
+                "200 Larkin Street, Asian Art Museum",
+                "AT&T California ADSL at 10 Mbps down and 1 Mbps up. The query returned no Xfinity business row.",
+                "The consumer downstream layer returned no intersecting row at this point."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cpuc-provider-layer",
+                "cpuc-consumer-layer"
+              ],
+              [
+                "cpuc-provider-layer",
+                "cpuc-consumer-layer"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Neither point returned a business fiber row under code 50 in this CPUC layer. Both returned business fixed wireless and satellite rows. This was an intersection with provider polygons from a dated map. A carrier can quote a dedicated circuit at a building that lacks a matching mass-market record. A consumer block maximum alone gives neither the business upload speed nor the service terms.",
+            "sourceIds": [
+              "cpuc-provider-layer",
+              "cpuc-map-faq",
+              "fcc-address-map"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/larkin-street-business-broadband-availability.json",
+            "label": "Download both address points and the broadband query results",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "broadband-data-for-site-screening",
+        "heading": "How to use broadband data in a site-selection API",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use a verified address or parcel as the starting point. Keep the reported service area, location, technology and date with each result. Invariant Earth lists fiber_broadband_available and fiber_provider_count for the cell containing the lookup point. These fields summarize reported mass-market fiber in a hexagonal area and require an operator key. Use the FCC or state map and ask providers for address-level confirmation.",
+            "sourceIds": [
+              "earth-point-fields",
+              "earth-parcel-fields",
+              "earth-coverage-guide"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "confirm-serviceability",
+        "heading": "What to get from the carrier before signing a lease",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Request a serviceability quote for the street address, suite and network room. Confirm the access technology, download and upload rates, shared or dedicated service, the construction charge and the earliest committed install date. For dedicated service, ask for the committed rate and the service-level agreement. Put the provider’s response and any building-access requirements on the opening schedule."
+          },
+          {
+            "type": "paragraph",
+            "text": "When a site needs two independent circuits, ask each provider for the physical route, entrance and upstream handoff. Compare any shared conduit and the traffic the surviving path can carry. Two carriers can resell service over the same local network."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "data-center-fiber-route-diversity",
+                "label": "Verify physical fiber route diversity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does a 1 Gbps result prove fiber is available?",
+        "answer": "Check the transmission technology. Cable and fixed wireless can both report gigabit speeds. The FCC uses technology code 50 for fiber to the premises. Check both advertised speeds and ask the provider what reaches the exact suite.",
+        "sourceIds": [
+          "fcc-tech-codes",
+          "cpuc-provider-layer"
+        ]
+      },
+      {
+        "question": "Why is business fiber missing from a broadband map?",
+        "answer": "The location may have only other technologies reported or use specialized commercial service that the mass-market map does not cover. Check the point, date and filters, then ask carriers for written serviceability at the address.",
+        "sourceIds": [
+          "fcc-address-map"
+        ]
+      },
+      {
+        "question": "How do I challenge an incorrect FCC availability result?",
+        "answer": "Use the availability challenge on the selected FCC location. Keep a quote, denial or record of the provider conversation. FCC guidance describes when ordinary installation delays or charges qualify as an availability issue.",
+        "sourceIds": [
+          "fcc-challenges"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "fcc-address-map",
+        "title": "Using the FCC National Broadband Map by address and service type",
+        "url": "https://help.bdc.fcc.gov/hc/en-us/articles/10467446103579-How-to-Use-the-FCC-s-National-Broadband-Map",
+        "publisher": "Federal Communications Commission"
+      },
+      {
+        "id": "fcc-fixed-availability",
+        "title": "Fixed broadband availability and standard installation",
+        "url": "https://help.bdc.fcc.gov/hc/en-us/articles/5290946484763-Fixed-Broadband-Availability-Data-Overview",
+        "publisher": "Federal Communications Commission"
+      },
+      {
+        "id": "fcc-downloads",
+        "title": "Broadband Data Collection downloads and Fabric location identifiers",
+        "url": "https://help.bdc.fcc.gov/hc/en-us/articles/7682769466395-Broadband-Data-Collection-BDC-FAQs",
+        "publisher": "Federal Communications Commission"
+      },
+      {
+        "id": "fcc-tech-codes",
+        "title": "FCC fixed technology codes including fiber to the premises",
+        "url": "https://help.bdc.fcc.gov/hc/en-us/articles/5290793888795-Fixed-Technology-Codes",
+        "publisher": "Federal Communications Commission"
+      },
+      {
+        "id": "fcc-challenges",
+        "title": "How to submit a fixed broadband availability challenge",
+        "url": "https://help.bdc.fcc.gov/hc/en-us/articles/10476040597787-How-to-Submit-an-Availability-Challenge",
+        "publisher": "Federal Communications Commission"
+      },
+      {
+        "id": "sf-address-points",
+        "title": "City address point query for 100 and 200 Larkin Street",
+        "url": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Clongitude%2Clatitude%2Cdata_as_of&%24where=eas_fullid+in+%28%27282045-491245-314862%27%2C%27453314-674072-499891%27%29&%24order=address",
+        "publisher": "City and County of San Francisco"
+      },
+      {
+        "id": "cpuc-provider-layer",
+        "title": "December 2024 provider polygons, business and consumer attributes and technology code domain",
+        "url": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Provider_Identify/MapServer/0?f=pjson",
+        "publisher": "California Public Utilities Commission"
+      },
+      {
+        "id": "cpuc-consumer-layer",
+        "title": "December 2024 consumer maximum downstream availability by census block",
+        "url": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Fixed_Consumer_Downstream_Maximum/MapServer/0?f=pjson",
+        "publisher": "California Public Utilities Commission"
+      },
+      {
+        "id": "cpuc-map-faq",
+        "title": "February 2026 broadband map FAQ, census-block speed methodology",
+        "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/communications-division/documents/broadband-mapping/user-guide_faq_2026/2025-08-12_final-faqs-2026-broadband-map_with-pf-update.pdf#page=3",
+        "publisher": "California Public Utilities Commission"
+      },
+      {
+        "id": "earth-point-fields",
+        "title": "Earth API point lookup field manifest",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant"
+      },
+      {
+        "id": "earth-parcel-fields",
+        "title": "Earth API parcel enrichment field manifest",
+        "url": "https://api.invariant-ai.com/v1/enrich/fields",
+        "publisher": "Invariant"
+      },
+      {
+        "id": "earth-coverage-guide",
+        "title": "Earth API field definitions and access",
+        "url": "https://invariant-ai.com/data-coverage#coverage-search",
+        "publisher": "Invariant",
+        "linkLabel": "Check Earth API field definitions and access"
+      }
+    ],
+    "relatedSlugs": [
+      "data-center-fiber-route-diversity",
+      "parcel-number-lookup-by-address",
+      "best-gis-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "Larkin Street business broadband and census-block speed comparison",
+      "description": "Four California broadband map queries intersect city address points at 100 and 200 Larkin Street. Includes reported business and consumer services by technology, advertised speed pairs, wireline and fiber counts, and the separate consumer census-block results.",
+      "sourceIds": [
+        "sf-address-points",
+        "cpuc-provider-layer",
+        "cpuc-consumer-layer",
+        "cpuc-map-faq"
+      ],
+      "spatialCoverage": "Civic Center, San Francisco, California, United States",
+      "temporalCoverage": "2024-12-31"
+    }
+  },
+  {
     "slug": "data-center-fiber-route-diversity",
     "dataset": {
       "name": "New York metro building addresses and AWS Direct Connect location labels",

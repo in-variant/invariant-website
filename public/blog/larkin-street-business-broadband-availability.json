@@ -1,0 +1,236 @@
+{
+  "name": "Larkin Street business broadband and census-block speed comparison",
+  "map_as_of": "2024-12-31",
+  "queried_on": "2026-11-24",
+  "method": "Intersect the two official city address coordinates with the CPUC EOY 2024 provider polygons and consumer census-block downstream maximum layer. Both requests use the original longitude and latitude in WGS 84, polygon intersection and no geometry in the result. Keep network technology and business or consumer flags with each advertised speed pair.",
+  "limits": "These are intersections with public map records. They do not show orderability, dedicated commercial circuits, measured throughput or the current service at either building. An empty consumer block result means this specific query returned no feature. It does not represent a speed of zero.",
+  "speed_units": "Mbps",
+  "source_urls": {
+    "city_address_points": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Clongitude%2Clatitude%2Cdata_as_of&%24where=eas_fullid+in+%28%27282045-491245-314862%27%2C%27453314-674072-499891%27%29&%24order=address",
+    "cpuc_map": "https://www.broadbandmap.ca.gov/",
+    "provider_technology_codes": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Provider_Identify/MapServer/0?f=pjson",
+    "consumer_block_definition": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Fixed_Consumer_Downstream_Maximum/MapServer/0?f=pjson",
+    "cpuc_map_faq": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/communications-division/documents/broadband-mapping/user-guide_faq_2026/2025-08-12_final-faqs-2026-broadband-map_with-pf-update.pdf#page=3"
+  },
+  "cases": [
+    {
+      "city_address_point": {
+        "eas_fullid": "282045-491245-314862",
+        "address": "100 LARKIN ST",
+        "longitude": "-122.41632622023333",
+        "latitude": "37.779054193871154",
+        "data_as_of": "2026-11-23T18:01:14.000"
+      },
+      "provider_polygon_query": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Provider_Identify/MapServer/0/query?f=json&where=1%3D1&geometry=-122.41632622023333%2C37.779054193871154&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CDBA%2CTechCode%2CMaxAdDn%2CMaxAdUp%2CBusconsm%2CService_Type%2CMaxDnTier%2CMINDOWN%2CMINUP&returnGeometry=false&orderByFields=OBJECTID",
+      "consumer_census_block_query": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Fixed_Consumer_Downstream_Maximum/MapServer/0/query?f=json&where=1%3D1&geometry=-122.41632622023333%2C37.779054193871154&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CBlockCode%2CMAX_MaxAdDn&returnGeometry=false&orderByFields=OBJECTID",
+      "intersecting_provider_rows": [
+        {
+          "OBJECTID": 75,
+          "DBA": "AT&T California",
+          "TechCode": 11,
+          "MaxAdDn": 10,
+          "MaxAdUp": 1,
+          "Busconsm": "Business",
+          "Service_Type": "Wireline"
+        },
+        {
+          "OBJECTID": 110,
+          "DBA": "AT&T California",
+          "TechCode": 71,
+          "MaxAdDn": 25,
+          "MaxAdUp": 3,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 357,
+          "DBA": "Etheric Networks Inc.",
+          "TechCode": 70,
+          "MaxAdDn": 1000,
+          "MaxAdUp": 1000,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1032,
+          "DBA": "T-Mobile US",
+          "TechCode": 71,
+          "MaxAdDn": 100,
+          "MaxAdUp": 20,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1420,
+          "DBA": "Unwired Ltd",
+          "TechCode": 71,
+          "MaxAdDn": 2000,
+          "MaxAdUp": 2000,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1475,
+          "DBA": "Verizon",
+          "TechCode": 71,
+          "MaxAdDn": 400,
+          "MaxAdUp": 40,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1487,
+          "DBA": "Viasat Inc",
+          "TechCode": 60,
+          "MaxAdDn": 150,
+          "MaxAdUp": 4,
+          "Busconsm": "Business",
+          "Service_Type": "Satellite"
+        },
+        {
+          "OBJECTID": 1554,
+          "DBA": "Xfinity",
+          "TechCode": 40,
+          "MaxAdDn": 1200,
+          "MaxAdUp": 35,
+          "Busconsm": "Consumer",
+          "Service_Type": "Wireline"
+        },
+        {
+          "OBJECTID": 1555,
+          "DBA": "Xfinity",
+          "TechCode": 40,
+          "MaxAdDn": 1200,
+          "MaxAdUp": 35,
+          "Busconsm": "Business",
+          "Service_Type": "Wireline"
+        },
+        {
+          "OBJECTID": 1678,
+          "DBA": "Starlink",
+          "TechCode": 60,
+          "MaxAdDn": 220,
+          "MaxAdUp": 30,
+          "Busconsm": "Consumer",
+          "Service_Type": "Satellite"
+        },
+        {
+          "OBJECTID": 1679,
+          "DBA": "Starlink",
+          "TechCode": 60,
+          "MaxAdDn": 220,
+          "MaxAdUp": 30,
+          "Busconsm": "Business",
+          "Service_Type": "Satellite"
+        }
+      ],
+      "intersecting_consumer_block_maximum_rows": [
+        {
+          "OBJECTID": 994810,
+          "BlockCode": "060750124051006",
+          "MAX_MaxAdDn": 1200
+        }
+      ],
+      "summary": {
+        "business_rows": 9,
+        "distinct_business_provider_names": 8,
+        "business_wireline_rows": 2,
+        "business_fiber_rows": 0,
+        "consumer_block_maximum_downstream_mbps": 1200
+      }
+    },
+    {
+      "city_address_point": {
+        "eas_fullid": "453314-674072-499891",
+        "address": "200 LARKIN ST",
+        "longitude": "-122.41664267812143",
+        "latitude": "37.780149775275625",
+        "data_as_of": "2026-11-23T18:01:14.000"
+      },
+      "provider_polygon_query": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Provider_Identify/MapServer/0/query?f=json&where=1%3D1&geometry=-122.41664267812143%2C37.780149775275625&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CDBA%2CTechCode%2CMaxAdDn%2CMaxAdUp%2CBusconsm%2CService_Type%2CMaxDnTier%2CMINDOWN%2CMINUP&returnGeometry=false&orderByFields=OBJECTID",
+      "consumer_census_block_query": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Fixed_Consumer_Downstream_Maximum/MapServer/0/query?f=json&where=1%3D1&geometry=-122.41664267812143%2C37.780149775275625&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CBlockCode%2CMAX_MaxAdDn&returnGeometry=false&orderByFields=OBJECTID",
+      "intersecting_provider_rows": [
+        {
+          "OBJECTID": 75,
+          "DBA": "AT&T California",
+          "TechCode": 11,
+          "MaxAdDn": 10,
+          "MaxAdUp": 1,
+          "Busconsm": "Business",
+          "Service_Type": "Wireline"
+        },
+        {
+          "OBJECTID": 116,
+          "DBA": "AT&T California",
+          "TechCode": 71,
+          "MaxAdDn": 100,
+          "MaxAdUp": 20,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 357,
+          "DBA": "Etheric Networks Inc.",
+          "TechCode": 70,
+          "MaxAdDn": 1000,
+          "MaxAdUp": 1000,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1420,
+          "DBA": "Unwired Ltd",
+          "TechCode": 71,
+          "MaxAdDn": 2000,
+          "MaxAdUp": 2000,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1475,
+          "DBA": "Verizon",
+          "TechCode": 71,
+          "MaxAdDn": 400,
+          "MaxAdUp": 40,
+          "Busconsm": "Business",
+          "Service_Type": "Terrestrial Fixed Wireless"
+        },
+        {
+          "OBJECTID": 1487,
+          "DBA": "Viasat Inc",
+          "TechCode": 60,
+          "MaxAdDn": 150,
+          "MaxAdUp": 4,
+          "Busconsm": "Business",
+          "Service_Type": "Satellite"
+        },
+        {
+          "OBJECTID": 1678,
+          "DBA": "Starlink",
+          "TechCode": 60,
+          "MaxAdDn": 220,
+          "MaxAdUp": 30,
+          "Busconsm": "Consumer",
+          "Service_Type": "Satellite"
+        },
+        {
+          "OBJECTID": 1679,
+          "DBA": "Starlink",
+          "TechCode": 60,
+          "MaxAdDn": 220,
+          "MaxAdUp": 30,
+          "Busconsm": "Business",
+          "Service_Type": "Satellite"
+        }
+      ],
+      "intersecting_consumer_block_maximum_rows": [],
+      "summary": {
+        "business_rows": 7,
+        "distinct_business_provider_names": 6,
+        "business_wireline_rows": 1,
+        "business_fiber_rows": 0,
+        "consumer_block_maximum_downstream_mbps": null
+      }
+    }
+  ]
+}

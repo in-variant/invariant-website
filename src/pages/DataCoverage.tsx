@@ -19,7 +19,7 @@ const operations = {
   parcel: { label: 'Parcel enrichment', method: '/v1/enrich', manifest: product.links.parcelFields },
 } as const
 type Operation = keyof typeof operations
-type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string }
+type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string; operatorOnly?: boolean }
 type Field = { name: string; label?: string; definitions: Partial<Record<Operation, Definition>> }
 
 function indexFields(fields: Field[]) {
@@ -95,7 +95,8 @@ export default function DataCoverage() {
           <a href={operations.point.manifest}><strong>{summary.point}</strong><span>Point lookup fields <ResourceArrow diagonal /></span></a>
           <a href={operations.parcel.manifest}><strong>{summary.parcel}</strong><span>Parcel enrichment fields <ResourceArrow diagonal /></span></a>
         </div>
-        <p className="coverage-note">{summary.shared} field names appear in both manifests. Check the definition for the operation you plan to call. A listed field can be unavailable at a given location.</p>
+        <p className="coverage-note">{summary.shared} field names appear in both manifests. Check the definition for the operation you plan to call. Values depend on location and API key access.</p>
+        {summary.operatorOnly > 0 && <p className="coverage-note">The manifests flag operator key requirements for {summary.operatorOnly} fields.</p>}
         <h2 id="coverage-search">Find a field</h2>
         <div className="coverage-controls">
           <label>
@@ -120,25 +121,30 @@ export default function DataCoverage() {
         )}
         {searching && error && <button type="button" className="coverage-action" onClick={() => setAttempt(attempt + 1)}>Try again</button>}
         {searching && index && matches.length === 0 && <p>Try a different field name or search all operations.</p>}
-        {matches.slice(0, count).map(field => (
-          <details className="coverage-field" key={field.name}>
-            <summary>
-              {field.label && <span>{field.label}</span>}
-              <code>{field.name}</code>
-              <small>{Object.keys(field.definitions).map(key => operations[key as Operation].method).join(' · ')}</small>
-            </summary>
-            <div className="coverage-definitions">
-              {Object.entries(field.definitions).filter(([key]) => !operation || key === operation).map(([key, definition]) => (
-                <section key={key}>
-                  <h3>{operations[key as Operation].label}</h3>
-                  <p>{definition.description}</p>
-                  <a href={definition.sourceUrl}>{definition.source} <ResourceArrow diagonal /></a>
-                  {definition.unit && <span>Unit {definition.unit}</span>}
-                </section>
-              ))}
-            </div>
-          </details>
-        ))}
+        {matches.slice(0, count).map(field => {
+          const definitions = Object.entries(field.definitions).filter(([key]) => !operation || key === operation)
+          const requiresOperatorKey = definitions.every(([, definition]) => definition.operatorOnly)
+          return (
+            <details className="coverage-field" key={field.name}>
+              <summary>
+                {field.label && <span>{field.label}</span>}
+                <code>{field.name}</code>
+                <small>{definitions.map(([key]) => operations[key as Operation].method).join(' · ')}</small>
+                {requiresOperatorKey && <span className="coverage-access">Operator key</span>}
+              </summary>
+              <div className="coverage-definitions">
+                {definitions.map(([key, definition]) => (
+                  <section key={key}>
+                    <h3>{operations[key as Operation].label}</h3>
+                    <p>{definition.description}</p>
+                    <a href={definition.sourceUrl}>{definition.source} <ResourceArrow diagonal /></a>
+                    {definition.unit && <span>Unit {definition.unit}</span>}
+                  </section>
+                ))}
+              </div>
+            </details>
+          )
+        })}
         {matches.length > count && <button type="button" className="coverage-action" onClick={() => setCount(count + pageSize)}>Show more fields</button>}
       </section>
 

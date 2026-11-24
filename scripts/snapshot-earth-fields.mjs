@@ -25,7 +25,8 @@ for (const [operation, rows] of responses) {
     names.add(name)
     const field = fields.get(name) ?? { name, definitions: {} }
     if (label) field.label = label
-    field.definitions[operation] = { description, unit, source, sourceUrl: source_url }
+    const operatorOnly = /\boperator keys only\b/i.test(description)
+    field.definitions[operation] = { description, unit, source, sourceUrl: source_url, ...(operatorOnly && { operatorOnly }) }
     fields.set(name, field)
   }
   counts[operation] = names.size
@@ -37,6 +38,7 @@ const summary = {
   point: counts.point,
   parcel: counts.parcel,
   shared: counts.point + counts.parcel - fields.size,
+  operatorOnly: [...fields.values()].filter(field => Object.values(field.definitions).some(definition => definition.operatorOnly)).length,
 }
 const sortedFields = [...fields.values()].sort((a, b) => a.name.localeCompare(b.name, 'en'))
 const snapshot = `[\n${sortedFields.map(field => '  ' + JSON.stringify(field)).join(',\n')}\n]\n`

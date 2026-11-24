@@ -4655,6 +4655,57 @@
     }
   },
   {
+    "slug": "business-broadband-availability-by-address",
+    "topic": "Data & APIs",
+    "title": "How to check business broadband availability by address",
+    "summary": "Find reported business fiber, cable and fixed wireless at a property. Compare two San Francisco addresses and verify installation, upload speeds and service terms before signing.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/parcel-number-lookup-by-address.webp?v=e12dbb56",
+    "dataset": {
+      "name": "Larkin Street business broadband and census-block speed comparison",
+      "description": "Four California broadband map queries intersect city address points at 100 and 200 Larkin Street. Includes reported business and consumer services by technology, advertised speed pairs, wireline and fiber counts, and the separate consumer census-block results.",
+      "spatialCoverage": "Civic Center, San Francisco, California, United States",
+      "temporalCoverage": "2024-12-31",
+      "sources": [
+        "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Clongitude%2Clatitude%2Cdata_as_of&%24where=eas_fullid+in+%28%27282045-491245-314862%27%2C%27453314-674072-499891%27%29&%24order=address",
+        "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Provider_Identify/MapServer/0?f=pjson",
+        "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Fixed_Consumer_Downstream_Maximum/MapServer/0?f=pjson",
+        "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/communications-division/documents/broadband-mapping/user-guide_faq_2026/2025-08-12_final-faqs-2026-broadband-map_with-pf-update.pdf#page=3"
+      ],
+      "sourceDetails": [
+        {
+          "title": "City address point query for 100 and 200 Larkin Street",
+          "publisher": "City and County of San Francisco",
+          "url": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Clongitude%2Clatitude%2Cdata_as_of&%24where=eas_fullid+in+%28%27282045-491245-314862%27%2C%27453314-674072-499891%27%29&%24order=address"
+        },
+        {
+          "title": "December 2024 provider polygons, business and consumer attributes and technology code domain",
+          "publisher": "California Public Utilities Commission",
+          "url": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Provider_Identify/MapServer/0?f=pjson"
+        },
+        {
+          "title": "December 2024 consumer maximum downstream availability by census block",
+          "publisher": "California Public Utilities Commission",
+          "url": "https://cpuc2016.westus.cloudapp.azure.com/arcgis/rest/services/CPUC/CPUC_EOY_2024_Fixed_Consumer_Downstream_Maximum/MapServer/0?f=pjson"
+        },
+        {
+          "title": "February 2026 broadband map FAQ, census-block speed methodology",
+          "publisher": "California Public Utilities Commission",
+          "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/communications-division/documents/broadband-mapping/user-guide_faq_2026/2025-08-12_final-faqs-2026-broadband-map_with-pf-update.pdf#page=3"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download both address points and the broadband query results",
+          "path": "/blog/larkin-street-business-broadband-availability.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "data-center-fiber-route-diversity",
     "topic": "Data & APIs",
     "title": "How to verify data center fiber route diversity",

@@ -166,7 +166,9 @@ function productMd() {
 function coverageMd() {
   const names = new Set(coverageFields.map(field => field.name))
   const shared = coverageFields.filter(({ definitions }) => definitions.point && definitions.parcel).length
+  const operatorFields = coverageFields.filter(({ definitions }) => Object.values(definitions).some(definition => definition.operatorOnly))
   if (names.size !== coverage.distinct || names.size !== coverageFields.length || shared !== coverage.shared ||
+      operatorFields.length !== coverage.operatorOnly ||
       coverageFields.filter(({ definitions }) => definitions.point).length !== coverage.point ||
       coverageFields.filter(({ definitions }) => definitions.parcel).length !== coverage.parcel ||
       coverageTopics.some(({ fields }) => fields.some(name => !names.has(name)))) {
@@ -183,6 +185,12 @@ function coverageMd() {
     `[Search the coverage catalog](${SITE}${links.coverage}). Snapshot checked ${coverage.checkedDate}.`, '',
     `The public manifests list ${coverage.distinct} distinct field names. ${coverage.point} are listed for point lookup and ${coverage.parcel} for parcel enrichment, with ${coverage.shared} names appearing in both.`, '',
     'Check the definition for the operation you plan to call. A listed field can be unavailable at a given location.', '',
+    ...(operatorFields.length ? ['## Fields marked as requiring an operator key', '',
+      ...operatorFields.map(({ name, definitions }) =>
+        '- `' + name + '`. ' + Object.entries(definitions).filter(([, definition]) => definition.operatorOnly)
+          .map(([operation]) => operation === 'point' ? '`POST /v1/fetch`' : '`POST /v1/enrich`').join(' and ') + '.'),
+      '',
+    ] : []),
     `- [Live point lookup manifest](${links.pointFields}) for \`POST /v1/fetch\`.`,
     `- [Live parcel enrichment manifest](${links.parcelFields}) for \`POST /v1/enrich\`.`,
     `- [Download the dated field snapshot](${SITE}/data-coverage-fields.json).`,
