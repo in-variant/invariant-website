@@ -173,12 +173,17 @@ def excludes_indexing(values):
     return any(re.search(r"\b(?:noindex|none)\b", value, re.IGNORECASE) for value in values)
 
 
-def sitemap_urls(xml):
+def sitemap_entries(xml):
     root = ElementTree.fromstring(xml)
-    urls = [node.text for node in root.findall(f"{SITEMAP_NS}url/{SITEMAP_NS}loc")]
-    if not urls or len(set(urls)) != len(urls):
-        raise ValueError("sitemap is empty or contains duplicate URLs")
-    return set(urls)
+    entries = {}
+    for node in root.findall(f"{SITEMAP_NS}url"):
+        loc = node.findtext(f"{SITEMAP_NS}loc")
+        if not loc or loc in entries:
+            raise ValueError("sitemap contains a missing or duplicate URL")
+        entries[loc] = node.findtext(f"{SITEMAP_NS}lastmod")
+    if not entries:
+        raise ValueError("sitemap is empty")
+    return entries
 
 
 def fetch(origin, path, crawler=None, *, method="GET"):
@@ -222,9 +227,12 @@ def verify(origin, job, expected_urls, preview, crawler=None):
             require(not actual.canonical, "404 contains a canonical URL")
         elif kind == "sitemap":
             require_success(status, headers, "application/xml")
-            actual_urls = sitemap_urls(body)
-            missing, extra = expected_urls - actual_urls, actual_urls - expected_urls
+            actual_entries = sitemap_entries(body)
+            missing = expected.keys() - actual_entries.keys()
+            extra = actual_entries.keys() - expected.keys()
             require(not missing and not extra, f"sitemap differs by {len(missing)} missing and {len(extra)} extra URLs")
+            stale = sorted(url for url, lastmod in expected.items() if actual_entries[url] != lastmod)
+            require(not stale, f"sitemap lastmod differs from dist/ for {len(stale)} URLs: {', '.join(stale[:3])}")
         elif kind == "feed":
             require_success(status, headers, "application/atom+xml")
             require(body == expected, "Atom feed differs from dist/")
@@ -422,13 +430,14 @@ def verify_blog_feed(blog, xml, expected_urls):
             "Atom feed has incorrect revision ordering")
 
 
-def build_jobs(expected_urls, full):
+def build_jobs(sitemap, full):
+    expected_urls = set(sitemap)
     path_set = {urlsplit(url).path for url in expected_urls}
     catalog = Page("/datasets", (DIST / "datasets/index.html").read_bytes())
     research = {path for path in catalog.links if path.startswith("/blog/") and CANONICAL + path in expected_urls}
     candidates = sorted(path_set if full else set(SAMPLE) | research)
     require(set(candidates) <= path_set, "sample paths missing from the local build")
-    jobs = [("/sitemap.xml", "sitemap", None)]
+    jobs = [("/sitemap.xml", "sitemap", sitemap)]
     alternate_files = set()
     downloads = catalog.downloads.copy()
     assets = set()
@@ -490,15 +499,16 @@ def main():
     if args.preview and url.hostname == urlsplit(CANONICAL).hostname:
         parser.error("run production verification without --preview")
     try:
-        expected_urls = sitemap_urls((DIST / "sitemap.xml").read_bytes())
-        jobs, pages, assets = build_jobs(expected_urls, args.full)
+        sitemap = sitemap_entries((DIST / "sitemap.xml").read_bytes())
+        expected_urls = set(sitemap)
+        jobs, pages, assets = build_jobs(sitemap, args.full)
     except OSError as error:
         sys.exit(f"Cannot read the release from dist/. Run npm run build first. {error}")
     except (ValueError, KeyError, ElementTree.ParseError) as error:
         sys.exit(f"Invalid release in dist/: {error}")
     if args.preserve_sitemap:
         try:
-            baseline = sitemap_urls(args.preserve_sitemap.read_bytes())
+            baseline = set(sitemap_entries(args.preserve_sitemap.read_bytes()))
         except (OSError, ValueError, ElementTree.ParseError) as error:
             sys.exit(f"Cannot read baseline sitemap {args.preserve_sitemap}: {error}")
         missing = sorted(baseline - expected_urls)
