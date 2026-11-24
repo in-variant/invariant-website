@@ -20230,6 +20230,66 @@
         ]
       },
       {
+        "id": "watchlist-quarter-end-versus-amendment",
+        "heading": "Accenture Tower and 3001 & 3003 Washington loan maturities",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "KBS REIT III’s quarterly report, filed November 12, 2026, shows a November 2 maturity for both its Accenture Tower and 3001 & 3003 Washington loans in Note 8. The table describes September 30. A separate Form 8-K, filed November 5, records two modifications signed October 30. Read the table footnotes and subsequent events before selecting a current maturity date.",
+            "sourceIds": [
+              "kbs-september-quarter",
+              "kbs-october-modifications",
+              "kbs-edgar-filings"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Facility and October 30 principal",
+              "Stated maturity under the October 30 modification",
+              "What to track separately"
+            ],
+            "rows": [
+              [
+                "Accenture Tower, $317.4 million",
+                "December 17, 2026",
+                "The November 2, 2027 date is a conditional option that requires a $400,000 fee. The spread is 325 basis points over one-month Term SOFR from November 2, 2026 and would drop to 300 basis points when the option takes effect."
+              ],
+              [
+                "3001 & 3003 Washington, $137.8 million",
+                "January 20, 2027",
+                "KBS reported a $100,000 fee paid and no further extension option. The lender retained an acceleration right tied to its assessment of whether a qualifying refinance would close by maturity. Count this loan once across both buildings."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "kbs-october-modifications"
+              ],
+              [
+                "kbs-october-modifications"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A watchlist run on November 24, using the November 5 filing, puts Accenture Tower 23 days from its stated due date and the Washington loan 57 days away. The November 12 filing repeats the modifications in its subsequent events. Use the dates in the October agreements for that watchlist and retain November 2 in the September snapshot. Record refinance plans and the acceleration condition alongside the dates. The reported balances are dated October 30.",
+            "sourceIds": [
+              "kbs-october-modifications",
+              "kbs-september-quarter",
+              "kbs-edgar-filings"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/kbs-office-loan-maturity-history.csv",
+            "format": "CSV",
+            "label": "Download the two KBS loan histories and expected watchlist dates",
+            "datasetAnchor": "dataset-kbs-office-maturity"
+          }
+        ]
+      },
+      {
         "id": "block-40-refinance-history",
         "heading": "What changes in the watchlist when a commercial mortgage is refinanced?",
         "blocks": [
@@ -20526,6 +20586,34 @@
     ],
     "sources": [
       {
+        "id": "kbs-october-modifications",
+        "title": "KBS Form 8-K, Item 2.03, October 30 loan modifications",
+        "url": "https://www.sec.gov/Archives/edgar/data/1482430/000148243026000044/kbsriii-20261030.htm",
+        "publisher": "KBS REIT III via SEC EDGAR",
+        "linkLabel": "November 5 modification disclosure"
+      },
+      {
+        "id": "kbs-september-quarter",
+        "title": "KBS Form 10-Q, Notes 8 and 14, September snapshot and subsequent extensions",
+        "url": "https://www.sec.gov/Archives/edgar/data/1482430/000148243026000048/kbsriii-20260930.htm",
+        "publisher": "KBS REIT III via SEC EDGAR",
+        "linkLabel": "November 12 quarterly report"
+      },
+      {
+        "id": "kbs-edgar-filings",
+        "title": "KBS EDGAR submissions and filing acceptance timestamps",
+        "url": "https://data.sec.gov/submissions/CIK0001482430.json",
+        "publisher": "U.S. Securities and Exchange Commission",
+        "linkLabel": "SEC filing dates"
+      },
+      {
+        "id": "kbs-june-quarter",
+        "title": "KBS August 13 Form 10-Q, subsequent events and Washington extension",
+        "url": "https://www.sec.gov/Archives/edgar/data/1482430/000148243026000026/kbsriii-20260630.htm",
+        "publisher": "KBS REIT III via SEC EDGAR",
+        "linkLabel": "August 13 quarterly report"
+      },
+      {
         "id": "orion-index",
         "title": "Orion Properties Form 8-K filing index, February 19, 2026",
         "url": "https://www.sec.gov/Archives/edgar/data/1873923/000187392326000023/0001873923-26-000023-index.htm",
@@ -20628,6 +20716,20 @@
       "temporalCoverage": "2022-02-10/2026-11-05"
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-kbs-office-maturity",
+        "name": "Accenture Tower and 3001 & 3003 Washington mortgage maturity history",
+        "description": "Five dated KBS disclosure observations for Accenture Tower and the loan on 3001 and 3003 Washington Boulevard. Separates quarter-end maturities, later modifications, exercise terms, balances and filing timestamps.",
+        "spatialCoverage": "Chicago, Illinois, and Arlington, Virginia, United States",
+        "temporalCoverage": "2026-08-04/2026-11-12",
+        "datePublished": "2026-11-24",
+        "sourceIds": [
+          "kbs-october-modifications",
+          "kbs-september-quarter",
+          "kbs-june-quarter",
+          "kbs-edgar-filings"
+        ]
+      },
       {
         "anchor": "dataset-wfcm-amendment",
         "name": "WFCM 2025-C65 original and amended October 2026 loan report comparison",
