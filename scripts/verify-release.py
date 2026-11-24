@@ -42,6 +42,7 @@ CRAWLER_USER_AGENTS = (
 )
 CRAWLER_SMOKE_PATHS = frozenset((
     "/robots.txt", "/product", "/product.md", "/blog", "/blog/data-center-site-selection-checklist",
+    "/blog/index.html", "/blog/data-center-site-selection-checklist/index.html",
     "/blog/data-center-site-selection-checklist.md", "/research", "/research.md",
     "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
 ))
@@ -499,10 +500,15 @@ def build_jobs(sitemap, full):
         if path not in path_set:
             jobs.append((path, "shell", None))
     config = json.loads((ROOT / "vercel.json").read_text())
+    index_aliases = {path.rstrip("/") + "/index.html": path for path in candidates}
+    jobs.extend((alias, "redirect", (308, path)) for alias, path in index_aliases.items())
     for rule in config["redirects"]:
+        source = rule["source"]
+        if source in index_aliases or ":" in source:
+            continue
         destination = rule["destination"]
         code = 308 if rule["permanent"] else 307
-        jobs.append((rule["source"], "redirect", (code, destination)))
+        jobs.append((source, "redirect", (code, destination)))
     not_found = Page("/404.html", (DIST / "404.html").read_bytes())
     require(path_set.isdisjoint(RETIRED), "retired content is still listed in the sitemap")
     jobs.extend((path, "missing", not_found) for path in MISSING + RETIRED)
