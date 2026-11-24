@@ -1,0 +1,85 @@
+{
+  "event": {
+    "storm_id": "AL142024",
+    "name": "Hurricane Milton",
+    "landfall_at_siesta_key": {
+      "latitude": 27.4,
+      "longitude": -82.6,
+      "time_utc": "2024-10-10T00:30:00Z",
+      "cyclone_maximum_sustained_wind_kt": 100
+    }
+  },
+  "checked_on": "2026-11-23",
+  "sources": [
+    {
+      "url": "https://www.weather.gov/source/tbw/TropicalEventSummary/PSHTBW_2024AL14_Milton_WindAndPressure.csv",
+      "sha256": "ea0f25c991bab30743ac0ac2b3a4a71245b52a545da0ed3de9f704b88853f18a"
+    },
+    {
+      "url": "https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf",
+      "sha256": "565196bca8a665250cab912c9d9b4529bfed620e211aa7b7b18a450ddccefa7b"
+    },
+    {
+      "url": "https://www.nhc.noaa.gov/gis/best_track/al142024_best_track.zip",
+      "sha256": "96798e6ec3d61a7ff293c4042e712d475c5e0c444181546d4524ba557cca4f84"
+    }
+  ],
+  "method": {
+    "station_rows": "Exact NWS CSV station IDs. Preserve station height, sustained-wind averaging period, gust UTC time, and final NHC Table 3 incomplete-record footnotes.",
+    "swath_intersection": "Find the highest RADII polygon covering each original station coordinate in AL142024_windswath.shp from the NHC best-track GIS archive.",
+    "scope": "The swath is an event-wide sustained-wind analysis. Station gusts are measurements at the anemometer. A parcel peak gust and building damage are outside this comparison."
+  },
+  "observations": [
+    {
+      "station_id": "KTPA",
+      "station_name": "Tampa International Airport",
+      "latitude": 27.9619,
+      "longitude": -82.5403,
+      "network": "ASOS",
+      "anemometer_height_m": 8.0,
+      "sustained_wind_averaging_minutes": 2,
+      "max_observed_sustained_wind_kt": 53,
+      "max_observed_gust_kt": 83,
+      "max_observed_gust_mph_rounded": 96,
+      "max_observed_gust_time_utc": "2024-10-10T03:06:00Z",
+      "max_observed_gust_time_local": "2024-10-09T23:06:00-04:00",
+      "nws_csv_incomplete_or_estimated_flag": null,
+      "nhc_report_table_3_page_21_incomplete_wind_record": false,
+      "nhc_cumulative_sustained_wind_swath_band_kt": 50
+    },
+    {
+      "station_id": "KSPG",
+      "station_name": "Albert Whitted Airport",
+      "latitude": 27.7647,
+      "longitude": -82.6275,
+      "network": "ASOS",
+      "anemometer_height_m": 8.0,
+      "sustained_wind_averaging_minutes": 2,
+      "max_observed_sustained_wind_kt": 58,
+      "max_observed_gust_kt": 88,
+      "max_observed_gust_mph_rounded": 101,
+      "max_observed_gust_time_utc": "2024-10-10T02:29:00Z",
+      "max_observed_gust_time_local": "2024-10-09T22:29:00-04:00",
+      "nws_csv_incomplete_or_estimated_flag": null,
+      "nhc_report_table_3_page_21_incomplete_wind_record": false,
+      "nhc_cumulative_sustained_wind_swath_band_kt": 64
+    },
+    {
+      "station_id": "KSRQ",
+      "station_name": "Sarasota/Bradenton International Airport",
+      "latitude": 27.4014,
+      "longitude": -82.5586,
+      "network": "ASOS",
+      "anemometer_height_m": 10.0,
+      "sustained_wind_averaging_minutes": 2,
+      "max_observed_sustained_wind_kt": 60,
+      "max_observed_gust_kt": 89,
+      "max_observed_gust_mph_rounded": 102,
+      "max_observed_gust_time_utc": "2024-10-10T01:34:00Z",
+      "max_observed_gust_time_local": "2024-10-09T21:34:00-04:00",
+      "nws_csv_incomplete_or_estimated_flag": null,
+      "nhc_report_table_3_page_21_incomplete_wind_record": true,
+      "nhc_cumulative_sustained_wind_swath_band_kt": 64
+    }
+  ]
+}

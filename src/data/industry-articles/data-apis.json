@@ -1,5 +1,332 @@
 [
   {
+    "slug": "hurricane-wind-history-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Hurricane Wind History by Address for Property Underwriting",
+    "description": "Check hurricane wind history for a street address. Compare observed station gusts, NOAA sustained-wind swaths, and the data needed for a building-level estimate.",
+    "date": "2026-11-23",
+    "readMinutes": 6,
+    "coverAlt": "Hurricane Milton over Florida with an 83-knot gust at Tampa International, 88 knots at Albert Whitted, and 89 knots in the incomplete Sarasota station record. The separate landfall estimate is 100 knots sustained.",
+    "coverCaption": "Milton point observations from NWS Tampa Bay, with NHC’s final best-track center and selected 50- and 64-knot sustained-wind bands. Coastline from the U.S. Census Bureau.",
+    "intro": "To check hurricane wind history by address, match the address to the insured building and set the event window in local time. Use the National Hurricane Center’s final storm report and wind swath to check the event footprint. Use weather stations for measured wind nearby, and request a documented wind model when the file calls for a gust estimate at the building.",
+    "takeaways": [
+      "Store the coordinates and the building or unit the decision covers.",
+      "Record peak gust and sustained wind separately, with the observation height, averaging period and time zone.",
+      "Save the storm ID, source date and coverage flags so another reviewer can reproduce the check."
+    ],
+    "sections": [
+      {
+        "id": "address-and-loss-date",
+        "heading": "How to look up hurricane wind history for a property",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Match the scheduled property to the right building footprint. Check each building separately for a campus or a parcel with several structures.",
+              "Convert the exposure or loss window to UTC. Search both UTC dates when the local event crosses midnight in the archive.",
+              "Pull the final storm report and GIS package. Check where the location falls in the cumulative sustained-wind bands.",
+              "Collect nearby station observations from the same period. Keep the station ID, distance from the building, instrument height, wind metric and any outages or incomplete-record flags."
+            ],
+            "sourceIds": [
+              "nws-index",
+              "tcr",
+              "gis",
+              "nhc-terms"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "milton-observations",
+        "heading": "Hurricane Milton at three Florida airport stations",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Milton made landfall on Siesta Key at 00:30 UTC on October 10, 2024, or 8:30 p.m. EDT on October 9. NHC estimated the storm’s maximum sustained wind at landfall at 100 knots. We matched three NWS airport station rows to the final storm report and checked their published coordinates against the NHC cumulative wind swath shapefile.",
+            "sourceIds": [
+              "tcr",
+              "nws-wind",
+              "gis"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Weather station",
+              "Observed sustained wind",
+              "Observed peak gust",
+              "Peak gust time, EDT on October 9",
+              "NHC sustained band"
+            ],
+            "rows": [
+              [
+                "Tampa International (KTPA)",
+                "53 kt",
+                "83 kt (96 mph)",
+                "11:06 p.m.",
+                "50 kt"
+              ],
+              [
+                "Albert Whitted (KSPG)",
+                "58 kt",
+                "88 kt (101 mph)",
+                "10:29 p.m.",
+                "64 kt"
+              ],
+              [
+                "Sarasota–Bradenton (KSRQ)",
+                "60 kt, incomplete",
+                "89 kt (102 mph), incomplete",
+                "9:34 p.m.",
+                "64 kt"
+              ]
+            ],
+            "sourceIds": [
+              "nws-wind",
+              "tcr",
+              "gis"
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "Tampa’s 83-knot gust and its 50-knot swath band describe different wind metrics. The station CSV reports peak gusts separately from two-minute sustained readings at the station. NHC’s swath summarizes estimated sustained-wind extents across the storm. At Sarasota, NHC marks the wind record incomplete in Table 3, even though the NWS CSV has a blank flag for that row. Preserve the incomplete-record note in the underwriting file.",
+            "sourceIds": [
+              "nws-wind",
+              "tcr",
+              "nhc-terms",
+              "gis"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To reproduce the join, use the highest RADII polygon that covers each exact station point in AL142024_windswath.shp. Use the best-track ZIP linked from the NHC archive and keep its revision. The download includes the selected coordinates, gust timestamps, units, instrument heights and source file hashes.",
+            "sourceIds": [
+              "gis",
+              "nws-wind"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/hurricane-wind-history-by-address.csv",
+            "format": "CSV",
+            "label": "Download the station and swath comparison"
+          },
+          {
+            "type": "download",
+            "path": "/blog/hurricane-wind-history-by-address.json",
+            "format": "JSON",
+            "label": "Download the source hashes and join method"
+          }
+        ]
+      },
+      {
+        "id": "choose-a-source",
+        "heading": "Choose the wind record that answers the underwriting question",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Decision",
+              "What to request"
+            ],
+            "rows": [
+              [
+                "Check for an event near the building",
+                "Final storm and time window, the applicable sustained-wind band, and recent station observations with instrument metadata."
+              ],
+              [
+                "Estimate the gust at an insured building",
+                "An event-specific, location-level gust estimate with its height, averaging period, method version and uncertainty. Ask for the measurement evidence behind it."
+              ],
+              [
+                "Review construction or mitigation",
+                "The building code or design basis in force at construction or retrofit, plus records for the roof assembly, openings, and completed mitigation."
+              ],
+              [
+                "Compare long-run portfolio exposure",
+                "A consistent version of a hurricane hazard model. FEMA’s National Risk Index provides geography-level expected annual loss for screening."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "tcr",
+                "gis"
+              ],
+              [
+                "wvs-example"
+              ],
+              [
+                "product"
+              ],
+              [
+                "fema"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "For a vendor trial, send the same coordinates, event ID and date window to each provider. Ask for separate columns for station observations and modeled gusts. The public Wind Verification Report sample specifies a three-second gust at 10 meters. First Street documents how it estimates historical hurricane gusts from storm data. Check that the metric and time window agree before comparing results.",
+            "sourceIds": [
+              "wvs-example",
+              "first-street"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to match the address to the correct parcel and enrich the location with sourced property and hazard fields. Join the dated wind evidence to that asset record with its own source, measurement scope and event ID. For multi-building sites, preserve the building geometry you used to assess exposure.",
+            "sourceIds": [
+              "parcel-api",
+              "product"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related underwriting checks",
+            "items": [
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial property underwriting APIs"
+              },
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check the flood map that applied on the review date"
+              },
+              {
+                "slug": "hail-history-by-address-for-underwriting",
+                "label": "Check hail history using NOAA radar and local reports"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can NOAA tell me the peak wind gust at a particular address?",
+        "answer": "NOAA gives the measured gust at a station and the analyzed sustained-wind footprint of the storm. Use the station observations and swath as evidence near the building. For a gust estimate at the building, ask for a location-level model and its uncertainty.",
+        "sourceIds": [
+          "nws-wind",
+          "tcr",
+          "gis"
+        ]
+      },
+      {
+        "question": "Why does the same hurricane show different wind speeds at the same location?",
+        "answer": "A peak gust is a brief high reading. Sustained wind uses an averaging period. Station readings also depend on the instrument height and what part of the storm it sampled. Compare the same metric, location, height and time before treating two values as equivalent.",
+        "sourceIds": [
+          "nws-wind",
+          "nhc-terms"
+        ]
+      },
+      {
+        "question": "Is hurricane wind history the same as a property wind risk score?",
+        "answer": "Wind history describes selected past events. A risk score uses the assumptions, exposure measures and time horizon in its model. Keep event records, prospective exposure and building characteristics together so each can be reviewed.",
+        "sourceIds": [
+          "fema",
+          "first-street"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "tcr",
+        "title": "Hurricane Milton, AL142024. Table 1 landfall and Table 3 observations on printed page 21",
+        "url": "https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf",
+        "publisher": "NOAA National Hurricane Center",
+        "linkLabel": "Milton final report"
+      },
+      {
+        "id": "nws-wind",
+        "title": "Tampa Bay post-storm Wind and Pressure CSV, exact station rows KTPA, KSPG and KSRQ",
+        "url": "https://www.weather.gov/source/tbw/TropicalEventSummary/PSHTBW_2024AL14_Milton_WindAndPressure.csv",
+        "publisher": "National Weather Service Tampa Bay",
+        "linkLabel": "Original NWS station CSV"
+      },
+      {
+        "id": "nws-index",
+        "title": "Post Tropical Cyclone Reports, Tampa Bay",
+        "url": "https://www.weather.gov/tbw/TropicalEventSummary",
+        "publisher": "National Weather Service Tampa Bay",
+        "linkLabel": "NWS local storm archive"
+      },
+      {
+        "id": "gis",
+        "title": "AL142024 best-track ZIP, AL142024_windswath.shp",
+        "url": "https://www.nhc.noaa.gov/gis/best_track/al142024_best_track.zip",
+        "publisher": "NOAA National Hurricane Center",
+        "linkLabel": "Final best-track GIS ZIP"
+      },
+      {
+        "id": "nhc-terms",
+        "title": "Glossary, maximum sustained surface wind",
+        "url": "https://www.nhc.noaa.gov/aboutgloss.shtml",
+        "publisher": "NOAA National Hurricane Center",
+        "linkLabel": "NHC wind definitions"
+      },
+      {
+        "id": "coast",
+        "title": "Cartographic Boundary Files, 2024 states at 1:500,000",
+        "url": "https://www.census.gov/geographies/mapping-files/2024/geo/carto-boundary-file.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Coastline source"
+      },
+      {
+        "id": "fema",
+        "title": "National Risk Index data for counties and census tracts",
+        "url": "https://catalog.data.gov/dataset/national-risk-index-nri-data",
+        "publisher": "Federal Emergency Management Agency",
+        "linkLabel": "FEMA risk index data"
+      },
+      {
+        "id": "wvs-example",
+        "title": "Sample Wind Verification Report and gust specification",
+        "url": "https://www.wvs.corelogic.com/pdfs/wind-verification-report-sample.pdf",
+        "publisher": "Wind Verification Service",
+        "linkLabel": "Wind Verification Report sample"
+      },
+      {
+        "id": "first-street",
+        "title": "Hurricane Wind Model technical documentation, section 2.4.1",
+        "url": "https://assets.firststreet.org/uploads/2023/07/Hurricane-Wind-Documentation-.pdf",
+        "publisher": "First Street",
+        "linkLabel": "First Street wind method"
+      },
+      {
+        "id": "parcel-api",
+        "title": "Look up a parcel by street address with Geocode and Enrich",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Try a parcel lookup"
+      },
+      {
+        "id": "product",
+        "title": "Invariant Earth API, sourced property and hazard fields",
+        "url": "https://invariant-ai.com/product",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Explore the Invariant Earth API"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "hail-history-by-address-for-underwriting",
+      "fema-flood-zone-history-for-underwriting",
+      "parcel-number-lookup-by-address"
+    ],
+    "dataset": {
+      "name": "Hurricane Milton station gusts and NOAA sustained-wind bands",
+      "description": "Three Florida ASOS station rows from Hurricane Milton with measured sustained winds, gusts, local and UTC timestamps, NHC incomplete-record flags, and reproducible intersections with the final wind swath.",
+      "sourceIds": [
+        "nws-wind",
+        "tcr",
+        "gis"
+      ],
+      "spatialCoverage": "Tampa Bay and Sarasota, Florida, United States"
+    }
+  },
+  {
     "slug": "parcel-number-lookup-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -16211,7 +16538,8 @@
     ],
     "relatedSlugs": [
       "commercial-property-insurance-data-apis",
-      "fema-flood-zone-history-for-underwriting"
+      "fema-flood-zone-history-for-underwriting",
+      "hurricane-wind-history-by-address"
     ],
     "dataset": {
       "name": "Denver May 30, 2024 hail reports and radar estimates",
@@ -16500,7 +16828,7 @@
       {"id":"earth-responses","title":"API responses and field provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
       {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
-    "relatedSlugs": ["ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address"],
+    "relatedSlugs": ["ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address", "hurricane-wind-history-by-address"],
     "updatedDate": "2026-11-23"
   },
   {

@@ -1,5 +1,54 @@
 [
   {
+    "slug": "hurricane-wind-history-by-address",
+    "topic": "Data & APIs",
+    "title": "Hurricane Wind History by Address for Property Underwriting",
+    "summary": "Check hurricane wind history for a street address. Compare observed station gusts, NOAA sustained-wind swaths, and the data needed for a building-level estimate.",
+    "date": "November 23, 2026",
+    "dateTime": "2026-11-23",
+    "region": "United States",
+    "image": "/blog/industry/hurricane-wind-history-by-address.webp?v=e5cef76c",
+    "dataset": {
+      "name": "Hurricane Milton station gusts and NOAA sustained-wind bands",
+      "description": "Three Florida ASOS station rows from Hurricane Milton with measured sustained winds, gusts, local and UTC timestamps, NHC incomplete-record flags, and reproducible intersections with the final wind swath.",
+      "spatialCoverage": "Tampa Bay and Sarasota, Florida, United States",
+      "sources": [
+        "https://www.weather.gov/source/tbw/TropicalEventSummary/PSHTBW_2024AL14_Milton_WindAndPressure.csv",
+        "https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf",
+        "https://www.nhc.noaa.gov/gis/best_track/al142024_best_track.zip"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Tampa Bay post-storm Wind and Pressure CSV, exact station rows KTPA, KSPG and KSRQ",
+          "publisher": "National Weather Service Tampa Bay",
+          "url": "https://www.weather.gov/source/tbw/TropicalEventSummary/PSHTBW_2024AL14_Milton_WindAndPressure.csv"
+        },
+        {
+          "title": "Hurricane Milton, AL142024. Table 1 landfall and Table 3 observations on printed page 21",
+          "publisher": "NOAA National Hurricane Center",
+          "url": "https://www.nhc.noaa.gov/data/tcr/AL142024_Milton.pdf"
+        },
+        {
+          "title": "AL142024 best-track ZIP, AL142024_windswath.shp",
+          "publisher": "NOAA National Hurricane Center",
+          "url": "https://www.nhc.noaa.gov/gis/best_track/al142024_best_track.zip"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the station and swath comparison",
+          "path": "/blog/hurricane-wind-history-by-address.csv",
+          "format": "CSV"
+        },
+        {
+          "label": "Download the source hashes and join method",
+          "path": "/blog/hurricane-wind-history-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "parcel-number-lookup-by-address",
     "topic": "Data & APIs",
     "title": "How to Find a Parcel Number (APN) by Address",
