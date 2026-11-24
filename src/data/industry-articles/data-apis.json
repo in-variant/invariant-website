@@ -16303,7 +16303,8 @@
     "title": "California wildfire insurance nonrenewal moratoriums by ZIP code",
     "description": "Check California wildfire insurance nonrenewal rules for residential and commercial property, with dates and 37 ZIP-code records from the Dove and Gann fire bulletins.",
     "date": "2026-11-23",
-    "readMinutes": 5,
+    "updatedDate": "2026-11-24",
+    "readMinutes": 6,
     "intro": "To check whether California’s wildfire insurance moratorium applies, look up the insured property’s ZIP code in the relevant Department of Insurance bulletin. Then confirm the policy was in force on the emergency declaration date, the type of policy and the reason for the notice. The Dove Fire bulletin lists 15 ZIP codes and starts its one-year period on October 15, 2026. The Gann Fire bulletin lists 22 and starts on August 6, 2026. Seven ZIP codes appear in both.",
     "coverCaption": "AI-generated illustration of a fictional California foothill town.",
     "takeaways": [
@@ -16388,6 +16389,40 @@
             "text": "For ordinary commercial property, the size exclusion requires both an annual premium of at least $25,000 and an average of at least 25 employees in the preceding 12 months. The statute overrides that size exclusion for policies covering loss or damage to real property used primarily for commercial residential or habitational purposes, such as apartment complexes and qualifying association property. Inland marine, transit and transportation policies are separately excluded. Section 675.55(b) sets out additional exceptions.",
             "sourceIds": [
               "sb547"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "These examples use the same ZIP code, a policy in force on October 15 and a notice based solely on wildfire location. The premiums and employee counts are illustrative. The table applies the size exclusion only. Review the policy form, property use, notice and any exceptions under Section 675.55(b) before deciding whether a policy qualifies.",
+            "sourceIds": ["dove", "sb547"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Policy example in ZIP code 95370", "What to flag for renewal review"],
+            "rows": [
+              [
+                "Warehouse, $24,000 annual premium and 40 employees on average",
+                "The premium is below the statutory threshold. The policy stays in review for the other conditions and exceptions."
+              ],
+              [
+                "Retail property, $30,000 annual premium and 20 employees on average",
+                "The employee count is below the statutory threshold. Use the average over the prior 12 months. The current headcount may differ."
+              ],
+              [
+                "Warehouse, $25,000 annual premium and 25 employees on average",
+                "Both thresholds include the exact cutoff. The size exclusion applies to this ordinary commercial property example."
+              ],
+              [
+                "Apartment complex, $30,000 annual premium and 40 employees on average",
+                "The statute exempts policies on primarily habitational real property from the size exclusion. Confirm the principal use and the policy form."
+              ]
+            ],
+            "rowSourceIds": [
+              ["sb547"],
+              ["sb547"],
+              ["sb547"],
+              ["sb547"]
             ]
           }
         ]
@@ -18271,6 +18306,10 @@
               {
                 "label": "Verify wildfire risk by address and building",
                 "slug": "wildfire-risk-by-address-for-underwriting"
+              },
+              {
+                "label": "Check wildfire-related nonrenewal by insured ZIP and policy date",
+                "slug": "california-wildfire-insurance-nonrenewal-moratorium"
               },
               {
                 "label": "Check earthquake hazard and liquefaction by address",
