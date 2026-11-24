@@ -105,6 +105,7 @@ function productMd() {
     `Updated: ${product.updatedDate}`, '',
     `- [Get an API key](${links.keys})`,
     `- [Quickstart](${links.quickstart})`,
+    `- [Look up a parcel by address](${links.parcelLookup})`,
     `- [Browse API fields](${links.fields})`,
     `- [Live point fields](${links.pointFields}) and [live parcel fields and presets](${links.parcelFields})`, '',
     '## Choose what to query', '',

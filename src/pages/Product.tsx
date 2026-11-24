@@ -127,7 +127,10 @@ export default function Product() {
       <section className="resource-container earth-product-section" aria-labelledby="earth-operations">
         <div className="earth-product-section-heading">
           <h2 id="earth-operations">Choose what to query</h2>
-          <a className="earth-product-link" href={links.quickstart}>Read the quickstart <ResourceArrow diagonal /></a>
+          <nav className="earth-product-workflows" aria-label="API walkthroughs">
+            <a className="earth-product-link" href={links.parcelLookup}>Look up a parcel by address <ResourceArrow diagonal /></a>
+            <a className="earth-product-link" href={links.quickstart}>Read the quickstart <ResourceArrow diagonal /></a>
+          </nav>
         </div>
         <div className="earth-product-operations">
           {product.operations.map(({ title, method, description, docs }) => (
