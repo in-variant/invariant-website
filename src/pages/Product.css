@@ -218,8 +218,21 @@
 .earth-product-section h3 { margin: 10px 0 8px; font-size: clamp(20px, 1.8vw, 30px); line-height: 1.18; }
 .earth-product-operations article > p, .earth-product-studies h3 + p { color: var(--earth-muted); font-size: 15px; }
 .earth-product-operations .earth-product-link { margin-top: 10px; }
+.earth-product-studies article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.earth-product .earth-product-studies .earth-product-link {
+  margin-top: auto;
+  justify-content: flex-start;
+  color: var(--earth-accent);
+}
+.earth-product .earth-product-studies h3 { margin-block: 8px; }
+.earth-product .earth-product-studies h3 + p { margin-bottom: 10px; }
+.earth-product .earth-product-studies a:focus-visible { outline-color: var(--earth-accent); }
 .earth-product-studies h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.earth-product-studies h3 .resource-arrow { vertical-align: middle; }
+.earth-product-studies h3 .resource-arrow { display: inline-block; vertical-align: middle; }
 
 .earth-product-diligence {
   display: flex;

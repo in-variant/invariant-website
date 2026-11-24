@@ -144,8 +144,11 @@ function productMd() {
     '## Use Earth in your coding agent', '',
     `[MCP setup instructions](${links.mcp}) for the server at ${links.mcpEndpoint}.`, '',
     'Copy this setup prompt into your coding agent.', '', `> ${product.setupPrompt}`, '',
-    '## See what the records show', '',
-    ...product.examples.map(({ audience, title, description, href }) => `- ${audience}. [${title}](${SITE}${href}). ${description}`), '',
+    `## ${product.examplesHeading}`, '', product.examplesDescription, '',
+    ...product.examples.flatMap(({ audience, title, description, href, workflow }) => [
+      `- ${audience}. [${title}](${SITE}${href}). ${description}`,
+      `  - [${workflow.label}](${workflow.href})`,
+    ]), '',
     `- [Research datasets](${SITE}${links.datasets})`,
     `- [Research case studies](${SITE}${links.research})`,
     `- [All data guides](${SITE}${links.guides})`, '',

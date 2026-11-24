@@ -1,7 +1,7 @@
 {
   "title": "Invariant Earth API",
   "description": "A U.S. data API for parcels, buildings, terrain, hazards, power and infrastructure. Check where each value came from and when it was retrieved.",
-  "updatedDate": "2026-11-23",
+  "updatedDate": "2026-11-24",
   "lede": "Query U.S. parcels, buildings, terrain, hazards and infrastructure. Follow each returned value to its source and see when it was retrieved.",
   "links": {
     "docs": "https://docs.invariant-ai.com/",
@@ -35,30 +35,88 @@
       "docs": "https://docs.invariant-ai.com/api/enrich"
     }
   ],
+  "examplesHeading": "Data workflows by industry",
+  "examplesDescription": "See how the evidence was checked, then try the documented API workflow for your own site or portfolio.",
   "examples": [
+    {
+      "audience": "Data center siting",
+      "title": "Check flood exposure before shortlisting",
+      "description": "See how two FEMA address checks compared with the mapped flood zone across a Clifton parcel.",
+      "href": "/blog/data-center-flood-zone-screening",
+      "workflow": {
+        "label": "Check a site’s FEMA flood zone",
+        "href": "https://docs.invariant-ai.com/check-flood-zone-by-address"
+      }
+    },
     {
       "audience": "Lending",
       "title": "Trace related mortgage filings",
       "description": "See how an agreement and a rent assignment at 25 Water Street were linked by the recorder.",
-      "href": "/blog/commercial-mortgage-records-by-address"
+      "href": "/blog/commercial-mortgage-records-by-address",
+      "workflow": {
+        "label": "Match the collateral parcel",
+        "href": "https://docs.invariant-ai.com/lookup-parcel-by-address"
+      }
     },
     {
       "audience": "Insurance",
       "title": "Compare hail history by address",
       "description": "Two Denver locations shared a coarse radar tile. The finer estimates showed different hail sizes.",
-      "href": "/blog/hail-history-by-address-for-underwriting"
+      "href": "/blog/hail-history-by-address-for-underwriting",
+      "workflow": {
+        "label": "Query FEMA’s tract hail field",
+        "href": "https://docs.invariant-ai.com/fields/hail_annual_frequency"
+      }
     },
     {
       "audience": "Land and GIS",
       "title": "Follow a parcel through a split",
       "description": "Compare seven dated geometries that show what changed around a Brooklyn tax lot.",
-      "href": "/blog/historical-parcel-boundaries-api"
+      "href": "/blog/historical-parcel-boundaries-api",
+      "workflow": {
+        "label": "Run the parcel history example",
+        "href": "https://docs.invariant-ai.com/trace-parcel-boundary-history"
+      }
     },
     {
       "audience": "Energy development",
       "title": "Track solar and storage requests",
       "description": "Follow 58 requests from a historical snapshot to two California ISO queue reports.",
-      "href": "/blog/interconnection-queue-data"
+      "href": "/blog/interconnection-queue-data",
+      "workflow": {
+        "label": "Screen a solar project site",
+        "href": "https://docs.invariant-ai.com/screen-solar-farm-site"
+      }
+    },
+    {
+      "audience": "Freight and logistics",
+      "title": "Compare road and rail access",
+      "description": "Check the evidence for truck routes, trailer parking, and rail access at two Joliet properties.",
+      "href": "/blog/warehouse-site-selection-rail-truck-access",
+      "workflow": {
+        "label": "Run a warehouse access check",
+        "href": "https://docs.invariant-ai.com/screen-warehouse-rail-and-truck-access"
+      }
+    },
+    {
+      "audience": "EV and fleet charging",
+      "title": "Check chargers and connectors",
+      "description": "Audit the public equipment inventory at two fast-charging stops near London, Ohio.",
+      "href": "/blog/ev-charging-station-data-apis",
+      "workflow": {
+        "label": "Screen a fleet charging site",
+        "href": "https://docs.invariant-ai.com/screen-ev-truck-charging-by-address"
+      }
+    },
+    {
+      "audience": "Retail site selection",
+      "title": "Compare drive-time trade areas",
+      "description": "See how road travel times change the estimated market around two Detroit grocery stores.",
+      "href": "/blog/drive-time-demographics-census-trade-area",
+      "workflow": {
+        "label": "Estimate reachable population",
+        "href": "https://docs.invariant-ai.com/estimate-labor-shed-by-drive-time"
+      }
     }
   ],
   "setupPrompt": "Help me connect Invariant Earth to this agent or project. Read https://docs.invariant-ai.com/mcp/installation and use the setup for my client. The MCP server is https://api.invariant-ai.com/mcp. Ask me to sign in or use my client’s secret storage for the API key. Then test the connection by looking up elevation at latitude 39.0438, longitude -77.4874 and show the source and retrieval time. For direct API integration, follow https://docs.invariant-ai.com/quickstart and read https://api.invariant-ai.com/v1/meta/fields for supported fields.",

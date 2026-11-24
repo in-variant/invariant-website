@@ -147,17 +147,18 @@ export default function Product() {
       <section className="resource-container earth-product-section" aria-labelledby="earth-examples">
         <div className="earth-product-section-heading">
           <div>
-            <h2 id="earth-examples">See what the records show</h2>
-            <p>Reproduce the research and compare dated source records.</p>
+            <h2 id="earth-examples">{product.examplesHeading}</h2>
+            <p>{product.examplesDescription}</p>
           </div>
           <Link className="earth-product-link" to={links.datasets}>Browse research datasets <ResourceArrow diagonal /></Link>
         </div>
         <div className="earth-product-studies">
-          {product.examples.map(({ audience, title, description, href }) => (
+          {product.examples.map(({ audience, title, description, href, workflow }) => (
             <article key={href}>
               <p className="earth-product-audience">{audience}</p>
               <h3><Link to={href}>{title} <ResourceArrow diagonal /></Link></h3>
               <p>{description}</p>
+              <a className="earth-product-link" href={workflow.href}>{workflow.label} <ResourceArrow /></a>
             </article>
           ))}
         </div>
