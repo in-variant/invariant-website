@@ -5831,6 +5831,75 @@
     }
   },
   {
+    "slug": "loudoun-county-data-center-building-count",
+    "topic": "Data & APIs",
+    "title": "How Many Data Centers Are in Loudoun County, Virginia?",
+    "summary": "Loudoun counted 245 data center buildings built or under construction on September 1, 2026. Compare the district and pipeline totals with the county map.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "Loudoun County, Virginia",
+    "image": "/blog/industry/loudoun-county-data-center-building-count.webp?v=82408aa9",
+    "dataset": {
+      "name": "Loudoun data center building totals and GIS point reconciliation",
+      "description": "Five development statuses across eight Loudoun election districts, the county totals, and a replayable building-point aggregation. Includes the dated March count and the differences between the September table and the permit-based GIS layer.",
+      "spatialCoverage": "Loudoun County, Virginia, United States",
+      "temporalCoverage": "2026-03-01/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sourceReuse": {
+        "note": "Credit Loudoun County for the source figures and retain the dates and counting methods when comparing records.",
+        "policyUrl": "https://logis.loudoun.gov/loudoun/disclaimer.html",
+        "policyLabel": "Loudoun County GIS source note"
+      },
+      "sources": [
+        "https://www.loudoun.gov/DocumentCenter/View/222160",
+        "https://lysanderny.gov/sites/default/files/2026-10/data_center_fact_sheet_2026_202609021623071592.pdf",
+        "https://www.loudoun.gov/DocumentCenter/View/223069/Data-Center-Dashboard-User-Guide-November-16-2026",
+        "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0?f=pjson",
+        "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0/query?where=1%3D1&groupByFieldsForStatistics=BUILT_STATUS&outStatistics=%5B%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22OBJECTID%22%2C%22outStatisticFieldName%22%3A%22building_count%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22SQUARE_FEET%22%2C%22outStatisticFieldName%22%3A%22floor_area_sqft%22%7D%2C%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22SQUARE_FEET%22%2C%22outStatisticFieldName%22%3A%22populated_area_count%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22BP_ISSUE_DT%22%2C%22outStatisticFieldName%22%3A%22latest_permit_issue%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22BP_FINAL_DT%22%2C%22outStatisticFieldName%22%3A%22latest_final_permit%22%7D%5D&orderByFields=BUILT_STATUS&returnGeometry=false&f=json",
+        "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID%2CBUILT_STATUS%2CPERMIT_NUM%2CSQUARE_FEET&orderByFields=OBJECTID&returnGeometry=false&f=json"
+      ],
+      "sourceDetails": [
+        {
+          "title": "September 1, 2026 building counts and square footage by district and status",
+          "publisher": "Loudoun County Department of Planning and Zoning",
+          "url": "https://www.loudoun.gov/DocumentCenter/View/222160"
+        },
+        {
+          "title": "March 1, 2026 Loudoun County data center fact sheet retained by the Town of Lysander",
+          "publisher": "Loudoun County, hosted by the Town of Lysander",
+          "url": "https://lysanderny.gov/sites/default/files/2026-10/data_center_fact_sheet_2026_202609021623071592.pdf"
+        },
+        {
+          "title": "County dashboard user guide, definitions and update schedule",
+          "publisher": "Loudoun County Department of Planning and Zoning",
+          "url": "https://www.loudoun.gov/DocumentCenter/View/223069/Data-Center-Dashboard-User-Guide-November-16-2026"
+        },
+        {
+          "title": "Dashboard data center building point layer and field definitions",
+          "publisher": "Loudoun County GIS",
+          "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0?f=pjson"
+        },
+        {
+          "title": "Reproducible point-layer aggregation by built status",
+          "publisher": "Loudoun County GIS",
+          "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0/query?where=1%3D1&groupByFieldsForStatistics=BUILT_STATUS&outStatistics=%5B%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22OBJECTID%22%2C%22outStatisticFieldName%22%3A%22building_count%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22SQUARE_FEET%22%2C%22outStatisticFieldName%22%3A%22floor_area_sqft%22%7D%2C%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22SQUARE_FEET%22%2C%22outStatisticFieldName%22%3A%22populated_area_count%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22BP_ISSUE_DT%22%2C%22outStatisticFieldName%22%3A%22latest_permit_issue%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22BP_FINAL_DT%22%2C%22outStatisticFieldName%22%3A%22latest_final_permit%22%7D%5D&orderByFields=BUILT_STATUS&returnGeometry=false&f=json"
+        },
+        {
+          "title": "Public permit-identity fields for the dashboard building points",
+          "publisher": "Loudoun County GIS",
+          "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID%2CBUILT_STATUS%2CPERMIT_NUM%2CSQUARE_FEET&orderByFields=OBJECTID&returnGeometry=false&f=json"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the district counts and reproducible GIS comparison",
+          "path": "/blog/loudoun-county-data-center-building-count.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

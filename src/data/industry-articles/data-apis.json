@@ -13316,6 +13316,7 @@
       "temporalCoverage": "2026-10-20/2026-11-12"
     },
     "relatedSlugs": [
+      "loudoun-county-data-center-building-count",
       "building-permit-data-apis",
       "data-center-site-selection-checklist",
       "federal-contract-awards-data-api"
@@ -28591,6 +28592,363 @@
         "note": "The sample contains selected index fields from the NYC Department of Buildings. Credit NYC DOB and keep the original queries with any reused rows.",
         "policyLabel": "NYC Open Data policy",
         "policyUrl": "https://www.nyc.gov/opendata/get-started/what-is-open-data-"
+      }
+    }
+  },
+  {
+    "slug": "loudoun-county-data-center-building-count",
+    "topic": "Data & APIs",
+    "region": "Loudoun County, Virginia",
+    "title": "How Many Data Centers Are in Loudoun County, Virginia?",
+    "description": "Loudoun counted 245 data center buildings built or under construction on September 1, 2026. Compare the district and pipeline totals with the county map.",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverAlt": "Loudoun County reports 245 data center buildings built or under construction, 114 approved or in administrative review, and 54 in legislative review as of September 1, 2026.",
+    "coverCaption": "Countywide estimates from Loudoun County’s September 1, 2026 district table. The middle group combines three development stages.",
+    "intro": "Loudoun County counted 245 data center buildings built or under construction as of September 1, 2026, covering about 58.3 million square feet. That count includes buildings with issued permits that are still under construction. The county reported another 114 buildings in its approved or administrative group and 54 in legislative review. For a particular address, use the county map to find the parent project and then check the building or site-plan record.",
+    "takeaways": [
+      "The county’s built or under-construction count rose from 233 in March to 245 in September 2026.",
+      "Sterling and Broad Run together accounted for 173 of the 245 buildings in the September category.",
+      "The countywide table and the dashboard’s building point layer return different totals. Cite the one that answers your question."
+    ],
+    "sections": [
+      {
+        "id": "county-totals",
+        "heading": "How many buildings has Loudoun counted?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "County stage on September 1, 2026",
+              "Buildings",
+              "Floor area"
+            ],
+            "rows": [
+              [
+                "Built or under construction",
+                "245",
+                "58.3 million sq ft"
+              ],
+              [
+                "Approved or in administrative review",
+                "114",
+                "33.8 million sq ft"
+              ],
+              [
+                "In legislative review",
+                "54",
+                "21.0 million sq ft"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "september",
+                "method"
+              ],
+              [
+                "september",
+                "method"
+              ],
+              [
+                "september",
+                "method"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The middle group combines 47 buildings with approved or conditionally approved site plans and no building permit, 62 buildings with site plans under administrative review, and five buildings on projects that received legislative approval but had yet to apply for a site plan. The county uses the site plan when one exists to avoid counting the same buildings again under legislative approval.",
+            "sourceIds": [
+              "september",
+              "method"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The county’s March 1 fact sheet counted 233 buildings in the built or under-construction group. The September table counted 245, a net increase of 12 in that category. To identify which projects moved forward, check individual permits and approvals. The two snapshots do not identify 12 completed facilities.",
+            "sourceIds": [
+              "march",
+              "september",
+              "method"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "districts",
+        "heading": "Where are the data center buildings?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Sterling had the largest September count in the built or under-construction group, with 105 buildings. Broad Run followed with 68. Together they accounted for about 71% of that countywide total. Use the election district labels for this comparison. The county also groups facilities by parcel, parent project and campus in the map.",
+            "sourceIds": [
+              "september",
+              "method"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Election district",
+              "Built or under construction",
+              "In legislative review"
+            ],
+            "rows": [
+              [
+                "Algonkian",
+                "0",
+                "0"
+              ],
+              [
+                "Ashburn",
+                "3",
+                "12"
+              ],
+              [
+                "Broad Run",
+                "68",
+                "3"
+              ],
+              [
+                "Catoctin",
+                "0",
+                "0"
+              ],
+              [
+                "Dulles",
+                "30",
+                "8"
+              ],
+              [
+                "Leesburg",
+                "18",
+                "10"
+              ],
+              [
+                "Little River",
+                "21",
+                "0"
+              ],
+              [
+                "Sterling",
+                "105",
+                "21"
+              ]
+            ],
+            "sourceIds": [
+              "september"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/loudoun-county-data-center-building-count.json",
+            "format": "JSON",
+            "label": "Download the district counts and reproducible GIS comparison"
+          }
+        ]
+      },
+      {
+        "id": "map-reconciliation",
+        "heading": "Why does the map return a different count?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried the point layer named in the official dashboard and grouped it by the county’s built-status field. On November 24 the query returned 199 points labeled built and 50 labeled under construction. That is 249 point records, four more than the published countywide count. The point layer returned about 54.8 million square feet across the 247 records with an area value, compared with about 58.3 million in the county’s published table.",
+            "sourceIds": [
+              "point-layer",
+              "point-count",
+              "september"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Five points share one building permit number, and two have no permit number. A permit number can link multiple points, so counting unique permit numbers gives a different answer again. The published district table does not include a row-by-row key that proves how to match these points to its 245 buildings. Cite the dated county table for a countywide count and use the GIS layer to locate specific records.",
+            "sourceIds": [
+              "point-identities",
+              "september",
+              "method"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The county’s guide describes the dashboard as a March and September snapshot. Its built and under-construction labels come from permit milestones. For example, the guide classifies an issued building permit without a final occupancy permit as under construction. To establish when a tenant moved in or a facility took load, look for evidence of that event separately.",
+            "sourceIds": [
+              "method"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "check-a-site",
+        "heading": "How to check a proposed or existing data center near an address",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Open the county dashboard, search for the address, and switch on the parent project and building layers. The project boundary can include more than one parcel and building.",
+              "Open the project or building popup. Copy the project number, parcel ID and permit number where available. Keep the identifier for the specific building you are checking.",
+              "Use LandMARC to find the active site plan, building permit, and any final permit or occupancy record. For a proposal in legislative review, check the agenda and the recorded vote."
+            ],
+            "sourceIds": [
+              "map",
+              "method",
+              "landmarc"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Follow the project records",
+            "items": [
+              {
+                "slug": "track-proposed-data-center-projects",
+                "label": "Track a proposal through agendas, decisions and permits"
+              },
+              {
+                "slug": "data-center-sites-for-sale-virginia",
+                "label": "Compare Virginia data center sites and power evidence"
+              },
+              {
+                "slug": "data-center-moratorium-local-opposition-site-screening",
+                "label": "Check a local pause or zoning change before optioning land"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How many data center buildings are in Loudoun County?",
+        "answer": "The county’s September 1, 2026 district table reports 245 data center buildings built or under construction, covering about 58.3 million square feet. The number combines two permit-based stages.",
+        "sourceIds": [
+          "september",
+          "method"
+        ]
+      },
+      {
+        "question": "How many data centers are operating in Loudoun County?",
+        "answer": "The county’s published 245 combines built buildings with buildings under construction. Its map uses permit milestones for the built label. Use operator or facility records to establish operational status for a specific building.",
+        "sourceIds": [
+          "september",
+          "method"
+        ]
+      },
+      {
+        "question": "How many data centers are planned in Loudoun County?",
+        "answer": "The September 1 table reports 114 prospective buildings in the approved or administrative group and 54 in legislative review. Those figures count buildings in plans and applications, which can change during review.",
+        "sourceIds": [
+          "september",
+          "method"
+        ]
+      },
+      {
+        "question": "Where can I look up a data center near my address in Loudoun?",
+        "answer": "Search the county’s data center dashboard by address. Open the parent project or building popup for the parcel, project, and permit numbers, then use LandMARC for the latest applicable records.",
+        "sourceIds": [
+          "map",
+          "method",
+          "landmarc"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "summary",
+        "title": "Data center dashboard and countywide building counts",
+        "url": "https://sheriff.loudoun.gov/6439/Data-Center-Dashboard",
+        "publisher": "Loudoun County Department of Planning and Zoning",
+        "linkLabel": "County dashboard and totals"
+      },
+      {
+        "id": "september",
+        "title": "September 1, 2026 building counts and square footage by district and status",
+        "url": "https://www.loudoun.gov/DocumentCenter/View/222160",
+        "publisher": "Loudoun County Department of Planning and Zoning",
+        "linkLabel": "September district table"
+      },
+      {
+        "id": "march",
+        "title": "March 1, 2026 Loudoun County data center fact sheet retained by the Town of Lysander",
+        "url": "https://lysanderny.gov/sites/default/files/2026-10/data_center_fact_sheet_2026_202609021623071592.pdf",
+        "publisher": "Loudoun County, hosted by the Town of Lysander",
+        "linkLabel": "March fact sheet"
+      },
+      {
+        "id": "method",
+        "title": "County dashboard user guide, definitions and update schedule",
+        "url": "https://www.loudoun.gov/DocumentCenter/View/223069/Data-Center-Dashboard-User-Guide-November-16-2026",
+        "publisher": "Loudoun County Department of Planning and Zoning",
+        "linkLabel": "County dashboard user guide"
+      },
+      {
+        "id": "map",
+        "title": "Loudoun County interactive data center dashboard",
+        "url": "https://loudoungis.maps.arcgis.com/apps/dashboards/e9a69ead7a184182ae31b20e4a4d7af2",
+        "publisher": "Loudoun County Department of Planning and Zoning",
+        "linkLabel": "Open the county map"
+      },
+      {
+        "id": "point-layer",
+        "title": "Dashboard data center building point layer and field definitions",
+        "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0?f=pjson",
+        "publisher": "Loudoun County GIS",
+        "linkLabel": "Building point layer"
+      },
+      {
+        "id": "point-count",
+        "title": "Reproducible point-layer aggregation by built status",
+        "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0/query?where=1%3D1&groupByFieldsForStatistics=BUILT_STATUS&outStatistics=%5B%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22OBJECTID%22%2C%22outStatisticFieldName%22%3A%22building_count%22%7D%2C%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22SQUARE_FEET%22%2C%22outStatisticFieldName%22%3A%22floor_area_sqft%22%7D%2C%7B%22statisticType%22%3A%22count%22%2C%22onStatisticField%22%3A%22SQUARE_FEET%22%2C%22outStatisticFieldName%22%3A%22populated_area_count%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22BP_ISSUE_DT%22%2C%22outStatisticFieldName%22%3A%22latest_permit_issue%22%7D%2C%7B%22statisticType%22%3A%22max%22%2C%22onStatisticField%22%3A%22BP_FINAL_DT%22%2C%22outStatisticFieldName%22%3A%22latest_final_permit%22%7D%5D&orderByFields=BUILT_STATUS&returnGeometry=false&f=json",
+        "publisher": "Loudoun County GIS",
+        "linkLabel": "Run the status-count query"
+      },
+      {
+        "id": "point-identities",
+        "title": "Public permit-identity fields for the dashboard building points",
+        "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Existing_DC_Buildings_Sept1_26/FeatureServer/0/query?where=1%3D1&outFields=OBJECTID%2CBUILT_STATUS%2CPERMIT_NUM%2CSQUARE_FEET&orderByFields=OBJECTID&returnGeometry=false&f=json",
+        "publisher": "Loudoun County GIS",
+        "linkLabel": "Run the identifier check"
+      },
+      {
+        "id": "landmarc",
+        "title": "LandMARC public permit and land management search",
+        "url": "https://loudouncountyvaeg.tylerhost.net/prod/selfservice/LoudounCountyVAProd",
+        "publisher": "Loudoun County LandMARC",
+        "linkLabel": "Open the permit search"
+      },
+      {
+        "id": "gis-policy",
+        "title": "Loudoun County GIS data and map disclaimer",
+        "url": "https://logis.loudoun.gov/loudoun/disclaimer.html",
+        "publisher": "Loudoun County GIS",
+        "linkLabel": "Loudoun GIS source note"
+      }
+    ],
+    "relatedSlugs": [
+      "track-proposed-data-center-projects",
+      "data-center-sites-for-sale-virginia",
+      "data-center-moratorium-local-opposition-site-screening",
+      "building-permit-data-apis"
+    ],
+    "dataset": {
+      "name": "Loudoun data center building totals and GIS point reconciliation",
+      "description": "Five development statuses across eight Loudoun election districts, the county totals, and a replayable building-point aggregation. Includes the dated March count and the differences between the September table and the permit-based GIS layer.",
+      "spatialCoverage": "Loudoun County, Virginia, United States",
+      "temporalCoverage": "2026-03-01/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sourceIds": [
+        "september",
+        "march",
+        "method",
+        "point-layer",
+        "point-count",
+        "point-identities"
+      ],
+      "sourceReuse": {
+        "note": "Credit Loudoun County for the source figures and retain the dates and counting methods when comparing records.",
+        "policyUrl": "https://logis.loudoun.gov/loudoun/disclaimer.html",
+        "policyLabel": "Loudoun County GIS source note"
       }
     }
   }
