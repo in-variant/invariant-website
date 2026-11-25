@@ -15218,10 +15218,11 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "The table lists facilities and development sites buyers may encounter while researching Northern Virginia. We checked all four air registrations in Virginia DEQ’s daily register on November 24, 2026. The records below establish different things: registered equipment, operator specifications, land-use approval, or approval to build a transmission project. To estimate what a new customer can use, get the current allocation, delivery date and service terms for the exact building or parcel.",
+      "text": "The table covers five Northern Virginia addresses. We matched all four air registrations to DEQ’s county layers labeled April 14, 2026. The layer records the facility status for that snapshot. Use the registration to request the applicable permit and amendments. Ask for the current power allocation, delivery date and service terms for the exact building or parcel.",
       "sourceIds": [
-       "deq-addresses",
-       "deq-virginia-query"
+       "deq-loudoun-snapshot",
+       "deq-prince-william-snapshot",
+       "air-permit-address-guide"
       ]
      },
      {
@@ -15235,12 +15236,12 @@
       "rows": [
        [
         "45901 Nokes Boulevard, Sterling",
-        "Csquare lists this address as part of IAD1, a five-pod campus that also includes 45845 Nokes Boulevard and 21110 Ridgetop Circle. The IAD1 specification lists 143.2 MW of utility capacity, 19.8 MW of UPS capacity and 37.5 MW of generator capacity. DEQ registration 73160 lists 45901 Nokes Boulevard as Operating.",
+        "Csquare lists this address as part of IAD1, a five-pod campus that also includes 45845 Nokes Boulevard and 21110 Ridgetop Circle. The IAD1 specification lists 143.2 MW of utility capacity, 19.8 MW of UPS capacity and 37.5 MW of generator capacity. The DEQ snapshot lists 45901 Nokes Boulevard as Operating under registration 73160.",
         "The figures cover the campus. Ask Csquare for the unallocated critical IT capacity, delivery date and utility service account for the building you want."
        ],
        [
         "9905 Godwin Drive, Manassas",
-        "The City of Manassas reports that Digital Realty completed a 185,000-square-foot data center here in 2024. DEQ lists this address as Operating under registration 74262. The same registration appears on an order for 10051 Brickyard Way, which Digital Realty lists separately in its annual filing.",
+        "The City of Manassas reports that Digital Realty completed a 185,000-square-foot data center here in 2024. The DEQ snapshot lists this address as Operating under registration 74262. The same registration appears on an order for 10051 Brickyard Way, which Digital Realty lists separately in its annual filing.",
         "Ask the operator and Manassas Electric to confirm the retail service account and contracted MW at this address. The air registration covers emergency generators."
        ],
        [
@@ -15250,25 +15251,25 @@
        ],
        [
         "44480 Hastings Drive, Ashburn",
-        "Digital Realty identifies this building as ACC4 and lists N+2 UPS redundancy. DEQ lists the Ashburn Campus as Operating under registration 73370, which groups several addresses on Hastings Drive and Chilum Place.",
+        "Digital Realty identifies this building as ACC4 and lists N+2 UPS redundancy. The DEQ snapshot lists the Ashburn Campus as Operating under registration 73370, which groups several addresses on Hastings Drive and Chilum Place.",
         "Ask for the available critical IT MW and delivery date at ACC4. The UPS redundancy rating describes the backup configuration."
        ],
        [
         "44664 Guilford Drive, Ashburn",
-        "DEQ registration 73954 lists VA1 Data Center as Operating and describes engine-generators.",
-        "Get the utility service and allocation for the building separately from its generator record."
+        "The DEQ snapshot lists VA1 Data Center as Operating under registration 73954.",
+        "Request the site permit and confirm the utility service allocation for this building."
        ]
       ],
       "rowSourceIds": [
        [
         "csquare-iad1",
-        "deq-virginia-query"
+        "deq-loudoun-snapshot"
        ],
        [
         "manassas-godwin-completion",
         "manassas-electric",
         "digital-realty-2025-10k",
-        "deq-virginia-query",
+        "deq-prince-william-snapshot",
         "deq-consent"
        ],
        [
@@ -15277,10 +15278,10 @@
        ],
        [
         "digital-realty-acc4",
-        "deq-virginia-query"
+        "deq-loudoun-snapshot"
        ],
        [
-        "deq-virginia-query"
+        "deq-loudoun-snapshot"
        ]
       ]
      },
@@ -15775,11 +15776,25 @@
     "url": "https://www.deq.virginia.gov/home/showpublisheddocument/35672/639124552960030000"
    },
    {
-    "id": "deq-virginia-query",
-    "title": "Air Sites daily register, exact query for four registrations",
+    "id": "deq-loudoun-snapshot",
+    "title": "April 14, 2026 DEQ layer for three Loudoun County registrations",
     "publisher": "Virginia Department of Environmental Quality",
-    "linkLabel": "DEQ register",
-    "url": "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?where=PLA_REG_NUM%20IN%20%2873160%2C74262%2C73370%2C73954%29&outFields=PLA_REG_NUM%2CPLA_NAME%2CSTATUS_GROUP%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CFAC_L_CITY%2CPLA_DESC&returnGeometry=false&f=json"
+    "linkLabel": "Loudoun registration records",
+    "url": "https://services2.arcgis.com/SbxFMy5nFd6wmwCw/ArcGIS/rest/services/Data_Center_Project/FeatureServer/7/query?where=Registration_No%20IN%20%2873160%2C73370%2C73954%29&outFields=Registration_No%2CSite_Name%2CPhysical_Address_1%2CLocation_City_Town%2COperational_Status&returnGeometry=false&f=json"
+   },
+   {
+    "id": "deq-prince-william-snapshot",
+    "title": "April 14, 2026 DEQ layer for registration 74262 at 9905 Godwin Drive",
+    "publisher": "Virginia Department of Environmental Quality",
+    "linkLabel": "Godwin Drive registration",
+    "url": "https://services2.arcgis.com/SbxFMy5nFd6wmwCw/ArcGIS/rest/services/Data_Center_Project/FeatureServer/8/query?where=Registration_No%20%3D%2074262&outFields=Registration_No%2CSite_Name%2CPhysical_Address_1%2CLocation_City_Town%2COperational_Status&returnGeometry=false&f=json"
+   },
+   {
+    "id": "air-permit-address-guide",
+    "title": "Find a Virginia data center air permit by address",
+    "publisher": "Invariant Earth",
+    "linkLabel": "Run the permit lookup",
+    "url": "https://docs.invariant-ai.com/find-data-center-air-permit-by-address"
    },
    {
     "id": "csquare-iad1",
@@ -15913,7 +15928,7 @@
    "data-center-site-selection-services",
    "pennsylvania-350-mw-contracted-power-ai-campus-for-lease"
   ],
-  "updatedDate": "2026-11-24",
+  "updatedDate": "2026-11-25",
   "dataset": {
    "name": "Virginia data center offerings, parcel checks and address records",
    "description": "Three marketed properties, two leads reported under contract, four Virginia air registrations, one rezoning ordinance and four operator, government and utility records. Includes campus power ratings, dated building records and the evidence still needed for a customer allocation.",
@@ -15928,7 +15943,8 @@
     "spost-gordon-zoning",
     "prince-edward-hit-status",
     "deq-addresses",
-    "deq-virginia-query",
+    "deq-loudoun-snapshot",
+    "deq-prince-william-snapshot",
     "deq-consent",
     "csquare-iad1",
     "manassas-godwin-completion",
