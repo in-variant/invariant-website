@@ -5762,6 +5762,75 @@
     }
   },
   {
+    "slug": "certificate-of-occupancy-lookup-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find a Certificate of Occupancy by Address in NYC",
+    "summary": "Find a NYC certificate of occupancy in DOB NOW or BIS. Use the building ID, check the floor use and expiration, and replay two Manhattan address lookups.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "New York City, United States",
+    "image": "/blog/industry/certificate-of-occupancy-lookup-by-address.webp?v=228e0be1",
+    "dataset": {
+      "name": "NYC occupancy index records for 270 Park Avenue and 350 Fifth Avenue",
+      "description": "61 selected certificate index rows. Replay two Manhattan address checks to see the same lot under different building IDs and one alteration job in both NYC systems.",
+      "spatialCoverage": "270 Park Avenue and 350 Fifth Avenue, Manhattan, New York City, United States",
+      "temporalCoverage": "2012-07-17/2026-09-25",
+      "datePublished": "2026-11-24",
+      "sourceReuse": {
+        "note": "The sample contains selected index fields from the NYC Department of Buildings. Credit NYC DOB and keep the original queries with any reused rows.",
+        "policyLabel": "NYC Open Data policy",
+        "policyUrl": "https://www.nyc.gov/opendata/get-started/what-is-open-data-"
+      },
+      "sources": [
+        "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?%24select=bin%2Cborough%2Chouse_no%2Cstreet_name%2Cbbl%2Cjob_filing_name%2Cjob_type%2Cc_of_o_status%2Cc_of_o_filing_type%2Cc_of_o_issuance_date%2Capplication_number%2Cc_of_o_number&%24where=bin%3D%271091010%27+AND+job_filing_name%3D%27121205604%27&%24order=c_of_o_number&%24limit=100",
+        "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?%24select=bin%2Cborough%2Chouse_no%2Cstreet_name%2Cbbl%2Cjob_filing_name%2Cjob_type%2Cc_of_o_status%2Cc_of_o_filing_type%2Cc_of_o_issuance_date%2Capplication_number%2Cc_of_o_number&%24where=bin%3D%271015862%27+AND+job_filing_name%3D%27120581502%27&%24order=c_of_o_number&%24limit=100",
+        "https://data.cityofnewyork.us/resource/bs8b-p36w.json?%24select=bin_number%2Cborough%2Chouse_number%2Cstreet_name%2Cjob_number%2Cjob_type%2Cc_o_issue_date%2Capplication_status_raw%2Cfiling_status_raw%2Cissue_type&%24where=bin_number%3D%271015862%27+AND+job_number%3D%27120581502%27+AND+c_o_issue_date+%3E%3D+%272020-01-01T00%3A00%3A00.000%27&%24order=c_o_issue_date%2Cjob_number%2Citem_number&%24limit=100",
+        "https://data.cityofnewyork.us/resource/bs8b-p36w.json?%24select=bin_number%2Cborough%2Chouse_number%2Cstreet_name%2Cjob_number%2Cjob_type%2Cc_o_issue_date%2Capplication_status_raw%2Cfiling_status_raw%2Cissue_type%2Cbbl&%24where=bbl%3D%271012830021%27+AND+bin_number%3D%271035421%27&%24order=c_o_issue_date%2Cjob_number%2Citem_number&%24limit=100",
+        "https://data.cityofnewyork.us/api/views/pkdm-hqz6.json",
+        "https://data.cityofnewyork.us/api/views/bs8b-p36w.json"
+      ],
+      "sourceDetails": [
+        {
+          "title": "DOB NOW index rows for new-building job 121205604 at 270 Park Avenue",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?%24select=bin%2Cborough%2Chouse_no%2Cstreet_name%2Cbbl%2Cjob_filing_name%2Cjob_type%2Cc_of_o_status%2Cc_of_o_filing_type%2Cc_of_o_issuance_date%2Capplication_number%2Cc_of_o_number&%24where=bin%3D%271091010%27+AND+job_filing_name%3D%27121205604%27&%24order=c_of_o_number&%24limit=100"
+        },
+        {
+          "title": "DOB NOW index rows for the same alteration job 120581502 at 350 Fifth Avenue",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?%24select=bin%2Cborough%2Chouse_no%2Cstreet_name%2Cbbl%2Cjob_filing_name%2Cjob_type%2Cc_of_o_status%2Cc_of_o_filing_type%2Cc_of_o_issuance_date%2Capplication_number%2Cc_of_o_number&%24where=bin%3D%271015862%27+AND+job_filing_name%3D%27120581502%27&%24order=c_of_o_number&%24limit=100"
+        },
+        {
+          "title": "BIS index rows from 2020 for alteration job 120581502 at 350 Fifth Avenue",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/bs8b-p36w.json?%24select=bin_number%2Cborough%2Chouse_number%2Cstreet_name%2Cjob_number%2Cjob_type%2Cc_o_issue_date%2Capplication_status_raw%2Cfiling_status_raw%2Cissue_type&%24where=bin_number%3D%271015862%27+AND+job_number%3D%27120581502%27+AND+c_o_issue_date+%3E%3D+%272020-01-01T00%3A00%3A00.000%27&%24order=c_o_issue_date%2Cjob_number%2Citem_number&%24limit=100"
+        },
+        {
+          "title": "BIS index rows on lot 1012830021 for building 1035421",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/bs8b-p36w.json?%24select=bin_number%2Cborough%2Chouse_number%2Cstreet_name%2Cjob_number%2Cjob_type%2Cc_o_issue_date%2Capplication_status_raw%2Cfiling_status_raw%2Cissue_type%2Cbbl&%24where=bbl%3D%271012830021%27+AND+bin_number%3D%271035421%27&%24order=c_o_issue_date%2Cjob_number%2Citem_number&%24limit=100"
+        },
+        {
+          "title": "DOB NOW certificate index field definitions and publication metadata",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/api/views/pkdm-hqz6.json"
+        },
+        {
+          "title": "BIS certificate index field definitions and publication metadata",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/api/views/bs8b-p36w.json"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the NYC occupancy index rows and replay the four queries",
+          "path": "/blog/certificate-of-occupancy-lookup-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

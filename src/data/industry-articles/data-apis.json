@@ -16682,6 +16682,7 @@
       }
     ],
     "relatedSlugs": [
+      "certificate-of-occupancy-lookup-by-address",
       "west-kite-alternatives-for-commercial-property-data",
       "ageospatial-alternatives-commercial-roof-underwriting",
       "building-violations-by-address"
@@ -21485,7 +21486,8 @@
       {"id":"earth-responses","title":"API responses and field provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
       {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
-    "relatedSlugs": ["ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address", "hurricane-wind-history-by-address"],
+    "relatedSlugs": [
+      "certificate-of-occupancy-lookup-by-address","ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address", "hurricane-wind-history-by-address"],
     "updatedDate": "2026-11-23"
   },
   {
@@ -28246,6 +28248,350 @@
         "legals_metadata",
         "parties_metadata"
       ]
+    }
+  },
+  {
+    "slug": "certificate-of-occupancy-lookup-by-address",
+    "title": "How to Find a Certificate of Occupancy by Address in NYC",
+    "description": "Find a NYC certificate of occupancy in DOB NOW or BIS. Use the building ID, check the floor use and expiration, and replay two Manhattan address lookups.",
+    "topic": "Data & APIs",
+    "date": "2026-11-24",
+    "region": "New York City, United States",
+    "readMinutes": 6,
+    "coverAlt": "270 Park Avenue has legacy building ID 1035421 and newer building ID 1091010 on the same NYC tax lot.",
+    "coverCaption": "Selected DOB index results for 270 Park Avenue. Both building IDs appear on Manhattan tax lot 1012830021.",
+    "intro": "Start with the address in the New York City Department of Buildings records. Search BIS for certificate requests filed before March 1, 2021, and DOB NOW for requests filed on or after that date. Open the issued certificate and check that its building, floors and permitted use match the space you are reviewing. At 270 Park Avenue, the same address and tax lot appear under two different building IDs. An address match alone can send you to the wrong certificate history.",
+    "takeaways": [
+      "Record the building identification number (BIN) and the unit or floor. Keep the tax lot as a separate identifier.",
+      "Save the actual issued certificate and any attached floor use records. Read the listed expiration and conditions when the certificate is temporary.",
+      "For a loan, policy or lease, confirm the authorized use and applicable certificate on the date you are relying on it."
+    ],
+    "sections": [
+      {
+        "id": "lookup",
+        "heading": "Where to look up a NYC certificate of occupancy",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use the Department of Buildings lookup instructions to reach the city’s two property profiles. The March 2021 cutoff refers to when the certificate request was filed. For an older building, or when you know the address but have no filing date, check both systems.",
+            "sourceIds": [
+              "lookup"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "When the request was filed",
+              "Where to look",
+              "What to save"
+            ],
+            "rows": [
+              [
+                "Before March 1, 2021",
+                "Buildings Information System (BIS). Search by address, open the property profile and select View Certificates of Occupancy.",
+                "Open the matching certificate PDF and save the pages that cover the space."
+              ],
+              [
+                "March 1, 2021 or later",
+                "DOB NOW Public Portal. Search by address or BIN, open the property profile and select Certificate of Occupancy.",
+                "Review Certificate of Occupancy Details and Floor Use Records, then use Print to save a copy."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "lookup"
+              ],
+              [
+                "lookup",
+                "floor"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A certificate describes the legal use or permitted type of occupancy recorded by DOB. A fire inspection, a construction permit and a property listing answer different questions. Before a tenant build-out, compare the proposed use with the certificate’s use for the actual floor or space.",
+            "sourceIds": [
+              "lookup",
+              "floor"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "building-id",
+        "heading": "Why the building ID matters more than the street address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At 270 Park Avenue, both indexes use Manhattan tax lot 1012830021. The latest legacy record in our sample, dated August 20, 2015, is for BIN 1035421. The new-building job in DOB NOW has BIN 1091010. It starts with a July 1, 2025 issuance. Use the address and lot to find candidates, then keep the two building histories separate.",
+            "sourceIds": [
+              "park_avenue_legacy",
+              "park_avenue_modern"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The split can also occur within one building history. At 350 Fifth Avenue, the Empire State Building, BIN 1015862 and alteration job 120581502 appear in both indexes. BIS records a temporary issuance for that job on February 5, 2021. DOB NOW records an initial issuance for the same job on July 13, 2021. Keep both rows when reconstructing the filing history.",
+            "sourceIds": [
+              "fifth_avenue_legacy",
+              "fifth_avenue_modern"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Building",
+              "Index result",
+              "What to match"
+            ],
+            "rows": [
+              [
+                "270 Park Avenue, BIN 1035421",
+                "BIS, August 20, 2015. Temporary, job 120103075.",
+                "The building ID on the historical record."
+              ],
+              [
+                "270 Park Avenue, BIN 1091010",
+                "DOB NOW, September 25, 2026. Renewal Without Change, certificate 1091010-0000013.",
+                "The current building ID and the issued certificate for the space."
+              ],
+              [
+                "350 Fifth Avenue, BIN 1015862",
+                "BIS, February 5, 2021. DOB NOW, July 13, 2021.",
+                "The same building and alteration job 120581502 on both sides of the transition."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "park_avenue_legacy"
+              ],
+              [
+                "park_avenue_modern"
+              ],
+              [
+                "fifth_avenue_legacy",
+                "fifth_avenue_modern"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The DOB NOW download gives an issuance status, a filing label and a date. Its published columns do not include the expiration date or the floor use records. The September Park Avenue row tells you which record to open. Read the issued certificate to determine the actual scope and validity.",
+            "sourceIds": [
+              "modern_metadata",
+              "park_avenue_modern",
+              "lookup"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the NYC occupancy index rows and replay the four queries",
+            "path": "/blog/certificate-of-occupancy-lookup-by-address.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "decision",
+        "heading": "What to check before closing, binding coverage or signing a lease",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Match the certificate’s building ID and address to the building in the deal file. On a large campus or a shared lot, confirm which structure the address refers to.",
+              "Find the floor or area in the issued records. Compare the authorized use and any limits shown with the tenant operation, underwriting submission or renovation plan.",
+              "Record the issue date, certificate type and the expiry or conditions printed on the document. For temporary authority, request the latest applicable issuance and check it against the scheduled closing, policy or move-in date.",
+              "Save the certificate, floor records, link, and date you reviewed them. Record unresolved building or floor matches and ask the owner or DOB to resolve them."
+            ],
+            "sourceIds": [
+              "lookup",
+              "temporary",
+              "floor"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a building built before 1938, DOB advises checking whether later alterations changed the use, egress or occupancy. Ask the borough office about a Letter of No Objection when the building is exempt and you need proof of legal use. When minor work only required a Letter of Completion, keep that letter with the permit history and check the applicable occupancy evidence separately.",
+            "sourceIds": [
+              "lookup",
+              "lno"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a portfolio review, use Invariant Earth to match the submitted address to a mapped building and retain that source and date. Then retrieve the applicable agency record for the building and space. Use the same identity check when linking permits, hazard maps and occupancy documents.",
+            "sourceIds": [
+              "earth",
+              "lookup"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the building review",
+            "items": [
+              {
+                "slug": "building-permit-data-apis",
+                "label": "Compare building permit data and issuing agency records"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Evaluate commercial property data for underwriting"
+              },
+              {
+                "slug": "west-kite-alternatives-for-commercial-property-data",
+                "label": "Trace an office conversion through permit and occupancy records"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I look up a NYC certificate of occupancy online by address?",
+        "answer": "Yes. Use BIS for requests filed before March 1, 2021, and DOB NOW for requests filed on or after that date. In DOB NOW, you can also search by building identification number (BIN). Open the certificate and match its floor use records to the space.",
+        "sourceIds": [
+          "lookup",
+          "floor"
+        ]
+      },
+      {
+        "question": "Does a building permit show that I can occupy a space?",
+        "answer": "Start with the issued certificate and the floor use records that apply to the space and planned use. A construction permit authorizes the listed work. An occupancy certificate records the legally permitted use or type of occupancy.",
+        "sourceIds": [
+          "lookup"
+        ]
+      },
+      {
+        "question": "Where can I check when a temporary certificate of occupancy expires?",
+        "answer": "Read the expiration date on the issued certificate. NYC DOB says temporary certificates typically expire 90 days after issuance. A renewal can have a different date than the earlier certificate in your file.",
+        "sourceIds": [
+          "temporary",
+          "lookup"
+        ]
+      },
+      {
+        "question": "What if I cannot find a certificate for an older NYC building?",
+        "answer": "Check both city systems and verify the building identification number. A qualifying pre-1938 building can be exempt. When you need proof of legal use for an exempt building, ask the appropriate DOB borough office about a Letter of No Objection.",
+        "sourceIds": [
+          "lookup",
+          "lno"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "lookup",
+        "title": "Find a certificate by address in BIS or DOB NOW and read the floor use records",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/industry/obtain-a-co.page",
+        "linkLabel": "NYC DOB lookup instructions"
+      },
+      {
+        "id": "floor",
+        "title": "DOB NOW Build FAQ on printing certificates by building ID and interpreting floor and use records",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/industry/dob-now-build-faqs.page",
+        "linkLabel": "DOB NOW certificate and floor record FAQ"
+      },
+      {
+        "id": "temporary",
+        "title": "Temporary certificates, renewal and expiration",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/temporary-certificate-of-occupancy.page",
+        "linkLabel": "Temporary certificate guidance"
+      },
+      {
+        "id": "lno",
+        "title": "Letter of No Objection or Letter of Verification application and criteria",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/assets/buildings/pdf/lno_lov_form.pdf",
+        "linkLabel": "Letter of No Objection application"
+      },
+      {
+        "id": "park_avenue_legacy",
+        "title": "BIS index rows on lot 1012830021 for building 1035421",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/bs8b-p36w.json?%24select=bin_number%2Cborough%2Chouse_number%2Cstreet_name%2Cjob_number%2Cjob_type%2Cc_o_issue_date%2Capplication_status_raw%2Cfiling_status_raw%2Cissue_type%2Cbbl&%24where=bbl%3D%271012830021%27+AND+bin_number%3D%271035421%27&%24order=c_o_issue_date%2Cjob_number%2Citem_number&%24limit=100",
+        "linkLabel": "Run the legacy Park Avenue query"
+      },
+      {
+        "id": "park_avenue_modern",
+        "title": "DOB NOW index rows for new-building job 121205604 at 270 Park Avenue",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?%24select=bin%2Cborough%2Chouse_no%2Cstreet_name%2Cbbl%2Cjob_filing_name%2Cjob_type%2Cc_of_o_status%2Cc_of_o_filing_type%2Cc_of_o_issuance_date%2Capplication_number%2Cc_of_o_number&%24where=bin%3D%271091010%27+AND+job_filing_name%3D%27121205604%27&%24order=c_of_o_number&%24limit=100",
+        "linkLabel": "Run the current Park Avenue query"
+      },
+      {
+        "id": "fifth_avenue_legacy",
+        "title": "BIS index rows from 2020 for alteration job 120581502 at 350 Fifth Avenue",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/bs8b-p36w.json?%24select=bin_number%2Cborough%2Chouse_number%2Cstreet_name%2Cjob_number%2Cjob_type%2Cc_o_issue_date%2Capplication_status_raw%2Cfiling_status_raw%2Cissue_type&%24where=bin_number%3D%271015862%27+AND+job_number%3D%27120581502%27+AND+c_o_issue_date+%3E%3D+%272020-01-01T00%3A00%3A00.000%27&%24order=c_o_issue_date%2Cjob_number%2Citem_number&%24limit=100",
+        "linkLabel": "Run the legacy Fifth Avenue query"
+      },
+      {
+        "id": "fifth_avenue_modern",
+        "title": "DOB NOW index rows for the same alteration job 120581502 at 350 Fifth Avenue",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?%24select=bin%2Cborough%2Chouse_no%2Cstreet_name%2Cbbl%2Cjob_filing_name%2Cjob_type%2Cc_of_o_status%2Cc_of_o_filing_type%2Cc_of_o_issuance_date%2Capplication_number%2Cc_of_o_number&%24where=bin%3D%271015862%27+AND+job_filing_name%3D%27120581502%27&%24order=c_of_o_number&%24limit=100",
+        "linkLabel": "Run the current Fifth Avenue query"
+      },
+      {
+        "id": "legacy_metadata",
+        "title": "BIS certificate index field definitions and publication metadata",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/api/views/bs8b-p36w.json",
+        "linkLabel": "BIS index dictionary"
+      },
+      {
+        "id": "modern_metadata",
+        "title": "DOB NOW certificate index field definitions and publication metadata",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/api/views/pkdm-hqz6.json",
+        "linkLabel": "DOB NOW index dictionary"
+      },
+      {
+        "id": "reuse",
+        "title": "NYC Open Data policy and publisher attribution",
+        "publisher": "NYC Office of Technology and Innovation",
+        "url": "https://www.nyc.gov/opendata/get-started/what-is-open-data-",
+        "linkLabel": "NYC Open Data"
+      },
+      {
+        "id": "earth",
+        "title": "Find the building footprint associated with a U.S. street address",
+        "publisher": "Invariant Earth",
+        "url": "https://docs.invariant-ai.com/verify-building-by-address",
+        "linkLabel": "Verify a building with Invariant Earth"
+      }
+    ],
+    "relatedSlugs": [
+      "building-permit-data-apis",
+      "building-footprint-data-apis",
+      "commercial-property-insurance-data-apis",
+      "west-kite-alternatives-for-commercial-property-data"
+    ],
+    "dataset": {
+      "name": "NYC occupancy index records for 270 Park Avenue and 350 Fifth Avenue",
+      "description": "61 selected certificate index rows. Replay two Manhattan address checks to see the same lot under different building IDs and one alteration job in both NYC systems.",
+      "spatialCoverage": "270 Park Avenue and 350 Fifth Avenue, Manhattan, New York City, United States",
+      "temporalCoverage": "2012-07-17/2026-09-25",
+      "datePublished": "2026-11-24",
+      "sourceIds": [
+        "park_avenue_modern",
+        "fifth_avenue_modern",
+        "fifth_avenue_legacy",
+        "park_avenue_legacy",
+        "modern_metadata",
+        "legacy_metadata"
+      ],
+      "sourceReuse": {
+        "note": "The sample contains selected index fields from the NYC Department of Buildings. Credit NYC DOB and keep the original queries with any reused rows.",
+        "policyLabel": "NYC Open Data policy",
+        "policyUrl": "https://www.nyc.gov/opendata/get-started/what-is-open-data-"
+      }
     }
   }
 ]
