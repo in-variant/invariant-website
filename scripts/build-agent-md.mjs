@@ -255,6 +255,7 @@ function researchMd() {
       `### ${title}`, '', topic, '', summary, '',
       `- [Sources and methods](${url})`,
       ...dataset.downloads.map(file => `- [${linkText(file.label)} (${file.format})](${SITE}${file.path})`),
+      `- [Download this study’s citation (CSL JSON)](${SITE}${datasetCitationPath(url)})`,
       '',
     )
   }

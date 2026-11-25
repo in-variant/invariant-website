@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
@@ -44,8 +45,9 @@ const collection = {
 function StudyCard({ study, featured = false }: { study: typeof studies[number]; featured?: boolean }) {
   const { title, topic, summary, chart, imageAlt, imageCredit, entry } = study
   const Heading = featured ? 'h2' : 'h3'
+  const headingId = `study-${entry.id}`
   return (
-    <article className={featured ? 'research-study research-study--featured' : 'research-study'}>
+    <article className={featured ? 'research-study research-study--featured' : 'research-study'} aria-labelledby={headingId}>
       <figure className={chart ? 'research-image research-image--chart' : 'research-image'}>
         <div>
           <img
@@ -71,7 +73,7 @@ function StudyCard({ study, featured = false }: { study: typeof studies[number];
       </figure>
       <div className="research-study-copy">
         <p className="research-topic">{topic}</p>
-        <Heading><Link to={`/blog/${study.slug}`}>{title}</Link></Heading>
+        <Heading id={headingId}><Link to={`/blog/${study.slug}`}>{title}</Link></Heading>
         <p>{summary}</p>
         <div className="research-study-links">
           <Link to={entry.notesPath} aria-label={`Sources and methods for ${title}`}>
@@ -83,6 +85,7 @@ function StudyCard({ study, featured = false }: { study: typeof studies[number];
             </a>
           ))}
         </div>
+        <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} />
       </div>
     </article>
   )
@@ -149,7 +152,7 @@ export default function Research() {
       <section className="resource-container research-citations" aria-labelledby="research-citations-title">
         <div>
           <h2 id="research-citations-title">Cite the data</h2>
-          <p>Open a study’s dataset for its source records and citation. Download the citation catalog to import it into a reference manager.</p>
+          <p>Copy a citation from any study or import the full citation catalog into a reference manager.</p>
         </div>
         <div className="research-study-links">
           <a href="/datasets.csl.json" download>Download citations <span aria-hidden="true">↓</span></a>
