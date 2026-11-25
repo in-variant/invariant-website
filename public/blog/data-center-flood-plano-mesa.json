@@ -1,0 +1,246 @@
+{
+  "name": "FEMA Zone X checks for 2800 Summit Avenue and Novva Mesa",
+  "guide": "https://invariant-ai.com/blog/data-center-flood-zone-screening#dataset-plano-mesa-flood",
+  "retrieved_on": "2026-11-25",
+  "overlay_epsg": 5070,
+  "method": "Join the agency facility record to the mapped tax parcel. Query intersecting FEMA hazard zones and panel polygons in EPSG:4326. Project the geometries into EPSG:5070 before clipping. Compare zone code, subtype and full parcel coverage. Verify the address points and footprints against the parcel and effective hazard polygon.",
+  "cases": {
+    "plano": {
+      "parcel": {
+        "OBJECTID": 267072,
+        "PROP_ID": 2683633,
+        "propID": 2683633,
+        "geoID": "R-2268-00A-001R-1",
+        "propYear": 2027,
+        "legalDescription": "MEMORY TECH INC PHASE 1 ADDITION, BLK A, LOT 1R; ** (REPLAT) **",
+        "ownerName": "ALIGNED DATA CENTERS (DFW) PROPCO LLC",
+        "situsConcatShort": "2800 SUMMIT AVE ",
+        "landSizeAcres": 19.037,
+        "deedNum": "20170403000417790",
+        "dataDate": "2026-10-23T00:48:47.553"
+      },
+      "flood_zone": {
+        "fema_polygon_id": "48085C_5509",
+        "zone": "X",
+        "subtype": "AREA OF MINIMAL FLOOD HAZARD",
+        "special_flood_hazard_area": false,
+        "mapped_parcel_overlap_pct": 100.0,
+        "special_flood_hazard_area_parcel_pct": 0,
+        "static_base_flood_elevation": null
+      },
+      "applicable_printed_panel": {
+        "panel": "48085C0395J",
+        "type": "Countywide, Panel Printed",
+        "effective_date": "2009-06-02",
+        "dfirm_id": "48085C",
+        "covers_parcel": true
+      },
+      "panel_index_records": [
+        {
+          "panel": "48085C0395J",
+          "type": "Countywide, Panel Printed",
+          "effective_date": "2009-06-02",
+          "dfirm_id": "48085C",
+          "covers_parcel": true
+        },
+        {
+          "panel": "48113C0070K",
+          "type": "Countywide, Not Printed",
+          "effective_date": "2014-07-07",
+          "dfirm_id": "48113C",
+          "covers_parcel": true
+        }
+      ],
+      "address_points_checked": 1,
+      "address_points_in_parcel_and_flood_zone": 1,
+      "mapped_footprint_ids": [
+        171761,
+        258276,
+        258888,
+        258889,
+        258890,
+        258891
+      ],
+      "mapped_footprints_in_parcel_and_flood_zone": 6,
+      "facility": {
+        "name": "ADC Plano",
+        "address": "2800 Summit Avenue, Plano, TX 75074",
+        "agency_facility_id": "RN102319506"
+      },
+      "plano_parcel_address_point_id": 38898,
+      "footprint_scope": "Six mapped outlines within the named parcel. This spatial join does not identify a specific tenant hall or survey critical equipment.",
+      "source_ids": [
+        "plano-flood-facility",
+        "plano-flood-address",
+        "plano-flood-parcel",
+        "plano-flood-footprints",
+        "plano-flood-zones",
+        "plano-flood-panels"
+      ]
+    },
+    "novva_mesa": {
+      "parcel": {
+        "OBJECTID": 1713400,
+        "APN": "30431141",
+        "APNDash": "304-31-141",
+        "PropertyFullStreetAddress": null,
+        "PropertyCity": "MESA",
+        "OwnerName": "NOVVA PHOENIX LLC",
+        "LotSize_Acre": 158.12996,
+        "DeedNumber": "20240219320",
+        "DeedDate": 1714089600000
+      },
+      "flood_zone": {
+        "fema_polygon_id": "04013C_12736",
+        "zone": "X",
+        "subtype": "0.2 PCT ANNUAL CHANCE FLOOD HAZARD",
+        "special_flood_hazard_area": false,
+        "mapped_parcel_overlap_pct": 100.0,
+        "special_flood_hazard_area_parcel_pct": 0,
+        "static_base_flood_elevation": null
+      },
+      "applicable_printed_panel": {
+        "panel": "04013C2760L",
+        "type": "Countywide, Panel Printed",
+        "effective_date": "2013-10-16",
+        "dfirm_id": "04013C",
+        "covers_parcel": true
+      },
+      "panel_index_records": [
+        {
+          "panel": "04013C2760L",
+          "type": "Countywide, Panel Printed",
+          "effective_date": "2013-10-16",
+          "dfirm_id": "04013C",
+          "covers_parcel": true
+        }
+      ],
+      "address_points_checked": 12,
+      "address_points_in_parcel_and_flood_zone": 12,
+      "mapped_footprint_ids": [
+        354409,
+        354410,
+        354411,
+        354412,
+        354413,
+        354414,
+        354415,
+        354416,
+        354417
+      ],
+      "mapped_footprints_in_parcel_and_flood_zone": 9,
+      "facility": {
+        "name": "Novva Mesa, Project Borealis",
+        "planning_case": "ZON24-00291",
+        "location": "Northwest corner of East Warner Road and South Ellsworth Road, Mesa, AZ",
+        "proposed_data_halls_in_staff_report": 5
+      },
+      "footprint_scope": "Nine city-layer outlines on the parcel. The planning records describe proposed buildings. As-built and operational status of individual outlines are unverified.",
+      "source_ids": [
+        "novva-mesa-flood-plan",
+        "novva-mesa-flood-parcel",
+        "novva-mesa-flood-addresses",
+        "novva-mesa-flood-footprints",
+        "novva-mesa-flood-zones",
+        "novva-mesa-flood-panels"
+      ]
+    }
+  },
+  "limits": "This effective-map snapshot covers the named parcels and selected municipal geometries. Check the map-change records, drainage, access, elevations and current designs separately for design, financing or acquisition.",
+  "sources": [
+    {
+      "id": "plano-flood-facility",
+      "title": "TCEQ renewal application summary for ADC Plano at 2800 Summit Avenue",
+      "publisher": "Texas Commission on Environmental Quality",
+      "linkLabel": "ADC Plano facility record",
+      "url": "https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/131651-pls-english.pdf/%40%40download/file/131651-pls-english.pdf"
+    },
+    {
+      "id": "plano-flood-address",
+      "title": "City of Plano parcel address point 38898 at 2800 Summit Avenue",
+      "publisher": "City of Plano",
+      "linkLabel": "Plano address point",
+      "url": "https://maps.planogis.org/arcgiswad/rest/services/OpenData/AddressPoints/FeatureServer/0/query?where=ADDRNUM%3D%272800%27+AND+ROADNAME%3D%27SUMMIT%27&outFields=OBJECTID%2CADDRESS%2CADDTYPE%2CADDRBLDG%2CADDRUNIT%2CZIPCODE&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "4c333faaa6a8e77c2dac941daaf6d4170613bc13557eac4ac79e6ed563c03a04"
+    },
+    {
+      "id": "plano-flood-parcel",
+      "title": "Collin CAD parcel 2683633 at 2800 Summit Avenue",
+      "publisher": "Collin Central Appraisal District",
+      "linkLabel": "Collin CAD parcel",
+      "url": "https://services2.arcgis.com/uXyoacYrZTPTKD3R/ArcGIS/rest/services/CCAD_Parcel_Feature_Set/FeatureServer/4/query?where=situsBldgNum%3D%272800%27+AND+situsStreetName%3D%27SUMMIT%27+AND+situsCity%3D%27PLANO%27&outFields=OBJECTID%2CPROP_ID%2CpropID%2CgeoID%2CpropYear%2ClegalDescription%2CownerName%2CsitusConcatShort%2ClandSizeAcres%2CdeedNum%2CdataDate&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "d4fb3905577ce6c4831f5fe811b3c3c11f59d57ddfe81ed6915955e3d9477150"
+    },
+    {
+      "id": "plano-flood-footprints",
+      "title": "Plano and NCTCOG building footprints around the 2800 Summit Avenue parcel",
+      "publisher": "City of Plano and North Central Texas Council of Governments",
+      "linkLabel": "Plano footprint records",
+      "url": "https://maps.planogis.org/arcgiswad/rest/services/PlanoGISintegrations/ESRICommunityBasemap/MapServer/1/query?where=1%3D1&geometry=-96.6780850441589%2C33.0081131654188%2C-96.6734689654656%2C33.0097699433306&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CYEAR&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "04c87dd4a92db1a30e9967d0aaf92ea2c2316eacdb44d9c02509254de3b93864"
+    },
+    {
+      "id": "plano-flood-zones",
+      "title": "Effective FEMA flood polygons around the Plano parcel",
+      "publisher": "FEMA",
+      "linkLabel": "Plano flood zones",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-96.67828504415891%2C33.0079131654188%2C-96.6732689654656%2C33.0099699433306&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CDFIRM_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "42dad331df64a5634fb0d22fccdd390ab83ab87b6f0895201c444eeb6423c633"
+    },
+    {
+      "id": "plano-flood-panels",
+      "title": "FEMA Collin and Dallas county panel records around the Plano parcel",
+      "publisher": "FEMA",
+      "linkLabel": "Plano FEMA panels",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-96.67828504415891%2C33.0079131654188%2C-96.6732689654656%2C33.0099699433306&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "e909fd307bc11fcd9af954d864bc5b96752b5d544290966ea3648f864ec26493"
+    },
+    {
+      "id": "novva-mesa-flood-plan",
+      "title": "Project Borealis staff report for ZON24-00291, parcel 304-31-141",
+      "publisher": "City of Mesa",
+      "linkLabel": "Mesa planning staff report",
+      "url": "https://mesa.legistar.com/View.ashx?M=F&ID=13679033&GUID=19B4F27D-09D6-4F74-BBD6-A36C983C539B"
+    },
+    {
+      "id": "novva-mesa-flood-parcel",
+      "title": "Maricopa County assessor parcel 304-31-141, Novva Phoenix LLC",
+      "publisher": "Maricopa County",
+      "linkLabel": "Maricopa parcel record",
+      "url": "https://gis.maricopa.gov/arcgis/rest/services/IndividualService/Parcel/MapServer/1/query?where=APN%3D%2730431141%27&outFields=OBJECTID%2CAPN%2CAPNDash%2CPropertyFullStreetAddress%2CPropertyCity%2COwnerName%2CLotSize_Acre%2CDeedNumber%2CDeedDate&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "00dd4c6569f6254caa8d82ebfba76b8d71ade8cfe17c7f88e45182653c31fd5a"
+    },
+    {
+      "id": "novva-mesa-flood-addresses",
+      "title": "Mesa address points within the Project Borealis query window",
+      "publisher": "City of Mesa",
+      "linkLabel": "Mesa address point records",
+      "url": "https://gis.mesaaz.gov/mesaaz/rest/services/BaseMap/BaseMap_Public/MapServer/6/query?where=1%3D1&geometry=-111.64425182001432%2C33.3357922965462%2C-111.63579287007401%2C33.34561054984235&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFULLADDRESS%2CADDRESSCLASSIFICATION%2CCREATIONDATE%2CREVISIONDATE&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "01f75f6638d550766b288bcb1dc85ee428bb04ece9f7c7b7523b0cc0ce863294"
+    },
+    {
+      "id": "novva-mesa-flood-footprints",
+      "title": "Mesa building footprint layer within the Project Borealis query window",
+      "publisher": "City of Mesa",
+      "linkLabel": "Mesa footprint records",
+      "url": "https://gis.mesaaz.gov/mesaaz/rest/services/BaseMap/BaseMap_Public/MapServer/22/query?where=1%3D1&geometry=-111.64425182001432%2C33.3357922965462%2C-111.63579287007401%2C33.34561054984235&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CBUILDINGNAME1%2CBUILDINGNUMBER%2CUNIQUEADDRESS%2CREVISIONDATE%2CCREATIONDATE&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "0797ecc55173dd71e2f95448f4f538b586b503037448503e7d2d8cd3d0dcd6cc"
+    },
+    {
+      "id": "novva-mesa-flood-zones",
+      "title": "Effective FEMA flood polygons around Novva’s Mesa parcel",
+      "publisher": "FEMA",
+      "linkLabel": "Mesa flood zones",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-111.64445182001432%2C33.3355922965462%2C-111.635592870074%2C33.34581054984235&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CDFIRM_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "d90d7b230ecdc5fe43d4692ec8d95b45116cec790c486315f6a6c2a08d06debe"
+    },
+    {
+      "id": "novva-mesa-flood-panels",
+      "title": "FEMA panel 04013C2760L around Novva’s Mesa parcel",
+      "publisher": "FEMA",
+      "linkLabel": "Mesa FEMA panel",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-111.64445182001432%2C33.3355922965462%2C-111.635592870074%2C33.34581054984235&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326&f=geojson",
+      "response_sha256": "0db408d5b38423c087742a36bb618d0751caa44e9fd382d69ef52a35b04ffc9b"
+    }
+  ]
+}
