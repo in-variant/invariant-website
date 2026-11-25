@@ -14117,6 +14117,10 @@
               {
                 "slug": "freight-analysis-framework-data",
                 "label": "Compare annual freight volumes before checking route disruptions"
+              },
+              {
+                "slug": "power-outage-history-by-address",
+                "label": "Request past outages for a specific service point"
               }
             ]
           }
@@ -31271,6 +31275,10 @@
               {
                 "path": "/data-coverage#power-and-renewables",
                 "label": "Review mapped power and renewable energy fields"
+              },
+              {
+                "slug": "power-outage-history-by-address",
+                "label": "Check outage history and reliability for a commercial site"
               }
             ]
           }
@@ -36043,5 +36051,312 @@
         "naip"
       ]
     }
+  },
+  {
+    "slug": "power-outage-history-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Check Power Outage History by Address",
+    "description": "Find past outages for a commercial address, compare utility reliability with and without major events, and download ten years of Southern California Edison data.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Southern California Edison’s average unplanned interruption duration reached 545.01 minutes per customer in 2025 with major event days included and 116.37 minutes with those days excluded.",
+    "coverCaption": "Southern California Edison’s systemwide unplanned interruptions from 2016 to 2025, with and without major event days. Source is Table 3 of its 2025 Annual Electric Reliability Report.",
+    "intro": "To check past power outages at a commercial address, identify the serving electric utility and the exact service point. Ask the owner for its outage and equipment logs, then request the history the utility can release for that service point. Pull utility or district reliability data for context. In 2025, Southern California Edison reported 545.01 minutes of unplanned interruptions per customer with major events included and 116.37 minutes with those days excluded. Both are system averages.",
+    "takeaways": [
+      "Use the address to find candidate utilities. Confirm the utility and each service point from the account or service documents.",
+      "Keep routine interruptions, major event days, planned work and preventive wildfire shutoffs identifiable in the data.",
+      "Use event durations and actual equipment behavior to assess a building’s operating exposure and backup requirements."
+    ],
+    "sections": [
+      {
+        "id": "find-serving-utility",
+        "heading": "Find the utility and service point",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the property’s service address and ask for a recent electricity bill or service agreement. Record the utility responsible for the wires and the utility’s service point or premise identifier for each building or meter that serves critical equipment. A campus can contain several separately served buildings. For a vacant parcel, ask the utility which service area and proposed connection would apply.",
+            "sourceIds": [
+              "eia-861"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At a U.S. coordinate, Invariant Earth’s electric_utility_service_territory field can surface a candidate retail provider. Some underlying boundaries follow counties. Where multiple service territories overlap, the API lists the candidates in its field notes. Resolve the serving utility from property or utility records before attaching a reliability series.",
+            "sourceIds": [
+              "earth-fields"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Check the site",
+            "items": [
+              {
+                "path": "/data-coverage?field=electric_utility_service_territory&operation=point#coverage-search",
+                "label": "Check the electric utility service territory field"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-outage-sources",
+        "heading": "Where can you find historical power outages?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "What it can establish",
+              "What to check"
+            ],
+            "rows": [
+              [
+                "Service records and facility logs",
+                "An interruption tied to the meter, building or equipment in the record.",
+                "Match the account, meter and time zone. Ask the owner to authorize access where the utility requires it."
+              ],
+              [
+                "EIA Form 861 and state reliability reports",
+                "Annual frequency and duration for a utility, state or reported district.",
+                "Match the year, method, scope and whether major event days are included."
+              ],
+              [
+                "Current utility outage map",
+                "An incident the utility is currently reporting and any posted restoration estimate.",
+                "Save the observation time. For past interruptions, use the utility’s or facility’s retained records."
+              ],
+              [
+                "CPUC Public Safety Power Shutoff dashboard",
+                "Historical reports of preventive wildfire shutoffs in California. The CPUC offers address lookups for events after October 2021.",
+                "Record the event dates and reporting scope. Check separately for unplanned failures and planned maintenance."
+              ],
+              [
+                "DOE Form 417 incident summaries",
+                "Reported electric emergency events and other disturbances that meet federal reporting criteria.",
+                "Use the listed event scope to investigate regional effects. Confirm the service point separately."
+              ]
+            ],
+            "rowSourceIds": [
+              [],
+              [
+                "eia-861",
+                "cpuc-reliability"
+              ],
+              [
+                "cpuc-current"
+              ],
+              [
+                "cpuc-psps"
+              ],
+              [
+                "doe-417"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the results from each source separately. In a due diligence file, distinguish a documented period with zero interruptions from a period for which you received no service records."
+          }
+        ]
+      },
+      {
+        "id": "sce-reliability-example",
+        "heading": "What changed when SCE included major outage days?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "SAIDI measures the total minutes of sustained interruptions per customer on average over a year. SAIFI counts sustained interruptions per customer. California’s reporting treats an interruption lasting more than five minutes as sustained. CAIDI measures the average duration of a sustained interruption. SCE also reports MAIFI, the average count of momentary interruptions.",
+            "sourceIds": [
+              "eia-summary",
+              "cpuc-reliability"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "SCE 2025 systemwide scope",
+              "SAIDI with major event days",
+              "SAIDI without major event days"
+            ],
+            "rows": [
+              [
+                "Unplanned interruptions",
+                "545.01 minutes per customer",
+                "116.37 minutes per customer"
+              ],
+              [
+                "Planned and unplanned interruptions",
+                "628.77 minutes per customer",
+                "198.18 minutes per customer"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "sce-report"
+              ],
+              [
+                "sce-report"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "SCE tallied 21 major event days in 2025. Those days account for 428.64 minutes, about 78.6% of the reported unplanned system total. The 116.37-minute figure helps describe the system outside major event days. For refrigeration, industrial operations, or a data center, review severe events as well, especially the longest interruption the service point actually experienced. SCE publishes district figures separately and notes boundary changes that affect some historical comparisons.",
+            "sourceIds": [
+              "sce-report"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/sce-electric-outage-history-2016-2025.json",
+            "format": "JSON",
+            "label": "Download 20 SCE year and scope records with source tables and the 2025 calculation"
+          }
+        ]
+      },
+      {
+        "id": "request-property-outage-records",
+        "heading": "What outage records should you request for a lease or purchase?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Specify the dates and service points you want reviewed. Ask the utility what it can provide and how it defines a sustained event. Request the site operator’s building management, automatic transfer switch, and generator or UPS event logs alongside any utility records. For each event, record when utility service failed, when it returned, and when site equipment recovered. Keep the original timestamps and time zone.",
+            "sourceIds": [
+              "cpuc-reliability"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "Classify utility outages, planned maintenance, wildfire shutoffs, and failures of equipment inside the facility. Confirm differences in timing with the operator.",
+              "Track voltage sags and brief interruptions when equipment resets or process losses matter. Ask what the meters or power-quality equipment were configured to record.",
+              "For two services, request written utility evidence about their independence and shared dependencies. Compare it with the one-line diagram and the transfer and load-test records.",
+              "Before valuing a lease or underwriting a site, review which equipment must stay online, how long it can run on backup, and who owns the remaining actions."
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the power and property review",
+            "items": [
+              {
+                "slug": "grid-capacity-apis-load-headroom",
+                "label": "Check grid headroom for the planned load"
+              },
+              {
+                "slug": "utility-grade-power-study",
+                "label": "Review which outage cases a power study should test"
+              },
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Check warehouse access and site constraints"
+              },
+            {
+              "slug": "power-outage-road-closure-history",
+              "label": "Trace a storm’s regional outages and road closures"
+            },
+              {
+                "slug": "property-underwriting",
+                "label": "Find building-level records for property underwriting"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I look up every past power outage at an address online?",
+        "answer": "The serving utility can tell you what history it will release for a service point. The owner or occupant may have more detail in operating records. Public outage maps and annual reliability reports cover different scopes. California’s public shutoff dashboard has a separate address lookup for preventive wildfire shutoffs.",
+        "sourceIds": [
+          "cpuc-current",
+          "cpuc-psps",
+          "eia-861"
+        ]
+      },
+      {
+        "question": "Can I use SAIDI to size a generator or estimate building downtime?",
+        "answer": "Use the system average to compare published reliability. For a building, examine the actual interruption durations, the equipment that needs power, transfer and recovery times, and the backup system’s tested runtime under load.",
+        "sourceIds": [
+          "eia-summary"
+        ]
+      },
+      {
+        "question": "What is a major event day in a utility reliability report?",
+        "answer": "Under the IEEE method, a major event day exceeds a threshold calculated from earlier daily outage data. Check the reporting method before comparing utility figures. SCE reported 21 such days in 2025 and gives a separate annual series with those days excluded.",
+        "sourceIds": [
+          "cpuc-reliability",
+          "sce-report"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "sce-report",
+        "publisher": "Southern California Edison via the California Public Utilities Commission",
+        "title": "2025 Annual Electric Reliability Report, Tables 2, 3 and 7",
+        "url": "https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/infrastructure/electric-reliability-reports/2025-reliability-reports/sce-annual-electric-reliability-report-2025.pdf"
+      },
+      {
+        "id": "cpuc-reliability",
+        "publisher": "California Public Utilities Commission",
+        "title": "Electric system reliability reporting and metric definitions",
+        "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/electric-reliability/electric-system-reliability-annual-reports"
+      },
+      {
+        "id": "cpuc-current",
+        "publisher": "California Public Utilities Commission",
+        "title": "Utility power outage maps",
+        "url": "https://www.cpuc.ca.gov/consumer-support/power-outage-maps"
+      },
+      {
+        "id": "cpuc-psps",
+        "publisher": "California Public Utilities Commission",
+        "title": "Public Safety Power Shutoff records and address lookup",
+        "url": "https://www.cpuc.ca.gov/consumer-support/psps"
+      },
+      {
+        "id": "eia-861",
+        "publisher": "U.S. Energy Information Administration",
+        "title": "Form EIA-861 utility reliability and service territory data",
+        "url": "https://www.eia.gov/electricity/data/eia861/"
+      },
+      {
+        "id": "eia-summary",
+        "publisher": "U.S. Energy Information Administration",
+        "title": "Electric Power Annual Table 11.1 reliability measures and inclusion rules",
+        "url": "https://www.eia.gov/electricity/annual/table.php?t=epa_11_01.html"
+      },
+      {
+        "id": "doe-417",
+        "publisher": "U.S. Department of Energy",
+        "title": "Form DOE-417 reporting criteria and annual incident summaries",
+        "url": "https://doe417.energy.gov/"
+      },
+      {
+        "id": "earth-fields",
+        "publisher": "Invariant Earth",
+        "title": "Point field catalog, electric_utility_service_territory",
+        "url": "https://api.invariant-ai.com/v1/meta/fields"
+      }
+    ],
+    "dataset": {
+      "name": "Southern California Edison system outage reliability, 2016 to 2025",
+      "description": "Twenty SCE system year and scope records for planned and unplanned outages, with SAIDI, SAIFI, MAIFI and CAIDI including and excluding major event days. Includes the original table references, source PDF checksum, planned reporting footnotes and the 2025 difference calculation.",
+      "sourceIds": [
+        "sce-report",
+        "cpuc-reliability"
+      ],
+      "spatialCoverage": "Southern California Edison service system, California, United States",
+      "temporalCoverage": "2016/2025"
+    },
+    "relatedSlugs": [
+      "grid-capacity-apis-load-headroom",
+      "utility-grade-power-study",
+      "commercial-property-insurance-data-apis",
+      "warehouse-site-selection-rail-truck-access"
+    ]
   }
 ]
