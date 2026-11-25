@@ -3721,9 +3721,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "How to Find a Parcel Number (APN) by Address",
-    "description": "Find the assessor parcel number for a U.S. street address. Verify the tax parcel on a map, keep leading zeros, and run the same check by API.",
+    "description": "Find an assessor parcel number by address. Use county records or an API, and download a five-row CSV trial for bulk lookups, duplicates, and condo lots.",
     "date": "2026-11-23",
-    "readMinutes": 5,
+    "updatedDate": "2026-11-25",
+    "readMinutes": 7,
     "coverAlt": "Map with city address points inside two neighboring San Francisco parcels. Asian Art Museum is parcel 0353001 and Main Library is parcel 0354001.",
     "coverCaption": "Civic Center, San Francisco. Dots mark city address points. Outlines show San Francisco Planning’s mapped base parcels.",
     "intro": "To find a parcel number by address, search the local assessor’s property portal or parcel map using the street address. Open the match and copy the full assessor parcel number (APN), including leading zeros. Check that the map highlights the property you mean. Save the county or equivalent jurisdiction with the number, since parcel identifiers are assigned locally.",
@@ -3870,21 +3871,99 @@
       },
       {
         "id": "api-lookup",
-        "heading": "Look up parcels for a list of addresses",
+        "heading": "Look up parcel numbers in bulk from a list of addresses",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Use Invariant Earth to geocode each address and enrich the verified coordinate with its containing parcel. Keep the original address, normalized address, match type, jurisdiction, and source metadata with the returned APN. Route approximate matches, boundary points, and records with no parcel result to manual review. The API walkthrough includes a Python example and shows how to request county acreage and mapped floodplain overlap where the sources support those fields.",
+            "text": "To look up APNs in bulk, start with one stable ID per row in your CSV. Resolve the address to a point, check the match, and look up the parcel containing that point. Return an outcome for every input, including duplicate addresses and rows that need review. Then join the results back on the original row IDs."
+          },
+          {
+            "type": "paragraph",
+            "text": "In Invariant Earth, send the address to Geocode and pass the checked latitude and longitude to Enrich. Read the APN and parcel source when the parcel match is confirmed. Geocode reports whether the point comes from an address record, a building centroid, or an estimate along the street. Review estimated points, corrected addresses, and building-level results for unit-specific questions. Keep source outages separate from missing parcels and retain the returned vintage and field omissions.",
             "sourceIds": [
-              "api-workflow"
+              "api-workflow",
+              "api-geocode",
+              "api-enrich"
             ]
+          }
+        ]
+      },
+      {
+        "id": "bulk-parcel-lookup-trial",
+        "heading": "Test a bulk parcel lookup with five CSV rows",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "This CSV uses two public buildings, one repeat address, a deliberately invalid address, and a commercial condo. We checked the city records on November 25, 2026. The expected outcomes come from city records, so you can use the same file to evaluate any provider."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Trial input",
+              "City reference or expected handling"
+            ],
+            "rows": [
+              [
+                "SF-01 · 100 Larkin St",
+                "San Francisco’s address and parcel layers agree on APN 0354001. Import it as text."
+              ],
+              [
+                "SF-02 · 99999 Larkin St",
+                "The exact address query found no row. Keep the input in the output with its match status and an empty APN pending review."
+              ],
+              [
+                "SF-03 · 200 Larkin St",
+                "The address and parcel layers agree on APN 0353001. Both Larkin properties are lot 001 on different blocks."
+              ],
+              [
+                "NY-01 · 432 Park Ave, commercial club",
+                "The unit tax record uses 1012921303 and links to parent 1012920033. The queried tax map layer has zero separate unit polygons."
+              ],
+              [
+                "SF-04 · 100 Larkin St again",
+                "The expected APN is still 0354001. Keep both input IDs even when one lookup serves both rows."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "batch-city-query",
+                "library-match"
+              ],
+              [
+                "batch-city-query"
+              ],
+              [
+                "batch-city-query",
+                "museum-match"
+              ],
+              [
+                "batch-nyc-unit",
+                "batch-nyc-shape"
+              ],
+              [
+                "batch-city-query",
+                "library-match"
+              ]
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/parcel-address-batch-trial.csv",
+            "format": "CSV",
+            "label": "Download the parcel lookup trial with city references",
+            "datasetAnchor": null
+          },
+          {
+            "type": "paragraph",
+            "text": "Record the original input, normalized address, match method, jurisdiction, local APN, related parent or candidate, and the dates and sources you used. Grade the buyer workflow on correct matches, reviewable exceptions, and unrelated matches kept out of downstream joins. Before importing into a spreadsheet, set the APN columns to text so the two San Francisco examples keep their leading zeros."
           },
           {
             "type": "links",
             "label": "Related property workflows",
             "items": [
               {
-                "label": "Compare parcel data APIs on condos and lot changes",
+                "label": "Compare parcel API options for batch lookups, condos and lot changes",
                 "slug": "regrid-alternatives-parcel-data-apis"
               },
               {
@@ -3918,6 +3997,15 @@
         ]
       },
       {
+        "question": "How do I match a CSV of property addresses to parcel numbers?",
+        "answer": "Give each row an ID, geocode the addresses, confirm the property matches, and resolve each checked point to its containing parcel. Join the responses to the original CSV by row ID. Keep parcel numbers as text and send unmatched addresses, street estimates and unit-level questions to review.",
+        "sourceIds": [
+          "api-workflow",
+          "api-geocode",
+          "api-enrich"
+        ]
+      },
+      {
         "question": "Is the APN the same as a legal description?",
         "answer": "The APN is a reference used to find property records. To establish the extent of a transfer or the legal boundary, review the recorded deed, subdivision or parcel map, and survey as appropriate.",
         "sourceIds": [
@@ -3927,6 +4015,41 @@
       }
     ],
     "sources": [
+      {
+        "id": "batch-city-query",
+        "title": "Public address records for the three Larkin Street inputs",
+        "url": "https://data.sf.gov/resource/ramy-di5m.json?%24select=eas_fullid%2Caddress%2Cblock%2Clot%2Cparcel_number%2Clongitude%2Clatitude%2Czip_code%2Cdata_as_of%2Cunit_number&%24where=address_number+in+%28100%2C200%2C99999%29+and+street_name+%3D+%27LARKIN%27+and+street_type+%3D+%27ST%27&%24order=address%2Ceas_fullid",
+        "publisher": "DataSF",
+        "linkLabel": "Exact city address query"
+      },
+      {
+        "id": "batch-nyc-unit",
+        "title": "Commercial unit tax lot and parent parcel at 432 Park Avenue",
+        "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/4/query?where=UNIT_BBL%3D%271012921303%27&outFields=UNIT_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CCONDO_KEY%2CEFFECTIVE_TAX_YEAR&f=json",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Condo unit record"
+      },
+      {
+        "id": "batch-nyc-shape",
+        "title": "Polygon count for unit tax lot 1012921303",
+        "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL%3D%271012921303%27&returnCountOnly=true&f=json",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Unit geometry count"
+      },
+      {
+        "id": "api-geocode",
+        "title": "Geocode response, match types and refusals",
+        "url": "https://docs.invariant-ai.com/api/geocode",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Geocode reference"
+      },
+      {
+        "id": "api-enrich",
+        "title": "Parcel matching and field omissions",
+        "url": "https://docs.invariant-ai.com/api/enrich",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Enrich reference"
+      },
       {
         "id": "sf-guide",
         "title": "General Public User Guide, search by property address or block and lot",
@@ -26226,9 +26349,9 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Regrid Alternatives for U.S. Parcel Data APIs",
-    "description": "Compare Regrid, LightBox, Realie, Korzy and other parcel APIs. Download a six-case scorecard for condo lots, parcel splits, and mergers.",
+    "description": "Compare Invariant Earth, Regrid, Korzy, LightBox and other parcel APIs. Download trial files for bulk lookups, condo tax lots, and boundary changes.",
     "date": "2026-11-22",
-    "readMinutes": 9,
+    "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
     "coverCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024. The individual commercial unit does not have its own polygon in the queried tax-map layer.",
     "intro": "Use Invariant Earth when the parcel needs to be evaluated against terrain, hazards and infrastructure. Compare Regrid and LightBox for parcel boundaries, Realie and ATTOM for assessor-linked property records, and Korzy and Mireye for site context. Start with the same county records for every vendor. Our test at 432 Park Avenue found three tax IDs at one address, two almost identical outlines, and a commercial unit without a polygon in the queried layer.",
@@ -26336,6 +26459,75 @@
               "paxiv-agents",
               "paxiv-platform",
               "scout-api"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bulk-parcel-data-apis",
+        "heading": "Compare bulk parcel data APIs for your input file",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the input you already have. A CSV of verified coordinates can go to a point batch service. A property schedule with street addresses still needs address resolution. Compare the original row count with the number of rows that can be joined back, and see how the provider represents an unmatched input or several candidate parcels."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider",
+              "Documented workflow",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Use Geocode and Enrich from your application. Match the point to a parcel, then request sourced fields such as county acreage or floodplain overlap where available.",
+                "Keep the original row ID in your job. Check address precision, the APN and parcel match, then field-level omissions before joining site evidence."
+              ],
+              [
+                "Regrid",
+                "The documented asynchronous point batch accepts CSV or GeoJSON coordinates with optional custom IDs. Regrid lists a 100,000-point or 50 MB ceiling per job and requires batch access.",
+                "Check how the downloaded records link to your coordinates. If you start with addresses, include location verification in the evaluation."
+              ],
+              [
+                "Korzy",
+                "A synchronous batch accepts up to 25 addresses, coordinates, or Korzy parcel IDs. The documented response returns one ordered result or error per item.",
+                "Confirm that the input order stays intact through chunking and that your pipeline preserves cases with multiple parcel candidates."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "bulk-earth"
+              ],
+              [
+                "regrid-bulk",
+                "regrid-bulk-access"
+              ],
+              [
+                "korzy-reference"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "If you only need parcel records for an existing coordinate file, evaluate the point-batch workflow directly. For underwriting or development diligence on an address list, try matching addresses through Invariant Earth and retrieving site fields in the same workflow. Use the same county references for every candidate and verify throughput and coverage on the plan you would buy."
+          },
+          {
+            "type": "download",
+            "label": "Download the five-row parcel lookup trial",
+            "path": "/blog/parcel-address-batch-trial.csv",
+            "format": "CSV",
+            "datasetAnchor": null
+          },
+          {
+            "type": "links",
+            "label": "Address-to-APN workflow",
+            "items": [
+              {
+                "label": "See the city reference results and review the exceptions",
+                "slug": "parcel-number-lookup-by-address"
+              }
             ]
           }
         ]
@@ -26588,6 +26780,24 @@
     ],
     "sources": [
       {
+        "id": "bulk-earth",
+        "title": "Look up a parcel by address with Geocode and Enrich",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant Earth"
+      },
+      {
+        "id": "regrid-bulk",
+        "title": "Regrid point batch API, inputs and job limits",
+        "url": "https://support.regrid.com/docs/batch-processing-api",
+        "publisher": "Regrid"
+      },
+      {
+        "id": "regrid-bulk-access",
+        "title": "Regrid point batch record scope and access requirements",
+        "url": "https://support.regrid.com/reference/batch-processing-for-parcel-api",
+        "publisher": "Regrid"
+      },
+      {
         "id": "regrid-api",
         "title": "Parcel API endpoint overview",
         "url": "https://support.regrid.com/docs/api-endpoint-overview",
@@ -26764,7 +26974,7 @@
       "commercial-real-estate-data-apis-for-lenders",
       "parcel-number-lookup-by-address"
     ],
-    "updatedDate": "2026-11-22"
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "solar-farm-site-selection-gis",
