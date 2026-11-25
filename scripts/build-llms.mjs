@@ -56,12 +56,14 @@ const sections = [
     ['Full text of data, site selection and power guides', `${SITE}/llms-full.txt`],
     ['Article feed with revision dates', `${SITE}/feed.xml`],
     ['Security and data handling', `${SITE}/trust`],
+    ['About Invariant AI, founders and investors', `${SITE}/about`],
+    ['Why we build Invariant Earth', `${SITE}/charter`],
     ['Contact Invariant', `${SITE}/contact`],
   ]],
 ]
 
 const shortIndex = [
-  '# Invariant', '',
+  '# Invariant AI', '',
   '> Source-linked U.S. data for properties, infrastructure, energy and the physical economy.', '',
   'Use Invariant Earth to query data at a coordinate or for the parcel that contains it. Check the field catalog for coverage and cite source URLs and data vintages when available.', '',
   'Research downloads cover dated examples. For a site decision, review the current property and utility records. Power-flow studies describe modeled scenarios. Confirm service terms and available MW for the proposed phase with the serving utility.', '',

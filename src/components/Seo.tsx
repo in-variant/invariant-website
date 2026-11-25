@@ -76,6 +76,8 @@ export function Seo({
 
 // -------- JSON-LD schemas --------
 
+export const COMPANY_LINKEDIN = 'https://www.linkedin.com/company/in-variant-ai'
+
 const orgIdentity = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -92,7 +94,6 @@ const orgIdentity = {
     name: 'Entrepreneurs First',
     url: 'https://www.joinef.com',
   },
-  sameAs: ['https://www.linkedin.com/company/invariant-ai'],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'business',
@@ -104,6 +105,7 @@ const orgIdentity = {
 
 export const ORG_SCHEMA = {
   ...orgIdentity,
+  sameAs: [COMPANY_LINKEDIN],
   description:
     'Invariant Earth provides source-linked data for U.S. properties and infrastructure. Invariant helps teams evaluate sites, power availability, and property risk.',
 }
@@ -113,7 +115,7 @@ export const HOME_ORG_SCHEMA = {
   ...orgIdentity,
   description:
     'Autonomous agents for the physical economy, handling regulatory work across aerospace, energy, data centers, and oil and gas.',
-  sameAs: [...orgIdentity.sameAs, 'https://www.joinef.com'],
+  sameAs: ['https://www.linkedin.com/company/invariant-ai', 'https://www.joinef.com'],
   knowsAbout: [
     'Space compliance',
     'Nuclear compliance',

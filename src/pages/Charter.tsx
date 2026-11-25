@@ -2,7 +2,6 @@ import { useLayoutEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
-import CharterFilm from '../components/CharterFilm'
 import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
 import '../styles/figma-fonts.css'
 import './Charter.css'
@@ -30,14 +29,16 @@ export default function Charter() {
   }, [])
 
   return <div className="invariant-charter">
-    <Seo title="Why We Exist | Invariant" description="Why we are building Invariant: autonomous agents for compliance across energy, data centers, space, and the wider physical economy. A letter from our founders." canonical={`${SITE_URL}/charter`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Why we exist', url: `${SITE_URL}/charter` }])]} ogType="article" />
+    <Seo title="Why Invariant AI Builds Data Infrastructure for the Physical World"
+      description="A letter from Invariant AI’s founders on building source-linked data for properties, infrastructure and power, with dates and evidence people can verify."
+      canonical={`${SITE_URL}/charter`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Why we exist', url: `${SITE_URL}/charter` }])]} ogType="article" ogImage={`${SITE_URL}/og/invariant-data-layer.jpg`} />
     {typeof document !== 'undefined' && createPortal(<div ref={progressRef} className="charter-reading-progress" aria-hidden="true" />, document.body)}
     <div id="charter-content">
       <header className="charter-heading">
         <div className="charter-hero-copy">
           <p className="charter-eyebrow">Why we exist</p>
-          <h1>Great engineering.<br />Global impact.</h1>
-          <p className="charter-hero-description">We help ambitious teams navigate complex regulatory requirements and compliance obligations, turning advanced engineering into products ready for the real world.</p>
+          <h1>Data you can trace to the source</h1>
+          <p className="charter-hero-description">We build data infrastructure for decisions about land, buildings, infrastructure and power.</p>
         </div>
         <figure className="charter-hero-art">
           <img src="/figma/charter/earth.png" width="1536" height="1024" alt="A blue dithered Earth with paths connecting the globe" fetchPriority="high" />
@@ -58,52 +59,38 @@ export default function Charter() {
         <aside className="charter-margin" aria-label="In this letter">
           <span className="charter-eyebrow">What we believe</span>
           <nav>
-            <a href="#the-distance">The distance to deployment</a>
+            <a href="#the-distance">The records behind a decision</a>
             <a href="#our-start">Why we started</a>
-            <a href="#the-work">The work ahead</a>
-            <a href="#our-commitment">What we owe the world</a>
+            <a href="#the-work">What we are building</a>
+            <a href="#our-commitment">What you should be able to verify</a>
           </nav>
-          <span className="charter-margin-note">Written for the people<br />building what comes next.</span>
         </aside>
 
         <article className="charter-story">
-          <section id="the-distance" aria-label="The distance to deployment">
-            <p className="charter-lead">Teams are building new energy systems, expanding data centers, launching satellite constellations, and modernizing industrial infrastructure. Together, they are building the physical economy.</p>
-            <p>Yet the next milestone for many of these teams is an approval. An environmental permit, an operating license, a construction approval. Technical progress can run far ahead of the work needed to put it into service.</p>
-            <p>In 2024, Elon Musk described the frustration:</p>
-            <blockquote>
-              <p>“It really should not be possible to build a giant rocket faster than the paper can move from one desk to another.”</p>
-              <cite><a href="https://www.youtube.com/watch?v=pSFvOUswFwA" target="_blank" rel="noreferrer">Elon Musk · All-In Summit 2024 <span aria-hidden="true">↗</span></a></cite>
-            </blockquote>
-            <p>The work between a successful test and a system entering service deserves the same engineering attention as the system itself. That is where we are putting ours.</p>
+          <section id="the-distance" aria-label="The records behind a decision">
+            <p className="charter-lead">Before a team can build on a site, someone has to establish what is true about the land, the buildings and the infrastructure that serves it.</p>
+            <p>The records are scattered across assessors, utilities, regulators and operators. They change on different schedules. Even two records with the same street address can describe different buildings or different dates.</p>
+            <p>Those differences decide whether a buyer spends another week on a site, an underwriter asks for an inspection, or a utility needs to study a different connection.</p>
           </section>
 
-          <div className="charter-film-placement"><CharterFilm /></div>
-
           <section id="our-start" aria-labelledby="charter-origin-heading">
-            <h2 id="charter-origin-heading">Why we started.</h2>
-            <p>At school, Pranav worked on a satellite that could not fly because the necessary regulatory approvals were not in place. A project meant for space stayed on the ground.</p>
-            <p>His work also spans inspection and monitoring standards for energy infrastructure. Parthiv came to this work through enterprise AI, building agents for compliance and insurance.</p>
+            <h2 id="charter-origin-heading">Why we started</h2>
+            <p>We came to the problem through engineering, compliance and insurance. In each, the people accountable for a decision spend hours checking whether a number came from the right property, whether the source still applies, and what changed since the last review.</p>
+            <p>We started Invariant to make those checks easier to repeat and to give teams a record they can hand to the next person.</p>
           </section>
 
           <section id="the-work" aria-labelledby="charter-work-heading">
-            <h2 id="charter-work-heading">The work has to hold together.</h2>
-            <p>A compliance requirement is rarely finished when somebody finds the right paragraph. It has to be interpreted against a particular design, supported by evidence, reflected consistently across documents, and kept current when the design changes.</p>
-            <p>Much of that continuity lives in people’s heads. An engineer remembers why a number changed. A specialist knows which earlier decision matters. A program lead keeps the dependencies straight in a spreadsheet. When someone moves on or a question comes back, the next person has to reconstruct the reasoning before the work can continue.</p>
-            <p>Generating another document helps only if it moves that whole process forward.</p>
-            <p>We are building autonomous agents for the physical economy. They carry technical context from one step to the next, connecting requirements, evidence, documents, and the people responsible for each decision.</p>
-            <p>An engineer changing a data center’s cooling design should be able to see which water, energy, and permitting requirements need attention. An energy team should be able to trace an operating condition back to the evidence behind it. A reviewer should be able to follow a claim back to the test or decision that supports it.</p>
-            <p>A team should know what stands between today and its next approval, and what it needs to keep current once operations begin, without piecing the answer together from a dozen inboxes.</p>
-            <p>We have to build this alongside the engineers and regulatory specialists who make those decisions.</p>
+            <h2 id="charter-work-heading">What we are building</h2>
+            <p>Invariant Earth gives people and software a common way to query U.S. property and infrastructure data. A result can carry its source and date. Where a source supports history, teams should be able to compare versions and see when a boundary or record changed.</p>
+            <p>At Brooklyn Army Terminal, a tax lot went through a split and a later merger. Tracking the dated parcel records lets a team reconstruct the boundary that applied to an earlier decision. <Link to="/blog/historical-parcel-boundaries-api">Read the parcel history example.</Link></p>
+            <p>For power decisions, our site work traces a proposed service connection, the equipment that can constrain it and the documents the utility has issued. A study can test a proposed load under different conditions. The service terms and delivery schedule come from the serving utility. <Link to="/blog/utility-grade-power-study">See what a power study can show.</Link></p>
           </section>
 
           <section id="our-commitment" aria-labelledby="charter-commitment-heading">
-            <h2 id="charter-commitment-heading">What we owe the world.</h2>
-            <p>An energy project, a data center, or an industrial facility affects people far beyond the team that built it. Demonstrating that it can operate responsibly is part of the work. Clear evidence, consistent submissions, and assumptions surfaced early give reviewers a firmer basis for their decisions.</p>
-            <p>Our agents must be able to show their sources. Uncertainty must be visible. Sensitive data must stay within its proper boundaries. As preparation and coordination become automated, expert judgement and responsibility must remain clear.</p>
-            <p>These challenges run through energy, data centers, space, oil and gas, and manufacturing. Each field has its own requirements and expertise. We will earn the right to serve those teams by understanding their work and doing ours thoroughly.</p>
-            <p>We will measure our progress by what our customers can put into operation: energy reaching the grid, compute coming online, satellites reaching orbit, and industrial systems entering service.</p>
-            <p className="charter-closing">We are building Invariant so the work of compliance can advance alongside the engineering, from the first design decision through the life of the systems that power the physical economy.</p>
+            <h2 id="charter-commitment-heading">What you should be able to verify</h2>
+            <p>A record should tell you who published it, which place and date it covers, and how the value was obtained. A model should show its inputs and assumptions. When coverage is missing, the result should say so.</p>
+            <p>Those details let an engineer, lender, underwriter or software agent check the same evidence and explain what would change the decision. We measure progress by how much of that work customers can do with a record they can reuse.</p>
+            <p className="charter-closing"><Link to="/product">Explore Invariant Earth.</Link></p>
           </section>
 
           <footer className="charter-signature">

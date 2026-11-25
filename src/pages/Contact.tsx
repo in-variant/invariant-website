@@ -8,9 +8,14 @@ import './Contact.css'
 
 const siteSearchSubject = 'Data center site selection request'
 const industries = [
+  { value: 'data-centers', label: 'Data centers' },
+  { value: 'power-and-utilities', label: 'Power & utilities' },
+  { value: 'commercial-real-estate', label: 'Commercial real estate' },
+  { value: 'lending-and-finance', label: 'Lending & finance' },
+  { value: 'insurance', label: 'Insurance' },
+  { value: 'transport-and-logistics', label: 'Transport & logistics' },
   { value: 'aerospace', label: 'Aerospace' },
   { value: 'nuclear', label: 'Nuclear' },
-  { value: 'data-centers', label: 'Data centers' },
   { value: 'oil-and-gas', label: 'Oil & gas' },
   { value: 'other', label: 'Other' },
 ]
@@ -119,16 +124,15 @@ export default function Contact() {
 
   return (
     <section className="contact-page" aria-labelledby="contact-title">
-      <Seo title="Talk to an expert | Invariant" description="Tell us what you are building and the approvals ahead. Talk with Invariant about autonomous agents for the physical economy." canonical={`${SITE_URL}/contact`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Contact', url: `${SITE_URL}/contact` }])]} />
+      <Seo title="Contact Invariant AI" description="Talk to Invariant about property and infrastructure data, API access, site selection or power studies." canonical={`${SITE_URL}/contact`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: 'Contact', url: `${SITE_URL}/contact` }])]} />
       <div className="contact-layout">
         <div className="contact-intro">
           <p className="contact-eyebrow">Start a conversation</p>
           <h1 id="contact-title">{siteSubmission ? 'Share land for a data center review' : siteSearch ? 'Request a data center site shortlist' : <>Tell us what<br />you’re building.</>}</h1>
-          <p className="contact-description">{siteSubmission ? 'Send the location, acreage, and any power information you already have. We can start with a parcel ID.' : siteSearch ? 'Tell us where you’re looking, how much power you need and when each phase needs service.' : 'Bring us the mission, the requirements, and what’s holding you up. We’ll talk through where Invariant can help.'}</p>
+          <p className="contact-description">{siteSubmission ? 'Send the location, acreage, and any power information you already have. We can start with a parcel ID.' : siteSearch ? 'Tell us where you’re looking, how much power you need and when each phase needs service.' : 'Ask about API coverage, a site or portfolio you’re evaluating, or a power study.'}</p>
           {!siteRequest && <div className="contact-visual" aria-hidden="true">
             <span className="contact-visual-rule" />
             <img src="/figma/imgImage65.png" width="1536" height="1024" alt="" />
-            <span className="contact-visual-caption">From mission to approval.</span>
           </div>}
           <div className="contact-direct">
             <span className="contact-eyebrow">Prefer a direct line?</span>
@@ -139,9 +143,9 @@ export default function Contact() {
         <div className="contact-form-panel">
           <ContactCorners />
           <div className="contact-form-heading">
-            <p className="contact-eyebrow">{siteSubmission ? 'Site submission' : siteSearch ? 'Site selection' : 'Your mission'}</p>
+            {siteRequest && <p className="contact-eyebrow">{siteSubmission ? 'Site submission' : 'Site selection'}</p>}
             <h2>{siteSubmission ? 'Tell us about the property' : siteSearch ? 'Your site requirements' : 'Talk to the team.'}</h2>
-            <p>{siteSubmission ? 'You can include the utility’s latest response or tell us what is still unknown.' : siteSearch ? 'Include rough targets if the project is still taking shape.' : 'A little context is a good place to start.'}</p>
+            {siteRequest && <p>{siteSubmission ? 'You can include the utility’s latest response or tell us what is still unknown.' : 'Include rough targets if the project is still taking shape.'}</p>}
           </div>
           <form key={siteSubmission ? 'site-submission' : siteSearch ? 'site-selection' : 'contact'} className={siteRequest ? 'contact-form ph-no-capture' : 'contact-form'} onSubmit={prepareMessage} onChange={siteRequest ? clearDraft : undefined}>
             <div className="contact-form-row">
@@ -183,7 +187,7 @@ export default function Contact() {
             </div>}
             <div className="contact-field">
               <label htmlFor="contact-message">{siteSubmission ? 'Other site details' : siteSearch ? 'Other requirements' : 'What are you working on?'} <small>Optional</small></label>
-              <textarea id="contact-message" name="message" rows={4} maxLength={1800} placeholder={siteSubmission ? 'Ownership or broker authorization, zoning, access, water and fiber, or a listing link' : siteSearch ? 'Buy or lease, usable acreage, reliability, water, fiber or sites under review' : 'Tell us about your program and the regulatory work ahead.'} />
+              <textarea id="contact-message" name="message" rows={4} maxLength={1800} placeholder={siteSubmission ? 'Ownership or broker authorization, zoning, access, water and fiber, or a listing link' : siteSearch ? 'Buy or lease, usable acreage, reliability, water, fiber or sites under review' : 'Locations, data fields or questions you need to verify'} />
             </div>
             <div className="contact-form-actions">
               <button type="submit" className="contact-submit" aria-describedby="contact-delivery-note"><FigmaScrambleLabel>{siteRequest ? 'Prepare request' : 'Continue in email'}</FigmaScrambleLabel><span aria-hidden="true">↗</span></button>

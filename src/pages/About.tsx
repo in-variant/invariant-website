@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
+import { COMPANY_LINKEDIN, Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
 import './About.css'
 
@@ -26,39 +26,45 @@ const investors = [
 
 const aboutOrganization = {
   ...ORG_SCHEMA,
+  founder: ['Parthiv Chandran', 'Pranav Goswami'].map(name => ({ '@type': 'Person', name })),
   funder: investors.map(({ name, url }) => ({ '@type': 'Organization', name, url })),
 }
+const canonical = `${SITE_URL}/about`
+const description = 'Invariant AI builds the Invariant Earth API for U.S. property and infrastructure data and helps teams verify sites and power. Meet our founders and investors.'
 
 export default function About() {
   return (
     <article className="about-page">
-      <Seo title="About Invariant" description="Why Parthiv and Pranav are building autonomous agents for the physical economy, starting with the regulatory work behind space, energy, and infrastructure." canonical={`${SITE_URL}/about`} jsonLd={[aboutOrganization, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'About', url: `${SITE_URL}/about` }])]} />
+      <Seo title="About Invariant AI | Property and Infrastructure Data" description={description} canonical={canonical}
+        ogImage={`${SITE_URL}/og/invariant-data-layer.jpg`}
+        jsonLd={[aboutOrganization, {
+          '@context': 'https://schema.org', '@type': 'AboutPage', '@id': canonical, url: canonical,
+          name: 'About Invariant AI', description, mainEntity: { '@id': aboutOrganization['@id'] },
+        }, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'About', url: canonical }])]} />
       <div className="about-container">
         <header className="about-hero">
           <div>
-            <p className="about-eyebrow">About Invariant</p>
-            <h1>Engineering deserves<br />a clear path forward.</h1>
-            <p className="about-lead">We build autonomous agents for the physical economy, starting with the regulatory work that determines what gets built and when.</p>
-            <Link className="about-text-link" to="/charter"><FigmaScrambleLabel>Read our charter</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link>
+            <h1>About Invariant AI</h1>
+            <p className="about-lead">We build Invariant Earth, an API for U.S. property and infrastructure data. We also help teams find sites, verify power delivery and understand what can be built.</p>
+            <nav className="about-actions" aria-label="Learn about Invariant">
+              <Link className="about-text-link" to="/product"><FigmaScrambleLabel>Explore Invariant Earth</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link>
+              <Link className="about-text-link" to="/charter"><FigmaScrambleLabel>Read our charter</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link>
+            </nav>
           </div>
-          <figure className="about-mission-art" aria-label="A blue dithered satellite in orbit">
-            <div className="about-satellite"><img src="/figma/imgAudiencevisualsUpdate2.png" width="4096" height="2731" alt="" /></div>
-            <figcaption><span>Built for what’s next</span><span aria-hidden="true">↗</span></figcaption>
-          </figure>
+          <img className="about-landscape" src="/media/earth/estuary.webp" width="1380" height="920" alt="" fetchPriority="high" />
         </header>
 
         <section className="about-story about-section" aria-labelledby="about-origin-title">
-          <div className="about-section-label"><span className="about-section-number">01</span><p className="about-eyebrow">Why we started</p></div>
+          <div className="about-section-label"><p className="about-eyebrow">What we build</p></div>
           <div className="about-story-copy">
-            <h2 id="about-origin-title">A satellite ready for space.<br />Still on the ground.</h2>
-            <p>At school, Pranav worked on a satellite that could not fly because the necessary regulatory approvals were not in place. A project meant for space stayed on the ground.</p>
-            <p>The work between a successful test and an approved mission deserves the same engineering attention as the machine itself. That is where we are putting ours.</p>
-            <p>We are building agents that carry context through the life of a mission: connecting technical information to requirements, evidence, documents, and the people responsible for the next decision.</p>
+            <h2 id="about-origin-title">Good decisions need records you can check.</h2>
+            <p>A project team might need to reconcile a parcel boundary, a flood map and a utility letter before it can put a site under contract. A lender or underwriter needs to know which building each record covers and which version was in effect at the time.</p>
+            <p>Invariant Earth lets teams query those kinds of records by location and inspect the source and date behind each result where available. Our site and power work goes further into the utility records and studies that determine how a project can connect.</p>
           </div>
         </section>
 
         <section className="about-founders about-section" aria-labelledby="about-founders-title">
-          <div className="about-section-label"><span className="about-section-number">02</span><p className="about-eyebrow">The founders</p></div>
+          <div className="about-section-label"><p className="about-eyebrow">The founders</p></div>
           <div className="about-section-content">
             <h2 id="about-founders-title">Parthiv &amp; Pranav.</h2>
             <div className="about-founder-grid">
@@ -81,9 +87,8 @@ export default function About() {
         </section>
 
         <section className="about-advisors about-section" aria-labelledby="about-advisors-title">
-          <div className="about-section-label"><span className="about-section-number">03</span><p className="about-eyebrow">Our advisors</p></div>
           <div className="about-section-content">
-            <h2 id="about-advisors-title">Experience across<br />space and nuclear.</h2>
+            <h2 id="about-advisors-title">Our advisors</h2>
             <div className="about-advisor-grid">
               {advisors.map(advisor => <div className="about-advisor" key={advisor.name}>
                 <img src={advisor.photo} alt={advisor.name} loading="lazy" width="96" height="112" />
@@ -107,8 +112,11 @@ export default function About() {
         </section>
 
         <section className="about-invitation" aria-labelledby="about-invitation-title">
-          <div><p className="about-eyebrow">The work ahead</p><h2 id="about-invitation-title">Build with us.</h2></div>
-          <div className="about-invitation-action"><p>Bring us the mission and the regulatory work ahead.</p><Link to="/contact" className="about-button"><FigmaScrambleLabel>Start a conversation</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link></div>
+          <h2 id="about-invitation-title">Talk to Invariant</h2>
+          <div className="about-invitation-action"><p>Tell us which locations, data or power questions you need to check.</p>
+            <Link to="/contact" className="about-button"><FigmaScrambleLabel>Start a conversation</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link>
+            <a className="about-text-link about-social-link" href={COMPANY_LINKEDIN}>Invariant AI on LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
         </section>
       </div>
     </article>

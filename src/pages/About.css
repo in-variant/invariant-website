@@ -4,18 +4,16 @@
 .about-container { max-width: 1720px; margin-inline: auto; }
 .about-eyebrow { color: var(--about-orange); font: 12px/1.5 'JetBrains Mono', 'Geist Mono', monospace; text-transform: uppercase; }
 .about-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(32px, 5vw, 96px); padding-bottom: clamp(64px, 7vw, 130px); }
-.about-hero h1 { margin-top: 24px; font-family: 'DIN', 'D-DIN', sans-serif; font-size: clamp(44px, 4.5vw, 78px); font-weight: 500; line-height: 1.04; letter-spacing: -.032em; }
+.about-hero h1 { font-family: 'DIN', 'D-DIN', sans-serif; font-size: clamp(44px, 4.5vw, 78px); font-weight: 500; line-height: 1.04; letter-spacing: -.032em; }
 .about-lead { max-width: 530px; margin-top: 28px !important; font-size: clamp(16px, 1.2vw, 20px); line-height: 1.5; }
 .about-text-link { display: inline-flex; align-items: center; gap: 24px; margin-top: 28px; color: var(--about-blue); font: 11px/1.5 'Geist Mono', monospace; text-transform: uppercase; text-decoration: none; }
 .about-text-link > span:last-child { font-size: 21px; line-height: 1; transition: transform .2s; }
 .about-text-link:hover > span:last-child { transform: translate(3px, -3px); }
-.about-mission-art { border-bottom: 1px solid var(--about-rule); }
-.about-satellite { position: relative; aspect-ratio: 1.5; overflow: hidden; }
-.about-satellite img { position: absolute; width: 200%; max-width: none; height: auto; top: 0; left: 0; }
-.about-mission-art figcaption { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; color: var(--about-blue); font: 10px/1.5 'JetBrains Mono', 'Geist Mono', monospace; text-transform: uppercase; }
+.about-actions { display: flex; flex-wrap: wrap; gap: 4px 28px; margin-top: 24px; }
+.about-actions .about-text-link { min-height: 44px; margin: 0; gap: 9px; }
+.about-landscape { display: block; width: 100%; height: auto; border-radius: 4px; }
 .about-section { display: grid; grid-template-columns: minmax(160px, 1fr) minmax(0, 2.2fr); gap: clamp(32px, 5vw, 96px); border-top: 1px solid var(--about-rule); padding-block: clamp(48px, 5.2vw, 100px); }
 .about-section-label { display: flex; align-items: baseline; gap: 22px; }
-.about-section-number { color: var(--about-blue); font: 11px/1.5 'Geist Mono', monospace; }
 .about-page h2 { font-family: 'DIN', 'D-DIN', sans-serif; font-size: clamp(32px, 3.15vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -.025em; }
 .about-story-copy { max-width: 790px; }
 .about-story-copy p { max-width: 720px; font-size: clamp(16px, 1.16vw, 19px); line-height: 1.65; margin-top: 24px; }
@@ -29,6 +27,7 @@
 .about-founder h3 { margin-top: 12px; font-family: 'DIN', 'D-DIN', sans-serif; font-size: 30px; font-weight: 500; line-height: 1.15; letter-spacing: -.02em; }
 .about-founder p { margin-top: 16px; font-size: 15px; line-height: 1.65; }
 .about-advisor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: 40px; }
+.about-advisors .about-section-content { grid-column: -2 / -1; }
 .about-advisor { display: flex; align-items: start; gap: 20px; }
 .about-advisor img { flex: none; width: 80px; height: 100px; object-fit: cover; object-position: center 25%; filter: grayscale(1); border: 1px solid var(--about-rule); }
 .about-advisor h3 { font-family: 'DIN', 'D-DIN', sans-serif; font-size: 24px; font-weight: 500; line-height: 1.2; }
@@ -43,6 +42,7 @@
 .about-invitation h2 { margin-top: 20px; }
 .about-invitation-action { justify-self: end; }
 .about-invitation-action p { font-size: 15px; line-height: 1.5; }
+.about-social-link { display: flex; gap: 9px; width: fit-content; min-height: 44px; margin-top: 8px; }
 .about-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 40px; min-height: 44px; margin-top: 24px; padding: 12px 18px; color: #fff; background: var(--about-blue); font: 11px/1.5 'Geist Mono', monospace; text-transform: uppercase; text-decoration: none; transition: background .2s; }
 .about-button > span:last-child { font-size: 20px; line-height: 1; }
 .about-button:hover { background: var(--about-orange); }
@@ -54,14 +54,10 @@
 @media (max-width: 760px) {
   .about-page { padding: 48px 20px 80px; }
   .about-hero { grid-template-columns: 1fr; gap: 32px; padding-bottom: 48px; }
-  .about-hero h1 { font-size: clamp(39px, 9.7vw, 64px); margin-top: 18px; }
-  .about-hero h1 br { display: none; }
+  .about-hero h1 { font-size: clamp(39px, 9.7vw, 64px); }
   .about-lead { margin-top: 24px !important; }
-  .about-mission-art { width: 100%; max-width: 460px; justify-self: center; }
-  .about-mission-art figcaption { padding-block: 18px; }
   .about-section { grid-template-columns: 1fr; gap: 28px; padding-block: 40px; }
   .about-page h2 { font-size: 34px; }
-  .about-story-copy h2 br { display: none; }
   .about-story-copy h2 + p { margin-top: 24px; }
   .about-story-copy p { line-height: 1.6; }
   .about-founder-grid { grid-template-columns: 1fr; margin-top: 28px; }

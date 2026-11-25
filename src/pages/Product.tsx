@@ -104,7 +104,7 @@ export default function Product() {
   return (
     <div className="resources-page earth-product">
       <Seo
-        title={product.title}
+        title="Invariant Earth API for U.S. Property and Infrastructure Data"
         description={product.description}
         canonical={canonical}
         markdown="/product.md"
