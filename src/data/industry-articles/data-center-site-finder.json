@@ -19550,6 +19550,10 @@
       "items": [
        {
         "label": "Request a shortlist by MW, market and required service date",
+        "path": "/contact?request=site-selection"
+       },
+       {
+        "label": "See what a site shortlist includes",
         "slug": "data-center-site-selection-services"
        },
        {
@@ -22157,7 +22161,7 @@
   "description": "Compare U.S. data centers, powered shells and development projects for sale. See marketed power, documented deal terms and what to verify before a purchase.",
   "date": "2026-11-09",
   "readMinutes": 13,
-  "intro": "U.S. buyers can find fitted data centers, powered shells, and development projects for sale. A Knoxville edge facility is advertised at $785,000 with 40 kW of installed UPS capacity. A Pittsburgh shell is marketed with 3.5 MW of on-site transformer capacity. A Labadie, Missouri development site is marketed at about 500 MW and still needs rezoning. Compare what you can use at handover and what still needs utility work or fit-out.",
+  "intro": "Start with the power you can use at handover. A Knoxville edge facility is advertised at $785,000 with 40 kW of installed UPS capacity. At a vacant Lehigh Valley data center, the broker reports 2.5 MW of on-site power and markets a later path to 61.5 MW. The listings below distinguish existing equipment, future utility delivery and commissioned IT load so you can shortlist sites that fit your date.",
   "takeaways": [
    "Confirm the uncommitted power a buyer or tenant can use at handover, at the agreed reliability level.",
    "Keep energized utility service, power subject to utility work, and commissioned critical IT capacity in separate rows.",
@@ -22172,7 +22176,7 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We checked the seller and broker pages on November 23, 2026. The figures are advertised, and availability can change. Ask the listing contact for current terms before arranging a visit. UPS capacity measures the installed uninterruptible power supply and is separate from both utility service and commissioned IT capacity."
+      "text": "We checked the seller and broker pages on November 25, 2026. They show the terms being marketed on that date. Confirm that the offer is still open and ask what a buyer or tenant can use at handover. UPS capacity describes backup equipment, while commissioned IT load takes account of the electrical and cooling systems that support the racks."
      },
      {
       "type": "table",
@@ -22200,6 +22204,24 @@
         "Vacated former Verizon operations center marketed for sale or lease as a powered shell.",
         "3.5 MW of on-site transformer capacity per the brochure. An additional 40 MW depends on two proposed circuits.",
         "Utility confirmation of deliverable service today and the construction schedule for the additional circuits."
+       ],
+       [
+        "744 Roble Road, Allentown, Pennsylvania. 46,800 sq ft.",
+        "Vacated data center marketed for purchase or lease.",
+        "The brochure reports 2.5 MW on site and 849 kW of UPS capacity at N+1. It targets 11.5 MW in about 12 months, then another 50 MW roughly 18 months after phase one.",
+        "The utility’s written phase schedule, its start conditions and a load test for what the existing UPS and cooling can support."
+       ],
+       [
+        "Dayton, Ohio.",
+        "Equipped data center marketed for lease.",
+        "The broker says the ramp to 5 MW is underway and markets a later expansion to 15 MW or more.",
+        "The amount available at lease start, the dated utility milestones and the cooling and rack capacity for the first hall."
+       ],
+       [
+        "Orlando, Florida.",
+        "Existing powered shell marketed for lease.",
+        "The broker targets 20 MW in April 2027.",
+        "The utility delivery schedule, the landlord’s fit-out scope and the date commissioned IT load can be accepted."
        ]
       ],
       "rowSourceIds": [
@@ -22212,9 +22234,37 @@
        [
         "pittsburgh-broker",
         "pittsburgh-brochure"
+       ],
+       [
+        "lehigh-for-sale",
+        "lehigh-brochure"
+       ],
+       [
+        "broker-lease-inventory"
+       ],
+       [
+        "broker-lease-inventory"
        ]
       ],
       "stackOnMobile": true
+     },
+     {
+      "type": "paragraph",
+      "text": "For Lehigh Valley, the brochure’s phase schedule adds up to 61.5 MW, while one heading in the same brochure says 51.1 MW. Ask for the latest utility-backed schedule before using either figure in a bid. Keep the existing 2.5 MW on-site figure separate from the installed UPS rating and the expansion.",
+      "sourceIds": [
+       "lehigh-for-sale",
+       "lehigh-brochure"
+      ]
+     },
+     {
+      "type": "links",
+      "label": "Need a facility by a specific date?",
+      "items": [
+       {
+        "label": "Request a shortlist by market, load and service date",
+        "path": "/contact?request=site-selection"
+       }
+      ]
      }
     ]
    },
@@ -22966,6 +23016,27 @@
   ],
   "sources": [
    {
+    "id": "lehigh-for-sale",
+    "title": "November 4 listing for 744 Roble Road and the first-phase power schedule",
+    "url": "https://www.five9sdigital.com/news/lehigh-valley-pa-50-mw-data-center-now-available/",
+    "publisher": "Five 9s Digital",
+    "linkLabel": "Lehigh Valley listing"
+   },
+   {
+    "id": "lehigh-brochure",
+    "title": "744 Roble Road broker brochure, existing infrastructure and planned capacity",
+    "url": "https://assets.ctfassets.net/o03ihmgd94o7/76mALG68glPJZPCDRMkHc8/f662cdf6a9ee893ecc428f68f4724e2d/61.5_MW_Lehigh_Valley_Data_Center.pdf",
+    "publisher": "Five 9s Digital",
+    "linkLabel": "Lehigh Valley brochure"
+   },
+   {
+    "id": "broker-lease-inventory",
+    "title": "Broker listings for lease in Dayton and Orlando",
+    "url": "https://www.five9sdigital.com/data-centers/",
+    "publisher": "Five 9s Digital",
+    "linkLabel": "Broker’s current inventory"
+   },
+   {
     "id": "knoxville-owner",
     "title": "Knoxville Data Center owner listing",
     "url": "https://forsale.knoxvilledatacenter.com/",
@@ -23136,7 +23207,7 @@
    "data-center-land-for-sale",
    "data-center-site-selection-services"
   ],
-  "updatedDate": "2026-11-24",
+  "updatedDate": "2026-11-25",
   "dataset": {
    "name": "Power rights and delivery milestones in two data center transactions",
    "description": "Issuer-reported service, economic rights, conditions for utility delivery and critical IT capacity in the AIB DFW1 acquisition and the Host Digital Site I lease. Includes original SEC filing links and section references.",

@@ -45,6 +45,7 @@ const publicBlogSlugs = new Set(slugs)
 const linkablePaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
   .matchAll(/^\s*'(\/product|\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
 linkablePaths.add('/data-coverage')
+linkablePaths.add('/contact?request=site-selection')
 linkablePaths.add('/contact?request=site-submission')
 const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
 for (const { slug } of glossary) {
