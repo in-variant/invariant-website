@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import product from '../data/earth-product.json'
 import { ResourceArrow } from './ResourceCards'
 
 export default function EarthAgentSetup({ linkToOverview = false }: { linkToOverview?: boolean }) {
+  const [ready, setReady] = useState(false)
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'manual'>('idle')
+
+  useEffect(() => setReady(true), [])
+
   async function copyPrompt() {
     try {
       await navigator.clipboard.writeText(product.setupPrompt)
@@ -24,7 +28,7 @@ export default function EarthAgentSetup({ linkToOverview = false }: { linkToOver
           </div>
         )}
       </div>
-      <button type="button" className="earth-product-button earth-product-button-outline" onClick={copyPrompt}>
+      <button type="button" className="earth-product-button earth-product-button-outline" disabled={!ready} onClick={copyPrompt}>
         {copyState === 'copied' ? 'Prompt copied' : 'Copy setup prompt'}
       </button>
       <p role="status" className="sr-only">
