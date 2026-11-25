@@ -4510,13 +4510,14 @@
     "topic": "Data Centers",
     "kind": "site-guide",
     "title": "Behind-the-Meter Power for Data Centers: MW and Timelines",
-    "description": "Can you get 50 MW of on-site power within a year? Compare gas, fuel cell and wind-plus-grid projects, and verify net MW, permits and delivery dates.",
+    "description": "Compare on-site natural gas, fuel cells and utility power for data centers. See the permit-to-operation timeline for Vantage VA2 and check net MW and delivery dates.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-25",
-    "readMinutes": 19,
+    "readMinutes": 20,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
+      "At Vantage VA2 in Virginia, the gas turbines started normal operation 199 days after the state issued the September air permit.",
       "Aggreko reports 60 MW of temporary power for commissioning a construction-ready Indiana data center. For a tenant opening, ask for a separate acceptance date and guaranteed operating capacity.",
       "Ask the pipeline for firm capacity, pressure and gas quality in writing before any equipment order.",
       "Ask the air agency to confirm the permit path for the planned run hours. At Prime AUS02, Texas issued the air registration 106 days after filing, with a separate operating permit still to be obtained according to the review.",
@@ -4530,6 +4531,10 @@
           {
             "type": "paragraph",
             "text": "Bridge power can serve the first phase while the utility upgrades the grid. Start with the utility service that will be usable by the tenant’s opening date. Then size on-site generation for the gap, including the equipment and fuel outages the facility must ride through. Ask for the guaranteed net megawatts at the facility intake, an equipment delivery slot, firm gas service, permits for the planned run hours, and a commissioning schedule. The operating plan also needs to show how the facility will switch to permanent utility service."
+          },
+          {
+            "type": "paragraph",
+            "text": "Compare both supply paths at the same facility intake and on the same dates. For utility service, check the contracted MW by phase and which upgrades control the date. For on-site gas, check net output at summer conditions, firm fuel delivery and what the plant can sustain with its largest unit out. Record commissioning and ongoing service separately."
           },
           {
             "type": "table",
@@ -4647,6 +4652,88 @@
               {"slug": "natural-gas-pipeline-capacity-site-service", "label": "Check firm gas service for the site"},
               {"slug": "data-center-site-selection-services", "label": "Request a shortlist for your MW and delivery date"}
             ]
+          }
+        ]
+      },
+      {
+        "id": "vantage-va2-turbines-permit-to-operation",
+        "heading": "How long did on-site natural gas take at Vantage VA2?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Virginia DEQ records eight natural gas turbines as the primary power source for Vantage VA2 in Sterling. The turbines started normal operation on April 1, 2024, 199 days after the state issued the September air permit and 150 days after turbine construction began.",
+            "sourceIds": [
+              "va2-deq-operations"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Milestone",
+              "Date",
+              "Record"
+            ],
+            "rows": [
+              [
+                "Air permit application dated",
+                "March 6, 2023",
+                "Initial Form 7 date in the state’s assessment"
+              ],
+              [
+                "Air permit issued",
+                "September 15, 2023",
+                "Minor New Source Review permit, registration 74242"
+              ],
+              [
+                "Turbine construction began",
+                "November 3, 2023",
+                "Construction start reported to Virginia DEQ"
+              ],
+              [
+                "Normal operations began",
+                "April 1, 2024",
+                "State assessment confirms the operating milestone"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "va2-deq-operations"
+              ],
+              [
+                "va2-deq-operations"
+              ],
+              [
+                "va2-deq-operations"
+              ],
+              [
+                "va2-deq-operations"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The eight units are rated at 16.5 MW each, for 132 MW of combined nameplate capacity. The reported 2025 hours total 47,768 across the fleet. DEQ lists 47,131 hours of normal operation and 637 hours in its uncontrolled operation category. Several turbines can run during the same clock hour. Ask for the output at the data center intake, including summer derating and outages, to establish how much load the plant can serve.",
+            "sourceIds": [
+              "va2-deq-operations",
+              "va2-deq-hours"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The county’s local siting action ties the project to site plan STMP-2022-0023 and two parcel IDs at 22435 Glenn Drive. An earlier posted version of the assessment uses 22318 Glenn Drive in its introduction. Both DEQ versions identify registration 74242. Keep the addresses with their source dates and match the site by permit, site plan and parcel before using nearby utility records.",
+            "sourceIds": [
+              "va2-county-action",
+              "va2-deq-earlier-address",
+              "va2-deq-operations"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/vantage-va2-turbine-operation.json",
+            "label": "Download the Vantage VA2 timeline, turbine ratings and run hours",
+            "format": "JSON",
+            "datasetAnchor": "dataset-vantage-va2-operating-turbines"
           }
         ]
       },
@@ -6035,6 +6122,34 @@
         "publisher": "Briscoe County",
         "title": "Dorothy 3 Phase 1 tax abatement agreement, page 1 hearing and effective date language",
         "url": "https://www.co.briscoe.tx.us/upload/page/5181/01.11.09.2026%20phase%201.pdf#page=1"
+      },
+      {
+        "id": "va2-deq-operations",
+        "title": "April 27, 2026 VA2 assessment, p. 3 turbine ratings and operation dates",
+        "url": "https://www.deq.virginia.gov/home/showpublisheddocument/35701/639132500689870000#page=3",
+        "publisher": "Virginia DEQ",
+        "linkLabel": "Virginia DEQ operation dates"
+      },
+      {
+        "id": "va2-deq-hours",
+        "title": "April 27, 2026 VA2 assessment, p. 5 reported 2025 turbine hours",
+        "url": "https://www.deq.virginia.gov/home/showpublisheddocument/35701/639132500689870000#page=5",
+        "publisher": "Virginia DEQ",
+        "linkLabel": "Virginia DEQ run-hour figures"
+      },
+      {
+        "id": "va2-county-action",
+        "title": "July 5, 2023 Loudoun County board action, item 2c",
+        "url": "https://loudoun.granicus.com/MetaViewer.php?clip_id=7339&meta_id=232318&view_id=88#page=3",
+        "publisher": "Loudoun County",
+        "linkLabel": "Loudoun County action report"
+      },
+      {
+        "id": "va2-deq-earlier-address",
+        "title": "Earlier posted VA2 assessment, p. 3 facility address and registration",
+        "url": "https://www.deq.virginia.gov/home/showpublisheddocument/35701/639128956440930000#page=3",
+        "publisher": "Virginia DEQ",
+        "linkLabel": "Earlier DEQ address entry"
       }
     ],
     "relatedSlugs": [
@@ -6127,6 +6242,20 @@
         ],
         "spatialCoverage": "Project Dorothy near Silverton, Briscoe County, Texas, United States",
         "temporalCoverage": "2026-04-01/2026-11-16"
+      },
+      {
+        "anchor": "dataset-vantage-va2-operating-turbines",
+        "datePublished": "2026-11-25",
+        "name": "Vantage VA2 gas turbine permit, operation dates and 2025 run hours",
+        "description": "Virginia DEQ’s dates for air registration 74242, turbine construction and normal operations, plus turbine ratings and combined 2025 unit-hours. Includes the county site plan and preserves the distinction between equipment rating and net power delivered.",
+        "sourceIds": [
+          "va2-deq-operations",
+          "va2-deq-hours",
+          "va2-county-action",
+          "va2-deq-earlier-address"
+        ],
+        "spatialCoverage": "Vantage VA2, Sterling, Loudoun County, Virginia, United States",
+        "temporalCoverage": "2023-03-06/2026-04-27"
       }
     ]
   },
