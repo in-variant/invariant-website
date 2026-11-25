@@ -226,7 +226,8 @@ function researchMd() {
     `URL: ${SITE}/research`,
     `Updated: ${research.updatedDate}`, '',
     `- [Browse research datasets](${SITE}/datasets)`,
-    `- [Explore data guides](${SITE}/blog/physical-world-data-by-use-case)`, '',
+    `- [Explore data guides](${SITE}/blog/physical-world-data-by-use-case)`,
+    `- [Check API data coverage](${SITE}${product.links.coverage})`, '',
     `## ${heading}`, '', description, '',
   ]
   for (const { slug, anchor = 'dataset', topic, title, linkLabel, observations } of examples) {
