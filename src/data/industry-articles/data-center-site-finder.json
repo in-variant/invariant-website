@@ -3789,10 +3789,10 @@
   "kind": "site-listing",
   "region": "United States",
   "title": "50 MW Data Center Sites and Paths to Power",
-  "description": "Compare 50 MW data center site leads and three power delivery paths. See how existing service, utility expansion, and on-site generation affect the schedule.",
+  "description": "Compare 50 MW data center site leads and delivery dates. See what an electric service agreement, broker schedule, and temporary power record each establish.",
   "date": "2026-11-09",
   "updatedDate": "2026-11-24",
-  "readMinutes": 6,
+  "readMinutes": 7,
   "intro": "For a 50 MW data center, start with the date the load needs to run and whether 50 MW is measured at the meter or at the IT equipment. The quickest credible path may be an existing service that the utility confirms can serve your project. A new service, a retrofit, and an on-site plant each have different steps before power reaches the racks. The leads and filing below show how to compare those dates.",
   "takeaways": [
    "A 50 MW facility supply supports about 38.5 MW of IT at an illustrative 1.30 facility-to-IT demand ratio. A 50 MW critical IT project needs about 65 MW of facility demand at the same ratio.",
@@ -3876,6 +3876,10 @@
     "heading": "What is the fastest way to get 50 MW to a site?",
     "blocks": [
      {
+      "type": "paragraph",
+      "text": "Check existing service first. Ask the utility what it can serve at your meter and whether its approval covers your load and reliability needs. For a start date, compare when the source can serve the load with when the building can accept it. On-site power can help finish commissioning during a utility delay. Treat a temporary deployment and a long-term source as separate entries in the schedule."
+     },
+     {
       "type": "table",
       "stackOnMobile": true,
       "columns": [
@@ -3924,8 +3928,72 @@
        {
         "label": "Verify MW and the service date before signing",
         "slug": "power-evidence-data-center-site-verification"
+       },
+       {
+        "label": "Work backward from your required opening date",
+        "path": "/calculators/data-center-power-delivery-schedule"
        }
       ]
+     }
+    ]
+   },
+   {
+    "id": "fifty-mw-delivery-records",
+    "heading": "Three records to check before scheduling a 50 MW load",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Put the utility service date, each hall’s acceptance date, and any temporary power end date on the same calendar. For any date you enter, record who gave it to you and what has to happen first."
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Project",
+       "What the source reports",
+       "What to verify for your schedule"
+      ],
+      "rows": [
+       [
+        "AIB CLT1, South Carolina",
+        "AIB reports service under its 65 MW utility agreement began October 1, 2026. It targets Q4 2027 and Q1 2028 for two 25 MW critical IT halls.",
+        "Get the utility service date and each hall’s acceptance date. Ask when utility charges start and when the customer can use the hall."
+       ],
+       [
+        "Project Rocket, Houston",
+        "CBRE markets 50 MW by Q2 2028. The listing describes up to 250 MW separately, tied to transmission work.",
+        "Get the service plan for the 50 MW phase and the schedule for the buyer’s substation and commissioning. Confirm the upgrade scope for later phases."
+       ],
+       [
+        "Temporary power, South Bend",
+        "Aggreko reports deploying 60 MW of temporary commissioning power with a one-month mobilization notice and a six-month operating period.",
+        "For temporary use, ask when the plant can accept the commissioning load. For continuous operation, ask for sustained net output at the delivery point, operating approvals, fuel terms and acceptance tests."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "aib-clt1"
+       ],
+       [
+        "cbre-rocket"
+       ],
+       [
+        "aggreko-south-bend"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For a project that needs 50 MW of critical IT capacity on day one, the CLT1 source gives two target windows of 25 MW each. Use the second hall’s window when comparing the full 50 MW requirement. Review the latest utility and construction schedules before deciding whether either window fits.",
+      "sourceIds": [
+       "aib-clt1"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the dated power delivery records",
+      "path": "/blog/50-mw-data-center-delivery-records.csv",
+      "format": "CSV"
      }
     ]
    },
@@ -4351,13 +4419,30 @@
     "title": "Clean Air Act Resources for Data Centers",
     "url": "https://www.epa.gov/stationary-sources-air-pollution/clean-air-act-resources-data-centers",
     "publisher": "U.S. Environmental Protection Agency"
+   },
+   {
+    "id": "aggreko-south-bend",
+    "title": "South Bend temporary power case study, deployment and operating period",
+    "url": "https://www.aggreko.com/en-us/case-studies/data-centres/temporary-power-enabling-hyperscale-data-center-commissioning",
+    "publisher": "Aggreko"
    }
   ],
   "relatedSlugs": [
    "oklahoma-city-55-mw-powered-brownfield-84-acres-oge",
    "find-data-center-site-us",
    "100-mw-data-center-site"
-  ]
+  ],
+  "dataset": {
+   "name": "Data center power delivery records for CLT1, Project Rocket and South Bend",
+   "description": "Five records that distinguish the start of utility service, two targeted IT hall handovers, a broker’s scheduled power date and temporary generation mobilization. Source locators and dates preserve what each MW figure measures.",
+   "spatialCoverage": "South Carolina, Houston, Texas, and South Bend, Indiana, United States",
+   "datePublished": "2026-11-24",
+   "sourceIds": [
+    "aib-clt1",
+    "cbre-rocket",
+    "aggreko-south-bend"
+   ]
+  }
  },
  {
   "slug": "100-mw-data-center-site",
