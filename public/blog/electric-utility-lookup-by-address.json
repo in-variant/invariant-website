@@ -1,0 +1,253 @@
+{
+  "name": "Minnesota electric utility territory lookup at three addresses",
+  "retrieved": "2026-11-25",
+  "publisher": "Invariant",
+  "selection": "Three public reference addresses in Carver County, including the site address listed for the proposed CloudHQ campus and two city halls.",
+  "method": "Intersect the county address point in WGS84 with both public service territory layers. Keep every returned polygon, the source utility IDs and an exact query URL. For Chanhassen, use the county City Hall record at 7700 Market Boulevard rather than the separately indexed Park unit.",
+  "sources": {
+    "carverCounty": "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2",
+    "minnesotaElectricUtilityServiceAreas": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0",
+    "ntiaHifldElectricRetailServiceTerritories": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0",
+    "cityProjectDescription": "https://www.chaskamn.gov/841/Cloud-HQ"
+  },
+  "locations": [
+    {
+      "id": "project",
+      "address": "2007 Schoolmaster Drive, Chaska, MN",
+      "point": {
+        "x": -93.63313453890768,
+        "y": 44.81064357388072
+      },
+      "addressEvidence": {
+        "url": "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2/query?where=ANUMBER%3D2007+AND+ST_NAME%3D%27SCHOOLMASTER%27+AND+MUNI_NAME%3D%27CHASKA%27&f=json&outFields=OBJECTID%2CSITEADDRESS%2CMUNI_NAME%2CPOSI_ACCU%2CSTATUS%2CLOC_DESC%2CEFF_DATE&returnGeometry=true&outSR=4326",
+        "responseSha256": "5c506ac0d9e0928631e04de70c79a82436bdc57a111460798ba1cbfd9c750d2b",
+        "records": [
+          {
+            "attributes": {
+              "OBJECTID": 40966,
+              "SITEADDRESS": "2007 Schoolmaster Drive",
+              "MUNI_NAME": "CHASKA",
+              "POSI_ACCU": 4,
+              "STATUS": "A",
+              "LOC_DESC": "Home",
+              "EFF_DATE": null
+            },
+            "geometry": {
+              "x": -93.63313453890768,
+              "y": 44.81064357388072
+            }
+          }
+        ]
+      },
+      "mnPUC": {
+        "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0/query?geometry=-93.63313453890768%2C44.81064357388072&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1%3D1&returnGeometry=false&f=json&outFields=objectid%2Cmpuc_name%2Cfull_name%2Ctype%2Cmn_utility_id%2Ceia_utility_id&orderByFields=objectid",
+        "responseSha256": "74b67cda71d2621f3e86ec1f43c91de8e38c865fe5e398fa8dcb765edf884f2c",
+        "records": [
+          {
+            "attributes": {
+              "objectid": 50,
+              "mpuc_name": "City of Chaska",
+              "full_name": "City of Chaska Electric Department",
+              "type": "Municipal",
+              "mn_utility_id": 34,
+              "eia_utility_id": 3400
+            }
+          }
+        ]
+      },
+      "ntiaHifld": {
+        "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0/query?geometry=-93.63313453890768%2C44.81064357388072&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1%3D1&returnGeometry=false&f=json&outFields=OBJECTID%2CID%2CNAME%2CTYPE%2CCITY%2CSTATE%2CSOURCE%2CSOURCEDATE%2CVAL_DATE%2CYEAR&orderByFields=OBJECTID",
+        "responseSha256": "fa0aff56ad7f8d384834e7c0eef5240f8a977ebf981f8fde2a194aef73027555",
+        "records": [
+          {
+            "attributes": {
+              "OBJECTID": 1245,
+              "ID": "17899",
+              "NAME": "CITY OF ST PAUL - (NE)",
+              "TYPE": "NOT AVAILABLE",
+              "CITY": "NOT AVAILABLE",
+              "STATE": "NE",
+              "SOURCE": "EIA 861, Urban Areas - Cartographic Boundary Shapefiles - U.S. Census",
+              "SOURCEDATE": 1690848000000,
+              "VAL_DATE": 1654214400000,
+              "YEAR": "2022"
+            }
+          },
+          {
+            "attributes": {
+              "OBJECTID": 1957,
+              "ID": "3400",
+              "NAME": "CITY OF CHASKA - (MN)",
+              "TYPE": "MUNICIPAL",
+              "CITY": "NOT AVAILABLE",
+              "STATE": "MN",
+              "SOURCE": "FERC 714, EIA 861, https://gisdata.mn.gov/dataset/util-eusa",
+              "SOURCEDATE": 1690848000000,
+              "VAL_DATE": 1539302400000,
+              "YEAR": "2022"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "chaska",
+      "address": "1 City Hall Plaza, Chaska, MN",
+      "point": {
+        "x": -93.60213730569617,
+        "y": 44.787530564096684
+      },
+      "addressEvidence": {
+        "url": "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2/query?where=ANUMBER%3D1+AND+ST_NAME%3D%27CITY+HALL%27+AND+MUNI_NAME%3D%27CHASKA%27&f=json&outFields=OBJECTID%2CSITEADDRESS%2CMUNI_NAME%2CPOSI_ACCU%2CSTATUS%2CLOC_DESC%2CEFF_DATE&returnGeometry=true&outSR=4326",
+        "responseSha256": "b1a79640fff903205f563266bbe55e21c90168e354e464266d9a3353fa9f0837",
+        "records": [
+          {
+            "attributes": {
+              "OBJECTID": 25531,
+              "SITEADDRESS": "1 City Hall Plaza",
+              "MUNI_NAME": "CHASKA",
+              "POSI_ACCU": 4,
+              "STATUS": "A",
+              "LOC_DESC": "City Hall",
+              "EFF_DATE": null
+            },
+            "geometry": {
+              "x": -93.60213730569617,
+              "y": 44.787530564096684
+            }
+          }
+        ]
+      },
+      "mnPUC": {
+        "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0/query?geometry=-93.60213730569617%2C44.787530564096684&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1%3D1&returnGeometry=false&f=json&outFields=objectid%2Cmpuc_name%2Cfull_name%2Ctype%2Cmn_utility_id%2Ceia_utility_id&orderByFields=objectid",
+        "responseSha256": "74b67cda71d2621f3e86ec1f43c91de8e38c865fe5e398fa8dcb765edf884f2c",
+        "records": [
+          {
+            "attributes": {
+              "objectid": 50,
+              "mpuc_name": "City of Chaska",
+              "full_name": "City of Chaska Electric Department",
+              "type": "Municipal",
+              "mn_utility_id": 34,
+              "eia_utility_id": 3400
+            }
+          }
+        ]
+      },
+      "ntiaHifld": {
+        "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0/query?geometry=-93.60213730569617%2C44.787530564096684&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1%3D1&returnGeometry=false&f=json&outFields=OBJECTID%2CID%2CNAME%2CTYPE%2CCITY%2CSTATE%2CSOURCE%2CSOURCEDATE%2CVAL_DATE%2CYEAR&orderByFields=OBJECTID",
+        "responseSha256": "fa0aff56ad7f8d384834e7c0eef5240f8a977ebf981f8fde2a194aef73027555",
+        "records": [
+          {
+            "attributes": {
+              "OBJECTID": 1245,
+              "ID": "17899",
+              "NAME": "CITY OF ST PAUL - (NE)",
+              "TYPE": "NOT AVAILABLE",
+              "CITY": "NOT AVAILABLE",
+              "STATE": "NE",
+              "SOURCE": "EIA 861, Urban Areas - Cartographic Boundary Shapefiles - U.S. Census",
+              "SOURCEDATE": 1690848000000,
+              "VAL_DATE": 1654214400000,
+              "YEAR": "2022"
+            }
+          },
+          {
+            "attributes": {
+              "OBJECTID": 1957,
+              "ID": "3400",
+              "NAME": "CITY OF CHASKA - (MN)",
+              "TYPE": "MUNICIPAL",
+              "CITY": "NOT AVAILABLE",
+              "STATE": "MN",
+              "SOURCE": "FERC 714, EIA 861, https://gisdata.mn.gov/dataset/util-eusa",
+              "SOURCEDATE": 1690848000000,
+              "VAL_DATE": 1539302400000,
+              "YEAR": "2022"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "chanhassen",
+      "address": "7700 Market Boulevard, Chanhassen, MN",
+      "point": {
+        "x": -93.538386442883,
+        "y": 44.862653649413595
+      },
+      "addressEvidence": {
+        "url": "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2/query?where=ANUMBER%3D7700+AND+ST_NAME%3D%27MARKET%27+AND+MUNI_NAME%3D%27CHANHASSEN%27+AND+LOC_DESC%3D%27City+Hall%27&f=json&outFields=OBJECTID%2CSITEADDRESS%2CMUNI_NAME%2CPOSI_ACCU%2CSTATUS%2CLOC_DESC%2CEFF_DATE&returnGeometry=true&outSR=4326",
+        "responseSha256": "b6f01352dac463e73eb57b9ffa06650a26bf0f37e662a9945a6f7260aae9845f",
+        "records": [
+          {
+            "attributes": {
+              "OBJECTID": 17999,
+              "SITEADDRESS": "7700 Market Boulevard",
+              "MUNI_NAME": "CHANHASSEN",
+              "POSI_ACCU": 4,
+              "STATUS": "A",
+              "LOC_DESC": "City Hall",
+              "EFF_DATE": null
+            },
+            "geometry": {
+              "x": -93.538386442883,
+              "y": 44.862653649413595
+            }
+          }
+        ]
+      },
+      "mnPUC": {
+        "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0/query?geometry=-93.538386442883%2C44.862653649413595&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1%3D1&returnGeometry=false&f=json&outFields=objectid%2Cmpuc_name%2Cfull_name%2Ctype%2Cmn_utility_id%2Ceia_utility_id&orderByFields=objectid",
+        "responseSha256": "48d7bb4768e487d644d0084416371414be031041926cff913a12d5ac74f3156d",
+        "records": [
+          {
+            "attributes": {
+              "objectid": 41,
+              "mpuc_name": "Xcel Energy",
+              "full_name": "Xcel Energy",
+              "type": "Investor-Owned",
+              "mn_utility_id": 85,
+              "eia_utility_id": 13781
+            }
+          }
+        ]
+      },
+      "ntiaHifld": {
+        "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0/query?geometry=-93.538386442883%2C44.862653649413595&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=1%3D1&returnGeometry=false&f=json&outFields=OBJECTID%2CID%2CNAME%2CTYPE%2CCITY%2CSTATE%2CSOURCE%2CSOURCEDATE%2CVAL_DATE%2CYEAR&orderByFields=OBJECTID",
+        "responseSha256": "6dc3516c32f17efa6483ceb0f15b5177dbe0accd646aee5e7d1107a6dbc5b4a6",
+        "records": [
+          {
+            "attributes": {
+              "OBJECTID": 607,
+              "ID": "13781",
+              "NAME": "NORTHERN STATES POWER CO - MINNESOTA",
+              "TYPE": "INVESTOR OWNED",
+              "CITY": "MINNEAPOLIS",
+              "STATE": "MN",
+              "SOURCE": "EIA 860, EIA 861, TIGER/Line Shapefiles - U.S. Census, https://gisdata.mn.gov/dataset/util-eusa",
+              "SOURCEDATE": 1690848000000,
+              "VAL_DATE": 1556668800000,
+              "YEAR": "2022"
+            }
+          },
+          {
+            "attributes": {
+              "OBJECTID": 1245,
+              "ID": "17899",
+              "NAME": "CITY OF ST PAUL - (NE)",
+              "TYPE": "NOT AVAILABLE",
+              "CITY": "NOT AVAILABLE",
+              "STATE": "NE",
+              "SOURCE": "EIA 861, Urban Areas - Cartographic Boundary Shapefiles - U.S. Census",
+              "SOURCEDATE": 1690848000000,
+              "VAL_DATE": 1654214400000,
+              "YEAR": "2022"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Point matches describe the published maps on retrieval. They do not identify a customer meter, a contracted supplier, an executed agreement or firm capacity. The city describes a proposed campus connection to Xcel transmission through a substation owned and operated by the Minnesota Municipal Power Agency."
+}

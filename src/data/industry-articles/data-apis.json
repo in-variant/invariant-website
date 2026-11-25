@@ -1,5 +1,297 @@
 [
   {
+    "slug": "electric-utility-lookup-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Electric Utility Lookup by Address: Who Serves a Site?",
+    "description": "Find the electric utility for an address. Compare state and national territory maps, see a verified Minnesota overlap, and learn whom to ask about new service.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Summer aerial imagery of western Chaska, Minnesota, marked at the county address point for 2007 Schoolmaster Drive.",
+    "coverCaption": "CloudHQ’s proposed Chaska site address at 2007 Schoolmaster Drive. County address point over USDA NAIP imagery from 2023.",
+    "intro": "To find the electric utility for an existing address, start with a recent bill or meter record from the property. For vacant land, match the address or parcel to the planned location of electric service and check the state’s utility territory map. A national map can narrow the search. At three Minnesota addresses we tested, it also returned a municipal utility from Nebraska.",
+    "takeaways": [
+      "Check who delivers electricity to the meter. A competitive supplier that sells the power can be a separate company.",
+      "Use the commission’s electric service area map where available. Keep all candidates from an overlapping national layer and check the utility IDs and states.",
+      "For a new high-load site, confirm who would build and own the connection, which organization studies it, and how much load can be delivered by each required date."
+    ],
+    "sections": [
+      {
+        "id": "find-the-utility",
+        "heading": "How to find the electric utility for an address",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "For a building with service, get a recent bill tied to the premises or meter number. Record the delivery utility and the organization that bills for the electricity supply.",
+              "For vacant land, confirm the parcel and mark the proposed service entrance or utility handoff. In a multi-building development, check each planned point separately.",
+              "Search the public utility commission’s map for that point. Where the state publishes only a county list or an approximate boundary, ask the likely provider and the commission to confirm the assignment.",
+              "Give the utility the parcel, planned point of delivery, requested service date and expected facility load. Ask which application and study apply to the site."
+            ],
+            "sourceIds": [
+              "mn-find",
+              "mn-puc",
+              "fl-psc",
+              "eia-county",
+              "chaska-project"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A ZIP code can contain customers of multiple utilities. EIA’s county-level service territory survey tracks counties where a utility reports distribution equipment. Use that list to find candidates when a detailed map is missing. Use a state or utility record to resolve the individual site.",
+            "sourceIds": [
+              "eia-county",
+              "mn-puc"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "minnesota-map-test",
+        "heading": "What three Minnesota addresses show about national utility maps",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "On November 25, 2026, we took address points from Carver County and queried two layers: the official Minnesota service area map and the national HIFLD layer republished by NTIA. At Chanhassen City Hall, the county also lists a separate Park unit at 7700 Market Boulevard. We used the county point identified as City Hall.",
+            "sourceIds": [
+              "county-addresses",
+              "mn-state-layer",
+              "ntia-layer"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Address checked",
+              "Minnesota commission map",
+              "NTIA’s HIFLD copy"
+            ],
+            "rows": [
+              [
+                "2007 Schoolmaster Drive, Chaska",
+                "City of Chaska, EIA ID 3400",
+                "City of Chaska, plus City of St. Paul, Nebraska, ID 17899"
+              ],
+              [
+                "1 City Hall Plaza, Chaska",
+                "City of Chaska, EIA ID 3400",
+                "City of Chaska, plus City of St. Paul, Nebraska, ID 17899"
+              ],
+              [
+                "7700 Market Boulevard, Chanhassen",
+                "Xcel Energy, EIA ID 13781",
+                "Northern States Power Co. – Minnesota, ID 13781, plus City of St. Paul, Nebraska, ID 17899"
+              ]
+            ],
+            "sourceIds": [
+              "county-addresses",
+              "mn-state-layer",
+              "ntia-layer"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Xcel and Northern States names carry the same EIA ID in the two layers. St. Paul, Nebraska, is a separate utility. The national layer’s record for ID 17899 says NE and intersected all three Minnesota points. The Nebraska municipality describes its retail system as serving its own community. This trial shows why a team should keep the full set of matches and confirm the relevant one with a better local source.",
+            "sourceIds": [
+              "ntia-layer",
+              "mn-state-layer",
+              "ne-utility"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "JSON",
+            "label": "Download the three address lookups and source queries",
+            "path": "/blog/electric-utility-lookup-by-address.json"
+          }
+        ]
+      },
+      {
+        "id": "chaska-large-load-connection",
+        "heading": "Who studies the power connection for a large new load?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Minnesota service-area map places the address point for CloudHQ’s proposed campus in the City of Chaska’s distribution territory. Chaska’s project description says that under the proposed design the Minnesota Municipal Power Agency would own and operate the new on-site substation, which would connect directly to Xcel Energy transmission. The city describes a preliminary system impact study involving CloudHQ, MMPA and Xcel.",
+            "sourceIds": [
+              "chaska-project",
+              "mn-state-layer"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep separate records for the mapped retail territory, the proposed point of delivery, the substation owner and the organization responsible for the study. Before underwriting a factory or data center phase, request the utility’s written service evidence for the facility MW, service voltage, delivery point, upgrade scope and earliest service date. Record the status of each agreement and the date of the evidence.",
+            "sourceIds": [
+              "chaska-project",
+              "dominion-requests"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "data-center-site-selection-checklist",
+                "label": "Compare site candidates and their power dates"
+              },
+              {
+                "slug": "utility-load-study-cost-and-timeline",
+                "label": "See what the utility needs to open a load study"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "utility-service-territory-api",
+        "heading": "How to integrate a utility territory lookup in your workflow",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth’s electric utility service territory field queries the NTIA copy of HIFLD. Its current public definition calls for a single containing utility before it names one. When a point has overlapping matches or no match, route the address to a state map or the local utility for review. Keep the utility ID, source and date you checked so the next analyst can reproduce the decision.",
+            "sourceIds": [
+              "earth-fields",
+              "ntia-layer",
+              "mn-puc"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/data-coverage?field=electric_utility_service_territory&operation=point#coverage-search",
+                "label": "Inspect Invariant Earth’s utility territory field"
+              },
+              {
+                "slug": "grid-capacity-apis-load-headroom",
+                "label": "Compare maps and studies for load headroom"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find the electricity provider for a new address?",
+        "answer": "Find the parcel or planned service point, then check the state’s electric utility service area map. Give the likely utility the street address, parcel identifier and intended load. Ask it to verify which organization should handle a new service request.",
+        "sourceIds": [
+          "mn-find",
+          "mn-puc"
+        ]
+      },
+      {
+        "question": "Can I use a ZIP code to find my electricity supplier?",
+        "answer": "Use a ZIP code to form a list of candidates. For an existing building, use the bill or meter record to verify the delivery utility and any separate supplier. For new construction, verify the exact service point with the utility.",
+        "sourceIds": [
+          "eia-county",
+          "mn-find"
+        ]
+      },
+      {
+        "question": "Does a service territory map tell me how many MW a utility can deliver?",
+        "answer": "A territory match helps you identify whom to contact. Request written service evidence for the requested load, date, voltage, location and upgrades. A large project may have a proposed transmission connection or a separate power agency involved.",
+        "sourceIds": [
+          "chaska-project",
+          "dominion-requests"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "county-addresses",
+        "title": "Carver County active address points",
+        "url": "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2",
+        "publisher": "Carver County GIS"
+      },
+      {
+        "id": "mn-puc",
+        "title": "Official Minnesota Electric Service Area Map and boundary filing process",
+        "url": "https://mn.gov/puc/activities/maps/",
+        "publisher": "Minnesota Public Utilities Commission"
+      },
+      {
+        "id": "mn-find",
+        "title": "Find the electric utility for a home or business",
+        "url": "https://mn.gov/puc/consumers/utility/",
+        "publisher": "Minnesota Public Utilities Commission"
+      },
+      {
+        "id": "mn-state-layer",
+        "title": "Electric Utility Service Areas state GIS layer",
+        "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0",
+        "publisher": "Minnesota Geospatial Information Office"
+      },
+      {
+        "id": "ntia-layer",
+        "title": "NTIA copy of the HIFLD Electric Retail Service Territories layer",
+        "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0",
+        "publisher": "NTIA"
+      },
+      {
+        "id": "ne-utility",
+        "title": "City of St. Paul, Nebraska, municipal electricity service",
+        "url": "https://stpaulnebraska.com/city-departments/electric/",
+        "publisher": "City of St. Paul, Nebraska"
+      },
+      {
+        "id": "chaska-project",
+        "title": "CloudHQ project address and proposed electricity supply",
+        "url": "https://www.chaskamn.gov/841/Cloud-HQ",
+        "publisher": "City of Chaska"
+      },
+      {
+        "id": "eia-county",
+        "title": "EIA explains what its county-level service territory file measures",
+        "url": "https://www.eia.gov/tools/faqs/faq.php?id=448&t=1",
+        "publisher": "U.S. Energy Information Administration"
+      },
+      {
+        "id": "fl-psc",
+        "title": "Florida utility service territory lookup",
+        "url": "https://www.psc.state.fl.us/find-utility-service",
+        "publisher": "Florida Public Service Commission"
+      },
+      {
+        "id": "dominion-requests",
+        "title": "Data center electricity request and service planning steps",
+        "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
+        "publisher": "Dominion Energy Virginia"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Live electric utility territory field definitions",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth"
+      },
+      {
+        "id": "aerial",
+        "title": "Minnesota 2023 National Agricultural Imagery Program orthophoto metadata",
+        "url": "https://www.arcgis.com/sharing/rest/content/items/c7c0d54341a24a3fbb4d96c596aa25d0/info/metadata/metadata.xml?format=default&output=html",
+        "publisher": "USDA and MnGeo"
+      }
+    ],
+    "dataset": {
+      "name": "Minnesota electric utility territory lookup at three addresses",
+      "description": "Three county address points intersected with the official Minnesota layer and NTIA’s national HIFLD copy. Includes utility IDs, every match, exact public queries and response hashes.",
+      "spatialCoverage": "Chaska and Chanhassen, Carver County, Minnesota, United States",
+      "temporalCoverage": "2026-11-25",
+      "sourceIds": [
+        "county-addresses",
+        "mn-state-layer",
+        "ntia-layer",
+        "ne-utility",
+        "chaska-project"
+      ]
+    },
+    "relatedSlugs": [
+      "grid-capacity-apis-load-headroom",
+      "data-center-site-selection-checklist",
+      "power-outage-history-by-address",
+      "utility-load-study-cost-and-timeline"
+    ]
+  },
+  {
     "slug": "property-easement-lookup-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -31596,6 +31888,10 @@
               {
                 "path": "/data-coverage#power-and-renewables",
                 "label": "Review mapped power and renewable energy fields"
+              },
+              {
+                "slug": "electric-utility-lookup-by-address",
+                "label": "Identify the utility to contact about your delivery point"
               },
               {
                 "slug": "power-outage-history-by-address",

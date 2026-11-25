@@ -1,5 +1,62 @@
 [
   {
+    "slug": "electric-utility-lookup-by-address",
+    "topic": "Data & APIs",
+    "title": "Electric Utility Lookup by Address: Who Serves a Site?",
+    "summary": "Find the electric utility for an address. Compare state and national territory maps, see a verified Minnesota overlap, and learn whom to ask about new service.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/electric-utility-lookup-by-address.webp?v=992f6994",
+    "dataset": {
+      "name": "Minnesota electric utility territory lookup at three addresses",
+      "description": "Three county address points intersected with the official Minnesota layer and NTIA’s national HIFLD copy. Includes utility IDs, every match, exact public queries and response hashes.",
+      "spatialCoverage": "Chaska and Chanhassen, Carver County, Minnesota, United States",
+      "temporalCoverage": "2026-11-25",
+      "sources": [
+        "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2",
+        "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0",
+        "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0",
+        "https://stpaulnebraska.com/city-departments/electric/",
+        "https://www.chaskamn.gov/841/Cloud-HQ"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Carver County active address points",
+          "publisher": "Carver County GIS",
+          "url": "https://gis.co.carver.mn.us/arcgis_ea/rest/services/OpenAccess/CC_Address/FeatureServer/2"
+        },
+        {
+          "title": "Electric Utility Service Areas state GIS layer",
+          "publisher": "Minnesota Geospatial Information Office",
+          "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/util_eusa/FeatureServer/0"
+        },
+        {
+          "title": "NTIA copy of the HIFLD Electric Retail Service Territories layer",
+          "publisher": "NTIA",
+          "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Electric_Retail_Service_Territories_HIFLD/FeatureServer/0"
+        },
+        {
+          "title": "City of St. Paul, Nebraska, municipal electricity service",
+          "publisher": "City of St. Paul, Nebraska",
+          "url": "https://stpaulnebraska.com/city-departments/electric/"
+        },
+        {
+          "title": "CloudHQ project address and proposed electricity supply",
+          "publisher": "City of Chaska",
+          "url": "https://www.chaskamn.gov/841/Cloud-HQ"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the three address lookups and source queries",
+          "path": "/blog/electric-utility-lookup-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "property-easement-lookup-by-address",
     "topic": "Data & APIs",
     "title": "How to Find Recorded Property Easements by Address",
