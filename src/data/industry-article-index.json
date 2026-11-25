@@ -5617,6 +5617,81 @@
     }
   },
   {
+    "slug": "industrial-land-for-sale-acreage-zoning",
+    "topic": "Data & APIs",
+    "title": "How to Find Industrial Land for Sale by Acreage and Zoning",
+    "summary": "Find industrial land in public site inventories. Compare sale status, contiguous acreage and zoning, then replay a 50-acre search of Virginia listings.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/industrial-land-for-sale-acreage-zoning.webp?v=cd1b9b7f",
+    "dataset": {
+      "name": "Virginia industrial land listings screened at 50 acres",
+      "description": "Four successive count queries and four selected property records from Virginia’s public site directory. Includes sale flags, total acreage, largest contiguous acreage, acreage reported suitable for construction, and zoning as shown in the source.",
+      "spatialCoverage": "Virginia, United States",
+      "datePublished": "2026-11-24",
+      "sources": [
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1&returnCountOnly=true",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50&returnCountOnly=true",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50&returnCountOnly=true",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50+AND+AcreageSuitableForConstruction%3E%3D50&returnCountOnly=true",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D233424&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D299960&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D243336&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D298956&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Marked for sale, replay the record count",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1&returnCountOnly=true"
+        },
+        {
+          "title": "At least 50 total acres, replay the record count",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50&returnCountOnly=true"
+        },
+        {
+          "title": "Also at least 50 contiguous acres, replay the record count",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50&returnCountOnly=true"
+        },
+        {
+          "title": "Also at least 50 acres suitable for construction, replay the record count",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50+AND+AcreageSuitableForConstruction%3E%3D50&returnCountOnly=true"
+        },
+        {
+          "title": "Patriot Centre Industrial Park, replay the property record",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D233424&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+        },
+        {
+          "title": "Dillard Tract - Lot B, replay the property record",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D299960&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+        },
+        {
+          "title": "Clarksville Commerce Center, replay the property record",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D243336&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+        },
+        {
+          "title": "Lyme Tract, replay the property record",
+          "publisher": "Virginia Economic Development Partnership",
+          "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D298956&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the queries, counts and four example site records",
+          "path": "/blog/industrial-land-for-sale-acreage-zoning.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

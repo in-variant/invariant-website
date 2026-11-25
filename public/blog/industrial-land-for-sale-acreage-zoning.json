@@ -1,0 +1,109 @@
+{
+  "title": "Virginia industrial land listings screened at 50 acres",
+  "checked_on": "2026-11-24",
+  "queries_completed_at_utc": "2026-11-25T03:49:59.252377+00:00",
+  "publisher_of_source_records": "Virginia Economic Development Partnership",
+  "source_layer": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1",
+  "method": "Count ArcGIS records marked for sale with each additional acreage filter. Count records, without deduplicating by seller, tract boundary or development. Query selected property IDs for examples. The screen uses separate reported attributes and leaves the geometric overlap, current terms, ownership, permitting and service availability for diligence.",
+  "units": "acres for all acreage columns",
+  "counts": [
+    {
+      "stage": "sale",
+      "label": "Marked for sale",
+      "where": "Sale=1",
+      "records": 741,
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1&returnCountOnly=true"
+    },
+    {
+      "stage": "gross",
+      "label": "At least 50 total acres",
+      "where": "Sale=1 AND TotalAcreage>=50",
+      "records": 341,
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50&returnCountOnly=true"
+    },
+    {
+      "stage": "contiguous",
+      "label": "Also at least 50 contiguous acres",
+      "where": "Sale=1 AND TotalAcreage>=50 AND LargestContiguousAcreage>=50",
+      "records": 254,
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50&returnCountOnly=true"
+    },
+    {
+      "stage": "construction",
+      "label": "Also at least 50 acres suitable for construction",
+      "where": "Sale=1 AND TotalAcreage>=50 AND LargestContiguousAcreage>=50 AND AcreageSuitableForConstruction>=50",
+      "records": 252,
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50+AND+AcreageSuitableForConstruction%3E%3D50&returnCountOnly=true"
+    }
+  ],
+  "excluded_after_total_acreage_filter": 89,
+  "excluded_percent_of_total_acreage_matches": 26.1,
+  "missing_acreage_checks": [
+    {
+      "records": 0,
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage+IS+NULL&returnCountOnly=true"
+    },
+    {
+      "records": 0,
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50+AND+AcreageSuitableForConstruction+IS+NULL&returnCountOnly=true"
+    }
+  ],
+  "illustrative_records": [
+    {
+      "property_id": 233424,
+      "name": "Patriot Centre Industrial Park",
+      "locality": "Henry",
+      "marked_for_sale": true,
+      "total_acres": 1000,
+      "largest_contiguous_acres": 40,
+      "acres_reported_suitable_for_construction": 223,
+      "reported_zoning": "I-1",
+      "source_date_modified": "2026-06-04 09:16:01",
+      "passes_three_reported_acreage_filters": false,
+      "listing": "https://sites.vedp.org/PropertyByID/233424",
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D233424&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+    },
+    {
+      "property_id": 299960,
+      "name": "Dillard Tract - Lot B",
+      "locality": "Amherst",
+      "marked_for_sale": true,
+      "total_acres": 55,
+      "largest_contiguous_acres": 55,
+      "acres_reported_suitable_for_construction": 20,
+      "reported_zoning": "M-1",
+      "source_date_modified": "2026-08-26 12:45:32",
+      "passes_three_reported_acreage_filters": false,
+      "listing": "https://sites.vedp.org/PropertyByID/299960",
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D299960&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+    },
+    {
+      "property_id": 243336,
+      "name": "Clarksville Commerce Center",
+      "locality": "Mecklenburg",
+      "marked_for_sale": true,
+      "total_acres": 87.6,
+      "largest_contiguous_acres": 53,
+      "acres_reported_suitable_for_construction": 53,
+      "reported_zoning": "M-1, Industrial",
+      "source_date_modified": "2026-10-09 14:27:09",
+      "passes_three_reported_acreage_filters": true,
+      "listing": "https://sites.vedp.org/PropertyByID/243336",
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D243336&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+    },
+    {
+      "property_id": 298956,
+      "name": "Lyme Tract",
+      "locality": "Hanover",
+      "marked_for_sale": true,
+      "total_acres": 61,
+      "largest_contiguous_acres": 55,
+      "acres_reported_suitable_for_construction": 55,
+      "reported_zoning": "A-1",
+      "source_date_modified": "2026-09-11 14:44:30",
+      "passes_three_reported_acreage_filters": true,
+      "listing": "https://sites.vedp.org/PropertyByID/298956",
+      "query": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D298956&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false"
+    }
+  ]
+}

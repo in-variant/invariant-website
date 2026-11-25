@@ -27505,5 +27505,332 @@
         "oer-cleanup"
       ]
     }
+  },
+  {
+    "slug": "industrial-land-for-sale-acreage-zoning",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find Industrial Land for Sale by Acreage and Zoning",
+    "description": "Find industrial land in public site inventories. Compare sale status, contiguous acreage and zoning, then replay a 50-acre search of Virginia listings.",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "coverAlt": "In a Virginia sale inventory, 341 records showed at least 50 total acres, 254 also showed at least 50 contiguous acres, and 252 also showed at least 50 acres suitable for construction.",
+    "coverCaption": "Successive filters applied to the Virginia Economic Development Partnership’s public site layer on November 24, 2026.",
+    "intro": "Start with a state or local economic development inventory for marketed industrial land. Filter for the largest connected area your project needs, then check the acreage reported suitable for construction and the zoning for your specific use. In Virginia, 341 sale records listed at least 50 total acres. Of those, 252 also met both reported acreage checks. Use the result to decide which sites are worth a survey, a zoning call, and a utility inquiry.",
+    "takeaways": [
+      "Define the space your layout needs in one connected block. Include truck courts, setbacks, stormwater and utility equipment.",
+      "Keep the acreage the seller can convey, the reported contiguous area and the area suitable for construction on separate lines.",
+      "Before pricing land, confirm the offered parcel IDs, permitted use, site access, utility capacity and the dates the providers can support."
+    ],
+    "sections": [
+      {
+        "id": "search-marketed-land",
+        "heading": "Where to find industrial land for sale",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the state’s site and building directory, then check the local economic development office and commercial land listings. State directories give you a consistent place to start. Local teams can often identify which pad or parcels are still offered and supply a site plan, study, or survey. Save the listing ID and the date you checked it, so you can request the same property later.",
+            "sourceIds": [
+              "vedp-catalog",
+              "nc-catalog"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a larger search area, draw the corridors or service areas that meet your freight and site requirements, then look for parcels inside them. Use parcel records to identify candidate tracts and ask owners or their representatives about interest. Record those leads as owner inquiries until someone authorized confirms that they would sell or lease.",
+            "sourceIds": [
+              "invariant-parcel-workflow"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fifty-acre-search",
+        "heading": "Run a 50-acre industrial land search",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Suppose the project needs one continuous 50-acre layout. We queried Virginia’s public Available Sites layer on November 24, 2026. Each row below adds a check to the one above it. Treat the numbers as counts of directory records at the time of the query."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Successive filter",
+              "Records returned"
+            ],
+            "rows": [
+              [
+                "Marked for sale",
+                "741"
+              ],
+              [
+                "At least 50 total acres",
+                "341"
+              ],
+              [
+                "Also at least 50 contiguous acres",
+                "254"
+              ],
+              [
+                "Also at least 50 acres suitable for construction",
+                "252"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "vedp-count-sale"
+              ],
+              [
+                "vedp-count-gross"
+              ],
+              [
+                "vedp-count-contiguous"
+              ],
+              [
+                "vedp-count-construction"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The last two acreage checks removed 89 records, about 26% of the results returned by total acreage alone. The remaining 252 are prospects for a closer look. Request the buildable-area map before assuming that the land suitable for construction is one connected block on the tract you can buy."
+          },
+          {
+            "type": "download",
+            "label": "Download the queries, counts and four example site records",
+            "path": "/blog/industrial-land-for-sale-acreage-zoning.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-four-sites",
+        "heading": "Read the acreage and zoning together",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Site",
+              "Reported acreage",
+              "Next step for a 50-acre requirement"
+            ],
+            "rows": [
+              [
+                "Patriot Centre Industrial Park, Henry",
+                "1000 total, 40 contiguous, 223 suitable for construction",
+                "Ask which parcels the acreage describes and whether they can be assembled. The reported contiguous block is below 50 acres."
+              ],
+              [
+                "Dillard Tract - Lot B, Amherst",
+                "55 total, 55 contiguous, 20 suitable for construction",
+                "Request the usable-area map. The listing shows 55 contiguous acres and 20 acres suitable for construction."
+              ],
+              [
+                "Clarksville Commerce Center, Mecklenburg",
+                "87.6 total, 53 contiguous, 53 suitable for construction",
+                "Carry it into layout review. Confirm the 53-acre construction area within the specific tract on offer."
+              ],
+              [
+                "Lyme Tract, Hanover",
+                "61 total, 55 contiguous, 55 suitable for construction",
+                "Carry the acreage forward and check the land use separately. The record lists A-1. Ask the locality where the proposed operation can be permitted."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "vedp-property-233424"
+              ],
+              [
+                "vedp-property-299960"
+              ],
+              [
+                "vedp-property-243336"
+              ],
+              [
+                "vedp-property-298956"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Send the planner your parcel IDs, site plan and proposed operation, including truck activity, outdoor storage and utility equipment. Ask which zoning and overlays apply to the building pad and access route, and which approvals you need before work can start."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "zoning-data-apis-for-site-selection",
+                "label": "Find local zoning and confirm the permitted use"
+              },
+              {
+                "path": "/data-coverage#zoning-terrain-and-water",
+                "label": "Check API fields for zoning, terrain and water"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "verify-the-land-on-offer",
+        "heading": "What to ask for before making an offer",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask for a dated exhibit showing the parcels, access routes, easements and land reserved for later phases. Confirm who can sign for the tract and whether any pad has already been sold or reserved. In North Carolina, for example, the Certified Sites guidelines require documented price and availability assurance for at least two years. Ask for the current assurance and which part of the site it covers.",
+            "sourceIds": [
+              "nc-certification"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask the water, sewer and power providers to confirm the required capacity, connection point and service date. Use the same drawing and schedule for every provider. The footprint that survives those calls is the one to use in a price comparison."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "site-selection-due-diligence",
+                "label": "Use the site due diligence worksheet"
+              },
+              {
+                "slug": "shovel-ready-industrial-site-checklist",
+                "label": "Check what the site certification covers"
+              },
+              {
+                "slug": "manufacturing-site-selection-100-buildable-acres",
+                "label": "Test a plant layout against the acreage and utilities"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I search for industrial land for sale?",
+        "answer": "Start with a state economic development site directory, then check the local development agency and broker listings. Confirm the current offering, seller, parcel IDs and dates directly before comparing prices.",
+        "sourceIds": [
+          "vedp-catalog",
+          "nc-catalog"
+        ]
+      },
+      {
+        "question": "How do I find 50 buildable acres?",
+        "answer": "Filter for at least 50 total acres, 50 contiguous acres and 50 acres reported suitable for construction where those fields are available. Ask for a survey and a concept plan showing the connected area that fits your layout, including access, setbacks and utilities.",
+        "sourceIds": [
+          "vedp-count-construction"
+        ]
+      },
+      {
+        "question": "Does industrial zoning let me build a warehouse or factory?",
+        "answer": "Ask the local planning authority how its use table classifies your specific operation and whether overlays or conditions apply. Bring your site plan and separate the building, yard, truck route and any outside materials storage."
+      }
+    ],
+    "sources": [
+      {
+        "id": "vedp-catalog",
+        "title": "Virginia Sites & Buildings Search",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://sites.vedp.org/"
+      },
+      {
+        "id": "nc-catalog",
+        "title": "Site Search & Location Data",
+        "publisher": "North Carolina Department of Commerce",
+        "url": "https://www.commerce.nc.gov/business/site-search-location-data"
+      },
+      {
+        "id": "nc-certification",
+        "title": "Certified Sites program, property availability and price assurance",
+        "publisher": "North Carolina Department of Commerce",
+        "url": "https://www.commerce.nc.gov/data-tools-reports/north-carolina-certified-sites"
+      },
+      {
+        "id": "invariant-parcel-workflow",
+        "title": "Find parcels intersecting a polygon",
+        "publisher": "Invariant Earth",
+        "url": "https://docs.invariant-ai.com/find-parcels-intersecting-a-polygon"
+      },
+      {
+        "id": "vedp-count-sale",
+        "title": "Marked for sale, replay the record count",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1&returnCountOnly=true",
+        "linkLabel": "Run count query"
+      },
+      {
+        "id": "vedp-count-gross",
+        "title": "At least 50 total acres, replay the record count",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50&returnCountOnly=true",
+        "linkLabel": "Run count query"
+      },
+      {
+        "id": "vedp-count-contiguous",
+        "title": "Also at least 50 contiguous acres, replay the record count",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50&returnCountOnly=true",
+        "linkLabel": "Run count query"
+      },
+      {
+        "id": "vedp-count-construction",
+        "title": "Also at least 50 acres suitable for construction, replay the record count",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=Sale%3D1+AND+TotalAcreage%3E%3D50+AND+LargestContiguousAcreage%3E%3D50+AND+AcreageSuitableForConstruction%3E%3D50&returnCountOnly=true",
+        "linkLabel": "Run count query"
+      },
+      {
+        "id": "vedp-property-233424",
+        "title": "Patriot Centre Industrial Park, replay the property record",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D233424&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "linkLabel": "Run property query"
+      },
+      {
+        "id": "vedp-property-299960",
+        "title": "Dillard Tract - Lot B, replay the property record",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D299960&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "linkLabel": "Run property query"
+      },
+      {
+        "id": "vedp-property-243336",
+        "title": "Clarksville Commerce Center, replay the property record",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D243336&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "linkLabel": "Run property query"
+      },
+      {
+        "id": "vedp-property-298956",
+        "title": "Lyme Tract, replay the property record",
+        "publisher": "Virginia Economic Development Partnership",
+        "url": "https://maps.vedp.org/arcgis/rest/services/OpenData/PropertiesSites/MapServer/1/query?f=json&where=PropertyID%3D298956&outFields=PropertyID%2CName%2CLocalityName%2CSale%2CTotalAcreage%2CLargestContiguousAcreage%2CAcreageSuitableForConstruction%2CZoningClassification%2CDateModified%2CVirginiaScan_URL&returnGeometry=false",
+        "linkLabel": "Run property query"
+      }
+    ],
+    "relatedSlugs": [
+      "best-gis-apis-for-site-selection",
+      "manufacturing-site-selection-100-buildable-acres",
+      "zoning-data-apis-for-site-selection",
+      "shovel-ready-industrial-site-checklist"
+    ],
+    "dataset": {
+      "name": "Virginia industrial land listings screened at 50 acres",
+      "description": "Four successive count queries and four selected property records from Virginia’s public site directory. Includes sale flags, total acreage, largest contiguous acreage, acreage reported suitable for construction, and zoning as shown in the source.",
+      "spatialCoverage": "Virginia, United States",
+      "datePublished": "2026-11-24",
+      "sourceIds": [
+        "vedp-count-sale",
+        "vedp-count-gross",
+        "vedp-count-contiguous",
+        "vedp-count-construction",
+        "vedp-property-233424",
+        "vedp-property-299960",
+        "vedp-property-243336",
+        "vedp-property-298956"
+      ]
+    }
   }
 ]
