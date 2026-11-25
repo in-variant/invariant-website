@@ -7757,6 +7757,57 @@
     }
   },
   {
+    "slug": "property-data-as-of-date",
+    "topic": "Data & APIs",
+    "title": "Point-in-Time Property Data: How to Rebuild a Property File",
+    "summary": "Reconstruct building, parcel and recording records as of an earlier date. Download a 25 Water Street example with three cutoffs and the original source queries.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/property-data-as-of-date.webp?v=6ed06eab",
+    "dataset": {
+      "name": "25 Water Street property records at three December 2025 cutoffs",
+      "description": "Ten DOB occupancy issuance rows, 12 selected ACRIS instruments, three reproduced cutoffs and a later MapPLUTO observation. Includes request URLs and source response fingerprints.",
+      "spatialCoverage": "25 Water Street, Manhattan, New York City, United States",
+      "temporalCoverage": "2025-12-01/2025-12-10",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+        "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100",
+        "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json"
+      ],
+      "sourceDetails": [
+        {
+          "title": "DOB NOW occupancy certificate query for BIN 1000007, job M08013214",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC"
+        },
+        {
+          "title": "ACRIS Real Property Master query for the 12 selected instrument IDs",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100"
+        },
+        {
+          "title": "ACRIS Real Property References query for the selected instruments",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100"
+        },
+        {
+          "title": "MapPLUTO 26v3 parcel query for BBL 1000050010",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the three cutoffs, dated source rows and query fingerprints",
+          "path": "/blog/25-water-street-point-in-time-property-records.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

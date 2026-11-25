@@ -1,0 +1,277 @@
+{
+  "name": "25 Water Street historical file, three December 2025 cutoffs",
+  "property": {
+    "address": "25 Water Street, Manhattan, New York",
+    "bbl": "1000050010",
+    "bin": "1000007",
+    "dob_job": "M08013214"
+  },
+  "queries": {
+    "occupancy": {
+      "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC",
+      "response_sha256": "b6c90ca98ad85ce2360e148622facb1cfd210aa7c64388baa2115630cc6c31d1",
+      "observed_on": "2026-11-25"
+    },
+    "master": {
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+      "response_sha256": "5d53aa7064c6e40415a455a22232771245a671b2a27c027c4068283f83808cd8",
+      "observed_on": "2026-11-25"
+    },
+    "references": {
+      "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100",
+      "response_sha256": "21ab9fe2197d4af225039950410bfede86942d4f8c620e28741ce488c4fe9559",
+      "observed_on": "2026-11-25"
+    },
+    "pluto": {
+      "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json",
+      "response_sha256": "6605423dac6e8fb6f27aa2e9bad9dddc69b20349e18dda69df82710ede8ac17c",
+      "observed_on": "2026-11-25"
+    }
+  },
+  "method": {
+    "occupancy": "Keep selected issuance rows with issued_date on or before the cutoff.",
+    "recorder": "Keep selected master rows with recorded_date on or before the cutoff.",
+    "selected_instrument_count_note": "These are 12 instrument IDs selected in the existing 25 Water Street mortgage-chain study, not all recorder records for the parcel.",
+    "visibility_scope": "Reconstruction using records retrieved on November 25, 2026. Exact historical feed visibility and earlier versions of individual rows were not verified."
+  },
+  "cutoffs": [
+    {
+      "cutoff_date": "2025-12-01",
+      "eligible_occupancy_issuance_count": 6,
+      "latest_eligible_certificate": "1000007-0000006",
+      "latest_eligible_issuance_date": "2025-09-11",
+      "latest_issuance_reported_dwelling_units": 1320,
+      "eligible_selected_recorder_count": 8,
+      "eligible_december_2025_recordings": [],
+      "mappluto_26v3_used_at_cutoff": false
+    },
+    {
+      "cutoff_date": "2025-12-05",
+      "eligible_occupancy_issuance_count": 7,
+      "latest_eligible_certificate": "1000007-0000007",
+      "latest_eligible_issuance_date": "2025-12-03",
+      "latest_issuance_reported_dwelling_units": 1320,
+      "eligible_selected_recorder_count": 8,
+      "eligible_december_2025_recordings": [],
+      "mappluto_26v3_used_at_cutoff": false
+    },
+    {
+      "cutoff_date": "2025-12-10",
+      "eligible_occupancy_issuance_count": 7,
+      "latest_eligible_certificate": "1000007-0000007",
+      "latest_eligible_issuance_date": "2025-12-03",
+      "latest_issuance_reported_dwelling_units": 1320,
+      "eligible_selected_recorder_count": 12,
+      "eligible_december_2025_recordings": [
+        "2025120800203004",
+        "2025120800203005",
+        "2025120800203006",
+        "2025120800203007"
+      ],
+      "mappluto_26v3_used_at_cutoff": false
+    }
+  ],
+  "occupancy_issuances": [
+    {
+      "certificate_number": "1000007-0000001",
+      "application_number": "CO-000068219",
+      "source_issuance_datetime": "02/07/25  1:57:23 PM",
+      "issued_date": "2025-02-07",
+      "filing_type": "Initial",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000002",
+      "application_number": "CO-000073953",
+      "source_issuance_datetime": "04/28/25  9:05:22 AM",
+      "issued_date": "2025-04-28",
+      "filing_type": "Renewal With Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000003",
+      "application_number": "CO-000076273",
+      "source_issuance_datetime": "06/11/25  2:04:38 PM",
+      "issued_date": "2025-06-11",
+      "filing_type": "Renewal With Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000004",
+      "application_number": "CO-000078276",
+      "source_issuance_datetime": "07/18/25 11:38:08 AM",
+      "issued_date": "2025-07-18",
+      "filing_type": "Renewal With Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000005",
+      "application_number": "CO-000080994",
+      "source_issuance_datetime": "09/03/25 12:26:29 PM",
+      "issued_date": "2025-09-03",
+      "filing_type": "Renewal With Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000006",
+      "application_number": "CO-000081402",
+      "source_issuance_datetime": "09/11/25  4:06:39 PM",
+      "issued_date": "2025-09-11",
+      "filing_type": "Renewal With Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000007",
+      "application_number": "CO-000084817",
+      "source_issuance_datetime": "12/03/25  2:28:30 PM",
+      "issued_date": "2025-12-03",
+      "filing_type": "Renewal Without Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000008",
+      "application_number": "CO-000088768",
+      "source_issuance_datetime": "02/25/26  3:44:01 PM",
+      "issued_date": "2026-02-25",
+      "filing_type": "Renewal Without Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000009",
+      "application_number": "CO-000094862",
+      "source_issuance_datetime": "05/27/26  9:37:54 AM",
+      "issued_date": "2026-05-27",
+      "filing_type": "Renewal Without Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    },
+    {
+      "certificate_number": "1000007-0000010",
+      "application_number": "CO-000101718",
+      "source_issuance_datetime": "09/30/26  9:02:10 AM",
+      "issued_date": "2026-09-30",
+      "filing_type": "Renewal Without Change",
+      "status": "CO Issued",
+      "dwelling_units": 1320
+    }
+  ],
+  "selected_recorder_rows": [
+    {
+      "document_id": "2015020501427004",
+      "crfn": "2015000061069",
+      "type": "MTGE",
+      "document_date": "2015-02-03",
+      "recorded_date": "2015-02-23",
+      "document_amount_usd": 55650000
+    },
+    {
+      "document_id": "2015020501427005",
+      "crfn": "2015000061070",
+      "type": "AGMT",
+      "document_date": "2015-02-03",
+      "recorded_date": "2015-02-23",
+      "document_amount_usd": 250000000
+    },
+    {
+      "document_id": "2022122300118001",
+      "crfn": "2022000461982",
+      "type": "DEED",
+      "document_date": "2022-12-21",
+      "recorded_date": "2022-12-28",
+      "document_amount_usd": 250806808
+    },
+    {
+      "document_id": "2022122300118003",
+      "crfn": "2022000461984",
+      "type": "ASST",
+      "document_date": "2022-12-21",
+      "recorded_date": "2022-12-28",
+      "document_amount_usd": 0
+    },
+    {
+      "document_id": "2022122300118004",
+      "crfn": "2022000461985",
+      "type": "AGMT",
+      "document_date": "2022-12-21",
+      "recorded_date": "2022-12-28",
+      "document_amount_usd": 107012127
+    },
+    {
+      "document_id": "2022122300118005",
+      "crfn": "2022000461986",
+      "type": "MTGE",
+      "document_date": "2022-12-21",
+      "recorded_date": "2022-12-28",
+      "document_amount_usd": 208713753
+    },
+    {
+      "document_id": "2022122300118007",
+      "crfn": "2022000461988",
+      "type": "MTGE",
+      "document_date": "2022-12-21",
+      "recorded_date": "2022-12-28",
+      "document_amount_usd": 99274118
+    },
+    {
+      "document_id": "2023010900455001",
+      "crfn": "2023000008537",
+      "type": "AL&R",
+      "document_date": "2022-12-21",
+      "recorded_date": "2023-01-10",
+      "document_amount_usd": 415000000
+    },
+    {
+      "document_id": "2025120800203004",
+      "crfn": "2025000334866",
+      "type": "TL&R",
+      "document_date": "2025-11-25",
+      "recorded_date": "2025-12-09",
+      "document_amount_usd": 0
+    },
+    {
+      "document_id": "2025120800203005",
+      "crfn": "2025000334867",
+      "type": "ASST",
+      "document_date": "2025-11-25",
+      "recorded_date": "2025-12-09",
+      "document_amount_usd": 0
+    },
+    {
+      "document_id": "2025120800203006",
+      "crfn": "2025000334868",
+      "type": "AGMT",
+      "document_date": "2025-11-25",
+      "recorded_date": "2025-12-09",
+      "document_amount_usd": 415000000
+    },
+    {
+      "document_id": "2025120800203007",
+      "crfn": "2025000334869",
+      "type": "AL&R",
+      "document_date": "2025-11-25",
+      "recorded_date": "2025-12-09",
+      "document_amount_usd": 415000000
+    }
+  ],
+  "december_rent_assignment_reference": {
+    "document_id": "2025120800203007",
+    "references_document_id": "2025120800203006",
+    "source": "references"
+  },
+  "later_parcel_readout": {
+    "edition": "26v3",
+    "address": "115 BROAD STREET",
+    "total_units": 1323,
+    "residential_units": 1320,
+    "observed_on": "2026-11-25",
+    "scope": "Later parcel edition excluded from December 2025 comparisons."
+  }
+}

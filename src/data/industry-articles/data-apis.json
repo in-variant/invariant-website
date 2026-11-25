@@ -8370,6 +8370,7 @@
             "type": "links",
             "label": "Continue the credit review",
             "items": [
+              {"slug":"property-data-as-of-date","label":"Reconstruct the full property file at three cutoffs"},
               {
                 "slug": "commercial-real-estate-data-apis-for-lenders",
                 "label": "Compare recorded lender roles and disclosed loan balances"
@@ -26118,6 +26119,7 @@
               {"slug":"best-gis-apis-for-site-selection","label":"Compare GIS APIs for U.S. site selection"},
               {"slug":"commercial-property-insurance-data-apis","label":"Check building identity for insurance prefill"},
               {"slug":"commercial-real-estate-data-apis-for-lenders","label":"Reconstruct a recorder file at an earlier credit decision"},
+              {"slug":"property-data-as-of-date","label":"Join dated occupancy, parcel and recorder evidence"},
               {"slug":"regrid-alternatives-parcel-data-apis","label":"Test how a parcel API handles condo lots and shared geometry"}, {"label":"Commercial real estate lending guides","slug":"commercial-real-estate-lending"}
             ]
           }
@@ -37082,6 +37084,296 @@
       "industrial-environmental-permit-history-by-parcel",
       "mireye-alternatives-for-property-screening",
       "data-center-environmental-site-screening"
+    ]
+  },
+  {
+    "slug": "property-data-as-of-date",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Point-in-Time Property Data: How to Rebuild a Property File",
+    "description": "Reconstruct building, parcel and recording records as of an earlier date. Download a 25 Water Street example with three cutoffs and the original source queries.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Three December 2025 cutoffs for 25 Water Street. Eligible occupancy issuances rise from six to seven, and selected recorder entries increase from eight to twelve.",
+    "coverCaption": "NYC issued an occupancy renewal on December 3 and recorded four selected financing documents on December 9. Invariant reconstructed the cutoffs from records retrieved November 25, 2026.",
+    "intro": "To reconstruct a property file as of an earlier date, match the parcel and building, then apply the date that belongs to each source. An occupancy certificate has an issuance date. A mortgage has a document date and a separate recording date. A later parcel edition belongs in a separate observation. At 25 Water Street in Manhattan, those distinctions change what goes into the same property file over nine days.",
+    "takeaways": [
+      "Filter each record by the date that answers your question. Preserve the original event date, the source edition and when your team first captured the record.",
+      "At 25 Water Street, the latest eligible occupancy issuance changed on December 3, 2025. The four selected financing records were recorded on December 9.",
+      "To reproduce exactly what an analyst or data feed could see at the time, use an archived response or a dated capture log."
+    ],
+    "sections": [
+      {
+        "id": "match-the-property-before-filtering",
+        "heading": "Match the building and parcel before comparing dates",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "NYC identifies 25 Water Street, 115 Broad Street and 4 New York Plaza as addresses for the same building. Use Manhattan borough-block-lot 1000050010 for the recorder and tax lot queries, and building identification number 1000007 with job M08013214 for the Department of Buildings query. Keep the source identifiers together in the file so the certificate series stays tied to the intended building.",
+            "sourceIds": [
+              "aliases",
+              "occupancy",
+              "parcel"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to confirm a present-day parcel match and capture the source and edition for future comparisons. For a past decision, look for the source edition or the record dated to that decision. A building job and a tax lot identify different things, so check the building identifier before carrying a certificate over to a whole parcel.",
+            "sourceIds": [
+              "earth-responses",
+              "earth-history"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "three-december-cutoffs",
+        "heading": "What changed between December 1, 5 and 10?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We retrieved the city records on November 25, 2026. For each 2025 cutoff, we kept DOB issuance rows through that calendar date and selected ACRIS instrument rows through their recording date. The occupancy series contains ten rows and the recorder sample contains 12 instruments chosen from a published mortgage-chain study. The counts below describe those queries.",
+            "sourceIds": [
+              "occupancy",
+              "acris-master"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Cutoff date",
+              "DOB occupancy evidence",
+              "Selected ACRIS recorder entries"
+            ],
+            "rows": [
+              [
+                "December 1, 2025",
+                "6 issuances. Latest eligible certificate ends in 0000006, September 11.",
+                "8 selected instruments. The four November 25 documents were still outside the recorded-date cutoff."
+              ],
+              [
+                "December 5, 2025",
+                "7 issuances. The December 3 renewal ends in 0000007 and reports 1,320 dwelling units.",
+                "8 selected instruments. The four documents still fall outside this cutoff."
+              ],
+              [
+                "December 10, 2025",
+                "7 issuances. The December 3 renewal remains the latest eligible row.",
+                "12 selected instruments. All four November 25 documents were recorded December 9."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "occupancy",
+                "acris-master"
+              ],
+              [
+                "occupancy",
+                "acris-master"
+              ],
+              [
+                "occupancy",
+                "acris-master"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The rent assignment references the agreement and repeats its $415 million indexed amount. Use the document references to connect them before calculating debt. The index preserves the amount on each document, and the signed instruments and subsequent records are needed to verify current obligations.",
+            "sourceIds": [
+              "acris-master",
+              "acris-refs",
+              "acris-help"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/25-water-street-point-in-time-property-records.json",
+            "format": "JSON",
+            "label": "Download the three cutoffs, dated source rows and query fingerprints"
+          }
+        ]
+      },
+      {
+        "id": "rebuild-the-record-as-of-date",
+        "heading": "How to reconstruct a property record as of a date",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose a calendar date and state what you want to recover. A permit or certificate review uses issuance evidence. A recorder search compares recording dates. A GIS overlay uses the archived parcel and map editions that applied on the date. Retain the original source records so another reviewer can recheck the cutoff.",
+            "sourceIds": [
+              "occupancy",
+              "acris-help",
+              "earth-history"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Our later MapPLUTO 26v3 lookup returned 1,323 total units and 1,320 residential units. The December 3 DOB issuance reports 1,320 dwelling units. Save the tax lot counts as a separate 2026 observation and keep each measure labeled. The December exercise uses the dated issuance and recording rows.",
+            "sourceIds": [
+              "parcel",
+              "occupancy",
+              "pluto-dictionary"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "Keep the event date and its field name, such as issued date or recording date.",
+              "Save the source edition and query plus the time you fetched the data and the first time your system observed it.",
+              "When you replay a past decision, use the captured response or report. If you work from a later extract, label it as a reconstruction and state which visibility and record versions you could verify."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "evaluate-a-point-in-time-property-data-api",
+        "heading": "How to test a point-in-time property data API",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask for the same address and building IDs at all three cutoffs. A reproducible answer gives the cutoff rule, the source identifiers and the archived version or dated record used. Ask separately what the vendor refreshed and what changed at the county or city. Regrid documents ll_last_refresh as a county-wide processing date and ll_updated_at as a timestamp for changes to the row. Those fields are useful for tracking data releases and versioning.",
+            "sourceIds": [
+              "regrid-lineage"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "With Invariant Earth, save parcel match type, source URL and dataset vintage with each observation. The API documents fetched_at as the time the source answered, which is retained when the value is served from cache. For an event before your first capture, use the archived public record where available and save its identifier with the result.",
+            "sourceIds": [
+              "earth-responses",
+              "earth-history"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Run the related checks",
+            "items": [
+              {
+                "path": "/data-coverage?field=parcel_match_type&operation=point#coverage-search",
+                "label": "Inspect the parcel match field and copy a request"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Find the parcel footprint that applied at an earlier date"
+              },
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Trace the recorded financing at 25 Water Street"
+              },
+              {
+                "slug": "west-kite-alternatives-for-commercial-property-data",
+                "label": "Replay the building and unit-count comparison"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is point-in-time property data?",
+        "answer": "It is a view of property evidence tied to a specific date. Specify whether you are reconstructing events effective or recorded by that date, or reproducing the information an analyst could access then. A later extract can support the first question. For the second, retain an archived response or timestamped capture.",
+        "sourceIds": [
+          "earth-responses",
+          "acris-help"
+        ]
+      },
+      {
+        "question": "Should I use the mortgage date or recording date for a historical recorder search?",
+        "answer": "Use the recording date for records recorded by a cutoff and keep the document date alongside it. In the 25 Water Street example, four instruments dated November 25, 2025 were recorded on December 9.",
+        "sourceIds": [
+          "acris-master"
+        ]
+      },
+      {
+        "question": "How do I check the parcel boundary from an earlier year?",
+        "answer": "Ask for a dated boundary from the local archive and check whether the parcel number, predecessor or successor changed. Join through parcel identifiers and verified map changes before applying a hazard overlay or credit record.",
+        "sourceIds": [
+          "earth-history"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "aliases",
+        "publisher": "NYC Department of City Planning",
+        "title": "Office Adaptive Reuse Task Force, 25 Water Street case",
+        "url": "https://www.bers.nyc.gov/assets/planning/download/pdf/plans-studies/office-reuse-task-force/presentation-appendix4-111622.pdf#page=12"
+      },
+      {
+        "id": "occupancy",
+        "publisher": "NYC Department of Buildings",
+        "title": "DOB NOW occupancy certificate query for BIN 1000007, job M08013214",
+        "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC"
+      },
+      {
+        "id": "acris-master",
+        "publisher": "NYC Department of Finance",
+        "title": "ACRIS Real Property Master query for the 12 selected instrument IDs",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date%2Cmodified_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100"
+      },
+      {
+        "id": "acris-refs",
+        "publisher": "NYC Department of Finance",
+        "title": "ACRIS Real Property References query for the selected instruments",
+        "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272015020501427004%27%2C%272015020501427005%27%2C%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=100"
+      },
+      {
+        "id": "acris-help",
+        "publisher": "NYC Department of Finance",
+        "title": "ACRIS document search and City Register record scope",
+        "url": "https://a836-acris.nyc.gov/acrisHelp/docsearch/default.htm"
+      },
+      {
+        "id": "parcel",
+        "publisher": "NYC Department of City Planning",
+        "title": "MapPLUTO 26v3 parcel query for BBL 1000050010",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json"
+      },
+      {
+        "id": "pluto-dictionary",
+        "publisher": "NYC Department of City Planning",
+        "title": "MapPLUTO record layout and unit definitions",
+        "url": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/meta_mappluto.pdf"
+      },
+      {
+        "id": "regrid-lineage",
+        "publisher": "Regrid",
+        "title": "County refresh and record-modification fields",
+        "url": "https://support.regrid.com/docs/source-lineage"
+      },
+      {
+        "id": "earth-responses",
+        "publisher": "Invariant",
+        "title": "Earth API response provenance and cache timestamps",
+        "url": "https://docs.invariant-ai.com/responses"
+      },
+      {
+        "id": "earth-history",
+        "publisher": "Invariant",
+        "title": "Trace parcel boundary history through a split or merger",
+        "url": "https://docs.invariant-ai.com/trace-parcel-boundary-history"
+      }
+    ],
+    "dataset": {
+      "name": "25 Water Street property records at three December 2025 cutoffs",
+      "description": "Ten DOB occupancy issuance rows, 12 selected ACRIS instruments, three reproduced cutoffs and a later MapPLUTO observation. Includes request URLs and source response fingerprints.",
+      "spatialCoverage": "25 Water Street, Manhattan, New York City, United States",
+      "temporalCoverage": "2025-12-01/2025-12-10",
+      "sourceIds": [
+        "occupancy",
+        "acris-master",
+        "acris-refs",
+        "parcel"
+      ]
+    },
+    "relatedSlugs": [
+      "historical-parcel-boundaries-api",
+      "commercial-mortgage-records-by-address",
+      "west-kite-alternatives-for-commercial-property-data",
+      "commercial-real-estate-data-apis-for-lenders"
     ]
   }
 ]
