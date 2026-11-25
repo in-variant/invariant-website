@@ -25806,7 +25806,7 @@
               },
               {
                 "slug": "property-portfolio-flood-exposure",
-                "label": "Check how much insured value remains unmatched after flood screening"
+                "label": "Download the portfolio flood workbook and review unmatched values"
               },
               {"path": "/data-coverage#hazards-and-underwriting", "label": "Check flood, wildfire and hail field coverage"},
               {"path": "/data-coverage?field=fema_flood_zone&operation=parcel#coverage-search", "label": "Check what the parcel flood zone field reports"},
@@ -35588,12 +35588,12 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "How to Map Flood Exposure Across a Property Portfolio",
-    "description": "Match a commercial property schedule to individual buildings, total declared values by FEMA flood zone, and report unmatched amounts separately. See a worked example.",
+    "description": "Download an Excel workbook to group commercial building and contents values by FEMA flood zone. Use the county example to review incomplete matches and reconcile totals.",
     "date": "2026-11-25",
     "readMinutes": 7,
     "coverAlt": "Aerial map of downtown Centerville with the two matched building outlines and the Census street-range points plotted separately.",
     "coverCaption": "The street-range points miss the two building outlines. USDA NAIP 2023 imagery served by the Federal Geospatial Platform. Building outlines from FEMA and Oak Ridge National Laboratory.",
-    "intro": "To screen a property portfolio for flood exposure, match each statement-of-values row to its building, intersect the building outline with the effective flood map, and sum values by zone and coverage type. Keep unmatched values in the same report. In a worked example using 22 lines from Appanoose County’s 2021 schedule, $8,445,100 matched to buildings in unshaded Zone X and $1,604,700 still needed a building match.",
+    "intro": "To screen a property portfolio for flood exposure, match each statement-of-values row to its building, intersect the building outline with the effective flood map, and sum values by zone and coverage type. Keep unmatched values in the same report. The Excel workbook below includes a blank input sheet and the Appanoose County example. Of the 22 coverage lines in the example, $8,445,100 matched to buildings in unshaded Zone X and $1,604,700 still needed a building match.",
     "takeaways": [
       "Match the insured building before assigning a flood zone. One street address can cover a campus with several individually scheduled structures.",
       "Sum building and contents values separately. Carry unresolved values in the denominator so the report shows how much of the schedule was classified.",
@@ -35655,6 +35655,33 @@
               [
                 "gen-re"
               ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "portfolio-flood-exposure-workbook",
+        "heading": "Download the property portfolio flood workbook",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Paste up to 200 coverage lines into Your portfolio. Use one schedule period and USD values. Enter the building ID, coverage type, valuation basis, and the FEMA panel and effective date where you have a verified footprint. The workbook flags duplicate row IDs, incomplete inputs and buildings that still need a match. Enter a zone label to see the mapped values for that zone."
+          },
+          {
+            "type": "download",
+            "datasetAnchor": null,
+            "path": "/blog/portfolio-flood-exposure-workbook.xlsx",
+            "format": "XLSX",
+            "label": "Download the property portfolio flood exposure workbook"
+          },
+          {
+            "type": "paragraph",
+            "text": "On the County example tab, four coverage lines from two buildings map to unshaded Zone X. Another 18 lines stay in the review totals. The four mapped lines account for 84.0% of the $10,049,800 entered value. The workbook retains separate totals for building and contents values and shows the share mapped across the whole sample. Correct duplicate rows and input errors before sharing totals.",
+            "sourceIds": [
+              "schedule-one",
+              "schedule-two",
+              "courthouse-footprint-zones",
+              "human-services-footprint-zones"
             ]
           }
         ]
