@@ -23910,6 +23910,7 @@
               },
               {"slug": "best-gis-apis-for-site-selection", "label": "Compare GIS APIs for U.S. site selection"},
               {"slug": "historical-parcel-boundaries-api", "label": "Trace parcel records through a split or merger"},
+              {"slug": "nyc-environmental-restrictions-by-address", "label": "Check NYC environmental easements and zoning restrictions"},
               {"slug": "commercial-real-estate-data-apis-for-lenders", "label": "Build a property file for a credit decision"},
               {"slug": "manufacturing-site-selection-100-buildable-acres", "label": "Screen the buildable area and utility connections for a plant"}, {"label":"Commercial real estate lending guides","slug":"commercial-real-estate-lending"}
             ]
@@ -25530,5 +25531,355 @@
       {"id": "ietf-diversity", "title": "RFC 4054, diversity and optical route constraints", "url": "https://datatracker.ietf.org/doc/html/rfc4054", "publisher": "IETF"}
     ],
     "relatedSlugs": ["data-center-site-selection-checklist", "data-center-power-screening-tools", "best-gis-apis-for-site-selection"]
+  },
+  {
+    "slug": "nyc-environmental-restrictions-by-address",
+    "topic": "Data & APIs",
+    "date": "2026-11-24",
+    "region": "New York City, United States",
+    "title": "How to Check Environmental Restrictions by Address in NYC",
+    "description": "Look up NYC E-designations and environmental easements by address. Trace the tax lot and check what the zoning, title and cleanup records actually cover.",
+    "readMinutes": 7,
+    "coverAlt": "2024 aerial photo of Brooklyn showing the boundary of block 980, lot 77 at 380 Fourth Avenue.",
+    "coverCaption": "380 Fourth Avenue, Brooklyn. Invariant annotated the Digital Tax Map parcel on 2024 imagery © City of New York, CC BY 4.0.",
+    "intro": "To check environmental restrictions on a New York City property, start with its borough, block and lot. Search the city’s zoning index for an E-designation or environmental restrictive declaration. Then read the underlying requirements, the project approvals and any recorded easement. At 380 Fourth Avenue in Brooklyn, the city dates its air and noise rows to January 22, 2026. The hazardous-materials row has a blank date, while the state records a 2024 cleanup certificate and a separate recorded easement.",
+    "takeaways": [
+      "Match the address to the current tax lot and trace older lot numbers before searching the zoning index and recorder.",
+      "Read the air, noise and hazardous-materials entries separately. Record the scope of each notice.",
+      "Check the recorded instrument and site management plan before treating a cleanup milestone as clearance for the work you plan."
+    ],
+    "sections": [
+      {
+        "id": "match-the-tax-lot",
+        "heading": "Start with the tax lot and its earlier numbers",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The state calls this site 380 4th Avenue. PLUTO 26v3 gives 376 4 AVENUE, and the city cleanup-site record uses 374 4th Avenue. The PLUTO row and the recorder identify Brooklyn block 980, lot 77, or BBL 3009800077. Use that identifier to reconcile the city and state records.",
+            "sourceIds": [
+              "pluto",
+              "oer-cleanup",
+              "acris-legal",
+              "state-coc"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Search the current and predecessor lots. The Office of Environmental Remediation (OER) warns that the city lookup may miss lots after a split, merger or condo conversion. Use the Digital Tax Map and lot history to check which original land your transaction covers. Section 11-15 describes how environmental conditions apply when affected lots change.",
+            "sourceIds": [
+              "oer-lookup",
+              "section-11-15"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Parcel checks",
+            "items": [
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace a split or merger through dated tax maps"
+              },
+              {
+                "path": "/data-coverage",
+                "label": "Check parcel fields and API coverage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "what-the-records-show",
+        "heading": "What the records show at 380 Fourth Avenue",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The same lot has a city zoning designation, a state cleanup project and a recorded environmental easement. Keep the source and date for each. They answer different questions about the property."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Date",
+              "Record",
+              "What it establishes"
+            ],
+            "rows": [
+              [
+                "November 23, 2021",
+                "NYC E-601",
+                "The city put air, hazardous-materials and noise requirements on lot 77 under the Gowanus rezoning."
+              ],
+              [
+                "June 4, 2024",
+                "Environmental easement recorded",
+                "CRFN 2024000141888 covers the entire lot. It sets allowable uses and requires compliance with the site management plan."
+              ],
+              [
+                "December 29, 2024",
+                "State certificate milestone",
+                "DEC’s project data records this date for the Certificate of Completion. The certificate register lists restricted residential as the highest allowable future use."
+              ],
+              [
+                "January 22, 2026",
+                "Air and noise dates in the city index",
+                "The index shows this lot remediation date for those two categories. The hazardous-materials row lists lot 77 with a blank date."
+              ],
+              [
+                "November 24, 2026 lookup",
+                "City cleanup-site record",
+                "OER’s separate record says Completed (C) and Site Management. Its program field includes state brownfield cleanup and city E/RD review."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "appendix-c",
+                "gowanus-ceqr"
+              ],
+              [
+                "acris-master",
+                "acris-legal",
+                "easement"
+              ],
+              [
+                "state-milestone",
+                "state-coc"
+              ],
+              [
+                "appendix-c"
+              ],
+              [
+                "oer-cleanup"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The recorded state easement lists restricted residential, commercial and industrial uses and requires adherence to the site management plan. The plan addresses engineering controls, monitoring and certifications. For a renovation involving excavation or changes to those controls, ask for the plan and latest compliance records before setting the work budget.",
+            "sourceIds": [
+              "easement",
+              "site-management"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the parcel, zoning, recorder and cleanup evidence",
+            "path": "/blog/nyc-environmental-restrictions-by-address.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "approval-and-title-review",
+        "heading": "Check permits and title before you close",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For an E-designation, use Appendix C Table 1 to find the designation number, category and listed date. Open the environmental review and ask OER for the notice that covers your work. Section 11-15 requires an OER notice before covered building permits or certificates of occupancy can issue. Triggers include certain work that disturbs soil for hazardous materials, alters ventilation or exhaust for air quality, or replaces windows or exterior walls for noise.",
+            "sourceIds": [
+              "appendix-c",
+              "gowanus-ceqr",
+              "section-11-15"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a city environmental restrictive declaration, use Appendix C Table 2 to find the recording reference and pull the instrument from the recorder. Also search the title records for state environmental easements, recorded site management declarations, changes and releases. At 380 Fourth Avenue, the state easement is an ACRIS instrument with its own document ID and legal description.",
+            "sourceIds": [
+              "appendix-c-erd",
+              "acris-master",
+              "easement"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For an acquisition or loan, compare the planned use and construction scope with the recorded instrument. Ask who is responsible for inspections, reporting and maintenance after transfer. Keep any missing notices or amendments open in the credit file. This sample identifies the recorded documents and agency entries. It does not establish the present title position or approval for a new project.",
+            "sourceIds": [
+              "easement",
+              "site-management",
+              "section-11-15"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related diligence",
+            "items": [
+              {
+                "slug": "commercial-real-estate-lending",
+                "label": "Browse the commercial property credit workflow"
+              },
+              {
+                "slug": "industrial-environmental-permit-history-by-parcel",
+                "label": "Check facility permits and enforcement history"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Does an E-designation mean a property is contaminated?",
+        "answer": "An E-designation records a city environmental requirement that can concern hazardous materials, air quality or noise. Match the lot and read the category and underlying records to understand what investigation or mitigation was required.",
+        "sourceIds": [
+          "appendix-c",
+          "section-11-15"
+        ]
+      },
+      {
+        "question": "Does a New York brownfield cleanup certificate remove an environmental easement?",
+        "answer": "Check the recorded easement and any later release or amendment. At 380 Fourth Avenue the state register lists a 2024 certificate, while the original easement documents allowed uses and site management obligations for the property.",
+        "sourceIds": [
+          "state-coc",
+          "easement",
+          "site-management"
+        ]
+      },
+      {
+        "question": "What does a blank lot remediation date mean in Appendix C?",
+        "answer": "It means the consulted row shows no date. Check the underlying notice, the original and successor lots, and the scope of the work before drawing a conclusion about the property.",
+        "sourceIds": [
+          "appendix-c",
+          "oer-lookup"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "pluto",
+        "title": "PLUTO 26v3 row for Brooklyn block 980, lot 77",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=3009800077&%24select=bbl%2Caddress%2Cborough%2Cblock%2Clot%2Cversion",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "PLUTO parcel row"
+      },
+      {
+        "id": "parcel-geometry",
+        "title": "NYC Digital Tax Map geometry for BBL 3009800077",
+        "url": "https://data.cityofnewyork.us/resource/nst5-iqiu.geojson?bbl=3009800077&%24select=the_geom%2Cbbl%2Cobjectid",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Digital Tax Map"
+      },
+      {
+        "id": "appendix-c",
+        "title": "Appendix C Table 1, E-601 for Brooklyn block 980, lot 77",
+        "url": "https://zr.planning.nyc.gov/appendix-c-table-1-city-environmental-quality-review-ceqr-environmental-requirements-e-designations",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "E-601 index"
+      },
+      {
+        "id": "appendix-c-erd",
+        "title": "Appendix C Table 2, environmental restrictive declarations",
+        "url": "https://zr.planning.nyc.gov/index.php/appendix-c-table-2-city-environmental-quality-review-ceqr-environmental-requirements-environmental",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "Declaration index"
+      },
+      {
+        "id": "section-11-15",
+        "title": "Zoning Resolution §11-15, environmental requirements for building permits and occupancy",
+        "url": "https://zr.planning.nyc.gov/article-i/chapter-1/11-15",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "Zoning Resolution §11-15"
+      },
+      {
+        "id": "oer-lookup",
+        "title": "City parcel search and instructions for original tax lots",
+        "url": "https://a002-epic.nyc.gov/environment/search/edrdproperty",
+        "publisher": "NYC Office of Environmental Remediation",
+        "linkLabel": "OER parcel search"
+      },
+      {
+        "id": "gowanus-ceqr",
+        "title": "Gowanus environmental review, E-601 and development site 49",
+        "url": "https://www.nyc.gov/assets/oer/downloads/pdf/e-des_documents/E-601_19DCP157K.pdf",
+        "publisher": "NYC Office of Environmental Remediation",
+        "linkLabel": "Gowanus environmental review"
+      },
+      {
+        "id": "acris-master",
+        "title": "ACRIS master record for easement CRFN 2024000141888",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2024053100222001&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS master row"
+      },
+      {
+        "id": "acris-legal",
+        "title": "ACRIS parcel row for easement document 2024053100222001",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?document_id=2024053100222001",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS parcel row"
+      },
+      {
+        "id": "easement",
+        "title": "Recorded environmental easement for 380 Fourth Avenue, CRFN 2024000141888",
+        "url": "https://extapps.dec.ny.gov/data/DecDocs/C224358/Easement.BCP.C224358.2024-06-04.Recorded%20EE%20and%20Notice%20to%20Municipality.pdf#page=3",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "Recorded easement"
+      },
+      {
+        "id": "state-milestone",
+        "title": "Remediation project record for the C224358 Certificate of Completion",
+        "url": "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number%3D%27C224358%27%20and%20project_name%3D%27Certificate%20of%20Completion%27&%24select=distinct%20program_number%2Cprogram_type%2Cprogram_facility_name%2Csiteclass%2Cproject_name%2Cproject_completion_date",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "DEC certificate milestone"
+      },
+      {
+        "id": "state-coc",
+        "title": "Brownfield certificate register, C224358 and highest allowable use",
+        "url": "https://data.ny.gov/resource/ir93-7qzi.json?bcp_site_number=C224358",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "DEC certificate register"
+      },
+      {
+        "id": "site-management",
+        "title": "380 Fourth Avenue Site Management Plan, institutional controls, monitoring and reporting",
+        "url": "https://extapps.dec.ny.gov/data/DecDocs/C224358/Work%20Plan.BCP.C224358.2024-12-24.SMP.pdf",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "Site Management Plan"
+      },
+      {
+        "id": "oer-cleanup",
+        "title": "OER Cleanup Sites row for BBL 3009800077",
+        "url": "https://data.cityofnewyork.us/resource/3279-pp7v.json?bbl=3009800077",
+        "publisher": "NYC Office of Environmental Remediation",
+        "linkLabel": "OER cleanup-site row"
+      },
+      {
+        "id": "ortho",
+        "title": "NYC aerial imagery reuse license and map tile documentation",
+        "url": "https://maps.nyc.gov/tiles/#license",
+        "publisher": "NYC Office of Technology and Innovation",
+        "linkLabel": "2024 imagery credit"
+      },
+      {
+        "id": "ortho-service",
+        "title": "2024 orthophoto image service used for the annotated map",
+        "url": "https://tiles.arcgis.com/tiles/yG5s3afENB5iO9fj/arcgis/rest/services/NYC_Orthos_2024/MapServer",
+        "publisher": "NYC Office of Technology and Innovation",
+        "linkLabel": "2024 imagery service"
+      }
+    ],
+    "relatedSlugs": [
+      "historical-parcel-boundaries-api",
+      "industrial-environmental-permit-history-by-parcel",
+      "commercial-mortgage-records-by-address"
+    ],
+    "dataset": {
+      "name": "380 Fourth Avenue environmental designation, easement and cleanup records",
+      "description": "Linked city and state records for Brooklyn BBL 3009800077, including three E-601 category rows, the recorded environmental easement, and cleanup and site management records. Includes exact queries, dates and parcel geometry.",
+      "spatialCoverage": "380 Fourth Avenue, Gowanus, Brooklyn, New York City",
+      "temporalCoverage": "2021-11-23/2026-11-24",
+      "sourceIds": [
+        "pluto",
+        "parcel-geometry",
+        "appendix-c",
+        "gowanus-ceqr",
+        "acris-master",
+        "acris-legal",
+        "easement",
+        "state-milestone",
+        "state-coc",
+        "site-management",
+        "oer-cleanup"
+      ]
+    }
   }
 ]

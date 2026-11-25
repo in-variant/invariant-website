@@ -5219,6 +5219,99 @@
     }
   },
   {
+    "slug": "nyc-environmental-restrictions-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Check Environmental Restrictions by Address in NYC",
+    "summary": "Look up NYC E-designations and environmental easements by address. Trace the tax lot and check what the zoning, title and cleanup records actually cover.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "New York City, United States",
+    "image": "/blog/industry/nyc-environmental-restrictions-by-address.webp?v=f3b70906",
+    "dataset": {
+      "name": "380 Fourth Avenue environmental designation, easement and cleanup records",
+      "description": "Linked city and state records for Brooklyn BBL 3009800077, including three E-601 category rows, the recorded environmental easement, and cleanup and site management records. Includes exact queries, dates and parcel geometry.",
+      "spatialCoverage": "380 Fourth Avenue, Gowanus, Brooklyn, New York City",
+      "temporalCoverage": "2021-11-23/2026-11-24",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=3009800077&%24select=bbl%2Caddress%2Cborough%2Cblock%2Clot%2Cversion",
+        "https://data.cityofnewyork.us/resource/nst5-iqiu.geojson?bbl=3009800077&%24select=the_geom%2Cbbl%2Cobjectid",
+        "https://zr.planning.nyc.gov/appendix-c-table-1-city-environmental-quality-review-ceqr-environmental-requirements-e-designations",
+        "https://www.nyc.gov/assets/oer/downloads/pdf/e-des_documents/E-601_19DCP157K.pdf",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2024053100222001&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?document_id=2024053100222001",
+        "https://extapps.dec.ny.gov/data/DecDocs/C224358/Easement.BCP.C224358.2024-06-04.Recorded%20EE%20and%20Notice%20to%20Municipality.pdf#page=3",
+        "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number%3D%27C224358%27%20and%20project_name%3D%27Certificate%20of%20Completion%27&%24select=distinct%20program_number%2Cprogram_type%2Cprogram_facility_name%2Csiteclass%2Cproject_name%2Cproject_completion_date",
+        "https://data.ny.gov/resource/ir93-7qzi.json?bcp_site_number=C224358",
+        "https://extapps.dec.ny.gov/data/DecDocs/C224358/Work%20Plan.BCP.C224358.2024-12-24.SMP.pdf",
+        "https://data.cityofnewyork.us/resource/3279-pp7v.json?bbl=3009800077"
+      ],
+      "sourceDetails": [
+        {
+          "title": "PLUTO 26v3 row for Brooklyn block 980, lot 77",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=3009800077&%24select=bbl%2Caddress%2Cborough%2Cblock%2Clot%2Cversion"
+        },
+        {
+          "title": "NYC Digital Tax Map geometry for BBL 3009800077",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/nst5-iqiu.geojson?bbl=3009800077&%24select=the_geom%2Cbbl%2Cobjectid"
+        },
+        {
+          "title": "Appendix C Table 1, E-601 for Brooklyn block 980, lot 77",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://zr.planning.nyc.gov/appendix-c-table-1-city-environmental-quality-review-ceqr-environmental-requirements-e-designations"
+        },
+        {
+          "title": "Gowanus environmental review, E-601 and development site 49",
+          "publisher": "NYC Office of Environmental Remediation",
+          "url": "https://www.nyc.gov/assets/oer/downloads/pdf/e-des_documents/E-601_19DCP157K.pdf"
+        },
+        {
+          "title": "ACRIS master record for easement CRFN 2024000141888",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2024053100222001&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime"
+        },
+        {
+          "title": "ACRIS parcel row for easement document 2024053100222001",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?document_id=2024053100222001"
+        },
+        {
+          "title": "Recorded environmental easement for 380 Fourth Avenue, CRFN 2024000141888",
+          "publisher": "New York State Department of Environmental Conservation",
+          "url": "https://extapps.dec.ny.gov/data/DecDocs/C224358/Easement.BCP.C224358.2024-06-04.Recorded%20EE%20and%20Notice%20to%20Municipality.pdf#page=3"
+        },
+        {
+          "title": "Remediation project record for the C224358 Certificate of Completion",
+          "publisher": "New York State Department of Environmental Conservation",
+          "url": "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number%3D%27C224358%27%20and%20project_name%3D%27Certificate%20of%20Completion%27&%24select=distinct%20program_number%2Cprogram_type%2Cprogram_facility_name%2Csiteclass%2Cproject_name%2Cproject_completion_date"
+        },
+        {
+          "title": "Brownfield certificate register, C224358 and highest allowable use",
+          "publisher": "New York State Department of Environmental Conservation",
+          "url": "https://data.ny.gov/resource/ir93-7qzi.json?bcp_site_number=C224358"
+        },
+        {
+          "title": "380 Fourth Avenue Site Management Plan, institutional controls, monitoring and reporting",
+          "publisher": "New York State Department of Environmental Conservation",
+          "url": "https://extapps.dec.ny.gov/data/DecDocs/C224358/Work%20Plan.BCP.C224358.2024-12-24.SMP.pdf"
+        },
+        {
+          "title": "OER Cleanup Sites row for BBL 3009800077",
+          "publisher": "NYC Office of Environmental Remediation",
+          "url": "https://data.cityofnewyork.us/resource/3279-pp7v.json?bbl=3009800077"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the parcel, zoning, recorder and cleanup evidence",
+          "path": "/blog/nyc-environmental-restrictions-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",
