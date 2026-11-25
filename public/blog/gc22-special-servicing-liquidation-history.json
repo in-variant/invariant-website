@@ -1,0 +1,79 @@
+{
+  "title": "EpiCentre and Selig Portfolio CMBS servicing and liquidation history",
+  "compiled_by": "Invariant",
+  "checked_on": "2026-11-24",
+  "trust": "GS Mortgage Securities Trust 2014-GC22",
+  "cik": "0001607865",
+  "scope": "Selected facts for two trust positions in two public distribution exhibits. Amount fields are decimal strings in U.S. dollars. Use the original exhibits for other positions or subsequent revisions.",
+  "source_registry_url": "https://data.sec.gov/submissions/CIK0001607865.json",
+  "collateral": [
+    {
+      "prospectus_id": "3",
+      "servicer_loan_id": "304101183",
+      "reported_name": "EpiCentre",
+      "origination_address": "210 East Trade Street, Charlotte, NC 28202",
+      "schedule_source_url": "https://www.sec.gov/Archives/edgar/data/1607865/000153949714000798/exh-10_2.htm",
+      "transfer_effective_on": "2021-03-16",
+      "reported_transfer_reason": "Imminent monetary default",
+      "maturity_on": "2021-06-06",
+      "reported_reo_on": "2022-08-24"
+    },
+    {
+      "prospectus_id": "2",
+      "servicer_loan_id": "302090002",
+      "reported_name": "Selig Portfolio",
+      "market": "Seattle, Washington",
+      "transfer_effective_on": "2024-03-20",
+      "reported_transfer_reason": "Imminent maturity default",
+      "maturity_on": "2024-05-06",
+      "reported_reo_on": "2025-08-08",
+      "balance_scope": "One trust position in a loan combination."
+    }
+  ],
+  "filings": [
+    {
+      "distribution_on": "2026-10-13",
+      "filed_on": "2026-10-22",
+      "accepted_at_utc": "2026-10-22T14:17:43Z",
+      "accession": "0001888524-26-018806",
+      "exhibit_url": "https://www.sec.gov/Archives/edgar/data/1607865/000188852426018806/gsm14g22_ex991-202610.htm",
+      "locators": {"loan_and_pool_balance": 14, "reo_dates": 18, "special_servicing": [20, 21], "liquidation": 23},
+      "total_pool_ending_scheduled_balance_usd": "284126638.73",
+      "reported_reo_balance_usd": "182569623.88",
+      "positions": [
+        {"servicer_loan_id": "304101183", "ending_scheduled_balance_usd": "85000000.00", "special_servicing_actual_balance_usd": "85000000.00", "resolution_strategy_code": "7", "strategy_label": "REO"},
+        {"servicer_loan_id": "302090002", "ending_scheduled_balance_usd": "97569623.88", "special_servicing_actual_balance_usd": "97569623.88", "resolution_strategy_code": "7", "strategy_label": "REO"}
+      ]
+    },
+    {
+      "distribution_on": "2026-11-13",
+      "filed_on": "2026-11-23",
+      "accepted_at_utc": "2026-11-23T16:50:06Z",
+      "accession": "0001888524-26-020700",
+      "exhibit_url": "https://www.sec.gov/Archives/edgar/data/1607865/000188852426020700/gsm14g22_ex991-202611.htm",
+      "form_url": "https://www.sec.gov/Archives/edgar/data/1607865/000188852426020700/gsm14g22_10d-202611.htm",
+      "locators": {"loan_and_pool_balance": 14, "special_servicing": [20, 21], "liquidation": 23, "certificate_loss_reconciliation": 24},
+      "total_pool_ending_scheduled_balance_usd": "199107377.26",
+      "reported_reo_balance_usd": "97569623.88",
+      "positions": [
+        {"servicer_loan_id": "304101183", "ending_scheduled_balance_usd": "0.00", "special_servicing_actual_balance_usd": null, "resolution_strategy_code": "8", "strategy_label": "Resolved"},
+        {"servicer_loan_id": "302090002", "ending_scheduled_balance_usd": "97569623.88", "special_servicing_actual_balance_usd": "97569623.88", "resolution_strategy_code": "7", "strategy_label": "REO"}
+      ],
+      "epicentre_liquidation": {
+        "servicer_loan_id": "304101183",
+        "distribution_on": "2026-11-13",
+        "deed_transfer_date": null,
+        "gross_sale_or_other_proceeds_usd": "30529052.73",
+        "net_proceeds_available_for_distribution_usd": "0.00",
+        "realized_loan_loss_usd": "85000000.00",
+        "reported_nra_wodra_loss_adjustment_usd": "-15503310.74",
+        "total_loss_applied_to_certificate_balance_usd": "69496689.26",
+        "actual_balance_note": "The November special servicing table prints a dash for actual balance. The mortgage loan detail explicitly shows zero scheduled balance."
+      }
+    }
+  ],
+  "expected_public_filing_replays": [
+    {"at_utc": "2026-11-20T23:59:59Z", "accession": "0001888524-26-018806", "epicentre_state": "reo", "epicentre_ending_scheduled_balance_usd": "85000000.00", "epicentre_realized_liquidation_loss_usd": null, "selig_ending_scheduled_balance_usd": "97569623.88", "trust_reo_share_percent": "64.26"},
+    {"at_utc": "2026-11-23T23:59:59Z", "accession": "0001888524-26-020700", "epicentre_state": "liquidated_with_loss", "epicentre_ending_scheduled_balance_usd": "0.00", "epicentre_realized_liquidation_loss_usd": "85000000.00", "selig_ending_scheduled_balance_usd": "97569623.88", "trust_reo_share_percent": "49.00"}
+  ]
+}

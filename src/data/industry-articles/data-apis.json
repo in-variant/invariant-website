@@ -21513,6 +21513,134 @@
     "updatedDate": "2026-11-23"
   },
   {
+    "slug": "cmbs-special-servicing-data",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Check CMBS Special Servicing and Loan Liquidation",
+    "description": "Find special servicing transfers, REO status and realized losses in CMBS filings. Replay the $85 million EpiCentre loan across two monthly reports.",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "coverAlt": "Illustration of a mixed-use retail and office building on an urban corner in late-afternoon light.",
+    "coverCaption": "AI-generated illustration of a mixed-use property.",
+    "intro": "To check whether a commercial mortgage is in special servicing, look up the securitization trust in SEC EDGAR. Open the latest Form 10-D and its attached distribution report. Match the loan ID across the delinquency, special servicing and liquidation sections. The same loan can appear in more than one section in the month it resolves. Read the strategy code and reported proceeds before deciding why it left your watchlist.",
+    "takeaways": [
+      "Keep the transfer date, maturity date and reporting date separate. A servicer can take over before a missed maturity.",
+      "A zero scheduled balance can reflect liquidation with a loss. Use the liquidation and certificate loss tables to classify the event.",
+      "Retain the accession and acceptance time for each snapshot so you can reproduce what the public filings showed on a past date."
+    ],
+    "sections": [
+      {
+        "id": "special-servicing-lookup",
+        "heading": "Where to find CMBS special servicing status",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A special servicer takes responsibility for specified workout decisions when a loan meets a transfer condition in the trust’s pooling and servicing agreement. Default and imminent default are common triggers. The GS 2014-GC22 filings describe transfers before maturity for both EpiCentre and the Selig Portfolio. Record the reason reported for the individual loan alongside its effective transfer date.",
+            "sourceIds": ["gc22-agreement", "october-exhibit"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Source section", "What to capture"],
+            "rows": [
+              ["Loan and delinquency detail", "Trust, loan ID, prospectus ID, maturity and the scheduled balance. Read the payment-status legend for that report."],
+              ["Special servicing detail", "Transfer date, reported trigger, resolution strategy and any dated workout, return or sale event."],
+              ["Liquidation and loss detail", "Distribution period, proceeds available for distribution, realized loss on the loan and any allocation to certificate balances."]
+            ],
+            "sourceIds": ["sec-form", "october-exhibit", "november-exhibit"]
+          }
+        ]
+      },
+      {
+        "id": "epicentre-85-million-liquidation",
+        "heading": "What happened to the $85 million EpiCentre loan?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The original trust schedule lists EpiCentre at 210 East Trade Street in Charlotte, North Carolina, under control number 3. Match that row to prospectus ID 3 and servicer loan ID 304101183 in the monthly report. The October exhibit records a March 16, 2021 transfer for imminent monetary default, a June 6, 2021 maturity, and an August 24, 2022 REO date. REO means real estate owned. The word describes the property following acquisition through the workout.",
+            "sourceIds": ["loan-schedule", "october-exhibit"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Reported field", "October 13 distribution", "November 13 distribution"],
+            "rows": [
+              ["Ending scheduled loan balance", "$85,000,000", "$0"],
+              ["Resolution strategy", "Code 7, REO", "Code 8, resolved"],
+              ["Current period liquidation record", "No liquidation row for this loan", "$85,000,000 realized loss on the loan. The report lists $0 available for distribution on liquidation."],
+              ["Total loss applied to certificate balance for this row", "No liquidation allocation for this loan", "$69,496,689.26 after the reported $15,503,310.74 offset."]
+            ],
+            "sourceIds": ["october-exhibit", "november-exhibit"]
+          },
+          {
+            "type": "paragraph",
+            "text": "The October note said the property was under contract with a November closing expected. The November exhibit records liquidation in the November 13 distribution period and still shows the loan in its special servicing detail with a resolved code. Close the active loan exposure in the workbook, keep the history and record the realized loss separately. Use November 13 as the distribution date. The exhibit alone does not date a deed transfer.",
+            "sourceIds": ["october-exhibit", "november-exhibit"]
+          },
+          {
+            "type": "download",
+            "label": "Download the EpiCentre and Selig loan snapshots, source pages and expected results",
+            "path": "/blog/gc22-special-servicing-liquidation-history.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "replay-a-servicing-watchlist",
+        "heading": "How to replay a servicing watchlist across the two filings",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The November distribution occurred on November 13. EDGAR records the filing on November 23 at 16:50:06 UTC. For a replay of these public filings on November 20, use the October snapshot. For a replay after the November filing, count the $85 million loan loss and remove the zero scheduled balance from active exposure. A commercial feed may have obtained servicer records earlier. Use its archived responses to test when those facts became available there.",
+            "sourceIds": ["sec-submissions", "november-form"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Test the Selig Portfolio as a control. Its reported trust balance was $97,569,623.88 in both exhibits, with strategy code 7 in both months. The trust’s reported REO balance divided by its total scheduled balance fell from about 64.26% to 49.00%. The largest change in that comparison was the removal of EpiCentre through liquidation. The Selig exposure remained in the pool. The report identifies it as one of three loans of equal priority, so keep the trust position distinct from the whole loan.",
+            "sourceIds": ["october-exhibit", "november-exhibit"]
+          },
+          {
+            "type": "links",
+            "label": "Continue the credit review",
+            "items": [
+              {"slug": "commercial-mortgage-maturity-data-apis", "label": "Test maturity dates, amendments and extensions"},
+              {"slug": "commercial-real-estate-lending", "label": "Build a dated commercial real estate credit file"},
+              {"slug": "commercial-real-estate-data-apis-for-lenders", "label": "Link a loan record to the property and flood evidence"}
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To connect a servicer feed to property diligence, start with the trust and loan key. Map the historical collateral address to a parcel and building through Invariant Earth. Retain the match evidence and send uncertain matches to review. Keep balances and servicing events with the loan source, especially when several notes or several buildings point to the same collateral.",
+            "sourceIds": ["invariant-earth"]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {"question": "Does special servicing mean a CMBS loan has already defaulted?", "answer": "A trust agreement may permit a transfer when default is imminent. The EpiCentre report identifies a March 2021 transfer for imminent monetary default and June 2021 maturity. Store the reported trigger and the transfer date separately from the maturity.", "sourceIds": ["gc22-agreement", "october-exhibit"]},
+      {"question": "Does a zero CMBS loan balance mean the borrower paid it off?", "answer": "Check the disposition detail. In the November 2026 GS 2014-GC22 report, EpiCentre had a zero scheduled balance, resolution code 8 and an $85 million realized loan loss. Keep payoff and liquidation with a loss as separate events.", "sourceIds": ["november-exhibit"]},
+      {"question": "Can I identify a specially serviced loan by property address?", "answer": "Use the address to find the prospectus or purchase schedule, then match its prospectus ID to the servicer’s loan number in the trust report. The same address may be associated with several collateral records or notes.", "sourceIds": ["loan-schedule", "october-exhibit"]}
+    ],
+    "sources": [
+      {"id": "sec-form", "title": "SEC Form 10-D and distribution report instructions", "publisher": "U.S. Securities and Exchange Commission", "url": "https://www.sec.gov/about/forms/form10-d.pdf"},
+      {"id": "gc22-agreement", "title": "GS 2014-GC22 servicing agreement, definitions and Sections 3.21–3.22", "publisher": "GS Mortgage Securities Corporation II via SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/1607865/000153949714000798/exh_4-1.htm"},
+      {"id": "loan-schedule", "title": "Original loan purchase agreement, Exhibit A, EpiCentre control number 3", "publisher": "GS Mortgage Securities Corporation II via SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/1607865/000153949714000798/exh-10_2.htm"},
+      {"id": "october-exhibit", "title": "October 13 distribution exhibit, pages 14 and 18–24", "publisher": "GS Mortgage Securities Trust 2014-GC22 via SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/1607865/000188852426018806/gsm14g22_ex991-202610.htm"},
+      {"id": "november-exhibit", "title": "November 13 distribution exhibit, pages 14 and 18–24", "publisher": "GS Mortgage Securities Trust 2014-GC22 via SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/1607865/000188852426020700/gsm14g22_ex991-202611.htm"},
+      {"id": "november-form", "title": "November Form 10-D and Exhibit 99.1 reference", "publisher": "GS Mortgage Securities Trust 2014-GC22 via SEC EDGAR", "url": "https://www.sec.gov/Archives/edgar/data/1607865/000188852426020700/gsm14g22_10d-202611.htm"},
+      {"id": "sec-submissions", "title": "Trust filing accessions and EDGAR acceptance timestamps", "publisher": "U.S. Securities and Exchange Commission", "url": "https://data.sec.gov/submissions/CIK0001607865.json"},
+      {"id": "invariant-earth", "title": "Public parcel, building and hazard field catalog", "publisher": "Invariant Earth", "url": "https://api.invariant-ai.com/v1/meta/fields"}
+    ],
+    "dataset": {
+      "name": "EpiCentre and Selig Portfolio CMBS servicing and liquidation history",
+      "description": "Four loan snapshots from two GS 2014-GC22 filings. Includes exact balances, servicing codes, filing timestamps, loss reconciliation and two expected watchlist results.",
+      "sourceIds": ["loan-schedule", "october-exhibit", "november-exhibit", "november-form", "sec-submissions"],
+      "spatialCoverage": "Charlotte, North Carolina and Seattle, Washington, United States",
+      "temporalCoverage": "2026-10-13/2026-11-13"
+    },
+    "relatedSlugs": ["commercial-mortgage-maturity-data-apis", "commercial-mortgage-records-by-address", "commercial-real-estate-data-apis-for-lenders"]
+  },
+  {
     "slug": "commercial-mortgage-maturity-data-apis",
     "topic": "Data & APIs",
     "region": "United States",
@@ -21908,6 +22036,10 @@
             "type": "links",
             "label": "Related lending guides",
             "items": [
+              {
+                "slug": "cmbs-special-servicing-data",
+                "label": "Check whether a CMBS loan resolved through payoff or liquidation"
+              },
               {
                 "slug": "commercial-real-estate-lending",
                 "label": "Build a dated commercial real estate credit file"
