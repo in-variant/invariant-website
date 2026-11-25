@@ -1,0 +1,205 @@
+{
+  "title": "San Francisco permit activity, address links and publication timestamps",
+  "publisher": "Invariant",
+  "scope": "Two selected DBI permits and one PermitSF permit. The response rows show the state returned by the exact queries on the retrieval date.",
+  "source_reuse": {
+    "publisher": "City and County of San Francisco",
+    "policy": "https://data.sf.gov/terms-of-use"
+  },
+  "method": {
+    "source_identity": "The DBI record_id identifies a row. Group linked rows by DBI permit_number for permit counts. Preserve their address and lot links.",
+    "cross_system_identity": "Keep PermitSF recordno in its own system. The shared California Street parcel and address connect two permit records to the same property.",
+    "event_time": "Use a populated dated milestone field or the dated current status. The snapshot does not contain intervening status history.",
+    "source_update_time": "Retain data_as_of and data_loaded_at in the source format. These timestamps have no time zone offset."
+  },
+  "cases": [
+    {
+      "system": "DBI",
+      "permit": "202009234825",
+      "recorded_status": "expired",
+      "status_date": "2026-10-28",
+      "issued_date": "2020-12-01",
+      "source_observation_date": "2026-10-30",
+      "source_row_count": 4,
+      "distinct_lots": [
+        "0261017",
+        "0261018",
+        "0261019",
+        "0261020"
+      ]
+    },
+    {
+      "system": "PermitSF",
+      "permit": "FIRE-26-1449",
+      "recorded_status": "Active - Issued",
+      "issued_date": "2026-08-03",
+      "source_observation_date": "2026-11-24",
+      "source_row_count": 1,
+      "distinct_lots": [
+        "0261017"
+      ]
+    },
+    {
+      "system": "DBI",
+      "permit": "202602065460",
+      "recorded_status": "complete",
+      "issued_date": "2026-02-06",
+      "completed_date": "2026-10-15",
+      "source_observation_date": "2026-10-17",
+      "source_row_count": 3,
+      "distinct_lots": [
+        "1772008"
+      ]
+    }
+  ],
+  "source_snapshots": {
+    "sf-dbi-rows": {
+      "publisher": "City and County of San Francisco, DataSF",
+      "dataset_id": "i98e-djp9",
+      "query_url": "https://data.sf.gov/resource/i98e-djp9.json?%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cstatus%2Cstatus_date%2Cfiled_date%2Capproved_date%2Cissued_date%2Ccompleted_date%2Cdata_as_of%2Cdata_loaded_at&%24where=permit_number+in+%28%27202009234825%27%2C%27202602065460%27%29&%24order=permit_number%2Crecord_id&%24limit=25",
+      "retrieved_at_utc": "2026-11-25T02:59:03+00:00",
+      "response_sha256": "b9ab51c084bf327e8c55901b09ec3a557f652eadb95c302526acb352b2d6398c",
+      "rows": [
+        {
+          "permit_number": "202009234825",
+          "record_id": "1599511448690",
+          "block": "0261",
+          "lot": "017",
+          "street_number": "345",
+          "street_name": "California",
+          "street_suffix": "St",
+          "primary_address_flag": "Y",
+          "status": "expired",
+          "status_date": "2026-10-28T15:26:17.000",
+          "filed_date": "2020-09-23T13:21:42.000",
+          "approved_date": "2020-12-01T10:55:30.000",
+          "issued_date": "2020-12-01T10:55:30.000",
+          "data_as_of": "2026-10-30T01:05:02.000",
+          "data_loaded_at": "2026-10-30T13:12:38.038"
+        },
+        {
+          "permit_number": "202009234825",
+          "record_id": "159951266073",
+          "block": "0261",
+          "lot": "018",
+          "street_number": "345",
+          "street_name": "California",
+          "street_suffix": "St",
+          "status": "expired",
+          "status_date": "2026-10-28T15:26:17.000",
+          "filed_date": "2020-09-23T13:21:42.000",
+          "approved_date": "2020-12-01T10:55:30.000",
+          "issued_date": "2020-12-01T10:55:30.000",
+          "data_as_of": "2026-10-30T01:05:02.000",
+          "data_loaded_at": "2026-10-30T13:12:38.038"
+        },
+        {
+          "permit_number": "202009234825",
+          "record_id": "159951366074",
+          "block": "0261",
+          "lot": "019",
+          "street_number": "345",
+          "street_name": "California",
+          "street_suffix": "St",
+          "status": "expired",
+          "status_date": "2026-10-28T15:26:17.000",
+          "filed_date": "2020-09-23T13:21:42.000",
+          "approved_date": "2020-12-01T10:55:30.000",
+          "issued_date": "2020-12-01T10:55:30.000",
+          "data_as_of": "2026-10-30T01:05:02.000",
+          "data_loaded_at": "2026-10-30T13:12:38.038"
+        },
+        {
+          "permit_number": "202009234825",
+          "record_id": "159951466075",
+          "block": "0261",
+          "lot": "020",
+          "street_number": "345",
+          "street_name": "California",
+          "street_suffix": "St",
+          "status": "expired",
+          "status_date": "2026-10-28T15:26:17.000",
+          "filed_date": "2020-09-23T13:21:42.000",
+          "approved_date": "2020-12-01T10:55:30.000",
+          "issued_date": "2020-12-01T10:55:30.000",
+          "data_as_of": "2026-10-30T01:05:02.000",
+          "data_loaded_at": "2026-10-30T13:12:38.038"
+        },
+        {
+          "permit_number": "202602065460",
+          "record_id": "1742657113529",
+          "block": "1772",
+          "lot": "008",
+          "street_number": "1312",
+          "street_name": "18th",
+          "street_suffix": "Av",
+          "primary_address_flag": "Y",
+          "status": "complete",
+          "status_date": "2026-10-15T11:13:41.000",
+          "filed_date": "2026-02-06T13:31:36.000",
+          "approved_date": "2026-02-06T16:03:33.000",
+          "issued_date": "2026-02-06T16:03:33.000",
+          "completed_date": "2026-10-15T11:13:41.000",
+          "data_as_of": "2026-10-17T01:05:05.000",
+          "data_loaded_at": "2026-10-17T05:33:40.474"
+        },
+        {
+          "permit_number": "202602065460",
+          "record_id": "1742658464264",
+          "block": "1772",
+          "lot": "008",
+          "street_number": "1314",
+          "street_name": "18th",
+          "street_suffix": "Av",
+          "status": "complete",
+          "status_date": "2026-10-15T11:13:41.000",
+          "filed_date": "2026-02-06T13:31:36.000",
+          "approved_date": "2026-02-06T16:03:33.000",
+          "issued_date": "2026-02-06T16:03:33.000",
+          "completed_date": "2026-10-15T11:13:41.000",
+          "data_as_of": "2026-10-17T01:05:05.000",
+          "data_loaded_at": "2026-10-17T05:33:40.474"
+        },
+        {
+          "permit_number": "202602065460",
+          "record_id": "1742659383598",
+          "block": "1772",
+          "lot": "008",
+          "street_number": "1316",
+          "street_name": "18th",
+          "street_suffix": "Av",
+          "status": "complete",
+          "status_date": "2026-10-15T11:13:41.000",
+          "filed_date": "2026-02-06T13:31:36.000",
+          "approved_date": "2026-02-06T16:03:33.000",
+          "issued_date": "2026-02-06T16:03:33.000",
+          "completed_date": "2026-10-15T11:13:41.000",
+          "data_as_of": "2026-10-17T01:05:05.000",
+          "data_loaded_at": "2026-10-17T05:33:40.474"
+        }
+      ]
+    },
+    "sf-portal-row": {
+      "publisher": "City and County of San Francisco, DataSF",
+      "dataset_id": "tyz3-vt28",
+      "query_url": "https://data.sf.gov/resource/tyz3-vt28.json?%24select=recordid%2Crecordno%2Crecordtype%2Cstatus_detail%2Csubmitted_date%2Cpermit_issued_date%2Ccompleted_date%2Cparcel_number%2Cstreetno%2Cstreetname%2Cdata_as_of%2Cdata_loaded_at&%24where=recordno%3D%27FIRE-26-1449%27&%24order=recordid&%24limit=25",
+      "retrieved_at_utc": "2026-11-25T02:59:03+00:00",
+      "response_sha256": "08bea71187a871a866a4744882888d2ed3a862ecf41019a23e18e7806557aa9d",
+      "rows": [
+        {
+          "recordid": "10225",
+          "recordno": "FIRE-26-1449",
+          "recordtype": "Fire sprinkler permit",
+          "status_detail": "Active - Issued",
+          "submitted_date": "2026-07-31T15:12:10.000",
+          "permit_issued_date": "2026-08-03T12:44:00.000",
+          "parcel_number": "0261017",
+          "streetno": "345",
+          "streetname": "CALIFORNIA ST",
+          "data_as_of": "2026-11-24T14:06:41.165",
+          "data_loaded_at": "2026-11-24T14:11:08.378"
+        }
+      ]
+    }
+  }
+}

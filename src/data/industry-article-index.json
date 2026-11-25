@@ -1,5 +1,61 @@
 [
   {
+    "slug": "building-permit-change-alerts-by-address",
+    "topic": "Data & APIs",
+    "title": "Building Permit Change Alerts by Address",
+    "summary": "Track new building permits, expirations and completions by address. Test an alert workflow against dated records from two San Francisco permit systems.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/building-permit-change-alerts-by-address.webp?v=29511aae",
+    "dataset": {
+      "name": "San Francisco permit activity, address links and publication timestamps",
+      "description": "Eight selected rows from three San Francisco permits. Compare a 2020 issue date with a 2026 expiration, a separate sprinkler permit at the same address, and a completion linked to three addresses. Includes original permit and row IDs, timestamps, source queries, and response fingerprints.",
+      "spatialCoverage": "345 California Street and 1312, 1314 and 1316 18th Avenue, San Francisco, California, United States",
+      "temporalCoverage": "2020-09-23/2026-11-24",
+      "sourceReuse": {
+        "note": "Source records from the City and County of San Francisco.",
+        "policyLabel": "DataSF terms of use",
+        "policyUrl": "https://data.sf.gov/terms-of-use"
+      },
+      "sources": [
+        "https://data.sf.gov/resource/i98e-djp9.json?%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cstatus%2Cstatus_date%2Cfiled_date%2Capproved_date%2Cissued_date%2Ccompleted_date%2Cdata_as_of%2Cdata_loaded_at&%24where=permit_number+in+%28%27202009234825%27%2C%27202602065460%27%29&%24order=permit_number%2Crecord_id&%24limit=25",
+        "https://data.sf.gov/resource/tyz3-vt28.json?%24select=recordid%2Crecordno%2Crecordtype%2Cstatus_detail%2Csubmitted_date%2Cpermit_issued_date%2Ccompleted_date%2Cparcel_number%2Cstreetno%2Cstreetname%2Cdata_as_of%2Cdata_loaded_at&%24where=recordno%3D%27FIRE-26-1449%27&%24order=recordid&%24limit=25",
+        "https://data.sf.gov/Housing-and-Buildings/Building-Permits/i98e-djp9",
+        "https://data.sf.gov/Housing-and-Buildings/PermitSF-Permitting-Data/tyz3-vt28"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Exact DBI queries for permits 202009234825 and 202602065460",
+          "publisher": "City and County of San Francisco",
+          "url": "https://data.sf.gov/resource/i98e-djp9.json?%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cstatus%2Cstatus_date%2Cfiled_date%2Capproved_date%2Cissued_date%2Ccompleted_date%2Cdata_as_of%2Cdata_loaded_at&%24where=permit_number+in+%28%27202009234825%27%2C%27202602065460%27%29&%24order=permit_number%2Crecord_id&%24limit=25"
+        },
+        {
+          "title": "Exact PermitSF query for fire sprinkler permit FIRE-26-1449",
+          "publisher": "City and County of San Francisco",
+          "url": "https://data.sf.gov/resource/tyz3-vt28.json?%24select=recordid%2Crecordno%2Crecordtype%2Cstatus_detail%2Csubmitted_date%2Cpermit_issued_date%2Ccompleted_date%2Cparcel_number%2Cstreetno%2Cstreetname%2Cdata_as_of%2Cdata_loaded_at&%24where=recordno%3D%27FIRE-26-1449%27&%24order=recordid&%24limit=25"
+        },
+        {
+          "title": "Building Permits, source fields and update process",
+          "publisher": "City and County of San Francisco",
+          "url": "https://data.sf.gov/Housing-and-Buildings/Building-Permits/i98e-djp9"
+        },
+        {
+          "title": "PermitSF Permitting Data, included permit types and fields",
+          "publisher": "City and County of San Francisco",
+          "url": "https://data.sf.gov/Housing-and-Buildings/PermitSF-Permitting-Data/tyz3-vt28"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the San Francisco permit records and timestamp examples",
+          "path": "/blog/building-permit-change-alerts-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "elevation-certificate-by-address",
     "topic": "Data & APIs",
     "title": "How to Find an Elevation Certificate by Address",

@@ -1,5 +1,242 @@
 [
   {
+    "slug": "building-permit-change-alerts-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Building Permit Change Alerts by Address",
+    "description": "Track new building permits, expirations and completions by address. Test an alert workflow against dated records from two San Francisco permit systems.",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverAlt": "Three dates for the permit at 345 California Street. The permit was issued on December 1, 2020, showed an expired status dated October 28, 2026, and was loaded to DataSF on October 30, 2026.",
+    "coverCaption": "Three dates for San Francisco DBI permit 202009234825. All four address rows carry the same permit dates and October 30 portal load date.",
+    "intro": "To track building permit changes by address, match the property to the issuing agency’s identifiers and save a dated copy of the permit record. Alert on the milestone the user cares about, such as issuance, expiration or completion. Keep the time your system first saw the change alongside the date the agency gives it. An updated row can carry a permit that was issued years earlier.",
+    "takeaways": [
+      "Use the permit number and issuing system to count permits. Keep the linked address, unit and parcel rows for property matching.",
+      "A San Francisco permit issued in 2020 shows an expired status dated October 28, 2026. DataSF loaded the row on October 30.",
+      "Use an issued permit to check what work the agency authorized. Use a final inspection or closeout record for decisions that require completed work."
+    ],
+    "sections": [
+      {
+        "id": "permit-activity-sample",
+        "heading": "What changed at the property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We checked two San Francisco Department of Building Inspection permits and one PermitSF record on November 24, 2026. The Department of Building Inspection publishes a row per permit and associated address record. Separate rows can carry the same permit number. PermitSF publishes a separate extract for its online permit types.",
+            "sourceIds": [
+              "sf-dbi",
+              "sf-portal"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Address and record",
+              "Agency milestone",
+              "What belongs in the alert"
+            ],
+            "rows": [
+              [
+                "345 California Street · DBI 202009234825",
+                "Issued December 1, 2020. Current status expired, dated October 28, 2026. DataSF load date October 30, 2026.",
+                "One expiration for the permit. Retain the four linked lots and their separate source row IDs."
+              ],
+              [
+                "345 California Street · PermitSF FIRE-26-1449",
+                "The fire sprinkler permit was issued August 3, 2026. The November 24 extract shows Active - Issued and has no completed date.",
+                "A separate sprinkler work authorization on the primary lot shown in the DBI example. Leave final inspection open for verification."
+              ],
+              [
+                "1312, 1314 and 1316 18th Avenue · DBI 202602065460",
+                "Issued February 6, 2026. Completed October 15, 2026. DataSF load date October 17, 2026.",
+                "One completion for the permit. Preserve all three addresses, which share one lot in these rows."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "sf-dbi-rows"
+              ],
+              [
+                "sf-portal-row"
+              ],
+              [
+                "sf-dbi-rows"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+          "text": "A filter for October 30 portal loads returns four rows for the same permit at 345 California Street. Its issue date falls outside the window by almost six years. Build one alert around the dated status and retain the portal timestamp so the user can see when the agency published the update.",
+            "sourceIds": [
+              "sf-dbi",
+              "sf-dbi-rows"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the San Francisco permit records and timestamp examples",
+            "path": "/blog/building-permit-change-alerts-by-address.json",
+            "format": "JSON"
+          },
+          {
+            "type": "paragraph",
+            "text": "The download preserves eight selected source rows, two exact queries and source response hashes. It shows what was present in those responses. Earlier or intermediate status values require a dated snapshot or a separate activity record."
+          }
+        ]
+      },
+      {
+        "id": "monitoring-workflow",
+        "heading": "How to monitor permit changes across a portfolio",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Match the address, building and unit. Use municipal parcel and building identifiers where they exist. Preserve multiple property links for permits that cover several addresses.",
+              "Save the issuing system, permit ID, milestone dates, current status, and the time you retrieved the record. Keep the source response available for review.",
+              "Query the publisher’s update timestamp with an overlapping time window. Compare relevant fields against the last saved version. A newly downloaded row only establishes a new observation until the dated fields or earlier version support an event.",
+            "Send one notification per permit, milestone type and recorded event time. Attach the properties affected by that milestone. Surface later corrections on the original event and keep the prior value for review.",
+              "Backfill from known dated fields and label history gaps. Share the source, permit ID, event date and observation time with every alert."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "DataSF provides separate times for the source record update and the portal load. Store both as returned and keep your own retrieval time with its UTC offset. A batch load can bring in several older milestones. The source values in this example are floating timestamps, so they carry no offset.",
+            "sourceIds": [
+              "sf-dbi",
+              "sf-portal",
+              "socrata-timestamps"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "buyer-workflows",
+        "heading": "Which permit changes are worth a notification?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "An owner managing a tenant build-out may want to know when a permit issues and when the final inspection closes. A construction lender can use those events to queue a draw review alongside the loan’s other requirements. An underwriter assessing roof age needs the permit’s work scope and evidence that the claimed replacement was completed. Set the notification around the decision each team has to make."
+          },
+          {
+            "type": "paragraph",
+            "text": "Start with the building and parcel identifiers. Invariant Earth can help match the property and its mapped features. Use the issuing agency’s dated permit and inspection records for the milestones, and confirm the update cadence for each jurisdiction before committing to an alert schedule.",
+            "sourceIds": [
+              "sf-dbi",
+              "sf-dbi-timeline"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "building-permit-data-apis",
+                "label": "Compare building permit API coverage"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace property identifiers through parcel splits and mergers"
+              },
+              {
+                "slug": "fire-sprinkler-records-by-address",
+                "label": "Check sprinkler permits and inspection records by address"
+              },
+              {
+                "path": "/data-coverage",
+                "label": "Check Invariant Earth property field coverage"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can an old building permit trigger a new alert?",
+        "answer": "Yes. A recent status change can affect a permit issued years earlier. Confirm the date of the change from the issuing agency and keep the source update and publication times with the notification.",
+        "sourceIds": [
+          "sf-dbi-rows"
+        ]
+      },
+      {
+        "question": "Does a permit marked issued show that the work is complete?",
+        "answer": "Issuance records the authorization. For completed work, look for a final inspection or approved closeout for the work in question. San Francisco publishes issue and completion dates separately.",
+        "sourceIds": [
+          "sf-dbi",
+          "sf-dbi-timeline"
+        ]
+      },
+      {
+        "question": "How do you avoid duplicate permit alerts?",
+        "answer": "Keep separate row identifiers for addresses and lots. Group by issuing system and permit number, then notify once per dated milestone with links to the affected properties.",
+        "sourceIds": [
+          "sf-dbi",
+          "sf-dbi-rows"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "sf-dbi",
+        "title": "Building Permits, source fields and update process",
+        "url": "https://data.sf.gov/Housing-and-Buildings/Building-Permits/i98e-djp9",
+        "publisher": "City and County of San Francisco"
+      },
+      {
+        "id": "sf-dbi-rows",
+        "title": "Exact DBI queries for permits 202009234825 and 202602065460",
+        "url": "https://data.sf.gov/resource/i98e-djp9.json?%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cstatus%2Cstatus_date%2Cfiled_date%2Capproved_date%2Cissued_date%2Ccompleted_date%2Cdata_as_of%2Cdata_loaded_at&%24where=permit_number+in+%28%27202009234825%27%2C%27202602065460%27%29&%24order=permit_number%2Crecord_id&%24limit=25",
+        "publisher": "City and County of San Francisco"
+      },
+      {
+        "id": "sf-portal",
+        "title": "PermitSF Permitting Data, included permit types and fields",
+        "url": "https://data.sf.gov/Housing-and-Buildings/PermitSF-Permitting-Data/tyz3-vt28",
+        "publisher": "City and County of San Francisco"
+      },
+      {
+        "id": "sf-portal-row",
+        "title": "Exact PermitSF query for fire sprinkler permit FIRE-26-1449",
+        "url": "https://data.sf.gov/resource/tyz3-vt28.json?%24select=recordid%2Crecordno%2Crecordtype%2Cstatus_detail%2Csubmitted_date%2Cpermit_issued_date%2Ccompleted_date%2Cparcel_number%2Cstreetno%2Cstreetname%2Cdata_as_of%2Cdata_loaded_at&%24where=recordno%3D%27FIRE-26-1449%27&%24order=recordid&%24limit=25",
+        "publisher": "City and County of San Francisco"
+      },
+      {
+        "id": "sf-dbi-timeline",
+        "title": "Permit application timelines, expiration, and extensions",
+        "url": "https://www.sf.gov/permit-application-timelines-expiration-and-extensions",
+        "publisher": "San Francisco Department of Building Inspection"
+      },
+      {
+        "id": "socrata-timestamps",
+        "title": "Floating timestamp datatype",
+        "url": "https://dev.socrata.com/docs/datatypes/timestamp.html",
+        "publisher": "Socrata"
+      }
+    ],
+    "relatedSlugs": [
+      "building-permit-data-apis",
+      "commercial-property-insurance-data-apis",
+      "historical-parcel-boundaries-api"
+    ],
+    "dataset": {
+      "name": "San Francisco permit activity, address links and publication timestamps",
+      "description": "Eight selected rows from three San Francisco permits. Compare a 2020 issue date with a 2026 expiration, a separate sprinkler permit at the same address, and a completion linked to three addresses. Includes original permit and row IDs, timestamps, source queries, and response fingerprints.",
+      "sourceIds": [
+        "sf-dbi-rows",
+        "sf-portal-row",
+        "sf-dbi",
+        "sf-portal"
+      ],
+      "spatialCoverage": "345 California Street and 1312, 1314 and 1316 18th Avenue, San Francisco, California, United States",
+      "temporalCoverage": "2020-09-23/2026-11-24",
+      "sourceReuse": {
+        "note": "Source records from the City and County of San Francisco.",
+        "policyLabel": "DataSF terms of use",
+        "policyUrl": "https://data.sf.gov/terms-of-use"
+      }
+    }
+  },
+  {
     "slug": "elevation-certificate-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -15386,6 +15623,15 @@
           {
             "type": "paragraph",
             "text": "A current export can report an old issue date and a newer status in the same row. Store dated snapshots or issuer event records when your team needs to replay a decision. Label facts by when the agency says they took effect and when you retrieved them. For lender or insurer reviews, save the exact evidence used with the decision file."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "building-permit-change-alerts-by-address",
+                "label": "Test permit alerts against dated San Francisco records"
+              }
+            ]
           },
           {
             "type": "paragraph",
