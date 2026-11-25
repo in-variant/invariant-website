@@ -3,6 +3,7 @@
 //   /blog/<slug>.md       one markdown file per industry article (site, due diligence, compliance guides)
 //   /glossary/<slug>.md   one markdown file per glossary entry
 //   /product.md          platform overview and agent setup
+//   /resources.md        workflow guides, research, and planning links
 //   /research.md         selected Invariant case studies, methods, and downloads
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
@@ -38,6 +39,8 @@ const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'
 const coverage = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-summary.json'), 'utf8'))
 const coverageTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-topics.json'), 'utf8'))
 const coverageFields = JSON.parse(readFileSync(join(ROOT, 'public/data-coverage-fields.json'), 'utf8'))
+const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
+const resourceDirectory = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated-blog-search/resource-directory.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
 const glossaryBySlug = new Map(glossary.map(entry => [entry.slug, entry]))
@@ -263,6 +266,37 @@ function researchMd() {
   return out.join('\n')
 }
 
+function resourcesMd() {
+  const { heading, intro, workflows, planningLinks } = resourceHub
+  const { links } = product
+  const out = [
+    `# ${heading}`, '', intro, '',
+    `[Resources on the website](${SITE}/resources)`, '',
+    '## Find guides by workflow', '',
+    `[Browse all data guides](${SITE}${links.guides})`, '',
+  ]
+  for (const { label, path, guide, slug } of workflows) {
+    if (!titles.has(slug)) throw new Error(`Missing resources workflow guide for ${slug}`)
+    out.push(`- [${linkText(label)}](${SITE}${path}) · [${linkText(guide)}](${SITE}/blog/${slug})`)
+  }
+  out.push(
+    '', '## Downloads and API coverage', '',
+    `- [Browse data samples](${SITE}${links.datasets})`,
+    `- [Read the dataset catalog and citations](${SITE}${links.datasets}.md)`,
+    `- [Get source URLs and download checksums](${SITE}${links.datasets}.json)`,
+    `- [Check API data coverage](${SITE}${links.coverage})`,
+    `- [Invariant Earth API quickstart](${links.quickstart})`, '',
+    '## Featured research', '',
+    `[Explore research](${SITE}${links.research})`, '',
+    ...resourceDirectory.featured.map(({ title, slug, summary }) =>
+      `- [${linkText(title)}](${SITE}/blog/${slug}). ${summary}`),
+    '', '## Planning resources', '',
+    ...planningLinks.map(({ label, path }) => `- [${linkText(label)}](${SITE}${path})`),
+    '', `[Talk to an expert](${SITE}/contact)`, '',
+  )
+  return out.join('\n')
+}
+
 function datasetCatalogMd() {
   const { siteSearch } = datasetCatalog
   const out = [
@@ -359,6 +393,7 @@ mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
 writeFileSync(join(DIST, 'product.md'), productMd())
 writeFileSync(join(DIST, 'data-coverage.md'), coverageMd())
+writeFileSync(join(DIST, 'resources.md'), resourcesMd())
 writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)

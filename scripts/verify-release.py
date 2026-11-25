@@ -49,7 +49,7 @@ CRAWLER_USER_AGENTS = (
 CRAWLER_SMOKE_PATHS = frozenset((
     "/robots.txt", "/product", "/product.md", "/blog", "/blog/data-center-site-selection-checklist",
     "/blog/index.html", "/blog/data-center-site-selection-checklist/index.html",
-    "/blog/data-center-site-selection-checklist.md", "/research", "/research.md",
+    "/blog/data-center-site-selection-checklist.md", "/resources", "/resources.md", "/research", "/research.md",
     "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
     "/data-coverage", "/data-coverage.md", COVERAGE_FIELDS_PATH,
     "/blog/", "/product/", "/datasets/", "/data-coverage/",

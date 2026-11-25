@@ -6,7 +6,8 @@ import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearc
 import { coverSrcSet } from '../data/coverSrcSets'
 import type { ResourceTopic } from '../data/resources'
 import { FEATURED_RESOURCE_ARTICLES, RESOURCE_REFERENCES } from '../data/resource-directory'
-import { DATA_USE_CASES_PATH } from '../data/blogCollections'
+import resourceHub from '../data/resource-hub.json'
+import earthProduct from '../data/earth-product.json'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import './Resources.css'
 
@@ -15,62 +16,8 @@ type Format = typeof FORMATS[number]
 const PAGE_SIZE = 8
 const RESOURCE_TOPICS: ResourceTopic[] = ['Data & APIs', 'Data Centers', 'Oil & Gas']
 const library = RESOURCE_REFERENCES.filter(resource => RESOURCE_TOPICS.includes(resource.topic))
-const workflows = [
-  {
-    label: 'Site selection',
-    path: '/blog/site-selection-due-diligence',
-    guide: 'Compare GIS APIs',
-    slug: 'best-gis-apis-for-site-selection',
-  },
-  {
-    label: 'Property & development',
-    path: `${DATA_USE_CASES_PATH}#property-and-development`,
-    guide: 'Find building permits by address',
-    slug: 'building-permit-change-alerts-by-address',
-  },
-  {
-    label: 'Commercial property insurance',
-    path: '/blog/property-underwriting',
-    guide: 'Compare underwriting data APIs',
-    slug: 'commercial-property-insurance-data-apis',
-  },
-  {
-    label: 'Real estate lending',
-    path: '/blog/commercial-real-estate-lending',
-    guide: 'Find commercial mortgage records',
-    slug: 'commercial-mortgage-records-by-address',
-  },
-  {
-    label: 'Power & utilities',
-    path: `${DATA_USE_CASES_PATH}#power-utilities-and-connectivity`,
-    guide: 'Check grid load headroom',
-    slug: 'grid-capacity-apis-load-headroom',
-  },
-  {
-    label: 'Industrial sites & freight',
-    path: `${DATA_USE_CASES_PATH}#industrial-sites-freight-and-mobility`,
-    guide: 'Screen truck and rail access',
-    slug: 'warehouse-site-selection-rail-truck-access',
-  },
-  {
-    label: 'Retail & consumer markets',
-    path: `${DATA_USE_CASES_PATH}#consumer-markets`,
-    guide: 'Compare trade area and foot traffic APIs',
-    slug: 'retail-site-selection-trade-area-apis',
-  },
-  {
-    label: 'Water, weather & environment',
-    path: `${DATA_USE_CASES_PATH}#weather-water-and-environmental-records`,
-    guide: 'Check water and sewer service',
-    slug: 'water-sewer-data-apis-site-selection',
-  },
-  {
-    label: 'Public projects & construction',
-    path: `${DATA_USE_CASES_PATH}#public-projects-and-construction`,
-    guide: 'Find contract awards by work location',
-    slug: 'federal-contract-awards-data-api',
-  },
-]
+const { heading, intro, workflows, planningLinks } = resourceHub
+const { links } = earthProduct
 
 export default function Resources() {
   const [searchReady, setSearchReady] = useState(false)
@@ -114,20 +61,21 @@ export default function Resources() {
         title="Physical-World Data Resources | Invariant"
         description="Find guides, datasets, and tools for site selection, property underwriting, power, logistics, and public projects. Explore the Invariant Earth API."
         canonical={`${SITE_URL}/resources`}
+        markdown="/resources.md"
         jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: `${SITE_URL}/` }, { name: 'Resources', url: `${SITE_URL}/resources` }])]}
       />
 
       <header className="resources-intro resource-container">
         <div className="resources-intro-grid">
-          <h1>Research and guides</h1>
-          <p>Data and tools for evaluating sites, infrastructure, and property risk.</p>
+          <h1>{heading}</h1>
+          <p>{intro}</p>
         </div>
       </header>
 
       <section className="resource-container resources-data" aria-labelledby="resources-data-heading">
         <div className="resources-section-heading">
           <h2 id="resources-data-heading">Find guides by workflow</h2>
-          <Link to={DATA_USE_CASES_PATH} className="resource-text-link">All data guides <ResourceArrow diagonal /></Link>
+          <Link to={links.guides} className="resource-text-link">All data guides <ResourceArrow diagonal /></Link>
         </div>
         <ul className="resources-data-topics">
           {workflows.map(({ label, path, guide, slug }) => (
@@ -138,16 +86,16 @@ export default function Resources() {
           ))}
         </ul>
         <nav aria-label="Data downloads and API documentation" className="resources-data-links">
-          <Link to="/datasets" className="resource-text-link">Data samples <ResourceArrow diagonal /></Link>
-          <Link to="/data-coverage" className="resource-text-link">API data coverage <ResourceArrow diagonal /></Link>
-          <a href="https://docs.invariant-ai.com/quickstart" className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
+          <Link to={links.datasets} className="resource-text-link">Data samples <ResourceArrow diagonal /></Link>
+          <Link to={links.coverage} className="resource-text-link">API data coverage <ResourceArrow diagonal /></Link>
+          <a href={links.quickstart} className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
         </nav>
       </section>
 
       <section className="resources-notes resource-container" aria-labelledby="resources-notes-heading">
         <div className="resources-section-heading">
           <h2 id="resources-notes-heading">Featured research</h2>
-          <Link to="/research" className="resource-text-link">Explore research <ResourceArrow /></Link>
+          <Link to={links.research} className="resource-text-link">Explore research <ResourceArrow /></Link>
         </div>
         <div className="resource-article-grid">
           {FEATURED_RESOURCE_ARTICLES.map((article) => <ResourceArticleCard key={article.slug} article={article} srcSet={coverSrcSet(article.image)} />)}
@@ -160,9 +108,9 @@ export default function Resources() {
             <h2 id="resources-library-heading">Browse guides, tools, and datasets</h2>
           </div>
           <nav aria-label="Research and planning resources" className="mb-7 flex flex-wrap gap-x-6 gap-y-3">
-            <Link to="/blog/find-data-center-site-us" className="resource-text-link">Find a data center site <ResourceArrow diagonal /></Link>
-            <Link to="/blog/physical-world-data-api-evaluation" className="resource-text-link">Compare physical-world data APIs <ResourceArrow diagonal /></Link>
-            <Link to="/calculators/data-center-power-delivery-schedule" className="resource-text-link">Check power delivery dates <ResourceArrow diagonal /></Link>
+            {planningLinks.map(({ label, path }) => (
+              <Link key={path} to={path} className="resource-text-link">{label} <ResourceArrow diagonal /></Link>
+            ))}
           </nav>
           <div className="resources-library-controls">
             <div className="resource-filters" role="group" aria-label="Filter by resource format">
