@@ -16,10 +16,10 @@ import './Datasets.css'
 const title = 'Physical economy data samples'
 const recentSampleCount = 8
 const { url: canonical } = DATA_CATALOG
-const { description, access } = researchCatalog
+const { description, access, siteSearch } = researchCatalog
 
 function trackResearchLink(properties: {
-  action: 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart'
+  action: 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist'
   surface: 'intro' | 'featured' | 'catalog' | 'no_results'
   dataset?: string
   format?: string
@@ -210,6 +210,24 @@ export default function Datasets() {
             </div>
           </div>
         </header>
+        <div className="resource-container">
+          <aside className="dataset-site-search" aria-labelledby="dataset-site-search-title">
+            <div>
+              <h2 id="dataset-site-search-title">{siteSearch.title}</h2>
+              <p>{siteSearch.description}</p>
+            </div>
+            <div className="dataset-site-search-actions">
+              <Link className="dataset-method" to={siteSearch.listingsPath}
+                onClick={() => trackResearchLink({ action: 'site_listings', surface: 'intro' })}>
+                {siteSearch.listingsLabel} <ResourceArrow diagonal />
+              </Link>
+              <Link className="dataset-method" to={siteSearch.requestPath}
+                onClick={() => trackResearchLink({ action: 'site_shortlist', surface: 'intro' })}>
+                {siteSearch.requestLabel} <ResourceArrow diagonal />
+              </Link>
+            </div>
+          </aside>
+        </div>
         <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
           <div className="dataset-featured-heading">
             <h2 id="featured-studies-title">See what the data can answer</h2>
@@ -236,7 +254,7 @@ export default function Datasets() {
                   </div>
                 </Link>
                 <div className="dataset-featured-actions">
-                  {workflow && <a className="dataset-featured-workflow" href={workflow.url}
+                  {workflow && workflowLabel && <a className="dataset-featured-workflow" href={workflow.url}
                     onClick={() => trackResearchLink({ action: 'workflow', surface: 'featured', dataset: slug })}>
                     {workflowLabel} <ResourceArrow />
                   </a>}
