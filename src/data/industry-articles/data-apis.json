@@ -1,5 +1,361 @@
 [
   {
+    "slug": "daytime-population-retail-site-selection",
+    "topic": "Data & APIs",
+    "region": "Chicago, Illinois",
+    "title": "How to Use Daytime Population for Retail Site Selection",
+    "description": "Compare jobs near a storefront with workers who live nearby. Download a two-site Chicago example using 2024 Census employment and home-to-work data.",
+    "date": "2026-11-25",
+    "readMinutes": 6,
+    "coverAlt": "2024 Census primary jobs within straight-line 800 metre circles. Washington/Wabash has 379,349 jobs at workplaces and 9,661 employed residents in the data. Logan Square has 2,988 jobs at workplaces and 10,048 employed residents in the data.",
+    "coverCaption": "Invariant analysis of 2024 Census LODES 8.5 records using Chicago Transit Authority station coordinates.",
+    "intro": "To compare daytime demand around a store, count the jobs located in its trade area and the employed residents who live there. Keep both alongside measured foot traffic for your opening hours. In two 800-metre Chicago samples, the number of employed residents was similar, but Washington/Wabash had about 127 times as many primary jobs at workplaces as Logan Square.",
+    "takeaways": [
+      "Use workplace jobs to screen where daytime demand could come from. Use household data for the residential market.",
+      "Use home-to-work records to find workers who already live nearby and avoid counting them twice.",
+      "Use street-level counts by day and hour before estimating store visits or sales."
+    ],
+    "sections": [
+      {
+        "id": "daytime-population-and-workplace-jobs",
+        "heading": "What does daytime population mean for a retail site?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Census Bureau defines commuter-adjusted population as resident population plus workers at workplaces in the area, minus workers who live in the area. For the geographies where the American Community Survey publishes all three components, use its matching tables and period. Its published workplace table covers selected geographic levels. A custom store radius calls for a separate estimate.",
+            "sourceIds": [
+              "acs-population"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a trade area you draw yourself, Census LODES gives you jobs by workplace block, represented in the Workplace Area Characteristics file, and jobs by home block, represented in the Residence Area Characteristics file. In the Chicago comparison we use primary jobs, the highest-earning job for each worker as defined by Census. That makes it possible to compare covered employed residents with covered jobs at workplaces without adding all secondary jobs.",
+            "sourceIds": [
+              "lodes-technical",
+              "lodes-overview"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Workplace locations in LODES are assigned to establishments. To plan service hours, confirm actual presence with counts at the storefront or along the approach people would use. The employment records describe the jobs tied to an area, while counts describe observed activity in a specific window.",
+            "sourceIds": [
+              "lodes-faq"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "chicago-daytime-demand-comparison",
+        "heading": "What do two Chicago trade areas show?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We centered straight-line circles on the CTA Washington/Wabash and Logan Square station coordinates. A 2020 Census block is counted in full when its Census internal point falls within the radius. Each run uses 2024 Illinois LODES 8.5 primary-job records. The two stations are comparison points. A real lease decision should use the storefront entrance and its walking routes.",
+            "sourceIds": [
+              "cta-stations",
+              "tiger-blocks",
+              "lodes-release",
+              "lodes-technical"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "CTA station",
+              "Radius",
+              "Primary jobs at workplaces",
+              "Employed residents with a primary job",
+              "Workplace jobs held by people living outside the circle"
+            ],
+            "rows": [
+              [
+                "Washington/Wabash",
+                "400 m",
+                "110,551",
+                "2,748",
+                "110,286"
+              ],
+              [
+                "Logan Square",
+                "400 m",
+                "889",
+                "2,623",
+                "866"
+              ],
+              [
+                "Washington/Wabash",
+                "800 m",
+                "379,349",
+                "9,661",
+                "376,505"
+              ],
+              [
+                "Logan Square",
+                "800 m",
+                "2,988",
+                "10,048",
+                "2,772"
+              ],
+              [
+                "Washington/Wabash",
+                "1,200 m",
+                "557,131",
+                "25,680",
+                "545,594"
+              ],
+              [
+                "Logan Square",
+                "1,200 m",
+                "6,602",
+                "20,356",
+                "6,076"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "il-workplace",
+                "il-residence",
+                "il-od-main",
+                "il-od-aux"
+              ],
+              [
+                "il-workplace",
+                "il-residence",
+                "il-od-main",
+                "il-od-aux"
+              ],
+              [
+                "il-workplace",
+                "il-residence",
+                "il-od-main",
+                "il-od-aux"
+              ],
+              [
+                "il-workplace",
+                "il-residence",
+                "il-od-main",
+                "il-od-aux"
+              ],
+              [
+                "il-workplace",
+                "il-residence",
+                "il-od-main",
+                "il-od-aux"
+              ],
+              [
+                "il-workplace",
+                "il-residence",
+                "il-od-main",
+                "il-od-aux"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Within 800 metres, Washington/Wabash had 379,349 primary jobs at workplaces and 9,661 employed residents in the data. Logan Square had 2,988 primary jobs at workplaces and 10,048 employed residents. The difference in workplace jobs appears at 400 and 1,200 metres as well. The two home-to-work files independently reconcile to the workplace job counts at every radius.",
+            "sourceIds": [
+              "il-workplace",
+              "il-residence",
+              "il-od-main",
+              "il-od-aux"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The home-to-work file matches 2,844 jobs held by workers who also lived within 800 metres of Washington/Wabash and 216 within the Logan Square circle. Those jobs are part of the workplace total. To understand who might visit a store, keep the overlap visible alongside workers whose homes are outside the circle.",
+            "sourceIds": [
+              "il-od-main",
+              "il-od-aux"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/chicago-lodes-retail-workplace-catchments.json",
+            "format": "JSON",
+            "label": "Download the Chicago trade area counts and Census block lists"
+          }
+        ]
+      },
+      {
+        "id": "retail-lunch-versus-evening",
+        "heading": "How to test lunch and evening demand before leasing",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Decision",
+              "What to measure"
+            ],
+            "rows": [
+              [
+                "Lunch service",
+                "Compare noon-hour counts near the proposed door on comparable weekdays. Record employer entrances, office attendance changes, and on-site cafeterias that affect how many people leave for lunch."
+              ],
+              [
+                "Evenings and weekends",
+                "Profile reachable households and observe the same approach during your evening and weekend windows. Check transit, residential entrances, and nearby anchors that stay open."
+              ],
+              [
+                "Shortlisting two sites",
+                "Replace the circles with comparable walking routes from the actual entrances. Repeat the job and household counts on both boundaries, then compare the share of observed passers-by who enter or buy."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 400, 800 and 1,200 metre comparison tests how much the result depends on distance. Use one boundary method across sites and record the radius or travel time, network date, Census release, and days and hours in the foot-traffic sample. Let the counts and operating costs drive the lease decision."
+          },
+          {
+            "type": "links",
+            "label": "Measure the rest of the trade area",
+            "items": [
+              {
+                "slug": "foot-traffic-data-by-address",
+                "label": "Compare observed foot traffic by hour and location"
+              },
+              {
+                "slug": "drive-time-demographics-census-trade-area",
+                "label": "Estimate households inside a network travel area"
+              },
+              {
+                "slug": "retail-site-selection-trade-area-apis",
+                "label": "Check nearby businesses and available trade area data"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I find daytime population data?",
+        "answer": "For places with ACS workplace tables, estimate commuter-adjusted population from resident population, workers at area workplaces and employed residents. For a custom retail trade area, use Census LODES block records to compare workplace and resident jobs and add a separate estimate of reachable households.",
+        "sourceIds": [
+          "acs-population",
+          "lodes-technical"
+        ]
+      },
+      {
+        "question": "How do I avoid counting workers twice in a retail trade area?",
+        "answer": "Use the LODES primary jobs files and compare home and work blocks in the origin-destination file. Workers whose home and workplace both fall in the trade area are part of both summaries. Keep that overlap visible when combining market segments.",
+        "sourceIds": [
+          "lodes-technical",
+          "lodes-overview"
+        ]
+      },
+      {
+        "question": "Can daytime employment stand in for foot traffic?",
+        "answer": "Use daytime employment to find areas with a large workplace base. Use measured visits or pedestrian counts near the store during planned hours to estimate the traffic it might capture.",
+        "sourceIds": [
+          "lodes-faq"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "lodes-release",
+        "title": "November 5, 2026 release note for 2024 LODES data",
+        "url": "https://lehd.ces.census.gov/applications/help/onthemap/data_notices.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2024 release notes"
+      },
+      {
+        "id": "lodes-technical",
+        "title": "LODES version 8.5 technical documentation, WAC, RAC and OD files",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/LODESTechDoc8.5.pdf",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "LODES technical documentation"
+      },
+      {
+        "id": "lodes-overview",
+        "title": "OnTheMap data overview and how primary jobs are selected",
+        "url": "https://lehd.ces.census.gov/doc/help/onthemap/OnTheMapDataOverview.pdf",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "OnTheMap data overview"
+      },
+      {
+        "id": "lodes-faq",
+        "title": "OnTheMap FAQ on how job locations are assigned",
+        "url": "https://lehd.ces.census.gov/applications/help/onthemap/faqs.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "OnTheMap job geography"
+      },
+      {
+        "id": "acs-population",
+        "title": "Calculating commuter-adjusted population from ACS tables",
+        "url": "https://www.census.gov/topics/employment/commuting/guidance/calculations.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ACS population method"
+      },
+      {
+        "id": "cta-stations",
+        "title": "CTA stop coordinates for Logan Square and Washington/Wabash",
+        "url": "https://data.cityofchicago.org/resource/8pix-ypme.json?%24where=station_name+in+%28%27Washington%2FWabash%27%2C%27Logan+Square%27%29&%24select=stop_id%2Cmap_id%2Cstation_name%2Clocation",
+        "publisher": "Chicago Transit Authority via the City of Chicago Data Portal",
+        "linkLabel": "CTA stop records"
+      },
+      {
+        "id": "tiger-blocks",
+        "title": "TIGERweb 2020 Census Blocks, GEOID and internal point fields",
+        "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Tracts_Blocks/MapServer/2",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census block geography"
+      },
+      {
+        "id": "il-workplace",
+        "title": "2024 Illinois LODES Workplace Area Characteristics, primary jobs",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/wac/il_wac_S000_JT01_2024.csv.gz",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Illinois workplace jobs file"
+      },
+      {
+        "id": "il-residence",
+        "title": "2024 Illinois LODES Residence Area Characteristics, primary jobs",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/rac/il_rac_S000_JT01_2024.csv.gz",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Illinois resident jobs file"
+      },
+      {
+        "id": "il-od-main",
+        "title": "2024 Illinois LODES Origin-Destination main file, primary jobs",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/od/il_od_main_JT01_2024.csv.gz",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Illinois home-to-work main file"
+      },
+      {
+        "id": "il-od-aux",
+        "title": "2024 Illinois LODES Origin-Destination auxiliary file, primary jobs",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/od/il_od_aux_JT01_2024.csv.gz",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Illinois home-to-work auxiliary file"
+      }
+    ],
+    "dataset": {
+      "name": "Chicago retail workplace and resident job catchments from 2024 Census LODES",
+      "description": "Six retail catchments around two CTA stations at 400, 800 and 1,200 metres. Includes workplace and resident primary jobs, workers with homes inside and outside each circle, exact block IDs, and source checksums.",
+      "sourceIds": [
+        "lodes-release",
+        "lodes-technical",
+        "cta-stations",
+        "tiger-blocks",
+        "il-workplace",
+        "il-residence",
+        "il-od-main",
+        "il-od-aux"
+      ],
+      "spatialCoverage": "Washington/Wabash and Logan Square CTA stations, Chicago, Illinois, United States",
+      "temporalCoverage": "2024"
+    },
+    "relatedSlugs": [
+      "retail-site-selection-trade-area-apis",
+      "foot-traffic-data-by-address",
+      "drive-time-demographics-census-trade-area",
+      "retail-trade-area-overlap"
+    ]
+  },
+  {
     "slug": "fema-floodway-property-check",
     "topic": "Data & APIs",
     "region": "United States",
@@ -3959,6 +4315,10 @@
               {
                 "slug": "drive-time-demographics-census-trade-area",
                 "label": "Calculate drive-time demographics for the same site"
+              },
+              {
+                "slug": "daytime-population-retail-site-selection",
+                "label": "Compare daytime jobs and employed residents around a store"
               }
             ]
           }
@@ -30052,6 +30412,10 @@
               {
                 "slug": "drive-time-demographics-census-trade-area",
                 "label": "Calculate drive-time demographics with Census data"
+              },
+              {
+                "slug": "daytime-population-retail-site-selection",
+                "label": "Compare daytime jobs and employed residents around a store"
               },
               {
                 "slug": "retail-trade-area-overlap",

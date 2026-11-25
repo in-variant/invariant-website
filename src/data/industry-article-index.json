@@ -1,5 +1,80 @@
 [
   {
+    "slug": "daytime-population-retail-site-selection",
+    "topic": "Data & APIs",
+    "title": "How to Use Daytime Population for Retail Site Selection",
+    "summary": "Compare jobs near a storefront with workers who live nearby. Download a two-site Chicago example using 2024 Census employment and home-to-work data.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "Chicago, Illinois",
+    "image": "/blog/industry/daytime-population-retail-site-selection.webp?v=253d3f1e",
+    "dataset": {
+      "name": "Chicago retail workplace and resident job catchments from 2024 Census LODES",
+      "description": "Six retail catchments around two CTA stations at 400, 800 and 1,200 metres. Includes workplace and resident primary jobs, workers with homes inside and outside each circle, exact block IDs, and source checksums.",
+      "spatialCoverage": "Washington/Wabash and Logan Square CTA stations, Chicago, Illinois, United States",
+      "temporalCoverage": "2024",
+      "sources": [
+        "https://lehd.ces.census.gov/applications/help/onthemap/data_notices.html",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/LODESTechDoc8.5.pdf",
+        "https://data.cityofchicago.org/resource/8pix-ypme.json?%24where=station_name+in+%28%27Washington%2FWabash%27%2C%27Logan+Square%27%29&%24select=stop_id%2Cmap_id%2Cstation_name%2Clocation",
+        "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Tracts_Blocks/MapServer/2",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/il/wac/il_wac_S000_JT01_2024.csv.gz",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/il/rac/il_rac_S000_JT01_2024.csv.gz",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/il/od/il_od_main_JT01_2024.csv.gz",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/il/od/il_od_aux_JT01_2024.csv.gz"
+      ],
+      "sourceDetails": [
+        {
+          "title": "November 5, 2026 release note for 2024 LODES data",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/applications/help/onthemap/data_notices.html"
+        },
+        {
+          "title": "LODES version 8.5 technical documentation, WAC, RAC and OD files",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/LODESTechDoc8.5.pdf"
+        },
+        {
+          "title": "CTA stop coordinates for Logan Square and Washington/Wabash",
+          "publisher": "Chicago Transit Authority via the City of Chicago Data Portal",
+          "url": "https://data.cityofchicago.org/resource/8pix-ypme.json?%24where=station_name+in+%28%27Washington%2FWabash%27%2C%27Logan+Square%27%29&%24select=stop_id%2Cmap_id%2Cstation_name%2Clocation"
+        },
+        {
+          "title": "TIGERweb 2020 Census Blocks, GEOID and internal point fields",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Tracts_Blocks/MapServer/2"
+        },
+        {
+          "title": "2024 Illinois LODES Workplace Area Characteristics, primary jobs",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/wac/il_wac_S000_JT01_2024.csv.gz"
+        },
+        {
+          "title": "2024 Illinois LODES Residence Area Characteristics, primary jobs",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/rac/il_rac_S000_JT01_2024.csv.gz"
+        },
+        {
+          "title": "2024 Illinois LODES Origin-Destination main file, primary jobs",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/od/il_od_main_JT01_2024.csv.gz"
+        },
+        {
+          "title": "2024 Illinois LODES Origin-Destination auxiliary file, primary jobs",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/il/od/il_od_aux_JT01_2024.csv.gz"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the Chicago trade area counts and Census block lists",
+          "path": "/blog/chicago-lodes-retail-workplace-catchments.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "fema-floodway-property-check",
     "topic": "Data & APIs",
     "title": "How to Check a FEMA Floodway Before Buying Land",
