@@ -35,6 +35,23 @@ python3 examples/earth-gis-trial.py gowanus --live
 
 The output keeps the reference observations and live responses in separate fields. Use [the response reference](https://docs.invariant-ai.com/responses) to interpret match type, missing fields, and source dates.
 
+## Replay two FEMA address checks
+
+The [flood screening guide](https://invariant-ai.com/blog/data-center-flood-zone-screening#replay-fema-checks) covers 400 South Akard Street in Dallas and 655 North Franklin Street in Tampa. Run the script and its dated JSON together from this checkout or download both from the guide.
+
+```bash
+python3 public/blog/data-center-flood-replay.py dallas
+python3 public/blog/data-center-flood-replay.py tampa
+```
+
+The offline run verifies the SHA-256 of the reference file and prints the recorded findings. With `uv` and `curl` installed, repeat the queries against the agencies’ live map services.
+
+```bash
+uv run --with pyproj==3.8.0 --with shapely==2.2.0 public/blog/data-center-flood-replay.py tampa --live
+```
+
+The live run reports the point and parcel separately, checks the effective map panel, and remeasures the Tampa footprint and evacuation intersections. The `changed` list identifies differences from the dated findings. Exit status 2 means a finding changed, and status 1 means the comparison could not finish. Response checksums show whether the agency returned the same bytes. Keep the date and geographic scope with each result.
+
 ## Replay a commercial mortgage recording cutoff
 
 The [commercial lending API guide](https://invariant-ai.com/blog/commercial-real-estate-data-apis-for-lenders#empire-state-building-recording-cutoff) uses three selected city recorder records at the Empire State Building. Replay the October 15 and October 22, 2013 snapshots and see which documents would appear early if you filtered by the date written on each instrument.

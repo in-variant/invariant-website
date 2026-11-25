@@ -2851,6 +2851,35 @@
     ]
    },
    {
+    "id": "replay-fema-checks",
+    "heading": "Replay these FEMA flood map checks with Python",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Save the Dallas and Tampa JSON and the Python script in the same folder. The first command verifies the dated reference and prints it offline. Use dallas to select the other address."
+     },
+     {
+      "type": "download",
+      "label": "Download the Python flood map replay",
+      "format": "Python",
+      "path": "/blog/data-center-flood-replay.py",
+      "datasetAnchor": null
+     },
+     {
+      "type": "shell",
+      "command": "python3 data-center-flood-replay.py tampa"
+     },
+     {
+      "type": "paragraph",
+      "text": "For live checks, use uv and curl. The script rechecks the agencies’ public endpoints without an API key and reports any findings that differ from the dated reference."
+     },
+     {
+      "type": "shell",
+      "command": "uv run --with pyproj==3.8.0 --with shapely==2.2.0 data-center-flood-replay.py tampa --live"
+     }
+    ]
+   },
+   {
     "id": "where-to-look",
     "heading": "How to look up a flood zone by address",
     "blocks": [

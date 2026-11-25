@@ -24,6 +24,7 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
     return <li key={path}><Link to={path}>{item.label}</Link></li>
   })}</ul></nav>
   if (block.type === 'list') return <div className="industry-list"><ul>{block.items.map(item => <li key={item}>{item}</li>)}</ul><Citations ids={block.sourceIds} article={article} /></div>
+  if (block.type === 'shell') return <pre className="industry-shell"><code>{block.command}</code></pre>
   if (block.type === 'download') {
     const entry = datasets.find(({ dataset }) => dataset.downloads[0].path === block.path)
     const workflow = entry && !entry.dataset.anchor ? entry.workflow : undefined
