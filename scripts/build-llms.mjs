@@ -43,6 +43,7 @@ const sections = [
     ['Power-flow studies, limits and contingency cases', `${SITE}${links.power}.md`],
     ['Calculate facility demand and power margin', `${SITE}/calculators/data-center-power-capacity.md`],
     ['Calculate on-site water use and water usage effectiveness', `${SITE}/calculators/data-center-water-use.md`],
+    ['Calculate monthly AEP Ohio data center demand charges', `${SITE}/calculators/aep-ohio-data-center-demand-charge.md`],
     ['Find space and power for GPU clusters', `${SITE}/blog/ai-compute-capacity-for-neoclouds.md`],
   ]],
   ['Optional', [
@@ -206,6 +207,7 @@ out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculato
 out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline), Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
 out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand, check on-site generation in an outage, and calculate battery runtime for a constant shortfall.')
 out.push('- [Data center water use calculator](https://invariant-ai.com/calculators/data-center-water-use.md), Estimate annual on-site water and average daily gallons or calculate site WUE from annual records.')
+out.push('- [AEP Ohio data center demand charge calculator](https://invariant-ai.com/calculators/aep-ohio-data-center-demand-charge.md), Compare the meter, minimum demand and 11-month lookback for one Schedule DCT new-load contract.')
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 out.push('- [Net effective rent calculator](https://invariant-ai.com/calculators/net-effective-rent.md), Compare commercial lease offers with annual increases, free months and build-out allowances.')
 out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calculators/battery-recharge-window.md), Check whether a grid-scale battery can recharge for a planned dispatch under import and export limits.')

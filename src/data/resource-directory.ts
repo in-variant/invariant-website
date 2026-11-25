@@ -5,6 +5,7 @@ import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE }
 import { LEASE_RENT_DESCRIPTION, LEASE_RENT_PATH, LEASE_RENT_TITLE } from './leaseRent'
 import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_PATH, BATTERY_RECHARGE_TITLE } from './batteryRecharge'
 import { WATER_USE_DESCRIPTION, WATER_USE_PATH, WATER_USE_TITLE } from './dataCenterWaterUse'
+import { AEP_DEMAND_DESCRIPTION, AEP_DEMAND_PATH, AEP_DEMAND_TITLE } from './aepOhioDemandCharge'
 
 export type ResourceReference = {
   path: string
@@ -29,6 +30,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert IT load to facility MW and check whether a battery can cover a generator shortfall until replacement power is available.', topic: 'Data Centers', kind: 'Tool' },
   { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
   { path: WATER_USE_PATH, title: WATER_USE_TITLE, summary: WATER_USE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool', searchContext: 'cooling demand gallons per day water consumption water usage effectiveness WUE' },
+  { path: AEP_DEMAND_PATH, title: AEP_DEMAND_TITLE, summary: AEP_DEMAND_DESCRIPTION, topic: 'Data Centers', kind: 'Tool', searchContext: 'utility bill distribution rate kilowatt minimum capacity ramp 11-month ratchet load lookback' },
   { path: LEASE_RENT_PATH, title: LEASE_RENT_TITLE, summary: LEASE_RENT_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool' },
   { path: BATTERY_RECHARGE_PATH, title: BATTERY_RECHARGE_TITLE, summary: BATTERY_RECHARGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'BESS charging duration grid import headroom utility-scale interconnection' },
   ...industryArticles.map(article => ({

@@ -1,0 +1,27 @@
+.aep-demand-calc .power-calc-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.aep-demand-calc h1 { max-width: 24ch; }
+.aep-demand-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
+.aep-demand-heading h2 { margin-bottom: 4px; }
+.aep-demand-heading button { min-height: 44px; color: var(--calc-accent); font-size: 14px; font-weight: 600; text-underline-offset: 4px; }
+.aep-demand-heading button:hover:not(:disabled) { text-decoration: underline; }
+.aep-demand-selects { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.aep-demand-calc select {
+  width: 100%;
+  min-height: 44px;
+  padding: 6px 9px;
+  border: 1px solid var(--calc-rule);
+  border-radius: 4px;
+  background: #fbfdfa;
+  color: var(--calc-ink);
+  font: inherit;
+  font-size: 14px;
+}
+.aep-demand-calc :is(select, button):focus-visible { outline: 2px solid var(--calc-accent); outline-offset: 2px; }
+.aep-demand-calc .power-calc-margins dd { overflow-wrap: anywhere; }
+.aep-demand-calc .aep-demand-subtotal dd { color: #f3f8f6; font-size: 18px; }
+.aep-demand-calc noscript p { margin-top: 8px; color: var(--calc-muted); font-size: 14px; }
+.aep-demand-review { margin: 12px 0 0; color: #ffcfaf; }
+
+@media (max-width: 690px) {
+  .aep-demand-calc .power-calc-grid { grid-template-columns: minmax(0, 1fr); }
+}
