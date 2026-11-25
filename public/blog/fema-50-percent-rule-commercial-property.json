@@ -1,0 +1,112 @@
+{
+  "title": "Floodplain improvement thresholds and permit lookback example",
+  "checked_on": "2026-11-24",
+  "rules": [
+    {
+      "name": "Federal NFIP baseline",
+      "improvement_threshold_percent": 50,
+      "damage_threshold_percent": 50,
+      "published_lookback_years": null,
+      "scope": "Federal definitions. Check the jurisdiction for a cumulative period or a stricter threshold.",
+      "source_id": "federal-definition"
+    },
+    {
+      "name": "City of Miami Beach, Florida",
+      "improvement_threshold_percent": 50,
+      "damage_threshold_percent": null,
+      "published_lookback_years": 1,
+      "scope": "City Building Department’s published cumulative improvement procedure. The example uses this rule only for improvement.",
+      "source_id": "miami-beach-rule"
+    },
+    {
+      "name": "Charleston County, South Carolina",
+      "improvement_threshold_percent": 49,
+      "damage_threshold_percent": 49,
+      "published_lookback_years": 5,
+      "scope": "Special flood hazard areas within the county ordinance’s jurisdiction. Verify the administering authority for each address.",
+      "source_id": "charleston-ordinance"
+    }
+  ],
+  "source_records": [
+    {
+      "id": "federal-definition",
+      "title": "44 CFR 59.1, federal definitions of substantial improvement and substantial damage",
+      "url": "https://www.ecfr.gov/current/title-44/chapter-I/subchapter-B/part-59/subpart-A/section-59.1"
+    },
+    {
+      "id": "fema-cost-guide",
+      "title": "FEMA P-758, substantial improvement and substantial damage desk reference",
+      "url": "https://www.fema.gov/sites/default/files/documents/fema_nfip_substantial-improvement-substantial-damage-desk-reference.pdf"
+    },
+    {
+      "id": "charleston-ordinance",
+      "title": "Charleston County Ordinance 2306, Sections 9-10 and 9-20, adopted August 13, 2024",
+      "url": "https://www.charlestoncounty.gov/departments/building-inspection-services/files/Flood-Ordinance-2306.pdf?v=797"
+    },
+    {
+      "id": "charleston-index",
+      "title": "Building Inspection Services, current and historical flood ordinances",
+      "url": "https://www.charlestoncounty.gov/departments/building-inspection-services/ordinances.php"
+    },
+    {
+      "id": "charleston-faq",
+      "title": "Hurricane planning FAQ on improvements in a flood zone",
+      "url": "https://charlestoncounty.gov/departments/emergency-Management/hurricane.php"
+    },
+    {
+      "id": "miami-beach-rule",
+      "title": "Miami Beach Building Department guidance on the 50% rule and one-year cumulative period",
+      "url": "https://www.miamibeachfl.gov/city-hall/building/permits/fema-50-rule/"
+    },
+    {
+      "id": "nfip-general-policy",
+      "title": "NFIP General Property Form, Section III.D, Increased Cost of Compliance",
+      "url": "https://www.ecfr.gov/current/title-44/chapter-I/subchapter-B/part-61/appendix-Appendix%20A(2)%20to%20Part%2061"
+    }
+  ],
+  "comparison_note": "Charleston County’s hurricane FAQ describes 50%. The Building Inspection Services index lists Ordinance 2306 as current. Section 9-10 uses 49%.",
+  "illustrative_example": {
+    "accepted_value_building_only_usd": 1000000,
+    "proposed_work_usd": 430000,
+    "prior_eligible_work_usd": 60000,
+    "months_before_review_of_prior_work": 30,
+    "assumptions": "One building with no other qualifying work. Each authority accepts the same valuation and cost inputs. Local officials make determinations for real properties.",
+    "scenarios": [
+      {
+        "jurisdiction": "City of Miami Beach, Florida",
+        "included_prior_work_usd": 0,
+        "total_included_cost_usd": 430000,
+        "cost_percent_of_building_value": 43.0,
+        "threshold_percent": 50,
+        "at_or_over_threshold": false,
+        "rule_source_id": "miami-beach-rule"
+      },
+      {
+        "jurisdiction": "Charleston County, South Carolina",
+        "included_prior_work_usd": 60000,
+        "total_included_cost_usd": 490000,
+        "cost_percent_of_building_value": 49.0,
+        "threshold_percent": 49,
+        "at_or_over_threshold": true,
+        "rule_source_id": "charleston-ordinance"
+      }
+    ]
+  },
+  "property_evidence_template": {
+    "building_identifier": null,
+    "site_address": null,
+    "parcel_id": null,
+    "flood_map_panel_and_effective_date": null,
+    "applicable_map_change_id": null,
+    "administering_authority": null,
+    "ordinance_reference_and_effective_date": null,
+    "improvement_threshold_pct": null,
+    "permit_lookback_period": null,
+    "included_permit_ids_dates_and_costs": null,
+    "valuation_source_and_as_of_date": null,
+    "accepted_building_only_value": null,
+    "itemized_qualifying_work_cost": null,
+    "written_determination_and_date": null,
+    "applicable_policy_form_and_endorsements": null
+  }
+}
