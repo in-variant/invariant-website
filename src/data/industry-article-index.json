@@ -7475,6 +7475,148 @@
     ]
   },
   {
+    "slug": "property-portfolio-flood-exposure",
+    "topic": "Data & APIs",
+    "title": "How to Map Flood Exposure Across a Property Portfolio",
+    "summary": "Match a commercial property schedule to individual buildings, total declared values by FEMA flood zone, and report unmatched amounts separately. See a worked example.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/property-portfolio-flood-exposure.webp?v=9a3e071d",
+    "dataset": {
+      "name": "Appanoose County scheduled property values reconciled to FEMA flood-zone evidence",
+      "description": "Twenty-two dated building and contents rows at five county addresses, with exact map and footprint queries, two matched buildings, unresolved address groups and reproducible USD subtotals by match status.",
+      "datePublished": "2026-11-25",
+      "spatialCoverage": "Centerville and Exline, Appanoose County, Iowa, United States",
+      "temporalCoverage": "2021-01-01/2026-11-25",
+      "sources": [
+        "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=15",
+        "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=16",
+        "https://appanoosecounty.iowa.gov/wp-content/uploads/2020/04/Appanoose-County-Resource-Directory-2020.pdf",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=201+N+12th+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+        "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?where=STATE_FIPS%3D%2719%27+AND+PROP_CNTY%3D%27Appanoose%27+AND+BUILD_ID%3D50425187+AND+PROP_ADDR%3D%27201+NORTH+12TH+STREET%27&outFields=OBJECTID%2CUUID%2CBUILD_ID%2CSTATE_FIPS%2CPROP_ADDR%2CPROP_CNTY%2CSQFEET%2COCC_CLS%2CPRIM_OCC%2CIMAGE_DATE%2CSOURCE&returnGeometry=true&outSR=4326&f=geojson",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-92.8743728113129%2C40.7341217432124%2C-92.8740526508473%2C40.7343367253049&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&returnGeometry=true&outSR=4326&f=geojson",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-92.8743728113129%2C40.7341217432124%2C-92.8740526508473%2C40.7343367253049&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE&returnGeometry=true&outSR=4326&f=geojson",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=209+E+Jackson+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+        "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?where=STATE_FIPS%3D%2719%27+AND+PROP_CNTY%3D%27Appanoose%27+AND+BUILD_ID%3D50423234+AND+PROP_ADDR%3D%27209+EAST+JACKSON+STREET%27&outFields=OBJECTID%2CUUID%2CBUILD_ID%2CSTATE_FIPS%2CPROP_ADDR%2CPROP_CNTY%2CSQFEET%2COCC_CLS%2CPRIM_OCC%2CIMAGE_DATE%2CSOURCE&returnGeometry=true&outSR=4326&f=geojson",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-92.8728111162426%2C40.7335825668547%2C-92.8726062275942%2C40.7341429468483&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&returnGeometry=true&outSR=4326&f=geojson",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-92.8728111162426%2C40.7335825668547%2C-92.8726062275942%2C40.7341429468483&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE&returnGeometry=true&outSR=4326&f=geojson",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1200+Highway+2+West%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-92.862335763657%2C40.732469749042&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&f=json",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=25100+520th+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-92.806504112271%2C40.725443124942&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&f=json",
+        "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=E+2nd+St+N%2C+Exline%2C+IA+52555&benchmark=Public_AR_Current&format=json",
+        "https://appanoosecounty.iowa.gov/departments/secondary-roads/",
+        "https://appanoosecounty.iowa.gov/departments/conservation/",
+        "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP_plus/ImageServer/exportImage?f=image&format=jpg&bbox=510467.646%2C4509125.556%2C510847.646%2C4509339.306&bboxSR=26915&imageSR=26915&size=1600%2C900&mosaicRule=%7B%22mosaicMethod%22%3A+%22esriMosaicLockRaster%22%2C+%22lockRasterIds%22%3A+%5B445815%2C+445812%5D%7D"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Appanoose County board packet, 2021 property schedule, page 1 of 3",
+          "publisher": "Appanoose County",
+          "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=15"
+        },
+        {
+          "title": "Appanoose County board packet, 2021 property schedule, page 2 of 3",
+          "publisher": "Appanoose County",
+          "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=16"
+        },
+        {
+          "title": "2020 county resource directory, public offices and facility addresses",
+          "publisher": "Appanoose County",
+          "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2020/04/Appanoose-County-Resource-Directory-2020.pdf"
+        },
+        {
+          "title": "Census street-range match for 201 North 12th Street",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=201+N+12th+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json"
+        },
+        {
+          "title": "USA Structures building record for 201 North 12th Street, Appanoose County",
+          "publisher": "FEMA, Oak Ridge National Laboratory",
+          "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?where=STATE_FIPS%3D%2719%27+AND+PROP_CNTY%3D%27Appanoose%27+AND+BUILD_ID%3D50425187+AND+PROP_ADDR%3D%27201+NORTH+12TH+STREET%27&outFields=OBJECTID%2CUUID%2CBUILD_ID%2CSTATE_FIPS%2CPROP_ADDR%2CPROP_CNTY%2CSQFEET%2COCC_CLS%2CPRIM_OCC%2CIMAGE_DATE%2CSOURCE&returnGeometry=true&outSR=4326&f=geojson"
+        },
+        {
+          "title": "Effective FEMA zones around the building at 201 North 12th Street",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-92.8743728113129%2C40.7341217432124%2C-92.8740526508473%2C40.7343367253049&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&returnGeometry=true&outSR=4326&f=geojson"
+        },
+        {
+          "title": "FEMA map panel inventory around the building at 201 North 12th Street",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-92.8743728113129%2C40.7341217432124%2C-92.8740526508473%2C40.7343367253049&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE&returnGeometry=true&outSR=4326&f=geojson"
+        },
+        {
+          "title": "Census street-range match for 209 East Jackson Street",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=209+E+Jackson+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json"
+        },
+        {
+          "title": "USA Structures building record for 209 East Jackson Street, Appanoose County",
+          "publisher": "FEMA, Oak Ridge National Laboratory",
+          "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?where=STATE_FIPS%3D%2719%27+AND+PROP_CNTY%3D%27Appanoose%27+AND+BUILD_ID%3D50423234+AND+PROP_ADDR%3D%27209+EAST+JACKSON+STREET%27&outFields=OBJECTID%2CUUID%2CBUILD_ID%2CSTATE_FIPS%2CPROP_ADDR%2CPROP_CNTY%2CSQFEET%2COCC_CLS%2CPRIM_OCC%2CIMAGE_DATE%2CSOURCE&returnGeometry=true&outSR=4326&f=geojson"
+        },
+        {
+          "title": "Effective FEMA zones around the building at 209 East Jackson Street",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-92.8728111162426%2C40.7335825668547%2C-92.8726062275942%2C40.7341429468483&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&returnGeometry=true&outSR=4326&f=geojson"
+        },
+        {
+          "title": "FEMA map panel inventory around the building at 209 East Jackson Street",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-92.8728111162426%2C40.7335825668547%2C-92.8726062275942%2C40.7341429468483&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE&returnGeometry=true&outSR=4326&f=geojson"
+        },
+        {
+          "title": "Census match for the county road yard address, 1200 Highway 2 West",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1200+Highway+2+West%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json"
+        },
+        {
+          "title": "FEMA lookup at the road yard’s returned street-range point",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-92.862335763657%2C40.732469749042&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&f=json"
+        },
+        {
+          "title": "Census match for the conservation address at 25100 520th Street",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=25100+520th+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json"
+        },
+        {
+          "title": "FEMA lookup at the conservation address’s returned street-range point",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-92.806504112271%2C40.725443124942&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&f=json"
+        },
+        {
+          "title": "Census geocoder result for E 2nd Street N without a street number",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=E+2nd+St+N%2C+Exline%2C+IA+52555&benchmark=Public_AR_Current&format=json"
+        },
+        {
+          "title": "County road department address on Highway 2 West",
+          "publisher": "Appanoose County",
+          "url": "https://appanoosecounty.iowa.gov/departments/secondary-roads/"
+        },
+        {
+          "title": "County conservation office address and description of Sharon Bluffs State Park facilities",
+          "publisher": "Appanoose County",
+          "url": "https://appanoosecounty.iowa.gov/departments/conservation/"
+        },
+        {
+          "title": "2023 NAIP natural-color orthoimage for downtown Centerville",
+          "publisher": "USDA NAIP, Federal Geospatial Platform",
+          "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP_plus/ImageServer/exportImage?f=image&format=jpg&bbox=510467.646%2C4509125.556%2C510847.646%2C4509339.306&bboxSR=26915&imageSR=26915&size=1600%2C900&mosaicRule=%7B%22mosaicMethod%22%3A+%22esriMosaicLockRaster%22%2C+%22lockRasterIds%22%3A+%5B445815%2C+445812%5D%7D"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the 22 schedule rows, footprint matches and FEMA evidence",
+          "path": "/blog/appanoose-portfolio-flood-exposure.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

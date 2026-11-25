@@ -1,0 +1,435 @@
+{
+  "name": "Appanoose County scheduled property values reconciled to FEMA flood-zone evidence",
+  "guide": "https://invariant-ai.com/blog/property-portfolio-flood-exposure#dataset",
+  "record_dates": {
+    "schedule_from": "2021-01-01",
+    "schedule_to": "2022-01-01",
+    "fema_retrieved": "2026-11-25"
+  },
+  "scope": "22 selected building and contents rows across five address groups in the 2021 public schedule. The sample pairs those dated values with later geometry and effective map evidence to demonstrate an exposure screen.",
+  "value_codes": {
+    "RC": "Replacement cost",
+    "ACV": "Actual cash value",
+    "B": "Building, including rows where the description identifies the building and the printed coverage cell is blank",
+    "BPP": "Business personal property"
+  },
+  "dollar_rule": "Each schedule row is counted once. Building and business personal property values are shown separately. A range-point zone does not clear an unresolved building. The sums describe submitted values and do not quantify a policy limit, flood loss or present-day exposure.",
+  "locations": {
+    "1": {
+      "address": "201 N 12th St, Centerville, IA",
+      "checks": {
+        "status": "matched_footprint",
+        "footprint_id": "2c916776-9012-477f-ba39-c4931c9fb2bc",
+        "footprint_address": "201 NORTH 12TH STREET",
+        "image_date": "2025-09-07",
+        "state_fips": "19",
+        "build_id": 50425187,
+        "address_range_distance_to_footprint_m": 49.7,
+        "flood_zone": "X",
+        "flood_zone_subtype": "AREA OF MINIMAL FLOOD HAZARD",
+        "full_footprint_coverage": true,
+        "effective_panel": "19007C0251C",
+        "effective_date": "2018-02-16",
+        "source_ids": [
+          "courthouse",
+          "courthouse-verified-footprint",
+          "courthouse-footprint-zones",
+          "courthouse-footprint-panels"
+        ]
+      }
+    },
+    "2": {
+      "address": "209 E Jackson St, Centerville, IA",
+      "checks": {
+        "status": "matched_footprint",
+        "footprint_id": "87c31afd-7c27-48d4-a7c3-a212a8b4e578",
+        "footprint_address": "209 EAST JACKSON STREET",
+        "image_date": "2025-09-07",
+        "state_fips": "19",
+        "build_id": 50423234,
+        "address_range_distance_to_footprint_m": 22.9,
+        "flood_zone": "X",
+        "flood_zone_subtype": "AREA OF MINIMAL FLOOD HAZARD",
+        "full_footprint_coverage": true,
+        "effective_panel": "19007C0251C",
+        "effective_date": "2018-02-16",
+        "source_ids": [
+          "human-services",
+          "human-services-verified-footprint",
+          "human-services-footprint-zones",
+          "human-services-footprint-panels"
+        ]
+      }
+    },
+    "3": {
+      "address": "1200 IA-2, Centerville, IA",
+      "checks": {
+        "status": "unresolved_building_identity",
+        "reason": "The county lists Highway 2 West. The national street-range match omitted West and does not resolve the eight scheduled building IDs.",
+        "range_match_address": "1200 STATE HWY 2, CENTERVILLE, IA, 52544",
+        "flood_zone": null,
+        "source_ids": [
+          "roads",
+          "roads-fema",
+          "road-yard-address"
+        ],
+        "range_point_zone": "X",
+        "range_point_zone_subtype": "AREA OF MINIMAL FLOOD HAZARD"
+      }
+    },
+    "7": {
+      "address": "E 2nd St N, Exline, IA",
+      "checks": {
+        "status": "unresolved_building_identity",
+        "reason": "The schedule lacks a street number. The address lookup returned no match.",
+        "range_match_address": null,
+        "flood_zone": null,
+        "source_ids": [
+          "exline"
+        ]
+      }
+    },
+    "10": {
+      "address": "25100 520th St, Centerville, IA",
+      "checks": {
+        "status": "unresolved_building_identity",
+        "reason": "A street-range point and a county facility address do not assign the four scheduled building IDs to specific structures.",
+        "range_match_address": "25100 520TH ST, CENTERVILLE, IA, 52544",
+        "flood_zone": null,
+        "source_ids": [
+          "conservation",
+          "conservation-fema",
+          "park-address"
+        ],
+        "range_point_zone": "X",
+        "range_point_zone_subtype": "AREA OF MINIMAL FLOOD HAZARD"
+      }
+    }
+  },
+  "schedule_rows": [
+    {
+      "location_building_id": "1-1",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 7480100,
+      "pdf_page": 15,
+      "result": "matched_unshaded_zone_x"
+    },
+    {
+      "location_building_id": "1-1",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 266500,
+      "pdf_page": 15,
+      "result": "matched_unshaded_zone_x"
+    },
+    {
+      "location_building_id": "2-1",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 615000,
+      "pdf_page": 15,
+      "result": "matched_unshaded_zone_x"
+    },
+    {
+      "location_building_id": "2-1",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 83500,
+      "pdf_page": 15,
+      "result": "matched_unshaded_zone_x"
+    },
+    {
+      "location_building_id": "3-1",
+      "coverage_subject": "B",
+      "valuation_basis": "ACV",
+      "value_usd": 225100,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-1",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 153800,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-2",
+      "coverage_subject": "B",
+      "valuation_basis": "ACV",
+      "value_usd": 41000,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-3",
+      "coverage_subject": "B",
+      "valuation_basis": "ACV",
+      "value_usd": 128100,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-3",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 61500,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-4",
+      "coverage_subject": "B",
+      "valuation_basis": "ACV",
+      "value_usd": 4100,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-5",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 212100,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-5",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 87800,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-6",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 8200,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-6",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 51300,
+      "pdf_page": 15,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-7",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 41000,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "3-8",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 53900,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "10-1",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 39300,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "10-2",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 5400,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "10-3",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 278900,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "10-3",
+      "coverage_subject": "BPP",
+      "valuation_basis": "RC",
+      "value_usd": 27500,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "10-4",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 174300,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    },
+    {
+      "location_building_id": "7-1",
+      "coverage_subject": "B",
+      "valuation_basis": "RC",
+      "value_usd": 11400,
+      "pdf_page": 16,
+      "result": "requires_building_match"
+    }
+  ],
+  "rollup_usd": {
+    "matched_unshaded_zone_x": {
+      "B": 8095100,
+      "BPP": 350000
+    },
+    "requires_building_match": {
+      "B": 1222800,
+      "BPP": 381900
+    }
+  },
+  "sources": [
+    {
+      "id": "schedule-one",
+      "title": "Appanoose County board packet, 2021 property schedule, page 1 of 3",
+      "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=15",
+      "publisher": "Appanoose County",
+      "linkLabel": "First schedule page",
+      "response_sha256": "7408582d0de72d9199aae6478482b9b6af803ee54345917cea587b5b571d50aa"
+    },
+    {
+      "id": "schedule-two",
+      "title": "Appanoose County board packet, 2021 property schedule, page 2 of 3",
+      "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=16",
+      "publisher": "Appanoose County",
+      "linkLabel": "Second schedule page",
+      "response_sha256": "7408582d0de72d9199aae6478482b9b6af803ee54345917cea587b5b571d50aa"
+    },
+    {
+      "id": "county-facility-directory",
+      "title": "2020 county resource directory, public offices and facility addresses",
+      "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2020/04/Appanoose-County-Resource-Directory-2020.pdf",
+      "publisher": "Appanoose County",
+      "linkLabel": "County facility directory"
+    },
+    {
+      "id": "courthouse",
+      "title": "Census street-range match for 201 North 12th Street",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=201+N+12th+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+      "publisher": "U.S. Census Bureau",
+      "response_sha256": "3fc287c2a97c0ba81e7bbc75039f9b8cf040a55384cf5636eb01a5a358d8b8b5"
+    },
+    {
+      "id": "courthouse-verified-footprint",
+      "title": "USA Structures building record for 201 North 12th Street, Appanoose County",
+      "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?where=STATE_FIPS%3D%2719%27+AND+PROP_CNTY%3D%27Appanoose%27+AND+BUILD_ID%3D50425187+AND+PROP_ADDR%3D%27201+NORTH+12TH+STREET%27&outFields=OBJECTID%2CUUID%2CBUILD_ID%2CSTATE_FIPS%2CPROP_ADDR%2CPROP_CNTY%2CSQFEET%2COCC_CLS%2CPRIM_OCC%2CIMAGE_DATE%2CSOURCE&returnGeometry=true&outSR=4326&f=geojson",
+      "publisher": "FEMA, Oak Ridge National Laboratory",
+      "response_sha256": "adfabc7ca49b45af945cc572eddfa8ff695217f6e720df1c887e492b8a9e9ea2"
+    },
+    {
+      "id": "courthouse-footprint-zones",
+      "title": "Effective FEMA zones around the building at 201 North 12th Street",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-92.8743728113129%2C40.7341217432124%2C-92.8740526508473%2C40.7343367253049&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&returnGeometry=true&outSR=4326&f=geojson",
+      "publisher": "FEMA",
+      "response_sha256": "6ce2baef4dc9eb4a5245fc658c773f2ddb0a6c19fba9f85e1f7a805c6da372b0"
+    },
+    {
+      "id": "courthouse-footprint-panels",
+      "title": "FEMA map panel inventory around the building at 201 North 12th Street",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-92.8743728113129%2C40.7341217432124%2C-92.8740526508473%2C40.7343367253049&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE&returnGeometry=true&outSR=4326&f=geojson",
+      "publisher": "FEMA",
+      "response_sha256": "6fd646b0f64bf96d57bcbdc77a36890a1c3f01ab44d3853b37a0687d42f30e00"
+    },
+    {
+      "id": "human-services",
+      "title": "Census street-range match for 209 East Jackson Street",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=209+E+Jackson+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+      "publisher": "U.S. Census Bureau",
+      "response_sha256": "717bb4e906359d1ef5081b56b5095745475abe1f3a7fa41713e52af724cb7f61"
+    },
+    {
+      "id": "human-services-verified-footprint",
+      "title": "USA Structures building record for 209 East Jackson Street, Appanoose County",
+      "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?where=STATE_FIPS%3D%2719%27+AND+PROP_CNTY%3D%27Appanoose%27+AND+BUILD_ID%3D50423234+AND+PROP_ADDR%3D%27209+EAST+JACKSON+STREET%27&outFields=OBJECTID%2CUUID%2CBUILD_ID%2CSTATE_FIPS%2CPROP_ADDR%2CPROP_CNTY%2CSQFEET%2COCC_CLS%2CPRIM_OCC%2CIMAGE_DATE%2CSOURCE&returnGeometry=true&outSR=4326&f=geojson",
+      "publisher": "FEMA, Oak Ridge National Laboratory",
+      "response_sha256": "f0e9a81b03fde11078f655add29552903b6addb33780c2f724069efe58306c21"
+    },
+    {
+      "id": "human-services-footprint-zones",
+      "title": "Effective FEMA zones around the building at 209 East Jackson Street",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-92.8728111162426%2C40.7335825668547%2C-92.8726062275942%2C40.7341429468483&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&returnGeometry=true&outSR=4326&f=geojson",
+      "publisher": "FEMA",
+      "response_sha256": "6ce2baef4dc9eb4a5245fc658c773f2ddb0a6c19fba9f85e1f7a805c6da372b0"
+    },
+    {
+      "id": "human-services-footprint-panels",
+      "title": "FEMA map panel inventory around the building at 209 East Jackson Street",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-92.8728111162426%2C40.7335825668547%2C-92.8726062275942%2C40.7341429468483&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE&returnGeometry=true&outSR=4326&f=geojson",
+      "publisher": "FEMA",
+      "response_sha256": "6fd646b0f64bf96d57bcbdc77a36890a1c3f01ab44d3853b37a0687d42f30e00"
+    },
+    {
+      "id": "roads",
+      "title": "Census match for the county road yard address, 1200 Highway 2 West",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1200+Highway+2+West%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+      "publisher": "U.S. Census Bureau",
+      "response_sha256": "1610ea576f25e2ca07ce6a1891811faed82ce56f1abb976ebeffcd71ea09651f"
+    },
+    {
+      "id": "roads-fema",
+      "title": "FEMA lookup at the road yard’s returned street-range point",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-92.862335763657%2C40.732469749042&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&f=json",
+      "publisher": "FEMA",
+      "response_sha256": "c53607c5ee9fa8f636c123bc50dab89a10abbc64953ca3417a42728b3d938937"
+    },
+    {
+      "id": "conservation",
+      "title": "Census match for the conservation address at 25100 520th Street",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=25100+520th+St%2C+Centerville%2C+IA+52544&benchmark=Public_AR_Current&format=json",
+      "publisher": "U.S. Census Bureau",
+      "response_sha256": "3359a3c4a08adef8519fa63113f58a0d79f6a9f2f74d9c0c4799718d8d3dcc60"
+    },
+    {
+      "id": "conservation-fema",
+      "title": "FEMA lookup at the conservation address’s returned street-range point",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-92.806504112271%2C40.725443124942&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&f=json",
+      "publisher": "FEMA",
+      "response_sha256": "c53607c5ee9fa8f636c123bc50dab89a10abbc64953ca3417a42728b3d938937"
+    },
+    {
+      "id": "exline",
+      "title": "Census geocoder result for E 2nd Street N without a street number",
+      "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=E+2nd+St+N%2C+Exline%2C+IA+52555&benchmark=Public_AR_Current&format=json",
+      "publisher": "U.S. Census Bureau",
+      "response_sha256": "18b6a2ed557b36bafc8b114aba6d8b8d1dc1fa757208d192153a0c4e7e8a7d0b"
+    },
+    {
+      "id": "road-yard-address",
+      "title": "County road department address on Highway 2 West",
+      "url": "https://appanoosecounty.iowa.gov/departments/secondary-roads/",
+      "publisher": "Appanoose County",
+      "linkLabel": "County road department listing"
+    },
+    {
+      "id": "park-address",
+      "title": "County conservation office address and description of Sharon Bluffs State Park facilities",
+      "url": "https://appanoosecounty.iowa.gov/departments/conservation/",
+      "publisher": "Appanoose County",
+      "linkLabel": "County conservation listing"
+    },
+    {
+      "id": "naip",
+      "title": "2023 NAIP natural-color orthoimage for downtown Centerville",
+      "url": "https://imagery.geoplatform.gov/iipp/rest/services/NAIP/NAIP_plus/ImageServer/exportImage?f=image&format=jpg&bbox=510467.646%2C4509125.556%2C510847.646%2C4509339.306&bboxSR=26915&imageSR=26915&size=1600%2C900&mosaicRule=%7B%22mosaicMethod%22%3A+%22esriMosaicLockRaster%22%2C+%22lockRasterIds%22%3A+%5B445815%2C+445812%5D%7D",
+      "publisher": "USDA NAIP, Federal Geospatial Platform",
+      "linkLabel": "2023 Centerville aerial imagery",
+      "response_sha256": "6c87a1d47b0eb3cb203cc266417edd04b59d2702e07315f07213f11178015e3e"
+    }
+  ]
+}
