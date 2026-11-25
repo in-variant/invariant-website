@@ -23218,8 +23218,8 @@
        ],
        [
         "5. Site control and corridors",
-        "Parcel IDs, seller authority, current options, survey, title, access, and routes for utility and fiber easements.",
-        "The site and required corridors can be secured within the diligence window."
+        "Parcel IDs, seller authority, current options, survey, title, access for construction and equipment delivery, and routes for utility and fiber easements.",
+        "The site and required corridors can be secured within the diligence window. Identify the route and approvals needed to deliver major equipment to the pad."
        ],
        [
         "6. Land use and local approvals",
@@ -23380,6 +23380,90 @@
       "items": [
        {"slug": "lidar-slope-developable-land", "label": "Screen slope and developable ground before civil design"},
        {"slug": "data-center-water-stormwater-permits", "label": "Check stormwater, dewatering and utility approvals"}
+      ]
+     }
+    ]
+   },
+   {
+    "id": "transformer-delivery-route",
+    "heading": "Can a substation transformer reach the site?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Check the delivery route before committing to a substation layout. Ask the equipment supplier and carrier for the loaded vehicle’s dimensions, gross weight, axle loads and axle spacing. Trace the trip from origin to pad. Check each restricted bridge, tight turn and overhead clearance, plus the last turn through the site gate. Put road work, access approvals and the move itself on the same schedule as utility energization."
+     },
+     {
+      "type": "paragraph",
+      "text": "The Deschutes solar and battery project’s Oregon siting application includes a field survey and turn simulations for transformer delivery. The engineer compared three routes from the Port of Portland and identified conditions that could affect the construction schedule. Oregon’s November update says the preliminary application was still under review.",
+      "sourceIds": [
+       "deschutes-heavy-haul",
+       "deschutes-siting-status"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Route check",
+       "What the Oregon filing found",
+       "What to verify on your site"
+      ],
+      "rows": [
+       [
+        "Highway turns",
+        "The preferred route would likely need a bypass at the I-84 and OR 197 interchange. The modeled transformer transporter could not make the turn safely as drawn.",
+        "Have the carrier check the full turn with the actual transport configuration and get any bypass or road work into the schedule."
+       ],
+       [
+        "Weight-restricted bridge",
+        "The survey flagged an OR 216 bridge for early investigation and called for bridge and culvert analysis after carrier selection.",
+        "Have the road authority review the specific axle loads, axle spacing and crossings before relying on the route."
+       ],
+       [
+        "Last leg to the transformer pad",
+        "Modifying the existing driveway would require about 2,700 feet of new roadway. The engineer proposed a new driveway and about 800 feet of new road instead.",
+        "Put the gate, pad, access rights, road works and construction dates on the same plan."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "deschutes-heavy-haul"
+       ],
+       [
+        "deschutes-heavy-haul"
+       ],
+       [
+        "deschutes-heavy-haul"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Start the road permit inquiry before setting an equipment delivery date. In Texas, TxDMV instructs applicants to submit a superheavy single-trip application three to four weeks before the permit is needed unless an approved route is already on file. The interval allows for route approval and any bridge or pavement analysis. Confirm the route, local permits and movement window with the authorities responsible for the roads you will use.",
+      "sourceIds": [
+       "texas-superheavy-permit",
+       "texas-heavy-haul-limits"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/transformer-delivery-route-diligence.json",
+      "format": "JSON",
+      "label": "Download the transformer delivery checks and source references",
+      "datasetAnchor": "dataset-transformer-delivery-route"
+     },
+     {
+      "type": "links",
+      "label": "Check site access and utility delivery together",
+      "items": [
+       {
+        "slug": "warehouse-site-selection-rail-truck-access",
+        "label": "Verify freight routes and site access"
+       },
+       {
+        "path": "/calculators/data-center-power-delivery-schedule",
+        "label": "Check power timing against the opening date"
+       }
       ]
      }
     ]
@@ -24123,6 +24207,34 @@
     "publisher": "U.S. Department of Energy"
    },
    {
+    "id": "deschutes-heavy-haul",
+    "title": "Deschutes Public Services Exhibit, Attachment 2, route study, printed pages 3–5 and 23–24",
+    "publisher": "Deschutes Solar and Oregon Department of Energy",
+    "url": "https://www.oregon.gov/energy/facilities/Facility%20Exhibits/DSB/2026-01-09-DSBAPP-pASC-13-Public-Services.pdf",
+    "linkLabel": "Route survey and alternatives"
+   },
+   {
+    "id": "deschutes-siting-status",
+    "title": "November 2026 EFSC project update, Deschutes preliminary application status",
+    "publisher": "Oregon Department of Energy",
+    "url": "https://www.oregon.gov/energy/facilities/Pages/EFSC-Project-Updates.aspx",
+    "linkLabel": "Oregon siting application status"
+   },
+   {
+    "id": "texas-superheavy-permit",
+    "title": "Superheavy single-trip permit scope and application timing",
+    "publisher": "Texas Department of Motor Vehicles",
+    "url": "https://www.txdmv.gov/motor-carriers/oversize-overweight-permits/superheavy-single-trip",
+    "linkLabel": "Texas superheavy permit timing"
+   },
+   {
+    "id": "texas-heavy-haul-limits",
+    "title": "Texas vehicle and load size and weight limits",
+    "publisher": "Texas Department of Motor Vehicles",
+    "url": "https://www.txdmv.gov/motor-carriers/oversize-overweight-permits/texas-size-weight-limits",
+    "linkLabel": "Texas size and weight limits"
+   },
+   {
     "id": "siting",
     "title": "Data Center Siting: Criteria, Policies, and Recent Trends",
     "url": "https://eta-publications.lbl.gov/sites/default/files/2026-10/eif_webinar_siting_v2.pdf",
@@ -24281,6 +24393,19 @@
    ]
   },
   "additionalDatasets": [
+   {
+    "anchor": "dataset-transformer-delivery-route",
+    "name": "Transformer delivery route checks and source records",
+    "description": "Route findings from the Deschutes solar and battery project filing, including turning geometry, a restricted bridge and two approaches to the substation pad. A Texas permit timing reference and blank evidence fields let buyers use the checks on other sites.",
+    "datePublished": "2026-11-24",
+    "spatialCoverage": "Selected records from Oregon and Texas, United States",
+    "sourceIds": [
+     "deschutes-heavy-haul",
+     "deschutes-siting-status",
+     "texas-superheavy-permit",
+     "texas-heavy-haul-limits"
+    ]
+   },
    {
     "anchor": "dataset-project-blue-site-selection",
     "name": "Project Blue land, cooling water and permit decision records",
