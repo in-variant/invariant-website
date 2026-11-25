@@ -21143,13 +21143,13 @@
     "topic": "Data & APIs",
     "region": "United States",
     "date": "2026-11-24",
-    "readMinutes": 6,
+    "readMinutes": 8,
     "title": "GIS MCP Servers for Parcel Data and Site Selection",
-    "description": "Compare Invariant Earth, Regrid, West Kite and ArcGIS Enterprise MCP. Run three parcel and flood checks against dated city and FEMA records.",
+    "description": "Compare Invariant Earth, Regrid, LightBox, West Kite and ArcGIS Enterprise MCP. Test which parcel and flood answers you can trace to the source.",
     "coverFile": "best-gis-apis-for-site-selection.webp",
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
-    "intro": "Use Invariant Earth to compare the U.S. parcel at an address with flood zones, terrain and nearby infrastructure in one agent workflow. Regrid and West Kite offer different parcel and ownership workflows. ArcGIS Enterprise can expose the maps and tools your organization already runs. Test all of them against the same few sites and save the tool responses alongside the agent’s answer.",
+    "intro": "Use Invariant Earth to compare the U.S. parcel at an address with flood zones, terrain and nearby infrastructure in one agent workflow. Regrid, LightBox and West Kite offer different property and parcel workflows. ArcGIS Enterprise can expose the maps and tools your organization already runs. Test each connector against the same sites and save the tool responses alongside the agent’s answer.",
     "takeaways": [
       "Choose the server by the decision you need to support. Identify the datasets and tool permissions available through that connection.",
       "Test the address, parcel and building separately. Keep the original identifier, the source and the date returned with each result.",
@@ -21183,6 +21183,11 @@
                 "Can you match a parcel by address and return the boundary and zoning attributes included in your account?"
               ],
               [
+                "LightBox MCP",
+                "Read-only property and parcel research for selected customers and partners through early access.",
+                "Can you trace a parcel match to the correct assessment when a single geometry covers several units?"
+              ],
+              [
                 "West Kite",
                 "U.S. commercial property research, including owners of record and people behind LLCs.",
                 "Can you distinguish the recorded owner from a linked person or entity and show the evidence for the relationship?"
@@ -21200,6 +21205,9 @@
               ],
               [
                 "regrid"
+              ],
+              [
+                "lightbox-mcp"
               ],
               [
                 "west-kite"
@@ -21309,6 +21317,53 @@
         ]
       },
       {
+        "id": "parcel-source-provenance",
+        "heading": "Which parcel tools give an agent source evidence?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with one field that matters to the decision, such as the parcel boundary or the current flood zone. Ask the agent for the record or layer that produced it, the date it applied, and the retrieval time. Save the raw tool result to see which of those details came back. A link to a provider’s catalog can explain the dataset. To verify a specific value, ask for the issuing agency’s record, a query against its layer, or a source file you can inspect."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Provider", "What the public documentation shows", "What to check in a trial"],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Earth documents a source, source URL, result status and retrieval time for field results, with dataset vintage where available. Its elevation example points to a USGS tile. The field catalog identifies Regrid as the source of parcel_id.",
+                "Keep the elevation and parcel evidence separate. Check whether each URL opens a source file, a dataset page, or a provider reference. Use the local tax map for independent boundary confirmation."
+              ],
+              [
+                "Regrid",
+                "The parcel schema distinguishes sourceurl, a county record URL where supplied, from ll_last_refresh, the county data refresh date, and ll_updated_at, the row modification time.",
+                "Ask for sourceurl and ll_last_refresh on your county sample. For an as-of boundary, confirm the local map edition and the date any split took effect."
+              ],
+              [
+                "LightBox",
+                "The parcel API documents lookup by county FIPS and assessor parcel number, plus links to related assessments. LightBox describes MCP access separately through its Early Access Program.",
+                "In the early-access connector, ask for the local assessor number, its linked assessment, the original source, and the relevant dates. Check which items the tool returns."
+              ],
+              [
+                "West Kite",
+                "The property API documents source IDs on typed items including sales, assessments and permits. Its source catalog describes the publisher, coverage, and last load for each entry where recorded.",
+                "Resolve the source ID to its catalog entry. Ask for the local permit or deed reference and event date as separate evidence."
+              ]
+            ],
+            "rowSourceIds": [
+              ["earth-responses", "earth-field-catalog"],
+              ["regrid-lineage"],
+              ["lightbox-mcp", "lightbox-apn"],
+              ["west-kite-reference", "west-kite-sources"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "These are documented fields and access paths. Use your plan and client to confirm which details appear in the MCP response. For underwriting, keep the source identifiers and dates beside the value that drove the decision so someone else can repeat the check."
+          }
+        ]
+      },
+      {
         "id": "review-a-site-answer",
         "heading": "What should an agent show before you use a site answer?",
         "blocks": [
@@ -21390,6 +21445,48 @@
         "title": "Regrid MCP tools and parcel data access",
         "publisher": "Regrid",
         "url": "https://support.regrid.com/docs/mcp-server"
+      },
+      {
+        "id": "earth-responses",
+        "title": "Earth field response examples and source evidence",
+        "publisher": "Invariant AI",
+        "url": "https://docs.invariant-ai.com/responses"
+      },
+      {
+        "id": "earth-field-catalog",
+        "title": "Earth field catalog with parcel and elevation source labels",
+        "publisher": "Invariant AI",
+        "url": "https://api.invariant-ai.com/v1/meta/fields"
+      },
+      {
+        "id": "regrid-lineage",
+        "title": "Parcel source links, county refresh dates and row timestamps",
+        "publisher": "Regrid",
+        "url": "https://support.regrid.com/docs/source-lineage"
+      },
+      {
+        "id": "lightbox-mcp",
+        "title": "LightBox MCP and early access program",
+        "publisher": "LightBox",
+        "url": "https://www.lightboxre.com/data/lightbox-mcp"
+      },
+      {
+        "id": "lightbox-apn",
+        "title": "LightBox parcel and assessment identifiers",
+        "publisher": "LightBox",
+        "url": "https://lightbox.document360.io/data-and-api/docs/parcels-documentation"
+      },
+      {
+        "id": "west-kite-reference",
+        "title": "Property record items and source identifiers",
+        "publisher": "West Kite",
+        "url": "https://westkite.com/docs/api/reference"
+      },
+      {
+        "id": "west-kite-sources",
+        "title": "Source catalog response, coverage and last load",
+        "publisher": "West Kite",
+        "url": "https://westkite.com/docs/api/sources"
       },
       {
         "id": "west-kite",
@@ -25856,6 +25953,10 @@
               {
                 "slug": "best-gis-apis-for-site-selection",
                 "label": "Compare GIS APIs for practical site screening"
+              },
+              {
+                "slug": "gis-mcp-servers-for-site-selection",
+                "label": "See what parcel and GIS tools return as source evidence"
               },
               {
                 "slug": "commercial-real-estate-data-apis-for-lenders",
