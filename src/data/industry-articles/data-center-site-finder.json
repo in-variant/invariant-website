@@ -22981,11 +22981,12 @@
   "title": "Data Center Site Selection Checklist and Criteria",
   "description": "Download a 12-point data center site selection checklist. Compare available power, service dates, buildable land, water, fiber, permits, and costs by phase.",
   "date": "2026-11-09",
-  "readMinutes": 12,
+  "readMinutes": 14,
   "intro": "Use the 12-point checklist to compare data center sites before signing a land option or committing to a lease. For each phase, record the facility megawatts you need at the meter, the last acceptable service date, and the power record that supports the site. Check buildable land, water, fiber and approvals against the same opening date. Compare costs and incentives once a site can meet those requirements.",
   "takeaways": [
    "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
    "Check the utility connection, land and approval path in parallel. Record which event could move the opening date.",
+   "Before paying for a land option, confirm what the serving utility accepts as proof of site control and when engineering payments come due.",
    "Before the land option expires, compare the date the utility can support with the last day you can start commissioning."
   ],
   "sections": [
@@ -23249,6 +23250,63 @@
        {
         "slug": "100-mw-data-center-site",
         "label": "Compare filed acreage, utility demand and delivered IT capacity near 100 MW"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "utility-study-application",
+    "heading": "What do utilities require before studying a data center site?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Consider an 80 MW facility request at three candidate sites. Keep the location, requested date and load by phase together, then check what each serving utility needs to accept the application. The land rights, engineering work and cash needed at that point differ by utility."
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": ["Utility", "What to prepare", "When cash is due"],
+      "rows": [
+       [
+        "AEP Ohio",
+        "Apply in PowerClerk with the specific location, load ramp and final load. Ohio Power requires control of the property through ownership, a lease or an option.",
+        "An 80 MW request falls in the $50,000 one-time study fee bracket, payable within 45 days under the published process."
+       ],
+       [
+        "Duquesne Light, Pennsylvania",
+        "The transmission queue application calls for an executed deed, lease or purchase option, an electrical one-line and site plan stamped by a Pennsylvania-licensed engineer, and a 120-month load ramp. Add the data center questionnaire. A memorandum or document showing only intent to buy does not satisfy the published site-control requirement.",
+        "Submit the signed study agreement and a $250,000 deposit with the queue application. The deposit funds study and engineering work. The utility says unused funds are returned if the project is canceled."
+       ],
+       [
+        "Dominion Energy Virginia",
+        "Start the feasibility review with a site plan, load letter and ramp schedule. Dominion’s contracting report also calls for construction timing, meter delivery voltage and a breakdown of load by building where applicable. Confirm which land documents Dominion needs for the request.",
+        "Dominion describes a $250,000 cash payment at signing of the Engineering Letter of Agreement, after feasibility review. Additional engineering can require further payment."
+       ]
+      ],
+      "rowSourceIds": [
+       ["aep"],
+       ["duquesne-large-load-queue", "duquesne-study-form"],
+       ["dominion-data-center-requests", "dominion-gs5-contracting"]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Before the next land payment, ask the serving utility to confirm the acceptable site-control document, the name that should appear on it, the date it expects to accept a complete application and the next payment trigger. Keep those dates separate from energization. A queue position or an engineering agreement can move the study forward while the service date and upgrades remain open."
+     },
+     {
+      "type": "download",
+      "label": "Download the three-utility application comparison",
+      "path": "/blog/data-center-utility-study-application-comparison.csv",
+      "format": "CSV",
+      "datasetAnchor": "dataset-utility-study-application"
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "slug": "utility-load-study-cost-and-timeline",
+        "label": "Compare study fees, deposits and financial security"
        }
       ]
      }
@@ -23760,9 +23818,10 @@
    },
    {
     "question": "Should you control land before requesting a data center load study?",
-    "answer": "Check the serving utility’s intake process. AEP Ohio, for example, asks applicants in its published large data center process to show property control through ownership, a lease, or an option before requesting the study. Coordinate the site-control window with counsel and the study schedule.",
+    "answer": "Ask the serving utility what it accepts at the study application stage. AEP Ohio accepts ownership, a lease or an option for its formal data center study requests. For Duquesne Light’s transmission queue, the published form calls for an executed deed, lease or purchase option. Its form also requires the applicant to show the relationship to the holder of the land rights when those names differ.",
     "sourceIds": [
-     "aep"
+     "aep",
+     "duquesne-study-form"
     ]
    }
   ],
@@ -23771,7 +23830,29 @@
     "id": "dominion-data-center-requests",
     "title": "Virginia data center requests and steps to provide service",
     "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
-    "publisher": "Dominion Energy Virginia"
+    "publisher": "Dominion Energy Virginia",
+    "linkLabel": "Dominion request steps"
+   },
+   {
+    "id": "dominion-gs5-contracting",
+    "title": "GS-5 Large-Load Rate Class Report, data center contracting process, page 4",
+    "url": "https://sustainability.dominionenergy.com/GS-5%20Large%20Load%20Rate%20Class%20Report.pdf#page=4",
+    "publisher": "Dominion Energy Virginia",
+    "linkLabel": "Dominion contracting report"
+   },
+   {
+    "id": "duquesne-large-load-queue",
+    "title": "Transmission queue application, study agreement and deposit",
+    "url": "https://duquesnelight.com/working-with-us/construction-renovation-and-service-request/large-load-customer-growth",
+    "publisher": "Duquesne Light Company",
+    "linkLabel": "Duquesne queue process"
+   },
+   {
+    "id": "duquesne-study-form",
+    "title": "Impact Study Data Request for Large Loads, revision 01, sections 2 and 3",
+    "url": "https://duquesnelight.com/docs/default-source/default-document-library/transmission-interconnection-application.pdf?sfvrsn=e44a2547_6#page=2",
+    "publisher": "Duquesne Light Company",
+    "linkLabel": "Duquesne application form"
    },
    {
     "id": "doe-energy-metric",
@@ -23946,6 +24027,14 @@
     "spatialCoverage": "Southeast Employment and Logistics Center, unincorporated Pima County, Arizona",
     "temporalCoverage": "2024-12-11/2026-04-23",
     "sourceIds": ["blue-land-approval","blue-tucson-draft","blue-tucson-vote","blue-county-moa","blue-county-vote","blue-county-progress","blue-county-permits","blue-sewer-capacity"]
+   },
+   {
+    "anchor": "dataset-utility-study-application",
+    "name": "Data center utility study applications for an 80 MW request",
+    "description": "Three utility application examples compare site control, load schedules and the cash due at specific milestones. Includes the source section and a place to record the utility’s response and next payment for a candidate tract.",
+    "datePublished": "2026-11-24",
+    "spatialCoverage": "Selected service areas in Ohio, Pennsylvania and Virginia, United States",
+    "sourceIds": ["aep", "duquesne-large-load-queue", "duquesne-study-form", "dominion-data-center-requests", "dominion-gs5-contracting"]
    }
   ]
  },

@@ -1884,7 +1884,7 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "Data Center Utility Load Study Cost, Fees and Timeline",
-  "description": "Compare AEP Ohio load study fees, ERCOT study charges and financial security, and Dominion’s engineering process. See the cost assumptions for a 100 MW request.",
+  "description": "Compare data center load study fees and engineering deposits at AEP Ohio, Duquesne Light, Dominion and ERCOT. See the security required in a 100 MW Texas example.",
   "date": "2026-11-20",
   "readMinutes": 7,
   "intro": "AEP Ohio lists study fees of $10,000 to $100,000 based on the MW requested. Texas sets a $100,000 study fee for covered large-load requests in ERCOT. A 100 MW new request under the standard Texas process also carries $5 million in baseline financial security at the intermediate agreement. Track each payment, the study date and the earliest utility service date separately before committing to land.",
@@ -1901,11 +1901,12 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Start with the utility that will serve the site and the facility demand at the meter. The Ohio bands below come from AEP Ohio’s application instructions. The Texas figure comes from the adopted rule effective October 8, 2026. Dominion describes a project-specific engineering process.",
+      "text": "Budget for the first utility payment and record exactly what triggers it. The Ohio amounts come from AEP Ohio’s application instructions. The Texas amount comes from the adopted rule effective October 8, 2026. Duquesne Light and Dominion describe payments that fund engineering at different stages.",
       "sourceIds": [
        "aep-dct",
        "aep-current-tariff",
        "puct-rule",
+       "duquesne-application",
        "dominion-agreements"
       ]
      },
@@ -1914,7 +1915,7 @@
       "columns": [
        "Utility or process",
        "Request",
-       "Study fee",
+       "Published first-stage payment",
        "What to confirm"
       ],
       "rows": [
@@ -1943,10 +1944,16 @@
         "Due by execution of the intermediate agreement. Additional ERCOT study fees may apply under its protocols."
        ],
        [
+        "Duquesne Light",
+        "Large-load transmission queue application",
+        "$250,000 study deposit",
+        "Submit with the executed study agreement. The utility says unused funds are returned on cancellation."
+       ],
+       [
         "Dominion Energy Virginia",
-        "Site-specific scope after feasibility",
-        "Request an engineering quote",
-        "Ask for the engineering agreement, its scope and the expected date for a service plan."
+        "Engineering Letter of Agreement after feasibility",
+        "$250,000 initial engineering payment",
+        "Dominion’s report lists this amount at signing and says additional engineering can require further payment."
        ]
       ],
       "rowSourceIds": [
@@ -1963,6 +1970,9 @@
        [
         "puct-rule",
         "ercot-process"
+       ],
+       [
+        "duquesne-application"
        ],
        [
         "dominion",
@@ -2271,6 +2281,12 @@
     "url": "https://www.ercot.com/services/rq/large-load-integration"
    },
    {
+    "id": "duquesne-application",
+    "title": "Transmission queue application and $250,000 study deposit",
+    "publisher": "Duquesne Light Company",
+    "url": "https://duquesnelight.com/working-with-us/construction-renovation-and-service-request/large-load-customer-growth"
+   },
+   {
     "id": "dominion",
     "title": "Data center requests and construction schedule",
     "publisher": "Dominion Energy Virginia",
@@ -2289,17 +2305,18 @@
    "texas-data-center-large-load-interconnection-2026",
    "utility-grade-power-study"
   ],
-  "updatedDate": "2026-11-23",
+  "updatedDate": "2026-11-24",
   "dataset": {
    "name": "Utility load study fees and a 100 MW security example",
-   "description": "Eight source-linked records from AEP Ohio, the adopted Texas large-load rule and Dominion’s engineering process. Separates study fees, intermediate financial security and post-ramp billing demand.",
+   "description": "Nine source-linked records from AEP Ohio, Duquesne Light, the adopted Texas large-load rule and Dominion’s engineering process. Separates study fees, engineering payments, intermediate financial security and post-ramp billing demand.",
    "datePublished": "2026-11-23",
-   "spatialCoverage": "Ohio Power, ERCOT and Dominion Energy Virginia service areas",
+   "spatialCoverage": "Ohio Power, Duquesne Light, ERCOT and Dominion Energy Virginia service areas",
    "sourceIds": [
     "aep-dct",
     "aep-current-tariff",
     "puct-rule",
     "ercot-process",
+    "duquesne-application",
     "dominion",
     "dominion-agreements"
    ]
