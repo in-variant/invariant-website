@@ -4139,7 +4139,7 @@
     "slug": "electric-truck-charging-southern-california",
     "topic": "Data & APIs",
     "title": "Electric Truck Charging in Southern California",
-    "summary": "Find heavy-duty charging from the Port of Long Beach to Colton and Blythe. Compare operator-reported status, CCS and MCS, trailer access, and reservations.",
+    "summary": "Find CCS and megawatt truck charging in Long Beach, San Bernardino and Colton. Compare trailer access, fleet reservations and the planned Torrance hub.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "Southern California",
@@ -4147,25 +4147,38 @@
     "image": "/blog/industry/electric-truck-charging-southern-california.webp?v=b2e79831",
     "dataset": {
       "name": "Electric truck charging depot evidence in Southern California",
-      "description": "Six operator-sourced freight charging depots with access status, equipment details, project milestones, source links and dispatch checks, reviewed November 23, 2026.",
+      "description": "Eight freight charging depots with published access, equipment, project milestones, source links and dispatch checks. Records reviewed November 23–24, 2026.",
       "spatialCoverage": "Southern California, United States",
-      "temporalCoverage": "2026-11-23",
+      "temporalCoverage": "2026-11-23/2026-11-24",
       "sources": [
         "https://forummobility.com/network-map/",
+        "https://forummobility.com/",
         "https://forummobility.com/news/forum-mobility-announces-first-ultra-fast-mcs-chargers-in-socal-port-gateway-at-fm-harbor/",
         "https://ceqanet.lci.ca.gov/2026051023",
         "https://wattev.wattsystems.com/locations",
         "https://www.youtube.com/watch?v=9ZhzRRWFooA",
         "https://www.drivegreenlane.com/locations/",
         "https://www.drivegreenlane.com/locations/colton-ca/",
+        "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=121542&tn=273723#page=11",
         "https://ceqanet.lci.ca.gov/2026110675",
-        "https://www.drivegreenlane.com/locations/blythe-ca/"
+        "https://www.drivegreenlane.com/locations/blythe-ca/",
+        "https://evrealtyus.com/projects/san-bernardino-ca/",
+        "https://evrealtyus.com/2026/04/ev-realty-opens-major-truck-charging-hub-in-californias-inland-empire-with-76-ports-and-9-mw-of-capacity/",
+        "https://evrealtyus.com/find-charging/",
+        "https://evrealtyus.com/2026/11/ev-realty-breaks-ground-on-9-mw-truck-charging-hub-in-torrance/",
+        "https://evrealtyus.com/projects/torrance-ca/",
+        "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=21"
       ],
       "sourceDetails": [
         {
           "title": "FM Harbor and FM Santa Fe network listings",
           "publisher": "Forum Mobility",
           "url": "https://forummobility.com/network-map/"
+        },
+        {
+          "title": "FM Harbor equipment inventory, 44 CCS and two MCS chargers",
+          "publisher": "Forum Mobility",
+          "url": "https://forummobility.com/"
         },
         {
           "title": "FM Harbor MCS launch and inaugural charging session",
@@ -4198,6 +4211,11 @@
           "url": "https://www.drivegreenlane.com/locations/colton-ca/"
         },
         {
+          "title": "November 18 Colton grant approval, resolution 26-1118-07a",
+          "publisher": "California Energy Commission",
+          "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=121542&tn=273723#page=11"
+        },
+        {
           "title": "Notice for the Colton MCS expansion",
           "publisher": "California Energy Commission, via CEQAnet",
           "url": "https://ceqanet.lci.ca.gov/2026110675"
@@ -4206,16 +4224,133 @@
           "title": "Blythe access and location",
           "publisher": "Greenlane",
           "url": "https://www.drivegreenlane.com/locations/blythe-ca/"
+        },
+        {
+          "title": "San Bernardino pull-through stalls, connectors and fleet access",
+          "publisher": "EV Realty",
+          "url": "https://evrealtyus.com/projects/san-bernardino-ca/"
+        },
+        {
+          "title": "April 9 San Bernardino opening announcement",
+          "publisher": "EV Realty",
+          "url": "https://evrealtyus.com/2026/04/ev-realty-opens-major-truck-charging-hub-in-californias-inland-empire-with-76-ports-and-9-mw-of-capacity/"
+        },
+        {
+          "title": "EV Realty operating and in-development hubs, with gate access rules",
+          "publisher": "EV Realty",
+          "url": "https://evrealtyus.com/find-charging/"
+        },
+        {
+          "title": "November 17 Torrance construction announcement and opening target",
+          "publisher": "EV Realty",
+          "url": "https://evrealtyus.com/2026/11/ev-realty-breaks-ground-on-9-mw-truck-charging-hub-in-torrance/"
+        },
+        {
+          "title": "Torrance stall layout and port ratings",
+          "publisher": "EV Realty",
+          "url": "https://evrealtyus.com/projects/torrance-ca/"
+        },
+        {
+          "title": "Signed South Bay baseline, project outputs on PDF page 21",
+          "publisher": "California Transportation Commission",
+          "url": "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=21"
         }
       ],
       "downloads": [
         {
-          "label": "Download the six charging depot records and source dates",
+          "label": "Download the eight charging depot records and source dates",
           "path": "/blog/southern-california-electric-truck-charging-depots.csv",
           "format": "CSV"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-mcs-milestones",
+        "name": "Southern California megawatt truck charging milestones",
+        "description": "Dated MCS milestones at San Bernardino, FM Harbor, Colton and Torrance, plus signed Torrance design figures and the calculation separating individual port maxima from simultaneous site power.",
+        "datePublished": "2026-11-24",
+        "spatialCoverage": "Southern California, United States",
+        "temporalCoverage": "2026-03-18/2026-11-19",
+        "sources": [
+          "https://kempower.com/america/news/first-kempower-mega-satellite-mcs-in-north-america-charged-successfully-under-real-world-conditions-at-ev-realtys-san-bernardino-hub-in-california/",
+          "https://evrealtyus.com/2026/04/ev-realty-opens-major-truck-charging-hub-in-californias-inland-empire-with-76-ports-and-9-mw-of-capacity/",
+          "https://evrealtyus.com/projects/san-bernardino-ca/",
+          "https://ceqanet.lci.ca.gov/2026051023",
+          "https://forummobility.com/news/forum-mobility-announces-first-ultra-fast-mcs-chargers-in-socal-port-gateway-at-fm-harbor/",
+          "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=121542&tn=273723#page=11",
+          "https://ceqanet.lci.ca.gov/2026110675",
+          "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=12",
+          "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=5",
+          "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=21",
+          "https://evrealtyus.com/2026/11/ev-realty-breaks-ground-on-9-mw-truck-charging-hub-in-torrance/"
+        ],
+        "sourceDetails": [
+          {
+            "title": "March 25 San Bernardino MCS test and shared power unit",
+            "publisher": "Kempower",
+            "url": "https://kempower.com/america/news/first-kempower-mega-satellite-mcs-in-north-america-charged-successfully-under-real-world-conditions-at-ev-realtys-san-bernardino-hub-in-california/"
+          },
+          {
+            "title": "April 9 San Bernardino opening announcement",
+            "publisher": "EV Realty",
+            "url": "https://evrealtyus.com/2026/04/ev-realty-opens-major-truck-charging-hub-in-californias-inland-empire-with-76-ports-and-9-mw-of-capacity/"
+          },
+          {
+            "title": "San Bernardino pull-through stalls, connectors and fleet access",
+            "publisher": "EV Realty",
+            "url": "https://evrealtyus.com/projects/san-bernardino-ca/"
+          },
+          {
+            "title": "FM Harbor MCS installation, development permit 26-020",
+            "publisher": "Port of Long Beach, via CEQAnet",
+            "url": "https://ceqanet.lci.ca.gov/2026051023"
+          },
+          {
+            "title": "FM Harbor MCS launch and inaugural charging session",
+            "publisher": "Forum Mobility",
+            "url": "https://forummobility.com/news/forum-mobility-announces-first-ultra-fast-mcs-chargers-in-socal-port-gateway-at-fm-harbor/"
+          },
+          {
+            "title": "November 18 Colton grant approval, resolution 26-1118-07a",
+            "publisher": "California Energy Commission",
+            "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=121542&tn=273723#page=11"
+          },
+          {
+            "title": "Notice for the Colton MCS expansion",
+            "publisher": "California Energy Commission, via CEQAnet",
+            "url": "https://ceqanet.lci.ca.gov/2026110675"
+          },
+          {
+            "title": "Signed South Bay baseline, scope amendment on PDF page 12",
+            "publisher": "California Transportation Commission",
+            "url": "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=12"
+          },
+          {
+            "title": "Signed South Bay baseline, port ratings on PDF page 5",
+            "publisher": "California Transportation Commission",
+            "url": "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=5"
+          },
+          {
+            "title": "Signed South Bay baseline, project outputs on PDF page 21",
+            "publisher": "California Transportation Commission",
+            "url": "https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=21"
+          },
+          {
+            "title": "November 17 Torrance construction announcement and opening target",
+            "publisher": "EV Realty",
+            "url": "https://evrealtyus.com/2026/11/ev-realty-breaks-ground-on-9-mw-truck-charging-hub-in-torrance/"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the megawatt charging milestones and Torrance power calculation",
+            "path": "/blog/southern-california-megawatt-truck-charging-milestones.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "truck-depot-charging-site-selection",

@@ -22138,16 +22138,17 @@
     "topic": "Data & APIs",
     "region": "Southern California",
     "title": "Electric Truck Charging in Southern California",
-    "description": "Find heavy-duty charging from the Port of Long Beach to Colton and Blythe. Compare operator-reported status, CCS and MCS, trailer access, and reservations.",
+    "description": "Find CCS and megawatt truck charging in Long Beach, San Bernardino and Colton. Compare trailer access, fleet reservations and the planned Torrance hub.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-24",
-    "readMinutes": 7,
+    "readMinutes": 9,
     "coverAlt": "Illustration of a tractor-trailer using a pull-through charging lane in a port freight yard.",
     "coverCaption": "AI-generated illustration of a freight charging depot.",
-    "intro": "For electric truck charging near the Port of Long Beach, start with Forum Mobility’s FM Harbor on Pico Avenue or WattEV near Pier A. Greenlane in Colton lists 12 pull-through CCS chargers and 29 bobtail chargers. Farther east on I-10, Greenlane’s Blythe site serves selected customers. Before dispatch, confirm the connector, whether the trailer can stay attached, and whether your fleet can book a bay at the time you need.",
+    "intro": "Near the Port of Long Beach, start with Forum Mobility’s FM Harbor on Pico Avenue or WattEV near Pier A. In the Inland Empire, EV Realty lists four pull-through stalls for CCS and megawatt charging in San Bernardino. Greenlane Colton lists 12 pull-through CCS chargers while its megawatt expansion is still a project. Before dispatch, confirm that your truck and trailer fit a compatible bay your fleet can book.",
     "takeaways": [
       "Use the operator’s depot name and entrance when planning a port stop. Several charging sites use the same port name.",
       "Track opening status, fleet eligibility, connector, lane layout and bookable slots as separate fields.",
+      "Ask how power is shared during your charging window. Torrance’s 50 planned ports total 34.5 MW at their advertised individual maxima, with 9 MW specified for simultaneous charging across the site.",
       "Estimate the average power the truck needs across its charging window and check it against the vehicle’s charge curve."
     ],
     "sections": [
@@ -22157,25 +22158,27 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "We checked operator and public-agency records on November 23, 2026. These six sites show the difference between an operating facility, a restricted rollout, and a depot taking reservations ahead of its opening. Check the operator before a dispatch decision. This table records published equipment and access information."
+            "text": "These eight sites are drawn from operator and public-agency records checked November 23–24, 2026. Use the status for an initial route check. The operator can confirm gate access, compatible equipment and a booking for your shift."
           },
           {
             "type": "table",
             "stackOnMobile": true,
             "columns": ["Depot", "Operator-reported status", "What to check before routing"],
             "rows": [
-              ["Forum Mobility FM Harbor, 260 Pico Avenue, Long Beach", "Operating and accepting new reservations. The network map lists 44 charging ports and 360 kW equipment. Forum announced two new MCS chargers at the November 5 ribbon-cutting.", "Confirm the connector and whether a compatible bay is available under your fleet’s account."],
+              ["Forum Mobility FM Harbor, 260 Pico Avenue, Long Beach", "Operating and accepting new reservations. Forum lists 44 CCS ports with 360 kW equipment and two MCS chargers.", "Confirm the connector and whether a compatible bay is available under your fleet’s account."],
               ["WattEV Port of Long Beach, near Pier A", "Operating on the WattEV network map. The opening announcement described equipment for 26 trucks at once.", "Confirm the current gate address, available connectors and access procedure. The 26-truck figure describes the opening configuration."],
-              ["Greenlane Colton, 1650 Fairway Drive, Colton", "Open 24/7. The operator lists 12 pull-through 400 kW CCS chargers and 29 bobtail 240 kW CCS chargers.", "Request a pull-through bay for a trailer. The November public filing describes a separate MCS installation project."],
+              ["EV Realty San Bernardino, 580 W Mill Street", "Open 24/7. The operator lists 72 dedicated pull-in stalls and four on-route pull-through stalls across CCS and MCS.", "Get gate access from EV Realty and confirm that a bay with the right connector can take the full rig."],
+              ["Greenlane Colton, 1650 Fairway Drive, Colton", "Open 24/7. The operator lists 12 pull-through 400 kW CCS chargers and 29 bobtail 240 kW CCS chargers.", "Request a pull-through bay for a trailer. Confirm commissioning before routing an MCS truck to the planned expansion."],
               ["Greenlane Blythe, 241 S Neighbours Boulevard, Blythe", "Open to selected customers, with one pull-through charger listed.", "Confirm your fleet’s eligibility and a fallback before relying on this stop on I-10."],
+              ["EV Realty Torrance, 18715 S Western Avenue", "Under construction. EV Realty targets mid-2027 for commercial fleet charging. The design specifies 50 ports and 9 MW of simultaneous charging capacity.", "For a future route, confirm opening, connector mix and whether the pull-in layout can handle your trailer."],
               ["Forum Mobility FM Santa Fe, 18601 S Santa Fe Avenue, Compton", "In development and taking reservations, with 14 MCS pull-through lanes and six CCS bobtail ports described by the operator.", "Confirm the commissioning and customer access dates before putting the depot on a live route."],
               ["Greenlane Long Beach, 1265 Harbor Avenue, Long Beach", "Listed as coming soon.", "Use the operator’s address to keep this development separate from the existing Long Beach depots."]
             ],
-            "rowSourceIds": [["forum-map", "forum-mcs"], ["wattev-map", "wattev-opening"], ["colton", "colton-notice"], ["blythe", "greenlane-map"], ["forum-map"], ["greenlane-map"]]
+            "rowSourceIds": [["forum-map", "forum-harbor-equipment"], ["wattev-map", "wattev-opening"], ["evr-san-bernardino", "evr-access"], ["colton", "colton-grant", "colton-notice"], ["blythe", "greenlane-map"], ["evr-torrance-start", "evr-torrance", "ctc-torrance-design"], ["forum-map"], ["greenlane-map"]]
           },
           {
             "type": "download",
-            "label": "Download the six charging depot records and source dates",
+            "label": "Download the eight charging depot records and source dates",
             "path": "/blog/southern-california-electric-truck-charging-depots.csv",
             "format": "CSV"
           }
@@ -22187,8 +22190,30 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "The Port of Long Beach’s May notice for FM Harbor describes a Megawatt Charging System (MCS) installation with two dispensers. Forum Mobility later reported a November 5 ribbon-cutting and an inaugural charging session. In Colton, a November 19 public notice describes two MCS dispensers as an installation project at an existing charging center. Greenlane’s location page lists its CCS equipment. Record the date and scope of each event and check the operator’s current booking channel for MCS access.",
-            "sourceIds": ["harbor-notice", "forum-mcs", "colton-notice", "colton"]
+            "text": "At FM Harbor, the Port of Long Beach posted a notice on May 27 for a Megawatt Charging System (MCS) installation with two dispensers. Forum Mobility reported an inaugural session at its November 5 ribbon-cutting. Check which bays your fleet account can book.",
+            "sourceIds": ["harbor-notice", "forum-mcs"]
+          },
+          {
+            "type": "paragraph",
+            "text": "In San Bernardino, Kempower reported a test charge with a Windrose truck on March 25. The test setup connected two MCS dispensers to one 1,200 kW power unit. EV Realty announced the depot opening on April 9 and now lists CCS and MCS pull-through access. Ask what power your truck can draw when both dispensers are in use.",
+            "sourceIds": ["kempower-test", "evr-san-bernardino-opening", "evr-san-bernardino"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Greenlane’s Colton hub is open for CCS. On November 18 the California Energy Commission approved a $2,107,088 grant for two public single-port MCS chargers under agreement ZVI-26-003. The next day’s environmental notice described two dispensers sharing one cabinet at the existing site. The grant and notice establish the project scope. Ask Greenlane for the MCS commissioning and booking dates before changing a route.",
+            "sourceIds": ["colton", "colton-grant", "colton-notice"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Torrance shows why stall ratings and site power need separate fields. The signed state baseline records a change from 60 ports to 50 and from 7.6 MW to 9 MW of simultaneous charging capacity. The revised plan specifies 30 ports at up to 350 kW and 20 MCS ports at up to 1,200 kW. Adding those individual ceilings gives 34.5 MW. The site is designed to supply up to 9 MW at a time across its bays. For a short turnaround, ask how power will be allocated when several trucks charge at once.",
+            "sourceIds": ["ctc-torrance-change", "ctc-torrance-ratings", "ctc-torrance-design", "evr-torrance"]
+          },
+          {
+            "type": "download",
+            "label": "Download the megawatt charging milestones and Torrance power calculation",
+            "path": "/blog/southern-california-megawatt-truck-charging-milestones.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-mcs-milestones"
           },
           {
             "type": "paragraph",
@@ -22244,18 +22269,31 @@
     ],
     "faqs": [
       {"question":"Where can I charge an electric semi-truck near the Port of Long Beach?","answer":"Forum Mobility’s FM Harbor at 260 Pico Avenue and WattEV near Pier A are two operating truck charging depots. Ask the operator which bays fit your truck and trailer, whether your account can use them, and whether a session is bookable.","sourceIds":["forum-map","wattev-map"]},
+      {"question":"Where can I find megawatt truck charging in Southern California?","answer":"EV Realty lists CCS and MCS pull-through bays at its open San Bernardino depot, and Forum Mobility reported its first MCS session at FM Harbor in Long Beach. Confirm fleet access and a compatible reservation with the operator. Greenlane’s Colton MCS expansion has grant approval and EV Realty’s Torrance hub is under construction.","sourceIds":["evr-san-bernardino","forum-mcs","colton-grant","evr-torrance-start"]},
+      {"question":"When will EV Realty’s Torrance truck charging hub open?","answer":"EV Realty announced construction on November 17, 2026 and targets mid-2027 for commercial fleet service. The project plan covers 50 ports, 20 of them MCS, and 9 MW of simultaneous charging capacity across the site.","sourceIds":["evr-torrance-start","ctc-torrance-design"]},
       {"question":"Can I charge an electric truck with the trailer attached?","answer":"Look for a pull-through bay and confirm cable reach and entry and exit geometry for the full combination. At Colton, Greenlane lists dedicated pull-through charging separately from bays intended for tractors without trailers.","sourceIds":["colton"]},
       {"question":"Can a CCS truck use an MCS charger?","answer":"CCS and MCS use different connectors. Check the inlet supported by your truck and select a compatible bay when you book.","sourceIds":["charin"]}
     ],
     "sources": [
       {"id":"forum-map","title":"FM Harbor and FM Santa Fe network listings","publisher":"Forum Mobility","url":"https://forummobility.com/network-map/"},
+      {"id":"forum-harbor-equipment","title":"FM Harbor equipment inventory, 44 CCS and two MCS chargers","publisher":"Forum Mobility","url":"https://forummobility.com/"},
       {"id":"forum-mcs","title":"FM Harbor MCS launch and inaugural charging session","publisher":"Forum Mobility","url":"https://forummobility.com/news/forum-mobility-announces-first-ultra-fast-mcs-chargers-in-socal-port-gateway-at-fm-harbor/"},
       {"id":"harbor-notice","title":"FM Harbor MCS installation, development permit 26-020","publisher":"Port of Long Beach, via CEQAnet","url":"https://ceqanet.lci.ca.gov/2026051023"},
       {"id":"wattev-map","title":"Current WattEV depot list","publisher":"WattEV","url":"https://wattev.wattsystems.com/locations"},
       {"id":"wattev-opening","title":"WattEV Port of Long Beach station opening","publisher":"Port of Long Beach","url":"https://www.youtube.com/watch?v=9ZhzRRWFooA"},
       {"id":"greenlane-map","title":"Greenlane location list with access and project status","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/"},
       {"id":"colton","title":"Colton charger ratings and lane types","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/colton-ca/"},
+      {"id":"colton-grant","title":"November 18 Colton grant approval, resolution 26-1118-07a","publisher":"California Energy Commission","url":"https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=121542&tn=273723#page=11"},
       {"id":"colton-notice","title":"Notice for the Colton MCS expansion","publisher":"California Energy Commission, via CEQAnet","url":"https://ceqanet.lci.ca.gov/2026110675"},
+      {"id":"evr-san-bernardino","title":"San Bernardino pull-through stalls, connectors and fleet access","publisher":"EV Realty","url":"https://evrealtyus.com/projects/san-bernardino-ca/"},
+      {"id":"evr-san-bernardino-opening","title":"April 9 San Bernardino opening announcement","publisher":"EV Realty","url":"https://evrealtyus.com/2026/04/ev-realty-opens-major-truck-charging-hub-in-californias-inland-empire-with-76-ports-and-9-mw-of-capacity/"},
+      {"id":"evr-access","title":"EV Realty operating and in-development hubs, with gate access rules","publisher":"EV Realty","url":"https://evrealtyus.com/find-charging/"},
+      {"id":"kempower-test","title":"March 25 San Bernardino MCS test and shared power unit","publisher":"Kempower","url":"https://kempower.com/america/news/first-kempower-mega-satellite-mcs-in-north-america-charged-successfully-under-real-world-conditions-at-ev-realtys-san-bernardino-hub-in-california/"},
+      {"id":"evr-torrance-start","title":"November 17 Torrance construction announcement and opening target","publisher":"EV Realty","url":"https://evrealtyus.com/2026/11/ev-realty-breaks-ground-on-9-mw-truck-charging-hub-in-torrance/"},
+      {"id":"evr-torrance","title":"Torrance stall layout and port ratings","publisher":"EV Realty","url":"https://evrealtyus.com/projects/torrance-ca/"},
+      {"id":"ctc-torrance-change","title":"Signed South Bay baseline, scope amendment on PDF page 12","publisher":"California Transportation Commission","url":"https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=12"},
+      {"id":"ctc-torrance-ratings","title":"Signed South Bay baseline, port ratings on PDF page 5","publisher":"California Transportation Commission","url":"https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=5"},
+      {"id":"ctc-torrance-design","title":"Signed South Bay baseline, project outputs on PDF page 21","publisher":"California Transportation Commission","url":"https://catc.ca.gov/-/media/ctc-media/documents/programs/baseline-agreements/2026-05/ev-realty-south-bay-truck-charging-hub-project-signed.pdf#page=21"},
       {"id":"blythe","title":"Blythe access and location","publisher":"Greenlane","url":"https://www.drivegreenlane.com/locations/blythe-ca/"},
       {"id":"charin","title":"Preparing for MCS and CCS connector compatibility","publisher":"CharIN","url":"https://www.charin.global/news/how-to-prepare-for-the-megawatt-charging-system/"},
       {"id":"cpuc-truck-inlet","title":"2023 evaluation, printed page 89, heavy-duty dual-inlet charging at a Southern California Edison program site","publisher":"California Public Utilities Commission","url":"https://www.cpuc.ca.gov/-/media/cpuc-website/divisions/energy-division/documents/sb-350-te/srp-ab10821083-2023-evaluation-report112024.pdf#page=96"},
@@ -22263,11 +22301,22 @@
     ],
     "dataset": {
       "name": "Electric truck charging depot evidence in Southern California",
-      "description": "Six operator-sourced freight charging depots with access status, equipment details, project milestones, source links and dispatch checks, reviewed November 23, 2026.",
-      "sourceIds": ["forum-map", "forum-mcs", "harbor-notice", "wattev-map", "wattev-opening", "greenlane-map", "colton", "colton-notice", "blythe"],
+      "description": "Eight freight charging depots with published access, equipment, project milestones, source links and dispatch checks. Records reviewed November 23–24, 2026.",
+      "sourceIds": ["forum-map", "forum-harbor-equipment", "forum-mcs", "harbor-notice", "wattev-map", "wattev-opening", "greenlane-map", "colton", "colton-grant", "colton-notice", "blythe", "evr-san-bernardino", "evr-san-bernardino-opening", "evr-access", "evr-torrance-start", "evr-torrance", "ctc-torrance-design"],
       "spatialCoverage": "Southern California, United States",
-      "temporalCoverage": "2026-11-23"
+      "temporalCoverage": "2026-11-23/2026-11-24"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-mcs-milestones",
+        "name": "Southern California megawatt truck charging milestones",
+        "description": "Dated MCS milestones at San Bernardino, FM Harbor, Colton and Torrance, plus signed Torrance design figures and the calculation separating individual port maxima from simultaneous site power.",
+        "datePublished": "2026-11-24",
+        "sourceIds": ["kempower-test", "evr-san-bernardino-opening", "evr-san-bernardino", "harbor-notice", "forum-mcs", "colton-grant", "colton-notice", "ctc-torrance-change", "ctc-torrance-ratings", "ctc-torrance-design", "evr-torrance-start"],
+        "spatialCoverage": "Southern California, United States",
+        "temporalCoverage": "2026-03-18/2026-11-19"
+      }
+    ],
     "relatedSlugs": ["ev-charging-station-data-apis", "truck-depot-charging-site-selection", "warehouse-site-selection-rail-truck-access"]
   },
   {
