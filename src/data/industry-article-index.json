@@ -5692,6 +5692,76 @@
     }
   },
   {
+    "slug": "property-ownership-change-alerts-by-address",
+    "topic": "Data & APIs",
+    "title": "Property Ownership Change Alerts by Address",
+    "summary": "Set up deed recording alerts, track changes across a property portfolio, and see how NYC recorder data separates a deed from same-day financing documents.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "New York City, United States",
+    "image": "/blog/industry/property-ownership-change-alerts-by-address.webp?v=7ae45b77",
+    "dataset": {
+      "name": "ACRIS deed and financing recordings at 600 Third Avenue and two Prospect Avenue lots",
+      "description": "Five document rows, six tax lot links and eight deed party rows. Replay an October recording window to compare two conveyances, three other instruments and a deed that covers two Brooklyn lots.",
+      "spatialCoverage": "600 Third Avenue, Manhattan, and 467 and 441 Prospect Avenue, Brooklyn, New York City",
+      "temporalCoverage": "2026-09-18/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272026092400558002%27%2C%272026092400558003%27%2C%272026092400558004%27%2C%272026092400558005%27%2C%272026100200392001%27%29&%24select=document_id%2Ccrfn%2Crecorded_borough%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cmodified_date%2Cpercent_trans%2Cgood_through_date&%24order=recorded_datetime%2Ccrfn",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272026092400558002%27%2C%272026092400558003%27%2C%272026092400558004%27%2C%272026092400558005%27%2C%272026100200392001%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cpartial_lot%2Cair_rights%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=20",
+        "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24where=document_id+in+%28%272026092400558003%27%2C%272026100200392001%27%29&%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24order=document_id%2Cparty_type%2Cname",
+        "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27DEED%27%2C%27ASST%27%2C%27M%26CON%27%2C%27SAGE%27%29&%24select=doc__type%2Cdoc__type_description%2Cclass_code_description%2Cparty1_type%2Cparty2_type&%24order=doc__type",
+        "https://data.cityofnewyork.us/api/views/bnx9-e6tj.json",
+        "https://data.cityofnewyork.us/api/views/8h5j-fqxa.json",
+        "https://data.cityofnewyork.us/api/views/636b-3b5g.json"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Master, five recording rows",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272026092400558002%27%2C%272026092400558003%27%2C%272026092400558004%27%2C%272026092400558005%27%2C%272026100200392001%27%29&%24select=document_id%2Ccrfn%2Crecorded_borough%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cmodified_date%2Cpercent_trans%2Cgood_through_date&%24order=recorded_datetime%2Ccrfn"
+        },
+        {
+          "title": "Legals, six links between documents and tax lots",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272026092400558002%27%2C%272026092400558003%27%2C%272026092400558004%27%2C%272026092400558005%27%2C%272026100200392001%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cpartial_lot%2Cair_rights%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=20"
+        },
+        {
+          "title": "Parties, eight grantor and grantee rows for two deeds",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24where=document_id+in+%28%272026092400558003%27%2C%272026100200392001%27%29&%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24order=document_id%2Cparty_type%2Cname"
+        },
+        {
+          "title": "Document Control Codes, four instrument types",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27DEED%27%2C%27ASST%27%2C%27M%26CON%27%2C%27SAGE%27%29&%24select=doc__type%2Cdoc__type_description%2Cclass_code_description%2Cparty1_type%2Cparty2_type&%24order=doc__type"
+        },
+        {
+          "title": "Master table metadata and update cadence",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/api/views/bnx9-e6tj.json"
+        },
+        {
+          "title": "Legals table metadata and update cadence",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/api/views/8h5j-fqxa.json"
+        },
+        {
+          "title": "Parties table metadata and update cadence",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/api/views/636b-3b5g.json"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the five document records, parcel links and replay results",
+          "path": "/blog/property-ownership-change-alerts-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

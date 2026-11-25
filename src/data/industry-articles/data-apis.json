@@ -22068,6 +22068,7 @@
       "temporalCoverage": "2008-06-09/2026-11-23"
     },
     "relatedSlugs": [
+      "property-ownership-change-alerts-by-address",
       "commercial-real-estate-data-apis-for-lenders",
       "west-kite-alternatives-for-commercial-property-data",
       "historical-parcel-boundaries-api",
@@ -27830,6 +27831,413 @@
         "vedp-property-299960",
         "vedp-property-243336",
         "vedp-property-298956"
+      ]
+    }
+  },
+  {
+    "slug": "property-ownership-change-alerts-by-address",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "title": "Property Ownership Change Alerts by Address",
+    "description": "Set up deed recording alerts, track changes across a property portfolio, and see how NYC recorder data separates a deed from same-day financing documents.",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "coverAlt": "Four ACRIS filings recorded October 5 at 600 Third Avenue. The deed lists $245 million and the mortgage and consolidation lists $185 million. The other filings are a mortgage assignment and sundry agreement.",
+    "coverCaption": "Selected October 5, 2026 records for Manhattan tax lot 1008950045. Source: NYC Department of Finance, ACRIS.",
+    "intro": "For a single property, look for a recording notice from the local recorder. For a portfolio, match each address to the correct parcel, then watch for new documents and classify them by instrument type. At one Manhattan office tower, four instruments were recorded on the same day. The deed was one of them. The same watchlist logic can keep financing notices and corrections from looking like extra sales.",
+    "takeaways": [
+      "Confirm the recorder’s parcel identifier and the types of records its notification program covers.",
+      "Keep the document date, recording date and first date you saw the record in separate fields.",
+      "Join a deed to every affected parcel, then use the recorder’s document ID to count the deed once."
+    ],
+    "sections": [
+      {
+        "id": "recorder-notice",
+        "heading": "How do I get an alert when a deed is recorded?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Check the county or city recorder’s official alert program. In New York City, eligible registrants include owners, managing agents, attorneys for owners, and lienors. Register separately for each property by address or by borough, block and lot. The city says it usually issues a notice for covered recordings the next day. Read the instrument listed in the notice to see what was filed.",
+            "sourceIds": [
+              "recording-notice",
+              "recording-enrollment"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Programs vary. Los Angeles County mails copies of certain recorded documents for homes and offers opt-in email notices. Confirm which properties, people and instruments apply in your jurisdiction. For Staten Island documents, use the Richmond County Clerk to retrieve the instrument.",
+            "sourceIds": [
+              "la-notice",
+              "recording-notice",
+              "city-register"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "nyc-recording-replay",
+        "heading": "One office parcel, four instruments on the same day",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The ACRIS Legals records link four selected October 5, 2026 recordings to Manhattan tax lot 1008950045 at 600 Third Avenue. The source uses both “3 Avenue” and “Third Avenue” for the same lot. Join on document ID and tax lot so a difference in spelling does not create a second property.",
+            "sourceIds": [
+              "master",
+              "legals"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "ACRIS instrument",
+              "City Register File Number",
+              "How to classify it"
+            ],
+            "rows": [
+              [
+                "Deed",
+                "2026000283223",
+                "Track as a recorded conveyance. The index shows a $245 million document amount and five parties coded as grantees."
+              ],
+              [
+                "Mortgage and consolidation",
+                "2026000283224",
+                "Track as financing. The index shows a $185 million amount under the mortgage and consolidation code."
+              ],
+              [
+                "Mortgage assignment",
+                "2026000283222",
+                "Track a change in the mortgage holder’s recorded interest. Check the instrument and its references."
+              ],
+              [
+                "Sundry agreement",
+                "2026000283225",
+                "Route it for review based on its terms and how it relates to the property."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "master",
+                "codes",
+                "parties"
+              ],
+              [
+                "master",
+                "codes"
+              ],
+              [
+                "master",
+                "codes"
+              ],
+              [
+                "master",
+                "codes"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In Brooklyn, deed 2026000283560 links 467 and 441 Prospect Avenue to two distinct tax lots. Its Master record lists Manhattan as the recording borough. For a parcel watch, use the borough from the Legals record. For a portfolio that watches both lots, retain both links to the deed and count the deed once.",
+            "sourceIds": [
+              "master",
+              "legals"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the five document records, parcel links and replay results",
+            "path": "/blog/property-ownership-change-alerts-by-address.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "watch-the-dates",
+        "heading": "Which date explains when the change happened?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The 600 Third Avenue deed has a September 18 document date and an October 5 recording date, 17 days apart. In the rows we retrieved on November 24, the extract was good through October 31. The public Master table listed a monthly update frequency and a November 10 row update. Measure when your own system first sees each document rather than treating the table update or extract date as an alert timestamp.",
+            "sourceIds": [
+              "master",
+              "master_metadata",
+              "nyc-table"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "Document date. Keep the date shown on the instrument. Check the instrument for an effective date when the transaction terms depend on it.",
+              "Recording date. Use the recorder’s legal recording date for the recording sequence. Match follow-on documents to the original document ID where the recorder supplies a reference.",
+              "First seen. Save your retrieval timestamp and the source batch. Check overlapping windows for late arrivals and store corrections as new versions of the same source record."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "When monitoring a watchlist, use the recorder’s document ID within its jurisdiction as the recording key. Keep parcel links and party roles as separate records. Compare the normalized fields you care about across snapshots and keep the original source values available for review. Use the instrument and title records to confirm what changed.",
+            "sourceIds": [
+              "nyc-table",
+              "city-register"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace the parcel after a split or merger"
+              },
+              {
+                "slug": "building-permit-change-alerts-by-address",
+                "label": "Track permit changes on the same property"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-data-sources",
+        "heading": "Which API should I use to monitor a portfolio?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to match an address to its parcel and get the boundary and assessor record for the watchlist. Use recorder documents or a documented recording feed for new instruments. For ownership snapshots, keep the assessor’s owner name and the deed’s grantee in separate fields."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Source",
+              "Where to use it",
+              "What to test"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Resolve an address, confirm the parcel geometry and enrich it with the published owner of record.",
+                "Compare the match and the parcel ID against all lots in the recorder’s legal index."
+              ],
+              [
+                "Local recorder",
+                "Look up the original instruments and enroll eligible properties for recording notices where offered.",
+                "Identify the covered roles and document types, then measure when notices arrive."
+              ],
+              [
+                "West Kite",
+                "Query recorded sales and, where supported, other transfers. Its sales reference describes how portfolio deeds are represented.",
+                "Compare the two Brooklyn lots and check that their shared deed ID is recoverable."
+              ],
+              [
+                "ATTOM",
+                "Query deed and mortgage history for an address through Sales History.",
+                "Trace the transaction date, recording fields and original record identifiers for the same five instruments."
+              ],
+              [
+                "Regrid Enhanced Ownership",
+                "Compare refreshed owner values from assessor and deed sources where covered.",
+                "Check the parcel’s ownership refresh date and distinguish formatting changes from a new grantee."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "invariant-parcel"
+              ],
+              [
+                "recording-notice"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "attom"
+              ],
+              [
+                "regrid"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Try the same three lots in each provider you shortlist. Require a stable parcel match, an explicit instrument type, separate dates and a link or identifier you can take back to the recorder. For an LLC membership or control change, check the dated entity or deal filings for the specific interest involved."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/data-coverage#property-and-buildings",
+                "label": "Browse the Invariant Earth parcel fields"
+              },
+              {
+                "slug": "commercial-property-ownership-data-apis",
+                "label": "Compare the owner of record and the controlling entity"
+              },
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Trace mortgage amendments and assignments"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I get a notification when a deed is recorded against my address?",
+        "answer": "Check the local recorder’s program and confirm the exact property ID. In New York City, eligible owners, agents and lienors can register separately for each property. The city usually issues covered recording notices the following day.",
+        "sourceIds": [
+          "recording-notice",
+          "recording-enrollment"
+        ]
+      },
+      {
+        "question": "Which API field tells me when a deed was recorded?",
+        "answer": "In NYC ACRIS Master, recorded_datetime is the legal recording date. Save it alongside document_date, good_through_date and your own first-seen timestamp so you can tell between an older document and a newly received row.",
+        "sourceIds": [
+          "nyc-table",
+          "master_metadata"
+        ]
+      },
+      {
+        "question": "How should I monitor a deed that covers several parcels?",
+        "answer": "Store one document keyed by recorder and document ID. Link it to every parcel in the legal index, then surface the matching parcel links for each portfolio. Count the instrument once, even when both lots are on your watchlist.",
+        "sourceIds": [
+          "master",
+          "legals"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "recording-notice",
+        "title": "Notice of Recorded Document program and timing",
+        "url": "https://www.nyc.gov/site/finance/property/deed-fraud-program-faq.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "NYC recording notice FAQ"
+      },
+      {
+        "id": "recording-enrollment",
+        "title": "Enroll by address or borough, block and lot",
+        "url": "https://a836-acrissds.nyc.gov/NRD/",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "NYC notice enrollment"
+      },
+      {
+        "id": "city-register",
+        "title": "Recording property-related documents and ACRIS scope",
+        "url": "https://www.nyc.gov/site/finance/property/property-recording-property-related-documents.page",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "City Register"
+      },
+      {
+        "id": "la-notice",
+        "title": "Homeowner Notification Program",
+        "url": "https://www.lavote.gov/home/recorder/property-document-recording/homeowner-notification-program",
+        "publisher": "Los Angeles County Registrar-Recorder/County Clerk",
+        "linkLabel": "LA County homeowner notices"
+      },
+      {
+        "id": "nyc-table",
+        "title": "ACRIS Real Property Master table, source field definitions",
+        "url": "https://data.cityofnewyork.us/City-Government/ACRIS-Real-Property-Master/bnx9-e6tj",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS Master table"
+      },
+      {
+        "id": "invariant-parcel",
+        "title": "Look up a parcel by address",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant parcel lookup"
+      },
+      {
+        "id": "west-kite",
+        "title": "API reference, recorded sales and other transfers",
+        "url": "https://westkite.com/docs/api/reference",
+        "publisher": "West Kite"
+      },
+      {
+        "id": "attom",
+        "title": "Property API, Sales History",
+        "url": "https://api.developer.attomdata.com/docs",
+        "publisher": "ATTOM"
+      },
+      {
+        "id": "regrid",
+        "title": "Enhanced Ownership, source and refresh semantics",
+        "url": "https://support.regrid.com/docs/enhanced-ownership",
+        "publisher": "Regrid"
+      },
+      {
+        "id": "master",
+        "title": "Master, five recording rows",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272026092400558002%27%2C%272026092400558003%27%2C%272026092400558004%27%2C%272026092400558005%27%2C%272026100200392001%27%29&%24select=document_id%2Ccrfn%2Crecorded_borough%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cmodified_date%2Cpercent_trans%2Cgood_through_date&%24order=recorded_datetime%2Ccrfn",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Run ACRIS document query"
+      },
+      {
+        "id": "legals",
+        "title": "Legals, six links between documents and tax lots",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272026092400558002%27%2C%272026092400558003%27%2C%272026092400558004%27%2C%272026092400558005%27%2C%272026100200392001%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cpartial_lot%2Cair_rights%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=20",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Run ACRIS tax lot query"
+      },
+      {
+        "id": "parties",
+        "title": "Parties, eight grantor and grantee rows for two deeds",
+        "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24where=document_id+in+%28%272026092400558003%27%2C%272026100200392001%27%29&%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24order=document_id%2Cparty_type%2Cname",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Run ACRIS party query"
+      },
+      {
+        "id": "codes",
+        "title": "Document Control Codes, four instrument types",
+        "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27DEED%27%2C%27ASST%27%2C%27M%26CON%27%2C%27SAGE%27%29&%24select=doc__type%2Cdoc__type_description%2Cclass_code_description%2Cparty1_type%2Cparty2_type&%24order=doc__type",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "Run ACRIS code query"
+      },
+      {
+        "id": "master_metadata",
+        "title": "Master table metadata and update cadence",
+        "url": "https://data.cityofnewyork.us/api/views/bnx9-e6tj.json",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS Master metadata"
+      },
+      {
+        "id": "legals_metadata",
+        "title": "Legals table metadata and update cadence",
+        "url": "https://data.cityofnewyork.us/api/views/8h5j-fqxa.json",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS Legals metadata"
+      },
+      {
+        "id": "parties_metadata",
+        "title": "Parties table metadata and update cadence",
+        "url": "https://data.cityofnewyork.us/api/views/636b-3b5g.json",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS Parties metadata"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-ownership-data-apis",
+      "historical-parcel-boundaries-api",
+      "building-permit-change-alerts-by-address",
+      "commercial-mortgage-records-by-address"
+    ],
+    "dataset": {
+      "name": "ACRIS deed and financing recordings at 600 Third Avenue and two Prospect Avenue lots",
+      "description": "Five document rows, six tax lot links and eight deed party rows. Replay an October recording window to compare two conveyances, three other instruments and a deed that covers two Brooklyn lots.",
+      "spatialCoverage": "600 Third Avenue, Manhattan, and 467 and 441 Prospect Avenue, Brooklyn, New York City",
+      "temporalCoverage": "2026-09-18/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sourceIds": [
+        "master",
+        "legals",
+        "parties",
+        "codes",
+        "master_metadata",
+        "legals_metadata",
+        "parties_metadata"
       ]
     }
   }
