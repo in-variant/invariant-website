@@ -1,5 +1,239 @@
 [
   {
+    "slug": "florida-hurricane-insurance-claims-by-county",
+    "topic": "Data & APIs",
+    "region": "Florida, United States",
+    "title": "Florida Hurricane Insurance Claims Data by County",
+    "description": "Find Florida hurricane claims by county and statewide insured losses by line. Compare Helene and Milton with dated records and a downloadable reconciliation.",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverAlt": "Hurricane Milton commercial property claims in Florida as of December 9, 2025. Of 23,901 claims, 12,541 were open, 4,154 were closed with payment, and 7,206 were closed without payment.",
+    "coverCaption": "Hurricane Milton, statewide commercial property line. Invariant grouped the four statuses in the December 9, 2025 Florida OIR snapshot into three categories.",
+    "intro": "Florida’s Office of Insurance Regulation publishes hurricane claim counts and statuses by county. Its separate statewide tables show estimated incurred losses by insurance line. Use the county views to decide where to investigate first, and keep the storm, reporting date, and insurance line with every figure. The summaries describe a market. For a particular building, obtain the property’s own loss history.",
+    "takeaways": [
+      "County rows show counts and reported statuses across lines. The published commercial property incurred total is statewide.",
+      "Hurricane Milton’s December 9, 2025 snapshot lists 23,901 commercial property claims and about $1.03 billion incurred, including payments and case reserves.",
+      "Calculate closure percentages from all reported claims. To compare nonpayment among closed claims, use only closed claims in the denominator."
+    ],
+    "sections": [
+      {
+        "id": "county-claims-snapshots",
+        "heading": "Where to find hurricane claims by county",
+        "blocks": [
+          {
+            "type": "paragraph",
+          "text": "The Florida OIR publishes separate reporting dates for each storm. Pinellas leads the named counties in the Helene snapshot. Hillsborough leads the named counties in the Milton snapshot. The table uses four counties that the agency names in both releases.",
+            "sourceIds": [
+              "oir-helene",
+              "oir-milton"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "County",
+              "Helene, June 10, 2025",
+              "Milton, December 9, 2025"
+            ],
+            "rows": [
+              [
+                "Pinellas",
+                "53,460 reported claims",
+                "55,848 reported claims"
+              ],
+              [
+                "Hillsborough",
+                "18,881 reported claims",
+                "74,851 reported claims"
+              ],
+              [
+                "Manatee",
+                "9,712 reported claims",
+                "38,535 reported claims"
+              ],
+              [
+                "Sarasota",
+                "9,775 reported claims",
+                "31,786 reported claims"
+              ]
+            ],
+            "sourceIds": [
+              "oir-helene",
+              "oir-milton"
+            ]
+          },
+          {
+            "type": "paragraph",
+          "text": "Use these counts as event-specific context for a portfolio or a market. The snapshots have different reporting dates and cover the reported lines combined. Check the agency’s other-counties group before drawing conclusions about a county without a named row.",
+            "sourceIds": [
+              "oir-helene",
+              "oir-milton"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "commercial-property-incurred-loss",
+        "heading": "What the reported commercial property loss includes",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "OIR describes case-incurred loss as payments to date plus indemnity case reserves. For Milton, the agency reports $1,028,401,242 statewide for commercial property across 23,901 claims. Of those, 12,541 remained open at that date. Helene’s June report shows $708,838,483 across 7,137 commercial property claims. These figures are insurer-reported estimates at their respective dates.",
+            "sourceIds": [
+              "oir-helene",
+              "oir-milton"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Milton commercial property status",
+              "Claims",
+              "How to read it"
+            ],
+            "rows": [
+              [
+                "Open with payment",
+                "7,339",
+                "A payment appears in the reported status and the claim remains open."
+              ],
+              [
+                "Open without payment",
+                "5,202",
+                "The claim remains open at the report date."
+              ],
+              [
+                "Closed with payment",
+                "4,154",
+                "The insurer reports closure with payment."
+              ],
+              [
+                "Closed without payment",
+                "7,206",
+                "The insurer reports closure without payment. Review the separate reason data for context."
+              ]
+            ],
+            "sourceIds": [
+              "oir-milton"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The two closed categories sum to 11,360, or 47.5% of the 23,901 reported commercial property claims. The 7,206 closed without payment represent 63.4% of the closed group. A report can accurately show both percentages because they answer different questions.",
+            "sourceIds": [
+              "oir-milton"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "OIR separately lists reasons such as damage below the deductible and administrative closure. In the selected Milton table, the commercial property reason counts sum to 7,590, while the status table shows 7,206 closed without payment. Keep the reason rows as a separate aggregate. Use the status table to calculate the nonpayment share.",
+            "sourceIds": [
+              "oir-milton"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/florida-hurricane-insurance-claims-by-county.json",
+            "format": "JSON",
+            "label": "Download the two OIR snapshots and reconciled status counts"
+          }
+        ]
+      },
+      {
+        "id": "use-claims-data-for-underwriting",
+        "heading": "Which records belong in the underwriting file?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "For county exposure, save the storm, county, scope of the claim count, reporting date and source. Match the property to that geography before comparing it with the portfolio.",
+            "For commercial losses, use the statewide line and record which amount is incurred or paid. Use the county table for all-line claim statuses.",
+              "For flood, keep Florida’s private flood category separate from the federal NFIP dataset. Each source measures a different insurance population.",
+              "For a building, request the relevant loss runs from the owner or carrier through an authorized channel. Check the covered location, claim date, cause of loss and valuation date alongside the inspection and repair evidence."
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "hurricane-wind-history-by-address",
+                "label": "Check the reported wind observations around an address"
+              },
+              {
+                "slug": "nfip-flood-claims-data-api",
+                "label": "Compare redacted NFIP flood claims by county"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Build the rest of the property underwriting file"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I look up hurricane insurance claims for a specific address in the Florida OIR tables?",
+        "answer": "The public storm tables report aggregates by county and statewide line. Ask the owner or carrier for the location-specific loss runs and verify the covered building before using them in underwriting.",
+        "sourceIds": [
+          "oir-reporting"
+        ]
+      },
+      {
+        "question": "How much did Hurricane Milton cost Florida commercial property insurers?",
+        "answer": "Florida OIR reported $1,028,401,242 in statewide commercial property case-incurred losses as of December 9, 2025. The estimate includes payments to date and indemnity case reserves.",
+        "sourceIds": [
+          "oir-milton"
+        ]
+      },
+      {
+        "question": "What does closed without payment mean in a hurricane claims report?",
+        "answer": "It is the insurer’s reported closure status. Examples include damage below the deductible, coverage exclusions, withdrawals or administrative closure. Use the report’s dated reason table for context.",
+        "sourceIds": [
+          "oir-milton"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "oir-helene",
+        "title": "Hurricane Helene county and coverage tables, June 10, 2025",
+        "url": "https://floir.gov/home/hurricane-helene",
+        "publisher": "Florida Office of Insurance Regulation"
+      },
+      {
+        "id": "oir-milton",
+        "title": "Hurricane Milton claim counts, reasons and incurred loss, December 9, 2025",
+        "url": "https://floir.gov/home/hurricane-milton",
+        "publisher": "Florida Office of Insurance Regulation"
+      },
+      {
+        "id": "oir-reporting",
+        "title": "Florida catastrophe claims data and reporting overview",
+        "url": "https://floir.gov/tools-and-data/catastrophe-reporting",
+        "publisher": "Florida Office of Insurance Regulation"
+      }
+    ],
+    "relatedSlugs": [
+      "hurricane-wind-history-by-address",
+      "nfip-flood-claims-data-api",
+      "commercial-property-insurance-data-apis"
+    ],
+    "dataset": {
+      "name": "Florida hurricane claim status and incurred-loss snapshots for Helene and Milton",
+      "description": "Two Florida OIR storm snapshots with four named county rows per storm, statewide commercial property and private flood counts, incurred losses, payment status, and source-response fingerprints.",
+      "sourceIds": [
+        "oir-helene",
+        "oir-milton"
+      ],
+      "spatialCoverage": "Florida, United States",
+      "temporalCoverage": "2025-06-10/2025-12-09"
+    }
+  },
+  {
     "slug": "ev-charger-uptime-data",
     "topic": "Data & APIs",
     "region": "California, United States",
@@ -2789,6 +3023,10 @@
               {
                 "slug": "hail-history-by-address-for-underwriting",
                 "label": "Check hail history using NOAA radar and local reports"
+              },
+              {
+                "slug": "florida-hurricane-insurance-claims-by-county",
+                "label": "Compare Florida hurricane claim counts by county"
               }
             ]
           }
