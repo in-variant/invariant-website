@@ -1,5 +1,288 @@
 [
   {
+    "slug": "ucc-fixture-filing-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find UCC Fixture Filings and Terminations by Address",
+    "description": "Look up UCC fixture filings by address and trace UCC-3 terminations to the original file number. Download a worked example from New York City’s ACRIS index.",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverAlt": "Two historical Empire State Building fixture filing records. UCC-3 97TN06679 points to 93PN46191, and 97TN06680 points to 93PN46192.",
+    "coverCaption": "Historical City Register cross-references for Manhattan block 835, lot 41. Both terminations were recorded June 25, 1997.",
+    "intro": "Start a fixture filing search by matching the address to the legal parcel. Pull the filings indexed to that parcel and follow each amendment, continuation or termination back to its original file number. In New York City, the ACRIS personal property tables link filings, tax lots and recorded references. General UCC searches can also require the debtor’s exact legal name in a separate state index.",
+    "takeaways": [
+      "Match the borough, block and lot before reviewing fixture filings. The same building can appear under several street numbers.",
+      "A UCC-3 can reflect several actions. Identify the document type and the file number it affects.",
+      "Two Empire State Building terminations share a recording date. Each references a different initial fixture filing."
+    ],
+    "sections": [
+      {
+        "id": "which-index-to-search",
+        "heading": "Where to search for a UCC fixture filing",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A fixture filing is a financing statement filed in the real property records for goods that are or will become fixtures. Under New York’s current filing rules, the filing office generally follows the real estate recording office for a fixture filing. A financing statement filed centrally against an entity may require a separate debtor-name search. The law provides a separate filing rule for transmitting utilities.",
+            "sourceIds": [
+              "ucc-501",
+              "ucc-502",
+              "debtor-search"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For Manhattan, Brooklyn, the Bronx and Queens, use ACRIS to confirm the tax lot and find City Register documents. Also check the mortgage documents. A duly recorded mortgage can serve as a fixture filing when it satisfies the statutory requirements.",
+            "sourceIds": [
+              "acris",
+              "ucc-502"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "empire-state-fixture-filing-example",
+        "heading": "How the Empire State Building filings match",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The landmarks designation identifies 350 Fifth Avenue as Manhattan block 835, lot 41. The selected historical ACRIS entries show 336 Fifth Avenue. MapPLUTO lists 338 Fifth Avenue for the same lot. The three records agree on the parcel identifier, BBL 1008350041, so the street numbers can remain visible as source values.",
+            "sourceIds": [
+              "landmark",
+              "acris-legals",
+              "pluto-lot"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The selected master records use collateral code F for fixture filings. Joining the references to the master by document ID gives the initial filing number, the action on the later record and its recording date.",
+            "sourceIds": [
+              "acris-master",
+              "acris-references",
+              "acris-codes",
+              "acris-collateral"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Initial fixture filing",
+              "Later filing in the index",
+              "Matching evidence"
+            ],
+            "rows": [
+              [
+                "93PN46191 · September 13, 1993",
+                "97TN06679 · UCC-3 termination recorded June 25, 1997",
+                "The termination references 93PN46191 and its exact document ID."
+              ],
+              [
+                "93PN46192 · September 13, 1993",
+                "97TN06680 · UCC-3 termination recorded June 25, 1997",
+                "The termination references 93PN46192 and its exact document ID."
+              ],
+              [
+                "88PN67956 · December 19, 1988",
+                "93PN60530 continuation and 95TN11035 termination",
+                "The continuation references the original filing. The termination references both."
+              ]
+            ],
+            "sourceIds": [
+              "acris-master",
+              "acris-references"
+            ]
+          },
+          {
+            "type": "paragraph",
+          "text": "Another initial filing, 93PN46193, shares the 1993 recording date and the same lot. The two 1997 termination rows point to the other filings, so this sample leaves the status of 93PN46193 undetermined. Match the number on the actual document before using a termination in a review.",
+            "sourceIds": [
+              "acris-master",
+              "acris-references"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/ucc-fixture-filing-by-address.json",
+            "format": "JSON",
+          "label": "Download the eight fixture records and exact ACRIS cross-references"
+          },
+          {
+            "type": "paragraph",
+            "text": "The download preserves the original recording, modification and good-through dates. For example, each of the 1997 termination rows has a June 25 recording date and a July 3 modification date. The good-through date describes the extract, so retain it with the source version.",
+            "sourceIds": [
+              "acris-master",
+              "acris-references"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "what-to-check-before-closing",
+        "heading": "What a lender or buyer should verify before closing",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Confirm the legal parcel and the equipment included in the sale or financing. Read the collateral description and the real property description on the original document.",
+              "Follow the first filing number through assignments, continuations, amendments and terminations. Record each action’s scope and the party shown on the instrument.",
+              "Search the relevant additional indexes, including recorded mortgages and the state debtor-name index where applicable. Check the exact legal names of the entities involved.",
+              "Use current, certified filing records for a closing decision. Ask counsel or the title team to confirm filing effectiveness, priority and the documents needed to release the specific collateral."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Under New York’s current rules, the ordinary term for a filed financing statement is five years, with specific exceptions and a statutory continuation window. A qualifying mortgage recorded as a fixture filing follows a different duration rule. A filed termination acts on the financing statement it identifies, subject to the statute’s authorization rules. The public index gives a starting point for finding that document.",
+            "sourceIds": [
+              "ucc-513",
+              "ucc-515"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-mortgage-release-by-address",
+                "label": "Check the mortgage release against the covered tax lot"
+              },
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Trace commercial mortgage documents by address"
+              },
+              {
+                "slug": "parcel-number-lookup-by-address",
+                "label": "Find the parcel number for another address"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I search all UCC filings by property address?",
+        "answer": "Use the address to find the legal parcel and search for real-property-related filings. Search the appropriate state index by debtor name for filings recorded there. The filing office and the collateral determine where to look.",
+        "sourceIds": [
+          "ucc-501",
+          "debtor-search"
+        ]
+      },
+      {
+        "question": "What does a UCC-3 termination relate to?",
+        "answer": "It identifies a particular financing statement. Confirm the referenced initial file number and the filed document before recording the result in a diligence file.",
+        "sourceIds": [
+          "ucc-513",
+          "acris-references"
+        ]
+      },
+      {
+        "question": "Can a mortgage also serve as a UCC fixture filing?",
+        "answer": "Yes. Under New York UCC § 9-502(c), a duly recorded mortgage can serve as a fixture filing when it identifies the covered goods and real property and meets the specified requirements.",
+        "sourceIds": [
+          "ucc-502"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "landmark",
+        "title": "Empire State Building designation, 350 Fifth Avenue, block 835, lot 41",
+        "url": "https://s-media.nyc.gov/agencies/lpc/lp/2000.pdf",
+        "publisher": "NYC Landmarks Preservation Commission"
+      },
+      {
+        "id": "pluto-lot",
+        "title": "MapPLUTO current parcel row for BBL 1008350041",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Cbldgclass%2Caddress%2Cversion&%24where=bbl%3D1008350041&%24order=bbl&%24limit=100",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "acris-legals",
+        "title": "Selected Personal Property Legals rows for block 835, lot 41",
+        "url": "https://data.cityofnewyork.us/resource/uqqa-hym2.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cproperty_type%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=100",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "acris-master",
+        "title": "Eight fixture filing, continuation and termination index entries",
+        "url": "https://data.cityofnewyork.us/resource/sv7x-dduq.json?%24select=document_id%2Crecord_type%2Cdoc_type%2Cucc_collateral%2Crecorded_datetime%2Cmodified_date%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id&%24limit=100",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "acris-references",
+        "title": "Selected Personal Property References with originating file numbers and document IDs",
+        "url": "https://data.cityofnewyork.us/resource/6y3e-jcrc.json?%24select=document_id%2Cdoc_id_ref%2Ccrfn%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cfile_nbr&%24limit=100",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "acris-codes",
+        "title": "ACRIS document control codes for the selected UCC filings",
+        "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24select=doc__type%2Cdoc__type_description%2Cclass_code_description&%24where=doc__type+in+%28%27TERM%27%2C%27CONT%27%2C%27INIT%27%2C%27ASGN%27%2C%27UCC1%27%2C%27UCC3%27%29&%24order=doc__type&%24limit=100",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "acris-collateral",
+        "title": "ACRIS daily file guide, collateral type F and legacy file references",
+        "url": "https://a836-acris.nyc.gov/EDS/Overview/How%20To%20Process%20ACRIS%20Daily%20File%20v1%207.htm",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "acris",
+        "title": "ACRIS property search and document images for four boroughs",
+        "url": "https://www.nyc.gov/site/finance/property/acris.page",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "ucc-501",
+        "title": "New York UCC § 9-501, filing office",
+        "url": "https://www.nysenate.gov/legislation/laws/UCC/9-501",
+        "publisher": "New York State Senate"
+      },
+      {
+        "id": "ucc-502",
+        "title": "New York UCC § 9-502, contents and mortgage records as fixture filings",
+        "url": "https://www.nysenate.gov/legislation/laws/UCC/9-502",
+        "publisher": "New York State Senate"
+      },
+      {
+        "id": "ucc-513",
+        "title": "New York UCC § 9-513, termination statements",
+        "url": "https://www.nysenate.gov/legislation/laws/UCC/9-513",
+        "publisher": "New York State Senate"
+      },
+      {
+        "id": "ucc-515",
+        "title": "New York UCC § 9-515, duration, lapse and continuation",
+        "url": "https://www.nysenate.gov/legislation/laws/UCC/9-515",
+        "publisher": "New York State Senate"
+      },
+      {
+        "id": "debtor-search",
+        "title": "Filing under Article 9 and using the debtor’s exact legal name",
+        "url": "https://dos.ny.gov/filing-under-article-9-uniform-commercial-code",
+        "publisher": "New York State Department of State"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-mortgage-release-by-address",
+      "commercial-mortgage-records-by-address",
+      "commercial-real-estate-data-apis-for-lenders"
+    ],
+    "dataset": {
+      "name": "Historical UCC fixture filings and indexed terminations at the Empire State Building",
+      "description": "Eight historical ACRIS fixture records for the Empire State Building. Includes three exact termination references, a linked continuation, the source address variants, and an initial filing unpaired in this sample. Public query URLs and response fingerprints accompany the selected rows.",
+      "sourceIds": [
+        "acris-legals",
+        "acris-master",
+        "acris-references",
+        "acris-codes",
+        "pluto-lot",
+        "landmark"
+      ],
+      "spatialCoverage": "Empire State Building, Manhattan, New York City, United States",
+      "temporalCoverage": "1988-12-19/1997-06-25"
+    }
+  },
+  {
     "slug": "building-permit-change-alerts-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -4594,6 +4877,10 @@
               {
                 "slug": "commercial-mortgage-records-by-address",
                 "label": "Trace related mortgages and rent assignments"
+              },
+              {
+                "slug": "ucc-fixture-filing-by-address",
+                "label": "Check fixture filings and match UCC-3 terminations"
               },
               {
                 "slug": "commercial-real-estate-data-apis-for-lenders",

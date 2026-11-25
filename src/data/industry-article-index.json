@@ -1,5 +1,68 @@
 [
   {
+    "slug": "ucc-fixture-filing-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find UCC Fixture Filings and Terminations by Address",
+    "summary": "Look up UCC fixture filings by address and trace UCC-3 terminations to the original file number. Download a worked example from New York City’s ACRIS index.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/ucc-fixture-filing-by-address.webp?v=d35caddb",
+    "dataset": {
+      "name": "Historical UCC fixture filings and indexed terminations at the Empire State Building",
+      "description": "Eight historical ACRIS fixture records for the Empire State Building. Includes three exact termination references, a linked continuation, the source address variants, and an initial filing unpaired in this sample. Public query URLs and response fingerprints accompany the selected rows.",
+      "spatialCoverage": "Empire State Building, Manhattan, New York City, United States",
+      "temporalCoverage": "1988-12-19/1997-06-25",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/uqqa-hym2.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cproperty_type%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=100",
+        "https://data.cityofnewyork.us/resource/sv7x-dduq.json?%24select=document_id%2Crecord_type%2Cdoc_type%2Cucc_collateral%2Crecorded_datetime%2Cmodified_date%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id&%24limit=100",
+        "https://data.cityofnewyork.us/resource/6y3e-jcrc.json?%24select=document_id%2Cdoc_id_ref%2Ccrfn%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cfile_nbr&%24limit=100",
+        "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24select=doc__type%2Cdoc__type_description%2Cclass_code_description&%24where=doc__type+in+%28%27TERM%27%2C%27CONT%27%2C%27INIT%27%2C%27ASGN%27%2C%27UCC1%27%2C%27UCC3%27%29&%24order=doc__type&%24limit=100",
+        "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Cbldgclass%2Caddress%2Cversion&%24where=bbl%3D1008350041&%24order=bbl&%24limit=100",
+        "https://s-media.nyc.gov/agencies/lpc/lp/2000.pdf"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Selected Personal Property Legals rows for block 835, lot 41",
+          "publisher": "NYC Department of Finance via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/uqqa-hym2.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cproperty_type%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=100"
+        },
+        {
+          "title": "Eight fixture filing, continuation and termination index entries",
+          "publisher": "NYC Department of Finance via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/sv7x-dduq.json?%24select=document_id%2Crecord_type%2Cdoc_type%2Cucc_collateral%2Crecorded_datetime%2Cmodified_date%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id&%24limit=100"
+        },
+        {
+          "title": "Selected Personal Property References with originating file numbers and document IDs",
+          "publisher": "NYC Department of Finance via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/6y3e-jcrc.json?%24select=document_id%2Cdoc_id_ref%2Ccrfn%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cfile_nbr&%24limit=100"
+        },
+        {
+          "title": "ACRIS document control codes for the selected UCC filings",
+          "publisher": "NYC Department of Finance via NYC Open Data",
+          "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24select=doc__type%2Cdoc__type_description%2Cclass_code_description&%24where=doc__type+in+%28%27TERM%27%2C%27CONT%27%2C%27INIT%27%2C%27ASGN%27%2C%27UCC1%27%2C%27UCC3%27%29&%24order=doc__type&%24limit=100"
+        },
+        {
+          "title": "MapPLUTO current parcel row for BBL 1008350041",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Cbldgclass%2Caddress%2Cversion&%24where=bbl%3D1008350041&%24order=bbl&%24limit=100"
+        },
+        {
+          "title": "Empire State Building designation, 350 Fifth Avenue, block 835, lot 41",
+          "publisher": "NYC Landmarks Preservation Commission",
+          "url": "https://s-media.nyc.gov/agencies/lpc/lp/2000.pdf"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the eight fixture records and exact ACRIS cross-references",
+          "path": "/blog/ucc-fixture-filing-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "building-permit-change-alerts-by-address",
     "topic": "Data & APIs",
     "title": "Building Permit Change Alerts by Address",

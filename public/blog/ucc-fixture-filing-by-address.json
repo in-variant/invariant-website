@@ -1,0 +1,388 @@
+{
+  "title": "Historical UCC fixture filings and indexed terminations at the Empire State Building",
+  "publisher": "Invariant",
+  "property": {
+    "name": "Empire State Building",
+    "landmark_address": "350 Fifth Avenue, Manhattan",
+    "acris_index_address": "336 5 AVENUE",
+    "mappluto_address": "338 5 AVENUE",
+    "borough": 1,
+    "block": 835,
+    "lot": 41,
+    "bbl": "1008350041"
+  },
+  "scope": "Eight selected historical index entries and their associated address and reference rows. This is a linkage example. Use current certified records and instrument copies for transaction diligence.",
+  "method": "Match borough, block, and lot to identify the property. Join personal property legals and master by document_id. Link a termination to an initial filing using doc_id_ref and verify the target by file_nbr. Distinguish the recording date from the modified date and the extract good-through date.",
+  "termination_links": [
+    {
+      "initial_file_number": "93PN46191",
+      "initial_document_id": "FT_1700003843970",
+      "termination_file_number": "97TN06679",
+      "termination_document_id": "FT_1710005669271"
+    },
+    {
+      "initial_file_number": "93PN46192",
+      "initial_document_id": "FT_1710003843971",
+      "termination_file_number": "97TN06680",
+      "termination_document_id": "FT_1750005669275"
+    },
+    {
+      "initial_file_number": "88PN67956",
+      "initial_document_id": "FT_1760003564076",
+      "termination_file_number": "95TN11035",
+      "termination_document_id": "FT_1250004981925"
+    }
+  ],
+  "continuation": {
+    "file_number": "93PN60530",
+    "document_id": "FT_1780003858278",
+    "references_initial_file_number": "88PN67956",
+    "references_initial_document_id": "FT_1760003564076"
+  },
+  "unpaired_in_this_sample": {
+    "initial_file_number": "93PN46193",
+    "initial_document_id": "FT_1720003843972",
+    "current_legal_status": null,
+    "note": "Neither of the two 1997 terminations in this sample points to this filing."
+  },
+  "source_snapshots": {
+    "acris-master": {
+      "dataset_id": "sv7x-dduq",
+      "query_url": "https://data.cityofnewyork.us/resource/sv7x-dduq.json?%24select=document_id%2Crecord_type%2Cdoc_type%2Cucc_collateral%2Crecorded_datetime%2Cmodified_date%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id&%24limit=100",
+      "retrieved_at_utc": "2026-11-25T03:06:56+00:00",
+      "response_sha256": "e9ba85051de951c7f0e899348f2da8e95bfaf0571a6222217aeeae0429ebc6e6",
+      "rows": [
+        {
+          "document_id": "FT_1250004981925",
+          "record_type": "A",
+          "doc_type": "TERM",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1995-12-28T00:00:00.000",
+          "modified_date": "1995-12-28T00:00:00.000",
+          "file_nbr": "95TN11035",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1700003843970",
+          "record_type": "A",
+          "doc_type": "INIT",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1993-09-13T00:00:00.000",
+          "modified_date": "1993-09-13T00:00:00.000",
+          "file_nbr": "93PN46191",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710003843971",
+          "record_type": "A",
+          "doc_type": "INIT",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1993-09-13T00:00:00.000",
+          "modified_date": "1993-09-13T00:00:00.000",
+          "file_nbr": "93PN46192",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710005669271",
+          "record_type": "A",
+          "doc_type": "TERM",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1997-06-25T00:00:00.000",
+          "modified_date": "1997-07-03T00:00:00.000",
+          "file_nbr": "97TN06679",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1720003843972",
+          "record_type": "A",
+          "doc_type": "INIT",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1993-09-13T00:00:00.000",
+          "modified_date": "1993-09-13T00:00:00.000",
+          "file_nbr": "93PN46193",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1750005669275",
+          "record_type": "A",
+          "doc_type": "TERM",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1997-06-25T00:00:00.000",
+          "modified_date": "1997-07-03T00:00:00.000",
+          "file_nbr": "97TN06680",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1760003564076",
+          "record_type": "A",
+          "doc_type": "INIT",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1988-12-19T00:00:00.000",
+          "modified_date": "1988-12-19T00:00:00.000",
+          "file_nbr": "88PN67956",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1780003858278",
+          "record_type": "A",
+          "doc_type": "CONT",
+          "ucc_collateral": "F",
+          "recorded_datetime": "1993-12-09T00:00:00.000",
+          "modified_date": "1993-12-09T00:00:00.000",
+          "file_nbr": "93PN60530",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        }
+      ]
+    },
+    "acris-legals": {
+      "dataset_id": "uqqa-hym2",
+      "query_url": "https://data.cityofnewyork.us/resource/uqqa-hym2.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cproperty_type%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=100",
+      "retrieved_at_utc": "2026-11-25T03:06:52+00:00",
+      "response_sha256": "3378488e231e42535a99f93de5765518c246548ca971d8748c58a8ee5089cb45",
+      "rows": [
+        {
+          "document_id": "FT_1250004981925",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1700003843970",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710003843971",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710005669271",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1720003843972",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1750005669275",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1760003564076",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1780003858278",
+          "borough": "1",
+          "block": "835",
+          "lot": "41",
+          "street_number": "336",
+          "street_name": "5 AVENUE",
+          "property_type": "PA",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        }
+      ]
+    },
+    "acris-references": {
+      "dataset_id": "6y3e-jcrc",
+      "query_url": "https://data.cityofnewyork.us/resource/6y3e-jcrc.json?%24select=document_id%2Cdoc_id_ref%2Ccrfn%2Cfile_nbr%2Cgood_through_date&%24where=document_id+in+%28%27FT_1700003843970%27%2C%27FT_1710003843971%27%2C%27FT_1710005669271%27%2C%27FT_1750005669275%27%2C%27FT_1760003564076%27%2C%27FT_1780003858278%27%2C%27FT_1250004981925%27%2C%27FT_1720003843972%27%29&%24order=document_id%2Cfile_nbr&%24limit=100",
+      "retrieved_at_utc": "2026-11-25T03:06:57+00:00",
+      "response_sha256": "876a69e6cfed32fa9b9c21b2680d5256fcb3e213eb85f05a7d353f12e9502c66",
+      "rows": [
+        {
+          "document_id": "FT_1250004981925",
+          "doc_id_ref": "FT_1760003564076",
+          "file_nbr": "88PN67956",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1250004981925",
+          "doc_id_ref": "FT_1780003858278",
+          "file_nbr": "93PN60530",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1250004981925",
+          "doc_id_ref": "FT_1450004206945",
+          "file_nbr": "94PN14321",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1700003843970",
+          "doc_id_ref": "FT_1700003843970",
+          "file_nbr": "93PN46191",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1700003843970",
+          "doc_id_ref": "FT_1710005669271",
+          "file_nbr": "97TN06679",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710003843971",
+          "doc_id_ref": "FT_1710003843971",
+          "file_nbr": "93PN46192",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710003843971",
+          "doc_id_ref": "FT_1750005669275",
+          "file_nbr": "97TN06680",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1710005669271",
+          "doc_id_ref": "FT_1700003843970",
+          "file_nbr": "93PN46191",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1720003843972",
+          "doc_id_ref": "FT_1720003843972",
+          "file_nbr": "93PN46193",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1750005669275",
+          "doc_id_ref": "FT_1710003843971",
+          "file_nbr": "93PN46192",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1760003564076",
+          "doc_id_ref": "FT_1760003564076",
+          "file_nbr": "88PN67956",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1760003564076",
+          "doc_id_ref": "FT_1780003858278",
+          "file_nbr": "93PN60530",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1760003564076",
+          "doc_id_ref": "FT_1450004206945",
+          "file_nbr": "94PN14321",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1760003564076",
+          "doc_id_ref": "FT_1250004981925",
+          "file_nbr": "95TN11035",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1780003858278",
+          "doc_id_ref": "FT_1760003564076",
+          "file_nbr": "88PN67956",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1780003858278",
+          "doc_id_ref": "FT_1450004206945",
+          "file_nbr": "94PN14321",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        },
+        {
+          "document_id": "FT_1780003858278",
+          "doc_id_ref": "FT_1250004981925",
+          "file_nbr": "95TN11035",
+          "good_through_date": "2015-07-31T00:00:00.000"
+        }
+      ]
+    },
+    "acris-codes": {
+      "dataset_id": "7isb-wh4c",
+      "query_url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24select=doc__type%2Cdoc__type_description%2Cclass_code_description&%24where=doc__type+in+%28%27TERM%27%2C%27CONT%27%2C%27INIT%27%2C%27ASGN%27%2C%27UCC1%27%2C%27UCC3%27%29&%24order=doc__type&%24limit=100",
+      "retrieved_at_utc": "2026-11-25T03:06:54+00:00",
+      "response_sha256": "c3cacba002628e2f5203b5049409c31da11f98d4d596d4c9eb1c9e69ccbfaaf1",
+      "rows": [
+        {
+          "doc__type": "ASGN",
+          "doc__type_description": "UCC3 ASSIGNMENT",
+          "class_code_description": "UCC AND FEDERAL LIENS"
+        },
+        {
+          "doc__type": "CONT",
+          "doc__type_description": "UCC3 CONTINUATION",
+          "class_code_description": "UCC AND FEDERAL LIENS"
+        },
+        {
+          "doc__type": "INIT",
+          "doc__type_description": "INITIAL UCC1",
+          "class_code_description": "UCC AND FEDERAL LIENS"
+        },
+        {
+          "doc__type": "TERM",
+          "doc__type_description": "UCC3 TERMINATION",
+          "class_code_description": "UCC AND FEDERAL LIENS"
+        },
+        {
+          "doc__type": "UCC1",
+          "doc__type_description": "UNIFORM COMMERCIAL CODE 1",
+          "class_code_description": "UCC AND FEDERAL LIENS"
+        },
+        {
+          "doc__type": "UCC3",
+          "doc__type_description": "UNIFORM COMMERCIAL CODE 3",
+          "class_code_description": "UCC AND FEDERAL LIENS"
+        }
+      ]
+    },
+    "pluto-lot": {
+      "dataset_id": "64uk-42ks",
+      "query_url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24select=bbl%2Cbldgclass%2Caddress%2Cversion&%24where=bbl%3D1008350041&%24order=bbl&%24limit=100",
+      "retrieved_at_utc": "2026-11-25T03:06:51+00:00",
+      "response_sha256": "e340a0b6124889ddec87747998580fed634e49164bb391b1d01ebf8415d18a70",
+      "rows": [
+        {
+          "bbl": "1008350041.00000000",
+          "bldgclass": "O4",
+          "address": "338 5 AVENUE",
+          "version": "26v3"
+        }
+      ]
+    }
+  }
+}
