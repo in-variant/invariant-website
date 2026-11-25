@@ -18660,10 +18660,10 @@
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
-    "description": "Compare AFDC, TomTom, HERE, Google Places and OCPI. Test EV charging APIs for correct port counts, live availability and shared charging power.",
+    "description": "Compare EV charging APIs for station locations and live port availability. Test port counts, shared power and which Ohio NEVI stations are open.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-24",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-25",
+    "readMinutes": 10,
     "region": "United States",
     "coverAlt": "Aerial map of the I-70 and U.S. Route 42 interchange near London, Ohio, with Pilot 454 and TA London marked.",
     "coverCaption": "I-70 Exit 79 near London, Ohio. Pins use AFDC station coordinates. Aerial imagery from USGS, USDA and The National Map.",
@@ -18902,6 +18902,86 @@
         ]
       },
       {
+        "id": "ohio-nevi-station-opening-status",
+        "heading": "Which Ohio NEVI charging stations are open?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "On November 19, 2026, the Ohio Department of Transportation reported 19 public openings out of 120 stations in its National Electric Vehicle Infrastructure (NEVI) program. Another 99 were in design and two were under construction. The 120 includes the 40 locations selected in Round 4. The state expected many of those sites to open by the end of 2027. Keep them in a corridor expansion forecast and count the 19 separately when reporting Ohio’s NEVI openings as of that release.",
+            "sourceIds": [
+              "ohio-nevi-round4"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Address",
+              "What the project or host record shows",
+              "What AFDC listed on November 25"
+            ],
+            "rows": [
+              [
+                "Pilot Travel Center 454, London",
+                "The Joint Office announced public charging on December 13, 2023.",
+                "Station 322368 at 1365 State Route 42 NE reports four public fast-charging ports, status E and a December 8, 2023 open date."
+              ],
+              [
+                "Love’s, 540 Timmons Way, West Jefferson",
+                "The travel stop opened in June 2025. ODOT lists this address as Round 4 candidate 28.",
+                "ZIP 43162 returned one station at 97 E Main St and no match at the Love’s address."
+              ],
+              [
+                "Love’s, 2 Loves Dr, Conneaut",
+                "ODOT lists the address of Love’s store 389 as Round 4 candidate 21.",
+                "ZIP 44030 returned one public fast-charging station at Truck World, 780 St Rt 7. Its 12 ports belong to AFDC station 469704 at that separate address."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "afdc-stations",
+                "joint-office"
+              ],
+              [
+                "ohio-nevi-round4-map",
+                "loves-west-jefferson",
+                "afdc-stations"
+              ],
+              [
+                "ohio-nevi-round4-map",
+                "loves-conneaut",
+                "afdc-stations"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Store each award or construction update against the project address and keep the station ID in a separate field. Confirm the street address and network before counting installed ports. The nearest station or a matching ZIP can point to a different operator, as in Conneaut. A missing inventory match means the query found no record at that address. That leaves the project’s latest field status unknown.",
+            "sourceIds": [
+              "ohio-nevi-round4-map",
+              "afdc-stations"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the source’s reported open date and the date of the public announcement as separate observations. AFDC revised the open-date logic for API imports in February 2026 after some planned stations received dates when they first appeared in network feeds. For navigation, first check public access and compatibility at the confirmed station, then read the operator’s latest port status. AFDC imports connected network data daily, and status E means the station is listed as available.",
+            "sourceIds": [
+              "joint-office",
+              "afdc-open-date-notes",
+              "afdc-network-refresh",
+              "afdc-stations"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Ohio NEVI stages and address checks",
+            "path": "/blog/ohio-nevi-charging-station-status.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-ohio-nevi-station-status"
+          }
+        ]
+      },
+      {
         "id": "ev-charging-site-planning",
         "heading": "Use surrounding land and road data for expansion decisions",
         "blocks": [
@@ -18960,6 +19040,14 @@
         "sourceIds": [
           "afdc-stations",
           "afdc-ports"
+        ]
+      },
+      {
+        "question": "Are all 120 Ohio NEVI charging stations open?",
+        "answer": "Ohio reported 19 public openings as of November 19, 2026, with 99 sites in design and two under construction. The 120 includes 40 Round 4 selections. Check the station address and the operator’s latest status before using an individual stop.",
+        "sourceIds": [
+          "ohio-nevi-round4",
+          "afdc-network-refresh"
         ]
       }
     ],
@@ -19059,6 +19147,42 @@
         "publisher": "U.S. Geological Survey",
         "title": "The National Map NAIP Plus aerial imagery service",
         "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer"
+      },
+      {
+        "id": "ohio-nevi-round4",
+        "publisher": "Ohio Department of Transportation",
+        "title": "November 19, 2026 NEVI announcement with statewide stage counts",
+        "url": "https://content.govdelivery.com/accounts/OHDOT/bulletins/433639b"
+      },
+      {
+        "id": "ohio-nevi-round4-map",
+        "publisher": "Ohio Department of Transportation",
+        "title": "Round 4 candidate map, rows 21 and 28",
+        "url": "https://content.govdelivery.com/attachments/OHDOT/2026/11/19/file_attachments/3864587/Round%204%20Candidate%20Sites%20Map%20-%20With%20Addresses.png"
+      },
+      {
+        "id": "loves-west-jefferson",
+        "publisher": "Love’s Travel Stops",
+        "title": "June 2025 West Jefferson travel stop opening and street address",
+        "url": "https://www.loves.com/news/2025/june/loves-opens-new-store-in-west-jefferson-ohio"
+      },
+      {
+        "id": "loves-conneaut",
+        "publisher": "Love’s Travel Stops",
+        "title": "Conneaut store 389 location and street address",
+        "url": "https://www.loves.com/locations/oh/conneaut/loves-travel-stop-conneaut-389"
+      },
+      {
+        "id": "afdc-open-date-notes",
+        "publisher": "U.S. Department of Energy AFDC",
+        "title": "February 2026 Station Locator open-date change for API imports",
+        "url": "https://afdc.energy.gov/stations/release-notes"
+      },
+      {
+        "id": "afdc-network-refresh",
+        "publisher": "U.S. Department of Energy AFDC",
+        "title": "Charging network data collection and refresh frequency",
+        "url": "https://afdc.energy.gov/stations/charging-networks"
       }
     ],
     "additionalDatasets": [
@@ -19070,6 +19194,22 @@
         "spatialCoverage": "California, United States",
         "temporalCoverage": "2023",
         "sourceIds": ["cpuc-truck-inlet", "cpuc-public-paired-ports", "cpuc-transit-cabinet"]
+      },
+      {
+        "anchor": "dataset-ohio-nevi-station-status",
+        "datePublished": "2026-11-25",
+        "name": "Ohio NEVI open stations and Round 4 candidate address checks",
+        "description": "November 19 statewide counts by project stage, with November 25 AFDC address checks for two candidate sites and the operating London Pilot station. Includes dated source evidence, station IDs and exact query parameters.",
+        "spatialCoverage": "Ohio, United States",
+        "temporalCoverage": "2023-12-08/2026-11-25",
+        "sourceIds": [
+          "ohio-nevi-round4",
+          "ohio-nevi-round4-map",
+          "joint-office",
+          "loves-west-jefferson",
+          "loves-conneaut",
+          "afdc-stations"
+        ]
       }
     ],
     "dataset": {

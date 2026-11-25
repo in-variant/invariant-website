@@ -3362,11 +3362,11 @@
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
-    "summary": "Compare AFDC, TomTom, HERE, Google Places and OCPI. Test EV charging APIs for correct port counts, live availability and shared charging power.",
+    "summary": "Compare EV charging APIs for station locations and live port availability. Test port counts, shared power and which Ohio NEVI stations are open.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/ev-charging-station-data-apis.webp?v=51b6a8ea",
     "dataset": {
       "name": "AFDC fast charging inventory audit at I-70 Exit 79 in London, Ohio",
@@ -3431,6 +3431,61 @@
           {
             "label": "Download three power-sharing configurations and five calculation checks",
             "path": "/blog/ev-charger-power-sharing-california.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-ohio-nevi-station-status",
+        "datePublished": "2026-11-25",
+        "name": "Ohio NEVI open stations and Round 4 candidate address checks",
+        "description": "November 19 statewide counts by project stage, with November 25 AFDC address checks for two candidate sites and the operating London Pilot station. Includes dated source evidence, station IDs and exact query parameters.",
+        "spatialCoverage": "Ohio, United States",
+        "temporalCoverage": "2023-12-08/2026-11-25",
+        "sources": [
+          "https://content.govdelivery.com/accounts/OHDOT/bulletins/433639b",
+          "https://content.govdelivery.com/attachments/OHDOT/2026/11/19/file_attachments/3864587/Round%204%20Candidate%20Sites%20Map%20-%20With%20Addresses.png",
+          "https://driveelectric.gov/news/first-nevi-funded-stations-open",
+          "https://www.loves.com/news/2025/june/loves-opens-new-store-in-west-jefferson-ohio",
+          "https://www.loves.com/locations/oh/conneaut/loves-travel-stop-conneaut-389",
+          "https://developer.nlr.gov/docs/transportation/alt-fuel-stations-v1/all/"
+        ],
+        "sourceDetails": [
+          {
+            "title": "November 19, 2026 NEVI announcement with statewide stage counts",
+            "publisher": "Ohio Department of Transportation",
+            "url": "https://content.govdelivery.com/accounts/OHDOT/bulletins/433639b"
+          },
+          {
+            "title": "Round 4 candidate map, rows 21 and 28",
+            "publisher": "Ohio Department of Transportation",
+            "url": "https://content.govdelivery.com/attachments/OHDOT/2026/11/19/file_attachments/3864587/Round%204%20Candidate%20Sites%20Map%20-%20With%20Addresses.png"
+          },
+          {
+            "title": "London Pilot opening and simultaneous charging power",
+            "publisher": "Joint Office of Energy and Transportation",
+            "url": "https://driveelectric.gov/news/first-nevi-funded-stations-open"
+          },
+          {
+            "title": "June 2025 West Jefferson travel stop opening and street address",
+            "publisher": "Love’s Travel Stops",
+            "url": "https://www.loves.com/news/2025/june/loves-opens-new-store-in-west-jefferson-ohio"
+          },
+          {
+            "title": "Conneaut store 389 location and street address",
+            "publisher": "Love’s Travel Stops",
+            "url": "https://www.loves.com/locations/oh/conneaut/loves-travel-stop-conneaut-389"
+          },
+          {
+            "title": "All Stations API field definitions and facility status codes",
+            "publisher": "U.S. Department of Energy AFDC",
+            "url": "https://developer.nlr.gov/docs/transportation/alt-fuel-stations-v1/all/"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Ohio NEVI stages and address checks",
+            "path": "/blog/ohio-nevi-charging-station-status.json",
             "format": "JSON"
           }
         ]
