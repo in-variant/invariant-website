@@ -350,7 +350,12 @@ const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({
   URL: url,
 }))
 writeFileSync(join(DIST, 'datasets.csl.json'), `${JSON.stringify(datasetCitations, null, 2)}\n`)
-const full = ['# Invariant: data, site selection, power and compliance guides', '', '> Full text of Invariant’s data and API guides, data center site and power diligence articles, and industry compliance guides. Find topics at https://invariant-ai.com/llms.txt. Each included article has a Markdown copy at its URL plus `.md`.', '', `[Invariant Earth product and agent setup](${SITE}/product.md)`, '', CONTACT, '']
+const full = [
+  '# Invariant data, site selection, power and compliance guides', '',
+  '> Full text of the industry guides and buyer workflows. Each article has a Markdown copy at its URL plus `.md`.', '',
+  `[Start with the short directory](${SITE}/llms.txt) · [Browse the complete link directory](${SITE}/llms-index.txt)`, '',
+  `[Invariant Earth product and agent setup](${SITE}/product.md)`, '', CONTACT, '',
+]
 for (const collection of blogCollections) {
   const md = [
     `# ${collection.heading}`, '', collection.description, '',

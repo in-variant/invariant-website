@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-// Regenerate public/llms.txt from page-registry + glossary + a static header.
-// Keeps the LLM citation surface in sync with the live site.
+// Build a short agent entry point and a complete link directory.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -9,7 +8,60 @@ import { dirname, join } from 'node:path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SITE = 'https://invariant-ai.com'
-const { links } = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
+const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
+const { links } = product
+const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
+
+const sections = [
+  ['Connect to Invariant Earth', [
+    ['API quickstart and first query', `${links.quickstart}.md`],
+    ['Get an API key', links.keys],
+    ['MCP installation for coding agents', `${links.mcp}.md`],
+    ...product.operations.map(({ method, title, docs }) => [`${method} to ${title.toLowerCase()}`, `${docs}.md`]),
+    ['Response statuses, source URLs and data vintages', `${links.responses}.md`],
+    ['Coverage and workflow examples', `${SITE}${links.coverage}.md`],
+    ['Live point field catalog', links.pointFields],
+    ['Live parcel fields and presets', links.parcelFields],
+    ['Full API documentation index', `${links.docs}llms.txt`],
+  ]],
+  ['Datasets and research', [
+    ['Research findings, methods and source records', `${SITE}${links.research}.md`],
+    ['Research datasets and citations', `${SITE}${links.datasets}.md`],
+    ['Research dataset manifest with source URLs and file checksums', `${SITE}${links.datasets}.json`],
+    ...blogCollections.map(({ title, slug }) => [title, `${SITE}/blog/${slug}.md`]),
+  ]],
+  ['Examples by industry', product.examples.map(({ audience, title, href }) => [
+    `${audience} | ${title}`, `${SITE}${href}.md`,
+  ])],
+  ['Data centers, land and power', [
+    ['Find a U.S. data center site', `${SITE}/blog/find-data-center-site-us.md`],
+    ['Compare data centers for sale and lease', `${SITE}/blog/data-center-for-sale.md`],
+    ['Site selection criteria and worksheet', `${SITE}/blog/data-center-site-selection-checklist.md`],
+    ['Verify what a utility letter, study or service agreement establishes', `${SITE}/blog/utility-will-serve-letter-load-study-esa.md`],
+    ['Power-flow studies, limits and contingency cases', `${SITE}${links.power}.md`],
+    ['Calculate facility demand and power margin', `${SITE}/calculators/data-center-power-capacity.md`],
+    ['Find space and power for GPU clusters', `${SITE}/blog/ai-compute-capacity-for-neoclouds.md`],
+  ]],
+  ['Optional', [
+    ['Complete link directory, including glossary, calculators and regulatory references', `${SITE}/llms-index.txt`],
+    ['Full text of data, site selection and power guides', `${SITE}/llms-full.txt`],
+    ['Article feed with revision dates', `${SITE}/feed.xml`],
+    ['Security and data handling', `${SITE}/trust`],
+    ['Contact Invariant', `${SITE}/contact`],
+  ]],
+]
+
+const shortIndex = [
+  '# Invariant', '',
+  '> Source-linked U.S. data for properties, infrastructure, energy and the physical economy.', '',
+  'Use Invariant Earth to query data at a coordinate or for the parcel that contains it. Check the field catalog for coverage and cite source URLs and data vintages when available.', '',
+  'Research downloads cover dated examples. For a site decision, review the current property and utility records. Power-flow studies describe modeled scenarios. Confirm service terms and available MW for the proposed phase with the serving utility.', '',
+  ...sections.flatMap(([heading, entries]) => [
+    `## ${heading}`, '',
+    ...entries.map(([title, href]) => `- [${title}](${href})`),
+    '',
+  ]),
+]
 
 // ── Parse page registry ──────────────────────────────────────────────────────
 const registry = readFileSync(join(ROOT, 'src/data/page-registry.ts'), 'utf8')
@@ -47,13 +99,13 @@ const glossDataCenters = entries.filter((e) => e.topic === 'data-centers')
 
 // ── Compose ──────────────────────────────────────────────────────────────────
 const out = []
-out.push('# Invariant')
+out.push('# Invariant complete link directory')
 out.push('')
 out.push('> Source-linked data for the physical world.')
 out.push('')
 out.push('Invariant Earth provides data for U.S. properties and infrastructure. Use the API to check parcels, buildings, terrain, environmental hazards, and utility context. Invariant also helps teams find data center sites and review the evidence behind power delivery.')
 out.push('')
-out.push(`Read the [full data and site diligence guides](${SITE}/llms-full.txt). Each guide and glossary entry has a Markdown copy at its URL plus .md.`)
+out.push(`Start with the [short directory](${SITE}/llms.txt) or read the [full data and site diligence guides](${SITE}/llms-full.txt). The industry guides and glossary entries have Markdown copies at their URLs plus .md.`)
 out.push('')
 
 out.push('## Invariant Earth API')
@@ -69,7 +121,6 @@ out.push('- [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [f
 out.push(`- [Research case studies](${SITE}/research). Findings, methods and downloads for selected studies are also available [as Markdown](${SITE}/research.md).`)
 out.push(`- [Research datasets](${SITE}/datasets). Read named source records and find downloads in the [Markdown catalog](${SITE}/datasets.md). The [JSON catalog](${SITE}/datasets.json) also includes SHA-256 checksums.`)
 out.push(`- [Invariant blog feed](${SITE}/feed.xml) with article URLs, summaries and revision dates.`)
-const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 for (const collection of blogCollections) {
   out.push(`- [${collection.title}](${SITE}/blog/${collection.slug}.md): ${collection.description}`)
 }
@@ -97,7 +148,7 @@ out.push('## Data center capacity for neoclouds and AI labs')
 out.push('')
 out.push('Invariant finds US data center capacity for GPU clusters (colocation that can cool dense racks, built and energized sites, powered land) sized from GPU count, rack density and date, and checks the power behind each option against utility documents. It also runs an independent power check on a provider or site before an AI tenant signs: the document behind the MW, the point of interconnection, upgrades, competing loads and on-site generation permits, usually within 48 hours.')
 out.push('')
-out.push('- **Sizing rule used on our pages:** NVIDIA system power (DGX H100 10.2 kW and DGX B200 14.3 kW per 8 GPUs; GB200 NVL72 about 120 kW per 72-GPU rack), plus about 10% for networking and storage, times PUE 1.3. About 1.8 kW (H100), 2.6 kW (B200) and 2.4 kW (GB200) per GPU at the meter.')
+out.push(`- [GPU cluster power estimates](${SITE}/blog/gpu-cluster-power-requirements.md) use the stated system ratings and an assumed facility-to-IT demand ratio of 1.30. Check the peak demand for your design condition before using an estimate for service planning.`)
 out.push('- **Request capacity:** email pranav@invariant-ai.com or call (628) 220-8972 with GPU type and count, rack density, date and regions.')
 out.push('')
 const computeArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles/ai-compute-capacity.json'), 'utf8'))
@@ -194,5 +245,6 @@ out.push('- Data center sites, site feasibility screens and power studies: prana
 out.push('- Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures.')
 out.push('')
 
-writeFileSync(join(ROOT, 'public/llms.txt'), out.join('\n'))
-console.log(`llms.txt regenerated: ${pillars.length} pillars + ${clustersSpace.length + clustersNuclear.length} clusters + ${entries.length} glossary entries`)
+writeFileSync(join(ROOT, 'public/llms.txt'), shortIndex.join('\n'))
+writeFileSync(join(ROOT, 'public/llms-index.txt'), out.join('\n'))
+console.log(`Regenerated llms.txt and llms-index.txt with ${industryArticles.length} guide links in the full directory`)

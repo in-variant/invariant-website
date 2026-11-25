@@ -25,6 +25,7 @@ FEED_PATH = "/feed.xml"
 DATASET_INDEX_PATH = "/datasets.json"
 DATASET_CITATIONS_PATH = "/datasets.csl.json"
 COVERAGE_FIELDS_PATH = "/data-coverage-fields.json"
+AGENT_INDEX_PATHS = frozenset(("/llms.txt", "/llms-index.txt", "/llms-full.txt"))
 SAMPLE = (
     "/", "/product", "/data-coverage", "/blog", "/resources", "/research", "/datasets",
     "/blog/data-center-site-selection-checklist",
@@ -50,7 +51,7 @@ CRAWLER_SMOKE_PATHS = frozenset((
     "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
     "/data-coverage", "/data-coverage.md", COVERAGE_FIELDS_PATH,
     "/blog/", "/product/", "/datasets/", "/data-coverage/",
-))
+)) | AGENT_INDEX_PATHS
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
 ASSET_MIME_TYPES = {
@@ -295,7 +296,7 @@ def verify(origin, job, expected_urls, preview, crawler=None):
             mime = headers.get_content_type()
             require(mime in expected, f"asset Content-Type {mime}, expected {' or '.join(expected)}")
         elif kind in ("file", "markdown"):
-            mime = "text/markdown" if kind == "markdown" else "text/plain" if path == "/robots.txt" else None
+            mime = "text/markdown" if kind == "markdown" else "text/plain" if path == "/robots.txt" or path in AGENT_INDEX_PATHS else None
             require_success(status, headers, mime)
             require(body == expected, "response bytes differ from dist/")
             if kind == "markdown":
@@ -531,10 +532,10 @@ def build_jobs(sitemap, full):
         downloads.discard(path)
     if full:
         verify_discovery(pages)
-        verify_agent_links(alternate_files | {"/llms.txt", "/llms-full.txt"}, pages)
+        verify_agent_links(alternate_files | AGENT_INDEX_PATHS, pages)
     for path in sorted(alternate_files):
         jobs.append((path, "markdown", (DIST / path.lstrip("/")).read_bytes()))
-    for path in sorted(downloads | {"/robots.txt", "/llms.txt", "/llms-full.txt"}):
+    for path in sorted(downloads | {"/robots.txt"} | AGENT_INDEX_PATHS):
         jobs.append((path, "file", (DIST / path.lstrip("/")).read_bytes()))
     for path in sorted(assets):
         asset_path = urlsplit(path).path
