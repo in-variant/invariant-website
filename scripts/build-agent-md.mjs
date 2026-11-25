@@ -319,7 +319,7 @@ function resourcesMd() {
 }
 
 function datasetCatalogMd() {
-  const { siteSearch } = datasetCatalog
+  const { siteSearch, underwriting } = datasetCatalog
   const out = [
     '# Data samples for the physical economy', '',
     `Catalog page: ${SITE}/datasets`, '',
@@ -329,6 +329,14 @@ function datasetCatalogMd() {
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
     `[See what you can query in the live Earth API](${SITE}${product.links.coverage}), [try the Earth API](${product.links.quickstart}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
+    `## ${siteSearch.title}`, '',
+    siteSearch.description, '',
+    `- [${siteSearch.listingsLabel}](${SITE}${siteSearch.listingsPath})`,
+    `- [${siteSearch.requestLabel}](${SITE}${siteSearch.requestPath})`, '',
+    `## ${underwriting.title}`, '',
+    underwriting.description, '',
+    `- [${underwriting.wildfireLabel}](${underwriting.wildfireUrl})`,
+    `- [${underwriting.portfolioLabel}](${SITE}${underwriting.portfolioPath})`, '',
     '## See what the data can answer', '',
     ...featuredResearch.flatMap(({ slug, title, summary, scope, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
@@ -343,10 +351,6 @@ function datasetCatalogMd() {
         `  - [Download the ${sample.format} sample](${SITE}${sample.path})`,
       ]
     }), '',
-    `## ${siteSearch.title}`, '',
-    siteSearch.description, '',
-    `- [${siteSearch.listingsLabel}](${SITE}${siteSearch.listingsPath})`,
-    `- [${siteSearch.requestLabel}](${SITE}${siteSearch.requestPath})`, '',
     '## Browse data samples', '',
     ...Object.keys(datasetCatalog.topics).map(label => {
       const params = new URLSearchParams({ topic: label })

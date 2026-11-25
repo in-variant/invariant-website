@@ -16,11 +16,11 @@ import './Datasets.css'
 const title = 'Physical economy data samples'
 const recentSampleCount = 8
 const { url: canonical } = DATA_CATALOG
-const { description, access, siteSearch } = researchCatalog
+const { description, access, siteSearch, underwriting } = researchCatalog
 
 function trackResearchLink(properties: {
-  action: 'browse_samples' | 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist'
-  surface: 'intro' | 'featured' | 'catalog' | 'no_results'
+  action: 'browse_samples' | 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist' | 'underwriting_wildfire' | 'underwriting_portfolio'
+  surface: 'intro' | 'buyer_paths' | 'featured' | 'catalog' | 'no_results'
   dataset?: string
   format?: string
 }) {
@@ -213,6 +213,38 @@ export default function Datasets() {
             </div>
           </div>
         </header>
+        <div className="resource-container">
+          <div className="dataset-buyer-paths">
+            <section aria-labelledby="dataset-site-search-title">
+              <h2 id="dataset-site-search-title">{siteSearch.title}</h2>
+              <p>{siteSearch.description}</p>
+              <div className="dataset-buyer-actions">
+                <Link className="dataset-method" to={siteSearch.listingsPath}
+                  onClick={() => trackResearchLink({ action: 'site_listings', surface: 'buyer_paths' })}>
+                  {siteSearch.listingsLabel} <ResourceArrow diagonal />
+                </Link>
+                <Link className="dataset-method" to={siteSearch.requestPath}
+                  onClick={() => trackResearchLink({ action: 'site_shortlist', surface: 'buyer_paths' })}>
+                  {siteSearch.requestLabel} <ResourceArrow diagonal />
+                </Link>
+              </div>
+            </section>
+            <section aria-labelledby="dataset-underwriting-title">
+              <h2 id="dataset-underwriting-title">{underwriting.title}</h2>
+              <p>{underwriting.description}</p>
+              <div className="dataset-buyer-actions">
+                <a className="dataset-method" href={underwriting.wildfireUrl}
+                  onClick={() => trackResearchLink({ action: 'underwriting_wildfire', surface: 'buyer_paths' })}>
+                  {underwriting.wildfireLabel} <ResourceArrow diagonal />
+                </a>
+                <Link className="dataset-method" to={underwriting.portfolioPath}
+                  onClick={() => trackResearchLink({ action: 'underwriting_portfolio', surface: 'buyer_paths' })}>
+                  {underwriting.portfolioLabel} <ResourceArrow diagonal />
+                </Link>
+              </div>
+            </section>
+          </div>
+        </div>
         <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
           <div className="dataset-featured-heading">
             <h2 id="featured-studies-title">See what the data can answer</h2>
@@ -253,24 +285,6 @@ export default function Datasets() {
             ))}
           </ul>
         </section>
-        <div className="resource-container">
-          <aside className="dataset-site-search" aria-labelledby="dataset-site-search-title">
-            <div>
-              <h2 id="dataset-site-search-title">{siteSearch.title}</h2>
-              <p>{siteSearch.description}</p>
-            </div>
-            <div className="dataset-site-search-actions">
-              <Link className="dataset-method" to={siteSearch.listingsPath}
-                onClick={() => trackResearchLink({ action: 'site_listings', surface: 'featured' })}>
-                {siteSearch.listingsLabel} <ResourceArrow diagonal />
-              </Link>
-              <Link className="dataset-method" to={siteSearch.requestPath}
-                onClick={() => trackResearchLink({ action: 'site_shortlist', surface: 'featured' })}>
-                {siteSearch.requestLabel} <ResourceArrow diagonal />
-              </Link>
-            </div>
-          </aside>
-        </div>
       </div>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>Browse data samples</h2>
