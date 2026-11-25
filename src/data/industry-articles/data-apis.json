@@ -32034,6 +32034,10 @@
             "type": "links",
             "label": "Related property and logistics guides",
             "items": [
+              {
+                "slug": "cold-storage-warehouse-capacity-by-state",
+                "label": "Compare cooler and freezer capacity before a cold storage search"
+              },
               {"path": "/data-coverage#transport-and-connectivity", "label": "Review the mapped road and rail fields"},
               {"slug": "freight-analysis-framework-data", "label": "Compare freight tonnage across distribution markets"},
               {"slug": "site-selection-due-diligence", "label": "Use the site selection due diligence checklist"},
@@ -36357,6 +36361,347 @@
       "utility-grade-power-study",
       "commercial-property-insurance-data-apis",
       "warehouse-site-selection-rail-truck-access"
+    ]
+  },
+  {
+    "slug": "cold-storage-warehouse-capacity-by-state",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Cold Storage Warehouse Capacity by State",
+    "description": "Compare USDA cold storage capacity by state, including cooler and freezer space. Download the data and check what warehouse operators can offer for your dates.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Georgia, Washington and Wisconsin each had 240 to 255 million cubic feet of usable refrigerated space in the 2025 USDA survey. Wisconsin reported 90.3 million cubic feet of cooler space and Washington reported 12.8 million.",
+    "coverCaption": "Usable volume by temperature band on October 1, 2025. Source is the USDA National Agricultural Statistics Service, Capacity of Refrigerated Warehouses, pages 8 and 9.",
+    "intro": "To compare cold storage markets, start with USDA’s usable cooler and freezer volumes, then narrow the search to the routes and facilities that fit your product. On October 1, 2025, Wisconsin and Washington each had about 240 million cubic feet of usable refrigerated space in USDA’s survey. Wisconsin had about seven times as much usable cooler space. To book space or lease a building, confirm the temperature range, available pallet positions and start date with the operator or landlord.",
+    "takeaways": [
+      "Compare usable volume by temperature band. States with similar refrigerated totals can have very different mixes of cooler and freezer space.",
+      "Public storage in the USDA survey means storage offered to others for a fee. Ask operators what they can commit for your product and dates.",
+      "Confirm product temperature, throughput, freight access and refrigeration power at the specific facility."
+    ],
+    "sections": [
+      {
+        "id": "cold-storage-capacity-by-state",
+        "heading": "How much cooler and freezer space does each state have?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "USDA’s latest biennial survey covered October 1, 2025 and was released February 9, 2026. It reported 3.99 billion gross cubic feet of refrigerated storage and 3.25 billion usable cubic feet in the U.S. About 79% of usable volume was freezer space. Use the freezer and cooler tables to compare the capacity that fits your shipment.",
+            "sourceIds": [
+              "usda-2025"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "State",
+              "Gross refrigerated space, million cu ft",
+              "Usable refrigerated space, million cu ft",
+              "Usable cooler, million cu ft",
+              "Usable freezer, million cu ft"
+            ],
+            "rows": [
+              [
+                "California",
+                "399.68",
+                "330.38",
+                "64.32",
+                "266.06"
+              ],
+              [
+                "Georgia",
+                "303.52",
+                "254.99",
+                "50.53",
+                "204.46"
+              ],
+              [
+                "Washington",
+                "300.90",
+                "240.00",
+                "12.75",
+                "227.25"
+              ],
+              [
+                "Wisconsin",
+                "296.62",
+                "241.18",
+                "90.31",
+                "150.88"
+              ],
+              [
+                "Texas",
+                "254.08",
+                "200.85",
+                "48.45",
+                "152.40"
+              ]
+            ],
+            "sourceIds": [
+              "usda-2025"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "These are the five states with the most gross capacity in the survey. Their order changes when you look at cooler space. Wisconsin’s 90.306 million usable cooler cubic feet is 7.08 times Washington’s 12.754 million. Washington reports more usable freezer space than Wisconsin. USDA publishes Washington’s cooler total and withholds the split between public and private or semiprivate operators.",
+            "sourceIds": [
+              "usda-2025"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/us-cold-storage-capacity-by-state-2023-2025.csv",
+            "format": "CSV",
+            "label": "Download USDA cold storage capacity for every state, 2023 and 2025"
+          },
+          {
+            "type": "download",
+            "path": "/blog/us-cold-storage-capacity-by-state-2023-2025.json",
+            "format": "JSON",
+            "label": "Download the state records, source checksums and comparison calculation"
+          }
+        ]
+      },
+      {
+        "id": "read-cold-storage-supply-data",
+        "heading": "How should you use the USDA cold storage data?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Gross volume covers the refrigerated envelope. Usable volume deducts space for features such as aisles and refrigeration equipment. USDA uses 0°F to distinguish freezer from cooler space. The cooler category extends up to 50°F. Ask a facility for the actual setpoint range, allowable excursion, and how it measures temperature for your product.",
+            "sourceIds": [
+              "usda-2025"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The survey focuses on qualifying facilities that normally hold food for at least 30 days. USDA estimates values for some nonrespondents and says its published figures should be treated as minimums. The download retains the figures as published, including rounded totals, zero values and withheld cells. Comparing two survey years shows changes in the published inventory. Use permits, openings and closures to establish why a market changed.",
+            "sourceIds": [
+              "usda-2023",
+              "usda-2025"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use USDA’s monthly Cold Storage report to track commodity stocks and its refrigerated truck datasets to compare reported produce flows, lane rates and seasonal truck availability. The stocks and warehouse surveys measure different things. Check the commodity, geography and unit before comparing them. Ask brokers or operators for building vacancy, available positions and written rates.",
+            "sourceIds": [
+              "usda-stocks",
+              "usda-trucks"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "savannah-cold-storage-facilities",
+        "heading": "Where can you find cold storage near the Port of Savannah?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the exact terminal and the dates you need service. The records below show three Savannah-area options and the services their operators list. Use those pages to identify candidates and request a quote for your product, handling requirements and start date.",
+            "sourceIds": [
+              "medlog",
+              "vertical",
+              "americold"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Facility",
+              "Published capacity or service",
+              "What to confirm"
+            ],
+            "rows": [
+              [
+                "MEDLOG Savannah Cold Store, Rincon",
+                "The operator lists more than 20,000 pallet positions across the site, blast freezing and a temperature range of −20°F to +50°F. Georgia Ports Authority places it 18 miles from Garden City Terminal.",
+                "Pallets available at your setpoint, inbound and outbound appointment windows, and guaranteed daily blast freezing throughput."
+              ],
+              [
+                "Vertical Cold Storage, Pooler",
+                "The operator lists 36,000 pallet positions, 40 dock doors, and a range of −20°F to +45°F.",
+                "Pallet dimensions, available positions by temperature zone, daily dock capacity, and the rate for each handling step."
+              ],
+              [
+                "Americold Savannah 1, 2001 Old River Road",
+                "The operator lists ambient and cooler zones, plus import, bonded and drop-lot services.",
+                "The cooler setpoint, storage and outbound window, and which inspection and bonded services your shipment needs."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "medlog",
+                "georgia-ports"
+              ],
+              [
+                "vertical"
+              ],
+              [
+                "americold"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Compare drayage from the same terminal gate to each warehouse’s truck entrance. Include queuing, appointment windows, inspection and reefer plug requirements. Ask for the rate sheet and how it charges for storage, receiving, outbound handling and temperature or inspection services. For a lease of dedicated space, verify which racks, refrigeration equipment and docks are included."
+          }
+        ]
+      },
+      {
+        "id": "check-a-cold-storage-site",
+        "heading": "What should you verify before leasing or building cold storage?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Specify the product, target temperature, pallet type, peak inventory, inbound and outbound volume, and any blast freezing requirement. Ask for usable positions and throughput under that operating plan.",
+              "Ask the refrigeration designer for the peak expected electric demand and operating profile. Confirm the tariff, metering point, committed utility service and upgrade dates. Check backup load, runtime and outage logs.",
+              "Verify trailer access, dock height, refrigerated staging and truck turning on a site visit. Map the loading gate and the routes you can use with the actual vehicle and trailer.",
+              "Obtain the site’s temperature monitoring, sanitation and shipment handling procedures for your product. Confirm who maintains the equipment and who responds to temperature excursions."
+            ],
+            "sourceIds": [
+              "doe-refrigeration",
+              "doe-blast",
+              "fda-transport"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth’s parcel, mapped roads and utility context to compare candidate addresses before a site visit. Request current operating capacity from the warehouse and documented electric service from the serving utility."
+          },
+          {
+            "type": "links",
+            "label": "Check the facility and its routes",
+            "items": [
+              {
+                "path": "/data-coverage#transport-and-connectivity",
+                "label": "Review mapped roads and freight access fields"
+              },
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Verify truck access, trailer parking and usable rail service"
+              },
+              {
+                "slug": "power-outage-history-by-address",
+                "label": "Ask for outage history at the service point"
+              },
+              {
+                "slug": "freight-analysis-framework-data",
+                "label": "Compare freight flows by commodity and route"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which states have the most cold storage capacity?",
+        "answer": "California, Georgia, Washington, Wisconsin and Texas were the five largest states by gross refrigerated warehouse volume in USDA’s October 2025 survey. Compare usable cooler or freezer volume when your search requires a particular temperature band.",
+        "sourceIds": [
+          "usda-2025"
+        ]
+      },
+      {
+        "question": "What is public cold storage?",
+        "answer": "USDA classifies warehouses that store food for others at specified rates as public refrigerated storage. Operators may sell pallet storage and handling services. Ask them for a quote for the required temperature, pallet positions and dates.",
+        "sourceIds": [
+          "usda-2025"
+        ]
+      },
+      {
+        "question": "Can I use cubic feet to calculate how many pallets I can store?",
+        "answer": "Ask for the rack schedule and available positions that fit your pallet size, height and weight. The count also depends on clear height, aisles, clearances and the storage layout. The USDA volume helps you compare markets before you check individual facilities.",
+        "sourceIds": [
+          "usda-2025"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "usda-2025",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "title": "Capacity of Refrigerated Warehouses 2025 Summary, state tables, definitions and methods",
+        "url": "https://esmis.nal.usda.gov/sites/default/release-files/795764/rfwh0126.pdf"
+      },
+      {
+        "id": "usda-2023",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "title": "Capacity of Refrigerated Warehouses 2023 Summary, state tables",
+        "url": "https://esmis.nal.usda.gov/sites/default/release-files/x059c7329/cc08k3098/vq281845s/rfwh0125.pdf"
+      },
+      {
+        "id": "usda-stocks",
+        "publisher": "USDA National Agricultural Statistics Service",
+        "title": "Cold Storage survey scope, reporting frequency and methods",
+        "url": "https://www.nass.usda.gov/Surveys/Guide_to_NASS_Surveys/Cold_Storage/index.php"
+      },
+      {
+        "id": "usda-trucks",
+        "publisher": "USDA Agricultural Marketing Service",
+        "title": "Refrigerated truck datasets and methods",
+        "url": "https://www.ams.usda.gov/services/transportation-analysis/agricultural-refrigerated-truck-quarterly-datasets"
+      },
+      {
+        "id": "medlog",
+        "publisher": "MEDLOG",
+        "title": "Savannah Cold Storage facility specifications",
+        "url": "https://www.medlog.com/en/usa/savannah-cold-storage"
+      },
+      {
+        "id": "georgia-ports",
+        "publisher": "Georgia Ports Authority",
+        "title": "Rincon facility opening and reported distance to Garden City Terminal",
+        "url": "https://gaports.com/press-releases/georgia-ports-welcomes-new-medlog-flagship-cold-chain-facility-to-savannah/"
+      },
+      {
+        "id": "vertical",
+        "publisher": "Vertical Cold Storage",
+        "title": "Pooler cold storage facility specifications",
+        "url": "https://www.verticalcold.com/facility/savannah-ga/"
+      },
+      {
+        "id": "americold",
+        "publisher": "Americold",
+        "title": "Savannah 1 facility temperature zones and services",
+        "url": "https://www.americold.com/facilities/savannah-1/"
+      },
+      {
+        "id": "doe-refrigeration",
+        "publisher": "U.S. Department of Energy",
+        "title": "Refrigeration compressor controls and site load profile case study",
+        "url": "https://betterbuildingssolutioncenter.energy.gov/solutions-at-a-glance/lineage-logistics-implements-facility-improvements-optimize-refrigeration"
+      },
+      {
+        "id": "doe-blast",
+        "publisher": "U.S. Department of Energy",
+        "title": "Lineage blast freezing process and design case study",
+        "url": "https://betterbuildingssolutioncenter.energy.gov/showcase-projects/lineage-logistics-blast-freezing-process-and-design-optimization"
+      },
+      {
+        "id": "fda-transport",
+        "publisher": "U.S. Food and Drug Administration",
+        "title": "Sanitary transportation of human and animal food, small entity compliance guide",
+        "url": "https://www.fda.gov/media/108944/download"
+      }
+    ],
+    "dataset": {
+      "name": "U.S. cold storage warehouse capacity by state, 2023 and 2025",
+      "description": "102 state and national records from two USDA warehouse capacity surveys. Separates gross and usable refrigerated, cooler and freezer volume by operator type. Keeps published counts, withheld cells, zeros, source release dates and PDF checksums.",
+      "sourceIds": [
+        "usda-2023",
+        "usda-2025"
+      ],
+      "spatialCoverage": "United States and all 50 states",
+      "temporalCoverage": "2023-10-01/2025-10-01"
+    },
+    "relatedSlugs": [
+      "warehouse-site-selection-rail-truck-access",
+      "freight-analysis-framework-data",
+      "power-outage-history-by-address",
+      "manufacturing-site-selection-100-buildable-acres"
     ]
   }
 ]
