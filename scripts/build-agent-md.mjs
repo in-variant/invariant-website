@@ -259,7 +259,7 @@ function researchMd() {
 
 function datasetCatalogMd() {
   const out = [
-    '# Invariant data samples', '',
+    '# Data samples for the physical economy', '',
     `Catalog page: ${SITE}/datasets`, '',
     datasetCatalog.description, '',
     datasetCatalog.access, '',
@@ -267,7 +267,7 @@ function datasetCatalogMd() {
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
     `[Check API data coverage](${SITE}${product.links.coverage}), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
-    '## Start with a question', '',
+    '## Explore by use case', '',
     ...featuredResearch.flatMap(({ slug, title, summary, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
       const workflow = researchWorkflows.get(slug)

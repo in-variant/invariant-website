@@ -114,49 +114,55 @@ export default function Datasets() {
         markdown="/datasets.md"
         jsonLd={[ORG_SCHEMA, catalog, catalogPage, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: title, url: canonical }])]}
       />
-      <header className="resource-container resources-intro">
-        <div className="resources-intro-grid">
-          <h1>Data samples</h1>
-          <div>
-            <p>{description}</p>
-            <nav aria-label="Research library and API" className="resources-data-links">
-              <a className="dataset-api-button" href="#dataset-search">Browse all samples <span aria-hidden="true">↓</span></a>
-              <Link className="dataset-method" to={earthLinks.coverage}>Check API data coverage <ResourceArrow diagonal /></Link>
-            </nav>
+      <div className="datasets-showcase">
+        <header className="resource-container resources-intro">
+          <div className="resources-intro-grid">
+            <h1>Data samples for the physical economy</h1>
+            <div>
+              <p>{description}</p>
+              <nav aria-label="Research library and API" className="resources-data-links">
+                <a className="dataset-api-button" href="#dataset-search">Find a sample <span aria-hidden="true">↓</span></a>
+                <Link className="dataset-method" to={earthLinks.coverage}>Check API coverage <ResourceArrow diagonal /></Link>
+              </nav>
+            </div>
           </div>
-        </div>
-      </header>
-      <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
-        <div className="dataset-featured-heading">
-          <h2 id="featured-studies-title">Start with a question</h2>
-          <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
-        </div>
-        <ul>
-          {featured.map(({ slug, title, summary, evidence, image, notesPath, workflow, sample, workflowLabel }) => (
-            <li key={slug}>
-              <div className="dataset-featured-main">
-                <img src={image} srcSet={coverSrcSets[image]}
-                  sizes="(max-width: 660px) max(68px, 20vw), clamp(90px, 12vw, 200px)"
-                  alt="" width="1600" height="900" decoding="async" />
-                <div className="dataset-featured-copy">
-                  <h3><Link to={notesPath}>{title} <ResourceArrow diagonal /></Link></h3>
-                  <p>{summary}</p>
-                  <p className="dataset-featured-evidence">{evidence}</p>
+        </header>
+        <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
+          <div className="dataset-featured-heading">
+            <h2 id="featured-studies-title">Explore by use case</h2>
+            <Link className="dataset-method" to={DATA_USE_CASES_PATH}>All use-case guides <ResourceArrow diagonal /></Link>
+          </div>
+          <ul>
+            {featured.map(({ slug, title, summary, evidence, image, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
+              <li key={slug}>
+                <Link className="dataset-featured-study" to={notesPath} aria-labelledby={`featured-${slug}`}
+                  onClick={() => posthog.capture('featured_research_study_opened', { study: slug })}>
+                  <div className="dataset-featured-image">
+                    <img src={image} srcSet={coverSrcSets[image]}
+                      sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 940px) 44vw, min(29vw, 524px)"
+                      alt="" width="1600" height="900" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+                    {imageLabel && <span>{imageLabel}</span>}
+                  </div>
+                  <div className="dataset-featured-copy">
+                    <h3 id={`featured-${slug}`}>{title} <ResourceArrow diagonal /></h3>
+                    <p>{summary}</p>
+                    <p className="dataset-featured-evidence">{evidence}</p>
+                  </div>
+                </Link>
+                <div className="dataset-featured-actions">
+                  {workflow && <a className="dataset-featured-workflow" href={workflow.url}
+                    onClick={() => posthog.capture('featured_research_workflow_opened', { study: slug })}>
+                    {workflowLabel} <ResourceArrow />
+                  </a>}
+                  <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}>
+                    {sample.format} sample <span aria-hidden="true">↓</span>
+                  </a>
                 </div>
-              </div>
-              <div className="dataset-featured-actions">
-                {workflow && <a className="dataset-featured-workflow" href={workflow.url}
-                  onClick={() => posthog.capture('featured_research_workflow_opened', { study: slug })}>
-                  {workflowLabel} <ResourceArrow />
-                </a>}
-                <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}>
-                  {sample.format} sample <span aria-hidden="true">↓</span>
-                </a>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
         <p className="dataset-scope">{access}</p>
