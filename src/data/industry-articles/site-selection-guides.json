@@ -2993,15 +2993,18 @@
     "slug": "retired-power-plant-sites-for-data-centers",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Retired power plant sites for data centers: what transfers and what can sink the deal",
-    "description": "Retired coal and gas plant sites offer switchyards, water and zoning, but a generator's export right is not a load right. What transfers, and the coal ash risks.",
+    "title": "Retired power plant sites for data centers: power, acreage and permits",
+    "description": "Screen retired power plants for data centers. Verify load service, usable brownfield acreage and permits, with a downloadable Homer City case study.",
     "date": "2026-11-09",
-    "readMinutes": 12,
-    "intro": "A retired coal or gas plant is one of the best places to look for data center power, because the switchyard, transmission lines, water and heavy industrial zoning are already there. What does not come with the site is the right to draw power. The plant's interconnection let it push energy onto the grid. A data center needs a withdrawal right from the utility and the grid operator, and that has to be studied and granted again. Buy for the infrastructure, verify the load path separately, and price the coal ash before you price the land.",
+    "updatedDate": "2026-11-24",
+    "coverAlt": "Three bars comparing the 3,200-acre former Homer City property, approximately 558-acre proposed gas plant site, and 243.7-acre ash disposal permit area.",
+    "coverCaption": "Homer City acreage from DOE and Pennsylvania DEP records. The bars show the size of each recorded area. Use the underlying boundaries to check overlap and usable land.",
+    "readMinutes": 13,
+    "intro": "A former coal or gas plant can be a strong data center candidate when the switchyard, transmission access and industrial land fit the project. Before you price the site, verify the megawatts the utility can deliver by phase, the land your campus can actually use and the permits that cover the proposed work. Homer City in Pennsylvania shows how those answers can sit in different federal, state and county records.",
     "takeaways": [
       "A plant's generator interconnection is an export right. Load service for a data center needs its own utility study and agreement.",
       "PJM and MISO let replacement generation reuse a retiring unit's rights on fixed terms, and FERC's 2025 and 2026 orders set PJM's co-location rules.",
-      "Coal ash units, groundwater findings and recorded covenants decide how many acres are actually buildable.",
+      "At Homer City, federal records describe about 558 acres for gas generation within a 3,200-acre former plant property. Pennsylvania and Indiana County track distinct waste and land development actions.",
       "Find candidates in EIA-860M retirements, then confirm the unit stopped and check the owner before any parcel work."
     ],
     "sections": [
@@ -3015,21 +3018,71 @@
           },
           {
             "type": "paragraph",
-            "text": "Homer City in Pennsylvania is the public example most people cite. The former coal station, once the largest in the state, is being redeveloped as a 3,200-acre campus with up to 4.5 GW of gas generation from seven GE Vernova turbines, and the developers said much of the critical infrastructure was already in place from the legacy plant. FracTracker documented demolition blasts and the start of vertical construction there in April 2026.",
-            "sourceIds": [
-              "homer-city",
-              "homer-city-2026"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Notice what that project did. It did not plug a data center into the old plant's grid connection. It built new generation on site. That choice says a lot about how interconnection rights work, which is the subject of the next section."
+            "text": "Start with the recorded tract and the equipment you would actually acquire. A switchyard on the aerial may belong to a transmission owner. An existing water intake may have limits tied to the old operation. Ask for the surveyed boundary, the electrical ownership diagram and the permit or agreement covering each asset."
           },
           {
             "type": "paragraph",
             "text": "Owners are also changing hands with data centers in mind. In March 2026 a data center developer announced a deal to buy the Morgantown Generating Station in Maryland, whose coal units shut in 2022 while four smaller oil-fired units still run. The acquisition needed FERC approval, and the buyer had not said how power would be generated.",
             "sourceIds": [
               "morgantown"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "homer-city-redevelopment-records",
+        "heading": "Homer City shows why the approval boundary matters",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At Homer City, the U.S. Department of Energy records a 2 GW coal station that was permanently decommissioned in 2023. Its November 2026 letter describes a proposed 4.4 GW gas generating facility on about 558 acres of the original 3,200-acre property. Those figures answer different questions. The first is historical generation. The second is the proposed new plant. The two acreage figures describe the old property and the gas plant footprint.",
+            "sourceIds": ["homer-doe-pipeline"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Public record", "What the record covers", "What to verify for your layout"],
+            "rows": [
+              [
+                "November 18, 2025 · Pennsylvania DEP plan approval 32-00457A",
+                "The state issued an air quality plan approval for the gas plant.",
+                "Which units and startup conditions apply to the equipment in your load schedule."
+              ],
+              [
+                "August 4, 2026 · Pennsylvania DEP solid waste permit 300491",
+                "The modification removed the Stage IV area and returned the waste permit to its prior 243.7-acre boundary. Leachate sampling continues.",
+                "Where that boundary and any groundwater obligations fall against your pads, roads and utility corridors."
+              ],
+              [
+                "November 6, 2026 · U.S. DOE environmental review completion",
+                "DOE updated its review for proposed federal financing to include an approximately six-mile gas lateral. The proposed financing scope excludes the future data centers.",
+                "Which permits and authorizations are in place for each component and when fuel and power can reach the campus."
+              ],
+              [
+                "October 14 and November 18, 2026 · Indiana County PIT100 Masterplan",
+                "The county accepted the preliminary land development plan for review on October 14 and tabled the matter after a status update on November 18.",
+                "Which drawings the county acted on, the outcome of review, and any conditions on the phased layout."
+              ]
+            ],
+            "rowSourceIds": [["homer-dep-index"], ["homer-waste-stage-iv"], ["homer-doe-pipeline"], ["homer-county-plan"]]
+          },
+          {
+            "type": "paragraph",
+            "text": "Put the surveyed tract, the generation footprint, the disposal permit boundary and the proposed data center layout on the same map. A former station can span thousands of acres while a particular approval covers only one part of it. Use approved drawings and title records to calculate usable acreage. Request the point of delivery, contracted MW by phase, fuel and grid backup arrangements, upgrades and energization dates before carrying power into your underwriting."
+          },
+          {
+            "type": "download",
+            "path": "/blog/homer-city-redevelopment-records.json",
+            "label": "Download the Homer City redevelopment records",
+            "format": "JSON"
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "behind-the-meter-power-for-data-centers",
+                "label": "Read the Homer City air approval and startup conditions"
+              }
             ]
           }
         ]
@@ -3629,16 +3682,28 @@
         "publisher": "U.S. Energy Information Administration"
       },
       {
-        "id": "homer-city",
-        "title": "Major AI Data Center Planned for Former Pennsylvania Coal Power Plant",
-        "url": "https://www.datacenterknowledge.com/data-center-construction/major-ai-data-center-planned-for-former-pennsylvania-coal-power-plant",
-        "publisher": "Data Center Knowledge"
+        "id": "homer-doe-pipeline",
+        "title": "Homer City Redevelopment Project environmental review completion, including the gas pipeline",
+        "url": "https://www.energy.gov/sites/default/files/2026-11/Homer%20City-Lateral%20Pipeline.pdf",
+        "publisher": "U.S. Department of Energy"
       },
       {
-        "id": "homer-city-2026",
-        "title": "From Coal Plant to AI Campus: FracTracker Documents Construction at Homer City",
-        "url": "https://www.fractracker.org/2026/05/homer-city-ai-campus-gas-power-construction/",
-        "publisher": "FracTracker Alliance"
+        "id": "homer-dep-index",
+        "title": "Homer City Generation site redevelopment records, including final plan approval 32-00457A",
+        "url": "https://www.pa.gov/agencies/dep/dep-regions/northwest-regional-office/homer-city-generation-redevelopment",
+        "publisher": "Pennsylvania Department of Environmental Protection"
+      },
+      {
+        "id": "homer-waste-stage-iv",
+        "title": "Solid Waste Permit 300491, Stage IV revision and permit area reduction, August 4, 2026",
+        "url": "https://files.dep.state.pa.us/RegionalResources/NWRO/NWROPortalFiles/Homer-City/Waste/Homer%20City%20Stage%20IV%20Permit%20Area%20Reduction.pdf",
+        "publisher": "Pennsylvania Department of Environmental Protection"
+      },
+      {
+        "id": "homer-county-plan",
+        "title": "PIT100 Masterplan preliminary land development review and November status update",
+        "url": "https://www.icopd.org/index.html",
+        "publisher": "Indiana County Office of Planning & Development"
       },
       {
         "id": "morgantown",
@@ -3651,7 +3716,15 @@
       "power-evidence-data-center-site-verification",
       "behind-the-meter-power-for-data-centers",
       "powered-land-for-sale-data-center-sites"
-    ]
+    ],
+    "dataset": {
+      "name": "Homer City power plant redevelopment and data center planning records",
+      "description": "Four official sources and six dated events for the former 2 GW Homer City coal station, proposed 4.4 GW gas plant, ash disposal permit and PIT100 data center plan. Includes the scope of each acreage figure and the questions that remain open for site diligence.",
+      "sourceIds": ["homer-doe-pipeline", "homer-dep-index", "homer-waste-stage-iv", "homer-county-plan"],
+      "spatialCoverage": "Black Lick and Center townships, Indiana County, Pennsylvania, United States",
+      "temporalCoverage": "2023/2026-11-18",
+      "datePublished": "2026-11-24"
+    }
   },
   {
     "slug": "convert-bitcoin-mining-site-to-ai-hpc-data-center",

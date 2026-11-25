@@ -1,0 +1,112 @@
+{
+  "title": "Homer City power plant redevelopment and data center planning records",
+  "compiled_by": "Invariant",
+  "sources_checked_on": "2026-11-24",
+  "area": {
+    "county": "Indiana County",
+    "state": "Pennsylvania",
+    "municipalities": ["Black Lick Township", "Center Township"]
+  },
+  "method": "Read each public record for the actor, date, scope and status of the decision. Use the DOE letter's reported values for historical and proposed generating capacity and acreage. Use the state letter for the disposal permit boundary and the county notice for land development review status. The records describe different boundaries. The sample does not calculate net developable acreage or available load.",
+  "events": [
+    {
+      "date": "2023",
+      "date_precision": "year",
+      "record_type": "station retirement",
+      "recorded_status": "Coal station permanently decommissioned",
+      "subject": "Homer City Generating Station",
+      "retired_coal_capacity_gw": 2,
+      "former_station_property_acres": 3200,
+      "source_id": "homer-doe-pipeline",
+      "source_locator": "PDF page 1, project description"
+    },
+    {
+      "date": "2025-11-18",
+      "record_type": "air quality plan approval",
+      "recorded_status": "Final plan approval issued",
+      "subject": "Homer City gas generation redevelopment",
+      "approval_id": "32-00457A",
+      "source_id": "homer-dep-index",
+      "source_locator": "Air Quality, Final Air Quality Plan Approval Documents"
+    },
+    {
+      "date": "2026-08-04",
+      "record_type": "solid waste permit modification",
+      "recorded_status": "Stage IV area removed from the permit",
+      "subject": "Homer City Ash Disposal Site",
+      "permit_id": "300491",
+      "resulting_permit_boundary_acres": 243.7,
+      "restored_boundary_approval_date": "2012-10-12",
+      "continuing_obligation": "Leachate sampling at AVT-01",
+      "source_id": "homer-waste-stage-iv",
+      "source_locator": "PDF page 1, modification description"
+    },
+    {
+      "date": "2026-10-14",
+      "record_type": "preliminary land development plan",
+      "recorded_status": "Accepted for review and officially filed",
+      "subject": "PIT100 Masterplan",
+      "applicant": "Amazon Data Services, Inc.",
+      "initial_received_on": "2026-08-28",
+      "source_id": "homer-county-plan",
+      "source_locator": "AWS PLDP UPDATE, October filing and review paragraph"
+    },
+    {
+      "date": "2026-11-06",
+      "record_type": "federal environmental review",
+      "recorded_status": "Supplemental environmental review completed for proposed federal financing, with loan guarantee under consideration",
+      "subject": "Homer City Redevelopment Project, including the proposed gas generation pipeline",
+      "proposed_gas_generation_gw": 4.4,
+      "approximate_generation_project_acres": 558,
+      "approximate_lateral_route_miles": 6,
+      "proposed_pipeline_diameter_inches": 30,
+      "future_data_center_infrastructure_in_proposed_financing_scope": false,
+      "source_id": "homer-doe-pipeline",
+      "source_locator": "PDF pages 1–2, project and financing scope. PDF page 4, conclusion."
+    },
+    {
+      "date": "2026-11-18",
+      "record_type": "county planning commission review",
+      "recorded_status": "Status update presented and matter tabled",
+      "subject": "PIT100 Masterplan",
+      "source_id": "homer-county-plan",
+      "source_locator": "AWS PLDP UPDATE, November meeting status paragraph"
+    }
+  ],
+  "buyer_verification": [
+    "Overlay the survey, building pads and access corridors with the current permitted disposal boundary and recorded land-use controls.",
+    "Match the air plan approval and startup conditions to each proposed generating unit.",
+    "Request the utility or generator commitment for delivery MW, point of delivery, dates, upgrades and backup arrangements by phase.",
+    "Obtain the latest county action and approved drawings to check the permitted layout and conditions."
+  ],
+  "not_established_by_these_records": {
+    "net_developable_acres": null,
+    "contracted_data_center_load_mw": null,
+    "firm_energization_date": null,
+    "final_county_plan_approval_date": null
+  },
+  "sources": [
+    {
+      "id": "homer-doe-pipeline",
+      "publisher": "U.S. Department of Energy",
+      "url": "https://www.energy.gov/sites/default/files/2026-11/Homer%20City-Lateral%20Pipeline.pdf",
+      "pdf_sha256": "1ec55484e2bd20187e2ab2fb86b61ae2b51288dc60c801d4e228f80362703863"
+    },
+    {
+      "id": "homer-dep-index",
+      "publisher": "Pennsylvania Department of Environmental Protection",
+      "url": "https://www.pa.gov/agencies/dep/dep-regions/northwest-regional-office/homer-city-generation-redevelopment"
+    },
+    {
+      "id": "homer-waste-stage-iv",
+      "publisher": "Pennsylvania Department of Environmental Protection",
+      "url": "https://files.dep.state.pa.us/RegionalResources/NWRO/NWROPortalFiles/Homer-City/Waste/Homer%20City%20Stage%20IV%20Permit%20Area%20Reduction.pdf",
+      "pdf_sha256": "d50589f3e36bb7987bef30b23b428b119457e7076f71c31628d7a8474dd597c4"
+    },
+    {
+      "id": "homer-county-plan",
+      "publisher": "Indiana County Office of Planning & Development",
+      "url": "https://www.icopd.org/index.html"
+    }
+  ]
+}
