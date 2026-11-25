@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
-import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
+import { editorialSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { coverSrcSet } from '../data/coverSrcSets'
 import type { ResourceTopic } from '../data/resources'
 import { FEATURED_RESOURCE_ARTICLES, RESOURCE_REFERENCES } from '../data/resource-directory'
@@ -26,7 +26,7 @@ export default function Resources() {
   const [query, setQuery] = useState('')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   useEffect(() => setSearchReady(true), [])
-  const queryWords = articleSearchWords(query)
+  const queryWords = editorialSearchWords(query)
   const searching = queryWords.length > 0
   const searchGuides = searching && (format === 'All' || format === 'Guides')
   const { details, pending: articleSearchPending } = useArticleSearchDetails(searchGuides)
@@ -49,7 +49,7 @@ export default function Resources() {
     details: resource.articleSlug ? details?.[resource.articleSlug]?.headings : undefined,
     bodyTerms: resource.articleSlug ? details?.[resource.articleSlug]?.bodyTerms : undefined,
   })) : [], [searching, details, directorySearch])
-  const candidates = searching ? rankSearch(searchIndex, queryWords) : library
+  const candidates = searching ? rankSearch(searchIndex, queryWords, { allowPartialMatches: true }) : library
   const filtered = candidates.filter(resource =>
     (format === 'All' || `${resource.kind}s` === format) && (topic === 'All topics' || resource.topic === topic),
   )

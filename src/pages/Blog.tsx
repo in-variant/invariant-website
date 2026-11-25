@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ARTICLE_COLLECTIONS, ARTICLE_LIST, type ArticleListEntry } from '../data/articleList'
 import { coverSrcSet } from '../data/coverSrcSets'
-import { articleSearchWords, prepareArticleSearch, rankSearch } from '../data/blogSearch'
+import { editorialSearchWords, prepareArticleSearch, rankSearch } from '../data/blogSearch'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import { INDIA_HUB } from '../data/industryArticles'
 import './Blog.css'
@@ -98,7 +98,7 @@ export default function Blog() {
   const [topic, setTopic] = useState<typeof TOPICS[number]>('All articles')
   const [query, setQuery] = useState('')
   useEffect(() => setSearchReady(true), [])
-  const queryWords = articleSearchWords(query)
+  const queryWords = editorialSearchWords(query)
   const searching = queryWords.length > 0
   const isFiltered = topic !== 'All articles' || searching
   const { details: searchDetails, pending: searchPending } = useArticleSearchDetails(searching)

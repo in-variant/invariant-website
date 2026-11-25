@@ -3,6 +3,22 @@ import { articleSearchWords } from './articleSearchWords.mjs'
 
 export { articleSearchWords }
 
+const EDITORIAL_ALIASES = new Map([
+  ['employment', ['job']],
+  ['own', ['owner', 'ownership']],
+  ['serve', ['service', 'served']],
+])
+
+export function editorialSearchWords(value: string) {
+  const question = value.trim()
+    .replace(/^please\s+/i, '')
+    .replace(/^(?:(?:can|could|would)\s+you\s+)?(?:show|tell|give)\s+me\s+/i, '')
+    .replace(/^(?:where|how)\s+(?:can|could|do|should)\s+i\s+(?:find|get|see)\s+/i, '')
+    .replace(/^i\s+(?:want|need)\s+to\s+/i, '')
+    .replace(/\b(?:could|much|my|please|that|these|this|those|would|your)\b/gi, ' ')
+  return articleSearchWords(question)
+}
+
 export type ArticleSearchDetails = Record<string, { headings: string; bodyTerms: string[] }>
 
 export function prepareSearch<T>(
@@ -46,21 +62,26 @@ export function rankSearch<T>(
     : 0
   return index.flatMap(({ entry, title, relatedTitle, metadata, details, bodyTerms }) => {
     const matchesPhrase = ` ${title.join(' ')} `.includes(phrase) || ` ${relatedTitle.join(' ')} `.includes(phrase)
+    const wordWeight = (term: string) => {
+      if (title.includes(term)) return 8
+      if (relatedTitle.includes(term)) return 6
+      if (metadata.has(term)) return 4
+      if (details.has(term)) return 2
+      return 0
+    }
     let score = matchesPhrase ? (allowPartialMatches ? 8 : 6) : 0
     let bodyMatches = 0
     let strongMatches = 0
     let missing = 0
 
     for (const term of terms) {
-      let weight = 0
-      if (title.includes(term)) weight = 8
-      else if (relatedTitle.includes(term)) weight = 6
-      else if (metadata.has(term)) weight = 4
-      else if (details.has(term)) weight = 2
-      else if (term === lastWord && canMatchPrefix &&
+      const aliases = allowPartialMatches ? EDITORIAL_ALIASES.get(term) : undefined
+      let weight = wordWeight(term)
+      if (aliases) weight = aliases.reduce((best, alias) => Math.max(best, wordWeight(alias) - 1), weight)
+      if (!weight && term === lastWord && canMatchPrefix &&
         [...title, ...relatedTitle, ...metadata, ...details].some(word => word.startsWith(term))) weight = 1
-      else if (bodyTerms?.has(term)) bodyMatches += 1
-      else {
+      if (!weight && bodyTerms?.has(term)) bodyMatches += 1
+      else if (!weight) {
         missing += 1
         if (/^\d/.test(term) || missing > missingAllowance) return []
       }

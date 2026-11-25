@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
-import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
+import { editorialSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
@@ -94,11 +94,11 @@ export default function Datasets() {
   const searchInput = useRef<HTMLInputElement>(null)
   const archive = useRef<HTMLDetailsElement>(null)
   useEffect(() => setSearchReady(true), [])
-  const terms = articleSearchWords(query)
+  const terms = editorialSearchWords(query)
   const searching = terms.length > 0
   const searchIndex = useMemo(() => searching ? buildSearchIndex() : null, [searching])
   const isFiltered = Boolean(searching || topic || format)
-  const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true }) : catalogEntries
+  const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true }) : catalogEntries
   const matches = candidates.filter(({ topics, dataset }) =>
     (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
