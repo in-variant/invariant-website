@@ -1492,6 +1492,10 @@
             "label": "Run an underwriting data trial",
             "items": [
               {
+                "slug": "property-portfolio-flood-exposure",
+                "label": "Roll up the same schedule by building and FEMA flood zone"
+              },
+              {
                 "slug": "commercial-property-insurance-data-apis",
                 "label": "Compare underwriting data APIs on shared addresses"
               },
@@ -23872,7 +23876,7 @@
     "title": "How to check FEMA flood zone history for commercial property underwriting",
     "description": "Check the FEMA flood zone on a quote or loan date. Trace effective map panels, Letters of Map Amendment and revalidation records to the property they cover.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "readMinutes": 10,
     "region": "United States",
     "coverAlt": "Current FEMA map zones within the Huntington revision area, beside a timeline of the July 2021 issue date, December 2021 effective date and January 2024 Alexandria panel.",
@@ -24113,6 +24117,10 @@
           },
           {
             "type": "paragraph",
+            "text": "For a historical portfolio, verify that the footprint reflects the building in service on the decision date. Keep the footprint vintage and map effective date in separate fields. We used later building outlines to demonstrate how to reconcile selected values from Appanoose County’s 2021 schedule. A report on the county’s 2021 exposure would also need evidence of the buildings in service during that term."
+          },
+          {
+            "type": "paragraph",
             "text": "To screen current conditions before looking up older maps, check the effective FEMA zone at the verified address and calculate parcel overlap through the Invariant Earth API.",
             "sourceIds": [
               "earth-flood-workflow"
@@ -24122,6 +24130,10 @@
             "type": "links",
             "label": "Continue the review",
             "items": [
+              {
+                "slug": "property-portfolio-flood-exposure",
+                "label": "See the dated portfolio reconciliation and unresolved values"
+              },
               {
                 "label": "Compare commercial property data APIs for underwriting",
                 "slug": "commercial-property-insurance-data-apis"
@@ -25787,6 +25799,10 @@
               {
                 "slug": "commercial-property-loss-runs",
                 "label": "Reconcile commercial loss runs by insured location"
+              },
+              {
+                "slug": "property-portfolio-flood-exposure",
+                "label": "Check how much insured value remains unmatched after flood screening"
               },
               {"path": "/data-coverage#hazards-and-underwriting", "label": "Check flood, wildfire and hail field coverage"},
               {"path": "/data-coverage?field=fema_flood_zone&operation=parcel#coverage-search", "label": "Check what the parcel flood zone field reports"},
@@ -27633,9 +27649,17 @@
             ]
           },
           {
+            "type": "paragraph",
+            "text": "For a portfolio trial, compare the dollars that get a reliable building match as well as the number of addresses the API returns. In our 22-line Appanoose County sample, about $1.60 million still needed a building match after the address and footprint checks. Keep that amount in the exposure ledger and carry the reason for review with each unresolved line."
+          },
+          {
             "type": "links",
             "label": "Continue the flood review",
             "items": [
+              {
+                "slug": "property-portfolio-flood-exposure",
+                "label": "Trial a building-level flood exposure rollup on 22 schedule lines"
+              },
               {"path": "/data-coverage#hazards-and-underwriting", "label": "Review Earth’s mapped hazard fields"},
               {"slug": "elevation-certificate-by-address", "label": "Look up the building’s elevation certificate and measured floor height"},
               {
@@ -27851,7 +27875,7 @@
       "best-gis-apis-for-site-selection",
       "wildfire-risk-by-address-for-underwriting"
     ],
-    "updatedDate": "2026-11-23"
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "cmbs-special-servicing-data",
