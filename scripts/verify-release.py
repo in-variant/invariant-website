@@ -57,6 +57,7 @@ CRAWLER_SMOKE_PATHS = frozenset((
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
 VITE_ASSET = re.compile(r"^(/assets/[^/?]+)-[A-Za-z0-9_-]{8}(\.(?:css|js))$")
+COVER_VARIANT = re.compile(r"^(/blog/industry-variants/[a-z0-9-]+-(\d+))\.([a-f0-9]{12})\.webp$")
 ASSET_MIME_TYPES = {
     ".css": ("text/css",),
     ".js": ("text/javascript", "application/javascript"),
@@ -282,9 +283,28 @@ def indexnow_changes(baseline_path, jobs):
                   | (previous.keys() & removed))
 
 
-def vite_asset_name(path):
-    match = VITE_ASSET.fullmatch(path)
-    return "".join(match.groups()) if match else path
+def rebuildable_asset(path):
+    return VITE_ASSET.fullmatch(path) or COVER_VARIANT.fullmatch(path)
+
+
+def asset_name(path):
+    if match := VITE_ASSET.fullmatch(path):
+        return "".join(match.groups())
+    if match := COVER_VARIANT.fullmatch(path):
+        return match.group(1) + ".webp"
+    return path
+
+
+def webp_width(body):
+    require(len(body) >= 30 and body[:4] == b"RIFF" and body[8:12] == b"WEBP", "invalid WebP header")
+    kind = body[12:16]
+    if kind == b"VP8X":
+        return 1 + int.from_bytes(body[24:27], "little")
+    if kind == b"VP8L":
+        require(body[20] == 0x2f, "invalid lossless WebP header")
+        return 1 + (int.from_bytes(body[21:23], "little") & 0x3fff)
+    require(kind == b"VP8 " and body[23:26] == b"\x9d\x01\x2a", "invalid lossy WebP header")
+    return int.from_bytes(body[26:28], "little") & 0x3fff
 
 
 def verify(origin, job, expected_urls, preview, crawler=None, *, deployed_assets=None):
@@ -321,6 +341,11 @@ def verify(origin, job, expected_urls, preview, crawler=None, *, deployed_assets
             require_success(status, headers, None)
             mime = headers.get_content_type()
             require(mime in expected, f"asset Content-Type {mime}, expected {' or '.join(expected)}")
+        elif kind == "cover-asset":
+            require_success(status, headers, "image/webp")
+            match = COVER_VARIANT.fullmatch(path)
+            require(sha256(body).hexdigest().startswith(match.group(3)), "WebP bytes do not match the fingerprint in the URL")
+            require(webp_width(body) == int(match.group(2)), "WebP width does not match the filename")
         elif kind in ("file", "markdown"):
             mime = "text/markdown" if kind == "markdown" else "text/plain" if path == "/robots.txt" or path in AGENT_INDEX_PATHS else None
             require_success(status, headers, mime)
@@ -348,9 +373,9 @@ def verify(origin, job, expected_urls, preview, crawler=None, *, deployed_assets
                 if deployed_assets is None:
                     require(actual.assets == expected.assets, "initial HTML asset references differ from dist/")
                 else:
-                    require(Counter(map(vite_asset_name, actual.assets)) == Counter(map(vite_asset_name, expected.assets)),
+                    require(Counter(map(asset_name, actual.assets)) == Counter(map(asset_name, expected.assets)),
                             "initial HTML asset names differ from dist/")
-                    deployed_assets.put({path for path in actual.assets if VITE_ASSET.fullmatch(path)})
+                    deployed_assets.put({path for path in actual.assets if rebuildable_asset(path)})
                 require(not excludes_indexing(actual.robots), "page contains noindex in HTML")
                 require(preview or not header_noindex, "public page sends X-Robots-Tag noindex")
                 require(actual.schemas == expected.schemas, "structured data differs from dist/")
@@ -652,8 +677,8 @@ def main():
     parser.add_argument("--preserve-sitemap", type=Path, metavar="XML",
                         help="Require all URLs in a saved live sitemap to remain in the release")
     parser.add_argument("--preview", action="store_true", help="Allow a host-wide X-Robots-Tag noindex on preview HTML")
-    parser.add_argument("--allow-vite-rebuild", action="store_true",
-                        help="Check live Vite script and stylesheet URLs when a separate build changes filename hashes")
+    parser.add_argument("--verify-deployed-assets", "--allow-vite-rebuild", action="store_true",
+                        help="Verify live Vite assets and responsive covers across separate builds")
     parser.add_argument("--capture-indexnow-baseline", type=Path, metavar="JSON",
                         help="Snapshot the live canonical sitemap and page content before publishing")
     parser.add_argument("--indexnow-from", type=Path, metavar="JSON",
@@ -703,11 +728,11 @@ def main():
         if retired:
             print(f"Expected HTTP 404 for {len(retired)} retired baseline URLs.")
 
-    deployed_assets = SimpleQueue() if args.allow_vite_rebuild else None
-    expected_vite_count = 0
+    deployed_assets = SimpleQueue() if args.verify_deployed_assets else None
+    expected_rebuildable_count = 0
     if deployed_assets is not None:
-        expected_vite_count = sum(kind == "asset" and bool(VITE_ASSET.fullmatch(path)) for path, kind, _ in jobs)
-        jobs = [job for job in jobs if job[1] != "asset" or not VITE_ASSET.fullmatch(job[0])]
+        expected_rebuildable_count = sum(kind == "asset" and bool(rebuildable_asset(path)) for path, kind, _ in jobs)
+        jobs = [job for job in jobs if job[1] != "asset" or not rebuildable_asset(job[0])]
     crawler_jobs = [(job, agent) for agent in CRAWLER_USER_AGENTS for job in jobs if job[0] in CRAWLER_SMOKE_PATHS]
     cases = [(job, None) for job in jobs] + crawler_jobs
 
@@ -719,15 +744,16 @@ def main():
     with ThreadPoolExecutor(max_workers=6) as pool:
         failures = [issue for issue in pool.map(check, cases) if issue]
         if deployed_assets is not None:
-            vite_paths = set()
+            paths = set()
             while not deployed_assets.empty():
-                vite_paths.update(deployed_assets.get_nowait())
-            vite_cases = [
-                ((path, "asset", ASSET_MIME_TYPES[Path(path).suffix]), None) for path in sorted(vite_paths)
+                paths.update(deployed_assets.get_nowait())
+            deployment_cases = [
+                ((path, "cover-asset" if COVER_VARIANT.fullmatch(path) else "asset", ASSET_MIME_TYPES[Path(path).suffix]), None)
+                for path in sorted(paths)
             ]
-            failures.extend(issue for issue in pool.map(check, vite_cases) if issue)
-            checks += len(vite_cases)
-            assets += len(vite_cases) - expected_vite_count
+            failures.extend(issue for issue in pool.map(check, deployment_cases) if issue)
+            checks += len(deployment_cases)
+            assets += len(deployment_cases) - expected_rebuildable_count
     mode = "preview" if args.preview else "production rules"
     print(f"{origin} ({mode}): {checks - len(failures)}/{checks} HTTP checks passed, "
           f"covering {pages} sitemap pages, {assets} static assets and {len(crawler_jobs)} crawler User-Agent probes.")
