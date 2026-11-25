@@ -6289,12 +6289,12 @@
     "slug": "data-center-flood-zone-screening",
     "topic": "Data Centers",
     "title": "Check FEMA flood zones by address for data centers",
-    "summary": "Check FEMA flood zones at three data center addresses in Clifton, Northlake and Atlanta. See where the address point and tax parcel match and how to verify the site.",
+    "summary": "Check FEMA flood zones at five public data center addresses. See how parcel and building checks differ, and why Tampa’s hurricane evacuation zone is separate.",
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
     "updatedDate": "2026-11-24",
-    "image": "/blog/industry/data-center-flood-zone-screening.webp?v=39efb5b8",
+    "image": "/blog/industry/data-center-flood-dallas-tampa.webp?v=f9641b1d",
     "dataset": {
       "name": "FEMA flood zone checks for three public data center addresses",
       "description": "FEMA checks for three address points and the matched tax parcels in Clifton and Atlanta. Includes measured flood zone overlap, nearby Northlake parcel records, map panel dates and exact source queries.",
@@ -6396,7 +6396,112 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-dallas-tampa-flood",
+        "name": "Dallas and Tampa data center flood maps and location evidence",
+        "description": "FEMA zone and panel checks for municipal address records and tax parcels at two public data center addresses. Includes Tampa’s independently matched building footprint and the separate Hillsborough hurricane evacuation intersection.",
+        "datePublished": "2026-11-24",
+        "spatialCoverage": "Dallas, Texas, and Tampa, Florida, United States",
+        "temporalCoverage": "2026-11-24",
+        "sources": [
+          "https://www.databank.com/data-centers/dallas/400-south-akard/",
+          "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/ArcGIS/rest/services/AddressPoints/FeatureServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDRESSID%2CHOUSENUMBER%2CFULLSTREETNAME%2CSTATUS%2CACCOUNTNUMBER%2CZIPCODE%2CADDRESSTYPE&returnGeometry=true&where=HOUSENUMBER%3D400+AND+NAME%3D%27AKARD%27+AND+STREETPREDIRECTION%3D%27S%27",
+          "https://maps.dcad.org/prdwa/rest/services/Property/ParcelQuery/MapServer/4/query?f=geojson&outSR=4326&returnGeometry=true&where=PARCELID%3D%2700000101136000000%27&outFields=OBJECTID%2CPARCELID%2CSITEADDRESS%2CLASTUPDATE%2CREVALYR",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID",
+          "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-96.7989690602%2C32.7775839795%2C-96.7974447728%2C32.7786847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CBUILD_ID%2CPROP_ADDR%2CPROP_CITY%2CPROP_ZIP%2CIMAGE_DATE%2CPROD_DATE",
+          "https://365datacenters.com/south-florida/",
+          "https://maps.hillsboroughcounty.org/arcgis/rest/services/TampaData/TampaSyncData/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CSITEADDID%2CSTRAP%2CFOLIO%2CFULLADDR%2CFULLADDRUNIT%2CPRIMARY_%2CSTATUS%2CPLACENAME%2CZIP%2CPOINTTYPE&returnGeometry=true&where=ADDRNUM%3D655+AND+STREETNAME%3D%27FRANKLIN%27+AND+DIRPRE%3D%27N%27",
+          "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/ParcelsInfo/FeatureServer/0/query?f=geojson&outSR=4326&returnGeometry=true&where=STRAP%3D%271829244ZI000046000010A%27+OR+FOLIO%3D%27193449.0000%27&outFields=OBJECTID%2CSTRAP%2CFOLIO%2CSITE_ADDR%2CSITE_CITY",
+          "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/BuildingFootprint/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CBUILDINGID%2CSTRAP%2CFOLIO%2CFULLADDRESS%2CYR_ROLL&returnGeometry=true&where=FULLADDRESS+LIKE+%27655+N+FRANKLIN%25%27",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID",
+          "https://maps.hillsboroughcounty.org/arcgis1a/rest/services/SDEMapServices/EmergencyOperations/MapServer/4/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-82.4587510854%2C27.9493179558%2C-82.4579142540%2C27.9500649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CZONE",
+          "https://www.tampa.gov/emergency-management/programs/evacuation-zones"
+        ],
+        "sourceDetails": [
+          {
+            "title": "DataBank public listing for 400 South Akard Street",
+            "publisher": "DataBank",
+            "url": "https://www.databank.com/data-centers/dallas/400-south-akard/"
+          },
+          {
+            "title": "Dallas Development Services address point and account number",
+            "publisher": "City of Dallas",
+            "url": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/ArcGIS/rest/services/AddressPoints/FeatureServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDRESSID%2CHOUSENUMBER%2CFULLSTREETNAME%2CSTATUS%2CACCOUNTNUMBER%2CZIPCODE%2CADDRESSTYPE&returnGeometry=true&where=HOUSENUMBER%3D400+AND+NAME%3D%27AKARD%27+AND+STREETPREDIRECTION%3D%27S%27"
+          },
+          {
+            "title": "Dallas Appraisal District parcel 00000101136000000",
+            "publisher": "Dallas Central Appraisal District",
+            "url": "https://maps.dcad.org/prdwa/rest/services/Property/ParcelQuery/MapServer/4/query?f=geojson&outSR=4326&returnGeometry=true&where=PARCELID%3D%2700000101136000000%27&outFields=OBJECTID%2CPARCELID%2CSITEADDRESS%2CLASTUPDATE%2CREVALYR"
+          },
+          {
+            "title": "FEMA hazard polygons intersecting the Dallas parcel query",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE"
+          },
+          {
+            "title": "Effective FEMA panel 48113C0345J at 400 South Akard Street",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID"
+          },
+          {
+            "title": "USA Structures footprint results around the Dallas parcel",
+            "publisher": "FEMA and Oak Ridge National Laboratory",
+            "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-96.7989690602%2C32.7775839795%2C-96.7974447728%2C32.7786847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CBUILD_ID%2CPROP_ADDR%2CPROP_CITY%2CPROP_ZIP%2CIMAGE_DATE%2CPROD_DATE"
+          },
+          {
+            "title": "365 Data Centers Tampa public address listing",
+            "publisher": "365 Data Centers",
+            "url": "https://365datacenters.com/south-florida/"
+          },
+          {
+            "title": "Hillsborough County address records for 655 North Franklin Street",
+            "publisher": "Hillsborough County",
+            "url": "https://maps.hillsboroughcounty.org/arcgis/rest/services/TampaData/TampaSyncData/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CSITEADDID%2CSTRAP%2CFOLIO%2CFULLADDR%2CFULLADDRUNIT%2CPRIMARY_%2CSTATUS%2CPLACENAME%2CZIP%2CPOINTTYPE&returnGeometry=true&where=ADDRNUM%3D655+AND+STREETNAME%3D%27FRANKLIN%27+AND+DIRPRE%3D%27N%27"
+          },
+          {
+            "title": "Hillsborough County parcel folio 193449.0000 in the Tampa GIS parcel layer",
+            "publisher": "City of Tampa and Hillsborough County Property Appraiser",
+            "url": "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/ParcelsInfo/FeatureServer/0/query?f=geojson&outSR=4326&returnGeometry=true&where=STRAP%3D%271829244ZI000046000010A%27+OR+FOLIO%3D%27193449.0000%27&outFields=OBJECTID%2CSTRAP%2CFOLIO%2CSITE_ADDR%2CSITE_CITY"
+          },
+          {
+            "title": "Tampa building footprint matched by full address and parcel identifiers",
+            "publisher": "City of Tampa",
+            "url": "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/BuildingFootprint/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CBUILDINGID%2CSTRAP%2CFOLIO%2CFULLADDRESS%2CYR_ROLL&returnGeometry=true&where=FULLADDRESS+LIKE+%27655+N+FRANKLIN%25%27"
+          },
+          {
+            "title": "FEMA hazard polygons for the Tampa parcel and matched building",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE"
+          },
+          {
+            "title": "Effective FEMA panel 12057C0354J at 655 North Franklin Street",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID"
+          },
+          {
+            "title": "Hillsborough County hurricane evacuation map intersecting the Tampa parcel",
+            "publisher": "Hillsborough County",
+            "url": "https://maps.hillsboroughcounty.org/arcgis1a/rest/services/SDEMapServices/EmergencyOperations/MapServer/4/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-82.4587510854%2C27.9493179558%2C-82.4579142540%2C27.9500649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CZONE"
+          },
+          {
+            "title": "City of Tampa explanation of flood and hurricane evacuation zones",
+            "publisher": "City of Tampa",
+            "url": "https://www.tampa.gov/emergency-management/programs/evacuation-zones"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Dallas and Tampa flood-map checks",
+            "path": "/blog/data-center-flood-dallas-tampa.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "data-center-seismic-risk-screening",

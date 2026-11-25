@@ -2684,12 +2684,13 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "Check FEMA flood zones by address for data centers",
-  "description": "Check FEMA flood zones at three data center addresses in Clifton, Northlake and Atlanta. See where the address point and tax parcel match and how to verify the site.",
+  "description": "Check FEMA flood zones at five public data center addresses. See how parcel and building checks differ, and why Tampa’s hurricane evacuation zone is separate.",
   "date": "2026-11-20",
-  "readMinutes": 7,
-  "intro": "Start a data center flood check with FEMA’s map and confirm where the address point lands. At 55 Marietta Street NW in Atlanta, the city’s address point and the full mapped tax parcel fall in unshaded Zone X. At 501 Northwest Avenue in Northlake, the address point also falls in Zone X, but the nearby county parcels use other street numbers. Check the parcel, building, electrical yard and access road separately before making a site decision.",
+  "readMinutes": 8,
+  "intro": "Start with FEMA’s effective map, then check the boundary that matters to your decision. At 655 North Franklin Street in Tampa, the county address point falls about 19 meters outside the matched building. Both are in unshaded Zone X, and the property lies in Hillsborough County’s hurricane evacuation Zone C. Use the cases below to check an address point, parcel and building separately.",
   "takeaways": [
    "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
+   "In Tampa, the address point, parcel and building matched to FEMA Zone X. The county hurricane evacuation map puts the parcel in Zone C.",
    "Keep the FEMA zone subtype, map panel, effective date and any applicable map revisions with the result.",
    "Check the building, electrical yard and access route separately. Each can intersect a different hazard area.",
    "Use the local floodplain administrator and a qualified engineer to resolve boundary, elevation and floodway questions before design or acquisition."
@@ -2771,6 +2772,81 @@
       "label": "Download the FEMA point and parcel checks",
       "format": "JSON",
       "path": "/blog/data-center-fema-flood-zone-address-checks.json"
+     }
+    ]
+   },
+   {
+    "id": "dallas-tampa-flood-map",
+    "heading": "FEMA flood zones at 400 South Akard Street and 655 North Franklin Street",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "We matched the Dallas and Tampa address records to their tax parcels, then checked the points and mapped polygons separately on November 24, 2026. Both tax parcels are entirely in unshaded FEMA Zone X. Only Tampa yielded a separately matched building footprint in the sources checked.",
+      "sourceIds": [
+       "dallas-flood-address",
+       "dallas-flood-parcel",
+       "dallas-flood-zones",
+       "tampa-flood-address",
+       "tampa-flood-parcel",
+       "tampa-flood-building",
+       "tampa-flood-zones"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Data center address",
+       "FEMA point and parcel results",
+       "Building and other evidence"
+      ],
+      "rows": [
+       [
+        "400 South Akard Street, Dallas, TX",
+        "Unshaded Zone X at the city’s point and across DCAD parcel 00000101136000000. FEMA panel 48113C0345J took effect August 23, 2001.",
+        "The USA Structures query returned no footprint matching this address or containing the city point. Use a current building plan to complete a separate footprint check."
+       ],
+       [
+        "655 North Franklin Street, Tampa, FL",
+        "Unshaded Zone X at the county point, across folio 193449.0000 and across the city building footprint. FEMA panel 12057C0354J took effect October 7, 2021.",
+        "The current address point is about 19 meters outside the footprint. The building and parcel share the same address and parcel identifiers. Hillsborough County maps the entire parcel in hurricane evacuation Zone C."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "dallas-flood-operator",
+        "dallas-flood-address",
+        "dallas-flood-parcel",
+        "dallas-flood-zones",
+        "dallas-flood-panels",
+        "dallas-footprint-gap"
+       ],
+       [
+        "tampa-flood-operator",
+        "tampa-flood-address",
+        "tampa-flood-parcel",
+        "tampa-flood-building",
+        "tampa-flood-zones",
+        "tampa-flood-panels",
+        "tampa-evacuation-layer"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Use the FEMA panel for the mapped flood designation and the county evacuation map for hurricane planning. An evacuation zone indicates where officials may order evacuations under particular conditions. Check the county’s instructions during an event. Assess local drainage, building and equipment elevations, and access separately for a property decision.",
+      "sourceIds": [
+       "fema-zones",
+       "tampa-evacuation-meaning",
+       "tampa-evacuation-layer"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the Dallas and Tampa flood-map checks",
+      "format": "JSON",
+      "path": "/blog/data-center-flood-dallas-tampa.json",
+      "datasetAnchor": "dataset-dallas-tampa-flood"
      }
     ]
    },
@@ -3003,6 +3079,26 @@
     ]
    },
    {
+    "question": "What FEMA flood zone covers 400 South Akard Street in Dallas?",
+    "answer": "Our November 24, 2026 check found unshaded Zone X at the city’s address point and across the mapped tax parcel. The effective panel is 48113C0345J, dated August 23, 2001. This check covers the point and tax parcel.",
+    "sourceIds": [
+     "dallas-flood-address",
+     "dallas-flood-parcel",
+     "dallas-flood-zones",
+     "dallas-flood-panels"
+    ]
+   },
+   {
+    "question": "What flood and evacuation zones cover 655 North Franklin Street in Tampa?",
+    "answer": "Our November 24, 2026 check found unshaded FEMA Zone X at the address point, throughout the mapped parcel and throughout the matched building footprint. The same parcel lies in Hillsborough County hurricane evacuation Zone C. The labels serve different purposes.",
+    "sourceIds": [
+     "tampa-flood-building",
+     "tampa-flood-zones",
+     "tampa-evacuation-layer",
+     "tampa-evacuation-meaning"
+    ]
+   },
+   {
     "question": "Can you build a data center in a FEMA flood zone?",
     "answer": "Permitting depends on the local ordinance, flood zone, floodway, proposed use and design. Ask the local floodplain administrator what standards and approvals apply. Review the pad, electrical gear and access plans with a qualified engineer.",
     "sourceIds": [
@@ -3165,6 +3261,104 @@
     "title": "Earth API workflow for FEMA point and parcel checks",
     "url": "https://docs.invariant-ai.com/check-flood-zone-by-address",
     "publisher": "Invariant"
+   },
+   {
+    "id": "dallas-flood-operator",
+    "title": "DataBank public listing for 400 South Akard Street",
+    "url": "https://www.databank.com/data-centers/dallas/400-south-akard/",
+    "publisher": "DataBank",
+    "linkLabel": "DataBank Dallas address"
+   },
+   {
+    "id": "dallas-flood-address",
+    "title": "Dallas Development Services address point and account number",
+    "url": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/ArcGIS/rest/services/AddressPoints/FeatureServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDRESSID%2CHOUSENUMBER%2CFULLSTREETNAME%2CSTATUS%2CACCOUNTNUMBER%2CZIPCODE%2CADDRESSTYPE&returnGeometry=true&where=HOUSENUMBER%3D400+AND+NAME%3D%27AKARD%27+AND+STREETPREDIRECTION%3D%27S%27",
+    "publisher": "City of Dallas",
+    "linkLabel": "Dallas address point"
+   },
+   {
+    "id": "dallas-flood-parcel",
+    "title": "Dallas Appraisal District parcel 00000101136000000",
+    "url": "https://maps.dcad.org/prdwa/rest/services/Property/ParcelQuery/MapServer/4/query?f=geojson&outSR=4326&returnGeometry=true&where=PARCELID%3D%2700000101136000000%27&outFields=OBJECTID%2CPARCELID%2CSITEADDRESS%2CLASTUPDATE%2CREVALYR",
+    "publisher": "Dallas Central Appraisal District",
+    "linkLabel": "Dallas parcel"
+   },
+   {
+    "id": "dallas-flood-zones",
+    "title": "FEMA hazard polygons intersecting the Dallas parcel query",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE",
+    "publisher": "FEMA",
+    "linkLabel": "Dallas hazard polygons"
+   },
+   {
+    "id": "dallas-flood-panels",
+    "title": "Effective FEMA panel 48113C0345J at 400 South Akard Street",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID",
+    "publisher": "FEMA",
+    "linkLabel": "Dallas map panel"
+   },
+   {
+    "id": "dallas-footprint-gap",
+    "title": "USA Structures footprint results around the Dallas parcel",
+    "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-96.7989690602%2C32.7775839795%2C-96.7974447728%2C32.7786847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CBUILD_ID%2CPROP_ADDR%2CPROP_CITY%2CPROP_ZIP%2CIMAGE_DATE%2CPROD_DATE",
+    "publisher": "FEMA and Oak Ridge National Laboratory",
+    "linkLabel": "Dallas footprint candidates"
+   },
+   {
+    "id": "tampa-flood-operator",
+    "title": "365 Data Centers Tampa public address listing",
+    "url": "https://365datacenters.com/south-florida/",
+    "publisher": "365 Data Centers",
+    "linkLabel": "365 Tampa address"
+   },
+   {
+    "id": "tampa-flood-address",
+    "title": "Hillsborough County address records for 655 North Franklin Street",
+    "url": "https://maps.hillsboroughcounty.org/arcgis/rest/services/TampaData/TampaSyncData/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CSITEADDID%2CSTRAP%2CFOLIO%2CFULLADDR%2CFULLADDRUNIT%2CPRIMARY_%2CSTATUS%2CPLACENAME%2CZIP%2CPOINTTYPE&returnGeometry=true&where=ADDRNUM%3D655+AND+STREETNAME%3D%27FRANKLIN%27+AND+DIRPRE%3D%27N%27",
+    "publisher": "Hillsborough County",
+    "linkLabel": "Tampa county address records"
+   },
+   {
+    "id": "tampa-flood-parcel",
+    "title": "Hillsborough County parcel folio 193449.0000 in the Tampa GIS parcel layer",
+    "url": "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/ParcelsInfo/FeatureServer/0/query?f=geojson&outSR=4326&returnGeometry=true&where=STRAP%3D%271829244ZI000046000010A%27+OR+FOLIO%3D%27193449.0000%27&outFields=OBJECTID%2CSTRAP%2CFOLIO%2CSITE_ADDR%2CSITE_CITY",
+    "publisher": "City of Tampa and Hillsborough County Property Appraiser",
+    "linkLabel": "Tampa parcel"
+   },
+   {
+    "id": "tampa-flood-building",
+    "title": "Tampa building footprint matched by full address and parcel identifiers",
+    "url": "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/BuildingFootprint/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CBUILDINGID%2CSTRAP%2CFOLIO%2CFULLADDRESS%2CYR_ROLL&returnGeometry=true&where=FULLADDRESS+LIKE+%27655+N+FRANKLIN%25%27",
+    "publisher": "City of Tampa",
+    "linkLabel": "Tampa building outline"
+   },
+   {
+    "id": "tampa-flood-zones",
+    "title": "FEMA hazard polygons for the Tampa parcel and matched building",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE",
+    "publisher": "FEMA",
+    "linkLabel": "Tampa hazard polygons"
+   },
+   {
+    "id": "tampa-flood-panels",
+    "title": "Effective FEMA panel 12057C0354J at 655 North Franklin Street",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID",
+    "publisher": "FEMA",
+    "linkLabel": "Tampa map panel"
+   },
+   {
+    "id": "tampa-evacuation-layer",
+    "title": "Hillsborough County hurricane evacuation map intersecting the Tampa parcel",
+    "url": "https://maps.hillsboroughcounty.org/arcgis1a/rest/services/SDEMapServices/EmergencyOperations/MapServer/4/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-82.4587510854%2C27.9493179558%2C-82.4579142540%2C27.9500649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CZONE",
+    "publisher": "Hillsborough County",
+    "linkLabel": "Hurricane evacuation map"
+   },
+   {
+    "id": "tampa-evacuation-meaning",
+    "title": "City of Tampa explanation of flood and hurricane evacuation zones",
+    "url": "https://www.tampa.gov/emergency-management/programs/evacuation-zones",
+    "publisher": "City of Tampa",
+    "linkLabel": "What evacuation zones mean"
    }
   ],
   "relatedSlugs": [
@@ -3196,7 +3390,36 @@
     "atlanta-fema-overlap",
     "atlanta-fema-panel"
    ]
-  }
+  },
+  "coverFile": "data-center-flood-dallas-tampa.webp",
+  "coverAlt": "Two maps show FEMA Zone X across the mapped Dallas and Tampa tax parcels. The Tampa map also shows the city building outline and the address point about 19 meters away. Hillsborough County maps the Tampa parcel in hurricane evacuation Zone C.",
+  "coverCaption": "FEMA effective-map checks for 400 South Akard Street in Dallas and 655 North Franklin Street in Tampa. In Tampa, the city footprint shares parcel folio 193449.0000 with the county address record.",
+  "additionalDatasets": [
+   {
+    "anchor": "dataset-dallas-tampa-flood",
+    "name": "Dallas and Tampa data center flood maps and location evidence",
+    "description": "FEMA zone and panel checks for municipal address records and tax parcels at two public data center addresses. Includes Tampa’s independently matched building footprint and the separate Hillsborough hurricane evacuation intersection.",
+    "datePublished": "2026-11-24",
+    "spatialCoverage": "Dallas, Texas, and Tampa, Florida, United States",
+    "temporalCoverage": "2026-11-24",
+    "sourceIds": [
+     "dallas-flood-operator",
+     "dallas-flood-address",
+     "dallas-flood-parcel",
+     "dallas-flood-zones",
+     "dallas-flood-panels",
+     "dallas-footprint-gap",
+     "tampa-flood-operator",
+     "tampa-flood-address",
+     "tampa-flood-parcel",
+     "tampa-flood-building",
+     "tampa-flood-zones",
+     "tampa-flood-panels",
+     "tampa-evacuation-layer",
+     "tampa-evacuation-meaning"
+    ]
+   }
+  ]
  },
  {
   "slug": "data-center-seismic-risk-screening",
