@@ -6588,10 +6588,11 @@
     "slug": "commercial-property-replacement-cost-by-address",
     "topic": "Data & APIs",
     "title": "Commercial Property Replacement Cost by Address",
-    "summary": "Look up modeled commercial building replacement cost, separate it from market value and tax assessment, and verify the structure before using it in underwriting.",
+    "summary": "Look up commercial building replacement cost by address. Compare modeled values with city records, and see what a documented Florida rebuild tells an underwriter.",
     "date": "November 24, 2026",
     "dateTime": "2026-11-24",
     "region": "United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/commercial-property-replacement-cost-by-address.webp?v=a48e1b79",
     "dataset": {
       "name": "32 Old Slip modeled replacement cost and NYC tax assessment",
@@ -6657,7 +6658,45 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-sanibel-reconstruction-cost",
+        "name": "Sanibel Fire Station 172 reconstruction cost and insurance authorization",
+        "description": "Signed construction and flood insurance authorizations and audited construction spending for the rebuild of Sanibel Fire Station 172. Includes the published completion milestones and labels the contract, estimate, quote and unconfirmed policy terms separately.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "Fire Station 172, Sanibel, Lee County, Florida, United States",
+        "sources": [
+          "https://www.sanibelfire.com/files/34e87b7ca/RESOLUTION%2B24-010_SIGNED.pdf",
+          "https://www.sanibelfire.com/files/3a0252463/2025%2Bsanibel%2Bfire%2Brescue%2Bdistrict.pdf",
+          "https://www.sanibelfire.com/files/9b51dbb92/RESOLUTION%2B25-025_SIGNED.pdf"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Resolution 24-010, signed March 13, 2024",
+            "publisher": "Sanibel Fire & Rescue District",
+            "url": "https://www.sanibelfire.com/files/34e87b7ca/RESOLUTION%2B24-010_SIGNED.pdf"
+          },
+          {
+            "title": "Audited FY2025 financial statements, Note L, pages 54 and 55",
+            "publisher": "Sanibel Fire & Rescue District",
+            "url": "https://www.sanibelfire.com/files/3a0252463/2025%2Bsanibel%2Bfire%2Brescue%2Bdistrict.pdf"
+          },
+          {
+            "title": "Resolution 25-025, signed December 10, 2025",
+            "publisher": "Sanibel Fire & Rescue District",
+            "url": "https://www.sanibelfire.com/files/9b51dbb92/RESOLUTION%2B25-025_SIGNED.pdf"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Sanibel contract, spending and flood authorization records",
+            "path": "/blog/sanibel-fire-station-172-reconstruction-cost.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "ai-compute-capacity-for-neoclouds",

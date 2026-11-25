@@ -23586,6 +23586,10 @@
               {
                 "slug": "commercial-property-statement-of-values",
                 "label": "Reconcile shared addresses and mixed valuations on a public SOV"
+              },
+              {
+                "slug": "commercial-property-replacement-cost-by-address",
+                "label": "Compare a documented rebuild with the property insurance records"
               }
             ]
           },
@@ -32145,10 +32149,10 @@
   {
     "slug": "commercial-property-replacement-cost-by-address",
     "title": "Commercial Property Replacement Cost by Address",
-    "description": "Look up modeled commercial building replacement cost, separate it from market value and tax assessment, and verify the structure before using it in underwriting.",
+    "description": "Look up commercial building replacement cost by address. Compare modeled values with city records, and see what a documented Florida rebuild tells an underwriter.",
     "date": "2026-11-24",
     "topic": "Data & APIs",
-    "readMinutes": 6,
+    "readMinutes": 8,
     "region": "United States",
     "coverAlt": "Comparison of four amounts for 32 Old Slip. The federal model totals $331.97 million full reconstruction and $276.05 million depreciated. The city reports $283.52 million in tax market value and $127.58 million actual assessed value.",
     "coverCaption": "32 Old Slip, Manhattan. Invariant summed seven 2026 National Structure Inventory records within one NYC footprint and matched the lot to its FY2027 final tax roll. The federal model uses August 2025 prices.",
@@ -32156,7 +32160,8 @@
     "takeaways": [
       "Use the 2026 National Structure Inventory for an initial comparison of full and depreciated reconstruction costs. Both estimates use approximately August 2025 prices.",
       "Match the federal points to the intended building. At 32 Old Slip, seven occupancy records share one location and footprint ID. Keeping only the largest row would omit about $28.8 million from the published model’s full replacement total.",
-      "Check the estimator’s floor area, occupancy, construction and valuation date before relying on it. For underwriting, resolve discrepancies against the insured schedule, building records and the carrier’s accepted estimate."
+      "Check the estimator’s floor area, occupancy, construction and valuation date before relying on it. For underwriting, resolve discrepancies against the insured schedule, building records and the carrier’s accepted estimate.",
+      "Use an actual rebuild to check which costs the estimate covers. Verify insurance limits and valuation terms in the policy documents."
     ],
     "sections": [
       {
@@ -32255,7 +32260,7 @@
               ],
               [
                 "NYC FY2027 tax market value",
-              "$283.52 million",
+                "$283.52 million",
                 "Final roll value for the entire tax lot."
               ],
               [
@@ -32311,6 +32316,97 @@
             "path": "/blog/commercial-property-replacement-cost-by-address.json",
             "label": "Download the seven matched records and FY2027 assessment",
             "description": "Includes the city footprint, query URLs, original field names, sums and area comparison."
+          }
+        ]
+      },
+      {
+        "id": "sanibel-reconstruction-cost",
+        "heading": "Can a construction contract establish replacement cost for insurance?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A rebuild contract establishes the price for a defined scope at a given date. For insurance, use that scope to check the carrier’s reconstruction estimate. At 5171 Sanibel Captiva Road in Florida, the district rebuilt Fire Station 172 after Hurricane Ian. Its signed resolutions and audited financial statements give underwriters several different records to reconcile at one address.",
+            "sourceIds": [
+              "sanibel-construction-authorization",
+              "sanibel-fy2025-audit",
+              "sanibel-flood-insurance-authorization"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What the district reported",
+              "How to use it"
+            ],
+            "rows": [
+              [
+                "Contract authorization, March 13, 2024",
+                "$7,439,017.49 for the construction contract, with up to $500,000 separately authorized for contingencies.",
+                "Keep the authorization and contingency ceiling separate. Request the executed scope and change orders."
+              ],
+              [
+                "Construction spending at September 30, 2025",
+                "$8,249,324 spent on construction. The audit separately estimated total construction costs at approximately $8.5 million.",
+                "Record the spending cutoff and keep the estimate marked as provisional. Request a cost breakdown before comparing the amounts."
+              ],
+              [
+                "Flood insurance authorization, December 10, 2025",
+                "The board authorized the chief to obtain flood insurance. The resolution records a quoted annual premium of $11,500.",
+                "Log the quote and authorization as separate records. Verify the issued policy, building limit, deductible and dates."
+              ],
+              [
+                "Permanent certificate of occupancy, February 13, 2026",
+                "The district reported substantial completion in November 2025 and receipt of the permanent certificate in February 2026.",
+                "Use both milestones to date the building record and ask for the final closeout costs separately."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "sanibel-construction-authorization"
+              ],
+              [
+                "sanibel-fy2025-audit"
+              ],
+              [
+                "sanibel-flood-insurance-authorization"
+              ],
+              [
+                "sanibel-fy2025-audit"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To use this kind of evidence in a renewal, match the building on the statement of values to the project address and scope. Ask which costs belong to the insured building and which cover site work, contents, temporary operations or design. Then use the insurer’s accepted estimate and check the issued policy’s limits and treatment of debris removal and code upgrades. The records cited here leave final audited project cost and bound flood terms unconfirmed.",
+            "sourceIds": [
+              "sanibel-construction-authorization",
+              "sanibel-fy2025-audit",
+              "sanibel-flood-insurance-authorization",
+              "insurance"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/sanibel-fire-station-172-reconstruction-cost.json",
+            "format": "JSON",
+            "label": "Download the Sanibel contract, spending and flood authorization records",
+            "datasetAnchor": "dataset-sanibel-reconstruction-cost"
+          },
+          {
+            "type": "links",
+            "label": "Continue the renewal review",
+            "items": [
+              {
+                "slug": "commercial-property-statement-of-values",
+                "label": "Reconcile building and contents values before renewal"
+              },
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check the FEMA flood map effective on a past date"
+              }
+            ]
           }
         ]
       },
@@ -32454,6 +32550,16 @@
           "assessed",
           "insurance"
         ]
+      },
+      {
+        "question": "Can a construction contract or permit value establish a building insurance limit?",
+        "answer": "Use its dated scope to check a reconstruction estimate. The contract or permit covers the work described in the record. Confirm the carrier’s valuation and the issued policy’s building limit, endorsements and deductible separately.",
+        "sourceIds": [
+          "sanibel-construction-authorization",
+          "sanibel-fy2025-audit",
+          "sanibel-flood-insurance-authorization",
+          "insurance"
+        ]
       }
     ],
     "sources": [
@@ -32546,6 +32652,27 @@
         "title": "Commercial reconstruction cost data and methods",
         "url": "https://www.cotality.com/resources/commercial-real-estate-overview",
         "publisher": "Cotality"
+      },
+      {
+        "id": "sanibel-construction-authorization",
+        "title": "Resolution 24-010, signed March 13, 2024",
+        "url": "https://www.sanibelfire.com/files/34e87b7ca/RESOLUTION%2B24-010_SIGNED.pdf",
+        "publisher": "Sanibel Fire & Rescue District",
+        "linkLabel": "Contract and contingency authorization"
+      },
+      {
+        "id": "sanibel-fy2025-audit",
+        "title": "Audited FY2025 financial statements, Note L, pages 54 and 55",
+        "url": "https://www.sanibelfire.com/files/3a0252463/2025%2Bsanibel%2Bfire%2Brescue%2Bdistrict.pdf",
+        "publisher": "Sanibel Fire & Rescue District",
+        "linkLabel": "Spending, estimate and occupancy milestones"
+      },
+      {
+        "id": "sanibel-flood-insurance-authorization",
+        "title": "Resolution 25-025, signed December 10, 2025",
+        "url": "https://www.sanibelfire.com/files/9b51dbb92/RESOLUTION%2B25-025_SIGNED.pdf",
+        "publisher": "Sanibel Fire & Rescue District",
+        "linkLabel": "Flood insurance authorization"
       }
     ],
     "relatedSlugs": [
@@ -32569,6 +32696,21 @@
         "nsi-model",
         "nsi-limits"
       ]
-    }
+    },
+    "updatedDate": "2026-11-25",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-sanibel-reconstruction-cost",
+        "name": "Sanibel Fire Station 172 reconstruction cost and insurance authorization",
+        "description": "Signed construction and flood insurance authorizations and audited construction spending for the rebuild of Sanibel Fire Station 172. Includes the published completion milestones and labels the contract, estimate, quote and unconfirmed policy terms separately.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "Fire Station 172, Sanibel, Lee County, Florida, United States",
+        "sourceIds": [
+          "sanibel-construction-authorization",
+          "sanibel-fy2025-audit",
+          "sanibel-flood-insurance-authorization"
+        ]
+      }
+    ]
   }
 ]
