@@ -1,5 +1,51 @@
 [
   {
+    "slug": "fire-sprinkler-records-by-address",
+    "topic": "Data & APIs",
+    "title": "Fire Sprinkler Records by Address for Underwriting",
+    "summary": "Find commercial sprinkler permits by address. Compare work scope, sign-off and inspection records using three NYC filings for one office building.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/fire-sprinkler-records-by-address.webp?v=fc12f58f",
+    "dataset": {
+      "name": "NYC sprinkler permits and job sign-off records for 1221 Avenue of the Americas",
+      "description": "Three NYC sprinkler jobs and their work permits for BIN 1022693, with address aliases, floor scope, permit issuance, job status, sign-off evidence and explicit gaps in current coverage or condition.",
+      "spatialCoverage": "1221 Avenue of the Americas, Manhattan, New York City, United States",
+      "temporalCoverage": "2026-02-18/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/w9ak-ipjd.json?%24select=job_filing_number%2Cfiling_status%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Csprinkler_work_type%2Cfiling_date%2Capproved_date%2Cfirst_permit_date%2Csignoff_date%2Ccurrent_status_date%2Cjob_description&%24where=bin%3D%271022693%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number&%24limit=20",
+        "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=work_permit%2Cjob_filing_number%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Cwork_type%2Cpermit_status%2Cissued_date&%24where=bin%3D%271022693%27+AND+work_type%3D%27Sprinklers%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number%2Cwork_permit&%24limit=20",
+        "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1022693"
+      ],
+      "sourceDetails": [
+        {
+          "title": "DOB NOW job filing rows for three selected sprinkler jobs on BIN 1022693",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/w9ak-ipjd.json?%24select=job_filing_number%2Cfiling_status%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Csprinkler_work_type%2Cfiling_date%2Capproved_date%2Cfirst_permit_date%2Csignoff_date%2Ccurrent_status_date%2Cjob_description&%24where=bin%3D%271022693%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number&%24limit=20"
+        },
+        {
+          "title": "DOB NOW approved sprinkler work permit rows for the same three jobs",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=work_permit%2Cjob_filing_number%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Cwork_type%2Cpermit_status%2Cissued_date&%24where=bin%3D%271022693%27+AND+work_type%3D%27Sprinklers%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number%2Cwork_permit&%24limit=20"
+        },
+        {
+          "title": "NYC building footprint and base tax lot for BIN 1022693",
+          "publisher": "NYC Office of Technology and Innovation",
+          "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1022693"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the three sprinkler filings and permit matches",
+          "path": "/blog/fire-sprinkler-records-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "foot-traffic-data-by-address",
     "topic": "Data & APIs",
     "title": "Foot Traffic Data by Address for Retail Site Selection",

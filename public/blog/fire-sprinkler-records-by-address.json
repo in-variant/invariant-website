@@ -1,0 +1,77 @@
+{
+  "title": "NYC sprinkler permits and job sign-off records for 1221 Avenue of the Americas",
+  "checked_on": "2026-11-24",
+  "method": "Query the exact job filings and sprinkler work permits for BIN 1022693. Join by BIN and job filing number and retain the work permit ID. The three selected jobs illustrate different statuses and scopes at the same building. A null is a missing value in the checked rows or an inference left open. Status timestamps are preserved as reported by the city without an inferred time zone.",
+  "building": {
+    "address": "1221 Avenue of the Americas, New York, NY",
+    "bin": "1022693",
+    "base_bbl": "1010010029",
+    "street_name_alias_in_permit": "6 AVENUE"
+  },
+  "observations": [
+    {
+      "job_filing_number": "M01342903-I1",
+      "work_permit": "M01342903-I1-EW-SP",
+      "building_identification_number": "1022693",
+      "address_as_filed": "1221 AVENUE OF THE AMERICAS",
+      "work_on_floor_as_filed": "Sub-cellar #2, Sub-cellar #3, Sub-Cellar #4",
+      "scope_summary": "Subcellars 2 through 4. The description lists heads and piping on two levels and piping only on the third.",
+      "filing_date": "2026-02-18",
+      "permit_issued_date": "2026-05-28",
+      "job_filing_status": "LOC Issued",
+      "job_current_status_date_as_reported": "2026-11-16T20:17:44.000",
+      "work_permit_status": "Signed-off",
+      "job_signoff_date": "2026-11-16"
+    },
+    {
+      "job_filing_number": "M01427068-I1",
+      "work_permit": "M01427068-I1-EW-SP",
+      "building_identification_number": "1022693",
+      "address_as_filed": "1221 AVENUE OF THE AMERICAS",
+      "work_on_floor_as_filed": "Floor Number(s) 15 through 15",
+      "scope_summary": "Alterations to the existing sprinkler system on floor 15.",
+      "filing_date": "2026-10-15",
+      "permit_issued_date": "2026-10-20",
+      "job_filing_status": "Permit Entire",
+      "job_current_status_date_as_reported": "2026-10-20T14:31:10.000",
+      "work_permit_status": "Permit Issued",
+      "job_signoff_date": null
+    },
+    {
+      "job_filing_number": "M01434890-S1",
+      "work_permit": "M01434890-S1-EW-SP",
+      "building_identification_number": "1022693",
+      "address_as_filed": "1221 6 AVENUE",
+      "work_on_floor_as_filed": "Floor Number(s) 11 through 13",
+      "scope_summary": "Alterations to the existing sprinkler system on floors 11 through 13.",
+      "filing_date": "2026-09-08",
+      "permit_issued_date": "2026-09-25",
+      "job_filing_status": "Permit Issued",
+      "job_current_status_date_as_reported": "2026-09-25T14:14:47.000",
+      "work_permit_status": "Permit Issued",
+      "job_signoff_date": null
+    }
+  ],
+  "underwriting_fields": {
+    "full_building_coverage": null,
+    "latest_periodic_inspection_date": null,
+    "active_impairment_status": null
+  },
+  "sources": [
+    {
+      "id": "job-rows",
+      "publisher": "NYC Department of Buildings",
+      "url": "https://data.cityofnewyork.us/resource/w9ak-ipjd.json?%24select=job_filing_number%2Cfiling_status%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Csprinkler_work_type%2Cfiling_date%2Capproved_date%2Cfirst_permit_date%2Csignoff_date%2Ccurrent_status_date%2Cjob_description&%24where=bin%3D%271022693%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number&%24limit=20"
+    },
+    {
+      "id": "permit-rows",
+      "publisher": "NYC Department of Buildings",
+      "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=work_permit%2Cjob_filing_number%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Cwork_type%2Cpermit_status%2Cissued_date&%24where=bin%3D%271022693%27+AND+work_type%3D%27Sprinklers%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number%2Cwork_permit&%24limit=20"
+    },
+    {
+      "id": "city-footprint",
+      "publisher": "NYC Office of Technology and Innovation",
+      "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1022693"
+    }
+  ]
+}

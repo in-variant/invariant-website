@@ -1,5 +1,252 @@
 [
   {
+    "slug": "fire-sprinkler-records-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "Fire Sprinkler Records by Address for Underwriting",
+    "description": "Find commercial sprinkler permits by address. Compare work scope, sign-off and inspection records using three NYC filings for one office building.",
+    "date": "2026-11-24",
+    "readMinutes": 5,
+    "intro": "To check whether a commercial building has sprinklers, match the address to the building ID and read the scope and status of each sprinkler job. Then request current inspection and impairment records for the space being insured. At 1221 Avenue of the Americas in Manhattan, New York City recorded a signed-off subcellar job and separate permits for work on floors 11 through 13 and floor 15.",
+    "coverAlt": "Aerial view of 1221 Avenue of the Americas, with the New York City building footprint outlined in teal.",
+    "coverCaption": "1221 Avenue of the Americas, Manhattan. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant overlaid the city building footprint for BIN 1022693.",
+    "takeaways": [
+      "The city files this building under both Avenue of the Americas and 6 AVENUE. BIN 1022693 links the records.",
+      "The subcellar permit is signed off. One level in that job’s description covers piping only.",
+      "Use the permit history for work scope and closeout. Ask the owner or sprinkler service provider for coverage by floor, the latest inspection report and any current impairments."
+    ],
+    "sections": [
+      {
+        "id": "find-fire-sprinkler-permits",
+        "heading": "How do I look up sprinkler permits for an address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Find the local building department’s permit portal and resolve any address aliases, suites or campus buildings. In NYC, start in DOB NOW and use the Building Identification Number, or BIN, to find filings for one structure. Check the older Building Information System when the work predates DOB NOW."
+          },
+          {
+            "type": "paragraph",
+            "text": "Open the sprinkler job and its work permits. Record the floors or spaces covered, what was altered, the permit status and the date of any closeout. NYC makes approved Letters of Completion available in the public portal by address or job number. Save the document and the date you checked it.",
+            "sourceIds": [
+              "loc-guide"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "nyc-sprinkler-permit-example",
+        "heading": "What three sprinkler jobs at one Manhattan building show",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We matched three DOB NOW filings to three sprinkler work permits on November 24, 2026. One filing uses 1221 6 AVENUE and two use 1221 AVENUE OF THE AMERICAS. All six rows carry BIN 1022693. The city footprint shows the same BIN and base tax lot 1010010029. Using the BIN brings the alternate address into the same building file.",
+            "sourceIds": [
+              "job-rows",
+              "permit-rows",
+              "city-footprint"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Work permit",
+              "Recorded scope",
+              "Status in the checked records"
+            ],
+            "rows": [
+              [
+                "M01342903-I1-EW-SP",
+                "Subcellars 2 through 4. The job describes heads and piping on two levels and piping only on the third.",
+                "Issued May 28, 2026. The work permit shows Signed-off. The job shows LOC Issued and a November 16, 2026 sign-off date."
+              ],
+              [
+                "M01434890-S1-EW-SP",
+                "Existing sprinkler system alterations on floors 11 through 13. Filed under 6 AVENUE.",
+                "Issued September 25, 2026. The work permit shows Permit Issued. The job row leaves the sign-off date blank."
+              ],
+              [
+                "M01427068-I1-EW-SP",
+                "Existing sprinkler system alterations on floor 15.",
+                "Issued October 20, 2026. The job shows Permit Entire and the work permit shows Permit Issued. The job row leaves the sign-off date blank."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "job-rows",
+                "permit-rows"
+              ],
+              [
+                "job-rows",
+                "permit-rows"
+              ],
+              [
+                "job-rows",
+                "permit-rows"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The subcellar closeout applies to the job in that row. For a quote on floor 15, keep the permit and its scope and request a closeout or current protection record for that floor. The selected records leave the building-wide coverage percentage and current impairment status open."
+          },
+          {
+            "type": "download",
+            "label": "Download the three sprinkler filings and permit matches",
+            "path": "/blog/fire-sprinkler-records-by-address.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "sprinkler-evidence-for-underwriting",
+        "heading": "What belongs in a quote or renewal file?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Underwriting field",
+              "Evidence to ask for"
+            ],
+            "rows": [
+              [
+                "Building and protected space",
+                "Match the schedule line to the local building ID and to the floors, tenant spaces or storage areas being insured."
+              ],
+              [
+                "Coverage and system type",
+                "Request the current protection schedule or as-built plans. Record covered areas and any exclusions using the same area basis as the submission."
+              ],
+              [
+                "Installation or alteration date",
+                "Use the issued permit for the authorization date and the scoped Letter of Completion or sign-off record for documented closeout."
+              ],
+              [
+                "Current operating condition",
+                "Ask for the latest inspection, testing and maintenance reports for the applicable system and any open deficiencies or impairments."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "New York City’s Fire Code treats periodic inspection, testing and maintenance as ongoing records. Keep the date of the last verified report and ask about impairments separately. At renewal, add new evidence and retain the scope and supporting documents used at the previous quote.",
+            "sourceIds": [
+              "fire-code"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to retrieve footprint area and building characteristics for a location, along with parcel and hazard context. Verify the building in the local footprint layer, then attach city permit and completion records to its building ID. In a vendor trial, ask for separate fields for permit status, closeout and current inspection evidence, with a source for each."
+          },
+          {
+            "type": "links",
+            "label": "Continue the underwriting review",
+            "items": [
+              {
+                "path": "/data-coverage#property-and-buildings",
+                "label": "Check building and parcel fields in Earth"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial property underwriting APIs"
+              },
+              {
+                "slug": "fire-station-distance-commercial-property-underwriting",
+                "label": "Verify station and hydrant evidence"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I tell whether a commercial building has sprinklers by address?",
+        "answer": "An address can lead to sprinkler permits, plans or closeout records. Match the address to the exact building and read the floors or spaces covered. Ask for current system records when the underwriting decision depends on its present coverage and condition.",
+        "sourceIds": [
+          "loc-guide",
+          "fire-code"
+        ]
+      },
+      {
+        "question": "Does a signed-off sprinkler permit cover the whole building?",
+        "answer": "The sign-off applies to the work the permit covers. In the Manhattan example it applies to one subcellar job. Read the scope and check protection evidence for the insured space separately.",
+        "sourceIds": [
+          "job-rows",
+          "permit-rows"
+        ]
+      },
+      {
+        "question": "Where can I find the last sprinkler inspection date?",
+        "answer": "Request the current inspection, testing and maintenance reports for the system from the owner or property manager. In NYC, the fire code requires those records to be maintained. Keep those report dates separate from permit issuance and job sign-off.",
+        "sourceIds": [
+          "fire-code"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "job-rows",
+        "title": "DOB NOW job filing rows for three selected sprinkler jobs on BIN 1022693",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/w9ak-ipjd.json?%24select=job_filing_number%2Cfiling_status%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Csprinkler_work_type%2Cfiling_date%2Capproved_date%2Cfirst_permit_date%2Csignoff_date%2Ccurrent_status_date%2Cjob_description&%24where=bin%3D%271022693%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number&%24limit=20",
+        "linkLabel": "NYC DOB job filings"
+      },
+      {
+        "id": "permit-rows",
+        "title": "DOB NOW approved sprinkler work permit rows for the same three jobs",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=work_permit%2Cjob_filing_number%2Chouse_no%2Cstreet_name%2Cbin%2Cwork_on_floor%2Cwork_type%2Cpermit_status%2Cissued_date&%24where=bin%3D%271022693%27+AND+work_type%3D%27Sprinklers%27+AND+job_filing_number+IN+%28%27M01342903-I1%27%2C%27M01434890-S1%27%2C%27M01427068-I1%27%29&%24order=job_filing_number%2Cwork_permit&%24limit=20",
+        "linkLabel": "NYC DOB permit records"
+      },
+      {
+        "id": "city-footprint",
+        "title": "NYC building footprint and base tax lot for BIN 1022693",
+        "publisher": "NYC Office of Technology and Innovation",
+        "url": "https://data.cityofnewyork.us/resource/5zhs-2jue.json?bin=1022693",
+        "linkLabel": "NYC building footprint"
+      },
+      {
+        "id": "loc-guide",
+        "title": "Letter of Completion requirements and public lookup",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/letter-of-no-objection-or-completion.page",
+        "linkLabel": "DOB Letter of Completion guide"
+      },
+      {
+        "id": "fire-code",
+        "title": "NYC Fire Code, Chapter 9, sections 901.6 and 901.6.2",
+        "publisher": "New York City Fire Department",
+        "url": "https://www.nyc.gov/assets/fdny/downloads/pdf/about/chapter-9-2022.pdf",
+        "linkLabel": "NYC Fire Code Chapter 9"
+      },
+      {
+        "id": "imagery",
+        "title": "NYC Orthos 2024, aerial imagery and CC BY 4.0 attribution",
+        "publisher": "NYC Office of Technology and Innovation",
+        "url": "https://github.com/CityOfNewYork/nyc-geo-metadata/blob/main/Metadata/Metadata_AerialImagery.md"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "building-permit-data-apis",
+      "fire-station-distance-commercial-property-underwriting"
+    ],
+    "dataset": {
+      "name": "NYC sprinkler permits and job sign-off records for 1221 Avenue of the Americas",
+      "description": "Three NYC sprinkler jobs and their work permits for BIN 1022693, with address aliases, floor scope, permit issuance, job status, sign-off evidence and explicit gaps in current coverage or condition.",
+      "sourceIds": [
+        "job-rows",
+        "permit-rows",
+        "city-footprint"
+      ],
+      "spatialCoverage": "1221 Avenue of the Americas, Manhattan, New York City, United States",
+      "temporalCoverage": "2026-02-18/2026-11-24",
+      "datePublished": "2026-11-24"
+    }
+  },
+  {
     "slug": "foot-traffic-data-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -19452,6 +19699,12 @@
               ["Protection", "Documented fire protection, hydrant and station context, and system inspection records.", "Verify sprinkler coverage and condition for the premises being insured. Use the carrier’s data rules for protection class."],
               ["Exposure", "Map or modeled evidence for flood, wildfire, wind, and surrounding properties.", "Save whether the analysis used an address pin, parcel or footprint. Keep the map edition or scenario, and separate hazard intensity from damage."],
               ["Reported values", "Building, business personal property, and business interruption values in the submission, plus a reconstruction estimate where available.", "Reconcile valuation scope with the insured. Check the estimator’s assumptions about materials, local costs, and excluded items."]
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {"slug": "fire-sprinkler-records-by-address", "label": "Check sprinkler permits and sign-off by building and floor"}
             ]
           }
         ]
