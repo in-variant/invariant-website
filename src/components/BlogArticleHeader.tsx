@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import type { RelatedArticle } from '../data/industryArticles'
 import '../pages/blog/BlogArticle.css'
 
 type ArticleHeaderProps = {
@@ -13,6 +14,8 @@ type ArticleHeaderProps = {
 
 const articleWidth = 'min(1280px, calc(100vw - clamp(48px, 10.42vw, 200px)))'
 const listingSizes = `(min-width: 950px) calc((${articleWidth} - clamp(36px, 4vw, 64px)) / 2), ${articleWidth}`
+// The tall object-fit crop needs enough pixels for the card height on a landscape cover.
+const relatedSizes = '(max-width: 600px) 365px, 420px'
 
 export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', coverImage, siteDetailsId }: ArticleHeaderProps) {
   return (
@@ -49,8 +52,6 @@ export default function BlogArticleHeader({ article, title, subtitle, coverCapti
   )
 }
 
-type RelatedArticle = { slug: string; title: string; topic: string; image: string }
-
 export function BlogRelatedReading({ articles }: { articles: RelatedArticle[] }) {
   if (!articles.length) return null
 
@@ -62,7 +63,8 @@ export function BlogRelatedReading({ articles }: { articles: RelatedArticle[] })
       <div className="blog-related-grid">
         {featured.map((article) => <Link key={article.slug} className="blog-related-card" to={`/blog/${article.slug}`}>
           <div><span>{article.topic}</span><h3>{article.title}</h3><span className="blog-related-read">Read the article <span aria-hidden="true">↗</span></span></div>
-          <img src={article.image} alt="" width="160" height="180" loading="lazy" decoding="async" />
+          <img src={article.image} srcSet={article.srcSet} sizes={article.srcSet ? relatedSizes : undefined}
+            alt="" width="160" height="180" loading="lazy" decoding="async" />
         </Link>)}
       </div>
       {more.length > 0 && (

@@ -9,6 +9,9 @@ import FigmaScrambleLabel from '../components/FigmaScrambleLabel'
 import './IndustryHub.css'
 import './Resources.css'
 
+const hubWidth = 'min(1720px, 89.5833vw)'
+const coverSizes = `(max-width: 760px) calc(100vw - 42px), (max-width: 1023px) calc((${hubWidth} - 36px) / 2.1 - 2px), calc((${hubWidth} - 70px) / 2.1 - 2px)`
+
 export default function IndustryHub({ slug }: { slug: string }) {
   const hub = INDUSTRY_HUBS.find(item => item.slug === slug)!
   const articles = ARTICLE_LIST.filter(article => hubIncludes(hub, article))
@@ -16,11 +19,12 @@ export default function IndustryHub({ slug }: { slug: string }) {
   const label = isIndia ? 'India data centre approvals' : `${hub.topic} compliance`
   const canonical = `${SITE_URL}/${hub.slug}`
   const image = versionedCover(hub.image)
+  const srcSet = coverSrcSets[image]
   return <article className="industry-hub">
     <Seo title={hub.title} description={hub.description} canonical={canonical} ogImage={`${SITE_URL}${image}`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: canonical, hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }]} />
     <header className="industry-hub-hero industry-hub-container">
       <div className="industry-hub-heading"><p className="industry-hub-eyebrow">{isIndia ? 'Data centres / India' : `${hub.topic} / Compliance`}</p><h1>{hub.heading}</h1><p>{hub.intro}</p><a className="industry-hub-jump" href="#compliance-map">Explore the requirements <span aria-hidden="true">↓</span></a></div>
-      <figure><img src={image} width="1600" height="900" alt={isIndia ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" /></figure>
+      <figure><img src={image} srcSet={srcSet} sizes={srcSet ? coverSizes : undefined} width="1600" height="900" alt={isIndia ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" decoding="async" /></figure>
     </header>
     {hub.topic === 'Data Centers' && !isIndia && <section className="industry-register industry-hub-container" aria-labelledby="register-heading">
       <div><p className="industry-hub-eyebrow">A working document</p><h2 id="register-heading">Start your compliance register.</h2></div>

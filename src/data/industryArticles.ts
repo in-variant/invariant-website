@@ -10,6 +10,7 @@ export type ArticleDataset = {
   sourceReuse?: { note: string; policyLabel: string; policyUrl: string }
 }
 export type DatasetDownload = { label: string; path: string; format: 'CSV' | 'GeoJSON' | 'JSON' }
+export type RelatedArticle = Pick<ResourceArticle, 'slug' | 'title' | 'topic' | 'image'> & { srcSet?: string }
 
 export type ArticleBlock = (
   | { type: 'paragraph'; text: string }
@@ -35,7 +36,7 @@ export type IndustryArticle = {
   sections: { id: string; heading: string; blocks: ArticleBlock[] }[]
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
   sources: { id: string; title: string; url: string; publisher: string; linkLabel?: string }[]
-  relatedReading: Pick<ResourceArticle, 'slug' | 'title' | 'topic' | 'image'>[]
+  relatedReading: RelatedArticle[]
   /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot; 'site-guide' pages carry the booking banner at the foot; 'study-guide' pages (site due diligence) carry the power study request banner; 'compute-guide' pages (neoclouds and AI labs) carry the GPU capacity banner. */
   kind?: 'site-listing' | 'site-guide' | 'study-guide' | 'compute-guide' | 'india-guide'
   /** Emits schema.org Service for pages that describe a service Invariant sells. */

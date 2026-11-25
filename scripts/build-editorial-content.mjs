@@ -191,10 +191,16 @@ const index = articles.map(article => {
 })
 writeIfChanged(new URL('industry-article-index.json', base), `${JSON.stringify(index, null, 2)}\n`)
 const responsiveCovers = process.argv.includes('--responsive-covers')
-  ? await (await import('./build-cover-variants.mjs')).buildCoverVariants([...new Set(index.map(article => article.image))])
+  ? await (await import('./build-cover-variants.mjs')).buildCoverVariants(
+    Object.entries(coverVersions).map(([path, version]) => `${path}?v=${version}`),
+  )
   : new Map()
 const coverSrcSets = Object.fromEntries([...responsiveCovers].map(([image, { srcSet }]) => [image, srcSet]))
 writeIfChanged(new URL('.generated-cover-srcsets.json', base), JSON.stringify(coverSrcSets))
+const collectionCoverSrcSets = Object.fromEntries(blogCollections.map(({ slug, image }) => [
+  slug, coverSrcSets[`${image}?v=${coverVersions[image]}`],
+]))
+writeIfChanged(new URL('.generated-collection-cover-srcsets.json', base), JSON.stringify(collectionCoverSrcSets))
 const searchDir = new URL('.generated-blog-search/', base)
 mkdirSync(searchDir, { recursive: true })
 const articleList = [...index, ...legacyArticles].map(({ slug, title, topic, summary, date, dateTime, updatedDate, region, image, dataset, additionalDatasets = [] }) => ({
@@ -222,9 +228,10 @@ writeEntryModules(new URL('.generated-articles/', base), articles.map(({ related
   ...article,
   published: index[i],
   coverImage: responsiveCovers.get(index[i].image),
-  relatedReading: relatedSlugs.map(slug => {
+  relatedReading: relatedSlugs.map((slug, position) => {
     const { title, topic, image } = catalog.get(slug)
-    return { slug, title, topic, image }
+    const srcSet = position < 2 ? responsiveCovers.get(image)?.srcSet : undefined
+    return { slug, title, topic, image, srcSet }
   }),
 })))
 writeEntryModules(new URL('.generated-legacy-articles/', base), legacyArticles.map(article => ({

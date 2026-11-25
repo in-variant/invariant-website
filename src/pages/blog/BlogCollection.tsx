@@ -1,11 +1,16 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ORG_SCHEMA, Seo, SITE_URL, breadcrumbSchema } from '../../components/Seo'
 import collections from '../../data/blog-collections.json'
+import collectionCoverSrcSets from '../../data/.generated-collection-cover-srcsets.json'
 import { groupCollectionGuides } from '../../data/blogCollections'
 import { versionedCover } from '../../data/coverImages'
 import NotFound from '../NotFound'
 import '../Blog.css'
 import './BlogCollection.css'
+
+const collectionWidth = 'calc(min(100vw, 1336px) - 2 * clamp(24px, 5vw, 70px))'
+const coverSizes = `(max-width: 740px) ${collectionWidth}, calc((${collectionWidth} - clamp(32px, 5vw, 76px)) * .535)`
+const coverSrcSets: Partial<Record<string, string>> = collectionCoverSrcSets
 
 export default function BlogCollection() {
   const { pathname } = useLocation()
@@ -14,6 +19,7 @@ export default function BlogCollection() {
 
   const canonical = `${SITE_URL}/blog/${collection.slug}`
   const image = versionedCover(collection.image)
+  const srcSet = coverSrcSets[collection.slug]
   const collectionGuides = collection.guides
   const guideGroups = groupCollectionGuides(collectionGuides)
   const namedGuideGroups = guideGroups.filter(group => group.heading)
@@ -78,6 +84,8 @@ export default function BlogCollection() {
           <figure>
             <img
               src={image}
+              srcSet={srcSet}
+              sizes={srcSet ? coverSizes : undefined}
               alt={collection.imageAlt}
               width="1600"
               height="900"
