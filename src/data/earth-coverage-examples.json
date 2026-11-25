@@ -228,6 +228,42 @@
     },
     "label": "Last sale price"
   },
+  "saledate": {
+    "name": "saledate",
+    "definitions": {
+      "parcel": {
+        "description": "Date of the most recent recorded sale of the parcel, as published in the parcel record (ISO date text).",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Last sale date"
+  },
+  "parval": {
+    "name": "parval",
+    "definitions": {
+      "parcel": {
+        "description": "Total assessed or appraised value of the parcel (land plus improvements) in US dollars, as the county reports it. The basis (market, assessed, appraised) varies by county; see parvaltype.",
+        "unit": "USD",
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Property value"
+  },
+  "parvaltype": {
+    "name": "parvaltype",
+    "definitions": {
+      "parcel": {
+        "description": "Basis of the county's parcel value (for example market, assessed or appraised), so parval can be read correctly.",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Value type"
+  },
   "tract_population": {
     "name": "tract_population",
     "definitions": {
@@ -263,5 +299,131 @@
       }
     },
     "label": "County median income"
+  },
+  "nearest_grocery_store_distance_m": {
+    "name": "nearest_grocery_store_distance_m",
+    "definitions": {
+      "point": {
+        "description": "Geodesic distance in metres to the nearest open grocery store or supermarket in Overture places (US, confidence >= 0.5, open or unknown status), searched to 100 km.",
+        "unit": "meters",
+        "source": "OVERTURE_PLACES",
+        "sourceUrl": "https://docs.overturemaps.org/guides/places/"
+      },
+      "parcel": {
+        "description": "Geodesic distance in metres to the nearest open grocery store or supermarket in Overture places (US, confidence >= 0.5, open or unknown status), searched to 100 km.",
+        "unit": "meters",
+        "source": "OVERTURE_PLACES",
+        "sourceUrl": "https://docs.overturemaps.org/guides/places/"
+      }
+    },
+    "label": "Grocery store distance"
+  },
+  "dominant_crop_5y": {
+    "name": "dominant_crop_5y",
+    "definitions": {
+      "point": {
+        "description": "Most frequent crop class at the 30 m cell over the last five USDA Cropland Data Layer editions (non-crop classes ignored; ties go to the crop seen most recently). Smooths over corn-soy rotation; the per-year history is in notes. ",
+        "unit": null,
+        "source": "USDA_CDL_HISTORY",
+        "sourceUrl": "https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php"
+      },
+      "parcel": {
+        "description": "Most frequent crop class at the 30 m cell over the last five USDA Cropland Data Layer editions (non-crop classes ignored; ties go to the crop seen most recently). Smooths over corn-soy rotation; the per-year history is in notes. ",
+        "unit": null,
+        "source": "USDA_CDL_HISTORY",
+        "sourceUrl": "https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php"
+      }
+    },
+    "label": "Main crop, 5 years"
+  },
+  "soil_drainage_class": {
+    "name": "soil_drainage_class",
+    "definitions": {
+      "point": {
+        "description": "Natural drainage class (e.g. Well drained, Poorly drained) of the dominant component of the SSURGO map unit at the point. ",
+        "unit": null,
+        "source": "USDA_SSURGO",
+        "sourceUrl": "https://sdmdataaccess.sc.egov.usda.gov/"
+      },
+      "parcel": {
+        "description": "Natural drainage class (e.g. Well drained, Poorly drained) of the dominant component of the SSURGO map unit at the point. ",
+        "unit": null,
+        "source": "USDA_SSURGO",
+        "sourceUrl": "https://sdmdataaccess.sc.egov.usda.gov/"
+      }
+    },
+    "label": "Soil drainage"
+  },
+  "drought_category": {
+    "name": "drought_category",
+    "definitions": {
+      "point": {
+        "description": "US Drought Monitor category at the point on the current weekly map: D0 (Abnormally Dry) to D4 (Exceptional Drought), the highest of the nested severity polygons containing the point.",
+        "unit": null,
+        "source": "USDM_CURRENT",
+        "sourceUrl": "https://droughtmonitor.unl.edu/"
+      },
+      "parcel": {
+        "description": "US Drought Monitor category at the point on the current weekly map: D0 (Abnormally Dry) to D4 (Exceptional Drought), the highest of the nested severity polygons containing the point.",
+        "unit": null,
+        "source": "USDM_CURRENT",
+        "sourceUrl": "https://droughtmonitor.unl.edu/"
+      }
+    },
+    "label": "Drought level"
+  },
+  "design_wet_bulb_temperature_0_4pct_degc": {
+    "name": "design_wet_bulb_temperature_0_4pct_degc",
+    "definitions": {
+      "point": {
+        "description": "TMY-based approximation of the 0.4% cooling design wet bulb: the 99.6th percentile of hourly wet bulb over one NREL NSRDB GOES TMY year (tmy-2024), solved psychrometrically from dry bulb and dew point at the hour's station pressure. ",
+        "unit": "degC",
+        "source": "NREL_NSRDB_GOES_TMY_V4",
+        "sourceUrl": "https://developer.nlr.gov/docs/solar/nsrdb/nsrdb-GOES-tmy-v4-0-0-download/"
+      },
+      "parcel": {
+        "description": "TMY-based approximation of the 0.4% cooling design wet bulb: the 99.6th percentile of hourly wet bulb over one NREL NSRDB GOES TMY year (tmy-2024), solved psychrometrically from dry bulb and dew point at the hour's station pressure. ",
+        "unit": "degC",
+        "source": "NREL_NSRDB_GOES_TMY_V4",
+        "sourceUrl": "https://developer.nlr.gov/docs/solar/nsrdb/nsrdb-GOES-tmy-v4-0-0-download/"
+      }
+    },
+    "label": "Design wet-bulb temperature"
+  },
+  "mean_annual_dry_bulb_temperature_degc": {
+    "name": "mean_annual_dry_bulb_temperature_degc",
+    "definitions": {
+      "point": {
+        "description": "1991-2020 annual mean temperature normal (degC, anntavg_norm = mean of the twelve monthly normals) from NOAA U.S. Monthly Gridded Climate Normals v1.0 (NCEI 0245564) on the 1/24° (~4.6 km) nClimGrid grid, rounded to 0.1 as NOAA instructs. CONUS only. ",
+        "unit": "degC",
+        "source": "NOAA_NORMALS_GRIDDED",
+        "sourceUrl": "https://doi.org/10.25921/rjys-b235"
+      },
+      "parcel": {
+        "description": "1991-2020 annual mean temperature normal (degC, anntavg_norm = mean of the twelve monthly normals) from NOAA U.S. Monthly Gridded Climate Normals v1.0 (NCEI 0245564) on the 1/24° (~4.6 km) nClimGrid grid, rounded to 0.1 as NOAA instructs. CONUS only. ",
+        "unit": "degC",
+        "source": "NOAA_NORMALS_GRIDDED",
+        "sourceUrl": "https://doi.org/10.25921/rjys-b235"
+      }
+    },
+    "label": "Average temperature"
+  },
+  "free_cooling_hours_per_year_15c": {
+    "name": "free_cooling_hours_per_year_15c",
+    "definitions": {
+      "point": {
+        "description": "Hours in one NSRDB GOES TMY v4 tmy-2024 year with dry-bulb temperature at or below 15 C: a dry-bulb airside-economizer proxy, not an energy model.",
+        "unit": "hours/year",
+        "source": "NREL_NSRDB_GOES_TMY_V4",
+        "sourceUrl": "https://developer.nlr.gov/docs/solar/nsrdb/nsrdb-GOES-tmy-v4-0-0-download/"
+      },
+      "parcel": {
+        "description": "Hours in one NSRDB GOES TMY v4 tmy-2024 year with dry-bulb temperature at or below 15 C: a dry-bulb airside-economizer proxy, not an energy model.",
+        "unit": "hours/year",
+        "source": "NREL_NSRDB_GOES_TMY_V4",
+        "sourceUrl": "https://developer.nlr.gov/docs/solar/nsrdb/nsrdb-GOES-tmy-v4-0-0-download/"
+      }
+    },
+    "label": "Free cooling hours (15°C)"
   }
 }

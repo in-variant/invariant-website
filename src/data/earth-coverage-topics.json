@@ -47,10 +47,37 @@
   {
     "id": "markets-and-valuation",
     "title": "Markets and valuation",
-    "description": "Join parcel sale records with reported population and income estimates at their published geographies.",
-    "fields": ["saleprice", "tract_population", "county_median_household_income"],
+    "description": "Check the last recorded sale and its date. Read the county parcel value alongside the basis the county reports.",
+    "fields": ["saleprice", "saledate", "parval", "parvaltype"],
     "guide": "/blog/commercial-real-estate-sales-lease-comps-apis",
     "guideLabel": "Check sale and lease comparables",
     "researchTopic": "Lending & real estate markets"
+  },
+  {
+    "id": "retail-and-trade-areas",
+    "title": "Retail and trade areas",
+    "description": "Check tract population, county household income and straight-line distance to groceries. Use a drive-time boundary to estimate reachable households.",
+    "fields": ["tract_population", "county_median_household_income", "nearest_grocery_store_distance_m"],
+    "guide": "/blog/drive-time-demographics-census-trade-area",
+    "guideLabel": "Estimate a drive-time catchment",
+    "researchTopic": "Retail, demographics & community"
+  },
+  {
+    "id": "farmland-and-soils",
+    "title": "Farmland and soils",
+    "description": "Review the dominant crop at a sampled point, soil drainage and the current drought map. Compare fields across the farm boundary before estimating acreage.",
+    "fields": ["dominant_crop_5y", "soil_drainage_class", "drought_category"],
+    "guide": "/blog/farmland-crop-history-by-parcel",
+    "guideLabel": "Check crop history across a parcel",
+    "researchTopic": "Environment, climate & agriculture"
+  },
+  {
+    "id": "weather-and-cooling",
+    "title": "Weather and cooling",
+    "description": "Screen cooling conditions using a typical-year wet-bulb estimate, a long-run temperature normal and hours below a dry-bulb threshold.",
+    "fields": ["design_wet_bulb_temperature_0_4pct_degc", "mean_annual_dry_bulb_temperature_degc", "free_cooling_hours_per_year_15c"],
+    "guide": "/blog/hourly-weather-data-for-data-center-cooling",
+    "guideLabel": "Compare hourly cooling weather",
+    "researchTopic": "Environment, climate & agriculture"
   }
 ]
