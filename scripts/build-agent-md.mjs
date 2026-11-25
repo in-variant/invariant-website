@@ -73,12 +73,14 @@ for (const { label, url, articles } of workflowGroups) {
 const titles = new Map(articles.map(a => [a.slug, a.title]))
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 const linkText = s => s.replace(/[\\[\]]/g, '\\$&')
+const citationLink = (label, url) => `[${linkText(label)}](<${url}>)`
 
 function articleMd(a) {
   const src = new Map(a.sources.map(s => [s.id, s]))
   const workflow = researchWorkflows.get(a.slug)
   const datasetDownload = primaryDatasets.get(a.slug)?.dataset.downloads[0]?.path
-  const cite = ids => ids?.length ? ' ' + ids.map(id => src.get(id)).filter(Boolean).map(s => `([${s.linkLabel ?? s.publisher}](${s.url}))`).join(' ') : ''
+  const cite = ids => ids?.length ? ' ' + ids.map(id => src.get(id)).filter(Boolean)
+    .map(s => `(${citationLink(s.linkLabel ?? s.publisher, s.url)})`).join(' ') : ''
   const out = [`# ${a.title}`, '', `> ${a.description}`, '', `URL: ${SITE}/blog/${a.slug}  `, `Published: ${a.date}${a.updatedDate ? ` · Updated: ${a.updatedDate}` : ''} · Publisher: Invariant · Region: ${a.region ?? 'United States'}`, '', a.intro, '']
   if (a.takeaways?.length) out.push('## Key points', '', ...a.takeaways.map(t => `- ${t}`), '')
   for (const s of a.sections) {
@@ -90,14 +92,14 @@ function articleMd(a) {
         if (b.worksheet) out.push(`[Download the worksheet (CSV)](${SITE}/blog/${a.slug}.csv)`, '')
         const rows = b.rows.map((row, rowIndex) => {
           const cells = row.map(cell)
-          cells[cells.length - 1] += cite(b.rowSourceIds?.[rowIndex])
+          cells[cells.length - 1] += cell(cite(b.rowSourceIds?.[rowIndex]))
           return `| ${cells.join(' | ')} |`
         })
         out.push(`| ${b.columns.map(cell).join(' | ')} |`, `| ${b.columns.map(() => '---').join(' | ')} |`, ...rows, ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
       } else if (b.type === 'download') {
         out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
         const reuse = sourceReuseByDownload.get(`${a.slug}:${b.path}`)
-        if (reuse) out.push(`${reuse.note} [${linkText(reuse.policyLabel)}](<${reuse.policyUrl}>)`, '')
+        if (reuse) out.push(`${reuse.note} ${citationLink(reuse.policyLabel, reuse.policyUrl)}`, '')
         if (workflow && b.path === datasetDownload) {
           out.push(`[${workflow.label}](${workflow.url})`, '')
         }
@@ -108,7 +110,7 @@ function articleMd(a) {
     out.push('## Questions', '')
     for (const f of a.faqs) out.push(`### ${f.question}`, '', f.answer + cite(f.sourceIds), '')
   }
-  if (a.sources?.length) out.push('## Sources', '', ...a.sources.map(s => `- ${s.publisher}: [${s.title}](${s.url})`), '')
+  if (a.sources?.length) out.push('## Sources', '', ...a.sources.map(s => `- ${s.publisher}: ${citationLink(s.title, s.url)}`), '')
   if (a.relatedSlugs?.length) out.push('## Related', '', ...a.relatedSlugs.map(s => `- [${titles.get(s) ?? s}](${SITE}/blog/${s})`), '')
   if (a.kind === 'site-guide' && a.service) {
     out.push('---', '', `[Prepare a site request](${SITE}/contact?request=site-selection) · [Book a site selection call](${SITE_BOOKING})`, '')
@@ -122,7 +124,7 @@ function glossaryMd(e) {
   const out = [`# ${e.term}`, '', `> ${e.short_definition}`, '', `URL: ${SITE}/glossary/${e.slug}  `, `Updated: ${e.last_updated ?? ''} · Publisher: Invariant`, '']
   if (e.aliases?.length) out.push(`Also called: ${e.aliases.join(', ')}`, '')
   out.push(e.full_definition ?? '', '')
-  if (e.citations?.length) out.push('## Sources', '', ...e.citations.map(c => `- [${c.label}](${c.url})`), '')
+  if (e.citations?.length) out.push('## Sources', '', ...e.citations.map(c => `- ${citationLink(c.label, c.url)}`), '')
   if (e.guide) out.push(`Guide: [${e.guide.label}](${SITE}${e.guide.path})`, '')
   const related = (e.related_to ?? []).map(slug => glossaryBySlug.get(slug)).filter(Boolean)
   if (related.length) out.push('Related: ' + related.map(({ slug, term }) =>
@@ -205,7 +207,7 @@ function coverageMd() {
       ...fields.flatMap(name => Object.entries(fieldsByName.get(name).definitions).map(([operation, definition]) => {
         const unit = definition.unit ? ` Unit ${definition.unit}.` : ''
         const access = definition.operatorOnly ? ' Operator key required.' : ''
-        return `- \`${name}\` (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} [${linkText(definition.source)}](<${definition.sourceUrl}>).`
+        return `- \`${name}\` (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.source, definition.sourceUrl)}.`
       })), '',
       `- [${guideLabel}](${SITE}${guide})`,
       `- [View research samples](${SITE}/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search)`, '',
@@ -290,10 +292,10 @@ function datasetCatalogMd() {
       `- Published: ${dataset.datePublished ?? dateTime}`,
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
       ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
-      ...(dataset.sourceReuse ? [`- ${dataset.sourceReuse.note} [${linkText(dataset.sourceReuse.policyLabel)}](<${dataset.sourceReuse.policyUrl}>)`] : []),
+      ...(dataset.sourceReuse ? [`- ${dataset.sourceReuse.note} ${citationLink(dataset.sourceReuse.policyLabel, dataset.sourceReuse.policyUrl)}`] : []),
       ...dataset.downloads.map(file => `- [${file.label} (${file.format})](${SITE}${file.path})`),
       '', 'Source records', '',
-      ...dataset.sourceDetails.map(({ publisher, title, url }) => `- ${publisher} · [${linkText(title)}](<${url}>)`),
+      ...dataset.sourceDetails.map(({ publisher, title, url }) => `- ${publisher} · ${citationLink(title, url)}`),
       '',
     )
   }
