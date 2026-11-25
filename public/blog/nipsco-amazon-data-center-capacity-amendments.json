@@ -1,0 +1,158 @@
+{
+  "name": "NIPSCO and Amazon data center capacity commitments and approvals",
+  "reviewedOn": "2026-11-25",
+  "scope": "Selected public records for Amazon’s retail electric service in NIPSCO territory and the related wholesale supply agreement. Capacity commitments apply to the contracted customer and are stated separately from generation ratings and observed energization.",
+  "parties": {
+    "retailCustomer": "Amazon Data Services, Inc.",
+    "retailUtility": "Northern Indiana Public Service Company LLC",
+    "affiliateWholesaleSupplier": "NiSource Generation Company LLC"
+  },
+  "contractHistory": [
+    {
+      "event": "Original retail contract dated",
+      "date": "2025-09-18",
+      "originalMaximumCommittedMw": 2400,
+      "originalEnergizationScheduleStart": "2027-01-01",
+      "originalFullRampYear": 2032,
+      "initialTermYears": 15,
+      "sourceIds": [
+        "nipsco-original-ramp",
+        "nipsco-capacity-amendments"
+      ]
+    },
+    {
+      "event": "First amendment accelerate-delivery terms reported",
+      "datePrecision": "month",
+      "date": "2026-03",
+      "earlierCapacityIncreasesYears": [
+        2027,
+        2028,
+        2029,
+        2030,
+        2031
+      ],
+      "maximumCommittedMw": 2400,
+      "sourceIds": [
+        "nipsco-2800-mw-forecast"
+      ]
+    },
+    {
+      "event": "Second amendment sets incremental capacity option",
+      "date": "2026-03-09",
+      "optionMw": 400,
+      "sourceIds": [
+        "nipsco-capacity-amendments",
+        "nipsco-state-approval"
+      ]
+    },
+    {
+      "event": "Third amendment records exercise of option and replacement energization schedule",
+      "date": "2026-05-01",
+      "incrementalCommittedMw": 400,
+      "reportedTotalCommitmentAtFullRampMw": 2800,
+      "reportedYearIncrementalCapacityBegins": 2029,
+      "reportedFullRampYear": 2032,
+      "sourceIds": [
+        "nipsco-capacity-amendments",
+        "nipsco-2800-mw-forecast"
+      ]
+    },
+    {
+      "event": "IURC approves contractual amendments",
+      "date": "2026-11-18",
+      "stateCause": "46442",
+      "sourceIds": [
+        "nipsco-state-approval"
+      ]
+    },
+    {
+      "event": "FERC authorizes affiliate wholesale sales under the Amazon PPA",
+      "date": "2026-11-19",
+      "fercDocket": "ER26-3474-000",
+      "sourceIds": [
+        "nipsco-federal-sales"
+      ]
+    }
+  ],
+  "resourcePortfolio": {
+    "originalContractAssets": {
+      "plannedCombinedCycleGasMw": 2600,
+      "plannedBatteryMw": 400,
+      "totalPlannedMw": 3000
+    },
+    "genCoPool": {
+      "sharedCapacityPurchaseMw": 500,
+      "firstYear": 2028,
+      "lastYear": 2040,
+      "servesMultipleCustomers": true
+    },
+    "sourceIds": [
+      "nipsco-capacity-amendments"
+    ]
+  },
+  "buyerEvidence": {
+    "contractExhibits": {
+      "A-1": "Customer committed capacity",
+      "A-2": "Data center locations",
+      "A-3": "Energization schedule"
+    },
+    "observedEnergizationDate": null,
+    "observedFacilityMw": null,
+    "revisedPublicSiteBySiteDatesVerified": false,
+    "capacityAvailableToAnotherBuyerMw": null,
+    "sourceIds": [
+      "nipsco-capacity-amendments",
+      "nipsco-settlement-filings"
+    ]
+  },
+  "sources": [
+    {
+      "id": "nipsco-original-ramp",
+      "title": "Original customer capacity and timing in June 17, 2026 order, Cause 46322, p. 5",
+      "url": "https://secure.in.gov/iurc/files/ord_46322_061726.pdf#page=5",
+      "publisher": "Indiana Utility Regulatory Commission",
+      "linkLabel": "Original service ramp",
+      "sha256": "99f76624c071f536f7f892536dbc3e545b8cf08069d708608f7a1ffb6402aa3a"
+    },
+    {
+      "id": "nipsco-settlement-filings",
+      "title": "Cause 46322 settlement on changes to the delivery schedule and site exhibits, PDF p. 57",
+      "url": "https://secure.in.gov/iurc/files/ord_46322_061726.pdf#page=57",
+      "publisher": "Indiana Utility Regulatory Commission",
+      "linkLabel": "Settlement reporting terms",
+      "sha256": "99f76624c071f536f7f892536dbc3e545b8cf08069d708608f7a1ffb6402aa3a"
+    },
+    {
+      "id": "nipsco-capacity-amendments",
+      "title": "Amendments and replacement schedule in November 18, 2026 order, Cause 46442, pp. 3–4",
+      "url": "https://www.in.gov/iurc/files/ord_46442_111826.pdf#page=3",
+      "publisher": "Indiana Utility Regulatory Commission",
+      "linkLabel": "Amended capacity and exhibits",
+      "sha256": "4d1efb7762ba0f27aff390490dd0b5d926b9e93eda3b50be28b3893c0d1a69bf"
+    },
+    {
+      "id": "nipsco-state-approval",
+      "title": "Ordering paragraphs approving the retail contract and wholesale PPA amendments, Cause 46442, p. 12",
+      "url": "https://www.in.gov/iurc/files/ord_46442_111826.pdf#page=12",
+      "publisher": "Indiana Utility Regulatory Commission",
+      "linkLabel": "State approval",
+      "sha256": "4d1efb7762ba0f27aff390490dd0b5d926b9e93eda3b50be28b3893c0d1a69bf"
+    },
+    {
+      "id": "nipsco-federal-sales",
+      "title": "November 19, 2026 affiliate sales authorization, Dockets ER26-3474-000 and ER26-3475-000",
+      "url": "https://www.ferc.gov/sites/default/files/2026-11/E-4-ER26-3474-000.pdf#page=1",
+      "publisher": "Federal Energy Regulatory Commission",
+      "linkLabel": "FERC affiliate sales order",
+      "sha256": "c29bad50aaaff8449c88fc5886e3310caf7b346418e2e1c72ba825ce0ebd3a3a"
+    },
+    {
+      "id": "nipsco-2800-mw-forecast",
+      "title": "NiSource first-quarter 2026 Form 10-Q, p. 38 amendments to the Amazon contract",
+      "url": "https://s1.q4cdn.com/829981032/files/doc_earnings/2026/q1/filing/Ni-Q1-2026-10Q.pdf#page=38",
+      "publisher": "NiSource",
+      "linkLabel": "NiSource capacity disclosure",
+      "sha256": "1fb6318acd5843931990ccd1c5598450bf3b4a68d5c0fd1dd570a40c6450750c"
+    }
+  ]
+}

@@ -7678,9 +7678,9 @@
   "kind": "site-listing",
   "region": "United States",
   "title": "1 GW Data Center Sites and Powered Land in the U.S.",
-  "description": "Compare gigawatt data center land and first-phase options. Learn how to verify MW at the meter and trace a real utility schedule from agreement to interconnection.",
+  "description": "Compare gigawatt data center sites and verify utility MW by phase. See Amazon’s 2.8 GW Indiana commitment and the approvals behind its delivery schedule.",
   "date": "2026-11-09",
-  "readMinutes": 8,
+  "readMinutes": 10,
   "intro": "Looking for a 1 GW data center site? Invariant markets an Arizona campus for sale or lease with 15,000+ acres and a reported utility study for a proposed 1.5 GW first phase. The public listing gives a 2027 grid target. To shortlist it, ask which acreage is currently offered, how many megawatts the utility can deliver to a buyer on the first service date, and what it would take to reach full load.",
   "takeaways": [
    "The Arizona listing gives a studied power figure and target year. Current availability, committed MW and a delivery schedule need confirmation.",
@@ -7863,6 +7863,84 @@
       "path": "/blog/evest-richland-parish-power-milestones.json",
       "format": "JSON",
       "datasetAnchor": "dataset-evest-power-milestones"
+     }
+    ]
+   },
+   {
+    "id": "nipsco-amazon-energization-schedule",
+    "heading": "What changed in NIPSCO’s 2.8 GW Amazon power agreement?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Indiana regulators approved a 400 MW addition to NIPSCO’s Amazon data center contract on November 18, 2026. The original contract called for a ramp to 2,400 MW. NiSource reported that the added commitment would begin in 2029 and take the total to 2,800 MW by the end of 2032. The same amendment replaced the energization schedule. Ask for the revised schedule before using a delivery date from the earlier contract.",
+      "sourceIds": [
+       "nipsco-original-ramp",
+       "nipsco-capacity-amendments",
+       "nipsco-state-approval",
+       "nipsco-2800-mw-forecast"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Record",
+       "What it establishes",
+       "What to check for a site"
+      ],
+      "rows": [
+       [
+        "Original retail contract and first amendment",
+        "The original schedule set a January 1, 2027 start and a maximum of 2,400 MW by year-end 2032. The first amendment brought forward some capacity from 2027 through 2031.",
+        "Which dated ramp applies to the site and entity signing the agreement."
+       ],
+       [
+        "November 18 state order",
+        "The commission approved amendments adding 400 MW and replacing the schedule in Exhibit A-3.",
+        "The new first-service date, capacity by phase and the exact locations covered."
+       ],
+       [
+        "November 19 federal order",
+        "FERC authorized GenCo’s affiliate wholesale sales to NIPSCO under the Amazon power purchase agreement in docket ER26-3474-000.",
+        "The work and other approvals required before the local utility delivers power to the customer."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "nipsco-original-ramp",
+        "nipsco-2800-mw-forecast",
+        "nipsco-capacity-amendments"
+       ],
+       [
+        "nipsco-capacity-amendments",
+        "nipsco-state-approval"
+       ],
+       [
+        "nipsco-federal-sales"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The November order describes 3,000 MW of planned gas and battery resources for the original 2,400 MW commitment. The added load draws on a separate pool that serves multiple customers. A 500 MW capacity purchase for that pool covers 2028 through 2040. Keep those resource figures separate from the MW and dates in the retail service schedule.",
+      "sourceIds": [
+       "nipsco-capacity-amendments"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Request the latest committed capacity, site list and energization schedule together. In this contract they are Exhibits A-1, A-2 and A-3. Use the latest signed version to check the first usable block, each increase and the work the utility or customer must finish. The reviewed orders identify the schedule change. Revised site-level dates and actual delivery remain unverified in this sample.",
+      "sourceIds": [
+       "nipsco-capacity-amendments",
+       "nipsco-settlement-filings"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the NIPSCO and Amazon power contract records",
+      "path": "/blog/nipsco-amazon-data-center-capacity-amendments.json",
+      "format": "JSON",
+      "datasetAnchor": "dataset-nipsco-amazon-power-contract"
      }
     ]
    },
@@ -8348,13 +8426,55 @@
     "title": "Large Load Interconnection Process Q&A",
     "publisher": "ERCOT",
     "url": "https://www.ercot.com/files/docs/2025/12/24/Large-Load-Interconnection-Process-Q-A.pdf"
+   },
+   {
+    "id": "nipsco-original-ramp",
+    "title": "Original customer capacity and timing in June 17, 2026 order, Cause 46322, p. 5",
+    "url": "https://secure.in.gov/iurc/files/ord_46322_061726.pdf#page=5",
+    "publisher": "Indiana Utility Regulatory Commission",
+    "linkLabel": "Original service ramp"
+   },
+   {
+    "id": "nipsco-settlement-filings",
+    "title": "Cause 46322 settlement on changes to the delivery schedule and site exhibits, PDF p. 57",
+    "url": "https://secure.in.gov/iurc/files/ord_46322_061726.pdf#page=57",
+    "publisher": "Indiana Utility Regulatory Commission",
+    "linkLabel": "Settlement reporting terms"
+   },
+   {
+    "id": "nipsco-capacity-amendments",
+    "title": "Amendments and replacement schedule in November 18, 2026 order, Cause 46442, pp. 3–4",
+    "url": "https://www.in.gov/iurc/files/ord_46442_111826.pdf#page=3",
+    "publisher": "Indiana Utility Regulatory Commission",
+    "linkLabel": "Amended capacity and exhibits"
+   },
+   {
+    "id": "nipsco-state-approval",
+    "title": "Ordering paragraphs approving the retail contract and wholesale PPA amendments, Cause 46442, p. 12",
+    "url": "https://www.in.gov/iurc/files/ord_46442_111826.pdf#page=12",
+    "publisher": "Indiana Utility Regulatory Commission",
+    "linkLabel": "State approval"
+   },
+   {
+    "id": "nipsco-federal-sales",
+    "title": "November 19, 2026 affiliate sales authorization, Dockets ER26-3474-000 and ER26-3475-000",
+    "url": "https://www.ferc.gov/sites/default/files/2026-11/E-4-ER26-3474-000.pdf#page=1",
+    "publisher": "Federal Energy Regulatory Commission",
+    "linkLabel": "FERC affiliate sales order"
+   },
+   {
+    "id": "nipsco-2800-mw-forecast",
+    "title": "NiSource first-quarter 2026 Form 10-Q, p. 38 amendments to the Amazon contract",
+    "url": "https://s1.q4cdn.com/829981032/files/doc_earnings/2026/q1/filing/Ni-Q1-2026-10Q.pdf#page=38",
+    "publisher": "NiSource",
+    "linkLabel": "NiSource capacity disclosure"
    }
   ],
   "relatedSlugs": [
    "arizona-1-5-gw-powered-land-ai-campus",
    "find-data-center-site-us"
   ],
-  "updatedDate": "2026-11-24",
+  "updatedDate": "2026-11-25",
   "dataset": {
    "name": "Power milestones at four U.S. gigawatt data center developments",
    "description": "Seven dated developer and utility records covering energized buildings, planned grid capacity, onsite generation design, critical IT load, and regulatory approval at projects in Texas and Louisiana.",
@@ -8377,6 +8497,22 @@
     "spatialCoverage": "Richland and Pointe Coupee parishes, Louisiana, United States",
     "temporalCoverage": "2025-08-29/2026-11-24",
     "sourceIds": ["evest-sec","evest-staff-brief","evest-procedural-order","evest-docket","laidley-order","hyperion"]
+   },
+   {
+    "anchor": "dataset-nipsco-amazon-power-contract",
+    "name": "NIPSCO and Amazon data center capacity commitments and approvals",
+    "description": "Dated contract and regulatory records covering the original 2,400 MW ramp, the 400 MW addition, the replacement energization schedule and the federal affiliate sales approval.",
+    "datePublished": "2026-11-25",
+    "spatialCoverage": "NIPSCO service territory, northern Indiana, United States",
+    "temporalCoverage": "2025-09-18/2026-11-19",
+    "sourceIds": [
+     "nipsco-original-ramp",
+     "nipsco-settlement-filings",
+     "nipsco-capacity-amendments",
+     "nipsco-state-approval",
+     "nipsco-federal-sales",
+     "nipsco-2800-mw-forecast"
+    ]
    }
   ]
  },
