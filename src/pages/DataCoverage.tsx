@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
+import { coverageFieldPath } from '../data/coverageFieldPath.mjs'
 import summary from '../data/earth-coverage-summary.json'
 import topics from '../data/earth-coverage-topics.json'
 import examples from '../data/earth-coverage-examples.json'
@@ -24,14 +25,19 @@ type Definition = { description: string; unit?: string | null; source: string; s
 type Field = { name: string; label?: string; definitions: Partial<Record<Operation, Definition>> }
 const exampleFields: Record<string, Field> = examples
 
-function FieldDetails({ field, operation, compact }: { field: Field; operation?: Operation | ''; compact?: boolean }) {
+function FieldDetails({ field, operation, compact, linked }: {
+  field: Field
+  operation?: Operation | ''
+  compact?: boolean
+  linked?: boolean
+}) {
   const definitions = (Object.keys(operations) as Operation[]).flatMap(key => {
     const definition = field.definitions[key]
     return definition && (!operation || key === operation) ? [{ key, definition }] : []
   })
   const restricted = definitions.every(({ definition }) => definition.operatorOnly)
   return (
-    <details className="coverage-field">
+    <details className="coverage-field" open={linked || undefined}>
       <summary>
         {field.label && <span>{field.label}</span>}
         <code className="coverage-field-name">{field.name}</code>
@@ -53,6 +59,10 @@ function FieldDetails({ field, operation, compact }: { field: Field; operation?:
             </div>
           </div>
         ))}
+        {!linked && <Link className="coverage-field-link" to={coverageFieldPath(field.name, operation)}
+          aria-label={`Open field reference for ${field.name}`}>
+          Open field reference <ResourceArrow diagonal />
+        </Link>}
       </div>
     </details>
   )
@@ -70,7 +80,12 @@ function indexFields(fields: Field[]) {
 const pageSize = 12
 
 export default function DataCoverage() {
-  const { hash } = useLocation()
+  const { hash, search } = useLocation()
+  const navigate = useNavigate()
+  const params = new URLSearchParams(search)
+  const linkedField = params.get('field')?.trim().toLowerCase() ?? ''
+  const linkedOperation = params.get('operation')
+  const searchHeading = useRef<HTMLHeadingElement>(null)
   const [query, setQuery] = useState('')
   const [operation, setOperation] = useState<Operation | ''>('')
   const [browseAll, setBrowseAll] = useState(false)
@@ -79,11 +94,45 @@ export default function DataCoverage() {
   const [error, setError] = useState(false)
   const [attempt, setAttempt] = useState(0)
   const [ready, setReady] = useState(false)
+  const activeOperation = linkedField
+    ? (linkedOperation === 'point' || linkedOperation === 'parcel' ? linkedOperation : '')
+    : operation
   const terms = articleSearchWords(query)
-  const searching = terms.length > 0
-  const showFields = searching || operation !== '' || browseAll
+  const searching = Boolean(linkedField || terms.length)
+  const showFields = searching || activeOperation !== '' || browseAll
+
+  function editQuery(value: string) {
+    setQuery(value)
+    setCount(pageSize)
+    if (linkedField) {
+      setOperation(activeOperation)
+      params.delete('field')
+      params.delete('operation')
+      navigate({ search: params.toString(), hash }, { replace: true })
+    }
+  }
+
+  function pickOperation(value: Operation | '') {
+    setCount(pageSize)
+    if (linkedField) {
+      if (value) params.set('operation', value)
+      else params.delete('operation')
+      navigate({ search: params.toString(), hash }, { replace: true })
+    } else {
+      setOperation(value)
+    }
+  }
 
   useEffect(() => setReady(true), [])
+  useEffect(() => {
+    if (!linkedField || hash !== '#coverage-search') return
+    const frame = requestAnimationFrame(() => {
+      searchHeading.current?.focus({ preventScroll: true })
+      searchHeading.current?.scrollIntoView({ behavior: 'instant' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [linkedField, hash])
+
   useEffect(() => {
     if (!showFields || index) return
     const controller = new AbortController()
@@ -101,8 +150,9 @@ export default function DataCoverage() {
   }, [showFields, index, attempt])
 
   const matches = showFields && index
-    ? (searching ? rankSearch(index, terms) : index.map(({ entry }) => entry))
-        .filter(field => !operation || field.definitions[operation])
+    ? (linkedField || !searching ? index.map(({ entry }) => entry) : rankSearch(index, terms))
+        .filter(field => (!linkedField || field.name === linkedField) &&
+          (!activeOperation || field.definitions[activeOperation]))
     : []
 
   return (
@@ -129,22 +179,22 @@ export default function DataCoverage() {
         </div>
         <p className="coverage-note">{summary.shared} field names appear in both manifests. Check the definition for the operation you plan to call. Values depend on location and API key access.</p>
         {summary.operatorOnly > 0 && <p className="coverage-note">The manifests flag operator key requirements for {summary.operatorOnly} fields.</p>}
-        <h2 id="coverage-search">Find a field</h2>
+        <h2 id="coverage-search" tabIndex={-1} ref={searchHeading}>Find a field</h2>
         <div className="coverage-controls">
           <label>
             <span>Search by field name, topic, or source</span>
             <input type="search" placeholder="Try flood zone, substation, or FEMA" disabled={!ready}
-              value={query} onChange={event => { setQuery(event.target.value); setCount(pageSize) }} />
+              value={linkedField || query} onChange={event => editQuery(event.target.value)} />
           </label>
           <label>
             <span>API operation</span>
-            <select value={operation} disabled={!ready} onChange={event => { setOperation(event.target.value as Operation | ''); setCount(pageSize) }}>
+            <select value={activeOperation} disabled={!ready} onChange={event => pickOperation(event.target.value as Operation | '')}>
               <option value="">All operations</option>
               {Object.entries(operations).map(([key, { label }]) => <option key={key} value={key}>{label}</option>)}
             </select>
           </label>
         </div>
-        {!searching && !operation && (
+        {!searching && !activeOperation && (
           <button type="button" className="coverage-action" disabled={!ready}
             aria-expanded={browseAll} aria-controls="coverage-results"
             onClick={() => { setBrowseAll(!browseAll); setCount(pageSize) }}>
@@ -165,7 +215,7 @@ export default function DataCoverage() {
               Try a different field name or <a href={product.links.fieldRequests}>request a data field</a>.
             </p>
           )}
-          {matches.slice(0, count).map(field => <FieldDetails key={field.name} field={field} operation={operation} />)}
+          {matches.slice(0, count).map(field => <FieldDetails key={field.name} field={field} operation={activeOperation} linked={Boolean(linkedField)} />)}
           {matches.length > count && <button type="button" className="coverage-action" onClick={() => setCount(count + pageSize)}>Show more fields</button>}
         </div>
       </section>

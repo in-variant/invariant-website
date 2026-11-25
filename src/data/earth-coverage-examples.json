@@ -11,6 +11,30 @@
     },
     "label": "Address"
   },
+  "parcelnumb": {
+    "name": "parcelnumb",
+    "definitions": {
+      "parcel": {
+        "description": "Assessor parcel number (APN) of the parcel containing the point, formatted as the county publishes it. Use parcelnumb_no_formatting to compare across sources.",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Parcel number"
+  },
+  "owner": {
+    "name": "owner",
+    "definitions": {
+      "parcel": {
+        "description": "Primary owner of the parcel as recorded by the county assessor. Owner names are as published (often upper case, sometimes with trust or LLC suffixes) and can lag a recent sale.",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Owner"
+  },
   "parcel_boundary_geojson": {
     "name": "parcel_boundary_geojson",
     "definitions": {

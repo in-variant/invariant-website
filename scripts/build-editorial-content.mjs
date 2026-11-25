@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
+import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { articleSearchWords } from '../src/data/articleSearchWords.mjs'
 
 const base = new URL('../src/data/', import.meta.url)
@@ -52,6 +53,10 @@ for (const { slug } of glossary) {
   linkablePaths.add(path)
 }
 const coverageByName = new Map(coverageSnapshot.map(field => [field.name, field]))
+for (const { name, definitions } of coverageSnapshot) {
+  linkablePaths.add(coverageFieldPath(name))
+  for (const operation of Object.keys(definitions)) linkablePaths.add(coverageFieldPath(name, operation))
+}
 const coverageExamples = {}
 for (const { id, fields } of coverageTopics) {
   const path = `/data-coverage#${id}`

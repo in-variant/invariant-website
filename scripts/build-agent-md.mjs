@@ -12,6 +12,7 @@
 // with <link rel="alternate" type="text/markdown"> (scripts/prerender.mjs).
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
@@ -210,7 +211,7 @@ function coverageMd() {
       ...fields.flatMap(name => Object.entries(fieldsByName.get(name).definitions).map(([operation, definition]) => {
         const unit = definition.unit ? ` Unit ${definition.unit}.` : ''
         const access = definition.operatorOnly ? ' Operator key required.' : ''
-        return `- \`${name}\` (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.source, definition.sourceUrl)}.`
+        return `- [\`${name}\`](${SITE}${coverageFieldPath(name, operation)}) (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.source, definition.sourceUrl)}.`
       })), '',
       `- [${guideLabel}](${SITE}${guide})`,
       `- [View research samples](${SITE}/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search)`, '',

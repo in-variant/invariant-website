@@ -21372,6 +21372,7 @@
             "label": "Trial materials",
             "items": [
               {"path": "/data-coverage#hazards-and-underwriting", "label": "Check flood, wildfire and hail field coverage"},
+              {"path": "/data-coverage?field=fema_flood_zone&operation=parcel#coverage-search", "label": "Check what the parcel flood zone field reports"},
               {
                 "slug": "best-flood-risk-data-apis",
                 "label": "Test whether the address, building and tax lot agree on FEMA exposure"
@@ -26874,6 +26875,8 @@
           {
             "type": "links",
             "items": [
+              {"path": "/data-coverage?field=fiber_broadband_available&operation=point#coverage-search", "label": "Check the operator-only point fiber indicator"},
+              {"path": "/data-coverage?field=fiber_provider_count&operation=point#coverage-search", "label": "Check how the FCC fiber provider count is defined"},
               {
                 "slug": "data-center-fiber-route-diversity",
                 "label": "Verify physical fiber route diversity"
@@ -28065,8 +28068,12 @@
             "type": "links",
             "items": [
               {
-                "path": "/data-coverage#property-and-buildings",
-                "label": "Browse the Invariant Earth parcel fields"
+                "path": "/data-coverage?field=parcelnumb&operation=parcel#coverage-search",
+                "label": "Check the assessor parcel number field"
+              },
+              {
+                "path": "/data-coverage?field=owner&operation=parcel#coverage-search",
+                "label": "Check the assessor owner field"
               },
               {
                 "slug": "commercial-property-ownership-data-apis",
