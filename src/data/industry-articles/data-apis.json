@@ -16657,7 +16657,7 @@
     "title": "Building Permit Data APIs for Commercial Property",
     "description": "Compare Invariant Earth, Mireye, Shovels and other permit APIs. Test coverage by city, building matches, project counts and inspection dates.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "readMinutes": 10,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
@@ -17018,9 +17018,40 @@
         ]
       },
       {
+        "id": "permit-expiration-history",
+        "heading": "How do you track a change to a permit’s expiration date?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Save the source rows each time you query them. On November 23, 2026, both trade rows for permit B01440157-S1-PL showed a December 4, 2026 expiration. When we ran the same NYC query on November 25, both rows showed October 15, 2027. The issue date stayed October 15, 2026.",
+            "sourceIds": [
+              "nyc-fitout-query"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The snapshots establish what the city feed reported on each retrieval date. Check the issuer’s permit history for the date and reason the update took effect."
+          },
+          {
+            "type": "download",
+            "path": "/blog/nyc-dob-now-permit-expiration-history.json",
+            "label": "Download both NYC permit expiration snapshots",
+            "format": "JSON",
+            "datasetAnchor": "dataset-permit-expiration-history"
+          }
+        ]
+      },
+      {
         "id": "run-a-vendor-trial",
         "heading": "Run a trial on buildings you already know",
         "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Run the Python trial to compare a provider export against nine known permit IDs. It flags missing permits, conflicting duplicate rows and date or scope fields that differ from the saved city records.",
+            "sourceIds": [
+              "invariant-permit-trial"
+            ]
+          },
           {
             "type": "list",
             "items": [
@@ -17089,6 +17120,20 @@
       }
     ],
     "sources": [
+      {
+        "id": "nyc-fitout-query",
+        "title": "Exact DOB NOW query for the three Brooklyn fit-out filings",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=job_filing_number+in%28%27B01440157-I1%27%2C%27B01440157-S1%27%2C%27B01440157-S2%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cwork_permit%2Cwork_type%2Cpermit_status%2Capproved_date%2Cissued_date%2Cexpired_date&%24limit=100&%24order=job_filing_number%2Cwork_permit%2Cwork_type",
+        "publisher": "NYC Department of Buildings via NYC Open Data",
+        "linkLabel": "Run the city query"
+      },
+      {
+        "id": "invariant-permit-trial",
+        "title": "Building permit API trial with NYC and Seattle source records",
+        "url": "https://docs.invariant-ai.com/test-building-permit-api",
+        "publisher": "Invariant",
+        "linkLabel": "Run the issuer reference trial"
+      },
       {"id": "earth-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth", "linkLabel": "Earth field catalog"},
       {"id": "earth-quickstart", "title": "Quickstart for a cited coordinate lookup", "url": "https://docs.invariant-ai.com/quickstart", "publisher": "Invariant Earth", "linkLabel": "Try the Earth API"},
       {
@@ -17255,6 +17300,23 @@
         "spatialCoverage": "Seattle, Washington, United States",
         "temporalCoverage": "2017-03-23/2026-11-24",
         "datePublished": "2026-11-24"
+      },
+      {
+        "anchor": "dataset-permit-expiration-history",
+        "name": "Two NYC DOB NOW expiration snapshots for B01440157-S1-PL",
+        "description": "Compare the original expiration values on two trade rows for one Brooklyn Army Terminal plumbing permit in two dated city exports.",
+        "sourceReuse": {
+          "note": "Credit NYC Department of Buildings and NYC Open Data for the permit fields. Invariant selected the two rows for this permit from each dated response and preserved the source values.",
+          "policyLabel": "NYC Open Data terms of use",
+          "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+        },
+        "sourceIds": [
+          "nyc-permits",
+          "nyc-fitout-query"
+        ],
+        "spatialCoverage": "Brooklyn Army Terminal, New York City, United States",
+        "temporalCoverage": "2026-11-23/2026-11-25",
+        "datePublished": "2026-11-25"
       }
     ],
     "relatedSlugs": [

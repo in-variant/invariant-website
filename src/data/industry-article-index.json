@@ -3023,7 +3023,7 @@
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/building-permit-data-apis.webp?v=03e936d9",
     "dataset": {
       "name": "Brooklyn Army Terminal building permit and filing records",
@@ -3142,6 +3142,42 @@
           {
             "label": "Download the Seattle permit records and expected trial results",
             "path": "/blog/seattle-commercial-roof-permit-inspections.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-permit-expiration-history",
+        "name": "Two NYC DOB NOW expiration snapshots for B01440157-S1-PL",
+        "description": "Compare the original expiration values on two trade rows for one Brooklyn Army Terminal plumbing permit in two dated city exports.",
+        "sourceReuse": {
+          "note": "Credit NYC Department of Buildings and NYC Open Data for the permit fields. Invariant selected the two rows for this permit from each dated response and preserved the source values.",
+          "policyLabel": "NYC Open Data terms of use",
+          "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+        },
+        "spatialCoverage": "Brooklyn Army Terminal, New York City, United States",
+        "temporalCoverage": "2026-11-23/2026-11-25",
+        "datePublished": "2026-11-25",
+        "sources": [
+          "https://data.cityofnewyork.us/d/rbx6-tga4",
+          "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=job_filing_number+in%28%27B01440157-I1%27%2C%27B01440157-S1%27%2C%27B01440157-S2%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cwork_permit%2Cwork_type%2Cpermit_status%2Capproved_date%2Cissued_date%2Cexpired_date&%24limit=100&%24order=job_filing_number%2Cwork_permit%2Cwork_type"
+        ],
+        "sourceDetails": [
+          {
+            "title": "DOB NOW: Build Approved Permits",
+            "publisher": "NYC Department of Buildings",
+            "url": "https://data.cityofnewyork.us/d/rbx6-tga4"
+          },
+          {
+            "title": "Exact DOB NOW query for the three Brooklyn fit-out filings",
+            "publisher": "NYC Department of Buildings via NYC Open Data",
+            "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=job_filing_number+in%28%27B01440157-I1%27%2C%27B01440157-S1%27%2C%27B01440157-S2%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cwork_permit%2Cwork_type%2Cpermit_status%2Capproved_date%2Cissued_date%2Cexpired_date&%24limit=100&%24order=job_filing_number%2Cwork_permit%2Cwork_type"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download both NYC permit expiration snapshots",
+            "path": "/blog/nyc-dob-now-permit-expiration-history.json",
             "format": "JSON"
           }
         ]

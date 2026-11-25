@@ -1,0 +1,91 @@
+{
+  "name": "Two NYC DOB NOW expiration snapshots for B01440157-S1-PL",
+  "description": "Compare the original expiration values on two trade rows for one Brooklyn Army Terminal plumbing permit in two dated city exports.",
+  "publisher": "Invariant",
+  "date_published": "2026-11-25",
+  "source": {
+    "publisher": "NYC Department of Buildings via NYC Open Data",
+    "dataset": "DOB NOW: Build – Approved Permits",
+    "dataset_id": "rbx6-tga4",
+    "query_url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24where=job_filing_number+in%28%27B01440157-I1%27%2C%27B01440157-S1%27%2C%27B01440157-S2%27%29&%24select=job_filing_number%2Cbin%2Cbbl%2Chouse_no%2Cstreet_name%2Cborough%2Cwork_permit%2Cwork_type%2Cpermit_status%2Capproved_date%2Cissued_date%2Cexpired_date&%24limit=100&%24order=job_filing_number%2Cwork_permit%2Cwork_type",
+    "terms": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html",
+    "selection_note": "Credit NYC Department of Buildings and NYC Open Data for the permit fields. Invariant selected the two rows for this permit from each dated response and preserved the source values."
+  },
+  "permit_number": "B01440157-S1-PL",
+  "building_identification_number": "3414976",
+  "borough_block_lot": "3057780001",
+  "observations": [
+    {
+      "retrieved_at_utc": "2026-11-23T12:33:02+00:00",
+      "raw_response_sha256": "b50651d0602e6dd814e78c31ce6d8f761f779a8a07fe6e7fa6d313eaa6253879",
+      "source_rows": [
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-PL",
+          "work_type": "Plumbing",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2026-12-04T05:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-PL",
+          "work_type": "Sprinklers",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2026-12-04T05:00:00.000"
+        }
+      ]
+    },
+    {
+      "retrieved_at_utc": "2026-11-25T12:09:15.378478+00:00",
+      "raw_response_sha256": "de2e253bb43e71d2f6d3d653d91edf8004b5f7d7dde3c568c1f60d5f75632f45",
+      "source_rows": [
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-PL",
+          "work_type": "Plumbing",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2027-10-15T04:00:00.000"
+        },
+        {
+          "job_filing_number": "B01440157-S1",
+          "bin": "3414976",
+          "bbl": "3057780001",
+          "house_no": "140",
+          "street_name": "58 STREET",
+          "borough": "Brooklyn",
+          "work_permit": "B01440157-S1-PL",
+          "work_type": "Sprinklers",
+          "permit_status": "Permit Issued",
+          "approved_date": "2026-09-03T00:00:00.000",
+          "issued_date": "2026-10-15T00:00:00.000",
+          "expired_date": "2027-10-15T04:00:00.000"
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "The snapshots show what the city feed returned at retrieval. They do not establish when or why the date changed.",
+    "The download keeps the literal city date strings. Each hash refers to the entire raw query response."
+  ]
+}
