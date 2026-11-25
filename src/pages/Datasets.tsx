@@ -130,11 +130,11 @@ export default function Datasets() {
             <div>
               <p>{description}</p>
               <nav aria-label="Research library and API" className="resources-data-links">
-                <a className="dataset-api-button" href="#dataset-search">Find a sample <span aria-hidden="true">↓</span></a>
-                <Link className="dataset-method" to={earthLinks.coverage}
+                <Link className="dataset-api-button" to={earthLinks.coverage}
                   onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
                   Check API coverage <ResourceArrow diagonal />
                 </Link>
+                <a className="dataset-method" href="#dataset-search">Find a sample <span aria-hidden="true">↓</span></a>
               </nav>
             </div>
           </div>
