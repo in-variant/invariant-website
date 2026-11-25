@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { datasetCitationPath } from '../data/datasetCitationPath.mjs'
 import './DatasetCitation.css'
 
 export default function DatasetCitation({ name, datePublished, url }: { name: string; datePublished: string; url: string }) {
@@ -22,6 +23,7 @@ export default function DatasetCitation({ name, datePublished, url }: { name: st
         <div className="dataset-citation-actions">
           <button type="button" onClick={() => copy(`${reference} ${url}`, 'Citation copied')}>Copy citation</button>
           <button type="button" onClick={() => copy(url, 'Dataset link copied')}>Copy dataset link</button>
+          <a href={datasetCitationPath(url)} download>Download citation (CSL JSON)</a>
           <span role="status">{message}</span>
         </div>
       </div>

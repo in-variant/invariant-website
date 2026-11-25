@@ -455,6 +455,7 @@ def verify_dataset_catalog(catalog, pages):
             "JSON dataset index differs from the HTML listing")
     citation_entries = json.loads((DIST / DATASET_CITATIONS_PATH.lstrip("/")).read_bytes())
     citations = {entry["id"]: entry for entry in citation_entries}
+    citation_files = set()
     require(DATASET_CITATIONS_PATH in catalog.downloads and f"]({CANONICAL}{DATASET_CITATIONS_PATH})" in markdown,
             "dataset catalogs need direct downloads for the citation library")
     require(len(citations) == len(citation_entries) and citations.keys() == records.keys(),
@@ -471,10 +472,23 @@ def verify_dataset_catalog(catalog, pages):
                 and entry["author"] == [{"literal": "Invariant"}]
                 and entry["issued"]["date-parts"] == [[int(part) for part in published.split("-")]],
                 f"{url} has inconsistent citation metadata")
+        target = urlsplit(url)
+        citation_path = f"/citations/{target.path.split('/')[-1]}.{target.fragment}.csl.json"
+        citation_url = CANONICAL + citation_path
+        require(record.get("citationUrl") == citation_url and citation_path in catalog.downloads
+                and f"]({citation_url})" in markdown,
+                f"{url} needs a canonical citation download in each catalog")
+        require(json.loads((DIST / citation_path.lstrip("/")).read_bytes()) == [entry],
+                f"{citation_path} must contain only the matching citation")
+        citation_files.add(citation_path)
     for path, page in pages.items():
+        datasets = list(dataset_nodes(page.schemas))
+        if not datasets:
+            continue
+        require(path.startswith("/blog/"), f"{page.url} describes a Dataset outside its canonical guide")
+        article_markdown = (DIST / (path.lstrip("/") + ".md")).read_text(encoding="utf-8")
         registered_downloads = set()
-        for dataset in dataset_nodes(page.schemas):
-            require(path.startswith("/blog/"), f"{page.url} describes a Dataset outside its canonical guide")
+        for dataset in datasets:
             name, description = dataset.get("name"), dataset.get("description")
             require(isinstance(name, str) and name.strip() and isinstance(description, str)
                     and 50 <= len(description.strip()) <= 5000,
@@ -489,6 +503,9 @@ def verify_dataset_catalog(catalog, pages):
             require((path, anchor) in catalog.fragment_links, f"{dataset['url']} is missing from the HTML dataset catalog")
             require(f"]({dataset['url']})" in markdown, f"{page.url} is missing from the Markdown dataset catalog")
             record = records[dataset["url"]]
+            citation_url = record["citationUrl"]
+            require(urlsplit(citation_url).path in page.downloads and f"]({citation_url})" in article_markdown,
+                    f"{dataset['url']} needs a citation download in HTML and Markdown")
             require(record["name"] == dataset["name"] and record["description"] == dataset["description"]
                     and record.get("datePublished", record["guide"]["published"]) == dataset["datePublished"],
                     f"{dataset['url']} has inconsistent JSON dataset metadata")
@@ -517,6 +534,7 @@ def verify_dataset_catalog(catalog, pages):
                         f"{entry['url']} checksum or size differs from dist/")
             actual_names[dataset["url"]] = dataset["name"]
     require(actual_names and actual_names == expected_names, "catalog links differ from the published Dataset pages")
+    return citation_files
 
 
 def verify_blog_feed(blog, xml, expected_urls):
@@ -569,11 +587,11 @@ def build_jobs(sitemap, full):
         assets.update(page.assets)
         pages[path] = page
     verify_search_metadata(pages)
-    verify_dataset_catalog(catalog, pages)
+    citation_files = verify_dataset_catalog(catalog, pages)
     feed = (DIST / FEED_PATH.lstrip("/")).read_bytes()
     verify_blog_feed(pages["/blog"], feed, expected_urls)
     jobs.append((FEED_PATH, "feed", feed))
-    for path in (DATASET_INDEX_PATH, DATASET_CITATIONS_PATH, COVERAGE_FIELDS_PATH):
+    for path in (DATASET_INDEX_PATH, DATASET_CITATIONS_PATH, COVERAGE_FIELDS_PATH, *sorted(citation_files)):
         jobs.append((path, "dataset-index", (DIST / path.lstrip("/")).read_bytes()))
         downloads.discard(path)
     if full:

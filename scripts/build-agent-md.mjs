@@ -7,12 +7,14 @@
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
 //   /datasets.csl.json   dataset citations for reference managers
+//   /citations/*.csl.json one citation file per research dataset
 //   /llms-full.txt        every industry article in full, due diligence and power studies first
 // Agents and LLM crawlers fetch these instead of parsing HTML. Each HTML page links its .md
 // with <link rel="alternate" type="text/markdown"> (scripts/prerender.mjs).
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
+import { datasetCitationPath } from '../src/data/datasetCitationPath.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
@@ -49,9 +51,8 @@ const datasetEntries = articleIndex.flatMap(article => {
   }))
 })
 const primaryDatasets = new Map(datasetEntries.filter(entry => !entry.dataset.anchor).map(entry => [entry.slug, entry]))
-const sourceReuseByDownload = new Map(datasetEntries
-  .filter(({ dataset }) => dataset.sourceReuse)
-  .map(({ slug, dataset }) => [`${slug}:${dataset.downloads[0].path}`, dataset.sourceReuse]))
+const datasetByFirstDownload = new Map(datasetEntries
+  .map(entry => [`${entry.slug}:${entry.dataset.downloads[0].path}`, entry]))
 const datasetTopics = new Map(datasetEntries.map(({ slug }) => [slug, []]))
 for (const [label, slugs] of Object.entries(datasetCatalog.topics)) {
   for (const slug of slugs) {
@@ -100,7 +101,9 @@ function articleMd(a) {
         out.push(`| ${b.columns.map(cell).join(' | ')} |`, `| ${b.columns.map(() => '---').join(' | ')} |`, ...rows, ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
       } else if (b.type === 'download') {
         out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
-        const reuse = sourceReuseByDownload.get(`${a.slug}:${b.path}`)
+        const record = datasetByFirstDownload.get(`${a.slug}:${b.path}`)
+        if (record) out.push(`[Download citation (CSL JSON)](${SITE}${datasetCitationPath(record.url)})`, '')
+        const reuse = record?.dataset.sourceReuse
         if (reuse) out.push(`${reuse.note} ${citationLink(reuse.policyLabel, reuse.policyUrl)}`, '')
         if (workflow && b.path === datasetDownload) {
           out.push(`[${workflow.label}](${workflow.url})`, '')
@@ -293,7 +296,7 @@ function datasetCatalogMd() {
     out.push(
       `### ${dataset.name}`, '', dataset.description, '',
       ...(datasetTopics.get(slug).length ? [`- Topics: ${datasetTopics.get(slug).join(' · ')}`] : []),
-      `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md)`,
+      `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md) · [Download citation (CSL JSON)](${SITE}${datasetCitationPath(url)})`,
       ...(workflow ? [`- [${workflow.label}](${workflow.url})`] : []),
       `- Published: ${dataset.datePublished ?? dateTime}`,
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
@@ -319,6 +322,7 @@ function datasetCatalogJson() {
       return {
         url,
         ...metadata,
+        citationUrl: `${SITE}${datasetCitationPath(url)}`,
         topics: datasetTopics.get(slug),
         ...(researchWorkflows.has(slug) && { workflow: researchWorkflows.get(slug) }),
         guide: {
@@ -358,6 +362,10 @@ const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({
   URL: url,
 }))
 writeFileSync(join(DIST, 'datasets.csl.json'), `${JSON.stringify(datasetCitations, null, 2)}\n`)
+mkdirSync(join(DIST, 'citations'), { recursive: true })
+for (const citation of datasetCitations) {
+  writeFileSync(join(DIST, datasetCitationPath(citation.URL).slice(1)), `${JSON.stringify([citation], null, 2)}\n`)
+}
 const full = [
   '# Invariant data, site selection, power and compliance guides', '',
   '> Full text of the industry guides and buyer workflows. Each article has a Markdown copy at its URL plus `.md`.', '',
