@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { renderToString } from 'react-dom/server'
 import { Route, Routes, StaticRouter } from 'react-router-dom'
 import Layout from './components/Layout'
@@ -50,18 +51,22 @@ async function pageFor(path: string) {
 
 export async function renderPublicRoute(path: string) {
   const { page, source, dataSources } = await pageFor(path)
+  const hydrate = path === '/datasets'
   const metadata: SeoProps[] = []
+  const routes = (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path={path} element={page} />
+      </Route>
+    </Routes>
+  )
   const body = renderToString(
     <StaticRouter location={path}>
       <PrerenderSeo.Provider value={props => metadata.push(props)}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path={path} element={page} />
-          </Route>
-        </Routes>
+        {hydrate ? <Suspense>{routes}</Suspense> : routes}
       </PrerenderSeo.Provider>
     </StaticRouter>,
   )
   if (metadata.length !== 1) throw new Error(`Expected one set of SEO metadata for ${path}, got ${metadata.length}`)
-  return { body, seo: metadata[0], source: `src${source.slice(1)}`, dataSources }
+  return { body, seo: metadata[0], source: `src${source.slice(1)}`, dataSources, hydrate }
 }

@@ -47,7 +47,7 @@ function cssFor(manifest, source, seen = new Set()) {
   return [...(chunk.css ?? []), ...(chunk.imports ?? []).flatMap(dep => cssFor(manifest, dep, seen))]
 }
 
-function documentHtml(template, { body, seo, source }, stylesheets, preloadModules = []) {
+function documentHtml(template, { body, seo, source, hydrate }, stylesheets, preloadModules = []) {
   const title = seo.title.includes('Invariant') ? seo.title : `${seo.title} | Invariant`
   const imageAlt = seo.ogImageAlt ? escapeHtml(seo.ogImageAlt) : ''
   const replacements = [
@@ -89,10 +89,16 @@ function documentHtml(template, { body, seo, source }, stylesheets, preloadModul
   if (!seo.noindex && seo.allowLargeImagePreview) {
     alternate.push('<meta name="robots" content="max-image-preview:large" data-prerender-seo>')
   }
-  out = out.replace('</head>', () => `${[...preload, ...schemas, ...alternate, ...css].join('\n')}\n</head>`)
+  // React emits image preloads ahead of the rendered tree. Keep them out
+  // of the catalog's hydration container so it starts at the Suspense marker.
+  const imagePreloads = hydrate
+    ? body.match(/^(?:<link rel="preload" as="image"[^>]+>)+/)?.[0] ?? ''
+    : ''
+  out = out.replace('</head>', () => `${[...preload, ...schemas, ...alternate, ...css, imagePreloads].filter(Boolean).join('\n')}\n</head>`)
   const routeHeadTag = /<(?:title|meta (?:name="(?:description|twitter:[^"]+)"|property="og:[^"]+")|link rel="canonical"|script type="application\/ld\+json")(?=[\s>])/g
   out = out.replace(routeHeadTag, '$& data-prerender-seo')
-  return out.replace(ROOT_TAG, () => `<div id="root">${body}</div>`)
+  const rootAttributes = hydrate ? 'id="root" data-hydrate' : 'id="root"'
+  return out.replace(ROOT_TAG, () => `<div ${rootAttributes}>${body.slice(imagePreloads.length)}</div>`)
 }
 
 async function main() {

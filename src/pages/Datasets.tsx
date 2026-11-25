@@ -94,15 +94,19 @@ export default function Datasets() {
   const searchInput = useRef<HTMLInputElement>(null)
   const archive = useRef<HTMLDetailsElement>(null)
   useEffect(() => setSearchReady(true), [])
-  const terms = editorialSearchWords(query)
+  const terms = useMemo(() => editorialSearchWords(query), [query])
   const searching = terms.length > 0
   const searchIndex = useMemo(() => searching ? buildSearchIndex() : null, [searching])
   const isFiltered = Boolean(searching || topic || format)
-  const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true }) : catalogEntries
-  const matches = candidates.filter(({ topics, dataset }) =>
-    (!topic || topics.includes(topic)) &&
-    (!format || dataset.downloads.some(file => file.format === format)),
-  )
+  const matches = useMemo(() => {
+    const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true }) : catalogEntries
+    if (!topic && !format) return candidates
+
+    return candidates.filter(({ topics, dataset }) =>
+      (!topic || topics.includes(topic)) &&
+      (!format || dataset.downloads.some(file => file.format === format)),
+    )
+  }, [searchIndex, terms, topic, format])
   useLayoutEffect(() => {
     const disclosure = archive.current
     if (!disclosure) return
@@ -133,7 +137,7 @@ export default function Datasets() {
     searchInput.current?.focus()
   }
 
-  const rows = matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
+  const rows = useMemo(() => matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
     <article className="dataset-row" key={id} id={id} aria-labelledby={`sample-title-${id}`}>
       <div className="dataset-copy">
         <h3 id={`sample-title-${id}`}>
@@ -177,7 +181,7 @@ export default function Datasets() {
         <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
       </div>
     </article>
-  ))
+  )), [matches])
   const visibleRows = isFiltered ? rows : rows.slice(0, recentSampleCount)
   const archivedRows = isFiltered ? [] : rows.slice(recentSampleCount)
 

@@ -37,8 +37,8 @@ export function Seo({
 }: SeoProps) {
   const collectSeo = useContext(PrerenderSeo)
   useEffect(() => {
-    document.head.querySelectorAll('[data-prerender-seo]').forEach(tag => tag.remove())
-  }, [])
+    if (!collectSeo) document.head.querySelectorAll('[data-prerender-seo]').forEach(tag => tag.remove())
+  }, [collectSeo])
   if (collectSeo) {
     collectSeo({ title, description, canonical, ogImage, ogImageAlt, allowLargeImagePreview, jsonLd, noindex, ogType, markdown, feed })
     return null
