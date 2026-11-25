@@ -4,6 +4,7 @@ import siteArticleSlugs from './site-article-slugs.json'
 export const SITES_EMAIL = 'pranav@invariant-ai.com'
 export const DEFAULT_EMAIL = 'founders@invariant-ai.com'
 export const SITE_SEARCH_REQUEST_PATH = '/contact?request=site-selection'
+export const SITE_SUBMISSION_PATH = '/contact?request=site-submission'
 
 const SITE_PATHS = new Set((siteArticleSlugs as string[]).map(slug => `/blog/${slug}`))
 

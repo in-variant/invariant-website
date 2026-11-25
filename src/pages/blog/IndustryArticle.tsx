@@ -4,7 +4,7 @@ import DatasetCitation from '../../components/DatasetCitation'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, datasetSchema, faqSchema, howToSchema } from '../../components/Seo'
 import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
 import { publishedDatasets } from '../../data/publishedDatasets'
-import { SITE_SEARCH_REQUEST_PATH } from '../../data/siteContact'
+import { SITE_SEARCH_REQUEST_PATH, SITE_SUBMISSION_PATH } from '../../data/siteContact'
 import './IndustryArticle.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
@@ -175,6 +175,16 @@ function SiteSelectionRequestBanner({ variant = 'top' }: { variant?: 'top' | 'fo
   </aside>
 }
 
+function LandownerRequestBanner() {
+  return <aside className="industry-site-booking industry-site-booking--foot" aria-label="Share land for review">
+    <h2>Share a site with Invariant</h2>
+    <p>Send a parcel ID, address, or coordinates and any land or utility records you can share. We can help you identify the next checks for a site screen.</p>
+    <div className="industry-site-booking-actions">
+      <Link to={SITE_SUBMISSION_PATH}>Prepare a site submission <span aria-hidden="true">↗</span></Link>
+    </div>
+  </aside>
+}
+
 function SiteBookingBanner() {
   return <section id="site-enquiry" className="industry-site-booking industry-site-booking--foot" aria-label="Request a site shortlist" data-nosnippet="">
     <h2>Request a data center site shortlist</h2>
@@ -198,6 +208,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const allowLargeImagePreview = width >= 1200 && width * height > 300_000
   const hub = INDUSTRY_HUBS[article.topic]
   const isIndiaGuide = article.kind === 'india-guide'
+  const isLandownerGuide = article.slug === 'power-study-before-selling-land-to-data-center'
   const isDataGuide = article.topic === 'Data & APIs'
   const isSiteListing = article.kind === 'site-listing'
   const coverCaption = article.coverCaption ?? (isSiteListing ? 'AI-generated illustration.' : undefined)
@@ -225,7 +236,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
             <p>Compare candidate sites and record the evidence and next action for each check.</p>
             <a href={`/blog/${article.slug}.csv`} download>Download the worksheet (CSV) <span aria-hidden="true">↗</span></a>
           </aside> : <SiteMarketStrip />)}
-        {article.kind === 'study-guide' && <StudyRequestBanner />}
+        {article.kind === 'study-guide' && !isLandownerGuide && <StudyRequestBanner />}
         {article.kind === 'compute-guide' && <GpuCapacityBanner />}
         {isIndiaGuide && <IndiaSiteBanner />}
         {!isSiteListing && <p className="industry-lead">{article.intro}</p>}
@@ -234,7 +245,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
         <section className="industry-prose-section industry-faq" aria-labelledby="questions"><h2 id="questions">Questions that come up.</h2>{article.faqs.map(faq => <details key={faq.question}><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}<Citations ids={faq.sourceIds} article={article} /></p></details>)}</section>
         <section id="sources" className="industry-prose-section industry-source-list"><h2>Sources and references.</h2><p>{article.kind === 'site-listing' ? 'Site specifications are as marketed by the seller and are checked against utility documents before any introduction. Public sources checked on' : 'Primary sources checked for this guide on'} <time dateTime={reviewedDate}>{new Date(`${reviewedDate}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>.{!isDataGuide && ' The location, equipment, and operating plan determine which requirements apply to a project.'}</p><ol>{article.sources.map(source => <li key={source.id} id={`source-${source.id}`}><span>{source.publisher}</span><a href={source.url}>{source.title} ↗</a></li>)}</ol></section>
         {isDataGuide ? <div className="industry-article-contact"><h2>Try Invariant Earth on a site you know.</h2><p>Pick a US coordinate and inspect the source, dataset vintage, and status for each field.</p><a href="https://docs.invariant-ai.com/quickstart">Open the API quickstart <span aria-hidden="true">↗</span></a></div> :
-        isIndiaGuide ? <IndiaSiteBanner variant="foot" /> : isSiteSelectionService ? <SiteSelectionRequestBanner variant="foot" /> : article.kind === 'study-guide' ? <StudyRequestBanner variant="foot" /> : article.kind === 'compute-guide' ? <GpuCapacityBanner variant="foot" /> : isSiteKind(article.kind) ? <SiteBookingBanner /> : <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>}
+        isIndiaGuide ? <IndiaSiteBanner variant="foot" /> : isSiteSelectionService ? <SiteSelectionRequestBanner variant="foot" /> : isLandownerGuide ? <LandownerRequestBanner /> : article.kind === 'study-guide' ? <StudyRequestBanner variant="foot" /> : article.kind === 'compute-guide' ? <GpuCapacityBanner variant="foot" /> : isSiteKind(article.kind) ? <SiteBookingBanner /> : <div className="industry-article-contact"><p className="industry-eyebrow">Put the requirements to work</p><h2>Bring the project.<br />Map the path to approval.</h2><p>Connect the applicable requirements to the design, the evidence, and the people responsible for each decision.</p><Link to={`/contact?industry=${article.topic === 'Data Centers' ? 'data-centers' : 'oil-and-gas'}`}>Talk to an expert <span aria-hidden="true">↗</span></Link></div>}
       </div>
     </div>
     <BlogRelatedReading articles={article.relatedReading} />
