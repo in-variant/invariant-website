@@ -35,7 +35,7 @@ while ((m = blockRe.exec(registry))) {
 
 const pillars = pages.filter((p) => p.type === 'pillar')
 const clustersSpace = pages.filter((p) => p.type === 'cluster' && p.pillar === 'space')
-const clustersNuclear = pages.filter((p) => p.type === 'cluster' && p.pillar === 'nuclear' && p.slug !== 'ai-for-nuclear-compliance')
+const clustersNuclear = pages.filter((p) => p.type === 'cluster' && p.pillar === 'nuclear')
 
 // ── Glossary ─────────────────────────────────────────────────────────────────
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))

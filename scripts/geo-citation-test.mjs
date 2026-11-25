@@ -253,7 +253,7 @@ async function observe(item, provider, config, repeat, compareDomains) {
         first_citation: first,
       }]
     })),
-    brand_text: /\b(?:Invariant Earth|Invariant AI|FermiBench|Helion-?512)\b|(?:^|[^\w.-])invariant-ai\.com(?![\w.-])/i.test(result.answer),
+    brand_text: /\b(?:Invariant Earth|Invariant AI)\b|(?:^|[^\w.-])invariant-ai\.com(?![\w.-])/i.test(result.answer),
     citations, answer: result.answer,
   }
 }

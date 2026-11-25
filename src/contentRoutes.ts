@@ -68,10 +68,8 @@ export const contentRouteSources = {
   '/aegis-space-law-alternative': './pages/clusters/AegisSpaceLawAlternative.tsx',
   '/satellite-licensing-services': './pages/clusters/SatelliteLicensingServices.tsx',
   '/nuclear-licensing-consultants': './pages/clusters/NuclearLicensingConsultants.tsx',
-  '/ai-for-nuclear-compliance': './pages/clusters/AiForNuclearCompliance.tsx',
   '/doe-advanced-reactor-pilot-program': './pages/clusters/DoeAdvancedReactorPilotProgram.tsx',
   '/india-shanti-act-bharat-smr': './pages/clusters/IndiaShantiActBharatSmr.tsx',
-  '/ai-for-space-compliance': './pages/clusters/AiForSpaceCompliance.tsx',
 } as const
 
 export const deckRouteSources = {

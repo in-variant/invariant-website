@@ -355,17 +355,6 @@ export const PAGES: PageRef[] = [
     weight: 2,
   },
   {
-    slug: 'ai-for-nuclear-compliance',
-    title: 'AI for NRC licensing: vendor comparison',
-    shortTitle: 'AI for nuclear compliance',
-    description:
-      'Compare ADAMS retrieval, citation review, and licensing workflows across four providers.',
-    pillar: 'nuclear',
-    type: 'cluster',
-    live: true,
-    weight: 2,
-  },
-  {
     slug: 'doe-advanced-reactor-pilot-program',
     title: 'DOE Advanced Reactor Pilot Program: the 11 projects and the July 4, 2026 criticality target',
     shortTitle: 'DOE Reactor Pilot Program',
@@ -383,17 +372,6 @@ export const PAGES: PageRef[] = [
     description:
       "India's SHANTI Act 2025 repealed the AEA 1962 and CLNDA 2010, opened private reactor build with 49% FDI, set graded operator liability, and gave AERB statutory powers. NPCIL leads the Bharat Small Reactor program of 220 MWe PHWRs.",
     pillar: 'nuclear',
-    type: 'cluster',
-    live: true,
-    weight: 2,
-  },
-  {
-    slug: 'ai-for-space-compliance',
-    title: 'AI for space compliance: the commercial licensing vendor map',
-    shortTitle: 'AI for space compliance',
-    description:
-      'Honest vendor map for AI in commercial space licensing across FAA Part 450, FCC Part 25, NOAA Part 960, ITAR Category XV, and EAR 9x515. Includes Invariant, HyperSigma, and adjacent tools.',
-    pillar: 'space',
     type: 'cluster',
     live: true,
     weight: 2,

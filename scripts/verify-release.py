@@ -38,6 +38,7 @@ MISSING = (
 RETIRED = (
     "/blog/fermibench-sota", "/glossary/fermi-bench", "/glossary/helion-512",
     "/blog/nuclear-compliance-tam", "/blog/space-compliance-tam",
+    "/ai-for-nuclear-compliance", "/ai-for-space-compliance",
 )
 CRAWLER_USER_AGENTS = (
     "Googlebot/2.1", "bingbot/2.0", "OAI-SearchBot/1.4", "Claude-SearchBot/1.0", "PerplexityBot/1.0",
