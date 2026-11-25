@@ -19,8 +19,8 @@ const { url: canonical } = DATA_CATALOG
 const { description, access } = researchCatalog
 
 function trackResearchLink(properties: {
-  action: 'study' | 'workflow' | 'sample' | 'api_coverage'
-  surface: 'intro' | 'featured' | 'catalog'
+  action: 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart'
+  surface: 'intro' | 'featured' | 'catalog' | 'no_results'
   dataset?: string
   format?: string
 }) {
@@ -133,7 +133,11 @@ export default function Datasets() {
             <div>
               <p>{description}</p>
               <nav aria-label="Data samples and API" className="resources-data-links">
-                <Link className="dataset-api-button" to={earthLinks.coverage}
+                <a className="dataset-api-button" href={earthLinks.quickstart}
+                  onClick={() => trackResearchLink({ action: 'api_quickstart', surface: 'intro' })}>
+                  Try the Earth API <ResourceArrow diagonal />
+                </a>
+                <Link className="dataset-method" to={earthLinks.coverage}
                   onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
                   Check API coverage <ResourceArrow diagonal />
                 </Link>
@@ -144,7 +148,7 @@ export default function Datasets() {
         </header>
         <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
           <div className="dataset-featured-heading">
-            <h2 id="featured-studies-title">Explore by use case</h2>
+            <h2 id="featured-studies-title">See what the data can answer</h2>
             <Link className="dataset-method" to={DATA_USE_CASES_PATH}>All use-case guides <ResourceArrow diagonal /></Link>
           </div>
           <ul>
@@ -231,7 +235,13 @@ export default function Datasets() {
           </div>
         </div>
         {matches.length === 0 && (
-          <p className="dataset-empty">No samples match your filters. Try a broader search or a different file format.</p>
+          <div className="dataset-empty">
+            <p>No samples match your filters. The API coverage page lists available fields, including fields without a published sample.</p>
+            <Link className="dataset-method" to={earthLinks.coverage}
+              onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'no_results' })}>
+              Search API fields <ResourceArrow diagonal />
+            </Link>
+          </div>
         )}
         {matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
           <article className="dataset-row" key={id} id={id} aria-labelledby={`sample-title-${id}`}>

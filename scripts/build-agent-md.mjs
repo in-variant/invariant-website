@@ -270,9 +270,9 @@ function datasetCatalogMd() {
     datasetCatalog.access, '',
     `${datasetEntries.length} published research examples.`, '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
-    `[Check API data coverage](${SITE}${product.links.coverage}), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
+    `[Try the Earth API](${product.links.quickstart}), [check API data coverage](${SITE}${product.links.coverage}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
-    '## Explore by use case', '',
+    '## See what the data can answer', '',
     ...featuredResearch.flatMap(({ slug, title, summary, scope, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
       const workflow = researchWorkflows.get(slug)
