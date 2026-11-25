@@ -59,6 +59,9 @@ for (const [label, slugs] of Object.entries(datasetCatalog.topics)) {
     topics.push(label)
   }
 }
+for (const [slug, topics] of datasetTopics) {
+  if (topics.length === 0) throw new Error(`Missing research dataset topic for ${slug}`)
+}
 const researchWorkflows = new Map()
 for (const { label, url, articles } of workflowGroups) {
   for (const slug of articles) {
@@ -266,6 +269,11 @@ function datasetCatalogMd() {
       ]
     }), '',
     '## All research datasets', '',
+    ...Object.keys(datasetCatalog.topics).map(label => {
+      const params = new URLSearchParams({ topic: label })
+      const count = datasetEntries.filter(({ slug }) => datasetTopics.get(slug).includes(label)).length
+      return `- [${label}](${SITE}/datasets?${params}#dataset-search) · ${count} research examples`
+    }), '',
   ]
   for (const { slug, dateTime, dataset, url } of datasetEntries) {
     const workflow = researchWorkflows.get(slug)

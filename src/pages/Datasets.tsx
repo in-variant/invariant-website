@@ -28,6 +28,13 @@ const catalogEntries = RESEARCH_DATASETS.map(entry => ({
   ...entry,
   topics: datasetTopics.filter(topic => topic.articles.has(entry.slug)).map(topic => topic.label),
 }))
+const topicLinks = [
+  { label: '', count: catalogEntries.length },
+  ...datasetTopics.map(({ label }) => ({
+    label,
+    count: catalogEntries.filter(entry => entry.topics.includes(label)).length,
+  })),
+]
 const searchIndex = prepareSearch(catalogEntries, ({ dataset, title, region, topic, topics, workflow }) => ({
   title: dataset.name,
   relatedTitle: title,
@@ -80,15 +87,17 @@ export default function Datasets() {
     (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
   )
-  function selectTopic(value: string) {
-    if (value) params.set('topic', value)
-    else params.delete('topic')
-    navigate({ search: params.toString(), hash })
+
+  const topicSearch = (label: string) => {
+    const topicParams = new URLSearchParams(params)
+    if (label) topicParams.set('topic', label)
+    else topicParams.delete('topic')
+    return topicParams.toString()
   }
 
   const clearFilters = () => {
     setQuery('')
-    if (params.has('topic')) selectTopic('')
+    if (params.has('topic')) navigate({ search: topicSearch(''), hash })
     setFormat('')
     searchInput.current?.focus()
   }
@@ -146,16 +155,25 @@ export default function Datasets() {
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
         <p className="dataset-scope">{access}</p>
+        <noscript><p className="dataset-scope">All examples are available below. Enable JavaScript to search or filter by topic.</p></noscript>
+        <nav className="dataset-topics" aria-label="Dataset topics">
+          {topicLinks.map(({ label, count }) => (
+            <Link key={label} to={{ search: topicSearch(label), hash: '#dataset-search' }}
+              aria-label={`${label || 'All topics'} ${count} research examples`}
+              aria-current={label === topic ? 'true' : undefined}>
+              {label || 'All topics'} <span aria-hidden="true">{count}</span>
+            </Link>
+          ))}
+        </nav>
         <div className="dataset-controls">
           <label>
             <span>Search datasets</span>
             <input ref={searchInput} type="search" placeholder="EPA, lending, grid capacity…" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
           </label>
-          <label>
+          <label className="dataset-topic-select">
             <span>Topic</span>
-            <select disabled={!searchReady} value={topic} onChange={event => selectTopic(event.target.value)}>
-              <option value="">All topics</option>
-              {datasetTopics.map(({ label }) => <option key={label}>{label}</option>)}
+            <select disabled={!searchReady} value={topic} onChange={event => navigate({ search: topicSearch(event.target.value), hash })}>
+              {topicLinks.map(({ label, count }) => <option key={label} value={label}>{label || 'All topics'} ({count})</option>)}
             </select>
           </label>
           <label>

@@ -94,13 +94,39 @@
 .datasets-page #dataset-search { scroll-margin-top: 104px; }
 .datasets-list { border-bottom: 1px solid var(--resource-rule); }
 .datasets-page .dataset-scope {
-  margin-block: 8px 24px;
+  margin-block: 8px 16px;
   max-width: 68ch;
   color: var(--inv-muted, #565952);
 }
+.dataset-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin-bottom: 24px;
+}
+.dataset-topics a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 10px;
+  border: 1px solid var(--resource-rule);
+  border-radius: var(--inv-radius, 4px);
+  color: var(--inv-ink, #252724);
+  font-size: 14px;
+}
+.dataset-topics a span {
+  color: var(--inv-muted, #565952);
+  font-variant-numeric: tabular-nums;
+}
+.dataset-topics a:hover, .dataset-topics a[aria-current] {
+  border-color: var(--inv-accent, #3d4d49);
+  background: var(--inv-paper, #faf8f4);
+}
+.dataset-topics a[aria-current] { font-weight: 600; }
 .dataset-controls {
   display: grid;
-  grid-template-columns: minmax(0, 380px) minmax(0, 288px) minmax(108px, 154px);
+  grid-template-columns: minmax(0, 380px) minmax(108px, 154px);
   align-items: end;
   gap: 16px;
 }
@@ -111,6 +137,7 @@
   font-size: 14px;
   color: #333;
 }
+.dataset-controls .dataset-topic-select { display: none; }
 .dataset-controls input, .dataset-controls select {
   box-sizing: border-box;
   width: 100%;
@@ -212,15 +239,17 @@
 }
 
 @media (max-width: 660px) {
-  .dataset-controls { grid-template-columns: minmax(0, 1fr) minmax(108px, 150px); }
+  .dataset-topics { display: none; }
+  .dataset-controls { grid-template-columns: minmax(0, 1fr) minmax(108px, 150px); gap: 12px; }
   .dataset-controls label:first-child { grid-column: 1 / -1; }
+  .dataset-controls .dataset-topic-select { display: grid; }
   .datasets-page .resources-data-links { column-gap: 14px; }
   .dataset-featured ul { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .dataset-featured-main { grid-template-columns: minmax(68px, 22%) minmax(0, 1fr); }
 }
 
 @media (max-width: 520px) {
-  .dataset-controls { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .dataset-controls { grid-template-columns: minmax(0, 1fr); }
   .dataset-row { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .dataset-row > img { grid-row: auto; }
   .dataset-downloads { grid-column: auto; }
