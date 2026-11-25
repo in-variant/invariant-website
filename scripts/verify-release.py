@@ -391,10 +391,12 @@ def dataset_nodes(value):
 
 
 def verify_dataset_catalog(catalog, pages):
+    organization = {"@type": "Organization", "@id": CANONICAL + "/#organization", "name": "Invariant", "url": CANONICAL}
     schemas = [item for item in catalog.schemas if item.get("@type") == "DataCatalog"]
     require(len(schemas) == 1, "research page must describe one DataCatalog")
     schema = schemas[0]
     require(schema.get("url") == catalog.url and bool(schema.get("name")), "DataCatalog needs its canonical URL and name")
+    require(schema.get("publisher") == organization, "DataCatalog needs an explicit publisher name and URL")
     require("dataset" not in schema, "catalog lists links while individual guides describe the Datasets")
     identity = {key: schema[key] for key in ("@type", "@id", "name", "url")}
     collection_pages = [item for item in catalog.schemas if item.get("@type") == "CollectionPage"]
@@ -444,6 +446,8 @@ def verify_dataset_catalog(catalog, pages):
                     and 50 <= len(description.strip()) <= 5000,
                     f"{page.url} has Dataset markup with a missing name or invalid description")
             require(dataset.get("includedInDataCatalog") == identity, f"{page.url} has an incomplete DataCatalog reference")
+            require(dataset.get("creator") == organization and dataset.get("publisher") == organization,
+                    f"{page.url} needs explicit Dataset creator and publisher identities")
             anchor = urlsplit(dataset["url"]).fragment
             require(re.fullmatch(r"dataset(?:-[a-z0-9]+)*", anchor) and page.ids.count(anchor) == 1
                     and dataset["url"] == dataset["@id"] == dataset["identifier"] == f"{page.url}#{anchor}"

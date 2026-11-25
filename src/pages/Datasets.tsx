@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
-import { DATA_CATALOG, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
+import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { coverSrcSets } from '../data/coverSrcSets'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
@@ -51,7 +51,7 @@ const catalog = {
   '@context': 'https://schema.org',
   ...DATA_CATALOG,
   description,
-  publisher: { '@id': `${SITE_URL}/#organization` },
+  publisher: DATASET_PUBLISHER,
 }
 
 const catalogPage = {
