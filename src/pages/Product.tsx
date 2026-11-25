@@ -129,7 +129,7 @@ export default function Product() {
           <nav className="earth-product-workflows" aria-label="API walkthroughs">
             <a className="earth-product-link" href={links.parcelLookup}>Look up a parcel by address <ResourceArrow diagonal /></a>
             <a className="earth-product-link" href={links.quickstart}>Read the quickstart <ResourceArrow diagonal /></a>
-            <a className="earth-product-link" href={links.fields}>Field reference <ResourceArrow diagonal /></a>
+            <a className="earth-product-link" href={links.fields}>Geospatial API field catalog <ResourceArrow diagonal /></a>
             <a className="earth-product-link" href={links.gisTrial}>Download the Python GIS trial <ResourceArrow diagonal /></a>
           </nav>
         </div>

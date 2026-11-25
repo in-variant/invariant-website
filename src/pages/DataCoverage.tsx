@@ -17,8 +17,8 @@ const canonical = `${SITE_URL}/data-coverage`
 const snapshotPath = '/data-coverage-fields.json'
 const checkDate = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(summary.checkedDate))
 const operations = {
-  point: { label: 'Point lookup', method: '/v1/fetch', manifest: product.links.pointFields },
-  parcel: { label: 'Parcel enrichment', method: '/v1/enrich', manifest: product.links.parcelFields },
+  point: { label: 'Point lookup', method: '/v1/fetch', reference: product.links.fields },
+  parcel: { label: 'Parcel enrichment', method: '/v1/enrich', reference: product.links.parcelFieldReference },
 } as const
 type Operation = keyof typeof operations
 type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string; operatorOnly?: boolean }
@@ -174,11 +174,14 @@ export default function DataCoverage() {
       <section className="resource-container coverage-window" aria-labelledby="coverage-search">
         <div className="coverage-summary">
           <div><strong>{summary.distinct}</strong><span>Distinct field names</span></div>
-          <a href={operations.point.manifest}><strong>{summary.point}</strong><span>Point lookup fields <ResourceArrow diagonal /></span></a>
-          <a href={operations.parcel.manifest}><strong>{summary.parcel}</strong><span>Parcel enrichment fields <ResourceArrow diagonal /></span></a>
+          <a href={operations.point.reference}><strong>{summary.point}</strong><span>Point field reference <ResourceArrow diagonal /></span></a>
+          <a href={operations.parcel.reference}><strong>{summary.parcel}</strong><span>Parcel field reference <ResourceArrow diagonal /></span></a>
         </div>
         <p className="coverage-note">{summary.shared} field names appear in both manifests. Check the definition for the operation you plan to call. Values depend on location and API key access.</p>
-        {summary.operatorOnly > 0 && <p className="coverage-note">The manifests flag operator key requirements for {summary.operatorOnly} fields.</p>}
+        <p className="coverage-note">
+          Live manifests for <a href={product.links.pointFields}>point lookup (JSON)</a> and <a href={product.links.parcelFields}>parcel enrichment (JSON)</a>.
+          {summary.operatorOnly > 0 && ` They flag operator key requirements for ${summary.operatorOnly} fields.`}
+        </p>
         <h2 id="coverage-search" tabIndex={-1} ref={searchHeading}>Find a field</h2>
         <div className="coverage-controls">
           <label>

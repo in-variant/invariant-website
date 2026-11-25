@@ -205,6 +205,8 @@ function coverageMd() {
     ] : []),
     `- [Live point lookup manifest](${links.pointFields}) for \`POST /v1/fetch\`.`,
     `- [Live parcel enrichment manifest](${links.parcelFields}) for \`POST /v1/enrich\`.`,
+    `- [Point lookup field reference](${links.fields}) with units, sources, and explanations for missing results.`,
+    `- [Parcel enrichment field reference](${links.parcelFieldReference}) with parcel fields, point fields, and presets.`,
     `- [Download the dated field snapshot](${SITE}/data-coverage-fields.json).`,
     `- [Request a field with example locations](${links.fieldRequests}).`,
     `- [Check response status and provenance](${links.responses}).`, '',
