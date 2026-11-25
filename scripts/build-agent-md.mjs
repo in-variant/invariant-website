@@ -258,9 +258,9 @@ function datasetCatalogMd() {
     datasetCatalog.access, '',
     `${datasetEntries.length} published research examples.`, '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
-    `[Explore the Invariant Earth API](${SITE}/product), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
+    `[Check API data coverage](${SITE}${product.links.coverage}), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
-    '## Start with your workflow', '',
+    '## Start with a question', '',
     ...featuredResearch.flatMap(({ slug, title, summary, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
       const workflow = researchWorkflows.get(slug)
@@ -304,6 +304,8 @@ function datasetCatalogJson() {
   return {
     url: `${SITE}/datasets`,
     publisher: 'Invariant',
+    description: datasetCatalog.description,
+    access: datasetCatalog.access,
     datasets: datasetEntries.map(({ slug, title, dateTime, updatedDate, dataset, url }) => {
       const { anchor, downloads, ...metadata } = dataset
       return {

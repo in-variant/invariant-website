@@ -19,6 +19,7 @@ const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
   .map(({ image, notesPath, workflow, dataset }) => ({ ...study, image, notesPath, workflow, sample: dataset.downloads[0] })),
 )
+const featuredQuestions = new Map(featured.map(({ slug, title, summary }) => [slug, `${title} ${summary}`]))
 const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
 const datasetTopics = Object.entries(researchCatalog.topics).map(([label, articles]) => ({
   label,
@@ -35,11 +36,12 @@ const topicLinks = [
     count: catalogEntries.filter(entry => entry.topics.includes(label)).length,
   })),
 ]
-const searchIndex = prepareSearch(catalogEntries, ({ dataset, title, region, topic, topics, workflow }) => ({
+const searchIndex = prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
   title: dataset.name,
   relatedTitle: title,
   metadata: [dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
-    region, topic, ...topics, workflow?.label, ...dataset.downloads.map(file => `${file.label} ${file.format}`),
+    region, topic, ...topics, workflow?.label, featuredQuestions.get(id),
+    ...dataset.downloads.map(file => `${file.label} ${file.format}`),
   ].join(' '),
   details: dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`).join(' '),
 }))
@@ -117,8 +119,7 @@ export default function Datasets() {
           <div>
             <p>{description}</p>
             <nav aria-label="Research library and API" className="resources-data-links">
-              <Link className="dataset-api-button" to="/product">Explore the Earth API <ResourceArrow /></Link>
-              <a className="dataset-method" href="#dataset-search">Browse samples</a>
+              <a className="dataset-api-button" href="#dataset-search">Browse all samples <span aria-hidden="true">↓</span></a>
               <Link className="dataset-method" to={earthLinks.coverage}>Check API data coverage <ResourceArrow diagonal /></Link>
             </nav>
           </div>
@@ -126,7 +127,7 @@ export default function Datasets() {
       </header>
       <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
         <div className="dataset-featured-heading">
-          <h2 id="featured-studies-title">Start with your workflow</h2>
+          <h2 id="featured-studies-title">Start with a question</h2>
           <Link className="dataset-method" to={DATA_USE_CASES_PATH}>Browse guides by use case <ResourceArrow diagonal /></Link>
         </div>
         <ul>
