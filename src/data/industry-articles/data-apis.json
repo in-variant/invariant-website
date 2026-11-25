@@ -20848,6 +20848,316 @@
     ]
   },
   {
+    "slug": "gis-mcp-servers-for-site-selection",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "title": "GIS MCP Servers for Parcel Data and Site Selection",
+    "description": "Compare Invariant Earth, Regrid, West Kite and ArcGIS Enterprise MCP. Run three parcel and flood checks against dated city and FEMA records.",
+    "coverFile": "best-gis-apis-for-site-selection.webp",
+    "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
+    "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
+    "intro": "Use Invariant Earth to compare the U.S. parcel at an address with flood zones, terrain and nearby infrastructure in one agent workflow. Regrid and West Kite offer different parcel and ownership workflows. ArcGIS Enterprise can expose the maps and tools your organization already runs. Test all of them against the same few sites and save the tool responses alongside the agent’s answer.",
+    "takeaways": [
+      "Choose the server by the decision you need to support. Identify the datasets and tool permissions available through that connection.",
+      "Test the address, parcel and building separately. Keep the original identifier, the source and the date returned with each result.",
+      "Use the same locations and evidence requirements across providers. Ask the serving utility for a project-specific service record before using mapped infrastructure for a power decision."
+    ],
+    "sections": [
+      {
+        "id": "compare-gis-mcp-servers",
+        "heading": "Which GIS MCP server should you evaluate?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "An MCP server gives an AI client a catalog of tools it can call. The connection determines which records and actions are available to the client. The comparison below uses the providers’ published documentation. Check the tool list and account entitlement in your own client."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Server",
+              "Documented starting point",
+              "Trial question"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "U.S. point facts, parcel enrichment, address geocoding, field catalog search and proximity.",
+                "Can you match the parcel, return a mapped field with its source, and show the nearest infrastructure in the same screening workflow?"
+              ],
+              [
+                "Regrid",
+                "Parcel and property data through its MCP connector, using API credentials for data queries.",
+                "Can you match a parcel by address and return the boundary and zoning attributes included in your account?"
+              ],
+              [
+                "West Kite",
+                "U.S. commercial property research, including owners of record and people behind LLCs.",
+                "Can you distinguish the recorded owner from a linked person or entity and show the evidence for the relationship?"
+              ],
+              [
+                "MCP for ArcGIS Enterprise",
+                "Access to permitted GIS content and tools in an organization’s ArcGIS Enterprise deployment.",
+                "Can you find the approved internal layer and use it to answer the same site question within the user’s permissions?"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "registry",
+                "tools"
+              ],
+              [
+                "regrid"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "arcgis"
+              ]
+            ],
+            "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "connect-invariant-earth",
+        "heading": "How do you connect Invariant Earth?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Add https://api.invariant-ai.com/mcp as the remote server using Streamable HTTP. Follow the installation guide for your client to sign in or use the client’s secret storage for an Invariant API key. The public registry lists io.github.in-variant/invariant-earth. On November 24, the endpoint returned an authentication challenge and linked to its OAuth resource metadata.",
+            "sourceIds": [
+              "registry",
+              "install",
+              "oauth-resource"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Start with an address lookup. Use invariant_geocode for the normalized address and point, invariant_enrich for a parcel match, and invariant_fetch for facts at a point. Ask the agent to show the result status and the available sources in the response. For driving distance or proximity, use invariant_proximity. The separate invariant_request_field tool creates a request for missing data.",
+            "sourceIds": [
+              "tools"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "run-a-parcel-and-flood-trial",
+        "heading": "Run the same three tests across providers",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give every agent the same prompt, keep the raw tool response and check it against the dated city and FEMA references. Preserve a leading zero in a parcel number. When a coordinate falls outside a lot, ask the agent to explain the match status before it assigns ownership or lot-level risk."
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Site",
+              "What to ask",
+              "Dated reference finding"
+            ],
+            "rows": [
+              [
+                "San Francisco Main Library",
+                "Which parcel matches 100 Larkin Street? Preserve leading zeros and report how the address matched.",
+                "City records identify parcel 0354001 and place the address point inside it."
+              ],
+              [
+                "Brooklyn Army Terminal",
+                "Does the published facility coordinate fall inside the shoreline-clipped MapPLUTO lot? Which FEMA zone contains the coordinate?",
+                "The coordinate fell about nine meters outside city tax lot 3057780001 and was in Zone AE."
+              ],
+              [
+                "214 3rd Street, Brooklyn",
+                "Compare the address point, tax lot and building with the effective FEMA layer.",
+                "The address point fell outside the special flood hazard area. The mapped area covered 52.7% of the lot and 24.7% of the building."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "reference-library"
+              ],
+              [
+                "reference-terminal"
+              ],
+              [
+                "reference-gowanus"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The findings above come from the reference records. To score a provider, log the matched geometry, source, map or dataset date, and missing fields beside its answer. When results differ, compare the vintages and methods first. A connector may answer a point question while its available tools leave a building-overlap question open."
+          },
+          {
+            "type": "download",
+            "path": "/blog/gis-mcp-servers-for-site-selection.json",
+            "format": "JSON",
+            "label": "Download the trial prompts and dated reference observations"
+          },
+          {
+            "type": "paragraph",
+            "text": "The versioned GitHub release has the dated reference files, checksums and an offline replay script. Use those files to check the references before scoring live answers.",
+            "sourceIds": [
+              "versioned-gis-trial"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Replay the reference cases",
+            "items": [
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Read the GIS trial methods and records"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "review-a-site-answer",
+        "heading": "What should an agent show before you use a site answer?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask for the matched address, the parcel identifier and the named source for each fact. For a time-sensitive decision, ask for the date the record applied as well as when it was retrieved. Check missing or unmatched data explicitly before the result enters an underwriting file, a land shortlist or a site approval memo."
+          },
+          {
+            "type": "paragraph",
+            "text": "The power screen can identify a mapped utility territory and nearby substations. Record the serving utility, facility megawatts and date needed, then request written evidence for the point of connection, the first available service phase and its conditions.",
+            "sourceIds": [
+              "tools"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/product",
+                "label": "Explore the Invariant Earth API and agent setup"
+              },
+              {
+                "slug": "utility-grade-power-study",
+                "label": "What to verify with the utility before relying on power capacity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the Invariant Earth MCP server URL?",
+        "answer": "Use https://api.invariant-ai.com/mcp with Streamable HTTP. Follow the installation guide for your client’s sign-in or API key configuration.",
+        "sourceIds": [
+          "registry",
+          "install"
+        ]
+      },
+      {
+        "question": "Can I check flood exposure by address through MCP?",
+        "answer": "You can ask a GIS connector for the mapped condition at an address point. A separate parcel or building intersection requires the corresponding geometry and map layer. Ask the client to state which geography it used and which values it could return."
+      },
+      {
+        "question": "Which GIS MCP tools do I enable for a first lookup?",
+        "answer": "For Invariant Earth, start with invariant_geocode, invariant_enrich and invariant_fetch. They resolve an address, check a parcel match and return point facts respectively. The request tool serves a separate workflow for requesting new data.",
+        "sourceIds": [
+          "tools"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "registry",
+        "title": "Official MCP Registry entry for Invariant Earth",
+        "publisher": "Model Context Protocol Registry",
+        "url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.in-variant%2Finvariant-earth/versions/latest"
+      },
+      {
+        "id": "install",
+        "title": "Connect the Invariant Earth MCP server",
+        "publisher": "Invariant AI",
+        "url": "https://docs.invariant-ai.com/mcp/installation"
+      },
+      {
+        "id": "tools",
+        "title": "Invariant Earth MCP tools, inputs and response status",
+        "publisher": "Invariant AI",
+        "url": "https://docs.invariant-ai.com/mcp/tools"
+      },
+      {
+        "id": "oauth-resource",
+        "title": "OAuth protected resource metadata for the live MCP endpoint",
+        "publisher": "Invariant AI",
+        "url": "https://api.invariant-ai.com/.well-known/oauth-protected-resource/mcp"
+      },
+      {
+        "id": "regrid",
+        "title": "Regrid MCP tools and parcel data access",
+        "publisher": "Regrid",
+        "url": "https://support.regrid.com/docs/mcp-server"
+      },
+      {
+        "id": "west-kite",
+        "title": "Connect West Kite to your AI assistant",
+        "publisher": "West Kite",
+        "url": "https://westkite.com/docs/connect"
+      },
+      {
+        "id": "arcgis",
+        "title": "Introduction to MCP Services for ArcGIS Enterprise",
+        "publisher": "Esri",
+        "url": "https://doc.esri.com/en/mcp-arcgis-enterprise/latest/introduction/introduction.html"
+      },
+      {
+        "id": "reference-library",
+        "title": "San Francisco city address points and active parcel matches",
+        "publisher": "Invariant, using City and County of San Francisco records",
+        "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json"
+      },
+      {
+        "id": "reference-terminal",
+        "title": "Brooklyn Army Terminal clipped tax lot and flood overlay",
+        "publisher": "Invariant, using NYC MapPLUTO and FEMA",
+        "url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection.geojson"
+      },
+      {
+        "id": "reference-gowanus",
+        "title": "Gowanus address point, parcel and building intersections with the effective FEMA layer",
+        "publisher": "Invariant, using New York City and FEMA records",
+        "url": "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson"
+      },
+      {
+        "id": "versioned-gis-trial",
+        "title": "Invariant Earth versioned GIS trial and offline replay",
+        "publisher": "Invariant AI",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/earth-gis-trial-v1.0.0"
+      }
+    ],
+    "dataset": {
+      "name": "GIS MCP evaluation prompts and parcel reference observations",
+      "description": "Three portable prompts with dated city and FEMA reference observations for address identity, shoreline boundary matching and point-versus-footprint flood screening. Includes the public registry and authentication discovery references.",
+      "sourceIds": [
+        "registry",
+        "tools",
+        "oauth-resource",
+        "reference-library",
+        "reference-terminal",
+        "reference-gowanus"
+      ],
+      "spatialCoverage": "San Francisco, California and Brooklyn, New York, United States"
+    },
+    "relatedSlugs": [
+      "best-gis-apis-for-site-selection",
+      "regrid-alternatives-parcel-data-apis",
+      "historical-parcel-boundaries-api",
+      "zoning-data-apis-for-site-selection"
+    ]
+  },
+  {
     "slug": "best-gis-apis-for-site-selection",
     "dataset": {
       "name": "Brooklyn Army Terminal flood-zone overlay",
@@ -21116,7 +21426,7 @@
       {"id": "imagery", "title": "Spring 2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"},
       {"id": "power-study", "title": "How a utility-grade power study evaluates a proposed connection", "url": "https://invariant-ai.com/blog/utility-grade-power-study", "publisher": "Invariant"}
     ],
-    "relatedSlugs": ["data-center-site-selection-checklist", "utility-grade-power-study"]
+    "relatedSlugs": ["gis-mcp-servers-for-site-selection", "data-center-site-selection-checklist", "utility-grade-power-study"]
   },
   {
     "slug": "hail-history-by-address-for-underwriting",

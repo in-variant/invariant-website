@@ -1,0 +1,64 @@
+{
+  "name": "GIS MCP evaluation prompts and parcel reference observations",
+  "checked_on": "2026-11-24",
+  "setup": {
+    "registry_url": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.in-variant%2Finvariant-earth/versions/latest",
+    "registry_name": "io.github.in-variant/invariant-earth",
+    "registry_version": "1.0.0",
+    "endpoint": "https://api.invariant-ai.com/mcp",
+    "transport": "streamable-http",
+    "resource_metadata": "https://api.invariant-ai.com/.well-known/oauth-protected-resource/mcp",
+    "verification": "Public registry entry and unauthenticated challenge were checked. Authenticated tool responses must be captured with the same prompts in your own client."
+  },
+  "cases": [
+    {
+      "id": "san-francisco",
+      "place": "San Francisco Main Library",
+      "prompt": "Find the assessor parcel number for San Francisco Main Library at 100 Larkin Street. Give the normalized address, parcel match status, source and source date. Preserve leading zeros.",
+      "reference_url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json",
+      "reference": {
+        "published_city_apn": "0354001",
+        "address_point_inside_city_parcel": true,
+        "records_checked_at": "2026-11-23T22:16:49-08:00"
+      },
+      "record_in_trial": "Compare the published APN with parcel_match.parcel.apn and the returned boundary. Preserve a leading zero when normalizing the identifier."
+    },
+    {
+      "id": "brooklyn-army-terminal",
+      "place": "Brooklyn Army Terminal",
+      "prompt": "Check the published facility coordinate for Brooklyn Army Terminal against the MapPLUTO tax lot and the effective FEMA map. List the result at the coordinate and the parcel match separately. Identify the map and boundary vintage.",
+      "reference_url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection.geojson",
+      "reference": {
+        "published_city_bbl": "3057780001",
+        "point_inside_shoreline_clipped_city_lot": false,
+        "point_distance_to_clipped_city_lot_m": 9.06,
+        "point_fema_zone": "AE",
+        "records_checked_on": "2026-11-22"
+      },
+      "record_in_trial": "Require the workflow to distinguish documented geometry differences from a nearby fallback. A nearest point result does not establish containment. Compare the exact polygon and its shoreline convention first."
+    },
+    {
+      "id": "gowanus",
+      "place": "214 3rd Street, Gowanus",
+      "prompt": "At 214 3rd Street, Brooklyn, report the FEMA special flood hazard area flag at the address point and its mapped overlap with the lot and building separately. Cite the map panel and date. Say which values the tool could return.",
+      "reference_url": "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson",
+      "reference": {
+        "published_city_bbl": "3009780016",
+        "address_point_in_sfha": false,
+        "fema_sfha_lot_overlap_pct": 52.6709,
+        "fema_sfha_building_overlap_pct": 24.6503,
+        "panel_number": "3604970211F",
+        "records_checked_on": "2026-11-23"
+      },
+      "record_in_trial": "Compare parcel-level fractions against the dated lot overlay after adjusting units and geometry. For a building-level answer use the full footprint separately."
+    }
+  ],
+  "record_for_each_provider": [
+    "tool name and response date",
+    "normalized address and match status",
+    "parcel identifier and geometry type",
+    "map or dataset date",
+    "source URL",
+    "omitted fields and reason"
+  ]
+}
