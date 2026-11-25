@@ -1,0 +1,267 @@
+{
+  "address": {
+    "name": "address",
+    "definitions": {
+      "parcel": {
+        "description": "Situs address of the parcel containing the point, as the county records it: the address of the land itself, not the owner's mailing address and not the address in the request.",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Address"
+  },
+  "parcel_boundary_geojson": {
+    "name": "parcel_boundary_geojson",
+    "definitions": {
+      "point": {
+        "description": "Parcel boundary as a GeoJSON geometry string (WGS84). ",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    }
+  },
+  "primary_building_footprint_sqm": {
+    "name": "primary_building_footprint_sqm",
+    "definitions": {
+      "point": {
+        "description": "Geodesic footprint area in square metres of the primary Overture building (containing the point, else nearest within 100 m), merged across tile edges. ",
+        "unit": "m2",
+        "source": "OVERTURE_BUILDINGS",
+        "sourceUrl": "https://docs.overturemaps.org/guides/buildings/"
+      },
+      "parcel": {
+        "description": "Geodesic footprint area in square metres of the primary Overture building (containing the point, else nearest within 100 m), merged across tile edges. ",
+        "unit": "m2",
+        "source": "OVERTURE_BUILDINGS",
+        "sourceUrl": "https://docs.overturemaps.org/guides/buildings/"
+      }
+    },
+    "label": "Building footprint"
+  },
+  "nearest_substation_max_voltage_kv": {
+    "name": "nearest_substation_max_voltage_kv",
+    "definitions": {
+      "point": {
+        "description": "Maximum voltage (MAX_VOLT, kV) of the nearest mapped substation within 10 km. A voltage class, not available MW or transfer capability.",
+        "unit": "kV",
+        "source": "EIA_POWER",
+        "sourceUrl": "https://atlas.eia.gov/"
+      },
+      "parcel": {
+        "description": "Maximum voltage (MAX_VOLT, kV) of the nearest mapped substation within 10 km. A voltage class, not available MW or transfer capability.",
+        "unit": "kV",
+        "source": "EIA_POWER",
+        "sourceUrl": "https://atlas.eia.gov/"
+      }
+    },
+    "label": "Substation voltage"
+  },
+  "onsite_solar_potential_mwac_high": {
+    "name": "onsite_solar_potential_mwac_high",
+    "definitions": {
+      "parcel": {
+        "description": "DERIVED upper bound of nameplate utility-scale PV on the gross parcel acreage (Regrid ll_gisacre / 5.5 ac/MWac). A sizing prior, not a design.",
+        "unit": "MWac",
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "On-site solar high"
+  },
+  "fema_flood_zone": {
+    "name": "fema_flood_zone",
+    "definitions": {
+      "parcel": {
+        "description": "The most severe FEMA flood zone on the parcel (coastal V zones, then other Special Flood Hazard Area zones, then shaded X, then X; the larger area breaks ties), from NFHL polygons clipped to the parcel boundary. Method: Union of FEMA NFHL flood hazard polygons clipped to the parcel boundary in equal-area EPSG:5070. SFHA is FEMA's literal SFHA_TF flag. Area with no determined zone makes the fraction unavailable.",
+        "unit": null,
+        "source": "FEMA_NFHL",
+        "sourceUrl": "https://www.fema.gov/flood-maps/national-flood-hazard-layer"
+      }
+    },
+    "label": "Parcel flood zone"
+  },
+  "fire_hazard_severity_zone_class": {
+    "name": "fire_hazard_severity_zone_class",
+    "definitions": {
+      "point": {
+        "description": "CAL FIRE OSFM Fire Hazard Severity Zone class at the point: Moderate, High, Very High or Non-Wildland. California only; a hazard classification, not a risk score. ",
+        "unit": null,
+        "source": "CALFIRE_FHSZ",
+        "sourceUrl": "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones"
+      },
+      "parcel": {
+        "description": "CAL FIRE OSFM Fire Hazard Severity Zone class at the point: Moderate, High, Very High or Non-Wildland. California only; a hazard classification, not a risk score. ",
+        "unit": null,
+        "source": "CALFIRE_FHSZ",
+        "sourceUrl": "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones"
+      }
+    },
+    "label": "Fire hazard zone"
+  },
+  "hail_annual_frequency": {
+    "name": "hail_annual_frequency",
+    "definitions": {
+      "point": {
+        "description": "Hail events per year, area-weighted over the containing Census tract (FEMA NRI HAIL_AFREQ). ",
+        "unit": "events/year",
+        "source": "FEMA_NRI",
+        "sourceUrl": "https://hazards.fema.gov/nri/"
+      },
+      "parcel": {
+        "description": "Hail events per year, area-weighted over the containing Census tract (FEMA NRI HAIL_AFREQ). ",
+        "unit": "events/year",
+        "source": "FEMA_NRI",
+        "sourceUrl": "https://hazards.fema.gov/nri/"
+      }
+    },
+    "label": "Hail frequency"
+  },
+  "zoning_description": {
+    "name": "zoning_description",
+    "definitions": {
+      "parcel": {
+        "description": "Description of the parcel's local zoning code (for example Planned Development Office Park), as published with the parcel record.",
+        "unit": null,
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Zoning description"
+  },
+  "developable_acres_proxy": {
+    "name": "developable_acres_proxy",
+    "definitions": {
+      "parcel": {
+        "description": "Parcel acreage (the boundary's equal-area EPSG:5070 area) minus the NWI wetland acres on the parcel, floored at 0. A screening proxy only: floodplain, easements, setbacks, slope and zoning are not subtracted (see the constraint roll-up for those). Method: Union of USFWS NWI wetland polygons clipped to the parcel boundary in equal-area EPSG:5070. An inventory, not a jurisdictional wetland determination.",
+        "unit": "acres",
+        "source": "USFWS_NWI",
+        "sourceUrl": "https://www.fws.gov/program/national-wetlands-inventory"
+      }
+    },
+    "label": "Acres net of wetlands"
+  },
+  "within_water_service_area": {
+    "name": "within_water_service_area",
+    "definitions": {
+      "point": {
+        "description": "Whether the point is inside a mapped EPA community water system service-area polygon. Mapped intersection only, not a connection, capacity or service offer; False does not prove no system serves the point (the dataset covers about 99% of consumers). ",
+        "unit": null,
+        "source": "EPA_CWS_SERVICE_AREAS",
+        "sourceUrl": "https://www.epa.gov/ground-water-and-drinking-water/community-water-system-service-area-boundaries"
+      },
+      "parcel": {
+        "description": "Whether the point is inside a mapped EPA community water system service-area polygon. Mapped intersection only, not a connection, capacity or service offer; False does not prove no system serves the point (the dataset covers about 99% of consumers). ",
+        "unit": null,
+        "source": "EPA_CWS_SERVICE_AREAS",
+        "sourceUrl": "https://www.epa.gov/ground-water-and-drinking-water/community-water-system-service-area-boundaries"
+      }
+    },
+    "label": "In public water area"
+  },
+  "nearest_major_road_distance_m": {
+    "name": "nearest_major_road_distance_m",
+    "definitions": {
+      "point": {
+        "description": "Geodesic distance to the nearest point of the nearest Overture motorway / trunk / primary / secondary road within 5 km. ",
+        "unit": "meters",
+        "source": "OVERTURE_TRANSPORTATION",
+        "sourceUrl": "https://docs.overturemaps.org/guides/transportation/"
+      },
+      "parcel": {
+        "description": "Geodesic distance to the nearest point of the nearest Overture motorway / trunk / primary / secondary road within 5 km. ",
+        "unit": "meters",
+        "source": "OVERTURE_TRANSPORTATION",
+        "sourceUrl": "https://docs.overturemaps.org/guides/transportation/"
+      }
+    },
+    "label": "Major road distance"
+  },
+  "nearest_rail_line_distance_m": {
+    "name": "nearest_rail_line_distance_m",
+    "definitions": {
+      "point": {
+        "description": "Geodesic distance to the nearest usable BTS NTAD / FRA North American Rail Network line segment (searched up to 200 km); abandoned, removed, trail and out-of-service segments (NET A, R, T, X) are excluded. ",
+        "unit": "meters",
+        "source": "BTS_NTAD_RAIL",
+        "sourceUrl": "https://doi.org/10.21949/1528950"
+      },
+      "parcel": {
+        "description": "Geodesic distance to the nearest usable BTS NTAD / FRA North American Rail Network line segment (searched up to 200 km); abandoned, removed, trail and out-of-service segments (NET A, R, T, X) are excluded. ",
+        "unit": "meters",
+        "source": "BTS_NTAD_RAIL",
+        "sourceUrl": "https://doi.org/10.21949/1528950"
+      }
+    },
+    "label": "Rail line distance"
+  },
+  "fiber_broadband_available": {
+    "name": "fiber_broadband_available",
+    "definitions": {
+      "point": {
+        "description": "Whether at least one ISP reports fiber (FTTP) mass-market availability in the FCC BDC H3 res-8 hexagon containing the point; an availability floor for the hexagon, not the parcel. Operator keys only. ",
+        "unit": null,
+        "source": "FCC_BDC_FIXED",
+        "sourceUrl": "https://broadbandmap.fcc.gov/",
+        "operatorOnly": true
+      },
+      "parcel": {
+        "description": "Whether at least one ISP reports fiber (FTTP) mass-market availability in the FCC BDC H3 res-8 hexagon containing the point; an availability floor for the hexagon, not the parcel. Operator keys only. ",
+        "unit": null,
+        "source": "FCC_BDC_FIXED",
+        "sourceUrl": "https://broadbandmap.fcc.gov/",
+        "operatorOnly": true
+      }
+    },
+    "label": "Fiber available"
+  },
+  "saleprice": {
+    "name": "saleprice",
+    "definitions": {
+      "parcel": {
+        "description": "Price of the most recent recorded sale, in US dollars, as published in the parcel record. Some states do not disclose sale prices, so it is often missing.",
+        "unit": "USD",
+        "source": "REGRID",
+        "sourceUrl": "https://regrid.com/api"
+      }
+    },
+    "label": "Last sale price"
+  },
+  "tract_population": {
+    "name": "tract_population",
+    "definitions": {
+      "point": {
+        "description": "Total 2020 Census population of the tract (CenPop2020 tract file).",
+        "unit": "people",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      },
+      "parcel": {
+        "description": "Total 2020 Census population of the tract (CenPop2020 tract file).",
+        "unit": "people",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      }
+    },
+    "label": "Tract population"
+  },
+  "county_median_household_income": {
+    "name": "county_median_household_income",
+    "definitions": {
+      "point": {
+        "description": "Median household income of the county containing the point, 2024 dollars (ACS 2020-2024 5-year, B19013).",
+        "unit": "USD",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      },
+      "parcel": {
+        "description": "Median household income of the county containing the point, 2024 dollars (ACS 2020-2024 5-year, B19013).",
+        "unit": "USD",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      }
+    },
+    "label": "County median income"
+  }
+}

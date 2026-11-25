@@ -30,7 +30,7 @@
 .coverage-controls input { font-size: 16px; }
 .coverage-action { width: auto; margin-top: 12px; }
 .coverage-field { border-block-start: 1px solid var(--resource-rule); }
-.coverage-field summary { padding-block: 12px; cursor: pointer; overflow-wrap: anywhere; }
+.coverage-field summary { min-height: 44px; padding-block: 12px; cursor: pointer; overflow-wrap: anywhere; }
 .coverage-field summary > span { margin-inline-end: 8px; }
 .coverage-field small { display: inline-block; margin-left: 10px; color: var(--inv-muted, #565952); }
 .coverage-access {
@@ -42,19 +42,24 @@
   color: var(--inv-muted, #565952);
   font-size: 12px;
 }
-.coverage-field code, .coverage-topics code { font: 12px/1.5 'Geist Mono', monospace; }
+.coverage-field code { font: 12px/1.5 'Geist Mono', monospace; }
 .coverage-definitions { display: grid; gap: 10px; padding-bottom: 14px; }
-.coverage-definitions section { min-width: 0; padding: 12px; background: #f6f8f6; overflow-wrap: anywhere; }
-.coverage-definitions p { margin-block: 6px; }
+.coverage-definition { min-width: 0; padding: 12px; background: #f6f8f6; overflow-wrap: anywhere; }
+.coverage-definition-title, .coverage-definition-source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.coverage-definition-title .coverage-access { margin-inline-start: 0; }
+.coverage-page .coverage-definition p { margin-block: 6px 8px; }
 .coverage-definitions a, .coverage-topics a, .coverage-next a { color: var(--resource-blue); }
-.coverage-definitions section > span { margin-inline-start: 12px; font-size: 13px; }
+.coverage-definition-source { font-size: 13px; }
 .coverage-topics { margin-top: clamp(40px, 6vw, 72px); }
 .coverage-topics > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .coverage-topics article { padding: 16px; border: 1px solid var(--resource-rule); border-radius: var(--inv-radius, 4px); scroll-margin-top: 104px; }
 .coverage-topics article:is(:target, [data-linked]) { border-color: var(--resource-blue); }
 .coverage-topics p { margin-block: 6px 10px; }
 .coverage-topics ul { list-style: none; padding: 0; margin-block: 0 10px; }
-.coverage-topics button { padding-block: 8px; color: var(--resource-blue); text-align: left; overflow-wrap: anywhere; }
+.coverage-topics .coverage-field summary { font-size: 14px; }
+.coverage-topics .coverage-field summary:hover { color: var(--resource-blue); }
+.coverage-topics .coverage-field-name { display: block; margin-inline-start: 14px; color: var(--inv-muted, #565952); }
+.coverage-topics .coverage-definition p { font-size: 14px; }
 .coverage-topic-links { display: grid; justify-items: start; }
 .coverage-topic-links a { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; }
 .coverage-topic-links .resource-arrow { flex-shrink: 0; }

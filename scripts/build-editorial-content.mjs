@@ -7,6 +7,7 @@ const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry
 const legacyArticles = JSON.parse(readFileSync(new URL('legacy-blog-articles.json', base), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(new URL('blog-collections.json', base), 'utf8'))
 const coverageTopics = JSON.parse(readFileSync(new URL('earth-coverage-topics.json', base), 'utf8'))
+const coverageSnapshot = JSON.parse(readFileSync(new URL('../public/data-coverage-fields.json', import.meta.url), 'utf8'))
 const writeIfChanged = (file, content) => {
   if (!existsSync(file) || readFileSync(file, 'utf8') !== content) writeFileSync(file, content)
 }
@@ -42,12 +43,19 @@ const publicBlogSlugs = new Set(slugs)
 const linkablePaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
   .matchAll(/^\s*'(\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
 linkablePaths.add('/data-coverage')
-for (const { id } of coverageTopics) {
+const coverageByName = new Map(coverageSnapshot.map(field => [field.name, field]))
+const coverageExamples = {}
+for (const { id, fields } of coverageTopics) {
   const path = `/data-coverage#${id}`
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id ?? '') || linkablePaths.has(path)) {
     throw new Error(`Invalid or duplicate API coverage anchor: ${id}`)
   }
   linkablePaths.add(path)
+  for (const name of fields) {
+    const field = coverageByName.get(name)
+    if (!field) throw new Error(`Unknown API coverage field "${name}" in ${id}`)
+    coverageExamples[name] = field
+  }
 }
 for (const collection of blogCollections) {
   if (!/^[a-z0-9-]+$/.test(collection.slug) || publicBlogSlugs.has(collection.slug)) {
@@ -198,6 +206,7 @@ const articleSearch = Object.fromEntries(articles.map(article => [
 writeIfChanged(new URL('details.json', searchDir), JSON.stringify(articleSearch))
 const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
 writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
+writeIfChanged(new URL('earth-coverage-examples.json', base), `${JSON.stringify(coverageExamples, null, 2)}\n`)
 for (const [slug, csv] of worksheets) {
   writeIfChanged(new URL(`../public/blog/${slug}.csv`, import.meta.url), csv)
 }

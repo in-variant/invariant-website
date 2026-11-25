@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import summary from '../data/earth-coverage-summary.json'
 import topics from '../data/earth-coverage-topics.json'
+import examples from '../data/earth-coverage-examples.json'
 import product from '../data/earth-product.json'
 import './Resources.css'
 import './DataCoverage.css'
@@ -21,6 +22,41 @@ const operations = {
 type Operation = keyof typeof operations
 type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string; operatorOnly?: boolean }
 type Field = { name: string; label?: string; definitions: Partial<Record<Operation, Definition>> }
+const exampleFields: Record<string, Field> = examples
+
+function FieldDetails({ field, operation, compact }: { field: Field; operation?: Operation | ''; compact?: boolean }) {
+  const definitions = (Object.keys(operations) as Operation[]).flatMap(key => {
+    const definition = field.definitions[key]
+    return definition && (!operation || key === operation) ? [{ key, definition }] : []
+  })
+  const restricted = definitions.every(({ definition }) => definition.operatorOnly)
+  return (
+    <details className="coverage-field">
+      <summary>
+        {field.label && <span>{field.label}</span>}
+        <code className="coverage-field-name">{field.name}</code>
+        {!compact && <small>{definitions.map(({ key }) => operations[key].method).join(' · ')}</small>}
+        {restricted && <span className="coverage-access">Operator key</span>}
+      </summary>
+      <div className="coverage-definitions">
+        {definitions.map(({ key, definition }) => (
+          <div key={key} className="coverage-definition">
+            <div className="coverage-definition-title">
+              <strong>{operations[key].label}</strong>
+              <code>POST {operations[key].method}</code>
+              {definition.operatorOnly && !restricted && <span className="coverage-access">Operator key</span>}
+            </div>
+            <p>{definition.description}</p>
+            <div className="coverage-definition-source">
+              <a href={definition.sourceUrl}>{definition.source} <ResourceArrow diagonal /></a>
+              {definition.unit && <span>Unit {definition.unit}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </details>
+  )
+}
 
 function indexFields(fields: Field[]) {
   return prepareSearch(fields, ({ name, label, definitions }) => ({
@@ -42,7 +78,6 @@ export default function DataCoverage() {
   const [error, setError] = useState(false)
   const [attempt, setAttempt] = useState(0)
   const [ready, setReady] = useState(false)
-  const input = useRef<HTMLInputElement>(null)
   const terms = articleSearchWords(query)
   const searching = terms.length > 0
 
@@ -66,13 +101,6 @@ export default function DataCoverage() {
   const matches = searching && index
     ? rankSearch(index, terms).filter(field => !operation || field.definitions[operation])
     : []
-
-  function searchFor(name: string) {
-    setQuery(name)
-    setOperation('')
-    setCount(pageSize)
-    input.current?.focus()
-  }
 
   return (
     <div className="resources-page coverage-page">
@@ -102,7 +130,7 @@ export default function DataCoverage() {
         <div className="coverage-controls">
           <label>
             <span>Search by field name, topic, or source</span>
-            <input ref={input} type="search" placeholder="Try flood zone, substation, or FEMA" disabled={!ready}
+            <input type="search" placeholder="Try flood zone, substation, or FEMA" disabled={!ready}
               value={query} onChange={event => { setQuery(event.target.value); setCount(pageSize) }} />
           </label>
           <label>
@@ -122,30 +150,7 @@ export default function DataCoverage() {
         )}
         {searching && error && <button type="button" className="coverage-action" onClick={() => setAttempt(attempt + 1)}>Try again</button>}
         {searching && index && matches.length === 0 && <p>Try a different field name or search all operations.</p>}
-        {matches.slice(0, count).map(field => {
-          const definitions = Object.entries(field.definitions).filter(([key]) => !operation || key === operation)
-          const requiresOperatorKey = definitions.every(([, definition]) => definition.operatorOnly)
-          return (
-            <details className="coverage-field" key={field.name}>
-              <summary>
-                {field.label && <span>{field.label}</span>}
-                <code>{field.name}</code>
-                <small>{definitions.map(([key]) => operations[key as Operation].method).join(' · ')}</small>
-                {requiresOperatorKey && <span className="coverage-access">Operator key</span>}
-              </summary>
-              <div className="coverage-definitions">
-                {definitions.map(([key, definition]) => (
-                  <section key={key}>
-                    <h3>{operations[key as Operation].label}</h3>
-                    <p>{definition.description}</p>
-                    <a href={definition.sourceUrl}>{definition.source} <ResourceArrow diagonal /></a>
-                    {definition.unit && <span>Unit {definition.unit}</span>}
-                  </section>
-                ))}
-              </div>
-            </details>
-          )
-        })}
+        {matches.slice(0, count).map(field => <FieldDetails key={field.name} field={field} operation={operation} />)}
         {matches.length > count && <button type="button" className="coverage-action" onClick={() => setCount(count + pageSize)}>Show more fields</button>}
       </section>
 
@@ -157,7 +162,7 @@ export default function DataCoverage() {
               <h3 id={`${id}-heading`}>{title}</h3>
               <p>{description}</p>
               <ul>
-                {fields.map(name => <li key={name}><button type="button" disabled={!ready} onClick={() => searchFor(name)}><code>{name}</code></button></li>)}
+                {fields.map(name => <li key={name}><FieldDetails field={exampleFields[name]} compact /></li>)}
               </ul>
               <div className="coverage-topic-links">
                 <Link to={guide}>{guideLabel} <ResourceArrow diagonal /></Link>

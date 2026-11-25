@@ -167,14 +167,15 @@ function productMd() {
 }
 
 function coverageMd() {
-  const names = new Set(coverageFields.map(field => field.name))
+  const fieldsByName = new Map(coverageFields.map(field => [field.name, field]))
+  const endpoints = { point: 'POST /v1/fetch', parcel: 'POST /v1/enrich' }
   const shared = coverageFields.filter(({ definitions }) => definitions.point && definitions.parcel).length
   const operatorFields = coverageFields.filter(({ definitions }) => Object.values(definitions).some(definition => definition.operatorOnly))
-  if (names.size !== coverage.distinct || names.size !== coverageFields.length || shared !== coverage.shared ||
+  if (fieldsByName.size !== coverage.distinct || fieldsByName.size !== coverageFields.length || shared !== coverage.shared ||
       operatorFields.length !== coverage.operatorOnly ||
       coverageFields.filter(({ definitions }) => definitions.point).length !== coverage.point ||
       coverageFields.filter(({ definitions }) => definitions.parcel).length !== coverage.parcel ||
-      coverageTopics.some(({ fields }) => fields.some(name => !names.has(name)))) {
+      coverageTopics.some(({ fields }) => fields.some(name => !fieldsByName.has(name)))) {
     throw new Error('Earth field coverage summary or highlighted fields do not match the snapshot')
   }
   for (const { researchTopic } of coverageTopics) {
@@ -191,7 +192,7 @@ function coverageMd() {
     ...(operatorFields.length ? ['## Fields marked as requiring an operator key', '',
       ...operatorFields.map(({ name, definitions }) =>
         '- `' + name + '`. ' + Object.entries(definitions).filter(([, definition]) => definition.operatorOnly)
-          .map(([operation]) => operation === 'point' ? '`POST /v1/fetch`' : '`POST /v1/enrich`').join(' and ') + '.'),
+          .map(([operation]) => `\`${endpoints[operation]}\``).join(' and ') + '.'),
       '',
     ] : []),
     `- [Live point lookup manifest](${links.pointFields}) for \`POST /v1/fetch\`.`,
@@ -201,7 +202,11 @@ function coverageMd() {
     '## Workflows and field examples', '',
     ...coverageTopics.flatMap(({ title, description, fields, guide, guideLabel, researchTopic }) => [
       `### ${title}`, '', description, '',
-      `Fields: ${fields.map(name => `\`${name}\``).join(', ')}.`, '',
+      ...fields.flatMap(name => Object.entries(fieldsByName.get(name).definitions).map(([operation, definition]) => {
+        const unit = definition.unit ? ` Unit ${definition.unit}.` : ''
+        const access = definition.operatorOnly ? ' Operator key required.' : ''
+        return `- \`${name}\` (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} [${linkText(definition.source)}](<${definition.sourceUrl}>).`
+      })), '',
       `- [${guideLabel}](${SITE}${guide})`,
       `- [View research samples](${SITE}/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search)`, '',
     ]),
