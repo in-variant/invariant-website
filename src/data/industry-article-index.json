@@ -3558,7 +3558,7 @@
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/ageospatial-alternatives-commercial-roof-underwriting.webp?v=c704620c",
     "dataset": {
       "name": "Rosemead commercial roof replacement evidence and test inputs",
@@ -4398,7 +4398,7 @@
     "slug": "commercial-property-insurance-data-apis",
     "topic": "Data & APIs",
     "title": "Best commercial property data APIs for insurance underwriting",
-    "summary": "Compare ten commercial property underwriting data providers. Use seven public checks to test building matches, roof work, historical flood maps and hail evidence.",
+    "summary": "Compare commercial property data APIs for underwriting. See how to match buildings, verify roof permit closeout, and check historical flood and hail evidence.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
@@ -4437,7 +4437,63 @@
           "format": "GeoJSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-la-roof-permits-and-final-inspection",
+        "datePublished": "2026-11-25",
+        "name": "Los Angeles commercial roof permits and final-inspection matching",
+        "description": "Three Los Angeles re-roof permits at two addresses, a positive permit-number match across two city feeds, and the dates and scopes relevant to a roof-age review. Includes a query that returned no records before normalization.",
+        "spatialCoverage": "Los Angeles, California, United States",
+        "temporalCoverage": "2026-09-28/2026-11-25",
+        "sourceReuse": {
+          "note": "Selected and normalized public record fields from the Los Angeles Department of Building and Safety. Square-foot values were calculated from the stated roofing squares.",
+          "policyLabel": "Los Angeles Open Data terms of use",
+          "policyUrl": "https://data.lacity.org/terms-of-use"
+        },
+        "sources": [
+          "https://data.lacity.org/resource/pi9x-tg5x.json?%24select=permit_nbr%2Cprimary_address%2Cuse_desc%2Capn%2Cissue_date%2Cstatus_desc%2Cstatus_date%2Cwork_desc&%24where=permit_nbr+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit_nbr",
+          "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016+20000+26445%27%2C%2726016+90000+32210%27%2C%2726016+90000+32214%27%29&%24order=permit%2Cinspection_date%2Cinspection",
+          "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit%2Cinspection_date%2Cinspection",
+          "https://dbs.lacity.gov/sites/default/files/efs/forms/inspection/re-roofing-certificate-in-form-12.pdf",
+          "https://www.douglasco.gov/documents/roofing-permit-application.pdf/"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Three issued commercial roof permit records",
+            "publisher": "Los Angeles Department of Building and Safety",
+            "url": "https://data.lacity.org/resource/pi9x-tg5x.json?%24select=permit_nbr%2Cprimary_address%2Cuse_desc%2Capn%2Cissue_date%2Cstatus_desc%2Cstatus_date%2Cwork_desc&%24where=permit_nbr+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit_nbr"
+          },
+          {
+            "title": "Inspection records queried using space-separated permit numbers",
+            "publisher": "Los Angeles Department of Building and Safety",
+            "url": "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016+20000+26445%27%2C%2726016+90000+32210%27%2C%2726016+90000+32214%27%29&%24order=permit%2Cinspection_date%2Cinspection"
+          },
+          {
+            "title": "Comparison query using hyphenated numbers in the inspection feed",
+            "publisher": "Los Angeles Department of Building and Safety",
+            "url": "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit%2Cinspection_date%2Cinspection"
+          },
+          {
+            "title": "Re-roofing certificate of compliance, including building address, permit and signature date",
+            "publisher": "Los Angeles Department of Building and Safety",
+            "url": "https://dbs.lacity.gov/sites/default/files/efs/forms/inspection/re-roofing-certificate-in-form-12.pdf"
+          },
+          {
+            "title": "Roofing permit form defining 100 square feet per roofing square",
+            "publisher": "Douglas County Building Division",
+            "url": "https://www.douglasco.gov/documents/roofing-permit-application.pdf/"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Los Angeles roof permit and inspection checks",
+            "path": "/blog/los-angeles-roof-permit-final-inspection.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "historical-parcel-boundaries-api",

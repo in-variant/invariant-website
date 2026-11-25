@@ -1,0 +1,147 @@
+{
+  "name": "Los Angeles commercial roof permits and final-inspection matching",
+  "retrievedOn": "2026-11-25",
+  "sourceReuse": {
+    "attribution": "Los Angeles Department of Building and Safety via Los Angeles Open Data. Selected facts and derived areas.",
+    "policyUrl": "https://data.lacity.org/terms-of-use"
+  },
+  "sources": [
+    {
+      "id": "la-roof-permits",
+      "publisher": "Los Angeles Department of Building and Safety",
+      "title": "Three issued commercial roof permit records",
+      "url": "https://data.lacity.org/resource/pi9x-tg5x.json?%24select=permit_nbr%2Cprimary_address%2Cuse_desc%2Capn%2Cissue_date%2Cstatus_desc%2Cstatus_date%2Cwork_desc&%24where=permit_nbr+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit_nbr",
+      "sourceSha256": "cfadaeab12bdc73f684180859911081a573558986407831c7f253b3e529cffb9"
+    },
+    {
+      "id": "la-roof-inspections",
+      "publisher": "Los Angeles Department of Building and Safety",
+      "title": "Inspection records queried using space-separated permit numbers",
+      "url": "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016+20000+26445%27%2C%2726016+90000+32210%27%2C%2726016+90000+32214%27%29&%24order=permit%2Cinspection_date%2Cinspection",
+      "sourceSha256": "8ede3b933c01855cdc59e38590fa17228e6cf520977feb0847018a17d7f63ba5"
+    },
+    {
+      "id": "la-roof-negative-control",
+      "publisher": "Los Angeles Department of Building and Safety",
+      "title": "Comparison query using hyphenated numbers in the inspection feed",
+      "url": "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit%2Cinspection_date%2Cinspection",
+      "sourceSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "id": "la-roof-certificate",
+      "publisher": "Los Angeles Department of Building and Safety",
+      "title": "Re-roofing certificate of compliance, including building address, permit and signature date",
+      "url": "https://dbs.lacity.gov/sites/default/files/efs/forms/inspection/re-roofing-certificate-in-form-12.pdf",
+      "sourceSha256": "f4552cc12213b2f0b2bca4ed3c6e85a5368e4144224743a855d14c1691e00347"
+    },
+    {
+      "id": "roofing-square-definition",
+      "publisher": "Douglas County Building Division",
+      "title": "Roofing permit form defining 100 square feet per roofing square",
+      "url": "https://www.douglasco.gov/documents/roofing-permit-application.pdf/",
+      "sourceSha256": "3170733a8d53aa7875a1cc21e4f1a3b52182fbd90a9d9de6d8b66f300216701d"
+    }
+  ],
+  "permits": [
+    {
+      "permitNumberAsStored": "26016-20000-26445",
+      "permitNumberForInspectionLookup": "26016 20000 26445",
+      "addressAsStored": "403 S MATHEWS ST",
+      "assessorParcelNumber": "5185001013",
+      "propertyUseAsStored": "Warehouse",
+      "issuedOn": "2026-09-28",
+      "statusAsStored": "Permit Finaled",
+      "statusDate": "2026-10-21",
+      "permittedRoofingSquares": 20,
+      "permittedRoofAreaSquareFeet": 2000,
+      "scopeIndicators": {
+        "existingSheathingMentioned": true,
+        "newSheathingMentioned": false,
+        "coatingOfExistingRoofMentioned": false
+      }
+    },
+    {
+      "permitNumberAsStored": "26016-90000-32210",
+      "permitNumberForInspectionLookup": "26016 90000 32210",
+      "addressAsStored": "815 N MORAGA DR",
+      "assessorParcelNumber": "4368015019",
+      "propertyUseAsStored": "Medical Office",
+      "issuedOn": "2026-11-17",
+      "statusAsStored": "Issued",
+      "statusDate": "2026-11-17",
+      "permittedRoofingSquares": 810,
+      "permittedRoofAreaSquareFeet": 81000,
+      "scopeIndicators": {
+        "existingSheathingMentioned": false,
+        "newSheathingMentioned": true,
+        "coatingOfExistingRoofMentioned": true
+      }
+    },
+    {
+      "permitNumberAsStored": "26016-90000-32214",
+      "permitNumberForInspectionLookup": "26016 90000 32214",
+      "addressAsStored": "815 N MORAGA DR",
+      "assessorParcelNumber": "4368015019",
+      "propertyUseAsStored": "Medical Office",
+      "issuedOn": "2026-11-17",
+      "statusAsStored": "Issued",
+      "statusDate": "2026-11-17",
+      "permittedRoofingSquares": 81,
+      "permittedRoofAreaSquareFeet": 8100,
+      "scopeIndicators": {
+        "existingSheathingMentioned": false,
+        "newSheathingMentioned": true,
+        "coatingOfExistingRoofMentioned": true
+      }
+    }
+  ],
+  "inspectionRows": [
+    {
+      "permit": "26016 20000 26445",
+      "address": "403 S MATHEWS ST",
+      "permit_status": "Permit Finaled",
+      "inspection_date": "2026-10-20T00:00:00.000",
+      "inspection": "Final",
+      "inspection_result": "Permit Finaled"
+    },
+    {
+      "permit": "26016 20000 26445",
+      "address": "403 S MATHEWS ST",
+      "permit_status": "Permit Finaled",
+      "inspection_date": "2026-10-20T00:00:00.000",
+      "inspection": "SGSOV-Seismic Gas S/O Valve",
+      "inspection_result": "SGSOV Not Required"
+    },
+    {
+      "permit": "26016 20000 26445",
+      "address": "403 S MATHEWS ST",
+      "permit_status": "Permit Finaled",
+      "inspection_date": "2026-10-20T00:00:00.000",
+      "inspection": "Smoke Detectors",
+      "inspection_result": "Approved"
+    }
+  ],
+  "joinCheck": {
+    "literalHyphenatedQueryMatchCount": 0,
+    "sourceFormattedQueryMatchCount": 3,
+    "permitLookupCount": 3,
+    "permitNumbersWithInspectionRows": [
+      "26016-20000-26445"
+    ],
+    "sourceFormattingRuleForTheseIds": "Compare the same three number groups. Keep the original strings and preserve all digits, including leading zeros."
+  },
+  "warehouseEvidence": {
+    "finalInspectionOn": "2026-10-20",
+    "permitFinalStatusDate": "2026-10-21",
+    "permitStatusFollowedFinalInspectionDays": 1,
+    "roofInstallationDate": null,
+    "fullBuildingRoofReplacementConfirmed": null
+  },
+  "moragaEvidence": {
+    "inspectionRowsFoundInExactMatchQuery": 0,
+    "verifiedRoofSections": null,
+    "roofInstallationDate": null,
+    "fullBuildingRoofReplacementConfirmed": null,
+    "scopeNote": "The same address and parcel have two separately issued permits with areas of 81,000 and 8,100 square feet. The rows do not establish overlap, distinct sections, a revision relationship or an error."
+  }
+}

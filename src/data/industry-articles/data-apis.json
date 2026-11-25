@@ -19590,7 +19590,7 @@
     "title": "Ageospatial alternatives for commercial roof underwriting",
     "description": "Compare Ageospatial, Moody’s, ZestyAI, Verisk and Invariant Earth with a real test for building identity, roof replacement dates and source evidence.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-25",
     "readMinutes": 7,
     "region": "United States",
     "coverAlt": "Aerial view of the Rosemead Public Works warehouse with its county building footprint outlined.",
@@ -19808,6 +19808,10 @@
               {
                 "slug": "physical-world-data-api-evaluation",
                 "label": "Run the same vendor evaluation across workflows"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Test permit and final-inspection matching in Los Angeles"
               }
             ]
           }
@@ -23625,9 +23629,9 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Best commercial property data APIs for insurance underwriting",
-    "description": "Compare ten commercial property underwriting data providers. Use seven public checks to test building matches, roof work, historical flood maps and hail evidence.",
+    "description": "Compare commercial property data APIs for underwriting. See how to match buildings, verify roof permit closeout, and check historical flood and hail evidence.",
     "date": "2026-11-22",
-    "readMinutes": 10,
+    "readMinutes": 11,
     "coverAlt": "Aerial view of Brooklyn Army Terminal, with the small footprint returned by the city’s Building A identifier marked in gold for review.",
     "coverCaption": "The gold outline is the footprint returned by the city building-ID lookup. Aerial imagery from NYS ITS, spring 2024. Tax lot from NYC MapPLUTO 26v2.",
     "intro": "Use Invariant Earth when your underwriting team needs to verify the parcel and inspect the sources behind building and hazard fields. Evaluate Cotality for building prefill and reconstruction cost, Moody’s CAPE for imagery-derived roof attributes, Verisk for commercial underwriting reports, and Guidewire HazardHub for peril and fire-protection data. First Street provides modeled flood depth and damage. Compare Ageospatial for building and property evidence workflows. Use the scorecard below to test shared addresses, roof records and evidence that changes after the quote date.",
@@ -23695,6 +23699,68 @@
                 "label": "Test commercial roof underwriting tools against a documented replacement"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "roof-permit-final-inspection-los-angeles",
+        "heading": "How to verify a roof permit and final inspection by address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the permit number and insured building. A search of Los Angeles’s inspection feed using the hyphenated permit numbers returned zero rows for three roof permits. The feed stores the same number groups with spaces. The space-separated query returned three inspection rows for one of those permits, including the final inspection. Keep the original strings from both systems and use the normalized number to join them.",
+            "sourceIds": [
+              "la-roof-permits",
+              "la-roof-negative-control",
+              "la-roof-inspections"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Los Angeles address and permit",
+              "What the records show",
+              "What to enter in the underwriting file"
+            ],
+            "rows": [
+              [
+                "403 S Mathews St · 26016-20000-26445",
+                "Permit issued September 28, 2026, for 20 roofing squares over existing sheathing. Final inspection October 20. Permit status date October 21.",
+                "Retain both dates and 2,000 square feet of permitted scope. Ask which roof sections and layers the work covered before dating the whole roof."
+              ],
+              [
+                "815 N Moraga Dr · 26016-90000-32210 and 26016-90000-32214",
+                "Both permits were issued November 17, 2026, at the same address and parcel. One lists 810 roofing squares and the other 81. Both descriptions also mention coating. The queried feed returned no inspection rows for either permit.",
+                "Keep the two issued scopes separate. Ask for the permit plan or roof diagram to determine whether the areas overlap, describe different sections, or reflect a correction."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "la-roof-permits",
+                "la-roof-inspections",
+                "roofing-square-definition"
+              ],
+              [
+                "la-roof-permits",
+                "la-roof-inspections"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A roofing square is 100 square feet. Converting the permitted quantity gives the area named in the permit. For coverage of the insured building, compare it with a dated roof plan. The Los Angeles re-roofing certificate includes fields for the building address, permit number, signer and date. Request the completed certificate, scope and any roof diagram to tie the work to an insured roof section. Keep the exact installation date and current condition open when the record only shows permit closeout.",
+            "sourceIds": [
+              "roofing-square-definition",
+              "la-roof-certificate"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/los-angeles-roof-permit-final-inspection.json",
+            "label": "Download the Los Angeles roof permit and inspection checks",
+            "format": "JSON",
+            "datasetAnchor": "dataset-la-roof-permits-and-final-inspection"
           }
         ]
       },
@@ -23872,6 +23938,15 @@
       {
         "question": "What should a prefill response include when the building cannot be matched?",
         "answer": "Keep the submitted building and candidate identifiers, state that the match requires review, and leave building-level fields unfilled. Include the evidence that disagrees, such as a footprint height or building name, and name the document needed to resolve it."
+      },
+      {
+        "question": "Which date should an underwriter use for a re-roofing permit?",
+        "answer": "Store the issue date, final inspection date and date of the permit status separately. Use a completed certificate, contractor record or similar evidence for the installation date, and identify the roof section before applying that date to a building. At 403 S Mathews St, the final inspection was October 20, 2026 and the finaled status date was October 21.",
+        "sourceIds": [
+          "la-roof-permits",
+          "la-roof-inspections",
+          "la-roof-certificate"
+        ]
       }
     ],
     "sources": [
@@ -23904,11 +23979,63 @@
       {"id":"west-kite","title":"Commercial property data and sources","url":"https://www.westkite.com/docs/data","publisher":"West Kite"},
       {"id":"earth-catalog","title":"Public field catalog","url":"https://api.invariant-ai.com/v1/meta/fields","publisher":"Invariant Earth catalog"},
       {"id":"earth-responses","title":"API responses and field provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
-      {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
+      {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"},
+      {
+        "id": "la-roof-permits",
+        "publisher": "Los Angeles Department of Building and Safety",
+        "title": "Three issued commercial roof permit records",
+        "url": "https://data.lacity.org/resource/pi9x-tg5x.json?%24select=permit_nbr%2Cprimary_address%2Cuse_desc%2Capn%2Cissue_date%2Cstatus_desc%2Cstatus_date%2Cwork_desc&%24where=permit_nbr+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit_nbr"
+      },
+      {
+        "id": "la-roof-inspections",
+        "publisher": "Los Angeles Department of Building and Safety",
+        "title": "Inspection records queried using space-separated permit numbers",
+        "url": "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016+20000+26445%27%2C%2726016+90000+32210%27%2C%2726016+90000+32214%27%29&%24order=permit%2Cinspection_date%2Cinspection"
+      },
+      {
+        "id": "la-roof-negative-control",
+        "publisher": "Los Angeles Department of Building and Safety",
+        "title": "Comparison query using hyphenated numbers in the inspection feed",
+        "url": "https://data.lacity.org/resource/9w5z-rg2h.json?%24select=permit%2Caddress%2Cpermit_status%2Cinspection_date%2Cinspection%2Cinspection_result&%24where=permit+in+%28%2726016-20000-26445%27%2C%2726016-90000-32210%27%2C%2726016-90000-32214%27%29&%24order=permit%2Cinspection_date%2Cinspection"
+      },
+      {
+        "id": "la-roof-certificate",
+        "publisher": "Los Angeles Department of Building and Safety",
+        "title": "Re-roofing certificate of compliance, including building address, permit and signature date",
+        "url": "https://dbs.lacity.gov/sites/default/files/efs/forms/inspection/re-roofing-certificate-in-form-12.pdf"
+      },
+      {
+        "id": "roofing-square-definition",
+        "publisher": "Douglas County Building Division",
+        "title": "Roofing permit form defining 100 square feet per roofing square",
+        "url": "https://www.douglasco.gov/documents/roofing-permit-application.pdf/"
+      }
     ],
     "relatedSlugs": [
       "commercial-property-replacement-cost-by-address",
       "certificate-of-occupancy-lookup-by-address","ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address", "hurricane-wind-history-by-address"],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-la-roof-permits-and-final-inspection",
+        "datePublished": "2026-11-25",
+        "name": "Los Angeles commercial roof permits and final-inspection matching",
+        "description": "Three Los Angeles re-roof permits at two addresses, a positive permit-number match across two city feeds, and the dates and scopes relevant to a roof-age review. Includes a query that returned no records before normalization.",
+        "sourceIds": [
+          "la-roof-permits",
+          "la-roof-inspections",
+          "la-roof-negative-control",
+          "la-roof-certificate",
+          "roofing-square-definition"
+        ],
+        "spatialCoverage": "Los Angeles, California, United States",
+        "temporalCoverage": "2026-09-28/2026-11-25",
+        "sourceReuse": {
+          "note": "Selected and normalized public record fields from the Los Angeles Department of Building and Safety. Square-foot values were calculated from the stated roofing squares.",
+          "policyLabel": "Los Angeles Open Data terms of use",
+          "policyUrl": "https://data.lacity.org/terms-of-use"
+        }
+      }
+    ],
     "updatedDate": "2026-11-25"
   },
   {
