@@ -12,9 +12,9 @@ This document is the publishing cadence. It is intentionally modest — sustaina
 
 **One LinkedIn post from the company page**, resharing from a personal account. Use the drafts in `drafts/distribution-2026-06-12.md` as templates.
 
-**One Tuesday: run `npm run geo-test`** with all three API keys exported. Save the JSONL to `drafts/geo-results/{YYYY-MM-DD}.jsonl`. Review which queries we are not yet cited for and decide whether to write a new cluster or strengthen an existing one.
+**Check the buyer citation benchmark.** Run `npm run geo-test -- --check-targets` to verify the public landing pages. With an authorized provider key, run `npm run geo-test -- --provider <provider>` to record web-grounded answers in `drafts/geo-results/`. Review citation counts among completed answers for reachable targets. Compare those results with Search Console separately.
 
-**One Friday: refresh a single existing pillar or cluster page.** Add a 2-3 sentence "Recently changed" callout at the top. Update the meta_description with the latest 2026 reference. Trivially small edits, but the lastmod date moves and Google notices.
+**Review an existing guide.** Fix stale evidence and add information that changes the reader’s decision. Reflect substantive updates in the description, visible update date and sitemap when appropriate.
 
 ---
 

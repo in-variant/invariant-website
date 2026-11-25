@@ -2,7 +2,8 @@
 // Measures web-grounded API answers. Google Search and Search Console are
 // separate measurements. Use --list to see the exact public inputs.
 // target_cited is the HTML URL. target_content_cited also accepts its Markdown
-// alternate. An unresolved source leaves a missing target unscored.
+// alternate. Run --check-targets before deployment or without provider API keys.
+// An unavailable target or unresolved citation leaves a missing target unscored.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
@@ -51,14 +52,20 @@ function comparisonDomains(domains) {
 
 function options() {
   const { values } = parseArgs({ options: {
-    suite: { type: 'string', default: 'compliance' },
+    suite: { type: 'string', default: 'buyer' },
     provider: { type: 'string', multiple: true },
     prompt: { type: 'string', multiple: true },
     'compare-domain': { type: 'string', multiple: true },
     repeat: { type: 'string', default: '1' },
     'env-file': { type: 'string' },
+    'check-targets': { type: 'boolean' },
+    'target-origin': { type: 'string' },
     list: { type: 'boolean' },
   } })
+  if (values['target-origin'] && !values['check-targets']) {
+    throw new Error('--target-origin is only available with --check-targets. Citation runs always check the public site.')
+  }
+  if (values.list && values['check-targets']) throw new Error('Choose --list or --check-targets')
   const compliancePrompts = COMPLIANCE_PROMPTS.map((prompt, index) => ({
     id: `compliance-${index + 1}`, vertical: 'Compliance', prompt, target: null,
   }))
@@ -166,6 +173,46 @@ function parseWebUrl(value) {
   }
 }
 
+async function checkTarget(target, origin) {
+  const url = new URL(target, origin)
+  const canonical = new URL(url.pathname, `https://${SITE}`).href
+  const response = await fetch(url, { redirect: 'manual', signal: AbortSignal.timeout(8000) })
+  const http_status = response.status
+  if (!response.ok || !response.headers.get('content-type')?.startsWith('text/html')) {
+    await response.body?.cancel()
+    return { state: response.status === 404 || response.status === 410 ? 'missing' : 'not_ready', http_status }
+  }
+  const html = await response.text()
+  const canonicalTag = html.match(/<link\b[^>]*\brel=["']canonical["'][^>]*>/i)?.[0]
+  const declaredCanonical = canonicalTag?.match(/\bhref=["']([^"']+)["']/i)?.[1]
+  if (declaredCanonical !== canonical) return { state: 'wrong_canonical', http_status }
+  const directives = response.headers.get('x-robots-tag') ?? ''
+  if (/\b(?:none|noindex)\b/i.test(directives) ||
+      /<meta\b[^>]*\bname=["'](?:robots|googlebot)["'][^>]*\bcontent=["'][^"']*\b(?:none|noindex)\b/i.test(html)) {
+    return { state: 'noindex', http_status }
+  }
+  if (url.hash && !html.includes(`id="${decodeURIComponent(url.hash.slice(1))}"`)) {
+    return { state: 'missing_section', http_status }
+  }
+  return { state: 'ready', http_status }
+}
+
+async function checkTargets(items, origin) {
+  const targets = [...new Set(items.map(item => item.target).filter(Boolean))]
+  const statuses = new Map()
+  for (let index = 0; index < targets.length; index += 8) {
+    const checks = await Promise.all(targets.slice(index, index + 8).map(async target => {
+      try {
+        return [target, await checkTarget(target, origin)]
+      } catch {
+        return [target, { state: 'unreachable', http_status: null }]
+      }
+    }))
+    for (const [target, check] of checks) statuses.set(target, check)
+  }
+  return statuses
+}
+
 async function resolveCitation(citation) {
   const url = parseWebUrl(citation.url)
   if (!url) return { ...citation, destination: null }
@@ -214,11 +261,12 @@ function providerConfig(options) {
   }
 }
 
-async function observe(item, provider, config, repeat, compareDomains) {
+async function observe(item, provider, config, repeat, compareDomains, targetStatus) {
   const base = {
     ts: new Date().toISOString(), provider, model: config.model, search: config.search, search_location: config.location,
     prompt_id: item.id, vertical: item.vertical, prompt: item.prompt, target_url: item.target ? `https://${SITE}${item.target}` : null, repeat,
     comparison_domains: compareDomains,
+    target_status: targetStatus ?? null,
   }
   if (!config.key) return { ...base, status: 'skipped', reason: 'No provider API key' }
   let result
@@ -237,7 +285,7 @@ async function observe(item, provider, config, repeat, compareDomains) {
   const targets = new Set(citations.map(citation => destinationKey(citation.destination)))
   const htmlMatch = Boolean(targetKey && targets.has(targetKey))
   const markdownMatch = Boolean(targetKey && targets.has(`${targetKey}.md`))
-  const checkedTarget = complete && Boolean(targetKey)
+  const checkedTarget = complete && targetStatus?.state === 'ready'
   return {
     ...base, model: result.model || config.model, status,
     owned_cited: citationVerdict(complete, Boolean(firstOwned), anyUnresolved),
@@ -266,17 +314,32 @@ async function main() {
     })), null, 2))
     return
   }
+  const publicOrigin = `https://${SITE}`
+  if (settings['check-targets']) {
+    const origin = parseWebUrl(settings['target-origin'] ?? publicOrigin)
+    if (!origin || origin.username || origin.password || origin.pathname !== '/' || origin.search || origin.hash) {
+      throw new Error('--target-origin must be an HTTP or HTTPS origin, such as http://127.0.0.1:5356')
+    }
+    const checks = [...await checkTargets(settings.selected, origin)].map(([target, status]) => ({ target, ...status }))
+    console.log(JSON.stringify({ origin: origin.origin, suite: settings.suite, checks }, null, 2))
+    if (checks.some(check => check.state !== 'ready')) process.exitCode = 1
+    return
+  }
   const localEnv = resolve(ROOT, '.env')
   if (settings['env-file']) loadEnvFile(resolve(settings['env-file']))
   else if (existsSync(localEnv)) loadEnvFile(localEnv)
   const configs = providerConfig(settings)
+  if (!settings.providers.some(provider => configs[provider].key)) {
+    throw new Error('No configured API keys for the selected providers. Use --check-targets to verify the landing pages without model calls.')
+  }
+  const targets = await checkTargets(settings.selected, publicOrigin)
   const timestamp = new Date().toISOString().replaceAll(':', '-')
   const output = resolve(process.env.GEO_RESULTS_DIR || resolve(ROOT, 'drafts/geo-results'))
   const rows = []
   for (const item of settings.selected) {
     for (const provider of settings.providers) {
       for (let repeat = 1; repeat <= settings.repeat; repeat++) {
-        const row = await observe(item, provider, configs[provider], repeat, settings.comparisons.get(item.id))
+        const row = await observe(item, provider, configs[provider], repeat, settings.comparisons.get(item.id), targets.get(item.target))
         rows.push(row)
         console.log(`${provider} ${item.id} #${repeat} ${row.status} ${row.reason ?? ''}`.trim())
       }
