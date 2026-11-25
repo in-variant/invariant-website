@@ -5122,22 +5122,30 @@
         "PUE",
         "data center PUE"
       ],
-      "short_definition": "PUE is the ratio of total data center facility power to the power delivered to IT equipment. A PUE of 1.3 means a site needs 1.3 MW at the meter for every 1 MW of IT load.",
-      "full_definition": "PUE converts between the two MW numbers in every data center site conversation. Utilities sell facility load; tenants usually ask for IT load. Uptime Institute put the average per-site PUE in its survey at 1.58 for 2023, and 1.47 weighted by IT capacity, with new hyperscale builds designed for 1.4 or lower.\n\nAt a PUE of 1.3, a 100 MW site supports about 77 MW of IT, roughly 640 NVIDIA GB200 NVL72 racks at about 120 kW each. Always ask which MW a listing means before comparing sites.",
+      "short_definition": "Power usage effectiveness (PUE) is total data center energy divided by IT equipment energy over the same 12 months. A PUE of 1.30 means 1.30 kWh of facility energy per kWh used by IT.",
+      "full_definition": "To calculate PUE, divide the facility’s energy by the IT equipment’s energy, using the same 12-month period and clearly defined meter boundaries. For example, 130 GWh of facility energy divided by 100 GWh of IT energy gives a PUE of 1.30. The other 30 GWh covers systems such as cooling and electrical distribution. When comparing two reported figures, check the measurement period, meter locations and treatment of shared systems or on-site generation.\n\nGoogle’s 2026 report shows the difference between periods. Its Storey County, Nevada campus reported 1.17 for the second quarter and 1.15 over the preceding 12 months. Its Mesa, Arizona campus reported 1.28 for the quarter and left the 12-month figure blank. Google only reports 12-month figures for campuses with at least a year of data.\n\nFor early site screening, use a facility-to-IT demand ratio for the design condition. At an assumed ratio of 1.30, 30 MW for IT implies 39 MW for the facility at that condition. Annual PUE describes energy use over time. For a utility application, ask for the maximum concurrent demand at the meter, including cooling at the site’s design weather and any electrical or auxiliary loads the utility needs to serve.",
       "related_to": [
         "powered-land",
         "data-center-site-selection"
       ],
       "citations": [
         {
-          "label": "Uptime Institute, large data centers are mostly more efficient",
-          "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/"
+          "label": "ISO/IEC 30134-2:2026, PUE definition and measurement",
+          "url": "https://www.iso.org/standard/30134-2?browse=tc"
+        },
+        {
+          "label": "U.S. Department of Energy, data center design guide, section 8.1",
+          "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf"
+        },
+        {
+          "label": "Google Data Centers, 2026 PUE report, quarter 2 campus rows",
+          "url": "https://datacenters.google/efficiency/"
         }
       ],
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-24",
       "guide": {
-        "label": "Data center acres per MW",
-        "path": "/blog/data-center-land-acres-per-mw"
+        "label": "Calculate facility demand and check your power margin",
+        "path": "/calculators/data-center-power-capacity"
       }
     },
     {

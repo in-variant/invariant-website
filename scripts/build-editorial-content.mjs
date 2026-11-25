@@ -43,6 +43,13 @@ const publicBlogSlugs = new Set(slugs)
 const linkablePaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
   .matchAll(/^\s*'(\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
 linkablePaths.add('/data-coverage')
+const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
+for (const { slug } of glossary) {
+  const path = `/glossary/${slug}`
+  if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`Invalid glossary slug: ${slug}`)
+  if (linkablePaths.has(path)) throw new Error(`Duplicate glossary entry slug: ${slug}`)
+  linkablePaths.add(path)
+}
 const coverageByName = new Map(coverageSnapshot.map(field => [field.name, field]))
 const coverageExamples = {}
 for (const { id, fields } of coverageTopics) {
@@ -225,11 +232,6 @@ writeEntryModules(new URL('.generated-legacy-articles/', base), legacyArticles.m
   relatedReading: [],
 })))
 
-const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
-if (new Set(glossary.map(entry => entry.slug)).size !== glossary.length) throw new Error('Duplicate glossary entry slug')
-for (const entry of glossary) {
-  if (!/^[a-z0-9-]+$/.test(entry.slug)) throw new Error(`Invalid glossary slug: ${entry.slug}`)
-}
 writeEntryModules(new URL('.generated-glossary/entries/', base), glossary)
 const summaries = glossary.map(({ slug, term, aliases, short_definition, topic }) => ({
   slug, term, aliases, short_definition, topic,

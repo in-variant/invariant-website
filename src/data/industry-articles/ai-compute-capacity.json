@@ -429,12 +429,13 @@
   "title": "How much power does a GPU cluster need? H100, B200 and GB200 NVL72 in MW",
   "description": "GPU cluster power requirements in MW: H100, B200 and GB200 NVL72 from 256 to 100,000 GPUs, kW per GPU, rack density, PUE and what to ask a data center for.",
   "date": "2026-11-20",
+  "updatedDate": "2026-11-24",
   "readMinutes": 6,
-  "intro": "A GPU cluster needs about 1.8 kW per H100, 2.6 kW per B200 and 2.4 kW per GB200 GPU at the meter, once you count the server, networking, storage and cooling. That puts 1,024 B200 GPUs at about 2.6 MW, 16,384 GB200 GPUs at about 39 MW and 100,000 GB200 GPUs at about 238 MW. The figures come from NVIDIA’s published system power, plus about 10% for networking and storage and a PUE of 1.3.",
+  "intro": "A GPU cluster needs about 1.8 kW per H100, 2.6 kW per B200 and 2.4 kW per GB200 GPU at the meter, once you count the server, networking, storage and cooling. That puts 1,024 B200 GPUs at about 2.6 MW, 16,384 GB200 GPUs at about 39 MW and 100,000 GB200 GPUs at about 238 MW. The figures come from NVIDIA’s published system power, plus about 10% for networking and storage and an illustrative facility-to-IT demand ratio of 1.30.",
   "takeaways": [
    "Size from the system, not the GPU. An H100 is rated up to 700 W, but an eight-GPU DGX H100 draws up to 10.2 kW.",
    "Rack density decides cooling: four DGX H100s is about 41 kW a rack; a GB200 NVL72 is about 120 kW.",
-   "PUE turns IT load into what the utility sees. 1.3 is a reasonable planning figure for a new liquid-cooled build.",
+   "The examples use a facility-to-IT demand ratio of 1.30 to screen power requirements. Get a site-specific peak estimate before committing to capacity.",
    "Ask a data center for MW at the meter and kW per cabinet, both with dates."
   ],
   "sections": [
@@ -448,7 +449,7 @@
        "System",
        "kW per GPU, system",
        "kW per GPU, with networking and storage",
-       "kW per GPU at the meter (PUE 1.3)"
+       "kW per GPU at the meter (1.30 demand ratio)"
       ],
       "rows": [
        [
@@ -553,7 +554,7 @@
      },
      {
       "type": "paragraph",
-      "text": "Our arithmetic: system kW per GPU, times 1.10 for networking and storage, times 1.3 for PUE. Max-rated system power is a sensible sizing basis because training runs keep GPUs near full load for weeks."
+      "text": "Our arithmetic: system kW per GPU, times 1.10 for networking and storage, times 1.30 for the assumed facility-to-IT demand ratio. Check the proposed workload and site cooling before using the estimate to request service."
      }
     ]
    },
@@ -608,9 +609,9 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "PUE is total facility power divided by IT power. Uptime Institute’s data shows large, newer facilities run more efficiently than the industry average. We use 1.3 for a new liquid-cooled build; an older air-cooled colo hall may run higher, and you pay for that in the power bill or the price per kW.",
+      "text": "PUE is total facility energy divided by IT equipment energy over the same year. The estimates on this page use a separate demand ratio of 1.30 for one assumed operating condition. For capacity planning, ask the facility operator how much cooling, power conversion and other load can coincide with your peak IT demand.",
       "sourceIds": [
-       "uptime-pue"
+       "doe-pue"
       ]
      }
     ]
@@ -701,14 +702,14 @@
   "faqs": [
    {
     "question": "How much power does an H100 cluster use?",
-    "answer": "About 1.8 kW per GPU at the meter, so roughly 1.8 MW per 1,000 H100s, based on DGX H100 at 10.2 kW per eight GPUs, about 10% for networking and storage and a PUE of 1.3.",
+    "answer": "About 1.8 kW per GPU at the meter, so roughly 1.8 MW per 1,000 H100s, based on DGX H100 at 10.2 kW per eight GPUs, about 10% for networking and storage and an illustrative facility-to-IT demand ratio of 1.30.",
     "sourceIds": [
      "dgx-h100"
     ]
    },
    {
     "question": "How much power does a GB200 NVL72 rack use?",
-    "answer": "About 120 kW per rack, liquid cooled. With networking, storage and a PUE of 1.3, that is about 170 kW per rack at the meter.",
+    "answer": "About 120 kW per rack, liquid cooled. With networking, storage and an illustrative facility-to-IT demand ratio of 1.30, that is about 170 kW per rack at the meter.",
     "sourceIds": [
      "nvl72"
     ]
@@ -756,15 +757,15 @@
    },
    {
     "id": "nvl72",
-    "title": "Nvidia offers 120 kW liquid-cooled Blackwell rack as industry standard",
-    "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-    "publisher": "eeNews Europe"
+    "title": "GB200 NVL72 reference rack and full-load power",
+    "url": "https://docs.nvidia.com/mission-control/docs/systems-administration-guide/2.0.0/prs/faq.html",
+    "publisher": "NVIDIA"
    },
    {
-    "id": "uptime-pue",
-    "title": "Large data centers are mostly more efficient, analysis confirms",
-    "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/",
-    "publisher": "Uptime Institute"
+    "id": "doe-pue",
+    "title": "Data center design guide, section 8.1, PUE measurement",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf",
+    "publisher": "U.S. Department of Energy"
    }
   ],
   "relatedSlugs": [

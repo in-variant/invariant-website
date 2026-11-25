@@ -666,10 +666,11 @@
   "title": "1 MW data center site: where to find powered space for a 1 MW load in the US",
   "description": "Find a 1 MW data center site in the US: energized edge, inference and mining sites, what 1 MW really fits, the service you need and how fast it can be live.",
   "date": "2026-11-09",
+  "updatedDate": "2026-11-24",
   "readMinutes": 6,
   "intro": "A 1 MW data center site is the easiest size to find and the easiest to get wrong. At this scale you are almost always on the utility distribution system, so the fastest sites are buildings or yards that already have the service in place. A new 1 MW service can take longer than people expect because of transformer lead times and feeder upgrades. Invariant keeps a running list of energized small sites across the US, from 0.5 MW turnkey mining yards to Tier III rooms, and shares the ones that fit on a call.",
   "takeaways": [
-   "1 MW at the meter is about 0.75 MW of IT at a PUE of 1.3. That is roughly six 120 kW AI racks, or a few hundred air-cooled mining machines.",
+   "1 MW at the meter is about 0.77 MW of IT at an assumed facility-to-IT demand ratio of 1.30. That is roughly six 120 kW AI racks, or a few hundred air-cooled mining machines.",
    "At this size the question is the existing service: voltage, transformer rating and whether the feeder has room. A site that already has it can be live in weeks.",
    "Land is rarely the issue. A containerized 1 MW deployment fits on well under an acre.",
    "Ask for a recent utility bill or a service letter showing the transformer and the contracted capacity, not a map of nearby lines."
@@ -681,10 +682,10 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Utilities sell facility load. Tenants buy IT load. At a PUE of 1.3, a 1 MW site leaves about 0.8 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is roughly 6.4 racks, or about 460 GPUs. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are edge inference, a small GPU pod, enterprise compute or a bitcoin mining deployment.",
+      "text": "The utility serves total facility load, including cooling and electrical losses. Confirm the simultaneous loads at the site’s design conditions. At an assumed facility-to-IT demand ratio of 1.30, a 1 MW site leaves about 0.77 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is six full racks, or 432 GPUs, before reserving power for other IT equipment. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are edge inference, a small GPU pod, enterprise compute or a bitcoin mining deployment.",
       "sourceIds": [
        "nvl72",
-       "uptime-pue"
+       "doe-pue"
       ]
      },
      {
@@ -695,12 +696,12 @@
       ],
       "rows": [
        [
-        "IT load at PUE 1.3",
-        "About 0.8 MW"
+        "IT load at a 1.30 design ratio",
+        "About 0.77 MW"
        ],
        [
         "AI racks at 120 kW",
-        "About 6.4"
+        "Six full racks before other IT equipment"
        ],
        [
         "Utility service",
@@ -1119,10 +1120,10 @@
   "faqs": [
    {
     "question": "How much power is 1 MW for a data center?",
-    "answer": "1 MW at the meter supports about 0.7 to 0.8 MW of IT load at a PUE between 1.25 and 1.4. That is roughly six GB200 NVL72 racks at about 120 kW each, around 430 GPUs, or 20 to 40 standard enterprise racks at 20 to 30 kW.",
+    "answer": "1 MW at the meter supports about 0.7 to 0.8 MW of IT load with a design ratio between 1.25 and 1.40. That is roughly six GB200 NVL72 racks at about 120 kW each, around 430 GPUs, or 20 to 40 standard enterprise racks at 20 to 30 kW.",
     "sourceIds": [
      "nvl72",
-     "uptime-pue"
+     "doe-pue"
     ]
    },
    {
@@ -1141,15 +1142,15 @@
   "sources": [
    {
     "id": "nvl72",
-    "title": "Nvidia offers 120 kW liquid-cooled Blackwell rack as industry standard",
-    "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-    "publisher": "eeNews Europe"
+    "title": "GB200 NVL72 reference rack and full-load power",
+    "url": "https://docs.nvidia.com/mission-control/docs/systems-administration-guide/2.0.0/prs/faq.html",
+    "publisher": "NVIDIA"
    },
    {
-    "id": "uptime-pue",
-    "title": "Large data centers are mostly more efficient, analysis confirms",
-    "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/",
-    "publisher": "Uptime Institute"
+    "id": "doe-pue",
+    "title": "Data center design guide, section 8.1, PUE measurement",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf",
+    "publisher": "U.S. Department of Energy"
    }
   ],
   "relatedSlugs": [
@@ -1165,10 +1166,11 @@
   "title": "5 MW data center site: finding energized power for a 5 MW load in the US",
   "description": "Find a 5 MW data center site in the US: turnkey energized sites, how many racks 5 MW fits, the feeder and transformer you need and how long new service takes.",
   "date": "2026-11-09",
+  "updatedDate": "2026-11-24",
   "readMinutes": 6,
   "intro": "5 MW is where a data center site stops being a building with a big service and starts needing its own utility plan. A 5 MW load is usually still on a distribution feeder, often a dedicated one, and that feeder decides the timeline. Turnkey 5 MW sites with transformers already energized come up regularly in mining markets, and they convert well to inference and edge use if the power is firm. Invariant tracks several of them across the US right now.",
   "takeaways": [
-   "5 MW at the meter is about 3.8 MW of IT at a PUE of 1.3, roughly 32 AI racks at 120 kW, or 2,300 GPUs.",
+   "5 MW at the meter is about 3.8 MW of IT at an assumed facility-to-IT demand ratio of 1.30, roughly 32 AI racks at 120 kW, or 2,300 GPUs.",
    "Expect medium-voltage distribution service, often a dedicated 12 to 35 kV feeder and several pad-mounted transformers.",
    "Turnkey mining sites at 5 MW can be live immediately. Check whether the rate is interruptible before you plan an uptime promise around it.",
    "Land: 1 to 5 acres covers most layouts, more if you add generators and cooling yards."
@@ -1180,10 +1182,10 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Utilities sell facility load. Tenants buy IT load. At a PUE of 1.3, a 5 MW site leaves about 3.8 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is roughly 32 racks, or about 2,310 GPUs. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are an inference cluster, a regional colocation room, an enterprise build or a mining expansion.",
+      "text": "The utility serves total facility load, including cooling and electrical losses. Confirm the simultaneous loads at the site’s design conditions. At an assumed facility-to-IT demand ratio of 1.30, a 5 MW site leaves about 3.8 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is up to 32 full racks in the arithmetic example, before allowing for separate networking and storage. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are an inference cluster, a regional colocation room, an enterprise build or a mining expansion.",
       "sourceIds": [
        "nvl72",
-       "uptime-pue"
+       "doe-pue"
       ]
      },
      {
@@ -1194,12 +1196,12 @@
       ],
       "rows": [
        [
-        "IT load at PUE 1.3",
+        "IT load at a 1.30 design ratio",
         "About 3.8 MW"
        ],
        [
         "AI racks at 120 kW",
-        "About 32"
+        "Up to 32 full racks before other IT equipment"
        ],
        [
         "Utility service",
@@ -1614,10 +1616,10 @@
   "faqs": [
    {
     "question": "How many GPUs fit in a 5 MW data center?",
-    "answer": "At a PUE of 1.3, 5 MW at the meter leaves about 3.8 MW for IT. At about 120 kW per GB200 NVL72 rack, that is roughly 32 racks and 2,300 GPUs. Air-cooled H100-class deployments at 40 to 50 kW per rack would fit 75 to 95 racks.",
+    "answer": "At an assumed facility-to-IT demand ratio of 1.30, 5 MW at the meter leaves about 3.8 MW for IT. At about 120 kW per GB200 NVL72 rack, that is up to 32 full racks before allowing for separate networking and storage. Air-cooled H100-class deployments at 40 to 50 kW per rack would fit 75 to 95 racks.",
     "sourceIds": [
      "nvl72",
-     "uptime-pue"
+     "doe-pue"
     ]
    },
    {
@@ -1636,15 +1638,15 @@
   "sources": [
    {
     "id": "nvl72",
-    "title": "Nvidia offers 120 kW liquid-cooled Blackwell rack as industry standard",
-    "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-    "publisher": "eeNews Europe"
+    "title": "GB200 NVL72 reference rack and full-load power",
+    "url": "https://docs.nvidia.com/mission-control/docs/systems-administration-guide/2.0.0/prs/faq.html",
+    "publisher": "NVIDIA"
    },
    {
-    "id": "uptime-pue",
-    "title": "Large data centers are mostly more efficient, analysis confirms",
-    "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/",
-    "publisher": "Uptime Institute"
+    "id": "doe-pue",
+    "title": "Data center design guide, section 8.1, PUE measurement",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf",
+    "publisher": "U.S. Department of Energy"
    }
   ],
   "relatedSlugs": [
@@ -3293,10 +3295,11 @@
   "title": "40 MW data center site: finding a powered site for a 40 MW AI or colocation campus",
   "description": "Find a 40 MW data center site in the US: substation, land and GPU math for 40 MW, the documents that prove the power, and 40 to 55 MW sites available now.",
   "date": "2026-11-09",
+  "updatedDate": "2026-11-24",
   "readMinutes": 6,
   "intro": "A 40 MW data center site sits in the range where buyers have the most choice and the most risk of overpaying for paper. Plenty of listings claim 40 MW. Fewer can show a utility study for it. The ones worth a call usually have an existing energized service, a former industrial load, or a signed study at a named substation. Invariant has energized options in Texas and Oklahoma around this size.",
   "takeaways": [
-   "40 MW at the meter is about 31 MW of IT at a PUE of 1.3, roughly 255 AI racks or 18,400 GPUs.",
+   "40 MW at the meter is about 31 MW of IT at an assumed facility-to-IT demand ratio of 1.30, up to 256 full 120 kW racks before other IT equipment.",
    "A 40 MW claim with no utility document behind it is a lead, not a site. Grade it on the five-rung evidence ladder.",
    "Customer substation at 69 to 230 kV, 15 to 60 acres all in.",
    "The Texas metro property is marketed at 44 MW. The Oklahoma City brownfield is reported to have 55 MW under service agreements."
@@ -3308,10 +3311,10 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Utilities sell facility load. Tenants buy IT load. At a PUE of 1.3, a 40 MW site leaves about 31 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is roughly 260 racks, or about 18,460 GPUs. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are an AI cloud provider, a colocation developer, an HPC tenant or a mining operator.",
+      "text": "The utility serves total facility load, including cooling and electrical losses. Confirm the simultaneous loads at the site’s design conditions. At an assumed facility-to-IT demand ratio of 1.30, a 40 MW site leaves about 31 MW for IT. At about 120 kW per NVIDIA GB200 NVL72 rack, that is up to 256 full racks before allowing for separate networking and storage. Air-cooled designs at 30 to 50 kW per rack fit more racks and fewer GPUs per MW. Typical buyers at this size are an AI cloud provider, a colocation developer, an HPC tenant or a mining operator.",
       "sourceIds": [
        "nvl72",
-       "uptime-pue"
+       "doe-pue"
       ]
      },
      {
@@ -3322,12 +3325,12 @@
       ],
       "rows": [
        [
-        "IT load at PUE 1.3",
+        "IT load at a 1.30 design ratio",
         "About 31 MW"
        ],
        [
         "AI racks at 120 kW",
-        "About 260"
+        "Up to 256 full racks before other IT equipment"
        ],
        [
         "Utility service",
@@ -3726,10 +3729,10 @@
   "faqs": [
    {
     "question": "How many GPUs fit in 40 MW?",
-    "answer": "At a PUE of 1.3, 40 MW at the meter supports about 31 MW of IT, roughly 255 GB200 NVL72 racks at 120 kW, which is about 18,400 GPUs.",
+    "answer": "At an assumed facility-to-IT demand ratio of 1.30, 40 MW at the meter supports about 31 MW of IT, up to 256 full GB200 NVL72 racks at 120 kW before allowing for separate networking and storage.",
     "sourceIds": [
      "nvl72",
-     "uptime-pue"
+     "doe-pue"
     ]
    },
    {
@@ -3748,9 +3751,9 @@
   "sources": [
    {
     "id": "nvl72",
-    "title": "Nvidia offers 120 kW liquid-cooled Blackwell rack as industry standard",
-    "url": "https://www.eenewseurope.com/en/nvidia-offers-120kw-liquid-cooled-blackwell-rack-as-industry-standard",
-    "publisher": "eeNews Europe"
+    "title": "GB200 NVL72 reference rack and full-load power",
+    "url": "https://docs.nvidia.com/mission-control/docs/systems-administration-guide/2.0.0/prs/faq.html",
+    "publisher": "NVIDIA"
    },
    {
     "id": "paces",
@@ -3759,10 +3762,10 @@
     "publisher": "Paces"
    },
    {
-    "id": "uptime-pue",
-    "title": "Large data centers are mostly more efficient, analysis confirms",
-    "url": "https://journal.uptimeinstitute.com/large-data-centers-are-mostly-more-efficient-analysis-confirms/",
-    "publisher": "Uptime Institute"
+    "id": "doe-pue",
+    "title": "Data center design guide, section 8.1, PUE measurement",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf",
+    "publisher": "U.S. Department of Energy"
    }
   ],
   "relatedSlugs": [
@@ -11286,7 +11289,7 @@
   "intro": "A Wisconsin property is marketed with 80 MW available at a reportedly built 150 MW substation and 130 acres described as ready for development. Start by asking how much service the utility can commit to a new customer at the meter and by what date. Then check how that first phase would expand, which rate would apply and whether the buildable acreage fits your site plan.",
   "takeaways": [
    "The listing advertises 80 MW. The 150 MW figure describes the reported substation capacity. Ask for the current offer and a separate expansion schedule.",
-   "A project with 80 MW of IT load and a PUE of 1.25 needs 100 MW at the meter in the worked example below.",
+   "A project with 80 MW of IT load and an assumed facility-to-IT demand ratio of 1.25 needs 100 MW at the meter in the worked example below.",
    "We Energies’ Very Large Customer rate uses the eligible customer’s aggregated forecast of new electric load. Verify the serving utility and rate before pricing a bid.",
    "In Port Washington, track the revised power application, redundant water main and site permits as separate approvals."
   ],
@@ -11334,13 +11337,13 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Start with the IT load and estimate the additional power for cooling, electrical losses and other building systems. Power usage effectiveness, or PUE, is total facility power divided by IT power. Compare the utility’s service offer with the facility load for the same phase."
+      "text": "Start with the IT load and estimate the additional power for cooling, electrical losses and other building systems. Use the ratio of concurrent facility demand to IT demand for the design condition. PUE measures energy over a reporting period. Compare the written service offer with the peak facility demand for the same phase."
      },
      {
       "type": "table",
       "columns": [
        "Illustrative requirement",
-       "At a PUE of 1.25"
+       "At an assumed facility-to-IT demand ratio of 1.25"
       ],
       "rows": [
        [
@@ -11807,7 +11810,7 @@
    },
    {
     "question": "Does an 80 MW IT project fit an 80 MW site?",
-    "answer": "At a PUE of 1.25, 80 MW of IT load requires 100 MW at the meter. Ask what the advertised 80 MW measures and compare the supported load and service date with your first-phase requirement."
+    "answer": "At an assumed facility-to-IT demand ratio of 1.25, 80 MW of IT load requires 100 MW at the meter. Ask what the advertised 80 MW measures and compare the supported load and service date with your first-phase requirement."
    },
    {
     "question": "Does every 100 MW Wisconsin data center use the same tariff?",
@@ -23005,7 +23008,7 @@
       "rows": [
        [
         "1. Design load and dates",
-        "Peak facility MW at the meter, IT MW, each load step, required service date, and reliability target.",
+        "Peak coincident facility MW at the meter, IT MW, each load step, required service date, and reliability target.",
         "Engineering and commercial teams agree on one dated demand schedule."
        ],
        [
@@ -23147,6 +23150,37 @@
         "siting",
         "lbnl"
        ]
+      ]
+     }
+    ]
+   },
+   {
+    "id": "check-peak-demand-at-the-meter",
+    "heading": "Can 40 MW of service support a 30 MW IT load?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Start by adding the IT, cooling and other electrical loads that can occur together. In this illustrative test, the 30 MW IT load stays fixed. Cooling rises by 3 MW at the hot-day design condition, enough to exhaust the margin on a 40 MW service."
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": ["Design condition", "IT, cooling and other load", "Demand at the meter", "Margin against 40 MW"],
+      "rows": [
+       ["Initial screen", "30 MW IT + 5 MW cooling + 4 MW other", "39 MW", "1 MW spare"],
+       ["Hot-day design case", "30 MW IT + 8 MW cooling + 4 MW other", "42 MW", "2 MW short"]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Power usage effectiveness (PUE) compares energy over a reporting period. The service question calls for the maximum coincident demand. Ask the design engineer for that number at the utility’s meter, including cooling at the site’s design weather, power conversion losses and other site loads. Before pricing an option around 40 MW, confirm a cooling design or IT limit that fits the service, or ask the utility to study the higher requirement.",
+      "sourceIds": ["doe-energy-metric"]
+     },
+     {
+      "type": "links",
+      "items": [
+       {"path": "/glossary/power-usage-effectiveness", "label": "How to calculate PUE from energy measurements"},
+       {"path": "/calculators/data-center-power-capacity", "label": "Check your facility demand and power margin"}
       ]
      }
     ]
@@ -23738,6 +23772,12 @@
     "title": "Virginia data center requests and steps to provide service",
     "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
     "publisher": "Dominion Energy Virginia"
+   },
+   {
+    "id": "doe-energy-metric",
+    "title": "Energy-efficient data center design guide, section 8.1 on PUE",
+    "url": "https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design.pdf",
+    "publisher": "U.S. Department of Energy"
    },
    {
     "id": "siting",
