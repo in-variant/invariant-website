@@ -1,5 +1,334 @@
 [
   {
+    "slug": "commercial-property-loss-runs",
+    "topic": "Data & APIs",
+    "title": "Commercial Property Loss Runs",
+    "description": "Request commercial property loss runs, match claims to the insured building, and reconcile paid amounts and reserves across two dated carrier reports.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "region": "United States",
+    "coverAlt": "Two commercial warehouse buildings with distinct roofs on either side of a shared driveway.",
+    "coverCaption": "Illustration of a two-building industrial property. The worked example uses fictional claims and locations.",
+    "intro": "Get commercial property loss runs from the current and prior insurers through the insured or authorized broker. A loss run lists claims reported under the policies and periods it covers. To build a history for one property, match each claim to the insured building, then compare the paid amounts, reserves and status as of each report’s valuation date. A street address can get you to the property while leaving the building match unresolved.",
+    "takeaways": [
+      "Ask for the policy terms under review, a dated valuation, the covered loss location and a report for each term, including terms the carrier confirms had no claims.",
+      "Use the location and building numbers on the schedule in effect when the loss occurred. Hold claims at a shared street address for review until a record identifies the building.",
+      "Read cumulative payments and outstanding reserves as of a date. Two reports on the same claim show how it developed over time."
+    ],
+    "sections": [
+      {
+        "id": "request",
+        "heading": "How do you request commercial property loss runs?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the property policies and terms your underwriter or lender wants reviewed. Give the carrier the named insured, policy numbers, periods and line of business. Ask for a spreadsheet for reconciliation and retain the original report. Travelers, for example, asks for the policy number, policy period, line of business and preferred format. The Hartford describes how its reports show reported claims and information such as the loss date, status and amounts paid.",
+            "sourceIds": [
+              "travelers",
+              "hartford"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a purchase, ask the seller to obtain reports for its period of ownership and supply the location schedule that goes with each policy. Track the carriers and terms you have received, any confirmed claim-free terms, and any missing terms. Ask separately about known uninsured losses or repairs. A loss run covers reported claims within the report’s scope."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Ask the carrier or broker for",
+              "Why it matters"
+            ],
+            "rows": [
+              [
+                "Policy number, term, line and named insured",
+                "Reconcile which parts of the insurance program the report covers. Keep primary and excess reports identified."
+              ],
+              [
+                "Loss date, reported date and valuation date",
+                "Choose the location schedule covering the loss and interpret the balance as of the report valuation."
+              ],
+              [
+                "Claim ID, status, cause and coverage component",
+                "Track the same claim through later reports and distinguish building damage from contents or business interruption."
+              ],
+              [
+                "Risk location, building or schedule number",
+                "Check where the claim occurred and whether the carrier identifies a particular structure."
+              ],
+              [
+                "Paid, outstanding reserve and incurred amounts",
+                "Use the report’s definitions for loss, expenses and recoveries before comparing insurers or periods."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Capture the date you received each report, too. A September 30 valuation received October 3 describes the carrier’s position as of September 30. The October 3 receipt date establishes when that evidence became available to your team."
+          }
+        ]
+      },
+      {
+        "id": "building-match",
+        "heading": "How do you match a loss run to the right building?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Open the statement of values or policy location schedule in effect on the loss date. Match on carrier location and building IDs when the report supplies them. Check the named insured, location address, building descriptor and any endorsements that changed the schedule. A current parcel or footprint can help resolve the physical location. Save the evidence that connects it to the insurance record."
+          },
+          {
+            "type": "paragraph",
+            "text": "For a campus, keep one row per insured building even when the buildings share a tax parcel or street address. When a report identifies only the campus, keep the claim at that level until the carrier, adjuster or a linked record identifies the building. Keep business interruption and other amounts at the level the report supports. A facility-wide item may require its own allocation review."
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth helps you match an address or point to a parcel and check building footprints, site context and dated hazard sources. Carry the matching evidence into your underwriting file alongside the authorized carrier report. Retain the original carrier location and building references so someone can audit the match.",
+            "sourceIds": [
+              "invariant-coverage"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "building-footprint-data-apis",
+                "label": "Check how to resolve two buildings on one parcel"
+              },
+              {
+                "path": "/data-coverage",
+                "label": "Check the Earth API’s property and hazard fields"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "worked-example",
+        "heading": "How do you reconcile the same claim across two reports?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Consider a fictional industrial property with two buildings at one shared address. The policy lists Building A and Building B separately. The June and September reports both identify the April water damage claim as Building A. The September report also shows an August claim at the shared address without a building number."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Report valuation and claim",
+              "Cumulative paid loss",
+              "Outstanding loss reserve",
+              "Reported incurred loss"
+            ],
+            "rows": [
+              [
+                "June 30, EX-17, Building A",
+                "$20,000",
+                "$80,000",
+                "$100,000"
+              ],
+              [
+                "September 30, EX-17, Building A",
+                "$70,000",
+                "$10,000",
+                "$80,000"
+              ],
+              [
+                "September 30, EX-23, building unresolved",
+                "$2,000",
+                "$10,000",
+                "$12,000"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "EX-17 had $50,000 more in cumulative payments by September. Its outstanding reserve fell by $70,000, so reported incurred loss fell by $20,000. For this example, incurred loss equals cumulative paid loss plus outstanding loss reserve. Carrier reports can treat expenses or recoveries differently. Compare the same coverage component on the same accounting basis, and keep the carrier’s reported incurred figure with its definition."
+          },
+          {
+            "type": "paragraph",
+            "text": "The September report supports $80,000 for Building A and $12,000 pending building assignment. Building B’s claim history remains unresolved in this example. The two EX-17 rows are separate observations of one claim. Use the latest applicable observation for a current total and retain the earlier one to explain the change."
+          },
+          {
+            "type": "download",
+            "datasetAnchor": null,
+            "format": "CSV",
+            "path": "/blog/commercial-property-loss-runs-example.csv",
+            "label": "Download the illustrative loss run reconciliation"
+          },
+          {
+            "type": "paragraph",
+            "text": "The CSV keeps the source site and building labels, matched building ID, loss date, valuation date and receipt date. In a real portfolio, retain the carrier, policy, claim ID and coverage component so you can distinguish repeated observations from separate amounts. Group revised or reopened claims under the carrier’s documented identifiers."
+          }
+        ]
+      },
+      {
+        "id": "choose-source",
+        "heading": "Where can you get property loss history and related data?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Use it for",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Carrier loss run",
+                "Document the reported claims under named policies and terms.",
+                "Check the policy periods, covered locations, date valued and how the report handles open claims and expenses."
+              ],
+              [
+                "Verisk A-PLUS Property",
+                "Query a loss history service through an authorized underwriting integration. Verisk documents separate requests for multiple risk locations.",
+                "Trial known claims, address variants and two buildings at one address. Ask how matches, nonmatches and coverage rules are returned."
+              ],
+              [
+                "LexisNexis C.L.U.E. Commercial",
+                "Check the available commercial loss history report. The public report request asks for a reference number from an agent, broker or insurer notice.",
+                "Confirm which policy and location records your access permits and what source and match fields you receive."
+              ],
+              [
+                "OpenFEMA and state storm totals",
+                "Check patterns across an area or disaster reporting period.",
+                "Use the published geography and snapshot date. FEMA withholds insured addresses in its public NFIP data."
+              ],
+              [
+                "Invariant Earth",
+                "Enrich the insurance location with parcel, building and hazard evidence.",
+                "Test suite and building matches on your schedule and link the result to the authorized report."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "travelers",
+                "hartford"
+              ],
+              [
+                "verisk"
+              ],
+              [
+                "lexis"
+              ],
+              [
+                "fema",
+                "florida-claims"
+              ],
+              [
+                "invariant-coverage"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Before buying a loss history feed, trial a set of locations where you already have authorized reports. Include a carrier-confirmed claim-free term, an address that changed, a shared campus address and a reopened claim. Compare coverage periods, match attribution and records available as of the decision date. An empty result needs a reason and a defined search scope."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial underwriting data APIs"
+              },
+              {
+                "slug": "florida-hurricane-insurance-claims-by-county",
+                "label": "Compare county and statewide storm reporting"
+              },
+              {
+                "slug": "property-underwriting",
+                "label": "Get the property underwriting API trial scorecard"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can you look up commercial property insurance claims by address?",
+        "answer": "Underwriters with authorized access can use certain commercial loss history products to search by risk location. For a specific building or acquisition, obtain the relevant carrier loss runs through the insured or broker and match claims to the policy location schedule. Public flood claim releases withhold exact insured addresses.",
+        "sourceIds": [
+          "verisk",
+          "travelers",
+          "fema"
+        ]
+      },
+      {
+        "question": "What is the valuation date on a loss run?",
+        "answer": "The valuation date is the date as of which the report shows claim status and financial amounts. Record it alongside the loss and receipt dates. Use the applicable valuation when comparing an older underwriting decision with a later report."
+      },
+      {
+        "question": "How many years of commercial property loss runs should you request?",
+        "answer": "Ask the receiving insurer or lender which policy terms it wants to review. For an acquisition, also ask the seller which periods it can document. Track each requested term and mark the terms that are missing or that the carrier confirms had no reported claims.",
+        "sourceIds": [
+          "travelers"
+        ]
+      },
+      {
+        "question": "What is the difference between incurred and paid loss on a loss run?",
+        "answer": "Paid loss is the amount already paid on the reporting basis. An incurred figure often includes paid loss and the remaining loss reserve. Check how the report handles expenses and recoveries, and compare totals based on the same definitions."
+      }
+    ],
+    "sources": [
+      {
+        "id": "travelers",
+        "title": "Claim Resources for Your Business",
+        "url": "https://www.travelers.com/claims/claim-resources-for-business",
+        "publisher": "Travelers",
+        "linkLabel": "Travelers loss report requests"
+      },
+      {
+        "id": "hartford",
+        "title": "What Are Insurance Loss Runs?",
+        "url": "https://www.thehartford.com/business-insurance/insurance-loss-runs",
+        "publisher": "The Hartford",
+        "linkLabel": "Carrier guidance on loss runs"
+      },
+      {
+        "id": "verisk",
+        "title": "A-PLUS Property Report Cap With Claims",
+        "url": "https://gateway.verisk.com/docs/Default.aspx?Page=Aplus-Property-Report-Cap-With-Claims",
+        "publisher": "Verisk",
+        "linkLabel": "Verisk property loss API documentation"
+      },
+      {
+        "id": "lexis",
+        "title": "Loss History Report Request from C.L.U.E. Commercial",
+        "url": "https://risk.lexisnexis.com/insurance/businessdisclosure/lossrequest",
+        "publisher": "LexisNexis Risk Solutions",
+        "linkLabel": "C.L.U.E. Commercial report request"
+      },
+      {
+        "id": "fema",
+        "title": "FAQs About NFIP Data",
+        "url": "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data",
+        "publisher": "FEMA National Flood Insurance Program",
+        "linkLabel": "FEMA guidance on public claims geography"
+      },
+      {
+        "id": "florida-claims",
+        "title": "Florida Hurricane Insurance Claims Data by County",
+        "url": "https://invariant-ai.com/blog/florida-hurricane-insurance-claims-by-county",
+        "publisher": "Invariant",
+        "linkLabel": "Florida OIR storm snapshot comparison"
+      },
+      {
+        "id": "invariant-coverage",
+        "title": "Invariant Earth API data coverage",
+        "url": "https://invariant-ai.com/data-coverage",
+        "publisher": "Invariant",
+        "linkLabel": "Earth API field coverage"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "building-footprint-data-apis",
+      "florida-hurricane-insurance-claims-by-county",
+      "commercial-property-replacement-cost-by-address"
+    ]
+  },
+  {
     "slug": "fire-hydrant-flow-test-by-address",
     "topic": "Data & APIs",
     "region": "Seattle, Washington, and Scottsdale, Arizona, United States",
@@ -316,6 +645,10 @@
           {
             "type": "links",
             "items": [
+              {
+                "slug": "commercial-property-loss-runs",
+                "label": "Match an authorized carrier loss run to the insured building"
+              },
               {
                 "slug": "hurricane-wind-history-by-address",
                 "label": "Check the reported wind observations around an address"
@@ -22720,6 +23053,10 @@
             "type": "links",
             "label": "Trial materials",
             "items": [
+              {
+                "slug": "commercial-property-loss-runs",
+                "label": "Reconcile commercial loss runs by insured location"
+              },
               {"path": "/data-coverage#hazards-and-underwriting", "label": "Check flood, wildfire and hail field coverage"},
               {"path": "/data-coverage?field=fema_flood_zone&operation=parcel#coverage-search", "label": "Check what the parcel flood zone field reports"},
               {
