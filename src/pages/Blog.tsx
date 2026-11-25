@@ -101,7 +101,7 @@ export default function Blog() {
   const isFiltered = topic !== 'All articles' || searching
   const { details: searchDetails, pending: searchPending } = useArticleSearchDetails(searching)
   const searchIndex = useMemo(() => searching ? prepareArticleSearch(ARTICLES, searchDetails ?? {}) : [], [searchDetails, searching])
-  const candidates = searching ? rankSearch(searchIndex, queryWords) : ARTICLES
+  const candidates = searching ? rankSearch(searchIndex, queryWords, { allowPartialMatches: true }) : ARTICLES
   const articles = candidates.filter(article => isFiltered
     ? topic === 'All articles' || topic === article.topic
     : !featuredSlugs.has(article.slug) && !earlierSlugs.has(article.slug))

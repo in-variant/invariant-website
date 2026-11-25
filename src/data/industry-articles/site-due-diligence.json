@@ -1631,76 +1631,159 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "How to check if a substation has capacity for a data center",
-  "description": "How to check substation capacity for a data center: what you can learn from records, why hosting capacity maps miss large loads, and when you need a power flow study.",
+  "description": "Check substation capacity for a data center. Learn what a grid data API can show, how to read feeder headroom, and what to ask the utility to study.",
   "date": "2026-11-20",
   "readMinutes": 6,
-  "intro": "You cannot read a substation’s spare capacity off a map, and most utilities will not tell you without a paid, site-controlled study. What you can do before that is narrow it down: find the stations within reach, check their voltage and how many lines feed them, estimate headroom from the ratings around them, subtract the load already filed nearby, and then run a power flow with N-1 tests on the ones that survive. That is what Invariant’s two-step due diligence does.",
+  "intro": "Start by asking the serving utility which connection options it can study for your load and dates. Use maps, voltage, and public utility records to narrow the options and prepare the request. A transformer rating describes the equipment. The available service for your project depends on existing load, how equipment is connected, which outages the design must cover, and the upgrades the utility can complete by each phase.",
   "takeaways": [
-   "Voltage sets the ceiling. As a rough guide, 138 kV supports up to about 200 MW and 345 kV up to about 1,000 MW.",
-   "A station fed by one line is radial and fails any load that needs firm service.",
-   "Hosting capacity maps are almost all about distribution and generation, not large loads.",
-   "The load already queued at a station is mostly not disclosed, so it has to be estimated from filings."
+   "Collect mapped station and line records, the probable utility territory, and any dated utility capacity publications for the site.",
+   "Keep equipment ratings, published feeder headroom, and service for a proposed load in separate fields.",
+   "Ask for the connection point, MW and delivery dates by phase, contingent upgrades and the limiting equipment under each operating case."
   ],
   "sections": [
    {
     "id": "what-you-can-find-without-the-utility",
-    "heading": "What you can find without the utility",
+    "heading": "What does a substation data API show?",
     "blocks": [
      {
-      "type": "list",
-      "items": [
-       "The serving utility for the parcel, from EIA-861 service territory data.",
-       "Substations and lines within reach, their voltage and how many lines connect at each.",
-       "Generator retirements and additions nearby from EIA-860M, which free up or take up capacity.",
-       "Announced data centers, industrial loads and rezoning filings near each station.",
-       "The utility’s large-load tariff, study fees and minimum bills."
-      ],
+      "type": "paragraph",
+      "text": "Start with the parcel, likely serving utility, nearest mapped substations and the mapped voltage of nearby lines. Invariant Earth can return mapped substation distance and reported maximum voltage. EIA-861 publishes the counties where utilities report serving distribution customers. Verify the utility and candidate point of connection for the actual site.",
       "sourceIds": [
-       "eia861",
-       "eia-860m"
+       "invariant",
+       "eia861"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Record",
+       "What it can establish",
+       "What to ask for next"
+      ],
+      "rows": [
+       [
+        "Mapped station and lines",
+        "Where assets are shown and the voltage reported for them.",
+        "A current one-line diagram identifying the buses, transformers and switching arrangement relevant to the site."
+       ],
+       [
+        "Transformer or circuit rating",
+        "The equipment limit for a particular operating condition. Keep voltage, rating units and the normal or emergency basis.",
+        "The network topology, study case and applicable limits. Use those inputs to assess the load at its actual connection point."
+       ],
+       [
+        "Published feeder headroom",
+        "A source-specific result for a named feeder and operating case. Read the season, direction, units and effective date.",
+        "Ask the utility how the result applies to the proposed load and whether downstream or upstream work is needed."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "invariant",
+        "ferc715"
+       ],
+       [
+        "ferc715"
+       ],
+       [
+        "hosting"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Generator records and planning filings can help identify possible changes in the area. Keep the reported project status and date. Ask the utility which projects and loads it included in the base case before connecting those records to a capacity estimate.",
+      "sourceIds": [
+       "eia-860m",
+       "ferc715"
+      ]
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "path": "/data-coverage#power-and-renewables",
+        "label": "Check available substation and power fields"
+       }
       ]
      }
     ]
    },
    {
     "id": "why-hosting-capacity-maps-do-not-answer-it",
-    "heading": "Why hosting capacity maps do not answer it",
+    "heading": "How to read a published hosting capacity map",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Many utilities publish hosting capacity maps, and the Department of Energy keeps an atlas of them. Nearly all show how much generation or load a distribution feeder can take. A 50 MW or 500 MW data center connects to the transmission system, which those maps do not cover.",
+      "text": "Start with the layer description. A distribution map may estimate capacity for new generation exporting to the grid or for additional load drawing from it. Read the asset ID and the limits behind the values before comparing the numbers. The Department of Energy’s atlas links to individual utility maps and explains the types of data they publish.",
       "sourceIds": [
        "hosting"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "A published National Grid New York feeder example gives 3.18 MVA of summer load headroom, 4.98 MVA in winter, and 0.10 MW of solar export capacity. The utility publishes those figures under separate study scopes. Use the appropriate load case to frame a question for the service provider."
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "slug": "grid-capacity-apis-load-headroom",
+        "label": "Replay the three National Grid source records"
+       }
       ]
      }
     ]
    },
    {
     "id": "what-the-utility-will-and-will-not-say",
-    "heading": "What the utility will and will not say",
+    "heading": "What to ask the utility about your site",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Utilities usually confirm territory and will talk through a project informally. Dominion, for example, runs a data center request process with an early feasibility look before paid engineering. Specific spare capacity at a named station almost always waits for a paid, site-controlled study.",
+      "text": "Send a site plan and a phased schedule showing required facility MW at the meter, required service dates, the ramp after opening and any reliability conditions. Dominion Energy Virginia describes a process that starts with a site plan, load letter and load ramp schedule, followed by a short- and long-term power plan. Ask the serving utility for its requirements and what it can confirm in writing at each stage.",
       "sourceIds": [
        "dominion"
       ]
      },
      {
       "type": "paragraph",
-      "text": "That is why a pre-study matters. If you walk into the pre-application meeting knowing which station binds and why, you can ask a question the utility can answer: is the spare transformer capacity at station X already committed?"
+      "text": "For each proposed connection, ask which utility facilities have to be built or upgraded and which side is responsible for easements, permitting, equipment and costs. Track an initial commissioning or bridge service separately from the planned full-buildout service."
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "slug": "utility-will-serve-letter-load-study-esa",
+        "label": "Compare the utility letter, load study and service agreement"
+       }
+      ]
      }
     ]
    },
    {
     "id": "when-to-run-a-full-study",
-    "heading": "When to run a full study",
+    "heading": "When to commission a power-flow and contingency study",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "Run a power flow with contingency tests once a site passes the screen and you are about to spend real money on it: an option payment, a study deposit, or an LOI. Paces found only about 17% of ERCOT substations near suitable land had withdrawal headroom, so the screen will remove most candidates before then.",
+      "text": "As the shortlist narrows, ask for a study that models the actual load and connection under relevant base cases. A power-flow study checks voltage and equipment loading for those cases. An N-1 study asks how the system serves the load after one modeled element is unavailable. Review which outages were tested, which limit drove the result and what upgrades the case assumes. Keep the modeled results with those assumptions.",
       "sourceIds": [
-       "paces"
+       "ferc715"
+      ]
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "slug": "n-1-contingency-analysis-data-center",
+        "label": "See how an N-1 case tests a candidate connection"
+       },
+       {
+        "slug": "utility-grade-power-study",
+        "label": "Define the study scope for your site"
+       }
       ]
      }
     ]
@@ -1815,32 +1898,34 @@
   "faqs": [
    {
     "question": "How do I find out how much capacity a substation has?",
-    "answer": "Narrow it down from records (voltage, line count, ratings, nearby loads and retirements), then run a power flow with N-1 tests. The utility confirms capacity only through its own study after you apply with site control."
+    "answer": "Identify the station and the possible connection point, then give the serving utility your phased MW, dates and reliability needs. Ask it to confirm the studied service limits, operating assumptions and upgrade dependencies for that request.",
+    "sourceIds": [
+     "dominion",
+     "ferc715"
+    ]
    },
    {
     "question": "Do utilities publish substation capacity?",
-    "answer": "Mostly no, for large loads. Hosting capacity maps cover distribution feeders and generation. Transmission planning cases are protected as CEII.",
+    "answer": "Some publish distribution hosting or load headroom figures. Compare the publication’s asset ID, season, direction and units with the service you need. Obtain a site-specific response from your utility for the proposed connection.",
     "sourceIds": [
      "hosting",
-     "ceii"
+     "dominion"
     ]
    },
    {
     "question": "What voltage does a data center need?",
-    "answer": "As a rough guide, 69 kV serves up to about 60 MW, 138 kV up to about 200 MW, 230 kV up to about 400 MW and 345 kV or higher beyond that. The real limit depends on the network around the station."
+    "answer": "The utility selects a connection voltage based on the network, site, projected load and reliability needs. Request the voltage and connection design for each service phase. Ask which equipment or upstream constraints set the service limit.",
+    "sourceIds": [
+     "dominion",
+     "ferc715"
+    ]
    },
    {
-    "question": "Can Invariant check a substation for me?",
-    "answer": "Yes. Send the coordinate and target MW; the feasibility screen returns a screening MW range at each nearby station within 24 hours."
+    "question": "Can Invariant help check a substation?",
+    "answer": "Yes. Share the parcel or coordinates, the facility MW and dates for each phase, and the reliability you need. Invariant can help identify candidate connections, show the public evidence and scope further study with those requirements."
    }
   ],
   "sources": [
-   {
-    "id": "ceii",
-    "title": "18 CFR 388.113: Critical energy and electric infrastructure information",
-    "url": "https://www.law.cornell.edu/cfr/text/18/388.113",
-    "publisher": "Legal Information Institute, Cornell Law School"
-   },
    {
     "id": "hosting",
     "title": "U.S. atlas of electric distribution system hosting capacity maps",
@@ -1860,23 +1945,30 @@
     "publisher": "U.S. Energy Information Administration"
    },
    {
-    "id": "paces",
-    "title": "Grid planning for data centers and transmission investment",
-    "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
-    "publisher": "Paces"
-   },
-   {
     "id": "dominion",
     "title": "Data center requests",
     "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
     "publisher": "Dominion Energy"
+   },
+   {
+    "id": "invariant",
+    "title": "Geospatial point field catalog, utility fields",
+    "url": "https://docs.invariant-ai.com/api/field-catalog#utilities",
+    "publisher": "Invariant Earth"
+   },
+   {
+    "id": "ferc715",
+    "title": "Form 715 transmission planning instructions, power-flow base cases and equipment ratings",
+    "url": "https://www.ferc.gov/industries-data/electric/electric-industry-forms/form-no-715-annual-transmission-planning-and-evaluation-report-instructions",
+    "publisher": "Federal Energy Regulatory Commission"
    }
   ],
   "relatedSlugs": [
    "data-center-site-feasibility-study",
    "utility-grade-power-study",
    "distance-to-transmission-line-data-center"
-  ]
+  ],
+  "updatedDate": "2026-11-24"
  },
  {
   "slug": "utility-load-study-cost-and-timeline",
