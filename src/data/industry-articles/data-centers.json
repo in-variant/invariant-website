@@ -886,12 +886,13 @@
     "slug": "data-center-water-stormwater-permits",
     "topic": "Data Centers",
     "title": "Data center water and stormwater permits",
-    "description": "What to verify for data center water supply, sewer discharge, construction dewatering and stormwater. Includes San José permit records and a downloadable checklist.",
+    "description": "Check data center cooling water, sewer capacity, dewatering and stormwater before construction. Compare public filings from San José and Pittsburg, California.",
     "date": "2026-09-15",
     "readMinutes": 9,
     "intro": "Before committing to a data center site, get written confirmation of water and sewer capacity for each phase. Then map where cooling wastewater, temporary construction groundwater and stormwater will go. Each flow needs a named receiving authority, a documented route and any applicable approval. At Microsoft’s proposed 99 MW San José data center, the public record shows planned utility connections and a later encroachment permit for a pipe carrying treated construction groundwater to Coyote Creek.",
     "takeaways": [
       "Confirm supply and discharge arrangements separately, including temporary construction and commissioning flows.",
+      "Get peak delivery and pressure at the actual connection. In Pittsburg, the published 58,407 gallons per day of recycled water is an average design estimate across several uses.",
       "Track dewatering before excavation. Verify the discharge destination, permission for the route, applicable discharge coverage, flow limits and sampling conditions.",
       "Determine construction and industrial stormwater applicability independently. A facility's name does not settle its operating classification.",
       "Screen the whole development footprint, including off-site connections, for water and wetland impacts.",
@@ -969,6 +970,51 @@
             "label": "Download the San José water records and verification checklist",
             "path": "/blog/san-jose-data-center-water-permit-records.csv",
             "format": "CSV"
+          }
+        ]
+      },
+      {
+        "id": "reclaimed-water-for-cooling",
+        "heading": "Can reclaimed water serve the data center’s cooling load?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask the water utility for the reclaimed-water flow and pressure it can deliver at your connection during the hottest hours. Confirm the delivery date, water quality, dry-weather restrictions and the conditions for using a backup supply. Give the utility the phase-by-phase cooling design and the maximum hourly and daily demand."
+          },
+          {
+            "type": "paragraph",
+            "text": "For AVAIO’s proposed Pittsburg Data Hub, California Energy Commission staff estimated average recycled-water demand at 58,407 gallons per day. The design uses air-cooled chillers, with the option to use water to assist cooling under some weather conditions. The study also lists a separate 196 gallons per day of domestic water and 10,447 gallons per day of sewer demand. Keep these in separate rows of the water balance.",
+            "sourceIds": ["pittsburg-water-budget"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Pittsburg recycled-water use", "Average gallons per day", "Gallons per year in the filing"],
+            "rows": [
+              ["Data halls", "41,177", "15,029,638"],
+              ["Irrigation", "17,010", "6,208,744"],
+              ["Indoor demand", "201", "73,502"],
+              ["Administrative HVAC", "19", "7,094"],
+              ["Total", "58,407", "21,318,978"]
+            ],
+            "sourceIds": ["pittsburg-water-budget"]
+          },
+          {
+            "type": "paragraph",
+            "text": "The filing describes a proposed connection to the former golf course’s recycled-water infrastructure. The November final supplement retained the October project description and water tables. Before relying on the connection, confirm the utility’s peak allocation, pressure, usable storage, meter design and service date. Have the engineer show how electrical demand changes when the chillers run without water assistance on a hot day.",
+            "sourceIds": ["pittsburg-connection", "pittsburg-final-study"]
+          },
+          {
+            "type": "paragraph",
+            "text": "An operating reuse system can still need makeup water. EPA reports that the Quincy Water Reuse Utility in Washington began operating in June 2021 and estimated savings of 138 million gallons of potable groundwater per year from recycling the data center’s cooling water. The case study separately records canal water used to replace losses, treatment for dissolved salts, and brine disposal. Keep the source of each makeup stream and the route for concentrated waste in the cost and permitting plan.",
+            "sourceIds": ["quincy-reuse"]
+          },
+          {
+            "type": "download",
+            "label": "Download the Pittsburg water budget and Quincy reuse records",
+            "path": "/blog/data-center-reclaimed-water-records.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-reclaimed-water"
           }
         ]
       },
@@ -1155,6 +1201,11 @@
         ]
       },
       {
+        "question": "How much reclaimed water does a data center need?",
+        "answer": "Calculate demand from the cooling equipment and weather at the site. Pittsburg’s filing estimates 41,177 gallons per average day for the proposed data halls and 58,407 gallons per average day across all recycled uses. Give the utility the peak-hour demand and the planned operating conditions so it can evaluate the connection.",
+        "sourceIds": ["pittsburg-water-budget"]
+      },
+      {
         "question": "What should I ask for before excavating a data center site that needs dewatering?",
         "answer": "Ask the civil engineer for the expected pumping rate, duration, planned treatment and discharge point. Obtain any required property or encroachment approval for the pipe route and confirm the applicable discharge authorization with the receiving authority. Put the authorized flow, water-quality limits and sampling schedule in the construction plan."
       }
@@ -1243,13 +1294,41 @@
         "title": "San Jose Data Center dewatering encroachment Notice of Determination",
         "publisher": "Santa Clara Valley Water District",
         "url": "https://ceqanet.lci.ca.gov/2021020002/10"
+      },
+      {
+        "id": "pittsburg-water-budget",
+        "title": "October 2025 Pittsburg Initial Study, water and sewer demand tables 3-2 through 3-4",
+        "publisher": "California Energy Commission",
+        "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=103633&tn=266581#page=30",
+        "linkLabel": "Pittsburg water demand tables"
+      },
+      {
+        "id": "pittsburg-connection",
+        "title": "Pittsburg Initial Study, section 5.18, proposed recycled-water connection",
+        "publisher": "California Energy Commission",
+        "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=103633&tn=266581#page=351",
+        "linkLabel": "Pittsburg connection record"
+      },
+      {
+        "id": "pittsburg-final-study",
+        "title": "November 2025 Final Initial Study supplement, preface identifying sections revised",
+        "publisher": "California Energy Commission",
+        "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=104730&tn=267708#page=5",
+        "linkLabel": "Pittsburg final study preface"
+      },
+      {
+        "id": "quincy-reuse",
+        "title": "Quincy water reuse treatment system and makeup water supplies",
+        "publisher": "US Environmental Protection Agency",
+        "url": "https://www.epa.gov/waterreuse/water-reuse-case-study-quincy-washington",
+        "linkLabel": "EPA Quincy case study"
       }
     ],
     "relatedSlugs": [
       "data-center-refrigerant-compliance",
       "data-center-fuel-storage-spcc-tier-ii"
     ],
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-24",
     "dataset": {
       "name": "San José data center water and dewatering records",
       "description": "Six source-linked records from two Valley Water notices covering planned water, sewer and drainage connections and an approved construction dewatering encroachment, with verification questions for each.",
@@ -1259,6 +1338,17 @@
         "san-jose-connections",
         "san-jose-dewatering"
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-reclaimed-water",
+        "datePublished": "2026-11-24",
+        "name": "Data center reclaimed-water budgets for Pittsburg and Quincy",
+        "description": "Four recycled-water demand rows and totals for the proposed Pittsburg Data Hub, with separate domestic and sewer figures, plus water sources and EPA’s estimated savings for Quincy’s operating reuse system.",
+        "sourceIds": ["pittsburg-water-budget", "pittsburg-connection", "pittsburg-final-study", "quincy-reuse"],
+        "spatialCoverage": "Pittsburg, California, and Quincy, Washington, United States",
+        "temporalCoverage": "2021-06-30/2025-11-21"
+      }
+    ]
   }
 ]

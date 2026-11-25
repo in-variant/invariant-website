@@ -1,0 +1,81 @@
+{
+  "title": "Data center reclaimed-water budgets for Pittsburg and Quincy",
+  "checked_on": "2026-11-24",
+  "method": "Keep each published figure with its unit, period and purpose. Use the reported daily and annual values separately because the daily entries are rounded. A null means the reviewed record leaves the field open.",
+  "pittsburg": {
+    "project": "AVAIO Pittsburg Data Hub",
+    "location": "2232 Golf Club Road, Pittsburg, California",
+    "docket": "24-SPPE-01",
+    "evidence_stage": "Proposed design in the California Energy Commission Initial Study",
+    "initial_study_docketed_date": "2025-10-14",
+    "final_supplement_docketed_date": "2025-11-21",
+    "proposed_recycled_water_demand": [
+      {
+        "use": "Administrative HVAC",
+        "average_gallons_per_day": 19,
+        "reported_gallons_per_year": 7094
+      },
+      {
+        "use": "Data halls",
+        "average_gallons_per_day": 41177,
+        "reported_gallons_per_year": 15029638
+      },
+      {
+        "use": "Indoor demand",
+        "average_gallons_per_day": 201,
+        "reported_gallons_per_year": 73502
+      },
+      {
+        "use": "Irrigation",
+        "average_gallons_per_day": 17010,
+        "reported_gallons_per_year": 6208744
+      }
+    ],
+    "reported_recycled_total_average_gallons_per_day": 58407,
+    "reported_recycled_total_gallons_per_year": 21318978,
+    "proposed_domestic_water_average_gallons_per_day": 196,
+    "proposed_sewer_demand_average_gallons_per_day": 10447,
+    "proposed_recycled_connection": "Connect to the former golf course’s existing recycled-water storage facility.",
+    "verified_peak_allocated_gallons_per_minute_at_connection": null,
+    "verified_pressure_at_peak_psi": null,
+    "verified_recycled_water_service_date": null,
+    "source_ids": ["pittsburg-water-budget", "pittsburg-connection", "pittsburg-final-study"]
+  },
+  "quincy": {
+    "project": "Quincy Water Reuse Utility",
+    "location": "Quincy, Washington",
+    "evidence_stage": "Operating reuse system described by EPA",
+    "reported_operation_start": "2021-06-30",
+    "estimated_potable_groundwater_savings_from_reuse_gallons_per_year": 138000000,
+    "reported_canal_makeup_gallons_per_year": 260000000,
+    "reported_annual_potable_groundwater_share_of_makeup_percent": 5,
+    "method_context": "The system treats cooling blowdown for reuse, removes salts and routes concentrated brine to ponds. Makeup water replaces losses.",
+    "source_ids": ["quincy-reuse"]
+  },
+  "sources": [
+    {
+      "id": "pittsburg-water-budget",
+      "publisher": "California Energy Commission",
+      "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=103633&tn=266581#page=30",
+      "locator": "Project Description, tables 3-2 through 3-4, printed pages 3-16 and 3-17"
+    },
+    {
+      "id": "pittsburg-connection",
+      "publisher": "California Energy Commission",
+      "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=103633&tn=266581#page=351",
+      "locator": "Section 5.18, Recycled Water Supply, printed pages 5.18-2 and 5.18-3"
+    },
+    {
+      "id": "pittsburg-final-study",
+      "publisher": "California Energy Commission",
+      "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=104730&tn=267708#page=5",
+      "locator": "Preface, printed page i. The November supplement and the October Initial Study comprise the final study. The Project Description was outside the revised sections."
+    },
+    {
+      "id": "quincy-reuse",
+      "publisher": "US Environmental Protection Agency",
+      "url": "https://www.epa.gov/waterreuse/water-reuse-case-study-quincy-washington",
+      "locator": "Treatment System Description and Make-up Water Sources"
+    }
+  ]
+}
