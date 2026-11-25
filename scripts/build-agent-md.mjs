@@ -258,7 +258,7 @@ function researchMd() {
 
 function datasetCatalogMd() {
   const out = [
-    '# Invariant research datasets', '',
+    '# Invariant data samples', '',
     `Catalog page: ${SITE}/datasets`, '',
     datasetCatalog.description, '',
     datasetCatalog.access, '',

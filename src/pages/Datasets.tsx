@@ -10,6 +10,7 @@ import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
 import researchCatalog from '../data/research-dataset-catalog.json'
 import { links as earthLinks } from '../data/earth-product.json'
+import posthog from '../posthog'
 import './Resources.css'
 import './Datasets.css'
 
@@ -115,7 +116,7 @@ export default function Datasets() {
       />
       <header className="resource-container resources-intro">
         <div className="resources-intro-grid">
-          <h1>{title}</h1>
+          <h1>Data samples</h1>
           <div>
             <p>{description}</p>
             <nav aria-label="Research library and API" className="resources-data-links">
@@ -144,7 +145,10 @@ export default function Datasets() {
                 </div>
               </div>
               <div className="dataset-featured-actions">
-                {workflow && <a className="dataset-featured-workflow" href={workflow.url}>{workflowLabel} <ResourceArrow /></a>}
+                {workflow && <a className="dataset-featured-workflow" href={workflow.url}
+                  onClick={() => posthog.capture('featured_research_workflow_opened', { study: slug })}>
+                  {workflowLabel} <ResourceArrow />
+                </a>}
                 <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}>
                   {sample.format} sample <span aria-hidden="true">↓</span>
                 </a>
