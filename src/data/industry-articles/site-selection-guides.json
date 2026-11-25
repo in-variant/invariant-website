@@ -4510,10 +4510,10 @@
     "topic": "Data Centers",
     "kind": "site-guide",
     "title": "Behind-the-Meter Power for Data Centers: MW and Timelines",
-    "description": "Can you get 50 MW of on-site power within a year? Compare real data center deployments and check net output, fuel, permits and commissioning dates.",
+    "description": "Can you get 50 MW of on-site power within a year? Compare gas, fuel cell and wind-plus-grid projects, and verify net MW, permits and delivery dates.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-25",
-    "readMinutes": 18,
+    "readMinutes": 19,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
@@ -5063,6 +5063,91 @@
             "label": "Download the Odessa agreement records",
             "path": "/blog/odessa-data-center-power-agreement-records.csv",
             "format": "CSV"
+          }
+        ]
+      },
+      {
+        "id": "project-dorothy-wind-grid-power",
+        "heading": "Project Dorothy shows how wind and grid power fit a 50 MW IT phase",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "An on-site wind project can use utility service alongside its own generation. Soluna says its planned Dorothy 3A data center near Silverton, Texas, would draw from the approximately 150 MW Briscoe Wind Farm and the grid, subject to final supply agreements. The October subscription agreement describes about 75 MW of gross capacity for 50 MW of critical IT. The 1.5-to-1 ratio comes from the planned phase figures. Use an hourly power balance for the electrical design and measured energy for annual power usage effectiveness.",
+            "sourceIds": [
+              "dorothy-design",
+              "dorothy-agreement"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Capacity figure",
+              "What the record measures",
+              "Where it belongs in diligence"
+            ],
+            "rows": [
+              [
+                "98 MW operating",
+                "Soluna’s Form 10-Q for the quarter ended September 30 lists 50 MW at Dorothy 1 and 48 MW at Dorothy 2.",
+                "Track the two operating phases separately from the new build."
+              ],
+              [
+                "100 MW conditionally classified",
+                "Soluna’s November 16 update describes this as existing interconnection capacity classified as Base Load in ERCOT Batch Zero, pending verification.",
+                "Request the verified classification and matching service documents for the existing connection."
+              ],
+              [
+                "50 MW requested from the grid",
+                "The November update reports a separate additional load request under study.",
+                "Ask for the approved load, study assumptions and milestones before relying on that increment."
+              ],
+              [
+                "50 MW critical IT, about 75 MW gross",
+                "The figures describe planned Dorothy 3A, the initial phase of an up-to-300 MW Dorothy 3 development.",
+                "Request the power allocation and first acceptance date for the 3A phase by name."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dorothy-quarter"
+              ],
+              [
+                "dorothy-november-update",
+                "dorothy-ercot-process"
+              ],
+              [
+                "dorothy-november-update"
+              ],
+              [
+                "dorothy-agreement",
+                "dorothy-quarter"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Soluna reported buying 397 acres in August and starting early work in October. It reported county approval of the first-phase tax abatement on November 9 and a non-binding tenant letter of intent from ChronoScale in its November update. The quarterly filing still described the Applied Digital joint venture closing as expected and conditional. Keep the land purchase, tax milestone, construction start, tenant commitment and power delivery date as separate records.",
+            "sourceIds": [
+              "dorothy-november-update",
+              "dorothy-county-abatement",
+              "dorothy-quarter"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For any wind-plus-grid site, ask for the firm import limit, wind output assumptions and what the design delivers during a low-wind period and a grid outage. Compare those cases with the phase’s gross requirement and proposed tenant load. The records reviewed here leave the firm import allocation for Dorothy 3A and the phase’s commercial acceptance date unverified.",
+            "sourceIds": [
+              "dorothy-agreement",
+              "dorothy-design"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/project-dorothy-wind-grid-it-load-evidence.json",
+            "label": "Download the Project Dorothy capacity and milestone records",
+            "format": "JSON",
+            "datasetAnchor": "dataset-dorothy-power-and-lease-milestones"
           }
         ]
       },
@@ -5626,6 +5711,15 @@
       {
         "question": "How long can a battery cover a 50 MW generator shortfall?",
         "answer": "A battery with 25 MWh of usable energy at the facility intake can cover a constant 50 MW shortfall for 30 minutes, provided it can discharge at least 50 MW there. Check any higher power needed during the generator trip and define what supplies the load when the battery runs out."
+      },
+      {
+        "question": "Does a 50 MW grid request cover a 50 MW IT data center?",
+        "answer": "Size the connection against the whole phase, including cooling and other facility loads. Soluna’s Dorothy 3A plan gives about 75 MW gross for 50 MW of critical IT and expects to use wind and the grid. A separate 50 MW grid request was still under study in the November 16 update.",
+        "sourceIds": [
+          "dorothy-agreement",
+          "dorothy-design",
+          "dorothy-november-update"
+        ]
       }
     ],
     "sources": [
@@ -5905,6 +5999,42 @@
         "url": "https://www.energy.gov/sites/default/files/2026-01/Data_Center_EMT_Models.pdf",
         "publisher": "Pacific Northwest National Laboratory",
         "linkLabel": "PNNL on data center electrical loads and controls"
+      },
+      {
+        "id": "dorothy-quarter",
+        "publisher": "Soluna Holdings",
+        "title": "Form 10-Q for September 30, 2026, Note 1 and the Dorothy campus discussion",
+        "url": "https://www.sec.gov/Archives/edgar/data/64463/000162828026074138/slnh-20260930.htm"
+      },
+      {
+        "id": "dorothy-agreement",
+        "publisher": "Soluna Holdings",
+        "title": "October 20 subscription agreement, Form 8-K Item 1.01",
+        "url": "https://www.sec.gov/Archives/edgar/data/64463/000149315226047930/form8-k.htm"
+      },
+      {
+        "id": "dorothy-design",
+        "publisher": "Soluna Holdings",
+        "title": "October 21 release filed with the SEC, planned wind and grid power and tenant letter of intent",
+        "url": "https://www.sec.gov/Archives/edgar/data/64463/000149315226047846/ex99-1.htm"
+      },
+      {
+        "id": "dorothy-november-update",
+        "publisher": "Soluna Holdings",
+        "title": "November 16 project, construction and ERCOT classification update filed with the SEC",
+        "url": "https://www.sec.gov/Archives/edgar/data/64463/000149315226052332/ex99-1.htm"
+      },
+      {
+        "id": "dorothy-ercot-process",
+        "publisher": "ERCOT",
+        "title": "September 3 notice on conditional Batch Zero classifications and verification",
+        "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04"
+      },
+      {
+        "id": "dorothy-county-abatement",
+        "publisher": "Briscoe County",
+        "title": "Dorothy 3 Phase 1 tax abatement agreement, page 1 hearing and effective date language",
+        "url": "https://www.co.briscoe.tx.us/upload/page/5181/01.11.09.2026%20phase%201.pdf#page=1"
       }
     ],
     "relatedSlugs": [
@@ -5981,6 +6111,22 @@
         ],
         "spatialCoverage": "Homer City Generating Station, Indiana County, Pennsylvania, United States",
         "temporalCoverage": "2025-04-04/2026-12-08"
+      },
+      {
+        "anchor": "dataset-dorothy-power-and-lease-milestones",
+        "datePublished": "2026-11-25",
+        "name": "Project Dorothy wind, grid and critical IT capacity records",
+        "description": "Dated Project Dorothy records distinguish the existing 98 MW of reported operating capacity, 100 MW of conditionally classified interconnection capacity, a separate 50 MW grid request and Dorothy 3A’s planned 50 MW critical IT and 75 MW gross phase.",
+        "sourceIds": [
+          "dorothy-quarter",
+          "dorothy-agreement",
+          "dorothy-design",
+          "dorothy-november-update",
+          "dorothy-ercot-process",
+          "dorothy-county-abatement"
+        ],
+        "spatialCoverage": "Project Dorothy near Silverton, Briscoe County, Texas, United States",
+        "temporalCoverage": "2026-04-01/2026-11-16"
       }
     ]
   },

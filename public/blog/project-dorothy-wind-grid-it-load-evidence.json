@@ -1,0 +1,187 @@
+{
+  "name": "Project Dorothy wind, grid and critical IT capacity records",
+  "checkedOn": "2026-11-25",
+  "scope": "Soluna’s Project Dorothy and planned Dorothy 3A near Silverton, Briscoe County, Texas. Issuer-reported capacity, regulatory process and development milestones are recorded on separate bases.",
+  "sources": [
+    {
+      "id": "dorothy-quarter",
+      "publisher": "Soluna Holdings",
+      "title": "Form 10-Q for September 30, 2026, Note 1 and the Dorothy campus discussion",
+      "url": "https://www.sec.gov/Archives/edgar/data/64463/000162828026074138/slnh-20260930.htm",
+      "documentSha256": "f96378114e3369c47ea7260b14cdc21a01dae89fcae5fb40fee731426ea93434"
+    },
+    {
+      "id": "dorothy-agreement",
+      "publisher": "Soluna Holdings",
+      "title": "October 20 subscription agreement, Form 8-K Item 1.01",
+      "url": "https://www.sec.gov/Archives/edgar/data/64463/000149315226047930/form8-k.htm",
+      "documentSha256": "72f69ae2ab09694c740c41333a63a15f3399943051347020ab6d3eb34c76bc9e"
+    },
+    {
+      "id": "dorothy-design",
+      "publisher": "Soluna Holdings",
+      "title": "October 21 release filed with the SEC, planned wind and grid power and tenant letter of intent",
+      "url": "https://www.sec.gov/Archives/edgar/data/64463/000149315226047846/ex99-1.htm",
+      "documentSha256": "3ca6fbb5cd06f39b78cf28aacd69b3224a3ec17153c7b79720a59ff7f0181aed"
+    },
+    {
+      "id": "dorothy-november-update",
+      "publisher": "Soluna Holdings",
+      "title": "November 16 project, construction and ERCOT classification update filed with the SEC",
+      "url": "https://www.sec.gov/Archives/edgar/data/64463/000149315226052332/ex99-1.htm",
+      "documentSha256": "f0cb1a7ef3ce7f5898e6bc05b74c93c9f39e8e7ec6cf07aa7f30a862f33fa233"
+    },
+    {
+      "id": "dorothy-ercot-process",
+      "publisher": "ERCOT",
+      "title": "September 3 notice on conditional Batch Zero classifications and verification",
+      "url": "https://www.ercot.com/services/comm/mkt_notices/M-A080326-04",
+      "documentSha256": "0445af762fb96a5949b44c064d348e61f2c8a03c84ca918d03387c79167dbb17"
+    },
+    {
+      "id": "dorothy-county-abatement",
+      "publisher": "Briscoe County",
+      "title": "Dorothy 3 Phase 1 tax abatement agreement, page 1 hearing and effective date language",
+      "url": "https://www.co.briscoe.tx.us/upload/page/5181/01.11.09.2026%20phase%201.pdf#page=1",
+      "documentSha256": "87e6bd4a533bfab8dcbfdea45eae4009a24b26c1e4dc91c65d9bd2f7691ca0a0"
+    }
+  ],
+  "capacityRecords": [
+    {
+      "asset": "Briscoe Wind Farm",
+      "quantityMw": 150,
+      "approximate": true,
+      "basis": "Wind generation facility capacity",
+      "evidenceDate": "2026-04-01",
+      "event": "Ownership acquisition reported closed",
+      "sourceIds": [
+        "dorothy-quarter"
+      ]
+    },
+    {
+      "asset": "Dorothy 1",
+      "quantityMw": 50,
+      "basis": "Operating data center capacity reported by the issuer",
+      "evidenceDate": "2026-09-30",
+      "sourceIds": [
+        "dorothy-quarter"
+      ]
+    },
+    {
+      "asset": "Dorothy 2",
+      "quantityMw": 48,
+      "basis": "Operating data center capacity reported by the issuer",
+      "evidenceDate": "2026-09-30",
+      "sourceIds": [
+        "dorothy-quarter"
+      ]
+    },
+    {
+      "asset": "Dorothy 1 and 2",
+      "quantityMw": 98,
+      "basis": "Sum of reported operating capacity for Dorothy 1 and 2",
+      "calculation": "50 + 48",
+      "evidenceDate": "2026-09-30",
+      "sourceIds": [
+        "dorothy-quarter"
+      ]
+    },
+    {
+      "asset": "Dorothy campus existing connection",
+      "quantityMw": 100,
+      "basis": "Existing interconnection capacity conditionally classified as Base Load in ERCOT Batch Zero, according to the issuer",
+      "evidenceDate": "2026-11-16",
+      "sourceIds": [
+        "dorothy-november-update",
+        "dorothy-ercot-process"
+      ]
+    },
+    {
+      "asset": "Dorothy additional connection",
+      "quantityMw": 50,
+      "basis": "Additional load interconnection request reported under study",
+      "evidenceDate": "2026-11-16",
+      "sourceIds": [
+        "dorothy-november-update"
+      ]
+    },
+    {
+      "asset": "Dorothy 3A",
+      "criticalItMw": 50,
+      "grossMw": 75,
+      "grossApproximate": true,
+      "basis": "Planned first-phase capacity in the subscription agreement",
+      "evidenceDate": "2026-10-20",
+      "sourceIds": [
+        "dorothy-agreement",
+        "dorothy-quarter"
+      ]
+    },
+    {
+      "asset": "Dorothy 3 campus",
+      "quantityMw": 300,
+      "basis": "Up-to capacity in development pipeline; the pipeline table does not label the campus MW as gross or critical IT",
+      "evidenceDate": "2026-11-16",
+      "sourceIds": [
+        "dorothy-quarter",
+        "dorothy-november-update"
+      ]
+    }
+  ],
+  "developmentMilestones": [
+    {
+      "date": "2026-08-24",
+      "event": "Soluna reports acquiring 397 acres for Dorothy 3",
+      "sourceIds": [
+        "dorothy-november-update"
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "event": "Soluna and Applied Digital affiliates signed a subscription agreement for Dorothy 3A",
+      "sourceIds": [
+        "dorothy-agreement"
+      ]
+    },
+    {
+      "date": "2026-10",
+      "event": "Soluna reported initial construction work started",
+      "sourceIds": [
+        "dorothy-november-update"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "event": "Soluna reported county approval of the Phase 1 tax abatement. The county posted an agreement that recites the November 9 hearing and defines effectiveness by final signatures.",
+      "sourceIds": [
+        "dorothy-november-update",
+        "dorothy-county-abatement"
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "event": "Soluna reports a non-binding tenant letter of intent from ChronoScale",
+      "sourceIds": [
+        "dorothy-november-update"
+      ]
+    }
+  ],
+  "designChecks": {
+    "grossToCriticalItRatioForPublishedPhase": 1.5,
+    "ratioNote": "A ratio of the planning figures in the filing. It is not a measured annual PUE.",
+    "plannedSupply": "Briscoe Wind and the grid, subject to definitive documents, as reported October 21.",
+    "sourceIds": [
+      "dorothy-agreement",
+      "dorothy-design"
+    ]
+  },
+  "unverifiedInReviewedRecords": {
+    "dorothy3aJointVentureClosingDate": null,
+    "finalErcotVerificationForReportedBaseLoad": null,
+    "approvedMwForAdditionalGridRequest": null,
+    "firmImportMwForDorothy3a": null,
+    "netDeliverableMwInLowWindAndGridOutageCases": null,
+    "phaseCommercialAcceptanceDate": null,
+    "unallocatedCriticalItMw": null
+  }
+}
