@@ -1,0 +1,79 @@
+{
+  "name": "San Francisco County housing units and buildings authorized, 2024–2025",
+  "retrievedOn": "2026-11-25",
+  "sourceMethodology": "https://www.census.gov/construction/bps/about.html",
+  "scope": "County-level Census Building Permits Survey final annual totals for new privately owned residential construction. The county table excludes other work such as commercial sprinkler and roof permits.",
+  "countyRows": [
+    {
+      "year": 2024,
+      "countyFips": "06075",
+      "countyName": "San Francisco County",
+      "structureTypes": {
+        "oneUnit": {
+          "buildings": 27,
+          "units": 27
+        },
+        "twoUnits": {
+          "buildings": 13,
+          "units": 26
+        },
+        "threeOrFourUnits": {
+          "buildings": 4,
+          "units": 12
+        },
+        "fiveOrMoreUnits": {
+          "buildings": 10,
+          "units": 705
+        }
+      },
+      "authorizedHousingUnits": 770,
+      "authorizedResidentialBuildings": 54,
+      "source": {
+        "url": "https://www2.census.gov/econ/bps/County/co2024a.txt",
+        "rowNumberIncludingHeaders": 221,
+        "sha256": "a64c2dd19be96c469763c10d637575a584ef16a6878f451bba80c847bcafc8c6"
+      }
+    },
+    {
+      "year": 2025,
+      "countyFips": "06075",
+      "countyName": "San Francisco County",
+      "structureTypes": {
+        "oneUnit": {
+          "buildings": 20,
+          "units": 20
+        },
+        "twoUnits": {
+          "buildings": 7,
+          "units": 14
+        },
+        "threeOrFourUnits": {
+          "buildings": 5,
+          "units": 16
+        },
+        "fiveOrMoreUnits": {
+          "buildings": 9,
+          "units": 1394
+        }
+      },
+      "authorizedHousingUnits": 1444,
+      "authorizedResidentialBuildings": 41,
+      "source": {
+        "url": "https://www2.census.gov/econ/bps/County/co2025a.txt",
+        "rowNumberIncludingHeaders": 221,
+        "sha256": "5d523b1ff172c886ee7f2bc770c82c8c5470b5aaaec5f63441a18c621c80b30e"
+      }
+    }
+  ],
+  "changes": {
+    "authorizedHousingUnits": 674,
+    "authorizedHousingUnitsPct": 87.5,
+    "authorizedResidentialBuildings": -13,
+    "authorizedResidentialBuildingsPct": -24.1,
+    "housingUnitsInFiveOrMoreUnitBuildings": 689
+  },
+  "interpretation": {
+    "countyYield": "Use housing unit columns to compare authorized supply. Do not substitute the buildings column or call either total a document count.",
+    "addressEvents": "Use a local permit record for an issuance, expiration or completion on a property. These county rows contain no permit IDs or project records."
+  }
+}

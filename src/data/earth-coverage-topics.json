@@ -45,6 +45,15 @@
     "researchTopic": "Freight, logistics & EV charging"
   },
   {
+    "id": "business-broadband-and-fiber",
+    "title": "Business broadband and fiber",
+    "description": "Review reported neighborhood fiber availability and provider counts, plus modeled 5G coverage. These fields require an operator key. Confirm service at the building with the carrier.",
+    "fields": ["fiber_broadband_available", "fiber_provider_count", "mobile_5g_coverage_class"],
+    "guide": "/blog/business-broadband-availability-by-address",
+    "guideLabel": "Check broadband by address",
+    "researchTopic": "Site selection & data centers"
+  },
+  {
     "id": "markets-and-valuation",
     "title": "Markets and valuation",
     "description": "Check the last recorded sale and its date. Read the county parcel value alongside the basis the county reports.",
@@ -54,12 +63,30 @@
     "researchTopic": "Lending & real estate markets"
   },
   {
+    "id": "housing-construction-activity",
+    "title": "Housing construction activity",
+    "description": "Compare the housing units authorized in a county, the single-family share and annual growth. Use local permit records for the status of work at a specific address.",
+    "fields": ["county_building_permits_total_annual", "county_building_permits_sf_annual", "county_building_permits_yoy_pct"],
+    "guide": "/blog/building-permit-change-alerts-by-address",
+    "guideLabel": "Compare county totals and local permits",
+    "researchTopic": "Land, parcels & buildings"
+  },
+  {
     "id": "retail-and-trade-areas",
     "title": "Retail and trade areas",
     "description": "Check tract population, county household income and straight-line distance to groceries. Use a drive-time boundary to estimate reachable households.",
     "fields": ["tract_population", "county_median_household_income", "nearest_grocery_store_distance_m"],
     "guide": "/blog/drive-time-demographics-census-trade-area",
     "guideLabel": "Estimate a drive-time catchment",
+    "researchTopic": "Retail, demographics & community"
+  },
+  {
+    "id": "community-services",
+    "title": "Community services",
+    "description": "Find the nearest CMS-listed acute-care hospital with emergency services, a unified school district and mapped fire station distance. Verify response routes and service boundaries locally.",
+    "fields": ["nearest_acute_care_hospital_name", "census_unified_school_district", "nearest_fire_station_distance_m"],
+    "guide": "/blog/hospital-school-fire-service-area-data",
+    "guideLabel": "Check hospital, school and fire service coverage",
     "researchTopic": "Retail, demographics & community"
   },
   {

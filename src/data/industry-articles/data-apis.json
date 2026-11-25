@@ -1597,9 +1597,9 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Change Alerts by Address",
-    "description": "Track new building permits, expirations and completions by address. Test an alert workflow against dated records from two San Francisco permit systems.",
+    "description": "Track permit issuance, expiration and completion by address. Compare San Francisco’s county housing totals with records for specific projects.",
     "date": "2026-11-24",
-    "readMinutes": 6,
+    "readMinutes": 7,
     "coverAlt": "Three dates for the permit at 345 California Street. The permit was issued on December 1, 2020, showed an expired status dated October 28, 2026, and was loaded to DataSF on October 30, 2026.",
     "coverCaption": "Three dates for San Francisco DBI permit 202009234825. All four address rows carry the same permit dates and October 30 portal load date.",
     "intro": "To track building permit changes by address, match the property to the issuing agency’s identifiers and save a dated copy of the permit record. Alert on the milestone the user cares about, such as issuance, expiration or completion. Keep the time your system first saw the change alongside the date the agency gives it. An updated row can carry a permit that was issued years earlier.",
@@ -1675,6 +1675,78 @@
           {
             "type": "paragraph",
             "text": "The download preserves eight selected source rows, two exact queries and source response hashes. It shows what was present in those responses. Earlier or intermediate status values require a dated snapshot or a separate activity record."
+          }
+        ]
+      },
+      {
+        "id": "county-permit-totals-and-local-address-events",
+        "heading": "What do county building permit totals count?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use county building permit totals to compare how much new housing was authorized. Use the city’s permit number and dated activity to monitor a specific property. The Census Building Permits Survey covers new privately owned housing. Its annual county file counts buildings and housing units in separate columns.",
+            "sourceIds": [
+              "census-bps-scope"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "San Francisco County",
+              "2024",
+              "2025"
+            ],
+            "rows": [
+              [
+                "Housing units authorized",
+                "770",
+                "1,444"
+              ],
+              [
+                "Residential buildings authorized",
+                "54",
+                "41"
+              ],
+              [
+                "Housing units in buildings with five or more units",
+                "705",
+                "1,394"
+              ],
+              [
+                "Single-family housing units authorized",
+                "27",
+                "20"
+              ]
+            ],
+            "sourceIds": [
+              "census-bps-county-2024",
+              "census-bps-county-2025"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Authorized housing units rose 87.5% while the count of residential buildings fell 24.1%. The increase came from buildings with five or more units. For a market report, retain the county FIPS code, year, structure size and whether the measure is units or buildings. For an alert on a sprinkler permit, roof permit, or completion date, query the local record for that address.",
+            "sourceIds": [
+              "census-bps-county-2024",
+              "census-bps-county-2025"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/san-francisco-county-housing-permit-units-2024-2025.json",
+            "label": "Download the San Francisco county unit and building counts",
+            "format": "JSON",
+            "datasetAnchor": "dataset-sf-county-housing-authorizations"
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/data-coverage#housing-construction-activity",
+                "label": "See the county housing permit fields"
+              }
+            ]
           }
         ]
       },
@@ -1804,6 +1876,24 @@
         "title": "Floating timestamp datatype",
         "url": "https://dev.socrata.com/docs/datatypes/timestamp.html",
         "publisher": "Socrata"
+      },
+      {
+        "id": "census-bps-scope",
+        "publisher": "U.S. Census Bureau",
+        "title": "Building Permits Survey coverage and structure types",
+        "url": "https://www.census.gov/construction/bps/about.html"
+      },
+      {
+        "id": "census-bps-county-2024",
+        "publisher": "U.S. Census Bureau",
+        "title": "2024 final annual county file, California county 075, line 221",
+        "url": "https://www2.census.gov/econ/bps/County/co2024a.txt"
+      },
+      {
+        "id": "census-bps-county-2025",
+        "publisher": "U.S. Census Bureau",
+        "title": "2025 final annual county file, California county 075, line 221",
+        "url": "https://www2.census.gov/econ/bps/County/co2025a.txt"
       }
     ],
     "relatedSlugs": [
@@ -1827,7 +1917,23 @@
         "policyLabel": "DataSF terms of use",
         "policyUrl": "https://data.sf.gov/terms-of-use"
       }
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-sf-county-housing-authorizations",
+        "datePublished": "2026-11-25",
+        "name": "San Francisco County housing units and buildings authorized, 2024–2025",
+        "description": "Two final annual Census Building Permits Survey rows for San Francisco County. Includes housing units and buildings by structure type, their year-over-year changes, source row numbers and the distinction from local records for individual addresses.",
+        "sourceIds": [
+          "census-bps-scope",
+          "census-bps-county-2024",
+          "census-bps-county-2025"
+        ],
+        "spatialCoverage": "San Francisco County, California, United States",
+        "temporalCoverage": "2024/2025"
+      }
+    ],
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "elevation-certificate-by-address",
@@ -10917,6 +11023,10 @@
               {
                 "slug": "power-outage-road-closure-history",
                 "label": "Review historical outages and road closures"
+              },
+              {
+                "path": "/data-coverage#community-services",
+                "label": "See the API’s hospital, school district and fire station fields"
               }
             ]
           }
@@ -11156,7 +11266,8 @@
         "valhalla",
         "osm-node"
       ]
-    }
+    },
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "retail-trade-area-overlap",
@@ -30372,9 +30483,22 @@
             "type": "links",
             "label": "Related data center diligence guides",
             "items": [
-              {"slug": "data-center-site-selection-checklist", "label": "Use the data center site selection checklist"},
-              {"slug": "data-center-power-screening-tools", "label": "Compare power and upgrade evidence for a campus"},
-              {"slug": "best-gis-apis-for-site-selection", "label": "Compare location and infrastructure GIS data"}
+              {
+                "slug": "data-center-site-selection-checklist",
+                "label": "Use the data center site selection checklist"
+              },
+              {
+                "slug": "data-center-power-screening-tools",
+                "label": "Compare power and upgrade evidence for a campus"
+              },
+              {
+                "slug": "best-gis-apis-for-site-selection",
+                "label": "Compare location and infrastructure GIS data"
+              },
+              {
+                "slug": "business-broadband-availability-by-address",
+                "label": "Check reported broadband service for a specific address"
+              }
             ]
           }
         ]
@@ -30405,7 +30529,8 @@
       {"id": "aws-resiliency", "title": "AWS Direct Connect Resiliency Toolkit", "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html", "publisher": "AWS"},
       {"id": "ietf-diversity", "title": "RFC 4054, diversity and optical route constraints", "url": "https://datatracker.ietf.org/doc/html/rfc4054", "publisher": "IETF"}
     ],
-    "relatedSlugs": ["data-center-site-selection-checklist", "data-center-power-screening-tools", "best-gis-apis-for-site-selection"]
+    "relatedSlugs": ["data-center-site-selection-checklist", "data-center-power-screening-tools", "best-gis-apis-for-site-selection"],
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "nyc-environmental-restrictions-by-address",

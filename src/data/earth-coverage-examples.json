@@ -240,6 +240,46 @@
     },
     "label": "Fiber available"
   },
+  "fiber_provider_count": {
+    "name": "fiber_provider_count",
+    "definitions": {
+      "point": {
+        "description": "Count of distinct ISPs reporting fiber (FTTP) mass-market availability in the FCC BDC H3 res-8 hexagon containing the point (June 2024 release via Esri's Living Atlas copy). Operator keys only (copy rights not recorded for public serving). ",
+        "unit": null,
+        "source": "FCC_BDC_FIXED",
+        "sourceUrl": "https://broadbandmap.fcc.gov/",
+        "operatorOnly": true
+      },
+      "parcel": {
+        "description": "Count of distinct ISPs reporting fiber (FTTP) mass-market availability in the FCC BDC H3 res-8 hexagon containing the point (June 2024 release via Esri's Living Atlas copy). Operator keys only (copy rights not recorded for public serving). ",
+        "unit": null,
+        "source": "FCC_BDC_FIXED",
+        "sourceUrl": "https://broadbandmap.fcc.gov/",
+        "operatorOnly": true
+      }
+    },
+    "label": "Fiber providers"
+  },
+  "mobile_5g_coverage_class": {
+    "name": "mobile_5g_coverage_class",
+    "definitions": {
+      "point": {
+        "description": "Best modelled 5G-NR coverage tier any carrier reports for the FCC BDC H3 res-9 hexagon containing the point: '5G NR 35/3 In-Vehicle', '5G NR 35/3 Outdoor Stationary', '5G NR 7/1 In-Vehicle' or '5G NR 7/1 Outdoor Stationary' (computed from provider rows). Operator keys only. ",
+        "unit": null,
+        "source": "FCC_BDC_MOBILE",
+        "sourceUrl": "https://broadbandmap.fcc.gov/data-download",
+        "operatorOnly": true
+      },
+      "parcel": {
+        "description": "Best modelled 5G-NR coverage tier any carrier reports for the FCC BDC H3 res-9 hexagon containing the point: '5G NR 35/3 In-Vehicle', '5G NR 35/3 Outdoor Stationary', '5G NR 7/1 In-Vehicle' or '5G NR 7/1 Outdoor Stationary' (computed from provider rows). Operator keys only. ",
+        "unit": null,
+        "source": "FCC_BDC_MOBILE",
+        "sourceUrl": "https://broadbandmap.fcc.gov/data-download",
+        "operatorOnly": true
+      }
+    },
+    "label": "5G coverage"
+  },
   "saleprice": {
     "name": "saleprice",
     "definitions": {
@@ -287,6 +327,60 @@
       }
     },
     "label": "Value type"
+  },
+  "county_building_permits_total_annual": {
+    "name": "county_building_permits_total_annual",
+    "definitions": {
+      "point": {
+        "description": "Total residential housing units authorized by building permits in the county in 2025 (Census BPS: 1-unit + 2-unit + 3-4 unit + 5+ unit Units).",
+        "unit": "units",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      },
+      "parcel": {
+        "description": "Total residential housing units authorized by building permits in the county in 2025 (Census BPS: 1-unit + 2-unit + 3-4 unit + 5+ unit Units).",
+        "unit": "units",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      }
+    },
+    "label": "County permitted housing units"
+  },
+  "county_building_permits_sf_annual": {
+    "name": "county_building_permits_sf_annual",
+    "definitions": {
+      "point": {
+        "description": "Single-family (1-unit) housing units authorized by building permits in the county in 2025 (Census BPS annual county file, 1-unit Units).",
+        "unit": "units",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      },
+      "parcel": {
+        "description": "Single-family (1-unit) housing units authorized by building permits in the county in 2025 (Census BPS annual county file, 1-unit Units).",
+        "unit": "units",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      }
+    },
+    "label": "Single-family permits"
+  },
+  "county_building_permits_yoy_pct": {
+    "name": "county_building_permits_yoy_pct",
+    "definitions": {
+      "point": {
+        "description": "Percent change in total permitted housing units in the county, 2025 vs 2024 (Census BPS).",
+        "unit": "percent",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      },
+      "parcel": {
+        "description": "Percent change in total permitted housing units in the county, 2025 vs 2024 (Census BPS).",
+        "unit": "percent",
+        "source": "CENSUS_ACS_TRACT_STATS",
+        "sourceUrl": "https://www.census.gov/programs-surveys/acs/data/summary-file.html"
+      }
+    },
+    "label": "Permit growth"
   },
   "tract_population": {
     "name": "tract_population",
@@ -341,6 +435,60 @@
       }
     },
     "label": "Grocery store distance"
+  },
+  "nearest_acute_care_hospital_name": {
+    "name": "nearest_acute_care_hospital_name",
+    "definitions": {
+      "point": {
+        "description": "Name, as filed with CMS, of the hospital that nearest_acute_care_hospital_distance_m measures to.",
+        "unit": null,
+        "source": "CMS_HOSPITALS",
+        "sourceUrl": "https://data.cms.gov/provider-data/dataset/xubh-q36u"
+      },
+      "parcel": {
+        "description": "Name, as filed with CMS, of the hospital that nearest_acute_care_hospital_distance_m measures to.",
+        "unit": null,
+        "source": "CMS_HOSPITALS",
+        "sourceUrl": "https://data.cms.gov/provider-data/dataset/xubh-q36u"
+      }
+    },
+    "label": "Nearest acute care hospital"
+  },
+  "census_unified_school_district": {
+    "name": "census_unified_school_district",
+    "definitions": {
+      "point": {
+        "description": "Name of the Census unified school district containing the point (current TIGERweb boundary), e.g. Loudoun County Public Schools. ",
+        "unit": null,
+        "source": "CENSUS_TIGERWEB_SCHOOL_DISTRICTS",
+        "sourceUrl": "https://tigerweb.geo.census.gov/"
+      },
+      "parcel": {
+        "description": "Name of the Census unified school district containing the point (current TIGERweb boundary), e.g. Loudoun County Public Schools. ",
+        "unit": null,
+        "source": "CENSUS_TIGERWEB_SCHOOL_DISTRICTS",
+        "sourceUrl": "https://tigerweb.geo.census.gov/"
+      }
+    },
+    "label": "Unified school district"
+  },
+  "nearest_fire_station_distance_m": {
+    "name": "nearest_fire_station_distance_m",
+    "definitions": {
+      "point": {
+        "description": "Geodesic distance in metres to the nearest open fire station in Overture places (US, confidence >= 0.5, open or unknown status), searched to 100 km.",
+        "unit": "meters",
+        "source": "OVERTURE_PLACES",
+        "sourceUrl": "https://docs.overturemaps.org/guides/places/"
+      },
+      "parcel": {
+        "description": "Geodesic distance in metres to the nearest open fire station in Overture places (US, confidence >= 0.5, open or unknown status), searched to 100 km.",
+        "unit": "meters",
+        "source": "OVERTURE_PLACES",
+        "sourceUrl": "https://docs.overturemaps.org/guides/places/"
+      }
+    },
+    "label": "Fire station distance"
   },
   "dominant_crop_5y": {
     "name": "dominant_crop_5y",
@@ -421,13 +569,13 @@
         "description": "1991-2020 annual mean temperature normal (degC, anntavg_norm = mean of the twelve monthly normals) from NOAA U.S. Monthly Gridded Climate Normals v1.0 (NCEI 0245564) on the 1/24° (~4.6 km) nClimGrid grid, rounded to 0.1 as NOAA instructs. CONUS only. ",
         "unit": "degC",
         "source": "NOAA_NORMALS_GRIDDED",
-        "sourceUrl": "https://www.ncei.noaa.gov/sites/default/files/2022-04/Readme_Monthly_Gridded_Normals.pdf"
+        "sourceUrl": "https://doi.org/10.25921/rjys-b235"
       },
       "parcel": {
         "description": "1991-2020 annual mean temperature normal (degC, anntavg_norm = mean of the twelve monthly normals) from NOAA U.S. Monthly Gridded Climate Normals v1.0 (NCEI 0245564) on the 1/24° (~4.6 km) nClimGrid grid, rounded to 0.1 as NOAA instructs. CONUS only. ",
         "unit": "degC",
         "source": "NOAA_NORMALS_GRIDDED",
-        "sourceUrl": "https://www.ncei.noaa.gov/sites/default/files/2022-04/Readme_Monthly_Gridded_Normals.pdf"
+        "sourceUrl": "https://doi.org/10.25921/rjys-b235"
       }
     },
     "label": "Average temperature"

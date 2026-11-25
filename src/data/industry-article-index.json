@@ -255,10 +255,11 @@
     "slug": "building-permit-change-alerts-by-address",
     "topic": "Data & APIs",
     "title": "Building Permit Change Alerts by Address",
-    "summary": "Track new building permits, expirations and completions by address. Test an alert workflow against dated records from two San Francisco permit systems.",
+    "summary": "Track permit issuance, expiration and completion by address. Compare San Francisco’s county housing totals with records for specific projects.",
     "date": "November 24, 2026",
     "dateTime": "2026-11-24",
     "region": "United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/building-permit-change-alerts-by-address.webp?v=29511aae",
     "dataset": {
       "name": "San Francisco permit activity, address links and publication timestamps",
@@ -305,7 +306,46 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-sf-county-housing-authorizations",
+        "datePublished": "2026-11-25",
+        "name": "San Francisco County housing units and buildings authorized, 2024–2025",
+        "description": "Two final annual Census Building Permits Survey rows for San Francisco County. Includes housing units and buildings by structure type, their year-over-year changes, source row numbers and the distinction from local records for individual addresses.",
+        "spatialCoverage": "San Francisco County, California, United States",
+        "temporalCoverage": "2024/2025",
+        "sources": [
+          "https://www.census.gov/construction/bps/about.html",
+          "https://www2.census.gov/econ/bps/County/co2024a.txt",
+          "https://www2.census.gov/econ/bps/County/co2025a.txt"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Building Permits Survey coverage and structure types",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www.census.gov/construction/bps/about.html"
+          },
+          {
+            "title": "2024 final annual county file, California county 075, line 221",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www2.census.gov/econ/bps/County/co2024a.txt"
+          },
+          {
+            "title": "2025 final annual county file, California county 075, line 221",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www2.census.gov/econ/bps/County/co2025a.txt"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the San Francisco county unit and building counts",
+            "path": "/blog/san-francisco-county-housing-permit-units-2024-2025.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "elevation-certificate-by-address",
@@ -1810,6 +1850,7 @@
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "Leawood, Kansas",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/hospital-school-fire-service-area-data.webp?v=ff5d0a2a",
     "dataset": {
       "name": "Leawood Market Center hospital, school, and fire service evidence",
@@ -6234,6 +6275,7 @@
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/data-center-fiber-route-diversity.webp?v=5efc40fc",
     "dataset": {
       "name": "New York metro building addresses and AWS Direct Connect location labels",
