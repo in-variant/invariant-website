@@ -1,5 +1,3 @@
-import collections from './blog-collections.json'
-
 type CollectionGuide = {
   slug: string
   label: string
@@ -24,6 +22,3 @@ export function groupCollectionGuides(collectionGuides: CollectionGuide[]) {
     id: heading.toLowerCase().match(/[a-z0-9]+/g)?.join('-') ?? 'other-guides',
   }))
 }
-
-const dataUseCases = collections.find(collection => collection.slug === DATA_USE_CASES_SLUG)
-export const DATA_USE_CASE_GROUPS = groupCollectionGuides(dataUseCases?.guides ?? []).filter(group => group.heading)

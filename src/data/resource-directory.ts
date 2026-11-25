@@ -1,6 +1,6 @@
 import { PAGES } from './page-registry'
-import industryArticles from './industry-article-index.json'
-import { RESEARCH_DATASETS, type ResourceTopic } from './resources'
+import directory from './.generated-blog-search/resource-directory.json'
+import type { ResourceArticle, ResourceTopic } from './resources'
 import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE } from './dataCenterPowerSchedule'
 import { LEASE_RENT_DESCRIPTION, LEASE_RENT_PATH, LEASE_RENT_TITLE } from './leaseRent'
 import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_PATH, BATTERY_RECHARGE_TITLE } from './batteryRecharge'
@@ -17,6 +17,8 @@ export type ResourceReference = {
   articleSlug?: string
   searchContext?: string
 }
+
+export const FEATURED_RESOURCE_ARTICLES = directory.featured as ResourceArticle[]
 
 const TOPICS: Record<string, ResourceTopic> = {
   space: 'Space',
@@ -35,15 +37,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: LEASE_RENT_PATH, title: LEASE_RENT_TITLE, summary: LEASE_RENT_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool' },
   { path: REFINANCE_PATH, title: REFINANCE_TITLE, summary: REFINANCE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'maximum loan size DSCR debt service coverage loan to value debt yield income payoff maturity CMBS cash needed' },
   { path: BATTERY_RECHARGE_PATH, title: BATTERY_RECHARGE_TITLE, summary: BATTERY_RECHARGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'BESS charging duration grid import headroom utility-scale interconnection' },
-  ...industryArticles.map(article => ({
-    path: `/blog/${article.slug}`,
-    title: article.title,
-    summary: article.summary,
-    topic: article.topic as ResourceTopic,
-    kind: 'Guide' as const,
-    articleSlug: article.slug,
-    searchContext: `${article.region ?? ''} ${article.dataset?.name ?? ''}`,
-  })),
+  ...directory.guides as ResourceReference[],
   ...PAGES.filter((page) => page.live)
     .sort((a, b) => (a.weight ?? 9) - (b.weight ?? 9))
     .map((page) => ({
@@ -95,16 +89,5 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
     topic: 'Cross-industry',
     kind: 'Guide',
   },
-  ...RESEARCH_DATASETS.map(({ id, dataset, topic, region }) => ({
-    path: `/datasets#${id}`,
-    title: dataset.name,
-    summary: dataset.description,
-    topic,
-    kind: 'Dataset' as const,
-    searchContext: [
-      dataset.spatialCoverage, dataset.temporalCoverage, region,
-      ...dataset.downloads.map(file => `${file.label} ${file.format}`),
-      ...dataset.sourceDetails.map(({ title, publisher }) => `${title} ${publisher}`),
-    ].join(' '),
-  })),
+  ...directory.datasets as ResourceReference[],
 ]

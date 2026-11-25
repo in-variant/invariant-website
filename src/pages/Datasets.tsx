@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
-import { coverSrcSets } from '../data/coverSrcSets'
+import { coverSrcSet } from '../data/coverSrcSets'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
@@ -47,7 +47,7 @@ const topicLinks = [
     count: catalogEntries.filter(entry => entry.topics.includes(label)).length,
   })),
 ]
-const searchIndex = prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
+const buildSearchIndex = () => prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
   title: dataset.name,
   relatedTitle: title,
   metadata: [dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
@@ -94,8 +94,10 @@ export default function Datasets() {
   const searchInput = useRef<HTMLInputElement>(null)
   useEffect(() => setSearchReady(true), [])
   const terms = articleSearchWords(query)
-  const isFiltered = Boolean(terms.length || topic || format)
-  const candidates = terms.length ? rankSearch(searchIndex, terms, { numericPrefixes: true }) : catalogEntries
+  const searching = terms.length > 0
+  const searchIndex = useMemo(() => searching ? buildSearchIndex() : null, [searching])
+  const isFiltered = Boolean(searching || topic || format)
+  const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true }) : catalogEntries
   const matches = candidates.filter(({ topics, dataset }) =>
     (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
@@ -151,7 +153,7 @@ export default function Datasets() {
                 <Link className="dataset-featured-study" to={notesPath} aria-labelledby={`featured-${slug}`}
                   onClick={() => trackResearchLink({ action: 'study', surface: 'featured', dataset: slug })}>
                   <div className="dataset-featured-image">
-                    <img src={image} srcSet={coverSrcSets[image]}
+                    <img src={image} srcSet={coverSrcSet(image)}
                       sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 940px) 44vw, min(29vw, 524px)"
                       alt="" width="1600" height="900" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
                     {imageLabel && <span>{imageLabel}</span>}

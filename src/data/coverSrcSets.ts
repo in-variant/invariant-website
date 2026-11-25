@@ -1,3 +1,9 @@
-import generatedSrcSets from './.generated-cover-srcsets.json'
+import coverVariants from './.generated-cover-srcsets.json'
+import { formatCoverSrcSet } from './formatCoverSrcSet.mjs'
 
-export const coverSrcSets: Partial<Record<string, string>> = generatedSrcSets
+const covers: Partial<Record<string, { width: number; variants: { size: number; hash: string }[] }>> = coverVariants
+
+export function coverSrcSet(image: string) {
+  const cover = covers[image]
+  return cover && formatCoverSrcSet(image, cover.width, cover.variants)
+}

@@ -211,7 +211,8 @@ const responsiveCovers = process.argv.includes('--responsive-covers')
   )
   : new Map()
 const coverSrcSets = Object.fromEntries([...responsiveCovers].map(([image, { srcSet }]) => [image, srcSet]))
-writeIfChanged(new URL('.generated-cover-srcsets.json', base), JSON.stringify(coverSrcSets))
+const coverVariants = Object.fromEntries([...responsiveCovers].map(([image, { width, variants }]) => [image, { width, variants }]))
+writeIfChanged(new URL('.generated-cover-srcsets.json', base), JSON.stringify(coverVariants))
 const collectionCoverSrcSets = Object.fromEntries(blogCollections.map(({ slug, image }) => [
   slug, coverSrcSets[`${image}?v=${coverVersions[image]}`],
 ]))
@@ -224,6 +225,31 @@ const articleList = [...index, ...legacyArticles].map(({ slug, title, topic, sum
 }))
 const collectionList = blogCollections.map(({ slug, title, navLabel }) => ({ slug, title, navLabel }))
 writeIfChanged(new URL('article-list.json', searchDir), JSON.stringify({ articles: articleList, collections: collectionList }))
+const directoryGuides = index.map(({ slug, title, summary, topic, region, dataset }) => ({
+  path: `/blog/${slug}`, title, summary, topic, kind: 'Guide', articleSlug: slug,
+  searchContext: `${region ?? ''} ${dataset?.name ?? ''}`,
+}))
+const directoryDatasets = [...index, ...legacyArticles].flatMap(({ slug, topic, region, dataset, additionalDatasets = [] }) =>
+  (dataset ? [dataset, ...additionalDatasets] : additionalDatasets).map(sample => ({
+    path: `/datasets#${sample.anchor ? `${slug}-${sample.anchor}` : slug}`,
+    title: sample.name,
+    summary: sample.description,
+    kind: 'Dataset',
+    topic,
+    searchContext: [sample.spatialCoverage, sample.temporalCoverage, region,
+      ...sample.downloads.map(file => `${file.label} ${file.format}`),
+      ...sample.sourceDetails.map(({ title, publisher }) => `${title} ${publisher}`),
+    ].join(' '),
+  })),
+)
+const featuredResourceSlugs = ['data-center-for-sale', 'commercial-property-insurance-data-apis', 'warehouse-site-selection-rail-truck-access']
+const featuredResources = featuredResourceSlugs.flatMap(slug => articleList.filter(article => article.slug === slug))
+writeIfChanged(new URL('resource-directory.json', searchDir), JSON.stringify({
+  guides: directoryGuides, datasets: directoryDatasets, featured: featuredResources,
+}))
+const research = JSON.parse(readFileSync(new URL('research-studies.json', base), 'utf8'))
+const researchSlugs = new Set(research.studies.map(({ slug }) => slug))
+writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify([...index, ...legacyArticles].filter(({ slug }) => researchSlugs.has(slug))))
 const articleSearch = Object.fromEntries(articles.map(article => {
   const headings = [
     ...article.sections.map(section => section.heading),
@@ -255,10 +281,11 @@ for (const [slug, csv] of worksheets) {
   writeIfChanged(new URL(`../public/blog/${slug}.csv`, import.meta.url), csv)
 }
 const catalog = new Map([...index, ...legacyArticles].map(article => [article.slug, article]))
+const articleCovers = new Map([...responsiveCovers].map(([image, { width, height, srcSet }]) => [image, { width, height, srcSet }]))
 writeEntryModules(new URL('.generated-articles/', base), articles.map(({ relatedSlugs, dataset, coverFile, ...article }, i) => ({
   ...article,
   published: index[i],
-  coverImage: responsiveCovers.get(index[i].image),
+  coverImage: articleCovers.get(index[i].image),
   relatedReading: relatedSlugs.map((slug, position) => {
     const { title, topic, image } = catalog.get(slug)
     const srcSet = position < 2 ? responsiveCovers.get(image)?.srcSet : undefined

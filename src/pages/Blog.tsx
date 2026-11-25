@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ARTICLE_COLLECTIONS, ARTICLE_LIST, type ArticleListEntry } from '../data/articleList'
-import { coverSrcSets } from '../data/coverSrcSets'
+import { coverSrcSet } from '../data/coverSrcSets'
 import { articleSearchWords, prepareArticleSearch, rankSearch } from '../data/blogSearch'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import { INDIA_HUB } from '../data/industryArticles'
@@ -57,7 +57,7 @@ function BlogCard({ article, variant = 'standard' }: { article: ArticleListEntry
     <article className={`blog-index-card blog-index-card--${variant}`}>
       <Link to={`/blog/${article.slug}`} aria-labelledby={`title-${variant}-${article.slug}`}>
         <div className="blog-index-image">
-          <img src={article.image} srcSet={coverSrcSets[article.image]} sizes={COVER_SIZES[variant]} alt="" width="1440" height="960"
+          <img src={article.image} srcSet={coverSrcSet(article.image)} sizes={COVER_SIZES[variant]} alt="" width="1440" height="960"
             loading={variant === 'standard' ? 'lazy' : undefined} fetchPriority={isLead ? 'high' : undefined} decoding="async" />
         </div>
         <div className="blog-index-card-content">

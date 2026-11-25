@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, readdir, unlink, writeFile } from 'node:fs/promises'
 import sharp from 'sharp'
+import { formatCoverSrcSet } from '../src/data/formatCoverSrcSet.mjs'
 
 const publicRoot = new URL('../public/', import.meta.url)
 const outputPath = '/blog/industry-variants/'
@@ -20,7 +21,7 @@ export async function buildCoverVariants(images) {
       const bytes = await readFile(url)
       const { width, height } = await sharp(bytes).metadata()
       const name = url.pathname.split('/').pop().replace(/\.webp$/, '')
-      const candidates = []
+      const variants = []
       for (const size of widths.filter(size => size < width)) {
         const variant = await sharp(bytes).resize({ width: size, withoutEnlargement: true }).webp({ quality: 82 }).toBuffer()
         if (variant.length >= bytes.length) continue
@@ -28,11 +29,10 @@ export async function buildCoverVariants(images) {
         const file = `${name}-${size}.${hash}.webp`
         await writeFile(new URL(file, output), variant)
         produced.add(file)
-        candidates.push(`${outputPath}${file} ${size}w`)
+        variants.push({ size, hash })
       }
-      if (candidates.length) {
-        candidates.push(`${image} ${width}w`)
-        covers.set(image, { width, height, srcSet: candidates.join(', ') })
+      if (variants.length) {
+        covers.set(image, { width, height, variants, srcSet: formatCoverSrcSet(image, width, variants) })
       }
     }))
   }

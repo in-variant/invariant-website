@@ -2,15 +2,18 @@ import { Link } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
-import { coverSrcSets } from '../data/coverSrcSets'
-import { RESEARCH_DATASETS } from '../data/resources'
+import { coverSrcSet } from '../data/coverSrcSets'
+import { publishedDatasets } from '../data/publishedDatasets'
+import type { ResourceArticle } from '../data/resources'
+import researchArticles from '../data/.generated-blog-search/research-articles.json'
 import research from '../data/research-studies.json'
 import './Resources.css'
 import './Research.css'
 
 const canonical = `${SITE_URL}/research`
+const researchDatasets = (researchArticles as ResourceArticle[]).flatMap(publishedDatasets)
 const studies = research.studies.flatMap(study =>
-  RESEARCH_DATASETS
+  researchDatasets
     .filter(entry => entry.slug === study.slug && entry.anchor === (study.anchor ?? 'dataset'))
     .map(entry => ({ ...study, entry })),
 )
@@ -47,7 +50,7 @@ function StudyCard({ study, featured = false }: { study: typeof studies[number];
         <div>
           <img
             src={entry.image}
-            srcSet={coverSrcSets[entry.image]}
+            srcSet={coverSrcSet(entry.image)}
             sizes={featured
               ? '(max-width: 680px) calc(100vw - max(48px, 10.42vw)), min(864px, 49vw)'
               : '(max-width: 680px) calc(100vw - max(48px, 10.42vw)), (max-width: 1000px) 44vw, min(520px, 29vw)'}

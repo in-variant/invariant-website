@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 
 function editorialDevContent(): Plugin {
   const articles = normalizePath(fileURLToPath(new URL('./src/data/industry-articles/', import.meta.url)))
-  const otherSources = ['./src/pages/_data/glossary.json', './src/data/legacy-blog-articles.json', './src/data/blog-collections.json']
+  const otherSources = ['./src/pages/_data/glossary.json', './src/data/legacy-blog-articles.json', './src/data/blog-collections.json', './src/data/research-studies.json']
     .map(path => normalizePath(fileURLToPath(new URL(path, import.meta.url))))
   const script = fileURLToPath(new URL('./scripts/build-editorial-content.mjs', import.meta.url))
   const rebuild = () => execFileSync(process.execPath, [script], { stdio: 'inherit' })

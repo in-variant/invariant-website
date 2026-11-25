@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
-import { coverSrcSets } from '../data/coverSrcSets'
-import { RESOURCE_ARTICLES, type ResourceTopic } from '../data/resources'
-import { RESOURCE_REFERENCES } from '../data/resource-directory'
-import { DATA_USE_CASE_GROUPS, DATA_USE_CASES_PATH } from '../data/blogCollections'
+import { coverSrcSet } from '../data/coverSrcSets'
+import type { ResourceTopic } from '../data/resources'
+import { FEATURED_RESOURCE_ARTICLES, RESOURCE_REFERENCES } from '../data/resource-directory'
+import { DATA_USE_CASES_PATH, DATA_USE_CASES_SLUG, groupCollectionGuides } from '../data/blogCollections'
+import blogCollections from '../data/blog-collections.json'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import './Resources.css'
 
@@ -14,9 +15,9 @@ const FORMATS = ['All', 'Guides', 'Tools', 'Datasets'] as const
 type Format = typeof FORMATS[number]
 const PAGE_SIZE = 8
 const RESOURCE_TOPICS: ResourceTopic[] = ['Data & APIs', 'Data Centers', 'Oil & Gas']
-const FEATURED = ['data-center-for-sale', 'commercial-property-insurance-data-apis', 'warehouse-site-selection-rail-truck-access']
-const featuredArticles = FEATURED.flatMap(slug => RESOURCE_ARTICLES.filter(article => article.slug === slug))
 const library = RESOURCE_REFERENCES.filter(resource => RESOURCE_TOPICS.includes(resource.topic))
+const dataUseCases = blogCollections.find(collection => collection.slug === DATA_USE_CASES_SLUG)
+const dataUseCaseGroups = groupCollectionGuides(dataUseCases?.guides ?? []).filter(group => group.heading)
 
 export default function Resources() {
   const [format, setFormat] = useState<Format>('All')
@@ -65,7 +66,7 @@ export default function Resources() {
         </div>
         <ul className="resources-data-topics">
           <li><Link to="/blog/site-selection-due-diligence">Site selection <ResourceArrow diagonal /></Link></li>
-          {DATA_USE_CASE_GROUPS.map(({ heading, id }) => (
+          {dataUseCaseGroups.map(({ heading, id }) => (
             <li key={id}><Link to={`${DATA_USE_CASES_PATH}#${id}`}>{heading} <ResourceArrow diagonal /></Link></li>
           ))}
         </ul>
@@ -82,7 +83,7 @@ export default function Resources() {
           <Link to="/research" className="resource-text-link">Explore research <ResourceArrow /></Link>
         </div>
         <div className="resource-article-grid">
-          {featuredArticles.map((article) => <ResourceArticleCard key={article.slug} article={article} srcSet={coverSrcSets[article.image]} />)}
+          {FEATURED_RESOURCE_ARTICLES.map((article) => <ResourceArticleCard key={article.slug} article={article} srcSet={coverSrcSet(article.image)} />)}
         </div>
       </section>
 
