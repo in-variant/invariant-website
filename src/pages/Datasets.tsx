@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
@@ -57,6 +57,8 @@ const buildSearchIndex = () => prepareSearch(catalogEntries, ({ id, dataset, tit
   details: dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`).join(' '),
 }))
 
+let catalogSearchIndex: ReturnType<typeof buildSearchIndex> | undefined
+
 const catalog = {
   '@context': 'https://schema.org',
   ...DATA_CATALOG,
@@ -94,9 +96,10 @@ export default function Datasets() {
   const searchInput = useRef<HTMLInputElement>(null)
   const archive = useRef<HTMLDetailsElement>(null)
   useEffect(() => setSearchReady(true), [])
-  const terms = useMemo(() => editorialSearchWords(query), [query])
+  const deferredQuery = useDeferredValue(query)
+  const terms = useMemo(() => editorialSearchWords(deferredQuery), [deferredQuery])
   const searching = terms.length > 0
-  const searchIndex = useMemo(() => searching ? buildSearchIndex() : null, [searching])
+  const searchIndex = searching ? (catalogSearchIndex ??= buildSearchIndex()) : undefined
   const isFiltered = Boolean(searching || topic || format)
   const matches = useMemo(() => {
     const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true }) : catalogEntries
@@ -178,7 +181,7 @@ export default function Datasets() {
             ))}
           </ul>
         </details>
-        <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
+        <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} onDemand />
       </div>
     </article>
   )), [matches])
@@ -331,7 +334,7 @@ export default function Datasets() {
           </label>
         </div>
         <div className="dataset-list-meta">
-          <div className="dataset-results">
+          <div className="dataset-results" aria-busy={query !== deferredQuery || undefined}>
             <p role="status">{matches.length} {isFiltered ? 'matching' : 'published'} research {matches.length === 1 ? 'example' : 'examples'}</p>
             {isFiltered && <button type="button" className="dataset-clear" onClick={clearFilters}>Clear filters</button>}
           </div>

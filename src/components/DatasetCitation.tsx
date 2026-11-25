@@ -1,9 +1,18 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { datasetCitationPath } from '../data/datasetCitationPath.mjs'
 import './DatasetCitation.css'
 
-export default function DatasetCitation({ name, datePublished, url }: { name: string; datePublished: string; url: string }) {
+export default function DatasetCitation({ name, datePublished, url, onDemand = false }: {
+  name: string
+  datePublished: string
+  url: string
+  onDemand?: boolean
+}) {
   const [message, setMessage] = useState('')
+  const [showCopy, setShowCopy] = useState(!onDemand)
+  const activateOpenCitation = useCallback((disclosure: HTMLDetailsElement | null) => {
+    if (disclosure?.open) setShowCopy(true)
+  }, [])
   const reference = `Invariant (${datePublished.slice(0, 4)}). ${name} [Data set].`
 
   async function copy(value: string, confirmation: string) {
@@ -16,15 +25,19 @@ export default function DatasetCitation({ name, datePublished, url }: { name: st
   }
 
   return (
-    <details className="dataset-citation">
+    <details className="dataset-citation"
+      ref={onDemand ? activateOpenCitation : undefined}
+      onToggle={onDemand ? event => activateOpenCitation(event.currentTarget) : undefined}>
       <summary>Cite dataset</summary>
       <div className="dataset-citation-panel">
         <p>{reference} <a href={url}>{url}</a></p>
         <div className="dataset-citation-actions">
-          <button type="button" onClick={() => copy(`${reference} ${url}`, 'Citation copied')}>Copy citation</button>
-          <button type="button" onClick={() => copy(url, 'Dataset link copied')}>Copy dataset link</button>
+          {showCopy && <>
+            <button type="button" onClick={() => copy(`${reference} ${url}`, 'Citation copied')}>Copy citation</button>
+            <button type="button" onClick={() => copy(url, 'Dataset link copied')}>Copy dataset link</button>
+          </>}
           <a href={datasetCitationPath(url)} download>Download citation (CSL JSON)</a>
-          <span role="status">{message}</span>
+          {showCopy && <span role="status">{message}</span>}
         </div>
       </div>
     </details>
