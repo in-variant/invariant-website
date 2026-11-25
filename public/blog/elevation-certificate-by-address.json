@@ -1,0 +1,108 @@
+{
+  "title": "Building 3 elevation certificates and a county flood map point check",
+  "verified_date": "2026-11-24",
+  "building": {
+    "label": "Airport Tract 1, Building 3",
+    "street": "2519 Vacation Drive",
+    "city_as_filed": "Myrtle Beach",
+    "state": "SC",
+    "county_permit": "136756",
+    "parcel_id": "44202010022",
+    "horizontal_datum": "NAD83",
+    "coordinates_lon_lat": [
+      -78.94172222,
+      33.69489444
+    ]
+  },
+  "certificate_packet": {
+    "url": "https://www.horrycountysc.gov/media/5rgjkg35/136756-final-ecert-floodproof-certificate.pdf",
+    "sha256": "21ce31ee288b7a74c1fd8bcdd7759257b1733f9a541de1285a23bfb8c7d4025d",
+    "county_packet_date": "2023-07-10",
+    "elevation_certificate_signed": "2022-12-14",
+    "certificate_panel": "45051C0704K",
+    "certificate_panel_effective_date": "2021-12-16",
+    "vertical_datum": "NAVD88",
+    "unit": "ft",
+    "finish_status": "Finished construction"
+  },
+  "certificate_elevations": [
+    {
+      "quantity": "Base flood elevation on the certificate",
+      "elevation_ft": 13.0,
+      "pdf_page": 4,
+      "record_field": "Elevation Certificate, B9",
+      "notes": "Value copied from the mapped source for the certificate."
+    },
+    {
+      "quantity": "Top of bottom floor",
+      "elevation_ft": 14.0,
+      "pdf_page": 5,
+      "record_field": "Elevation Certificate, C2(a)",
+      "notes": "Finished construction."
+    },
+    {
+      "quantity": "Lowest equipment",
+      "elevation_ft": 16.2,
+      "pdf_page": 5,
+      "record_field": "Elevation Certificate, C2(e)",
+      "notes": "Air-conditioning unit on a raised stand, per the comments."
+    },
+    {
+      "quantity": "Lowest adjacent grade",
+      "elevation_ft": 10.0,
+      "pdf_page": 5,
+      "record_field": "Elevation Certificate, C2(f)",
+      "notes": "Certificate identifies a drain at a recessed loading dock."
+    },
+    {
+      "quantity": "Highest adjacent grade",
+      "elevation_ft": 14.0,
+      "pdf_page": 5,
+      "record_field": "Elevation Certificate, C2(g)",
+      "notes": "Finished grade."
+    },
+    {
+      "quantity": "Certified floodproofing elevation",
+      "elevation_ft": 15.0,
+      "pdf_page": 1,
+      "record_field": "Floodproofing Certificate, Section II",
+      "notes": "Elevation recorded on the separate non-residential certificate."
+    }
+  ],
+  "floodproofing_height_above_grade_as_written": {
+    "height_ft": 1.0,
+    "pdf_page": 1,
+    "section": "Floodproofing Certificate, Section II",
+    "note": "Retain separately. Subtracting C2(f) of the Elevation Certificate from the certified floodproofing elevation gives 5.0 ft. Ask which grade reference was used before applying a grade-relative height."
+  },
+  "county_point_queries": [
+    {
+      "layer": "Current FEMA Flood Zones",
+      "url": "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/Current_FEMA_Flood_Zones/FeatureServer/7/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CLEN_UNIT&returnGeometry=false",
+      "sha256": "da6a8532ac42dbf125c42771369d36b17b5aa7529fa03d55bee1f6fd39db3ba0",
+      "raw_attributes": {
+        "FLD_AR_ID": "1907",
+        "FLD_ZONE": "AE",
+        "SFHA_TF": "T",
+        "STATIC_BFE": -9999,
+        "V_DATUM": " ",
+        "LEN_UNIT": " "
+      },
+      "static_bfe_ft": null,
+      "note": "The raw -9999 value represents an unpopulated static elevation."
+    },
+    {
+      "layer": "Current FEMA FIRM Panels",
+      "url": "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/County_GISFloodMaps/MapServer/8/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+      "sha256": "6f15a45fd8ba50ce82953c2cd74b965f0c82e4bd974da4bdd2653e09c9e65564",
+      "panel_id": "45051C0704K",
+      "note": "The point matched the same panel ID as the certificate. The effective date above comes from the filed certificate."
+    }
+  ],
+  "derived_comparisons": {
+    "floor_above_certificate_bfe_ft": 1.0,
+    "certified_floodproofing_above_certificate_bfe_ft": 2.0,
+    "equipment_above_certificate_bfe_ft": 3.2,
+    "scope": "Arithmetic on the filed NAVD88 elevations. The county point lookup supplies no current static BFE and these calculations do not establish policy terms or present condition."
+  }
+}

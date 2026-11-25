@@ -1,5 +1,297 @@
 [
   {
+    "slug": "elevation-certificate-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find an Elevation Certificate by Address",
+    "description": "Find a flood elevation certificate by address or permit. Use a Myrtle Beach case to check the building, floor and floodproofing elevations, and FEMA map data.",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverAlt": "Elevation comparison for Building 3 at 2519 Vacation Drive, ranging from the loading dock at 10 feet to equipment at 16.2 feet on the NAVD88 datum.",
+    "coverCaption": "Building 3 at 2519 Vacation Drive, Myrtle Beach. The chart uses elevations transcribed from Horry County permit 136756.",
+    "intro": "Search the local floodplain or permit portal by street address. Some counties organize scanned elevation certificates under the parcel number or building permit. Ask the local floodplain manager for the finished-construction certificate for the specific building. An elevation certificate records surveyed heights. The current flood map, any map amendments and the applicable policy answer separate questions.",
+    "takeaways": [
+      "Match the certificate to the building and permit before using a survey from a shared parcel.",
+      "Compare heights in the same units and vertical datum. Keep the floor, equipment, grade and floodproofing levels as separate fields.",
+      "A mapped Zone AE result can have an empty static base flood elevation field. Keep that field empty and check the panel or study for the applicable flood elevation."
+    ],
+    "sections": [
+      {
+        "id": "search-by-address",
+        "heading": "Where can I look up an elevation certificate?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the city or county that issued the building permit. Lee County, Florida, provides a property search and links to elevation certificates where it has one on file. Horry County, South Carolina, publishes a certificate list by permit number. When the address search fails, use the parcel ID to look up the building permit, then request the certificate from the local floodplain office.",
+            "sourceIds": [
+              "lee-lookup",
+              "horry-index",
+              "floodsmart"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Match the structure shown in Section A to the building being insured, including the building number and photographs. Review the construction stage in Section C before using the measured values. A file based on drawings or work in progress can differ from the final survey. When records are missing or the structure has changed, ask the local office or insurer what documentation they need and whether a qualified professional should update it.",
+            "sourceIds": [
+              "fema-form",
+              "floodsmart"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "read-the-two-certificates",
+        "heading": "What did Horry County file for Building 3?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Permit 136756 contains an elevation certificate for the non-residential Building 3 at 2519 Vacation Drive. The certificate was signed December 14, 2022 and marks finished construction. It lists FEMA panel 45051C0704K with a December 16, 2021 effective date and a base flood elevation (BFE) of 13 feet. The packet also includes a separate floodproofing certificate.",
+            "sourceIds": [
+              "horry-file"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Recorded value",
+              "Elevation, feet NAVD88",
+              "Where to find it"
+            ],
+            "stackOnMobile": true,
+            "rows": [
+              [
+                "Base flood elevation on the certificate",
+                "13.0",
+                "Elevation certificate, B9"
+              ],
+              [
+                "Top of bottom floor",
+                "14.0",
+                "Elevation certificate, C2(a)"
+              ],
+              [
+                "Lowest equipment",
+                "16.2",
+                "Elevation certificate, C2(e)"
+              ],
+              [
+                "Lowest adjacent grade at the loading dock",
+                "10.0",
+                "Elevation certificate, C2(f) and comments"
+              ],
+              [
+                "Certified floodproofing elevation",
+                "15.0",
+                "Floodproofing certificate, Section II"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "horry-file"
+              ],
+              [
+                "horry-file"
+              ],
+              [
+                "horry-file"
+              ],
+              [
+                "horry-file"
+              ],
+              [
+                "horry-file"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "On the common vertical datum, the floor was 1.0 foot above the BFE on the certificate. The certified floodproofing elevation was 2.0 feet above that same BFE. The floodproofing form also records 1.0 foot above lowest adjacent grade, while the elevation certificate locates its 10.0-foot lowest grade at a recessed loading dock. Keep these entries as filed and ask which grade the floodproofing form used before applying a height above grade.",
+            "sourceIds": [
+              "horry-file",
+              "fema-form"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-with-the-flood-map",
+        "heading": "What does a current map lookup confirm?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried the county’s flood zone and panel layers at the survey coordinates recorded in Section A. The county returned Zone AE and panel 45051C0704K. The polygon’s static BFE field returned −9999 with the datum and unit blank. That field supplies no numerical flood elevation at the point. The 13-foot figure in this example comes from the filed certificate, so confirm the applicable elevation in the effective map or flood insurance study before using it for a new decision.",
+            "sourceIds": [
+              "horry-zone",
+              "horry-panel",
+              "fema-data",
+              "horry-file"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the certificate values and county point queries",
+            "path": "/blog/elevation-certificate-by-address.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "check-your-underwriting-file",
+        "heading": "What should an underwriter keep in the file?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "The insured building and the matched permit or parcel. Keep the building number in the record for every structure on a shared parcel.",
+              "The signed certificate, the construction stage and date, and the stated vertical datum and units.",
+              "The surveyed floor, grade and equipment measurements, along with any separate floodproofing certification.",
+              "The effective flood panel, any applicable map change, and the flood elevation source used for the decision."
+            ],
+            "sourceIds": [
+              "fema-form",
+              "horry-file"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant Earth can supply the mapped hazard fields available for the property. Its static base flood elevation field comes from the FEMA polygon at the point where a value is published. Use the result to route a review, then add the survey and the supporting map documents for the insured building.",
+            "sourceIds": [
+              "earth-fields",
+              "fema-form"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the flood review",
+            "items": [
+              {
+                "path": "/data-coverage#hazards-and-underwriting",
+                "label": "Find Invariant Earth hazard definitions"
+              },
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check the flood map and revision history"
+              },
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Compare address, building and parcel flood checks"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can you get a copy of an elevation certificate online?",
+        "answer": "Some city and county portals link the recorded PDF to an address, parcel or permit. Ask the local floodplain manager or the building owner when it is missing from the portal.",
+        "sourceIds": [
+          "floodsmart",
+          "lee-lookup",
+          "horry-index"
+        ]
+      },
+      {
+        "question": "Does a FEMA flood zone lookup show the building’s first floor height?",
+        "answer": "A flood zone lookup shows mapped hazard information. Use an elevation certificate or other accepted measurement to establish the building’s floor and grade heights for the specific structure.",
+        "sourceIds": [
+          "fema-form",
+          "horry-zone"
+        ]
+      },
+      {
+        "question": "Does a finished elevation certificate expire?",
+        "answer": "FEMA’s instructions say that a completed certificate remains applicable unless physical changes invalidate the documented information. Separately verify whether later maps or local rules changed what is required for the decision.",
+        "sourceIds": [
+          "fema-form"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "floodsmart",
+        "title": "How to find an elevation certificate",
+        "publisher": "National Flood Insurance Program",
+        "url": "https://www.floodsmart.gov/get-insured/elevation-certificates",
+        "linkLabel": "FloodSmart"
+      },
+      {
+        "id": "fema-form",
+        "title": "Elevation Certificate, form FF-206-FY-22-152 and instructions",
+        "publisher": "FEMA via Pennsylvania Emergency Management Agency",
+        "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/pema/documents/floodplain-management/fema%20elevation%20certificate.pdf",
+        "linkLabel": "FEMA form"
+      },
+      {
+        "id": "lee-lookup",
+        "title": "Floodplain Resource Portal and certificate search",
+        "publisher": "Lee County, Florida",
+        "url": "https://www.leefl.gov/1212/Floodplain-Resource-Portal",
+        "linkLabel": "Lee County search"
+      },
+      {
+        "id": "horry-index",
+        "title": "Elevation and floodproofing certificate index",
+        "publisher": "Horry County",
+        "url": "https://www.horrycountysc.gov/departments/emergency-management/flooding/elevation-certificates/",
+        "linkLabel": "Horry County index"
+      },
+      {
+        "id": "horry-file",
+        "title": "Permit 136756, filed floodproofing and elevation certificates",
+        "publisher": "Horry County",
+        "url": "https://www.horrycountysc.gov/media/5rgjkg35/136756-final-ecert-floodproof-certificate.pdf",
+        "linkLabel": "Permit 136756"
+      },
+      {
+        "id": "horry-zone",
+        "title": "Current FEMA Flood Zones, point query at the certificate coordinates",
+        "publisher": "Horry County GIS",
+        "url": "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/Current_FEMA_Flood_Zones/FeatureServer/7/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CLEN_UNIT&returnGeometry=false",
+        "linkLabel": "County zone query"
+      },
+      {
+        "id": "horry-panel",
+        "title": "Current FEMA FIRM Panels, point query at the certificate coordinates",
+        "publisher": "Horry County GIS",
+        "url": "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/County_GISFloodMaps/MapServer/8/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+        "linkLabel": "County panel query"
+      },
+      {
+        "id": "fema-data",
+        "title": "DFIRM Verification Check Standard, static elevation and datum fields",
+        "publisher": "FEMA",
+        "url": "https://hazards.fema.gov/femaportal/usercare/guidesAndDocs/Documents/FEMADFIRMVerfication_Jan2009.pdf",
+        "linkLabel": "FEMA field standard"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Live point field definitions, including FEMA static base flood elevation",
+        "publisher": "Invariant Earth",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "linkLabel": "Earth field definitions"
+      }
+    ],
+    "relatedSlugs": [
+      "fema-flood-zone-history-for-underwriting",
+      "best-flood-risk-data-apis",
+      "commercial-property-insurance-data-apis",
+      "commercial-real-estate-data-apis-for-lenders"
+    ],
+    "dataset": {
+      "name": "Myrtle Beach Building 3 flood elevation certificate and county point checks",
+      "description": "Six surveyed or filed heights, the separate floodproofing entry above grade, and two county point queries at the certificate coordinates. Includes PDF page locators, source fingerprints, the NAVD88 datum and the raw polygon value for an unpopulated static elevation.",
+      "sourceIds": [
+        "horry-file",
+        "horry-zone",
+        "horry-panel",
+        "fema-data"
+      ],
+      "spatialCoverage": "2519 Vacation Drive, Building 3, Myrtle Beach, South Carolina, United States",
+      "temporalCoverage": "2022-12-14/2026-11-24"
+    }
+  },
+  {
     "slug": "cmbs-dscr-noi-by-property",
     "topic": "Data & APIs",
     "region": "United States",
@@ -21575,6 +21867,7 @@
             "label": "Continue the flood review",
             "items": [
               {"path": "/data-coverage#hazards-and-underwriting", "label": "Review Earth’s mapped hazard fields"},
+              {"slug": "elevation-certificate-by-address", "label": "Look up the building’s elevation certificate and measured floor height"},
               {
                 "slug": "fema-flood-zone-history-for-underwriting",
                 "label": "Check whether a FEMA amendment covers the structure, lot or part of the property"

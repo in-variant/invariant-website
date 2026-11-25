@@ -1,5 +1,56 @@
 [
   {
+    "slug": "elevation-certificate-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find an Elevation Certificate by Address",
+    "summary": "Find a flood elevation certificate by address or permit. Use a Myrtle Beach case to check the building, floor and floodproofing elevations, and FEMA map data.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/elevation-certificate-by-address.webp?v=a503816b",
+    "dataset": {
+      "name": "Myrtle Beach Building 3 flood elevation certificate and county point checks",
+      "description": "Six surveyed or filed heights, the separate floodproofing entry above grade, and two county point queries at the certificate coordinates. Includes PDF page locators, source fingerprints, the NAVD88 datum and the raw polygon value for an unpopulated static elevation.",
+      "spatialCoverage": "2519 Vacation Drive, Building 3, Myrtle Beach, South Carolina, United States",
+      "temporalCoverage": "2022-12-14/2026-11-24",
+      "sources": [
+        "https://www.horrycountysc.gov/media/5rgjkg35/136756-final-ecert-floodproof-certificate.pdf",
+        "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/Current_FEMA_Flood_Zones/FeatureServer/7/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CLEN_UNIT&returnGeometry=false",
+        "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/County_GISFloodMaps/MapServer/8/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+        "https://hazards.fema.gov/femaportal/usercare/guidesAndDocs/Documents/FEMADFIRMVerfication_Jan2009.pdf"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Permit 136756, filed floodproofing and elevation certificates",
+          "publisher": "Horry County",
+          "url": "https://www.horrycountysc.gov/media/5rgjkg35/136756-final-ecert-floodproof-certificate.pdf"
+        },
+        {
+          "title": "Current FEMA Flood Zones, point query at the certificate coordinates",
+          "publisher": "Horry County GIS",
+          "url": "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/Current_FEMA_Flood_Zones/FeatureServer/7/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=FLD_AR_ID%2CFLD_ZONE%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CLEN_UNIT&returnGeometry=false"
+        },
+        {
+          "title": "Current FEMA FIRM Panels, point query at the certificate coordinates",
+          "publisher": "Horry County GIS",
+          "url": "https://gisportal.horrycounty.org/server/rest/services/EmergencyMgmt/County_GISFloodMaps/MapServer/8/query?f=json&where=1%3D1&geometry=-78.94172222%2C33.69489444&geometryType=esriGeometryPoint&inSR=4269&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false"
+        },
+        {
+          "title": "DFIRM Verification Check Standard, static elevation and datum fields",
+          "publisher": "FEMA",
+          "url": "https://hazards.fema.gov/femaportal/usercare/guidesAndDocs/Documents/FEMADFIRMVerfication_Jan2009.pdf"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the certificate values and county point queries",
+          "path": "/blog/elevation-certificate-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "cmbs-dscr-noi-by-property",
     "topic": "Data & APIs",
     "title": "How to Find CMBS Debt Service Coverage and NOI by Property",
