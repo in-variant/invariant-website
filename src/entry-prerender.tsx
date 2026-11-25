@@ -51,7 +51,9 @@ async function pageFor(path: string) {
 
 export async function renderPublicRoute(path: string) {
   const { page, source, dataSources } = await pageFor(path)
-  const hydrate = path === '/datasets'
+  const hydrate = path === '/datasets' ? 'catalog'
+    : source === './pages/blog/IndustryArticle.tsx' ? 'article'
+    : undefined
   const metadata: SeoProps[] = []
   const routes = (
     <Routes>

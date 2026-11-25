@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext, useLayoutEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import siteMetadata from '../data/siteMetadata.json'
 import type { ResourceDataset } from '../data/resources'
@@ -36,7 +36,7 @@ export function Seo({
   feed,
 }: SeoProps) {
   const collectSeo = useContext(PrerenderSeo)
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!collectSeo) document.head.querySelectorAll('[data-prerender-seo]').forEach(tag => tag.remove())
   }, [collectSeo])
   if (collectSeo) {

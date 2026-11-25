@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Nav from './Nav'
 import Footer from './Footer'
@@ -8,10 +8,15 @@ import '../styles/SiteTheme.css'
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
+  const initialLocation = useRef<{ pathname: string; hash: string } | null>({ pathname, hash })
   const isHome = pathname === '/'
   const isReadingIndex = pathname === '/blog' || pathname === '/datasets' || pathname === '/data-coverage'
   const bespoke = ['/product', '/mcp', '/resources', '/datasets', '/data-coverage', '/blog', '/contact', '/careers', '/charter', '/about', '/trust', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].includes(pathname) || pathname.startsWith('/blog/')
   useLayoutEffect(() => {
+    if (initialLocation.current?.pathname === pathname && initialLocation.current.hash === hash
+      && document.getElementById('root')?.dataset.hydrate === 'article') return
+    initialLocation.current = null
+
     if (hash) {
       const frame = requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ behavior: 'instant' }))
       return () => cancelAnimationFrame(frame)

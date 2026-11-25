@@ -7,11 +7,13 @@ import App, { preloadInitialPage } from './App'
 import { PrerenderSeo } from './components/Seo'
 
 const root = document.getElementById('root')!
-const hydrateCatalog = root.hasAttribute('data-hydrate') && !window.location.search
+const hydrationMode = root.dataset.hydrate
+// Catalog parameters can change the rows before the first client render.
+const shouldHydrate = hydrationMode === 'article' || (hydrationMode === 'catalog' && !window.location.search)
 
 const keepPrerenderedMetadata = () => {}
 
-function CatalogHydration({ children }: { children: ReactNode }) {
+function PrerenderedPage({ children }: { children: ReactNode }) {
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => setHydrated(true), [])
   return (
@@ -29,9 +31,7 @@ function mount() {
       </HelmetProvider>
     </StrictMode>
   )
-  // The static catalog represents the unfiltered URL. Requests with query
-  // parameters can change the rows and links before the first client render.
-  if (hydrateCatalog) hydrateRoot(root, <CatalogHydration>{app}</CatalogHydration>)
+  if (shouldHydrate) hydrateRoot(root, <PrerenderedPage>{app}</PrerenderedPage>)
   else createRoot(root).render(app)
 }
 
