@@ -1,0 +1,76 @@
+{
+  "title": "California EV charger field-test denominators and success rates",
+  "publisher": "Invariant",
+  "report_number": "CEC-600-2026-034",
+  "measurement_period": {
+    "start_month": "2024-01",
+    "end_month": "2026-02"
+  },
+  "source_checked_on": "2026-11-24",
+  "scope": "California public charging field tests and visual observations as summarized by CEC staff. These are sample-level aggregates.",
+  "metrics": [
+    {
+      "charger_level": "Level 2",
+      "appendix_worksheet": "Overall L2",
+      "field_visit_approach_count": 10027,
+      "ports_accessed": 8452,
+      "ports_not_accessed": 1575,
+      "visual_observation_only": 6635,
+      "plug_in_tests": 1817,
+      "nonoperational_plug_in_tests": 49,
+      "operational_plug_in_tests": 1768,
+      "successful_charge_tests": 1646,
+      "failed_charge_tests_at_operational_ports": 122,
+      "inspected_port_failure_estimate": 318,
+      "certain_observational_failures": 179,
+      "weighted_observational_failures": 90,
+      "cec_operational_rate_pct": 96.2376,
+      "cec_scar_pct": 93.0995,
+      "derived_success_pct_all_plug_in_tests": 90.5889,
+      "derived_not_accessed_pct": 15.7076
+    },
+    {
+      "charger_level": "DC fast",
+      "appendix_worksheet": "Overall DCFC",
+      "field_visit_approach_count": 8320,
+      "ports_accessed": 7705,
+      "ports_not_accessed": 615,
+      "visual_observation_only": 5951,
+      "plug_in_tests": 1754,
+      "nonoperational_plug_in_tests": 42,
+      "operational_plug_in_tests": 1712,
+      "successful_charge_tests": 1610,
+      "failed_charge_tests_at_operational_ports": 102,
+      "inspected_port_failure_estimate": 277,
+      "certain_observational_failures": 158,
+      "weighted_observational_failures": 77,
+      "cec_operational_rate_pct": 96.4049,
+      "cec_scar_pct": 94.0421,
+      "derived_success_pct_all_plug_in_tests": 91.7902,
+      "derived_not_accessed_pct": 7.3918
+    }
+  ],
+  "calculation_notes": {
+    "cec_operational_rate_pct": "100 × (accessed ports minus estimated operational failures) / accessed ports. Estimated failures include definite failures and weighted potential failures.",
+    "cec_scar_pct": "100 × successful charge tests / operational plug-in tests. Confirmed nonoperational ports are outside this denominator.",
+    "derived_success_pct_all_plug_in_tests": "100 × successful charge tests / all plug-in tests, including confirmed nonoperational ports. This is an Invariant calculation for the tested subset.",
+    "derived_not_accessed_pct": "100 × ports not accessed / attempted accesses. This is an Invariant calculation. An access failure alone does not establish charger downtime."
+  },
+  "source_locators": [
+    {
+      "url": "https://www.energy.ca.gov/sites/default/files/2026-11/CEC-600-2026-034.pdf",
+      "locator": "Printed pages 6–8, Figures 1–3",
+      "sha256": "41fc947b91ff38f251f88ee2ec80f9b1041368a4d1882668d2a746ca5e6f7db9"
+    },
+    {
+      "url": "https://www.energy.ca.gov/sites/default/files/2026-11/CEC-600-2026-034-AP-B.xlsx",
+      "locator": "Overall L2 and Overall DCFC, G3:J25 and K26:L28",
+      "sha256": "ecd333074b6b225ca8cd403b54954a1af9608197e7262057c133da17a28fae51"
+    }
+  ],
+  "untested_metrics": [
+    "Continuous port uptime",
+    "Current live port availability",
+    "Availability at individual stations"
+  ]
+}
