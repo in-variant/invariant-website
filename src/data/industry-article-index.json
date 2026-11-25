@@ -5361,10 +5361,11 @@
     "slug": "industrial-environmental-permit-history-by-parcel",
     "topic": "Data & APIs",
     "title": "Environmental permits and enforcement by parcel",
-    "summary": "Link an industrial parcel to EPA facility IDs and state permits. A Brooklyn case shows why address and boundary searches can miss regulatory records.",
+    "summary": "Match a parcel to EPA facilities, permits, and cleanup records. Compare a Brooklyn permit search and a New Jersey Superfund partial deletion.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/industrial-environmental-permit-history-by-parcel.webp?v=83ffd2b1",
     "dataset": {
       "name": "Newtown Creek facility registry and tax lot comparison",
@@ -5412,7 +5413,62 @@
           "format": "GeoJSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-superfund-partial-deletion",
+        "name": "East Rutherford tax lots and partial Superfund deletion records",
+        "description": "Three New Jersey tax lot polygons with stable parcel IDs and links to the EPA deletion rule, mapped deletion area, and deed restrictions recorded in the five-year review. The lot outlines show tax geography.",
+        "sourceReuse": {
+          "note": "Credit the New Jersey Office of GIS for the tax lot geometry. Use the EPA map and recorded notices for the deletion and restriction boundaries.",
+          "policyLabel": "New Jersey parcel mapping notes",
+          "policyUrl": "https://www.nj.gov/njgin/edata/parcels/"
+        },
+        "spatialCoverage": "East Rutherford, Bergen County, New Jersey, United States",
+        "datePublished": "2026-11-25",
+        "sources": [
+          "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?where=PAMS_PIN+IN+%28%270212_104_1.01%27%2C%270212_104_1.02%27%2C%270212_105.01_8%27%29&outFields=PAMS_PIN%2CPCLBLOCK%2CPCLLOT%2CMUN_NAME%2CPROP_LOC%2CCALC_ACRE&returnGeometry=true&outSR=4326&f=geojson",
+          "https://www.govinfo.gov/content/pkg/FR-2024-02-16/pdf/2024-03003.pdf#page=2",
+          "https://semspub.epa.gov/work/02/652569.pdf#page=8",
+          "https://semspub.epa.gov/work/02/765915.pdf#page=12",
+          "https://semspub.epa.gov/work/02/688960.pdf"
+        ],
+        "sourceDetails": [
+          {
+            "title": "NJ tax parcel query for the three East Rutherford lots",
+            "publisher": "New Jersey Office of GIS",
+            "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?where=PAMS_PIN+IN+%28%270212_104_1.01%27%2C%270212_104_1.02%27%2C%270212_105.01_8%27%29&outFields=PAMS_PIN%2CPCLBLOCK%2CPCLLOT%2CMUN_NAME%2CPROP_LOC%2CCALC_ACRE&returnGeometry=true&outSR=4326&f=geojson"
+          },
+          {
+            "title": "February 16, 2024 final deletion rule, Table 2",
+            "publisher": "Federal Register",
+            "url": "https://www.govinfo.gov/content/pkg/FR-2024-02-16/pdf/2024-03003.pdf#page=2"
+          },
+          {
+            "title": "Universal Oil Products partial deletion justification, deed notices and lot references",
+            "publisher": "U.S. EPA Region 2",
+            "url": "https://semspub.epa.gov/work/02/652569.pdf#page=8"
+          },
+          {
+            "title": "March 30, 2026 five-year review, Table 4",
+            "publisher": "U.S. EPA Region 2",
+            "url": "https://semspub.epa.gov/work/02/765915.pdf#page=12"
+          },
+          {
+            "title": "Figure 1 showing the partial deletion area",
+            "publisher": "U.S. EPA Region 2",
+            "url": "https://semspub.epa.gov/work/02/688960.pdf"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the East Rutherford tax lots and cleanup record references",
+            "path": "/blog/superfund-partial-deletion-tax-lots.geojson",
+            "format": "GeoJSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "water-sewer-data-apis-site-selection",

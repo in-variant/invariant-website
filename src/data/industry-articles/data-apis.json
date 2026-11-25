@@ -26851,9 +26851,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Environmental permits and enforcement by parcel",
-    "description": "Link an industrial parcel to EPA facility IDs and state permits. A Brooklyn case shows why address and boundary searches can miss regulatory records.",
+    "description": "Match a parcel to EPA facilities, permits, and cleanup records. Compare a Brooklyn permit search and a New Jersey Superfund partial deletion.",
     "date": "2026-11-22",
-    "readMinutes": 7,
+    "updatedDate": "2026-11-25",
+    "readMinutes": 9,
     "coverAlt": "Aerial map of Newtown Creek in Brooklyn with tax lot 3025250001 outlined. Two EPA waste-program points sit outside the southern boundary. Five of seven ECHO points tested were covered by the mapped parcel.",
     "coverCaption": "Newtown Creek, Brooklyn. The green outline is MapPLUTO tax lot 3025250001, the green dot is the EPA registry point, and the gold dots are the two linked waste-program points outside the lot. Aerial imagery from NYS ITS Geospatial Services, 2024.",
     "intro": "To find environmental permits and enforcement history for an industrial site, start with the tax parcel and the operator’s names and addresses. Link those to the EPA Facility Registry Service ID and each program’s permit or handler ID. Search EPA ECHO for dated compliance and enforcement records, then obtain the controlling permits and orders from the issuing agencies. This gives you a record you can review before an acquisition, lease, or expansion.",
@@ -26943,6 +26944,44 @@
         ]
       },
       {
+        "id": "check-superfund-partial-deletion-by-parcel",
+        "heading": "What does a partial Superfund delisting mean for a parcel?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth’s nearest_superfund_distance_m field to screen a coordinate against EPA Superfund registry records within 8 km. Then find the EPA cleanup site ID and read the final rule and deletion map. Record the effective date, the area it covers, and which material the decision covers, such as soil or groundwater. Check the latest cleanup review and recorded deed notices for the lots you want to buy or lease.",
+            "sourceIds": ["earth-superfund-distance", "epa-deletion-policy"]
+          },
+          {
+            "type": "paragraph",
+            "text": "The February 16, 2024 final rule for Universal Oil Products in East Rutherford, New Jersey, removed about 17 acres of soil in Area 2 of the uplands cleanup from the National Priorities List. EPA’s justification identifies Block 104, Lots 1.01 and 1.02. East Rutherford’s March 2026 planning agenda matches 150 Route 17 North to Lot 1.01. That address is a way into the record. Use the block and lot to retrieve the documents that apply to it.",
+            "sourceIds": ["uop-final-rule", "uop-justification", "east-rutherford-lot"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Tax lots", "Federal action", "Recorded restrictions described by EPA"],
+            "rows": [
+              ["Block 104, Lots 1.01 and 1.02", "Area 2 soil covered by the February 2024 partial deletion.", "A 2012 notice restricted use to commercial and addressed subsurface work. A June 9, 2023 notice addresses vapor intrusion controls for new construction."],
+              ["Block 105.01, Lot 8", "Uplands east of the rail line, outside this partial deletion.", "EPA’s 2026 review records a February 11, 2026 vapor intrusion deed restriction here. The deletion justification describes the cap on this part of the site."]
+            ],
+            "rowSourceIds": [["uop-justification", "uop-review"], ["uop-justification", "uop-review"]]
+          },
+          {
+            "type": "paragraph",
+            "text": "The current New Jersey tax parcel records show 12.81 and 6.44 acres for the two Area 2 lot references. Their 19.25-acre total describes mapped tax lots. Use the EPA action’s 17-acre figure and Figure 1 for the federal scope. For a building addition, excavation or change of use, ask your environmental and title reviewers to compare the plan with the recorded notices and current permits.",
+            "sourceIds": ["nj-uop-lots", "uop-final-rule", "uop-deletion-map"]
+          },
+          {
+            "type": "download",
+            "label": "Download the East Rutherford tax lots and cleanup record references",
+            "path": "/blog/superfund-partial-deletion-tax-lots.geojson",
+            "format": "GeoJSON",
+            "datasetAnchor": "dataset-superfund-partial-deletion"
+          }
+        ]
+      },
+      {
         "id": "screen-an-industrial-site",
         "heading": "Build a diligence file that another reviewer can check",
         "blocks": [
@@ -27002,7 +27041,30 @@
       {"id": "dec-locator", "title": "DECinfo Locator regulatory and cleanup layers", "url": "https://dec.ny.gov/maps/interactive-maps/decinfo-locator/layers", "publisher": "New York State DEC"},
       {"id": "superfund", "title": "Newtown Creek Superfund site profile", "url": "https://cumulis.epa.gov/supercpad/SiteProfiles/index.cfm?fuseaction=second.cleanup&id=0206282", "publisher": "U.S. EPA"},
       {"id": "aai", "title": "All Appropriate Inquiries", "url": "https://www.epa.gov/brownfields/brownfields-all-appropriate-inquiries", "publisher": "U.S. EPA"},
+      {"id": "earth-superfund-distance", "title": "Earth API field for screening nearby Superfund registry records", "url": "https://docs.invariant-ai.com/fields/nearest_superfund_distance_m", "publisher": "Invariant Earth"},
+      {"id": "epa-deletion-policy", "title": "National Priorities List deletion and partial deletion", "url": "https://www.epa.gov/superfund/superfund-npl-deletion-guidance-and-policy", "publisher": "U.S. EPA"},
+      {"id": "uop-final-rule", "title": "February 16, 2024 final deletion rule, Table 2", "url": "https://www.govinfo.gov/content/pkg/FR-2024-02-16/pdf/2024-03003.pdf#page=2", "publisher": "Federal Register"},
+      {"id": "uop-justification", "title": "Universal Oil Products partial deletion justification, deed notices and lot references", "url": "https://semspub.epa.gov/work/02/652569.pdf#page=8", "publisher": "U.S. EPA Region 2"},
+      {"id": "uop-review", "title": "March 30, 2026 five-year review, Table 4", "url": "https://semspub.epa.gov/work/02/765915.pdf#page=12", "publisher": "U.S. EPA Region 2"},
+      {"id": "uop-deletion-map", "title": "Figure 1 showing the partial deletion area", "url": "https://semspub.epa.gov/work/02/688960.pdf", "publisher": "U.S. EPA Region 2"},
+      {"id": "east-rutherford-lot", "title": "March 9, 2026 Planning Board docket 26-02, 150 Route 17 North", "url": "https://www.eastrutherfordnj.net/AgendaCenter/ViewFile/Agenda/_03092026-301", "publisher": "Borough of East Rutherford"},
+      {"id": "nj-uop-lots", "title": "NJ tax parcel query for the three East Rutherford lots", "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?where=PAMS_PIN+IN+%28%270212_104_1.01%27%2C%270212_104_1.02%27%2C%270212_105.01_8%27%29&outFields=PAMS_PIN%2CPCLBLOCK%2CPCLLOT%2CMUN_NAME%2CPROP_LOC%2CCALC_ACRE&returnGeometry=true&outSR=4326&f=geojson", "publisher": "New Jersey Office of GIS"},
       {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"}
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-superfund-partial-deletion",
+        "name": "East Rutherford tax lots and partial Superfund deletion records",
+        "description": "Three New Jersey tax lot polygons with stable parcel IDs and links to the EPA deletion rule, mapped deletion area, and deed restrictions recorded in the five-year review. The lot outlines show tax geography.",
+        "sourceIds": ["nj-uop-lots", "uop-final-rule", "uop-justification", "uop-review", "uop-deletion-map"],
+        "sourceReuse": {
+          "note": "Credit the New Jersey Office of GIS for the tax lot geometry. Use the EPA map and recorded notices for the deletion and restriction boundaries.",
+          "policyLabel": "New Jersey parcel mapping notes",
+          "policyUrl": "https://www.nj.gov/njgin/edata/parcels/"
+        },
+        "spatialCoverage": "East Rutherford, Bergen County, New Jersey, United States",
+        "datePublished": "2026-11-25"
+      }
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "commercial-real-estate-data-apis-for-lenders"]
   },
