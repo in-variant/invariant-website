@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
+import { articleSearchWords } from '../src/data/articleSearchWords.mjs'
 
 const base = new URL('../src/data/', import.meta.url)
 const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
@@ -209,13 +210,29 @@ const articleList = [...index, ...legacyArticles].map(({ slug, title, topic, sum
 }))
 const collectionList = blogCollections.map(({ slug, title, navLabel }) => ({ slug, title, navLabel }))
 writeIfChanged(new URL('article-list.json', searchDir), JSON.stringify({ articles: articleList, collections: collectionList }))
-const articleSearch = Object.fromEntries(articles.map(article => [
-  article.slug,
-  [
+const articleSearch = Object.fromEntries(articles.map(article => {
+  const headings = [
     ...article.sections.map(section => section.heading),
     ...article.faqs.map(faq => faq.question),
-  ].join(' '),
-]))
+  ].join(' ')
+  const body = [
+    article.intro, ...article.takeaways,
+    ...article.sections.flatMap(section => section.blocks.flatMap(block => {
+      switch (block.type) {
+        case 'paragraph': return [block.text]
+        case 'list': return block.items
+        case 'table': return [...block.columns, ...block.rows.flat()]
+        case 'download': return [block.label]
+        case 'links': return block.items.map(item => item.label)
+        default: return []
+      }
+    })),
+    ...article.faqs.map(faq => faq.answer),
+    ...article.sources.flatMap(source => [source.publisher, source.title]),
+  ].join('\n')
+  const bodyTerms = [...new Set(articleSearchWords(body))].sort()
+  return [article.slug, { headings, bodyTerms }]
+}))
 writeIfChanged(new URL('details.json', searchDir), JSON.stringify(articleSearch))
 const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
 writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)

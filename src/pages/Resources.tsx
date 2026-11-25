@@ -28,8 +28,10 @@ export default function Resources() {
   const { details, pending } = useArticleSearchDetails(searching && (format === 'All' || format === 'Guides'))
   const searchIndex = useMemo(() => searching ? prepareSearch(library, resource => ({
     title: resource.title,
+    relatedTitle: resource.articleSlug,
     metadata: `${resource.summary} ${resource.topic} ${resource.searchContext ?? ''}`,
-    details: resource.articleSlug ? details?.[resource.articleSlug] : undefined,
+    details: resource.articleSlug ? details?.[resource.articleSlug]?.headings : undefined,
+    bodyTerms: resource.articleSlug ? details?.[resource.articleSlug]?.bodyTerms : undefined,
   })) : [], [searching, details])
   const candidates = searching ? rankSearch(searchIndex, queryWords) : library
   const filtered = candidates.filter(resource =>

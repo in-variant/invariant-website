@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import type { ArticleSearchDetails } from '../data/blogSearch'
 
 export function useArticleSearchDetails(searching: boolean) {
-  const [details, setDetails] = useState<Record<string, string> | null>()
+  const [details, setDetails] = useState<ArticleSearchDetails | null>()
   const pending = searching && details === undefined
 
   useEffect(() => {
