@@ -22827,6 +22827,7 @@
     "title": "Commercial Property Ownership Data and APIs",
     "description": "Find who owns a commercial property, trace an LLC to its documented investors, and compare deed and ownership APIs using the GM Building in New York.",
     "date": "2026-11-23",
+    "updatedDate": "2026-11-25",
     "readMinutes": 7,
     "coverAlt": "2024 aerial imagery of Midtown Manhattan with the General Motors Building tax lot outlined beside Central Park.",
     "coverCaption": "The General Motors Building’s full-block tax lot is Manhattan block 1294, lot 1. NYC MapPLUTO 26v2 geometry over 2024 New York State aerial imagery.",
@@ -22919,6 +22920,14 @@
               "legals",
               "roles",
               "acris"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The November 23 download preserves the MapPLUTO 26v2 assessor record. We rechecked the same BBL in 26v3 on November 25 and found the same assessor address and owner name. Replay the selected recorder rows with the lookup script to check the June 2008 recording cutoff.",
+            "sourceIds": [
+              "pluto",
+              "earth-deed-workflow"
             ]
           },
           {
@@ -23087,8 +23096,15 @@
     ],
     "sources": [
       {
+        "id": "earth-deed-workflow",
+        "title": "Replay the assessor and deed lookup by address",
+        "url": "https://docs.invariant-ai.com/check-property-deed-by-address",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Run the deed lookup"
+      },
+      {
         "id": "pluto",
-        "title": "MapPLUTO 26v2, Manhattan block 1294 lot 1",
+        "title": "MapPLUTO lookup for Manhattan block 1294 lot 1",
         "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012940001&outFields=BBL%2CAddress%2COwnerName%2CBlock%2CLot%2CVersion&outSR=3857&f=geojson",
         "publisher": "NYC Department of City Planning"
       },
