@@ -2821,11 +2821,12 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "Check FEMA flood zones by address for data centers",
-  "description": "Find the FEMA flood zone by data center address. Compare eight sites, including 2800 Summit Avenue in Plano and Novva Mesa, and see where Zone X is shaded.",
+  "description": "Find the FEMA zone by data center address. Compare ten sites, including 1919 Park Avenue in Weehawken and 1100 White Street SW in Atlanta.",
   "date": "2026-11-20",
-  "readMinutes": 9,
-  "intro": "Look up the address on FEMA’s effective map, then compare the zone across the tax parcel, building footprint and access route. The parcel at 2800 Summit Avenue in Plano is in unshaded Zone X. Novva’s Mesa parcel is in shaded Zone X, mapped for a 0.2% annual chance of flooding. The examples below show the records for each site and what still needs verification.",
+  "readMinutes": 10,
+  "intro": "Look up the address on FEMA’s effective map, then check the full parcel, the building outline and the access route. At 1919 Park Avenue in Weehawken, the state’s rooftop point is in Zone AE and about 35% of the tax lot is in Zone AE. At 1100 White Street SW in Atlanta, the parcel and the city’s mapped building outline are in unshaded Zone X. The ten examples below show which records support each result.",
   "takeaways": [
+   "Separate the point from the parcel. A single roof point can be in Zone AE on a tax lot that crosses several FEMA zones.",
    "Keep the Zone X subtype. Plano and Novva Mesa both returned X, but the Mesa parcel is in the mapped 0.2% annual-chance flood hazard area.",
    "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
    "In Tampa, the address point, parcel and building matched to FEMA Zone X. The county hurricane evacuation map puts the parcel in Zone C.",
@@ -3122,6 +3123,80 @@
     ]
    },
    {
+    "id": "weehawken-1919-park-flood-zone",
+    "heading": "FEMA flood zone at 1919 Park Avenue in Weehawken",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The state rooftop address point at 1919 Park Avenue is in FEMA Zone AE. On November 25, 2026, about 35.1% of tax lot 0911_34.03_9.01 intersected Zone AE, 15.0% intersected shaded Zone X, and 49.9% intersected unshaded Zone X. Hudson County panel 34017C0044D took effect August 16, 2006.",
+      "sourceIds": [
+       "weehawken-parcel",
+       "weehawken-rooftop",
+       "weehawken-zones",
+       "weehawken-firm",
+       "weehawken-point-zone"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The Zone AE polygon gives a base flood elevation of 9 feet referenced to NAVD88. Compare that water-surface elevation with surveyed equipment and access elevations on the same datum. The Census street-range point falls about five metres outside the tax parcel, even though FEMA returns Zone AE there too.",
+      "sourceIds": [
+       "weehawken-range-point",
+       "weehawken-point-zone",
+       "weehawken-range-zone"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Centersquare lists both 1919 Park Avenue and 300 JFK Boulevard East for EWR2. This lookup covers the Park Avenue lot and the state’s rooftop point. Check the building outline and the separate Boulevard East address before applying the result across the campus.",
+      "sourceIds": [
+       "weehawken-operator",
+       "weehawken-parcel",
+       "weehawken-rooftop"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "atlanta-1100-white-street-flood-zone",
+    "heading": "FEMA flood zone at 1100 White Street SW in Atlanta",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "On November 25, 2026, all of Fulton County tax parcel 14 0118 LL0258 and the city’s mapped building outline within it fell in unshaded Zone X, which FEMA labels an area of minimal mapped flood hazard. The matching printed Fulton County panel is 13121C0356F, effective September 18, 2013.",
+      "sourceIds": [
+       "atl2-parcel",
+       "atl2-roof",
+       "atl2-zones",
+       "atl2-firm",
+       "atl2-roof-zone"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "DataBank lists ATL2 at 1100 White Street Southwest. A Georgia EPD draft air permit for a separate data center at 200 Selig Drive SW also lists 1100 White Street as its mailing address. Use the facility address in the permit when checking the Selig Drive site.",
+      "sourceIds": [
+       "atl2-operator",
+       "atl2-mailing-address"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/data-center-flood-weehawken-atlanta.json",
+      "format": "JSON",
+      "label": "Download the Weehawken and Atlanta map checks",
+      "datasetAnchor": "dataset-weehawken-atlanta-flood"
+     },
+     {
+      "type": "paragraph",
+      "text": "To check another address, use the Earth API walkthrough to verify the address point, pull its mapped FEMA zone and calculate the parcel’s overlap.",
+      "sourceIds": [
+       "earth-flood-workflow"
+      ]
+     }
+    ]
+   },
+   {
     "id": "replay-fema-checks",
     "heading": "Replay these FEMA flood map checks with Python",
     "blocks": [
@@ -3399,6 +3474,28 @@
      "tampa-flood-zones",
      "tampa-evacuation-layer",
      "tampa-evacuation-meaning"
+    ]
+   },
+   {
+    "question": "What FEMA flood zone is 1919 Park Avenue in Weehawken?",
+    "answer": "The state rooftop address point is in Zone AE. On November 25, 2026, about 35.1% of the mapped tax lot was in Zone AE, with the balance in shaded and unshaded Zone X. The effective map panel for the lot is 34017C0044D.",
+    "sourceIds": [
+     "weehawken-parcel",
+     "weehawken-rooftop",
+     "weehawken-zones",
+     "weehawken-firm",
+     "weehawken-point-zone"
+    ]
+   },
+   {
+    "question": "What FEMA flood zone is DataBank ATL2 at 1100 White Street SW?",
+    "answer": "As checked November 25, 2026, the Fulton County parcel and the mapped city building outline are in unshaded Zone X on FEMA panel 13121C0356F. This describes mapped flood hazard at the ATL2 address.",
+    "sourceIds": [
+     "atl2-operator",
+     "atl2-parcel",
+     "atl2-roof",
+     "atl2-zones",
+     "atl2-firm"
     ]
    },
    {
@@ -3823,6 +3920,96 @@
     "publisher": "FEMA",
     "linkLabel": "Mesa FEMA panel",
     "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-111.64445182001432%2C33.3355922965462%2C-111.635592870074%2C33.34581054984235&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "weehawken-operator",
+    "title": "Centersquare EWR2 specification sheet listing 1919 Park Avenue and 300 JFK Boulevard East",
+    "publisher": "Centersquare",
+    "url": "https://centersquaredc.com/hubfs/CenterSquare/docs/Centersquare-EWR-SpecSheet.pdf"
+   },
+   {
+    "id": "weehawken-parcel",
+    "title": "New Jersey parcel 0911_34.03_9.01 at 1919 Park Avenue",
+    "publisher": "New Jersey Office of Information Technology, Office of GIS",
+    "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/ArcGIS/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query?where=MUN_NAME+LIKE+%27WEEHAWKEN%25%27+AND+PROP_LOC+LIKE+%271919+PARK%25%27&outFields=OBJECTID%2CPAMS_PIN%2CPROP_LOC%2CMUN_NAME%2CCALC_ACRE&outSR=4326&f=geojson&returnGeometry=true"
+   },
+   {
+    "id": "weehawken-rooftop",
+    "title": "New Jersey address point 227655 with rooftop placement at 1919 Park Avenue",
+    "publisher": "New Jersey Office of Information Technology, Office of GIS",
+    "url": "https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/AddressPoints/FeatureServer/0/query?where=ADD_NUMBER%3D1919&geometry=-74.028%2C40.758%2C-74.024%2C40.762&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CINC_MUNI%2CFULLADDR%2CPLACEMENT%2CPCL_GUID%2CPRIMARYPT%2CSTATUS&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "weehawken-range-point",
+    "title": "Census street-range match for 1919 Park Avenue",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?address=1919+Park+Avenue%2C+Weehawken%2C+NJ+07086&benchmark=Public_AR_Current&format=json"
+   },
+   {
+    "id": "weehawken-zones",
+    "title": "Effective FEMA flood polygons intersecting the 1919 Park Avenue parcel search envelope",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-74.0266694563243%2C40.7599146000542%2C-74.0248765923921%2C40.7615441083683&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CLEN_UNIT&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "weehawken-firm",
+    "title": "FEMA panel inventory at 1919 Park Avenue, including Hudson County panel 34017C0044D",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-74.0266694563243%2C40.7599146000542%2C-74.0248765923921%2C40.7615441083683&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CEFF_DATE%2CPANEL_TYP&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "weehawken-point-zone",
+    "title": "FEMA Zone AE and base flood elevation at the New Jersey rooftop address point",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-74.0258250337761%2C40.7607754362147&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CDFIRM_ID%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM%2CLEN_UNIT&f=json"
+   },
+   {
+    "id": "weehawken-range-zone",
+    "title": "Federal flood-map point result at the Census street-range match",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-74.02671926996%2C40.760159793966&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CDFIRM_ID%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&f=json"
+   },
+   {
+    "id": "atl2-operator",
+    "title": "DataBank Atlanta facility directory listing ATL2 at 1100 White Street Southwest",
+    "publisher": "DataBank",
+    "url": "https://www.databank.com/data-centers/atlanta/"
+   },
+   {
+    "id": "atl2-parcel",
+    "title": "Fulton County tax parcel 14 0118 LL0258 at 1100 White Street SW",
+    "publisher": "Fulton County GIS",
+    "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=ParcelID%3D%2714+0118++LL0258%27&outFields=OBJECTID%2CParcelID%2CAddress%2CTaxYear%2CLandAcres&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "atl2-roof",
+    "title": "City of Atlanta municipal building footprint query for the 1100 White Street SW parcel",
+    "publisher": "City of Atlanta Department of Watershed Management",
+    "url": "https://services2.arcgis.com/I9cUOJUZvdGAJncI/ArcGIS/rest/services/BuildingsATL/FeatureServer/0/query?where=1%3D1&geometry=-84.42645958209427%2C33.73316178555319%2C-84.42463178799181%2C33.73466338480441&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CCLASSNAME&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "atl2-zones",
+    "title": "Effective FEMA flood hazard polygons around the 1100 White Street SW parcel",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.42645958209427%2C33.73316178555319%2C-84.42463178799181%2C33.73466338480441&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "atl2-firm",
+    "title": "FEMA panel inventory at 1100 White Street, including Fulton County panel 13121C0356F",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-84.42645958209427%2C33.73316178555319%2C-84.42463178799181%2C33.73466338480441&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CEFF_DATE%2CPANEL_TYP&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "atl2-roof-zone",
+    "title": "FEMA point check inside the mapped ATL2 building outline",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.42573356572015%2C33.7339148408117&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CDFIRM_ID%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&f=json"
+   },
+   {
+    "id": "atl2-mailing-address",
+    "title": "Draft air permit 7374-121-0973-S-01-0 separates the 200 Selig Drive facility from the White Street mailing address",
+    "publisher": "Georgia Environmental Protection Division",
+    "url": "https://epd.georgia.gov/document/document/28975-draft/download"
    }
   ],
   "relatedSlugs": [
@@ -3920,6 +4107,31 @@
      "novva-mesa-flood-footprints",
      "novva-mesa-flood-zones",
      "novva-mesa-flood-panels"
+    ]
+   },
+   {
+    "anchor": "dataset-weehawken-atlanta-flood",
+    "name": "FEMA flood zone checks for Weehawken EWR2 and Atlanta ATL2",
+    "description": "Effective FEMA parcel overlays, map panels and point checks for 1919 Park Avenue in Weehawken and 1100 White Street SW in Atlanta. Includes Zone AE, shaded and unshaded Zone X shares, the Atlanta footprint ID and exact source queries.",
+    "datePublished": "2026-11-25",
+    "spatialCoverage": "Weehawken, Hudson County, New Jersey, and Atlanta, Fulton County, Georgia, United States",
+    "temporalCoverage": "2026-11-25",
+    "sourceIds": [
+     "weehawken-operator",
+     "weehawken-parcel",
+     "weehawken-rooftop",
+     "weehawken-range-point",
+     "weehawken-zones",
+     "weehawken-firm",
+     "weehawken-point-zone",
+     "weehawken-range-zone",
+     "atl2-operator",
+     "atl2-parcel",
+     "atl2-roof",
+     "atl2-zones",
+     "atl2-firm",
+     "atl2-roof-zone",
+     "atl2-mailing-address"
     ]
    }
   ]
