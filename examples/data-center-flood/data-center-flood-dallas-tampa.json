@@ -1,0 +1,240 @@
+{
+  "title": "FEMA flood zone and location evidence at two public data center addresses",
+  "retrieved_on": "2026-11-24",
+  "cases": [
+    {
+      "address": "400 South Akard Street, Dallas, TX 75202",
+      "operator_source": "https://www.databank.com/data-centers/dallas/400-south-akard/",
+      "address_record": {
+        "OBJECTID": 83921,
+        "ADDRESSID": 83921,
+        "HOUSENUMBER": 400,
+        "FULLSTREETNAME": "S AKARD ST",
+        "STATUS": null,
+        "ACCOUNTNUMBER": "00000101136000000",
+        "ZIPCODE": 75202,
+        "ADDRESSTYPE": "T"
+      },
+      "address_point_epsg4326": [
+        -96.798896076954,
+        32.7782984005618
+      ],
+      "point_zone": {
+        "FLD_AR_ID": "48113C_13283",
+        "FLD_ZONE": "X",
+        "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+        "SFHA_TF": "F",
+        "STATIC_BFE": -9999.0
+      },
+      "point_inside_parcel": true,
+      "parcel": {
+        "OBJECTID": 188075757,
+        "PARCELID": "00000101136000000",
+        "SITEADDRESS": "400 S AKARD ST",
+        "LASTUPDATE": 1735758569000,
+        "REVALYR": 2026,
+        "area_m2": 11397.63,
+        "mapped_fraction": 1.0,
+        "sfha_fraction": 0.0,
+        "zones": [
+          {
+            "FLD_AR_ID": "48113C_13283",
+            "FLD_ZONE": "X",
+            "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+            "SFHA_TF": "F",
+            "STATIC_BFE": -9999,
+            "area_m2": 11397.63,
+            "fraction": 1.0,
+            "base_flood_elevation_published": false
+          }
+        ]
+      },
+      "effective_map_panels": [
+        {
+          "FIRM_PAN": "48113C0345J",
+          "EFF_DATE": 998524800000,
+          "DFIRM_ID": "48113C",
+          "effective_date": "2001-08-23"
+        }
+      ],
+      "sources": {
+        "address": {
+          "url": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/ArcGIS/rest/services/AddressPoints/FeatureServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDRESSID%2CHOUSENUMBER%2CFULLSTREETNAME%2CSTATUS%2CACCOUNTNUMBER%2CZIPCODE%2CADDRESSTYPE&returnGeometry=true&where=HOUSENUMBER%3D400+AND+NAME%3D%27AKARD%27+AND+STREETPREDIRECTION%3D%27S%27",
+          "retrieved_at_utc": "2026-11-25T05:23:21+00:00",
+          "sha256": "a97f3a6dec0f4063e2ca48422456528f254e734e66ca1ff3fdac8899d7f2640b"
+        },
+        "parcel": {
+          "url": "https://maps.dcad.org/prdwa/rest/services/Property/ParcelQuery/MapServer/4/query?f=geojson&outSR=4326&returnGeometry=true&where=PARCELID%3D%2700000101136000000%27&outFields=OBJECTID%2CPARCELID%2CSITEADDRESS%2CLASTUPDATE%2CREVALYR",
+          "retrieved_at_utc": "2026-11-25T05:25:46+00:00",
+          "sha256": "1e6a11092680ab259e3419b14906e9916bccfbec88df1699c5e82f1e87e21a07"
+        },
+        "point_zone": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=json&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&geometry=-96.798896076954%2C32.7782984005618&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false",
+          "retrieved_at_utc": "2026-11-25T05:24:18+00:00",
+          "sha256": "a06ef2a9a31686c7be82f8afda55086edf9050d20ac0ee8857d22dc46f0cea1d"
+        },
+        "point_panel": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=json&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID&geometry=-96.798896076954%2C32.7782984005618&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false",
+          "retrieved_at_utc": "2026-11-25T05:24:18+00:00",
+          "sha256": "f108912feb7ab47af117284a198f960e6fff30720a3908bca9789f23671a487f"
+        },
+        "parcel_and_building_zones": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE",
+          "retrieved_at_utc": "2026-11-25T05:28:41+00:00",
+          "sha256": "f3682a0456954b446311939cf545332ffc3e49bdf4014ff20275173a4ec6d56c"
+        },
+        "parcel_panels": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-96.7990690602%2C32.7774839795%2C-96.7973447728%2C32.7787847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID",
+          "retrieved_at_utc": "2026-11-25T05:28:41+00:00",
+          "sha256": "737b841efad9a3cde681eb1342675f4d8e589de7a381ebf90da39bd5cf503c60"
+        },
+        "footprint_candidate_query": {
+          "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer/0/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-96.7989690602%2C32.7775839795%2C-96.7974447728%2C32.7786847367&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CBUILD_ID%2CPROP_ADDR%2CPROP_CITY%2CPROP_ZIP%2CIMAGE_DATE%2CPROD_DATE",
+          "retrieved_at_utc": "2026-11-25T05:27:33+00:00",
+          "sha256": "989e284bf57eb8ca93338bf45f76c6dbfb1e50d9e0249135a043bd9a1c8e1276"
+        }
+      },
+      "footprint": {
+        "resolved": false,
+        "screening_scope": "The USA Structures query returned no footprint carrying the 400 S AKARD ST address or containing the official address point. Review a current building plan before reporting a separate building result."
+      }
+    },
+    {
+      "address": "655 North Franklin Street, Tampa, FL 33602",
+      "operator_source": "https://365datacenters.com/south-florida/",
+      "address_record": {
+        "OBJECTID": 144761,
+        "SITEADDID": "162122",
+        "STRAP": "1829244ZI000046000010A",
+        "FOLIO": "193449.0000",
+        "FULLADDR": "655 N Franklin St",
+        "FULLADDRUNIT": "655 N Franklin St",
+        "PRIMARY_": null,
+        "STATUS": "Current",
+        "PLACENAME": "",
+        "ZIP": "33602",
+        "POINTTYPE": "Location"
+      },
+      "address_point_epsg4326": [
+        -82.45860564299595,
+        27.949802653074588
+      ],
+      "point_zone": {
+        "FLD_AR_ID": "12057C_9452",
+        "FLD_ZONE": "X",
+        "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+        "SFHA_TF": "F",
+        "STATIC_BFE": -9999.0
+      },
+      "point_inside_parcel": true,
+      "parcel": {
+        "OBJECTID": 506258,
+        "STRAP": "1829244ZI000046000010A",
+        "FOLIO": "193449.0000",
+        "SITE_ADDR": "655 N Franklin St",
+        "SITE_CITY": "Tampa",
+        "area_m2": 4067.646,
+        "mapped_fraction": 1.0,
+        "sfha_fraction": 0.0,
+        "zones": [
+          {
+            "FLD_AR_ID": "12057C_9452",
+            "FLD_ZONE": "X",
+            "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+            "SFHA_TF": "F",
+            "STATIC_BFE": -9999,
+            "area_m2": 4067.646,
+            "fraction": 1.0,
+            "base_flood_elevation_published": false
+          }
+        ]
+      },
+      "effective_map_panels": [
+        {
+          "FIRM_PAN": "12057C0354J",
+          "EFF_DATE": 1633564800000,
+          "DFIRM_ID": "12057C",
+          "effective_date": "2021-10-07"
+        }
+      ],
+      "sources": {
+        "address": {
+          "url": "https://maps.hillsboroughcounty.org/arcgis/rest/services/TampaData/TampaSyncData/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CSITEADDID%2CSTRAP%2CFOLIO%2CFULLADDR%2CFULLADDRUNIT%2CPRIMARY_%2CSTATUS%2CPLACENAME%2CZIP%2CPOINTTYPE&returnGeometry=true&where=ADDRNUM%3D655+AND+STREETNAME%3D%27FRANKLIN%27+AND+DIRPRE%3D%27N%27",
+          "retrieved_at_utc": "2026-11-25T05:23:23+00:00",
+          "sha256": "fe5e39132d65bc132333ec57194af3e2fab18a8ec4c787f3dc925a52949b7cce"
+        },
+        "parcel": {
+          "url": "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/ParcelsInfo/FeatureServer/0/query?f=geojson&outSR=4326&returnGeometry=true&where=STRAP%3D%271829244ZI000046000010A%27+OR+FOLIO%3D%27193449.0000%27&outFields=OBJECTID%2CSTRAP%2CFOLIO%2CSITE_ADDR%2CSITE_CITY",
+          "retrieved_at_utc": "2026-11-25T05:25:46+00:00",
+          "sha256": "55f6b7a519ebb7ea8d035cdadabd52633308cc94f9c10e4ebebe29b70fc82ace"
+        },
+        "point_zone": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=json&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE&geometry=-82.45860564299595%2C27.949802653074588&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false",
+          "retrieved_at_utc": "2026-11-25T05:24:18+00:00",
+          "sha256": "282c2896d86a6abd88dfa9ef10710813aac6dedbd73c95cf95e79e1b9219222b"
+        },
+        "point_panel": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=json&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID&geometry=-82.45860564299595%2C27.949802653074588&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false",
+          "retrieved_at_utc": "2026-11-25T05:24:18+00:00",
+          "sha256": "a240fa674238d2cc9c6c99d4299b88db327bc3d2f6fbbe5ea71a6ebc68377007"
+        },
+        "parcel_and_building_zones": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE",
+          "retrieved_at_utc": "2026-11-25T05:28:41+00:00",
+          "sha256": "bd2da52f602997dfd4ed8f20c727d2464780be17e7be8e68ed6a890616b125c4"
+        },
+        "parcel_panels": {
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-82.4588510854%2C27.9492179558%2C-82.4578142540%2C27.9501649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID",
+          "retrieved_at_utc": "2026-11-25T05:28:41+00:00",
+          "sha256": "8f83d76ef6a05fa5cec0ec9645907286a8ab25ecd12c33861ef2332087887a14"
+        },
+        "footprint": {
+          "url": "https://arcgis.tampagov.net/arcgis/rest/services/BaseMaps/BuildingFootprint/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CBUILDINGID%2CSTRAP%2CFOLIO%2CFULLADDRESS%2CYR_ROLL&returnGeometry=true&where=FULLADDRESS+LIKE+%27655+N+FRANKLIN%25%27",
+          "retrieved_at_utc": "2026-11-25T05:23:29+00:00",
+          "sha256": "2bb9f2f10ceaa74ffcd37df43568395062d645872a5297184b66bec98a97ee50"
+        },
+        "evacuation": {
+          "url": "https://maps.hillsboroughcounty.org/arcgis1a/rest/services/SDEMapServices/EmergencyOperations/MapServer/4/query?outSR=4326&returnGeometry=true&f=geojson&geometry=-82.4587510854%2C27.9493179558%2C-82.4579142540%2C27.9500649183&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CZONE",
+          "retrieved_at_utc": "2026-11-25T05:27:36+00:00",
+          "sha256": "4bc5e40aea54bb7f7218bd4f90dc5fa7aaf8abafd8ef4aa195b57c0567444880"
+        }
+      },
+      "footprint": {
+        "resolved": true,
+        "OBJECTID": 691256,
+        "BUILDINGID": null,
+        "STRAP": "1829244ZI000046000010A",
+        "FOLIO": "193449.0000",
+        "FULLADDRESS": "655 N Franklin St",
+        "YR_ROLL": null,
+        "area_m2": 2574.547,
+        "mapped_fraction": 1.0,
+        "sfha_fraction": 0.0,
+        "zones": [
+          {
+            "FLD_AR_ID": "12057C_9452",
+            "FLD_ZONE": "X",
+            "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+            "SFHA_TF": "F",
+            "STATIC_BFE": -9999,
+            "area_m2": 2574.547,
+            "fraction": 1.0,
+            "base_flood_elevation_published": false
+          }
+        ],
+        "address_point_inside_footprint": false,
+        "address_point_distance_to_footprint_m": 19.314
+      },
+      "hurricane_evacuation_map": {
+        "point": {
+          "OBJECTID": 3,
+          "ZONE": "C"
+        },
+        "parcel_fraction": 1,
+        "status_scope": "Mapped zone for emergency planning. Follow the county for active evacuation orders."
+      }
+    }
+  ],
+  "method": "Match city or county address points to parcel identifiers and test the geographic point separately. Match the Tampa footprint by the address and parcel identifiers. Intersect parcel and building polygons with FEMA effective hazard areas and map panels in NAD83 / Conus Albers (EPSG:5070), excluding intersections under 0.01 square metres. Union zone intersections before measuring coverage. The study treats FEMA STATIC_BFE -9999 as an unpublished elevation. Hurricane evacuation polygons are from Hillsborough County and describe a different planning purpose.",
+  "scope": "These are effective map and public boundary checks for dated records. The study did not measure flood depths, site drainage, routes, building or equipment elevations, applicable insurance terms or building plans."
+}
