@@ -1,0 +1,95 @@
+{
+  "name": "Two CMBS prepayment schedules and a closing evidence worksheet",
+  "checked_on": "2026-11-24",
+  "trust": "BBCMS Mortgage Trust 2026-5C43",
+  "source_section": "Prepayment Provisions and Annex A-1, including note 12",
+  "reported_payment_periods_scope": "Monthly payment periods in the final prospectus. Confirm contractual calendar dates and terms as of closing.",
+  "sources": [
+    {
+      "id": "bbcms-prospectus",
+      "title": "BBCMS Mortgage Trust 2026-5C43 final prospectus, Prepayment Provisions and Annex A-1 loan rows 36 and 42",
+      "publisher": "Barclays Commercial Mortgage Securities LLC / SEC",
+      "url": "https://www.sec.gov/Archives/edgar/data/2153909/000153949726002685/n6166_x12-424b2.htm"
+    },
+    {
+      "id": "fannie-yield-method",
+      "title": "January 2026 Multifamily MBS Prospectus, hybrid yield maintenance and benchmark calculation",
+      "publisher": "Fannie Mae",
+      "url": "https://capitalmarkets.fanniemae.com/media/document/pdf/jan-1-2026-mf-prospectus-hybrid-yield-maintenance.pdf"
+    }
+  ],
+  "loans": [
+    {
+      "loan_number": 36,
+      "loan_name": "Cook MHC Portfolio",
+      "annex_prepayment_code": "L(24),YM1(29),O(7)",
+      "periods": [
+        {
+          "type": "lockout",
+          "payment_count": 24
+        },
+        {
+          "type": "yield_maintenance_or_premium_floor",
+          "payment_count": 29,
+          "premium_floor_pct_of_prepayment": 1
+        },
+        {
+          "type": "open",
+          "payment_count": 7
+        }
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2153909/000153949726002685/n6166_x12-424b2.htm"
+    },
+    {
+      "loan_number": 42,
+      "loan_name": "Brandon Wood Apartments",
+      "annex_prepayment_code": "L(24),D(29),O(7)",
+      "periods": [
+        {
+          "type": "lockout",
+          "payment_count": 24
+        },
+        {
+          "type": "defeasance",
+          "payment_count": 29
+        },
+        {
+          "type": "open",
+          "payment_count": 7
+        }
+      ],
+      "source_url": "https://www.sec.gov/Archives/edgar/data/2153909/000153949726002685/n6166_x12-424b2.htm"
+    }
+  ],
+  "illustrative_floor": {
+    "principal_prepaid_usd": 10000000,
+    "premium_floor_percent": 1,
+    "floor_usd": 100000,
+    "cases": [
+      {
+        "illustrative_yield_maintenance_usd": 72000,
+        "applicable_premium_usd": 100000
+      },
+      {
+        "illustrative_yield_maintenance_usd": 140000,
+        "applicable_premium_usd": 140000
+      }
+    ],
+    "scope": "Illustrative arithmetic using a greater-of rule. The inputs are independent of the documented loan balances or current quotes."
+  },
+  "closing_evidence": {
+    "property_and_building_identifier": null,
+    "current_trust_and_loan_number": null,
+    "last_amendment_reference_and_effective_date": null,
+    "planned_closing_date": null,
+    "prepayment_or_release_path": null,
+    "lockout_end_date": null,
+    "notice_date": null,
+    "first_open_payment_date": null,
+    "maturity_date": null,
+    "principal_and_quote_good_through_date": null,
+    "accrued_interest_and_fees": null,
+    "yield_maintenance_formula_and_amount": null,
+    "defeasance_securities_cost_and_release_documents": null
+  }
+}

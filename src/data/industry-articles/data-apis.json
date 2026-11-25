@@ -24029,6 +24029,237 @@
     "relatedSlugs": ["commercial-mortgage-maturity-data-apis", "commercial-mortgage-records-by-address", "commercial-real-estate-data-apis-for-lenders"]
   },
   {
+    "slug": "commercial-mortgage-prepayment-defeasance",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "title": "Commercial Mortgage Prepayment: Yield Maintenance and Defeasance",
+    "description": "Read CMBS lockouts, yield maintenance and defeasance terms. See when two loans allow payoff and what to request before setting a closing date.",
+    "coverAlt": "Two 60-payment schedules. Both show 24 lockout payments and seven open payments. The Cook MHC Portfolio has 29 yield maintenance payments in between. Brandon Wood Apartments has 29 defeasance payments.",
+    "coverCaption": "Two prepayment schedules in the BBCMS 2026-5C43 prospectus. Payment counts are the filing’s summary of each loan’s terms.",
+    "intro": "Before refinancing or selling a commercial property, check how the existing loan can be released on the proposed closing date. A commercial loan may prohibit voluntary payoff for part of the term, allow payoff with a premium, or permit a release through defeasance. Two loans in the same 2026 CMBS pool show how those paths can differ even when the lockout and open periods are the same length.",
+    "takeaways": [
+      "Find the current loan and the provision in effect on the closing date. Check the note, amendments and servicer records.",
+      "Carry separate cash requirements for principal payoff, yield maintenance or defeasance collateral, accrued interest and fees.",
+      "Get a dated payoff statement or defeasance quote before committing to a price or closing schedule."
+    ],
+    "sections": [
+      {
+        "id": "commercial-prepayment-options",
+        "heading": "What are the common commercial mortgage prepayment terms?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Term",
+              "What it means in a closing file",
+              "Record to request"
+            ],
+            "rows": [
+              [
+                "Lockout",
+                "The loan restricts voluntary principal prepayment and may also restrict defeasance.",
+                "Lockout end date, any exceptions and the document that sets them."
+              ],
+              [
+                "Yield maintenance",
+                "A permitted payoff may require a premium tied to discounted scheduled payments or another formula defined in the note. A percentage floor can apply.",
+                "Lender or servicer quote that identifies the formula, benchmark date, applicable floor and payment date."
+              ],
+              [
+                "Defeasance",
+                "The borrower funds qualifying securities to support scheduled debt payments and obtain a release of the real estate collateral under the agreement.",
+                "Defeasance dates, collateral eligibility, securities cost, required parties and fees."
+              ],
+              [
+                "Open period",
+                "The loan permits payoff without the early-payment premium or defeasance requirement described in the schedule. Closing can still require accrued interest, notice and other amounts specified in the documents.",
+                "First permitted payment date, notice deadline and payoff statement good through closing."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "bbcms-prospectus"
+              ],
+              [
+                "bbcms-prospectus",
+                "fannie-yield-method"
+              ],
+              [
+                "bbcms-prospectus"
+              ],
+              [
+                "bbcms-prospectus"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Work backward from the proposed sale or refinance date. Ask whether the transaction needs a full payoff, an approved transfer or the release of one property from a larger collateral pool. The prospectus summarizes the principal prepayment restrictions and flags that loan-specific exceptions may apply.",
+            "sourceIds": [
+              "bbcms-prospectus"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-two-cmbs-loans",
+        "heading": "How do the Cook and Brandon Wood loans differ?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Annex A-1 of the BBCMS 2026-5C43 final prospectus lists Cook MHC Portfolio as loan 36 and Brandon Wood Apartments as loan 42. Both schedules show 24 lockout payment periods followed by 29 restricted periods and seven open payment periods. The middle period determines what the borrower can do about a proposed closing.",
+            "sourceIds": [
+              "bbcms-prospectus"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Loan and filing code",
+              "Middle 29 payments",
+              "What to verify for a closing in that period"
+            ],
+            "rows": [
+              [
+                "Cook MHC Portfolio, loan 36. L(24),YM1(29),O(7).",
+                "Voluntary prepayment is permitted with the greater of the yield maintenance charge and 1% of the prepaid amount.",
+                "Request the payoff calculation for the closing date, including the contractual benchmark and premium floor."
+              ],
+              [
+                "Brandon Wood Apartments, loan 42. L(24),D(29),O(7).",
+                "Defeasance is permitted during those payment periods. The schedule restricts voluntary principal prepayment.",
+                "Request the collateral substitution requirements, securities quote and release timetable."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "bbcms-prospectus"
+              ],
+              [
+                "bbcms-prospectus"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The counts are monthly payment periods in the offering summary. To put them on a calendar, use the applicable payment dates, executed loan documents and subsequent amendments. The open period in this prospectus includes the maturity payment. Confirm the first open payment date and any required notice with the servicer.",
+            "sourceIds": [
+              "bbcms-prospectus"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/commercial-mortgage-prepayment-defeasance.json",
+            "format": "JSON",
+            "label": "Download the two prepayment schedules and closing evidence worksheet"
+          }
+        ]
+      },
+      {
+        "id": "yield-maintenance-floor",
+        "heading": "How does a 1% yield maintenance floor affect payoff?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Suppose a borrower prepays $10 million during a period that charges the greater of calculated yield maintenance and 1% of principal prepaid. The floor is $100,000. An illustrative $72,000 yield maintenance result would produce a $100,000 premium. An illustrative $140,000 result would produce a $140,000 premium. Both figures exclude principal, accrued interest and other amounts due."
+          },
+          {
+            "type": "paragraph",
+            "text": "The formula can vary by note. Check which scheduled payments it uses, the benchmark, the date the benchmark is set and the rate used to discount cash flows. Fannie Mae’s January 2026 hybrid prospectus shows how a specific program defines its Treasury benchmark and uses the loan’s terms. Obtain the servicer’s calculation for your own note.",
+            "sourceIds": [
+              "fannie-yield-method"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "build-the-closing-file",
+        "heading": "What should you request before committing to a closing date?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Match the property and borrower to the current loan and all relevant collateral. Keep the trust, loan number, recorded lien and effective amendment together.",
+              "Put the proposed closing date, first eligible payment date, notice deadline and open date on one calendar. Verify any exceptions for transfer, casualty or partial release against the documents.",
+              "Obtain a quote through the intended closing date. Record principal, accrued interest, premium or securities cost and any third-party or servicer fees as separate lines.",
+              "Confirm which documents evidence the lien release and who files them. Defeasance, payoff and release each have their own evidence in the closing file."
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Check the loan, collateral and refinance amount",
+            "items": [
+              {
+                "slug": "commercial-mortgage-maturity-data-apis",
+                "label": "Verify the current mortgage maturity date"
+              },
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Trace commercial mortgage documents by address"
+              },
+              {
+                "slug": "commercial-mortgage-release-by-address",
+                "label": "Verify a mortgage or partial release"
+              },
+              {
+                "path": "/calculators/commercial-refinance-gap",
+                "label": "Compare refinance proceeds with the amount due"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is defeasance the same as paying off a commercial mortgage?",
+        "answer": "Defeasance substitutes qualifying collateral for the property under the loan agreement. The securities support scheduled debt payments. A payoff retires the balance and other amounts due. Confirm the release procedure and costs with the servicer."
+      },
+      {
+        "question": "What is an open prepayment period?",
+        "answer": "It is a period in which the loan permits prepayment without the early-payment premium or defeasance requirement described in the schedule. Check the eligible dates, payoff balance, accrued interest, notice and fees."
+      },
+      {
+        "question": "Does a CMBS prospectus give the amount needed to close?",
+        "answer": "The prospectus can identify the loan and summarize prepayment provisions. Use the executed documents and any amendments to confirm the current terms. Request the servicer’s dated payoff statement or defeasance quote for the closing amount."
+      }
+    ],
+    "sources": [
+      {
+        "id": "bbcms-prospectus",
+        "title": "BBCMS Mortgage Trust 2026-5C43 final prospectus, Prepayment Provisions and Annex A-1 loan rows 36 and 42",
+        "publisher": "Barclays Commercial Mortgage Securities LLC / SEC",
+        "url": "https://www.sec.gov/Archives/edgar/data/2153909/000153949726002685/n6166_x12-424b2.htm"
+      },
+      {
+        "id": "fannie-yield-method",
+        "title": "January 2026 Multifamily MBS Prospectus, hybrid yield maintenance and benchmark calculation",
+        "publisher": "Fannie Mae",
+        "url": "https://capitalmarkets.fanniemae.com/media/document/pdf/jan-1-2026-mf-prospectus-hybrid-yield-maintenance.pdf"
+      }
+    ],
+    "dataset": {
+      "name": "Two CMBS prepayment schedules and a closing evidence worksheet",
+      "description": "BBCMS 2026-5C43 loan 36 and 42 prepayment codes, the monthly periods they disclose and an illustrative premium floor calculation. Includes fields for a property match, current note terms and a closing-date quote.",
+      "sourceIds": [
+        "bbcms-prospectus",
+        "fannie-yield-method"
+      ],
+      "spatialCoverage": "Selected U.S. loans in the BBCMS 2026-5C43 pool"
+    },
+    "relatedSlugs": [
+      "commercial-mortgage-maturity-data-apis",
+      "commercial-mortgage-records-by-address",
+      "commercial-mortgage-release-by-address",
+      "cmbs-special-servicing-data",
+      "commercial-real-estate-data-apis-for-lenders"
+    ]
+  },
+  {
     "slug": "commercial-mortgage-maturity-data-apis",
     "topic": "Data & APIs",
     "region": "United States",
@@ -24651,6 +24882,7 @@
       }
     ],
     "relatedSlugs": [
+      "commercial-mortgage-prepayment-defeasance",
       "commercial-mortgage-records-by-address",
       "commercial-real-estate-data-apis-for-lenders",
       "historical-parcel-boundaries-api",
