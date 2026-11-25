@@ -1004,9 +1004,9 @@
     "slug": "data-center-water-stormwater-permits",
     "topic": "Data Centers",
     "title": "Data center water and stormwater permits",
-    "description": "Check data center cooling water, sewer capacity, dewatering and stormwater before construction. Compare public filings from San José and Pittsburg, California.",
+    "description": "Verify water service and permits for a data center. Check Fort Worth peak demand records, sewer acceptance, cooling discharge, dewatering and stormwater.",
     "date": "2026-09-15",
-    "readMinutes": 9,
+    "readMinutes": 12,
     "intro": "Before committing to a data center site, get written confirmation of water and sewer capacity for each phase. Then map where cooling wastewater, temporary construction groundwater and stormwater will go. Each flow needs a named receiving authority, a documented route and any applicable approval. At Microsoft’s proposed 99 MW San José data center, the public record shows planned utility connections and a later encroachment permit for a pipe carrying treated construction groundwater to Coyote Creek.",
     "takeaways": [
       "Confirm supply and discharge arrangements separately, including temporary construction and commissioning flows.",
@@ -1067,6 +1067,107 @@
                 "slug": "data-center-site-selection-checklist",
                 "label": "Check grading, dewatering and early civil work before construction"
               }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prove-water-service-capacity",
+        "heading": "How to verify water service for a data center site",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give the water utility the parcel and proposed connection, the demand by phase, and the cooling design. Include average-day and maximum-day volume, peak-hour flow and required pressure, initial fill, and plans for extreme heat or drought. Ask for a written response identifying the flow and pressure it can deliver, the upgrades and conditions, and the date service can begin. Confirm sewer acceptance and any pretreatment terms for the same design."
+          },
+          {
+            "type": "paragraph",
+            "text": "Fort Worth’s November 10 commission report identifies four limits on water delivery. They are drought-reliable raw supply, the ability to move it to the city, treatment capacity, and the mains, pumps, storage and pressure zone that serve the site. The commission recommended checking all four at peak demand before committing capacity. Its recommendations went to City Council for consideration.",
+            "sourceIds": [
+              "fw-commission-water",
+              "fw-development-policy"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Fort Worth Water record",
+              "Reported maximum day",
+              "Reported treatment capacity per day",
+              "Calculated difference per day"
+            ],
+            "rows": [
+              [
+                "FY2023 · annual report PDF",
+                "418.3 MGD",
+                "512 MGD",
+                "93.7 MGD"
+              ],
+              [
+                "FY2024 · annual report PDF",
+                "385.4 MGD",
+                "535 MGD",
+                "149.6 MGD"
+              ],
+              [
+                "FY2025 · online summary",
+                "342.49 MGD",
+                "517 MGD",
+                "174.51 MGD"
+              ],
+              [
+                "FY2025 · annual report PDF",
+                "342.79 MGD",
+                "517 MGD",
+                "174.21 MGD"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "fw-fy2023"
+              ],
+              [
+                "fw-fy2024"
+              ],
+              [
+                "fw-fy2025-summary",
+                "fw-commission-table"
+              ],
+              [
+                "fw-fy2025-pdf"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "MGD means million US gallons per day. The FY2025 summary and the commission table report a maximum day of 342.49 million gallons. The utility PDF reports 342.79 million. We kept both figures with their sources. The subtraction describes a historical difference at system level. A project needs a separate utility decision covering the service connection and its peak flow.",
+            "sourceIds": [
+              "fw-fy2025-summary",
+              "fw-commission-table",
+              "fw-fy2025-pdf"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/fort-worth-water-treatment-capacity.csv",
+            "format": "CSV",
+            "label": "Download Fort Worth’s reported water figures and the calculations",
+            "datasetAnchor": "dataset-fort-worth-water"
+          },
+          {
+            "type": "paragraph",
+            "text": "Fort Worth Water publishes a separate study acceptance form for platting. It ties acceptance to the proposed improvements and calls for revised studies when demand or sewer loading changes. The city also says its August 2026 design policy requires closed-loop cooling and an industrial wastewater pretreatment permit for new data centers in its water service area. Ask the city which conditions and approvals apply to the phase you plan to build.",
+            "sourceIds": [
+              "fw-water-review",
+              "fw-plat-study-letter",
+              "fw-development-policy"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a direct raw-water request, the Tarrant Regional Water District reviews the written application and its board decides on new contracts. The district’s July 27 update says the developer and West Cedar Creek Municipal Utility District withdrew their requests for a proposed Cedar Creek-area project. For a site served by a city utility, ask which wholesale supply and local connection support the written service commitment.",
+            "sourceIds": [
+              "fw-trwd"
             ]
           }
         ]
@@ -1302,6 +1403,15 @@
     ],
     "faqs": [
       {
+        "question": "How do I demonstrate water availability for a data center permit or land purchase?",
+        "answer": "Obtain a written decision from the serving utility for the parcel and the phase it will serve. Confirm maximum-day volume, peak-hour flow, pressure, delivery date, upgrades and any drought terms. Keep the sewer utility’s acceptance and discharge conditions with the same design revision.",
+        "sourceIds": [
+          "fw-commission-water",
+          "fw-plat-study-letter",
+          "fw-development-policy"
+        ]
+      },
+      {
         "question": "Does a water-service commitment authorize cooling wastewater discharge?",
         "answer": "No. Confirm the discharge destination and its applicable requirements separately. The sewer authority evaluates an indirect discharge; a qualifying direct discharge requires NPDES authorization. Keep the supply and discharge decisions in separate records.",
         "sourceIds": [
@@ -1337,6 +1447,76 @@
       }
     ],
     "sources": [
+      {
+        "id": "fw-development-policy",
+        "title": "Fort Worth data center application and adopted water utility requirements",
+        "url": "https://www.fortworthtexas.gov/departments/city-manager/datacenters",
+        "publisher": "City of Fort Worth",
+        "linkLabel": "City policy and status"
+      },
+      {
+        "id": "fw-water-review",
+        "title": "Fort Worth Water development review and study requirements",
+        "url": "https://www.fortworthtexas.gov/departments/water/developers",
+        "publisher": "Fort Worth Water",
+        "linkLabel": "Water development review"
+      },
+      {
+        "id": "fw-plat-study-letter",
+        "title": "Fort Worth Water study acceptance letter template for platting",
+        "url": "https://www.fortworthtexas.gov/files/assets/public/v/1/water/documents/developers/water-acceptance-letter-plat-template-2020-11-13.pdf",
+        "publisher": "Fort Worth Water",
+        "linkLabel": "Platting letter template"
+      },
+      {
+        "id": "fw-commission-water",
+        "title": "November 2026 commission report, water impact statement and utility review recommendations, pp. 125–126",
+        "url": "https://www.fortworthtexas.gov/files/assets/public/v/1/city-manager/documents/data-centers/11-10-2026-data-center-infrastructure-commission-final-report.pdf#page=125",
+        "publisher": "Fort Worth Data Center & Infrastructure Commission",
+        "linkLabel": "Commission water recommendations"
+      },
+      {
+        "id": "fw-commission-table",
+        "title": "Fort Worth reported system figures, Table 4.3, p. 53",
+        "url": "https://www.fortworthtexas.gov/files/assets/public/v/1/city-manager/documents/data-centers/11-10-2026-data-center-infrastructure-commission-final-report.pdf#page=53",
+        "publisher": "Fort Worth Data Center & Infrastructure Commission",
+        "linkLabel": "Commission system figures"
+      },
+      {
+        "id": "fw-trwd",
+        "title": "Tarrant Regional Water District data center water request process and Cedar Creek update",
+        "url": "https://www.trwd.com/resource/data-center-water-request/",
+        "publisher": "Tarrant Regional Water District",
+        "linkLabel": "TRWD raw-water request guidance"
+      },
+      {
+        "id": "fw-fy2023",
+        "title": "FY2023 utility report, daily water use and treatment, pp. 11 and 14",
+        "url": "https://www.fortworthtexas.gov/files/assets/public/v/1/water/documents/about-us/fww-2023-report_04122024.pdf#page=11",
+        "publisher": "Fort Worth Water",
+        "linkLabel": "FY2023 utility report"
+      },
+      {
+        "id": "fw-fy2024",
+        "title": "FY2024 utility report, daily water use and treatment, pp. 11 and 14",
+        "url": "https://www.fortworthtexas.gov/files/assets/public/v/1/water/documents/about-us/fww2024_-annualreport.pdf#page=11",
+        "publisher": "Fort Worth Water",
+        "linkLabel": "FY2024 utility report"
+      },
+      {
+        "id": "fw-fy2025-summary",
+        "title": "FY2025 annual report web summary, utility system measures",
+        "url": "https://www.fortworthtexas.gov/departments/water/about-us/annual-report",
+        "publisher": "Fort Worth Water",
+        "linkLabel": "FY2025 online figures"
+      },
+      {
+        "id": "fw-fy2025-pdf",
+        "title": "FY2025 utility report PDF, maximum day usage and treatment, p. 11",
+        "url": "https://www.fortworthtexas.gov/files/assets/public/v/5/water/documents/about-us/fy25ar_accessiblever1.pdf#page=11",
+        "publisher": "Fort Worth Water",
+        "linkLabel": "FY2025 utility report PDF"
+      },
       {
         "id": "virginia-withdrawal",
         "title": "Surface Water Withdrawal",
@@ -1454,7 +1634,7 @@
       "data-center-refrigerant-compliance",
       "data-center-fuel-storage-spcc-tier-ii"
     ],
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "dataset": {
       "name": "San José data center water and dewatering records",
       "description": "Six source-linked records from two Valley Water notices covering planned water, sewer and drainage connections and an approved construction dewatering encroachment, with verification questions for each.",
@@ -1466,6 +1646,21 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-fort-worth-water",
+        "datePublished": "2026-11-25",
+        "name": "Fort Worth Water annual treatment capacity and maximum-day usage",
+        "description": "Four selected source rows over FY2023–FY2025. Includes both reported FY2025 peaks, differences from stated daily treatment capacity, source edition and page. Figures describe Fort Worth Water’s system.",
+        "sourceIds": [
+          "fw-fy2023",
+          "fw-fy2024",
+          "fw-fy2025-summary",
+          "fw-fy2025-pdf",
+          "fw-commission-table"
+        ],
+        "spatialCoverage": "Fort Worth Water service system, Texas, United States",
+        "temporalCoverage": "2023/2025"
+      },
       {
         "anchor": "dataset-reclaimed-water",
         "datePublished": "2026-11-24",
