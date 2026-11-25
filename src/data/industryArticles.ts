@@ -36,6 +36,7 @@ export type IndustryArticle = {
   readMinutes: number
   intro: string
   takeaways: string[]
+  listingSections?: { id: string; label: string }[]
   sections: { id: string; heading: string; blocks: ArticleBlock[] }[]
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
   sources: ArticleSource[]

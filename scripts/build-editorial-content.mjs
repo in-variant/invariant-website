@@ -112,6 +112,13 @@ for (const article of articles) {
     }
   }
   if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
+  if (article.listingSections) {
+    const destinations = new Set(article.listingSections.map(({ id }) => id))
+    if (article.kind !== 'site-listing' || destinations.size === 0 || destinations.size !== article.listingSections.length ||
+        article.listingSections.some(({ id, label }) => !label?.trim() || !article.sections.some(section => section.id === id))) {
+      throw new Error(`Invalid listing sections: ${article.slug}`)
+    }
+  }
   const blocks = article.sections.flatMap(section => section.blocks)
   for (const block of [...blocks, ...article.faqs]) {
     for (const id of [...(block.sourceIds ?? []), ...(block.rowSourceIds?.flat() ?? [])]) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)

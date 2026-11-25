@@ -10,6 +10,7 @@ type ArticleHeaderProps = {
   coverAlt?: string
   coverImage?: { width: number; height: number; srcSet: string }
   siteDetailsId?: string
+  listingSections?: { id: string; label: string }[]
 }
 
 const articleWidth = 'min(1280px, calc(100vw - clamp(48px, 10.42vw, 200px)))'
@@ -18,7 +19,7 @@ const listingSizes = `(min-width: 950px) calc((${articleWidth} - clamp(36px, 4vw
 const relatedSizes = '(max-width: 600px) 365px, 420px'
 const bylineDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 
-export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', coverImage, siteDetailsId }: ArticleHeaderProps) {
+export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', coverImage, siteDetailsId, listingSections }: ArticleHeaderProps) {
   const revisionDate = article.updatedDate && article.updatedDate > article.dateTime ? article.updatedDate : undefined
   return (
     <header className={`blog-article-header${siteDetailsId ? ' blog-article-header--site-listing' : ''}`}>
@@ -39,7 +40,9 @@ export default function BlogArticleHeader({ article, title, subtitle, coverCapti
         <p>{subtitle}</p>
         {siteDetailsId && (
           <nav className="blog-site-actions" aria-label="Site listing actions">
-            <a href={`#${siteDetailsId}`}>Read site details <span aria-hidden="true">↓</span></a>
+            {(listingSections ?? [{ id: siteDetailsId, label: 'Read site details' }]).map(({ id, label }) => (
+              <a key={id} href={`#${id}`}>{label} <span aria-hidden="true">↓</span></a>
+            ))}
             <a href="#site-enquiry">Request a shortlist</a>
           </nav>
         )}

@@ -90,6 +90,10 @@ function articleMd(a) {
   const cite = ids => ids?.length ? ' ' + ids.map(id => src.get(id)).filter(Boolean)
     .map(s => `(${citationLink(s.linkLabel ?? s.publisher, s.url)})`).join(' ') : ''
   const out = [`# ${a.title}`, '', `> ${a.description}`, '', `URL: ${SITE}/blog/${a.slug}  `, `Published: ${a.date}${a.updatedDate ? ` · Updated: ${a.updatedDate}` : ''} · Publisher: Invariant · Region: ${a.region ?? 'United States'}`, '', a.intro, '']
+  if (a.listingSections) {
+    out.push(...a.listingSections.map(({ id, label }) => `- [${linkText(label)}](${SITE}/blog/${a.slug}#${id})`),
+      `- [Request a shortlist](${SITE}/contact?request=site-selection)`, '')
+  }
   const collectionLink = articleCollectionLinks.get(a.slug)
   if (collectionLink) out.push(`Browse [${linkText(collectionLink.label)}](${SITE}${collectionLink.path}) for related guides.`, '')
   if (a.takeaways?.length) out.push('## Key points', '', ...a.takeaways.map(t => `- ${t}`), '')
