@@ -168,7 +168,6 @@ function productMd() {
     '## Verify a site or power plan', '',
     `- [Site due diligence](${SITE}${links.diligence})`,
     `- [Power-flow studies](${SITE}${links.power})`, '',
-    `[Earlier regulatory workspace walkthrough](${SITE}/product#platform-demo)`, '',
   ].join('\n')
 }
 

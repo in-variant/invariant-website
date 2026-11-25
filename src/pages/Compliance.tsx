@@ -98,6 +98,7 @@ export default function Compliance() {
             <h2 className="font-serif text-2xl text-ink">Regulatory tools</h2>
             <ul className="mt-4 grid gap-3 font-sans text-base">
               <li><Link to="/regulators" className="text-copper underline underline-offset-4">Find a regulatory agency</Link></li>
+              <li><Link to="/probe" className="text-copper underline underline-offset-4">Search NRC ADAMS documents</Link></li>
               <li><Link to="/timeline" className="text-copper underline underline-offset-4">Build a mission filing timeline</Link></li>
             </ul>
           </section>

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import DemoVideo from '../components/DemoVideo'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 import product from '../data/earth-product.json'
@@ -32,7 +31,7 @@ function ApiExample() {
   const [view, setView] = useState<'response' | 'request'>('response')
   return (
     <div className="earth-product-art">
-      <section className="earth-api-example" aria-label="Invariant Earth API example">
+      <section id="platform-demo" className="earth-api-example" aria-label="Invariant Earth API example">
         <header className="earth-api-example-header">
           <span className="earth-api-endpoint">POST /v1/fetch</span>
           <span>{sample.location}</span>
@@ -178,22 +177,6 @@ export default function Product() {
           </nav>
         </div>
       </section>
-
-      <div className="resource-container earth-product-archive">
-        <details id="platform-demo">
-          <summary>Earlier regulatory workspace walkthrough</summary>
-          <div className="earth-product-archive-body">
-            <p>See the workspace used for drafting and reviewing regulatory filings with citations.</p>
-            <DemoVideo />
-            <nav aria-label="Earlier regulatory resources">
-              <Link className="earth-product-link" to="/compliance">Compliance guides <ResourceArrow diagonal /></Link>
-              <Link className="earth-product-link" to="/how-to-write-a-psar">Safety analysis report guide <ResourceArrow diagonal /></Link>
-              <Link className="earth-product-link" to="/nrc-rai-management">Regulatory questions guide <ResourceArrow diagonal /></Link>
-              <Link className="earth-product-link" to="/probe">Earlier regulatory search demo <ResourceArrow diagonal /></Link>
-            </nav>
-          </div>
-        </details>
-      </div>
     </div>
   )
 }

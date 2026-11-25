@@ -182,7 +182,6 @@ out.push('')
 
 out.push('## Earlier regulatory references')
 out.push('')
-out.push('- [Regulatory workspace walkthrough](https://invariant-ai.com/product#platform-demo).')
 for (const p of pillars) {
   out.push(`- [${p.title}](${SITE}/${p.slug}), ${p.description}`)
 }
