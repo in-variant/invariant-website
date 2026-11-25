@@ -5158,19 +5158,29 @@
         "on-site generation for data centers",
         "behind the meter generation"
       ],
-      "short_definition": "Behind-the-meter power is electricity generated on or next to a data center site and delivered to the load without passing through the utility grid meter, most often from natural gas turbines or reciprocating engines.",
-      "full_definition": "Behind-the-meter generation lets a data center start years before a grid connection is ready. It runs on its own clocks: firm gas pipeline capacity, an air permit that may trigger Title V for larger plants, turbine or engine delivery, and any state rules on co-located load. Many large AI campuses pair on-site gas or batteries for early phases with a grid connection for the rest.\n\nA buyer should ask for the pipeline's written commitment on capacity and pressure, the emissions calculation for the full build-out, and the plan for the grid end state.",
+      "short_definition": "Behind-the-meter power is electricity produced on the customer side of a utility meter and used by the customer. It can serve a site that remains connected to the grid.",
+      "full_definition": "A facility that stays connected can use local generation to reduce the power it draws through the utility meter. An islanded configuration serves the load without that grid connection. Ask for a one-line diagram showing which equipment serves the loads and whether the grid can supply them when the local generator is unavailable.\n\nFor a data center, distinguish generation that runs routinely from equipment permitted for emergencies. Check the net output available to the halls, fuel delivery for the intended run profile, air permit conditions, and the commissioning schedule. With a grid-connected configuration, confirm the contracted import limit and the conditions for using grid power when generation is down.\n\nPJM’s November 2026 filing illustrates why the meter arrangement and the service terms need separate review. It proposes a 12-month study process for eligible requests and projects its first cycle to finish in 2029. A behind-the-meter label, by itself, gives the buyer no date for utility service.",
       "related_to": [
         "powered-land",
+        "load-study",
+        "energy-service-agreement",
         "texas-sb-6"
       ],
       "citations": [
         {
-          "label": "US EPA, who has to obtain a Title V permit",
-          "url": "https://www.epa.gov/title-v-operating-permits/who-has-obtain-title-v-permit"
+          "label": "U.S. Energy Information Administration, customer-sited generation and metered demand",
+          "url": "https://www.eia.gov/TodayinEnergy/detail.php?id=53239"
+        },
+        {
+          "label": "U.S. Environmental Protection Agency, air requirements for primary and backup power",
+          "url": "https://www.epa.gov/stationary-sources-air-pollution/clean-air-act-resources-data-centers"
+        },
+        {
+          "label": "PJM Fast Energization proposal, FERC docket ER27-531-000",
+          "url": "https://elibrary.ferc.gov/eLibrary/filelist?accession_Number=20261116-5340"
         }
       ],
-      "last_updated": "2026-11-09",
+      "last_updated": "2026-11-25",
       "guide": {
         "label": "Behind-the-meter power for data centers",
         "path": "/blog/behind-the-meter-power-for-data-centers"
