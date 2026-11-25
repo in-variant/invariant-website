@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ARTICLE_COLLECTIONS, ARTICLE_LIST, type ArticleListEntry } from '../data/articleList'
@@ -94,8 +94,10 @@ function ArticleArchive({ articles, filtered, label }: { articles: ArticleListEn
 }
 
 export default function Blog() {
+  const [searchReady, setSearchReady] = useState(false)
   const [topic, setTopic] = useState<typeof TOPICS[number]>('All articles')
   const [query, setQuery] = useState('')
+  useEffect(() => setSearchReady(true), [])
   const queryWords = articleSearchWords(query)
   const searching = queryWords.length > 0
   const isFiltered = topic !== 'All articles' || searching
@@ -137,12 +139,12 @@ export default function Blog() {
             <label className="blog-index-search">
               <svg width="17" height="17" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.1" /><path d="m11.5 11.5 4 4" /></svg>
               <span className="sr-only">Search articles</span>
-              <input type="search" placeholder="Search articles" value={query} onChange={(event) => setQuery(event.target.value)} />
+              <input type="search" placeholder="Search articles" disabled={!searchReady} value={query} onChange={(event) => setQuery(event.target.value)} />
             </label>
           </div>
           <div className="blog-index-controls">
               <div className="blog-index-filters" role="group" aria-label="Filter articles by topic">
-              {TOPICS.map((value) => <button type="button" key={value} aria-pressed={topic === value} onClick={() => setTopic(value)}>{value}</button>)}
+              {TOPICS.map((value) => <button type="button" key={value} disabled={!searchReady} aria-pressed={topic === value} onClick={() => setTopic(value)}>{value}</button>)}
             </div>
             <p className="blog-index-count" role="status">
               {searchPending ? 'Searching articles…' : `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`}

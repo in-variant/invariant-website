@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { ResourceArticleCard, ResourceArrow } from '../components/ResourceCards'
@@ -20,10 +20,12 @@ const dataUseCases = blogCollections.find(collection => collection.slug === DATA
 const dataUseCaseGroups = groupCollectionGuides(dataUseCases?.guides ?? []).filter(group => group.heading)
 
 export default function Resources() {
+  const [searchReady, setSearchReady] = useState(false)
   const [format, setFormat] = useState<Format>('All')
   const [topic, setTopic] = useState('All topics')
   const [query, setQuery] = useState('')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  useEffect(() => setSearchReady(true), [])
   const queryWords = articleSearchWords(query)
   const searching = queryWords.length > 0
   const { details, pending } = useArticleSearchDetails(searching && (format === 'All' || format === 'Guides'))
@@ -99,11 +101,11 @@ export default function Resources() {
           </nav>
           <div className="resources-library-controls">
             <div className="resource-filters" role="group" aria-label="Filter by resource format">
-              {FORMATS.map((value) => <button type="button" key={value} aria-pressed={format === value} onClick={() => { setFormat(value); setVisibleCount(PAGE_SIZE) }}>{value}</button>)}
+              {FORMATS.map((value) => <button type="button" key={value} disabled={!searchReady} aria-pressed={format === value} onClick={() => { setFormat(value); setVisibleCount(PAGE_SIZE) }}>{value}</button>)}
             </div>
             <div className="resources-search-controls">
-              <label className="resource-topic-select"><span className="sr-only">Filter by topic</span><select value={topic} onChange={(event) => { setTopic(event.target.value); setVisibleCount(PAGE_SIZE) }}><option>All topics</option>{RESOURCE_TOPICS.map(value => <option key={value}>{value}</option>)}</select><svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg></label>
-              <label className="resource-search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5" /><path d="m12 12 4 4" /></svg><span className="sr-only">Search guides, tools, and datasets</span><input type="search" value={query} placeholder="Search the library" onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE) }} /></label>
+              <label className="resource-topic-select"><span className="sr-only">Filter by topic</span><select disabled={!searchReady} value={topic} onChange={(event) => { setTopic(event.target.value); setVisibleCount(PAGE_SIZE) }}><option>All topics</option>{RESOURCE_TOPICS.map(value => <option key={value}>{value}</option>)}</select><svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg></label>
+              <label className="resource-search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5.5" /><path d="m12 12 4 4" /></svg><span className="sr-only">Search guides, tools, and datasets</span><input type="search" disabled={!searchReady} value={query} placeholder="Search the library" onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE) }} /></label>
             </div>
           </div>
           <p className="resources-result-count" role="status">
@@ -121,7 +123,7 @@ export default function Resources() {
             ))}
           </div>
           {filtered.length === 0 && !pending && <div className="resource-empty"><h3>No matching resources.</h3><button type="button" className="resource-outline-button" onClick={clearFilters}>Clear filters <ResourceArrow /></button></div>}
-          {filtered.length > visibleCount && <div className="resources-load-more"><span>Showing {Math.min(visibleCount, filtered.length)} of {filtered.length}</span><button className="resource-outline-button" type="button" onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>Show more <span aria-hidden="true">+</span></button></div>}
+          {filtered.length > visibleCount && <div className="resources-load-more"><span>Showing {Math.min(visibleCount, filtered.length)} of {filtered.length}</span><button className="resource-outline-button" type="button" disabled={!searchReady} onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}>Show more <span aria-hidden="true">+</span></button></div>}
         </div>
       </section>
 
