@@ -1,0 +1,154 @@
+{
+  "name": "SNAP retailer authorization records in Harlem and Englewood",
+  "source": {
+    "publisher": "U.S. Department of Agriculture",
+    "landing_page": "https://www.fns.usda.gov/snap/retailer-locator/data",
+    "archive_url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-retailer-locator-data2005-2025.zip",
+    "as_of": "2025-12-31",
+    "retrieved_on": "2026-11-25",
+    "archive_sha256": "872a6f814a63514a1f1b0c4517a90309a9fbb01d97d6e4dbb1e8b20421c08cce",
+    "file": "Historical SNAP Retailer Locator Data 2005-2025.csv"
+  },
+  "selection_method": "Trim source fields. Compare the exact selector values case-insensitively. Blank selected fields are null. Retain the source street direction and suffix for comparison. Street and parkway variants are included in the Englewood match at the same number and ZIP. The east-side row is deliberately excluded from that storefront.",
+  "samples": [
+    {
+      "name": "Harlem",
+      "selector": {
+        "State": "NY",
+        "City": "NEW YORK",
+        "Zip Code": "10027",
+        "Street Number": "123",
+        "Street Name": [
+          "W 125TH ST"
+        ]
+      },
+      "records": [
+        {
+          "Record ID": "1617376",
+          "Store Name": "Target Store T3337",
+          "Store Type": "Super Store",
+          "Street Number": "123",
+          "Street Name": "W 125th St",
+          "Additional Address": null,
+          "City": "New York",
+          "State": "NY",
+          "Zip Code": "10027",
+          "Authorization Date": "9/19/2024",
+          "End Date": "9/4/2025"
+        },
+        {
+          "Record ID": "1668530",
+          "Store Name": "Target Store T3337",
+          "Store Type": "Super Store",
+          "Street Number": "123",
+          "Street Name": "W 125th St",
+          "Additional Address": null,
+          "City": "New York",
+          "State": "NY",
+          "Zip Code": "10027",
+          "Authorization Date": "8/26/2025",
+          "End Date": null
+        },
+        {
+          "Record ID": "1598875",
+          "Store Name": "TRADER JOE'S HARLEM 576",
+          "Store Type": "Supermarket",
+          "Street Number": "123",
+          "Street Name": "W 125th St",
+          "Additional Address": null,
+          "City": "New York",
+          "State": "NY",
+          "Zip Code": "10027",
+          "Authorization Date": "5/3/2024",
+          "End Date": null
+        }
+      ]
+    },
+    {
+      "name": "Englewood",
+      "selector": {
+        "State": "IL",
+        "City": "CHICAGO",
+        "Zip Code": "60621",
+        "Street Number": "832",
+        "Street Name": [
+          "W 63RD ST",
+          "W 63RD PKWY"
+        ]
+      },
+      "records": [
+        {
+          "Record ID": "1531685",
+          "Store Name": "Save A Lot 21608",
+          "Store Type": "Supermarket",
+          "Street Number": "832",
+          "Street Name": "W 63rd St",
+          "Additional Address": null,
+          "City": "Chicago",
+          "State": "IL",
+          "Zip Code": "60621",
+          "Authorization Date": "1/4/2023",
+          "End Date": null
+        },
+        {
+          "Record ID": "1261186",
+          "Store Name": "Whole Foods Market 10557",
+          "Store Type": "Super Store",
+          "Street Number": "832",
+          "Street Name": "W 63rd Pkwy",
+          "Additional Address": null,
+          "City": "Chicago",
+          "State": "IL",
+          "Zip Code": "60621",
+          "Authorization Date": "9/19/2016",
+          "End Date": "2/16/2023"
+        }
+      ]
+    },
+    {
+      "name": "Wrong-direction control",
+      "selector": {
+        "State": "IL",
+        "City": "CHICAGO",
+        "Zip Code": "60637",
+        "Street Number": "832",
+        "Street Name": [
+          "E 63RD ST"
+        ]
+      },
+      "records": [
+        {
+          "Record ID": "596985",
+          "Store Name": "Quality Super Food",
+          "Store Type": "Supermarket",
+          "Street Number": "832",
+          "Street Name": "E 63rd St",
+          "Additional Address": null,
+          "City": "Chicago",
+          "State": "IL",
+          "Zip Code": "60637",
+          "Authorization Date": "9/3/1999",
+          "End Date": "5/31/2017"
+        }
+      ]
+    }
+  ],
+  "harlem_comparison": {
+    "as_of": "2025-09-01",
+    "matching_authorization_record_ids": [
+      "1598875",
+      "1617376",
+      "1668530"
+    ],
+    "authorization_records": 3,
+    "confirmed_store_ids": [
+      "Target 3337",
+      "Trader Joe’s 576"
+    ],
+    "retailer_references": [
+      "https://www.target.com/sl/harlem-125th-st/3337",
+      "https://locations.traderjoes.com/ny/new-york/576/"
+    ]
+  },
+  "limits": "Authorization dates describe SNAP participation. The file does not establish exact store opening or closing dates, continuous shopping availability, foot traffic, or sales. A blank end date is a missing end in this edition. Check current status against dated operating evidence."
+}

@@ -26553,8 +26553,8 @@
     "title": "Retail site selection APIs for trade areas and foot traffic",
     "description": "Compare retail locations with trade areas, store opening and closure records, and comparable foot traffic. See worked examples from New York and Chicago.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-24",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-25",
+    "readMinutes": 9,
     "coverAlt": "Aerial map of two 125th Street subway complexes and Trader Joe’s Harlem. From September 2023 to September 2024, estimated A, B, C and D station entries rose 17.6 percent, and 2 and 3 station entries rose 18.0 percent.",
     "coverCaption": "Transit context on 125th Street in Harlem. Station points and entry estimates from the MTA. Store location from NYC GeoSearch. Aerial imagery from NYS ITS Geospatial Services, 2024.",
     "intro": "Start in Invariant Earth to check the parcel, building characteristics and road context at a proposed store location. Then connect the site to routing, store history and visits to compare trade areas. Before signing a retail lease, find out who can reach the site, where customers at comparable stores actually come from, and what happened as nearby stores opened or closed. Those questions call for different data. Use routing for travel-time areas, a dated place directory for nearby stores, and comparable visit or pedestrian counts for activity. Keep the area, measure, and time window with every number so you can rerun the comparison.",
@@ -26675,6 +26675,34 @@
         ]
       },
       {
+        "id": "historical-snap-retailer-records",
+        "heading": "Can USDA SNAP records show which grocery stores were nearby?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The USDA’s historical SNAP retailer file can help identify grocery competitors across cities. Start with stores in the trade area that had an authorization covering the date you are comparing. Keep the USDA record ID and authorization dates, then match rows to the retailer’s store number or the specific unit. Use December 31, 2025 as the cutoff for this edition. A blank end date leaves the end unrecorded in that edition.",
+            "sourceIds": ["usda-retailer-history"]
+          },
+          {
+            "type": "paragraph",
+            "text": "On September 1, 2025, three authorization records covered 123 West 125th Street in Harlem. Two overlapped for Target 3337 and the third belonged to Trader Joe’s 576. The retailers list two separate stores at that address. Counting rows gives three stores and counting distinct addresses gives one. Use the operator and store number together to get two.",
+            "sourceIds": ["usda-retailer-history", "target-harlem", "tj-store"]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 832 West 63rd Street in Chicago, Whole Foods’ authorization ended February 16, 2023, after the city inspection recorded the store out of business in December 2022. The archive dates Save A Lot’s authorization to January 4, 2023, before Chicago issued its initial retail food license in April. Keep the dates as separate events. Confirm operating status using a dated store announcement, inspection or landlord record, then count each competitor once per location. The sample also shows why street direction matters. The same number on East 63rd Street belongs to another supermarket.",
+            "sourceIds": ["usda-retailer-history", "chicago-food-inspections", "chicago-business-licenses"]
+          },
+          {
+            "type": "download",
+            "label": "Download the historical SNAP rows and matching rules",
+            "path": "/blog/snap-retailer-authorization-history.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-snap-retailer-authorizations"
+          }
+        ]
+      },
+      {
         "id": "make-a-comparable-store-history",
         "heading": "Build a store history you can compare across markets",
         "blocks": [
@@ -26780,6 +26808,8 @@
       {"id": "chicago-business-licenses", "title": "Chicago Business Licenses and status code definitions", "url": "https://data.cityofchicago.org/d/r5kz-chrr", "publisher": "Chicago Business Affairs and Consumer Protection", "linkLabel": "Chicago license records"},
       {"id": "chicago-food-inspections", "title": "Chicago Food Inspections and recorded outcomes", "url": "https://data.cityofchicago.org/d/4ijn-s7e5", "publisher": "Chicago Department of Public Health", "linkLabel": "Chicago food inspection records"},
       {"id": "englewood-sublease", "title": "Former grocery store sublease listing at 832 West 63rd Street", "url": "https://www.edgemarkllc.com/properties/chicago-former-grocer-sublease-available/", "publisher": "Edgemark Commercial Real Estate Services", "linkLabel": "Broker’s sublease listing"},
+      {"id": "usda-retailer-history", "title": "Historical SNAP Retailer Locator Data, December 31, 2025 edition", "url": "https://www.fns.usda.gov/snap/retailer-locator/data", "publisher": "U.S. Department of Agriculture", "linkLabel": "USDA historical SNAP file"},
+      {"id": "target-harlem", "title": "Harlem 125th Street store 3337", "url": "https://www.target.com/sl/harlem-125th-st/3337", "publisher": "Target"},
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
       {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"}
     ],
@@ -26797,6 +26827,14 @@
         "spatialCoverage": "832 West 63rd Street, Englewood, Chicago, Illinois, United States",
         "temporalCoverage": "2021-02-10/2026-11-24",
         "datePublished": "2026-11-24"
+      },
+      {
+        "anchor": "dataset-snap-retailer-authorizations",
+        "name": "SNAP retailer authorization records in Harlem and Englewood",
+        "description": "Five matched USDA authorization rows and one wrong-address control for grocery stores in New York and Chicago. Includes exact address selectors, the USDA archive checksum, and a dated comparison showing where multiple rows refer to one store.",
+        "sourceIds": ["usda-retailer-history", "target-harlem", "tj-store", "chicago-food-inspections", "chicago-business-licenses"],
+        "spatialCoverage": "Harlem, New York, and Englewood, Chicago, United States",
+        "datePublished": "2026-11-25"
       }
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "regrid-alternatives-parcel-data-apis", "foot-traffic-data-by-address"]
