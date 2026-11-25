@@ -19,6 +19,7 @@ from xml.etree import ElementTree
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 CANONICAL = "https://invariant-ai.com"
+SEARCH_SIGNATURE_VERSION = 2
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 ATOM_NS = "{http://www.w3.org/2005/Atom}"
 FEED_PATH = "/feed.xml"
@@ -227,7 +228,19 @@ def require_success(status, headers, mime):
 
 
 def search_signature(page):
-    fields = (page.main_text, page.titles, page.metadata, page.schemas, sorted(page.main_links))
+    schemas = page.schemas
+    if page.url not in (CANONICAL + "/", CANONICAL + "/about"):
+        # Notify for shared identity changes on the company pages. Dataset and other
+        # page-specific schema changes still count wherever they appear.
+        schemas = [
+            schema for schema in schemas
+            if not isinstance(schema, dict) or schema.get("@id") != CANONICAL + "/#organization"
+        ]
+    main_text = page.main_text
+    if page.url.startswith(CANONICAL + "/blog/"):
+        # The published date stays in the comparison even when the byline adds a label.
+        main_text = main_text.replace(" / Field notes Published ", " / Field notes ", 1)
+    fields = (main_text, page.titles, page.metadata, schemas, sorted(page.main_links))
     return sha256(json.dumps(fields, sort_keys=True).encode("utf-8")).hexdigest()
 
 
@@ -249,12 +262,15 @@ def capture_indexnow_baseline(destination):
 
     with ThreadPoolExecutor(max_workers=6) as pool:
         pages = dict(pool.map(snapshot, sorted(sitemap)))
-    destination.write_text(json.dumps({"origin": CANONICAL, "pages": pages}, indent=2) + "\n", encoding="utf-8")
+    baseline = {"origin": CANONICAL, "signature_version": SEARCH_SIGNATURE_VERSION, "pages": pages}
+    destination.write_text(json.dumps(baseline, indent=2) + "\n", encoding="utf-8")
     print(f"Saved search content from {len(pages)} live canonical pages to {destination}.")
 
 
 def indexnow_changes(baseline_path, jobs):
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    require(baseline.get("signature_version") == SEARCH_SIGNATURE_VERSION,
+            "outdated search signature format; capture a fresh production baseline")
     previous = baseline["pages"]
     require(baseline["origin"] == CANONICAL and isinstance(previous, dict) and bool(previous),
             "expected a nonempty live baseline captured for the canonical origin")
@@ -350,6 +366,24 @@ def verify_discovery(pages):
     unreachable = sorted(pages.keys() - reached)
     require(not unreachable, f"{len(unreachable)} sitemap pages unreachable from the homepage through initial HTML links: "
             f"{', '.join(unreachable[:5])}")
+
+
+def verify_html_links(pages, redirects):
+    redirect_sources = {rule["source"] for rule in redirects}
+    for path, page in pages.items():
+        for href in sorted(page.links):
+            target = unquote(href).rstrip("/") or "/"
+            if target in pages or target in redirect_sources:
+                continue
+            local_path = DIST / target.lstrip("/")
+            require(local_path.is_file() or (local_path / "index.html").is_file(),
+                    f"{path} links to a missing internal page or file: {href}")
+        for href, fragment in sorted(page.fragment_links):
+            target = unquote(href).rstrip("/") or "/"
+            anchor = unquote(fragment).split(":~:", 1)[0]
+            if target in pages and anchor:
+                require(anchor in pages[target].ids,
+                        f"{path} links to a missing section: {href}#{fragment}")
 
 
 def verify_agent_links(files, pages):
@@ -560,6 +594,8 @@ def build_jobs(sitemap, full):
         if path not in path_set:
             jobs.append((path, "shell", None))
     config = json.loads((ROOT / "vercel.json").read_text())
+    if full:
+        verify_html_links(pages, config["redirects"])
     require(config.get("trailingSlash") is False, "the site must redirect trailing slashes to the canonical path")
     index_aliases = {path.rstrip("/") + "/index.html": path for path in candidates}
     jobs.extend((alias, "redirect", (308, path)) for alias, path in index_aliases.items())
