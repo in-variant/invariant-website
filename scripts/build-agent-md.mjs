@@ -306,12 +306,8 @@ function datasetCatalogMd() {
     datasetCatalog.access, '',
     `${datasetEntries.length} published research examples.`, '',
     `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '',
-    `[Try the Earth API](${product.links.quickstart}), [check API data coverage](${SITE}${product.links.coverage}), or [screen a site](${product.links.siteScreen}).`, '',
+    `[See what you can query in the live Earth API](${SITE}${product.links.coverage}), [try the Earth API](${product.links.quickstart}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
-    `## ${siteSearch.title}`, '',
-    siteSearch.description, '',
-    `- [${siteSearch.listingsLabel}](${SITE}${siteSearch.listingsPath})`,
-    `- [${siteSearch.requestLabel}](${SITE}${siteSearch.requestPath})`, '',
     '## See what the data can answer', '',
     ...featuredResearch.flatMap(({ slug, title, summary, scope, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
@@ -326,6 +322,10 @@ function datasetCatalogMd() {
         `  - [Download the ${sample.format} sample](${SITE}${sample.path})`,
       ]
     }), '',
+    `## ${siteSearch.title}`, '',
+    siteSearch.description, '',
+    `- [${siteSearch.listingsLabel}](${SITE}${siteSearch.listingsPath})`,
+    `- [${siteSearch.requestLabel}](${SITE}${siteSearch.requestPath})`, '',
     '## Browse data samples', '',
     ...Object.keys(datasetCatalog.topics).map(label => {
       const params = new URLSearchParams({ topic: label })

@@ -19,7 +19,7 @@ const { url: canonical } = DATA_CATALOG
 const { description, access, siteSearch } = researchCatalog
 
 function trackResearchLink(properties: {
-  action: 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist'
+  action: 'browse_samples' | 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist'
   surface: 'intro' | 'featured' | 'catalog' | 'no_results'
   dataset?: string
   format?: string
@@ -197,37 +197,18 @@ export default function Datasets() {
             <div>
               <p>{description}</p>
               <nav aria-label="Data samples and API" className="resources-data-links">
-                <Link className="dataset-api-button" to={earthLinks.coverage}
-                  onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
-                  Check API coverage <ResourceArrow diagonal />
-                </Link>
-                <a className="dataset-method" href={earthLinks.quickstart}
-                  onClick={() => trackResearchLink({ action: 'api_quickstart', surface: 'intro' })}>
-                  Try the Earth API <ResourceArrow diagonal />
+                <a className="dataset-browse-button" href="#dataset-search"
+                  onClick={() => trackResearchLink({ action: 'browse_samples', surface: 'intro' })}>
+                  Browse samples <span aria-hidden="true">↓</span>
                 </a>
-                <a className="dataset-method" href="#dataset-search">Browse all samples <span aria-hidden="true">↓</span></a>
+                <Link className="dataset-method" to={earthLinks.coverage}
+                  onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
+                  See what you can query <ResourceArrow diagonal />
+                </Link>
               </nav>
             </div>
           </div>
         </header>
-        <div className="resource-container">
-          <aside className="dataset-site-search" aria-labelledby="dataset-site-search-title">
-            <div>
-              <h2 id="dataset-site-search-title">{siteSearch.title}</h2>
-              <p>{siteSearch.description}</p>
-            </div>
-            <div className="dataset-site-search-actions">
-              <Link className="dataset-method" to={siteSearch.listingsPath}
-                onClick={() => trackResearchLink({ action: 'site_listings', surface: 'intro' })}>
-                {siteSearch.listingsLabel} <ResourceArrow diagonal />
-              </Link>
-              <Link className="dataset-method" to={siteSearch.requestPath}
-                onClick={() => trackResearchLink({ action: 'site_shortlist', surface: 'intro' })}>
-                {siteSearch.requestLabel} <ResourceArrow diagonal />
-              </Link>
-            </div>
-          </aside>
-        </div>
         <section className="resource-container dataset-featured" aria-labelledby="featured-studies-title">
           <div className="dataset-featured-heading">
             <h2 id="featured-studies-title">See what the data can answer</h2>
@@ -268,15 +249,38 @@ export default function Datasets() {
             ))}
           </ul>
         </section>
+        <div className="resource-container">
+          <aside className="dataset-site-search" aria-labelledby="dataset-site-search-title">
+            <div>
+              <h2 id="dataset-site-search-title">{siteSearch.title}</h2>
+              <p>{siteSearch.description}</p>
+            </div>
+            <div className="dataset-site-search-actions">
+              <Link className="dataset-method" to={siteSearch.listingsPath}
+                onClick={() => trackResearchLink({ action: 'site_listings', surface: 'featured' })}>
+                {siteSearch.listingsLabel} <ResourceArrow diagonal />
+              </Link>
+              <Link className="dataset-method" to={siteSearch.requestPath}
+                onClick={() => trackResearchLink({ action: 'site_shortlist', surface: 'featured' })}>
+                {siteSearch.requestLabel} <ResourceArrow diagonal />
+              </Link>
+            </div>
+          </aside>
+        </div>
       </div>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>Browse data samples</h2>
-        <p className="dataset-scope">{access}{' '}
+        <p className="dataset-scope">{access}</p>
+        <nav className="dataset-catalog-api" aria-label="Use the Earth API">
           <Link className="dataset-method" to={earthLinks.coverage}
             onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'catalog' })}>
-            Check API coverage <ResourceArrow diagonal />
+            Check live API coverage <ResourceArrow diagonal />
           </Link>
-        </p>
+          <a className="dataset-method" href={earthLinks.quickstart}
+            onClick={() => trackResearchLink({ action: 'api_quickstart', surface: 'catalog' })}>
+            Try the Earth API <ResourceArrow diagonal />
+          </a>
+        </nav>
         <noscript><p className="dataset-scope">All examples are available below. Enable JavaScript to search or filter by topic.</p></noscript>
         <nav className="dataset-topics" aria-label="Dataset topics">
           {topicLinks.map(({ label, count }) => (
