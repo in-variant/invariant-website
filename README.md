@@ -64,6 +64,12 @@ python3 examples/lending-recording-cutoff.py --live
 
 The first two commands use the bundled reference records and work offline. The optional live check reads NYC Open Data without a key and reports any fields that differ from the fixture. The example reconstructs the legal recording cutoff for those three instruments. Use vendor archives to check historical availability and the appropriate title and servicing records to verify priority and balances.
 
+## Compare building permit APIs with city records
+
+The [versioned building permit trial](https://github.com/in-variant/invariant-website/releases/tag/building-permit-api-trial-v1.0.0) bundles nine NYC and Seattle permit IDs, the Python comparison script, and a provider CSV template. Run the included example export to see how the trial reports missing permit IDs, conflicting rows and changes from the dated issuer reference. The release includes both observations of a Brooklyn permit whose reported expiration changed between city exports.
+
+Use the [permit API comparison](https://invariant-ai.com/blog/building-permit-data-apis) to choose offices and cases. The [comparison workflow](https://docs.invariant-ai.com/test-building-permit-api) explains the CSV columns and how to interpret differences.
+
 ## Work on the website locally
 
 With Node.js 22 and npm installed:
