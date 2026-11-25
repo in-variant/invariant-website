@@ -1,5 +1,356 @@
 [
   {
+    "slug": "cmbs-loan-collateral-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find CMBS Loan Collateral by Address",
+    "description": "Use SEC filings to match 90 industrial properties across two CMBS schedules. Learn which figures describe the whole loan, each trust’s interest, and each property.",
+    "date": "2026-11-25",
+    "readMinutes": 6,
+    "coverAlt": "The $1.62 billion Mountain Industrial Portfolio whole loan consists of $1.1694 billion senior and $450.6 million junior notes. Three labeled figures show separate trust interests.",
+    "coverCaption": "The trusts report portions of the senior loan in SEC-filed Benchmark, BANK5, and BMO offering documents.",
+    "intro": "Start with the property address in a mortgage loan schedule. Use its parent loan row to find the whole-loan description and the notes held by the trust. The Mountain Industrial Portfolio appears in two SEC schedules with the same 90 industrial properties under different row numbers. The prospectuses disclose one $1.62 billion whole loan and several smaller trust interests. We matched the two public schedules so you can see which number belongs in each part of a credit file.",
+    "takeaways": [
+      "Store the whole loan once and link each trust interest and property to it.",
+      "Match street address, city, state and ZIP across schedules. Retain both filing row IDs.",
+      "Keep property allocations, trust balances and current payoff figures in separate fields."
+    ],
+    "sections": [
+      {
+        "id": "whole-loan-and-trust-interests",
+        "heading": "One whole loan appears in several trusts",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A commercial mortgage-backed securities (CMBS) trust may hold only some of the notes that make up a borrower’s loan. The Mountain Industrial Portfolio whole loan is secured by first mortgage liens on fee or leasehold interests in 90 industrial properties across 27 states. The filings report $1.1694 billion in senior notes and $450.6 million in junior notes.",
+            "sourceIds": [
+              "bank5-terms",
+              "bmo-terms"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Record",
+              "Disclosed principal",
+              "How to use it"
+            ],
+            "rows": [
+              [
+                "Mountain Industrial Portfolio whole loan",
+                "$1.620 billion",
+                "The combined obligation described in the offering documents."
+              ],
+              [
+                "Benchmark 2026-V22",
+                "$67.50 million",
+                "Loan row 1 in Annex A. This is the portion attached to this trust’s loan row."
+              ],
+              [
+                "BANK5 2026-5YR22",
+                "$81.50 million",
+                "Loan No. 2. The term sheet lists eight senior notes at the reporting date."
+              ],
+              [
+                "BMO 2026-5C15",
+                "$45.75 million",
+                "Loan 4.00 in Exhibit A. Annex A identifies six notes from three sellers."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "bank5-terms",
+                "bmo-terms"
+              ],
+              [
+                "benchmark-annex"
+              ],
+              [
+                "bank5-terms"
+              ],
+              [
+                "bmo-exhibit"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The three trust figures are components of the same senior financing. Store them with their own note and trust identifiers, and keep the whole-loan balance as a separate record. Both term sheets say servicing of the whole loan follows the MTN 2026-LPFX trust and servicing agreement. Check the latest servicer report when you need current exposure.",
+            "sourceIds": [
+              "bank5-terms",
+              "bmo-terms"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "property-schedule-crosswalk",
+        "heading": "Match collateral across filings by address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Open the Benchmark Annex A and BMO Exhibit A. Filter each schedule to Mountain Industrial Portfolio, then match the property rows on the filed address, city, state and ZIP. We matched all 90 on those fields. The matching order put Benchmark 1.01 through 1.90 alongside BMO 4.01 through 4.90. The prefixes identify loans within their own schedules.",
+            "sourceIds": [
+              "benchmark-annex",
+              "bmo-exhibit"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Address",
+              "Benchmark row and allocated cut-off balance",
+              "BMO property row"
+            ],
+            "rows": [
+              [
+                "3150 Highway 42, Locust Grove, GA 30248",
+                "1.01 · $2,920,096",
+                "4.01"
+              ],
+              [
+                "246 Glasson Drive, Corpus Christi, TX 78406",
+                "1.79 · $200,737",
+                "4.79"
+              ],
+              [
+                "7569 Golf Course Boulevard, Punta Gorda, FL 33982",
+                "1.87 · $101,937",
+                "4.87"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "benchmark-annex",
+                "bmo-exhibit"
+              ],
+              [
+                "benchmark-annex",
+                "bmo-exhibit"
+              ],
+              [
+                "benchmark-annex",
+                "bmo-exhibit"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The 90 Benchmark property allocations sum to $67,499,997, or $3 below the published $67.5 million loan row. The schedule displays the property allocations in whole dollars. Preserve the individual values and the difference when you reconcile the file. BMO reports $45.75 million on the loan row and leaves its property balance cells blank. Keep those cells blank in your crosswalk.",
+            "sourceIds": [
+              "benchmark-annex",
+              "bmo-exhibit"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A shared schedule can still contain separate mortgage groups. The term sheet says the Florida notes are directly secured by mortgages on Florida properties, and the other notes by mortgages on properties outside Florida. It also describes a guaranty of the Florida obligations from the non-Florida borrowers. In the crosswalk, Punta Gorda and Corpus Christi belong to different mortgage groups even though they are part of the same portfolio.",
+            "sourceIds": [
+              "bank5-terms"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "CSV",
+            "path": "/blog/mountain-industrial-portfolio-collateral-crosswalk.csv",
+            "label": "Download the 90-property CMBS collateral crosswalk"
+          }
+        ]
+      },
+      {
+        "id": "note-history",
+        "heading": "Follow note splits across dated filings",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Read the whole-loan note tables as dated versions. The BANK5 filing on May 13, 2026 identifies a Wells Fargo note pair at $67 million and a UBS pair at $33.75 million. The BMO term sheet filed June 8 shows two new pairs under each of those prior note designations. The groups reconcile to the same principal in the two tables.",
+            "sourceIds": [
+              "bank5-terms",
+              "bmo-terms"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Source group",
+              "May 13 BANK5 table",
+              "June 8 BMO table"
+            ],
+            "rows": [
+              [
+                "Wells Fargo",
+                "$67 million in A-3-1-1-1 and A-4-1-1-1",
+                "$61 million in the pairs ending -2 and $6 million in the pairs ending -1. BMO lists the $6 million pair in its trust."
+              ],
+              [
+                "UBS",
+                "$33.75 million in A-3-6 and A-4-6",
+                "$27.75 million in the pairs ending -1 and $6 million in the pairs ending -2. BMO lists the $6 million pair in its trust."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "bank5-terms",
+                "bmo-terms"
+              ],
+              [
+                "bank5-terms",
+                "bmo-terms"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "Retain the prior note IDs and the filing dates alongside the successor IDs. A change in the number of note rows can leave the whole-loan principal unchanged. Confirm later amendments and transactions against the current documents before using these terms.",
+            "sourceIds": [
+              "bank5-terms",
+              "bmo-terms"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collateral-release",
+        "heading": "Which amount matters for a property release?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Benchmark property figure allocates that trust’s reported balance. A release calculation uses the allocation defined in the loan documents and the loan balance at the applicable date. For Mountain Industrial, the BANK5 term sheet describes a release option from the May 11, 2028 payment date. Its formula uses 105% of the applicable allocation before the outstanding whole loan reaches the stated $1.134 billion threshold and 110% thereafter, subject to the outstanding balance cap. The term sheet also describes possible prepayment fees and conditions on debt yield and tax treatment.",
+            "sourceIds": [
+              "bank5-terms"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Corpus Christi and Punta Gorda properties illustrate another distinction. The term sheets identify both as ground leased by the borrower. Record whether the lien covers a fee or leasehold interest, then confirm the legal description and any later release with the recorded documents. For a closing, request a current release quote and the applicable loan provisions from the servicer.",
+            "sourceIds": [
+              "benchmark-annex",
+              "bmo-terms"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-mortgage-release-by-address",
+                "label": "Check whether a recorded release covers a parcel"
+              },
+              {
+                "slug": "commercial-mortgage-prepayment-defeasance",
+                "label": "Read commercial mortgage prepayment and defeasance terms"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "underwriting-file",
+        "heading": "Build a collateral file you can reconcile",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Start with the property address, then tie it to the parcel number and legal description. Keep the filing’s original address values.",
+              "Give the whole loan, note, trust interest, and property allocation separate IDs. Carry the filing date and the balance’s as-of date with each record.",
+              "Use the most recent documents to check modifications, releases and later note transfers. Save prior schedules so you can replay an earlier decision.",
+              "Join physical records such as building footprints and flood maps to the verified property. Keep the underlying geometry, edition and source separate from the financing records."
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/data-coverage#property-and-buildings",
+                "label": "Check available parcel and building fields in Invariant Earth"
+              },
+              {
+                "slug": "commercial-real-estate-lending",
+                "label": "Explore commercial real estate lending guides"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I look up the properties securing a CMBS loan?",
+        "answer": "Search SEC EDGAR for the trust and open its prospectus property annex or the schedule attached to a mortgage loan purchase agreement. Match the address to a property row and follow its parent loan ID to the whole-loan terms.",
+        "sourceIds": [
+          "benchmark-annex",
+          "bmo-exhibit"
+        ]
+      },
+      {
+        "question": "Why does the same property appear in more than one CMBS trust?",
+        "answer": "Different trusts can hold separate notes from one whole loan. Their schedules can repeat the same collateral while reporting different trust-specific balances. The Benchmark and BMO schedules both list the 90 Mountain Industrial properties.",
+        "sourceIds": [
+          "benchmark-annex",
+          "bmo-exhibit",
+          "bmo-terms"
+        ]
+      },
+      {
+        "question": "What is an allocated loan amount in a CMBS filing?",
+        "answer": "It is the share of a reported loan balance assigned to a property for the purpose stated in the document. Check whether the figure allocates a trust interest or the whole loan. For a property release, look up the allocation and conditions defined by the loan agreement.",
+        "sourceIds": [
+          "benchmark-annex",
+          "bank5-terms"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "benchmark-annex",
+        "title": "Benchmark 2026-V22 Annex A, loan row 1 and property rows 1.01–1.90",
+        "publisher": "Benchmark 2026-V22 filing with the SEC",
+        "url": "https://www.sec.gov/Archives/edgar/data/2126766/000153949726001309/n5868_x4-annexa.htm",
+        "linkLabel": "Benchmark Annex A"
+      },
+      {
+        "id": "bmo-exhibit",
+        "title": "BMO 2026-5C15 Wells Fargo purchase agreement, Annex A and Exhibit A loan and property rows",
+        "publisher": "BMO Commercial Mortgage Securities and Wells Fargo filing with the SEC",
+        "url": "https://www.sec.gov/Archives/edgar/data/2128774/000153949726001866/exh99_8-wfbmlpa.htm",
+        "linkLabel": "BMO Annex A and Exhibit A"
+      },
+      {
+        "id": "bank5-terms",
+        "title": "BANK5 2026-5YR22 term sheet, Loan No. 2 and Mountain Industrial Portfolio whole-loan summary",
+        "publisher": "BANK5 2026-5YR22 filing with the SEC",
+        "url": "https://www.sec.gov/Archives/edgar/data/2134743/000153949726001417/n5888_x3-ts.htm",
+        "linkLabel": "May BANK5 term sheet"
+      },
+      {
+        "id": "bmo-terms",
+        "title": "BMO 2026-5C15 term sheet, Loan No. 4 and Mountain Industrial Portfolio whole-loan summary",
+        "publisher": "BMO 2026-5C15 filing with the SEC",
+        "url": "https://www.sec.gov/Archives/edgar/data/2128774/000153949726001680/n5939_x4-termsheet.htm",
+        "linkLabel": "June BMO term sheet"
+      }
+    ],
+    "dataset": {
+      "name": "Mountain Industrial Portfolio 90-property CMBS collateral crosswalk",
+      "description": "Address-level crosswalk of 90 collateral properties in SEC-filed Benchmark 2026-V22 and BMO 2026-5C15 schedules, with filing-specific row IDs, Benchmark property allocations, Florida and non-Florida mortgage groups, and original source URLs.",
+      "sourceIds": [
+        "benchmark-annex",
+        "bmo-exhibit",
+        "bank5-terms"
+      ],
+      "spatialCoverage": "90 industrial properties across 27 U.S. states",
+      "temporalCoverage": "2026-05-04/2026-06-25"
+    },
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "commercial-mortgage-release-by-address",
+      "commercial-mortgage-maturity-data-apis",
+      "cmbs-dscr-noi-by-property"
+    ]
+  },
+  {
     "slug": "commercial-property-statement-of-values",
     "topic": "Data & APIs",
     "region": "United States",
