@@ -215,7 +215,13 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const isSiteListing = article.kind === 'site-listing'
   const coverCaption = article.coverCaption ?? (isSiteListing ? 'AI-generated illustration.' : undefined)
   const isSiteSelectionService = article.kind === 'site-guide' && !!article.service
-  const hasWorksheet = article.sections.some(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
+  const checklist = article.sections.find(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
+  const workbook = checklist?.blocks.find(block => block.type === 'download' && block.format === 'XLSX')
+  const guideActions = article.kind === 'site-guide' && checklist && workbook?.type === 'download' ? [
+    { href: workbook.path, label: 'Download Excel workbook', download: true },
+    { href: `#${checklist.id}`, label: 'See the checklist' },
+    { href: '/blog/energized-data-center-sites-available-now#sites-available', label: 'Browse sites by power status' },
+  ] : undefined
   const reviewedDate = article.updatedDate ?? article.date
   const railLink = article.collectionLink ?? (
     isSiteListing ? { path: '/blog/find-data-center-site-us', label: 'Data center site finder' } :
@@ -235,6 +241,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
       coverImage={article.coverImage}
       siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined}
       listingSections={article.listingSections}
+      guideActions={guideActions}
     />
     <div className="industry-article-layout">
       <aside className="industry-article-rail" aria-label="In this guide">
@@ -246,7 +253,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
       <div className="industry-article-body">
         <div className="industry-byline"><Link to="/about">Invariant editorial team</Link><span>{article.readMinutes} min read</span><span>{article.region ?? 'United States'}</span></div>
         {isSiteSelectionService && <SiteSelectionRequestBanner />}
-        {article.kind === 'site-guide' && !isSiteSelectionService && (hasWorksheet ?
+        {article.kind === 'site-guide' && !isSiteSelectionService && !guideActions && (checklist ?
           <aside className="industry-site-market" aria-label="Site selection worksheet">
             <p>Compare candidate sites and record the evidence and next action for each check.</p>
             <a href={`/blog/${article.slug}.csv`} download>Download the worksheet (CSV) <span aria-hidden="true">↗</span></a>
