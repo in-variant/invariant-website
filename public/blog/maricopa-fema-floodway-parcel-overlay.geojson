@@ -1,0 +1,185 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "role": "parcel",
+        "square_m": 11280.217259732193,
+        "acres": 2.787402388998626,
+        "share_percent": 100.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -112.20360337342409,
+              33.39653900363707
+            ],
+            [
+              -112.20594863567905,
+              33.39653404772634
+            ],
+            [
+              -112.2058815360189,
+              33.39606707787246
+            ],
+            [
+              -112.20353498827475,
+              33.396073840536864
+            ],
+            [
+              -112.20360337342409,
+              33.39653900363707
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "role": "regulatory_floodway",
+        "square_m": 10911.630886274623,
+        "acres": 2.696322712581794,
+        "share_percent": 96.73245324118588
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -112.20594863567905,
+              33.39653404772634
+            ],
+            [
+              -112.20360337342409,
+              33.39653900363707
+            ],
+            [
+              -112.20353498827475,
+              33.396073840536864
+            ],
+            [
+              -112.20545169581558,
+              33.39606831997643
+            ],
+            [
+              -112.205905420108,
+              33.39623329619421
+            ],
+            [
+              -112.20594863567905,
+              33.39653404772634
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "role": "sfha_outside_floodway",
+        "square_m": 368.58637343550265,
+        "acres": 0.09107967641137894,
+        "share_percent": 3.2675467586184896
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -112.2058815360189,
+              33.39606707787246
+            ],
+            [
+              -112.205905420108,
+              33.39623329619421
+            ],
+            [
+              -112.20545169581558,
+              33.39606831997643
+            ],
+            [
+              -112.2058815360189,
+              33.39606707787246
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "parcel_apn": "104-71-007C",
+    "analysis_date": "2026-11-25",
+    "analysis_crs": "EPSG:26912",
+    "coordinates_crs": "WGS 84 lon/lat",
+    "method": "Union effective NFHL polygons with ZONE_SUBTY=FLOODWAY, intersect with the assessor parcel geometry, calculate planar area in NAD83 / UTM zone 12N. Union SFHA_TF=T independently. The attributed source map panel list was obtained using the parcel bounding box.",
+    "scope": "Current parcel map screening. No survey, project geometry, hydraulic model, buildable acreage, determination, or permit result is represented.",
+    "fema_panels": [
+      {
+        "FIRM_PAN": "04013C2190M",
+        "EFF_DATE": 1446595200000,
+        "PANEL_TYP": "Countywide, Panel Printed"
+      }
+    ],
+    "fema_parcel_intersections": [
+      {
+        "FLD_AR_ID": "04013C_4519",
+        "DFIRM_ID": "04013C",
+        "FLD_ZONE": "AE",
+        "ZONE_SUBTY": null,
+        "SFHA_TF": "T"
+      },
+      {
+        "FLD_AR_ID": "04013C_4523",
+        "DFIRM_ID": "04013C",
+        "FLD_ZONE": "AE",
+        "ZONE_SUBTY": "FLOODWAY",
+        "SFHA_TF": "T"
+      }
+    ],
+    "area_results": {
+      "parcel": {
+        "square_m": 11280.217259732193,
+        "acres": 2.787402388998626,
+        "share_percent": 100.0
+      },
+      "regulatory_floodway": {
+        "square_m": 10911.630886274623,
+        "acres": 2.696322712581794,
+        "share_percent": 96.73245324118588
+      },
+      "all_sfha": {
+        "square_m": 11280.217259732193,
+        "acres": 2.787402388998626,
+        "share_percent": 100.0
+      },
+      "sfha_outside_floodway": {
+        "square_m": 368.58637343550265,
+        "acres": 0.09107967641137894,
+        "share_percent": 3.2675467586184896
+      },
+      "parcel_outside_floodway": {
+        "square_m": 368.58637343550265,
+        "acres": 0.09107967641137894,
+        "share_percent": 3.2675467586184896
+      }
+    },
+    "source_records": {
+      "parcel": {
+        "query_url": "https://gis.mcassessor.maricopa.gov/ArcGIS/rest/services/Parcels/MapServer/0/query?f=geojson&where=APN+IN+%28%2710471007C%27%2C%27104-71-007C%27%29&outFields=APN&outSR=4326&returnGeometry=true",
+        "response_sha256": "688094c423cf1331e01873b30cd0dde5a1742be1f9f916d5908a2808c3dea924"
+      },
+      "hazards": {
+        "query_url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-112.20754863567905%2C33.394567077872466%2C-112.20193498827476%2C33.39803900363707&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FLD_AR_ID%2CDFIRM_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF&returnGeometry=true&f=geojson",
+        "response_sha256": "50600b84d3dbd428b2508392410506d576189b6a662df8a88fb8e0d4c6bc9ec2"
+      },
+      "panels": {
+        "query_url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-112.20594863567905%2C33.396067077872466%2C-112.20353498827475%2C33.396539003637066&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CPANEL_TYP&returnGeometry=false&f=geojson",
+        "response_sha256": "2e6a285826d4307442b6dc6bf7cdf2b63581eca825e41dac5cc03e0a1ff98b2e"
+      }
+    }
+  }
+}

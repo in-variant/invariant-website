@@ -1,5 +1,324 @@
 [
   {
+    "slug": "fema-floodway-property-check",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Check a FEMA Floodway Before Buying Land",
+    "description": "See what a regulatory floodway means for development. Reproduce a FEMA parcel overlay, check Zone AE outside the floodway, and find the records a permit review needs.",
+    "date": "2026-11-25",
+    "readMinutes": 6,
+    "coverAlt": "FEMA floodway overlay for Maricopa parcel 104-71-007C. About 2.70 acres are in the regulatory floodway and the remaining 0.09 acres are also in Zone AE.",
+    "coverCaption": "Mapped areas on Maricopa County parcel 104-71-007C, calculated from county assessor geometry and the FEMA National Flood Hazard Layer retrieved November 25, 2026.",
+    "intro": "To check a FEMA floodway before buying land, look up the effective flood map and overlap the regulatory floodway with the parcel and the proposed work. Check the pad, grading limits, utility lines and access roads separately. A Zone AE label tells you the property is in a mapped flood hazard area. The floodway boundary tells you where a different review of the proposed work may apply.",
+    "takeaways": [
+      "Check the adopted floodway and the full area of proposed work, including off-site access and temporary construction.",
+      "Keep effective map records, the engineer’s review and any issued permit tied to the same plan revision.",
+      "For existing buildings, retain the applicable flood determination and elevation records alongside any approvals for later work."
+    ],
+    "sections": [
+      {
+        "id": "floodway-versus-floodplain",
+        "heading": "What is the difference between a floodway and a floodplain?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A regulatory floodway is the channel and adjoining land the community reserves to carry the base flood. The base flood has a 1% chance of occurring in a given year. The wider mapped Special Flood Hazard Area can include land outside the floodway. In FEMA’s National Flood Hazard Layer, two adjacent polygons can both be Zone AE while only one has the FLOODWAY subtype. Keep the zone and subtype in separate fields.",
+            "sourceIds": [
+              "federal-floodway-rule",
+              "fema-guidance",
+              "fema-polygons"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Check the community’s adopted map and any effective revisions for the decision date. Also ask which local floodplain layers or development rules apply. The mapped floodway acreage tells you where to investigate the proposed work. The permit file tells you which work the local authority reviewed.",
+            "sourceIds": [
+              "fema-guidance",
+              "federal-floodway-rule"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "maricopa-parcel-floodway-overlay",
+        "heading": "A Maricopa parcel shows why the Zone AE label is too broad for site design",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In the zoning packet for case Z260017, Maricopa County describes a 2.79-acre parcel near 67th Avenue and Southern Avenue and says the Salt River floodway covers more than 95% of the site. The proposed use was a single billboard. The engineering conditions called for a floodway analysis and a no-rise certification before building permit issuance.",
+            "sourceIds": [
+              "maricopa-staff"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "We matched APN 104-71-007C to the assessor polygon, then intersected it with effective FEMA polygons. Panel 04013C2190M has an effective date of November 4, 2015. The map was retrieved November 25, 2026. The download preserves the query URLs and calculated areas, with the area calculation in NAD83 / UTM zone 12N. The county packet supplies the separate planning record.",
+            "sourceIds": [
+              "assessor-parcel",
+              "fema-polygons",
+              "fema-panel",
+              "maricopa-staff"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Part of the parcel",
+              "Calculated area",
+              "Effective GIS designation"
+            ],
+            "rows": [
+              [
+                "Whole parcel",
+                "2.787 acres",
+                "100% within mapped Zone AE"
+              ],
+              [
+                "Regulatory floodway",
+                "2.696 acres",
+                "96.7% of parcel area; FEMA polygon 04013C_4523"
+              ],
+              [
+                "Special Flood Hazard Area outside the floodway",
+                "0.091 acres",
+                "3.3% of parcel area; still Zone AE, FEMA polygon 04013C_4519"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "assessor-parcel",
+                "fema-polygons"
+              ],
+              [
+                "assessor-parcel",
+                "fema-polygons"
+              ],
+              [
+                "assessor-parcel",
+                "fema-polygons"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Before treating the 0.09 acres as a place to build, check where the proposed foundation and its grading, access and utilities would go. A small piece of land outside the floodway can still be in the mapped hazard area and may have its own development constraints. The zoning packet gives a proposed use and engineering conditions. Confirm the issued permit and the construction drawings with the county.",
+            "sourceIds": [
+              "maricopa-staff",
+              "fema-polygons"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/maricopa-fema-floodway-parcel-overlay.geojson",
+            "format": "GeoJSON",
+            "label": "Download the parcel and mapped floodway intersection"
+          }
+        ]
+      },
+      {
+        "id": "no-rise-certification-and-permit",
+        "heading": "What does a no-rise certification establish?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Under 44 CFR 60.3(d)(3), participating communities with an adopted regulatory floodway generally must prohibit encroachments unless hydraulic and hydrologic analysis shows the proposal would cause no increase in flood levels during the base flood. The one-foot provision in paragraph (d)(2) describes how a floodway is selected. The review of individual encroachments follows paragraph (d)(3). For proposals that would raise the base flood elevation, paragraph (d)(4) and 44 CFR 65.12 describe a separate conditional revision process before local permitting.",
+            "sourceIds": [
+              "federal-floodway-rule",
+              "map-revision-rule",
+              "fema-guidance"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask the floodplain administrator which analysis and records the local ordinance requires. For a project reviewed on a no-rise basis, obtain the engineering certification and supporting model results for the applicable plan, then check the local permit decision and conditions separately. For a conditional map revision, check the conditions and the status of any later effective revision.",
+            "sourceIds": [
+              "fema-guidance",
+              "map-revision-rule"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Lower Minnesota River Watershed District’s Kennaley’s Creek review shows why to include temporary work. A temporary construction bridge was outside the earlier permit scope. The district’s October 2024 memo records a new analysis comparing proposed permanent conditions with the temporary bridge in place. The modeled base-flood water surface did not change between those conditions. That finding was part of the amendment review for the specific crossing.",
+            "sourceIds": [
+              "minnesota-amendment"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "floodway-due-diligence-file",
+        "heading": "What to save in a floodway diligence file",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Map and date",
+                "Community and panel, effective date, applicable revisions, hazard zone and floodway subtype."
+              ],
+              [
+                "Project geometry",
+                "Parcel, existing buildings, proposed grading and fill, road crossings, utility routes and temporary work. Include off-site pieces."
+              ],
+              [
+                "Engineering review",
+                "Proposal revision, baseline and proposed model results, certification and any conditions. Confirm the work under review matches the plan being financed or purchased."
+              ],
+              [
+                "Permit and insurance records",
+                "Local permit and approvals, any effective FEMA revision, and the separate flood determination or building elevation records used for lending or coverage."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "fema-guidance"
+              ],
+              [
+                "fema-guidance",
+                "minnesota-amendment"
+              ],
+              [
+                "fema-guidance",
+                "minnesota-amendment"
+              ],
+              [
+                "map-revision-rule",
+                "fema-guidance"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Check the map and building records",
+            "items": [
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check the effective map on a quote or loan date"
+              },
+              {
+                "slug": "elevation-certificate-by-address",
+                "label": "Find an elevation certificate for the building"
+              },
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Compare flood data by address, parcel and footprint"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is all land in Zone AE in a regulatory floodway?",
+        "answer": "Zone AE can include land both inside and outside the regulatory floodway. Check the floodway subtype or adopted floodway layer on the effective map and compare it with your site plan.",
+        "sourceIds": [
+          "fema-guidance",
+          "fema-polygons"
+        ]
+      },
+      {
+        "question": "Can a property be partly in a floodway?",
+        "answer": "Yes. A mapped floodway can cross part of a parcel. Calculate overlap for the parcel and compare the actual construction limits, access and utilities with the same boundary.",
+        "sourceIds": [
+          "assessor-parcel",
+          "fema-polygons",
+          "fema-guidance"
+        ]
+      },
+      {
+        "question": "What if only a driveway or a utility crossing is in the floodway?",
+        "answer": "Include the work in the proposal you give the local floodplain administrator. Roads, utilities, grading and temporary crossings can require their own review even when the building footprint is clear of the mapped floodway.",
+        "sourceIds": [
+          "federal-floodway-rule",
+          "minnesota-amendment"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "federal-floodway-rule",
+        "title": "44 CFR 60.3(d)(2)–(4), adoption and encroachment standards",
+        "url": "https://www.ecfr.gov/current/title-44/chapter-I/subchapter-B/part-60/subpart-A/section-60.3",
+        "publisher": "Electronic Code of Federal Regulations",
+        "linkLabel": "Federal floodway rule"
+      },
+      {
+        "id": "map-revision-rule",
+        "title": "44 CFR 65.12, conditional approval and final revision for encroachments",
+        "url": "https://www.ecfr.gov/current/title-44/chapter-I/subchapter-B/part-65/section-65.12",
+        "publisher": "Electronic Code of Federal Regulations",
+        "linkLabel": "Conditional revision rule"
+      },
+      {
+        "id": "fema-guidance",
+        "title": "Floodway Analysis and Mapping, FEMA guidance document 79, November 2023",
+        "url": "https://www.fema.gov/sites/default/files/documents/fema_rm-floodway-analysis-and-mapping-nov-2023.pdf",
+        "publisher": "Federal Emergency Management Agency",
+        "linkLabel": "FEMA floodway guidance"
+      },
+      {
+        "id": "maricopa-staff",
+        "title": "Z260017 staff report for July 15, 2026 hearing and April engineering memo",
+        "url": "https://www.maricopa.gov/AgendaCenter/ViewFile/Item/10416?fileID=101793",
+        "publisher": "Maricopa County Planning and Development",
+        "linkLabel": "Maricopa staff report"
+      },
+      {
+        "id": "assessor-parcel",
+        "title": "Assessor parcel polygon for APN 104-71-007C",
+        "url": "https://gis.mcassessor.maricopa.gov/ArcGIS/rest/services/Parcels/MapServer/0/query?f=geojson&where=APN+IN+%28%2710471007C%27%2C%27104-71-007C%27%29&outFields=APN&outSR=4326&returnGeometry=true",
+        "publisher": "Maricopa County Assessor",
+        "linkLabel": "Assessor parcel geometry"
+      },
+      {
+        "id": "fema-polygons",
+        "title": "NFHL layer 28 hazard polygons near Maricopa APN 104-71-007C",
+        "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-112.20754863567905%2C33.394567077872466%2C-112.20193498827476%2C33.39803900363707&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FLD_AR_ID%2CDFIRM_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF&returnGeometry=true&f=geojson",
+        "publisher": "Federal Emergency Management Agency",
+        "linkLabel": "FEMA hazard polygons"
+      },
+      {
+        "id": "fema-panel",
+        "title": "NFHL layer 3 panel record 04013C2190M",
+        "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-112.20594863567905%2C33.396067077872466%2C-112.20353498827475%2C33.396539003637066&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CPANEL_TYP&returnGeometry=false&f=geojson",
+        "publisher": "Federal Emergency Management Agency",
+        "linkLabel": "FEMA panel record"
+      },
+      {
+        "id": "minnesota-amendment",
+        "title": "October 30, 2024 technical memorandum, Kennaley’s Creek amendment, LMRWD No. 2023-007",
+        "url": "https://lowermnriverwd.org/application/files/5217/3068/9563/Full_Packet_11062024.pdf",
+        "publisher": "Lower Minnesota River Watershed District",
+        "linkLabel": "Kennaley’s Creek permit review"
+      }
+    ],
+    "dataset": {
+      "name": "Maricopa County parcel 104-71-007C FEMA floodway intersection",
+      "description": "A three-feature GeoJSON with the assessor parcel, its mapped regulatory floodway area, and the rest of the parcel in Zone AE. Includes area calculations by class, map panel record, query URLs and raw response fingerprints.",
+      "sourceIds": [
+        "assessor-parcel",
+        "fema-polygons",
+        "fema-panel",
+        "maricopa-staff"
+      ],
+      "spatialCoverage": "Parcel 104-71-007C near 67th Avenue and Southern Avenue, Maricopa County, Arizona, United States",
+      "temporalCoverage": "2026-11-25"
+    },
+    "relatedSlugs": [
+      "fema-flood-zone-history-for-underwriting",
+      "elevation-certificate-by-address",
+      "best-flood-risk-data-apis",
+      "data-center-flood-zone-screening"
+    ]
+  },
+  {
     "slug": "verify-industrial-rail-spur-service",
     "topic": "Data & APIs",
     "region": "United States",
@@ -23217,6 +23536,10 @@
               {
                 "label": "Compare a parcel overlay with a single coordinate",
                 "slug": "best-gis-apis-for-site-selection"
+              },
+              {
+                "slug": "fema-floodway-property-check",
+                "label": "Check where the regulatory floodway crosses the parcel"
               }
             ]
           }

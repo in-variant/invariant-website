@@ -1,5 +1,56 @@
 [
   {
+    "slug": "fema-floodway-property-check",
+    "topic": "Data & APIs",
+    "title": "How to Check a FEMA Floodway Before Buying Land",
+    "summary": "See what a regulatory floodway means for development. Reproduce a FEMA parcel overlay, check Zone AE outside the floodway, and find the records a permit review needs.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/fema-floodway-property-check.webp?v=da5713ce",
+    "dataset": {
+      "name": "Maricopa County parcel 104-71-007C FEMA floodway intersection",
+      "description": "A three-feature GeoJSON with the assessor parcel, its mapped regulatory floodway area, and the rest of the parcel in Zone AE. Includes area calculations by class, map panel record, query URLs and raw response fingerprints.",
+      "spatialCoverage": "Parcel 104-71-007C near 67th Avenue and Southern Avenue, Maricopa County, Arizona, United States",
+      "temporalCoverage": "2026-11-25",
+      "sources": [
+        "https://gis.mcassessor.maricopa.gov/ArcGIS/rest/services/Parcels/MapServer/0/query?f=geojson&where=APN+IN+%28%2710471007C%27%2C%27104-71-007C%27%29&outFields=APN&outSR=4326&returnGeometry=true",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-112.20754863567905%2C33.394567077872466%2C-112.20193498827476%2C33.39803900363707&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FLD_AR_ID%2CDFIRM_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF&returnGeometry=true&f=geojson",
+        "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-112.20594863567905%2C33.396067077872466%2C-112.20353498827475%2C33.396539003637066&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CPANEL_TYP&returnGeometry=false&f=geojson",
+        "https://www.maricopa.gov/AgendaCenter/ViewFile/Item/10416?fileID=101793"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Assessor parcel polygon for APN 104-71-007C",
+          "publisher": "Maricopa County Assessor",
+          "url": "https://gis.mcassessor.maricopa.gov/ArcGIS/rest/services/Parcels/MapServer/0/query?f=geojson&where=APN+IN+%28%2710471007C%27%2C%27104-71-007C%27%29&outFields=APN&outSR=4326&returnGeometry=true"
+        },
+        {
+          "title": "NFHL layer 28 hazard polygons near Maricopa APN 104-71-007C",
+          "publisher": "Federal Emergency Management Agency",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-112.20754863567905%2C33.394567077872466%2C-112.20193498827476%2C33.39803900363707&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FLD_AR_ID%2CDFIRM_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF&returnGeometry=true&f=geojson"
+        },
+        {
+          "title": "NFHL layer 3 panel record 04013C2190M",
+          "publisher": "Federal Emergency Management Agency",
+          "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-112.20594863567905%2C33.396067077872466%2C-112.20353498827475%2C33.396539003637066&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&inSR=4326&outSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CPANEL_TYP&returnGeometry=false&f=geojson"
+        },
+        {
+          "title": "Z260017 staff report for July 15, 2026 hearing and April engineering memo",
+          "publisher": "Maricopa County Planning and Development",
+          "url": "https://www.maricopa.gov/AgendaCenter/ViewFile/Item/10416?fileID=101793"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the parcel and mapped floodway intersection",
+          "path": "/blog/maricopa-fema-floodway-parcel-overlay.geojson",
+          "format": "GeoJSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "verify-industrial-rail-spur-service",
     "topic": "Data & APIs",
     "title": "How to Verify Rail Spur Service at an Industrial Site",
