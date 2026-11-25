@@ -1648,10 +1648,11 @@
     "slug": "commercial-occupancy-vacancy-lease-rollover-data",
     "topic": "Data & APIs",
     "title": "Commercial Occupancy, Vacancy, and Lease Rollover Data",
-    "summary": "Find commercial occupancy and vacancy data by source. Compare signed leases with rent commencement, screen available space, and model lease rollover using BXP’s public filings.",
+    "summary": "Find commercial occupancy and vacancy data. Use BXP’s filings to compare leased and occupied space, and check early termination, subleases and cash traps in a CMBS example.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/commercial-occupancy-vacancy-lease-rollover-data.webp?v=9cf0bac5",
     "dataset": {
       "name": "BXP commercial occupancy and lease expirations, Q2 and Q3 2026",
@@ -1692,7 +1693,39 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-redstone-lease-option",
+        "name": "Redstone Corporate Center I lease termination, sublease and cash-trap records",
+        "description": "Source-linked fields for a 37,542-square-foot prime lease and sublease, its early termination terms, a separate direct lease and the corresponding CMBS cash-trap provision. Reconciles a January 2026 rent roll with dates in the October 2026 SEC exhibit.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "Redstone Corporate Center I, Lynnwood, Washington, United States",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/2116726/000153949726001045/n5750_x20-424b2.htm",
+          "https://www.sec.gov/Archives/edgar/data/2116726/000188852426019385/0001888524-26-019385-index.htm"
+        ],
+        "sourceDetails": [
+          {
+            "title": "BANK5 2026-5YR21 prospectus, page 223 and Annex A-3, loan 10",
+            "publisher": "BANK5 2026-5YR21, filed with the SEC",
+            "url": "https://www.sec.gov/Archives/edgar/data/2116726/000153949726001045/n5750_x20-424b2.htm"
+          },
+          {
+            "title": "BANK5 2026-5YR21 October 2026 ABS-EE filing, Exhibit 102, asset 10",
+            "publisher": "BANK5 2026-5YR21, filed with the SEC",
+            "url": "https://www.sec.gov/Archives/edgar/data/2116726/000188852426019385/0001888524-26-019385-index.htm"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Redstone lease dates, loan trigger and SEC field crosswalk",
+            "path": "/blog/redstone-commercial-lease-option-records.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "commercial-real-estate-sales-lease-comps-apis",

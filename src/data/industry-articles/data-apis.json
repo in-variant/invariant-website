@@ -2294,6 +2294,10 @@
               {
                 "slug": "cmbs-special-servicing-data",
                 "label": "Check special servicing and liquidation history"
+              },
+              {
+                "slug": "commercial-occupancy-vacancy-lease-rollover-data",
+                "label": "Check suite-level lease rollover, early termination and cash traps"
               }
             ]
           }
@@ -9507,17 +9511,18 @@
     "slug": "commercial-occupancy-vacancy-lease-rollover-data",
     "topic": "Data & APIs",
     "title": "Commercial Occupancy, Vacancy, and Lease Rollover Data",
-    "description": "Find commercial occupancy and vacancy data by source. Compare signed leases with rent commencement, screen available space, and model lease rollover using BXP’s public filings.",
+    "description": "Find commercial occupancy and vacancy data. Use BXP’s filings to compare leased and occupied space, and check early termination, subleases and cash traps in a CMBS example.",
     "date": "2026-11-23",
     "region": "United States",
     "coverAlt": "BXP occupancy and lease rollover chart as of September 30, 2026. The portfolio is 89.4% occupied and 91.9% leased. BXP’s share of space rolling is 173,483 square feet in the rest of 2026, 1,408,456 in 2027, 2,006,026 in 2028 and 3,306,254 in 2029.",
     "coverCaption": "BXP’s figures as of September 30, 2026. Occupancy reflects commenced lease revenue. The rollover bars use BXP’s ownership-weighted share of rentable area.",
-    "readMinutes": 7,
+    "readMinutes": 9,
     "intro": "For available office, retail, or industrial space, start with a current suite listing and confirm the delivery date with the leasing team. For a commercial credit or investment decision, start with the dated rent roll and separate signed leases, commenced leases, and upcoming expirations. BXP reported 91.9% leased and 89.4% occupied in September 2026. It attributed that gap to about 1.1 million square feet under signed leases with future commencements.",
     "takeaways": [
       "Compare occupancy and leasing rates on the same date and against the same rentable area.",
       "Use suite-level listings and landlord confirmation to check what a tenant can actually take.",
-      "Underwrite rollover on the same basis throughout. An ownership-weighted schedule can differ from the full building totals."
+      "Underwrite rollover on the same basis throughout. An ownership-weighted schedule can differ from the full building totals.",
+      "Record early termination options, suite-level subleases and loan cash-trap triggers alongside scheduled lease expirations."
     ],
     "sections": [
       {
@@ -9723,6 +9728,89 @@
         ]
       },
       {
+        "id": "redstone-lease-option",
+        "heading": "How do lenders track early lease termination and subleases?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the scheduled expiration, then add any option notice deadlines and restrictions as separate records. At Redstone Corporate Center I in Lynnwood, Washington, the January 26, 2026 rent roll showed 86.8% leased. The CMBS prospectus put PEMCO’s 37,542-square-foot lease in the 2030 expiry bucket and separately disclosed a termination window beginning in December 2026.",
+            "sourceIds": [
+              "redstone-prospectus"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "Redstone Corporate Center I",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Scheduled lease expiration",
+                "January 31, 2030 for PEMCO. Its 37,542 sq ft accounted for 17.7% of the building and 22.0% of underwritten annual base rent.",
+                "Keep both shares. Floor area measures space exposure. Underwritten rent measures lease concentration."
+              ],
+              [
+                "Early termination option",
+                "December 1, 2026 through December 31, 2027, with at least 10 months’ notice. The prospectus gives February 28, 2027 as the last notice date and estimates the fee at $1,407,825.",
+                "Record the option dates, notice and fee separately. Obtain the current notice log and any amendments."
+              ],
+              [
+                "Sublease and direct lease",
+                "Expeditors subleased all of suite 680 from PEMCO and held a separate 9,917 sq ft direct lease. The prospectus also describes a restriction in the sublease on PEMCO exercising its termination right.",
+                "Count suite 680 once for area. Verify the executed leases, conditions and the area of any separate direct lease."
+              ],
+              [
+                "Loan cash management",
+                "The loan terms define triggers tied to Expeditors, including failure to occupy suite 680 and the date 12 months before its scheduled lease termination. The borrower may post $2,610,245 in cash or a letter of credit within 10 business days of a defined trigger to avoid the related cash trap.",
+                "Check the lender’s trigger and reserve records separately from lease notices."
+              ]
+            ],
+            "sourceIds": [
+              "redstone-prospectus"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Start the suite-level join with the building and suite ID. Keep the landlord lease and the sublease as two contracts covering the same space. For the January 2026 rent analysis, the prospectus underwrote suite 680 using the prime lease base rent. Check which rent is payable to the property owner before adding any sublease amount to the owner’s income model.",
+            "sourceIds": [
+              "redstone-prospectus"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The October 27, 2026 SEC asset filing still shows January 31, 2030 for the largest tenant’s scheduled expiration. Its XML gives January 26, 2026 as the most recent annual lease rollover review and labels the 86.8% field as physical occupancy at securitization. Keep the October filing date, the October 13 asset reporting period end and the January lease review date separate. These records leave the current suite occupancy, option exercise and cash-trap status unconfirmed.",
+            "sourceIds": [
+              "redstone-october-filing",
+              "redstone-prospectus"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/redstone-commercial-lease-option-records.json",
+            "format": "JSON",
+            "label": "Download the Redstone lease dates, loan trigger and SEC field crosswalk",
+            "datasetAnchor": "dataset-redstone-lease-option"
+          },
+          {
+            "type": "links",
+            "label": "Build the collateral file",
+            "items": [
+              {
+                "slug": "cmbs-dscr-noi-by-property",
+                "label": "Find the property income and loan coverage ratios in SEC reports"
+              },
+              {
+                "slug": "commercial-mortgage-maturity-data-apis",
+                "label": "Add verified loan maturities and extension options"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "compare-occupancy-data-apis",
         "heading": "Which sources and APIs fit the decision?",
         "blocks": [
@@ -9836,6 +9924,14 @@
         ]
       },
       {
+        "question": "How can I find early lease termination options in a CMBS deal?",
+        "answer": "Match the property address and asset number to the prospectus. Look up lease expirations, termination rights and the annex for the loan. Then check the latest dated rent roll, signed lease and sublease documents, and notice log. The recurring asset exhibit can carry an older rollover review date.",
+        "sourceIds": [
+          "redstone-prospectus",
+          "redstone-october-filing"
+        ]
+      },
+      {
         "question": "Can I compare a city storefront vacancy rate with a listed office vacancy rate?",
         "answer": "First match the use type, geography, observation date, and denominator. NYC’s registry concerns specified storefront spaces. An office series may cover a broader set of floors or buildings and measure vacant square feet instead of storefront counts.",
         "sourceIds": [
@@ -9910,6 +10006,20 @@
         "url": "https://compstak.com/data-api",
         "publisher": "CompStak",
         "linkLabel": "CompStak data delivery"
+      },
+      {
+        "id": "redstone-prospectus",
+        "title": "BANK5 2026-5YR21 prospectus, page 223 and Annex A-3, loan 10",
+        "url": "https://www.sec.gov/Archives/edgar/data/2116726/000153949726001045/n5750_x20-424b2.htm",
+        "publisher": "BANK5 2026-5YR21, filed with the SEC",
+        "linkLabel": "SEC prospectus and lease terms"
+      },
+      {
+        "id": "redstone-october-filing",
+        "title": "BANK5 2026-5YR21 October 2026 ABS-EE filing, Exhibit 102, asset 10",
+        "url": "https://www.sec.gov/Archives/edgar/data/2116726/000188852426019385/0001888524-26-019385-index.htm",
+        "publisher": "BANK5 2026-5YR21, filed with the SEC",
+        "linkLabel": "October SEC filing and asset XML"
       }
     ],
     "relatedSlugs": [
@@ -9917,6 +10027,20 @@
       "commercial-mortgage-maturity-data-apis",
       "retail-site-selection-trade-area-apis",
       "energized-data-center-sites-available-now"
+    ],
+    "updatedDate": "2026-11-25",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-redstone-lease-option",
+        "name": "Redstone Corporate Center I lease termination, sublease and cash-trap records",
+        "description": "Source-linked fields for a 37,542-square-foot prime lease and sublease, its early termination terms, a separate direct lease and the corresponding CMBS cash-trap provision. Reconciles a January 2026 rent roll with dates in the October 2026 SEC exhibit.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "Redstone Corporate Center I, Lynnwood, Washington, United States",
+        "sourceIds": [
+          "redstone-prospectus",
+          "redstone-october-filing"
+        ]
+      }
     ]
   },
   {

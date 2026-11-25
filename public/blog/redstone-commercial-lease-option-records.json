@@ -1,0 +1,127 @@
+{
+  "name": "Redstone Corporate Center I lease termination, sublease and cash-trap records",
+  "guide": "https://invariant-ai.com/blog/commercial-occupancy-vacancy-lease-rollover-data#dataset-redstone-lease-option",
+  "reviewed_on": "2026-11-25",
+  "scope": "One office collateral property and dated disclosures for BANK5 2026-5YR21 asset 10. The selected prospectus facts and recurring asset fields show how to compare dates and roles. Obtain current executed documents for a live decision.",
+  "asset": {
+    "trust": "BANK5 2026-5YR21",
+    "sec_cik": "0002116726",
+    "asset_number": "10",
+    "property": "Redstone Corporate Center I",
+    "address": "19020 33rd Avenue West, Lynnwood, WA 98036",
+    "rentable_area_sq_ft": 212069,
+    "underwritten_rent_roll_date": "2026-01-26",
+    "leased_pct_at_rent_roll": 86.8,
+    "total_underwritten_annual_base_rent_usd": 5218551,
+    "annual_base_rent_basis": "Includes contractual rent steps underwritten through January 2027",
+    "source_id": "redstone-prospectus",
+    "printed_pages": [
+      "A-3-82",
+      "A-3-83"
+    ]
+  },
+  "suite_680": {
+    "suite": "680",
+    "rentable_area_sq_ft": 37542,
+    "building_area_share_pct": 17.7,
+    "underwritten_annual_base_rent_share_pct": 22.0,
+    "underwritten_annual_base_rent_usd": 1145913,
+    "prime_lease": {
+      "tenant": "PEMCO Mutual Insurance Co.",
+      "scheduled_expiration": "2030-01-31",
+      "early_termination_option": {
+        "effective_date_earliest": "2026-12-01",
+        "effective_date_latest": "2027-12-31",
+        "minimum_notice_months": 10,
+        "latest_notice_date_as_disclosed": "2027-02-28",
+        "estimated_termination_fee_usd": 1407825,
+        "estimated_termination_fee_per_sq_ft_usd": 37.5
+      }
+    },
+    "sublease": {
+      "tenant": "Expeditors International of Washington, Inc.",
+      "rentable_area_sq_ft": 37542,
+      "space_relationship": "Covers the full prime lease premises. Count the area once.",
+      "restriction_summary": "The annex describes a restriction on PEMCO exercising the option while the sublease remains effective and satisfies its default condition."
+    },
+    "source_id": "redstone-prospectus",
+    "printed_pages": [
+      "223",
+      "A-3-83"
+    ]
+  },
+  "separate_direct_lease": {
+    "tenant": "Expeditors International of Washington, Inc.",
+    "rentable_area_sq_ft": 9917,
+    "scheduled_expiration": "2030-01-31",
+    "underwritten_annual_base_rent_usd": 265280,
+    "source_id": "redstone-prospectus",
+    "printed_pages": [
+      "A-3-83"
+    ]
+  },
+  "loan_cash_management": {
+    "defined_major_tenant": "Expeditors International of Washington, Inc.",
+    "avoidance_deposit_usd": 2610245,
+    "business_days_from_defined_trigger": 10,
+    "permitted_deposit_forms": [
+      "cash",
+      "letter of credit"
+    ],
+    "major_tenant_trigger_summary": [
+      "Twelve months before the major tenant scheduled lease termination date",
+      "Major tenant bankruptcy or insolvency",
+      "Major tenant ceases operations and fails to occupy suite 680",
+      "Major tenant terminates or cancels its lease"
+    ],
+    "source_id": "redstone-prospectus",
+    "printed_pages": [
+      "A-3-87"
+    ]
+  },
+  "october_asset_exhibit": {
+    "source_id": "redstone-october-filing",
+    "filed_date": "2026-10-27",
+    "filing_period_of_report": "2026-10-19",
+    "asset_reporting_period_beginning": "2026-09-12",
+    "asset_reporting_period_end": "2026-10-13",
+    "verbatim_xml_fields": {
+      "assetNumber": "10",
+      "reportingPeriodBeginningDate": "09-12-2026",
+      "reportingPeriodEndDate": "10-13-2026",
+      "propertyName": "Redstone Corporate Center I",
+      "leaseExpirationLargestTenantDate": "01-31-2030",
+      "mostRecentAnnualLeaseRolloverReviewDate": "01-26-2026",
+      "physicalOccupancySecuritizationPercentage": ".86800000"
+    },
+    "exhibit_url": "https://www.sec.gov/Archives/edgar/data/2116726/000188852426019385/exh_102.xml",
+    "exhibit_sha256": "84fdc60c512e552a34d439e713304c89c231583cbe50f4b3903db0c63967e90c"
+  },
+  "unverified_current_status": {
+    "suite_680_occupancy": null,
+    "option_notice_or_exercise": null,
+    "final_termination_fee_usd": null,
+    "cash_trap_event_or_deposit": null
+  },
+  "sources": [
+    {
+      "id": "redstone-prospectus",
+      "url": "https://www.sec.gov/Archives/edgar/data/2116726/000153949726001045/n5750_x20-424b2.htm",
+      "accession": "0001539497-26-001045",
+      "filing_date": "2026-03-27",
+      "printed_pages": [
+        "223",
+        "A-3-82",
+        "A-3-83",
+        "A-3-87"
+      ]
+    },
+    {
+      "id": "redstone-october-filing",
+      "url": "https://www.sec.gov/Archives/edgar/data/2116726/000188852426019385/0001888524-26-019385-index.htm",
+      "accession": "0001888524-26-019385",
+      "filing_date": "2026-10-27",
+      "exhibit": "EX-102"
+    }
+  ]
+}
