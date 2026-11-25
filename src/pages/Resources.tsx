@@ -6,8 +6,7 @@ import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearc
 import { coverSrcSet } from '../data/coverSrcSets'
 import type { ResourceTopic } from '../data/resources'
 import { FEATURED_RESOURCE_ARTICLES, RESOURCE_REFERENCES } from '../data/resource-directory'
-import { DATA_USE_CASES_PATH, DATA_USE_CASES_SLUG, groupCollectionGuides } from '../data/blogCollections'
-import blogCollections from '../data/blog-collections.json'
+import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
 import './Resources.css'
 
@@ -16,8 +15,62 @@ type Format = typeof FORMATS[number]
 const PAGE_SIZE = 8
 const RESOURCE_TOPICS: ResourceTopic[] = ['Data & APIs', 'Data Centers', 'Oil & Gas']
 const library = RESOURCE_REFERENCES.filter(resource => RESOURCE_TOPICS.includes(resource.topic))
-const dataUseCases = blogCollections.find(collection => collection.slug === DATA_USE_CASES_SLUG)
-const dataUseCaseGroups = groupCollectionGuides(dataUseCases?.guides ?? []).filter(group => group.heading)
+const workflows = [
+  {
+    label: 'Site selection',
+    path: '/blog/site-selection-due-diligence',
+    guide: 'Compare GIS APIs',
+    slug: 'best-gis-apis-for-site-selection',
+  },
+  {
+    label: 'Property & development',
+    path: `${DATA_USE_CASES_PATH}#property-and-development`,
+    guide: 'Find building permits by address',
+    slug: 'building-permit-change-alerts-by-address',
+  },
+  {
+    label: 'Commercial property insurance',
+    path: '/blog/property-underwriting',
+    guide: 'Compare underwriting data APIs',
+    slug: 'commercial-property-insurance-data-apis',
+  },
+  {
+    label: 'Real estate lending',
+    path: '/blog/commercial-real-estate-lending',
+    guide: 'Find commercial mortgage records',
+    slug: 'commercial-mortgage-records-by-address',
+  },
+  {
+    label: 'Power & utilities',
+    path: `${DATA_USE_CASES_PATH}#power-utilities-and-connectivity`,
+    guide: 'Check grid load headroom',
+    slug: 'grid-capacity-apis-load-headroom',
+  },
+  {
+    label: 'Industrial sites & freight',
+    path: `${DATA_USE_CASES_PATH}#industrial-sites-freight-and-mobility`,
+    guide: 'Screen truck and rail access',
+    slug: 'warehouse-site-selection-rail-truck-access',
+  },
+  {
+    label: 'Retail & consumer markets',
+    path: `${DATA_USE_CASES_PATH}#consumer-markets`,
+    guide: 'Compare trade area and foot traffic APIs',
+    slug: 'retail-site-selection-trade-area-apis',
+  },
+  {
+    label: 'Water, weather & environment',
+    path: `${DATA_USE_CASES_PATH}#weather-water-and-environmental-records`,
+    guide: 'Check water and sewer service',
+    slug: 'water-sewer-data-apis-site-selection',
+  },
+  {
+    label: 'Public projects & construction',
+    path: `${DATA_USE_CASES_PATH}#public-projects-and-construction`,
+    guide: 'Find contract awards by work location',
+    slug: 'federal-contract-awards-data-api',
+  },
+]
 
 export default function Resources() {
   const [searchReady, setSearchReady] = useState(false)
@@ -73,16 +126,15 @@ export default function Resources() {
 
       <section className="resource-container resources-data" aria-labelledby="resources-data-heading">
         <div className="resources-section-heading">
-          <div>
-            <h2 id="resources-data-heading">Data for your next decision.</h2>
-            <p>Check what the records say about a site, an asset, or a market.</p>
-          </div>
+          <h2 id="resources-data-heading">Find guides by workflow</h2>
           <Link to={DATA_USE_CASES_PATH} className="resource-text-link">All data guides <ResourceArrow diagonal /></Link>
         </div>
         <ul className="resources-data-topics">
-          <li><Link to="/blog/site-selection-due-diligence">Site selection <ResourceArrow diagonal /></Link></li>
-          {dataUseCaseGroups.map(({ heading, id }) => (
-            <li key={id}><Link to={`${DATA_USE_CASES_PATH}#${id}`}>{heading} <ResourceArrow diagonal /></Link></li>
+          {workflows.map(({ label, path, guide, slug }) => (
+            <li key={path}>
+              <Link className="resource-workflow-heading" to={path}>{label} <ResourceArrow diagonal /></Link>
+              <Link className="resource-workflow-guide" to={`/blog/${slug}`}>{guide}</Link>
+            </li>
           ))}
         </ul>
         <nav aria-label="Data downloads and API documentation" className="resources-data-links">
