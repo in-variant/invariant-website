@@ -50,6 +50,7 @@ export const contentRouteSources = {
   '/calculators': './pages/calculators/Index.tsx',
   '/calculators/fcc-deorbit-feasibility': './pages/calculators/FccDeorbitCalculator.tsx',
   '/calculators/data-center-power-capacity': './pages/calculators/DataCenterPowerCapacity.tsx',
+  '/calculators/data-center-water-use': './pages/calculators/DataCenterWaterUse.tsx',
   '/calculators/data-center-power-delivery-schedule': './pages/calculators/DataCenterPowerSchedule.tsx',
   '/calculators/net-effective-rent': './pages/calculators/LeaseRent.tsx',
   '/calculators/battery-recharge-window': './pages/calculators/BatteryRecharge.tsx',

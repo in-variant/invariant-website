@@ -42,6 +42,7 @@ const sections = [
     ['Verify what a utility letter, study or service agreement establishes', `${SITE}/blog/utility-will-serve-letter-load-study-esa.md`],
     ['Power-flow studies, limits and contingency cases', `${SITE}${links.power}.md`],
     ['Calculate facility demand and power margin', `${SITE}/calculators/data-center-power-capacity.md`],
+    ['Calculate on-site water use and water usage effectiveness', `${SITE}/calculators/data-center-water-use.md`],
     ['Find space and power for GPU clusters', `${SITE}/blog/ai-compute-capacity-for-neoclouds.md`],
   ]],
   ['Optional', [
@@ -204,6 +205,7 @@ out.push('### Calculators')
 out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline), Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
 out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline), Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
 out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand, check on-site generation in an outage, and calculate battery runtime for a constant shortfall.')
+out.push('- [Data center water use calculator](https://invariant-ai.com/calculators/data-center-water-use.md), Estimate annual on-site water and average daily gallons or calculate site WUE from annual records.')
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 out.push('- [Net effective rent calculator](https://invariant-ai.com/calculators/net-effective-rent.md), Compare commercial lease offers with annual increases, free months and build-out allowances.')
 out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calculators/battery-recharge-window.md), Check whether a grid-scale battery can recharge for a planned dispatch under import and export limits.')

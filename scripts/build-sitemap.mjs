@@ -44,6 +44,7 @@ const CORE = [
   { loc: '/calculators/nrc-license-timeline', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/fcc-deorbit-feasibility', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/data-center-power-capacity', lastmod: '2026-11-23', changefreq: 'monthly', priority: '0.85' },
+  { loc: '/calculators/data-center-water-use', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/data-center-power-delivery-schedule', lastmod: '2026-11-23', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/net-effective-rent', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/battery-recharge-window', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },

@@ -4,6 +4,7 @@ import { RESEARCH_DATASETS, type ResourceTopic } from './resources'
 import { POWER_SCHEDULE_DESCRIPTION, POWER_SCHEDULE_PATH, POWER_SCHEDULE_TITLE } from './dataCenterPowerSchedule'
 import { LEASE_RENT_DESCRIPTION, LEASE_RENT_PATH, LEASE_RENT_TITLE } from './leaseRent'
 import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_PATH, BATTERY_RECHARGE_TITLE } from './batteryRecharge'
+import { WATER_USE_DESCRIPTION, WATER_USE_PATH, WATER_USE_TITLE } from './dataCenterWaterUse'
 
 export type ResourceReference = {
   path: string
@@ -27,6 +28,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: '/oil-gas-compliance', title: 'Oil-and-gas compliance: from permits to field records', summary: 'Understand U.S. onshore permitting, methane requirements and the evidence behind operating obligations.', topic: 'Oil & Gas', kind: 'Guide' },
   { path: '/calculators/data-center-power-capacity', title: 'Data center power capacity calculator', summary: 'Convert IT load to facility MW and check whether a battery can cover a generator shortfall until replacement power is available.', topic: 'Data Centers', kind: 'Tool' },
   { path: POWER_SCHEDULE_PATH, title: POWER_SCHEDULE_TITLE, summary: POWER_SCHEDULE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool' },
+  { path: WATER_USE_PATH, title: WATER_USE_TITLE, summary: WATER_USE_DESCRIPTION, topic: 'Data Centers', kind: 'Tool', searchContext: 'cooling demand gallons per day water consumption water usage effectiveness WUE' },
   { path: LEASE_RENT_PATH, title: LEASE_RENT_TITLE, summary: LEASE_RENT_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool' },
   { path: BATTERY_RECHARGE_PATH, title: BATTERY_RECHARGE_TITLE, summary: BATTERY_RECHARGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'BESS charging duration grid import headroom utility-scale interconnection' },
   ...industryArticles.map(article => ({
