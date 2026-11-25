@@ -279,9 +279,9 @@
     "slug": "data-center-backup-generator-air-permits",
     "topic": "Data Centers",
     "title": "Data Center Backup Generator Air Permits and Run-Hour Limits",
-    "description": "Check air permits and run-hour limits for data center backup generators. See issued Virginia and Texas permits and how PJM emergency orders affect operating records.",
+    "description": "Check data center backup generator air permits, the federal 100-hour and 50-hour rules, and site limits in Virginia, Texas, and Oregon’s Tier 4 process.",
     "date": "2026-09-15",
-    "readMinutes": 11,
+    "readMinutes": 13,
     "intro": "Before installing backup generators at a U.S. data center, identify the state or local construction authorization, check whether the site needs a Title V operating permit, and determine which federal standards apply to each engine. To figure out how long a generator can run, start with the reason for the run. Check the federal rules for that use and the site permit’s limits for the engine and any group it belongs to.",
     "takeaways": [
       "Check the construction permit, the operating permit, and the federal rules for each engine.",
@@ -326,7 +326,8 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Check the operating purpose, the time period and which equipment the limit covers. A calendar-year counter for readiness testing and a rolling 12-month counter for a group of generators can both apply to the same run. An assumed run time used to estimate emissions is a separate figure."
+            "text": "For emergency diesel engines covered by federal Subpart IIII, qualifying maintenance and readiness testing generally have a 100-hour allowance per calendar year. Any allowed non-emergency hours count toward that total. Site permits may add limits for each engine or for a group over a rolling 12 months. Check both before scheduling a run.",
+            "sourceIds": ["federal-ci-operation", "loudoun-title-v"]
           },
           {
             "type": "table",
@@ -336,6 +337,10 @@
               [
                 "100 hours per calendar year under federal Subpart IIII",
                 "This is generally the allowance for qualifying maintenance and readiness testing of covered emergency diesel engines. Any eligible nonemergency hours count toward that total. The rule addresses emergency operation and limited exceptions for additional testing separately."
+              ],
+              [
+                "Up to 50 non-emergency hours within that same 100-hour allowance",
+                "Check 40 CFR § 60.4211(f)(3) for the allowed uses. It generally bars peak shaving and non-emergency demand response, with a narrow exception for qualifying local reliability dispatch."
               ],
               [
                 "500 hours in EPA guidance for estimating potential emissions",
@@ -351,6 +356,7 @@
               ]
             ],
             "rowSourceIds": [
+              ["federal-ci-operation"],
               ["federal-ci-operation"],
               ["epa-emergency-pte"],
               ["loudoun-title-v"],
@@ -616,6 +622,43 @@
         ]
       },
       {
+        "id": "oregon-tier-4-generator-permit",
+        "heading": "How Oregon’s Tier 4 data center permit limits generator testing",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Oregon DEQ’s streamlined process uses Tier 2-certified critical-load backup engines fitted with controls to achieve Tier 4-equivalent emissions. The published control packages include selective catalytic reduction with a diesel oxidation catalyst and diesel particulate filter, or selective catalytic reduction with a catalyzed diesel particulate filter. The application still needs three submissions covering the standard or construction air permit, Cleaner Air Oregon risk, and criteria-pollutant emissions.",
+            "sourceIds": ["oregon-tier-four"]
+          },
+          {
+            "type": "paragraph",
+            "text": "For regularly scheduled testing and maintenance that occurs more than once a year, the April 2026 template sets a site-wide ceiling of 50 pounds of nitrogen oxides (NOx) per hour. The template excludes emergencies, commissioning, unexpected maintenance and tests performed annually from that particular condition. The application can demonstrate compliance with a testing and maintenance plan or use the template’s equation for how many engines can run in an hour. Keep the planned run duration, early-run emissions data and the proposed test schedule with the equipment bid.",
+            "sourceIds": ["oregon-tier-four", "oregon-template-hourly"]
+          },
+          {
+            "type": "table",
+            "columns": ["What to track", "Coverage and time window", "Where to verify it"],
+            "rows": [
+              ["Engine run hours", "Each engine, by purpose and calendar year", "Federal engine rule and the facility’s permit"],
+              ["Routine test NOx", "Combined emissions across the site in an hour of covered testing or maintenance", "Tier 4 permit condition and approved operating plan or equation"],
+              ["Fuel and site emissions", "Facility-wide daily and rolling 12-month quantities, depending on the condition", "Signed permit’s toxic-risk and plant-site emission limits"]
+            ],
+            "rowSourceIds": [["federal-ci-operation"], ["oregon-template-hourly"], ["oregon-template-fuel"]],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The PDX-4 facility in Boardman shows how those records can diverge over time. Oregon DEQ’s 2018 permit for the site set a rolling 12-month cap of 758,870 gallons of diesel for emergency and non-emergency generator operation combined. In a December 17, 2025 letter, DEQ approved a separate risk assessment and said the permit would need source risk limits because modeled short-term noncancer risk exceeded the applicable threshold.",
+            "sourceIds": ["oregon-pdx4-issued", "oregon-pdx4-risk"]
+          },
+          {
+            "type": "paragraph",
+            "text": "The original PDF shows a December 1, 2023 expiration date. On November 24, 2026, Your DEQ Online listed permit 25-0008-ST-01 as Extension. Oregon rules allow a timely, complete renewal application to keep an existing permit in effect until DEQ acts. The public permit record displayed no files or linked submittals when checked. Use DEQ’s facility page to find the original permit and ask the agency for the operative amendments and any signed update to the source risk limits.",
+            "sourceIds": ["oregon-pdx4-portal", "oregon-renewal", "oregon-pdx4-facility"]
+          }
+        ]
+      },
+      {
         "id": "certification-and-site-permission",
         "heading": "An engine certificate does not close the permit file",
         "blocks": [
@@ -707,6 +750,11 @@
           "engine-compliance",
           "nsr"
         ]
+      },
+      {
+        "question": "Does Oregon’s 50 pounds per hour NOx threshold apply to each data center generator?",
+        "answer": "The Tier 4 streamlined template applies its 50 pounds per hour NOx threshold across the facility for covered routine testing and maintenance. Keep the site-wide calculation alongside each engine’s run-hour log. The signed permit supplies the site’s operating conditions and fuel limits.",
+        "sourceIds": ["oregon-tier-four", "oregon-template-hourly", "oregon-template-fuel"]
       },
       {
         "question": "Should later generator phases be included in the initial assessment?",
@@ -841,6 +889,62 @@
         "url": "https://www.epa.gov/stationary-sources-air-pollution/clean-air-act-resources-data-centers",
         "publisher": "U.S. Environmental Protection Agency",
         "linkLabel": "EPA data center air permitting resources"
+      },
+      {
+        "id": "oregon-tier-four",
+        "title": "Tier 4 Streamlined Data Center Permit, qualification and submittals",
+        "url": "https://www.oregon.gov/deq/aq/aqpermits/pages/data-center-permit.aspx",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "Oregon’s Tier 4 permit process"
+      },
+      {
+        "id": "oregon-template-hourly",
+        "title": "April 9, 2026 Tier 4 permit template, condition 9.1 and its test scheduling options, pp. 14 and 15",
+        "url": "https://www.oregon.gov/deq/aq/Documents/aqp-T4datacenterpermit.pdf#page=14",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "Tier 4 testing and maintenance conditions"
+      },
+      {
+        "id": "oregon-template-fuel",
+        "title": "April 9, 2026 Tier 4 permit template, conditions 5 through 7 for emissions, risk and monitoring, pp. 10 through 12",
+        "url": "https://www.oregon.gov/deq/aq/Documents/aqp-T4datacenterpermit.pdf#page=10",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "Tier 4 fuel, emissions and risk conditions"
+      },
+      {
+        "id": "oregon-pdx4-issued",
+        "title": "Historical PDX-4 permit 25-0008-ST-01, issued December 3, 2018, condition 1.7",
+        "url": "https://deqonline.deq.state.or.us/AQPermitsonline/25-0008-ST-01_P_2018.PDF#page=4",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "2018 PDX-4 diesel fuel condition"
+      },
+      {
+        "id": "oregon-pdx4-risk",
+        "title": "PDX-4 Cleaner Air Oregon Level 3 risk assessment approval, December 17, 2025",
+        "url": "https://ormswd2.synergydcs.com/HPRMWebDrawer/Record/7004730/File/document",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "PDX-4 risk assessment approval"
+      },
+      {
+        "id": "oregon-pdx4-portal",
+        "title": "Your DEQ Online permit record 301577 for Amazon Data Services, source 25-0008, checked November 24, 2026",
+        "url": "https://ordeq-edms-public.govonlinesaas.com/pub/pub-rcd/permits/review/7/301577;hash=bdbf3e9044c332f811b4e6955f595da676a06cca",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "PDX-4 permit status in Your DEQ Online"
+      },
+      {
+        "id": "oregon-renewal",
+        "title": "OAR 340-216-0082(1), expiration and timely renewal",
+        "url": "https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=1539",
+        "publisher": "Oregon Secretary of State",
+        "linkLabel": "Oregon air permit renewal rule"
+      },
+      {
+        "id": "oregon-pdx4-facility",
+        "title": "Amazon Data Services PDX-4 facility page, permit link and risk assessment milestones",
+        "url": "https://www.oregon.gov/deq/aq/cao/er/Pages/Amazon-PDX4Datacenter.aspx",
+        "publisher": "Oregon Department of Environmental Quality",
+        "linkLabel": "DEQ’s PDX-4 facility page"
       },
       {
         "id": "doe-pjm-may-backup",
