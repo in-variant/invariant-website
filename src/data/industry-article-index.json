@@ -5987,6 +5987,81 @@
     }
   },
   {
+    "slug": "commercial-property-replacement-cost-by-address",
+    "topic": "Data & APIs",
+    "title": "Commercial Property Replacement Cost by Address",
+    "summary": "Look up modeled commercial building replacement cost, separate it from market value and tax assessment, and verify the structure before using it in underwriting.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "United States",
+    "image": "/blog/industry/commercial-property-replacement-cost-by-address.webp?v=a48e1b79",
+    "dataset": {
+      "name": "32 Old Slip modeled replacement cost and NYC tax assessment",
+      "description": "Seven NSI 2026 occupancy records inside one Manhattan building footprint, compared with the final NYC FY2027 tax roll and PLUTO 26v3 building area. Includes the source queries, shared footprint ID, structure value totals and the observed 29% area difference.",
+      "spatialCoverage": "32 Old Slip, Manhattan, New York City, United States",
+      "datePublished": "2026-11-24",
+      "sources": [
+        "https://geosearch.planninglabs.nyc/v2/search?text=32+Old+Slip%2C+Manhattan&size=3",
+        "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D1000867&outFields=BIN%2CBASE_BBL%2CMPLUTO_BBL%2CDOITT_ID&returnGeometry=true&outSR=4326&f=json",
+        "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=1000350001",
+        "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271000350001%27+AND+year%3D%272027%27&%24select=parid%2Cyear%2Crectype%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot",
+        "https://data.cityofnewyork.us/api/views/8y4t-faws/files/2e925830-8a86-453a-9072-1e6045ed92a4",
+        "https://nsi.sec.usace.army.mil/nsiapi/structures?bbox=-74.00835,40.70329,-74.007,40.70329,-74.007,40.7043,-74.00835,40.7043,-74.00835,40.70329&fmt=fc",
+        "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/technical-documentation",
+        "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/frequently-asked-questions"
+      ],
+      "sourceDetails": [
+        {
+          "title": "NYC Geosearch address match for 32 Old Slip",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://geosearch.planninglabs.nyc/v2/search?text=32+Old+Slip%2C+Manhattan&size=3"
+        },
+        {
+          "title": "Official building footprint query for BIN 1000867",
+          "publisher": "NYC Office of Technology and Innovation",
+          "url": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D1000867&outFields=BIN%2CBASE_BBL%2CMPLUTO_BBL%2CDOITT_ID&returnGeometry=true&outSR=4326&f=json"
+        },
+        {
+          "title": "PLUTO 26v3 tax lot query for BBL 1000350001",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=1000350001"
+        },
+        {
+          "title": "FY2027 Department of Finance rows for BBL 1000350001",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271000350001%27+AND+year%3D%272027%27&%24select=parid%2Cyear%2Crectype%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot"
+        },
+        {
+          "title": "Assessment data dictionary and roll period codes",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/api/views/8y4t-faws/files/2e925830-8a86-453a-9072-1e6045ed92a4"
+        },
+        {
+          "title": "NSI public structures query around 32 Old Slip",
+          "publisher": "U.S. Army Corps of Engineers",
+          "url": "https://nsi.sec.usace.army.mil/nsiapi/structures?bbox=-74.00835,40.70329,-74.007,40.70329,-74.007,40.7043,-74.00835,40.7043,-74.00835,40.70329&fmt=fc"
+        },
+        {
+          "title": "NSI 2026 technical documentation for structural values and occupancy types",
+          "publisher": "U.S. Army Corps of Engineers",
+          "url": "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/technical-documentation"
+        },
+        {
+          "title": "NSI 2026 usage guidance on stacked records, price levels and building precision",
+          "publisher": "U.S. Army Corps of Engineers",
+          "url": "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/frequently-asked-questions"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the seven matched records and FY2027 assessment",
+          "path": "/blog/commercial-property-replacement-cost-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

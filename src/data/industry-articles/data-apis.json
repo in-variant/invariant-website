@@ -2806,6 +2806,7 @@
       }
     ],
     "relatedSlugs": [
+      "commercial-property-replacement-cost-by-address",
       "commercial-real-estate-data-apis-for-lenders",
       "commercial-property-tax-delinquency-data",
       "commercial-real-estate-sales-lease-comps-apis",
@@ -21488,6 +21489,7 @@
       {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"}
     ],
     "relatedSlugs": [
+      "commercial-property-replacement-cost-by-address",
       "certificate-of-occupancy-lookup-by-address","ageospatial-alternatives-commercial-roof-underwriting", "fema-flood-zone-history-for-underwriting", "hail-history-by-address-for-underwriting", "building-violations-by-address", "hurricane-wind-history-by-address"],
     "updatedDate": "2026-11-23"
   },
@@ -29356,6 +29358,435 @@
         "policyUrl": "https://www.nyc.gov/opendata/get-started/what-is-open-data-",
         "policyLabel": "NYC Open Data policy"
       }
+    }
+  },
+  {
+    "slug": "commercial-property-replacement-cost-by-address",
+    "title": "Commercial Property Replacement Cost by Address",
+    "description": "Look up modeled commercial building replacement cost, separate it from market value and tax assessment, and verify the structure before using it in underwriting.",
+    "date": "2026-11-24",
+    "topic": "Data & APIs",
+    "readMinutes": 6,
+    "region": "United States",
+    "coverAlt": "Comparison of four amounts for 32 Old Slip. The federal model totals $331.97 million full reconstruction and $276.05 million depreciated. The city reports $283.52 million in tax market value and $127.58 million actual assessed value.",
+    "coverCaption": "32 Old Slip, Manhattan. Invariant summed seven 2026 National Structure Inventory records within one NYC footprint and matched the lot to its FY2027 final tax roll. The federal model uses August 2025 prices.",
+    "intro": "Start with the building you intend to insure, then check which kind of value the source returns. The U.S. Army Corps of Engineers publishes two modeled costs for structures in its 2026 National Structure Inventory. A city assessment measures the property for taxation. A carrier uses its accepted reconstruction valuation and policy terms to determine coverage. At 32 Old Slip in Manhattan, those public sources put four different figures beside the same street address.",
+    "takeaways": [
+      "Use the 2026 National Structure Inventory for an initial comparison of full and depreciated reconstruction costs. Both estimates use approximately August 2025 prices.",
+      "Match the federal points to the intended building. At 32 Old Slip, seven occupancy records share one location and footprint ID. Keeping only the largest row would omit about $28.8 million from the published model’s full replacement total.",
+      "Check the estimator’s floor area, occupancy, construction and valuation date before relying on it. For underwriting, resolve discrepancies against the insured schedule, building records and the carrier’s accepted estimate."
+    ],
+    "sections": [
+      {
+        "id": "which-replacement-cost",
+        "heading": "Which value are you looking for?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Value on the report",
+              "What it measures",
+              "Where to start"
+            ],
+            "rows": [
+              [
+                "Full modeled replacement cost",
+                "Estimated cost to reconstruct a comparable new structure. The NSI model excludes land.",
+                "Use fullrep in the 2026 NSI for an initial comparison."
+              ],
+              [
+                "Depreciated modeled replacement cost",
+                "The NSI structure estimate after its depreciation adjustment.",
+                "Use val_struct for that model’s depreciated value."
+              ],
+              [
+                "Tax market value and actual assessment",
+                "The local authority’s property valuation and the amount assigned under its assessment rules. In NYC, Class 4 market value is based on income potential and expenses.",
+                "Use the final assessment roll and preserve the tax year and lot ID."
+              ],
+              [
+                "Insurance replacement cost",
+                "An estimate to replace covered property with property of comparable kind and quality. Coverage depends on the policy’s scope and limits.",
+                "Confirm the building and scope with the insurer’s accepted estimator or valuation."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nsi-model",
+                "nsi-limits"
+              ],
+              [
+                "nsi-model"
+              ],
+              [
+                "market",
+                "assessed"
+              ],
+              [
+                "insurance"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Start with the valuation date and what the number includes. A policy’s treatment of actual cash value follows its terms and applicable rules. Keep that policy measure separate from the depreciated figure in the federal model.",
+            "sourceIds": [
+              "nsi-model",
+              "insurance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "32-old-slip",
+        "heading": "What the records show for 32 Old Slip",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "NYC Geosearch identifies the address as building 1000867 on tax lot 1000350001. The final tax roll calls the lot 77 Front Street. The city’s footprint query returns one polygon for the building ID. Both the city’s address point and the seven selected federal records fall inside it. Eight other federal records in the surrounding query fall outside the footprint.",
+            "sourceIds": [
+              "geo",
+              "building",
+              "roll",
+              "nsi-data"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "Reported or calculated amount",
+              "What it covers"
+            ],
+            "rows": [
+              [
+                "NSI full model, sum of fullrep",
+                "$331.97 million",
+                "Seven occupancy rows at one matched footprint."
+              ],
+              [
+                "NSI depreciated model, sum of val_struct",
+                "$276.05 million",
+                "The same occupancy rows after modeled depreciation."
+              ],
+              [
+                "NYC FY2027 tax market value",
+              "$283.52 million",
+                "Final roll value for the entire tax lot."
+              ],
+              [
+                "NYC FY2027 actual assessed value",
+                "$127.58 million",
+                "Actual assessment at 45% of the city’s tax market value."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nsi-data",
+                "nsi-model"
+              ],
+              [
+                "nsi-data",
+                "nsi-model"
+              ],
+              [
+                "roll",
+                "roll-fields",
+                "market"
+              ],
+              [
+                "roll",
+                "roll-fields",
+                "assessed"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The largest NSI row, professional and technical services, accounts for $303.17 million of the full modeled total. Six other rows at the same point account for the remaining $28.81 million. The Corps uses shared footprint IDs for stacked occupancy records. Preserve the rows during review and use the footprint ID to count the modeled building once.",
+            "sourceIds": [
+              "nsi-data",
+              "nsi-model",
+              "nsi-limits"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The seven inventory rows total 1,256,816 square feet. PLUTO 26v3 reports 973,587 square feet of building area on this one-building tax lot. That is a 29% difference relative to PLUTO. The public records do not establish which area definition applies to a given policy. Ask for the insured floor area, occupancy split and recent renovations before estimating reconstruction cost.",
+            "sourceIds": [
+              "nsi-data",
+              "nsi-model",
+              "nsi-limits",
+              "pluto",
+              "insurance"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "JSON",
+            "path": "/blog/commercial-property-replacement-cost-by-address.json",
+            "label": "Download the seven matched records and FY2027 assessment",
+            "description": "Includes the city footprint, query URLs, original field names, sums and area comparison."
+          }
+        ]
+      },
+      {
+        "id": "choose-a-source",
+        "heading": "Where to pull replacement cost and building evidence",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Where it fits",
+              "What to test"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Match the provided address to a building and parcel. Retrieve documented footprint and assessor fields with their sources.",
+                "Test two buildings on one parcel and review the intended structure, date and source of each returned value."
+              ],
+              [
+                "USACE National Structure Inventory",
+                "Pull public GeoJSON for a small area or use published geographic extracts for initial portfolio screening.",
+                "Check for several rows per footprint and keep full and depreciated amounts in separate fields."
+              ],
+              [
+                "Verisk 360Value",
+                "Use its commercial reconstruction estimator when a carrier or underwriting workflow accepts it.",
+                "Check which inputs come prefilled and which components, pricing date and local costs the output records."
+              ],
+              [
+                "Cotality commercial valuation data",
+                "Use square-foot, component or unit cost methods when the required detail and available inputs support them.",
+                "Confirm the occupancy, construction and area basis and how the method handles mixed uses or unusual equipment."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "nsi-api",
+                "nsi-model",
+                "nsi-limits"
+              ],
+              [
+                "verisk"
+              ],
+              [
+                "cotality"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A repeatable workflow starts with the address and building match in Invariant Earth. Keep the parcel’s assessed values alongside the building attributes and send the verified building inputs to the estimator your team accepts. Save the estimator’s output and its assumptions with the same building identifier.",
+            "sourceIds": [
+              "earth",
+              "insurance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "before-using-a-value",
+        "heading": "What to confirm before using the number",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Confirm the specific structures on the property schedule, including accessory structures and shared systems where applicable.",
+              "Reconcile floor area and occupancy with current building plans, the schedule or an inspection. Check construction, renovations and specialized systems.",
+              "Record the pricing date and confirm how the estimate treats demolition, debris removal, code upgrades, building equipment and contents. Verify the applicable policy terms and limits.",
+              "Retain the original source, field definition and building identifier. Route material differences for review while preserving both source values."
+            ],
+            "sourceIds": [
+              "insurance",
+              "earth",
+              "verisk",
+              "nsi-limits"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Check the rest of the property record",
+            "items": [
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Compare commercial property data APIs for underwriting"
+              },
+              {
+                "slug": "commercial-property-tax-assessment-history-by-address",
+                "label": "Read actual, transitional and taxable assessments by address"
+              },
+              {
+                "slug": "commercial-real-estate-sales-lease-comps-apis",
+                "label": "Trace 32 Old Slip’s sale and lease records"
+              },
+              {
+                "slug": "building-footprint-data-apis",
+                "label": "Check footprint and parcel identity across providers"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I look up commercial building replacement cost by address?",
+        "answer": "Use an address match to locate the intended footprint, then query the 2026 NSI for a public screening estimate. For an underwriting valuation, verify the building attributes and use the estimator or appraisal process accepted by the carrier.",
+        "sourceIds": [
+          "earth",
+          "nsi-api",
+          "nsi-limits",
+          "insurance"
+        ]
+      },
+      {
+        "question": "What is the difference between fullrep and val_struct in the 2026 NSI?",
+        "answer": "Fullrep is the modeled cost to build a comparable new structure. Val_struct is the modeled structural value after depreciation. The published values use approximately August 2025 prices.",
+        "sourceIds": [
+          "nsi-model",
+          "nsi-limits"
+        ]
+      },
+      {
+        "question": "How do I handle multiple NSI rows at the same building?",
+        "answer": "Check the shared footprint identifier and occupancy codes. The Corps sometimes models several uses as separate records at one footprint. Count the footprint once for building counts and preserve the individual occupancy records when reviewing the model’s total.",
+        "sourceIds": [
+          "nsi-model",
+          "nsi-limits"
+        ]
+      },
+      {
+        "question": "Can tax assessed value be used as building replacement cost?",
+        "answer": "Use the assessment for the tax decision it describes. For reconstruction, verify the insured building and get a current estimate using the applicable construction costs and coverage scope. For example, NYC’s Class 4 assessment applies a tax ratio to a market value based on income potential and expenses.",
+        "sourceIds": [
+          "market",
+          "assessed",
+          "insurance"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "geo",
+        "title": "NYC Geosearch address match for 32 Old Slip",
+        "url": "https://geosearch.planninglabs.nyc/v2/search?text=32+Old+Slip%2C+Manhattan&size=3",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "building",
+        "title": "Official building footprint query for BIN 1000867",
+        "url": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D1000867&outFields=BIN%2CBASE_BBL%2CMPLUTO_BBL%2CDOITT_ID&returnGeometry=true&outSR=4326&f=json",
+        "publisher": "NYC Office of Technology and Innovation"
+      },
+      {
+        "id": "pluto",
+        "title": "PLUTO 26v3 tax lot query for BBL 1000350001",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=1000350001",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "roll",
+        "title": "FY2027 Department of Finance rows for BBL 1000350001",
+        "url": "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271000350001%27+AND+year%3D%272027%27&%24select=parid%2Cyear%2Crectype%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "roll-fields",
+        "title": "Assessment data dictionary and roll period codes",
+        "url": "https://data.cityofnewyork.us/api/views/8y4t-faws/files/2e925830-8a86-453a-9072-1e6045ed92a4",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "market",
+        "title": "How NYC values commercial property for tax",
+        "url": "https://www.nyc.gov/site/finance/property/property-determining-your-market-value.page",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "assessed",
+        "title": "NYC property tax assessment ratios",
+        "url": "https://www.nyc.gov/site/finance/property/property-determining-your-assessed-value.page",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "nsi-data",
+        "title": "NSI public structures query around 32 Old Slip",
+        "url": "https://nsi.sec.usace.army.mil/nsiapi/structures?bbox=-74.00835,40.70329,-74.007,40.70329,-74.007,40.7043,-74.00835,40.7043,-74.00835,40.70329&fmt=fc",
+        "publisher": "U.S. Army Corps of Engineers"
+      },
+      {
+        "id": "nsi-api",
+        "title": "National Structure Inventory 2026 API reference",
+        "url": "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/api-reference-guide",
+        "publisher": "U.S. Army Corps of Engineers"
+      },
+      {
+        "id": "nsi-model",
+        "title": "NSI 2026 technical documentation for structural values and occupancy types",
+        "url": "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/technical-documentation",
+        "publisher": "U.S. Army Corps of Engineers"
+      },
+      {
+        "id": "nsi-limits",
+        "title": "NSI 2026 usage guidance on stacked records, price levels and building precision",
+        "url": "https://www.hec.usace.army.mil/confluence/nsi/technicalreferences/2026/frequently-asked-questions",
+        "publisher": "U.S. Army Corps of Engineers"
+      },
+      {
+        "id": "insurance",
+        "title": "Commercial insurance coverage and replacement cost valuation",
+        "url": "https://www.insurance.ca.gov/01-consumers/105-type/95-guides/09-comm/commercialguide.cfm",
+        "publisher": "California Department of Insurance"
+      },
+      {
+        "id": "earth",
+        "title": "Verify a commercial building by address with Invariant Earth",
+        "url": "https://docs.invariant-ai.com/verify-building-by-address",
+        "publisher": "Invariant Earth"
+      },
+      {
+        "id": "verisk",
+        "title": "Verisk 360Value for commercial property replacement cost",
+        "url": "https://www.verisk.com/49173a/siteassets/media/downloads/underwriting/360value/360value-for-commercial-property.pdf",
+        "publisher": "Verisk"
+      },
+      {
+        "id": "cotality",
+        "title": "Commercial reconstruction cost data and methods",
+        "url": "https://www.cotality.com/resources/commercial-real-estate-overview",
+        "publisher": "Cotality"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-property-insurance-data-apis",
+      "commercial-property-tax-assessment-history-by-address",
+      "commercial-real-estate-sales-lease-comps-apis",
+      "building-footprint-data-apis"
+    ],
+    "dataset": {
+      "name": "32 Old Slip modeled replacement cost and NYC tax assessment",
+      "description": "Seven NSI 2026 occupancy records inside one Manhattan building footprint, compared with the final NYC FY2027 tax roll and PLUTO 26v3 building area. Includes the source queries, shared footprint ID, structure value totals and the observed 29% area difference.",
+      "spatialCoverage": "32 Old Slip, Manhattan, New York City, United States",
+      "datePublished": "2026-11-24",
+      "sourceIds": [
+        "geo",
+        "building",
+        "pluto",
+        "roll",
+        "roll-fields",
+        "nsi-data",
+        "nsi-model",
+        "nsi-limits"
+      ]
     }
   }
 ]

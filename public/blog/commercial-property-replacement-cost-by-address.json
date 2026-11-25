@@ -1,0 +1,223 @@
+{
+  "title": "32 Old Slip structure cost and tax valuation comparison",
+  "retrieved_on": "2026-11-24",
+  "subject": {
+    "property": "32 Old Slip, Manhattan, New York City",
+    "tax_roll_address": "77 FRONT STREET",
+    "nyc_bbl": "1000350001",
+    "nyc_bin": "1000867",
+    "city_address_point_epsg_4326": [
+      -74.007724,
+      40.703797
+    ],
+    "city_building_footprint_epsg_4326": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -74.0072601409646,
+            40.7037740776217
+          ],
+          [
+            -74.0077452950994,
+            40.7034431466052
+          ],
+          [
+            -74.0078129723302,
+            40.7035006099954
+          ],
+          [
+            -74.0081880884761,
+            40.7038191075595
+          ],
+          [
+            -74.0081801765129,
+            40.7038245039891
+          ],
+          [
+            -74.0081381201538,
+            40.7038531918748
+          ],
+          [
+            -74.0079871369938,
+            40.7039561804825
+          ],
+          [
+            -74.0077029338033,
+            40.7041500404262
+          ],
+          [
+            -74.0072601409646,
+            40.7037740776217
+          ]
+        ]
+      ]
+    },
+    "city_footprint_doitt_id": 301993,
+    "pluto_version": "26v3",
+    "pluto_tax_lot_building_area_sqft": 973587,
+    "pluto_number_of_buildings": 1,
+    "pluto_floors": 36
+  },
+  "source_queries": {
+    "inventory": {
+      "url": "https://nsi.sec.usace.army.mil/nsiapi/structures?bbox=-74.00835,40.70329,-74.007,40.70329,-74.007,40.7043,-74.00835,40.7043,-74.00835,40.70329&fmt=fc",
+      "sha256": "0f45380521d274c7a4f8fc68f5dbe2bc0def8266ddc1c5052c68e17a9a5d8ca2",
+      "rows": 15
+    },
+    "assessments": {
+      "url": "https://data.cityofnewyork.us/resource/8y4t-faws.json?%24where=parid%3D%271000350001%27+AND+year%3D%272027%27&%24select=parid%2Cyear%2Crectype%2Cperiod%2Cstreet_name%2Chousenum_lo%2Cfintaxclass%2Cfinmkttot%2Cfinacttot%2Cfintrntot%2Cfintxbtot",
+      "sha256": "7593e1c4f21aaf8127cf6bfda5294adab2d1093c8a62fd6ad09fcf3b6a97b0c1",
+      "rows": 2
+    },
+    "footprints": {
+      "url": "https://services2.arcgis.com/IsDCghZ73NgoYoz5/ArcGIS/rest/services/NYC_Building_Footprint/FeatureServer/0/query?where=BIN%3D1000867&outFields=BIN%2CBASE_BBL%2CMPLUTO_BBL%2CDOITT_ID&returnGeometry=true&outSR=4326&f=json",
+      "sha256": "ce854e09602614899f3d736aaec90c867ce391a4df10def11e3a45a561fb960c",
+      "rows": 1
+    },
+    "pluto": {
+      "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?bbl=1000350001",
+      "sha256": "08c224f2dcc2bdc3b68c7b202cbadaa69e3a665e13a1057b4f653745dc922ba4",
+      "rows": 1
+    },
+    "geosearch": {
+      "url": "https://geosearch.planninglabs.nyc/v2/search?text=32+Old+Slip%2C+Manhattan&size=3",
+      "sha256": "643a1f75bdfccb6eeeab5c0a0842983dbd0e4bc4aa3c5816921c1e21b7a45d47",
+      "rows": 3
+    }
+  },
+  "nsi": {
+    "release": "2026 Base",
+    "source_price_level": "approximately August 2025",
+    "nsi_bounding_polygon_features": 15,
+    "city_footprint_matched_features": 7,
+    "rejected_outside_city_footprint": 8,
+    "shared_nsi_footprint_id": "36061_5475",
+    "shared_point_epsg_4326": [
+      -74.007723,
+      40.703784
+    ],
+    "rows": [
+      {
+        "fd_id": 75001300,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "GOV2",
+        "sqft": 1736.03,
+        "num_story": 37,
+        "fullrep": 605932.97,
+        "val_struct": 503856.6648622325,
+        "modeled_occupancy_label": "Emergency response"
+      },
+      {
+        "fd_id": 75001301,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "IND2",
+        "sqft": 4097.03,
+        "num_story": 37,
+        "fullrep": 953766.29,
+        "val_struct": 793093.5032919977,
+        "modeled_occupancy_label": "Light industrial"
+      },
+      {
+        "fd_id": 75001302,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "COM4",
+        "sqft": 1078074.39,
+        "num_story": 37,
+        "fullrep": 303165718.8,
+        "val_struct": 252094003.0299547,
+        "modeled_occupancy_label": "Professional and technical services"
+      },
+      {
+        "fd_id": 75001303,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "COM2",
+        "sqft": 166658.84,
+        "num_story": 37,
+        "fullrep": 25663825.67,
+        "val_struct": 21340462.146649573,
+        "modeled_occupancy_label": "Wholesale"
+      },
+      {
+        "fd_id": 75001304,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "COM8",
+        "sqft": 1388.82,
+        "num_story": 37,
+        "fullrep": 457367.24,
+        "val_struct": 380318.5229607893,
+        "modeled_occupancy_label": "Entertainment and recreation"
+      },
+      {
+        "fd_id": 75001305,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "COM1",
+        "sqft": 2777.65,
+        "num_story": 37,
+        "fullrep": 641789.71,
+        "val_struct": 533672.9289107661,
+        "modeled_occupancy_label": "Retail"
+      },
+      {
+        "fd_id": 75001306,
+        "bid": "87G7PX3R+GW6-14-15-14-15",
+        "ftprntid": "36061_5475",
+        "ftprntsrc": "NGA",
+        "occtype": "COM3",
+        "sqft": 2083.24,
+        "num_story": 37,
+        "fullrep": 485154.62,
+        "val_struct": 403424.8025416141,
+        "modeled_occupancy_label": "Personal and repair services"
+      }
+    ],
+    "sum_fullrep_usd": 331973555.3,
+    "sum_val_struct_usd": 276048831.6,
+    "sum_modeled_sqft": 1256816.0,
+    "modeled_area_above_pluto_pct": 29.09
+  },
+  "nyc_finance_final_roll": {
+    "fiscal_year_ending": 2027,
+    "roll_period": 3,
+    "tax_class": "4",
+    "source_row": {
+      "parid": "1000350001",
+      "year": "2027",
+      "rectype": "1",
+      "period": "3",
+      "street_name": "FRONT STREET",
+      "housenum_lo": "77",
+      "fintaxclass": "4",
+      "finmkttot": "283515000",
+      "finacttot": "127581750",
+      "fintrntot": "118100700",
+      "fintxbtot": "118100700"
+    },
+    "tax_roll_market_value_usd": 283515000,
+    "actual_assessed_value_usd": 127581750,
+    "transitional_assessed_value_usd": 118100700,
+    "taxable_assessed_value_usd": 118100700
+  },
+  "method": [
+    "Matched the submitted address to NYC building and tax lot identifiers. Queried the city footprint by BIN and tested NSI point containment in longitude and latitude (EPSG:4326).",
+    "Kept all seven modeled records within the city footprint and checked that they share one NSI footprint ID and one coordinate. Summed the USACE structure values without adding contents or vehicles.",
+    "Selected the NYC final assessment row (PERIOD 3) by BBL and fiscal year. PLUTO is a separate comparison of reported building area at the tax-lot level."
+  ],
+  "limits": [
+    "The point match is geographic. It does not verify occupancy assignments, floor area, construction details, modeled costs, or insurance coverage.",
+    "The USACE sums reproduce the inventory assumptions. They do not express a carrier-approved valuation or insurable limit.",
+    "The area comparison preserves the two source definitions. It does not establish why the amounts differ or which area definition is suitable for insurance."
+  ]
+}
