@@ -133,7 +133,7 @@ export default function Datasets() {
             <Link className="dataset-method" to={DATA_USE_CASES_PATH}>All use-case guides <ResourceArrow diagonal /></Link>
           </div>
           <ul>
-            {featured.map(({ slug, title, summary, evidence, image, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
+            {featured.map(({ slug, title, summary, scope, evidence, image, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
               <li key={slug}>
                 <Link className="dataset-featured-study" to={notesPath} aria-labelledby={`featured-${slug}`}
                   onClick={() => posthog.capture('featured_research_study_opened', { study: slug })}>
@@ -146,7 +146,10 @@ export default function Datasets() {
                   <div className="dataset-featured-copy">
                     <h3 id={`featured-${slug}`}>{title} <ResourceArrow diagonal /></h3>
                     <p>{summary}</p>
-                    <p className="dataset-featured-evidence">{evidence}</p>
+                    <p className="dataset-featured-evidence">
+                      <span id={`sample-scope-${slug}`}>{scope}</span>
+                      <span>{evidence}</span>
+                    </p>
                   </div>
                 </Link>
                 <div className="dataset-featured-actions">
@@ -154,7 +157,8 @@ export default function Datasets() {
                     onClick={() => posthog.capture('featured_research_workflow_opened', { study: slug })}>
                     {workflowLabel} <ResourceArrow />
                   </a>}
-                  <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}>
+                  <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}
+                    aria-describedby={`sample-scope-${slug}`}>
                     {sample.format} sample <span aria-hidden="true">↓</span>
                   </a>
                 </div>
@@ -165,7 +169,7 @@ export default function Datasets() {
       </div>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
-        <p className="dataset-scope">{access}</p>
+        <p className="dataset-scope">{access} <Link className="dataset-method" to={earthLinks.coverage}>Check API coverage <ResourceArrow diagonal /></Link></p>
         <noscript><p className="dataset-scope">All examples are available below. Enable JavaScript to search or filter by topic.</p></noscript>
         <nav className="dataset-topics" aria-label="Dataset topics">
           {topicLinks.map(({ label, count }) => (

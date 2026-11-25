@@ -152,7 +152,7 @@ export default function Product() {
             <h2 id="earth-examples">{product.examplesHeading}</h2>
             <p>{product.examplesDescription}</p>
           </div>
-          <Link className="earth-product-link" to={links.datasets}>Browse research datasets <ResourceArrow diagonal /></Link>
+          <Link className="earth-product-link" to={links.datasets}>Browse research &amp; data samples <ResourceArrow diagonal /></Link>
         </div>
         <div className="earth-product-studies">
           {product.examples.map(({ audience, title, description, href, workflow }) => (

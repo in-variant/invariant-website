@@ -269,13 +269,14 @@ function datasetCatalogMd() {
     `[Check API data coverage](${SITE}${product.links.coverage}), [browse API fields](${product.links.fields}), or [screen a site](${product.links.siteScreen}).`, '',
     `[Browse data guides by industry and use case](${SITE}/blog/physical-world-data-by-use-case)`, '',
     '## Explore by use case', '',
-    ...featuredResearch.flatMap(({ slug, title, summary, evidence, workflowLabel }) => {
+    ...featuredResearch.flatMap(({ slug, title, summary, scope, evidence, workflowLabel }) => {
       const study = primaryDatasets.get(slug)
       const workflow = researchWorkflows.get(slug)
       if (!study || !workflow) throw new Error(`Missing featured research dataset or workflow for ${slug}`)
       const sample = study.dataset.downloads[0]
       return [
         `- [${title}](${study.url}). ${summary}`,
+        `  - ${scope}`,
         `  - Research inputs: ${evidence}`,
         `  - [${workflowLabel}](${workflow.url})`,
         `  - [Download the ${sample.format} sample](${SITE}${sample.path})`,
