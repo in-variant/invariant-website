@@ -28,14 +28,27 @@ export default function Resources() {
   useEffect(() => setSearchReady(true), [])
   const queryWords = articleSearchWords(query)
   const searching = queryWords.length > 0
-  const { details, pending } = useArticleSearchDetails(searching && (format === 'All' || format === 'Guides'))
+  const searchGuides = searching && (format === 'All' || format === 'Guides')
+  const { details, pending: articleSearchPending } = useArticleSearchDetails(searchGuides)
+  const [directorySearch, setDirectorySearch] = useState<Record<string, string> | null>()
+  const directorySearchPending = searching && directorySearch === undefined
+  useEffect(() => {
+    if (!directorySearchPending) return
+    let active = true
+    import('../data/.generated-blog-search/resource-directory-search.json').then(
+      ({ default: context }) => { if (active) setDirectorySearch(context) },
+      () => { if (active) setDirectorySearch(null) },
+    )
+    return () => { active = false }
+  }, [directorySearchPending])
+  const pending = articleSearchPending || directorySearchPending
   const searchIndex = useMemo(() => searching ? prepareSearch(library, resource => ({
     title: resource.title,
     relatedTitle: resource.articleSlug,
-    metadata: `${resource.summary} ${resource.topic} ${resource.searchContext ?? ''}`,
+    metadata: `${resource.summary} ${resource.topic} ${resource.searchContext ?? directorySearch?.[resource.path] ?? ''}`,
     details: resource.articleSlug ? details?.[resource.articleSlug]?.headings : undefined,
     bodyTerms: resource.articleSlug ? details?.[resource.articleSlug]?.bodyTerms : undefined,
-  })) : [], [searching, details])
+  })) : [], [searching, details, directorySearch])
   const candidates = searching ? rankSearch(searchIndex, queryWords) : library
   const filtered = candidates.filter(resource =>
     (format === 'All' || `${resource.kind}s` === format) && (topic === 'All topics' || resource.topic === topic),
@@ -111,7 +124,7 @@ export default function Resources() {
           <p className="resources-result-count" role="status">
             {pending ? 'Searching the library…' : `${filtered.length} ${filtered.length === 1 ? 'resource' : 'resources'}`}
             {!pending && searching && ` matching “${query.trim()}”`}
-            {searching && details === null && (format === 'All' || format === 'Guides') && ' (titles and descriptions only)'}
+            {!pending && searching && (directorySearch === null || (searchGuides && details === null)) && ' (some search details unavailable)'}
           </p>
           <div className="resources-reference-list">
             {filtered.slice(0, visibleCount).map((resource) => (

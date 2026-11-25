@@ -256,9 +256,14 @@ const directoryDatasets = publishedArticles.flatMap(({ slug, topic, region, data
 )
 const featuredResourceSlugs = ['data-center-for-sale', 'commercial-property-insurance-data-apis', 'warehouse-site-selection-rail-truck-access']
 const featuredResources = featuredResourceSlugs.flatMap(slug => articleList.filter(article => article.slug === slug))
+const directorySummary = ({ searchContext, ...reference }) => reference
 writeIfChanged(new URL('resource-directory.json', searchDir), JSON.stringify({
-  guides: directoryGuides, datasets: directoryDatasets, featured: featuredResources,
+  guides: directoryGuides.map(directorySummary), datasets: directoryDatasets.map(directorySummary), featured: featuredResources,
 }))
+const directorySearch = Object.fromEntries(
+  [...directoryGuides, ...directoryDatasets].map(({ path, searchContext }) => [path, searchContext]),
+)
+writeIfChanged(new URL('resource-directory-search.json', searchDir), JSON.stringify(directorySearch))
 const research = JSON.parse(readFileSync(new URL('research-studies.json', base), 'utf8'))
 const researchSlugs = new Set(research.studies.map(({ slug }) => slug))
 writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify(publishedArticles.filter(({ slug }) => researchSlugs.has(slug))))
