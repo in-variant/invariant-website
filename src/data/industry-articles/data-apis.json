@@ -3107,17 +3107,18 @@
     "slug": "commercial-property-tax-abatement-by-address",
     "topic": "Data & APIs",
     "title": "How to verify a commercial property tax abatement by address",
-    "description": "Find the agreement, appraisal account and tax rates behind a commercial property tax abatement. Follow two Samsung equipment accounts in Taylor, Texas.",
+    "description": "Find the records behind a commercial property tax abatement, estimate its value by taxing unit, and verify whether a buyer can assume it after a sale.",
     "date": "2026-11-24",
     "region": "United States",
-    "readMinutes": 7,
+    "readMinutes": 9,
     "coverAlt": "Aerial image of the early Samsung construction site next to farm fields and a road intersection in Taylor, Texas.",
     "coverCaption": "Early site work at the Samsung Taylor campus in June 2022. Aerial imagery from USDA NAIP via USGS The National Map.",
-    "intro": "Start with the signed tax abatement agreement and its amendments. Then match the land, buildings and equipment to their appraisal accounts. For each account and tax year, check which taxing unit recognized the exemption and how much value it excluded. Those records let you estimate the levy reduction before you check the bill and any separate grant payments.",
+    "intro": "Start with the signed tax abatement agreement and its amendments. Then match the land, buildings and equipment to their appraisal accounts. For each account and tax year, check which taxing unit recognized the exemption and how much value it excluded. Those records let you estimate the levy reduction before you check the bill and any separate grant payments. For an acquisition, also check the signed assignment and model the first tax year after the benefit expires.",
     "takeaways": [
       "Retrieve each jurisdiction’s agreement and verify which property, tax years and conditions it covers.",
       "Calculate the tax effect separately for each authority. In the two Samsung equipment accounts below, Taylor’s appraisal exemption was 92.5% of the reported value and Williamson County’s was 90%.",
-      "Keep the appraisal exemption, billed tax, cash reimbursements and potential recapture as separate amounts."
+      "Keep the appraisal exemption, billed tax, cash reimbursements and potential recapture as separate amounts.",
+      "A sale may require written consent. Carry the remaining term and any ongoing obligations into the buyer’s analysis."
     ],
     "sections": [
       {
@@ -3289,6 +3290,52 @@
         ]
       },
       {
+        "id": "does-a-tax-abatement-transfer-to-a-new-owner",
+        "heading": "Does a property tax abatement transfer to a new owner?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Check the assignment clause and obtain any consent the agreement requires. At 2312 McLemore Avenue in Fort Worth, the city council authorized the transfer from PMA FW Presidio, LLC to Starboard Presidio DST on January 11, 2022. The signed consent gives that same effective date and requires the buyer to comply with the owner’s obligations under the existing agreement.",
+            "sourceIds": [
+              "presidio-22-0018",
+              "presidio-50882-ca2"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The amendment set January 1, 2022 through December 31, 2026 as the abatement and compliance period. The agreement covers 100% of the eligible increase in improvement value for city property taxes, capped at $27,663,000 of eligible value. The land stays taxable under this agreement. Under the signed schedule, 2027 is the first tax year after expiration.",
+            "sourceIds": [
+              "presidio-50882",
+              "presidio-50882-a1"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The housing payment was $200 for each rental unit, or $27,600 a year at 138 units. Payment was due by April 1 in each abatement year. The agreement provides for loss of that year’s abatement when payment is missed. The amendment requires evidence of the prior year’s payment and other compliance records by March 1. Request both the receipt and the annual filing before carrying the abatement into an acquisition model.",
+            "sourceIds": [
+              "presidio-50882",
+              "presidio-50882-a1",
+              "presidio-fiscal-note"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The city forecast $675,438.25 in forgone revenue over five years. To verify actual savings, pull the appraisal account and collector statement for each tax year. Check the exemption amount on the city line and model the post-expiration year using the applicable assessment and rates. The signed records establish the transfer and obligations. The bills and payment receipts establish what was charged and paid.",
+            "sourceIds": [
+              "presidio-fiscal-note",
+              "tarrant-tax-statements"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/fort-worth-tax-abatement-assignment.json",
+            "label": "Download the Fort Worth assignment timeline and payment calculation",
+            "format": "JSON",
+            "datasetAnchor": "dataset-fort-worth-tax-abatement-assignment"
+          }
+        ]
+      },
+      {
         "id": "estimate-a-tax-abatement-for-a-site",
         "heading": "How to calculate property tax abatement savings",
         "blocks": [
@@ -3327,8 +3374,10 @@
       },
       {
         "question": "Can a buyer assume the seller’s tax abatement?",
-        "answer": "Check the signed agreement’s assignment rules and conditions, along with any required consent. Match the buyer, transaction and covered property to the approval before including the benefit in the purchase model.",
+        "answer": "Review the assignment clause, any required written consent, and the remaining tax years. In the Fort Worth example the buyer assumed the owner’s obligations under a signed consent, and the amended term ran through the 2026 tax year.",
         "sourceIds": [
+          "presidio-50882-ca2",
+          "presidio-50882-a1",
           "williamson-agreement"
         ]
       },
@@ -3413,6 +3462,48 @@
         "title": "USDA natural-color aerial imagery, near 1530 FM 973",
         "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer",
         "publisher": "U.S. Geological Survey and USDA"
+      },
+      {
+        "id": "presidio-50882",
+        "title": "Signed contract 50882, sections 2.1, 2.2, 2.4 and 6",
+        "url": "https://publicdocuments.fortworthtexas.gov/CSODOCS/DocView.aspx?dbid=0&id=158609&repo=City-Secretary",
+        "publisher": "City of Fort Worth"
+      },
+      {
+        "id": "presidio-50882-ca1",
+        "title": "Signed assignment 50882-CA1, recitals and paragraphs 1 to 4",
+        "url": "https://publicdocuments.fortworthtexas.gov/CSODOCS/DocView.aspx?dbid=0&id=159144&repo=City-Secretary",
+        "publisher": "City of Fort Worth"
+      },
+      {
+        "id": "presidio-50882-a1",
+        "title": "Signed amendment 50882-A1, paragraphs 1 and 2",
+        "url": "https://publicdocuments.fortworthtexas.gov/CSODOCS/DocView.aspx?dbid=0&id=257315&repo=City-Secretary",
+        "publisher": "City of Fort Worth"
+      },
+      {
+        "id": "presidio-22-0018",
+        "title": "Council action approving execution of the second assignment, M&C 22-0018",
+        "url": "https://fortworthgov.legistar.com/LegislationDetail.aspx?GUID=31107E48-7CBE-431A-98ED-D8EF516835ED&ID=5373035&Options=&Search=",
+        "publisher": "City of Fort Worth"
+      },
+      {
+        "id": "presidio-50882-ca2",
+        "title": "Signed consent 50882-CA2, recitals and paragraphs 1 to 4",
+        "url": "https://publicdocuments.fortworthtexas.gov/CSODOCS/DocView.aspx?dbid=0&id=258472&repo=City-Secretary",
+        "publisher": "City of Fort Worth"
+      },
+      {
+        "id": "presidio-fiscal-note",
+        "title": "M&C 22-0018, property address, residential units and fiscal estimate",
+        "url": "https://fortworthgov.legistar.com/View.ashx?GUID=ED3E5E51-757F-4E08-B0CA-91F179ED7587&ID=10383556&M=F",
+        "publisher": "City of Fort Worth"
+      },
+      {
+        "id": "tarrant-tax-statements",
+        "title": "Search property accounts and obtain a Tarrant County tax statement",
+        "url": "https://www.tarrantcountytx.gov/en/tax/property-tax/More-Information.html",
+        "publisher": "Tarrant County Tax Assessor-Collector"
       }
     ],
     "relatedSlugs": [
@@ -3435,7 +3526,26 @@
       ],
       "spatialCoverage": "Samsung Taylor campus, Williamson County, Texas, United States",
       "temporalCoverage": "2024-01-01/2025-12-31"
-    }
+    },
+    "updatedDate": "2026-11-25",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-fort-worth-tax-abatement-assignment",
+        "name": "Fort Worth multifamily tax abatement assignment and expiration",
+        "description": "The signed Presidio agreement, two assignments, the 2022 to 2026 amended term, and the annual housing payment for a 138-unit Fort Worth property. Includes the council vote, the city’s fiscal estimate and a calculation of the annual payment.",
+        "datePublished": "2026-11-25",
+        "sourceIds": [
+          "presidio-50882",
+          "presidio-50882-ca1",
+          "presidio-50882-a1",
+          "presidio-22-0018",
+          "presidio-50882-ca2",
+          "presidio-fiscal-note"
+        ],
+        "spatialCoverage": "2312 McLemore Avenue, Fort Worth, Texas, United States",
+        "temporalCoverage": "2018-04-10/2026-12-31"
+      }
+    ]
   },
   {
     "slug": "commercial-property-tax-assessment-history-by-address",
@@ -3643,6 +3753,10 @@
             "label": "Related lending checks",
             "items": [
               {
+                "slug": "commercial-property-tax-abatement-by-address",
+                "label": "Check whether a tax abatement transfers with the property"
+              },
+              {
                 "slug": "commercial-real-estate-data-apis-for-lenders",
                 "label": "Compare commercial property data APIs for lenders"
               },
@@ -3783,7 +3897,8 @@
       ],
       "spatialCoverage": "Empire State Building, Manhattan, New York City, United States",
       "temporalCoverage": "2022-07-01/2027-06-30"
-    }
+    },
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "hurricane-wind-history-by-address",
