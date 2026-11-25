@@ -70,7 +70,7 @@ export default function Resources() {
           ))}
         </ul>
         <nav aria-label="Data downloads and API documentation" className="resources-data-links">
-          <Link to="/datasets" className="resource-text-link">Research &amp; data samples <ResourceArrow diagonal /></Link>
+          <Link to="/datasets" className="resource-text-link">Data samples <ResourceArrow diagonal /></Link>
           <Link to="/data-coverage" className="resource-text-link">API data coverage <ResourceArrow diagonal /></Link>
           <a href="https://docs.invariant-ai.com/quickstart" className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
         </nav>

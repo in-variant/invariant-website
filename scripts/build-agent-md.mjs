@@ -286,7 +286,7 @@ function datasetCatalogMd() {
         `  - [Download the ${sample.format} sample](${SITE}${sample.path})`,
       ]
     }), '',
-    '## All research datasets', '',
+    '## Browse data samples', '',
     ...Object.keys(datasetCatalog.topics).map(label => {
       const params = new URLSearchParams({ topic: label })
       const count = datasetEntries.filter(({ slug }) => datasetTopics.get(slug).includes(label)).length

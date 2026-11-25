@@ -14,7 +14,8 @@ import posthog from '../posthog'
 import './Resources.css'
 import './Datasets.css'
 
-const { name: title, url: canonical } = DATA_CATALOG
+const title = 'Physical economy data samples'
+const { url: canonical } = DATA_CATALOG
 const { description, access } = researchCatalog
 
 function trackResearchLink(properties: {
@@ -129,12 +130,12 @@ export default function Datasets() {
             <h1>Data samples for the physical economy</h1>
             <div>
               <p>{description}</p>
-              <nav aria-label="Research library and API" className="resources-data-links">
+              <nav aria-label="Data samples and API" className="resources-data-links">
                 <Link className="dataset-api-button" to={earthLinks.coverage}
                   onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
                   Check API coverage <ResourceArrow diagonal />
                 </Link>
-                <a className="dataset-method" href="#dataset-search">Find a sample <span aria-hidden="true">↓</span></a>
+                <a className="dataset-method" href="#dataset-search">Browse all samples <span aria-hidden="true">↓</span></a>
               </nav>
             </div>
           </div>
@@ -181,7 +182,7 @@ export default function Datasets() {
         </section>
       </div>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
-        <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
+        <h2 id="dataset-search" tabIndex={-1}>Browse data samples</h2>
         <p className="dataset-scope">{access}{' '}
           <Link className="dataset-method" to={earthLinks.coverage}
             onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'catalog' })}>
@@ -200,8 +201,8 @@ export default function Datasets() {
         </nav>
         <div className="dataset-controls">
           <label>
-            <span>Search datasets</span>
-            <input ref={searchInput} type="search" placeholder="EPA, lending, grid capacity…" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
+            <span>Search data samples</span>
+            <input ref={searchInput} type="search" placeholder="Try flood zones, loan filings, or grid capacity" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
           </label>
           <label className="dataset-topic-select">
             <span>Topic</span>
@@ -228,27 +229,36 @@ export default function Datasets() {
           </div>
         </div>
         {matches.length === 0 && (
-          <p className="dataset-empty">No datasets match your filters. Try a broader search or a different file format.</p>
+          <p className="dataset-empty">No samples match your filters. Try a broader search or a different file format.</p>
         )}
-        {matches.map(({ id, notesPath, datePublished, image, dataset, workflow }) => (
-          <article className="dataset-row" key={id} id={id}>
-            <img src={image} srcSet={coverSrcSets[image]} sizes="(max-width: 520px) calc(100vw - 48px), (max-width: 940px) 160px, 200px"
-              alt="" width="1600" height="900" loading="lazy" decoding="async" />
+        {matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
+          <article className="dataset-row" key={id} id={id} aria-labelledby={`sample-title-${id}`}>
             <div className="dataset-copy">
-              <h3>{dataset.name}</h3>
+              <h3 id={`sample-title-${id}`}>
+                <Link className="dataset-title-link" to={notesPath}
+                  onClick={() => trackResearchLink({ action: 'study', surface: 'catalog', dataset: id })}>
+                  {dataset.name} <ResourceArrow diagonal />
+                </Link>
+              </h3>
               <p>{dataset.description}</p>
               {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
               {dataset.temporalCoverage && <p className="dataset-place">Record dates: {dataset.temporalCoverage.replace('/', ' to ')}</p>}
-              <div className="dataset-row-links">
-                <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}
-                  onClick={() => trackResearchLink({ action: 'study', surface: 'catalog', dataset: id })}>
-                  Dataset notes <ResourceArrow diagonal />
-                </Link>
-                {workflow && <a href={workflow.url} className="dataset-method"
-                  onClick={() => trackResearchLink({ action: 'workflow', surface: 'catalog', dataset: id })}>
-                  {workflow.label} <ResourceArrow diagonal />
-                </a>}
+            </div>
+            <div className="dataset-row-actions">
+              {workflow && <a href={workflow.url} className="dataset-method dataset-row-workflow"
+                onClick={() => trackResearchLink({ action: 'workflow', surface: 'catalog', dataset: id })}>
+                {workflow.label} <ResourceArrow diagonal />
+              </a>}
+              <div className="dataset-downloads">
+                {dataset.downloads.map(file => (
+                  <a key={file.path} href={file.path} download aria-label={`${file.label} (${file.format})`}
+                    onClick={() => trackResearchLink({ action: 'sample', surface: 'catalog', dataset: id, format: file.format })}>
+                    {file.format} <span aria-hidden="true">↓</span>
+                  </a>
+                ))}
               </div>
+            </div>
+            <div className="dataset-row-evidence">
               <details className="dataset-sources">
                 <summary>Source records ({dataset.sourceDetails.length})</summary>
                 {dataset.sourceReuse && <p className="dataset-reuse">{dataset.sourceReuse.note} <a href={dataset.sourceReuse.policyUrl}>{dataset.sourceReuse.policyLabel}</a></p>}
@@ -263,14 +273,6 @@ export default function Datasets() {
                 </ul>
               </details>
               <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
-            </div>
-            <div className="dataset-downloads">
-              {dataset.downloads.map(file => (
-                <a key={file.path} href={file.path} download aria-label={`${file.label} (${file.format})`}
-                  onClick={() => trackResearchLink({ action: 'sample', surface: 'catalog', dataset: id, format: file.format })}>
-                  {file.format} <span aria-hidden="true">↓</span>
-                </a>
-              ))}
             </div>
           </article>
         ))}

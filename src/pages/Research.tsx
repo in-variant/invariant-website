@@ -105,7 +105,7 @@ export default function Research() {
         <div className="research-intro-copy">
           <p>{research.description}</p>
           <nav aria-label="Research resources">
-            <Link to="/datasets" className="research-primary">Browse datasets <ResourceArrow diagonal /></Link>
+            <Link to="/datasets" className="research-primary">Browse data samples <ResourceArrow diagonal /></Link>
             <Link to={DATA_USE_CASES_PATH}>Explore data guides <ResourceArrow diagonal /></Link>
             <Link to="/data-coverage">Check API data coverage <ResourceArrow diagonal /></Link>
           </nav>
