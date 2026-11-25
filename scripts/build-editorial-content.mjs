@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFile
 import { createHash } from 'node:crypto'
 import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { articleSearchWords } from '../src/data/articleSearchWords.mjs'
+import { buildArticleCollectionLinks } from '../src/data/collectionGuideLinks.mjs'
 
 const base = new URL('../src/data/', import.meta.url)
 const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
@@ -299,10 +300,12 @@ for (const [slug, csv] of worksheets) {
 }
 const catalog = new Map([...index, ...legacyArticles].map(article => [article.slug, article]))
 const articleCovers = new Map([...responsiveCovers].map(([image, { width, height, srcSet }]) => [image, { width, height, srcSet }]))
+const articleCollectionLinks = buildArticleCollectionLinks(blogCollections, articles)
 writeEntryModules(new URL('.generated-articles/', base), articles.map(({ relatedSlugs, dataset, coverFile, ...article }, i) => ({
   ...article,
   published: index[i],
   coverImage: articleCovers.get(index[i].image),
+  collectionLink: articleCollectionLinks.get(article.slug),
   relatedReading: relatedSlugs.map((slug, position) => {
     const { title, topic, image } = catalog.get(slug)
     const srcSet = position < 2 ? responsiveCovers.get(image)?.srcSet : undefined

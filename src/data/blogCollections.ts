@@ -1,3 +1,5 @@
+import { guideGroupId } from './collectionGuideLinks.mjs'
+
 type CollectionGuide = {
   slug: string
   label: string
@@ -19,6 +21,6 @@ export function groupCollectionGuides(collectionGuides: CollectionGuide[]) {
   return [...guidesByGroup].map(([heading, guides]) => ({
     heading,
     guides,
-    id: heading.toLowerCase().match(/[a-z0-9]+/g)?.join('-') ?? 'other-guides',
+    id: guideGroupId(heading),
   }))
 }

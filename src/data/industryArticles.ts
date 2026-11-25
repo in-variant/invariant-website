@@ -40,6 +40,7 @@ export type IndustryArticle = {
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
   sources: ArticleSource[]
   relatedReading: RelatedArticle[]
+  collectionLink?: { label: string; path: string }
   /** 'site-listing' pages carry the booking banner at the top and a listing CTA at the foot; 'site-guide' pages carry the booking banner at the foot; 'study-guide' pages (site due diligence) carry the power study request banner; 'compute-guide' pages (neoclouds and AI labs) carry the GPU capacity banner. */
   kind?: 'site-listing' | 'site-guide' | 'study-guide' | 'compute-guide' | 'india-guide'
   /** Emits schema.org Service for pages that describe a service Invariant sells. */

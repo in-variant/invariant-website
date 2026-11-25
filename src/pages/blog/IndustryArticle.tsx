@@ -217,6 +217,11 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const isSiteSelectionService = article.kind === 'site-guide' && !!article.service
   const hasWorksheet = article.sections.some(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
   const reviewedDate = article.updatedDate ?? article.date
+  const railLink = article.collectionLink ?? (
+    isSiteListing ? { path: '/blog/find-data-center-site-us', label: 'Data center site finder' } :
+    isIndiaGuide ? { path: INDIA_HUB, label: 'India data centre approvals' } :
+    { path: hub.path, label: isDataGuide ? 'All articles' : <>{article.topic}<br />{' '}compliance</> }
+  )
   return <article className="blog-article industry-article">
     <Seo title={article.title} description={article.description} canonical={canonical}
       markdown={`/blog/${article.slug}.md`} ogImage={image} ogImageAlt={article.coverAlt} ogType="article"
@@ -224,8 +229,7 @@ export default function IndustryArticle({ article }: { article: Article }) {
     <BlogArticleHeader article={article.published} title={article.title} subtitle={isSiteListing ? article.intro : article.description} coverCaption={coverCaption} coverAlt={article.coverAlt} coverImage={article.coverImage} siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined} />
     <div className="industry-article-layout">
       <aside className="industry-article-rail" aria-label="In this guide">
-        {isSiteListing ? <Link to="/blog/find-data-center-site-us" className="industry-hub-link">Data center site finder <span aria-hidden="true">↗</span></Link> :
-          <Link to={isIndiaGuide ? INDIA_HUB : hub.path} className="industry-hub-link">{isIndiaGuide ? 'India data centre approvals' : isDataGuide ? 'All articles' : <>{article.topic}<br />{' '}compliance</>} <span aria-hidden="true">↗</span></Link>}
+        <Link to={railLink.path} className="industry-hub-link">{railLink.label} <span aria-hidden="true">↗</span></Link>
         <p>In this guide</p>
         <nav>{article.sections.map((section, i) => <a key={section.id} href={`#${section.id}`}><span>{String(i + 1).padStart(2, '0')}</span>{section.heading}</a>)}</nav>
         <a href="#sources" className="industry-sources-link">Sources and references ↗</a>

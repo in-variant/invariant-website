@@ -16,6 +16,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { datasetCitationPath } from '../src/data/datasetCitationPath.mjs'
+import { buildArticleCollectionLinks } from '../src/data/collectionGuideLinks.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
@@ -76,6 +77,7 @@ for (const { label, url, articles } of workflowGroups) {
   }
 }
 const titles = new Map(articles.map(a => [a.slug, a.title]))
+const articleCollectionLinks = buildArticleCollectionLinks(blogCollections, articles)
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 const linkText = s => s.replace(/[\\[\]]/g, '\\$&')
 const citationLink = (label, url) => `[${linkText(label)}](<${url}>)`
@@ -87,6 +89,8 @@ function articleMd(a) {
   const cite = ids => ids?.length ? ' ' + ids.map(id => src.get(id)).filter(Boolean)
     .map(s => `(${citationLink(s.linkLabel ?? s.publisher, s.url)})`).join(' ') : ''
   const out = [`# ${a.title}`, '', `> ${a.description}`, '', `URL: ${SITE}/blog/${a.slug}  `, `Published: ${a.date}${a.updatedDate ? ` · Updated: ${a.updatedDate}` : ''} · Publisher: Invariant · Region: ${a.region ?? 'United States'}`, '', a.intro, '']
+  const collectionLink = articleCollectionLinks.get(a.slug)
+  if (collectionLink) out.push(`Browse [${linkText(collectionLink.label)}](${SITE}${collectionLink.path}) for related guides.`, '')
   if (a.takeaways?.length) out.push('## Key points', '', ...a.takeaways.map(t => `- ${t}`), '')
   for (const s of a.sections) {
     out.push(`## ${s.heading}`, '')
