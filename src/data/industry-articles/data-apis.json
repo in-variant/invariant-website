@@ -3010,6 +3010,7 @@
     "title": "Hurricane Wind History by Address for Property Underwriting",
     "description": "Check hurricane wind history for a street address. Compare observed station gusts, NOAA sustained-wind swaths, and the data needed for a building-level estimate.",
     "date": "2026-11-23",
+    "updatedDate": "2026-11-25",
     "readMinutes": 6,
     "coverAlt": "Hurricane Milton over Florida with an 83-knot gust at Tampa International, 88 knots at Albert Whitted, and 89 knots in the incomplete Sarasota station record. The separate landfall estimate is 100 knots sustained.",
     "coverCaption": "Milton point observations from NWS Tampa Bay, with NHC’s final best-track center and selected 50- and 64-knot sustained-wind bands. Coastline from the U.S. Census Bureau.",
@@ -3101,6 +3102,15 @@
               "tcr",
               "nhc-terms",
               "gis"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The original Tampa special report at 03:18 UTC carries an 81-knot gust and a peak-wind remark of 84 knots at 03:06 UTC. The final NHC report gives 83 knots at the peak time. The replay shows how to keep all three values with their own sources and reconcile standard time, daylight time and UTC.",
+            "sourceIds": [
+              "lcd-tampa",
+              "tcr",
+              "earth-wind-replay"
             ]
           },
           {
@@ -3239,6 +3249,20 @@
       }
     ],
     "sources": [
+      {
+        "id": "lcd-tampa",
+        "title": "Tampa International Airport 2024 Local Climatological Data v2 archive",
+        "url": "https://www.ncei.noaa.gov/oa/local-climatological-data/v2/access/2024/LCD_USW00012842_2024.csv",
+        "publisher": "NOAA National Centers for Environmental Information",
+        "linkLabel": "Tampa station archive"
+      },
+      {
+        "id": "earth-wind-replay",
+        "title": "Replay the Hurricane Milton station records and convert their timestamps",
+        "url": "https://docs.invariant-ai.com/check-hurricane-wind-observations",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Run the wind observation replay"
+      },
       {
         "id": "tcr",
         "title": "Hurricane Milton, AL142024. Table 1 landfall and Table 3 observations on printed page 21",
