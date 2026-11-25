@@ -18,6 +18,7 @@ const GOOGLE_FONTS_TAG = /<link\b[^>]*href="https:\/\/fonts\.googleapis\.com\/cs
 const LOCAL_FONT_PAGES = new Set([
   'src/pages/Blog.tsx',
   'src/pages/DataCoverage.tsx',
+  'src/pages/EarthMcp.tsx',
   'src/pages/Datasets.tsx',
   'src/pages/Research.tsx',
   'src/pages/Resources.tsx',

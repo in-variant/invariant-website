@@ -10,7 +10,7 @@ export default function Layout() {
   const { pathname, hash } = useLocation()
   const isHome = pathname === '/'
   const isReadingIndex = pathname === '/blog' || pathname === '/datasets' || pathname === '/data-coverage'
-  const bespoke = ['/product', '/resources', '/datasets', '/data-coverage', '/blog', '/contact', '/careers', '/charter', '/about', '/trust', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].includes(pathname) || pathname.startsWith('/blog/')
+  const bespoke = ['/product', '/mcp', '/resources', '/datasets', '/data-coverage', '/blog', '/contact', '/careers', '/charter', '/about', '/trust', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].includes(pathname) || pathname.startsWith('/blog/')
   useLayoutEffect(() => {
     if (hash) {
       const frame = requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ behavior: 'instant' }))

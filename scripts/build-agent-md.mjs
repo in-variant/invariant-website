@@ -37,6 +37,7 @@ const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-artic
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
 const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
 const workflowGroups = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-workflows.json'), 'utf8'))
+const mcp = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-mcp.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const coverage = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-summary.json'), 'utf8'))
 const coverageTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-topics.json'), 'utf8'))
@@ -170,7 +171,7 @@ function productMd() {
     'Request body', '', '```json', JSON.stringify(sample.request, null, 2), '```', '',
     'Elevation field excerpt', '', '```json', JSON.stringify({ elevation: sample.field }, null, 2), '```', '',
     '## Use Earth in your coding agent', '',
-    `[MCP setup instructions](${links.mcp}) for the server at ${links.mcpEndpoint}.`, '',
+    `[MCP setup instructions](${links.mcp}) for the server at ${links.mcpEndpoint}.`, `[MCP server overview](${SITE}/mcp)`, '',
     'Copy this setup prompt into your coding agent.', '', `> ${product.setupPrompt}`, '',
     `## ${product.examplesHeading}`, '', product.examplesDescription, '',
     ...product.examples.flatMap(({ audience, title, description, href, workflow }) => [
@@ -183,6 +184,26 @@ function productMd() {
     '## Verify a site or power plan', '',
     `- [Site due diligence](${SITE}${links.diligence})`,
     `- [Power-flow studies](${SITE}${links.power})`, '',
+  ].join('\n')
+}
+
+function mcpMd() {
+  const { links } = product
+  return [
+    `# ${mcp.heading}`, '', mcp.description, '',
+    `URL: ${SITE}/mcp`, `Updated: ${mcp.updatedDate}`, '',
+    '## Connect your agent', '',
+    `Server URL: ${links.mcpEndpoint}`, `Transport: ${mcp.transport}`, '', mcp.signIn, '',
+    `- [Setup instructions for your client](${links.mcp})`,
+    `- [Official MCP Registry entry](${mcp.registryUrl})`, '',
+    'Copy the setup prompt into your coding agent.', '', `> ${product.setupPrompt}`, '',
+    '## What your agent can query', '',
+    ...mcp.tools.map(({ name, title, description }) => `- ${title} (${name}). ${description}`), '',
+    `[Read the tool reference](${mcp.toolsUrl}) · [Check data coverage](${SITE}${links.coverage})`, '',
+    `## ${mcp.trial.heading}`, '', `> ${mcp.trial.question}`, '', mcp.trial.evidence, '',
+    `- [Read the case](${SITE}${mcp.trial.guide})`,
+    `- [Download reference data](${SITE}${mcp.trial.download})`,
+    `- [Compare GIS MCP servers](${SITE}${mcp.comparison})`, '',
   ].join('\n')
 }
 
@@ -421,6 +442,7 @@ function datasetCatalogJson() {
 mkdirSync(join(DIST, 'blog'), { recursive: true })
 mkdirSync(join(DIST, 'glossary'), { recursive: true })
 writeFileSync(join(DIST, 'product.md'), productMd())
+writeFileSync(join(DIST, 'mcp.md'), mcpMd())
 writeFileSync(join(DIST, 'data-coverage.md'), coverageMd())
 writeFileSync(join(DIST, 'resources.md'), resourcesMd())
 writeFileSync(join(DIST, 'research.md'), researchMd())
@@ -443,7 +465,7 @@ const full = [
   '# Invariant data, site selection, power and compliance guides', '',
   '> Full text of the industry guides and buyer workflows. Each article has a Markdown copy at its URL plus `.md`.', '',
   `[Start with the short directory](${SITE}/llms.txt) · [Browse the complete link directory](${SITE}/llms-index.txt)`, '',
-  `[Invariant Earth product and agent setup](${SITE}/product.md)`, '', CONTACT, '',
+  `[Invariant Earth product](${SITE}/product.md) · [MCP server and agent setup](${SITE}/mcp.md)`, '', CONTACT, '',
 ]
 for (const collection of blogCollections) {
   const md = [

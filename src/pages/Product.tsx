@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
+import EarthAgentSetup from '../components/EarthAgentSetup'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 import product from '../data/earth-product.json'
 import { formatEarthRequest } from '../data/formatEarthRequest.mjs'
@@ -63,38 +64,6 @@ function ApiExample() {
   )
 }
 
-function AgentSetup() {
-  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'manual'>('idle')
-  async function copyPrompt() {
-    try {
-      await navigator.clipboard.writeText(product.setupPrompt)
-      setCopyState('copied')
-    } catch {
-      setCopyState('manual')
-    }
-  }
-  return (
-    <div className="earth-agent-setup">
-      <div>
-        <h2>Use Earth in your coding agent</h2>
-        <a href={links.mcp}>MCP setup instructions <ResourceArrow diagonal /></a>
-      </div>
-      <button type="button" className="earth-product-button earth-product-button-outline" onClick={copyPrompt}>
-        {copyState === 'copied' ? 'Prompt copied' : 'Copy setup prompt'}
-      </button>
-      <p role="status" className="sr-only">
-        {copyState === 'copied' ? 'Paste the setup prompt into your coding agent.' : ''}
-      </p>
-      {copyState === 'manual' && (
-        <label>
-          Select and copy the setup prompt.
-          <textarea aria-label="Agent setup prompt" readOnly value={product.setupPrompt} rows={5} onFocus={event => event.currentTarget.select()} />
-        </label>
-      )}
-    </div>
-  )
-}
-
 export default function Product() {
   return (
     <div className="resources-page earth-product">
@@ -114,7 +83,7 @@ export default function Product() {
             <a className="earth-product-button" href={links.keys}>Get an API key <ResourceArrow diagonal /></a>
             <Link className="earth-product-link" to={links.coverage}>Check data coverage <ResourceArrow diagonal /></Link>
           </div>
-          <AgentSetup />
+          <EarthAgentSetup linkToOverview />
         </div>
         <ApiExample />
       </header>

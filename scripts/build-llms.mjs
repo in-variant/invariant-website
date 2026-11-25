@@ -16,6 +16,7 @@ const sections = [
   ['Connect to Invariant Earth', [
     ['API quickstart and first query', `${links.quickstart}.md`],
     ['Get an API key', links.keys],
+    ['Invariant Earth MCP server', `${SITE}/mcp.md`],
     ['MCP installation for coding agents', `${links.mcp}.md`],
     ...product.operations.map(({ method, title, docs }) => [`${method} to ${title.toLowerCase()}`, `${docs}.md`]),
     ['Response statuses, source URLs and data vintages', `${links.responses}.md`],
@@ -131,7 +132,7 @@ out.push('')
 out.push(`- [Platform overview](${SITE}/product) and [Markdown setup guide](${SITE}/product.md).`)
 out.push(`- [API data coverage](${SITE}${links.coverage}) and [field counts and workflows](${SITE}${links.coverage}.md).`)
 out.push(`- [Get an API key](${links.keys}) and follow the [quickstart](${links.quickstart}). Find the full [API documentation](${links.docs}).`)
-out.push(`- [Connect the MCP server to your AI agent](${links.mcp}). Server URL ${links.mcpEndpoint}.`)
+out.push(`- [Invariant Earth MCP server](${SITE}/mcp.md) with setup instructions and a known parcel test. Server URL ${links.mcpEndpoint}.`)
 out.push(`- [Live point fields](${links.pointFields}) for Fetch and [live parcel fields and presets](${links.parcelFields}) for Enrich. Read the [response reference](${links.responses}) for provenance and status.`)
 out.push(`- [Request a data field](${links.fieldRequests}.md) and [download the versioned Python parcel and flood trial](${links.gisTrial}).`)
 out.push('- [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [full docs as Markdown](https://docs.invariant-ai.com/llms-full.txt).')

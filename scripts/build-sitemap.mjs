@@ -12,6 +12,7 @@ const SITE = 'https://invariant-ai.com'
 const industryArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
+const mcp = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-mcp.json'), 'utf8'))
 const coverage = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-summary.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
@@ -26,6 +27,7 @@ const datasetLastmod = [datasetCatalog.updatedDate, ...datasetPublicationDates].
 const CORE = [
   { loc: '/', changefreq: 'weekly', priority: '1.0' },
   { loc: '/product', lastmod: product.updatedDate, changefreq: 'monthly', priority: '0.8' },
+  { loc: '/mcp', lastmod: mcp.updatedDate, changefreq: 'monthly', priority: '0.8' },
   { loc: '/data-coverage', lastmod: coverage.checkedDate, changefreq: 'monthly', priority: '0.8' },
   { loc: '/contact', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.7' },
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
