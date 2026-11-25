@@ -30697,6 +30697,10 @@
             "label": "Related property diligence guides",
             "items": [
               {
+                "slug": "lightbox-alternatives-environmental-site-screening",
+                "label": "Compare environmental screening APIs and test a Superfund footprint"
+              },
+              {
                 "slug": "air-quality-data-apis-monitoring-emissions",
                 "label": "Compare historical air monitors, design values and facility emissions"
               },
@@ -36702,6 +36706,355 @@
       "freight-analysis-framework-data",
       "power-outage-history-by-address",
       "manufacturing-site-selection-100-buildable-acres"
+    ]
+  },
+  {
+    "slug": "lightbox-alternatives-environmental-site-screening",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "LightBox Alternatives for Environmental Site Screening",
+    "description": "Compare LightBox, Invariant Earth, Mireye and ERIS for environmental due diligence. Use an EPA Superfund example to test site geometry and cleanup history.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Map of EPA’s Gowanus Canal Superfund footprint and an enlarged view showing the agency’s published site coordinate 21.7 meters outside the nearest edge.",
+    "coverCaption": "Invariant mapped the coordinate and footprint from EPA’s NEPAssist Superfund layer. The measured gap is 21.7 meters.",
+    "intro": "Invariant Earth is a LightBox alternative for teams that want to screen U.S. sites for nearby Superfund and brownfield records alongside parcel, zoning, wetland and utility data. When an environmental professional needs historical records for a Phase I assessment, compare report packages such as LightBox EDR and ERIS. To test any screening API, start with one public case where the original evidence is easy to check. At the Gowanus Canal, EPA’s published coordinate sits 21.7 meters outside the agency’s mapped Superfund footprint, and the cleanup history has several distinct dates.",
+    "takeaways": [
+      "The LightBox EPA Sites API, LightBox EDR packages and ERIS report packages serve different steps in environmental diligence.",
+      "Invariant Earth documents nearest-site distance and site counts for Superfund and brownfields. Use them to prioritize parcels for review.",
+      "For EPA site NYN000206222, test whether the provider identifies the source geometry, preserves the EPA ID and distinguishes the 2010 listing, 2013 remedy decision and 2025 review."
+    ],
+    "sections": [
+      {
+        "id": "compare-lightbox-alternatives",
+        "heading": "Which LightBox alternative fits your workflow?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the decision your team needs to make. A site selector can use a screening API to flag a shortlist for follow-up. A lender or acquirer commissioning a Phase I needs a qualified environmental professional, who may order historical sources and regulatory records. Invariant makes Invariant Earth. This comparison uses public product documentation reviewed November 25, 2026. The Gowanus calculation uses EPA data directly.",
+            "sourceIds": [
+              "aai"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Product",
+              "When to evaluate it",
+              "What to check in a trial"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Screen a point or parcel alongside physical site data. The public field catalogs list nearest Superfund and brownfield distances and counts within 8 km.",
+                "Check coverage and the response’s source and vintage. Use the returned distance as a flag, then open the original EPA footprint and case records."
+              ],
+              [
+                "LightBox EPA Sites API",
+                "Retrieve Superfund and brownfield records by EPA ID, address or LightBox property identifiers. The API also documents buffered geometry queries and map tiles.",
+                "Use the same EPA ID for the address and geometry queries. Inspect the geometry type and confirm the source and vintage of each return."
+              ],
+              [
+                "Mireye",
+                "Screen a point using documented Superfund and brownfield distance and count fields within 8 km.",
+                "Check the input coordinate and source. Ask how the response distinguishes an empty search from unavailable coverage."
+              ],
+              [
+                "LightBox EDR",
+                "Order environmental data packages designed for transaction screens and Phase I workflows, depending on the package.",
+                "Review the included historical sources and coverage for the subject property with your environmental professional."
+              ],
+              [
+                "ERIS report packages",
+                "Order a regulatory database report with historical material such as aerial photographs, fire insurance maps or directories, depending on the package.",
+                "Check which sources, years and search areas the package covers. Ask how gaps are documented."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "invariant-point",
+                "invariant-parcel",
+                "invariant-provenance"
+              ],
+              [
+                "lightbox-epa"
+              ],
+              [
+                "mireye"
+              ],
+              [
+                "lightbox-edr"
+              ],
+              [
+                "eris"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "gowanus-superfund-coordinate-and-footprint",
+        "heading": "A Superfund point and footprint can disagree",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "EPA’s NEPAssist Superfund layer returned one polygon for Gowanus Canal, EPA ID NYN000206222, with the registry status Final NPL. The same feature includes latitude and longitude attributes. We converted those attributes into a point and projected both geometries to UTM zone 18N. The shortest distance from the coordinate to the polygon was 21.7 meters. A point can therefore identify a site and still fall outside its mapped footprint.",
+            "sourceIds": [
+              "epa-geometry"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "EPA describes the polygon as its current understanding of the site’s footprint. Coverage can be incomplete, and outlines can change as investigation and cleanup progress. The download lets you replay that geometry calculation. To assess a particular parcel, verify its boundary and intersect it with the appropriate dated layer. Refer the site and supporting documents for environmental review before relying on the result for a transaction.",
+            "sourceIds": [
+              "epa-boundaries",
+              "epa-geometry",
+              "aai"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/gowanus-superfund-site-geometry-and-history.geojson",
+            "format": "GeoJSON",
+            "label": "Download the EPA footprint, site coordinate and dated cleanup records"
+          }
+        ]
+      },
+      {
+        "id": "gowanus-cleanup-timeline",
+        "heading": "Which cleanup date belongs in the deal file?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Keep the site ID and the event scope on every record. EPA’s public schedule indexes the 2025 five-year review under its sitewide entry. The report itself describes the work it reviewed under Operable Unit 01, the cleanup component covering work in the canal, two retention tanks and part of an upland former gas plant. Preserve both scope labels when you summarize the case.",
+            "sourceIds": [
+              "epa-schedule",
+              "epa-review"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "EPA record",
+              "Date",
+              "What it establishes"
+            ],
+            "rows": [
+              [
+                "Final listing on the National Priorities List",
+                "March 4, 2010",
+                "EPA finalized the site’s listing."
+              ],
+              [
+                "Record of Decision for Operable Unit 01",
+                "September 27, 2013",
+                "EPA selected a remedy for canal sediments and source controls."
+              ],
+              [
+                "First five-year review",
+                "June 17, 2025",
+                "EPA signed the first remedy review. Read its scope and findings in the report."
+              ],
+              [
+                "Construction completion",
+                "No date reported in the schedule",
+                "On November 25, 2026, the schedule still listed this milestone as not achieved."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "epa-schedule"
+              ],
+              [
+                "epa-schedule",
+                "epa-rod"
+              ],
+              [
+                "epa-schedule",
+                "epa-review"
+              ],
+              [
+                "epa-schedule"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "environmental-screening-api-trial",
+        "heading": "How to run an environmental screening API trial",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use a small batch of known addresses or parcel IDs. For each return, save the address or parcel match and the geometry used for the distance calculation. Decide in advance whether your next step needs a count, a named site record with an EPA ID, or a polygon. With Invariant Earth, start by requesting nearest_superfund_distance_m and superfund_sites_within_radius_count, then add the brownfield equivalents. Check the field’s source, vintage and status in the response. For a Gowanus comparison, query the EPA ID separately and compare the site geometry with the download.",
+            "sourceIds": [
+              "invariant-point",
+              "invariant-parcel",
+              "invariant-provenance",
+              "epa-geometry"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Record what you could verify on the decision date and what needs a specialist or newer document. For example, a proximity flag can justify pulling the agency files, while an old cleanup entry may need the current review report. When the deal calls for a Phase I or All Appropriate Inquiries, involve an environmental professional and use the screen to organize the handoff.",
+            "sourceIds": [
+              "epa-schedule",
+              "aai"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the evaluation",
+            "items": [
+              {
+                "path": "/data-coverage?field=nearest_superfund_distance_m&operation=point#coverage-search",
+                "label": "Open the Superfund distance field and copy a point request"
+              },
+              {
+                "slug": "industrial-environmental-permit-history-by-parcel",
+                "label": "Trace the facility’s environmental permit history"
+              },
+              {
+                "slug": "physical-world-data-api-evaluation",
+                "label": "Compare physical-world data APIs on public records"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is a LightBox alternative for screening many parcels?",
+        "answer": "Evaluate Invariant Earth when your team needs Superfund and brownfield screening fields alongside parcel, zoning or utility evidence. Run the trial on known parcels and check the parcel match, search radius, source date and missing-data behavior before scaling.",
+        "sourceIds": [
+          "invariant-parcel",
+          "invariant-provenance"
+        ]
+      },
+      {
+        "question": "Can an environmental screening API replace a Phase I assessment?",
+        "answer": "Use an API for screening and evidence collection. A Phase I assessment is performed by an environmental professional and draws on more than registry searches. EPA’s All Appropriate Inquiries guidance includes records review, interviews, visual inspection and a signed report.",
+        "sourceIds": [
+          "aai"
+        ]
+      },
+      {
+        "question": "Does a nearby Superfund record mean a property is contaminated?",
+        "answer": "A nearby record is grounds to review the named site, source geometry and case documents. A registry distance alone cannot establish the condition of a particular property.",
+        "sourceIds": [
+          "epa-boundaries",
+          "aai"
+        ]
+      },
+      {
+        "question": "Why might two Superfund distances differ for the same address?",
+        "answer": "One service may measure to a registry coordinate and another to a mapped footprint. They may also resolve the subject address to different positions. At Gowanus, the EPA layer’s own coordinate is 21.7 meters outside the mapped polygon.",
+        "sourceIds": [
+          "epa-geometry",
+          "epa-boundaries"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "invariant-point",
+        "publisher": "Invariant",
+        "title": "Live point fields",
+        "url": "https://api.invariant-ai.com/v1/meta/fields"
+      },
+      {
+        "id": "invariant-parcel",
+        "publisher": "Invariant",
+        "title": "Live parcel enrichment fields",
+        "url": "https://api.invariant-ai.com/v1/enrich/fields"
+      },
+      {
+        "id": "invariant-provenance",
+        "publisher": "Invariant",
+        "title": "API responses and provenance",
+        "url": "https://docs.invariant-ai.com/responses"
+      },
+      {
+        "id": "lightbox-epa",
+        "publisher": "LightBox",
+        "title": "EPA Sites API capabilities and scope",
+        "url": "https://developer.lightboxre.com/apis/epa-sites"
+      },
+      {
+        "id": "lightbox-edr",
+        "publisher": "LightBox",
+        "title": "EDR environmental data packages",
+        "url": "https://www.lightboxre.com/product/edr-environmental-data-packages/"
+      },
+      {
+        "id": "mireye",
+        "publisher": "Mireye",
+        "title": "Live point field catalog",
+        "url": "https://api.mireye.com/v1/meta/fields"
+      },
+      {
+        "id": "eris",
+        "publisher": "ERIS",
+        "title": "Environmental database and historical report packages",
+        "url": "https://www.erisinfo.com/products/database-report-packages/"
+      },
+      {
+        "id": "epa-geometry",
+        "publisher": "U.S. Environmental Protection Agency",
+        "title": "NEPAssist Superfund layer query for Gowanus Canal, EPA ID NYN000206222",
+        "url": "https://geopub.epa.gov/ArcGIS/rest/services/NEPAssist/NEPAVELayersPublic_fgdb/MapServer/14/query?where=EPA_ID%3D%27NYN000206222%27&outFields=EPA_ID%2CSite_Name%2CNPL_Status%2CLATITUDE%2CLONGITUDE&outSR=4326&f=geojson"
+      },
+      {
+        "id": "epa-boundaries",
+        "publisher": "U.S. Environmental Protection Agency",
+        "title": "Superfund site boundary coverage and interpretation",
+        "url": "https://www.epa.gov/superfund/superfund-data-and-reports#location"
+      },
+      {
+        "id": "epa-schedule",
+        "publisher": "U.S. Environmental Protection Agency",
+        "title": "Gowanus Canal site milestones and operable unit schedule",
+        "url": "https://cumulis.epa.gov/supercpad/SiteProfiles/index.cfm?fuseaction=second.schedule&id=0206222"
+      },
+      {
+        "id": "epa-rod",
+        "publisher": "U.S. Environmental Protection Agency",
+        "title": "September 2013 Record of Decision for Gowanus Canal Operable Unit 01",
+        "url": "https://semspub.epa.gov/work/02/692106.pdf"
+      },
+      {
+        "id": "epa-review",
+        "publisher": "U.S. Environmental Protection Agency",
+        "title": "June 2025 first five-year review of Gowanus Canal",
+        "url": "https://semspub.epa.gov/work/02/746890.pdf"
+      },
+      {
+        "id": "aai",
+        "publisher": "U.S. Environmental Protection Agency",
+        "title": "All Appropriate Inquiries activities and environmental professional requirements",
+        "url": "https://www.epa.gov/brownfields/brownfields-all-appropriate-inquiries"
+      }
+    ],
+    "dataset": {
+      "name": "Gowanus Canal Superfund site coordinate, footprint and cleanup milestones",
+      "description": "EPA’s published point and mapped footprint for NYN000206222, the 21.7-meter separation, and dated evidence for listing, remedy decision, first review and construction completion status.",
+      "spatialCoverage": "Gowanus Canal, Brooklyn, New York, United States",
+      "temporalCoverage": "2010-03-04/2026-11-25",
+      "sourceIds": [
+        "epa-geometry",
+        "epa-boundaries",
+        "epa-schedule",
+        "epa-rod",
+        "epa-review"
+      ]
+    },
+    "relatedSlugs": [
+      "industrial-environmental-permit-history-by-parcel",
+      "mireye-alternatives-for-property-screening",
+      "data-center-environmental-site-screening"
     ]
   }
 ]
