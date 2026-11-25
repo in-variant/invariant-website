@@ -73,6 +73,7 @@ export default function DataCoverage() {
   const { hash } = useLocation()
   const [query, setQuery] = useState('')
   const [operation, setOperation] = useState<Operation | ''>('')
+  const [browseAll, setBrowseAll] = useState(false)
   const [count, setCount] = useState(pageSize)
   const [index, setIndex] = useState<ReturnType<typeof indexFields>>()
   const [error, setError] = useState(false)
@@ -80,10 +81,11 @@ export default function DataCoverage() {
   const [ready, setReady] = useState(false)
   const terms = articleSearchWords(query)
   const searching = terms.length > 0
+  const showFields = searching || operation !== '' || browseAll
 
   useEffect(() => setReady(true), [])
   useEffect(() => {
-    if (!searching || index) return
+    if (!showFields || index) return
     const controller = new AbortController()
     setError(false)
     fetch(snapshotPath, { signal: controller.signal })
@@ -96,10 +98,11 @@ export default function DataCoverage() {
         if (!controller.signal.aborted) setError(true)
       })
     return () => controller.abort()
-  }, [searching, index, attempt])
+  }, [showFields, index, attempt])
 
-  const matches = searching && index
-    ? rankSearch(index, terms).filter(field => !operation || field.definitions[operation])
+  const matches = showFields && index
+    ? (searching ? rankSearch(index, terms) : index.map(({ entry }) => entry))
+        .filter(field => !operation || field.definitions[operation])
     : []
 
   return (
@@ -141,17 +144,26 @@ export default function DataCoverage() {
             </select>
           </label>
         </div>
-        {searching && (
-          <p className="coverage-note" role="status">
-            {error ? 'The field snapshot could not be loaded.' : index
-              ? `${matches.length} matching ${matches.length === 1 ? 'field' : 'fields'}`
-              : 'Loading field definitions…'}
-          </p>
+        {!searching && !operation && (
+          <button type="button" className="coverage-action" disabled={!ready}
+            aria-expanded={browseAll} aria-controls="coverage-results"
+            onClick={() => { setBrowseAll(!browseAll); setCount(pageSize) }}>
+            {browseAll ? 'Hide field list' : 'Browse all fields'}
+          </button>
         )}
-        {searching && error && <button type="button" className="coverage-action" onClick={() => setAttempt(attempt + 1)}>Try again</button>}
-        {searching && index && matches.length === 0 && <p>Try a different field name or search all operations.</p>}
-        {matches.slice(0, count).map(field => <FieldDetails key={field.name} field={field} operation={operation} />)}
-        {matches.length > count && <button type="button" className="coverage-action" onClick={() => setCount(count + pageSize)}>Show more fields</button>}
+        <div id="coverage-results">
+          {showFields && (
+            <p className="coverage-note" role="status">
+              {error ? 'The field snapshot could not be loaded.' : index
+                ? `${matches.length} ${searching ? 'matching ' : ''}${matches.length === 1 ? 'field' : 'fields'}`
+                : 'Loading field definitions…'}
+            </p>
+          )}
+          {showFields && error && <button type="button" className="coverage-action" onClick={() => setAttempt(attempt + 1)}>Try again</button>}
+          {searching && index && matches.length === 0 && <p>Try a different field name or search all operations.</p>}
+          {matches.slice(0, count).map(field => <FieldDetails key={field.name} field={field} operation={operation} />)}
+          {matches.length > count && <button type="button" className="coverage-action" onClick={() => setCount(count + pageSize)}>Show more fields</button>}
+        </div>
       </section>
 
       <section className="resource-container coverage-topics" aria-labelledby="coverage-workflows">
