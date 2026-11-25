@@ -6578,6 +6578,7 @@
     "date": "November 24, 2026",
     "dateTime": "2026-11-24",
     "region": "New York City, United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/nyc-environmental-restrictions-by-address.webp?v=f3b70906",
     "dataset": {
       "name": "380 Fourth Avenue environmental designation, easement and cleanup records",
@@ -6661,7 +6662,82 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-gerry-street-easement-lot-lineage",
+        "datePublished": "2026-11-25",
+        "name": "91 Gerry Street environmental easement, lot merger and condominium records",
+        "description": "Trace Brooklyn block 2266 from lots 40 and 41 through a tax lot merger and six condominium unit lots. Includes the New York City recorder joins, the conditional cleanup certificate and a neighboring property check.",
+        "spatialCoverage": "91 Gerry Street and adjacent 93 Gerry Street, Brooklyn, New York City",
+        "temporalCoverage": "2021-11-24/2026-11-25",
+        "sources": [
+          "https://extapps.dec.ny.gov/data/DecDocs/C224321/Agreement.BCP.C224321.2024-10-03.BCA_Amendment_No1%20-%20Change_Address_Tax_Lot_Merger.pdf#page=13",
+          "https://extapps.dec.ny.gov/data/DecDocs/C224321/Easement.BCP.C224321.2025-03-11.Envrironmental%20Easement%20-%20Executed%20and%20Recorded.pdf#page=3",
+          "https://extapps.dec.ny.gov/data/DecDocs/C224321/Certificate%20of%20Completion.BCP.C224321.2025-05-22.Former_Just4Wheels_Site.pdf#page=3",
+          "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime&%24order=recorded_datetime%2Cdocument_id",
+          "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Clot",
+          "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27EASE%27%2C%27CDEC%27%2C%27MAPS%27%2C%27CERT%27%2C%27MTGE%27%29&%24select=doc__type%2Cdoc__type_description&%24order=doc__type",
+          "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%283022660039%2C3022660040%2C3022660041%2C3022667517%29&%24select=bbl%2Cborough%2Cblock%2Clot%2Caddress%2Clotarea%2Cversion%2Ccondono&%24order=bbl",
+          "https://data.ny.gov/resource/ir93-7qzi.json?%24where=bcp_site_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=bcp_site_number%2Csite_name%2Clocation%2Cacreage%2Cyear_coc_issued%2Chighest_allowable_future_use&%24order=bcp_site_number",
+          "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=distinct+program_number%2Cprogram_facility_name%2Cproject_name%2Cproject_completion_date&%24order=program_number%2Cproject_completion_date%2Cproject_name"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Brownfield Cleanup Agreement amendment 1, tax map exhibits",
+            "publisher": "New York State Department of Environmental Conservation",
+            "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Agreement.BCP.C224321.2024-10-03.BCA_Amendment_No1%20-%20Change_Address_Tax_Lot_Merger.pdf#page=13"
+          },
+          {
+            "title": "Recorded environmental easement, CRFN 2025000068050, terms for controlled property",
+            "publisher": "New York State Department of Environmental Conservation",
+            "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Easement.BCP.C224321.2025-03-11.Envrironmental%20Easement%20-%20Executed%20and%20Recorded.pdf#page=3"
+          },
+          {
+            "title": "Signed May 22, 2025 C224321 Certificate of Completion, conditional track and site scope",
+            "publisher": "New York State Department of Environmental Conservation",
+            "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Certificate%20of%20Completion.BCP.C224321.2025-05-22.Former_Just4Wheels_Site.pdf#page=3"
+          },
+          {
+            "title": "Selected recorder index rows at 91 Gerry Street",
+            "publisher": "NYC Department of Finance",
+            "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime&%24order=recorded_datetime%2Cdocument_id"
+          },
+          {
+            "title": "Parcel rows for the easement, condominium declaration, maps, certificate entry and mortgage",
+            "publisher": "NYC Department of Finance",
+            "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Clot"
+          },
+          {
+            "title": "Recorder descriptions for the five document types",
+            "publisher": "NYC Department of Finance",
+            "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27EASE%27%2C%27CDEC%27%2C%27MAPS%27%2C%27CERT%27%2C%27MTGE%27%29&%24select=doc__type%2Cdoc__type_description&%24order=doc__type"
+          },
+          {
+            "title": "PLUTO 26v3 search for the predecessor, condominium billing lot and neighbor",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%283022660039%2C3022660040%2C3022660041%2C3022667517%29&%24select=bbl%2Cborough%2Cblock%2Clot%2Caddress%2Clotarea%2Cversion%2Ccondono&%24order=bbl"
+          },
+          {
+            "title": "DEC certificate register for neighboring brownfield sites C224321 and C224326",
+            "publisher": "New York State Department of Environmental Conservation",
+            "url": "https://data.ny.gov/resource/ir93-7qzi.json?%24where=bcp_site_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=bcp_site_number%2Csite_name%2Clocation%2Cacreage%2Cyear_coc_issued%2Chighest_allowable_future_use&%24order=bcp_site_number"
+          },
+          {
+            "title": "DEC remediation milestones for C224321 and C224326",
+            "publisher": "New York State Department of Environmental Conservation",
+            "url": "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=distinct+program_number%2Cprogram_facility_name%2Cproject_name%2Cproject_completion_date&%24order=program_number%2Cproject_completion_date%2Cproject_name"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Gerry Street lot history and environmental instrument references",
+            "path": "/blog/gerry-street-environmental-easement-lot-lineage.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "industrial-land-for-sale-acreage-zoning",

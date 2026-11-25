@@ -1,0 +1,504 @@
+{
+  "name": "91 Gerry Street environmental easement, lot merger and condominium records",
+  "scope": "Selected documentary evidence for parcel matching and due diligence. A certified survey, a current title search and confirmation from the responsible agency are needed to establish present obligations.",
+  "checkedOn": "2026-11-25",
+  "site": {
+    "address": "91 Gerry Street, Brooklyn",
+    "formerAddress": "89-91 Gerry Street, Brooklyn",
+    "decSiteId": "C224321",
+    "boroughCode": 3,
+    "block": 2266,
+    "areaSquareFeet": 5000,
+    "surveyAndLegalDescriptionSources": [
+      "gerry-lot-merger",
+      "gerry-conditional-certificate",
+      "gerry-easement"
+    ]
+  },
+  "lineage": [
+    {
+      "event": "NYC tax map merger",
+      "effectiveDate": "2021-11-24",
+      "oldLots": [
+        40,
+        41
+      ],
+      "successorLot": 40,
+      "sourceIds": [
+        "gerry-lot-merger"
+      ]
+    },
+    {
+      "event": "DEC reflected lot merger in cleanup agreement",
+      "amendmentApprovedDate": "2024-10-03",
+      "lot": 40,
+      "sourceIds": [
+        "gerry-conditional-certificate",
+        "gerry-lot-merger"
+      ]
+    },
+    {
+      "event": "Environmental easement recorded",
+      "recordedDate": "2025-03-11",
+      "lotsIndexed": [
+        40
+      ],
+      "crfn": "2025000068050",
+      "sourceIds": [
+        "gerry-easement",
+        "gerry-acris-master",
+        "gerry-acris-parcels"
+      ]
+    },
+    {
+      "event": "Condominium declaration recorded",
+      "recordedDate": "2025-05-13",
+      "formerLot": 40,
+      "unitLots": [
+        2701,
+        2702,
+        2703,
+        2704,
+        2705,
+        2706
+      ],
+      "crfn": "2025000128753",
+      "sourceIds": [
+        "gerry-acris-master",
+        "gerry-acris-parcels",
+        "gerry-acris-codes"
+      ]
+    },
+    {
+      "event": "PLUTO 26v3 parcel snapshot",
+      "billingLot": 7517,
+      "condominiumNumber": 6153,
+      "sourceIds": [
+        "gerry-pluto"
+      ]
+    }
+  ],
+  "creditExample": {
+    "sampleUnitLot": 2701,
+    "mortgageCrfn": "2026000037000",
+    "mortgageRecordedDate": "2026-02-05",
+    "easementDirectUnitIndexJoinCount": 0,
+    "easementPredecessorLotJoinCount": 1,
+    "meaning": "A join by the selected unit lot alone misses this easement record. Follow the condominium declaration back to the parent lot and read the recorded instrument.",
+    "sourceIds": [
+      "gerry-acris-master",
+      "gerry-acris-parcels",
+      "gerry-easement"
+    ]
+  },
+  "cleanupCertificate": {
+    "issuedDate": "2025-05-22",
+    "registryHighestAllowableFutureUse": "Unrestricted",
+    "signedCertificateTrack": "Conditional Track 1",
+    "statedCondition": "Meet soil vapor intrusion cleanup goals within five years of the certificate date. The certificate states it will be modified to Track 2 Residential cleanup if the goals are not achieved.",
+    "easementControlsInOriginalInstrument": [
+      "Requirements for disturbance of remaining contaminated material",
+      "Requirements for groundwater use, including treatment and written approval",
+      "Monitoring, maintenance and reporting under the Site Management Plan"
+    ],
+    "latestSiteManagementCompliance": null,
+    "laterEasementAmendmentOrReleaseVerified": null,
+    "sourceIds": [
+      "gerry-conditional-certificate",
+      "gerry-dec-register",
+      "gerry-easement"
+    ],
+    "originalEasementUseCategories": [
+      "Restricted Residential",
+      "Commercial",
+      "Industrial"
+    ],
+    "originalEasementUseCategoriesSourceIds": [
+      "gerry-easement"
+    ]
+  },
+  "neighborCheck": {
+    "address": "93 Gerry Street, Brooklyn",
+    "lot": 39,
+    "decSiteId": "C224326",
+    "certificateMilestone": "2023-12-21",
+    "sourceIds": [
+      "gerry-pluto",
+      "gerry-dec-register",
+      "gerry-dec-milestones"
+    ]
+  },
+  "sources": [
+    {
+      "id": "gerry-lot-merger",
+      "title": "Brownfield Cleanup Agreement amendment 1, tax map exhibits",
+      "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Agreement.BCP.C224321.2024-10-03.BCA_Amendment_No1%20-%20Change_Address_Tax_Lot_Merger.pdf#page=13",
+      "publisher": "New York State Department of Environmental Conservation",
+      "linkLabel": "Tax map and merger amendment",
+      "sourceSha256": "8c6363bb14e1647a6d0b727a5e170c509db630606e3f25d66dcc4f30a773f90e"
+    },
+    {
+      "id": "gerry-easement",
+      "title": "Recorded environmental easement, CRFN 2025000068050, terms for controlled property",
+      "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Easement.BCP.C224321.2025-03-11.Envrironmental%20Easement%20-%20Executed%20and%20Recorded.pdf#page=3",
+      "publisher": "New York State Department of Environmental Conservation",
+      "linkLabel": "Recorded environmental easement",
+      "sourceSha256": "cb4290df6d304422dc54603d5cafe0601c5594ea151b431ba2735df2b020a486"
+    },
+    {
+      "id": "gerry-conditional-certificate",
+      "title": "Signed May 22, 2025 C224321 Certificate of Completion, conditional track and site scope",
+      "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Certificate%20of%20Completion.BCP.C224321.2025-05-22.Former_Just4Wheels_Site.pdf#page=3",
+      "publisher": "New York State Department of Environmental Conservation",
+      "linkLabel": "Signed cleanup certificate",
+      "sourceSha256": "7058caf6e4a23f19ac34eaae37fbd30b3b12c2352bc61b141edf8dcbb20d35e3"
+    },
+    {
+      "id": "gerry-acris-master",
+      "title": "Selected recorder index rows at 91 Gerry Street",
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime&%24order=recorded_datetime%2Cdocument_id",
+      "publisher": "NYC Department of Finance",
+      "linkLabel": "ACRIS document rows",
+      "sourceSha256": "f7186d4738c9342cfec01f27ff39b6d8ce3e5c24fe1fccab56d82e01b35da877"
+    },
+    {
+      "id": "gerry-acris-parcels",
+      "title": "Parcel rows for the easement, condominium declaration, maps, certificate entry and mortgage",
+      "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Clot",
+      "publisher": "NYC Department of Finance",
+      "linkLabel": "ACRIS parcel rows",
+      "sourceSha256": "c0afdd6ebad9f4c89323e726bf304476c55440aeda69e315399ba02afdb639ae"
+    },
+    {
+      "id": "gerry-acris-codes",
+      "title": "Recorder descriptions for the five document types",
+      "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27EASE%27%2C%27CDEC%27%2C%27MAPS%27%2C%27CERT%27%2C%27MTGE%27%29&%24select=doc__type%2Cdoc__type_description&%24order=doc__type",
+      "publisher": "NYC Department of Finance",
+      "linkLabel": "ACRIS document type codes",
+      "sourceSha256": "794fc8d608e1378768735f485111e548a14f14aeeffbf2cadafe48c5b79da02f"
+    },
+    {
+      "id": "gerry-pluto",
+      "title": "PLUTO 26v3 search for the predecessor, condominium billing lot and neighbor",
+      "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%283022660039%2C3022660040%2C3022660041%2C3022667517%29&%24select=bbl%2Cborough%2Cblock%2Clot%2Caddress%2Clotarea%2Cversion%2Ccondono&%24order=bbl",
+      "publisher": "NYC Department of City Planning",
+      "linkLabel": "PLUTO parcel rows",
+      "sourceSha256": "f0a60f74eb6a7ba4f1c4ce0364101554fcf6ce7e0075ba697d5edd146a117cb2"
+    },
+    {
+      "id": "gerry-dec-register",
+      "title": "DEC certificate register for neighboring brownfield sites C224321 and C224326",
+      "url": "https://data.ny.gov/resource/ir93-7qzi.json?%24where=bcp_site_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=bcp_site_number%2Csite_name%2Clocation%2Cacreage%2Cyear_coc_issued%2Chighest_allowable_future_use&%24order=bcp_site_number",
+      "publisher": "New York State Department of Environmental Conservation",
+      "linkLabel": "DEC certificate register",
+      "sourceSha256": "6f19ca32e963c72d1ad1850e62cad76d5c186753ae897eab75e5b7f9e80c1ed4"
+    },
+    {
+      "id": "gerry-dec-milestones",
+      "title": "DEC remediation milestones for C224321 and C224326",
+      "url": "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=distinct+program_number%2Cprogram_facility_name%2Cproject_name%2Cproject_completion_date&%24order=program_number%2Cproject_completion_date%2Cproject_name",
+      "publisher": "New York State Department of Environmental Conservation",
+      "linkLabel": "DEC project milestones",
+      "sourceSha256": "73066500503c90cfc2a8da4b45fa44e7dc97f6439a9480f67e1d78af675357dc"
+    }
+  ],
+  "apiResponses": {
+    "gerry-acris-master": [
+      {
+        "document_id": "2024121300250001",
+        "crfn": "2025000068050",
+        "doc_type": "EASE",
+        "document_date": "2024-12-06T00:00:00.000",
+        "recorded_datetime": "2025-03-11T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "crfn": "2025000128753",
+        "doc_type": "CDEC",
+        "document_date": "2025-03-25T00:00:00.000",
+        "recorded_datetime": "2025-05-13T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "crfn": "2025000128754",
+        "doc_type": "MAPS",
+        "document_date": "2025-05-09T00:00:00.000",
+        "recorded_datetime": "2025-05-13T00:00:00.000"
+      },
+      {
+        "document_id": "2025060500195001",
+        "crfn": "2025000152718",
+        "doc_type": "CERT",
+        "document_date": "2025-06-04T00:00:00.000",
+        "recorded_datetime": "2025-06-06T00:00:00.000"
+      },
+      {
+        "document_id": "2026020400571002",
+        "crfn": "2026000037000",
+        "doc_type": "MTGE",
+        "document_date": "2026-01-28T00:00:00.000",
+        "recorded_datetime": "2026-02-05T00:00:00.000"
+      }
+    ],
+    "gerry-acris-parcels": [
+      {
+        "document_id": "2024121300250001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "40",
+        "partial_lot": "E",
+        "property_type": "CR",
+        "good_through_date": "2025-03-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "40",
+        "partial_lot": "E",
+        "property_type": "AP",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2701",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2702",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2703",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2704",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2705",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2706",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "40",
+        "partial_lot": "E",
+        "property_type": "AP",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2701",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2702",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2703",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2704",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2705",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025051200930002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2706",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2025-05-31T00:00:00.000"
+      },
+      {
+        "document_id": "2025060500195001",
+        "borough": "3",
+        "block": "2266",
+        "lot": "40",
+        "partial_lot": "E",
+        "property_type": "CR",
+        "good_through_date": "2025-06-30T00:00:00.000"
+      },
+      {
+        "document_id": "2026020400571002",
+        "borough": "3",
+        "block": "2266",
+        "lot": "2701",
+        "partial_lot": "E",
+        "property_type": "SC",
+        "good_through_date": "2026-02-28T00:00:00.000"
+      }
+    ],
+    "gerry-acris-codes": [
+      {
+        "doc__type": "CDEC",
+        "doc__type_description": "CONDO DECLARATION"
+      },
+      {
+        "doc__type": "CERT",
+        "doc__type_description": "CERTIFICATE"
+      },
+      {
+        "doc__type": "EASE",
+        "doc__type_description": "EASEMENT"
+      },
+      {
+        "doc__type": "MAPS",
+        "doc__type_description": "MAPS"
+      },
+      {
+        "doc__type": "MTGE",
+        "doc__type_description": "MORTGAGE"
+      }
+    ],
+    "gerry-pluto": [
+      {
+        "bbl": "3022660039.00000000",
+        "borough": "BK",
+        "block": "2266",
+        "lot": "39",
+        "address": "93 GERRY STREET",
+        "lotarea": "2500",
+        "version": "26v3"
+      },
+      {
+        "bbl": "3022667517.00000000",
+        "borough": "BK",
+        "block": "2266",
+        "lot": "7517",
+        "address": "91 GERRY STREET",
+        "lotarea": "5000",
+        "version": "26v3",
+        "condono": "6153"
+      }
+    ],
+    "gerry-dec-register": [
+      {
+        "bcp_site_number": "C224321",
+        "site_name": "Former Just4Wheels Site",
+        "location": "Brooklyn, NY",
+        "acreage": "0.114",
+        "year_coc_issued": "2025",
+        "highest_allowable_future_use": "Unrestricted"
+      },
+      {
+        "bcp_site_number": "C224326",
+        "site_name": "Former Just4Wheels Site 2",
+        "location": "Brooklyn, NY",
+        "acreage": "0.057",
+        "year_coc_issued": "2023",
+        "highest_allowable_future_use": "Unrestricted"
+      }
+    ],
+    "gerry-dec-milestones": [
+      {
+        "program_number": "C224321",
+        "program_facility_name": "Former Just4Wheels Site",
+        "project_name": "Remedial Investigation",
+        "project_completion_date": "2022-07-27T00:00:00.000"
+      },
+      {
+        "program_number": "C224321",
+        "program_facility_name": "Former Just4Wheels Site",
+        "project_name": "Certificate of Completion",
+        "project_completion_date": "2025-05-22T00:00:00.000"
+      },
+      {
+        "program_number": "C224321",
+        "program_facility_name": "Former Just4Wheels Site",
+        "project_name": "Remedial Action",
+        "project_completion_date": "2025-05-22T00:00:00.000"
+      },
+      {
+        "program_number": "C224326",
+        "program_facility_name": "Former Just4Wheels Site 2",
+        "project_name": "Remedial Design",
+        "project_completion_date": "2022-08-04T00:00:00.000"
+      },
+      {
+        "program_number": "C224326",
+        "program_facility_name": "Former Just4Wheels Site 2",
+        "project_name": "Remedial Investigation",
+        "project_completion_date": "2022-08-04T00:00:00.000"
+      },
+      {
+        "program_number": "C224326",
+        "program_facility_name": "Former Just4Wheels Site 2",
+        "project_name": "Certificate of Completion",
+        "project_completion_date": "2023-12-21T00:00:00.000"
+      },
+      {
+        "program_number": "C224326",
+        "program_facility_name": "Former Just4Wheels Site 2",
+        "project_name": "Remedial Action",
+        "project_completion_date": "2023-12-21T00:00:00.000"
+      }
+    ]
+  }
+}

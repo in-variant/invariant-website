@@ -31217,12 +31217,13 @@
     "region": "New York City, United States",
     "title": "How to Check Environmental Restrictions by Address in NYC",
     "description": "Look up NYC E-designations and environmental easements by address. Trace the tax lot and check what the zoning, title and cleanup records actually cover.",
-    "readMinutes": 7,
+    "readMinutes": 9,
     "coverAlt": "2024 aerial photo of Brooklyn showing the boundary of block 980, lot 77 at 380 Fourth Avenue.",
     "coverCaption": "380 Fourth Avenue, Brooklyn. Invariant annotated the Digital Tax Map parcel on 2024 imagery © City of New York, CC BY 4.0.",
     "intro": "To check environmental restrictions on a New York City property, start with its borough, block and lot. Search the city’s zoning index for an E-designation or environmental restrictive declaration. Then read the underlying requirements, the project approvals and any recorded easement. At 380 Fourth Avenue in Brooklyn, the city dates its air and noise rows to January 22, 2026. The hazardous-materials row has a blank date, while the state records a 2024 cleanup certificate and a separate recorded easement.",
     "takeaways": [
       "Match the address to the current tax lot and trace older lot numbers before searching the zoning index and recorder.",
+      "Search predecessor lots as well as current condo unit lots. At 91 Gerry Street, the state easement is indexed to the old parent lot.",
       "Read the air, noise and hazardous-materials entries separately. Record the scope of each notice.",
       "Check the recorded instrument and site management plan before treating a cleanup milestone as clearance for the work you plan."
     ],
@@ -31343,6 +31344,99 @@
             "label": "Download the parcel, zoning, recorder and cleanup evidence",
             "path": "/blog/nyc-environmental-restrictions-by-address.json",
             "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "gerry-street-environmental-easement-after-condo-conversion",
+        "heading": "Find the environmental easement after a lot merger or condo conversion",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A mortgage on condo lot 2701 at 91 Gerry Street in Brooklyn was recorded in February 2026. The earlier environmental easement is indexed to lot 40 on the same block. To find it from the unit lot, follow the recorded condominium declaration back to the parent lot and check the easement’s legal description.",
+            "sourceIds": [
+              "gerry-acris-master",
+              "gerry-acris-parcels",
+              "gerry-easement"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "Property ID",
+              "What the record establishes"
+            ],
+            "rows": [
+              [
+                "November 24, 2021 tax map merger",
+                "Brooklyn block 2266, lots 40 and 41 → lot 40",
+                "The former 89–91 Gerry Street addresses became one tax lot at 91 Gerry Street. DEC reflected the merger in the cleanup agreement in October 2024."
+              ],
+              [
+                "March 11, 2025 recorded easement",
+                "CRFN 2025000068050, lot 40",
+                "The legal description covers about 5,000 square feet. The recorder indexes the easement against the parent lot."
+              ],
+              [
+                "May 13, 2025 condo declaration",
+                "CRFN 2025000128753, lots 40 and 2701–2706",
+                "The declaration index connects the old lot to six unit lots. The PLUTO 26v3 snapshot uses billing lot 7517 for 91 Gerry Street."
+              ],
+              [
+                "February 5, 2026 recorded mortgage",
+                "CRFN 2026000037000, lot 2701",
+                "An exact match on this unit lot misses the easement. The declaration supplies the link to the parent lot."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "gerry-lot-merger",
+                "gerry-conditional-certificate"
+              ],
+              [
+                "gerry-easement",
+                "gerry-acris-master",
+                "gerry-acris-parcels"
+              ],
+              [
+                "gerry-acris-master",
+                "gerry-acris-parcels",
+                "gerry-pluto",
+                "gerry-acris-codes"
+              ],
+              [
+                "gerry-acris-master",
+                "gerry-acris-parcels",
+                "gerry-easement"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The DEC register summarizes the site’s highest future use as “Unrestricted.” The signed May 22, 2025 certificate specifies Conditional Track 1 and gives five years to meet soil vapor intrusion cleanup goals. The certificate cites the recorded easement. That instrument lists restricted residential, commercial and industrial uses and sets conditions for soil disturbance, groundwater use and site management. For an acquisition or refinance, compare the proposed work with the current instrument and plan, and ask for later amendments, releases and monitoring records.",
+            "sourceIds": [
+              "gerry-dec-register",
+              "gerry-conditional-certificate",
+              "gerry-easement"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep 93 Gerry Street separate. It is lot 39 and DEC site C224326, with its own December 21, 2023 certificate milestone. The neighboring addresses and related project names make an address-only match easy to misread.",
+            "sourceIds": [
+              "gerry-pluto",
+              "gerry-dec-milestones",
+              "gerry-dec-register"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Gerry Street lot history and environmental instrument references",
+            "path": "/blog/gerry-street-environmental-easement-lot-lineage.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-gerry-street-easement-lot-lineage"
           }
         ]
       },
@@ -31533,6 +31627,69 @@
         "url": "https://tiles.arcgis.com/tiles/yG5s3afENB5iO9fj/arcgis/rest/services/NYC_Orthos_2024/MapServer",
         "publisher": "NYC Office of Technology and Innovation",
         "linkLabel": "2024 imagery service"
+      },
+      {
+        "id": "gerry-lot-merger",
+        "title": "Brownfield Cleanup Agreement amendment 1, tax map exhibits",
+        "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Agreement.BCP.C224321.2024-10-03.BCA_Amendment_No1%20-%20Change_Address_Tax_Lot_Merger.pdf#page=13",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "Tax map and merger amendment"
+      },
+      {
+        "id": "gerry-easement",
+        "title": "Recorded environmental easement, CRFN 2025000068050, terms for controlled property",
+        "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Easement.BCP.C224321.2025-03-11.Envrironmental%20Easement%20-%20Executed%20and%20Recorded.pdf#page=3",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "Recorded environmental easement"
+      },
+      {
+        "id": "gerry-conditional-certificate",
+        "title": "Signed May 22, 2025 C224321 Certificate of Completion, conditional track and site scope",
+        "url": "https://extapps.dec.ny.gov/data/DecDocs/C224321/Certificate%20of%20Completion.BCP.C224321.2025-05-22.Former_Just4Wheels_Site.pdf#page=3",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "Signed cleanup certificate"
+      },
+      {
+        "id": "gerry-acris-master",
+        "title": "Selected recorder index rows at 91 Gerry Street",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime&%24order=recorded_datetime%2Cdocument_id",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS document rows"
+      },
+      {
+        "id": "gerry-acris-parcels",
+        "title": "Parcel rows for the easement, condominium declaration, maps, certificate entry and mortgage",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=document_id+in+%28%272024121300250001%27%2C%272025051200930001%27%2C%272025051200930002%27%2C%272025060500195001%27%2C%272026020400571002%27%29&%24select=document_id%2Cborough%2Cblock%2Clot%2Cpartial_lot%2Cproperty_type%2Cgood_through_date&%24order=document_id%2Clot",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS parcel rows"
+      },
+      {
+        "id": "gerry-acris-codes",
+        "title": "Recorder descriptions for the five document types",
+        "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?%24where=doc__type+in+%28%27EASE%27%2C%27CDEC%27%2C%27MAPS%27%2C%27CERT%27%2C%27MTGE%27%29&%24select=doc__type%2Cdoc__type_description&%24order=doc__type",
+        "publisher": "NYC Department of Finance",
+        "linkLabel": "ACRIS document type codes"
+      },
+      {
+        "id": "gerry-pluto",
+        "title": "PLUTO 26v3 search for the predecessor, condominium billing lot and neighbor",
+        "url": "https://data.cityofnewyork.us/resource/64uk-42ks.json?%24where=bbl+in+%283022660039%2C3022660040%2C3022660041%2C3022667517%29&%24select=bbl%2Cborough%2Cblock%2Clot%2Caddress%2Clotarea%2Cversion%2Ccondono&%24order=bbl",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "PLUTO parcel rows"
+      },
+      {
+        "id": "gerry-dec-register",
+        "title": "DEC certificate register for neighboring brownfield sites C224321 and C224326",
+        "url": "https://data.ny.gov/resource/ir93-7qzi.json?%24where=bcp_site_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=bcp_site_number%2Csite_name%2Clocation%2Cacreage%2Cyear_coc_issued%2Chighest_allowable_future_use&%24order=bcp_site_number",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "DEC certificate register"
+      },
+      {
+        "id": "gerry-dec-milestones",
+        "title": "DEC remediation milestones for C224321 and C224326",
+        "url": "https://data.ny.gov/resource/c6ci-rzpg.json?%24where=program_number+in+%28%27C224321%27%2C%27C224326%27%29&%24select=distinct+program_number%2Cprogram_facility_name%2Cproject_name%2Cproject_completion_date&%24order=program_number%2Cproject_completion_date%2Cproject_name",
+        "publisher": "New York State Department of Environmental Conservation",
+        "linkLabel": "DEC project milestones"
       }
     ],
     "relatedSlugs": [
@@ -31558,7 +31715,29 @@
         "site-management",
         "oer-cleanup"
       ]
-    }
+    },
+    "updatedDate": "2026-11-25",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-gerry-street-easement-lot-lineage",
+        "datePublished": "2026-11-25",
+        "name": "91 Gerry Street environmental easement, lot merger and condominium records",
+        "description": "Trace Brooklyn block 2266 from lots 40 and 41 through a tax lot merger and six condominium unit lots. Includes the New York City recorder joins, the conditional cleanup certificate and a neighboring property check.",
+        "spatialCoverage": "91 Gerry Street and adjacent 93 Gerry Street, Brooklyn, New York City",
+        "temporalCoverage": "2021-11-24/2026-11-25",
+        "sourceIds": [
+          "gerry-lot-merger",
+          "gerry-easement",
+          "gerry-conditional-certificate",
+          "gerry-acris-master",
+          "gerry-acris-parcels",
+          "gerry-acris-codes",
+          "gerry-pluto",
+          "gerry-dec-register",
+          "gerry-dec-milestones"
+        ]
+      }
+    ]
   },
   {
     "slug": "industrial-land-for-sale-acreage-zoning",
