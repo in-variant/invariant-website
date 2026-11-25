@@ -14,6 +14,16 @@ const NOINDEX_TAG = '<meta name="robots" content="noindex" data-prerender-seo>'
 const TEMPLATE_FILE = join(DIST, '.vite/prerender-template.html')
 const CANONICAL_TAG = /<link rel="canonical"[^>]*>/
 const OG_URL_TAG = /<meta property="og:url"[^>]*>/
+const GOOGLE_FONTS_TAG = /<link\b[^>]*href="https:\/\/fonts\.googleapis\.com\/css2\?[^"]+"[^>]*>/
+const LOCAL_FONT_PAGES = new Set([
+  'src/pages/Blog.tsx',
+  'src/pages/DataCoverage.tsx',
+  'src/pages/Datasets.tsx',
+  'src/pages/Research.tsx',
+  'src/pages/Resources.tsx',
+  'src/pages/blog/BlogCollection.tsx',
+  'src/pages/blog/IndustryArticle.tsx',
+])
 
 function escapeHtml(value) {
   return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -37,7 +47,7 @@ function cssFor(manifest, source, seen = new Set()) {
   return [...(chunk.css ?? []), ...(chunk.imports ?? []).flatMap(dep => cssFor(manifest, dep, seen))]
 }
 
-function documentHtml(template, { body, seo }, stylesheets, preloadModules = []) {
+function documentHtml(template, { body, seo, source }, stylesheets, preloadModules = []) {
   const title = seo.title.includes('Invariant') ? seo.title : `${seo.title} | Invariant`
   const imageAlt = seo.ogImageAlt ? escapeHtml(seo.ogImageAlt) : ''
   const replacements = [
@@ -57,6 +67,13 @@ function documentHtml(template, { body, seo }, stylesheets, preloadModules = [])
   ]
   let out = template
   for (const [pattern, tag] of replacements) out = out.replace(pattern, () => tag)
+  if (LOCAL_FONT_PAGES.has(source)) {
+    // These pages can paint with local fonts. Keep the other faces available for client-side navigation.
+    out = out.replace(GOOGLE_FONTS_TAG, tag => tag.replace(
+      'rel="stylesheet"',
+      'rel="stylesheet" media="print" onload="this.media=\'all\'"',
+    ))
+  }
 
   const schemas = [seo.jsonLd ?? []].flat().map(schema =>
     `<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<', '\\u003c')}</script>`,
