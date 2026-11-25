@@ -27589,6 +27589,11 @@
             "sourceIds": ["ng-summer-query", "ng-winter-query", "ng-guide"]
           },
           {
+            "type": "paragraph",
+            "text": "Run the published queries to read the feeder and bank values together. The walkthrough shows how to keep the load, export, units, and refresh dates with each record.",
+            "sourceIds": ["earth-headroom-check"]
+          },
+          {
             "type": "download",
             "label": "Download the three records and repeat the source queries",
             "path": "/blog/national-grid-feeder-capacity-evidence.json",
@@ -27655,6 +27660,7 @@
       {"question":"How do I convert a load from MW to MVA?","answer":"Divide the real power in MW by the power factor to estimate apparent power in MVA. A 3 MW load at a power factor of 0.90 requires about 3.33 MVA. Use the proposed facility’s electrical assumptions for the study."}
     ],
     "sources": [
+      {"id":"earth-headroom-check","title":"Run the Vail Mills feeder and transformer-bank headroom queries","url":"https://docs.invariant-ai.com/check-feeder-and-substation-headroom","publisher":"Invariant Earth","linkLabel":"Run the utility map queries"},
       {"id":"ng-guide","title":"New York System Data Portal user guide, PV and electrification maps","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/NY/documents/National%20Grid%20New%20York%20System%20Data%20Portal%20User%20Guide.pdf"},
       {"id":"ng-load","title":"Electrification Data REST service","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer"},
       {"id":"ng-summer-query","title":"Summer electrification record for feeder 36_35_39253","publisher":"National Grid New York","url":"https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/0/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=feeder_cdf%2Cfeeder_load_capacity_headroom%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=pjson"},
