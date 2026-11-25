@@ -1,5 +1,164 @@
 [
   {
+    "slug": "fire-hydrant-flow-test-by-address",
+    "topic": "Data & APIs",
+    "region": "Seattle, Washington, and Scottsdale, Arizona, United States",
+    "title": "How to Find Fire Hydrant Flow Test Results by Address",
+    "description": "Find hydrant flow and pressure records for a commercial property. Verify a Seattle water-main estimate and reproduce a Scottsdale test’s 4,392 gpm figure at 20 psi.",
+    "date": "2026-11-24",
+    "readMinutes": 7,
+    "coverAlt": "Scottsdale hydrant test curve. During the test, flow was 1,244 gallons per minute at 76 psi residual pressure. The extrapolated flow at 20 psi was 4,392 gallons per minute.",
+    "coverCaption": "Invariant plotted the August 18, 2021 hydrant test in Scottsdale case 21-DR-2021. The dashed curve uses the pressure-drop calculation. The test itself reached 76 psi residual pressure.",
+    "intro": "To find a fire hydrant flow test for a commercial property, identify the serving water utility and ask for a dated report tied to the building and proposed connection. Check which hydrant flowed, where pressure was recorded, how much water flowed, and which values were calculated. A utility map can help screen a site before you request the report.",
+    "takeaways": [
+      "A hydrant map answers where to look. A flow report records conditions and readings for a named test. The applicable fire code separately sets how much flow and duration a building needs.",
+      "The closest mapped hydrant to Seattle’s Fishermen’s Terminal reference point showed 4,300 gpm of modeled water-main capacity. The site point was 122 metres away in a straight line.",
+      "The Scottsdale report recorded 1,244 gpm flowing at 76 psi residual and calculated 4,392 gpm at 20 psi. Keep both values with their evidence type."
+    ],
+    "sections": [
+      {
+        "id": "find-the-water-utility-record",
+        "heading": "Where can you get a fire hydrant flow test by address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the water utility’s development services or engineering office. Give the exact building address, parcel, proposed fire service connection and permit number where available. Ask whether it has an existing report for the relevant pressure zone and test location. A public permitting file may contain an older report alongside a site plan or sprinkler design.",
+            "sourceIds": ["seattle-request", "scottsdale-plan", "scottsdale-report"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Record", "What it can establish", "What to carry forward"],
+            "rows": [
+              ["Utility hydrant map", "Asset location and published status", "Asset or source record ID and observation date"],
+              ["Hydraulic model result", "Estimated main capacity under the model’s demand and pressure assumptions", "Model date, pressure criteria, location and units"],
+              ["Hydrant flow test report", "Flow and pressure readings under the test conditions, plus any calculated flow at a target pressure", "Test date and time, hydrant IDs, static and residual pressures, observed flow and any extrapolation"],
+              ["Fire-code review or sprinkler permit", "The demand and evidence required for a specific design submission", "Building scope, approved design revision, required flow and duration, and any conditions"]
+            ],
+            "rowSourceIds": [["seattle-map"], ["seattle-layer"], ["scottsdale-report", "mtas-formula"], ["seattle-fire"]]
+          }
+        ]
+      },
+      {
+        "id": "seattle-modeled-water-main-capacity",
+        "heading": "What does the Seattle hydrant map tell you?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At Fishermen’s Terminal, we queried Seattle Public Utilities’ modeled capacity layer within 300 metres of the Port’s reference coordinate. The query returned 14 records. These are the three closest by straight-line distance to that point. The reference describes the terminal. Confirm the actual building and accessible route before selecting a hydrant for review.",
+            "sourceIds": ["port-terminal", "seattle-query", "seattle-layer"]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Layer record ID", "Distance from reference point", "Modeled main capacity"],
+            "rows": [
+              ["6252931", "122.2 m", "4,300 gpm"],
+              ["6262441", "179.1 m", "2,800 gpm"],
+              ["6256565", "179.4 m", "4,350 gpm"]
+            ],
+            "rowSourceIds": [["seattle-query"], ["seattle-query"], ["seattle-query"]]
+          },
+          {
+            "type": "paragraph",
+            "text": "The records show a March 6, 2025 model date and use 2021 maximum-day demands. The layer takes the lower of two modeled flows. One preserves 20 psi at the upstream end of the hydrant lateral. The other preserves at least 5 psi across the pressure zone. These values refer to the main at the lateral connection. To assess simultaneous flow, ask the utility to model the hydrants together under the relevant demand conditions.",
+            "sourceIds": ["seattle-layer", "seattle-query", "seattle-request"]
+          }
+        ]
+      },
+      {
+        "id": "scottsdale-flow-test-20-psi",
+        "heading": "How did a 1,244 gpm test become 4,392 gpm at 20 psi?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Scottsdale’s public case 21-DR-2021 includes a Metro Fire Equipment test from August 18, 2021 at 11107 North Scottsdale Road. The report lists 82 psi static pressure before the test flow, 76 psi residual pressure during flow, and 55 psi pitot pressure at the outlet. The readings describe different points in the test. Use the static and residual values together to compute the drop in main pressure.",
+            "sourceIds": ["scottsdale-report", "scottsdale-plan", "mtas-formula"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Using the recorded 2.5-inch outlet, 0.90 discharge coefficient and 55 psi pitot pressure gives 1,244.39 gpm. Multiply that unrounded result by ((82 − 20) ÷ (82 − 76)) raised to 0.54. The result is 4,391.84 gpm, which rounds to the report’s 4,392 gpm. The observed pressure fell by 6 psi. The 20 psi projection uses a 62 psi drop, so the points in the report carry materially different evidence.",
+            "sourceIds": ["scottsdale-report", "mtas-formula"]
+          },
+          {
+            "type": "paragraph",
+            "text": "For an actual design or renewal, ask whether the utility and reviewing authority accept that test for the project’s date and demand. Keep the test location, water system, observed conditions and pressure basis with the estimate. Pumps, demand and elevations can change the pressure available at a building connection.",
+            "sourceIds": ["scottsdale-report", "seattle-fire"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/fire-hydrant-flow-test-by-address.json",
+            "label": "Download the Seattle lookup and Scottsdale calculation",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "utility-and-permit-evidence",
+        "heading": "What belongs in the design or underwriting file?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For most Seattle fire sprinkler permit applications, the Fire Prevention Division asks for an official Fire Flow Availability Report. Its guidance says an actual test within 500 feet of the parcel and within the last five years can qualify for the report at no charge. The city describes a separate path for certain NFPA 13D designs. For construction plan review the city can use its own databases. Confirm the applicable request before planning around turnaround times.",
+            "sourceIds": ["seattle-fire", "seattle-request"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep approved fire-flow demand and duration beside the available supply for the same building, project phase and connection. For insurance, obtain the carrier’s accepted protection class for the exact premises. Fire station response, a creditable hydrant, and the building’s own sprinkler inspection or acceptance records answer separate questions.",
+            "sourceIds": ["wsrb", "seattle-fire"]
+          },
+          {
+            "type": "links",
+            "label": "Check the other property records",
+            "items": [
+              {"slug": "fire-station-distance-commercial-property-underwriting", "label": "Verify responding station and protection class evidence"},
+              {"slug": "fire-sprinkler-records-by-address", "label": "Check which sprinkler permits cover the building"},
+              {"slug": "water-sewer-data-apis-site-selection", "label": "Verify the water utility and service evidence"},
+              {"slug": "commercial-property-insurance-data-apis", "label": "Compare underwriting data providers"}
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is the fire hydrant capacity on a map a flow test?",
+        "answer": "A map may show a model estimate or a link to a dated test. In Seattle’s water-main capacity layer, the reported value comes from a hydraulic model at the hydrant lateral’s upstream connection. A flow test report records the test location, flow, pressures and conditions.",
+        "sourceIds": ["seattle-layer", "scottsdale-report"]
+      },
+      {
+        "question": "What is the difference between static and residual pressure?",
+        "answer": "Static pressure is the main pressure before water is discharged for the test. Residual pressure is the main pressure while the selected outlets flow. Pitot pressure at the flowing outlet is used to calculate how much water flows during the test.",
+        "sourceIds": ["mtas-formula"]
+      },
+      {
+        "question": "Can I use an older hydrant test for a sprinkler permit?",
+        "answer": "Ask the reviewing authority which test dates and locations it accepts. For Seattle, request the official report from the utility. The city describes a no-cost route where it has an actual test within five years and within 500 feet of the parcel.",
+        "sourceIds": ["seattle-fire", "seattle-request"]
+      }
+    ],
+    "sources": [
+      {"id": "port-terminal", "title": "Fishermen’s Terminal address and reference position", "url": "https://www.portseattle.org/places/fishermens-terminal", "publisher": "Port of Seattle"},
+      {"id": "seattle-map", "title": "Water and Sewer Research Map for Seattle", "url": "https://experience.arcgis.com/experience/95749d0993164eefa99300182e99bd43", "publisher": "Seattle Public Utilities"},
+      {"id": "seattle-layer", "title": "Modeled System (Water Main) Capacity layer, field and model assumptions", "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2?f=pjson", "publisher": "Seattle Public Utilities"},
+      {"id": "seattle-query", "title": "Exact modeled capacity query within 300 metres of the terminal reference", "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2/query?geometry=-122.37972222222221%2C47.651666666666664&geometryType=esriGeometryPoint&inSR=4326&distance=300&units=esriSRUnit_Meter&outSR=4326&outFields=OBJECTID%2CLFCYCL_DSC%2COWNER_DESC%2CMODEL_DATE%2CMS_CAP_GPM&orderByFields=OBJECTID+ASC&f=pjson", "publisher": "Seattle Public Utilities"},
+      {"id": "seattle-request", "title": "Hydrant flow requests and distinction from modeled system capacity", "url": "https://www.seattle.gov/utilities/construction-resources/water/fire-hydrants/hydrant-flow-request", "publisher": "Seattle Public Utilities"},
+      {"id": "seattle-fire", "title": "Researching Fire Flow and Hydrant Requirements, September 2, 2025", "url": "https://seattle.gov/documents/Departments/Fire/Business/FireFlowInfoSheet.pdf", "publisher": "Seattle Fire Prevention Division"},
+      {"id": "scottsdale-report", "title": "August 18, 2021 hydrant flow test for 11107 North Scottsdale Road, case 21-DR-2021", "url": "https://eservices.scottsdaleaz.gov/bldgresources/EDM/Viewer?docId=13262840&docName=21-DR-2021_2-Hydrant+Flow+Test.pdf+%2819207942-v1%29&fileExt=pdf", "publisher": "Metro Fire Equipment, filed with the City of Scottsdale"},
+      {"id": "scottsdale-plan", "title": "Development Review Board report for IYA Medical ASC/Imaging Center, 21-DR-2021", "url": "https://eservices.scottsdaleaz.gov/planning/projectsummary/dr_reports/DR_21_DR_2021.pdf", "publisher": "City of Scottsdale"},
+      {"id": "mtas-formula", "title": "Flow-test calculation, pressure definitions and output at 20 psi", "url": "https://www.mtas.tennessee.edu/reference/conducting-fire-flow-test", "publisher": "University of Tennessee Municipal Technical Advisory Service"},
+      {"id": "wsrb", "title": "Property-level protection class and standard hydrant criteria", "url": "https://www1.wsrb.com/protection-class-faq", "publisher": "Washington Surveying and Rating Bureau"}
+    ],
+    "dataset": {
+      "name": "Seattle modeled hydrant-main capacity and Scottsdale fire-flow test reconstruction",
+      "description": "Three dated model rows near Fishermen’s Terminal, the exact public GIS query, and a calculation from the pressure and outlet readings in Scottsdale case 21-DR-2021.",
+      "sourceIds": ["port-terminal", "seattle-layer", "seattle-query", "scottsdale-report", "mtas-formula"],
+      "spatialCoverage": "Fishermen’s Terminal, Seattle, Washington, and 11107 North Scottsdale Road, Scottsdale, Arizona, United States",
+      "temporalCoverage": "2021-08-18/2025-03-06"
+    },
+    "relatedSlugs": ["fire-station-distance-commercial-property-underwriting", "fire-sprinkler-records-by-address", "water-sewer-data-apis-site-selection", "commercial-property-insurance-data-apis"]
+  },
+  {
     "slug": "florida-hurricane-insurance-claims-by-county",
     "topic": "Data & APIs",
     "region": "Florida, United States",
@@ -6656,6 +6815,10 @@
           {
             "type": "links",
             "items": [
+              {
+                "slug": "fire-hydrant-flow-test-by-address",
+                "label": "Find hydrant flow and pressure records and reproduce a 20 psi calculation"
+              },
               {
                 "slug": "commercial-property-insurance-data-apis",
                 "label": "Compare commercial property underwriting APIs"

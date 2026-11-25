@@ -1,0 +1,64 @@
+{
+  "title": "Seattle modeled hydrant-main capacity and a Scottsdale flow-test calculation",
+  "retrieved_date_pacific": "2026-11-24",
+  "seattle": {
+    "reference": "Fishermen’s Terminal, 3919 18th Avenue West, Seattle, Washington",
+    "reference_source": "https://www.portseattle.org/places/fishermens-terminal",
+    "reference_lon_lat": [
+      -122.37972222222221,
+      47.651666666666664
+    ],
+    "source_layer": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2",
+    "source_query": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2/query?geometry=-122.37972222222221%2C47.651666666666664&geometryType=esriGeometryPoint&inSR=4326&distance=300&units=esriSRUnit_Meter&outSR=4326&outFields=OBJECTID%2CLFCYCL_DSC%2COWNER_DESC%2CMODEL_DATE%2CMS_CAP_GPM&orderByFields=OBJECTID+ASC&f=pjson",
+    "public_records_within_300_m": 14,
+    "selected_records": [
+      {
+        "source_object_id": 6252931,
+        "lifecycle": "Connected",
+        "model_date_utc": "2025-03-06",
+        "distance_from_terminal_reference_m": 122.2,
+        "modeled_main_capacity_gpm": 4300
+      },
+      {
+        "source_object_id": 6262441,
+        "lifecycle": "Connected",
+        "model_date_utc": "2025-03-06",
+        "distance_from_terminal_reference_m": 179.1,
+        "modeled_main_capacity_gpm": 2800
+      },
+      {
+        "source_object_id": 6256565,
+        "lifecycle": "Connected",
+        "model_date_utc": "2025-03-06",
+        "distance_from_terminal_reference_m": 179.4,
+        "modeled_main_capacity_gpm": 4350
+      }
+    ],
+    "distance_method": "Great-circle distance from the Port reference coordinate, using mean Earth radius 6371008.8 meters. Distances do not establish the fire-apparatus route or the hydrant assigned to a building.",
+    "model_basis": "2021 maximum-day demands. Capacity is the lower of the flow at 20 psi residual at the upstream end of the hydrant lateral and the flow that maintains at least 5 psi across the pressure zone."
+  },
+  "scottsdale": {
+    "address": "11107 North Scottsdale Road, Scottsdale, Arizona",
+    "city_case": "21-DR-2021",
+    "source_report": "https://eservices.scottsdaleaz.gov/bldgresources/EDM/Viewer?docId=13262840&docName=21-DR-2021_2-Hydrant+Flow+Test.pdf+%2819207942-v1%29&fileExt=pdf",
+    "test_date_local": "2021-08-18",
+    "test_time_local": "07:00",
+    "flowing_outlet_diameter_in": 2.5,
+    "outlet_coefficient": 0.9,
+    "pitot_psi": 55,
+    "static_pressure_psi": 82,
+    "test_residual_pressure_psi": 76,
+    "report_flow_during_test_gpm": 1244,
+    "target_residual_pressure_psi": 20,
+    "report_extrapolated_flow_gpm": 4392,
+    "recalculation": {
+      "test_flow_formula": "29.83 * coefficient * outlet_diameter_in^2 * sqrt(pitot_psi)",
+      "test_flow_gpm": 1244.391755,
+      "extrapolation_formula": "test_flow_gpm * ((static_pressure_psi - target_residual_pressure_psi) / (static_pressure_psi - test_residual_pressure_psi))^0.54",
+      "flow_at_target_psi_gpm": 4391.844572,
+      "observed_pressure_drop_psi": 6,
+      "pressure_drop_to_target_psi": 62
+    },
+    "scope": "Historical test report and extrapolation for its test conditions. Current supply and suitability for a project require confirmation."
+  }
+}

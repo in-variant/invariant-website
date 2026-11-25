@@ -1,5 +1,62 @@
 [
   {
+    "slug": "fire-hydrant-flow-test-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find Fire Hydrant Flow Test Results by Address",
+    "summary": "Find hydrant flow and pressure records for a commercial property. Verify a Seattle water-main estimate and reproduce a Scottsdale test’s 4,392 gpm figure at 20 psi.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "Seattle, Washington, and Scottsdale, Arizona, United States",
+    "image": "/blog/industry/fire-hydrant-flow-test-by-address.webp?v=e791a88c",
+    "dataset": {
+      "name": "Seattle modeled hydrant-main capacity and Scottsdale fire-flow test reconstruction",
+      "description": "Three dated model rows near Fishermen’s Terminal, the exact public GIS query, and a calculation from the pressure and outlet readings in Scottsdale case 21-DR-2021.",
+      "spatialCoverage": "Fishermen’s Terminal, Seattle, Washington, and 11107 North Scottsdale Road, Scottsdale, Arizona, United States",
+      "temporalCoverage": "2021-08-18/2025-03-06",
+      "sources": [
+        "https://www.portseattle.org/places/fishermens-terminal",
+        "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2?f=pjson",
+        "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2/query?geometry=-122.37972222222221%2C47.651666666666664&geometryType=esriGeometryPoint&inSR=4326&distance=300&units=esriSRUnit_Meter&outSR=4326&outFields=OBJECTID%2CLFCYCL_DSC%2COWNER_DESC%2CMODEL_DATE%2CMS_CAP_GPM&orderByFields=OBJECTID+ASC&f=pjson",
+        "https://eservices.scottsdaleaz.gov/bldgresources/EDM/Viewer?docId=13262840&docName=21-DR-2021_2-Hydrant+Flow+Test.pdf+%2819207942-v1%29&fileExt=pdf",
+        "https://www.mtas.tennessee.edu/reference/conducting-fire-flow-test"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Fishermen’s Terminal address and reference position",
+          "publisher": "Port of Seattle",
+          "url": "https://www.portseattle.org/places/fishermens-terminal"
+        },
+        {
+          "title": "Modeled System (Water Main) Capacity layer, field and model assumptions",
+          "publisher": "Seattle Public Utilities",
+          "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2?f=pjson"
+        },
+        {
+          "title": "Exact modeled capacity query within 300 metres of the terminal reference",
+          "publisher": "Seattle Public Utilities",
+          "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/SPU_Water_Hydrants_Capacity_Internal_VIEW/FeatureServer/2/query?geometry=-122.37972222222221%2C47.651666666666664&geometryType=esriGeometryPoint&inSR=4326&distance=300&units=esriSRUnit_Meter&outSR=4326&outFields=OBJECTID%2CLFCYCL_DSC%2COWNER_DESC%2CMODEL_DATE%2CMS_CAP_GPM&orderByFields=OBJECTID+ASC&f=pjson"
+        },
+        {
+          "title": "August 18, 2021 hydrant flow test for 11107 North Scottsdale Road, case 21-DR-2021",
+          "publisher": "Metro Fire Equipment, filed with the City of Scottsdale",
+          "url": "https://eservices.scottsdaleaz.gov/bldgresources/EDM/Viewer?docId=13262840&docName=21-DR-2021_2-Hydrant+Flow+Test.pdf+%2819207942-v1%29&fileExt=pdf"
+        },
+        {
+          "title": "Flow-test calculation, pressure definitions and output at 20 psi",
+          "publisher": "University of Tennessee Municipal Technical Advisory Service",
+          "url": "https://www.mtas.tennessee.edu/reference/conducting-fire-flow-test"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the Seattle lookup and Scottsdale calculation",
+          "path": "/blog/fire-hydrant-flow-test-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "florida-hurricane-insurance-claims-by-county",
     "topic": "Data & APIs",
     "title": "Florida Hurricane Insurance Claims Data by County",
