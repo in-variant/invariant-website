@@ -4289,14 +4289,15 @@
     "slug": "behind-the-meter-power-for-data-centers",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Behind-the-meter power for data centers",
-    "description": "Plan on-site bridge power before a utility upgrade. Compare net megawatts, firm fuel, commissioning and air permits using real data center projects.",
+    "title": "Behind-the-Meter Power for Data Centers: MW and Timelines",
+    "description": "Can you get 50 MW of on-site power within a year? Compare real data center deployments and check net output, fuel, permits and commissioning dates.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-24",
     "readMinutes": 18,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
       "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
+      "Aggreko reports 60 MW of temporary power for commissioning a construction-ready Indiana data center. For a tenant opening, ask for a separate acceptance date and guaranteed operating capacity.",
       "Ask the pipeline for firm capacity, pressure and gas quality in writing before any equipment order.",
       "Ask the air agency to confirm the permit path for the planned run hours. At Prime AUS02, Texas issued the air registration 106 days after filing, with a separate operating permit still to be obtained according to the review.",
       "Plan the grid path from day one so the bridge generation has an end state."
@@ -4368,6 +4369,62 @@
                 "label": "Compare SPP conditional grid service and curtailment",
                 "slug": "spp-chills-data-center-power"
               }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "why-buyers-look-at-on-site-gas",
+        "heading": "Who can deliver 50 MW of on-site power within a year?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Shortlist Aggreko for temporary commissioning power, Bloom Energy for modular fuel cells, and ERock for a longer bridge to the grid. Ask each bidder to put the net MW at your facility intake and the date it will pass a site acceptance test in writing."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": ["Provider and use", "What the project record shows", "What to confirm for a 50 MW opening"],
+            "rows": [
+              [
+                "Aggreko · Temporary commissioning power",
+                "Aggreko reports deploying 60 MW at a construction-ready data center in South Bend, Indiana, with one month’s notice to mobilize. It reports 99.1% uptime over six months of operation.",
+                "Ask for the acceptance record showing 50 MW at the facility intake. Check fuel logistics and permitted operating hours for your site."
+              ],
+              [
+                "Bloom Energy · Modular fuel cells",
+                "Bloom says it delivered a working fuel cell system to Oracle in 55 days in 2025. The announcement gives the elapsed time and leaves the capacity of that first system undisclosed.",
+                "Request the schedule for your 50 MW block, including the fuel connection, permits, installation and tested output at site conditions."
+              ],
+              [
+                "ERock and El Paso Electric · McCloud bridge generation",
+                "The administrative judges’ proposal describes about 366 MW of net peak generation and 225 MW of continuous power planned for the data center. It records the utility’s June 2027 delivery forecast. In November, ERock reported construction underway and targeted completion in mid-2027.",
+                "Track utility approval, plant completion and customer handover separately. On November 24, the commission put the case on its December 3, 2026 meeting agenda."
+              ]
+            ],
+            "rowSourceIds": [
+              ["aggreko-south-bend"],
+              ["bloom-oracle-delivery"],
+              ["mccloud-proposal", "mccloud-erock-q3", "mccloud-meeting-notice"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a 12-month bid, give suppliers the intake location, phased load, expected run hours and the outage case to cover. Ask them to name the date the schedule starts, who controls the permits and fuel delivery, which equipment is reserved, and how acceptance testing proves the net MW. Put each milestone on the same calendar as utility service and the tenant’s opening."
+          },
+          {
+            "type": "download",
+            "label": "Download the commissioning and bridge power evidence",
+            "path": "/blog/data-center-onsite-power-delivery-evidence.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-onsite-delivery"
+          },
+          {
+            "type": "links",
+            "items": [
+              {"path": "/calculators/data-center-power-delivery-schedule", "label": "Compare bridge and utility delivery dates"},
+              {"slug": "natural-gas-pipeline-capacity-site-service", "label": "Check firm gas service for the site"},
+              {"slug": "data-center-site-selection-services", "label": "Request a shortlist for your MW and delivery date"}
             ]
           }
         ]
@@ -4785,27 +4842,6 @@
             "label": "Download the Odessa agreement records",
             "path": "/blog/odessa-data-center-power-agreement-records.csv",
             "format": "CSV"
-          }
-        ]
-      },
-      {
-        "id": "why-buyers-look-at-on-site-gas",
-        "heading": "Why buyers are pricing sites with their own generation",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "The grid answer at most good substations is a date several years out. Paces looked at ERCOT substations that had suitable land nearby and found only about 17% showed positive withdrawal capacity, meaning room to add load without making existing overloads worse. That is one market and one method, but it matches what site selectors hear from utilities across the country.",
-            "sourceIds": [
-              "paces"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Behind-the-meter (BTM) generation is the workaround. The site makes its own power from gas turbines, reciprocating engines or fuel cells, either for the whole load or as a bridge until utility service arrives. Small modular reactors come up in every pitch deck. Treat them as a later-decade option. None of the sources below rely on one for first power."
-          },
-          {
-            "type": "paragraph",
-            "text": "A buyer evaluating on-site power needs dated commitments for firm fuel, net output and equipment delivery, plus the approvals for the planned operating hours. Put those dates on the same schedule as the data halls."
           }
         ]
       },
@@ -5349,10 +5385,39 @@
     ],
     "sources": [
       {
-        "id": "paces",
-        "title": "The grid is planning for data centers that will never exist: Aligning transmission investment with development reality",
-        "url": "https://www.paces.com/white-papers/grid-planning-data-centers-transmission-investment",
-        "publisher": "Paces"
+        "id": "aggreko-south-bend",
+        "title": "South Bend hyperscale data center temporary power case study",
+        "url": "https://www.aggreko.com/en-us/case-studies/data-centres/temporary-power-enabling-hyperscale-data-center-commissioning",
+        "publisher": "Aggreko",
+        "linkLabel": "Aggreko case study"
+      },
+      {
+        "id": "bloom-oracle-delivery",
+        "title": "April 13, 2026 Oracle expansion announcement and first fuel cell delivery",
+        "url": "https://www.bloomenergy.com/news/bloom-energy-and-oracle-expand-strategic-partnership-to-deploy-up-to-2-8-gw-to-accelerate-ai-infrastructure-build-out/",
+        "publisher": "Bloom Energy",
+        "linkLabel": "Bloom delivery announcement"
+      },
+      {
+        "id": "mccloud-proposal",
+        "title": "McCloud Proposal for Decision, PUCT Docket 59076 item 176, Findings 9, 16 and 22",
+        "url": "https://interchange.puc.texas.gov/Documents/59076_176_1686197.PDF#page=50",
+        "publisher": "Texas State Office of Administrative Hearings",
+        "linkLabel": "McCloud proposed findings"
+      },
+      {
+        "id": "mccloud-erock-q3",
+        "title": "November 12, 2026 ERock results, El Paso construction and completion target",
+        "url": "https://www.sec.gov/Archives/edgar/data/2110029/000119312526456998/eroc-ex99_1.htm",
+        "publisher": "ERock via SEC EDGAR",
+        "linkLabel": "ERock construction update"
+      },
+      {
+        "id": "mccloud-meeting-notice",
+        "title": "November 24, 2026 McCloud meeting notice, PUCT Docket 59076 item 191",
+        "url": "https://interchange.puc.texas.gov/Documents/59076_191_1705118.PDF#page=2",
+        "publisher": "Public Utility Commission of Texas",
+        "linkLabel": "Commission meeting notice"
       },
       {
         "id": "gev-backlog",
@@ -5606,6 +5671,15 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-onsite-delivery",
+        "datePublished": "2026-11-24",
+        "name": "Data center on-site power delivery evidence for Aggreko, Bloom and McCloud",
+        "description": "Three source-backed cases separate mobilization, operating duration, disclosed generator capacity and the planned continuous load. Includes the November 24 McCloud agenda notice and the gaps that matter when comparing a 50 MW bid.",
+        "sourceIds": ["aggreko-south-bend", "bloom-oracle-delivery", "mccloud-proposal", "mccloud-erock-q3", "mccloud-meeting-notice"],
+        "spatialCoverage": "South Bend, Indiana, El Paso, Texas, and an undisclosed Oracle site",
+        "temporalCoverage": "2025/2026-11-24"
+      },
       {
         "anchor": "dataset-bridge-power",
         "datePublished": "2026-11-24",
