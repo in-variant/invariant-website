@@ -7023,6 +7023,10 @@
             "label": "Continue the credit review",
             "items": [
               {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare recorded lender roles and disclosed loan balances"
+              },
+              {
                 "slug": "commercial-real-estate-lending",
                 "label": "Build a commercial real estate collateral file"
               },
@@ -7205,7 +7209,8 @@
       ],
       "spatialCoverage": "25 Water Street, Manhattan, New York, United States",
       "temporalCoverage": "2015-02-23/2025-12-09"
-    }
+    },
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "commercial-property-tax-delinquency-data",
@@ -24891,17 +24896,18 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Commercial real estate data APIs for lenders",
-    "description": "Compare commercial real estate data APIs and credit platforms. Replay three Empire State Building recorder records to test a collateral file as of a decision date.",
+    "description": "Compare commercial real estate data APIs using a dated collateral file, recorded lender roles and loan-level balance and coupon disclosures from SEC filings.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-24",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-25",
+    "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Empire State Building tax lot outlined in gold.",
     "coverCaption": "Empire State Building, Manhattan tax lot 1008350041. The outline uses NYC MapPLUTO 26v2 over 2024 New York State aerial imagery. The records below are from 2013.",
-    "intro": "Use Invariant Earth to match the collateral parcel and check cited building and flood evidence in one coordinate lookup. Use West Kite or LightBox to evaluate feeds for recorded property and transaction data and Regrid to work directly with parcel identity and boundaries. For an earlier credit decision, ask which instruments had been recorded by that date and when each provider first made them available.",
+    "intro": "Use Invariant Earth to match the collateral parcel and check cited building and flood evidence in one coordinate lookup. Use West Kite or LightBox to evaluate feeds for recorded property and transaction data and Regrid to work directly with parcel identity and boundaries. For an earlier credit decision, ask which instruments had been recorded by that date and when each provider first made them available. For privately originated debt, check which fields come from the recorder and which come from issuer filings or servicing records.",
     "takeaways": [
       "Carry the parcel identifier and legal description into the credit file. An address alone can point to a building that spans several parcels.",
       "Keep the date on the instrument, the recording date, and the date your system obtained the record. Each supports a different question.",
-      "Give the team a way to distinguish an indexed amount, an outstanding balance, and the amount needed to pay off a loan."
+      "Give the team a way to distinguish an indexed amount, an outstanding balance, and the amount needed to pay off a loan.",
+      "Decode party roles by document type, and use the report date and filing date when comparing disclosed loan terms."
     ],
     "sections": [
       {
@@ -25068,6 +25074,112 @@
         ]
       },
       {
+        "id": "loan-level-data-for-private-commercial-real-estate-lending",
+        "heading": "What can a private commercial lending API return at loan level?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At 25 Water Street in Manhattan, transaction counsel named MSD and Apollo in its announcement of the $535.8 million financing that closed in 2022. The recorder names Athene Annuity and Life Company as mortgagee on two 2022 mortgages. That difference matters when you match a deal to its filings. Carry the name printed on the document, its role, and the name used in the announcement as separate fields.",
+            "sourceIds": [
+              "water-loan-counsel",
+              "water-loan-master",
+              "water-loan-parties",
+              "nyc-roles"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 2025 assignment, file number 2025000334867, references both of those mortgages. Its party rows list Athene Annuity and Life Company and the entry “MLS, ATHENE IOWA” on both sides. The index classifies the sides as assignor and assignee for an assignment. Use those codes to retrieve the underlying instrument and identify the capacities and interests it describes. Confirm the current holder with the title file and the parties before relying on it.",
+            "sourceIds": [
+              "water-loan-master",
+              "water-loan-legals",
+              "water-loan-parties",
+              "water-loan-references",
+              "nyc-roles"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For loan economics, look for a dated statement from the lender, servicer or issuer. CTO Realty Growth reported the same $59.45 million original face amount for its Rivana construction loan in four snapshots. The reported current face amount increased by $14.691 million between December 2025 and September 2026. The filings give separate values for current face amount and carrying value.",
+            "sourceIds": [
+              "cto-2025-12-31",
+              "cto-2026-09-30"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Report date",
+              "Filed with the SEC",
+              "Current face amount",
+              "Carrying value",
+              "Reported coupon"
+            ],
+            "rows": [
+              [
+                "Dec. 31, 2025",
+                "Feb. 19, 2026",
+                "$34.246 million",
+                "$32.478 million",
+                "11.50%"
+              ],
+              [
+                "Mar. 31, 2026",
+                "Apr. 28, 2026",
+                "$36.907 million",
+                "$35.346 million",
+                "11.54%"
+              ],
+              [
+                "June 30, 2026",
+                "July 28, 2026",
+                "$44.130 million",
+                "$42.780 million",
+                "11.62%"
+              ],
+              [
+                "Sept. 30, 2026",
+                "Oct. 27, 2026",
+                "$48.937 million",
+                "$47.798 million",
+                "11.65%"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cto-2025-12-31"
+              ],
+              [
+                "cto-2026-03-31"
+              ],
+              [
+                "cto-2026-06-30"
+              ],
+              [
+                "cto-2026-09-30"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In an October 15 credit review, the latest available filing in this series was the June report. The September figures were filed on October 27. The 11.65% September coupon was a weighted average. The filing says later draws carried a 12% coupon with 10% paid in cash and 2% in accrued interest. For a payoff or current balance, ask for a dated servicing statement. Public issuer filings cover positions the issuer reports. For an API trial, ask for the original instrument number, the role of each party, and the dated source for each balance and coupon.",
+            "sourceIds": [
+              "cto-2026-06-30",
+              "cto-2026-09-30",
+              "cto-september-index"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/private-commercial-loan-records.json",
+            "label": "Download the recorder roles and four issuer loan snapshots",
+            "format": "JSON",
+            "datasetAnchor": "dataset-private-commercial-loan-records"
+          }
+        ]
+      },
+      {
         "id": "fields-to-keep-in-a-credit-file",
         "heading": "What belongs in the collateral file?",
         "blocks": [
@@ -25149,7 +25261,10 @@
             "type": "links",
             "label": "Related diligence guides",
             "items": [
-              {"path": "/data-coverage#property-and-buildings", "label": "Check parcel and building coverage for a collateral file"},
+              {
+                "path": "/data-coverage#property-and-buildings",
+                "label": "Check parcel and building coverage for a collateral file"
+              },
               {
                 "slug": "commercial-mortgage-release-by-address",
                 "label": "Verify which mortgage and parcel a partial release references"
@@ -25360,6 +25475,72 @@
         "url": "https://github.com/in-variant/invariant-website/blob/main/examples/lending-recording-cutoff.py",
         "publisher": "Invariant",
         "linkLabel": "Run the public cutoff replay"
+      },
+      {
+        "id": "water-loan-parties",
+        "title": "ACRIS party names and role codes for the selected instruments",
+        "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cparty_type%2Cname&%24limit=100",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "water-loan-master",
+        "title": "ACRIS document types, file numbers, amounts and dates",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "water-loan-legals",
+        "title": "ACRIS property matches for the selected financing instruments",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=200",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "water-loan-references",
+        "title": "ACRIS links from assignments and agreements to earlier instruments",
+        "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=200",
+        "publisher": "NYC Department of Finance via NYC Open Data"
+      },
+      {
+        "id": "nyc-roles",
+        "title": "ACRIS daily file guide, section 4 document and party types",
+        "url": "https://a836-acris.nyc.gov/EDS/Overview/How%20To%20Process%20ACRIS%20Daily%20File%20v1%207.htm",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "water-loan-counsel",
+        "title": "Transaction counsel’s 25 Water Street construction loan announcement",
+        "url": "https://www.goodwinlaw.com/en/news-and-events/news/2023/01/01_05-rockwood-capital-closes-largest-office",
+        "publisher": "Goodwin"
+      },
+      {
+        "id": "cto-2025-12-31",
+        "title": "CTO Realty Growth loan schedule for 2025-12-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926017560/R42.htm",
+        "publisher": "CTO Realty Growth via SEC EDGAR"
+      },
+      {
+        "id": "cto-2026-03-31",
+        "title": "CTO Realty Growth loan schedule for 2026-03-31",
+        "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926050378/R36.htm",
+        "publisher": "CTO Realty Growth via SEC EDGAR"
+      },
+      {
+        "id": "cto-2026-06-30",
+        "title": "CTO Realty Growth loan schedule for 2026-06-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926087549/R35.htm",
+        "publisher": "CTO Realty Growth via SEC EDGAR"
+      },
+      {
+        "id": "cto-2026-09-30",
+        "title": "CTO Realty Growth loan schedule for 2026-09-30",
+        "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/R33.htm",
+        "publisher": "CTO Realty Growth via SEC EDGAR"
+      },
+      {
+        "id": "cto-september-index",
+        "title": "CTO Realty Growth September 2026 report filing date and accession",
+        "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/0001104659-26-119165-index.htm",
+        "publisher": "U.S. Securities and Exchange Commission"
       }
     ],
     "relatedSlugs": [
@@ -25371,6 +25552,34 @@
       "commercial-property-tax-delinquency-data",
       "building-violations-by-address",
       "commercial-property-tax-assessment-history-by-address"
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-private-commercial-loan-records",
+        "name": "Private commercial loan evidence at 25 Water Street and Rivana",
+        "description": "Selected 25 Water Street mortgage parties and assignments from NYC ACRIS, plus four Rivana construction loan snapshots from CTO Realty Growth filings. Includes source dates, recorded roles, reported face amounts, carrying values and coupons.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "25 Water Street, Manhattan, New York, and Rivana, Herndon, Virginia, United States",
+        "temporalCoverage": "2022-12-21/2026-10-27",
+        "sourceIds": [
+          "water-loan-parties",
+          "water-loan-master",
+          "water-loan-legals",
+          "water-loan-references",
+          "nyc-roles",
+          "water-loan-counsel",
+          "cto-2025-12-31",
+          "cto-2026-03-31",
+          "cto-2026-06-30",
+          "cto-2026-09-30",
+          "cto-september-index"
+        ],
+        "sourceReuse": {
+          "note": "Credit NYC Department of Finance for the selected ACRIS records. Keep the document ID, party role and source query with any reused rows.",
+          "policyUrl": "https://cityofnewyork.github.io/opendata/TermsOfUse/",
+          "policyLabel": "NYC Open Data terms of use"
+        }
+      }
     ]
   },
   {

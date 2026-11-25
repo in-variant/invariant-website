@@ -1302,6 +1302,7 @@
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "New York City, United States",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/west-kite-alternatives-for-commercial-property-data.webp?v=afddd887",
     "dataset": {
       "name": "25 Water Street commercial mortgage recording chain",
@@ -4777,11 +4778,11 @@
     "slug": "commercial-real-estate-data-apis-for-lenders",
     "topic": "Data & APIs",
     "title": "Commercial real estate data APIs for lenders",
-    "summary": "Compare commercial real estate data APIs and credit platforms. Replay three Empire State Building recorder records to test a collateral file as of a decision date.",
+    "summary": "Compare commercial real estate data APIs using a dated collateral file, recorded lender roles and loan-level balance and coupon disclosures from SEC filings.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "image": "/blog/industry/commercial-real-estate-data-apis-for-lenders.webp?v=1b5bf89a",
     "dataset": {
       "name": "Empire State Building recording-date benchmark",
@@ -4829,7 +4830,99 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-private-commercial-loan-records",
+        "name": "Private commercial loan evidence at 25 Water Street and Rivana",
+        "description": "Selected 25 Water Street mortgage parties and assignments from NYC ACRIS, plus four Rivana construction loan snapshots from CTO Realty Growth filings. Includes source dates, recorded roles, reported face amounts, carrying values and coupons.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "25 Water Street, Manhattan, New York, and Rivana, Herndon, Virginia, United States",
+        "temporalCoverage": "2022-12-21/2026-10-27",
+        "sourceReuse": {
+          "note": "Credit NYC Department of Finance for the selected ACRIS records. Keep the document ID, party role and source query with any reused rows.",
+          "policyUrl": "https://cityofnewyork.github.io/opendata/TermsOfUse/",
+          "policyLabel": "NYC Open Data terms of use"
+        },
+        "sources": [
+          "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cparty_type%2Cname&%24limit=100",
+          "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+          "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=200",
+          "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=200",
+          "https://a836-acris.nyc.gov/EDS/Overview/How%20To%20Process%20ACRIS%20Daily%20File%20v1%207.htm",
+          "https://www.goodwinlaw.com/en/news-and-events/news/2023/01/01_05-rockwood-capital-closes-largest-office",
+          "https://www.sec.gov/Archives/edgar/data/23795/000110465926017560/R42.htm",
+          "https://www.sec.gov/Archives/edgar/data/23795/000110465926050378/R36.htm",
+          "https://www.sec.gov/Archives/edgar/data/23795/000110465926087549/R35.htm",
+          "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/R33.htm",
+          "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/0001104659-26-119165-index.htm"
+        ],
+        "sourceDetails": [
+          {
+            "title": "ACRIS party names and role codes for the selected instruments",
+            "publisher": "NYC Department of Finance via NYC Open Data",
+            "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cparty_type%2Cname&%24limit=100"
+          },
+          {
+            "title": "ACRIS document types, file numbers, amounts and dates",
+            "publisher": "NYC Department of Finance via NYC Open Data",
+            "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100"
+          },
+          {
+            "title": "ACRIS property matches for the selected financing instruments",
+            "publisher": "NYC Department of Finance via NYC Open Data",
+            "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=200"
+          },
+          {
+            "title": "ACRIS links from assignments and agreements to earlier instruments",
+            "publisher": "NYC Department of Finance via NYC Open Data",
+            "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=200"
+          },
+          {
+            "title": "ACRIS daily file guide, section 4 document and party types",
+            "publisher": "NYC Department of Finance",
+            "url": "https://a836-acris.nyc.gov/EDS/Overview/How%20To%20Process%20ACRIS%20Daily%20File%20v1%207.htm"
+          },
+          {
+            "title": "Transaction counsel’s 25 Water Street construction loan announcement",
+            "publisher": "Goodwin",
+            "url": "https://www.goodwinlaw.com/en/news-and-events/news/2023/01/01_05-rockwood-capital-closes-largest-office"
+          },
+          {
+            "title": "CTO Realty Growth loan schedule for 2025-12-31",
+            "publisher": "CTO Realty Growth via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926017560/R42.htm"
+          },
+          {
+            "title": "CTO Realty Growth loan schedule for 2026-03-31",
+            "publisher": "CTO Realty Growth via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926050378/R36.htm"
+          },
+          {
+            "title": "CTO Realty Growth loan schedule for 2026-06-30",
+            "publisher": "CTO Realty Growth via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926087549/R35.htm"
+          },
+          {
+            "title": "CTO Realty Growth loan schedule for 2026-09-30",
+            "publisher": "CTO Realty Growth via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/R33.htm"
+          },
+          {
+            "title": "CTO Realty Growth September 2026 report filing date and accession",
+            "publisher": "U.S. Securities and Exchange Commission",
+            "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/0001104659-26-119165-index.htm"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the recorder roles and four issuer loan snapshots",
+            "path": "/blog/private-commercial-loan-records.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "best-flood-risk-data-apis",

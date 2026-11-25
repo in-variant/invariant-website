@@ -1,0 +1,788 @@
+{
+  "name": "Private commercial loan evidence at 25 Water Street and Rivana",
+  "retrievedOn": "2026-11-25",
+  "scope": "Two independent case studies. The New York records describe recorded instruments. The Virginia rows describe one reporting company’s position in a different loan.",
+  "sourceReuse": {
+    "note": "Credit NYC Department of Finance for the selected ACRIS records. Keep the document ID, party role and source query with any reused rows.",
+    "policyUrl": "https://cityofnewyork.github.io/opendata/TermsOfUse/",
+    "policyLabel": "NYC Open Data terms of use"
+  },
+  "sources": [
+    {
+      "id": "water-loan-parties",
+      "title": "ACRIS party names and role codes for the selected instruments",
+      "url": "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cparty_type%2Cname&%24limit=100",
+      "publisher": "NYC Department of Finance via NYC Open Data",
+      "sourceSha256": "1281a2147fdcb2e6664cb48168f83989ec3fcc21a0ac5d726a4a57c96811df8e"
+    },
+    {
+      "id": "water-loan-master",
+      "title": "ACRIS document types, file numbers, amounts and dates",
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+      "publisher": "NYC Department of Finance via NYC Open Data",
+      "sourceSha256": "bdf5859f3b1396c96d8fcfb0e0c5b1eb733ff555e2e6387d4da978f4f2757463"
+    },
+    {
+      "id": "water-loan-legals",
+      "title": "ACRIS property matches for the selected financing instruments",
+      "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=200",
+      "publisher": "NYC Department of Finance via NYC Open Data",
+      "sourceSha256": "cb8e743b9e62ac895cacf1a256458667dc08b56f15f710cdca3d3f958cd10fb3"
+    },
+    {
+      "id": "water-loan-references",
+      "title": "ACRIS links from assignments and agreements to earlier instruments",
+      "url": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=200",
+      "publisher": "NYC Department of Finance via NYC Open Data",
+      "sourceSha256": "bed542d208d8712b4b7f8e10c0b4f7ea11f87a3e44e216a3a13b98f087998d0c"
+    },
+    {
+      "id": "nyc-roles",
+      "title": "ACRIS daily file guide, section 4 document and party types",
+      "url": "https://a836-acris.nyc.gov/EDS/Overview/How%20To%20Process%20ACRIS%20Daily%20File%20v1%207.htm",
+      "publisher": "NYC Department of Finance"
+    },
+    {
+      "id": "water-loan-counsel",
+      "title": "Transaction counsel’s 25 Water Street construction loan announcement",
+      "url": "https://www.goodwinlaw.com/en/news-and-events/news/2023/01/01_05-rockwood-capital-closes-largest-office",
+      "publisher": "Goodwin"
+    },
+    {
+      "id": "cto-2025-12-31",
+      "title": "CTO Realty Growth loan schedule for 2025-12-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926017560/R42.htm",
+      "publisher": "CTO Realty Growth via SEC EDGAR"
+    },
+    {
+      "id": "cto-2026-03-31",
+      "title": "CTO Realty Growth loan schedule for 2026-03-31",
+      "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926050378/R36.htm",
+      "publisher": "CTO Realty Growth via SEC EDGAR"
+    },
+    {
+      "id": "cto-2026-06-30",
+      "title": "CTO Realty Growth loan schedule for 2026-06-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926087549/R35.htm",
+      "publisher": "CTO Realty Growth via SEC EDGAR"
+    },
+    {
+      "id": "cto-2026-09-30",
+      "title": "CTO Realty Growth loan schedule for 2026-09-30",
+      "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/R33.htm",
+      "publisher": "CTO Realty Growth via SEC EDGAR"
+    },
+    {
+      "id": "cto-september-index",
+      "title": "CTO Realty Growth September 2026 report filing date and accession",
+      "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/0001104659-26-119165-index.htm",
+      "publisher": "U.S. Securities and Exchange Commission"
+    }
+  ],
+  "waterStreet": {
+    "boroughBlockLot": "1000050010",
+    "address": "25 Water Street, Manhattan, New York",
+    "documentAmountFieldMeaning": "Indexed principal debt or obligation for the particular instrument.",
+    "partyRoleByDocumentType": {
+      "ASST": {
+        "1": "Assignor / old lender",
+        "2": "Assignee / new lender"
+      },
+      "MTGE": {
+        "1": "Mortgagor / borrower",
+        "2": "Mortgagee / lender"
+      },
+      "AGMT": {
+        "1": "Party 1",
+        "2": "Party 2"
+      },
+      "AL&R": {
+        "1": "Assignor",
+        "2": "Assignee"
+      }
+    },
+    "checkedMortgageDocumentIds": [
+      "2022122300118005",
+      "2022122300118007"
+    ],
+    "assignmentDocumentIds": [
+      "2022122300118003",
+      "2025120800203005"
+    ],
+    "2025AssignmentPartyOverlap": [
+      "ATHENE ANNUITY AND LIFE COMPANY",
+      "MLS, ATHENE IOWA"
+    ],
+    "2022AnnouncedTransactionFinancingUsd": 535800000,
+    "sourceQueries": {
+      "parties": "https://data.cityofnewyork.us/resource/636b-3b5g.json?%24select=document_id%2Cparty_type%2Cname%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cparty_type%2Cname&%24limit=100",
+      "master": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cdocument_amt%2Cgood_through_date&%24where=document_id+in+%28%272022122300118001%27%2C%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id&%24limit=100",
+      "legals": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Cborough%2Cblock%2Clot&%24limit=200",
+      "references": "https://data.cityofnewyork.us/resource/pwkr-dpni.json?%24select=document_id%2Creference_by_doc_id%2Creference_by_crfn_%2Creference_by_reel_year%2Creference_by_reel_nbr%2Creference_by_reel_page%2Cgood_through_date&%24where=document_id+in+%28%272022122300118003%27%2C%272022122300118004%27%2C%272022122300118005%27%2C%272022122300118007%27%2C%272023010900455001%27%2C%272025120800203004%27%2C%272025120800203005%27%2C%272025120800203006%27%2C%272025120800203007%27%29&%24order=document_id%2Creference_by_doc_id%2Creference_by_crfn_&%24limit=200"
+    },
+    "rawRecords": {
+      "parties": [
+        {
+          "document_id": "2022122300118001",
+          "party_type": "1",
+          "name": "4 NYP VENTURES LLC",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118001",
+          "party_type": "2",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "party_type": "1",
+          "name": "DEKABANK DEUTSCHE GIROZENTRALE",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "party_type": "1",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118005",
+          "party_type": "1",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118005",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118007",
+          "party_type": "1",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118007",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "party_type": "1",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203004",
+          "party_type": "1",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203004",
+          "party_type": "2",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "party_type": "1",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "party_type": "1",
+          "name": "MLS, ATHENE IOWA",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "party_type": "2",
+          "name": "MLS, ATHENE IOWA",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "party_type": "1",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "party_type": "2",
+          "name": "MLS, ATHENE IOWA",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "party_type": "1",
+          "name": "25 WATER OWNER, LLC",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "party_type": "2",
+          "name": "ATHENE ANNUITY AND LIFE COMPANY",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "party_type": "2",
+          "name": "MLS, ATHENE IOWA",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        }
+      ],
+      "master": [
+        {
+          "document_id": "2022122300118001",
+          "crfn": "2022000461982",
+          "doc_type": "DEED",
+          "document_date": "2022-12-21T00:00:00.000",
+          "recorded_datetime": "2022-12-28T00:00:00.000",
+          "document_amt": "250806808.08",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "crfn": "2022000461984",
+          "doc_type": "ASST",
+          "document_date": "2022-12-21T00:00:00.000",
+          "recorded_datetime": "2022-12-28T00:00:00.000",
+          "document_amt": "0.00",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "crfn": "2022000461985",
+          "doc_type": "AGMT",
+          "document_date": "2022-12-21T00:00:00.000",
+          "recorded_datetime": "2022-12-28T00:00:00.000",
+          "document_amt": "107012127.64",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118005",
+          "crfn": "2022000461986",
+          "doc_type": "MTGE",
+          "document_date": "2022-12-21T00:00:00.000",
+          "recorded_datetime": "2022-12-28T00:00:00.000",
+          "document_amt": "208713753.40",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118007",
+          "crfn": "2022000461988",
+          "doc_type": "MTGE",
+          "document_date": "2022-12-21T00:00:00.000",
+          "recorded_datetime": "2022-12-28T00:00:00.000",
+          "document_amt": "99274118.96",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "crfn": "2023000008537",
+          "doc_type": "AL&R",
+          "document_date": "2022-12-21T00:00:00.000",
+          "recorded_datetime": "2023-01-10T00:00:00.000",
+          "document_amt": "415000000.00",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203004",
+          "crfn": "2025000334866",
+          "doc_type": "TL&R",
+          "document_date": "2025-11-25T00:00:00.000",
+          "recorded_datetime": "2025-12-09T00:00:00.000",
+          "document_amt": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "crfn": "2025000334867",
+          "doc_type": "ASST",
+          "document_date": "2025-11-25T00:00:00.000",
+          "recorded_datetime": "2025-12-09T00:00:00.000",
+          "document_amt": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "crfn": "2025000334868",
+          "doc_type": "AGMT",
+          "document_date": "2025-11-25T00:00:00.000",
+          "recorded_datetime": "2025-12-09T00:00:00.000",
+          "document_amt": "415000000",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "crfn": "2025000334869",
+          "doc_type": "AL&R",
+          "document_date": "2025-11-25T00:00:00.000",
+          "recorded_datetime": "2025-12-09T00:00:00.000",
+          "document_amt": "415000000",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        }
+      ],
+      "legals": [
+        {
+          "document_id": "2022122300118003",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118005",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118007",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203004",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "borough": "1",
+          "block": "5",
+          "lot": "10",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        }
+      ],
+      "references": [
+        {
+          "document_id": "2022122300118003",
+          "reference_by_crfn_": "2010000016548",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "reference_by_crfn_": "2012000256051",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "reference_by_crfn_": "2013000399670",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "reference_by_crfn_": "2013000399672",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118003",
+          "reference_by_crfn_": "2015000061069",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "reference_by_crfn_": "2010000016548",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "reference_by_crfn_": "2012000256051",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "reference_by_crfn_": "2013000399670",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "reference_by_crfn_": "2013000399672",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2022122300118004",
+          "reference_by_crfn_": "2015000061069",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2022-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "reference_by_crfn_": "2022000461985",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "reference_by_crfn_": "2022000461986",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2023010900455001",
+          "reference_by_crfn_": "2022000461988",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2023-01-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203004",
+          "reference_by_crfn_": "2023000008537",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2010000016548",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2012000256051",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2013000399670",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2013000399672",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2015000061069",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2022000461986",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203005",
+          "reference_by_crfn_": "2022000461988",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2010000016548",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2012000256051",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2013000399670",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2013000399672",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2015000061069",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2022000461986",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203006",
+          "reference_by_crfn_": "2022000461988",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_doc_id": "2025120800203006",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2010000016548",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2012000256051",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2013000399670",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2013000399672",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2015000061069",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2022000461986",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        },
+        {
+          "document_id": "2025120800203007",
+          "reference_by_crfn_": "2022000461988",
+          "reference_by_reel_year": "0",
+          "reference_by_reel_nbr": "0",
+          "reference_by_reel_page": "0",
+          "good_through_date": "2025-12-31T00:00:00.000"
+        }
+      ]
+    },
+    "currentLegalHolder": null,
+    "payoffAmountUsd": null
+  },
+  "rivana": {
+    "reportingEntity": "CTO Realty Growth, Inc.",
+    "cik": "0000023795",
+    "locationAsFiled": "Herndon, VA",
+    "sourceTableUnit": "USD thousands for monetary values",
+    "amountsInThisSample": "USD",
+    "reportedSnapshots": [
+      {
+        "reportDate": "2025-12-31",
+        "filingDate": "2026-02-19",
+        "accessionNumber": "0001104659-26-017560",
+        "filingIndexUrl": "https://www.sec.gov/Archives/edgar/data/23795/000110465926017560/0001104659-26-017560-index.htm",
+        "tableSourceId": "cto-2025-12-31",
+        "originalFaceAmountUsd": 59450000,
+        "currentFaceAmountUsd": 34246000,
+        "carryingValueUsd": 32478000,
+        "reportedCouponPercent": 11.5,
+        "maturityMonth": "2028-09"
+      },
+      {
+        "reportDate": "2026-03-31",
+        "filingDate": "2026-04-28",
+        "accessionNumber": "0001104659-26-050378",
+        "filingIndexUrl": "https://www.sec.gov/Archives/edgar/data/23795/000110465926050378/0001104659-26-050378-index.htm",
+        "tableSourceId": "cto-2026-03-31",
+        "originalFaceAmountUsd": 59450000,
+        "currentFaceAmountUsd": 36907000,
+        "carryingValueUsd": 35346000,
+        "reportedCouponPercent": 11.54,
+        "maturityMonth": "2028-09"
+      },
+      {
+        "reportDate": "2026-06-30",
+        "filingDate": "2026-07-28",
+        "accessionNumber": "0001104659-26-087549",
+        "filingIndexUrl": "https://www.sec.gov/Archives/edgar/data/23795/000110465926087549/0001104659-26-087549-index.htm",
+        "tableSourceId": "cto-2026-06-30",
+        "originalFaceAmountUsd": 59450000,
+        "currentFaceAmountUsd": 44130000,
+        "carryingValueUsd": 42780000,
+        "reportedCouponPercent": 11.62,
+        "maturityMonth": "2028-09"
+      },
+      {
+        "reportDate": "2026-09-30",
+        "filingDate": "2026-10-27",
+        "accessionNumber": "0001104659-26-119165",
+        "filingIndexUrl": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/0001104659-26-119165-index.htm",
+        "tableSourceId": "cto-2026-09-30",
+        "originalFaceAmountUsd": 59450000,
+        "currentFaceAmountUsd": 48937000,
+        "carryingValueUsd": 47798000,
+        "reportedCouponPercent": 11.65,
+        "maturityMonth": "2028-09"
+      }
+    ],
+    "changeInCurrentFaceAmountUsd": 14691000,
+    "october15Replay": {
+      "decisionDate": "2026-10-15",
+      "lastAvailableReportDate": "2026-06-30",
+      "laterReportAvailableOn": "2026-10-27"
+    },
+    "notes": [
+      "The September report describes 11.65% as a weighted average coupon. Earlier funding carried 11.50%. Later draws carried 12.00%, including 10.00% cash interest and 2.00% paid-in-kind interest.",
+      "The change in current face amount is a comparison of reported snapshots. The sample contains no draw-level cash ledger, live servicing balance or payoff statement."
+    ]
+  }
+}
