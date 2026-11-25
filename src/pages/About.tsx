@@ -24,8 +24,10 @@ const investors = [
   { name: 'Founders Capital', url: 'https://founders-capital.com/' },
 ]
 
+const companyGitHub = 'https://github.com/in-variant'
 const aboutOrganization = {
   ...ORG_SCHEMA,
+  sameAs: [...ORG_SCHEMA.sameAs, companyGitHub],
   founder: ['Parthiv Chandran', 'Pranav Goswami'].map(name => ({ '@type': 'Person', name })),
   funder: investors.map(({ name, url }) => ({ '@type': 'Organization', name, url })),
 }
@@ -116,6 +118,7 @@ export default function About() {
           <div className="about-invitation-action"><p>Tell us which locations, data or power questions you need to check.</p>
             <Link to="/contact" className="about-button"><FigmaScrambleLabel>Start a conversation</FigmaScrambleLabel><span aria-hidden="true">↗</span></Link>
             <a className="about-text-link about-social-link" href={COMPANY_LINKEDIN}>Invariant AI on LinkedIn <span aria-hidden="true">↗</span></a>
+            <a className="about-text-link about-social-link" href={companyGitHub}>Invariant AI on GitHub <span aria-hidden="true">↗</span></a>
           </div>
         </section>
       </div>
