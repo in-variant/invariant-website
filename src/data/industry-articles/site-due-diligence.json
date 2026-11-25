@@ -2684,10 +2684,10 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "Check FEMA flood zones by address for data centers",
-  "description": "Check FEMA flood zones at five public data center addresses. See how parcel and building checks differ, and why Tampa’s hurricane evacuation zone is separate.",
+  "description": "Look up the FEMA flood zone for six data center addresses, including Gainesville Crossing, Dallas and Tampa. Compare each address point, tax parcel and building where available.",
   "date": "2026-11-20",
   "readMinutes": 8,
-  "intro": "Start with FEMA’s effective map, then check the boundary that matters to your decision. At 655 North Franklin Street in Tampa, the county address point falls about 19 meters outside the matched building. Both are in unshaded Zone X, and the property lies in Hillsborough County’s hurricane evacuation Zone C. Use the cases below to check an address point, parcel and building separately.",
+  "intro": "Look up the address on FEMA’s effective map, then compare the zone across the tax parcel, building footprint and access route. At Gainesville Crossing Building 1, the county point and its 28.1-acre tax parcel are both in unshaded Zone X. At the Tampa site, the parcel is also in Zone X and falls in the county’s hurricane evacuation Zone C. The cases below show which boundaries were verified at each address.",
   "takeaways": [
    "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
    "In Tampa, the address point, parcel and building matched to FEMA Zone X. The county hurricane evacuation map puts the parcel in Zone C.",
@@ -2847,6 +2847,47 @@
       "format": "JSON",
       "path": "/blog/data-center-flood-dallas-tampa.json",
       "datasetAnchor": "dataset-dallas-tampa-flood"
+     }
+    ]
+   },
+   {
+    "id": "gainesville-crossing-flood-zone",
+    "heading": "FEMA flood zone at 13760 University Boulevard, Gainesville",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The November 25, 2026 FEMA check places Gainesville Crossing Building 1’s county address point and all of tax parcel 7497-46-2858 in unshaded Zone X. The mapped Special Flood Hazard Area overlaps 0% of the 28.1-acre lot. This result covers that tax lot and the checked points.",
+      "sourceIds": [
+       "gainesville-flood-sec",
+       "gainesville-flood-address",
+       "gainesville-flood-parcel",
+       "gainesville-flood-zones"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Prince William County lists 13760 University Boulevard in its premise and data center building layers. The tax parcel uses 13780 University Boulevard. The premise and planning records share a premise ID and point to the same parcel number. Their points fall inside the lot. The planning record names Corscale Gainesville Crossing 1 and lists it as completed.",
+      "sourceIds": [
+       "gainesville-flood-address",
+       "gainesville-flood-parcel",
+       "gainesville-flood-building"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "FEMA’s panel inventory returns Prince William panel 51153C0087D, effective January 5, 1995, and a separate overlapping panel marked not printed. The county footprint query found no polygon at the planning point, so the building outline was not verified. Check the current site plan, any later map changes, and the elevations of the access road and electrical equipment before relying on the parcel result.",
+      "sourceIds": [
+       "gainesville-flood-panels",
+       "gainesville-flood-footprint",
+       "fema-msc"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the Gainesville Crossing map check and source queries",
+      "format": "JSON",
+      "path": "/blog/gainesville-crossing-fema-flood-check.json",
+      "datasetAnchor": "dataset-gainesville-crossing-flood"
      }
     ]
    },
@@ -3391,6 +3432,55 @@
     "linkLabel": "Hurricane evacuation map"
    },
    {
+    "id": "gainesville-flood-sec",
+    "title": "Blue Owl filing identifying Gainesville Crossing Building 1",
+    "url": "https://www.sec.gov/Archives/edgar/data/2069692/000206969226000052/osnl-20260623.htm",
+    "publisher": "Blue Owl Digital Infrastructure Trust via SEC EDGAR",
+    "linkLabel": "Building 1 SEC filing"
+   },
+   {
+    "id": "gainesville-flood-address",
+    "title": "Prince William County premise address for 13760 University Boulevard",
+    "url": "https://gisweb.pwcva.gov/arcgis/rest/services/Maps/QuickInfo/MapServer/0/query?where=StreetNumber%3D13760+AND+StreetName%3D%27UNIVERSITY%27&outFields=OBJECTID%2CGPIN%2CPID%2CAddress%2CPremiseAddressType%2CPremiseAddressStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+    "publisher": "Prince William County GIS",
+    "linkLabel": "County premise address"
+   },
+   {
+    "id": "gainesville-flood-parcel",
+    "title": "Prince William County tax parcel GPIN 7497-46-2858",
+    "url": "https://gisweb.pwcva.gov/arcgis/rest/services/Maps/QuickInfo/MapServer/1/query?where=GPIN%3D%277497-46-2858%27&outFields=OBJECTID%2CGPIN%2CStreetNumber%2CStreetName%2CStreetType%2CAcreage%2CParcelRecordationStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+    "publisher": "Prince William County GIS",
+    "linkLabel": "County tax parcel"
+   },
+   {
+    "id": "gainesville-flood-building",
+    "title": "Prince William County planning point for Corscale Gainesville Crossing 1",
+    "url": "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Build_Out_Analysis/MapServer/9/query?where=Address+LIKE+%27%2513760+UNIVERSITY%25%27&outFields=OBJECTID%2CGPIN%2CBuildingName%2CPID%2CAddress%2CBuildingID%2CBuildingStatus%2CYearBuilt%2CGFA%2CGFASource%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+    "publisher": "Prince William County Planning Office",
+    "linkLabel": "Planning building point"
+   },
+   {
+    "id": "gainesville-flood-footprint",
+    "title": "County footprint point-in-polygon query at the Planning building point",
+    "url": "https://gisweb.pwcva.gov/arcgis/rest/services/CountyMapper/LandRecords/MapServer/5/query?where=1%3D1&geometry=-77.5823887783089%2C38.80251062876824&geometryType=esriGeometryPoint&inSR=4326&outFields=OBJECTID%2CStructureType%2CStructureStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+    "publisher": "Prince William County GIS",
+    "linkLabel": "County footprint check"
+   },
+   {
+    "id": "gainesville-flood-zones",
+    "title": "FEMA effective hazard layer at the Gainesville parcel",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-77.58620585274144%2C38.800294510411554%2C-77.57979160372727%2C38.80415204168396&geometryType=esriGeometryEnvelope&inSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true",
+    "publisher": "FEMA",
+    "linkLabel": "Gainesville hazard polygons"
+   },
+   {
+    "id": "gainesville-flood-panels",
+    "title": "FEMA panel inventory across the Gainesville parcel",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-77.58620585274144%2C38.800294510411554%2C-77.57979160372727%2C38.80415204168396&geometryType=esriGeometryEnvelope&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true",
+    "publisher": "FEMA",
+    "linkLabel": "Gainesville map panels"
+   },
+   {
     "id": "tampa-evacuation-meaning",
     "title": "City of Tampa explanation of flood and hurricane evacuation zones",
     "url": "https://www.tampa.gov/emergency-management/programs/evacuation-zones",
@@ -3454,6 +3544,23 @@
      "tampa-flood-panels",
      "tampa-evacuation-layer",
      "tampa-evacuation-meaning"
+    ]
+   },
+   {
+    "anchor": "dataset-gainesville-crossing-flood",
+    "name": "Gainesville Crossing Building 1 FEMA point and tax parcel check",
+    "description": "Dated FEMA Zone X and panel records for 13760 University Boulevard, Prince William County parcel 7497-46-2858 and the planning building point. Includes exact queries and the separate footprint match result.",
+    "datePublished": "2026-11-25",
+    "spatialCoverage": "Gainesville, Prince William County, Virginia, United States",
+    "temporalCoverage": "2026-11-25",
+    "sourceIds": [
+     "gainesville-flood-sec",
+     "gainesville-flood-address",
+     "gainesville-flood-parcel",
+     "gainesville-flood-building",
+     "gainesville-flood-footprint",
+     "gainesville-flood-zones",
+     "gainesville-flood-panels"
     ]
    }
   ]

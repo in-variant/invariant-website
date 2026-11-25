@@ -6689,7 +6689,7 @@
     "slug": "data-center-flood-zone-screening",
     "topic": "Data Centers",
     "title": "Check FEMA flood zones by address for data centers",
-    "summary": "Check FEMA flood zones at five public data center addresses. See how parcel and building checks differ, and why Tampa’s hurricane evacuation zone is separate.",
+    "summary": "Look up the FEMA flood zone for six data center addresses, including Gainesville Crossing, Dallas and Tampa. Compare each address point, tax parcel and building where available.",
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
@@ -6897,6 +6897,67 @@
           {
             "label": "Download the Dallas and Tampa flood-map checks",
             "path": "/blog/data-center-flood-dallas-tampa.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-gainesville-crossing-flood",
+        "name": "Gainesville Crossing Building 1 FEMA point and tax parcel check",
+        "description": "Dated FEMA Zone X and panel records for 13760 University Boulevard, Prince William County parcel 7497-46-2858 and the planning building point. Includes exact queries and the separate footprint match result.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "Gainesville, Prince William County, Virginia, United States",
+        "temporalCoverage": "2026-11-25",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/2069692/000206969226000052/osnl-20260623.htm",
+          "https://gisweb.pwcva.gov/arcgis/rest/services/Maps/QuickInfo/MapServer/0/query?where=StreetNumber%3D13760+AND+StreetName%3D%27UNIVERSITY%27&outFields=OBJECTID%2CGPIN%2CPID%2CAddress%2CPremiseAddressType%2CPremiseAddressStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+          "https://gisweb.pwcva.gov/arcgis/rest/services/Maps/QuickInfo/MapServer/1/query?where=GPIN%3D%277497-46-2858%27&outFields=OBJECTID%2CGPIN%2CStreetNumber%2CStreetName%2CStreetType%2CAcreage%2CParcelRecordationStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+          "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Build_Out_Analysis/MapServer/9/query?where=Address+LIKE+%27%2513760+UNIVERSITY%25%27&outFields=OBJECTID%2CGPIN%2CBuildingName%2CPID%2CAddress%2CBuildingID%2CBuildingStatus%2CYearBuilt%2CGFA%2CGFASource%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+          "https://gisweb.pwcva.gov/arcgis/rest/services/CountyMapper/LandRecords/MapServer/5/query?where=1%3D1&geometry=-77.5823887783089%2C38.80251062876824&geometryType=esriGeometryPoint&inSR=4326&outFields=OBJECTID%2CStructureType%2CStructureStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-77.58620585274144%2C38.800294510411554%2C-77.57979160372727%2C38.80415204168396&geometryType=esriGeometryEnvelope&inSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-77.58620585274144%2C38.800294510411554%2C-77.57979160372727%2C38.80415204168396&geometryType=esriGeometryEnvelope&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Blue Owl filing identifying Gainesville Crossing Building 1",
+            "publisher": "Blue Owl Digital Infrastructure Trust via SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/2069692/000206969226000052/osnl-20260623.htm"
+          },
+          {
+            "title": "Prince William County premise address for 13760 University Boulevard",
+            "publisher": "Prince William County GIS",
+            "url": "https://gisweb.pwcva.gov/arcgis/rest/services/Maps/QuickInfo/MapServer/0/query?where=StreetNumber%3D13760+AND+StreetName%3D%27UNIVERSITY%27&outFields=OBJECTID%2CGPIN%2CPID%2CAddress%2CPremiseAddressType%2CPremiseAddressStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true"
+          },
+          {
+            "title": "Prince William County tax parcel GPIN 7497-46-2858",
+            "publisher": "Prince William County GIS",
+            "url": "https://gisweb.pwcva.gov/arcgis/rest/services/Maps/QuickInfo/MapServer/1/query?where=GPIN%3D%277497-46-2858%27&outFields=OBJECTID%2CGPIN%2CStreetNumber%2CStreetName%2CStreetType%2CAcreage%2CParcelRecordationStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true"
+          },
+          {
+            "title": "Prince William County planning point for Corscale Gainesville Crossing 1",
+            "publisher": "Prince William County Planning Office",
+            "url": "https://gisweb.pwcva.gov/arcgis/rest/services/Planning/Build_Out_Analysis/MapServer/9/query?where=Address+LIKE+%27%2513760+UNIVERSITY%25%27&outFields=OBJECTID%2CGPIN%2CBuildingName%2CPID%2CAddress%2CBuildingID%2CBuildingStatus%2CYearBuilt%2CGFA%2CGFASource%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true"
+          },
+          {
+            "title": "County footprint point-in-polygon query at the Planning building point",
+            "publisher": "Prince William County GIS",
+            "url": "https://gisweb.pwcva.gov/arcgis/rest/services/CountyMapper/LandRecords/MapServer/5/query?where=1%3D1&geometry=-77.5823887783089%2C38.80251062876824&geometryType=esriGeometryPoint&inSR=4326&outFields=OBJECTID%2CStructureType%2CStructureStatus%2CLastEditDate&f=geojson&outSR=4326&returnGeometry=true"
+          },
+          {
+            "title": "FEMA effective hazard layer at the Gainesville parcel",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?geometry=-77.58620585274144%2C38.800294510411554%2C-77.57979160372727%2C38.80415204168396&geometryType=esriGeometryEnvelope&inSR=4326&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true"
+          },
+          {
+            "title": "FEMA panel inventory across the Gainesville parcel",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?geometry=-77.58620585274144%2C38.800294510411554%2C-77.57979160372727%2C38.80415204168396&geometryType=esriGeometryEnvelope&inSR=4326&outFields=FIRM_PAN%2CEFF_DATE%2CDFIRM_ID%2CPANEL_TYP&spatialRel=esriSpatialRelIntersects&f=geojson&outSR=4326&returnGeometry=true"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Gainesville Crossing map check and source queries",
+            "path": "/blog/gainesville-crossing-fema-flood-check.json",
             "format": "JSON"
           }
         ]
