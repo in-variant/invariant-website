@@ -1,5 +1,283 @@
 [
   {
+    "slug": "cmbs-dscr-noi-by-property",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find CMBS Debt Service Coverage and NOI by Property",
+    "description": "Look up net operating income and debt service coverage in SEC CMBS filings. Check the operating statement date and whether the ratio covers one property or a portfolio.",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverFile": "cmbs-special-servicing-data.webp",
+    "coverAlt": "Illustration of a mixed-use retail and office building on an urban corner in late-afternoon light.",
+    "coverCaption": "Illustration of a commercial property. The worked examples use the addresses and asset numbers in the SEC filings.",
+    "intro": "Start with the trust, the loan’s asset number and the property address. Then open the asset data exhibit to the trust’s Form ABS-EE. It can show one debt service coverage ratio (DSCR) based on net operating income and a second based on net cash flow. Keep both ratios, the dates of the operating statement and the code that tells you whose financials the figures cover.",
+    "takeaways": [
+      "One Marietta property had 1.0104× coverage on net operating income and 0.9886× on net cash flow for the same 12 months.",
+      "The same trust placed a consolidated ratio beside one address for a five-property loan. Four other address records had no separate ratio.",
+      "The September and October filings carried the same March 31 financial cutoff. A new filing date can leave the property financials unchanged."
+    ],
+    "sections": [
+      {
+        "id": "find-cmbs-financials",
+        "heading": "Where are commercial property financials filed?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For commercial mortgage-backed securities (CMBS) trusts that file asset-level exhibits, open the filing detail in the SEC’s EDGAR database. Select the asset data file, Exhibit 102, and find the trust’s asset number. Confirm the property name and street address inside that asset. The explanatory exhibit, when available, is where the issuer can describe assumptions or exceptions.",
+            "sourceIds": [
+              "schedule-al",
+              "october-index",
+              "filing-comments"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Schedule AL distinguishes financials used to underwrite the loan from results in the most recent operating statement. Net operating income (NOI) takes operating expenses out of revenue before capital items and debt service. Net cash flow (NCF) also reflects capital costs before debt service. Divide each amount by the applicable debt service for the same period. Record the reported ratio as a multiple, such as 1.25×.",
+            "sourceIds": [
+              "schedule-al"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-noi-and-ncf",
+        "heading": "Why does the same property show coverage above and below 1×?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In the October filing for BBCMS Mortgage Trust 2024-5C25, asset 12 identifies Elevate at the Pointe at 707 Franklin Gateway in Marietta, Georgia. The reported operating statement covers April 1, 2025 through March 31, 2026. Both ratios use the same filed debt-service amount of $1,665,819.50.",
+            "sourceIds": [
+              "october"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Calculation",
+              "Filed numerator",
+              "Reported coverage"
+            ],
+            "stackOnMobile": true,
+            "rows": [
+              [
+                "NOI ÷ debt service",
+                "$1,683,064.37",
+                "1.0104×"
+              ],
+              [
+                "NCF ÷ debt service",
+                "$1,646,864.37",
+                "0.9886×"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "october"
+              ],
+              [
+                "october"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "On the NOI calculation the numerator exceeds debt service by about $17,245. After the $36,200 difference between reported NOI and NCF, the NCF calculation falls short by about $18,955. The two ratios give different readings of the same statement. To establish whether payments were made as agreed, check the loan’s payment and servicing records for the relevant period.",
+            "sourceIds": [
+              "october",
+              "schedule-al"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "check-portfolio-scope",
+        "heading": "Does a ratio next to an address apply only to that building?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Asset 15 in the same trust is the Acquisition America Portfolio. The exhibit places its 1.1929× NOI coverage beside 509–515 West 110th Street and reports scope code C, the CRE Finance Council code for consolidated borrower financials. Four additional collateral addresses sit under that loan with no individual coverage ratios. Store the 1.1929× value once at portfolio scope. Each address can link to that record and carry an empty value for its own ratio.",
+            "sourceIds": [
+              "october",
+              "crefc-legend"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The trust’s October notes identify asset 15 as one of the loans with companion debt outside the trust. Before recomputing a ratio, use the reported debt service and read the deal’s definitions. A trust note balance alone cannot tell you which payments the reported ratio uses.",
+            "sourceIds": [
+              "filing-comments",
+              "schedule-al"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "preserve-report-dates",
+        "heading": "How old are the financials in a monthly update?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "EDGAR dates the September and October filings September 29 and October 29. The loan rows have their own reporting-period ends, September 11 and October 13. In both releases, the latest operating statements for assets 12 and 15 still end March 31. A credit file made on either filing date should retain the available March financials and their actual statement periods. The October filing is evidence that the figures were carried forward.",
+            "sourceIds": [
+              "september-index",
+              "october-index",
+              "schedule-al"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the September and October asset extracts",
+            "path": "/blog/cmbs-dscr-noi-by-property.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "evaluate-dscr-data-feeds",
+        "heading": "How to test a commercial mortgage data feed",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use the original exhibits as a test for any data provider. A service such as Trepp lists property financial performance and debt service in its CMBS data feed. Ask for these two assets and compare its output with the exhibits, including both ratio types, financial statement dates, and portfolio scope. Ask whether the feed retains original and amended filings and how it handles missing values.",
+            "sourceIds": [
+              "trepp",
+              "september",
+              "october"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a broader collateral file, use Invariant Earth to match an address to a parcel and retrieve available property and hazard fields. Keep the trust and asset number with the SEC financial data so either record can be rechecked independently.",
+            "sourceIds": [
+              "earth-parcel",
+              "schedule-al"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Build a credit file",
+            "items": [
+              {
+                "path": "/data-coverage",
+                "label": "Browse Invariant Earth parcel and hazard fields"
+              },
+              {
+                "slug": "commercial-mortgage-maturity-data-apis",
+                "label": "Add verified maturity dates to the watchlist"
+              },
+              {
+                "slug": "cmbs-special-servicing-data",
+                "label": "Check special servicing and liquidation history"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I look up the DSCR of any commercial property by address?",
+        "answer": "For properties in a reporting CMBS trust, the address can help identify the collateral in the public asset data exhibit. Coverage varies by trust, financing structure and available financial statements. For other properties, request the operating statement and the debt schedule from an authorized source.",
+        "sourceIds": [
+          "schedule-al",
+          "october"
+        ]
+      },
+      {
+        "question": "What is the difference between NOI DSCR and NCF DSCR?",
+        "answer": "NOI coverage uses income before capital items and debt service. NCF coverage uses cash flow after capital costs and before debt service. Compare the two on the same statement dates using the debt service reported for the same period.",
+        "sourceIds": [
+          "schedule-al"
+        ]
+      },
+      {
+        "question": "How do I tell whether a CMBS DSCR covers the whole portfolio?",
+        "answer": "Check the assets and property records under the same trust and loan asset number. Read the financial scope indicator and the filing comments. Code C indicates consolidated borrower financials in the CRE Finance Council reporting legend.",
+        "sourceIds": [
+          "crefc-legend",
+          "filing-comments"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "schedule-al",
+        "title": "17 CFR § 229.1125, Schedule AL, Item 2(d)(28)",
+        "publisher": "U.S. Securities and Exchange Commission",
+        "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-sec229-1125.pdf"
+      },
+      {
+        "id": "crefc-legend",
+        "title": "Investor Reporting Package 8.4, DSCR indicator legend and financial data definitions",
+        "publisher": "CRE Finance Council",
+        "url": "https://www.crefc.org/common/Uploaded%20files/CREFC%20IRP%20v8.4_Final.pdf"
+      },
+      {
+        "id": "september",
+        "title": "BBCMS Mortgage Trust 2024-5C25, 2026-09 Form ABS-EE asset data exhibit",
+        "publisher": "BBCMS Mortgage Trust 2024-5C25",
+        "url": "https://www.sec.gov/Archives/edgar/data/2013825/000188852426017595/exh_102.xml"
+      },
+      {
+        "id": "october",
+        "title": "BBCMS Mortgage Trust 2024-5C25, 2026-10 Form ABS-EE asset data exhibit",
+        "publisher": "BBCMS Mortgage Trust 2024-5C25",
+        "url": "https://www.sec.gov/Archives/edgar/data/2013825/000188852426019857/exh_102.xml"
+      },
+      {
+        "id": "september-index",
+        "title": "September 29 Form ABS-EE filing index and exhibits",
+        "publisher": "SEC EDGAR",
+        "linkLabel": "September filing",
+        "url": "https://www.sec.gov/Archives/edgar/data/2013825/000188852426017595/0001888524-26-017595-index.htm"
+      },
+      {
+        "id": "october-index",
+        "title": "October 29 Form ABS-EE filing index and exhibits",
+        "publisher": "SEC EDGAR",
+        "linkLabel": "October filing",
+        "url": "https://www.sec.gov/Archives/edgar/data/2013825/000188852426019857/0001888524-26-019857-index.htm"
+      },
+      {
+        "id": "filing-comments",
+        "title": "BBCMS Mortgage Trust 2024-5C25, October ABS-EE explanatory notes",
+        "publisher": "BBCMS Mortgage Trust 2024-5C25",
+        "url": "https://www.sec.gov/Archives/edgar/data/2013825/000188852426019857/exh_103.xml"
+      },
+      {
+        "id": "trepp",
+        "title": "CMBS Data Feed, loan, property and financial attributes",
+        "publisher": "Trepp",
+        "url": "https://www.trepp.com/hubfs/docs/CMBSDataFeed.pdf"
+      },
+      {
+        "id": "earth-parcel",
+        "title": "Look up a parcel by address",
+        "publisher": "Invariant Earth",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address"
+      }
+    ],
+    "relatedSlugs": [
+      "commercial-real-estate-data-apis-for-lenders",
+      "cmbs-special-servicing-data",
+      "commercial-mortgage-maturity-data-apis",
+      "commercial-occupancy-vacancy-lease-rollover-data"
+    ],
+    "dataset": {
+      "name": "Two CMBS asset reports with separate statement and filing dates",
+      "description": "Twelve property entries from two ABS-EE exhibits for BBCMS Mortgage Trust 2024-5C25. Includes operating statement dates, reported net operating income, net cash flow, debt service, ratios, collateral addresses, scope codes, and source fingerprints. Preserves the four missing property-level ratios in each portfolio snapshot.",
+      "sourceIds": [
+        "september",
+        "october",
+        "filing-comments",
+        "schedule-al",
+        "crefc-legend"
+      ],
+      "spatialCoverage": "Marietta, Georgia, and New York and Pelham, New York, United States",
+      "temporalCoverage": "2026-09-29/2026-10-29"
+    }
+  },
+  {
     "slug": "fire-sprinkler-records-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -21603,6 +21881,7 @@
             "type": "links",
             "label": "Continue the credit review",
             "items": [
+              {"slug": "cmbs-dscr-noi-by-property", "label": "Check the property income and debt-service coverage behind a loan"},
               {"slug": "commercial-mortgage-maturity-data-apis", "label": "Test maturity dates, amendments and extensions"},
               {"slug": "commercial-real-estate-lending", "label": "Build a dated commercial real estate credit file"},
               {"slug": "commercial-real-estate-data-apis-for-lenders", "label": "Link a loan record to the property and flood evidence"}
