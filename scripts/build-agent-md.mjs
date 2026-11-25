@@ -216,7 +216,7 @@ function coverageMd() {
       ...fields.flatMap(name => Object.entries(fieldsByName.get(name).definitions).map(([operation, definition]) => {
         const unit = definition.unit ? ` Unit ${definition.unit}.` : ''
         const access = definition.operatorOnly ? ' Operator key required.' : ''
-        return `- [\`${name}\`](${SITE}${coverageFieldPath(name, operation)}) (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.source, definition.sourceUrl)}.`
+        return `- [\`${name}\`](${SITE}${coverageFieldPath(name, operation)}) (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.sourceLabel ?? definition.source, definition.sourceUrl)}.`
       })), '',
       `- [${guideLabel}](${SITE}${guide})`,
       `- [View research samples](${SITE}/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search)`, '',

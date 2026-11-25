@@ -7,6 +7,15 @@ const manifests = [
 ]
 const fields = new Map()
 const counts = {}
+const publisherLinks = new Map([
+  ['https://doi.org/10.25921/rjys-b235', 'https://www.ncei.noaa.gov/sites/default/files/2022-04/Readme_Monthly_Gridded_Normals.pdf'],
+  ['https://www.usgs.gov/national-structures-dataset', 'https://data.usgs.gov/datacatalog/data/USGS%3Adb4fb1b6-1282-4e5b-9866-87a68912c5d1'],
+])
+const countyPermitFields = new Set([
+  'county_building_permits_total_annual',
+  'county_building_permits_sf_annual',
+  'county_building_permits_yoy_pct',
+])
 const responses = await Promise.all(manifests.map(async ([operation, url]) => {
   const response = await fetch(url, { signal: AbortSignal.timeout(20_000) })
   if (!response.ok) throw new Error(`${operation} manifest returned HTTP ${response.status}`)
@@ -26,7 +35,16 @@ for (const [operation, rows] of responses) {
     const field = fields.get(name) ?? { name, definitions: {} }
     if (label) field.label = label
     const operatorOnly = /\boperator keys only\b/i.test(description)
-    field.definitions[operation] = { description, unit, source, sourceUrl: source_url, ...(operatorOnly && { operatorOnly }) }
+    // The manifest groups the Building Permits Survey metrics with Census market fields.
+    const isCountyPermit = source === 'CENSUS_ACS_TRACT_STATS' && countyPermitFields.has(name)
+    const sourceUrl = isCountyPermit
+      ? 'https://www.census.gov/construction/bps/index.html'
+      : publisherLinks.get(source_url) ?? source_url
+    field.definitions[operation] = {
+      description, unit, source, sourceUrl,
+      ...(isCountyPermit && { sourceLabel: 'Census Building Permits Survey' }),
+      ...(operatorOnly && { operatorOnly }),
+    }
     fields.set(name, field)
   }
   counts[operation] = names.size

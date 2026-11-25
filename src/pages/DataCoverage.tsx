@@ -21,7 +21,7 @@ const operations = {
   parcel: { label: 'Parcel enrichment', method: '/v1/enrich', reference: product.links.parcelFieldReference },
 } as const
 type Operation = keyof typeof operations
-type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string; operatorOnly?: boolean }
+type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string; sourceLabel?: string; operatorOnly?: boolean }
 type Field = { name: string; label?: string; definitions: Partial<Record<Operation, Definition>> }
 const exampleFields: Record<string, Field> = examples
 
@@ -54,7 +54,7 @@ function FieldDetails({ field, operation, compact, linked }: {
             </div>
             <p>{definition.description}</p>
             <div className="coverage-definition-source">
-              <a href={definition.sourceUrl}>{definition.source} <ResourceArrow diagonal /></a>
+              <a href={definition.sourceUrl}>{definition.sourceLabel ?? definition.source} <ResourceArrow diagonal /></a>
               {definition.unit && <span>Unit {definition.unit}</span>}
             </div>
           </div>
@@ -72,7 +72,7 @@ function indexFields(fields: Field[]) {
   return prepareSearch(fields, ({ name, label, definitions }) => ({
     title: name,
     relatedTitle: label,
-    metadata: Object.values(definitions).map(({ source, unit }) => `${source} ${unit ?? ''}`).join(' '),
+    metadata: Object.values(definitions).map(({ source, sourceLabel, unit }) => `${source} ${sourceLabel ?? ''} ${unit ?? ''}`).join(' '),
     details: Object.values(definitions).map(({ description }) => description).join(' '),
   }))
 }
