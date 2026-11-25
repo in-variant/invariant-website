@@ -7402,6 +7402,296 @@
     ]
   },
   {
+    "slug": "oregon-water-rights-by-parcel",
+    "topic": "Data & APIs",
+    "region": "Oregon",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "title": "How to Check Oregon Water Rights by Parcel",
+    "description": "Look up Oregon irrigation rights by tax lot, place of use and certificate. Compare two public site reviews and see what to verify before closing.",
+    "intro": "To check whether Oregon land carries an irrigation right, match the parcel or field you plan to buy to the mapped place of use, then read the certificate and any later orders. A place of use is the area where the right authorizes water use. A nearby well, canal or right can help you identify the authority to contact. Confirm the acreage and use allowed on the land itself, then ask what water the district or operator can deliver.",
+    "coverAlt": "Two public water-right reviews. Muddy Creek reports zero mapped irrigation rights inside the proposed site and six nearby. A Deschutes filing lists two separate surface-water certificate references on tax lot 5S 12E 0 1700.",
+    "coverCaption": "The Oregon siting filings use different boundaries and show different results. The Deschutes acreages are the applicant’s entries for the tax lot.",
+    "takeaways": [
+      "Start with the parcel identifier and the land you plan to buy or develop. Intersect it with the place-of-use geometry before relying on a seller’s claimed acreage.",
+      "Read the current certificate and any transfer orders. Confirm the type of use, source, season, priority date and limit with the responsible authority.",
+      "Check the district allocation, current delivery arrangements and history of use separately from mapped acreage."
+    ],
+    "sections": [
+      {
+        "id": "oregon-water-right-lookup",
+        "heading": "Where do you look up a water right in Oregon?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use the Oregon Water Resources Department’s Water Right Information Search to find the application, permit, certificate, transfer or lease. Its map and reports distinguish the place of use from the point of diversion or appropriation. Download the record that matches the certificate reference and note the date of the lookup.",
+            "sourceIds": [
+              "owrd-search"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Record",
+              "What it gives you",
+              "What to match before closing"
+            ],
+            "rows": [
+              [
+                "Parcel map and purchase boundary",
+                "Which tax lots, fields and parts of a tax lot are included in the transaction.",
+                "Compare the current parcel boundary with the deed or survey and the ground you plan to irrigate."
+              ],
+              [
+                "Place of use and diversion point",
+                "The mapped area associated with a right and the location the record identifies for taking water.",
+                "Check the proposed field against the mapped area. Separately confirm the diversion or well, access and delivery route."
+              ],
+              [
+                "Certificate and later orders",
+                "The record of the authorized conditions. A completed transfer may result in a reissued certificate.",
+                "Find the current certificate, related applications, transfer orders and any remaining conditions."
+              ],
+              [
+                "District or operating records",
+                "The recorded allocation or delivery history for the field or account the district serves.",
+                "Ask for the latest available delivery terms and dates. Verify the conveyance arrangements with the seller or district."
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [],
+              [
+                "owrd-search"
+              ],
+              [
+                "owrd-certificates",
+                "owrd-transfers"
+              ],
+              []
+            ]
+          }
+        ]
+      },
+      {
+        "id": "muddy-creek-water-rights",
+        "heading": "Muddy Creek mapped six rights outside its site boundary",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In its May 2026 preliminary siting filing for Muddy Creek Energy Park, the applicant describes cultivated land in and around the proposed solar site. Exhibit D reports zero mapped irrigation places of use and no irrigation district boundary inside the proposed facility boundary. Six irrigation certificate references appeared outside the site but at least partly in its land use analysis area. Figure D-4 shows the difference.",
+            "sourceIds": [
+              "muddy-creek-land-use"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask the seller to identify the right for the exact field being purchased. A map search that stops at the analysis area would surface neighboring rights. Oregon lists Muddy Creek as proposed and under review. The finding above is the applicant’s map review in that filing.",
+            "sourceIds": [
+              "muddy-creek-land-use",
+              "muddy-creek-status"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "deschutes-certificate-overlap",
+        "heading": "One Deschutes tax lot has two certificate references",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Deschutes Solar and Battery Energy Storage System preliminary filing lists district and non-district rights by parcel in Table 3. For tax lot 5S 12E 0 1700, it shows 1.50 acres under non-district certificate 2328 and 31.39 acres under the district reference 77326/77733. Keep those entries separate until the place-of-use maps show how the areas relate.",
+            "sourceIds": [
+              "deschutes-land-use"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Tax lot in the filing",
+              "Certificate reference",
+              "Authorized acres within parcel"
+            ],
+            "rows": [
+              [
+                "5S 12E 0 1700",
+                "2328 · non-district",
+                "1.50"
+              ],
+              [
+                "5S 12E 0 1700",
+                "77326/77733 · district",
+                "31.39"
+              ],
+              [
+                "5S 12E 0 9400",
+                "67569 · non-district",
+                "19.98"
+              ],
+              [
+                "5S 13E 0 6800",
+                "67569 · non-district",
+                "22.46"
+              ]
+            ],
+            "stackOnMobile": true,
+            "rowSourceIds": [
+              [
+                "deschutes-land-use"
+              ],
+              [
+                "deschutes-land-use"
+              ],
+              [
+                "deschutes-land-use"
+              ],
+              [
+                "deschutes-land-use"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The same groundwater certificate reference also appears on two different tax lots. Keep the parcel and certificate together when you compare acreage. Check the area within the purchase boundary, any overlap between entries and the amount the right allows. Oregon still lists the Deschutes application as under review.",
+            "sourceIds": [
+              "deschutes-land-use",
+              "deschutes-status"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/oregon-water-rights-by-parcel.json",
+            "format": "JSON",
+            "label": "Download the Oregon filing records and water-right review worksheet"
+          }
+        ]
+      },
+      {
+        "id": "water-right-due-diligence",
+        "heading": "What should a land buyer verify before relying on irrigation?",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Ask for the current certificate, the place-of-use map and any change orders. Match the authorized source, use, season, priority, rate and volume to your plan.",
+              "If a district serves the field, ask it to confirm the account, covered acreage and expected delivery. Review access, equipment and recent use records with the operator.",
+              "Check whether closing depends on a pending transfer or a new use. Assign the application, decision and effective date to the correct authority and party in the purchase agreement."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Oregon’s certificate guidance explains how to update ownership and when a change of use, point of diversion or place of use requires a transfer. Confirm the path with the department or district for the individual right. For a new industrial or utility-served use, record the separate withdrawal or service evidence in the site file.",
+            "sourceIds": [
+              "owrd-certificates",
+              "owrd-transfers"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the land review",
+            "items": [
+              {
+                "slug": "parcel-number-lookup-by-address",
+                "label": "Match the property to its official parcel number"
+              },
+              {
+                "slug": "farmland-crop-history-by-parcel",
+                "label": "Check the field’s crop history"
+              },
+              {
+                "slug": "soil-productivity-by-parcel-nccpi-csr2",
+                "label": "Compare soil productivity by parcel"
+              },
+              {
+                "slug": "water-withdrawal-data-api-site-allocation",
+                "label": "Check water allocations for a proposed development"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I check Oregon water rights by an address alone?",
+        "answer": "Use the address to identify the tax lot, then check the actual area you plan to buy or irrigate. The state records and mapped place of use are the next checks."
+      },
+      {
+        "question": "Does a well or irrigation ditch prove a parcel has water rights?",
+        "answer": "A well or ditch identifies potential access or infrastructure. Check the associated certificate or permit, the mapped place of use, and the proposed use and delivery terms."
+      },
+      {
+        "question": "Can the same water right appear on several parcels?",
+        "answer": "Yes. The Deschutes land-use filing lists groundwater certificate 67569 against two parcels with different acreage figures. Compare each parcel, the relevant map and the current certificate."
+      }
+    ],
+    "sources": [
+      {
+        "id": "owrd-search",
+        "title": "Water Right Information Search and links to mapping and reports",
+        "publisher": "Oregon Water Resources Department",
+        "url": "https://www.oregon.gov/owrd/programs/waterrights/wris/pages/default.aspx"
+      },
+      {
+        "id": "owrd-certificates",
+        "title": "Certificates, beneficial use and updating ownership",
+        "publisher": "Oregon Water Resources Department",
+        "url": "https://www.oregon.gov/owrd/programs/WaterRights/Cert/Pages/default.aspx"
+      },
+      {
+        "id": "owrd-transfers",
+        "title": "Water right transfers and real property transactions",
+        "publisher": "Oregon Water Resources Department",
+        "url": "https://www.oregon.gov/owrd/WRDFormsPDF/Transfer_Property_Transactions.pdf"
+      },
+      {
+        "id": "muddy-creek-land-use",
+        "title": "Muddy Creek Energy Park, Exhibit D, section 2.4.1 and Figure D-4",
+        "publisher": "Muddy Creek Energy Park applicant / Oregon Department of Energy",
+        "url": "https://www.oregon.gov/energy/facilities/Facility%20Exhibits/MCEP/2026-05-19-MCEPAPP-Land-Use.pdf"
+      },
+      {
+        "id": "muddy-creek-status",
+        "title": "Muddy Creek Energy Park facility application status",
+        "publisher": "Oregon Department of Energy",
+        "url": "https://www.oregon.gov/energy/facilities/pages/mcep.aspx"
+      },
+      {
+        "id": "deschutes-land-use",
+        "title": "Deschutes Solar and Battery Energy Storage System, Land Use Exhibit, Table 3 and Figure 7(b)",
+        "publisher": "Deschutes Solar applicant / Oregon Department of Energy",
+        "url": "https://www.oregon.gov/energy/facilities/Facility%20Exhibits/DSB/2026-01-09-DSBAPP-pASC-05-Land-Use.pdf"
+      },
+      {
+        "id": "deschutes-status",
+        "title": "Deschutes Solar and Battery Energy Storage System Facility application status",
+        "publisher": "Oregon Department of Energy",
+        "url": "https://www.oregon.gov/energy/facilities/Pages/DSB.aspx"
+      }
+    ],
+    "dataset": {
+      "name": "Oregon irrigation water-right references from two siting filings",
+      "description": "Six off-site Muddy Creek irrigation certificate references and four Deschutes parcel-to-certificate entries. Keeps the filing’s acreage basis and includes blank fields for a buyer’s parcel, use, transfer and delivery checks.",
+      "spatialCoverage": "Linn County and the Deschutes Solar project analysis area, Oregon, United States",
+      "sourceIds": [
+        "owrd-search",
+        "owrd-certificates",
+        "owrd-transfers",
+        "muddy-creek-land-use",
+        "muddy-creek-status",
+        "deschutes-land-use",
+        "deschutes-status"
+      ]
+    },
+    "relatedSlugs": [
+      "water-withdrawal-data-api-site-allocation",
+      "parcel-number-lookup-by-address",
+      "soil-productivity-by-parcel-nccpi-csr2",
+      "solar-farm-site-selection-gis",
+      "farmland-crop-history-by-parcel"
+    ]
+  },
+  {
     "slug": "water-withdrawal-data-api-site-allocation",
     "topic": "Data & APIs",
     "region": "United States",
@@ -7835,6 +8125,7 @@
       }
     ],
     "relatedSlugs": [
+      "oregon-water-rights-by-parcel",
       "water-sewer-data-apis-site-selection",
       "data-center-water-stormwater-permits",
       "natural-gas-pipeline-capacity-site-service",
