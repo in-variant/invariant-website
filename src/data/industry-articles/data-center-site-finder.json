@@ -24295,9 +24295,9 @@
   "kind": "site-guide",
   "region": "United States",
   "title": "Data Center Site Selection Checklist and Criteria",
-  "description": "Compare data center sites on power, service dates, land, water, fiber, permits, and cost. Download the 12-point checklist and a worked Excel comparison.",
+  "description": "Compare data center sites on power, service dates, land, water, fiber, permits, and cost. Download the 12-point checklist and see what to verify on a site visit.",
   "date": "2026-11-09",
-  "readMinutes": 14,
+  "readMinutes": 15,
   "intro": "Use the 12-point checklist to compare data center sites before signing a land option or committing to a lease. For each phase, record the facility megawatts you need at the meter, the last acceptable service date, and the power record that supports the site. Check buildable land, water, fiber and approvals against the same opening date. Compare costs and incentives once a site can meet those requirements.",
   "takeaways": [
    "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
@@ -24475,6 +24475,47 @@
         "lbnl"
        ]
       ]
+     }
+    ]
+   },
+   {
+    "id": "data-center-site-visit-checklist",
+    "heading": "Data center site visit checklist",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Bring the latest survey, title exception map and a dated plan for the first phase. Walk the proposed entrance, building and equipment pads, drainage outlet and utility routes with the civil lead and landowner’s representative. Mark each concern on the plan with a photo ID, the visit date and the team that will verify it. Bring the required opening date so the team can flag anything that could push it back.",
+      "sourceIds": ["gre-site-assessment"]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": ["Stop on the walk", "What to record", "What to verify afterward"],
+      "rows": [
+       ["Public road to the gate", "Drive the approach. Mark tight turns, overhead lines, culverts, narrow shoulders and any shared entrance on the proposed delivery route.", "Ask the carrier to test the turn with the actual trailer. Have the road authority and title team confirm the approvals and access rights."],
+       ["Building and equipment pads", "Walk the corners of the proposed pads. Photograph slope breaks, retaining walls, old slabs and overhead crossings that could change the layout.", "Have the survey and civil teams check elevations. Ask geotechnical engineers where borings are needed for the foundations and equipment pads."],
+       ["Drainage and outfall", "Follow the low ground toward the planned discharge point. Mark ditches, standing water and any off-site segment of the proposed route.", "Check the drainage area, flood mapping and wetland delineation. Confirm who controls the outfall and whether a drainage easement is needed."],
+       ["Power handoff and substation access", "Mark where the candidate power route reaches the site and where crews would reach the utility equipment during construction and operation.", "Ask the utility to confirm the delivery point, access requirements, corridor and dated MW by phase. Send the surveyor any route that crosses another tract."],
+       ["Fiber and water entries", "From permitted access points, note visible handholes, valves and potential crossings. Mark where proposed utility routes share a road, bridge or trench.", "Ask carriers to confirm route diversity and the water provider to confirm where it can serve the campus and on what terms."],
+       ["Neighboring uses and buffers", "Photograph nearby homes or other sensitive uses from the site. Mark the proposed generator and cooling yards and the planned screening between them.", "Have the civil and acoustic teams check setbacks, sound limits and screening against the current plan and approval conditions."]
+      ],
+      "rowSourceIds": [
+       ["gre-site-assessment", "deschutes-heavy-haul"],
+       ["gre-site-assessment", "pittsburg-mitigation"],
+       ["gre-site-assessment", "construction-stormwater"],
+       ["dominion-data-center-requests", "orangeburg-phase-one"],
+       ["gre-site-assessment"],
+       ["gre-site-assessment", "orangeburg-phase-one"]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "At DataBank’s Orangeburg site in New York, the Phase 1 filing shows the route to the existing substation alongside the new equipment yard and detention basin. It calls for keeping that access open and identifies which transformer and generator pads are for later buildout. During a walk, trace the utility’s approach on the drawing and check which road and yard work the first phase needs. Ask the utility and civil lead to confirm any planned changes to the route.",
+      "sourceIds": ["orangeburg-phase-one"]
+     },
+     {
+      "type": "paragraph",
+      "text": "Debrief against the same first-phase plan. For each issue, name the person responsible, the record or revised drawing they need to return, and the date it is due. If a route changes, update the land required, the easements and the construction schedule together."
      }
     ]
    },
@@ -25252,6 +25293,11 @@
     ]
    },
    {
+    "question": "What should you check on a data center site visit?",
+    "answer": "Bring a current survey and first-phase plan. Walk the access road, pad corners, drainage outlet, and proposed power, fiber and water entries. Mark photos and any conflicts on the plan. Give each open item to the utility, surveyor, engineer or carrier who can verify it before the land option expires.",
+    "sourceIds": ["gre-site-assessment", "orangeburg-phase-one"]
+   },
+   {
     "question": "What does site preparation include for a data center?",
     "answer": "It includes clearing and grading, preparing the building and equipment pads, bringing in or hauling out soil, installing temporary drainage and erosion controls, and preparing access and utility corridors. Ask for quantities and permit dates for the first phase so the early civil work can be priced and scheduled.",
     "sourceIds": ["pittsburg-grading", "pittsburg-mitigation", "construction-stormwater"]
@@ -25284,6 +25330,20 @@
     "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
     "publisher": "Dominion Energy Virginia",
     "linkLabel": "Dominion request steps"
+   },
+   {
+    "id": "gre-site-assessment",
+    "title": "Data Center Site Assessment Program supporting documentation, pages 1–2",
+    "url": "https://econdev.greatriverenergy.com/media/userfiles/files/gre/data-center/gre-site-assessment-supporting-documentation.pdf",
+    "publisher": "Great River Energy",
+    "linkLabel": "Great River Energy site assessment"
+   },
+   {
+    "id": "orangeburg-phase-one",
+    "title": "DataBank Orangeburg Phase 1 layout and materials plan CD-3.0, page 33 of zoning board application",
+    "url": "https://www.orangetown.com/wp-content/uploads/2022/08/Databank-Online-ZBA-Package-73.15-1-19.pdf#page=33",
+    "publisher": "Town of Orangetown, applicant plan by Kimley-Horn",
+    "linkLabel": "Orangeburg Phase 1 site plan"
    },
    {
     "id": "pittsburg-grading",
