@@ -279,7 +279,7 @@
     "slug": "data-center-backup-generator-air-permits",
     "topic": "Data Centers",
     "title": "Data Center Backup Generator Air Permits and Run-Hour Limits",
-    "description": "Check data center backup generator air permits, the federal 100-hour and 50-hour rules, and site limits in Virginia, Texas, and Oregon’s Tier 4 process.",
+    "description": "Check backup generator air permits and run-hour limits. See issued permits, federal testing rules, and how Virginia handles short-notice utility outages.",
     "date": "2026-09-15",
     "readMinutes": 13,
     "intro": "Before installing backup generators at a U.S. data center, identify the state or local construction authorization, check whether the site needs a Title V operating permit, and determine which federal standards apply to each engine. To figure out how long a generator can run, start with the reason for the run. Check the federal rules for that use and the site permit’s limits for the engine and any group it belongs to.",
@@ -563,6 +563,97 @@
         ]
       },
       {
+        "id": "virginia-planned-outage-generators",
+        "heading": "Can Virginia data centers use backup generators during a planned outage?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Sometimes. Virginia DEQ guidance APG-578 describes an example where a utility outage outside the facility’s control can qualify as an emergency under two Virginia air-permit programs. In that example, the utility gives the permitted source 14 calendar days or less of notice and the operator documents its need to run. DEQ considers the circumstances of each event. The site permit and applicable federal rules still govern the engines. The guidance took effect January 3, 2026.",
+            "sourceIds": [
+              "virginia-apg-578",
+              "virginia-apg-578-effective",
+              "federal-ci-operation"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "When",
+              "What the operator sends in the DEQ example"
+            ],
+            "rows": [
+              [
+                "Within 24 hours of receiving the utility notice",
+                "Send the written notice with the outage time, place, expected duration and manner. Include the documented reason existing emergency units are needed, the exact units and ratings, and the estimated run time."
+              ],
+              [
+                "Daily when the outage continues beyond one day",
+                "Report hours of operation and fuel burned for each engine that ran."
+              ],
+              [
+                "Within five business days after service is restored",
+                "Report the total hours and fuel burned for each engine over the outage."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "virginia-apg-578"
+              ],
+              [
+                "virginia-apg-578"
+              ],
+              [
+                "virginia-apg-578"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For example, suppose the operator receives a utility notice at 9 a.m. on November 2 for a November 12 outage. The DEQ example puts the initial notice deadline at 9 a.m. on November 3. Assume power comes back at 3 p.m. on Friday, November 13 after 30 hours. With no intervening holidays, the fifth business day is Friday, November 20. All times in this example are Eastern Standard Time."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Illustrative engine",
+              "Nov. 12 hours / gallons",
+              "Nov. 13 hours / gallons",
+              "Outage total"
+            ],
+            "rows": [
+              [
+                "Generator A",
+                "15 h / 900 gal",
+                "15 h / 900 gal",
+                "30 h / 1,800 gal"
+              ],
+              [
+                "Generator B",
+                "8 h / 320 gal",
+                "6 h / 240 gal",
+                "14 h / 560 gal"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The outage lasted 30 clock hours. The two logs add to 44 engine hours because some operation overlaps. The closeout records each engine’s total. Before scheduling a run, put the site permit conditions, applicable federal engine rule, and the reason for the event in the same review file. The example leaves the permit and federal classifications for the site reviewer to resolve.",
+            "sourceIds": [
+              "virginia-apg-578",
+              "federal-ci-operation"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/virginia-apg-578-planned-outage-generator-log.json",
+            "format": "JSON",
+            "label": "Download the illustrative outage timeline and per-engine log",
+            "datasetAnchor": "dataset-virginia-planned-outage"
+          }
+        ]
+      },
+      {
         "id": "pjm-emergency-dispatch",
         "heading": "When can PJM call data center backup generators during a grid emergency?",
         "blocks": [
@@ -736,6 +827,14 @@
           "loudoun-title-v",
           "federal-ci-operation",
           "epa-data-center-air"
+        ]
+      },
+      {
+        "question": "Can an emergency generator run during a planned utility outage in Virginia?",
+        "answer": "Virginia DEQ’s APG-578 gives an example where a planned outage can qualify. It involves utility notice 14 calendar days or less before the outage and documented notice to DEQ within 24 hours of receipt. DEQ considers the specific circumstances, and the site permit and applicable federal requirements still apply.",
+        "sourceIds": [
+          "virginia-apg-578",
+          "federal-ci-operation"
         ]
       },
       {
@@ -971,6 +1070,20 @@
         "publisher": "U.S. Department of Energy",
         "title": "PJM emergency Order 202-26-50, October 12, 2026, pp. 6–8",
         "url": "https://www.energy.gov/documents/doe-order-no-202-26-50"
+      },
+      {
+        "id": "virginia-apg-578",
+        "title": "APG-578, Sections II and III, planned outage example and continuing permit terms",
+        "url": "https://townhall.virginia.gov/L/GetFile.cfm?File=C%3A%5CTownHall%5Cdocroot%5CGuidanceDocs%5C440%5CGDoc_DEQ_7950_v1.pdf",
+        "publisher": "Virginia Department of Environmental Quality",
+        "linkLabel": "Virginia DEQ planned-outage guidance"
+      },
+      {
+        "id": "virginia-apg-578-effective",
+        "title": "APG-578 guidance record, effective January 3, 2026",
+        "url": "https://townhall.virginia.gov/L/ViewGDoc.cfm?gdid=7950",
+        "publisher": "Virginia Regulatory Town Hall",
+        "linkLabel": "APG-578 effective date"
       }
     ],
     "relatedSlugs": [
@@ -997,6 +1110,18 @@
         "sourceIds": ["texas-o4780"],
         "spatialCoverage": "Bexar County, Texas, United States",
         "temporalCoverage": "2026-05-13"
+      },
+      {
+        "anchor": "dataset-virginia-planned-outage",
+        "datePublished": "2026-11-25",
+        "name": "Virginia APG-578 planned outage reporting example",
+        "description": "Illustrative planned outage for two permitted emergency generators. Includes notice timing, per-engine daily operating hours and fuel, closeout totals, and fields for the site permit and federal operating basis. Cites the Virginia guidance and its effective date.",
+        "sourceIds": [
+          "virginia-apg-578",
+          "virginia-apg-578-effective",
+          "federal-ci-operation"
+        ],
+        "spatialCoverage": "Virginia, United States"
       }
     ]
   },

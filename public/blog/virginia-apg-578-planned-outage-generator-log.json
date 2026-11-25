@@ -1,0 +1,85 @@
+{
+  "title": "Virginia APG-578 planned outage reporting example",
+  "scenario_type": "Illustrative. Dates, operations and quantities are invented for reconciliation.",
+  "state_guidance": {
+    "document_id": "APG-578",
+    "effective_date": "2026-01-03",
+    "source_url": "https://townhall.virginia.gov/L/GetFile.cfm?File=C%3A%5CTownHall%5Cdocroot%5CGuidanceDocs%5C440%5CGDoc_DEQ_7950_v1.pdf",
+    "record_url": "https://townhall.virginia.gov/L/ViewGDoc.cfm?gdid=7950",
+    "sections": [
+      "II",
+      "III"
+    ]
+  },
+  "utility_notice": {
+    "received_at": "2026-11-02T09:00:00-05:00",
+    "planned_start_at": "2026-11-12T09:00:00-05:00",
+    "power_restored_at": "2026-11-13T15:00:00-05:00",
+    "notice_lead_calendar_days": 10,
+    "elapsed_outage_hours": 30,
+    "assumptions": "All timestamps use Eastern Standard Time. The example counts weekdays with no intervening holidays."
+  },
+  "reporting_example": {
+    "initial_notice_due_at": "2026-11-03T09:00:00-05:00",
+    "initial_notice_records": [
+      "Written utility notice with time, place, expected duration and manner",
+      "Written need and supporting records",
+      "Engine IDs, electrical ratings and estimated hours"
+    ],
+    "daily_report_records": [
+      "Operating hours per engine",
+      "Fuel burned per engine"
+    ],
+    "closeout_due_date": "2026-11-20",
+    "closeout_records": [
+      "Total operating hours per engine",
+      "Total fuel burned per engine"
+    ]
+  },
+  "daily_run_log": [
+    {
+      "date": "2026-11-12",
+      "engine_id": "A",
+      "operating_hours": 15,
+      "fuel_us_gallons": 900
+    },
+    {
+      "date": "2026-11-12",
+      "engine_id": "B",
+      "operating_hours": 8,
+      "fuel_us_gallons": 320
+    },
+    {
+      "date": "2026-11-13",
+      "engine_id": "A",
+      "operating_hours": 15,
+      "fuel_us_gallons": 900
+    },
+    {
+      "date": "2026-11-13",
+      "engine_id": "B",
+      "operating_hours": 6,
+      "fuel_us_gallons": 240
+    }
+  ],
+  "closeout_by_engine": [
+    {
+      "engine_id": "A",
+      "operating_hours": 30,
+      "fuel_us_gallons": 1800
+    },
+    {
+      "engine_id": "B",
+      "operating_hours": 14,
+      "fuel_us_gallons": 560
+    }
+  ],
+  "site_review_fields": {
+    "permit_and_revision": null,
+    "engine_ids_and_electrical_ratings": null,
+    "applicable_permit_conditions": null,
+    "federal_operating_basis": null,
+    "state_emergency_classification": null,
+    "event_evidence": null
+  }
+}
