@@ -24238,7 +24238,8 @@
       {"id":"invariant-responses","title":"Field response and provenance contract","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
       {"id":"oncor","title":"Texas fleet electrification and electric utility contact","url":"https://www.oncor.com/content/oncorwww/us/en/home/smart-energy/electric-vehicles.html","publisher":"Oncor"}
     ],
-    "relatedSlugs": ["best-gis-apis-for-site-selection","power-evidence-data-center-site-verification","utility-grade-power-study","data-center-site-selection-checklist"]
+    "relatedSlugs": [
+      "truck-routing-apis-nyc-truck-route-restrictions","best-gis-apis-for-site-selection","power-evidence-data-center-site-verification","utility-grade-power-study","data-center-site-selection-checklist"]
   },
   {
     "slug": "regrid-alternatives-parcel-data-apis",
@@ -26744,7 +26745,8 @@
       {"id": "houbolt-tolls", "title": "Houbolt Road toll schedule effective April 1, 2026", "url": "https://houboltroadextension.com/tolling/", "publisher": "Houbolt Road Extension"},
       {"id": "usgs-imagery", "title": "USGS Imagery Only service", "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer", "publisher": "USGS The National Map"}
     ],
-    "relatedSlugs": ["manufacturing-site-selection-100-buildable-acres", "truck-depot-charging-site-selection", "best-gis-apis-for-site-selection"]
+    "relatedSlugs": [
+      "truck-routing-apis-nyc-truck-route-restrictions","manufacturing-site-selection-100-buildable-acres", "truck-depot-charging-site-selection", "best-gis-apis-for-site-selection"]
   },
   {
     "slug": "business-broadband-availability-by-address",
@@ -28949,6 +28951,410 @@
         "note": "Credit Loudoun County for the source figures and retain the dates and counting methods when comparing records.",
         "policyUrl": "https://logis.loudoun.gov/loudoun/disclaimer.html",
         "policyLabel": "Loudoun County GIS source note"
+      }
+    }
+  },
+  {
+    "slug": "truck-routing-apis-nyc-truck-route-restrictions",
+    "title": "Truck Routing APIs and NYC Truck Route Restrictions",
+    "description": "Compare truck routing APIs and verify posted bridge and tunnel restrictions. Replay how two public NYC GIS feeds handle the October 2026 truck route changes.",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "date": "2026-11-24",
+    "readMinutes": 6,
+    "coverAlt": "Two routes changed October 4, 2026. NYC removed a Greenpoint Avenue block from the local network and added a section of 44th Drive.",
+    "coverCaption": "Selected New York City truck route changes. The street centerlines illustrate only the compared stretches.",
+    "intro": "Start with the truck and its trip. Measure the loaded height, width and length, record axle count and weights, and use the actual loading gate. A truck routing API can check a candidate route against its map. In New York City, compare the route with current City rules and the facility operator’s restrictions. We found two corridors where the adopted October 4, 2026 rule and the public GIS records still disagreed when queried on November 24.",
+    "takeaways": [
+      "Keep the effective date of the rule and the source feed’s update date as separate fields.",
+      "Match by segment ID and the two cross streets. A rule change may cover only part of a named road.",
+      "Check the vehicle class and posted conditions for each crossing, even when the height fits the published limit."
+    ],
+    "sections": [
+      {
+        "id": "choose-routing-data",
+        "heading": "Which truck routing API or data source should you use?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Where to use it",
+              "What to check in a trial"
+            ],
+            "rows": [
+              [
+                "HERE Routing API v8",
+                "Calculate routes with truck mode and explicit height, dimensions, and weight values.",
+                "Confirm vehicle parameters are populated and check the restriction coverage and notices."
+              ],
+              [
+                "Trimble Maps",
+                "Use a truck profile with specified vehicle dimensions, weight and axles to calculate a route.",
+                "Check which profile values your request overrides and what warnings apply at the destination."
+              ],
+              [
+                "NYC DOT and City Planning",
+                "Match a segment to a local or through route and read the enacted change for specified cross streets.",
+                "Check the route date, effective rule, and any restriction that applies to the actual truck."
+              ],
+              [
+                "Road, bridge or tunnel operator",
+                "Verify crossing-specific access, size restrictions, weight limits, and temporary closures.",
+                "Confirm the exact deck, tube, approach, traffic direction, and travel time."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "here",
+                "here-coverage"
+              ],
+              [
+                "trimble"
+              ],
+              [
+                "adoption",
+                "dot-meta",
+                "lion-meta"
+              ],
+              [
+                "port",
+                "port-guide"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For warehouse and fleet site selection, use Invariant Earth to locate the property and screen nearby transport infrastructure. Test an actual route with a truck router, then verify any constraints against the agency and facility operator. Repeat the check for each entrance and vehicle profile.",
+            "sourceIds": ["earth"]
+          }
+        ]
+      },
+      {
+        "id": "nyc-rule-replay",
+        "heading": "Two NYC truck route changes you can replay",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The city adopted changes to its truck route network effective October 4, 2026. We matched selected corridors by LION segment ID and checked both NYC DOT’s public truck route features and City Planning’s LION street centerlines. The DOT feature table reported a March 2 update. The LION endpoint reported a November 23 data edit. Both still disagreed with the adopted rule for these two examples.",
+            "sourceIds": [
+              "adoption",
+              "map",
+              "dot-meta",
+              "dot",
+              "lion-meta",
+              "lion"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Exact street stretch",
+              "October rule",
+              "GIS result on November 24"
+            ],
+            "rows": [
+              [
+                "Greenpoint Avenue, West Street to Franklin Street, Brooklyn",
+                "Removed from the designated local network.",
+                "DOT still labeled segment 0035007 Local. City Planning’s LION layer returned code 2, meaning Local."
+              ],
+              [
+                "44th Drive, Vernon Boulevard to Thomson Avenue, Queens",
+                "Added to the designated local network.",
+                "DOT returned zero rows for the ten matched IDs. The ten centerline segments existed in LION with a blank truck-route code."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "map",
+                "law",
+                "dot",
+                "lion",
+                "lion-legend"
+              ],
+              [
+                "map",
+                "law",
+                "dot",
+                "lion",
+                "lion-legend"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 44th Drive counts use unique segment IDs. The LION response repeats two of those IDs across source rows. Keep the original blank values, the dates, and the result from the adopted rule. An update timestamp tells you when a dataset changed. It cannot tell you whether a specific rule change made it into the data.",
+            "sourceIds": [
+              "lion",
+              "lion-meta",
+              "law"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "JSON",
+            "path": "/blog/truck-routing-apis-nyc-truck-route-restrictions.json",
+            "label": "Download both corridor checks with IDs and source queries"
+          }
+        ]
+      },
+      {
+        "id": "clearance",
+        "heading": "How to check truck clearance and crossing restrictions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "At the George Washington Bridge, the Port Authority’s guide lists a 13-foot-6-inch height limit on both levels. Its separate restriction directs trucks to the upper level. At the Holland Tunnel, the operator excludes combination vehicles and vehicles with four or more axles. A vehicle can fit the published dimensions and still be excluded by a class rule.",
+            "sourceIds": [
+              "port",
+              "port-guide"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Record traffic direction, turn restrictions, posted height, gross and axle limits, and any construction or time-of-day rules. Verify approach roads and the exact deck or tube with the operator. The Federal Highway Administration directs users to other sources for route clearance instead of relying on National Bridge Inventory values.",
+            "sourceIds": [
+              "port",
+              "port-guide",
+              "nbi"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "New York City requires through routes when the trip has neither an origin nor a destination in the borough. For a delivery on a street outside the designated network, the City explains how to use the closest appropriate network intersection and the direct local access path. Review the adopted rule and current signs for the intended trip.",
+            "sourceIds": [
+              "routing",
+              "adoption"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rollout",
+        "heading": "How to test a truck routing feed before rollout",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Save the vehicle profile and a specific entrance coordinate. Keep the route output and the notices returned with it.",
+              "Test one newly added street stretch and one removed stretch. Record the affected segment IDs and the date the rule took effect.",
+              "Test a crossing where the access rule depends on a bridge level or vehicle class. Confirm the route output names the correct level or flags the limitation.",
+              "Recheck the operator’s notices for a departure. When the feed and road authority disagree, record the conflict and have dispatch verify the proposed path before sending the vehicle."
+            ],
+            "sourceIds": [
+              "here",
+              "here-coverage",
+              "trimble",
+              "adoption",
+              "port"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue verifying a logistics site",
+            "items": [
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Check rail, loading gates and truck access for a warehouse"
+              },
+              {
+                "slug": "truck-depot-charging-site-selection",
+                "label": "Screen a truck depot for access and charger power"
+              },
+              {
+                "slug": "power-outage-road-closure-history",
+                "label": "Check road closure history and published notices"
+              },
+              {
+                "slug": "industrial-land-for-sale-acreage-zoning",
+                "label": "Find land that fits a yard, access route and facility"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I find the current NYC truck route map?",
+        "answer": "Start with NYC DOT’s truck routing page and the change map effective October 4, 2026. Check the adopted rule for exact cross streets, route type and vehicle applicability. Keep the publication dates when comparing older maps or downloaded GIS layers.",
+        "sourceIds": [
+          "routing",
+          "map",
+          "adoption"
+        ]
+      },
+      {
+        "question": "Can a truck routing API account for low bridges and weight limits?",
+        "answer": "Truck routing tools such as HERE and Trimble Maps have vehicle-aware options. Supply the truck’s dimensions, axle count and weights, check which restrictions the service covers, and verify the specific crossing and approach with the operator.",
+        "sourceIds": [
+          "here",
+          "here-coverage",
+          "trimble",
+          "port"
+        ]
+      },
+      {
+        "question": "What is the difference between a local and a through truck route in NYC?",
+        "answer": "The city requires through truck routes for trips with neither an origin nor a destination in the borough. Local truck routes serve trips with a borough stop such as a delivery or pickup. Check the adopted rule for the exact streets and permitted local access.",
+        "sourceIds": [
+          "routing",
+          "adoption"
+        ]
+      },
+      {
+        "question": "Can a truck use the lower level of the George Washington Bridge?",
+        "answer": "The Port Authority directs trucks to the upper level. Check its current size, weight and approach restrictions for the specific vehicle and trip.",
+        "sourceIds": [
+          "port",
+          "port-guide"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "earth",
+        "title": "Screen a warehouse for nearby roads and rail with Invariant Earth",
+        "url": "https://docs.invariant-ai.com/screen-warehouse-rail-and-truck-access",
+        "publisher": "Invariant Earth",
+        "linkLabel": "Invariant Earth warehouse screening"
+      },
+      {
+        "id": "adoption",
+        "title": "Citywide truck route rule adoption and effective date",
+        "url": "https://rules.cityofnewyork.us/rule/dot-proposed-amendment-of-rules-relating-to-citywide-truck-routes/",
+        "publisher": "NYC DOT",
+        "linkLabel": "Adopted rule and effective date"
+      },
+      {
+        "id": "law",
+        "title": "Final text of NYC Truck Route Network amendments. Queens p. 9 and Brooklyn p. 26",
+        "url": "https://rules.cityofnewyork.us/wp-content/uploads/2026/09/Notice-of-Adoption-Truck-Routes-Final-Approved-with-Certification.pdf",
+        "publisher": "NYC DOT",
+        "linkLabel": "Final rule text"
+      },
+      {
+        "id": "map",
+        "title": "Map and list of October 4 additions, removals and designation changes",
+        "url": "https://home4.nyc.gov/html/dot/downloads/pdf/truck-route-network-redesign-changes-2026.pdf",
+        "publisher": "NYC DOT",
+        "linkLabel": "October change map"
+      },
+      {
+        "id": "routing",
+        "title": "Local and through truck routes, delivery destinations and applicable rules",
+        "url": "https://www.nyc.gov/html/dot/html/motorist/truckrouting.shtml",
+        "publisher": "NYC DOT",
+        "linkLabel": "City truck routing guidance"
+      },
+      {
+        "id": "dot-meta",
+        "title": "New York City Truck Routes public feature dataset, update metadata",
+        "url": "https://data.cityofnewyork.us/api/views/jjja-shxy.json",
+        "publisher": "NYC DOT",
+        "linkLabel": "DOT feature metadata"
+      },
+      {
+        "id": "dot",
+        "title": "Replay the DOT feature search for eleven exact LION segment IDs",
+        "url": "https://data.cityofnewyork.us/resource/jjja-shxy.json?%24select=objectid_1%2Cstreet%2Cboroname%2Croutetype%2Ctruckroute%2Csegmentid%2Crestrictio&%24where=segmentid+in+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&%24order=segmentid%2Cobjectid_1&%24limit=100",
+        "publisher": "NYC DOT",
+        "linkLabel": "Run the DOT segment query"
+      },
+      {
+        "id": "lion-meta",
+        "title": "LION street centerline layer, editing date and field names",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0?f=json",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "LION metadata"
+      },
+      {
+        "id": "lion",
+        "title": "Replay the LION query for the same eleven segment IDs",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0/query?where=SegmentID+IN+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&outFields=OBJECTID%2CSegmentID%2CStreet%2CLBoro%2CRBoro%2CNodeIDFrom%2CNodeIDTo%2CTRUCK_ROUTE_TYPE%2CTrafDir%2CSegmentTyp%2CRB_Layer%2CStatus&returnGeometry=true&outSR=4326&f=json&orderByFields=SegmentID%2COBJECTID",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "Run the LION segment query"
+      },
+      {
+        "id": "lion-legend",
+        "title": "Geosupport data dictionary, truck route type values",
+        "url": "https://nycplanning.github.io/Geosupport-UPG/appendices/appendix03/",
+        "publisher": "NYC Department of City Planning",
+        "linkLabel": "LION code definitions"
+      },
+      {
+        "id": "port",
+        "title": "Current vehicle and truck restrictions by bridge and tunnel",
+        "url": "https://www.panynj.gov/bridges-tunnels/en/restrictions.html",
+        "publisher": "Port Authority of New York and New Jersey",
+        "linkLabel": "Current crossing restrictions"
+      },
+      {
+        "id": "port-guide",
+        "title": "Truckers’ Guide, vehicle height and lower-deck access restrictions",
+        "url": "https://www.panynj.gov/content/dam/bridges-tunnels/truckers-guides/Truckers%20Guide_Eng_Apr%202026.pdf",
+        "publisher": "Port Authority of New York and New Jersey",
+        "linkLabel": "Port Authority truck guide"
+      },
+      {
+        "id": "here",
+        "title": "Routing API v8 truck mode and vehicle parameters",
+        "url": "https://docs.here.com/routing/docs/routing-v8-truck-routing",
+        "publisher": "HERE",
+        "linkLabel": "HERE truck routing docs"
+      },
+      {
+        "id": "here-coverage",
+        "title": "Truck routing coverage and restrictions coverage are separately documented",
+        "url": "https://docs.here.com/routing/docs/routing-v8-truck-routing-coverage",
+        "publisher": "HERE",
+        "linkLabel": "HERE coverage"
+      },
+      {
+        "id": "trimble",
+        "title": "Vehicle routing profiles and request-level dimensions and weights",
+        "url": "https://developer.trimblemaps.com/restful-apis/developer-guide/how-to-guides/vehicle-routing-profiles/",
+        "publisher": "Trimble Maps",
+        "linkLabel": "Trimble vehicle profiles"
+      },
+      {
+        "id": "nbi",
+        "title": "National Bridge Inventory downloads and use limitations",
+        "url": "https://www.fhwa.dot.gov/bridge/nbi/nbi_data.cfm",
+        "publisher": "Federal Highway Administration",
+        "linkLabel": "FHWA bridge inventory"
+      }
+    ],
+    "relatedSlugs": [
+      "warehouse-site-selection-rail-truck-access",
+      "truck-depot-charging-site-selection",
+      "power-outage-road-closure-history",
+      "industrial-land-for-sale-acreage-zoning"
+    ],
+    "dataset": {
+      "name": "NYC truck route changes checked against DOT and LION street segments",
+      "description": "Eleven matched street segments across Brooklyn and Queens, the corresponding dates and changes in the adopted rule, and two public GIS queries. Includes a crossing restriction example and the source code definitions.",
+      "spatialCoverage": "Greenpoint, Brooklyn and Long Island City, Queens, New York City, United States",
+      "temporalCoverage": "2026-03-02/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sourceIds": [
+        "adoption",
+        "law",
+        "map",
+        "dot-meta",
+        "dot",
+        "lion-meta",
+        "lion",
+        "lion-legend",
+        "port-guide"
+      ],
+      "sourceReuse": {
+        "note": "Credit NYC DOT and NYC City Planning. Keep the effective date, street limits and source versions with each reused observation.",
+        "policyUrl": "https://www.nyc.gov/opendata/get-started/what-is-open-data-",
+        "policyLabel": "NYC Open Data policy"
       }
     }
   }

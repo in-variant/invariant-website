@@ -5900,6 +5900,93 @@
     }
   },
   {
+    "slug": "truck-routing-apis-nyc-truck-route-restrictions",
+    "topic": "Data & APIs",
+    "title": "Truck Routing APIs and NYC Truck Route Restrictions",
+    "summary": "Compare truck routing APIs and verify posted bridge and tunnel restrictions. Replay how two public NYC GIS feeds handle the October 2026 truck route changes.",
+    "date": "November 24, 2026",
+    "dateTime": "2026-11-24",
+    "region": "New York City, United States",
+    "image": "/blog/industry/truck-routing-apis-nyc-truck-route-restrictions.webp?v=74b75c2d",
+    "dataset": {
+      "name": "NYC truck route changes checked against DOT and LION street segments",
+      "description": "Eleven matched street segments across Brooklyn and Queens, the corresponding dates and changes in the adopted rule, and two public GIS queries. Includes a crossing restriction example and the source code definitions.",
+      "spatialCoverage": "Greenpoint, Brooklyn and Long Island City, Queens, New York City, United States",
+      "temporalCoverage": "2026-03-02/2026-11-24",
+      "datePublished": "2026-11-24",
+      "sourceReuse": {
+        "note": "Credit NYC DOT and NYC City Planning. Keep the effective date, street limits and source versions with each reused observation.",
+        "policyUrl": "https://www.nyc.gov/opendata/get-started/what-is-open-data-",
+        "policyLabel": "NYC Open Data policy"
+      },
+      "sources": [
+        "https://rules.cityofnewyork.us/rule/dot-proposed-amendment-of-rules-relating-to-citywide-truck-routes/",
+        "https://rules.cityofnewyork.us/wp-content/uploads/2026/09/Notice-of-Adoption-Truck-Routes-Final-Approved-with-Certification.pdf",
+        "https://home4.nyc.gov/html/dot/downloads/pdf/truck-route-network-redesign-changes-2026.pdf",
+        "https://data.cityofnewyork.us/api/views/jjja-shxy.json",
+        "https://data.cityofnewyork.us/resource/jjja-shxy.json?%24select=objectid_1%2Cstreet%2Cboroname%2Croutetype%2Ctruckroute%2Csegmentid%2Crestrictio&%24where=segmentid+in+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&%24order=segmentid%2Cobjectid_1&%24limit=100",
+        "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0?f=json",
+        "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0/query?where=SegmentID+IN+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&outFields=OBJECTID%2CSegmentID%2CStreet%2CLBoro%2CRBoro%2CNodeIDFrom%2CNodeIDTo%2CTRUCK_ROUTE_TYPE%2CTrafDir%2CSegmentTyp%2CRB_Layer%2CStatus&returnGeometry=true&outSR=4326&f=json&orderByFields=SegmentID%2COBJECTID",
+        "https://nycplanning.github.io/Geosupport-UPG/appendices/appendix03/",
+        "https://www.panynj.gov/content/dam/bridges-tunnels/truckers-guides/Truckers%20Guide_Eng_Apr%202026.pdf"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Citywide truck route rule adoption and effective date",
+          "publisher": "NYC DOT",
+          "url": "https://rules.cityofnewyork.us/rule/dot-proposed-amendment-of-rules-relating-to-citywide-truck-routes/"
+        },
+        {
+          "title": "Final text of NYC Truck Route Network amendments. Queens p. 9 and Brooklyn p. 26",
+          "publisher": "NYC DOT",
+          "url": "https://rules.cityofnewyork.us/wp-content/uploads/2026/09/Notice-of-Adoption-Truck-Routes-Final-Approved-with-Certification.pdf"
+        },
+        {
+          "title": "Map and list of October 4 additions, removals and designation changes",
+          "publisher": "NYC DOT",
+          "url": "https://home4.nyc.gov/html/dot/downloads/pdf/truck-route-network-redesign-changes-2026.pdf"
+        },
+        {
+          "title": "New York City Truck Routes public feature dataset, update metadata",
+          "publisher": "NYC DOT",
+          "url": "https://data.cityofnewyork.us/api/views/jjja-shxy.json"
+        },
+        {
+          "title": "Replay the DOT feature search for eleven exact LION segment IDs",
+          "publisher": "NYC DOT",
+          "url": "https://data.cityofnewyork.us/resource/jjja-shxy.json?%24select=objectid_1%2Cstreet%2Cboroname%2Croutetype%2Ctruckroute%2Csegmentid%2Crestrictio&%24where=segmentid+in+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&%24order=segmentid%2Cobjectid_1&%24limit=100"
+        },
+        {
+          "title": "LION street centerline layer, editing date and field names",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0?f=json"
+        },
+        {
+          "title": "Replay the LION query for the same eleven segment IDs",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0/query?where=SegmentID+IN+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&outFields=OBJECTID%2CSegmentID%2CStreet%2CLBoro%2CRBoro%2CNodeIDFrom%2CNodeIDTo%2CTRUCK_ROUTE_TYPE%2CTrafDir%2CSegmentTyp%2CRB_Layer%2CStatus&returnGeometry=true&outSR=4326&f=json&orderByFields=SegmentID%2COBJECTID"
+        },
+        {
+          "title": "Geosupport data dictionary, truck route type values",
+          "publisher": "NYC Department of City Planning",
+          "url": "https://nycplanning.github.io/Geosupport-UPG/appendices/appendix03/"
+        },
+        {
+          "title": "Truckers’ Guide, vehicle height and lower-deck access restrictions",
+          "publisher": "Port Authority of New York and New Jersey",
+          "url": "https://www.panynj.gov/content/dam/bridges-tunnels/truckers-guides/Truckers%20Guide_Eng_Apr%202026.pdf"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download both corridor checks with IDs and source queries",
+          "path": "/blog/truck-routing-apis-nyc-truck-route-restrictions.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ai-compute-capacity-for-neoclouds",
     "topic": "Data Centers",
     "title": "Data center capacity for neoclouds and AI labs: power, space and cooling for your GPUs (2026)",

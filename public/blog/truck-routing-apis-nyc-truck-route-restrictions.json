@@ -1,0 +1,400 @@
+{
+  "name": "NYC truck route changes checked against DOT and LION street segments",
+  "checked_date": "2026-11-24",
+  "rule_effective_date": "2026-10-04",
+  "adopted_rule_url": "https://rules.cityofnewyork.us/wp-content/uploads/2026/09/Notice-of-Adoption-Truck-Routes-Final-Approved-with-Certification.pdf",
+  "change_map_url": "https://home4.nyc.gov/html/dot/downloads/pdf/truck-route-network-redesign-changes-2026.pdf",
+  "scope": "Two corridor comparisons. The source fields describe segment designation and the road centerline. Check the adopted rule, vehicle restrictions, and temporary notices for a trip.",
+  "source_queries": {
+    "nyc_dot_truck_routes": {
+      "query_url": "https://data.cityofnewyork.us/resource/jjja-shxy.json?%24select=objectid_1%2Cstreet%2Cboroname%2Croutetype%2Ctruckroute%2Csegmentid%2Crestrictio&%24where=segmentid+in+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&%24order=segmentid%2Cobjectid_1&%24limit=100",
+      "metadata_url": "https://data.cityofnewyork.us/api/views/jjja-shxy.json",
+      "rows_updated_utc": "2026-03-02T19:36:22+00:00",
+      "row_count": 1,
+      "records": [
+        {
+          "objectid_1": "9518.0",
+          "street": "GREENPOINT AVENUE",
+          "boroname": "Brooklyn",
+          "routetype": "Local",
+          "truckroute": "Y",
+          "segmentid": "0035007",
+          "restrictio": ""
+        }
+      ]
+    },
+    "city_planning_lion": {
+      "query_url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0/query?where=SegmentID+IN+%28%270035007%27%2C%270036717%27%2C%270036727%27%2C%270036834%27%2C%270036842%27%2C%270036956%27%2C%270036968%27%2C%270254689%27%2C%270254690%27%2C%270254691%27%2C%270254692%27%29&outFields=OBJECTID%2CSegmentID%2CStreet%2CLBoro%2CRBoro%2CNodeIDFrom%2CNodeIDTo%2CTRUCK_ROUTE_TYPE%2CTrafDir%2CSegmentTyp%2CRB_Layer%2CStatus&returnGeometry=true&outSR=4326&f=json&orderByFields=SegmentID%2COBJECTID",
+      "metadata_url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/LION/FeatureServer/0?f=json",
+      "data_last_edit_utc": "2026-11-23T21:52:45.642+00:00",
+      "raw_row_count": 15,
+      "selected_segment_count": 11,
+      "field_code_dictionary_url": "https://nycplanning.github.io/Geosupport-UPG/appendices/appendix03/"
+    }
+  },
+  "corridors": [
+    {
+      "street": "Greenpoint Avenue",
+      "borough": "Brooklyn",
+      "cross_streets": [
+        "West Street",
+        "Franklin Street"
+      ],
+      "rule_change": "removal from local truck route network",
+      "rule_pdf_page": 26,
+      "change_map_label": 13,
+      "segment_ids": [
+        "0035007"
+      ],
+      "dot_route_records": 1,
+      "lion_route_code": "2"
+    },
+    {
+      "street": "44th Drive",
+      "borough": "Queens",
+      "cross_streets": [
+        "Vernon Boulevard",
+        "Thomson Avenue"
+      ],
+      "rule_change": "addition to local truck route network",
+      "rule_pdf_page": 9,
+      "change_map_label": 11,
+      "segment_ids": [
+        "0036717",
+        "0036727",
+        "0036834",
+        "0036842",
+        "0036956",
+        "0036968",
+        "0254689",
+        "0254690",
+        "0254691",
+        "0254692"
+      ],
+      "dot_route_records": 0,
+      "lion_route_code": " "
+    }
+  ],
+  "lion_segment_rows": [
+    {
+      "attributes": {
+        "SegmentID": "0035007",
+        "Street": "GREENPOINT AVENUE",
+        "LBoro": 3,
+        "RBoro": 3,
+        "NodeIDFrom": "0022057",
+        "NodeIDTo": "0022137",
+        "TRUCK_ROUTE_TYPE": "2",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9592449919146,
+            40.7297300125316
+          ],
+          [
+            -73.9575956622598,
+            40.7298870060993
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0036717",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0023027",
+        "NodeIDTo": "0023033",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9522148465296,
+            40.7490638290176
+          ],
+          [
+            -73.9516409474215,
+            40.748942732716
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0036727",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0023033",
+        "NodeIDTo": "0023106",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9516409474215,
+            40.748942732716
+          ],
+          [
+            -73.9496295774733,
+            40.7485482681939
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0036834",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0023106",
+        "NodeIDTo": "0023110",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9496295774733,
+            40.7485482681939
+          ],
+          [
+            -73.9473565811187,
+            40.748115665751
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0036842",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0023110",
+        "NodeIDTo": "0023186",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9473565811187,
+            40.748115665751
+          ],
+          [
+            -73.9450577161478,
+            40.7476721555314
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0036956",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0023186",
+        "NodeIDTo": "0023194",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9450577161478,
+            40.7476721555314
+          ],
+          [
+            -73.9438435024281,
+            40.7474378888235
+          ]
+        ]
+      ],
+      "source_row_count": 3
+    },
+    {
+      "attributes": {
+        "SegmentID": "0036968",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0023194",
+        "NodeIDTo": "0041283",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9438435024281,
+            40.7474378888235
+          ],
+          [
+            -73.9427300760348,
+            40.7472089540819
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0254689",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0041283",
+        "NodeIDTo": "9034454",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9427300760348,
+            40.7472089540819
+          ],
+          [
+            -73.9424717240128,
+            40.7471517040717
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0254690",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "9034454",
+        "NodeIDTo": "0041285",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9424717240128,
+            40.7471517040717
+          ],
+          [
+            -73.9423831835411,
+            40.7471300045621
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0254691",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "0041285",
+        "NodeIDTo": "9034455",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9423831835411,
+            40.7471300045621
+          ],
+          [
+            -73.9423555920994,
+            40.747088150336
+          ]
+        ]
+      ],
+      "source_row_count": 1
+    },
+    {
+      "attributes": {
+        "SegmentID": "0254692",
+        "Street": "44 DRIVE",
+        "LBoro": 4,
+        "RBoro": 4,
+        "NodeIDFrom": "9034455",
+        "NodeIDTo": "0041286",
+        "TRUCK_ROUTE_TYPE": " ",
+        "TrafDir": "T",
+        "SegmentTyp": "U",
+        "RB_Layer": "B",
+        "Status": "2"
+      },
+      "geometry_paths_lon_lat": [
+        [
+          [
+            -73.9423555920994,
+            40.747088150336
+          ],
+          [
+            -73.9417113717825,
+            40.7461422423675
+          ]
+        ]
+      ],
+      "source_row_count": 3
+    }
+  ],
+  "crossing_example": {
+    "operator": "Port Authority of New York and New Jersey",
+    "crossing": "George Washington Bridge",
+    "reported_height_limit_inches": {
+      "upper_level": 162,
+      "lower_level": 162
+    },
+    "truck_use": "Upper level only, subject to other applicable restrictions",
+    "guide_url": "https://www.panynj.gov/content/dam/bridges-tunnels/truckers-guides/Truckers%20Guide_Eng_Apr%202026.pdf",
+    "current_restrictions_url": "https://www.panynj.gov/bridges-tunnels/en/restrictions.html"
+  },
+  "attribution": "Street centerlines and segment codes from New York City Department of City Planning. Truck route features, change maps and rule materials from New York City Department of Transportation."
+}
