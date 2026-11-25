@@ -4,7 +4,6 @@ import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
-import { coverSrcSet } from '../data/coverSrcSets'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { RESEARCH_DATASETS } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
@@ -28,7 +27,7 @@ function trackResearchLink(properties: {
 }
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
-  .map(({ image, notesPath, workflow, dataset }) => ({ ...study, image, notesPath, workflow, sample: dataset.downloads[0] })),
+  .map(({ image, srcSet, notesPath, workflow, dataset }) => ({ ...study, image, srcSet, notesPath, workflow, sample: dataset.downloads[0] })),
 )
 const featuredQuestions = new Map(featured.map(({ slug, title, summary }) => [slug, `${title} ${summary}`]))
 const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
@@ -152,12 +151,12 @@ export default function Datasets() {
             <Link className="dataset-method" to={DATA_USE_CASES_PATH}>All use-case guides <ResourceArrow diagonal /></Link>
           </div>
           <ul>
-            {featured.map(({ slug, title, summary, scope, evidence, image, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
+            {featured.map(({ slug, title, summary, scope, evidence, image, srcSet, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
               <li key={slug}>
                 <Link className="dataset-featured-study" to={notesPath} aria-labelledby={`featured-${slug}`}
                   onClick={() => trackResearchLink({ action: 'study', surface: 'featured', dataset: slug })}>
                   <div className="dataset-featured-image">
-                    <img src={image} srcSet={coverSrcSet(image)}
+                    <img src={image} srcSet={srcSet}
                       sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 940px) 44vw, min(29vw, 524px)"
                       alt="" width="1600" height="900" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
                     {imageLabel && <span>{imageLabel}</span>}

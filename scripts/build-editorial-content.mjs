@@ -219,7 +219,19 @@ const collectionCoverSrcSets = Object.fromEntries(blogCollections.map(({ slug, i
 writeIfChanged(new URL('.generated-collection-cover-srcsets.json', base), JSON.stringify(collectionCoverSrcSets))
 const searchDir = new URL('.generated-blog-search/', base)
 mkdirSync(searchDir, { recursive: true })
-const articleList = [...index, ...legacyArticles].map(({ slug, title, topic, summary, date, dateTime, updatedDate, region, image, dataset, additionalDatasets = [] }) => ({
+const publishedArticles = [...index, ...legacyArticles]
+const featuredDatasetSlugs = new Set(JSON.parse(readFileSync(new URL('featured-research-datasets.json', base), 'utf8')).map(({ slug }) => slug))
+const catalogDataset = ({ sources, ...dataset }) => dataset
+const catalogArticles = publishedArticles
+  .filter(({ dataset, additionalDatasets }) => dataset || additionalDatasets?.length)
+  .map(({ slug, title, topic, region, dateTime, image, dataset, additionalDatasets }) => ({
+    slug, title, topic, region, dateTime, image,
+    ...(featuredDatasetSlugs.has(slug) && { srcSet: coverSrcSets[image] }),
+    ...(dataset && { dataset: catalogDataset(dataset) }),
+    ...(additionalDatasets?.length && { additionalDatasets: additionalDatasets.map(catalogDataset) }),
+  }))
+writeIfChanged(new URL('dataset-articles.json', searchDir), JSON.stringify(catalogArticles))
+const articleList = publishedArticles.map(({ slug, title, topic, summary, date, dateTime, updatedDate, region, image, dataset, additionalDatasets = [] }) => ({
   slug, title, topic, summary, date, dateTime, updatedDate, region, image,
   datasetNames: [dataset?.name, ...additionalDatasets.map(item => item.name)].filter(Boolean).join(' '),
 }))
@@ -229,7 +241,7 @@ const directoryGuides = index.map(({ slug, title, summary, topic, region, datase
   path: `/blog/${slug}`, title, summary, topic, kind: 'Guide', articleSlug: slug,
   searchContext: `${region ?? ''} ${dataset?.name ?? ''}`,
 }))
-const directoryDatasets = [...index, ...legacyArticles].flatMap(({ slug, topic, region, dataset, additionalDatasets = [] }) =>
+const directoryDatasets = publishedArticles.flatMap(({ slug, topic, region, dataset, additionalDatasets = [] }) =>
   (dataset ? [dataset, ...additionalDatasets] : additionalDatasets).map(sample => ({
     path: `/datasets#${sample.anchor ? `${slug}-${sample.anchor}` : slug}`,
     title: sample.name,
@@ -249,7 +261,7 @@ writeIfChanged(new URL('resource-directory.json', searchDir), JSON.stringify({
 }))
 const research = JSON.parse(readFileSync(new URL('research-studies.json', base), 'utf8'))
 const researchSlugs = new Set(research.studies.map(({ slug }) => slug))
-writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify([...index, ...legacyArticles].filter(({ slug }) => researchSlugs.has(slug))))
+writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify(publishedArticles.filter(({ slug }) => researchSlugs.has(slug))))
 const articleSearch = Object.fromEntries(articles.map(article => {
   const headings = [
     ...article.sections.map(section => section.heading),

@@ -1,5 +1,4 @@
-import industryArticles from './industry-article-index.json'
-import legacyArticles from './legacy-blog-articles.json'
+import catalogArticles from './.generated-blog-search/dataset-articles.json'
 import { publishedDatasets } from './publishedDatasets'
 import type { ArticleDataset, ArticleSource, DatasetDownload } from './industryArticles'
 
@@ -27,10 +26,11 @@ export type ResourceArticle = {
   additionalDatasets?: ResourceDataset[]
 }
 
-// The published article titles, dates and assets are shared by both indexes.
-export const RESOURCE_ARTICLES: ResourceArticle[] = [
-  ...industryArticles as ResourceArticle[],
-  ...legacyArticles as ResourceArticle[],
-]
+type CatalogDataset = Omit<ResourceDataset, 'sources'>
+type CatalogArticle = Pick<ResourceArticle, 'slug' | 'title' | 'topic' | 'region' | 'dateTime' | 'image'> & {
+  srcSet?: string
+  dataset?: CatalogDataset
+  additionalDatasets?: CatalogDataset[]
+}
 
-export const RESEARCH_DATASETS = RESOURCE_ARTICLES.flatMap(publishedDatasets)
+export const RESEARCH_DATASETS = (catalogArticles as CatalogArticle[]).flatMap(article => publishedDatasets(article))

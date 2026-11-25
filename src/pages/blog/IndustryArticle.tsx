@@ -4,6 +4,7 @@ import DatasetCitation from '../../components/DatasetCitation'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, datasetSchema, faqSchema, howToSchema } from '../../components/Seo'
 import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
 import { publishedDatasets } from '../../data/publishedDatasets'
+import type { ResourceDataset } from '../../data/resources'
 import { SITE_SEARCH_REQUEST_PATH, SITE_SUBMISSION_PATH } from '../../data/siteContact'
 import './IndustryArticle.css'
 
@@ -15,7 +16,7 @@ function Citations({ ids, article }: { ids?: string[]; article: Article }) {
   })}</span>
 }
 
-type PublishedDatasets = ReturnType<typeof publishedDatasets>
+type PublishedDatasets = ReturnType<typeof publishedDatasets<ResourceDataset, Article['published']>>
 
 function Block({ block, article, datasets }: { block: ArticleBlock; article: Article; datasets: PublishedDatasets }) {
   if (block.type === 'paragraph') return <p>{block.text}<Citations ids={block.sourceIds} article={article} /></p>
