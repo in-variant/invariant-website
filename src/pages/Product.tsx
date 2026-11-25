@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, SITE_URL, ORG_SCHEMA, breadcrumbSchema } from '../components/Seo'
 import product from '../data/earth-product.json'
+import { formatEarthRequest } from '../data/formatEarthRequest.mjs'
 import './Resources.css'
 import './Product.css'
 
@@ -20,12 +21,7 @@ const service = {
   provider: { '@id': `${SITE_URL}/#organization` },
 }
 
-const requestCode = [
-  `curl ${sample.endpoint} \\`,
-  '  -H "X-API-Key: $INVARIANT_API_KEY" \\',
-  '  -H "Content-Type: application/json" \\',
-  "  -d '" + JSON.stringify(sample.request) + "'",
-].join('\n')
+const requestCode = formatEarthRequest(sample.endpoint, sample.request)
 
 function ApiExample() {
   const [view, setView] = useState<'response' | 'request'>('response')

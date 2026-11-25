@@ -16,6 +16,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { datasetCitationPath } from '../src/data/datasetCitationPath.mjs'
+import { formatEarthRequest } from '../src/data/formatEarthRequest.mjs'
 import { buildArticleCollectionLinks } from '../src/data/collectionGuideLinks.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
@@ -183,7 +184,7 @@ function productMd() {
 
 function coverageMd() {
   const fieldsByName = new Map(coverageFields.map(field => [field.name, field]))
-  const endpoints = { point: 'POST /v1/fetch', parcel: 'POST /v1/enrich' }
+  const endpoints = { point: '/v1/fetch', parcel: '/v1/enrich' }
   const shared = coverageFields.filter(({ definitions }) => definitions.point && definitions.parcel).length
   const operatorFields = coverageFields.filter(({ definitions }) => Object.values(definitions).some(definition => definition.operatorOnly))
   if (fieldsByName.size !== coverage.distinct || fieldsByName.size !== coverageFields.length || shared !== coverage.shared ||
@@ -199,6 +200,19 @@ function coverageMd() {
     }
   }
   const { links } = product
+  const { lat, lng } = product.sample.request
+  const requestExamples = [
+    ['point', 'electric_utility_service_territory', 'Find the candidate utility at a coordinate'],
+    ['parcel', 'fema_flood_zone', 'Check the mapped flood zone for the parcel'],
+  ].flatMap(([operation, name, heading]) => {
+    if (!fieldsByName.get(name)?.definitions[operation]) throw new Error(`Missing ${operation} request example field: ${name}`)
+    const endpoint = new URL(endpoints[operation], product.sample.endpoint).href
+    return [
+      `### ${heading}`, '',
+      `[Field definition and request](${SITE}${coverageFieldPath(name, operation)})`, '',
+      '```bash', formatEarthRequest(endpoint, { lat, lng, fields: [name] }), '```', '',
+    ]
+  })
   return [
     '# Invariant Earth API data coverage', '',
     `[Search the coverage catalog](${SITE}${links.coverage}). Snapshot checked ${coverage.checkedDate}.`, '',
@@ -207,7 +221,7 @@ function coverageMd() {
     ...(operatorFields.length ? ['## Fields marked as requiring an operator key', '',
       ...operatorFields.map(({ name, definitions }) =>
         '- `' + name + '`. ' + Object.entries(definitions).filter(([, definition]) => definition.operatorOnly)
-          .map(([operation]) => `\`${endpoints[operation]}\``).join(' and ') + '.'),
+          .map(([operation]) => `\`POST ${endpoints[operation]}\``).join(' and ') + '.'),
       '',
     ] : []),
     `- [Live point lookup manifest](${links.pointFields}) for \`POST /v1/fetch\`.`,
@@ -217,13 +231,16 @@ function coverageMd() {
     `- [Download the dated field snapshot](${SITE}/data-coverage-fields.json).`,
     `- [Request a field with example locations](${links.fieldRequests}).`,
     `- [Check response status and provenance](${links.responses}).`, '',
+    '## Try a field request', '',
+    'Set `INVARIANT_API_KEY` in your shell and use the coordinates you want to check. Fetch returns a status for each field. Enrich also reports the parcel match and explains unavailable fields in `field_omissions`.', '',
+    ...requestExamples,
     '## Workflows and field examples', '',
     ...coverageTopics.flatMap(({ title, description, fields, guide, guideLabel, researchTopic }) => [
       `### ${title}`, '', description, '',
       ...fields.flatMap(name => Object.entries(fieldsByName.get(name).definitions).map(([operation, definition]) => {
         const unit = definition.unit ? ` Unit ${definition.unit}.` : ''
         const access = definition.operatorOnly ? ' Operator key required.' : ''
-        return `- [\`${name}\`](${SITE}${coverageFieldPath(name, operation)}) (\`${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.sourceLabel ?? definition.source, definition.sourceUrl)}.`
+        return `- [\`${name}\`](${SITE}${coverageFieldPath(name, operation)}) (\`POST ${endpoints[operation]}\`). ${definition.description.trim()}${unit}${access} ${citationLink(definition.sourceLabel ?? definition.source, definition.sourceUrl)}.`
       })), '',
       `- [${guideLabel}](${SITE}${guide})`,
       `- [View research samples](${SITE}/datasets?${new URLSearchParams({ topic: researchTopic })}#dataset-search)`, '',

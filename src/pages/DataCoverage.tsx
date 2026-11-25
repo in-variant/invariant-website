@@ -4,6 +4,7 @@ import { ResourceArrow } from '../components/ResourceCards'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../components/Seo'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { coverageFieldPath } from '../data/coverageFieldPath.mjs'
+import { formatEarthRequest } from '../data/formatEarthRequest.mjs'
 import summary from '../data/earth-coverage-summary.json'
 import topics from '../data/earth-coverage-topics.json'
 import examples from '../data/earth-coverage-examples.json'
@@ -17,13 +18,41 @@ const canonical = `${SITE_URL}/data-coverage`
 const snapshotPath = '/data-coverage-fields.json'
 const checkDate = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(summary.checkedDate))
 const operations = {
-  point: { label: 'Point lookup', method: '/v1/fetch', reference: product.links.fields },
-  parcel: { label: 'Parcel enrichment', method: '/v1/enrich', reference: product.links.parcelFieldReference },
+  point: { label: 'Point lookup', method: '/v1/fetch', reference: product.links.fields, docs: 'https://docs.invariant-ai.com/api/fetch' },
+  parcel: { label: 'Parcel enrichment', method: '/v1/enrich', reference: product.links.parcelFieldReference, docs: 'https://docs.invariant-ai.com/api/enrich' },
 } as const
 type Operation = keyof typeof operations
 type Definition = { description: string; unit?: string | null; source: string; sourceUrl: string; sourceLabel?: string; operatorOnly?: boolean }
 type Field = { name: string; label?: string; definitions: Partial<Record<Operation, Definition>> }
 const exampleFields: Record<string, Field> = examples
+
+function FieldRequest({ name, operation, operatorOnly }: { name: string; operation: Operation; operatorOnly?: boolean }) {
+  const [feedback, setFeedback] = useState('')
+  const { lat, lng } = product.sample.request
+  const endpoint = new URL(operations[operation].method, product.sample.endpoint).href
+  const command = formatEarthRequest(endpoint, { lat, lng, fields: [name] })
+
+  async function copyRequest() {
+    try {
+      await navigator.clipboard.writeText(command)
+      setFeedback('Request copied.')
+    } catch {
+      setFeedback('Select and copy the command.')
+    }
+  }
+
+  return (
+    <details className="coverage-request">
+      <summary>Request example</summary>
+      <p>Set <code>INVARIANT_API_KEY</code> to your {operatorOnly ? 'operator key' : 'API key'} and replace the latitude and longitude with your coordinates.</p>
+      <pre><code>{command}</code></pre>
+      <div className="coverage-request-actions">
+        <button className="coverage-action" type="button" onClick={copyRequest}>Copy request</button>
+        <span role="status">{feedback}</span>
+      </div>
+    </details>
+  )
+}
 
 function FieldDetails({ field, operation, compact, linked }: {
   field: Field
@@ -49,7 +78,9 @@ function FieldDetails({ field, operation, compact, linked }: {
           <div key={key} className="coverage-definition">
             <div className="coverage-definition-title">
               <strong>{operations[key].label}</strong>
-              <code>POST {operations[key].method}</code>
+              <a href={operations[key].docs} aria-label={`${operations[key].label} API reference`}>
+                <code>POST {operations[key].method}</code> <ResourceArrow diagonal />
+              </a>
               {definition.operatorOnly && !restricted && <span className="coverage-access">Operator key</span>}
             </div>
             <p>{definition.description}</p>
@@ -57,6 +88,7 @@ function FieldDetails({ field, operation, compact, linked }: {
               <a href={definition.sourceUrl}>{definition.sourceLabel ?? definition.source} <ResourceArrow diagonal /></a>
               {definition.unit && <span>Unit {definition.unit}</span>}
             </div>
+            {!compact && <FieldRequest name={field.name} operation={key} operatorOnly={definition.operatorOnly} />}
           </div>
         ))}
         {!linked && <Link className="coverage-field-link" to={coverageFieldPath(field.name, operation)}
