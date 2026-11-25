@@ -39,18 +39,21 @@ function cssFor(manifest, source, seen = new Set()) {
 
 function documentHtml(template, { body, seo }, stylesheets, preloadModules = []) {
   const title = seo.title.includes('Invariant') ? seo.title : `${seo.title} | Invariant`
+  const imageAlt = seo.ogImageAlt ? escapeHtml(seo.ogImageAlt) : ''
   const replacements = [
     [/<title>[^<]*<\/title>/, `<title>${escapeHtml(title)}</title>`],
     [/<meta name="description"[^>]*>/, `<meta name="description" content="${escapeHtml(seo.description)}">`],
     [CANONICAL_TAG, seo.noindex ? NOINDEX_TAG : `<link rel="canonical" href="${escapeHtml(seo.canonical)}">`],
     [/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${escapeHtml(title)}">`],
     [/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${escapeHtml(seo.description)}">`],
-    [/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${escapeHtml(seo.ogImage)}">`],
+    [/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${escapeHtml(seo.ogImage)}">`
+      + (imageAlt ? `\n<meta property="og:image:alt" content="${imageAlt}">` : '')],
     [OG_URL_TAG, seo.noindex ? '' : `<meta property="og:url" content="${escapeHtml(seo.canonical)}">`],
     [/<meta property="og:type"[^>]*>/, `<meta property="og:type" content="${escapeHtml(seo.ogType)}">`],
     [/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${escapeHtml(title)}">`],
     [/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${escapeHtml(seo.description)}">`],
-    [/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${escapeHtml(seo.ogImage)}">`],
+    [/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${escapeHtml(seo.ogImage)}">`
+      + (imageAlt ? `\n<meta name="twitter:image:alt" content="${imageAlt}">` : '')],
   ]
   let out = template
   for (const [pattern, tag] of replacements) out = out.replace(pattern, () => tag)
@@ -66,6 +69,9 @@ function documentHtml(template, { body, seo }, stylesheets, preloadModules = [])
   const preload = [...new Set(preloadModules)]
     .filter(file => file && !template.includes(`href="/${escapeHtml(file)}"`))
     .map(file => `<link rel="modulepreload" crossorigin href="/${escapeHtml(file)}">`)
+  if (!seo.noindex && seo.allowLargeImagePreview) {
+    alternate.push('<meta name="robots" content="max-image-preview:large" data-prerender-seo>')
+  }
   out = out.replace('</head>', () => `${[...preload, ...schemas, ...alternate, ...css].join('\n')}\n</head>`)
   const routeHeadTag = /<(?:title|meta (?:name="(?:description|twitter:[^"]+)"|property="og:[^"]+")|link rel="canonical"|script type="application\/ld\+json")(?=[\s>])/g
   out = out.replace(routeHeadTag, '$& data-prerender-seo')

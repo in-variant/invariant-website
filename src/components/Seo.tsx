@@ -11,6 +11,8 @@ export type SeoProps = {
   description: string
   canonical?: string
   ogImage?: string
+  ogImageAlt?: string
+  allowLargeImagePreview?: boolean
   jsonLd?: object | object[]
   noindex?: boolean
   ogType?: 'website' | 'article'
@@ -25,6 +27,8 @@ export function Seo({
   description,
   canonical,
   ogImage = DEFAULT_OG,
+  ogImageAlt,
+  allowLargeImagePreview,
   jsonLd,
   noindex,
   ogType = 'website',
@@ -36,12 +40,13 @@ export function Seo({
     document.head.querySelectorAll('[data-prerender-seo]').forEach(tag => tag.remove())
   }, [])
   if (collectSeo) {
-    collectSeo({ title, description, canonical, ogImage, jsonLd, noindex, ogType, markdown, feed })
+    collectSeo({ title, description, canonical, ogImage, ogImageAlt, allowLargeImagePreview, jsonLd, noindex, ogType, markdown, feed })
     return null
   }
   const fullTitle = title.includes('Invariant') ? title : `${title} | Invariant`
   const url = canonical || SITE_URL
   const ld = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
+  const robots = noindex ? 'noindex,nofollow' : allowLargeImagePreview ? 'max-image-preview:large' : undefined
   return (
     <Helmet>
       <title>{fullTitle}</title>
@@ -49,10 +54,11 @@ export function Seo({
       {canonical && <link rel="canonical" href={canonical} />}
       {markdown && <link rel="alternate" type="text/markdown" href={markdown} title="Markdown for AI agents" />}
       {feed && <link rel="alternate" type="application/atom+xml" href={feed} title="Invariant Blog" />}
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {robots && <meta name="robots" content={robots} />}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
       {!noindex && <meta property="og:url" content={url} />}
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content="Invariant" />
@@ -60,6 +66,7 @@ export function Seo({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+      {ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
       {ld.map((d, i) => (
         <script key={i} type="application/ld+json">{JSON.stringify(d)}</script>
       ))}

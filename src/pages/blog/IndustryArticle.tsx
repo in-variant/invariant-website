@@ -194,6 +194,8 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const { image: cover } = article.published
   const datasets = publishedDatasets(article.published)
   const image = `${SITE_URL}${cover}`
+  const { width = 0, height = 0 } = article.coverImage ?? {}
+  const allowLargeImagePreview = width >= 1200 && width * height > 300_000
   const hub = INDUSTRY_HUBS[article.topic]
   const isIndiaGuide = article.kind === 'india-guide'
   const isDataGuide = article.topic === 'Data & APIs'
@@ -203,7 +205,9 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const hasWorksheet = article.sections.some(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
   const reviewedDate = article.updatedDate ?? article.date
   return <article className="blog-article industry-article">
-    <Seo title={article.title} description={article.description} canonical={canonical} markdown={`/blog/${article.slug}.md`} ogImage={image} ogType="article" jsonLd={articleJsonLd(article, canonical, image, datasets)} />
+    <Seo title={article.title} description={article.description} canonical={canonical}
+      markdown={`/blog/${article.slug}.md`} ogImage={image} ogImageAlt={article.coverAlt} ogType="article"
+      allowLargeImagePreview={allowLargeImagePreview} jsonLd={articleJsonLd(article, canonical, image, datasets)} />
     <BlogArticleHeader article={article.published} title={article.title} subtitle={isSiteListing ? article.intro : article.description} coverCaption={coverCaption} coverAlt={article.coverAlt} coverImage={article.coverImage} siteDetailsId={isSiteListing ? article.sections[0]?.id : undefined} />
     <div className="industry-article-layout">
       <aside className="industry-article-rail" aria-label="In this guide">

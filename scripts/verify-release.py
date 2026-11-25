@@ -76,6 +76,7 @@ class Page(HTMLParser):
         self.url = CANONICAL + path
         self.canonical = []
         self.robots = []
+        self.image_alt = []
         self.headings = []
         self.links = set()
         self.main_links = set()
@@ -136,6 +137,8 @@ class Page(HTMLParser):
             name = (attr.get("name") or attr.get("property") or "").lower()
             if name in {"robots", "googlebot", "bingbot"}:
                 self.robots.append(attr.get("content", ""))
+            if name in {"og:image:alt", "twitter:image:alt"}:
+                self.image_alt.append((name, attr.get("content", "")))
             if name in self.metadata:
                 self.metadata[name].append(attr.get("content") or "")
             if name in {"og:image", "twitter:image"}:
@@ -317,6 +320,8 @@ def verify(origin, job, expected_urls, preview, crawler=None):
                 require(actual.titles == expected.titles, "search title is missing, duplicated, or differs from dist/")
                 for key, content in expected.metadata.items():
                     require(actual.metadata[key] == content, f"{key} is missing, duplicated, or differs from dist/")
+                require(actual.image_alt == expected.image_alt, "social image descriptions differ from dist/")
+                require(actual.robots == expected.robots, "initial HTML robots directives differ from dist/")
                 require(actual.assets == expected.assets, "initial HTML asset references differ from dist/")
                 require(not excludes_indexing(actual.robots), "page contains noindex in HTML")
                 require(preview or not header_noindex, "public page sends X-Robots-Tag noindex")
