@@ -160,7 +160,11 @@ export default function DataCoverage() {
             </p>
           )}
           {showFields && error && <button type="button" className="coverage-action" onClick={() => setAttempt(attempt + 1)}>Try again</button>}
-          {searching && index && matches.length === 0 && <p>Try a different field name or search all operations.</p>}
+          {searching && index && matches.length === 0 && (
+            <p className="coverage-empty">
+              Try a different field name or <a href={product.links.fieldRequests}>request a data field</a>.
+            </p>
+          )}
           {matches.slice(0, count).map(field => <FieldDetails key={field.name} field={field} operation={operation} />)}
           {matches.length > count && <button type="button" className="coverage-action" onClick={() => setCount(count + pageSize)}>Show more fields</button>}
         </div>
@@ -190,6 +194,7 @@ export default function DataCoverage() {
       <nav className="resource-container coverage-next" aria-label="API access and research">
         <a href={product.links.quickstart}>Read the API quickstart <ResourceArrow diagonal /></a>
         <a href={product.links.keys}>Get an API key <ResourceArrow diagonal /></a>
+        <a href={product.links.fieldRequests}>Request a data field <ResourceArrow diagonal /></a>
         <a href={snapshotPath} download>Download the field snapshot</a>
         <Link to="/datasets">Browse data samples <ResourceArrow diagonal /></Link>
       </nav>

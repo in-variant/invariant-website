@@ -131,15 +131,16 @@ export default function Product() {
             <a className="earth-product-link" href={links.parcelLookup}>Look up a parcel by address <ResourceArrow diagonal /></a>
             <a className="earth-product-link" href={links.quickstart}>Read the quickstart <ResourceArrow diagonal /></a>
             <a className="earth-product-link" href={links.fields}>Field reference <ResourceArrow diagonal /></a>
+            <a className="earth-product-link" href={links.gisTrial}>Download the Python GIS trial <ResourceArrow diagonal /></a>
           </nav>
         </div>
         <div className="earth-product-operations">
-          {product.operations.map(({ title, method, description, docs }) => (
+          {product.operations.map(({ title, method, description, docs, docsLabel }) => (
             <article key={method}>
               <code>{method}</code>
               <h3>{title}</h3>
               <p>{description}</p>
-              <a className="earth-product-link" href={docs}>Read endpoint documentation <ResourceArrow diagonal /></a>
+              <a className="earth-product-link" href={docs}>{docsLabel} <ResourceArrow diagonal /></a>
             </article>
           ))}
         </div>

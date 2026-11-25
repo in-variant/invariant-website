@@ -14,6 +14,8 @@
     "mcp": "https://docs.invariant-ai.com/mcp/installation",
     "mcpEndpoint": "https://api.invariant-ai.com/mcp",
     "quickstart": "https://docs.invariant-ai.com/quickstart",
+    "fieldRequests": "https://docs.invariant-ai.com/api/field-requests",
+    "gisTrial": "https://github.com/in-variant/invariant-website/releases/tag/earth-gis-trial-v1.0.0",
     "parcelLookup": "https://docs.invariant-ai.com/lookup-parcel-by-address",
     "siteScreen": "https://docs.invariant-ai.com/screen-a-site",
     "research": "/research",
@@ -24,16 +26,32 @@
   },
   "operations": [
     {
+      "title": "Geocode a U.S. address",
+      "method": "POST /v1/geocode",
+      "description": "Resolve a street address to coordinates. Check whether the result is a published address point or an estimate along the street before using it for a parcel lookup.",
+      "docsLabel": "Geocode reference",
+      "docs": "https://docs.invariant-ai.com/api/geocode"
+    },
+    {
       "title": "Get fields for a coordinate",
       "method": "POST /v1/fetch",
       "description": "Request field values for one U.S. point. Look up terrain, hazard exposure and mapped infrastructure. Each field has its own status and source.",
+      "docsLabel": "Fetch reference",
       "docs": "https://docs.invariant-ai.com/api/fetch"
     },
     {
       "title": "Get records for a parcel",
       "method": "POST /v1/enrich",
       "description": "Find the containing parcel and request its records and parcel-level metrics. Check the parcel match status before you use the result.",
+      "docsLabel": "Enrich reference",
       "docs": "https://docs.invariant-ai.com/api/enrich"
+    },
+    {
+      "title": "Measure drive times and access",
+      "method": "POST /v1/proximity",
+      "description": "Compare distances and drive times, find nearby infrastructure, and screen sites against a travel-time limit. Estimate reachable population and labor force from Census tracts.",
+      "docsLabel": "Proximity reference",
+      "docs": "https://docs.invariant-ai.com/api/proximity"
     }
   ],
   "examplesHeading": "Data workflows by industry",
@@ -115,7 +133,7 @@
       "description": "See how road travel times change the estimated market around two Detroit grocery stores.",
       "href": "/blog/drive-time-demographics-census-trade-area",
       "workflow": {
-        "label": "Estimate reachable population",
+        "label": "Estimate reachable population by drive time",
         "href": "https://docs.invariant-ai.com/estimate-labor-shed-by-drive-time"
       }
     }

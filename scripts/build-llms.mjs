@@ -22,6 +22,8 @@ const sections = [
     ['Coverage and workflow examples', `${SITE}${links.coverage}.md`],
     ['Live point field catalog', links.pointFields],
     ['Live parcel fields and presets', links.parcelFields],
+    ['Request a data field', `${links.fieldRequests}.md`],
+    ['Download the versioned Python parcel and flood trial', links.gisTrial],
     ['Full API documentation index', `${links.docs}llms.txt`],
   ]],
   ['Datasets and research', [
@@ -110,13 +112,18 @@ out.push('')
 
 out.push('## Invariant Earth API')
 out.push('')
-out.push('Use `POST /v1/fetch` to request fields for one U.S. coordinate and `POST /v1/enrich` for records and metrics tied to the containing parcel. Check the live field catalogs for coverage. Field-level source URLs, retrieval timestamps and data vintages let you verify the results.')
+out.push('Check the live field catalogs for coverage. Field-level source URLs, retrieval timestamps and data vintages let you verify point and parcel results.')
+out.push('')
+for (const { method, description, docs } of product.operations) {
+  out.push(`- [${method}](${docs}.md). ${description}`)
+}
 out.push('')
 out.push(`- [Platform overview](${SITE}/product) and [Markdown setup guide](${SITE}/product.md).`)
 out.push(`- [API data coverage](${SITE}${links.coverage}) and [field counts and workflows](${SITE}${links.coverage}.md).`)
 out.push(`- [Get an API key](${links.keys}) and follow the [quickstart](${links.quickstart}). Find the full [API documentation](${links.docs}).`)
 out.push(`- [Connect the MCP server to your AI agent](${links.mcp}). Server URL ${links.mcpEndpoint}.`)
 out.push(`- [Live point fields](${links.pointFields}) for Fetch and [live parcel fields and presets](${links.parcelFields}) for Enrich. Read the [response reference](${links.responses}) for provenance and status.`)
+out.push(`- [Request a data field](${links.fieldRequests}.md) and [download the versioned Python parcel and flood trial](${links.gisTrial}).`)
 out.push('- [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [full docs as Markdown](https://docs.invariant-ai.com/llms-full.txt).')
 out.push(`- [Research case studies](${SITE}/research). Findings, methods and downloads for selected studies are also available [as Markdown](${SITE}/research.md).`)
 out.push(`- [Research datasets](${SITE}/datasets). Read named source records and find downloads in the [Markdown catalog](${SITE}/datasets.md). The [JSON catalog](${SITE}/datasets.json) also includes SHA-256 checksums.`)

@@ -143,6 +143,8 @@ function productMd() {
     `- [Look up a parcel by address](${links.parcelLookup})`,
     `- [Check API data coverage](${SITE}${links.coverage})`,
     `- [Browse API fields](${links.fields})`,
+    `- [Request a data field](${links.fieldRequests})`,
+    `- [Download the versioned Python parcel and flood trial](${links.gisTrial})`,
     `- [Live point fields](${links.pointFields}) and [live parcel fields and presets](${links.parcelFields})`, '',
     '## Choose what to query', '',
     ...product.operations.map(({ title, method, description, docs }) => `- [${title}](${docs}) (${method}). ${description}`), '',
@@ -200,6 +202,7 @@ function coverageMd() {
     `- [Live point lookup manifest](${links.pointFields}) for \`POST /v1/fetch\`.`,
     `- [Live parcel enrichment manifest](${links.parcelFields}) for \`POST /v1/enrich\`.`,
     `- [Download the dated field snapshot](${SITE}/data-coverage-fields.json).`,
+    `- [Request a field with example locations](${links.fieldRequests}).`,
     `- [Check response status and provenance](${links.responses}).`, '',
     '## Workflows and field examples', '',
     ...coverageTopics.flatMap(({ title, description, fields, guide, guideLabel, researchTopic }) => [

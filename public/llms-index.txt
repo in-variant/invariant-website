@@ -8,13 +8,19 @@ Start with the [short directory](https://invariant-ai.com/llms.txt) or read the 
 
 ## Invariant Earth API
 
-Use `POST /v1/fetch` to request fields for one U.S. coordinate and `POST /v1/enrich` for records and metrics tied to the containing parcel. Check the live field catalogs for coverage. Field-level source URLs, retrieval timestamps and data vintages let you verify the results.
+Check the live field catalogs for coverage. Field-level source URLs, retrieval timestamps and data vintages let you verify point and parcel results.
+
+- [POST /v1/geocode](https://docs.invariant-ai.com/api/geocode.md). Resolve a street address to coordinates. Check whether the result is a published address point or an estimate along the street before using it for a parcel lookup.
+- [POST /v1/fetch](https://docs.invariant-ai.com/api/fetch.md). Request field values for one U.S. point. Look up terrain, hazard exposure and mapped infrastructure. Each field has its own status and source.
+- [POST /v1/enrich](https://docs.invariant-ai.com/api/enrich.md). Find the containing parcel and request its records and parcel-level metrics. Check the parcel match status before you use the result.
+- [POST /v1/proximity](https://docs.invariant-ai.com/api/proximity.md). Compare distances and drive times, find nearby infrastructure, and screen sites against a travel-time limit. Estimate reachable population and labor force from Census tracts.
 
 - [Platform overview](https://invariant-ai.com/product) and [Markdown setup guide](https://invariant-ai.com/product.md).
 - [API data coverage](https://invariant-ai.com/data-coverage) and [field counts and workflows](https://invariant-ai.com/data-coverage.md).
 - [Get an API key](https://docs.invariant-ai.com/get-api-key) and follow the [quickstart](https://docs.invariant-ai.com/quickstart). Find the full [API documentation](https://docs.invariant-ai.com/).
 - [Connect the MCP server to your AI agent](https://docs.invariant-ai.com/mcp/installation). Server URL https://api.invariant-ai.com/mcp.
 - [Live point fields](https://api.invariant-ai.com/v1/meta/fields) for Fetch and [live parcel fields and presets](https://api.invariant-ai.com/v1/enrich/fields) for Enrich. Read the [response reference](https://docs.invariant-ai.com/responses) for provenance and status.
+- [Request a data field](https://docs.invariant-ai.com/api/field-requests.md) and [download the versioned Python parcel and flood trial](https://github.com/in-variant/invariant-website/releases/tag/earth-gis-trial-v1.0.0).
 - [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [full docs as Markdown](https://docs.invariant-ai.com/llms-full.txt).
 - [Research case studies](https://invariant-ai.com/research). Findings, methods and downloads for selected studies are also available [as Markdown](https://invariant-ai.com/research.md).
 - [Research datasets](https://invariant-ai.com/datasets). Read named source records and find downloads in the [Markdown catalog](https://invariant-ai.com/datasets.md). The [JSON catalog](https://invariant-ai.com/datasets.json) also includes SHA-256 checksums.
