@@ -456,9 +456,12 @@ def verify_dataset_catalog(catalog, pages):
             require(f"]({dataset['url']})" in markdown, f"{page.url} is missing from the Markdown dataset catalog")
             record = records[dataset["url"]]
             require(record["name"] == dataset["name"] and record["description"] == dataset["description"]
-                    and record["sources"] == dataset["isBasedOn"]
                     and record.get("datePublished", record["guide"]["published"]) == dataset["datePublished"],
                     f"{dataset['url']} has inconsistent JSON dataset metadata")
+            sources = [{"@type": "CreativeWork", "name": source["title"], "url": source["url"]}
+                       for source in record["sourceDetails"]]
+            require(dataset.get("isBasedOn") == sources,
+                    f"{dataset['url']} must identify each source by its published title and URL")
             reuse = record.get("sourceReuse")
             if reuse:
                 reuse_anchor = f"{anchor}-reuse"

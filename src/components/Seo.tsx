@@ -210,7 +210,11 @@ export function datasetSchema(dataset: ResourceDataset, articleUrl: string, date
     publisher: DATASET_PUBLISHER,
     includedInDataCatalog: DATA_CATALOG,
     isAccessibleForFree: true,
-    isBasedOn: dataset.sources,
+    isBasedOn: dataset.sourceDetails.map(source => ({
+      '@type': 'CreativeWork',
+      name: source.title,
+      url: source.url,
+    })),
     ...(dataset.sourceReuse && { usageInfo: `${url}-reuse` }),
     ...(dataset.spatialCoverage && { spatialCoverage: { '@type': 'Place', name: dataset.spatialCoverage } }),
     ...(dataset.temporalCoverage && { temporalCoverage: dataset.temporalCoverage }),
