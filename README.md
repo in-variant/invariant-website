@@ -37,7 +37,7 @@ The output keeps the reference observations and live responses in separate field
 
 ## Replay two FEMA address checks
 
-The [flood screening guide](https://invariant-ai.com/blog/data-center-flood-zone-screening#replay-fema-checks) covers 400 South Akard Street in Dallas and 655 North Franklin Street in Tampa. Run the script and its dated JSON together from this checkout or download both from the guide.
+The [flood screening guide](https://invariant-ai.com/blog/data-center-flood-zone-screening#replay-fema-checks) covers 400 South Akard Street in Dallas and 655 North Franklin Street in Tampa. Download the script and dated records together from the [versioned flood screening release](https://github.com/in-variant/invariant-website/releases/tag/data-center-flood-screening-v1.0.0), or run them from this checkout.
 
 ```bash
 python3 public/blog/data-center-flood-replay.py dallas
