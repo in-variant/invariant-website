@@ -1,0 +1,129 @@
+{
+  "name": "New York City easement instrument and parcel index crosswalk",
+  "retrieved": "2026-11-25",
+  "publisher": "Invariant",
+  "selection": "Two public agency cases selected to compare affirmative parcel flags with a recorded-easement instrument whose attached tax-lot rows carry N.",
+  "sources": {
+    "acris_master": {
+      "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cgood_through_date&%24where=crfn%20in%20%28%272021000504930%27%2C%272022000070247%27%29&%24order=crfn",
+      "responseSha256": "6bece9fd1eb23f5e7ebf3fc1d4b17e4df34b6288935a61ed0f90ff5d9661b0c9"
+    },
+    "acris_legals": {
+      "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Ceasement%2Cpartial_lot%2Cgood_through_date&%24where=document_id%20in%20%28%272021121501397001%27%2C%20%272022013100900002%27%29&%24order=document_id%2Cborough%2Cblock%2Clot",
+      "responseSha256": "0b5a3a5935f63159151b96df42447fa52d5ee6432cb145a54598f6e692828908"
+    },
+    "acris_codes": {
+      "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?doc__type=EASE",
+      "responseSha256": "b4bda7ac9ccb31781c6eee9de352d1fb13103211253b6cf183be2316321c8af5"
+    }
+  },
+  "instruments": [
+    {
+      "document_id": "2021121501397001",
+      "crfn": "2021000504930",
+      "doc_type": "EASE",
+      "document_date": "2021-12-15T00:00:00.000",
+      "recorded_datetime": "2021-12-23T00:00:00.000",
+      "good_through_date": "2021-12-31T00:00:00.000"
+    },
+    {
+      "document_id": "2022013100900002",
+      "crfn": "2022000070247",
+      "doc_type": "EASE",
+      "document_date": "2021-12-23T00:00:00.000",
+      "recorded_datetime": "2022-02-15T00:00:00.000",
+      "good_through_date": "2022-02-28T00:00:00.000"
+    }
+  ],
+  "indexed_lots": [
+    {
+      "document_id": "2021121501397001",
+      "borough": "4",
+      "block": "8129",
+      "lot": "44",
+      "easement": "Y",
+      "partial_lot": "E",
+      "good_through_date": "2021-12-31T00:00:00.000",
+      "bbl": "4081290044"
+    },
+    {
+      "document_id": "2021121501397001",
+      "borough": "4",
+      "block": "8129",
+      "lot": "64",
+      "easement": "Y",
+      "partial_lot": "P",
+      "good_through_date": "2021-12-31T00:00:00.000",
+      "bbl": "4081290064"
+    },
+    {
+      "document_id": "2021121501397001",
+      "borough": "4",
+      "block": "8129",
+      "lot": "65",
+      "easement": "Y",
+      "partial_lot": "P",
+      "good_through_date": "2021-12-31T00:00:00.000",
+      "bbl": "4081290065"
+    },
+    {
+      "document_id": "2022013100900002",
+      "borough": "1",
+      "block": "2197",
+      "lot": "47",
+      "easement": "N",
+      "partial_lot": "E",
+      "good_through_date": "2022-02-28T00:00:00.000",
+      "bbl": "1021970047"
+    },
+    {
+      "document_id": "2022013100900002",
+      "borough": "1",
+      "block": "2197",
+      "lot": "50",
+      "easement": "N",
+      "partial_lot": "E",
+      "good_through_date": "2022-02-28T00:00:00.000",
+      "bbl": "1021970050"
+    },
+    {
+      "document_id": "2022013100900002",
+      "borough": "1",
+      "block": "2197",
+      "lot": "75",
+      "easement": "N",
+      "partial_lot": "E",
+      "good_through_date": "2022-02-28T00:00:00.000",
+      "bbl": "1021970075"
+    },
+    {
+      "document_id": "2022013100900002",
+      "borough": "1",
+      "block": "2197",
+      "lot": "77",
+      "easement": "N",
+      "partial_lot": "E",
+      "good_through_date": "2022-02-28T00:00:00.000",
+      "bbl": "1021970077"
+    }
+  ],
+  "case_evidence": [
+    {
+      "label": "Little Neck driveway agreement",
+      "site": "43-20 Little Neck Parkway, Queens, New York",
+      "document_id": "2021121501397001",
+      "source": "https://www.nyc.gov/assets/bsa/downloads/pdf/decisions/332-79-BZII.pdf",
+      "locator": "Resolution 332-79-BZ, pages 3 and 4",
+      "context": "The board describes access to and from the parking parcel over adjoining lots. The text ties the agreement to an effective board approval and gives December 15, 2021 as the recording date. ACRIS separately reports December 15 in document_date and December 23 in recorded_datetime."
+    },
+    {
+      "label": "Inwood telecom easement",
+      "site": "4095 9th Avenue, Manhattan, New York",
+      "document_id": "2022013100900002",
+      "source": "https://www.nyc.gov/assets/hpd/downloads/pdfs/services/inwood-9th-addendum1.pdf",
+      "locator": "Addendum 1, Questions 30 and 32",
+      "context": "HPD identifies lots 50 and 75 as the development site and cites this agreement for Spectrum’s exclusive use of the easement area. The ACRIS Master record is an easement even though its four attached legal rows carry the value N."
+    }
+  ],
+  "bounds": "The selected public records support a document lookup. They do not establish surveyed easement boundaries, provide a complete title search, or verify the rights that are currently in force."
+}

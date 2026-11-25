@@ -1,5 +1,307 @@
 [
   {
+    "slug": "property-easement-lookup-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find Recorded Property Easements by Address",
+    "description": "Find an easement by address or parcel number, locate the recorded agreement, and see why a New York City parcel search can miss a real easement.",
+    "date": "2026-11-25",
+    "readMinutes": 6,
+    "coverAlt": "Aerial view of 4095 9th Avenue in Inwood with Manhattan tax lots 50 and 75 outlined beside the Harlem River.",
+    "coverCaption": "Manhattan block 2197, lots 50 and 75. The outlines show NYC MapPLUTO 26v3 tax lots. Aerial imagery by NYC OTI, 2024, CC BY 4.0, cropped and annotated by Invariant.",
+    "intro": "To find a recorded easement by address, match the address to a parcel number, search the recorder for that lot and its earlier identifiers, and open the agreement and its survey exhibit. At 4095 9th Avenue in Manhattan, New York City cites a recorded telecom easement over part of a development site. The city’s document index classifies it as an easement. Every attached tax-lot row has an easement flag of N.",
+    "takeaways": [
+      "Use the parcel number to find document candidates. Read the recorded agreement and exhibits to establish the area, permitted use and parties who benefit.",
+      "Search beyond the parcel’s easement flag. A search limited to rows marked Y would miss the Inwood agreement. Look up the document type and read the original instrument.",
+      "Keep execution and recording dates separate. At a Queens commercial property, the board decision and city instrument index assign different meanings to the same date."
+    ],
+    "sections": [
+      {
+        "id": "look-up-easements",
+        "heading": "Where to look for easements on a property",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Use the assessor or GIS map to resolve the address to the correct parcel. Take note of lots that share the same address and older lot numbers from splits or mergers.",
+              "Search the county recorder or register for the parcel number, the owner names in the deed chain and any document numbers in the deed or title commitment. Agreements, deeds and recorded plats can all carry easement language.",
+              "Pull the recorded agreement, legal description and exhibit. Read what was granted, over which land, to which party and for what purpose. Follow later amendments, notices and releases.",
+              "For a purchase, loan or development decision, ask the title team and surveyor to reconcile the instrument with the current legal description and proposed site plan."
+            ],
+            "sourceIds": [
+              "recorder",
+              "acris-help",
+              "clark",
+              "fairfax"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A GIS easement layer can indicate where to investigate. Fairfax County publishes a general easement layer and a separate stormwater layer, and acknowledges gaps in its mapped data. Clark County, Washington, points buyers to deeds, title reports and recorded surveys for evidence that may be absent from the map.",
+            "sourceIds": [
+              "fairfax",
+              "clark"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "new-york-case",
+        "heading": "Two easement searches in New York City",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "NYC’s ACRIS Legals table links documents to borough, block and lot. ACRIS Master supplies the document type, City Register File Number (CRFN), and the document and recording dates. Join them by document ID. The city’s control-code table defines EASE as an easement instrument.",
+            "sourceIds": [
+              "acris-legals",
+              "acris-master",
+              "acris-codes"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Site",
+              "Recorded reference",
+              "Parcel index",
+              "What the agency describes"
+            ],
+            "rows": [
+              [
+                "4095 9th Avenue, Inwood",
+                "CRFN 2022000070247. Recorded February 15, 2022 in ACRIS.",
+                "Manhattan block 2197. Lots 47, 50, 75 and 77 all carry N. The RFP identifies lots 50 and 75 as its site.",
+                "HPD cites the agreement for Spectrum’s exclusive use of the easement area."
+              ],
+              [
+                "43-20 Little Neck Parkway, Queens",
+                "CRFN 2021000504930. ACRIS lists December 15, 2021 as the document date and December 23 as the recording date.",
+                "Queens block 8129. Lots 44, 64 and 65 carry Y.",
+                "The board decision describes pedestrian and vehicle access to the parking parcel."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "acris-master",
+                "acris-legals",
+                "inwood-addendum",
+                "inwood-site"
+              ],
+              [
+                "acris-master",
+                "acris-legals",
+                "queens-decision"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Inwood developers asked whether the area could serve as a pedestrian path, building access or access to parking. HPD referred them to the recorded agreement and described Spectrum’s exclusive use. The city’s answer is a reason to retrieve the agreement before counting the area as usable access. The tax-lot outlines in the cover image locate the site. The agreement’s exhibit is the record to review for the easement limits.",
+            "sourceIds": [
+              "inwood-addendum",
+              "pluto"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In Queens, the board describes access from Little Neck Parkway over portions of lots 64 and 65 to the lot 44 parking area. The decision calls December 15 the recording date. The ACRIS index puts that day in the document-date field and lists December 23 separately as the recording date. Keep both sources in the file and use the recorded cover page to reconcile the discrepancy. The board’s decision also describes conditions tied to the variance, so pull any later approvals and changes before relying on the access.",
+            "sourceIds": [
+              "queens-decision",
+              "acris-master",
+              "acris-details"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the two recorded easement lookups",
+            "format": "JSON",
+            "path": "/blog/property-easement-lookup-by-address.json"
+          }
+        ]
+      },
+      {
+        "id": "compare-property-data",
+        "heading": "Which records to use for a site or collateral screen",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start in Invariant Earth with the parcel number and boundary, then route the confirmed lot to its recording jurisdiction. The public field catalog also documents a separate conservation easement point check sourced from USGS PAD-US. For a private driveway, telecom or utility easement, follow the recorder’s agreement and exhibits. Keep that instrument reference with the parcel and any earlier identifiers in the file.",
+            "sourceIds": [
+              "earth-fields",
+              "clark",
+              "recorder"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Decision",
+              "Evidence to request"
+            ],
+            "rows": [
+              [
+                "Can trucks, customers or emergency vehicles reach the site?",
+                "Access instrument, permitted users and vehicle types, recorded width, survey overlay and any maintenance or gate conditions."
+              ],
+              [
+                "Can the proposed building or power connection cross a corridor?",
+                "Recorded utility grant, surveyed limits, allowed encroachments, and any approval or relocation terms from the holder."
+              ],
+              [
+                "Can the lender rely on access at closing?",
+                "Current title commitment with exceptions and copies of instruments, the survey, and any amendments or releases needed to confirm the collateral’s access."
+              ]
+            ],
+            "sourceIds": [
+              "clark",
+              "fairfax",
+              "queens-decision",
+              "recorder"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/data-coverage?field=parcel_apn#coverage-search",
+                "label": "Check parcel number coverage in Invariant Earth"
+              },
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Trace a parcel through earlier boundaries and identifiers"
+              },
+              {
+                "slug": "commercial-real-estate-lending",
+                "label": "Review the rest of the commercial collateral file"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I find property easements online by address?",
+        "answer": "Start with the assessor’s address search to find the parcel number. Use that number in the recorder’s index, then retrieve the recorded agreement and any referenced survey or plat. Some counties index by party name or instrument number, so keep the current deed and earlier parcel numbers available."
+      },
+      {
+        "question": "Does a blank easement map mean a property has no easements?",
+        "answer": "A blank result describes the layer searched. Local GIS layers can omit agreements, older easements or entire categories of rights. At the Inwood site, all four related parcel rows carry N. The document index leads to the easement through its document type and filing number."
+      },
+      {
+        "question": "Is an easement the same as a right of way?",
+        "answer": "A right of way may describe a right to pass across land, a public street corridor or another interest depending on the jurisdiction and document. Read the specific grant or dedication to determine who can use it, which land it covers and what uses it allows."
+      }
+    ],
+    "sources": [
+      {
+        "id": "inwood-addendum",
+        "title": "Inwood 9th Avenue RFP Addendum 1, questions 30 and 32",
+        "url": "https://www.nyc.gov/assets/hpd/downloads/pdfs/services/inwood-9th-addendum1.pdf",
+        "publisher": "NYC Housing Preservation and Development"
+      },
+      {
+        "id": "inwood-site",
+        "title": "Inwood pre-submission conference, site description and tax lots",
+        "url": "https://www.nyc.gov/assets/hpd/downloads/pdfs/services/inwood-rfp-pre-submission-conf-nov-7-24.pdf",
+        "publisher": "NYC Housing Preservation and Development"
+      },
+      {
+        "id": "queens-decision",
+        "title": "Resolution 332-79-BZ, Little Neck driveway easement and variance conditions",
+        "url": "https://www.nyc.gov/assets/bsa/downloads/pdf/decisions/332-79-BZII.pdf",
+        "publisher": "NYC Board of Standards and Appeals"
+      },
+      {
+        "id": "acris-master",
+        "title": "ACRIS Master records for the two easement instruments",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cgood_through_date&%24where=crfn%20in%20%28%272021000504930%27%2C%272022000070247%27%29&%24order=crfn",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "acris-legals",
+        "title": "ACRIS Legals rows for both document IDs",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Ceasement%2Cpartial_lot%2Cgood_through_date&%24where=document_id%20in%20%28%272021121501397001%27%2C%20%272022013100900002%27%29&%24order=document_id%2Cborough%2Cblock%2Clot",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "acris-codes",
+        "title": "ACRIS definition of the EASE instrument code",
+        "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?doc__type=EASE",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "acris-help",
+        "title": "ACRIS search methods for document, party and parcel identifiers",
+        "url": "https://a836-acris.nyc.gov/acrisHelp/docsearch/default.htm",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "acris-details",
+        "title": "ACRIS document detail field definitions",
+        "url": "https://a836-acris.nyc.gov/acrisHelp/docsearch/Documents/detailview.htm",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "recorder",
+        "title": "City Register recording coverage and public records guidance",
+        "url": "https://www.nyc.gov/site/finance/taxes/property-recording-property-related-documents.page",
+        "publisher": "NYC Department of Finance"
+      },
+      {
+        "id": "clark",
+        "title": "Cadastral mapping and easement lookup guidance",
+        "url": "https://clark.wa.gov/assessor/cadastral-mapping-overview",
+        "publisher": "Clark County Assessor"
+      },
+      {
+        "id": "fairfax",
+        "title": "County easement GIS and land record coverage",
+        "url": "https://www.fairfaxcounty.gov/maps/gis-faq",
+        "publisher": "Fairfax County GIS and Mapping Services"
+      },
+      {
+        "id": "pluto",
+        "title": "MapPLUTO tax lot layer used for the cover outlines",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "imagery",
+        "title": "2024 New York City aerial imagery and CC BY 4.0 terms",
+        "url": "https://github.com/CityOfNewYork/nyc-geo-metadata/blob/main/Metadata/Metadata_AerialImagery.md",
+        "publisher": "NYC Office of Technology and Innovation"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Live parcel and conservation easement field definitions",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "publisher": "Invariant Earth"
+      }
+    ],
+    "dataset": {
+      "name": "New York City easement instrument and parcel index crosswalk",
+      "description": "Two recorded easement instruments and seven NYC tax-lot rows, with both dates, flags, public agency context, exact API queries and source-response hashes.",
+      "spatialCoverage": "Inwood, Manhattan and Little Neck, Queens, New York City, United States",
+      "temporalCoverage": "2021-12-15/2022-02-15",
+      "sourceIds": [
+        "acris-master",
+        "acris-legals",
+        "acris-codes",
+        "inwood-addendum",
+        "queens-decision"
+      ]
+    },
+    "relatedSlugs": [
+      "parcel-number-lookup-by-address",
+      "historical-parcel-boundaries-api",
+      "commercial-real-estate-data-apis-for-lenders",
+      "industrial-land-for-sale-acreage-zoning"
+    ]
+  },
+  {
     "slug": "daytime-population-retail-site-selection",
     "topic": "Data & APIs",
     "region": "Chicago, Illinois",
@@ -5857,6 +6159,10 @@
               {
                 "label": "Trace historical parcel boundaries",
                 "slug": "historical-parcel-boundaries-api"
+              },
+              {
+                "label": "Use that parcel number to find recorded easements",
+                "slug": "property-easement-lookup-by-address"
               },
               {
                 "label": "Check earthquake hazard for the same library address",
@@ -33328,6 +33634,10 @@
               {
                 "slug": "zoning-data-apis-for-site-selection",
                 "label": "Find local zoning and confirm the permitted use"
+              },
+              {
+                "slug": "property-easement-lookup-by-address",
+                "label": "Find recorded access and utility easements for the tract"
               },
               {
                 "path": "/data-coverage#zoning-terrain-and-water",

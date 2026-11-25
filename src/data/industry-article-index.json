@@ -1,5 +1,62 @@
 [
   {
+    "slug": "property-easement-lookup-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find Recorded Property Easements by Address",
+    "summary": "Find an easement by address or parcel number, locate the recorded agreement, and see why a New York City parcel search can miss a real easement.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/property-easement-lookup-by-address.webp?v=52aed3f8",
+    "dataset": {
+      "name": "New York City easement instrument and parcel index crosswalk",
+      "description": "Two recorded easement instruments and seven NYC tax-lot rows, with both dates, flags, public agency context, exact API queries and source-response hashes.",
+      "spatialCoverage": "Inwood, Manhattan and Little Neck, Queens, New York City, United States",
+      "temporalCoverage": "2021-12-15/2022-02-15",
+      "sources": [
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cgood_through_date&%24where=crfn%20in%20%28%272021000504930%27%2C%272022000070247%27%29&%24order=crfn",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Ceasement%2Cpartial_lot%2Cgood_through_date&%24where=document_id%20in%20%28%272021121501397001%27%2C%20%272022013100900002%27%29&%24order=document_id%2Cborough%2Cblock%2Clot",
+        "https://data.cityofnewyork.us/resource/7isb-wh4c.json?doc__type=EASE",
+        "https://www.nyc.gov/assets/hpd/downloads/pdfs/services/inwood-9th-addendum1.pdf",
+        "https://www.nyc.gov/assets/bsa/downloads/pdf/decisions/332-79-BZII.pdf"
+      ],
+      "sourceDetails": [
+        {
+          "title": "ACRIS Master records for the two easement instruments",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?%24select=document_id%2Ccrfn%2Cdoc_type%2Cdocument_date%2Crecorded_datetime%2Cgood_through_date&%24where=crfn%20in%20%28%272021000504930%27%2C%272022000070247%27%29&%24order=crfn"
+        },
+        {
+          "title": "ACRIS Legals rows for both document IDs",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24select=document_id%2Cborough%2Cblock%2Clot%2Ceasement%2Cpartial_lot%2Cgood_through_date&%24where=document_id%20in%20%28%272021121501397001%27%2C%20%272022013100900002%27%29&%24order=document_id%2Cborough%2Cblock%2Clot"
+        },
+        {
+          "title": "ACRIS definition of the EASE instrument code",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/7isb-wh4c.json?doc__type=EASE"
+        },
+        {
+          "title": "Inwood 9th Avenue RFP Addendum 1, questions 30 and 32",
+          "publisher": "NYC Housing Preservation and Development",
+          "url": "https://www.nyc.gov/assets/hpd/downloads/pdfs/services/inwood-9th-addendum1.pdf"
+        },
+        {
+          "title": "Resolution 332-79-BZ, Little Neck driveway easement and variance conditions",
+          "publisher": "NYC Board of Standards and Appeals",
+          "url": "https://www.nyc.gov/assets/bsa/downloads/pdf/decisions/332-79-BZII.pdf"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the two recorded easement lookups",
+          "path": "/blog/property-easement-lookup-by-address.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "daytime-population-retail-site-selection",
     "topic": "Data & APIs",
     "title": "How to Use Daytime Population for Retail Site Selection",
