@@ -29349,15 +29349,16 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Warehouse site selection for rail, trucks and trailer parking",
-    "description": "Verify direct rail service, legal truck routes, and trailer parking before leasing a warehouse. Compare carrier and property records from Illinois.",
+    "description": "Find a rail-served warehouse or transload terminal. Compare Kansas carrier and project records, then verify the siding, legal truck route and trailer parking before leasing.",
     "date": "2026-11-22",
     "updatedDate": "2026-11-25",
-    "readMinutes": 8,
+    "readMinutes": 9,
     "coverAlt": "Aerial map of 3801 and 3750 CenterPoint Way in Joliet, Illinois. The owner’s map pins are about a quarter mile apart. The listings report 133 and 256 trailer spaces respectively, with rail access marked No at both properties.",
     "coverCaption": "Two CenterPoint Way listings in Joliet. The map shows the owner’s location pins. Aerial imagery from USDA and USGS The National Map.",
     "intro": "To screen a warehouse for rail and truck access, start with the specific loading doors, yard, and gate you would lease. Find the railroad and route that can serve those doors, check a truck route from the interstate to the actual gate, and count the trailer spaces your operation can use at its busiest hour. Nearby tracks and a large parking count are useful leads. Verify each requirement at the property before using it to select a site.",
     "takeaways": [
       "For direct rail delivery, get the track identifier, the carrier that will place cars, and written service terms for the particular building.",
+      "Keep railcar storage, loading positions and the largest train an operator can handle as separate numbers. Verify which tracks and services are available now.",
       "Route the actual vehicle to the correct gate. Check clearance, posted limits, turns, and tolls along every segment.",
       "Two Joliet properties about a quarter mile apart list 133 and 256 trailer spaces. The owner marks rail access as No at both, even though Union Pacific lists an intermodal terminal on the same road."
     ],
@@ -29438,6 +29439,101 @@
         ]
       },
       {
+        "id": "kansas-rail-served-sites-and-transload",
+        "heading": "Where can you find rail-served industrial sites and transload terminals?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the railroad’s site directory and a transload operator’s terminal list. BNSF and Norfolk Southern publish both types of listings. Match each lead to the parcel or building you would actually use. The Kansas records below show how to tell park service, terminal opening and a construction bid apart.",
+            "sourceIds": [
+              "bnsf-served-sites-and-transload",
+              "norfolk-southern-nsites"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Kansas location",
+              "What the record supports",
+              "What to ask for"
+            ],
+            "rows": [
+              [
+                "Great Plains Industrial Park, Parsons",
+                "Watco lists active switching and transloading, Union Pacific connectivity and 400 terminal railcar spots.",
+                "The track and loading position assigned to your building, the number of cars the operator can place there, and the switching schedule."
+              ],
+              [
+                "Stafford County Transload Facility, St. John",
+                "A September 2026 congressional newsletter reports the ribbon cutting. Adams lists BNSF service and describes the unit-train loop as underway.",
+                "Which tracks and commodities the operator accepts today, and whether it can handle your proposed train or individual cars on your schedule."
+              ],
+              [
+                "Kansas Logistics Park, Newton",
+                "Newton’s Phase 1 rail-extension bid lists 6,520 track feet of new rail in one item. The bids were opened September 25, 2025.",
+                "The completion and railroad acceptance records for the phase that reaches your site, plus the confirmed first service date."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "watco-parsons-terminal"
+              ],
+              [
+                "stafford-ribbon-cutting",
+                "stafford-adams-transload"
+              ],
+              [
+                "newton-rail-phase-one-bid"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In Stafford County, the federal award lists $25 million for the transload and grain terminal project. The grant application describes room for 475 railcars of 62 feet each across the planned facility, including a 120-car unit-train loop and a separate 292-car manifest track capacity. A unit train moves one type of freight together. A manifest train can carry a mix of railcars and freight. Keep the proposed capacities tied to their tracks and ask which portions the operator can serve today.",
+            "sourceIds": [
+              "stafford-raise-award",
+              "stafford-port-application",
+              "stafford-adams-transload",
+              "bnsf-train-types"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To compare options, send each operator the same commodity, loaded car length and weight, origin and destination, typical shipment size and target start date. Ask how many cars it can place at once, what it charges for switching, unloading and storage, and who handles the truck leg. For a direct siding, also request the service agreement and maintenance responsibilities for the exact track.",
+            "sourceIds": [
+              "bnsf-served-sites-and-transload",
+              "watco-parsons-terminal",
+              "stafford-adams-transload",
+              "up-track-agreement"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/kansas-industrial-rail-and-transload-evidence.json",
+            "format": "JSON",
+            "label": "Download the Kansas rail service, terminal and bid records",
+            "datasetAnchor": "dataset-kansas-rail-and-transload"
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "industrial-land-for-sale-acreage-zoning",
+                "label": "Screen marketed industrial sites by usable acreage and zoning"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the Invariant Earth warehouse workflow to screen mapped rail and road access before asking the operator to confirm service for the property.",
+            "sourceIds": [
+              "earth-warehouse-rail-workflow"
+            ]
+          }
+        ]
+      },
+      {
         "id": "verify-the-gate-route",
         "heading": "Check the truck route to the gate and price each crossing",
         "blocks": [
@@ -29494,6 +29590,15 @@
       {
         "question": "How many trailer spaces does a warehouse need?",
         "answer": "Calculate the highest number of trailers parked at one time. Count the spaces available under the lease, then account for shared, blocked or staging positions and check the geometry for your trailers. Use truck arrival and dwell data to test the peak."
+      },
+      {
+        "question": "Can I ship by rail without an on-site siding?",
+        "answer": "A transload terminal can transfer freight between railcars and trucks. Confirm the serving railroad, commodity, equipment, shipment size, loading schedule and truck route to your property with the operator.",
+        "sourceIds": [
+          "bnsf-served-sites-and-transload",
+          "stafford-adams-transload",
+          "watco-parsons-terminal"
+        ]
       }
     ],
     "sources": [
@@ -29512,10 +29617,97 @@
       {"id": "property-3750", "title": "3750 CenterPoint Way property details", "url": "https://centerpoint.com/properties/3750-centerpoint-way/", "publisher": "CenterPoint Properties"},
       {"id": "houbolt-road", "title": "Houbolt Road Extension and I-80 connection", "url": "https://houboltroadextension.com/", "publisher": "Houbolt Road Extension"},
       {"id": "houbolt-tolls", "title": "Houbolt Road toll schedule effective April 1, 2026", "url": "https://houboltroadextension.com/tolling/", "publisher": "Houbolt Road Extension"},
-      {"id": "usgs-imagery", "title": "USGS Imagery Only service", "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer", "publisher": "USGS The National Map"}
+      {"id": "usgs-imagery", "title": "USGS Imagery Only service", "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer", "publisher": "USGS The National Map"},
+      {
+        "id": "watco-parsons-terminal",
+        "title": "Great Plains Industrial Park switching, transloading and terminal specifications",
+        "publisher": "Watco",
+        "linkLabel": "Watco terminal record",
+        "url": "https://www.watco.com/service/terminals/great-plains-industrial-park/"
+      },
+      {
+        "id": "stafford-port-application",
+        "title": "Central Kansas Transload Facility grant application 2025-078-GPDA, project description",
+        "publisher": "Port Authority of Stafford County, published by the Kansas State Treasurer",
+        "linkLabel": "Stafford County proposed track and capacity",
+        "url": "https://kansascash.ks.gov/assets/files/Application_2025-078-GPDA.pdf"
+      },
+      {
+        "id": "stafford-raise-award",
+        "title": "FY 2025 RAISE Round 1 awards, Stafford County Transload Facility, page 50",
+        "publisher": "U.S. Department of Transportation",
+        "linkLabel": "Stafford County federal award",
+        "url": "https://www.transportation.gov/sites/dot.gov/files/2025-01/RAISE%202025%20Round%201%20Award%20Fact%20Sheets_0.pdf#page=50"
+      },
+      {
+        "id": "stafford-ribbon-cutting",
+        "title": "September 11, 2026 district newsletter reporting the Stafford County Port Authority ribbon cutting",
+        "publisher": "Office of U.S. Representative Ron Estes",
+        "linkLabel": "Stafford County ribbon cutting",
+        "url": "https://estes.house.gov/news/email/show.aspx?ID=XDNQE6SHEB54UV2WNUUMUMTEQU"
+      },
+      {
+        "id": "stafford-adams-transload",
+        "title": "Stafford County Port Authority transload services and unit-train loop status",
+        "publisher": "Adams Industries",
+        "linkLabel": "St. John transload operator",
+        "url": "https://adamsindustriesinc.com/transloading/"
+      },
+      {
+        "id": "newton-rail-phase-one-bid",
+        "title": "KLP Rail Expansion Phase 1 bid tabulation, project 23RR000010 (523)",
+        "publisher": "City of Newton",
+        "linkLabel": "Newton rail extension bid",
+        "url": "https://www.newtonkansas.com/files/assets/newtonkansas/v/1/public-works/documents/bid-tabs/klp-rail-ext-ph-1-project_bid-tab-wi-negot-10-1-25.pdf"
+      },
+      {
+        "id": "bnsf-served-sites-and-transload",
+        "title": "BNSF rail-served development and transload search",
+        "publisher": "BNSF Railway",
+        "linkLabel": "BNSF site and transload tools",
+        "url": "https://www.bnsf.com/ship-with-bnsf/rail-development/build-rail-served-facility/"
+      },
+      {
+        "id": "norfolk-southern-nsites",
+        "title": "NSites rail-served locations and transload search",
+        "publisher": "Norfolk Southern",
+        "linkLabel": "Norfolk Southern NSites",
+        "url": "https://www.norfolksouthern.com/en/rail-development-property/industrial-rail-development/site-location-services"
+      },
+      {
+        "id": "earth-warehouse-rail-workflow",
+        "title": "Screen a warehouse for rail and truck access using Invariant Earth",
+        "publisher": "Invariant",
+        "linkLabel": "Run the warehouse access workflow",
+        "url": "https://docs.invariant-ai.com/screen-warehouse-rail-and-truck-access"
+      },
+      {
+        "id": "bnsf-train-types",
+        "title": "Railcar, unit train and manifest train descriptions",
+        "publisher": "BNSF Railway",
+        "linkLabel": "BNSF train types",
+        "url": "https://www.bnsf.com/about-bnsf/virtual-train-tour/hopper.html"
+      }
     ],
     "relatedSlugs": [
-      "truck-routing-apis-nyc-truck-route-restrictions","manufacturing-site-selection-100-buildable-acres", "truck-depot-charging-site-selection", "best-gis-apis-for-site-selection"]
+      "truck-routing-apis-nyc-truck-route-restrictions","manufacturing-site-selection-100-buildable-acres", "truck-depot-charging-site-selection", "best-gis-apis-for-site-selection"],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-kansas-rail-and-transload",
+        "name": "Kansas industrial rail service, transload capacity and construction records",
+        "description": "Three Kansas cases showing operator-reported service at Parsons, the Stafford County ribbon cutting and planned railcar capacities, and the dated Newton rail extension bid. Includes sources and questions to verify the service a specific site can receive.",
+        "datePublished": "2026-11-25",
+        "spatialCoverage": "Parsons, St. John and Newton, Kansas, United States",
+        "sourceIds": [
+          "watco-parsons-terminal",
+          "stafford-port-application",
+          "stafford-raise-award",
+          "stafford-ribbon-cutting",
+          "stafford-adams-transload",
+          "newton-rail-phase-one-bid"
+        ]
+      }
+    ]
   },
   {
     "slug": "business-broadband-availability-by-address",
@@ -30493,6 +30685,10 @@
               {
                 "slug": "manufacturing-site-selection-100-buildable-acres",
                 "label": "Test a plant layout against the acreage and utilities"
+              },
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Check a siding or transload terminal before shortlisting rail-served land"
               }
             ]
           }

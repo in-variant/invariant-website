@@ -1,0 +1,129 @@
+{
+  "name": "Kansas industrial rail service, transload capacity and construction records",
+  "guide": "https://invariant-ai.com/blog/warehouse-site-selection-rail-truck-access#dataset-kansas-rail-and-transload",
+  "reviewed_on": "2026-11-25",
+  "scope": "Three public Kansas records for initial industrial and freight screening. Confirm current facility, track and contract conditions with the operator.",
+  "sites": [
+    {
+      "name": "Great Plains Industrial Park",
+      "city": "Parsons",
+      "state": "KS",
+      "operator_report": {
+        "operator": "Watco",
+        "connecting_railroad": "Union Pacific",
+        "services": [
+          "switching",
+          "transloading"
+        ],
+        "terminal_railcar_spots": 400,
+        "unit_train_capacity_listed": true,
+        "source_id": "watco-parsons-terminal"
+      },
+      "tracks_assigned_to_target_building": null,
+      "available_railcar_spots": null
+    },
+    {
+      "name": "Stafford County Transload Facility",
+      "city": "St. John",
+      "state": "KS",
+      "federal_award": {
+        "program": "FY 2025 RAISE Round 1",
+        "amount_usd": 25000000,
+        "source_id": "stafford-raise-award"
+      },
+      "application_design": {
+        "reported_status": "proposed",
+        "planned_railcar_capacity": 475,
+        "design_railcar_length_ft": 62,
+        "planned_unit_train_loop_railcars": 120,
+        "planned_manifest_track_railcars": 292,
+        "source_id": "stafford-port-application"
+      },
+      "opening_evidence": {
+        "report_date": "2026-09-11",
+        "event": "Ribbon cutting reported",
+        "source_id": "stafford-ribbon-cutting"
+      },
+      "operator_report": {
+        "operator": "Adams Industries",
+        "connecting_railroad": "BNSF Railway",
+        "unit_train_loop_status_as_described": "underway",
+        "source_id": "stafford-adams-transload"
+      },
+      "accepted_unit_train_limit": null,
+      "available_railcar_spots": null,
+      "first_commercial_service_date": null
+    },
+    {
+      "name": "Kansas Logistics Park Rail Expansion, Phase 1",
+      "city": "Newton",
+      "state": "KS",
+      "bid": {
+        "city_project_number": "23RR000010 (523)",
+        "bid_opening": "2025-09-25",
+        "item_number": 4,
+        "new_rail_track_feet_in_bid_item": 6520,
+        "source_id": "newton-rail-phase-one-bid"
+      },
+      "verified_railroad_acceptance_date": null,
+      "verified_first_service_date": null
+    }
+  ],
+  "questions_for_operator": [
+    "Which track and loading position serve the parcel or warehouse?",
+    "Which carrier switches the track and on what schedule?",
+    "What commodity and equipment can you handle, including loaded weights and lengths?",
+    "How many railcars can you place at once and how much storage is available?",
+    "What costs apply for switching, unloading, storage and the truck leg?",
+    "Which facilities, service agreement and first shipment date can the operator confirm in writing?"
+  ],
+  "sources": [
+    {
+      "id": "watco-parsons-terminal",
+      "title": "Great Plains Industrial Park switching, transloading and terminal specifications",
+      "publisher": "Watco",
+      "linkLabel": "Watco terminal record",
+      "url": "https://www.watco.com/service/terminals/great-plains-industrial-park/"
+    },
+    {
+      "id": "stafford-port-application",
+      "title": "Central Kansas Transload Facility grant application 2025-078-GPDA, project description",
+      "publisher": "Port Authority of Stafford County, published by the Kansas State Treasurer",
+      "linkLabel": "Stafford County proposed track and capacity",
+      "url": "https://kansascash.ks.gov/assets/files/Application_2025-078-GPDA.pdf",
+      "locator": "Project Description, printed package page 10",
+      "document_sha256": "ea7b5eb081a0198efd4cd8e59af650738789a691ff3ea30c297283f1c5dc1b1d"
+    },
+    {
+      "id": "stafford-raise-award",
+      "title": "FY 2025 RAISE Round 1 awards, Stafford County Transload Facility, page 50",
+      "publisher": "U.S. Department of Transportation",
+      "linkLabel": "Stafford County federal award",
+      "url": "https://www.transportation.gov/sites/dot.gov/files/2025-01/RAISE%202025%20Round%201%20Award%20Fact%20Sheets_0.pdf#page=50",
+      "locator": "Stafford County Transload Facility, printed page 50"
+    },
+    {
+      "id": "stafford-ribbon-cutting",
+      "title": "September 11, 2026 district newsletter reporting the Stafford County Port Authority ribbon cutting",
+      "publisher": "Office of U.S. Representative Ron Estes",
+      "linkLabel": "Stafford County ribbon cutting",
+      "url": "https://estes.house.gov/news/email/show.aspx?ID=XDNQE6SHEB54UV2WNUUMUMTEQU"
+    },
+    {
+      "id": "stafford-adams-transload",
+      "title": "Stafford County Port Authority transload services and unit-train loop status",
+      "publisher": "Adams Industries",
+      "linkLabel": "St. John transload operator",
+      "url": "https://adamsindustriesinc.com/transloading/"
+    },
+    {
+      "id": "newton-rail-phase-one-bid",
+      "title": "KLP Rail Expansion Phase 1 bid tabulation, project 23RR000010 (523)",
+      "publisher": "City of Newton",
+      "linkLabel": "Newton rail extension bid",
+      "url": "https://www.newtonkansas.com/files/assets/newtonkansas/v/1/public-works/documents/bid-tabs/klp-rail-ext-ph-1-project_bid-tab-wi-negot-10-1-25.pdf",
+      "locator": "Page 1, base bid item 4",
+      "document_sha256": "0f5ffa5a94727bb57d7fbb6c544dad3ad4f94e5fb23d9fd9063ef194307ebb56"
+    }
+  ]
+}
