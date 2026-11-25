@@ -5,6 +5,7 @@ import { LEASE_RENT_DESCRIPTION, LEASE_RENT_SLUG, LEASE_RENT_TITLE } from '../..
 import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_SLUG, BATTERY_RECHARGE_TITLE } from '../../data/batteryRecharge'
 import { WATER_USE_DESCRIPTION, WATER_USE_SLUG, WATER_USE_TITLE } from '../../data/dataCenterWaterUse'
 import { AEP_DEMAND_DESCRIPTION, AEP_DEMAND_SLUG, AEP_DEMAND_TITLE } from '../../data/aepOhioDemandCharge'
+import { REFINANCE_DESCRIPTION, REFINANCE_SLUG, REFINANCE_TITLE } from '../../data/commercialRefinance'
 
 const URL = `${SITE_URL}/calculators`
 
@@ -33,6 +34,11 @@ const TOOLS = [
     slug: LEASE_RENT_SLUG,
     title: LEASE_RENT_TITLE,
     description: LEASE_RENT_DESCRIPTION,
+  },
+  {
+    slug: REFINANCE_SLUG,
+    title: REFINANCE_TITLE,
+    description: REFINANCE_DESCRIPTION,
   },
   {
     slug: BATTERY_RECHARGE_SLUG,
@@ -64,7 +70,7 @@ export default function CalculatorsIndex() {
     <>
       <Seo
         title="Infrastructure and compliance calculators"
-        description="Free calculators for data center power, water use, utility demand charges and service dates, plus battery recharge and commercial net effective rent."
+        description="Free calculators for data center power, water use and utility costs, battery recharge, commercial lease costs, and commercial refinance loan sizing."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}
         jsonLd={[
@@ -101,7 +107,7 @@ export default function CalculatorsIndex() {
             Infrastructure and compliance calculators
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Estimate data center power, water use, utility demand charges and service dates. Compare commercial lease costs, test battery recharge windows, and check licensing timelines and satellite deorbit feasibility.
+            Estimate data center power, water use, utility charges and service dates. Compare commercial leases and refinancing, test battery recharge windows, and check licensing timelines and satellite deorbit feasibility.
           </p>
 
           <ul className="mt-12 divide-y divide-ink/10">

@@ -35,6 +35,11 @@ const sections = [
   ['Examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,
   ])],
+  ['Commercial lending', [
+    ['Calculate a commercial refinance gap and break-even thresholds', `${SITE}/calculators/commercial-refinance-gap.md`],
+    ['Find dated CMBS property financials', `${SITE}/blog/cmbs-dscr-noi-by-property.md`],
+    ['Verify a commercial mortgage maturity date', `${SITE}/blog/commercial-mortgage-maturity-data-apis.md`],
+  ]],
   ['Data centers, land and power', [
     ['Find a U.S. data center site', `${SITE}/blog/find-data-center-site-us.md`],
     ['Compare data centers for sale and lease', `${SITE}/blog/data-center-for-sale.md`],
@@ -210,6 +215,7 @@ out.push('- [Data center water use calculator](https://invariant-ai.com/calculat
 out.push('- [AEP Ohio data center demand charge calculator](https://invariant-ai.com/calculators/aep-ohio-data-center-demand-charge.md), Compare the meter, minimum demand and 11-month lookback for one Schedule DCT new-load contract.')
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 out.push('- [Net effective rent calculator](https://invariant-ai.com/calculators/net-effective-rent.md), Compare commercial lease offers with annual increases, free months and build-out allowances.')
+out.push('- [Commercial real estate refinance gap calculator](https://invariant-ai.com/calculators/commercial-refinance-gap.md), Check DSCR, LTV and debt yield and find the income and property value required to cover payoff and costs.')
 out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calculators/battery-recharge-window.md), Check whether a grid-scale battery can recharge for a planned dispatch under import and export limits.')
 
 out.push('')

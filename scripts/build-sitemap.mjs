@@ -48,6 +48,7 @@ const CORE = [
   { loc: '/calculators/aep-ohio-data-center-demand-charge', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/data-center-power-delivery-schedule', lastmod: '2026-11-23', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/net-effective-rent', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },
+  { loc: '/calculators/commercial-refinance-gap', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators/battery-recharge-window', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.85' },
   { loc: '/calculators', changefreq: 'monthly', priority: '0.8' },
 ]
