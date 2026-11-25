@@ -27992,14 +27992,15 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Warehouse site selection for rail, trucks and trailer parking",
-    "description": "Screen warehouse sites for a usable rail spur, legal truck routes and trailer parking. Use a Joliet case to verify property details and price tolls.",
+    "description": "Verify direct rail service, legal truck routes, and trailer parking before leasing a warehouse. Compare carrier and property records from Illinois.",
     "date": "2026-11-22",
-    "readMinutes": 7,
+    "updatedDate": "2026-11-25",
+    "readMinutes": 8,
     "coverAlt": "Aerial map of 3801 and 3750 CenterPoint Way in Joliet, Illinois. The owner’s map pins are about a quarter mile apart. The listings report 133 and 256 trailer spaces respectively, with rail access marked No at both properties.",
     "coverCaption": "Two CenterPoint Way listings in Joliet. The map shows the owner’s location pins. Aerial imagery from USDA and USGS The National Map.",
     "intro": "To screen a warehouse for rail and truck access, start with the specific loading doors, yard, and gate you would lease. Find the railroad and route that can serve those doors, check a truck route from the interstate to the actual gate, and count the trailer spaces your operation can use at its busiest hour. Nearby tracks and a large parking count are useful leads. Verify each requirement at the property before using it to select a site.",
     "takeaways": [
-      "If you need railcars at the building, get the turnout, siding, and carrier’s switching terms for that exact property. Intermodal terminal access supports a different operation.",
+      "For direct rail delivery, get the track identifier, the carrier that will place cars, and written service terms for the particular building.",
       "Route the actual vehicle to the correct gate. Check clearance, posted limits, turns, and tolls along every segment.",
       "Two Joliet properties about a quarter mile apart list 133 and 256 trailer spaces. The owner marks rail access as No at both, even though Union Pacific lists an intermodal terminal on the same road."
     ],
@@ -28056,6 +28057,26 @@
             "label": "Download the Joliet property pins, parking counts, and toll calculation",
             "path": "/blog/warehouse-site-selection-rail-truck-access.geojson",
             "format": "GeoJSON"
+          }
+        ]
+      },
+      {
+        "id": "verify-direct-rail-service",
+        "heading": "How do you verify that a warehouse is rail-served?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give the railroad the warehouse address, the lease plan, and the track where cars would be placed for unloading. Ask which carrier handles the final switch, how many cars it can deliver at once, and which days it serves the site. Have the owner identify the track it controls and any track inspection or repair required before service."
+          },
+          {
+            "type": "paragraph",
+            "text": "At Elion Logistics Park 55 in Wilmington, Illinois, BNSF describes direct rail access at the park level. The city’s February 2026 redevelopment plan, published in its May 5 council packet, identifies a spur serving two transload warehouses, one refrigerated and one frozen. The same plan discusses additional spurs as future work. For a different building in the park, ask which track reaches its unloading area and who can authorize use of that track.",
+            "sourceIds": ["bnsf-wilmington", "wilmington-plan"]
+          },
+          {
+            "type": "paragraph",
+            "text": "Get the carrier’s service terms before setting a lease start date around rail delivery. Union Pacific requires an active track agreement for new industrial-track shipments, including a customer’s first shipment at a location that the railroad served before. Ask whose agreement covers your business, who maintains the track, and what must be completed before the first car arrives.",
+            "sourceIds": ["up-track-agreement", "up-private-track"]
           }
         ]
       },
@@ -28126,6 +28147,10 @@
       {"id": "here-truck", "title": "Routing API truck profiles and restrictions", "url": "https://docs.here.com/routing/docs/routing-v8-truck-routing", "publisher": "HERE"},
       {"id": "up-terminal", "title": "Global 4 Intermodal Terminal information", "url": "https://www.up.com/customers/premium/intmap/int-chi/joliet/", "publisher": "Union Pacific"},
       {"id": "up-transload", "title": "Global 4 grain transload facility", "url": "https://www.up.com/customers/premium/global4-transload/", "publisher": "Union Pacific"},
+      {"id": "bnsf-wilmington", "title": "Elion Logistics Park 55 rail access sheet", "url": "https://mobile.bnsf.com/bnsf-resources/pdf/ship-with-bnsf/rail-development/bnsf-premier-one-sheet-wilmington-il.pdf", "publisher": "BNSF Railway"},
+      {"id": "wilmington-plan", "title": "May 5 council packet, Ridgeport redevelopment plan, printed page 10", "url": "https://wilmington-il.gov/s/05-05-2026-City-Council-Agenda.pdf#page=23", "publisher": "City of Wilmington, Illinois"},
+      {"id": "up-track-agreement", "title": "Union Pacific track agreement policy", "url": "https://www.up.com/shipping/connect-to-rail/track-agreement", "publisher": "Union Pacific"},
+      {"id": "up-private-track", "title": "Union Pacific process for establishing private track service", "url": "https://www.up.com/shipping/connect-to-rail/process-private-track", "publisher": "Union Pacific"},
       {"id": "property-3801", "title": "3801 CenterPoint Way property details", "url": "https://centerpoint.com/properties/3801-centerpoint-way/", "publisher": "CenterPoint Properties"},
       {"id": "property-3750", "title": "3750 CenterPoint Way property details", "url": "https://centerpoint.com/properties/3750-centerpoint-way/", "publisher": "CenterPoint Properties"},
       {"id": "houbolt-road", "title": "Houbolt Road Extension and I-80 connection", "url": "https://houboltroadextension.com/", "publisher": "Houbolt Road Extension"},
