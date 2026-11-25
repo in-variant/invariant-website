@@ -15387,9 +15387,9 @@
   "kind": "site-listing",
   "region": "Virginia, United States",
   "title": "Virginia Data Center Sites for Sale and Powered Land",
-  "description": "Compare Virginia data center land listings and power records for specific addresses. See what Dominion service documents, operator specs and permits establish.",
+  "description": "Compare Virginia data center sites for sale and powered land. Check Dominion and municipal power records at specific addresses before you commit.",
   "date": "2026-11-09",
-  "readMinutes": 8,
+  "readMinutes": 9,
   "intro": "Virginia’s surplus property office lists about 356 acres in Dinwiddie County, and a broker lists 186 acres on Gordon Road in Spotsylvania County. Both are marketed for potential data center development. A broker also lists an investment property with leased data center space in Lynchburg. As of November 23, 2026, the public records reviewed did not establish how many megawatts a new buyer could use at any of the three sites.",
   "takeaways": [
    "The Dinwiddie offering has two advertised phases of roughly 207 and 149 acres. The state describes the land as R-1.",
@@ -15636,8 +15636,8 @@
        ],
        [
         "9905 Godwin Drive, Manassas",
-        "The City of Manassas reports that Digital Realty completed a 185,000-square-foot data center here in 2024. The DEQ snapshot lists this address as Operating under registration 74262. The same registration appears on an order for 10051 Brickyard Way, which Digital Realty lists separately in its annual filing.",
-        "Ask the operator and Manassas Electric to confirm the retail service account and contracted MW at this address. The air registration covers emergency generators."
+        "City records identify the Brickyard data center as a Manassas Electric customer and describe Dominion’s role building infrastructure for the city connection. The state air registry lists this address under registration 74262.",
+        "Ask Manassas Electric about current contracted demand. Ask Digital Realty what critical IT MW it can allocate at this address."
        ],
        [
         "8008 Devlin Road, Prince William County",
@@ -15661,11 +15661,9 @@
         "deq-loudoun-snapshot"
        ],
        [
-        "manassas-godwin-completion",
+        "godwin-city-electric-memo",
         "manassas-electric",
-        "digital-realty-2025-10k",
-        "deq-prince-william-snapshot",
-        "deq-consent"
+        "godwin-deq-air-row"
        ],
        [
         "pwc-devlin",
@@ -15694,6 +15692,77 @@
         "label": "Compare U.S. land prices, including Loudoun County"
        }
       ]
+     }
+    ]
+   },
+   {
+    "id": "9905-godwin-drive-data-center-power",
+    "heading": "Who supplies power to the data center at 9905 Godwin Drive?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Manassas’s November 2023 staff memo identifies the Brickyard Data Center as a customer of the City of Manassas. The memo says the city buys power from Dominion Energy and that Dominion was building infrastructure for the data center to connect to the city’s electric system. For a new load or service transfer at 9905 Godwin Drive, start with Manassas Electric and ask for the current service agreement and contracted demand.",
+      "sourceIds": [
+       "godwin-city-electric-memo",
+       "manassas-electric"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Record",
+       "What it establishes",
+       "What to ask for next"
+      ],
+      "rows": [
+       [
+        "Electric fund, November 2023",
+        "Council approved $2 million in budgeted revenue from Digital Realty and appropriated $2 million for payment to Dominion for the Brickyard project.",
+        "Get the current contracted MW and delivery milestones. The appropriation describes a pass-through payment for project work."
+       ],
+       [
+        "Building and air records",
+        "The city reports a May 2024 certificate of occupancy. The state air registry returned 9905 Godwin Drive as Operating under registration 74262 on November 25, 2026.",
+        "Match each document to its address and scope. Request the generator permit and amendments for backup-power diligence."
+       ],
+       [
+        "Owner’s SEC filings",
+        "Digital Realty lists 9905 Godwin Drive and 10051 Brickyard Way separately in its 2025 annual report. It closed the purchase of a blended 64% stake in two joint ventures, Dulles 9 and Brickyard, on June 30, 2026.",
+        "Confirm the property and contract schedule for any proposed transaction. The purchase percentage applies across the two joint ventures."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "godwin-city-electric-memo",
+        "godwin-city-budget",
+        "godwin-city-vote"
+       ],
+       [
+        "godwin-city-occupancy",
+        "godwin-deq-air-row"
+       ],
+       [
+        "digital-realty-2025-10k",
+        "godwin-dlr-2026-10q"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The records leave the current grid MW and unallocated IT MW at this address unverified. Ask Manassas Electric for the service account, contracted load and next utility milestone. Ask Digital Realty for the critical IT allocation, floor or hall, and acceptance date in the proposed lease. Keep the city account and Dominion infrastructure role in separate fields when comparing other Northern Virginia properties.",
+      "sourceIds": [
+       "godwin-city-electric-memo",
+       "manassas-electric",
+       "godwin-dlr-2026-10q"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/manassas-godwin-drive-electric-service-records.json",
+      "label": "Download the Godwin Drive electric-service and property records",
+      "format": "JSON",
+      "datasetAnchor": "dataset-manassas-godwin-electric-service"
      }
     ]
    },
@@ -16184,6 +16253,14 @@
     "sourceIds": [
      "deq-addresses"
     ]
+   },
+   {
+    "question": "Does Dominion Energy supply the data center at 9905 Godwin Drive?",
+    "answer": "Manassas’s November 2023 memo identifies the Brickyard data center as a city electric customer. Dominion supplies the city and was building infrastructure for the Brickyard connection. Ask Manassas Electric for the current account, contracted demand and any future allocation at the address.",
+    "sourceIds": [
+     "godwin-city-electric-memo",
+     "manassas-electric"
+    ]
    }
   ],
   "sources": [
@@ -16417,6 +16494,42 @@
     "publisher": "H5 Data Centers",
     "url": "https://h5datacenters.com/herndon-data-center.html",
     "linkLabel": "H5 Herndon campus specifications"
+   },
+   {
+    "id": "godwin-city-electric-memo",
+    "publisher": "City of Manassas",
+    "title": "November 20, 2023 staff memo on Brickyard electric service and Dominion’s infrastructure role, PDF page 103",
+    "url": "https://d3n9y02raazwpg.cloudfront.net/manassascity/cb19be6d-597f-11ee-ae13-0050569183fa-b4be4827-ac68-4086-a469-aae8424d2873-1700496423.pdf#page=103"
+   },
+   {
+    "id": "godwin-city-budget",
+    "publisher": "City of Manassas",
+    "title": "Resolution 2024-07-R electric-fund appropriation, PDF page 67",
+    "url": "https://d3n9y02raazwpg.cloudfront.net/manassascity/e8fa15fc-814a-11ed-9024-0050569183fa-696dbaef-5989-4ccc-934b-9616196eb0ff-1701113314.pdf#page=67"
+   },
+   {
+    "id": "godwin-city-vote",
+    "publisher": "City of Manassas",
+    "title": "November 27, 2023 minutes approving consent item 1.5, PDF pages 37–38",
+    "url": "https://d3n9y02raazwpg.cloudfront.net/manassascity/e8fe1158-814a-11ed-9024-0050569183fa-696dbaef-5989-4ccc-934b-9616196eb0ff-1702656598.pdf#page=37"
+   },
+   {
+    "id": "godwin-city-occupancy",
+    "publisher": "City of Manassas",
+    "title": "May 2025 Brickyard release with address variant and May 2024 occupancy certificate, PDF pages 1–2",
+    "url": "https://cms9files.revize.com/manassasva/Communications/2025%20Press%20Releases/NR%20003%20-%20Brickyard%20Data%20Center.pdf#page=2"
+   },
+   {
+    "id": "godwin-deq-air-row",
+    "publisher": "Virginia Department of Environmental Quality",
+    "title": "Daily Air Sites registry query for registration 74262",
+    "url": "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?f=json&outFields=PLA_REG_NUM%2CPLA_NAME%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CPLA_ICIS_ID&returnGeometry=false&where=PLA_REG_NUM%3D74262"
+   },
+   {
+    "id": "godwin-dlr-2026-10q",
+    "publisher": "Digital Realty Trust",
+    "title": "September 2026 Form 10-Q, Note 3 on the June Dulles 9 and Brickyard acquisition",
+    "url": "https://www.sec.gov/Archives/edgar/data/1494877/000110465926120710/dlr-20260930x10q.htm"
    }
   ],
   "relatedSlugs": [
@@ -16481,6 +16594,23 @@
      "h5-herndon-campus"
     ],
     "spatialCoverage": "Loudoun County and Fairfax County, Virginia, United States"
+   },
+   {
+    "anchor": "dataset-manassas-godwin-electric-service",
+    "name": "9905 Godwin Drive electric-service, occupancy and air-registry records",
+    "description": "City council records identify the customer and utility roles for the Brickyard project and explain the $2 million electric-fund appropriation. The sample links those records to a May 2024 occupancy milestone, Virginia air registration 74262 and the scope of Digital Realty’s June 2026 joint venture acquisition.",
+    "datePublished": "2026-11-25",
+    "sourceIds": [
+     "godwin-city-electric-memo",
+     "godwin-city-budget",
+     "godwin-city-vote",
+     "godwin-city-occupancy",
+     "godwin-deq-air-row",
+     "godwin-dlr-2026-10q",
+     "digital-realty-2025-10k"
+    ],
+    "spatialCoverage": "9905 Godwin Drive, Manassas, Virginia, United States",
+    "temporalCoverage": "2023-11-20/2026-11-25"
    }
   ]
  },
