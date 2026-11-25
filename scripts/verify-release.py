@@ -546,14 +546,23 @@ def verify_dataset_catalog(catalog, pages):
             require(record["name"] == dataset["name"] and record["description"] == dataset["description"]
                     and record.get("datePublished", record["guide"]["published"]) == dataset["datePublished"],
                     f"{dataset['url']} has inconsistent JSON dataset metadata")
-            sources = [{"@type": "CreativeWork", "name": source["title"], "url": source["url"]}
+            sources = [{"@type": "CreativeWork", "name": source["title"], "url": source["url"],
+                        **({"license": source["license"]} if "license" in source else {})}
                        for source in record["sourceDetails"]]
             require(dataset.get("isBasedOn") == sources,
                     f"{dataset['url']} must identify each source by its published title and URL")
+            for source in record["sourceDetails"]:
+                if license_url := source.get("license"):
+                    require(license_url in catalog.main_links and license_url in markdown,
+                            f"{dataset['url']} needs a visible link to the original source license")
             reuse = record.get("sourceReuse")
             if reuse:
                 reuse_anchor = f"{anchor}-reuse"
-                require(dataset.get("usageInfo") == f"{page.url}#{reuse_anchor}" and page.ids.count(reuse_anchor) == 1,
+                require(dataset.get("usageInfo") == f"{page.url}#{reuse_anchor}" and page.ids.count(reuse_anchor) == 1
+                        and reuse["note"] in page.main_text and reuse["note"] in catalog.main_text
+                        and reuse["policyUrl"] in page.main_links and reuse["policyUrl"] in catalog.main_links
+                        and reuse["note"] in article_markdown and reuse["policyUrl"] in article_markdown
+                        and reuse["note"] in markdown and reuse["policyUrl"] in markdown,
                         f"{dataset['url']} needs a visible usage note matching its structured data")
             downloads = {file["url"]: file for file in record["downloads"]}
             require(len(downloads) == len(record["downloads"]) and downloads.keys() == {

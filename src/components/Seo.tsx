@@ -214,6 +214,7 @@ export function datasetSchema(dataset: ResourceDataset, articleUrl: string, date
       '@type': 'CreativeWork',
       name: source.title,
       url: source.url,
+      ...(source.license && { license: source.license }),
     })),
     ...(dataset.sourceReuse && { usageInfo: `${url}-reuse` }),
     ...(dataset.spatialCoverage && { spatialCoverage: { '@type': 'Place', name: dataset.spatialCoverage } }),

@@ -304,7 +304,8 @@ function datasetCatalogMd() {
       ...(dataset.sourceReuse ? [`- ${dataset.sourceReuse.note} ${citationLink(dataset.sourceReuse.policyLabel, dataset.sourceReuse.policyUrl)}`] : []),
       ...dataset.downloads.map(file => `- [${file.label} (${file.format})](${SITE}${file.path})`),
       '', 'Source records', '',
-      ...dataset.sourceDetails.map(({ publisher, title, url }) => `- ${publisher} · ${citationLink(title, url)}`),
+      ...dataset.sourceDetails.map(({ publisher, title, url, license }) =>
+        `- ${publisher} · ${citationLink(title, url)}${license ? ` · ${citationLink('Source license', license)}` : ''}`),
       '',
     )
   }

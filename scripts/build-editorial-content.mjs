@@ -104,7 +104,12 @@ for (const article of articles) {
   }
   const ids = new Set(article.sources.map(source => source.id))
   if (ids.size !== article.sources.length) throw new Error(`Duplicate source: ${article.slug}`)
-  for (const source of article.sources) if (new URL(source.url).protocol !== 'https:') throw new Error(`Invalid source URL: ${source.url}`)
+  for (const source of article.sources) {
+    if (new URL(source.url).protocol !== 'https:') throw new Error(`Invalid source URL: ${source.url}`)
+    if (source.license !== undefined && new URL(source.license).protocol !== 'https:') {
+      throw new Error(`Invalid source license URL: ${article.slug} (${source.id})`)
+    }
+  }
   if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
   const blocks = article.sections.flatMap(section => section.blocks)
   for (const block of [...blocks, ...article.faqs]) {
@@ -169,7 +174,9 @@ for (const article of articles) {
       }
       registered.add(path)
     }
-    const sourceDetails = referencedSources.map(({ title, publisher, url }) => ({ title, publisher, url }))
+    const sourceDetails = referencedSources.map(({ title, publisher, url, license }) => ({
+      title, publisher, url, ...(license && { license }),
+    }))
     return { ...details, sources: sourceDetails.map(({ url }) => url), sourceDetails, downloads }
   }
   datasets.set(article.slug, {

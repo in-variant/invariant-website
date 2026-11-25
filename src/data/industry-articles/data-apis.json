@@ -923,6 +923,11 @@
     "dataset": {
       "name": "Historical UCC fixture filings and indexed terminations at the Empire State Building",
       "description": "Eight historical ACRIS fixture records for the Empire State Building. Includes three exact termination references, a linked continuation, the source address variants, and an initial filing unpaired in this sample. Public query URLs and response fingerprints accompany the selected rows.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Finance for the selected ACRIS fixture filing fields and NYC City Planning for PLUTO. Keep the recorded date, document ID and source queries with the joined rows.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "acris-legals",
         "acris-master",
@@ -1983,6 +1988,11 @@
     "dataset": {
       "name": "NYC sprinkler permits and job sign-off records for 1221 Avenue of the Americas",
       "description": "Three NYC sprinkler jobs and their work permits for BIN 1022693, with address aliases, floor scope, permit issuance, job status, sign-off evidence and explicit gaps in current coverage or condition.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Buildings for the permit and sign-off fields and NYC Office of Technology and Innovation for the building match. Keep the job number and retrieval date with each selected record.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "job-rows",
         "permit-rows",
@@ -2317,6 +2327,11 @@
       "datePublished": "2026-11-23",
       "spatialCoverage": "Midtown Manhattan and Jay Street, Brooklyn, New York City, United States",
       "temporalCoverage": "2026-05/2026-09",
+      "sourceReuse": {
+        "note": "Credit NYC DOT for the pedestrian counts. Retain the count window and table version when reusing the selected observations or the hourly rates calculated from them.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "dot-query",
         "dot-dataset",
@@ -2992,6 +3007,11 @@
     "dataset": {
       "name": "Empire State Building assessments and posted property tax charges",
       "description": "Five final NYC assessment records for fiscal years 2023–2027 and four posted TAX charges for FY2026 and FY2027, with parcel identity, tentative-stage evidence, adopted rates and a gross levy reconciliation.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Finance for the assessment and tax account figures. The sample selects records from different publications. Keep the roll year, assessment period and charge date with the figures.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "roll",
         "dictionary",
@@ -4015,6 +4035,11 @@
       "description": "Four exact NYC API queries and 14 annual energy disclosure rows. Includes two overlapping building-ID series, campus reporting scope, raw null and estimate flags, and reproducible EUI calculations.",
       "spatialCoverage": "280 Broadway, Manhattan, and Brooklyn Army Terminal, Brooklyn, New York City, United States",
       "temporalCoverage": "2022/2025",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Buildings for the reported energy and water figures and NYC Office of Technology and Innovation for the building match. Retain the report year and reporting boundary with each selected row.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "nyc",
         "address",
@@ -5367,6 +5392,11 @@
     "dataset": {
       "name": "Brooklyn Army Terminal building violation and correction-status records",
       "description": "Four exact NYC queries for one building ID, including five OATH summonses, one dismissed civil violation, one permit address match, and zero results from the DOB Safety feed.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Buildings for the selected violation and summons fields. Keep the original table, status field and retrieval date with each published observation.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "permit-address",
         "legacy-violations",
@@ -5707,6 +5737,11 @@
     "dataset": {
       "name": "Partial mortgage release records at two Manhattan addresses",
       "description": "Five ACRIS master rows, three document references, thirteen recorder parcel rows and two PLUTO property matches. Includes document dates, recording dates, partial-lot and air-rights flags, and the current geometry at 732 Eighth Avenue.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Finance for the ACRIS fields and NYC City Planning for the PLUTO and MapPLUTO records. Invariant linked the selected records by document and tax lot. Keep those identifiers and the source versions with the links.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "release-master",
         "release-references",
@@ -15041,14 +15076,16 @@
         "title": "FAF6.0 state-level 2022 CSV archive",
         "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0_State.zip",
         "publisher": "BTS and Oak Ridge National Laboratory",
-        "linkLabel": "State CSV archive"
+        "linkLabel": "State CSV archive",
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/"
       },
       {
         "id": "faf-regional",
         "title": "FAF6.0 regional 2022 CSV archive, FAF6.0.csv",
         "url": "https://faf.ornl.gov/faf6/data/Download_Files/ZIP/FAF6.0.zip",
         "publisher": "BTS and Oak Ridge National Laboratory",
-        "linkLabel": "Regional CSV archive"
+        "linkLabel": "Regional CSV archive",
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/"
       },
       {
         "id": "invariant-faf-workflow",
@@ -15123,6 +15160,11 @@
     "dataset": {
       "name": "FAF6 Canada vehicle freight through Michigan and BTS border truck counts",
       "description": "Four 2022 FAF6.0 aggregates for vehicles and parts imported from Canada and 24 monthly BTS truck crossing records for Detroit and Port Huron, with state filters, original units and a file hash.",
+      "sourceReuse": {
+        "note": "BTS lists the FAF6 source release under CC0 1.0 and its separate Border Crossing Entry Data as public domain. Credit BTS for both sources and Invariant for the filters and reconciliation.",
+        "policyLabel": "BTS FAF6 archive metadata and license",
+        "policyUrl": "https://rosap.ntl.bts.gov/view/dot/92758/dot_92758_DS1.json"
+      },
       "sourceIds": [
         "faf",
         "faf-state",
@@ -15139,6 +15181,11 @@
         "name": "FAF6 Canadian vehicle freight from Michigan entry regions to Ohio destinations",
         "description": "Thirty 2022 FAF6.0 regional rows and four state rows for Canadian vehicles and parts entering through Michigan and ending in Ohio. Includes six destination totals, code lookups, exact filters and an unrounded state reconciliation.",
         "datePublished": "2026-11-24",
+        "sourceReuse": {
+          "note": "BTS lists the FAF6 source release under CC0 1.0. Credit BTS for the original state and regional rows and Invariant for the selection and comparison. Keep the 2022 estimate year, region codes and units with the values.",
+          "policyLabel": "BTS FAF6 archive metadata and license",
+          "policyUrl": "https://rosap.ntl.bts.gov/view/dot/92758/dot_92758_DS1.json"
+        },
         "sourceIds": [
           "faf-regional",
           "faf-state",
@@ -15149,7 +15196,7 @@
         "temporalCoverage": "2022-01-01/2022-12-31"
       }
     ],
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "relatedSlugs": [
       "warehouse-site-selection-rail-truck-access",
       "federal-contract-awards-data-api",
@@ -17172,6 +17219,11 @@
     "dataset": {
       "name": "Brooklyn Army Terminal building permit and filing records",
       "description": "Six NYC DOB NOW permit rows for an eighth-floor tenant fit-out, two rooftop mechanical permits and two related filing rows. The download includes source queries, retrieval dates and distinct permit counts.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Buildings for the original permit and job filing fields. Keep the queries, work permit number and filing identifier with each selected row.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "nyc-permits",
         "nyc-filings"
@@ -19203,6 +19255,11 @@
     "dataset": {
       "name": "25 Water Street address aliases, permits and occupancy records",
       "description": "Three addresses identified by the city, the MapPLUTO 26v3 tax lot summary, four general construction permit issuances and ten NYC Department of Buildings occupancy issuance records for the office-to-residential conversion at 25 Water Street.",
+      "sourceReuse": {
+        "note": "Credit NYC City Planning and NYC Department of Buildings for the MapPLUTO, permit and occupancy fields. Invariant matched the three address aliases to the selected lot and building records. Retain the identifiers and retrieval date with the match.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "aliases",
         "mappluto",
@@ -22397,6 +22454,11 @@
     "dataset": {
       "name": "Denver May 30, 2024 hail reports and radar estimates",
       "description": "Normalized NOAA hail reports, five-kilometer radius matches and nearest MRMS grid samples for two illustrative locations. Includes original values, UTC windows, and source-file checksums.",
+      "sourceReuse": {
+        "note": "Credit NOAA NCEI for the Storm Events records and NOAA’s MRMS program for the radar grids. Invariant normalized the reports and sampled the grids. Retain the UTC window, units and source files with reused measurements.",
+        "policyLabel": "NOAA MRMS data use and citation",
+        "policyUrl": "https://registry.opendata.aws/noaa-mrms-pds/"
+      },
       "sourceIds": [
         "bulk",
         "format",
@@ -22715,6 +22777,11 @@
     "dataset": {
       "name": "Brooklyn tax lot split and merger crosswalk",
       "description": "Five predecessor-to-successor links and seven dated tax lot geometries for a recorded split and merger in Brooklyn on November 20, 2026.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Finance for the Digital Tax Map records. Invariant reconstructed the dated geometries and linked lot changes. Use a survey for legal boundary work and retain the map dates and alteration numbers with the comparison.",
+        "policyLabel": "NYC Department of Finance map terms",
+        "policyUrl": "https://www.nyc.gov/assets/finance/jump/digitaxmaps.html"
+      },
       "sourceIds": ["split-event", "merger-event", "split-before", "split-after", "merger-before", "merger-after"],
       "spatialCoverage": "Brooklyn, New York"
     },
@@ -25721,6 +25788,11 @@
     "dataset": {
       "name": "New York City parcel API trial scorecard and 432 Park Avenue boundaries",
       "description": "Two condominium geometries with base, billing and unit references, plus six repeatable trial checks covering address resolution and recorded split and merger events.",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Finance for the Digital Tax Map records and NYC City Planning for MapPLUTO. Invariant prepared the trial checks and selected geometries. Retain the base, billing and unit identifiers and use a survey for legal boundaries.",
+        "policyLabel": "NYC Department of Finance map terms",
+        "policyUrl": "https://www.nyc.gov/assets/finance/jump/digitaxmaps.html"
+      },
       "sourceIds": [
         "nyc-relationship",
         "nyc-base",
@@ -29866,6 +29938,11 @@
       "spatialCoverage": "600 Third Avenue, Manhattan, and 467 and 441 Prospect Avenue, Brooklyn, New York City",
       "temporalCoverage": "2026-09-18/2026-11-24",
       "datePublished": "2026-11-24",
+      "sourceReuse": {
+        "note": "Credit NYC Department of Finance for the selected ACRIS fields. Invariant joined the recording, tax lot and indexed party rows. Keep the document IDs, source queries and retrieval date when reusing the joins.",
+        "policyLabel": "NYC Open Data terms of use",
+        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
+      },
       "sourceIds": [
         "master",
         "legals",

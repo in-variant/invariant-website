@@ -1,7 +1,7 @@
 import industryArticles from './industry-article-index.json'
 import legacyArticles from './legacy-blog-articles.json'
 import { publishedDatasets } from './publishedDatasets'
-import type { ArticleDataset, DatasetDownload } from './industryArticles'
+import type { ArticleDataset, ArticleSource, DatasetDownload } from './industryArticles'
 
 export type ResourceTopic = 'Space' | 'Nuclear' | 'Aerospace' | 'Cross-industry' | 'Data Centers' | 'Oil & Gas' | 'Data & APIs'
 
@@ -9,7 +9,7 @@ export type ResourceDataset = Omit<ArticleDataset, 'sourceIds'> & {
   anchor?: string
   datePublished?: string
   sources: string[]
-  sourceDetails: { title: string; publisher: string; url: string }[]
+  sourceDetails: Omit<ArticleSource, 'id' | 'linkLabel'>[]
   downloads: DatasetDownload[]
 }
 

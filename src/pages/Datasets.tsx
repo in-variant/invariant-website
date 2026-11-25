@@ -257,6 +257,7 @@ export default function Datasets() {
                     <li key={`${source.url}:${source.title}`}>
                       <a href={source.url}>{source.title}</a>
                       <span>{source.publisher}</span>
+                      {source.license && <span><a href={source.license} aria-label={`Source license for ${source.title}`}>Source license</a></span>}
                     </li>
                   ))}
                 </ul>
