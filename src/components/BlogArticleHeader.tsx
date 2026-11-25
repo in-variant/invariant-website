@@ -3,7 +3,7 @@ import type { RelatedArticle } from '../data/industryArticles'
 import '../pages/blog/BlogArticle.css'
 
 type ArticleHeaderProps = {
-  article: { dateTime: string; date: string; topic: string; image: string }
+  article: { dateTime: string; date: string; updatedDate?: string; topic: string; image: string }
   title: string
   subtitle: string
   coverCaption?: string
@@ -16,15 +16,25 @@ const articleWidth = 'min(1280px, calc(100vw - clamp(48px, 10.42vw, 200px)))'
 const listingSizes = `(min-width: 950px) calc((${articleWidth} - clamp(36px, 4vw, 64px)) / 2), ${articleWidth}`
 // The tall object-fit crop needs enough pixels for the card height on a landscape cover.
 const relatedSizes = '(max-width: 600px) 365px, 420px'
+const bylineDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 
 export default function BlogArticleHeader({ article, title, subtitle, coverCaption, coverAlt = '', coverImage, siteDetailsId }: ArticleHeaderProps) {
+  const revisionDate = article.updatedDate && article.updatedDate > article.dateTime ? article.updatedDate : undefined
   return (
     <header className={`blog-article-header${siteDetailsId ? ' blog-article-header--site-listing' : ''}`}>
       <nav className="blog-article-breadcrumbs" aria-label="Breadcrumb">
         <Link to="/resources">Resources</Link><span aria-hidden="true">/</span><Link to="/blog">Articles</Link>
       </nav>
       <div className="blog-article-heading">
-        <div className="blog-article-meta"><span>{article.topic} / Field notes</span><time dateTime={article.dateTime}>{article.date}</time></div>
+        <div className="blog-article-meta">
+          <span>{article.topic} / Field notes</span>
+          <div className="blog-article-dates">
+            <span>Published <time dateTime={article.dateTime}>{article.date}</time></span>
+            {revisionDate && (
+              <span>Updated <time dateTime={revisionDate}>{bylineDate.format(new Date(revisionDate))}</time></span>
+            )}
+          </div>
+        </div>
         <h1>{title}</h1>
         <p>{subtitle}</p>
         {siteDetailsId && (
