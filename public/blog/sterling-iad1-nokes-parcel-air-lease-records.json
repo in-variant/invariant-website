@@ -1,0 +1,84 @@
+{
+  "title": "Sterling IAD1 parcel, lease and air-registration crosswalk",
+  "checked_on": "2026-11-25",
+  "sources": {
+    "county_tax_roll": {
+      "publisher": "Loudoun County Commissioner of the Revenue",
+      "url": "https://www.loudoun.gov/DocumentCenter/View/166396/2021-RT-28-Detail-PDF#page=331",
+      "sha256": "8d1778a4bc9941482f0f974ed590dcd3ff593874ebcd28992f8011d877d014e9",
+      "pdf_page": 331
+    },
+    "cyxtera_lease_exhibit": {
+      "publisher": "U.S. Bankruptcy Court for the District of Delaware",
+      "url": "https://veritaglobal.net/cyxtera/document/2314853230703000000000006#page=44",
+      "sha256": "68a8507ac267cf2e9fd98773b4ceb9ac6a85045a83af4acbcdaa0e3b066caf96",
+      "pdf_page": 44
+    },
+    "virginia_air_registry": {
+      "publisher": "Virginia Department of Environmental Quality",
+      "url": "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?where=PLA_REG_NUM+IN+%2873160%2C73170%29&outFields=PLA_REG_NUM%2CPLA_NAME%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CFAC_L_CITY%2CFAC_L_STATE%2CFAC_L_ZIP5%2CPLA_ICIS_ID&returnGeometry=false&f=json",
+      "sha256": "0a78cc74495aca21bba713b64fdf11d34c9e47c3562cd692f1a91e33eb52894d"
+    },
+    "csquare_iad1": {
+      "publisher": "Csquare",
+      "url": "https://csquare.com/hubfs/CenterSquare/docs/Centersquare-IAD-SpecSheet.pdf#page=2",
+      "sha256": "3294b6442a57bc30a39b02b64838639a255595d4dac1c4ba4457f8cfba0dc339",
+      "pdf_page": 2
+    },
+    "h5_herndon": {
+      "publisher": "H5 Data Centers",
+      "url": "https://h5datacenters.com/herndon-data-center.html"
+    }
+  },
+  "sterling_property_rows": [
+    {
+      "street_address": "45901 Nokes Boulevard",
+      "parcel_id_in_2021_tax_roll": "030297084000",
+      "acres_in_2021_tax_roll": 6.24,
+      "lease_id_in_2023_filing": "L-VA-IAD01-02"
+    },
+    {
+      "street_address": "45845 Nokes Boulevard",
+      "parcel_id_in_2021_tax_roll": "030391106000",
+      "acres_in_2021_tax_roll": 6.02,
+      "lease_id_in_2023_filing": "L-VA-IAD02-02"
+    },
+    {
+      "street_address": "21110 Ridgetop Circle",
+      "parcel_id_in_2021_tax_roll": "030399036000",
+      "acres_in_2021_tax_roll": 8.49,
+      "lease_id_in_2023_filing": "L-VA-IAD03-02"
+    }
+  ],
+  "air_registry_rows": [
+    {
+      "registration_number": "73160",
+      "facility_name": "21110 Ridgetop Circle LLC",
+      "physical_address": "45901 Nokes Blvd, Sterling, VA 20166",
+      "reported_operating_status": "Operating",
+      "federal_id": "VA0000005110701042"
+    },
+    {
+      "registration_number": "73170",
+      "facility_name": "H5 Data Centers",
+      "physical_address": "470 Spring Park Pl Ste 1000, Herndon, VA 20170",
+      "reported_operating_status": "Operating",
+      "federal_id": "VA0000005105900819"
+    }
+  ],
+  "reported_power": {
+    "site": "Csquare Sterling IAD1",
+    "scope": "Three addresses in the Csquare campus specification",
+    "utility_capacity_mw": 143.2,
+    "ups_capacity_mw": 19.8,
+    "generator_capacity_mw": 37.5
+  },
+  "building_specific_evidence_to_request": {
+    "scope": "45901 Nokes Boulevard",
+    "confirmed_serving_utility": null,
+    "utility_service_account": null,
+    "unallocated_critical_it_mw": null,
+    "confirmed_delivery_date": null,
+    "transfer_conditions": null
+  }
+}

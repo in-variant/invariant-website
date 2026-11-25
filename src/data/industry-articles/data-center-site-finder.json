@@ -15698,6 +15698,81 @@
     ]
    },
    {
+    "id": "45901-nokes-boulevard-data-center",
+    "heading": "Power and permit records for the 45901 Nokes Boulevard data center",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "45901 Nokes Boulevard is part of Csquare’s IAD1 campus in Sterling, Loudoun County. Virginia DEQ’s Air Sites layer lists it as Operating under registration 73160. Csquare reports 143.2 MW of utility capacity, 19.8 MW of UPS capacity and 37.5 MW of generator capacity across the three-address IAD1 campus. The operator’s specification leaves the service account and the amount a customer can lease at 45901 Nokes Boulevard open.",
+      "sourceIds": [
+       "csquare-iad1",
+       "nokes-deq-air-sites"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Match the site to the property address on each record. Loudoun’s 2021 Route 28 tax roll lists all three parcels under Medina DC 2 Assets LLC. A 2023 Cyxtera court filing gives each address its own lease identifier. Check the current parcel, title and agreements before relying on them in a transaction.",
+      "sourceIds": [
+       "nokes-route-28-land-book",
+       "nokes-cyxtera-lease-exhibit"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Sterling address",
+       "2021 tax parcel and recorded area",
+       "Lease ID in the July 2023 filing"
+      ],
+      "rows": [
+       [
+        "45901 Nokes Boulevard",
+        "030297084000 · 6.24 acres",
+        "L-VA-IAD01-02"
+       ],
+       [
+        "45845 Nokes Boulevard",
+        "030391106000 · 6.02 acres",
+        "L-VA-IAD02-02"
+       ],
+       [
+        "21110 Ridgetop Circle",
+        "030399036000 · 8.49 acres",
+        "L-VA-IAD03-02"
+       ]
+      ],
+      "sourceIds": [
+       "nokes-route-28-land-book",
+       "nokes-cyxtera-lease-exhibit"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The state registry makes a second distinction. Registration 73160 carries the facility name 21110 Ridgetop Circle LLC but gives 45901 Nokes Boulevard as its address. Registration 73170 belongs to an H5 Data Centers record at 470 Spring Park Place, Suite 1000, in Herndon. Both rows were marked Operating when checked November 25. H5’s own site describes its separate Fairfax County campus at 470 and 480 Springpark Place.",
+      "sourceIds": [
+       "nokes-deq-air-sites",
+       "h5-herndon-campus"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "For a colocation quote, ask Csquare to name the building or pod, identify the serving utility and service account for that facility, and state the critical IT MW it can allocate and the date the load can be accepted. For a property or service transfer, ask which agreement and consents would carry over. Record campus utility, UPS and generator ratings as separate fields with the campus as their scope.",
+      "sourceIds": [
+       "csquare-iad1",
+       "dominion-exhibit-27"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/sterling-iad1-nokes-parcel-air-lease-records.json",
+      "format": "JSON",
+      "label": "Download the address, parcel, lease and air-registration crosswalk",
+      "datasetAnchor": "dataset-sterling-iad1-address-records"
+     }
+    ]
+   },
+   {
     "id": "nearby-sites",
     "heading": "Marketed site leads in nearby states",
     "blocks": [
@@ -16098,7 +16173,7 @@
    },
    {
     "question": "How much power does Csquare report at 45901 Nokes Boulevard?",
-    "answer": "Csquare lists 143.2 MW of utility capacity for the three-address IAD1 campus, which includes 45901 Nokes Boulevard. The same specification lists 19.8 MW of UPS capacity and 37.5 MW of generator capacity for IAD1. Ask Csquare how much critical IT power is currently unallocated at the building and when it can be delivered.",
+    "answer": "Csquare reports 143.2 MW of utility capacity for the three-address IAD1 campus, along with 19.8 MW of UPS capacity and 37.5 MW of generator capacity. The campus figures leave unallocated critical IT capacity at 45901 Nokes Boulevard unknown. Ask Csquare for the building-level allocation and delivery date.",
     "sourceIds": [
      "csquare-iad1"
     ]
@@ -16314,6 +16389,34 @@
     "publisher": "Virginia State Corporation Commission",
     "linkLabel": "GS-5 final order",
     "url": "https://www.scc.virginia.gov/docketsearch/DOCS/89g601%21.PDF"
+   },
+   {
+    "id": "nokes-route-28-land-book",
+    "title": "Route 28 Special Tax District, 2021 land book, p. 331, three IAD1 addresses",
+    "publisher": "Loudoun County Commissioner of the Revenue",
+    "url": "https://www.loudoun.gov/DocumentCenter/View/166396/2021-RT-28-Detail-PDF#page=331",
+    "linkLabel": "Loudoun County land book, page 331"
+   },
+   {
+    "id": "nokes-cyxtera-lease-exhibit",
+    "title": "Cyxtera Technologies, Inc. et al., case 23-14853-JKS, Doc. 199, July 3, 2023, p. 44",
+    "publisher": "U.S. Bankruptcy Court for the District of Delaware",
+    "url": "https://veritaglobal.net/cyxtera/document/2314853230703000000000006#page=44",
+    "linkLabel": "2023 lease exhibit, page 44"
+   },
+   {
+    "id": "nokes-deq-air-sites",
+    "title": "Air Sites (Daily) query for Virginia registrations 73160 and 73170, retrieved November 25, 2026",
+    "publisher": "Virginia Department of Environmental Quality",
+    "url": "https://gisdata.deq.virginia.gov/arcgis/rest/services/public/EDMA/MapServer/294/query?where=PLA_REG_NUM+IN+%2873160%2C73170%29&outFields=PLA_REG_NUM%2CPLA_NAME%2CAIR_OP_STATUS%2CFAC_L_ADDR_1%2CFAC_L_CITY%2CFAC_L_STATE%2CFAC_L_ZIP5%2CPLA_ICIS_ID&returnGeometry=false&f=json",
+    "linkLabel": "Virginia DEQ address and registration results"
+   },
+   {
+    "id": "h5-herndon-campus",
+    "title": "Herndon data center, Fairfax County campus addresses and critical power specification",
+    "publisher": "H5 Data Centers",
+    "url": "https://h5datacenters.com/herndon-data-center.html",
+    "linkLabel": "H5 Herndon campus specifications"
    }
   ],
   "relatedSlugs": [
@@ -16364,6 +16467,20 @@
     ],
     "spatialCoverage": "Dominion Energy Virginia service territory and PJM region, United States",
     "temporalCoverage": "2026-05-06/2026-11-09"
+   },
+   {
+    "anchor": "dataset-sterling-iad1-address-records",
+    "name": "Sterling IAD1 parcel, lease and air-registration crosswalk",
+    "description": "Matches three Sterling campus addresses to the 2021 Loudoun tax roll and a 2023 court exhibit. Includes two dated Virginia air registry rows, Csquare campus-level power ratings, and the site-specific items that remain unverified.",
+    "datePublished": "2026-11-25",
+    "sourceIds": [
+     "nokes-route-28-land-book",
+     "nokes-cyxtera-lease-exhibit",
+     "nokes-deq-air-sites",
+     "csquare-iad1",
+     "h5-herndon-campus"
+    ],
+    "spatialCoverage": "Loudoun County and Fairfax County, Virginia, United States"
    }
   ]
  },
