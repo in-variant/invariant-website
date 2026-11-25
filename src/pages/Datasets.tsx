@@ -16,6 +16,15 @@ import './Datasets.css'
 
 const { name: title, url: canonical } = DATA_CATALOG
 const { description, access } = researchCatalog
+
+function trackResearchLink(properties: {
+  action: 'study' | 'workflow' | 'sample' | 'api_coverage'
+  surface: 'intro' | 'featured' | 'catalog'
+  dataset?: string
+  format?: string
+}) {
+  posthog.capture('research_catalog_link_clicked', properties, { transport: 'sendBeacon', send_instantly: true })
+}
 const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
   .filter(entry => entry.id === study.slug)
   .map(({ image, notesPath, workflow, dataset }) => ({ ...study, image, notesPath, workflow, sample: dataset.downloads[0] })),
@@ -122,7 +131,10 @@ export default function Datasets() {
               <p>{description}</p>
               <nav aria-label="Research library and API" className="resources-data-links">
                 <a className="dataset-api-button" href="#dataset-search">Find a sample <span aria-hidden="true">↓</span></a>
-                <Link className="dataset-method" to={earthLinks.coverage}>Check API coverage <ResourceArrow diagonal /></Link>
+                <Link className="dataset-method" to={earthLinks.coverage}
+                  onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
+                  Check API coverage <ResourceArrow diagonal />
+                </Link>
               </nav>
             </div>
           </div>
@@ -136,7 +148,7 @@ export default function Datasets() {
             {featured.map(({ slug, title, summary, scope, evidence, image, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
               <li key={slug}>
                 <Link className="dataset-featured-study" to={notesPath} aria-labelledby={`featured-${slug}`}
-                  onClick={() => posthog.capture('featured_research_study_opened', { study: slug })}>
+                  onClick={() => trackResearchLink({ action: 'study', surface: 'featured', dataset: slug })}>
                   <div className="dataset-featured-image">
                     <img src={image} srcSet={coverSrcSets[image]}
                       sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 940px) 44vw, min(29vw, 524px)"
@@ -154,11 +166,12 @@ export default function Datasets() {
                 </Link>
                 <div className="dataset-featured-actions">
                   {workflow && <a className="dataset-featured-workflow" href={workflow.url}
-                    onClick={() => posthog.capture('featured_research_workflow_opened', { study: slug })}>
+                    onClick={() => trackResearchLink({ action: 'workflow', surface: 'featured', dataset: slug })}>
                     {workflowLabel} <ResourceArrow />
                   </a>}
                   <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}
-                    aria-describedby={`sample-scope-${slug}`}>
+                    aria-describedby={`sample-scope-${slug}`}
+                    onClick={() => trackResearchLink({ action: 'sample', surface: 'featured', dataset: slug, format: sample.format })}>
                     {sample.format} sample <span aria-hidden="true">↓</span>
                   </a>
                 </div>
@@ -169,7 +182,12 @@ export default function Datasets() {
       </div>
       <section className="resource-container datasets-list" aria-labelledby="dataset-search">
         <h2 id="dataset-search" tabIndex={-1}>All research datasets</h2>
-        <p className="dataset-scope">{access} <Link className="dataset-method" to={earthLinks.coverage}>Check API coverage <ResourceArrow diagonal /></Link></p>
+        <p className="dataset-scope">{access}{' '}
+          <Link className="dataset-method" to={earthLinks.coverage}
+            onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'catalog' })}>
+            Check API coverage <ResourceArrow diagonal />
+          </Link>
+        </p>
         <noscript><p className="dataset-scope">All examples are available below. Enable JavaScript to search or filter by topic.</p></noscript>
         <nav className="dataset-topics" aria-label="Dataset topics">
           {topicLinks.map(({ label, count }) => (
@@ -222,10 +240,14 @@ export default function Datasets() {
               {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
               {dataset.temporalCoverage && <p className="dataset-place">Record dates: {dataset.temporalCoverage.replace('/', ' to ')}</p>}
               <div className="dataset-row-links">
-                <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}>
+                <Link to={notesPath} className="dataset-method" aria-label={`Read dataset notes for ${dataset.name}`}
+                  onClick={() => trackResearchLink({ action: 'study', surface: 'catalog', dataset: id })}>
                   Dataset notes <ResourceArrow diagonal />
                 </Link>
-                {workflow && <a href={workflow.url} className="dataset-method">{workflow.label} <ResourceArrow diagonal /></a>}
+                {workflow && <a href={workflow.url} className="dataset-method"
+                  onClick={() => trackResearchLink({ action: 'workflow', surface: 'catalog', dataset: id })}>
+                  {workflow.label} <ResourceArrow diagonal />
+                </a>}
               </div>
               <details className="dataset-sources">
                 <summary>Source records ({dataset.sourceDetails.length})</summary>
@@ -243,7 +265,8 @@ export default function Datasets() {
             </div>
             <div className="dataset-downloads">
               {dataset.downloads.map(file => (
-                <a key={file.path} href={file.path} download aria-label={`${file.label} (${file.format})`}>
+                <a key={file.path} href={file.path} download aria-label={`${file.label} (${file.format})`}
+                  onClick={() => trackResearchLink({ action: 'sample', surface: 'catalog', dataset: id, format: file.format })}>
                   {file.format} <span aria-hidden="true">↓</span>
                 </a>
               ))}
