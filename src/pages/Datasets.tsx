@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
@@ -14,6 +14,7 @@ import './Resources.css'
 import './Datasets.css'
 
 const title = 'Physical economy data samples'
+const recentSampleCount = 8
 const { url: canonical } = DATA_CATALOG
 const { description, access } = researchCatalog
 
@@ -91,6 +92,7 @@ export default function Datasets() {
   const params = new URLSearchParams(search)
   const topic = datasetTopics.find(({ label }) => label === params.get('topic'))?.label ?? ''
   const searchInput = useRef<HTMLInputElement>(null)
+  const archive = useRef<HTMLDetailsElement>(null)
   useEffect(() => setSearchReady(true), [])
   const terms = articleSearchWords(query)
   const searching = terms.length > 0
@@ -101,6 +103,21 @@ export default function Datasets() {
     (!topic || topics.includes(topic)) &&
     (!format || dataset.downloads.some(file => file.format === format)),
   )
+  useLayoutEffect(() => {
+    const disclosure = archive.current
+    if (!disclosure) return
+
+    const revealSample = () => {
+      const sample = document.getElementById(window.location.hash.slice(1))
+      if (sample && disclosure.contains(sample)) {
+        disclosure.open = true
+        sample.scrollIntoView({ behavior: 'instant' })
+      }
+    }
+    revealSample()
+    window.addEventListener('hashchange', revealSample)
+    return () => window.removeEventListener('hashchange', revealSample)
+  }, [hash, isFiltered])
 
   const topicSearch = (label: string) => {
     const topicParams = new URLSearchParams(params)
@@ -115,6 +132,54 @@ export default function Datasets() {
     setFormat('')
     searchInput.current?.focus()
   }
+
+  const rows = matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
+    <article className="dataset-row" key={id} id={id} aria-labelledby={`sample-title-${id}`}>
+      <div className="dataset-copy">
+        <h3 id={`sample-title-${id}`}>
+          <Link className="dataset-title-link" to={notesPath}
+            onClick={() => trackResearchLink({ action: 'study', surface: 'catalog', dataset: id })}>
+            {dataset.name} <ResourceArrow diagonal />
+          </Link>
+        </h3>
+        <p>{dataset.description}</p>
+        {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
+        {dataset.temporalCoverage && <p className="dataset-place">Record dates: {dataset.temporalCoverage.replace('/', ' to ')}</p>}
+      </div>
+      <div className="dataset-row-actions">
+        {workflow && <a href={workflow.url} className="dataset-method dataset-row-workflow"
+          onClick={() => trackResearchLink({ action: 'workflow', surface: 'catalog', dataset: id })}>
+          {workflow.label} <ResourceArrow diagonal />
+        </a>}
+        <div className="dataset-downloads">
+          {dataset.downloads.map(file => (
+            <a key={file.path} href={file.path} download aria-label={`${file.label} (${file.format})`}
+              onClick={() => trackResearchLink({ action: 'sample', surface: 'catalog', dataset: id, format: file.format })}>
+              {file.format} <span aria-hidden="true">↓</span>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div className="dataset-row-evidence">
+        <details className="dataset-sources">
+          <summary>Source records ({dataset.sourceDetails.length})</summary>
+          {dataset.sourceReuse && <p className="dataset-reuse">{dataset.sourceReuse.note} <a href={dataset.sourceReuse.policyUrl}>{dataset.sourceReuse.policyLabel}</a></p>}
+          <ul>
+            {dataset.sourceDetails.map(source => (
+              <li key={`${source.url}:${source.title}`}>
+                <a href={source.url}>{source.title}</a>
+                <span>{source.publisher}</span>
+                {source.license && <span><a href={source.license} aria-label={`Source license for ${source.title}`}>Source license</a></span>}
+              </li>
+            ))}
+          </ul>
+        </details>
+        <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
+      </div>
+    </article>
+  ))
+  const visibleRows = isFiltered ? rows : rows.slice(0, recentSampleCount)
+  const archivedRows = isFiltered ? [] : rows.slice(recentSampleCount)
 
   return (
     <div className="resources-page datasets-page">
@@ -132,14 +197,14 @@ export default function Datasets() {
             <div>
               <p>{description}</p>
               <nav aria-label="Data samples and API" className="resources-data-links">
-                <a className="dataset-api-button" href={earthLinks.quickstart}
-                  onClick={() => trackResearchLink({ action: 'api_quickstart', surface: 'intro' })}>
-                  Try the Earth API <ResourceArrow diagonal />
-                </a>
-                <Link className="dataset-method" to={earthLinks.coverage}
+                <Link className="dataset-api-button" to={earthLinks.coverage}
                   onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
                   Check API coverage <ResourceArrow diagonal />
                 </Link>
+                <a className="dataset-method" href={earthLinks.quickstart}
+                  onClick={() => trackResearchLink({ action: 'api_quickstart', surface: 'intro' })}>
+                  Try the Earth API <ResourceArrow diagonal />
+                </a>
                 <a className="dataset-method" href="#dataset-search">Browse all samples <span aria-hidden="true">↓</span></a>
               </nav>
             </div>
@@ -210,14 +275,16 @@ export default function Datasets() {
             <input ref={searchInput} type="search" placeholder="Try flood zones, loan filings, or grid capacity" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
           </label>
           <label className="dataset-topic-select">
-            <span>Topic</span>
-            <select disabled={!searchReady} value={topic} onChange={event => navigate({ search: topicSearch(event.target.value), hash })}>
+            <span id="dataset-topic-label">Topic</span>
+            <select aria-labelledby="dataset-topic-label" disabled={!searchReady} value={topic}
+              onChange={event => navigate({ search: topicSearch(event.target.value), hash })}>
               {topicLinks.map(({ label, count }) => <option key={label} value={label}>{label || 'All topics'} ({count})</option>)}
             </select>
           </label>
           <label>
-            <span>File format</span>
-            <select disabled={!searchReady} value={format} onChange={event => setFormat(event.target.value)}>
+            <span id="dataset-format-label">File format</span>
+            <select aria-labelledby="dataset-format-label" disabled={!searchReady} value={format}
+              onChange={event => setFormat(event.target.value)}>
               <option value="">All formats</option>
               {formats.map(value => <option key={value}>{value}</option>)}
             </select>
@@ -242,51 +309,13 @@ export default function Datasets() {
             </Link>
           </div>
         )}
-        {matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
-          <article className="dataset-row" key={id} id={id} aria-labelledby={`sample-title-${id}`}>
-            <div className="dataset-copy">
-              <h3 id={`sample-title-${id}`}>
-                <Link className="dataset-title-link" to={notesPath}
-                  onClick={() => trackResearchLink({ action: 'study', surface: 'catalog', dataset: id })}>
-                  {dataset.name} <ResourceArrow diagonal />
-                </Link>
-              </h3>
-              <p>{dataset.description}</p>
-              {dataset.spatialCoverage && <p className="dataset-place">{dataset.spatialCoverage}</p>}
-              {dataset.temporalCoverage && <p className="dataset-place">Record dates: {dataset.temporalCoverage.replace('/', ' to ')}</p>}
-            </div>
-            <div className="dataset-row-actions">
-              {workflow && <a href={workflow.url} className="dataset-method dataset-row-workflow"
-                onClick={() => trackResearchLink({ action: 'workflow', surface: 'catalog', dataset: id })}>
-                {workflow.label} <ResourceArrow diagonal />
-              </a>}
-              <div className="dataset-downloads">
-                {dataset.downloads.map(file => (
-                  <a key={file.path} href={file.path} download aria-label={`${file.label} (${file.format})`}
-                    onClick={() => trackResearchLink({ action: 'sample', surface: 'catalog', dataset: id, format: file.format })}>
-                    {file.format} <span aria-hidden="true">↓</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="dataset-row-evidence">
-              <details className="dataset-sources">
-                <summary>Source records ({dataset.sourceDetails.length})</summary>
-                {dataset.sourceReuse && <p className="dataset-reuse">{dataset.sourceReuse.note} <a href={dataset.sourceReuse.policyUrl}>{dataset.sourceReuse.policyLabel}</a></p>}
-                <ul>
-                  {dataset.sourceDetails.map(source => (
-                    <li key={`${source.url}:${source.title}`}>
-                      <a href={source.url}>{source.title}</a>
-                      <span>{source.publisher}</span>
-                      {source.license && <span><a href={source.license} aria-label={`Source license for ${source.title}`}>Source license</a></span>}
-                    </li>
-                  ))}
-                </ul>
-              </details>
-              <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} />
-            </div>
-          </article>
-        ))}
+        {visibleRows}
+        {archivedRows.length > 0 && (
+          <details className="dataset-archive" ref={archive}>
+            <summary>{archivedRows.length} more samples</summary>
+            {archivedRows}
+          </details>
+        )}
       </section>
     </div>
   )

@@ -216,6 +216,15 @@
 .datasets-page .dataset-empty { padding: 28px 0; border-top: 1px solid var(--resource-rule); }
 .dataset-empty .dataset-method { min-height: 44px; }
 .dataset-clear { min-height: 44px; background: none; border: 0; padding: 0; }
+.dataset-archive { border-top: 1px solid var(--resource-rule); }
+.dataset-archive > summary {
+  min-height: 56px;
+  padding: 18px 0;
+  color: var(--resource-blue);
+  font-weight: 500;
+  cursor: pointer;
+}
+.dataset-archive > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
 .dataset-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(180px, 25%);
