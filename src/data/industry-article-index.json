@@ -10,14 +10,15 @@
     "image": "/blog/industry/ercot-lmp-vs-settlement-point-price.webp?v=08032929",
     "dataset": {
       "name": "ERCOT dispatch and settlement price replay for November 25, 2026",
-      "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a reproducible comparison of West Hub and West Load Zone.",
+      "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a West Hub and West Load Zone comparison, and three same-interval Dryos query observations.",
       "spatialCoverage": "ERCOT, Texas, United States",
       "temporalCoverage": "2026-11-25",
       "sources": [
         "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-788-CD",
         "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-323-CD",
         "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1303083375",
-        "https://www.ercot.com/files/docs/2024/06/28/06-110626_Nodal.docx"
+        "https://www.ercot.com/files/docs/2024/06/28/06-110626_Nodal.docx",
+        "https://api.dryos.ai/v1/datasets/ercot-rt-spp/query?node=LZ_WEST&start=2026-11-26T00%3A30%3A00Z&end=2026-11-26T00%3A45%3A00Z&limit=12"
       ],
       "sourceDetails": [
         {
@@ -39,6 +40,11 @@
           "title": "November 6, 2026 Nodal Protocol Section 6.6.1, real-time settlement prices",
           "publisher": "ERCOT",
           "url": "https://www.ercot.com/files/docs/2024/06/28/06-110626_Nodal.docx"
+        },
+        {
+          "title": "Dryos West Load Zone API query for the same settlement interval",
+          "publisher": "Dryos",
+          "url": "https://api.dryos.ai/v1/datasets/ercot-rt-spp/query?node=LZ_WEST&start=2026-11-26T00%3A30%3A00Z&end=2026-11-26T00%3A45%3A00Z&limit=12"
         }
       ],
       "downloads": [

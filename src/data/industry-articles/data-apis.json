@@ -260,6 +260,11 @@
                 "Save the query parameters and API timestamps. Verify that the returned report matches your intended interval and price series."
               ],
               [
+                "Dryos",
+                "Public query endpoints for dispatch LMP and 15-minute settlement prices.",
+                "Compare the returned type code and source publication time against ERCOT’s raw rows. Check the duplicate name case at West Load Zone."
+              ],
+              [
                 "Invariant Earth",
                 "Join the electricity evidence to the site’s mapped utility territory and physical assets where fields are available.",
                 "Start with an exact site match and check the field sources. Attach the relevant contract or ERCOT record to establish the settlement point and pricing basis."
@@ -281,10 +286,22 @@
                 "isodart"
               ],
               [
+                "dryos-spp",
+                "dryos-lmp"
+              ],
+              [
                 "earth-fields"
               ]
             ],
             "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "We queried Dryos for the same quarter-hour at West Hub, West Load Zone and ALP_BESS_RN. It returned $46.78, $72.48 and $62.14/MWh, matching the ERCOT file at the corresponding types. The West Load Zone query returned one LZEW row. ERCOT’s raw file includes both LZ and LZEW. The prices coincide in this sample, so checking the price alone would miss the difference in returned types.",
+            "sourceIds": [
+              "posted-spp",
+              "dryos-west-query"
+            ]
           },
           {
             "type": "links",
@@ -423,6 +440,27 @@
         "publisher": "Invariant",
         "url": "https://api.invariant-ai.com/v1/meta/fields",
         "linkLabel": "Earth API field catalog"
+      },
+      {
+        "id": "dryos-spp",
+        "title": "Dryos real-time 15-minute settlement dataset and query fields",
+        "publisher": "Dryos",
+        "linkLabel": "Dryos settlement data API",
+        "url": "https://www.dryos.ai/data/ercot/rt-spp"
+      },
+      {
+        "id": "dryos-lmp",
+        "title": "Dryos real-time LMP dataset and query fields",
+        "publisher": "Dryos",
+        "linkLabel": "Dryos dispatch LMP data API",
+        "url": "https://www.dryos.ai/data/ercot/realtime-lmp"
+      },
+      {
+        "id": "dryos-west-query",
+        "title": "Dryos West Load Zone API query for the same settlement interval",
+        "publisher": "Dryos",
+        "linkLabel": "Dryos West Load Zone query",
+        "url": "https://api.dryos.ai/v1/datasets/ercot-rt-spp/query?node=LZ_WEST&start=2026-11-26T00%3A30%3A00Z&end=2026-11-26T00%3A45%3A00Z&limit=12"
       }
     ],
     "relatedSlugs": [
@@ -433,14 +471,15 @@
     ],
     "dataset": {
       "name": "ERCOT dispatch and settlement price replay for November 25, 2026",
-      "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a reproducible comparison of West Hub and West Load Zone.",
+      "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a West Hub and West Load Zone comparison, and three same-interval Dryos query observations.",
       "spatialCoverage": "ERCOT, Texas, United States",
       "temporalCoverage": "2026-11-25",
       "sourceIds": [
         "dispatch-lmp",
         "dispatch-adders",
         "posted-spp",
-        "price-rules"
+        "price-rules",
+        "dryos-west-query"
       ]
     }
   },

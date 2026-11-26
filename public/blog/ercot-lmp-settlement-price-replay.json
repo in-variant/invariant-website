@@ -355,5 +355,49 @@
     "equal_weight_three_runs_usd_per_mwh": "62.25333333333333333333333333",
     "published_usd_per_mwh": "62.14"
   },
-  "west_load_zone_minus_west_hub_usd_per_mwh": "25.70"
+  "west_load_zone_minus_west_hub_usd_per_mwh": "25.70",
+  "provider_api_checks": {
+    "provider": "Dryos",
+    "checked_on": "2026-11-25",
+    "dataset": "ercot-rt-spp",
+    "documentation_url": "https://www.dryos.ai/data/ercot/rt-spp",
+    "node_queries": [
+      {
+        "query": "https://api.dryos.ai/v1/datasets/ercot-rt-spp/query?node=HB_WEST&start=2026-11-26T00%3A30%3A00Z&end=2026-11-26T00%3A45%3A00Z&limit=12",
+        "observed_row": {
+          "interval_start_utc": "2026-11-26T00:30:00Z",
+          "market": "RTM15",
+          "node": "HB_WEST",
+          "node_type": "HU",
+          "spp": 46.78,
+          "source_published_at_utc": "2026-11-26T00:47:01Z",
+          "collected_at_utc": "2026-11-26T00:47:08.881164Z"
+        }
+      },
+      {
+        "query": "https://api.dryos.ai/v1/datasets/ercot-rt-spp/query?node=LZ_WEST&start=2026-11-26T00%3A30%3A00Z&end=2026-11-26T00%3A45%3A00Z&limit=12",
+        "observed_row": {
+          "interval_start_utc": "2026-11-26T00:30:00Z",
+          "market": "RTM15",
+          "node": "LZ_WEST",
+          "node_type": "LZEW",
+          "spp": 72.48,
+          "source_published_at_utc": "2026-11-26T00:47:01Z",
+          "collected_at_utc": "2026-11-26T00:47:08.881164Z"
+        }
+      },
+      {
+        "query": "https://api.dryos.ai/v1/datasets/ercot-rt-spp/query?node=ALP_BESS_RN&start=2026-11-26T00%3A30%3A00Z&end=2026-11-26T00%3A45%3A00Z&limit=12",
+        "observed_row": {
+          "interval_start_utc": "2026-11-26T00:30:00Z",
+          "market": "RTM15",
+          "node": "ALP_BESS_RN",
+          "node_type": "RN",
+          "spp": 62.14,
+          "source_published_at_utc": "2026-11-26T00:47:01Z",
+          "collected_at_utc": "2026-11-26T00:47:08.881164Z"
+        }
+      }
+    ]
+  }
 }
