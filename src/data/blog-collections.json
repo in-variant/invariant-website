@@ -17,6 +17,10 @@
       {
         "label": "See how records change over time",
         "href": "/research#record-history"
+      },
+      {
+        "label": "Run a data provider trial",
+        "href": "/blog/physical-world-data-api-evaluation"
       }
     ],
     "updatedDate": "2026-11-25",
@@ -1231,7 +1235,7 @@
     "navLabel": "Compare data APIs",
     "title": "How to Evaluate Physical-World Data APIs",
     "heading": "Evaluating physical-world data APIs",
-    "description": "Run tests with public source records against physical-world data APIs. Compare parcel identity, zoning, flood exposure, property changes, underwriting records, power dates and charging.",
+    "description": "Evaluate property, GIS and infrastructure data APIs with 16 public tests for parcels, permits, lending, underwriting, power, logistics, retail and utilities.",
     "updatedDate": "2026-11-25",
     "image": "/blog/industry/regrid-alternatives-parcel-data-apis.webp",
     "imageAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
@@ -1244,7 +1248,7 @@
       },
       {
         "title": "Set acceptance criteria before the demo",
-        "detail": "Use the worksheet’s dated reference result. Confirm the endpoint and what its fields measure. Record the returned entity, geometry, units, source and effective date. Keep an unavailable field separate from a failed request."
+        "detail": "Use the worksheet’s dated reference result. Score each response as usable, needs review or unresolved. Keep the returned entity, units, source and effective date with the decision. Distinguish a missing field from a failed request."
       },
       {
         "title": "Run it at production volume",
@@ -1254,64 +1258,123 @@
     "worksheet": {
       "path": "/blog/physical-world-data-api-evaluation-worksheet.csv",
       "label": "Download the vendor evaluation worksheet",
-      "detail": "Eight exact test inputs with dated reference results, original source links and space to record your vendor’s response."
+      "detail": "Sixteen exact test inputs with dated reference results, original source links and space to record each vendor’s response."
     },
     "guidesTitle": "Tests with source records",
     "guides": [
       {
-        "slug": "property-data-as-of-date",
-        "label": "Test a property API at three historical cutoffs",
-        "detail": "Reconcile what changed on December 3 and December 9, 2025 across building and recorder records."
-      },
-      {
-        "slug": "gis-mcp-servers-for-site-selection",
-        "label": "Evaluate GIS MCP servers",
-        "detail": "Run three agent prompts against dated city parcel records and FEMA geometry."
-      },
-      {
         "slug": "regrid-alternatives-parcel-data-apis",
         "label": "Match the right parcel and condo unit",
-        "detail": "At 432 Park Avenue, compare base lot 1012920033, billing lot 1012927502 and unit 1012921303. Ask which record supplies the geometry."
+        "detail": "At 432 Park Avenue, compare base lot 1012920033, billing lot 1012927502 and unit 1012921303. Ask which record supplies the geometry.",
+        "group": "Parcel and GIS workflows"
       },
       {
         "slug": "historical-parcel-boundaries-api",
         "label": "Replay a parcel split with a retained ID",
-        "detail": "Compare BBL 3039470001 before and after the November 20, 2026 split. The retained lot kept its ID and lost roughly 21,169 square feet."
+        "detail": "Compare BBL 3039470001 before and after the November 20, 2026 split. The retained lot kept its ID and lost roughly 21,169 square feet.",
+        "group": "Parcel and GIS workflows"
       },
       {
         "slug": "zoning-data-apis-for-site-selection",
         "label": "Measure a split-zoned lot",
-        "detail": "The published point at 2239 Forest Avenue is in C8-1. The mapped tax lot intersects five base districts. Test both geometries."
-      },
-      {
-        "slug": "lightbox-alternatives-environmental-site-screening",
-        "label": "Compare a Superfund coordinate with its footprint",
-        "detail": "EPA’s published Gowanus Canal coordinate is 21.7 meters outside its mapped site. Replay the geometry check and trace three cleanup dates."
+        "detail": "The published point at 2239 Forest Avenue is in C8-1. The mapped tax lot intersects five base districts. Test both geometries.",
+        "group": "Parcel and GIS workflows"
       },
       {
         "slug": "mireye-alternatives-for-property-screening",
         "label": "Compare a FEMA point with the tax lot",
-        "detail": "At Brooklyn Army Terminal, the published point is in Zone AE. The parcel overlay puts 19.9% of the lot in that zone."
+        "detail": "At Brooklyn Army Terminal, the published point is in Zone AE. The parcel overlay puts 19.9% of the lot in that zone.",
+        "group": "Parcel and GIS workflows"
       },
       {
-        "slug": "west-kite-alternatives-for-commercial-property-data",
-        "label": "Reconcile property units with occupancy records",
-        "detail": "For 25 Water Street, compare 1,323 total units in MapPLUTO with 1,320 dwelling units on the initial occupancy issuance."
+        "slug": "lightbox-alternatives-environmental-site-screening",
+        "label": "Compare a Superfund coordinate with its footprint",
+        "detail": "EPA’s published Gowanus Canal coordinate is 21.7 meters outside its mapped site. Replay the geometry check and trace three cleanup dates.",
+        "group": "Parcel and GIS workflows"
+      },
+      {
+        "slug": "gis-mcp-servers-for-site-selection",
+        "label": "Evaluate GIS MCP servers",
+        "detail": "Run three agent prompts against dated city parcel records and FEMA geometry.",
+        "group": "Parcel and GIS workflows"
+      },
+      {
+        "slug": "commercial-property-insurance-data-apis",
+        "label": "Match the building behind the submission",
+        "detail": "Test an exact Brooklyn building ID whose city footprint attributes conflict with the building operator’s specification.",
+        "group": "Underwriting, permits and commercial real estate"
+      },
+      {
+        "slug": "building-permit-data-apis",
+        "label": "Recover an earlier building permit expiration date",
+        "detail": "Check two dated DOB NOW exports and count one work permit with two trade rows.",
+        "group": "Underwriting, permits and commercial real estate"
       },
       {
         "slug": "ageospatial-alternatives-commercial-roof-underwriting",
         "label": "Verify roof replacement as of a quote date",
-        "detail": "For Rosemead project 31031, compare what a June 30 quote could establish with what the July 8 council packet later documented."
+        "detail": "For Rosemead project 31031, compare what a June 30 quote could establish with what the July 8 council packet later documented.",
+        "group": "Underwriting, permits and commercial real estate"
+      },
+      {
+        "slug": "commercial-real-estate-data-apis-for-lenders",
+        "label": "Replay two legal recording cutoffs",
+        "detail": "Use three Empire State Building records and distinguish the recorder date from publication or vendor ingestion.",
+        "group": "Underwriting, permits and commercial real estate"
+      },
+      {
+        "slug": "commercial-mortgage-records-by-address",
+        "label": "Link two $415 million mortgage records",
+        "detail": "Use a typed City Register reference to trace a rent assignment to its agreement.",
+        "group": "Underwriting, permits and commercial real estate"
+      },
+      {
+        "slug": "commercial-real-estate-sales-lease-comps-apis",
+        "label": "Compare the basis of sale and lease figures",
+        "detail": "At 32 Old Slip, separate the deed, lease assignment, fully serviced rent and private fixed rent.",
+        "group": "Underwriting, permits and commercial real estate"
+      },
+      {
+        "slug": "property-data-as-of-date",
+        "label": "Test a property API at three historical cutoffs",
+        "detail": "Reconcile what changed on December 3 and December 9, 2025 across building and recorder records.",
+        "group": "Underwriting, permits and commercial real estate"
+      },
+      {
+        "slug": "west-kite-alternatives-for-commercial-property-data",
+        "label": "Reconcile property units with occupancy records",
+        "detail": "For 25 Water Street, compare 1,323 total units in MapPLUTO with 1,320 dwelling units on the initial occupancy issuance.",
+        "group": "Underwriting, permits and commercial real estate"
       },
       {
         "slug": "geoforge-alternatives-data-center-power",
         "label": "Reconcile utility service and upgrade dates",
-        "detail": "Compare the required and projected dates for PJM b4068.2 with the separate customer service estimate in AEP Ohio’s study."
+        "detail": "Compare the required and projected dates for PJM b4068.2 with the separate customer service estimate in AEP Ohio’s study.",
+        "group": "Power, utilities, logistics and retail"
+      },
+      {
+        "slug": "industrial-wastewater-capacity-site-selection",
+        "label": "Find the evidence for a wastewater allocation",
+        "detail": "At Camp Hall, separate historical sewer capacity, a proposed connection and the utility decision for a parcel.",
+        "group": "Power, utilities, logistics and retail"
+      },
+      {
+        "slug": "verify-industrial-rail-spur-service",
+        "label": "Verify operating rail service and first delivery",
+        "detail": "At Tulsa Port of Inola, trace construction completion, carrier operations and the first shipment through separate records.",
+        "group": "Power, utilities, logistics and retail"
+      },
+      {
+        "slug": "retail-trade-area-overlap",
+        "label": "Measure overlapping retail catchments",
+        "detail": "Use the two Detroit stores to reproduce shared and incremental household estimates with the archived routing and Census inputs.",
+        "group": "Power, utilities, logistics and retail"
       },
       {
         "slug": "ev-charging-station-data-apis",
         "label": "Test installed ports and live availability",
-        "detail": "AFDC stations 322368 and 388708 list 16 DC fast ports combined. Ask for the separate observation that establishes live status."
+        "detail": "AFDC stations 322368 and 388708 list 16 DC fast ports combined. Ask for the separate observation that establishes live status.",
+        "group": "Power, utilities, logistics and retail"
       }
     ],
     "resourceLinks": [
