@@ -58,6 +58,16 @@ uv run --with pyproj==3.8.0 --with shapely==2.2.0 public/blog/data-center-flood-
 
 The live run reports the point and parcel separately, checks the effective map panel, and remeasures the Tampa footprint and evacuation intersections. The `changed` list identifies differences from the dated findings. Exit status 2 means a finding changed, and status 1 means the comparison could not finish. Response checksums show whether the agency returned the same bytes. Keep the date and geographic scope with each result.
 
+## Reproduce an ERCOT settlement price
+
+The [ERCOT settlement replay](https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.0) bundles the selected dispatch and settlement rows, a Python script and checksums for the [worked pricing example](https://invariant-ai.com/blog/ercot-lmp-vs-settlement-point-price#replay-ercot-quarter-hour).
+
+```bash
+python3 public/blog/ercot-settlement-replay.py
+```
+
+The script calculates the four time weights and reproduces the posted $62.14/MWh at ALP_BESS_RN. To check the original reports, download the source archives with the URLs and names in the JSON and add `--archives ./ercot-reports`.
+
 ## Replay a commercial mortgage recording cutoff
 
 The [commercial lending API guide](https://invariant-ai.com/blog/commercial-real-estate-data-apis-for-lenders#empire-state-building-recording-cutoff) uses three selected city recorder records at the Empire State Building. Replay the October 15 and October 22, 2013 snapshots and see which documents would appear early if you filtered by the date written on each instrument.

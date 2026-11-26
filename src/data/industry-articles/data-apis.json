@@ -590,6 +590,18 @@
             "label": "Download the selected ERCOT rows, source ZIP links and calculation",
             "path": "/blog/ercot-lmp-settlement-price-replay.json",
             "format": "JSON"
+          },
+          {
+            "type": "download",
+            "label": "Download the Python replay",
+            "path": "/blog/ercot-settlement-replay.py",
+            "format": "Python",
+            "datasetAnchor": null
+          },
+          {
+            "type": "paragraph",
+            "text": "Save the Python script beside the JSON and run python3 ercot-settlement-replay.py. It derives the four time weights and checks the posted price. The versioned ZIP also includes instructions for verifying all ten original ERCOT archives.",
+            "sourceIds": ["ercot-replay-release"]
           }
         ]
       },
@@ -826,6 +838,13 @@
         "publisher": "ERCOT",
         "url": "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1303083375",
         "linkLabel": "November 25 settlement ZIP"
+      },
+      {
+        "id": "ercot-replay-release",
+        "title": "ERCOT settlement price replay v1.0.0",
+        "publisher": "Invariant",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.0",
+        "linkLabel": "Versioned replay and checksums"
       },
       {
         "id": "price-rules",
