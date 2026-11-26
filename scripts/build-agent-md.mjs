@@ -18,7 +18,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { datasetCitationPath } from '../src/data/datasetCitationPath.mjs'
 import { formatEarthRequest } from '../src/data/formatEarthRequest.mjs'
-import { buildArticleCollectionLinks } from '../src/data/collectionGuideLinks.mjs'
+import { buildArticleCollectionLinks, guideGroupId } from '../src/data/collectionGuideLinks.mjs'
 import { agentTopicGuides } from './agent-topic-guides.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
@@ -91,8 +91,10 @@ const articleCollectionLinks = buildArticleCollectionLinks(blogCollections, arti
 const cell = s => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ')
 const linkText = s => s.replace(/[\\[\]]/g, '\\$&')
 const citationLink = (label, url) => `[${linkText(label)}](<${url}>)`
+const sectionLink = (label, page, id) => citationLink(label, `${page}#${encodeURIComponent(id)}`)
 
 function articleMd(a) {
+  const page = `${SITE}/blog/${a.slug}`
   const src = new Map(a.sources.map(s => [s.id, s]))
   const workflow = researchWorkflows.get(a.slug)
   const datasetDownload = primaryDatasets.get(a.slug)?.dataset.downloads[0]?.path
@@ -113,7 +115,7 @@ function articleMd(a) {
   if (collectionLink) out.push(`Browse [${linkText(collectionLink.label)}](${SITE}${collectionLink.path}) for related guides.`, '')
   if (a.takeaways?.length) out.push('## Key points', '', ...a.takeaways.map(t => `- ${t}`), '')
   for (const s of a.sections) {
-    out.push(`## ${s.heading}`, '')
+    out.push(`## ${sectionLink(s.heading, page, s.id)}`, '')
     for (const b of s.blocks) {
       if (b.type === 'paragraph') out.push(b.text + cite(b.sourceIds), '')
       else if (b.type === 'list') out.push(...b.items.map(i => `- ${i}`), ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
@@ -145,10 +147,10 @@ function articleMd(a) {
     }
   }
   if (a.faqs?.length) {
-    out.push('## Questions', '')
+    out.push(`## ${sectionLink('Questions', page, 'questions')}`, '')
     for (const f of a.faqs) out.push(`### ${f.question}`, '', f.answer + cite(f.sourceIds), '')
   }
-  if (a.sources?.length) out.push('## Sources', '', ...a.sources.map(s => `- ${s.publisher}: ${citationLink(s.title, s.url)}`), '')
+  if (a.sources?.length) out.push(`## ${sectionLink('Sources', page, 'sources')}`, '', ...a.sources.map(s => `- ${s.publisher}: ${citationLink(s.title, s.url)}`), '')
   if (a.relatedSlugs?.length) out.push('## Related', '', ...a.relatedSlugs.map(s => `- [${titles.get(s) ?? s}](${SITE}/blog/${s})`), '')
   if (a.kind === 'site-guide' && a.service) {
     out.push('---', '', `[Prepare a site request](${SITE}/contact?request=site-selection) · [Book a site selection call](${SITE_BOOKING})`, '')
@@ -278,7 +280,7 @@ function coverageMd() {
   })
   return [
     '# Invariant Earth API data coverage', '',
-    `[Search the coverage catalog](${SITE}${links.coverage}). Snapshot checked ${coverage.checkedDate}.`, '',
+    `${sectionLink('Search the coverage catalog', `${SITE}${links.coverage}`, 'coverage-search')}. Snapshot checked ${coverage.checkedDate}.`, '',
     `The public manifests list ${coverage.distinct} distinct field names. ${coverage.point} are listed for point lookup and ${coverage.parcel} for parcel enrichment, with ${coverage.shared} names appearing in both.`, '',
     'Check the definition for the operation you plan to call. A listed field can be unavailable at a given location.', '',
     ...(operatorFields.length ? ['## Fields marked as requiring an operator key', '',
@@ -560,14 +562,15 @@ const full = [
   `[Invariant Earth product](${SITE}/product.md) · [MCP server and agent setup](${SITE}/mcp.md)`, '', CONTACT, '',
 ]
 for (const collection of blogCollections) {
-  const trial = providerTrial.url === `${SITE}/blog/${collection.slug}` ? providerTrial : undefined
+  const page = `${SITE}/blog/${collection.slug}`
+  const trial = providerTrial.url === page ? providerTrial : undefined
   const md = [
     `# ${collection.heading}`, '', collection.description, '',
     `URL: ${SITE}/blog/${collection.slug}  `, `Updated: ${collection.updatedDate} · Publisher: Invariant`, '',
     ...(collection.resourceLinks ? [
       ...collection.resourceLinks.map(({ label, href }) => `- [${label}](${new URL(href, SITE).href})`), '',
     ] : []),
-    `## ${collection.checklistTitle}`, '',
+    `## ${sectionLink(collection.checklistTitle, page, 'collection-checks')}`, '',
     ...collection.checks.map(check => `- **${check.title}.** ${check.detail}`), '',
     ...(collection.worksheet ? [
       `[${collection.worksheet.label}](${SITE}${collection.worksheet.path}). ${collection.worksheet.detail}`, '',
@@ -575,13 +578,13 @@ for (const collection of blogCollections) {
     ...(trial ? [
       citationLink('Download case inputs and expected results (JSON)', SITE + trial.json_path), '',
       citationLink('Versioned reference pack', trial.release_url), '',
-      `## ${providerComparisons.heading}`, '', providerComparisons.description, '',
+      `## ${sectionLink(providerComparisons.heading, page, 'provider-comparisons')}`, '', providerComparisons.description, '',
       ...providerComparisons.workflows.flatMap(({ id, title, guide, guideAnchor, test, providers }) => [
         `### ${citationLink(title, `${trial.url}#compare-${id}`)}`, '', test, '',
         citationLink('Read the test and sources', `${SITE}/blog/${guide}${guideAnchor ? `#${guideAnchor}` : ''}`), '',
         providers.map(({ name, url }) => citationLink(name, url)).join(' · '), '',
       ]),
-      '## Reference cases', '',
+      `## ${sectionLink('Reference cases', page, 'reference-cases')}`, '',
       ...trial.cases.flatMap(item => [
         `### ${citationLink(item.title, `${trial.url}#${item.test_id}`)}`, '',
         `- **Input** ${item.case_input}`,
@@ -593,9 +596,9 @@ for (const collection of blogCollections) {
           citationLink('Primary source', item.primary_source_url), citationLink('Second source', item.second_source_url)].join(' · '), '',
       ]),
     ] : []),
-    `## ${collection.guidesTitle}`, '',
+    `## ${sectionLink(collection.guidesTitle, page, 'collection-guides')}`, '',
     ...collection.guides.flatMap((guide, index) => [
-      ...(guide.group && guide.group !== collection.guides[index - 1]?.group ? ['', `### ${guide.group}`, ''] : []),
+      ...(guide.group && guide.group !== collection.guides[index - 1]?.group ? ['', `### ${sectionLink(guide.group, page, guideGroupId(guide.group))}`, ''] : []),
       `- [${guide.label}](${SITE}/blog/${guide.slug}). ${guide.detail}`,
     ]), '',
   ].join('\n')

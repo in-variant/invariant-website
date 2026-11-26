@@ -2,13 +2,15 @@
 // Measures web-grounded API answers. Google Search and Search Console are
 // separate measurements. Use --list to see the exact public inputs.
 // target_cited is the HTML URL. target_content_cited also accepts its Markdown
-// alternate. Run --check-targets before deployment or without provider API keys.
+// alternate. target_section_cited requires the specific HTML anchor when set.
+// Run --check-targets before deployment or without provider API keys.
 // An unavailable target or unresolved citation leaves a missing target unscored.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
 import { loadEnvFile } from 'node:process'
 import { parseArgs } from 'node:util'
+import { matchTargetCitations, parseWebUrl } from './geo-citation-match.mjs'
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const SITE = 'invariant-ai.com'
@@ -164,15 +166,6 @@ async function askGemini(prompt, key, model) {
   }
 }
 
-function parseWebUrl(value) {
-  try {
-    const url = new URL(value)
-    return ['http:', 'https:'].includes(url.protocol) ? url : null
-  } catch {
-    return null
-  }
-}
-
 async function checkTarget(target, origin) {
   const url = new URL(target, origin)
   const canonical = new URL(url.pathname, `https://${SITE}`).href
@@ -242,11 +235,6 @@ function firstDomainCitation(citations, domain) {
   return index < 0 ? null : { index: index + 1, url: citations[index].destination }
 }
 
-function destinationKey(destination) {
-  const url = parseWebUrl(destination)
-  return url ? url.hostname.replace(/^www\./, '') + url.pathname.replace(/\/$/, '') : null
-}
-
 function citationVerdict(checked, matched, unresolved) {
   return checked ? (matched ? true : unresolved ? null : false) : null
 }
@@ -281,17 +269,15 @@ async function observe(item, provider, config, repeat, compareDomains, targetSta
   const anyUnresolved = citations.some(citation => !citation.destination)
   const complete = result.complete && result.grounded && Boolean(result.answer.trim())
   const status = complete ? 'grounded' : 'no_complete_grounded_answer'
-  const targetKey = destinationKey(base.target_url)
-  const targets = new Set(citations.map(citation => destinationKey(citation.destination)))
-  const htmlMatch = Boolean(targetKey && targets.has(targetKey))
-  const markdownMatch = Boolean(targetKey && targets.has(`${targetKey}.md`))
+  const matched = matchTargetCitations(base.target_url, citations)
   const checkedTarget = complete && targetStatus?.state === 'ready'
   return {
     ...base, model: result.model || config.model, status,
     owned_cited: citationVerdict(complete, Boolean(firstOwned), anyUnresolved),
-    target_cited: citationVerdict(checkedTarget, htmlMatch, anyUnresolved),
-    target_markdown_cited: citationVerdict(checkedTarget, markdownMatch, anyUnresolved),
-    target_content_cited: citationVerdict(checkedTarget, htmlMatch || markdownMatch, anyUnresolved),
+    target_cited: citationVerdict(checkedTarget, matched.html, anyUnresolved),
+    target_markdown_cited: citationVerdict(checkedTarget, matched.markdown, anyUnresolved),
+    target_content_cited: citationVerdict(checkedTarget, matched.html || matched.markdown, anyUnresolved),
+    target_section_cited: citationVerdict(checkedTarget && matched.section !== null, matched.section, anyUnresolved),
     first_owned_citation: firstOwned,
     unresolved_citations: citations.filter(citation => !citation.destination).length,
     comparisons: Object.fromEntries(compareDomains.map(domain => {
@@ -357,6 +343,7 @@ async function main() {
       target_html: tally(sample, 'target_cited'),
       target_markdown: tally(sample, 'target_markdown_cited'),
       target_content: tally(sample, 'target_content_cited'),
+      target_section: tally(sample, 'target_section_cited'),
       errors: sample.filter(row => row.status === 'error').length,
       skipped: sample.filter(row => row.status === 'skipped').length,
       total: sample.length,
