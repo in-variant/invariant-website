@@ -42,6 +42,7 @@ RETIRED = (
     "/blog/fermibench-sota", "/glossary/fermi-bench", "/glossary/helion-512",
     "/blog/nuclear-compliance-tam", "/blog/space-compliance-tam",
     "/ai-for-nuclear-compliance", "/ai-for-space-compliance",
+    "/blog/part100-vs-part53-siting", "/blog/seismic-design-shift",
 )
 CRAWLER_USER_AGENTS = (
     "Googlebot/2.1", "bingbot/2.0", "OAI-SearchBot/1.4", "Claude-SearchBot/1.0", "PerplexityBot/1.0",
@@ -616,10 +617,8 @@ def verify_blog_feed(blog, xml, expected_urls):
     self_link = feed.find(f"{ATOM_NS}link[@rel='self']")
     require(feed.tag == f"{ATOM_NS}feed" and self_link is not None and self_link.get("href") == CANONICAL + FEED_PATH,
             "Atom feed has an invalid namespace or self URL")
-    lookup = {}
-    for filename in ("industry-article-index.json", "legacy-blog-articles.json"):
-        for article in json.loads((ROOT / "src/data" / filename).read_text(encoding="utf-8")):
-            lookup[f"{CANONICAL}/blog/{article['slug']}"] = article
+    articles = json.loads((ROOT / "src/data/industry-article-index.json").read_text(encoding="utf-8"))
+    lookup = {f"{CANONICAL}/blog/{article['slug']}": article for article in articles}
     entries = feed.findall(f"{ATOM_NS}entry")
     ids = [entry.findtext(f"{ATOM_NS}id") for entry in entries]
     require(set(ids) == lookup.keys() and len(ids) == len(lookup) and set(ids) <= expected_urls,

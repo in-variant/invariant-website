@@ -8,7 +8,6 @@ import { blockSearchText, datasetSearchDocuments } from './editorial-search-cont
 const base = new URL('../src/data/', import.meta.url)
 const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
-const legacyArticles = JSON.parse(readFileSync(new URL('legacy-blog-articles.json', base), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(new URL('blog-collections.json', base), 'utf8'))
 const providerTrial = JSON.parse(readFileSync(new URL('physical-world-data-api-trial.json', base), 'utf8'))
 const providerComparisons = JSON.parse(readFileSync(new URL('physical-world-provider-comparisons.json', base), 'utf8'))
@@ -39,10 +38,9 @@ const csvCell = (value, quoteAll = true) => {
   const safe = /^[\s]*[=+@-]/.test(value) ? "'" + value : value
   return quoteAll || /[",\r\n]/.test(safe) ? '"' + safe.replaceAll('"', '""') + '"' : safe
 }
-const allArticles = [...articles, ...legacyArticles]
-const slugs = new Set(allArticles.map(article => article.slug))
-if (slugs.size !== allArticles.length) throw new Error('Duplicate article slug')
-for (const article of allArticles) {
+const slugs = new Set(articles.map(article => article.slug))
+if (slugs.size !== articles.length) throw new Error('Duplicate article slug')
+for (const article of articles) {
   if (!/^[a-z0-9-]+$/.test(article.slug)) throw new Error(`Invalid slug: ${article.slug}`)
 }
 const publicBlogSlugs = new Set(slugs)
@@ -103,7 +101,7 @@ for (const { id, title, guide, guideAnchor, test, providers } of providerCompari
   if (!/^[a-z0-9-]+$/.test(id) || workflowIds.has(id) || !slugs.has(guide) || !title?.trim() || !test?.trim()) {
     throw new Error(`Invalid provider comparison workflow: ${id}`)
   }
-  if (guideAnchor !== undefined && !allArticles.find(article => article.slug === guide)?.sections?.some(section => section.id === guideAnchor)) {
+  if (guideAnchor !== undefined && !articles.find(article => article.slug === guide)?.sections?.some(section => section.id === guideAnchor)) {
     throw new Error(`Invalid provider comparison guide section: ${id}`)
   }
   workflowIds.add(id)
@@ -122,7 +120,7 @@ for (const row of providerTrial.cases) {
   }
   const guide = new URL(row.source_case_url)
   const fixture = new URL(row.reference_fixture_url)
-  const article = allArticles.find(item => guide.pathname === `/blog/${item.slug}`)
+  const article = articles.find(item => guide.pathname === `/blog/${item.slug}`)
   if (!article || guide.origin !== trialOrigin
     || (guide.hash && !article.sections?.some(section => section.id === guide.hash.slice(1)))
     || fixture.origin !== trialOrigin || !existsSync(new URL(`../public${fixture.pathname}`, import.meta.url))
@@ -326,7 +324,7 @@ for (const collection of blogCollections) {
     ...collection, image, imageSrcSet: coverSrcSets[image],
   }))
 }
-const publishedArticles = [...index, ...legacyArticles]
+const publishedArticles = index
 const featuredDatasetSlugs = new Set(JSON.parse(readFileSync(new URL('featured-research-datasets.json', base), 'utf8')).map(({ slug }) => slug))
 const catalogSources = []
 const catalogDataset = ({ sources, sourceDetails, ...dataset }) => ({
@@ -439,7 +437,7 @@ writeIfChanged(new URL('earth-coverage-examples.json', base), `${JSON.stringify(
 for (const [slug, csv] of worksheets) {
   writeIfChanged(new URL(`../public/blog/${slug}.csv`, import.meta.url), csv)
 }
-const catalog = new Map([...index, ...legacyArticles].map(article => [article.slug, article]))
+const catalog = new Map(index.map(article => [article.slug, article]))
 const articleCovers = new Map([...responsiveCovers].map(([image, { width, height, srcSet }]) => [image, { width, height, srcSet }]))
 const articleCollectionLinks = buildArticleCollectionLinks(blogCollections, articles)
 writeEntryModules(new URL('.generated-articles/', base), articles.map(({ relatedSlugs, dataset, coverFile, ...article }, i) => ({
@@ -452,10 +450,6 @@ writeEntryModules(new URL('.generated-articles/', base), articles.map(({ related
     const srcSet = position < 2 ? responsiveCovers.get(image)?.srcSet : undefined
     return { slug, title, topic, image, srcSet }
   }),
-})))
-writeEntryModules(new URL('.generated-legacy-articles/', base), legacyArticles.map(article => ({
-  ...article,
-  relatedReading: [],
 })))
 
 writeEntryModules(new URL('.generated-glossary/entries/', base), glossary)

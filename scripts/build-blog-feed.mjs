@@ -3,8 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 const site = 'https://invariant-ai.com'
 const blogUrl = `${site}/blog`
 const feedUrl = `${site}/feed.xml`
-const readIndex = name => JSON.parse(readFileSync(new URL(`../src/data/${name}.json`, import.meta.url), 'utf8'))
-const articles = [...readIndex('industry-article-index'), ...readIndex('legacy-blog-articles')]
+const articles = JSON.parse(readFileSync(new URL('../src/data/industry-article-index.json', import.meta.url), 'utf8'))
 const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }
 const escapeXml = value => value.replace(/[&<>"']/g, char => entities[char])
 const revisionDate = article => article.updatedDate ?? article.dateTime

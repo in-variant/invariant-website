@@ -15,8 +15,6 @@ export const contentRouteSources = {
   '/blog/commercial-real-estate-lending': './pages/blog/BlogCollection.tsx',
   '/blog/physical-world-data-api-evaluation': './pages/blog/ProviderEvaluation.tsx',
   '/blog/physical-world-data-by-use-case': './pages/blog/BlogCollection.tsx',
-  '/blog/part100-vs-part53-siting': './pages/blog/Part100vsPart53.tsx',
-  '/blog/seismic-design-shift': './pages/blog/SeismicDesignShift.tsx',
   '/pricing': './pages/Pricing.tsx',
   '/product': './pages/Product.tsx',
   '/mcp': './pages/EarthMcp.tsx',
