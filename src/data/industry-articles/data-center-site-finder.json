@@ -5,16 +5,17 @@
    "kind": "site-guide",
    "region": "United States",
    "title": "U.S. Data Center Space for Lease",
-   "description": "Compare equipped halls, powered shells and build-to-suit lease leads by advertised power, fit-out and delivery date. Verify the IT load you can lease.",
+   "description": "Find U.S. data center space for lease by IT load and delivery date. Compare powered shell and colocation listings and first-year rents from two SEC filings.",
    "date": "2026-11-25",
-   "readMinutes": 7,
+   "updatedDate": "2026-11-26",
+   "readMinutes": 9,
    "coverAlt": "Brick industrial building with a modern mechanical annex in morning light.",
    "coverCaption": "Illustrated carrier hotel exterior. The locations in the guide are identified by their source records.",
    "intro": "To lease a data center, start with the critical IT load you need in a specific hall and the date your equipment has to run. A broker may advertise power for the entire building or an expansion that still needs utility work. A lease should identify the capacity your team can use in its own space and how the landlord will demonstrate delivery.",
    "takeaways": [
      "Use the listed power and dates to shortlist space. Ask for the uncommitted critical IT capacity in the offered hall and the equipment it includes.",
      "Separate building access, utility energization, system acceptance and rent commencement. Record which party owns each milestone.",
-     "At one St. Louis carrier hotel, two brokers advertise the same 7.5 MW starting point and different expansion targets. Ask for a suite allocation and a dated plan before pricing either expansion."
+     "Normalize base rent using the contracted IT kilowatts and the same lease period. Compare electricity, fit-out and other charges separately."
    ],
    "sections": [
      {
@@ -23,14 +24,14 @@
        "blocks": [
          {
            "type": "paragraph",
-           "text": "These broker pages were checked November 25, 2026. They show what was being marketed, including future phases. Ask the broker to confirm current availability and the smallest block a tenant can take."
+           "text": "We checked these offerings on November 25 and 26, 2026. Ask the broker or owner to confirm current availability, the smallest block a tenant can take and the delivery terms for each phase."
          },
          {
            "type": "table",
            "stackOnMobile": true,
            "columns": [
              "Market and space",
-             "Power reported by the broker",
+             "Reported power",
              "What to ask for first"
            ],
            "rows": [
@@ -58,6 +59,11 @@
                "Santa Teresa, New Mexico. Westpark build-to-suit.",
                "CBRE advertises 18 MW for the industrial park in Q3 2027.",
                "Request the allocation to your building and the construction milestones for that allocation."
+             ],
+             [
+               "Lincolnshire, Illinois. Building D at 4 Overlook Point.",
+               "The owner lists 6 MW gross. Its current design figures are 4 MW of critical load at Tier I standards or 1.3 MW at Tier II standards.",
+               "Ask for the critical load at your required redundancy, commissioning evidence and the work needed for 4 MW at Tier II standards."
              ]
            ],
            "rowSourceIds": [
@@ -76,6 +82,9 @@
              ],
              [
                "westpark"
+             ],
+             [
+               "overlook-owner-flyer"
              ]
            ]
          },
@@ -87,6 +96,60 @@
                "path": "/contact?request=site-selection",
                "label": "Request a lease shortlist by market, IT load and date"
              }
+           ]
+         }
+       ]
+     },
+     {
+       "id": "where-to-find-lease-space",
+       "heading": "Where can you compare data center lease listings?",
+       "blocks": [
+         {
+           "type": "paragraph",
+           "text": "Start with the size and delivery terms you need. A listing for a whole building, a reserved block in an operating hall and future expansion can all show the same MW figure. Check the capacity basis and the date of the offer before comparing them."
+         },
+         {
+           "type": "table",
+           "stackOnMobile": true,
+           "columns": [
+             "Source",
+             "Where to start",
+             "What to confirm"
+           ],
+           "rows": [
+             [
+               "Invariant",
+               "Request a shortlist for a specific market, critical IT load and handover date. Use the dated public evidence in this guide as a starting point.",
+               "Share your phase schedule, fit-out needs and rack density so each lead can be checked against the same requirements."
+             ],
+             [
+               "Datacentres.com",
+               "Browse properties advertised for lease, including building and suite listings with reported power where provided.",
+               "Confirm the meter and proposed delivery scope. Building area and electrical service labels can leave usable IT capacity open."
+             ],
+             [
+               "Colocation Scout",
+               "Browse operator-reported capacity by market, size and timeframe.",
+               "Confirm the exact hall, current reservation status and whether the quoted capacity is available by your commissioning date."
+             ],
+             [
+               "DC Hub",
+               "Capacity Source describes a search and introduction service for land, shells, turnkey and colocation. Its public feed returned zero live listings on November 26, 2026.",
+               "Check the feed for new listings. Use the introduction to verify the offered site, utility terms and current availability."
+             ]
+           ],
+           "rowSourceIds": [
+             [],
+             [
+               "datacentres-lease-directory"
+             ],
+             [
+               "colocation-scout-directory"
+             ],
+             [
+               "dc-hub-lease-directory",
+               "dc-hub-public-listings"
+             ]
            ]
          }
        ]
@@ -232,6 +295,80 @@
        ]
      },
      {
+       "id": "compare-rent-per-it-kw",
+       "heading": "How do you compare data center rent per kW per month?",
+       "blocks": [
+         {
+           "type": "paragraph",
+           "text": "Divide first-year base rent by 12 months and by the contracted critical IT load in kilowatts. Use the power reserved for the tenant’s equipment as the denominator. The facility’s gross MW can also serve cooling and other systems. For a phased lease, use the rent and capacity for the same phase and period.",
+           "sourceIds": [
+             "lease-primer"
+           ]
+         },
+         {
+           "type": "table",
+           "stackOnMobile": true,
+           "columns": [
+             "Disclosed lease",
+             "First-year base rent basis",
+             "Contracted critical IT load",
+             "Implied base rent per IT kW per month"
+           ],
+           "rows": [
+             [
+               "Host Digital Site I, northeast Oklahoma",
+               "About $67 million in year one",
+               "43 MW",
+               "$130"
+             ],
+             [
+               "TeraWulf La Lupa and Core42, Lake Mariner, New York",
+               "$90 million across the first 12 months of each lease",
+               "60 MW",
+               "$125"
+             ]
+           ],
+           "rowSourceIds": [
+             [
+               "host-lease-filing",
+               "host-lease-letter"
+             ],
+             [
+               "terawulf-lease-filing"
+             ]
+           ]
+         },
+         {
+           "type": "paragraph",
+           "text": "Host’s 15-year Site I lease covers 43 MW of critical IT capacity at a site reported at 55 MW gross. Dividing about $67 million by 43,000 and by 12 gives about $130 per IT kW per month. The November filing projects handover in Q1 2027. Host reports a 3% annual rent increase and operating expenses, including electricity, payable by the tenant in addition to rent.",
+           "sourceIds": [
+             "host-lease-filing"
+           ]
+         },
+         {
+           "type": "paragraph",
+           "text": "TeraWulf says the $90 million prepayment represents the first 12 months of base rent across the Core42 leases. The prepayment offsets half of each month’s base rent until the credit runs out. That changes cash payment timing. The implied base rent is $125 per contracted IT kW per month across the leases, using each lease’s own first 12 months. TeraWulf reported the full 60 MW in service as of September 30, 2026.",
+           "sourceIds": [
+             "terawulf-lease-filing"
+           ]
+         },
+         {
+           "type": "paragraph",
+           "text": "Use these signed leases to check the comparison method. For a current offer, ask for monthly base rent by hall and phase, billable IT kW, electricity charges, other operating expenses, escalators and credits. Confirm who pays for the work to bring each phase into service. Compare total cost over the same delivery and operating period.",
+           "sourceIds": [
+             "lease-primer"
+           ]
+         },
+         {
+           "type": "download",
+           "path": "/blog/data-center-lease-rent-per-it-kw.json",
+           "format": "JSON",
+           "label": "Download both lease calculations and SEC filing references",
+           "datasetAnchor": "dataset-wholesale-lease-rent-per-it-kw"
+         }
+       ]
+     },
+     {
        "id": "shortlist",
        "heading": "What to send when you request a lease shortlist",
        "blocks": [
@@ -261,6 +398,13 @@
    ],
    "faqs": [
      {
+       "question": "How is data center lease rent per kW per month calculated?",
+       "answer": "Divide base rent for a particular hall or phase by the number of months and the contracted critical IT capacity in kilowatts. Start with the same period and scope for each offer, then compare electricity, tenant-paid work and other charges separately.",
+       "sourceIds": [
+         "lease-primer"
+       ]
+     },
+     {
        "question": "How do I find U.S. data center space for lease with available power?",
        "answer": "Screen by market, critical IT load and the date your equipment needs to run. Ask the broker for the exact hall, uncommitted capacity at handover, and evidence of current availability. Verify expansion separately using the utility scope and the landlord’s commissioning plan."
      },
@@ -285,6 +429,62 @@
      }
    ],
    "sources": [
+     {
+       "id": "overlook-owner-flyer",
+       "publisher": "Woodcrest Capital",
+       "title": "4 Overlook Point marketing brochure, Building D current configuration and upgrades, page 11",
+       "linkLabel": "4 Overlook Point owner brochure, page 11",
+       "url": "https://woodcrestcapital.com/files/Current_flyers/Centers/FULL%20FLYER%20-%204%20Overlook%20Point.pdf#page=11"
+     },
+     {
+       "id": "host-lease-filing",
+       "publisher": "Host Digital / SEC",
+       "title": "Host Digital Form 10-Q, Site I lease, November 16, 2026",
+       "linkLabel": "Host Digital lease filing",
+       "url": "https://www.sec.gov/Archives/edgar/data/1948864/000121390026120876/ea0311804-10q_host.htm"
+     },
+     {
+       "id": "host-lease-letter",
+       "publisher": "Host Digital / SEC",
+       "title": "Host Digital shareholder letter, first-year base rent and tenant expenses, September 29, 2026",
+       "linkLabel": "Host Digital rent and expense disclosure",
+       "url": "https://www.sec.gov/Archives/edgar/data/1948864/000149315226044804/ex99-1.htm"
+     },
+     {
+       "id": "terawulf-lease-filing",
+       "publisher": "TeraWulf / SEC",
+       "title": "TeraWulf Form 10-Q, Core42 lease prepayments and La Lupa capacity, November 6, 2026",
+       "linkLabel": "TeraWulf lease filing",
+       "url": "https://www.sec.gov/Archives/edgar/data/1083301/000162828026071671/wulf-20260930.htm"
+     },
+     {
+       "id": "datacentres-lease-directory",
+       "publisher": "Datacentres.com",
+       "title": "Data centre properties marketed for lease and reported capacity",
+       "linkLabel": "Datacentres.com lease listings",
+       "url": "https://www.datacentres.com/for-lease"
+     },
+     {
+       "id": "colocation-scout-directory",
+       "publisher": "Colocation Scout",
+       "title": "Operator-reported colocation availability by capacity, market and timeframe",
+       "linkLabel": "Colocation Scout capacity listings",
+       "url": "https://colocationscout.com/available-data-center-capacity.html"
+     },
+     {
+       "id": "dc-hub-lease-directory",
+       "publisher": "DC Hub",
+       "title": "Capacity Source listings and the introduction process",
+       "linkLabel": "DC Hub Capacity Source",
+       "url": "https://dchub.cloud/listings"
+     },
+     {
+       "id": "dc-hub-public-listings",
+       "publisher": "DC Hub",
+       "title": "Capacity Source public listing feed",
+       "linkLabel": "DC Hub public listing feed",
+       "url": "https://dchub.cloud/api/v1/listings"
+     },
      {
        "id": "five-nines",
        "title": "Available data centers and powered land",
@@ -370,6 +570,26 @@
      "spatialCoverage": "St. Louis, Missouri, and Orlando, Florida, United States",
      "temporalCoverage": "2026-11-25"
    },
+   "additionalDatasets": [
+     {
+       "anchor": "dataset-wholesale-lease-rent-per-it-kw",
+       "datePublished": "2026-11-26",
+       "name": "First-year base rent per critical IT kW in two U.S. data center leases",
+       "description": "Two SEC-filed wholesale data center leases and normalized first-year base rent per contracted critical IT kilowatt per month. Includes power basis, phased delivery, a prepaid rent credit and original filing locators.",
+       "spatialCoverage": "Northeast Oklahoma and Lake Mariner, New York, United States",
+       "temporalCoverage": "2026-09-29/2026-11-16",
+       "archivedRelease": {
+         "url": "https://github.com/in-variant/invariant-website/releases/tag/data-center-lease-rent-comparisons-v1.0.0",
+         "version": "1.0.0",
+         "datePublished": "2026-11-26"
+       },
+       "sourceIds": [
+         "host-lease-filing",
+         "host-lease-letter",
+         "terawulf-lease-filing"
+       ]
+     }
+   ],
    "relatedSlugs": [
      "data-center-for-sale",
      "powered-shell-vs-turnkey-data-center",
@@ -24605,6 +24825,15 @@
       "label": "Download the two transaction evidence records",
       "path": "/blog/data-center-for-sale-power-transfer-cases.json",
       "format": "JSON"
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "path": "/blog/data-center-space-for-lease#compare-rent-per-it-kw",
+        "label": "Compare signed data center rent per contracted IT kilowatt"
+       }
+      ]
      }
     ]
    },
