@@ -4757,7 +4757,7 @@
       {
         "anchor": "dataset-nfip-ida-business-claims",
         "name": "Hurricane Ida NFIP business claims by county and coverage",
-        "description": "Two OpenFEMA county aggregates for legacy business occupancy code 6. Includes positive, zero and missing building payments, contents payments and reported nonpayment reason counts where present.",
+        "description": "Two OpenFEMA county aggregates for legacy business occupancy code 6. Includes building and contents payments, reported nonpayment reasons and the latest payment dates grouped by year.",
         "datePublished": "2026-11-26",
         "spatialCoverage": "St. John the Baptist Parish, Louisiana, and Bergen County, New Jersey, United States",
         "temporalCoverage": "2021-08-28/2021-09-04",
@@ -4770,6 +4770,7 @@
           "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
           "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
           "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+          "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27+and+eventDesignationNumber+eq+%27NJ0421%27+and+occupancyType+eq+6&%24select=id%2CmostRecentPaymentDate%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CasOfDate%2CdateOfLoss%2CfloodEvent&%24top=1000&%24inlinecount=allpages&%24orderby=id+asc",
           "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data"
         ],
         "sourceDetails": [
@@ -4787,6 +4788,11 @@
             "title": "Bergen County query with occupancy and net coverage payments",
             "publisher": "OpenFEMA",
             "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0"
+          },
+          {
+            "title": "Bergen County business claims with the most recent payment date",
+            "publisher": "OpenFEMA",
+            "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27+and+eventDesignationNumber+eq+%27NJ0421%27+and+occupancyType+eq+6&%24select=id%2CmostRecentPaymentDate%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CasOfDate%2CdateOfLoss%2CfloodEvent&%24top=1000&%24inlinecount=allpages&%24orderby=id+asc"
           },
           {
             "title": "NFIP guidance on joining records, loss dates and disbursements",

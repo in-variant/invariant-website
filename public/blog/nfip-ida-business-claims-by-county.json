@@ -15,7 +15,7 @@
     "meaning": "Non-residential business"
   },
   "method": "Fetch the full loss-date window for each county code, sorted by ID. Check the returned count, unique row IDs and extract date. Keep Hurricane Ida rows with the county’s state event code. Select the legacy business occupancy code 6. Sum the reported net coverage components separately in nominal US dollars. Count explicit zero, negative and missing building-payment values separately. Read the building nonpayment reason only for the zero-building-payment comparison.",
-  "scope": "This subset contains the claims reported under code 6, with no individual claim or policy identifiers. Generic non-residential code 4 and the other codes in the FEMA dictionary are excluded. Zero net building payments do not establish how a claim was closed or whether the contents component paid. Totals by loss date cannot reconstruct when payments were disbursed or establish unique properties or a claim rate.",
+  "scope": "This subset contains the claims reported under code 6, with no individual claim or policy identifiers. Generic non-residential code 4 and the other codes in the FEMA dictionary are excluded. Zero net building payments do not establish how a claim was closed or whether the contents component paid. The most recent payment date is a single claim field. A calendar-year disbursement total requires the dated transaction amounts. Building counts and claim rates require separate evidence.",
   "sources": {
     "field_dictionary": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
     "nfip_data_faq": "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data"
@@ -67,7 +67,22 @@
           "sha256": "3627c851d69c5c4a2c8872bc707e34f2bac6d443b8b32b23ef2c33db217ed095",
           "returned_rows": 582
         }
-      ]
+      ],
+      "most_recent_payment_date": {
+        "rows_by_year": {
+          "2021": 28,
+          "2022": 14,
+          "2023": 1,
+          "2024": 3,
+          "2025": 2
+        },
+        "missing_rows": 7,
+        "latest_reported_date": "2025-07-09",
+        "source": {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27+and+eventDesignationNumber+eq+%27LA0421%27+and+occupancyType+eq+6&%24select=id%2CmostRecentPaymentDate%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CasOfDate%2CdateOfLoss%2CfloodEvent&%24top=1000&%24inlinecount=allpages&%24orderby=id+asc",
+          "sha256": "292a9829cedd4136b28f96ac8845b8907be3f7a07cf481b66654ebb23927b01b"
+        }
+      }
     },
     {
       "reported_county": "Bergen County, New Jersey",
@@ -108,7 +123,22 @@
           "sha256": "d064e9af5a0a4cd7517dd91a5b255e655e451779e168d5247eda845e18a116ed",
           "returned_rows": 727
         }
-      ]
+      ],
+      "most_recent_payment_date": {
+        "rows_by_year": {
+          "2021": 122,
+          "2022": 66,
+          "2023": 3,
+          "2024": 1,
+          "2026": 1
+        },
+        "missing_rows": 7,
+        "latest_reported_date": "2026-06-15",
+        "source": {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27+and+eventDesignationNumber+eq+%27NJ0421%27+and+occupancyType+eq+6&%24select=id%2CmostRecentPaymentDate%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CasOfDate%2CdateOfLoss%2CfloodEvent&%24top=1000&%24inlinecount=allpages&%24orderby=id+asc",
+          "sha256": "7a0817b09d169de25259e878d01b586bc89e920a0faca499ce72c913e1484a47"
+        }
+      }
     }
   ]
 }
