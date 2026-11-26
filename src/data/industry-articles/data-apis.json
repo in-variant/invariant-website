@@ -45354,6 +45354,7 @@
     "title": "Point-in-Time Property Data: How to Rebuild a Property File",
     "description": "Reconstruct building, parcel and recording records as of an earlier date. Download a 25 Water Street example with three cutoffs and the original source queries.",
     "date": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 7,
     "coverAlt": "Three December 2025 cutoffs for 25 Water Street. Eligible occupancy issuances rise from six to seven, and selected recorder entries increase from eight to twelve.",
     "coverCaption": "NYC issued an occupancy renewal on December 3 and recorded four selected financing documents on December 9. Invariant reconstructed the cutoffs from records retrieved November 25, 2026.",
@@ -45453,6 +45454,26 @@
             "path": "/blog/25-water-street-point-in-time-property-records.json",
             "format": "JSON",
             "label": "Download the three cutoffs, dated source rows and query fingerprints"
+          },
+          {
+            "type": "paragraph",
+            "text": "Try a December 5 diligence cutoff. All 12 selected instruments pass a document-date filter. Only eight pass a recorded-date filter. The other four carry a November 25 document date and a December 9 recording date. Use the recorded date to reconstruct the recording history. Keep the document date for the instrument chronology and the retrieval date for the source audit.",
+            "sourceIds": ["acris-master", "acris-help"]
+          },
+          {
+            "type": "download",
+            "path": "/blog/25-water-street-cutoff-replay.py",
+            "format": "Python",
+            "label": "Download the cutoff replay",
+            "datasetAnchor": null
+          },
+          {
+            "type": "shell",
+            "command": "python3 25-water-street-cutoff-replay.py --as-of 2025-12-05 --as-of 2025-12-10"
+          },
+          {
+            "type": "paragraph",
+            "text": "Save the JSON and Python files in the same folder. The script runs offline and recomputes each cutoff from the dated source rows. It lists the instruments that would appear early under a document-date filter and shows when Invariant retrieved each source."
           },
           {
             "type": "links",
