@@ -1,7 +1,9 @@
-import type { ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { ORG_SCHEMA, Seo, SITE_URL, breadcrumbSchema } from '../../components/Seo'
-import { groupCollectionGuides, type BlogCollectionData } from '../../data/blogCollections'
+import { DATA_USE_CASES_SLUG, groupCollectionGuides, type BlogCollectionData } from '../../data/blogCollections'
+import { editorialSearchWords, prepareSearch, rankSearch } from '../../data/blogSearch'
+import '../../styles/invariant-brand.css'
 import '../Blog.css'
 import './BlogCollection.css'
 
@@ -16,8 +18,24 @@ export default function BlogCollection({ collection, trialLinks, children }: {
   const canonical = `${SITE_URL}/blog/${collection.slug}`
   const { image, imageSrcSet } = collection
   const collectionGuides = collection.guides
-  const guideGroups = groupCollectionGuides(collectionGuides)
-  const namedGuideGroups = guideGroups.filter(group => group.heading)
+  const canSearch = collection.slug === DATA_USE_CASES_SLUG
+  const [query, setQuery] = useState('')
+  const [searchReady, setSearchReady] = useState(false)
+  const searchInput = useRef<HTMLInputElement>(null)
+  useEffect(() => { if (canSearch) setSearchReady(true) }, [canSearch])
+  const queryWords = canSearch ? editorialSearchWords(query) : []
+  const guideIndex = useMemo(() => canSearch ? prepareSearch(collectionGuides, guide => ({
+    title: guide.label,
+    relatedTitle: guide.slug,
+    metadata: guide.detail,
+    details: 'group' in guide && typeof guide.group === 'string' ? guide.group : undefined,
+  })) : [], [canSearch, collectionGuides])
+  const directMatches = queryWords.length ? rankSearch(guideIndex, queryWords) : collectionGuides
+  const matchingGuides = queryWords.length && !directMatches.length
+    ? rankSearch(guideIndex, queryWords, { allowPartialMatches: true, longQuestionRanking: true })
+    : directMatches
+  const guideGroups = groupCollectionGuides(matchingGuides)
+  const namedGuideGroups = groupCollectionGuides(collectionGuides).filter(group => group.heading)
   const crumbs = breadcrumbSchema([
     { name: 'Invariant', url: SITE_URL },
     { name: 'Blog', url: `${SITE_URL}/blog` },
@@ -96,9 +114,14 @@ export default function BlogCollection({ collection, trialLinks, children }: {
 
         {(namedGuideGroups.length > 1 || children) && (
           <nav className="blog-collection-jump" aria-label="Jump to a guide topic">
+            {canSearch && <a href="#collection-guides">Find a guide</a>}
             {children && <a href="#provider-comparisons">Compare providers</a>}
             {children && <a href="#reference-cases">Reference cases</a>}
-            {namedGuideGroups.map(group => <a href={`#${group.id}`} key={group.id}>{group.heading}</a>)}
+            {namedGuideGroups.map(group => <a href={`#${group.id}`} key={group.id} onClick={() => {
+              if (!queryWords.length) return
+              setQuery('')
+              requestAnimationFrame(() => document.getElementById(group.id)?.scrollIntoView())
+            }}>{group.heading}</a>)}
           </nav>
         )}
 
@@ -117,6 +140,20 @@ export default function BlogCollection({ collection, trialLinks, children }: {
         {children}
         <section className="blog-collection-guides" aria-labelledby="collection-guides">
           <h2 id="collection-guides">{collection.guidesTitle}</h2>
+          {canSearch && (
+            <div className="blog-collection-guide-search" role="search" aria-label="Use-case guides">
+              <label className="blog-index-search">
+                <span className="sr-only">Search guides</span>
+                <input ref={searchInput} type="search" value={query} disabled={!searchReady}
+                  placeholder="Try crop history or mortgage filings"
+                  onChange={event => setQuery(event.target.value)} />
+              </label>
+              <p role="status">{matchingGuides.length} {matchingGuides.length === 1 ? 'guide' : 'guides'}</p>
+              {matchingGuides.length === 0 && <div className="blog-index-empty">
+                <button type="button" onClick={() => { setQuery(''); searchInput.current?.focus() }}>Clear search</button>
+              </div>}
+            </div>
+          )}
           {guideGroups.map(group => (
             <div className="blog-collection-guide-group" key={group.id}>
               {group.heading && <h3 id={group.id}>{group.heading}</h3>}

@@ -4,7 +4,7 @@
     "navLabel": "Data by use case",
     "title": "Physical-World Data Guides by Industry and Use Case",
     "heading": "Physical-world data by use case",
-    "description": "Find source-backed data guides for property, lending, insurance, power, freight, EV charging, retail, agriculture, and public projects.",
+    "description": "Find source-backed guides for property, lending, insurance, power, logistics, EV charging, retail, farming, housing, and public projects.",
     "resourceLinks": [
       {
         "label": "Try the Invariant Earth API",
@@ -54,6 +54,12 @@
         "slug": "best-gis-apis-for-site-selection",
         "label": "Compare GIS APIs for site selection",
         "detail": "Compare parcel matching, geometry, coverage and export support on the same U.S. tract.",
+        "group": "Compare providers"
+      },
+      {
+        "slug": "gis-mcp-servers-for-site-selection",
+        "label": "Compare GIS MCP servers for parcel data",
+        "detail": "Test Invariant Earth, Regrid, LightBox, West Kite, CARTO and ArcGIS on parcel identity, source evidence and dated geometry.",
         "group": "Compare providers"
       },
       {
@@ -135,18 +141,6 @@
         "group": "Property and development"
       },
       {
-        "slug": "hospital-school-fire-service-area-data",
-        "label": "Check hospital, school, and fire service coverage",
-        "detail": "Compare travel times, grade-specific attendance maps, and emergency service boundaries for a proposed housing development.",
-        "group": "Property and development"
-      },
-      {
-        "slug": "census-tract-housing-vacancy-rent-burden",
-        "label": "Compare housing vacancy and rent burden by census tract",
-        "detail": "Match tract boundaries across Census releases and test whether changes in vacancy and rent burden exceed sampling uncertainty.",
-        "group": "Property and development"
-      },
-      {
         "slug": "certificate-of-occupancy-lookup-by-address",
         "label": "Find a certificate of occupancy by address",
         "detail": "Check the city’s issued document, the correct building ID, and whether the certificate covers the space under review.",
@@ -189,12 +183,6 @@
         "group": "Property and development"
       },
       {
-        "slug": "geologic-maps-well-logs-site-due-diligence",
-        "label": "Review geologic maps, well logs, and site borings",
-        "detail": "Follow one industrial tax lot from its regional map to the nearby well reports and five on-site borings.",
-        "group": "Property and development"
-      },
-      {
         "slug": "lidar-slope-developable-land",
         "label": "Calculate slope and check usable acreage from lidar",
         "detail": "Compare grid resolutions on the same land boundary and check the largest adjoining area that meets the slope cutoff.",
@@ -207,18 +195,6 @@
         "group": "Property and development"
       },
       {
-        "slug": "farmland-crop-history-by-parcel",
-        "label": "Check crop rotation, soil productivity, and irrigation",
-        "detail": "Compare annual crop maps against real plot records and confirm which source can support a farmland decision.",
-        "group": "Property and development"
-      },
-      {
-        "slug": "soil-productivity-by-parcel-nccpi-csr2",
-        "label": "Calculate soil productivity by parcel or field",
-        "detail": "Replay the USDA soil overlay at Iowa State’s Marsden Farm and compare acreage-weighted NCCPI with Iowa CSR2.",
-        "group": "Property and development"
-      },
-      {
         "slug": "commercial-real-estate-sales-lease-comps-apis",
         "label": "Compare commercial property sales and lease terms",
         "detail": "At one Manhattan tower, separate a deed from a lease assignment and compare recorded annual rent with a signed fixed-rent schedule.",
@@ -228,6 +204,12 @@
         "slug": "commercial-occupancy-vacancy-lease-rollover-data",
         "label": "Check commercial space availability and lease rollover",
         "detail": "Read dated leasing and occupancy metrics, verify available suites, and rebuild a public lease-expiration schedule.",
+        "group": "Property and development"
+      },
+      {
+        "slug": "powered-shell-vs-turnkey-data-center",
+        "label": "Compare a powered shell with a turnkey data center",
+        "detail": "Check who supplies fit-out, when each phase can be used, and whether rent starts before IT power is ready.",
         "group": "Property and development"
       },
       {
@@ -252,6 +234,12 @@
         "slug": "data-center-land-for-sale",
         "label": "Compare marketed land and asking terms",
         "detail": "Find data center tracts and distinguish listing prices, offered boundaries, and the records behind power claims.",
+        "group": "Property and development"
+      },
+      {
+        "slug": "data-center-site-selection-checklist",
+        "label": "Compare sites with the data center selection checklist",
+        "detail": "Download the workbook to check service MW by phase, timing, land constraints, water, fiber, permits and cost.",
         "group": "Property and development"
       },
       {
@@ -291,6 +279,12 @@
         "group": "Lending, insurance, and risk"
       },
       {
+        "slug": "commercial-foreclosure-records-by-address",
+        "label": "Find commercial foreclosure records by address",
+        "detail": "Match a case and parcel, then distinguish the interest conveyed at auction from other debt at the same address.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
         "slug": "commercial-property-tax-assessment-history-by-address",
         "label": "Find commercial property tax assessment history",
         "detail": "Match a tax lot to its final assessments and reconcile taxable value to posted charges.",
@@ -312,6 +306,12 @@
         "slug": "commercial-mortgage-records-by-address",
         "label": "Trace recorded commercial mortgage documents",
         "detail": "Use 25 Water Street to link agreements and rent assignments without double-counting the indexed amount.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
+        "slug": "ucc-fixture-filing-by-address",
+        "label": "Trace UCC fixture filings and terminations",
+        "detail": "Find the original filing and see whether a later UCC-3 covers the same collateral.",
         "group": "Lending, insurance, and risk"
       },
       {
@@ -339,6 +339,18 @@
         "group": "Lending, insurance, and risk"
       },
       {
+        "slug": "commercial-property-statement-of-values",
+        "label": "Check a commercial property statement of values",
+        "detail": "Reconcile insured building IDs and coverage rows before renewal or modeling a portfolio.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
+        "slug": "commercial-property-loss-runs",
+        "label": "Request and reconcile commercial property loss runs",
+        "detail": "Match carrier reports to the buildings, paid claims, reserves, and dates they cover.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
         "slug": "commercial-property-replacement-cost-by-address",
         "label": "Check replacement cost by building address",
         "detail": "Compare seven modeled occupancy records with one tax lot and trace the 29% gap between the floor area sources.",
@@ -360,6 +372,12 @@
         "slug": "best-flood-risk-data-apis",
         "label": "Compare flood exposure at the asset boundary",
         "detail": "Compare a Zone X address point with a building and tax lot that intersect Zone AE.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
+        "slug": "fema-flood-zone-history-for-underwriting",
+        "label": "Find the FEMA flood zone as of a past date",
+        "detail": "Check the earlier panel and revision before attributing a change to the building or parcel.",
         "group": "Lending, insurance, and risk"
       },
       {
@@ -387,9 +405,21 @@
         "group": "Lending, insurance, and risk"
       },
       {
+        "slug": "hurricane-wind-history-by-address",
+        "label": "Check hurricane wind history near an address",
+        "detail": "Find the NOAA station observations and distinguish measured gusts from wind estimates elsewhere.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
         "slug": "nfip-flood-claims-data-api",
         "label": "Use historical flood loss and claims data",
         "detail": "Compare redacted NFIP records and keep privacy geography distinct from a property’s own loss history.",
+        "group": "Lending, insurance, and risk"
+      },
+      {
+        "slug": "flood-insurance-claim-history-by-address",
+        "label": "Check flood claim history before buying a property",
+        "detail": "Use seller disclosures, carrier records and public flood loss patterns to review the exact property.",
         "group": "Lending, insurance, and risk"
       },
       {
@@ -432,6 +462,12 @@
         "slug": "data-center-power-flow-study",
         "label": "Evaluate a power-flow study for a new facility",
         "detail": "Read the modeled operating cases, limiting equipment, and conditions that affect the conclusion.",
+        "group": "Power, utilities, and connectivity"
+      },
+      {
+        "slug": "utility-grade-power-study",
+        "label": "Scope a utility-grade power study",
+        "detail": "Prepare the phased load, candidate connections and contingency cases needed to study the service request.",
         "group": "Power, utilities, and connectivity"
       },
       {
@@ -480,12 +516,6 @@
         "slug": "water-sewer-data-apis-site-selection",
         "label": "Check mapped water, sewer, and utility service",
         "detail": "Find the serving provider and the evidence to request for a connection.",
-        "group": "Power, utilities, and connectivity"
-      },
-      {
-        "slug": "oregon-water-rights-by-parcel",
-        "label": "Check Oregon irrigation water rights by parcel",
-        "detail": "Match the place of use and certificate to the field before valuing irrigation.",
         "group": "Power, utilities, and connectivity"
       },
       {
@@ -582,31 +612,31 @@
         "slug": "ev-charging-station-data-apis",
         "label": "Find EV charging inventory and availability",
         "detail": "Check port counts, live status, connector compatibility and the power a vehicle can draw when nearby ports are in use.",
-        "group": "Industrial sites, freight, and mobility"
+        "group": "EV charging and fleet mobility"
       },
       {
         "slug": "ev-charger-uptime-data",
         "label": "Compare EV charger uptime and charge success",
         "detail": "Recalculate California’s field results and see which records show annual uptime, live port status or a successful charge.",
-        "group": "Industrial sites, freight, and mobility"
+        "group": "EV charging and fleet mobility"
       },
       {
         "slug": "ev-charging-electricity-cost-demand-charges",
         "label": "Estimate the electricity bill for commercial EV charging",
         "detail": "Replay PG&E’s commercial EV tariff with the same monthly kWh at different peaks and charging times.",
-        "group": "Industrial sites, freight, and mobility"
+        "group": "EV charging and fleet mobility"
       },
       {
         "slug": "electric-truck-charging-southern-california",
         "label": "Find electric truck charging along a freight route",
         "detail": "Compare Long Beach, Colton and Blythe stops by fleet access, trailer fit, CCS or MCS connectors and usable power.",
-        "group": "Industrial sites, freight, and mobility"
+        "group": "EV charging and fleet mobility"
       },
       {
         "slug": "truck-depot-charging-site-selection",
         "label": "Screen a fleet charging depot against its utility limit",
         "detail": "Compare dispatch windows and charging schedules to see whether 5 MW can serve the proposed fleet.",
-        "group": "Industrial sites, freight, and mobility"
+        "group": "EV charging and fleet mobility"
       },
       {
         "slug": "drive-time-demographics-census-trade-area",
@@ -643,6 +673,18 @@
         "label": "Compare sidewalk foot traffic by block and time",
         "detail": "Check comparable weekday and Saturday windows using published NYC pedestrian counts.",
         "group": "Consumer markets"
+      },
+      {
+        "slug": "hospital-school-fire-service-area-data",
+        "label": "Check hospital, school, and fire service coverage",
+        "detail": "Compare travel times, grade-specific attendance maps, and emergency service boundaries for a proposed housing development.",
+        "group": "Community services and housing"
+      },
+      {
+        "slug": "census-tract-housing-vacancy-rent-burden",
+        "label": "Compare housing vacancy and rent burden by census tract",
+        "detail": "Match tract boundaries across Census releases and test whether changes in vacancy and rent burden exceed sampling uncertainty.",
+        "group": "Community services and housing"
       },
       {
         "slug": "hourly-weather-data-for-data-center-cooling",
@@ -691,6 +733,30 @@
         "label": "Check oil and gas methane reporting and cost estimates",
         "detail": "Find the EPA filing deadlines and trace which assumptions drive the proposed rule’s national compliance cost estimates.",
         "group": "Weather, water, and environmental records"
+      },
+      {
+        "slug": "farmland-crop-history-by-parcel",
+        "label": "Check crop rotation, soil productivity, and irrigation",
+        "detail": "Compare annual crop maps against real plot records and confirm which source can support a farmland decision.",
+        "group": "Agriculture and natural resources"
+      },
+      {
+        "slug": "soil-productivity-by-parcel-nccpi-csr2",
+        "label": "Calculate soil productivity by parcel or field",
+        "detail": "Replay the USDA soil overlay at Iowa State’s Marsden Farm and compare acreage-weighted NCCPI with Iowa CSR2.",
+        "group": "Agriculture and natural resources"
+      },
+      {
+        "slug": "oregon-water-rights-by-parcel",
+        "label": "Check Oregon irrigation water rights by parcel",
+        "detail": "Match the place of use and certificate to the field before valuing irrigation.",
+        "group": "Agriculture and natural resources"
+      },
+      {
+        "slug": "geologic-maps-well-logs-site-due-diligence",
+        "label": "Review geologic maps, well logs, and site borings",
+        "detail": "Follow one industrial tax lot from its regional map to the nearby well reports and five on-site borings.",
+        "group": "Agriculture and natural resources"
       },
       {
         "slug": "loudoun-county-data-center-building-count",
