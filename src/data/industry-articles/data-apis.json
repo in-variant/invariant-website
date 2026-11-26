@@ -1,5 +1,369 @@
 [
   {
+    "slug": "chicago-liquor-license-lookup-by-address",
+    "topic": "Data & APIs",
+    "region": "Chicago, Illinois, United States",
+    "title": "How to check a Chicago liquor license by address",
+    "description": "Look up active Chicago liquor licenses and applications by address. Check the license class, operator, site number, expiration and Illinois state record.",
+    "date": "2026-11-25",
+    "readMinutes": 6,
+    "coverAlt": "Three sourced records at Door 24. A packaged goods renewal was issued May 28, 2025, a Tavern application payment was recorded October 23, 2026, and a retail food license was issued November 20, 2026.",
+    "coverCaption": "Three city records for 2124 North Damen Avenue, first floor. Chicago Business Licenses and the BACP liquor application list, checked November 25, 2026.",
+    "intro": "To check a Chicago liquor license by address, start with the city’s current liquor and amusement licenses. Match the street direction, floor or unit, legal operator and license class. Then check the separate city application list and the Illinois state license lookup. At 2124 North Damen Avenue, the same operator and floor had an issued packaged-goods renewal, an issued food license and a Tavern application in the records we reviewed on November 25, 2026. Each record supports a different decision about the space.",
+    "takeaways": [
+      "Use the city’s current view to check the license class and valid term. Use Business Licenses history to find earlier terms and issue dates.",
+      "Chicago’s recent application list displays a payment date. Look for an issued license for the requested class before relying on the application.",
+      "Before underwriting a lease or acquisition, verify the local and state records under the legal entity that plans to operate."
+    ],
+    "guideActions": [
+      {
+        "href": "#check-chicago-and-illinois",
+        "label": "Go to the lookup steps"
+      },
+      {
+        "href": "/blog/chicago-liquor-license-records.json",
+        "label": "Download records and source queries",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "check-chicago-and-illinois",
+        "heading": "Where to look up a Chicago liquor license",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Step",
+              "Start here",
+              "Save from the result"
+            ],
+            "rows": [
+              [
+                "1. Find the current city record",
+                "Open Current Active Business Licenses for Liquor and Amusement and filter Address. Try the city’s abbreviated form, such as 2124 N DAMEN AVE. Check the floor and legal name on each match.",
+                "License number and class, account and site, start and expiration, and the date you checked."
+              ],
+              [
+                "2. Recover the license history",
+                "In Business Licenses, filter by license number and check for multiple terms. Search the account and site to find other license classes held by that operator at the premises.",
+                "Record ID, application type, source status, date issued and term dates. Keep a separate row per term."
+              ],
+              [
+                "3. Check applications and location restrictions",
+                "Search the six-week city application list by street or operator. Use the city’s licensing resources to check restrictions for the property and the planned class.",
+                "The reported class, payment date, and the agency’s current decision or case record when available."
+              ],
+              [
+                "4. Check the state license",
+                "Use the ILCC public lookup by legal name, address or full state license number. Confirm the location, entity, class and dates in the result before relying on it.",
+                "State license number and exact match to the premises and operating entity."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "current-license-view"
+              ],
+              [
+                "history-view"
+              ],
+              [
+                "applications",
+                "licensing-home"
+              ],
+              [
+                "illinois-lookup",
+                "illinois-application"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "damen-avenue-license-records",
+        "heading": "What the city records show at 2124 North Damen Avenue",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We matched Door 24 Wine LLC to city account 473842 and site 1. The address in the license file is 2124 N DAMEN AVE 1ST. The application list uses Floor: 1st. We compared the exact history rows with the city’s current liquor and amusement view for that account and site.",
+            "sourceIds": [
+              "terms-query",
+              "current-query",
+              "applications"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "City record",
+              "Date or term",
+              "What you can verify"
+            ],
+            "rows": [
+              [
+                "Packaged Goods renewal 2780545",
+                "Issued May 28, 2025. Term May 16, 2025 to May 15, 2027.",
+                "The city’s current liquor view returned this term. The underlying dataset labels the class Package Goods."
+              ],
+              [
+                "Tavern application",
+                "Payment October 23, 2026.",
+                "BACP listed the Tavern application. The account and site query returned the Packaged Goods term. Verify Tavern issuance separately with BACP."
+              ],
+              [
+                "Retail Food Establishment license 3108530",
+                "Issued November 20, 2026. Term to May 15, 2027.",
+                "The history table records an issued food license for the same entity and floor."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "current-query",
+                "terms-query"
+              ],
+              [
+                "applications",
+                "current-query"
+              ],
+              [
+                "terms-query"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "License 2780545 also appears in a prior term from May 16, 2023 through May 15, 2025. Both history rows show AAI, which is the city’s status for an issued license. Read the term start and expiration with that status. Use the record ID to keep each term and the license number to link them.",
+            "sourceIds": [
+              "terms-query",
+              "history-view"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the selected license terms, application observations and exact city queries",
+            "path": "/blog/chicago-liquor-license-records.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-chicago-liquor-license-classes",
+        "heading": "Which liquor license class should you check?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Proposed use",
+              "Chicago class to check",
+              "Record question"
+            ],
+            "rows": [
+              [
+                "Sell sealed beer or wine for customers to take away",
+                "Packaged Goods",
+                "Does the current term cover the proposed premises and seller?"
+              ],
+              [
+                "Operate a bar where on-premises alcohol service is the primary business",
+                "Tavern",
+                "What is the city’s decision and issue date for this premises?"
+              ],
+              [
+                "Serve alcohol on premises as part of a restaurant or other primary business",
+                "Consumption on Premises, Incidental Activity",
+                "Does the license cover the planned operator, premises and activity?"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "license-classes"
+              ],
+              [
+                "license-classes"
+              ],
+              [
+                "license-classes"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 353 North Clark Street, Cafe 353 had a food license renewal for city account 8970, site 96. The recent application list showed both Caterer’s Liquor License and Consumption on Premises, Incidental Activity for that operator on the first floor, with payments on November 13, 2026. Keep both application observations alongside the food record and verify the city decision for each class separately.",
+            "sourceIds": [
+              "terms-query",
+              "applications",
+              "license-classes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lease-acquisition-and-underwriting",
+        "heading": "What to keep in a lease or underwriting file",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a lease, write the premises and planned activity into the diligence request. For an acquisition, confirm the license path for the buyer before pricing the revenue from alcohol sales. The state retailer application asks for the current local liquor license. Ask the operator for the matching local and state records and confirm their status with the agencies.",
+            "sourceIds": [
+              "illinois-application",
+              "illinois-lookup",
+              "licensing-home"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to anchor the file to its parcel and building. Record the license number, legal operator, city account, site number and unit from the licensing records. Save each issuing source and retrieval date. A location change, operator change, new class or renewal can affect the file in a different way.",
+            "sourceIds": [
+              "earth-fields",
+              "history-view"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related site and tenant checks",
+            "items": [
+              {
+                "slug": "retail-site-selection-trade-area-apis",
+                "label": "Verify store openings and closures at a shared address"
+              },
+              {
+                "slug": "certificate-of-occupancy-lookup-by-address",
+                "label": "Check the certificate of occupancy for the space"
+              },
+              {
+                "slug": "building-permit-change-alerts-by-address",
+                "label": "Trace changes in a building permit by address"
+              },
+              {
+                "slug": "zoning-data-apis-for-site-selection",
+                "label": "Check allowed uses before committing to a site"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I look up a Chicago liquor license by street address?",
+        "answer": "Yes. Filter the City of Chicago’s current liquor and amusement dataset by Address and match the street direction, floor, legal operator and class. Check the separate Illinois lookup for the state license.",
+        "sourceIds": [
+          "current-license-view",
+          "illinois-lookup"
+        ]
+      },
+      {
+        "question": "Does a listing on the Chicago liquor application page show a license was granted?",
+        "answer": "The BACP list shows recent applications and payment dates. Use the city’s issued-license record or contact BACP to establish the decision, class and effective term.",
+        "sourceIds": [
+          "applications",
+          "current-license-view"
+        ]
+      },
+      {
+        "question": "Why does a Chicago license number appear more than once?",
+        "answer": "A renewal can keep the same license number while receiving a separate record ID and a new term. Compare the issue, start and expiration dates and consult the current view for active liquor records.",
+        "sourceIds": [
+          "history-view",
+          "terms-query",
+          "current-license-view"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "current-license-view",
+        "linkLabel": "Current Chicago liquor licenses",
+        "title": "Current Active Business Licenses for Liquor and Amusement",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/d/nrmj-3kcf"
+      },
+      {
+        "id": "current-query",
+        "linkLabel": "Door 24 current license query",
+        "title": "Current liquor and amusement records for Door 24 account 473842, site 1",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/resource/nrmj-3kcf.json?%24select=id%2Clicense_number%2Capplication_type%2Clicense_code%2Clicense_description%2Clicense_status%2Clegal_name%2Cdoing_business_as_name%2Caddress%2Caccount_number%2Csite_number%2Capplication_created_date%2Clicense_start_date%2Cexpiration_date%2Cdate_issued&%24where=account_number%3D%27473842%27+AND+site_number%3D%271%27&%24order=id&%24limit=20"
+      },
+      {
+        "id": "history-view",
+        "linkLabel": "Chicago license history",
+        "title": "Business Licenses dataset and field definitions",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/d/r5kz-chrr"
+      },
+      {
+        "id": "terms-query",
+        "linkLabel": "Query for the selected license terms",
+        "title": "Exact query for the four historical city license terms",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/resource/r5kz-chrr.json?%24select=id%2Clicense_number%2Capplication_type%2Clicense_code%2Clicense_description%2Clicense_status%2Clegal_name%2Cdoing_business_as_name%2Caddress%2Caccount_number%2Csite_number%2Capplication_created_date%2Clicense_start_date%2Cexpiration_date%2Cdate_issued&%24where=id+in+%28%272780545-20250516%27%2C%272780545-20230516%27%2C%273108530-20261120%27%2C%271986998-20260416%27%29&%24order=id"
+      },
+      {
+        "id": "applications",
+        "linkLabel": "Recent Chicago liquor applications",
+        "title": "Liquor applications received in the past six weeks",
+        "publisher": "City of Chicago",
+        "url": "https://webapps1.chicago.gov/bacplicenseapplications/liquor"
+      },
+      {
+        "id": "license-classes",
+        "linkLabel": "Chicago liquor license classes",
+        "title": "Classes of Chicago liquor licenses",
+        "publisher": "City of Chicago",
+        "url": "https://www.chicago.gov/city/en/depts/bacp/supp_info/classes_of_liquorlicenses.html"
+      },
+      {
+        "id": "licensing-home",
+        "linkLabel": "Chicago licensing and moratorium lookup",
+        "title": "Chicago business licensing, liquor applications and moratorium lookup",
+        "publisher": "City of Chicago",
+        "url": "https://www.chicago.gov/city/en/sites/chicago-business-licensing/home.html"
+      },
+      {
+        "id": "illinois-lookup",
+        "linkLabel": "Illinois license lookup",
+        "title": "Public state liquor license lookup",
+        "publisher": "Illinois Liquor Control Commission",
+        "url": "https://ilccportal.illinois.gov/s/license-lookup"
+      },
+      {
+        "id": "illinois-application",
+        "linkLabel": "Illinois retailer license application",
+        "title": "Illinois retailer liquor license application",
+        "publisher": "Illinois Liquor Control Commission",
+        "url": "https://ilcc.illinois.gov/content/dam/soi/en/web/ilcc/sitecollectiondocuments/retailer-application.pdf"
+      },
+      {
+        "id": "earth-fields",
+        "linkLabel": "Earth API field catalog",
+        "title": "Invariant Earth field catalog",
+        "publisher": "Invariant",
+        "url": "https://api.invariant-ai.com/v1/meta/fields"
+      }
+    ],
+    "relatedSlugs": [
+      "retail-site-selection-trade-area-apis",
+      "certificate-of-occupancy-lookup-by-address",
+      "building-permit-change-alerts-by-address",
+      "zoning-data-apis-for-site-selection"
+    ],
+    "dataset": {
+      "name": "Chicago liquor and food license records for two premises",
+      "description": "Four city license history rows, one active liquor result, and three recent liquor application observations. Includes original query URLs, operator and site IDs, term dates and retrieval date.",
+      "spatialCoverage": "Chicago, Illinois, United States",
+      "temporalCoverage": "2023-05-16/2026-11-25",
+      "sourceIds": [
+        "current-query",
+        "terms-query",
+        "applications"
+      ]
+    }
+  },
+  {
     "slug": "commercial-construction-leads-bids-and-awards",
     "topic": "Data & APIs",
     "region": "United States",
@@ -23215,6 +23579,16 @@
                 "Operator feed via OCPI",
                 "Operator-provided Locations, EVSEs and Connectors. The OCPI Locations module defines EVSE status and update fields.",
                 "Confirm partner access and keep the country, party, location and equipment IDs needed to match updates."
+              ],
+              [
+                "Eco-Movement",
+                "Charging equipment and status through its Data API. The guide documents OCPI push updates with a last-updated timestamp.",
+                "On your corridor, measure how long updates take to reach you. Keep the equipment IDs and verify the feed distinguishes stale or absent status from availability."
+              ],
+              [
+                "ChargeHub",
+                "A charging infrastructure API for the United States, Canada and Mexico.",
+                "Request two operator samples along your route. Check which sites return equipment-level status and when each status was observed."
               ]
             ],
             "rowSourceIds": [
@@ -23234,6 +23608,12 @@
               ],
               [
                 "ocpi"
+              ],
+              [
+                "eco-movement-ocpi"
+              ],
+              [
+                "chargehub-api"
               ]
             ]
           }
@@ -23682,6 +24062,18 @@
         "publisher": "U.S. Department of Energy AFDC",
         "title": "Charging network data collection and refresh frequency",
         "url": "https://afdc.energy.gov/stations/charging-networks"
+      },
+      {
+        "id": "eco-movement-ocpi",
+        "title": "Eco-Movement Data API and OCPI update documentation",
+        "publisher": "Eco-Movement",
+        "url": "https://developers.eco-movement.com/docs/data-api-user-guide"
+      },
+      {
+        "id": "chargehub-api",
+        "title": "ChargeHub developer portal",
+        "publisher": "ChargeHub",
+        "url": "https://developer.chargehub.com/"
       }
     ],
     "additionalDatasets": [
@@ -24148,6 +24540,11 @@
                 "Invariant Earth",
                 "A coordinate-based API with fields for the primary building footprint area, height, floor count and class where supported.",
                 "Use the field catalog to choose the spatial inputs. Establish the roof event from the city record and retain it alongside the matched building in your workflow."
+              ],
+              [
+                "EagleView",
+                "Roof measurement reports include photographs, facet diagrams, pitch and area. Use the image or report to review the specific roof under consideration.",
+                "Match the report to the insured building and verify the observation date. Request the city completion record separately to establish when the replacement work was done."
               ]
             ],
             "rowSourceIds": [
@@ -24169,6 +24566,9 @@
               ],
               [
                 "earth"
+              ],
+              [
+                "eagleview-roof-measurements"
               ]
             ]
           }
@@ -24451,6 +24851,12 @@
         "publisher": "Invariant Earth",
         "title": "Public data field catalog",
         "url": "https://api.invariant-ai.com/v1/meta/fields"
+      },
+      {
+        "id": "eagleview-roof-measurements",
+        "title": "EagleView roof measurement reports for claims adjusting",
+        "publisher": "EagleView",
+        "url": "https://www.eagleview.com/product/measurement-reports-for-claims-adjusting/"
       }
     ],
     "dataset": {
@@ -29334,6 +29740,11 @@
                 "Ageospatial",
                 "Markets a credit workflow for verifying the physical asset behind a loan, tracking changes during financing, and reviewing the portfolio.",
                 "Ask for a sample export showing the collateral identifier, the observation behind each change, the source date, and unresolved matches."
+              ],
+              [
+                "Cherre",
+                "A real estate data integration platform. Its Data Fabric links sources for deeds, valuations, tax, boundaries, liens and mortgages.",
+                "Load the same collateral schedule and recorder documents. Check whether you can retain the recording number, original date and unresolved matches when the credit file is refreshed."
               ]
             ],
             "rowSourceIds": [
@@ -29357,6 +29768,9 @@
               ],
               [
                 "ageospatial"
+              ],
+              [
+                "cherre-data-fabric"
               ]
             ]
           }
@@ -29928,6 +30342,12 @@
         "title": "CTO Realty Growth September 2026 report filing date and accession",
         "url": "https://www.sec.gov/Archives/edgar/data/23795/000110465926119165/0001104659-26-119165-index.htm",
         "publisher": "U.S. Securities and Exchange Commission"
+      },
+      {
+        "id": "cherre-data-fabric",
+        "title": "Cherre Data Fabric and entity resolution",
+        "publisher": "Cherre",
+        "url": "https://cherre.com/platform/"
       }
     ],
     "relatedSlugs": [
@@ -31913,6 +32333,7 @@
     "title": "Regrid Alternatives for U.S. Parcel Data APIs",
     "description": "Compare Invariant Earth, Regrid, Korzy, LightBox and other parcel APIs. Download trial files for bulk lookups, condo tax lots, and boundary changes.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-25",
     "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
     "coverCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024. The individual commercial unit does not have its own polygon in the queried tax-map layer.",
@@ -31929,7 +32350,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "The comparison uses public product documentation checked on November 22, 2026. Invariant makes Invariant Earth. The independent reference below comes from New York City records. Use the scorecard to test each product on the plan you would buy."
+            "text": "The comparison uses public product documentation checked on November 25, 2026. Invariant makes Invariant Earth. The independent reference below comes from New York City records. Use the scorecard to test each product on the plan you would buy."
           },
           {
             "type": "table",
@@ -31979,6 +32400,16 @@
                 "Invariant Earth",
                 "Coordinate-based parcel matching and field-level data for parcel, terrain, hazards, and nearby infrastructure.",
                 "Check match type, distance and field status. Invariant Earth identifies its parcel ID as Regrid’s, so use the county records for an independent boundary check."
+              ],
+              [
+                "Precisely",
+                "Data Graph API access to property and address records, including parcel boundaries and building footprints.",
+                "For 432 Park Avenue, check which identifiers link the billing lot, unit assessment and parcel outline. Save the underlying IDs and source dates."
+              ],
+              [
+                "ReportAll",
+                "Parcel, map tile and ArcGIS endpoints. Its point search looks for a parcel polygon containing the supplied coordinate.",
+                "Run the building point and the known lot IDs independently. Check which local records the geometry represents where several lots share an address."
               ]
             ],
             "rowSourceIds": [
@@ -32011,6 +32442,12 @@
               [
                 "earth-fields",
                 "earth-response"
+              ],
+              [
+                "precisely-data-graph"
+              ],
+              [
+                "reportall-api"
               ]
             ]
           },
@@ -32528,6 +32965,18 @@
         "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/15/query?f=json&where=TRANS_NUM%3D739346&outFields=BBL%2CLot%2CLot_Action%2CTRANS_NUM&returnGeometry=false",
         "publisher": "NYC Finance",
         "linkLabel": "Merger record"
+      },
+      {
+        "id": "precisely-data-graph",
+        "title": "Precisely Data Graph API",
+        "publisher": "Precisely",
+        "url": "https://developer.cloud.precisely.com/apis/data-graph"
+      },
+      {
+        "id": "reportall-api",
+        "title": "ReportAll parcel API reference",
+        "publisher": "ReportAll",
+        "url": "https://reportallusa.com/solutions/overlay/documentation/"
       }
     ],
     "relatedSlugs": [
@@ -32934,10 +33383,17 @@
               ["Who can reach the site in ten minutes?", "Esri routing service areas for walking or driving. Use Census ACS estimates to describe households within a defined area.", "Use the actual customer entrance, travel mode, network vintage, and time-of-day assumptions. Ask how the provider assigns partially overlapping Census areas and shows uncertainty."],
               ["Where do people who visit a comparable store come from?", "Placer’s Trade Area report for estimated visitor origins. Its glossary distinguishes visits, unique visitors, and the sampled device panel.", "Request the store-level boundary and date range. Check how repeat trips are counted, what is suppressed, and which histories can be regenerated with a common model."],
               ["Which nearby stores opened or closed?", "Foursquare Open Source Places for location identity and dated releases. SafeGraph publishes inferred opening and closing months for tracked places.", "Match brand, address, unit, and coordinates. Keep the provider’s observation, its inferred operating date, and any direct evidence as separate fields."],
-              ["How busy is the corridor at comparable times?", "Municipal pedestrian counts or transit agency data. NYC DOT counts pedestrians at sampled locations and the MTA publishes station entry estimates.", "Require a defined entrance, count line or property boundary. Preserve hours, days, and the instrument’s definition. For a specific storefront, ask for a comparable venue visit series or a direct count."]
+              ["How busy is the corridor at comparable times?", "Municipal pedestrian counts or transit agency data. NYC DOT counts pedestrians at sampled locations and the MTA publishes station entry estimates.", "Require a defined entrance, count line or property boundary. Preserve hours, days, and the instrument’s definition. For a specific storefront, ask for a comparable venue visit series or a direct count."],
+              [
+                "Which businesses changed at a location?",
+                "Data Axle’s Business Database supports geographic search, place records and change notifications.",
+                "Track a known tenant change at a shared address. Check which record marks the old operator out of business and when the change first became visible."
+              ]
             ],
             "rowSourceIds": [
-              ["invariant-fields"],["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases", "safegraph-open-close"], ["nyc-dot", "mta-monthly"]]
+              ["invariant-fields"],["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases", "safegraph-open-close"], ["nyc-dot", "mta-monthly"],
+              ["data-axle-places"]
+            ]
           },
           {
             "type": "paragraph",
@@ -32984,7 +33440,8 @@
           {
             "type": "links",
             "items": [
-              {"slug": "foot-traffic-data-by-address", "label": "Compare observed sidewalk traffic on two Midtown blocks"}
+              {"slug": "foot-traffic-data-by-address", "label": "Compare observed sidewalk traffic on two Midtown blocks"},
+              {"slug": "chicago-liquor-license-lookup-by-address", "label": "Check a Chicago liquor license by address"}
             ]
           }
         ]
@@ -33172,7 +33629,13 @@
       {"id": "usda-retailer-history", "title": "Historical SNAP Retailer Locator Data, December 31, 2025 edition", "url": "https://www.fns.usda.gov/snap/retailer-locator/data", "publisher": "U.S. Department of Agriculture", "linkLabel": "USDA historical SNAP file"},
       {"id": "target-harlem", "title": "Harlem 125th Street store 3337", "url": "https://www.target.com/sl/harlem-125th-st/3337", "publisher": "Target"},
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
-      {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"}
+      {"id": "imagery", "title": "2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"},
+      {
+        "id": "data-axle-places",
+        "title": "Data Axle Business Database APIs and data plans",
+        "publisher": "Data Axle",
+        "url": "https://www.data-axle.com/data-solutions/apis/"
+      }
     ],
     "additionalDatasets": [
       {

@@ -1,5 +1,50 @@
 [
   {
+    "slug": "chicago-liquor-license-lookup-by-address",
+    "topic": "Data & APIs",
+    "title": "How to check a Chicago liquor license by address",
+    "summary": "Look up active Chicago liquor licenses and applications by address. Check the license class, operator, site number, expiration and Illinois state record.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "Chicago, Illinois, United States",
+    "image": "/blog/industry/chicago-liquor-license-lookup-by-address.webp?v=638cb1c0",
+    "dataset": {
+      "name": "Chicago liquor and food license records for two premises",
+      "description": "Four city license history rows, one active liquor result, and three recent liquor application observations. Includes original query URLs, operator and site IDs, term dates and retrieval date.",
+      "spatialCoverage": "Chicago, Illinois, United States",
+      "temporalCoverage": "2023-05-16/2026-11-25",
+      "sources": [
+        "https://data.cityofchicago.org/resource/nrmj-3kcf.json?%24select=id%2Clicense_number%2Capplication_type%2Clicense_code%2Clicense_description%2Clicense_status%2Clegal_name%2Cdoing_business_as_name%2Caddress%2Caccount_number%2Csite_number%2Capplication_created_date%2Clicense_start_date%2Cexpiration_date%2Cdate_issued&%24where=account_number%3D%27473842%27+AND+site_number%3D%271%27&%24order=id&%24limit=20",
+        "https://data.cityofchicago.org/resource/r5kz-chrr.json?%24select=id%2Clicense_number%2Capplication_type%2Clicense_code%2Clicense_description%2Clicense_status%2Clegal_name%2Cdoing_business_as_name%2Caddress%2Caccount_number%2Csite_number%2Capplication_created_date%2Clicense_start_date%2Cexpiration_date%2Cdate_issued&%24where=id+in+%28%272780545-20250516%27%2C%272780545-20230516%27%2C%273108530-20261120%27%2C%271986998-20260416%27%29&%24order=id",
+        "https://webapps1.chicago.gov/bacplicenseapplications/liquor"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Current liquor and amusement records for Door 24 account 473842, site 1",
+          "publisher": "City of Chicago",
+          "url": "https://data.cityofchicago.org/resource/nrmj-3kcf.json?%24select=id%2Clicense_number%2Capplication_type%2Clicense_code%2Clicense_description%2Clicense_status%2Clegal_name%2Cdoing_business_as_name%2Caddress%2Caccount_number%2Csite_number%2Capplication_created_date%2Clicense_start_date%2Cexpiration_date%2Cdate_issued&%24where=account_number%3D%27473842%27+AND+site_number%3D%271%27&%24order=id&%24limit=20"
+        },
+        {
+          "title": "Exact query for the four historical city license terms",
+          "publisher": "City of Chicago",
+          "url": "https://data.cityofchicago.org/resource/r5kz-chrr.json?%24select=id%2Clicense_number%2Capplication_type%2Clicense_code%2Clicense_description%2Clicense_status%2Clegal_name%2Cdoing_business_as_name%2Caddress%2Caccount_number%2Csite_number%2Capplication_created_date%2Clicense_start_date%2Cexpiration_date%2Cdate_issued&%24where=id+in+%28%272780545-20250516%27%2C%272780545-20230516%27%2C%273108530-20261120%27%2C%271986998-20260416%27%29&%24order=id"
+        },
+        {
+          "title": "Liquor applications received in the past six weeks",
+          "publisher": "City of Chicago",
+          "url": "https://webapps1.chicago.gov/bacplicenseapplications/liquor"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the selected license terms, application observations and exact city queries",
+          "path": "/blog/chicago-liquor-license-records.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "commercial-construction-leads-bids-and-awards",
     "topic": "Data & APIs",
     "title": "How to find commercial construction leads before bids close",
