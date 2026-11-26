@@ -121,6 +121,7 @@ export default function Blog() {
             <div className="blog-index-intro-links">
               <Link to="/blog/energized-data-center-sites-available-now">Find available data center sites <Arrow size={14} /></Link>
               <Link to="/datasets">Data samples <Arrow size={14} /></Link>
+              <Link to="/glossary">Glossary <Arrow size={14} /></Link>
               <a href={BLOG_FEED}>Subscribe via feed</a>
             </div>
           </div>
