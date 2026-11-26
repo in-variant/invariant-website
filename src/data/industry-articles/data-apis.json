@@ -33488,6 +33488,10 @@
               {
                 "path": "/blog/elevation-data-apis-by-address#elevation-source-datum-and-date",
                 "label": "Check elevation units, vertical datum and source date"
+              },
+              {
+                "path": "/blog/data-center-flood-zone-screening#south-fulton-200-selig-flood-zone",
+                "label": "See how one building can span two effective FEMA panels"
               }
             ]
           }
@@ -37555,7 +37559,7 @@
     "coverCaption": "Overlay using the NYC address point, building footprint and tax lot with FEMA’s effective hazard layer, queried November 23, 2026. Background imagery from NYS ITS Geospatial Services, 2024.",
     "intro": "For a quick flood zone lookup by address, start with a cited FEMA point result from Invariant Earth or the National Flood Hazard Layer. For insurance, lending, or site selection, map the building and parcel separately. At the Gowanus Whole Foods in Brooklyn, the address point falls in Zone X while 24.7% of the building footprint and 52.7% of the tax lot intersect Zone AE. A flood depth model answers a different buyer question about how high water could rise under a specified event.",
     "takeaways": [
-      "Store the query geometry along with the FEMA zone, subtype, Special Flood Hazard Area flag and panel date. An address point, a building footprint and a tax lot can give different answers.",
+      "Store the query geometry along with the FEMA zone, subtype, Special Flood Hazard Area flag and every applicable panel and effective date. An address point, a building footprint and a tax lot can give different answers.",
       "Treat a surveyed high-water mark as evidence about one location and storm. Keep the surveyed water elevation and the height of the mark above ground in separate fields.",
       "Require a vertical datum whenever an API reports elevation. Preserve missing values and confirm why a base flood elevation is missing before using it."
     ],
@@ -37637,6 +37641,16 @@
             "format": "GeoJSON",
             "path": "/blog/gowanus-fema-address-parcel-building-overlay.geojson",
             "label": "Download the address, building, parcel and FEMA intersections"
+          },
+          {
+            "type": "links",
+            "label": "Test one building on two FEMA panels",
+            "items": [
+              {
+                "path": "/blog/data-center-flood-zone-screening#south-fulton-200-selig-flood-zone",
+                "label": "Check the DataBank ATL4 address and building against both panel records"
+              }
+            ]
           }
         ]
       },
@@ -37677,7 +37691,7 @@
               [
                 "FEMA National Flood Hazard Layer",
                 "Effective hazard polygons, map panels and mapped base flood elevations where published.",
-                "Query layers 28 and 3. Confirm the area feature, effective panel and applicable map changes."
+                "Query layers 28 and 3. Confirm the area feature, every printed panel covering the checked geometry, and applicable map changes."
               ],
               [
                 "Mireye",
@@ -38136,7 +38150,7 @@
       "best-gis-apis-for-site-selection",
       "wildfire-risk-by-address-for-underwriting"
     ],
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "cmbs-special-servicing-data",
