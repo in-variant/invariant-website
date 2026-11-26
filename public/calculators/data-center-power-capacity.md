@@ -2,7 +2,7 @@
 
 [Open the calculator](https://invariant-ai.com/calculators/data-center-power-capacity)
 
-Convert IT load to facility MW. Compare on-site and utility power during normal operation, a generator trip, and loss of grid service. Estimate how long a battery can cover the selected shortfall.
+Convert IT load to facility MW. Compare on-site and utility power during normal operation, a generator trip, and loss of grid service. Estimate battery runtime at a steady shortfall or size the battery for generator recovery.
 
 ## Method
 
@@ -29,13 +29,17 @@ The generator-trip case needs at least 22.5 MW of imports after the trip to cove
 | IT load | 500 MW |
 | Facility-to-IT design ratio | 1.20 |
 | Facility demand | 600 MW |
-| Net generation in normal conditions | 660 MW |
-| Net generation after a trip and ramp | 550 MW |
-| Constant outage shortfall | 50 MW |
-| Battery discharge power required | 50 MW |
-| Usable battery energy for 30 minutes | 25 MWh |
+| Normal net generation available | 660 MW |
+| Net generation immediately after the trip | 500 MW |
+| Net generation after a five-minute linear recovery | 550 MW |
+| Initial and settled shortfall | 100 MW and 50 MW |
+| Usable energy during the five-minute recovery | 6.25 MWh |
+| Usable energy during the next 30 minutes | 25 MWh |
+| Peak discharge power and total usable energy | 100 MW and 31.25 MWh |
 
-Use deliverable AC power and energy at the intake under the expected temperature and state of charge. The calculation assumes a constant shortfall. Check the initial trip, generator ramp, cooling load, reserves, and battery recharge separately. Identify what supplies the load when the battery is depleted.
+Six units deliver 100 MW each before the trip. When one trips, five remain. In the example, the five ramp from a combined 500 MW to 550 MW. During that period, the average deficit is (100 MW + 50 MW) ÷ 2, or 75 MW. At five minutes, that is 75 × 5 ÷ 60 = 6.25 MWh. Add 50 × 30 ÷ 60 = 25 MWh for the remaining 30 minutes. The controls take the total outage duration of 35 minutes.
+
+Use deliverable AC power and energy at the intake under the expected temperature and state of charge. Use supplier response curves and load profiles for engineering. Check the initial trip, switching, cooling, reserves and recharge. Identify what supplies the load when the battery is depleted.
 
 - [Read the behind-the-meter power guide](https://invariant-ai.com/blog/behind-the-meter-power-for-data-centers#size-battery-for-islanded-campus)
 - [PNNL report on power systems and transient modeling for large data centers](https://www.energy.gov/sites/default/files/2026-01/Data_Center_EMT_Models.pdf)

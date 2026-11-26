@@ -46,3 +46,24 @@ test('the battery needs both adequate discharge power and usable energy', () => 
     power: '12.50', energy: '3.00', duration: '14.40',
   }).coversDuration, true)
 })
+
+test('calculates the energy during recovery and the settled shortfall separately', () => {
+  const battery = { power: '100', energy: '31.25', duration: '35' }
+  const ramp = { initialShortfall: '100', recoveryMinutes: '5' }
+  const exact = calculateBatteryBridge(50, battery, ramp)
+  assert.equal(exact.requiredPowerMw, 100)
+  assert.equal(exact.requiredEnergyMwh, 31.25)
+  assert.equal(exact.coversDuration, true)
+  assert.equal(calculateBatteryBridge(50, { ...battery, power: '99.99' }, ramp).meetsPower, false)
+  assert.equal(calculateBatteryBridge(50, { ...battery, energy: '31.24' }, ramp).coversDuration, false)
+})
+
+test('handles a temporary shortfall when generation eventually covers all demand', () => {
+  const battery = { power: '30', energy: '1.25', duration: '5' }
+  const ramp = { initialShortfall: '30', recoveryMinutes: '5' }
+  assert.equal(calculateBatteryBridge(0, battery, ramp).requiredEnergyMwh, 1.25)
+  assert.equal(calculateBatteryBridge(0, battery, ramp).coversDuration, true)
+  assert.equal(calculateBatteryBridge(0, battery), null)
+  assert.equal(calculateBatteryBridge(0, battery, { ...ramp, recoveryMinutes: '6' }), null)
+  assert.equal(calculateBatteryBridge(50, battery, ramp), null)
+})

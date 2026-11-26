@@ -16,7 +16,7 @@ const TOOLS = [
   {
     slug: 'data-center-power-capacity',
     title: 'Data center power capacity calculator',
-    description: 'Compare on-site power and utility imports during a generator trip or grid outage, and check battery runtime.',
+    description: 'Compare on-site power and utility imports during outages, then check battery MW and MWh through recovery.',
   },
   {
     slug: GENERATOR_HOURS_SLUG,

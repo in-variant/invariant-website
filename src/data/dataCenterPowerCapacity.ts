@@ -18,6 +18,15 @@ export const HYBRID_POWER_EXAMPLE = {
 export const DEFAULT_BATTERY_BRIDGE = { power: '10', energy: '2', duration: '15' }
 export type BatteryBridge = typeof DEFAULT_BATTERY_BRIDGE
 
+export const DEFAULT_BATTERY_RAMP = { initialShortfall: '', recoveryMinutes: '' }
+export type BatteryRamp = typeof DEFAULT_BATTERY_RAMP
+
+export const ISLANDED_POWER_EXAMPLE = {
+  power: { it: '500', multiplier: '1.20', normal: '660', outage: '550' },
+  battery: { power: '100', energy: '31.25', duration: '35' },
+  ramp: { initialShortfall: '100', recoveryMinutes: '5' },
+} satisfies { power: PowerCase; battery: BatteryBridge; ramp: BatteryRamp }
+
 export function hundredths(value: string) {
   if (!/^(?:\d+(?:\.\d{0,2})?|\.\d{1,2})$/.test(value)) return null
   const scaled = Math.round(Number(value) * 100)
@@ -51,23 +60,31 @@ export function calculatePowerCapacity(caseInputs: PowerCase, grid?: GridPowerCa
   }
 }
 
-export function calculateBatteryBridge(shortfallMw: number, inputs: BatteryBridge) {
+export function calculateBatteryBridge(shortfallMw: number, inputs: BatteryBridge, ramp?: BatteryRamp) {
   const power = hundredths(inputs.power)
   const energy = hundredths(inputs.energy)
   const minutes = hundredths(inputs.duration)
-  if (power === null || energy === null || minutes === null || minutes === 0) return null
+  const recoveryMinutes = ramp ? hundredths(ramp.recoveryMinutes) : 0
+  const immediateShortfall = ramp ? hundredths(ramp.initialShortfall) : null
+  if (power === null || energy === null || minutes === null || minutes === 0 || recoveryMinutes === null) return null
 
-  const shortfall = Math.round(shortfallMw * 10000)
+  const settled = Math.round(shortfallMw * 10000)
+  const peak = immediateShortfall === null ? settled : immediateShortfall * 100
+  if (ramp && (immediateShortfall === null || recoveryMinutes === 0 || recoveryMinutes > minutes || peak < settled)) return null
+
   const availablePower = power * 100
-  const required = shortfall * minutes
-  // Compare energy in units of 1 / 60,000,000 MWh to preserve exact thresholds.
-  const usable = energy * 600000
-  if (shortfall <= 0 || ![shortfall, availablePower, required, usable].every(Number.isSafeInteger)) return null
+  // Add the area above the settled shortfall during a linear recovery.
+  // Both energy values use 1 / 120,000,000 MWh to compare limits exactly.
+  const required = 2 * settled * minutes + (peak - settled) * recoveryMinutes
+  const usable = energy * 1200000
+  if (settled < 0 || peak <= 0 || ![settled, peak, availablePower, required, usable].every(Number.isSafeInteger)) return null
 
-  const meetsPower = availablePower >= shortfall
+  const meetsPower = availablePower >= peak
   return {
-    requiredEnergyMwh: required / 60000000,
-    runtimeMinutes: meetsPower ? usable / shortfall / 100 : null,
+    requiredPowerMw: peak / 10000,
+    requiredEnergyMwh: required / 120000000,
+    runtimeMinutes: meetsPower && !ramp ? usable / settled / 200 : null,
+    meetsPower,
     coversDuration: meetsPower && usable >= required,
   }
 }

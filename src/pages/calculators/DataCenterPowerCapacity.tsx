@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, SITE_URL, breadcrumbSchema } from '../../components/Seo'
 import {
-  DEFAULT_POWER_CASE, DEFAULT_BATTERY_BRIDGE, DEFAULT_GRID_CASE, HYBRID_POWER_EXAMPLE,
-  calculatePowerCapacity, calculateBatteryBridge, type BatteryBridge, type GridPowerCase, type PowerCase,
+  DEFAULT_POWER_CASE, DEFAULT_BATTERY_BRIDGE, DEFAULT_BATTERY_RAMP, DEFAULT_GRID_CASE,
+  HYBRID_POWER_EXAMPLE, ISLANDED_POWER_EXAMPLE,
+  calculatePowerCapacity, calculateBatteryBridge, type BatteryBridge, type BatteryRamp, type GridPowerCase, type PowerCase,
 } from '../../data/dataCenterPowerCapacity'
 import { POWER_SCHEDULE_PATH } from '../../data/dataCenterPowerSchedule'
 import './DataCenterPowerCapacity.css'
 
 const URL = `${SITE_URL}/calculators/data-center-power-capacity`
 const TITLE = 'Data center power capacity calculator'
-const DESCRIPTION = 'Convert IT load to facility MW. Compare grid imports and on-site generation during a generator trip or grid outage, then estimate battery runtime.'
+const DESCRIPTION = 'Convert IT load to facility MW. Compare grid imports and on-site generation during a generator trip or grid outage, then size the battery for the shortfall and generator recovery.'
 const GUIDE = '/blog/behind-the-meter-power-for-data-centers'
 const DOE_GUIDE = 'https://www.energy.gov/sites/default/files/2024-07/best-practice-guide-data-center-design_0.pdf'
 const DOE_MICROGRIDS = 'https://www.energy.gov/oe/microgrid-systems'
@@ -43,7 +44,14 @@ const gridFields: Field<GridPowerCase>[] = [
 const batteryFields: Field<BatteryBridge>[] = [
   { id: 'power', label: 'Battery discharge power', unit: 'MW', min: 0 },
   { id: 'energy', label: 'Usable battery energy', unit: 'MWh', min: 0 },
-  { id: 'duration', label: 'Time until replacement power is available', unit: 'min', min: 0.01 },
+  { id: 'duration', label: 'Total time until replacement power is available', unit: 'min', min: 0.01 },
+]
+
+const rampFields: Field<BatteryRamp>[] = [
+  { id: 'initialShortfall', label: 'Shortfall immediately after the outage', unit: 'MW', min: 0,
+    hint: 'Facility demand minus power still delivered before the remaining units ramp.' },
+  { id: 'recoveryMinutes', label: 'Time to reach the settled outage output', unit: 'min', min: 0.01,
+    hint: 'The calculator assumes a linear recovery over this part of the total time.' },
 ]
 
 function NumericFields<T extends Record<string, string>>({ fields, values, onChange }: {
@@ -82,18 +90,34 @@ export default function DataCenterPowerCapacity() {
   const [grid, setGrid] = useState<GridPowerCase>(DEFAULT_GRID_CASE)
   const [hybrid, setHybrid] = useState(false)
   const [batteryCase, setBatteryCase] = useState('generator')
+  const [rampEnabled, setRampEnabled] = useState(false)
+  const [ramp, setRamp] = useState<BatteryRamp>(DEFAULT_BATTERY_RAMP)
+  const batteryPanel = useRef<HTMLDetailsElement>(null)
   const [copyStatus, setCopyStatus] = useState('')
   const capacity = calculatePowerCapacity(inputs, hybrid ? grid : undefined)
   const batteryMargin = hybrid && batteryCase === 'grid' ? capacity?.islandMarginMw : capacity?.outageMarginMw
   const shortfall = Math.max(0, -(batteryMargin ?? 0))
-  const bridge = shortfall ? calculateBatteryBridge(shortfall, battery) : null
+  const hasOutageCase = capacity !== null && batteryMargin != null
+  const showBatteryInputs = hasOutageCase && (shortfall > 0 || rampEnabled)
+  const bridge = showBatteryInputs ? calculateBatteryBridge(shortfall, battery, rampEnabled ? ramp : undefined) : null
 
   function loadHybridExample() {
     setInputs(HYBRID_POWER_EXAMPLE.power)
     setGrid(HYBRID_POWER_EXAMPLE.grid)
     setHybrid(true)
     setBatteryCase('generator')
+    setRampEnabled(false)
     setCopyStatus('')
+  }
+
+  function loadIslandedExample() {
+    setInputs(ISLANDED_POWER_EXAMPLE.power)
+    setBattery(ISLANDED_POWER_EXAMPLE.battery)
+    setRamp(ISLANDED_POWER_EXAMPLE.ramp)
+    setHybrid(false)
+    setRampEnabled(true)
+    setCopyStatus('')
+    if (batteryPanel.current) batteryPanel.current.open = true
   }
 
   async function copyCalculation() {
@@ -154,6 +178,7 @@ export default function DataCenterPowerCapacity() {
                   setCopyStatus('')
                 }} /> Enter on-site power and grid imports separately</label>
                 <button type="button" onClick={loadHybridExample}>Load the 50 MW IT hybrid example</button>
+                <button type="button" onClick={loadIslandedExample}>Load the 500 MW IT islanded example</button>
               </div>
               <NumericFields fields={hybrid ? hybridFields : capacityFields} values={inputs} onChange={values => {
                 setInputs(values)
@@ -192,8 +217,8 @@ export default function DataCenterPowerCapacity() {
               </div>
             </section>
           </div>
-          <details className="power-calc-bridge" id="battery-bridge">
-            <summary>Check battery runtime during an outage</summary>
+          <details ref={batteryPanel} className="power-calc-bridge" id="battery-bridge">
+            <summary>Size the battery for an outage</summary>
             <div className="power-calc-bridge-body">
               <p>Enter the battery’s discharge power and usable energy at the facility intake. Use the energy available at the expected state of charge after losses and reserves.</p>
               {hybrid && <label className="power-calc-case">
@@ -203,22 +228,31 @@ export default function DataCenterPowerCapacity() {
                   <option value="grid">Loss of grid service</option>
                 </select>
               </label>}
-              {shortfall > 0 && <NumericFields fields={batteryFields} values={battery} onChange={setBattery} />}
+              {hasOutageCase && <div className="power-calc-options">
+                <label><input type="checkbox" checked={rampEnabled} onChange={event => setRampEnabled(event.target.checked)} />
+                  Include the shortfall while generation recovers</label>
+              </div>}
+              {showBatteryInputs && <NumericFields fields={batteryFields} values={battery} onChange={setBattery} />}
+              {showBatteryInputs && rampEnabled && <fieldset className="power-calc-grid-fields">
+                <legend>Generator recovery</legend>
+                <NumericFields fields={rampFields} values={ramp} onChange={setRamp} />
+              </fieldset>}
               <div className="power-calc-bridge-result" aria-live="polite" aria-atomic="true">
                 {bridge ? <>
                   <dl>
-                    <div><dt>Discharge power needed</dt><dd>{format.format(shortfall)} MW</dd></div>
+                    <div><dt>{rampEnabled ? 'Peak discharge power needed' : 'Discharge power needed'}</dt><dd>{format.format(bridge.requiredPowerMw)} MW</dd></div>
                     <div><dt>Usable energy needed</dt><dd>{formatEnergy.format(bridge.requiredEnergyMwh)} MWh</dd></div>
                     {bridge.runtimeMinutes !== null && <div><dt>Runtime at this shortfall</dt><dd>{formatEnergy.format(bridge.runtimeMinutes)} min</dd></div>}
                   </dl>
                   <p className="power-calc-bridge-status" data-short={!bridge.coversDuration}>{bridge.coversDuration
-                    ? 'The battery covers the entered duration at this shortfall.'
-                    : bridge.runtimeMinutes === null ? 'Battery discharge power is below the outage shortfall.'
+                    ? 'The entered discharge power and usable energy cover this outage profile.'
+                    : !bridge.meetsPower ? 'Battery discharge power is below the peak outage shortfall.'
                       : 'Usable battery energy runs out before replacement power is available.'}</p>
                 </> : <p>{!capacity ? 'Complete the design case to check an outage.'
                   : batteryMargin === null ? 'Enter net on-site power with the grid disconnected to check battery requirements.'
-                  : shortfall === 0 ? 'The outage case covers the entered facility load in steady state. Check transfer and recovery behavior separately.'
-                    : 'Enter a positive duration and nonnegative battery power and energy with up to two decimal places.'}</p>}
+                  : !showBatteryInputs ? 'The outage case covers the entered facility load in steady state. Add the recovery period to check the initial shortfall.'
+                    : rampEnabled ? 'Enter valid battery values and a positive recovery time within the total outage duration. Use a positive initial shortfall at least as large as the settled shortfall.'
+                      : 'Enter a positive duration and nonnegative battery power and energy with up to two decimal places.'}</p>}
               </div>
             </div>
           </details>
@@ -233,7 +267,8 @@ export default function DataCenterPowerCapacity() {
             <p>Confirm usable imports after a generator trip in the utility agreement. For a grid outage, use the net on-site output that can actually serve the load after disconnecting. Check transfer, controls, fuel and shared equipment with the project engineer.</p>
             <h3>How much battery energy covers a generator shortfall?</h3>
             <p>Multiply the constant shortfall in MW by the duration in hours to get the usable MWh needed. A 500 MW IT campus at a design ratio of 1.20 needs 600 MW at the facility intake. With 550 MW available after generators settle into the outage condition, the 50 MW shortfall requires 25 usable MWh for 30 minutes. The inverter also needs to deliver at least 50 MW to the intake during that period.</p>
-            <p>This calculation holds the shortfall constant. Model the first seconds after a trip, generator ramp, black start, battery recharge, and repeat outages separately. Plan for a sustained source or load reduction before the battery is depleted.</p>
+            <p>In the islanded example, six units each deliver 100 MW before the trip. After one trips, the shortfall starts at 100 MW and falls to 50 MW as the other units ramp. With a five-minute linear recovery and 30 minutes at the settled shortfall, the battery needs 100 MW of peak discharge power and 31.25 usable MWh at the intake.</p>
+            <p>Use the equipment supplier’s output over time for engineering. Check response in the first seconds, switching, black start, battery recharge and repeat outages. Plan for a sustained source or load reduction before the battery is depleted.</p>
             <p>Before using the result for procurement, have the engineer check reserves, fuel delivery, switching, common equipment, and load pickup.</p>
             <div className="power-calc-links">
               <Link to={POWER_SCHEDULE_PATH}>Check when each phase needs power ↗</Link>

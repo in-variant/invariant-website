@@ -186,7 +186,7 @@ out.push('')
 
 out.push('## Calculators')
 out.push('')
-out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand and compare on-site generation and utility imports during a generator trip or grid outage.')
+out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand, compare power during outages, and calculate the battery MW and MWh needed through generator recovery.')
 out.push('- [Backup generator run-hour calculator](https://invariant-ai.com/calculators/generator-run-hours.md), Calculate rolling hours for a generator group and an individual engine.')
 out.push('- [Data center water use calculator](https://invariant-ai.com/calculators/data-center-water-use.md), Estimate annual on-site water and average daily gallons or calculate site WUE from annual records.')
 out.push('- [AEP Ohio data center demand charge calculator](https://invariant-ai.com/calculators/aep-ohio-data-center-demand-charge.md), Compare the meter, minimum demand and 11-month lookback for one Schedule DCT new-load contract.')

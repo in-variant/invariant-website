@@ -5389,9 +5389,9 @@
     "topic": "Data Centers",
     "kind": "site-guide",
     "title": "Behind-the-Meter Power for Data Centers: MW and Timelines",
-    "description": "Compare on-site natural gas, fuel cells and utility power for data centers. See the permit-to-operation timeline for Vantage VA2 and check net MW and delivery dates.",
+    "description": "Compare on-site natural gas, fuel cells and utility power for data centers. Check net MW, delivery dates, and battery sizing after a generator trip.",
     "date": "2026-11-09",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 20,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
@@ -5686,7 +5686,7 @@
           },
           {
             "type": "paragraph",
-            "text": "The 50 MW is the remaining deficit after the other units reach 550 MW. The first seconds can require more power. For example, with six units delivering 100 MW each before the trip, losing one leaves 500 MW until the others respond. The 25 MWh figure covers the steady shortfall for 30 minutes. Have the supplier show the full power and energy profile from trip to recovery, including cooling load, switching, battery losses and the state of charge available when the trip occurs.",
+            "text": "The 50 MW is the remaining deficit after the other units reach 550 MW. Assume each unit delivers 100 MW before the trip. Losing one initially leaves 500 MW of generation and a 100 MW gap. If the five remaining units ramp linearly to 550 MW in five minutes and the battery then covers the 50 MW gap for another 30 minutes, it must deliver 100 MW at the peak and 31.25 usable MWh across the 35 minutes. The five-minute recovery uses 6.25 MWh and the following 30 minutes use 25 MWh.",
             "sourceIds": [
               "pnnl-dynamic-loads"
             ]
@@ -5700,7 +5700,7 @@
             "items": [
               {
                 "path": "/calculators/data-center-power-capacity",
-                "label": "Calculate generator shortfall and battery runtime"
+                "label": "Calculate peak battery MW and usable MWh through recovery"
               }
             ]
           }
