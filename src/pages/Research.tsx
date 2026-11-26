@@ -114,6 +114,7 @@ export default function Research() {
             <Link to="/datasets" className="research-primary">Browse data samples <ResourceArrow diagonal /></Link>
             <Link to={DATA_USE_CASES_PATH}>Explore data guides <ResourceArrow diagonal /></Link>
             <Link to="/data-coverage">Check API data coverage <ResourceArrow diagonal /></Link>
+            <a href="#versioned-downloads">Versioned downloads <ResourceArrow diagonal /></a>
           </nav>
         </div>
       </header>
@@ -166,6 +167,23 @@ export default function Research() {
         <div className="research-study-grid">
           {moreStudies.map(study => <StudyCard key={study.slug} study={study} />)}
         </div>
+      </section>
+      <section id="versioned-downloads" className="resource-container research-recent" aria-labelledby="research-releases-title">
+        <div className="research-recent-heading">
+          <h2 id="research-releases-title">Versioned downloads</h2>
+        </div>
+        <ul className="research-recent-list">
+          {research.versionedDownloads.map(({ topic, title, datePublished, version, methodPath, releaseUrl }) => (
+            <li key={releaseUrl}>
+              <span className="research-recent-topic">{topic}</span>
+              <Link className="research-recent-title" to={methodPath}>{title}</Link>
+              <time dateTime={datePublished}>{recordDate.format(new Date(datePublished))}</time>
+              <a className="research-release-link" href={releaseUrl} aria-label={`View ${title} ${version} on GitHub`}>
+                {version} <ResourceArrow diagonal />
+              </a>
+            </li>
+          ))}
+        </ul>
       </section>
       <section className="resource-container research-citations" aria-labelledby="research-citations-title">
         <div>

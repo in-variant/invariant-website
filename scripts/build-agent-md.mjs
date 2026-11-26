@@ -309,7 +309,8 @@ function researchMd() {
     `Updated: ${researchArticles.updatedDate}`, '',
     `- [Browse research datasets](${SITE}/datasets)`,
     `- [Explore data guides](${SITE}/blog/physical-world-data-by-use-case)`,
-    `- [Check API data coverage](${SITE}${product.links.coverage})`, '',
+    `- [Check API data coverage](${SITE}${product.links.coverage})`,
+    `- [Versioned downloads](${SITE}/research#versioned-downloads)`, '',
     '## Recent datasets by topic', '',
     ...researchArticles.recentDatasets.map(({ topic, title, datePublished, notesPath, download }) =>
       `- ${topic} · ${datePublished} · [${linkText(title)}](${SITE}${notesPath}) · [Download ${download.format}](${SITE}${download.path})`),
@@ -338,7 +339,10 @@ function researchMd() {
       '',
     )
   }
-  out.push(`[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '')
+  out.push('## Versioned downloads', '',
+    ...research.versionedDownloads.map(({ title, topic, datePublished, version, methodPath, releaseUrl }) =>
+      `- ${topic} · ${datePublished} · ${citationLink(title, SITE + methodPath)} · ${citationLink(version + ' on GitHub', releaseUrl)}`),
+    '', `[Download citations for a reference manager (CSL JSON)](${SITE}/datasets.csl.json)`, '')
   return out.join('\n')
 }
 

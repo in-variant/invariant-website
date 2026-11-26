@@ -169,7 +169,7 @@
   gap: 6px;
   min-height: 44px;
 }
-.research-recent-heading a, .research-recent-list a[download] {
+.research-recent-heading a, .research-recent-list :is(a[download], .research-release-link) {
   color: var(--research-accent);
   font-size: 14px;
 }
@@ -190,7 +190,7 @@
 }
 .research-recent-list time { font-variant-numeric: tabular-nums; }
 .research-recent-title { font-weight: 500; line-height: 1.35; }
-.research-recent-list a[download] { justify-self: end; }
+.research-recent-list :is(a[download], .research-release-link) { justify-self: end; }
 @media (max-width: 680px) {
   .research-recent-list li { grid-template-columns: minmax(0, 1fr) auto; padding-block: 12px 8px; }
   .research-recent-title { grid-row: 2; }
