@@ -1,5 +1,410 @@
 [
   {
+    "slug": "elevation-data-apis-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to compare elevation data APIs for a U.S. address",
+    "description": "Compare Invariant Earth, USGS, Mireye, Google, OpenTopography and emem. See three live elevation results at one address and download the source trial.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Illustrated oblique aerial view of streets and buildings climbing a hillside above a California bay.",
+    "coverCaption": "Generated editorial illustration of a coastal hillside. The source trial uses a separate address in San Francisco.",
+    "intro": "For ground elevation at a U.S. address, confirm the address point and start with a bare-earth terrain source such as USGS 3DEP. For slope or grading, use a terrain raster and the full site boundary. In a live test at San Francisco Main Library, USGS and Mireye returned 19.25 m and 19.28 m from different terrain grids. emem returned 20.59 m from a Copernicus surface model at a nearby representative point. Each value answers a different measurement question.",
+    "takeaways": [
+      "Check the coordinate, physical surface, vertical datum, source resolution and date before comparing two elevation results.",
+      "For parcel screening with Invariant Earth, use point elevation alongside separate records for the parcel, building footprint and flood intersections.",
+      "For flood underwriting, establish which building is being insured and obtain the required surveyed elevations where applicable."
+    ],
+    "guideActions": [
+      {
+        "href": "#san-francisco-elevation-trial",
+        "label": "See the three live readings"
+      },
+      {
+        "href": "/blog/elevation-api-source-trial.json",
+        "label": "Download the trial inputs and results",
+        "download": true
+      },
+      {
+        "href": "https://invariant-ai.com/data-coverage?field=elevation#coverage-search",
+        "label": "Check Earth elevation coverage"
+      }
+    ],
+    "sections": [
+      {
+        "id": "compare-elevation-apis",
+        "heading": "Which elevation API fits the job?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A point service is a good fit for a lookup on a confirmed coordinate. Use a raster for a parcel or route where the question concerns a range of elevations, terrain slope, or the area meeting a grading threshold. Use a combined property platform when the evidence needs to travel with parcel identity and other site records."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider",
+              "Where to start",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Start here when terrain is part of a site or property workflow. Earth documents separate tools for point elevation, parcel lookup and site screening, with source metadata on field responses.",
+                "Request the elevation and its source URL. Then confirm that the parcel and flood results use the intended geometry."
+              ],
+              [
+                "USGS EPQS",
+                "Direct point lookup using the best available 3DEP terrain data at the coordinate.",
+                "Keep the reported raster ID, resolution and acquisition date. Repeat at the same coordinate rather than at a nearby geocode."
+              ],
+              [
+                "Mireye Fetch",
+                "Address or coordinate lookup for point elevation and other location fields. Its catalog describes a seamless 3DEP terrain grid and an EPQS fallback.",
+                "Read the source, data vintage and status. Request the original raster ID or acquisition date if your review needs it."
+              ],
+              [
+                "Google Maps Elevation API",
+                "Point and sampled path elevations through the Maps Platform. Returns coordinates and elevation, with resolution where available.",
+                "Compare a single-point call with your production sampling pattern. Ask how to align the result with the vertical datum used by your other inputs."
+              ],
+              [
+                "OpenTopography",
+                "Source-selectable elevation rasters, including global terrain and surface products.",
+                "Clip a named terrain raster to your site and retain the source product, datum, resolution and any missing cells."
+              ],
+              [
+                "emem",
+                "Location-cell observations and verifiable receipts. The tested band reads a Copernicus surface-model pixel.",
+                "Confirm the physical surface, representative coordinate and date that the fact describes. Verify the receipt separately."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-schema",
+                "earth-elevation"
+              ],
+              [
+                "usgs-epqs",
+                "usgs-sample"
+              ],
+              [
+                "mireye-fetch",
+                "mireye-catalog"
+              ],
+              [
+                "google"
+              ],
+              [
+                "opentopography"
+              ],
+              [
+                "emem",
+                "copernicus"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Invariant publishes this comparison. We ran live reads against USGS, Mireye and emem on November 25, 2026 Pacific time. The entries for Invariant Earth, Google Maps Platform and OpenTopography use their public documentation. The test covers one point and compares what each response measures and reports."
+          }
+        ]
+      },
+      {
+        "id": "san-francisco-elevation-trial",
+        "heading": "Three elevation readings at San Francisco Main Library",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We used the published city address point for 100 Larkin Street, at 37.77905419° N and 122.41632622° W, within San Francisco tax lot 0354001. The download retains the coordinate at full precision. USGS and Mireye accepted it directly. For emem, we resolved the coordinate to its cell and requested that cell’s Copernicus elevation band.",
+            "sourceIds": [
+              "city-address",
+              "usgs-sample",
+              "mireye-fetch",
+              "emem"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Live provider",
+              "Reported elevation",
+              "What the value describes"
+            ],
+            "rows": [
+              [
+                "USGS EPQS",
+                "19.25 m",
+                "Interpolated bare-earth elevation at the input point. The response returned raster 72150 at 1 m resolution, with a March 4, 2023 acquisition date."
+              ],
+              [
+                "Mireye Fetch",
+                "19.28 m",
+                "Ground elevation at the input point. The response identified the 3DEP seamless grid at about 10 m. Its vintage field named the product without a specific acquisition date."
+              ],
+              [
+                "emem",
+                "20.59 m",
+                "Copernicus GLO-30 surface height at one pixel containing the cell’s representative point. The response identified April 30, 2021 as the source edition date."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "usgs-sample",
+                "usgs-epqs"
+              ],
+              [
+                "mireye-fetch",
+                "mireye-catalog"
+              ],
+              [
+                "emem",
+                "copernicus"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The displays are rounded to two decimal places to distinguish the returned values. That precision is a display choice. The products sample the ground or surface differently, at different resolutions and sometimes at different points. The elevation difference cannot establish building height or an error in either source.",
+            "sourceIds": [
+              "usgs-epqs",
+              "mireye-catalog",
+              "copernicus",
+              "emem"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/elevation-api-source-trial.json",
+            "format": "JSON",
+            "label": "Download the request coordinates, source details and returned values"
+          }
+        ]
+      },
+      {
+        "id": "elevation-source-datum-and-date",
+        "heading": "What to save with an elevation value",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Keep the address-match type, input coordinate and sampled geometry. A geocoder can place you at a rooftop, a driveway or an estimated location on the street. Preserve a moved or representative point if the service uses one.",
+              "Record what was measured. Bare-earth terrain models remove above-ground features where possible. Digital surface models can retain buildings and vegetation. A statistic computed inside a site boundary needs its own record of the boundary and sampling method.",
+              "Keep the vertical datum and units. A datum sets the height reference. The WGS84 latitude and longitude in a request describe horizontal position. USGS generally uses NAVD88 in the conterminous U.S. Copernicus GLO-30 uses EGM2008. Check the specific product before combining values.",
+              "Separate the source date from the time the API fetched or served the record. Some services report an acquisition date, while others give only a product name or edition. Preserve the meaning of the date in your data model."
+            ],
+            "sourceIds": [
+              "usgs-datum",
+              "usgs-epqs",
+              "copernicus",
+              "emem",
+              "earth-schema"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In the emem trial, the provider’s verifier reported a valid signature and Merkle proof for the returned receipt. We submitted the receipt alone. The provider described the pixel and the edition date separately, outside the signed bytes. Keep both the receipt and the source description so a reviewer can check what was served and what the elevation actually measures.",
+            "sourceIds": [
+              "emem",
+              "copernicus"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "use-elevation-for-site-selection-and-insurance",
+        "heading": "Apply the result to the property decision",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a development site, use the parcel boundary and a terrain raster to estimate slope and identify the largest contiguous usable area. Keep access, drainage, wetlands and setbacks as separate layers. For underwriting, match the building footprint to the applicable flood map and confirm the required building elevation and datum from the elevation certificate or a qualified professional.",
+            "sourceIds": [
+              "fema-certificate"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "With Invariant Earth, request the documented elevation field at a confirmed point, then look up the parcel and carry the geography, source links and dates into the review. The field catalog describes a seamless 3DEP terrain grid with USGS EPQS as a fallback. The published response example shows how to carry a source link with a result. An Earth trial should capture the actual response for the same address and explicitly record differences in source file, acquisition date and sampled geometry.",
+            "sourceIds": [
+              "earth-schema",
+              "earth-elevation"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the property review",
+            "items": [
+              {
+                "slug": "lidar-slope-developable-land",
+                "label": "Calculate slope and usable acreage from lidar"
+              },
+              {
+                "slug": "elevation-certificate-by-address",
+                "label": "Find a flood elevation certificate by address"
+              },
+              {
+                "slug": "gis-mcp-servers-for-site-selection",
+                "label": "Evaluate parcel evidence returned by a GIS agent"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I get ground elevation by street address?",
+        "answer": "Resolve the address to a latitude and longitude and confirm it matches the intended property. Query a bare-earth source such as USGS 3DEP for that point. Save the coordinate, datum, source and date along with the value.",
+        "sourceIds": [
+          "city-address",
+          "usgs-epqs",
+          "usgs-datum"
+        ]
+      },
+      {
+        "question": "Why do elevation APIs return different results for the same address?",
+        "answer": "They may sample different coordinates, terrain or surface models, grid resolutions, acquisition dates and vertical datums. Compare those details before interpreting the difference between two returned elevations.",
+        "sourceIds": [
+          "usgs-epqs",
+          "usgs-datum",
+          "copernicus"
+        ]
+      },
+      {
+        "question": "Can an API elevation replace a flood elevation certificate?",
+        "answer": "A terrain API gives modeled ground elevation for a point or raster cell. A flood elevation certificate documents building-specific elevations used for the applicable flood determination. Follow the requirement for the particular building and review.",
+        "sourceIds": [
+          "usgs-epqs",
+          "fema-certificate"
+        ]
+      },
+      {
+        "question": "What does a signed elevation receipt prove?",
+        "answer": "A verified receipt can establish the integrity of the provider’s returned payload. Review the source dataset and its measurement method separately to decide what the reading represents.",
+        "sourceIds": [
+          "emem",
+          "copernicus"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "city-address",
+        "title": "City address point and assessor parcel reference",
+        "publisher": "Invariant, using City and County of San Francisco records",
+        "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json",
+        "linkLabel": "Check the address and county parcel"
+      },
+      {
+        "id": "usgs-sample",
+        "title": "Elevation Point Query Service sample for 100 Larkin Street",
+        "publisher": "U.S. Geological Survey",
+        "url": "https://epqs.nationalmap.gov/v1/json?x=-122.41632622023333&y=37.779054193871154&wkid=4326&units=Meters&includeDate=true",
+        "linkLabel": "Replay the USGS point request"
+      },
+      {
+        "id": "usgs-epqs",
+        "title": "Point query interpolation, source resolution and accuracy",
+        "publisher": "U.S. Geological Survey",
+        "url": "https://www.usgs.gov/faqs/how-accurate-are-elevations-generated-elevation-point-query-service-national-map",
+        "linkLabel": "Read the EPQS methodology"
+      },
+      {
+        "id": "usgs-datum",
+        "title": "Vertical datums and projections for USGS elevation models",
+        "publisher": "U.S. Geological Survey",
+        "url": "https://www.usgs.gov/faqs/what-projection-horizontal-datum-vertical-datum-and-resolution-a-usgs-digital-elevation-model",
+        "linkLabel": "Verify USGS datum guidance"
+      },
+      {
+        "id": "mireye-fetch",
+        "title": "Fetch API for a coordinate or address",
+        "publisher": "Mireye",
+        "url": "https://docs.mireye.ai/api-reference/fetch",
+        "linkLabel": "Read the Fetch contract"
+      },
+      {
+        "id": "mireye-catalog",
+        "title": "Elevation field definition and source",
+        "publisher": "Mireye",
+        "url": "https://api.mireye.com/v1/meta/fields",
+        "linkLabel": "Open the public field catalog"
+      },
+      {
+        "id": "copernicus",
+        "title": "GLO-30 surface model and vertical reference",
+        "publisher": "Copernicus Data Space Ecosystem",
+        "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "linkLabel": "Check the Copernicus DEM specification"
+      },
+      {
+        "id": "emem",
+        "title": "Location lookup, recall and receipt verification",
+        "publisher": "emem",
+        "url": "https://www.emem.dev/docs/agents.html",
+        "linkLabel": "Read the agent documentation"
+      },
+      {
+        "id": "google",
+        "title": "Point and path elevation requests and response fields",
+        "publisher": "Google Maps Platform",
+        "url": "https://developers.google.com/maps/documentation/elevation/requests-elevation",
+        "linkLabel": "Read the Elevation API reference"
+      },
+      {
+        "id": "opentopography",
+        "title": "Elevation raster download APIs and source datasets",
+        "publisher": "OpenTopography",
+        "url": "https://opentopography.org/developers",
+        "linkLabel": "Browse elevation raster APIs"
+      },
+      {
+        "id": "earth-schema",
+        "title": "Field response metadata and source URL example",
+        "publisher": "Invariant Earth",
+        "url": "https://docs.invariant-ai.com/responses",
+        "linkLabel": "Read the Earth response contract"
+      },
+      {
+        "id": "earth-elevation",
+        "title": "Documented point elevation field",
+        "publisher": "Invariant Earth",
+        "url": "https://invariant-ai.com/data-coverage?field=elevation#coverage-search",
+        "linkLabel": "Find elevation in the Earth field catalog"
+      },
+      {
+        "id": "fema-certificate",
+        "title": "FEMA Elevation Certificate guidance for floodplain management and flood insurance",
+        "publisher": "Federal Emergency Management Agency",
+        "url": "https://www.fema.gov/sites/default/files/documents/fema_floodplain_elevation-certificate-faq_2023.pdf",
+        "linkLabel": "Read FEMA’s certificate guidance"
+      }
+    ],
+    "dataset": {
+      "name": "Same-address elevation API trial at San Francisco Main Library",
+      "description": "Three dated elevation observations with reproducible inputs, returned values, source grids, datum information, and an emem receipt verification result.",
+      "sourceIds": [
+        "city-address",
+        "usgs-sample",
+        "usgs-epqs",
+        "mireye-fetch",
+        "mireye-catalog",
+        "emem",
+        "copernicus"
+      ],
+      "spatialCoverage": "San Francisco Main Library, San Francisco, California, United States",
+      "temporalCoverage": "2026-11-25"
+    },
+    "relatedSlugs": [
+      "gis-mcp-servers-for-site-selection",
+      "best-gis-apis-for-site-selection",
+      "lidar-slope-developable-land",
+      "elevation-certificate-by-address",
+      "parcel-number-lookup-by-address"
+    ]
+  },
+  {
     "slug": "chicago-city-owned-land-for-sale",
     "topic": "Data & APIs",
     "region": "Chicago, Illinois, United States",
@@ -26128,6 +26533,10 @@
             "type": "links",
             "label": "Try a second source check",
             "items": [
+              {
+                "slug": "elevation-data-apis-by-address",
+                "label": "Replay an elevation comparison using source pixels, acquisition dates and receipt verification"
+              },
               {
                 "slug": "chicago-city-owned-land-for-sale",
                 "label": "Trace a Chicago land offering from individual PINs to the dated city application"

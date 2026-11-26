@@ -1,5 +1,74 @@
 [
   {
+    "slug": "elevation-data-apis-by-address",
+    "topic": "Data & APIs",
+    "title": "How to compare elevation data APIs for a U.S. address",
+    "summary": "Compare Invariant Earth, USGS, Mireye, Google, OpenTopography and emem. See three live elevation results at one address and download the source trial.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/elevation-data-apis-by-address.webp?v=4bc342e5",
+    "dataset": {
+      "name": "Same-address elevation API trial at San Francisco Main Library",
+      "description": "Three dated elevation observations with reproducible inputs, returned values, source grids, datum information, and an emem receipt verification result.",
+      "spatialCoverage": "San Francisco Main Library, San Francisco, California, United States",
+      "temporalCoverage": "2026-11-25",
+      "sources": [
+        "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json",
+        "https://epqs.nationalmap.gov/v1/json?x=-122.41632622023333&y=37.779054193871154&wkid=4326&units=Meters&includeDate=true",
+        "https://www.usgs.gov/faqs/how-accurate-are-elevations-generated-elevation-point-query-service-national-map",
+        "https://docs.mireye.ai/api-reference/fetch",
+        "https://api.mireye.com/v1/meta/fields",
+        "https://www.emem.dev/docs/agents.html",
+        "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+      ],
+      "sourceDetails": [
+        {
+          "title": "City address point and assessor parcel reference",
+          "publisher": "Invariant, using City and County of San Francisco records",
+          "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json"
+        },
+        {
+          "title": "Elevation Point Query Service sample for 100 Larkin Street",
+          "publisher": "U.S. Geological Survey",
+          "url": "https://epqs.nationalmap.gov/v1/json?x=-122.41632622023333&y=37.779054193871154&wkid=4326&units=Meters&includeDate=true"
+        },
+        {
+          "title": "Point query interpolation, source resolution and accuracy",
+          "publisher": "U.S. Geological Survey",
+          "url": "https://www.usgs.gov/faqs/how-accurate-are-elevations-generated-elevation-point-query-service-national-map"
+        },
+        {
+          "title": "Fetch API for a coordinate or address",
+          "publisher": "Mireye",
+          "url": "https://docs.mireye.ai/api-reference/fetch"
+        },
+        {
+          "title": "Elevation field definition and source",
+          "publisher": "Mireye",
+          "url": "https://api.mireye.com/v1/meta/fields"
+        },
+        {
+          "title": "Location lookup, recall and receipt verification",
+          "publisher": "emem",
+          "url": "https://www.emem.dev/docs/agents.html"
+        },
+        {
+          "title": "GLO-30 surface model and vertical reference",
+          "publisher": "Copernicus Data Space Ecosystem",
+          "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the request coordinates, source details and returned values",
+          "path": "/blog/elevation-api-source-trial.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "chicago-city-owned-land-for-sale",
     "topic": "Data & APIs",
     "title": "How to find Chicago city-owned lots for sale",

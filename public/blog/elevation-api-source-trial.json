@@ -1,0 +1,110 @@
+{
+  "name": "Elevation API trial at San Francisco Main Library",
+  "publisher": "Invariant",
+  "guide": "https://invariant-ai.com/blog/elevation-data-apis-by-address",
+  "checked_on_local_date": "2026-11-25",
+  "time_zone": "America/Los_Angeles",
+  "input": {
+    "label": "San Francisco Main Library",
+    "address": "100 Larkin Street, San Francisco, California",
+    "city_apn": "0354001",
+    "coordinate_role": "City address point within the mapped tax lot",
+    "horizontal_reference": "WGS84 (EPSG:4326)",
+    "lat": 37.779054193871154,
+    "lng": -122.41632622023333,
+    "address_and_parcel_evidence": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json"
+  },
+  "observations": [
+    {
+      "provider": "USGS Elevation Point Query Service",
+      "request": {
+        "method": "GET",
+        "url": "https://epqs.nationalmap.gov/v1/json?x=-122.41632622023333&y=37.779054193871154&wkid=4326&units=Meters&includeDate=true"
+      },
+      "value_m": 19.248268127,
+      "source_raster_id": 72150,
+      "raster_resolution_m": 1,
+      "raster_acquisition_date": "2023-03-04",
+      "vertical_reference": "NAVD88 is typical for USGS DEMs in the conterminous US. The sampled response did not include a vertical datum field.",
+      "method": "Interpolate the bare-earth DEM at the input point.",
+      "method_documentation": "https://www.usgs.gov/faqs/how-accurate-are-elevations-generated-elevation-point-query-service-national-map"
+    },
+    {
+      "provider": "Mireye Fetch",
+      "request": {
+        "method": "POST",
+        "url": "https://api.mireye.com/v1/fetch",
+        "body": {
+          "lat": 37.779054193871154,
+          "lng": -122.41632622023333,
+          "fields": [
+            "elevation"
+          ]
+        }
+      },
+      "value_m": 19.278257369995117,
+      "fetched_at": "2026-11-26T02:33:21.259682+00:00",
+      "status": "ok",
+      "source": "USGS_3DEP_COG",
+      "source_url": "https://www.usgs.gov/3d-elevation-program",
+      "dataset_vintage_as_returned": "3DEP 1/3 arc-second seamless DEM",
+      "raster_acquisition_date": null,
+      "vertical_reference": "NAVD88 per the published elevation field definition.",
+      "field_documentation": "https://api.mireye.com/v1/meta/fields"
+    },
+    {
+      "provider": "emem",
+      "requests": [
+        {
+          "method": "POST",
+          "url": "https://emem.dev/v1/locate",
+          "body": {
+            "lat": 37.779054193871154,
+            "lng": -122.41632622023333
+          }
+        },
+        {
+          "method": "POST",
+          "url": "https://emem.dev/v1/recall",
+          "body": {
+            "cell": "defi.zb5ad.zd74a.kozO",
+            "bands": [
+              "copdem30m.elevation_mean"
+            ]
+          }
+        },
+        {
+          "method": "POST",
+          "url": "https://emem.dev/v1/verify_receipt",
+          "body_instructions": "Pass the receipt object from the recall response under the receipt key."
+        }
+      ],
+      "value_m": 20.58925437927246,
+      "source": "Copernicus DEM GLO-30",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N37_00_W123_00_DEM/Copernicus_DSM_COG_10_N37_00_W123_00_DEM.tif",
+      "vertical_reference": "EGM2008 (EPSG:3855)",
+      "source_specification": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "surface": "Digital surface model",
+      "method": "One source pixel containing the cell’s representative point in longitude and latitude.",
+      "representative_point": {
+        "lat": 37.779039277572295,
+        "lng": -122.41634903343893
+      },
+      "published_edition_date": "2021-04-30",
+      "edition_date_basis": "emem identifies observed_at as an edition date in its measurement description, which is outside the signed bytes.",
+      "fact_cid": "m3hflgojq2gaj6nz3lzskpzh6vajoubsfmqmzyxqpw3v3r5axdba",
+      "signed_at": "2026-11-26T02:27:58Z",
+      "served_at": "2026-11-26T02:28:00Z",
+      "receipt_check": {
+        "valid": true,
+        "signature_valid": true,
+        "merkle_proof_valid": true,
+        "facts_check": [],
+        "facts_supplied": 0
+      },
+      "receipt_check_scope": "The provider verified the returned receipt submitted by itself. Fact payloads were not included as verifier inputs. The trial did not independently survey the elevation.",
+      "documentation": "https://www.emem.dev/docs/agents.html"
+    }
+  ],
+  "interpretation": "Three dated reads for one address point. The providers differ in source grids, sampling approach and in some cases vertical references and physical surface. A difference is not an accuracy estimate or a building height. Use a terrain raster and parcel or footprint geometry for site-wide work."
+}
