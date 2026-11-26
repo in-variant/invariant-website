@@ -1,5 +1,85 @@
 [
   {
+    "slug": "commercial-foreclosure-records-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find Commercial Foreclosure Records by Address",
+    "summary": "Find a commercial foreclosure by address, parcel and case number. Follow the 20 Times Square leasehold auction through court, ACRIS and SEC records.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "New York, United States",
+    "image": "/blog/industry/commercial-foreclosure-records-by-address.webp?v=aef714af",
+    "dataset": {
+      "name": "20 Times Square leasehold auction, recorded documents and fee loan crosswalk",
+      "description": "A dated commercial foreclosure case linking a court-reported credit bid and leasehold valuation, two ACRIS instrument records and separately identified fee-interest CMBS collateral.",
+      "spatialCoverage": "701 Seventh Avenue, Manhattan, New York, United States",
+      "temporalCoverage": "2019-12-09/2026-11-02",
+      "sourceReuse": {
+        "note": "The sample links to New York court records, NYC Department of Finance index rows and SEC EDGAR exhibits. It contains selected public fields and analysis.",
+        "policyLabel": "NYC Open Data terms",
+        "policyUrl": "https://opendata.cityofnewyork.us/overview/#termsofuse"
+      },
+      "sources": [
+        "https://www.nycourts.gov/reporter/pdfs/2024/2024_32854.pdf",
+        "https://www.nycourts.gov/reporter/current/motions/2026/2026_66842.pdf",
+        "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=borough+%3D+%271%27+AND+block+%3D+%271000%27+AND+lot+%3D+%271%27+AND+document_id+between+%2720211201%27+and+%2720221232%27&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cgood_through_date&%24order=document_id+desc&%24limit=250",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2022022500810001",
+        "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2022022500798001",
+        "https://www.sec.gov/Archives/edgar/data/1744982/000153949718001248/n1323_ts-x6.htm",
+        "https://www.sec.gov/Archives/edgar/data/1744982/000188852426020401/exh_102.xml",
+        "https://www.sec.gov/Archives/edgar/data/1744982/000188852426020401/0001888524-26-020401-index.htm"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Natixis v 20 TSQ Lessee LLC, New York County index 850272/2019, NYSCEF 1156, pp. 2 and 13–14",
+          "publisher": "New York State Unified Court System",
+          "url": "https://www.nycourts.gov/reporter/pdfs/2024/2024_32854.pdf"
+        },
+        {
+          "title": "First Department case 2024-07752, April 23, 2026 order marking the appeal withdrawn",
+          "publisher": "New York State Unified Court System",
+          "url": "https://www.nycourts.gov/reporter/current/motions/2026/2026_66842.pdf"
+        },
+        {
+          "title": "Two 2022 ACRIS legal rows carrying 701 7 Avenue, Manhattan block 1000 lot 1",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=borough+%3D+%271%27+AND+block+%3D+%271000%27+AND+lot+%3D+%271%27+AND+document_id+between+%2720211201%27+and+%2720221232%27&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cgood_through_date&%24order=document_id+desc&%24limit=250"
+        },
+        {
+          "title": "ACRIS Transfer Tax Return entry, CRFN 2022000092118",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2022022500810001"
+        },
+        {
+          "title": "ACRIS Assignment or Termination of Contract or Bid, CRFN 2022000113051",
+          "publisher": "NYC Department of Finance",
+          "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2022022500798001"
+        },
+        {
+          "title": "UBS 2018-C12 20 Times Square loan exhibit, Loan 6 fee collateral",
+          "publisher": "SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/1744982/000153949718001248/n1323_ts-x6.htm"
+        },
+        {
+          "title": "UBS 2018-C12 Form ABS-EE asset data, November 2, 2026 filing, Loan 6",
+          "publisher": "SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/1744982/000188852426020401/exh_102.xml"
+        },
+        {
+          "title": "UBS Commercial Mortgage Trust 2018-C12, ABS-EE filing index",
+          "publisher": "SEC EDGAR",
+          "url": "https://www.sec.gov/Archives/edgar/data/1744982/000188852426020401/0001888524-26-020401-index.htm"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the court, recorder and SEC record crosswalk",
+          "path": "/blog/20-times-square-foreclosure-records.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "truck-traffic-counts-by-address",
     "topic": "Data & APIs",
     "title": "How to Find Truck Traffic Counts by Address",

@@ -1,5 +1,536 @@
 [
   {
+    "slug": "commercial-foreclosure-records-by-address",
+    "topic": "Data & APIs",
+    "region": "New York, United States",
+    "title": "How to Find Commercial Foreclosure Records by Address",
+    "description": "Find a commercial foreclosure by address, parcel and case number. Follow the 20 Times Square leasehold auction through court, ACRIS and SEC records.",
+    "date": "2026-11-25",
+    "readMinutes": 8,
+    "coverAlt": "For the 20 Times Square leasehold, the court records a $50 million credit bid at the January 2022 auction and a $857.4 million court valuation as of the auction date.",
+    "coverCaption": "Natixis v. 20 TSQ Lessee LLC, New York County index 850272/2019. The 2024 order valued the leasehold as of January 26, 2022.",
+    "intro": "To check a commercial foreclosure by address, start with the parcel and owner of record, then find the court case or recorded notice for the mortgage in question. Check the notice, the auction result and the conveyance separately. At 20 Times Square, the court records a $50 million credit bid for the leasehold. A separate SEC filing ties the same address to debt secured by the owner’s interest in the land. The two records describe different collateral.",
+    "takeaways": [
+      "In New York, check the county clerk or court record for the notice and the case. Use land records for the recorded instrument and its legal description.",
+      "Keep the court index number and the interest at stake, such as fee ownership or a leasehold, with each event.",
+      "Label bids, recorder index amounts, court valuations and loan balances by what they measure. An address match alone cannot reconcile those amounts."
+    ],
+    "guideActions": [
+      {
+        "href": "#trace-20-times-square-foreclosure",
+        "label": "See the 20 Times Square case"
+      },
+      {
+        "href": "/blog/20-times-square-foreclosure-records.json",
+        "label": "Download the record crosswalk",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "look-up-commercial-foreclosure",
+        "heading": "Where do you look up a commercial foreclosure by address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the original parcel record and the property owner or holder of the interest being foreclosed. In New York City, use the borough, block and lot (BBL) for land records. Use the case index number to open the court docket and relevant filings. New York’s public NYSCEF guest search covers cases filed electronically, and the clerk can help locate other records.",
+            "sourceIds": [
+              "acris",
+              "ny-court-search",
+              "ny-notice"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What you want to establish",
+              "Record to check"
+            ],
+            "rows": [
+              [
+                "A case affects the property",
+                "Read the notice of pendency and complaint in the county or court records. Match the property, mortgage recording references and reason the case was filed."
+              ],
+              [
+                "A sale was authorized or scheduled",
+                "Check the judgment of foreclosure and sale, the latest notice of sale and any adjournment or stay in the docket."
+              ],
+              [
+                "The auction took place",
+                "Check the referee’s report of sale and any order addressing it. Record the actual auction date, buyer or assignee and whether the bid was a credit bid."
+              ],
+              [
+                "A specific interest transferred",
+                "Read the executed conveyance and any recorded assignment. Match the legal description, interest conveyed, instrument number, document date and recording date."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "ny-notice",
+                "ny-pendency"
+              ],
+              [
+                "ny-judgment",
+                "ny-referee"
+              ],
+              [
+                "ny-referee",
+                "ny-sale-report"
+              ],
+              [
+                "ny-conveyance",
+                "acris"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A notice of pendency, often called a lis pendens, can arise from other litigation affecting real property. Read the notice and complaint before classifying the event. At 701 Seventh Avenue, a separate order addressed notices tied to mechanics’ liens, even though the same property also appeared in a mortgage foreclosure case.",
+            "sourceIds": [
+              "ny-pendency",
+              "natixis-mechanics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "trace-20-times-square-foreclosure",
+        "heading": "What did the 20 Times Square foreclosure actually transfer?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The address is 701 Seventh Avenue, Manhattan block 1000, lot 1 (BBL 1010000001). The Supreme Court’s order in index 850272/2019 identifies the foreclosed collateral as the leasehold interest in the building and improvements. The case began on December 9, 2019. The court records a January 26, 2022 auction, a $50 million credit bid and a conveyance of that leasehold to 20 TSQ Property Owner LLC after an assignment of the winning bid.",
+            "sourceIds": [
+              "natixis-value",
+              "acris-lot"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Amount and date",
+              "Record",
+              "What it measures"
+            ],
+            "rows": [
+              [
+                "$50,000,000 · January 26, 2022",
+                "Court decision, describing the auction and referee report",
+                "Credit bid for the leasehold at auction. The court says no other bidder participated."
+              ],
+              [
+                "$56,715,573 · recorded March 16, 2022",
+                "NYC ACRIS CRFN 2022000113051, document type ACON",
+                "Amount in the record index for an assignment or termination of contract or bid. The selected index fields give no breakdown of the amount."
+              ],
+              [
+                "$857,444,684 · August 2, 2024 order",
+                "NYSCEF document 1156, pp. 13–14",
+                "Court’s fair and reasonable market value for the leasehold as of the auction date. The court denied the requested deficiency judgment."
+              ],
+              [
+                "$21,582,303.42 · period ended October 13, 2026",
+                "UBS 2018-C12, Loan 6, SEC ABS-EE filed November 2",
+                "Reported period-end actual loan balance for this securitized asset. The prospectus identifies the underlying collateral as the borrower’s fee interest in the land."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "natixis-value"
+              ],
+              [
+                "acris-assignment",
+                "acris-types"
+              ],
+              [
+                "natixis-value",
+                "ny-deficiency"
+              ],
+              [
+                "sec-asset",
+                "sec-index",
+                "sec-fee"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A second ACRIS entry, CRFN 2022000092118, was recorded on March 2, 2022 as a transfer tax return and has an indexed amount of $0. Both city index records have a February 24 document date and name 20 TSQ Property Owner LLC as party two. Keep the city records attached to the parcel and keep the amounts in separate fields. The court’s auction amount comes from the court record.",
+            "sourceIds": [
+              "acris-tax",
+              "acris-assignment",
+              "acris-lot",
+              "natixis-value"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Appellate Division marked the appeal from the 2024 order withdrawn on April 23, 2026. The case download records that disposition along with the auction, the two selected ACRIS entries and the dated loan row. Each has its own source and identifier.",
+            "sourceIds": [
+              "natixis-appeal",
+              "sec-index"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/20-times-square-foreclosure-records.json",
+            "format": "JSON",
+            "label": "Download the court, recorder and SEC record crosswalk"
+          }
+        ]
+      },
+      {
+        "id": "compare-foreclosure-data-providers",
+        "heading": "Which foreclosure data sources should a commercial buyer compare?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use a vendor to find candidate addresses or alerts, then read the public record behind the event. For a multi-market trial, include a court-filed notice, an adjourned auction and a completed conveyance. Ask for the source date, docket or instrument ID and which legal interest each record describes.",
+            "sourceIds": [
+              "ny-court-search",
+              "acris",
+              "attom"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Where to start",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Resolve the address and parcel and include relevant land, building and hazard context in the collateral file.",
+                "Attach the court and recorder evidence to the matched parcel. Preserve the asset interest and source dates."
+              ],
+              [
+                "ATTOM",
+                "Review the preforeclosure endpoints and expanded history for address-linked default and auction entries.",
+                "Check commercial coverage in each county and ask whether the output preserves the original instrument and case identifiers."
+              ],
+              [
+                "PropertyRadar",
+                "Try the commercial property and foreclosure stage criteria for screening.",
+                "Check the local definition of each stage and when a cancellation, sale or later filing changes the flag."
+              ],
+              [
+                "PropertyShark",
+                "Use the New York auction and preforeclosure listings to find local cases.",
+                "Confirm that the most recent public notice and any adjournment cover the exact asset in the listing."
+              ],
+              [
+                "BlockLot",
+                "Review the recorded sale history and foreclosure-sale labels for a New York City lot.",
+                "Ask whether the relevant event is a recorded conveyance or a court-only notice. Test a leasehold sale with an assignment code."
+              ],
+              [
+                "TreppWatch and SEC EDGAR",
+                "Trace securitized loans and their reported collateral and balances.",
+                "Keep the trust, loan ID and reporting period. Check whether the source covers a loan in the fee interest, a leasehold loan or another part of the capital structure."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "attom"
+              ],
+              [
+                "propertyradar"
+              ],
+              [
+                "propertyshark"
+              ],
+              [
+                "blocklot"
+              ],
+              [
+                "trepp",
+                "sec-asset",
+                "sec-fee"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For current acquisition or lending diligence, give the title reviewer the case number, relevant conveyance and legal description. Ask them to verify the interests that transferred and any obligations affecting the proposed deal.",
+            "sourceIds": [
+              "ny-conveyance",
+              "acris",
+              "ny-court-search"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related commercial lending and ownership checks",
+            "items": [
+              {
+                "slug": "cmbs-loan-collateral-by-address",
+                "label": "Match a CMBS loan to its actual collateral"
+              },
+              {
+                "slug": "cmbs-special-servicing-data",
+                "label": "Track CMBS special servicing, REO and liquidation"
+              },
+              {
+                "slug": "commercial-mortgage-records-by-address",
+                "label": "Look up mortgages and assignments by address"
+              },
+              {
+                "slug": "commercial-real-estate-sales-lease-comps-apis",
+                "label": "Screen commercial sales and lease comparables"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Compare commercial property APIs for lender diligence"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I find a New York commercial foreclosure using the property address?",
+        "answer": "Use the address to find the parcel, then identify the relevant case at the county clerk or through the court’s public case search. Search by case number or party where required. Pull the recorded documents for the parcel separately.",
+        "sourceIds": [
+          "acris",
+          "ny-court-search",
+          "ny-notice"
+        ]
+      },
+      {
+        "question": "Does a lis pendens prove an auction took place?",
+        "answer": "It identifies litigation that may affect the property. Check the judgment and latest auction notice for scheduling, then the referee’s sale report and executed conveyance for the result.",
+        "sourceIds": [
+          "ny-pendency",
+          "ny-judgment",
+          "ny-sale-report",
+          "ny-conveyance"
+        ]
+      },
+      {
+        "question": "Can a foreclosure auction bid be used as a sale comp?",
+        "answer": "First confirm the interest sold and the type of bid. At 20 Times Square the court recorded a $50 million credit bid and determined a different value for the leasehold as of the sale date. Keep the bid and valuation separately in the deal file.",
+        "sourceIds": [
+          "natixis-value",
+          "ny-deficiency"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "ny-court-search",
+        "title": "New York court files and NYSCEF guest search",
+        "publisher": "New York State Unified Court System",
+        "url": "https://www.nycourts.gov/help/representing-yourself-court/getting-court-records-case-information",
+        "linkLabel": "Search New York court records"
+      },
+      {
+        "id": "ny-notice",
+        "title": "RPAPL § 1331, county clerk notice of pendency in a mortgage foreclosure",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1331",
+        "linkLabel": "New York notice of pendency rule"
+      },
+      {
+        "id": "ny-pendency",
+        "title": "CPLR § 6501, matters that may give rise to a notice of pendency",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/CVP/6501",
+        "linkLabel": "New York notice of pendency scope"
+      },
+      {
+        "id": "ny-judgment",
+        "title": "RPAPL § 1351, judgment of sale",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1351",
+        "linkLabel": "Judgment of sale"
+      },
+      {
+        "id": "ny-conveyance",
+        "title": "RPAPL § 1353, conveyance following a sale",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1353",
+        "linkLabel": "New York foreclosure conveyance"
+      },
+      {
+        "id": "ny-sale-report",
+        "title": "RPAPL § 1355, referee report of sale and confirmation",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1355",
+        "linkLabel": "Referee report of sale"
+      },
+      {
+        "id": "ny-deficiency",
+        "title": "RPAPL § 1371, deficiency judgment",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPA/1371",
+        "linkLabel": "Deficiency judgment rule"
+      },
+      {
+        "id": "ny-referee",
+        "title": "Foreclosure Referee Guide, March 2026",
+        "publisher": "New York State Unified Court System",
+        "url": "https://www.nycourts.gov/legacyPDFs/admin/opp/Foreclosure_Referee_Guide.pdf",
+        "linkLabel": "New York court guide to foreclosure auctions"
+      },
+      {
+        "id": "natixis-value",
+        "title": "Natixis v 20 TSQ Lessee LLC, New York County index 850272/2019, NYSCEF 1156, pp. 2 and 13–14",
+        "publisher": "New York State Unified Court System",
+        "url": "https://www.nycourts.gov/reporter/pdfs/2024/2024_32854.pdf",
+        "linkLabel": "20 Times Square court findings"
+      },
+      {
+        "id": "natixis-mechanics",
+        "title": "Natixis v 20 TSQ Lessee LLC, NYSCEF 1146, notices of pendency tied to mechanics’ liens",
+        "publisher": "New York State Unified Court System",
+        "url": "https://www.nycourts.gov/reporter/pdfs/2024/2024_32853.pdf",
+        "linkLabel": "Separate notices at the same lot"
+      },
+      {
+        "id": "natixis-appeal",
+        "title": "First Department case 2024-07752, April 23, 2026 order marking the appeal withdrawn",
+        "publisher": "New York State Unified Court System",
+        "url": "https://www.nycourts.gov/reporter/current/motions/2026/2026_66842.pdf",
+        "linkLabel": "April 2026 appellate order"
+      },
+      {
+        "id": "acris",
+        "title": "ACRIS city recorder and borough coverage",
+        "publisher": "NYC Department of Finance",
+        "url": "https://www.nyc.gov/site/finance/property/acris.page",
+        "linkLabel": "NYC recorded documents"
+      },
+      {
+        "id": "acris-types",
+        "title": "ACRIS Daily File specification, document types",
+        "publisher": "NYC Department of Finance",
+        "url": "https://a836-acris.nyc.gov/EDS/Overview/How%20To%20Process%20ACRIS%20Daily%20File%20v1%207.htm",
+        "linkLabel": "ACRIS document codes"
+      },
+      {
+        "id": "acris-lot",
+        "title": "Two 2022 ACRIS legal rows carrying 701 7 Avenue, Manhattan block 1000 lot 1",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/resource/8h5j-fqxa.json?%24where=borough+%3D+%271%27+AND+block+%3D+%271000%27+AND+lot+%3D+%271%27+AND+document_id+between+%2720211201%27+and+%2720221232%27&%24select=document_id%2Cborough%2Cblock%2Clot%2Cstreet_number%2Cstreet_name%2Cgood_through_date&%24order=document_id+desc&%24limit=250",
+        "linkLabel": "Query the parcel’s 2022 legal index rows"
+      },
+      {
+        "id": "acris-assignment",
+        "title": "ACRIS Assignment or Termination of Contract or Bid, CRFN 2022000113051",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2022022500798001",
+        "linkLabel": "Query the ACON index row"
+      },
+      {
+        "id": "acris-tax",
+        "title": "ACRIS Transfer Tax Return entry, CRFN 2022000092118",
+        "publisher": "NYC Department of Finance",
+        "url": "https://data.cityofnewyork.us/resource/bnx9-e6tj.json?document_id=2022022500810001",
+        "linkLabel": "Query the transfer tax index row"
+      },
+      {
+        "id": "sec-fee",
+        "title": "UBS 2018-C12 20 Times Square loan exhibit, Loan 6 fee collateral",
+        "publisher": "SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/1744982/000153949718001248/n1323_ts-x6.htm",
+        "linkLabel": "Read the fee collateral description"
+      },
+      {
+        "id": "sec-asset",
+        "title": "UBS 2018-C12 Form ABS-EE asset data, November 2, 2026 filing, Loan 6",
+        "publisher": "SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/1744982/000188852426020401/exh_102.xml",
+        "linkLabel": "Read the October 2026 loan record"
+      },
+      {
+        "id": "sec-index",
+        "title": "UBS Commercial Mortgage Trust 2018-C12, ABS-EE filing index",
+        "publisher": "SEC EDGAR",
+        "url": "https://www.sec.gov/Archives/edgar/data/1744982/000188852426020401/0001888524-26-020401-index.htm",
+        "linkLabel": "Verify the SEC accession and filing date"
+      },
+      {
+        "id": "earth",
+        "title": "Invariant Earth property coverage and parcel identity",
+        "publisher": "Invariant",
+        "url": "https://invariant-ai.com/data-coverage",
+        "linkLabel": "Invariant Earth parcel coverage"
+      },
+      {
+        "id": "attom",
+        "title": "ATTOM API reference, preforeclosure and expanded transaction history",
+        "publisher": "ATTOM",
+        "url": "https://api.developer.attomdata.com/docs",
+        "linkLabel": "ATTOM preforeclosure API documentation"
+      },
+      {
+        "id": "propertyradar",
+        "title": "PropertyRadar API criteria for commercial property and foreclosure stage",
+        "publisher": "PropertyRadar",
+        "url": "https://developers.propertyradar.com/criteria_reference",
+        "linkLabel": "PropertyRadar foreclosure criteria"
+      },
+      {
+        "id": "propertyshark",
+        "title": "Foreclosure archive and geographic coverage",
+        "publisher": "PropertyShark",
+        "url": "https://support.propertyshark.com/hc/en-us/articles/360022608892-Foreclosure-Archives-and-Coverage",
+        "linkLabel": "PropertyShark coverage"
+      },
+      {
+        "id": "blocklot",
+        "title": "BlockLot NYC property history and foreclosure sale labels",
+        "publisher": "BlockLot",
+        "url": "https://blocklot.ai/tutorials/property-history",
+        "linkLabel": "BlockLot property history"
+      },
+      {
+        "id": "trepp",
+        "title": "TreppWatch loan and collateral surveillance",
+        "publisher": "Trepp",
+        "url": "https://www.trepp.com/trepp-watch",
+        "linkLabel": "TreppWatch commercial mortgage coverage"
+      }
+    ],
+    "relatedSlugs": [
+      "cmbs-loan-collateral-by-address",
+      "cmbs-special-servicing-data",
+      "commercial-mortgage-records-by-address",
+      "commercial-real-estate-sales-lease-comps-apis",
+      "commercial-real-estate-data-apis-for-lenders"
+    ],
+    "dataset": {
+      "name": "20 Times Square leasehold auction, recorded documents and fee loan crosswalk",
+      "description": "A dated commercial foreclosure case linking a court-reported credit bid and leasehold valuation, two ACRIS instrument records and separately identified fee-interest CMBS collateral.",
+      "spatialCoverage": "701 Seventh Avenue, Manhattan, New York, United States",
+      "temporalCoverage": "2019-12-09/2026-11-02",
+      "sourceIds": [
+        "natixis-value",
+        "natixis-appeal",
+        "acris-lot",
+        "acris-tax",
+        "acris-assignment",
+        "sec-fee",
+        "sec-asset",
+        "sec-index"
+      ],
+      "sourceReuse": {
+        "note": "The sample links to New York court records, NYC Department of Finance index rows and SEC EDGAR exhibits. It contains selected public fields and analysis.",
+        "policyLabel": "NYC Open Data terms",
+        "policyUrl": "https://opendata.cityofnewyork.us/overview/#termsofuse"
+      }
+    }
+  },
+  {
     "slug": "truck-traffic-counts-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -5975,6 +6506,7 @@
       "temporalCoverage": "2026-05-04/2026-06-25"
     },
     "relatedSlugs": [
+      "commercial-foreclosure-records-by-address",
       "commercial-real-estate-data-apis-for-lenders",
       "commercial-mortgage-release-by-address",
       "commercial-mortgage-maturity-data-apis",
@@ -13441,6 +13973,7 @@
       }
     ],
     "relatedSlugs": [
+      "commercial-foreclosure-records-by-address",
       "commercial-real-estate-data-apis-for-lenders",
       "commercial-mortgage-maturity-data-apis",
       "west-kite-alternatives-for-commercial-property-data"
