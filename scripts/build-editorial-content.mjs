@@ -299,12 +299,16 @@ const responsiveCovers = process.argv.includes('--responsive-covers')
 const coverSrcSets = Object.fromEntries([...responsiveCovers].map(([image, { srcSet }]) => [image, srcSet]))
 const coverVariants = Object.fromEntries([...responsiveCovers].map(([image, { width, variants }]) => [image, { width, variants }]))
 writeIfChanged(new URL('.generated-cover-srcsets.json', base), JSON.stringify(coverVariants))
-const collectionCoverSrcSets = Object.fromEntries(blogCollections.map(({ slug, image }) => [
-  slug, coverSrcSets[`${image}?v=${coverVersions[image]}`],
-]))
-writeIfChanged(new URL('.generated-collection-cover-srcsets.json', base), JSON.stringify(collectionCoverSrcSets))
 const searchDir = new URL('.generated-blog-search/', base)
-mkdirSync(searchDir, { recursive: true })
+const collectionDir = new URL('collections/', searchDir)
+mkdirSync(collectionDir, { recursive: true })
+for (const collection of blogCollections) {
+  const version = coverVersions[collection.image]
+  const image = version ? `${collection.image}?v=${version}` : collection.image
+  writeIfChanged(new URL(`${collection.slug}.json`, collectionDir), JSON.stringify({
+    ...collection, image, imageSrcSet: coverSrcSets[image],
+  }))
+}
 const publishedArticles = [...index, ...legacyArticles]
 const featuredDatasetSlugs = new Set(JSON.parse(readFileSync(new URL('featured-research-datasets.json', base), 'utf8')).map(({ slug }) => slug))
 const catalogSources = []

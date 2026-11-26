@@ -1,4 +1,5 @@
-import type { ComponentType } from 'react'
+import { createElement, type ComponentType } from 'react'
+import type { BlogCollectionData } from './data/blogCollections'
 
 // Shared by the browser router and the build-time renderer.
 export const contentRouteSources = {
@@ -11,7 +12,7 @@ export const contentRouteSources = {
   '/blog/site-selection-due-diligence': './pages/blog/BlogCollection.tsx',
   '/blog/property-underwriting': './pages/blog/BlogCollection.tsx',
   '/blog/commercial-real-estate-lending': './pages/blog/BlogCollection.tsx',
-  '/blog/physical-world-data-api-evaluation': './pages/blog/BlogCollection.tsx',
+  '/blog/physical-world-data-api-evaluation': './pages/blog/ProviderEvaluation.tsx',
   '/blog/physical-world-data-by-use-case': './pages/blog/BlogCollection.tsx',
   '/blog/part100-vs-part53-siting': './pages/blog/Part100vsPart53.tsx',
   '/blog/seismic-design-shift': './pages/blog/SeismicDesignShift.tsx',
@@ -98,10 +99,32 @@ const pageModules = import.meta.glob<{ default: ComponentType }>([
   './pages/clusters/*.tsx',
   '!./pages/NotFound.tsx',
   '!./pages/Datasets.tsx',
+  '!./pages/blog/BlogCollection.tsx',
+  '!./pages/blog/ProviderEvaluation.tsx',
   '!./pages/{Careers,Partners,Prototype}.tsx',
 ])
 
-export function loadContentPage(source: PageSource): Promise<{ default: ComponentType }> {
+const collectionContent = import.meta.glob<{ default: BlogCollectionData }>('./data/.generated-blog-search/collections/*.json')
+
+export function blogCollectionDataSource(path: string) {
+  return `./data/.generated-blog-search/collections/${path.slice('/blog/'.length)}.json`
+}
+
+export function isBlogCollectionSource(source: string) {
+  return source === './pages/blog/BlogCollection.tsx' || source === './pages/blog/ProviderEvaluation.tsx'
+}
+
+export function loadContentPage(source: PageSource, path: string): Promise<{ default: ComponentType }> {
+  if (isBlogCollectionSource(source)) {
+    const loadCollection = collectionContent[blogCollectionDataSource(path)]
+    if (!loadCollection) throw new Error(`Missing collection data for ${path}`)
+    const view = source === './pages/blog/ProviderEvaluation.tsx'
+      ? import('./pages/blog/ProviderEvaluation')
+      : import('./pages/blog/BlogCollection')
+    return Promise.all([view, loadCollection()]).then(([{ default: Collection }, { default: collection }]) => ({
+      default: () => createElement(Collection, { collection }),
+    }))
+  }
   if (source === contentRouteSources['/datasets']) {
     return import('./pages/Datasets').then(({ loadDatasetsPage }) => loadDatasetsPage())
   }

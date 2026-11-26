@@ -4,7 +4,7 @@ import Nav from './Nav'
 import Footer from './Footer'
 import FigmaSmoothScroll from './FigmaSmoothScroll'
 import SiteCrosshair from './SiteCrosshair'
-import { contentRouteSources } from '../contentRoutes'
+import { contentRouteSources, isBlogCollectionSource } from '../contentRoutes'
 import '../styles/SiteTheme.css'
 
 export default function Layout() {
@@ -13,11 +13,12 @@ export default function Layout() {
   const isHome = pathname === '/'
   const routeSource = contentRouteSources[pathname as keyof typeof contentRouteSources]
   const isReadingIndex = pathname === '/blog' || pathname === '/datasets' || pathname === '/data-coverage'
-    || routeSource === './pages/blog/BlogCollection.tsx'
+    || isBlogCollectionSource(routeSource)
   const bespoke = ['/product', '/mcp', '/resources', '/datasets', '/data-coverage', '/blog', '/contact', '/careers', '/charter', '/about', '/trust', '/data-center-compliance', '/data-centre-compliance-india', '/oil-gas-compliance'].includes(pathname) || pathname.startsWith('/blog/')
   useLayoutEffect(() => {
+    const hydrationMode = document.getElementById('root')?.dataset.hydrate
     if (initialLocation.current?.pathname === pathname && initialLocation.current.hash === hash
-      && document.getElementById('root')?.dataset.hydrate === 'article') return
+      && (hydrationMode === 'article' || hydrationMode === 'collection')) return
     initialLocation.current = null
 
     if (hash) {

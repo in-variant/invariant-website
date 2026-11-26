@@ -23,6 +23,7 @@ const LOCAL_FONT_PAGES = new Set([
   'src/pages/Research.tsx',
   'src/pages/Resources.tsx',
   'src/pages/blog/BlogCollection.tsx',
+  'src/pages/blog/ProviderEvaluation.tsx',
   'src/pages/blog/IndustryArticle.tsx',
 ])
 

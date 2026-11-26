@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server'
 import { Route, Routes, StaticRouter } from 'react-router-dom'
 import Layout from './components/Layout'
 import { PrerenderSeo, type SeoProps } from './components/Seo'
-import { contentRouteSources, loadContentPage } from './contentRoutes'
+import { blogCollectionDataSource, contentRouteSources, isBlogCollectionSource, loadContentPage } from './contentRoutes'
 import { glossaryLoader, glossaryModulePath } from './data/glossaryEntries'
 import { articleLoader, articleModulePath } from './data/industryArticles'
 import { INDUSTRY_HUBS } from './data/industryHubs'
@@ -20,8 +20,11 @@ async function pageFor(path: string) {
   }
   const source = contentRouteSources[path as keyof typeof contentRouteSources]
   if (source) {
-    const { default: Page } = await loadContentPage(source)
-    return { page: <Page />, source }
+    const { default: Page } = await loadContentPage(source, path)
+    const dataSources = isBlogCollectionSource(source)
+      ? [`src${blogCollectionDataSource(path).slice(1)}`]
+      : undefined
+    return { page: <Page />, source, dataSources }
   }
   if (path.startsWith('/glossary/')) {
     const slug = path.slice('/glossary/'.length)
@@ -53,6 +56,7 @@ export async function renderPublicRoute(path: string) {
   const { page, source, dataSources } = await pageFor(path)
   const hydrate = path === '/datasets' ? 'catalog'
     : source === './pages/blog/IndustryArticle.tsx' ? 'article'
+    : isBlogCollectionSource(source) ? 'collection'
     : undefined
   const metadata: SeoProps[] = []
   const routes = (

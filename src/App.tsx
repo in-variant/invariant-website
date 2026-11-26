@@ -13,7 +13,7 @@ const loadGlossaryEntries = () => import('./data/glossaryEntries')
 
 const deckRoutes = Object.entries(deckRouteSources).map(([path, source]) => ({
   path,
-  Page: lazy(() => loadContentPage(source)),
+  Page: lazy(() => loadContentPage(source, path)),
 }))
 
 function deferredPage(importPage: () => Promise<{ default: ComponentType }>) {
@@ -33,7 +33,7 @@ function deferredPage(importPage: () => Promise<{ default: ComponentType }>) {
 
 const contentRoutes = Object.entries(contentRouteSources).map(([path, source]) => ({
   path,
-  ...deferredPage(() => loadContentPage(source)),
+  ...deferredPage(() => loadContentPage(source, path)),
 }))
 
 type SlugPageLoader = (slug: string) => ReturnType<typeof deferredPage> | undefined

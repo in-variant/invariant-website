@@ -1,4 +1,7 @@
+import type collections from './blog-collections.json'
 import { guideGroupId } from './collectionGuideLinks.mjs'
+
+export type BlogCollectionData = (typeof collections)[number] & { imageSrcSet?: string }
 
 type CollectionGuide = {
   slug: string

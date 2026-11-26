@@ -9,7 +9,8 @@ const root = document.getElementById('root')!
 const hydrationMode = root.dataset.hydrate
 const pathname = window.location.pathname
 // Catalog parameters can change the rows before the first client render.
-const shouldHydrate = hydrationMode === 'article' || (hydrationMode === 'catalog' && !window.location.search)
+const shouldHydrate = hydrationMode === 'article' || hydrationMode === 'collection'
+  || (hydrationMode === 'catalog' && !window.location.search)
 const isReadingPage = /^\/(?:blog|glossary|research|resources)(?:\/|$)/.test(pathname)
 
 const keepPrerenderedMetadata = () => {}

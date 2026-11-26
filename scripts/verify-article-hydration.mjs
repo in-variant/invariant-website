@@ -6,10 +6,12 @@ import { chromium } from 'playwright-core'
 
 const origin = new URL(process.argv[2] ?? 'http://127.0.0.1:5358').origin
 const canonicalOrigin = 'https://invariant-ai.com'
+const comparisonPath = '/blog/physical-world-data-api-evaluation'
 const paths = [
   '/blog/data-center-site-selection-checklist',
   '/blog/electric-utility-lookup-by-address?utm_source=article-check',
   '/blog/data-center-for-sale',
+  comparisonPath,
 ]
 
 const browser = await chromium.launch({ channel: 'chrome' })
@@ -39,12 +41,14 @@ try {
 
     const prerenderedMetadata = page.locator('head [data-prerender-seo]').first()
     await prerenderedMetadata.waitFor({ state: 'attached' })
-    const faq = page.locator('.industry-faq details').first()
-    const summary = faq.locator('summary')
+    const disclosure = page.locator(path === comparisonPath
+      ? '#compare-contractor-permit-history'
+      : '.industry-faq details').first()
+    const summary = disclosure.locator('summary')
     await summary.press('Enter')
-    const details = await faq.elementHandle()
+    const details = await disclosure.elementHandle()
     await page.evaluate(() => document.fonts.ready)
-    assert.ok(await details.evaluate(node => node.open), path + ' FAQ did not open before hydration')
+    assert.ok(await details.evaluate(node => node.open), path + ' disclosure did not open before hydration')
     const scrollBefore = await page.evaluate(() => scrollY)
     assert.ok(scrollBefore > 0)
     await page.evaluate(() => {
@@ -58,7 +62,7 @@ try {
 
     releaseEntry()
     await prerenderedMetadata.waitFor({ state: 'detached' })
-    assert.ok(await details.evaluate(node => node.isConnected && node.open), path + ' lost the original open FAQ')
+    assert.ok(await details.evaluate(node => node.isConnected && node.open), path + ' lost the original open disclosure')
     assert.ok(await details.evaluate(node => node.querySelector('summary') === document.activeElement), path + ' lost keyboard focus')
     assert.equal(await page.evaluate(() => scrollY), scrollBefore, path + ' lost the scroll position')
     assert.equal(await page.locator('main').count(), 1)
@@ -70,7 +74,7 @@ try {
     releaseAnalytics()
     assert.ok((await analyticsResponse).ok(), path + ' did not load analytics after the article was interactive')
     assert.deepEqual(errors, [])
-    console.log(`Preserved FAQ, focus, scroll and canonical metadata for ${path}`)
+    console.log(`Preserved disclosure, focus, scroll and canonical metadata for ${path}`)
     await page.close()
   }
 } finally {
