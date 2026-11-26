@@ -51,6 +51,7 @@ CRAWLER_SMOKE_PATHS = frozenset((
     "/blog/index.html", "/blog/data-center-site-selection-checklist/index.html",
     "/blog/data-center-site-selection-checklist.md", "/resources", "/resources.md", "/research", "/research.md",
     "/datasets", "/datasets.md", DATASET_INDEX_PATH, FEED_PATH,
+    "/llms/topics/commercial-real-estate-lending.md", "/llms/topics/power-utilities-and-connectivity.md",
     "/data-coverage", "/data-coverage.md", COVERAGE_FIELDS_PATH,
     "/blog/", "/product/", "/datasets/", "/data-coverage/",
 )) | AGENT_INDEX_PATHS
@@ -646,7 +647,13 @@ def build_jobs(sitemap, full):
     candidates = sorted(path_set if full else set(SAMPLE) | research)
     require(set(candidates) <= path_set, "sample paths missing from the local build")
     jobs = [("/sitemap.xml", "sitemap", sitemap)]
-    alternate_files = set()
+    topic_files = {f"/{file.relative_to(DIST).as_posix()}" for file in (DIST / "llms/topics").glob("*.md")}
+    require(bool(topic_files), "the release needs focused guide directories")
+    for index_path in ("/llms.txt", "/llms-index.txt"):
+        index_text = (DIST / index_path.lstrip("/")).read_text(encoding="utf-8")
+        links = re.findall(re.escape(CANONICAL) + r"(/llms/topics/[a-z0-9-]+\.md)\)", index_text)
+        require(sorted(links) == sorted(topic_files), f"{index_path} must link to each focused guide directory once")
+    alternate_files = topic_files.copy()
     downloads = catalog.downloads.copy()
     assets = set()
     pages = {}

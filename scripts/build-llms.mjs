@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { agentTopicGuides } from './agent-topic-guides.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -11,6 +12,7 @@ const SITE = 'https://invariant-ai.com'
 const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'), 'utf8'))
 const { links } = product
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
+const topicLinks = agentTopicGuides(blogCollections).map(({ heading, path }) => [heading, SITE + path])
 
 const { workflows } = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
 const buyerGuides = workflows.map(({ label, guide, slug }) => [
@@ -44,6 +46,7 @@ const sections = [
     ]),
   ]],
   ['Guides by industry', buyerGuides],
+  ['Focused guide directories', topicLinks],
   ['API examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,
   ])],
@@ -116,6 +119,8 @@ out.push('Invariant Earth provides data for U.S. properties and infrastructure. 
 out.push('')
 out.push(`Start with the [short directory](${SITE}/llms.txt) or read the [full data and site diligence guides](${SITE}/llms-full.txt). The industry guides and glossary entries have Markdown copies at their URLs plus .md.`)
 out.push('')
+
+out.push('## Focused guide directories', '', ...topicLinks.map(([title, href]) => `- [${title}](${href})`), '')
 
 out.push('## Invariant Earth API')
 out.push('')
@@ -220,7 +225,7 @@ out.push('## Contact')
 out.push('')
 out.push('- founders@invariant-ai.com')
 out.push('- Data center sites, site feasibility screens and power studies: pranav@invariant-ai.com, (628) 220-8972')
-out.push('- Backed by Entrepreneur First, Transpose Platform, Boundless Ventures, and NPU Ventures.')
+out.push(`- [Founders and investors](${SITE}/about)`)
 out.push('')
 
 writeFileSync(join(ROOT, 'public/llms.txt'), shortIndex.join('\n'))

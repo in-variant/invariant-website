@@ -9,6 +9,7 @@
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
 //   /datasets.csl.json   dataset citations for reference managers
 //   /citations/*.csl.json one citation file per research dataset
+//   /llms/topics/*.md    guide directories by industry and decision
 //   /llms-full.txt        every industry article in full, due diligence and power studies first
 // Agents and LLM crawlers fetch these instead of parsing HTML. Each HTML page links its .md
 // with <link rel="alternate" type="text/markdown"> (scripts/prerender.mjs).
@@ -18,6 +19,7 @@ import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { datasetCitationPath } from '../src/data/datasetCitationPath.mjs'
 import { formatEarthRequest } from '../src/data/formatEarthRequest.mjs'
 import { buildArticleCollectionLinks } from '../src/data/collectionGuideLinks.mjs'
+import { agentTopicGuides } from './agent-topic-guides.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
@@ -525,6 +527,19 @@ writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'glossary.md'), glossaryDirectoryMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)
+const topicGuides = agentTopicGuides(blogCollections)
+mkdirSync(join(DIST, 'llms', 'topics'), { recursive: true })
+for (const { path, heading, description, collectionPath, guides } of topicGuides) {
+  const contents = [
+    `# ${heading}`, '',
+    ...(description ? [description, ''] : []),
+    `[Browse this topic on the website](${SITE}${collectionPath}) · [All agent directories](${SITE}/llms.txt)`, '',
+    ...guides.map(({ slug, label, detail }) =>
+      `- ${citationLink(label, `${SITE}/blog/${slug}.md`)}: ${detail}`),
+    '',
+  ].join('\n')
+  writeFileSync(join(DIST, path.slice(1)), contents)
+}
 const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({
   id: url,
   type: 'dataset',
@@ -595,4 +610,4 @@ for (const a of articles) {
 writeFileSync(join(DIST, 'llms-full.txt'), full.join('\n'))
 
 for (const e of glossary) writeFileSync(join(DIST, 'glossary', `${e.slug}.md`), glossaryMd(e))
-console.log(`agent markdown: ${articles.length} articles, ${blogCollections.length} collections, ${glossary.length} glossary entries, llms-full.txt`)
+console.log(`agent markdown: ${articles.length} articles, ${blogCollections.length} collections, ${topicGuides.length} topic directories, ${glossary.length} glossary entries, llms-full.txt`)
