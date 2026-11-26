@@ -7179,7 +7179,7 @@
     "slug": "regrid-alternatives-parcel-data-apis",
     "topic": "Data & APIs",
     "title": "Regrid Alternatives for U.S. Parcel Data APIs",
-    "summary": "Compare Invariant Earth, Regrid, Korzy, LightBox and other parcel APIs. Download trial files for bulk lookups, condo tax lots, and boundary changes.",
+    "summary": "Compare Invariant Earth, Regrid and other U.S. parcel APIs. Use public records to test duplicate assessor IDs, condo tax lots, and boundary changes.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
@@ -7252,7 +7252,39 @@
           "format": "CSV"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-massgis-parcel-id-collision",
+        "name": "MassGIS shared parcel number trial in Medfield and Medway",
+        "description": "Two separate mapped lots in Norfolk County, Massachusetts use parcel number 01-001. The GeoJSON contains both polygons, MassGIS record identifiers, replay queries, and source checksums.",
+        "spatialCoverage": "Medfield and Medway, Norfolk County, Massachusetts",
+        "datePublished": "2026-11-26",
+        "sources": [
+          "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29+AND+PROP_ID%3D%2701-001%27+AND+MAP_PAR_ID%3D%2701-001%27+AND+POLY_TYPE%3D%27FEE%27&outFields=OBJECTID%2CTOWN_ID%2CPROP_ID%2CMAP_PAR_ID%2CLOC_ID%2CFY%2CPOLY_TYPE&orderByFields=TOWN_ID&returnGeometry=true&outSR=4326&f=geojson",
+          "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Municipalities_Hosted/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29&outFields=TOWN_ID%2CTOWN%2CCOUNTY%2CFIPS_STCO&orderByFields=TOWN_ID&returnGeometry=false&f=json"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Exact query for the two 01-001 parcel geometries",
+            "publisher": "MassGIS parcel layer",
+            "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29+AND+PROP_ID%3D%2701-001%27+AND+MAP_PAR_ID%3D%2701-001%27+AND+POLY_TYPE%3D%27FEE%27&outFields=OBJECTID%2CTOWN_ID%2CPROP_ID%2CMAP_PAR_ID%2CLOC_ID%2CFY%2CPOLY_TYPE&orderByFields=TOWN_ID&returnGeometry=true&outSR=4326&f=geojson"
+          },
+          {
+            "title": "Municipal identifiers and county FIPS for Medfield and Medway",
+            "publisher": "MassGIS municipalities layer",
+            "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Municipalities_Hosted/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29&outFields=TOWN_ID%2CTOWN%2CCOUNTY%2CFIPS_STCO&orderByFields=TOWN_ID&returnGeometry=false&f=json"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the two MassGIS parcel boundaries and source queries",
+            "path": "/blog/massgis-parcel-id-collision.geojson",
+            "format": "GeoJSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "solar-farm-site-selection-gis",

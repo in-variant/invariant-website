@@ -6474,7 +6474,7 @@
       ],
       "seo_title": "Assessor Parcel Number (APN) Definition",
       "short_definition": "An assessor parcel number, or APN, identifies a parcel in a local assessor’s records. Keep it with the issuing jurisdiction and the record date.",
-      "full_definition": "Begin with the assessor or tax map for the property’s jurisdiction. An address can refer to a building, entrance, or unit. Check which tax parcel and geometry the local record associates with it. For land acquisition, match the record to the survey and title materials.\n\nSan Francisco combines a block and lot. The city’s standard gives APN 0117004 for lot 004 in block 0117. Store the identifier as text so leading zeros survive. A condominium lot can have an identifier distinct from the base parcel. Resolve that relationship before joining a tax account to an entire building footprint.\n\nFor a historical lookup, keep the parcel date. A split or merger can change which parcel IDs and boundaries correspond to the same address.",
+      "full_definition": "Begin with the assessor or tax map for the property’s jurisdiction. An address can refer to a building, entrance, or unit. Check which tax parcel and geometry the local record associates with it. For land acquisition, match the record to the survey and title materials.\n\nSan Francisco combines a block and lot. The city’s standard gives APN 0117004 for lot 004 in block 0117. Store the identifier as text so leading zeros survive. A condominium lot can have an identifier distinct from the base parcel. Resolve that relationship before joining a tax account to an entire building footprint.\n\nA parcel number can repeat within the same county. MassGIS records for Medfield and Medway both use 01-001 for different lots in Norfolk County, Massachusetts. Keep the issuing municipality when it is part of the local identifier.\n\nFor a historical lookup, keep the parcel date. A split or merger can change which parcel IDs and boundaries correspond to the same address.",
       "related_to": [
         "recorded-easement",
         "certificate-of-occupancy",
@@ -6488,9 +6488,13 @@
         {
           "label": "San Francisco, dated parcel geography",
           "url": "https://data.sfgov.org/dataset/Recorded-Parcel-Geography-with-Transaction-Date-Hi/25dk-perw/data"
+        },
+        {
+          "label": "Invariant, MassGIS records for Medfield and Medway",
+          "url": "https://invariant-ai.com/blog/regrid-alternatives-parcel-data-apis#massgis-local-parcel-id-collision"
         }
       ],
-      "last_updated": "2026-11-25",
+      "last_updated": "2026-11-26",
       "guide": {
         "label": "Find a parcel number from an address",
         "path": "/blog/parcel-number-lookup-by-address#county-lookup"

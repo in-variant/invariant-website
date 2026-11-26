@@ -12454,6 +12454,10 @@
             ],
             "rows": [
               [
+                "Identical parcel numbers in one county",
+                "Identify the city or town that issued the number. In Norfolk County, Massachusetts, both Medfield and Medway use 01-001 for different lots."
+              ],
+              [
                 "Condo or stacked parcel",
                 "Use the unit’s assessment record for taxes or collateral. Keep the base parcel for a ground-level map check, and record the link between them."
               ],
@@ -12472,6 +12476,9 @@
             ],
             "rowSourceIds": [
               [
+                "massgis-parcel-number-trial"
+              ],
+              [
                 "parcel-standard"
               ],
               [
@@ -12489,6 +12496,10 @@
           {
             "type": "links",
             "items": [
+              {
+                "path": "/blog/regrid-alternatives-parcel-data-apis#massgis-local-parcel-id-collision",
+                "label": "Check the two MassGIS parcel boundaries that share a number"
+              },
               {
                 "path": "/blog/chicago-city-owned-land-for-sale#courtyard-building-rfp-parcel-groups",
                 "label": "See how Chicago groups multiple parcels into one development offering"
@@ -12765,6 +12776,12 @@
         "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
         "publisher": "Invariant Earth",
         "linkLabel": "Run the address-to-APN example"
+      },
+      {
+        "id": "massgis-parcel-number-trial",
+        "title": "Two Norfolk County parcels share the local number 01-001",
+        "publisher": "Invariant analysis of MassGIS records",
+        "url": "https://invariant-ai.com/blog/regrid-alternatives-parcel-data-apis#massgis-local-parcel-id-collision"
       }
     ],
     "relatedSlugs": [
@@ -38307,15 +38324,15 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Regrid Alternatives for U.S. Parcel Data APIs",
-    "description": "Compare Invariant Earth, Regrid, Korzy, LightBox and other parcel APIs. Download trial files for bulk lookups, condo tax lots, and boundary changes.",
+    "description": "Compare Invariant Earth, Regrid and other U.S. parcel APIs. Use public records to test duplicate assessor IDs, condo tax lots, and boundary changes.",
     "date": "2026-11-22",
     "updatedDate": "2026-11-26",
     "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
     "coverCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024. The individual commercial unit does not have its own polygon in the queried tax-map layer.",
-    "intro": "Use Invariant Earth when the parcel needs to be evaluated against terrain, hazards and infrastructure. Compare Regrid and LightBox for parcel boundaries, Realie and ATTOM for assessor-linked property records, and Korzy and Mireye for site context. Start with the same county records for every vendor. Our test at 432 Park Avenue found three tax IDs at one address, two almost identical outlines, and a commercial unit without a polygon in the queried layer.",
+    "intro": "Use Invariant Earth when you need to connect parcels to terrain, hazards, or infrastructure with a source for each field. Compare Regrid and LightBox for boundaries, Realie and ATTOM for assessor-linked records, and Korzy and Mireye for site screening. Start each trial with the same public records. At 432 Park Avenue, one address has three tax lot IDs. In Norfolk County, Massachusetts, two towns use the same assessor parcel number for two different lots.",
     "takeaways": [
-      "Use the same six inputs for each provider. Keep the county identifier, the provider identifier and the entity each one represents.",
+      "Keep the original ID as text, the issuing jurisdiction, and the record date. A county and parcel number can still identify more than one lot.",
       "Record whether a returned shape belongs to the requested unit, a parent lot or another match.",
       "Test a parcel split and merger. An unchanged parcel ID can still refer to a different boundary after the change."
     ],
@@ -38332,7 +38349,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "The comparison uses public product documentation checked on November 25, 2026. Invariant makes Invariant Earth. The independent reference below comes from New York City records. Use the scorecard to test each product on the plan you would buy."
+            "text": "The table compares public product documentation. Invariant makes Invariant Earth. The reference cases come from city and state records. Use them to test the plan you would buy."
           },
           {
             "type": "table",
@@ -38392,6 +38409,16 @@
                 "ReportAll",
                 "Parcel, map tile and ArcGIS endpoints. Its point search looks for a parcel polygon containing the supplied coordinate.",
                 "Run the building point and the known lot IDs independently. Check which local records the geometry represents where several lots share an address."
+              ],
+              [
+                "Parceled",
+                "Parcel searches by coordinate or parcel ID through REST, GraphQL, or MCP.",
+                "Look up both Massachusetts lots by coordinate. Check whether the returned parcel IDs and the original assessor numbers are distinct fields."
+              ],
+              [
+                "parcel by Reeeally",
+                "Parcel lookup and a documented record key built from a county FIPS code and a parcel number.",
+                "Request both Massachusetts lots by point. Check how the API distinguishes them when the original assessor numbers and county match."
               ]
             ],
             "rowSourceIds": [
@@ -38430,6 +38457,13 @@
               ],
               [
                 "reportall-api"
+              ],
+              [
+                "parceled-api"
+              ],
+              [
+                "reeeally-parcel-api",
+                "reeeally-records"
               ]
             ]
           },
@@ -38588,6 +38622,72 @@
             "label": "Download the two boundaries, city queries, and expected results",
             "path": "/blog/regrid-alternatives-parcel-data-apis.geojson",
             "format": "GeoJSON"
+          }
+        ]
+      },
+      {
+        "id": "massgis-local-parcel-id-collision",
+        "heading": "Can two parcels in the same county have the same parcel number?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Yes. In Norfolk County, Massachusetts, both Medfield and Medway use 01-001 for a parcel. The two fiscal year 2026 records share the same county FIPS code, 25021, and the same assessor property ID and map parcel ID. Their mapped boundaries are separate. A join on county and parcel number alone would match both lots.",
+            "sourceIds": [
+              "massgis-duplicate-parcel-records",
+              "massgis-local-parcel-municipalities"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Town",
+              "MassGIS town ID",
+              "Local parcel number",
+              "MassGIS geometry reference"
+            ],
+            "rows": [
+              [
+                "Medfield",
+                "175",
+                "01-001",
+                "F_699981_2879584"
+              ],
+              [
+                "Medway",
+                "177",
+                "01-001",
+                "M_204911_880581"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "massgis-duplicate-parcel-records",
+                "massgis-local-parcel-municipalities"
+              ],
+              [
+                "massgis-duplicate-parcel-records",
+                "massgis-local-parcel-municipalities"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "In MassGIS, PROP_ID is the assessor property identifier, MAP_PAR_ID identifies a lot on the local tax map, and LOC_ID links the assessment to the mapped parcel. Keep the town identifier and the original parcel number, including the leading zero. Retain the geometry reference and fiscal year with the source record. A provider may have its own unique identifier for each lot.",
+            "sourceIds": [
+              "massgis-parcel-field-dictionary"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To test a provider, send a point inside each polygon. Compare the result with the original identifiers and boundaries in the download. Then try a lookup using only the county and local number. A useful response lets you distinguish both lots or asks for the town. One unqualified match leaves you unable to tell which property the lookup resolved."
+          },
+          {
+            "type": "download",
+            "label": "Download the two MassGIS parcel boundaries and source queries",
+            "path": "/blog/massgis-parcel-id-collision.geojson",
+            "format": "GeoJSON",
+            "datasetAnchor": "dataset-massgis-parcel-id-collision"
           }
         ]
       },
@@ -38771,8 +38871,19 @@
       }
     ],
     "sources": [
-      {"id": "regrid-lineage", "title": "Parcel source links, county refresh dates and row timestamps", "url": "https://support.regrid.com/docs/source-lineage", "publisher": "Regrid"},
-      {"id": "mcp-city-replay", "title": "Four city record queries for a condo parcel MCP answer", "url": "https://invariant-ai.com/blog/gis-mcp-servers-for-site-selection#replay-a-condo-parcel-answer", "publisher": "Invariant", "linkLabel": "City record replay"},
+      {
+        "id": "regrid-lineage",
+        "title": "Parcel source links, county refresh dates and row timestamps",
+        "url": "https://support.regrid.com/docs/source-lineage",
+        "publisher": "Regrid"
+      },
+      {
+        "id": "mcp-city-replay",
+        "title": "Four city record queries for a condo parcel MCP answer",
+        "url": "https://invariant-ai.com/blog/gis-mcp-servers-for-site-selection#replay-a-condo-parcel-answer",
+        "publisher": "Invariant",
+        "linkLabel": "City record replay"
+      },
       {
         "id": "bulk-earth",
         "title": "Look up a parcel by address with Geocode and Enrich",
@@ -38972,6 +39083,42 @@
         "title": "ReportAll parcel API reference",
         "publisher": "ReportAll",
         "url": "https://reportallusa.com/solutions/overlay/documentation/"
+      },
+      {
+        "id": "parceled-api",
+        "title": "Parcel ID and coordinate searches in REST, GraphQL and MCP",
+        "publisher": "Parceled",
+        "url": "https://www.parceled.ai/docs"
+      },
+      {
+        "id": "reeeally-parcel-api",
+        "title": "Parcel lookup API and search methods",
+        "publisher": "parcel by Reeeally",
+        "url": "https://parcel.reeeally.ai/docs/api"
+      },
+      {
+        "id": "reeeally-records",
+        "title": "Parcel record keys and parcel number selection",
+        "publisher": "parcel by Reeeally",
+        "url": "https://parcel.reeeally.ai/docs/records"
+      },
+      {
+        "id": "massgis-parcel-field-dictionary",
+        "title": "Property tax parcels and assessor field definitions",
+        "publisher": "MassGIS",
+        "url": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels"
+      },
+      {
+        "id": "massgis-duplicate-parcel-records",
+        "title": "Exact query for the two 01-001 parcel geometries",
+        "publisher": "MassGIS parcel layer",
+        "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29+AND+PROP_ID%3D%2701-001%27+AND+MAP_PAR_ID%3D%2701-001%27+AND+POLY_TYPE%3D%27FEE%27&outFields=OBJECTID%2CTOWN_ID%2CPROP_ID%2CMAP_PAR_ID%2CLOC_ID%2CFY%2CPOLY_TYPE&orderByFields=TOWN_ID&returnGeometry=true&outSR=4326&f=geojson"
+      },
+      {
+        "id": "massgis-local-parcel-municipalities",
+        "title": "Municipal identifiers and county FIPS for Medfield and Medway",
+        "publisher": "MassGIS municipalities layer",
+        "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Municipalities_Hosted/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29&outFields=TOWN_ID%2CTOWN%2CCOUNTY%2CFIPS_STCO&orderByFields=TOWN_ID&returnGeometry=false&f=json"
       }
     ],
     "relatedSlugs": [
@@ -38979,6 +39126,19 @@
       "best-gis-apis-for-site-selection",
       "commercial-real-estate-data-apis-for-lenders",
       "parcel-number-lookup-by-address"
+    ],
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-massgis-parcel-id-collision",
+        "name": "MassGIS shared parcel number trial in Medfield and Medway",
+        "description": "Two separate mapped lots in Norfolk County, Massachusetts use parcel number 01-001. The GeoJSON contains both polygons, MassGIS record identifiers, replay queries, and source checksums.",
+        "sourceIds": [
+          "massgis-duplicate-parcel-records",
+          "massgis-local-parcel-municipalities"
+        ],
+        "spatialCoverage": "Medfield and Medway, Norfolk County, Massachusetts",
+        "datePublished": "2026-11-26"
+      }
     ]
   },
   {

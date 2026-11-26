@@ -1,0 +1,164 @@
+{
+  "type": "FeatureCollection",
+  "title": "MassGIS shared parcel number trial in Medfield and Medway",
+  "retrieved_at_utc": "2026-11-26T12:37:48+00:00",
+  "publisher": "Invariant",
+  "source_publisher": "MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts",
+  "sources": {
+    "parcel_features": {
+      "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29+AND+PROP_ID%3D%2701-001%27+AND+MAP_PAR_ID%3D%2701-001%27+AND+POLY_TYPE%3D%27FEE%27&outFields=OBJECTID%2CTOWN_ID%2CPROP_ID%2CMAP_PAR_ID%2CLOC_ID%2CFY%2CPOLY_TYPE&orderByFields=TOWN_ID&returnGeometry=true&outSR=4326&f=geojson",
+      "sha256": "591d8d3d51128d76d894b3a7a4f1aa3cbec5d906e883db4be827fda2ffc889b3"
+    },
+    "municipal_crosswalk": {
+      "url": "https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Municipalities_Hosted/FeatureServer/0/query?where=TOWN_ID+IN+%28175%2C177%29&outFields=TOWN_ID%2CTOWN%2CCOUNTY%2CFIPS_STCO&orderByFields=TOWN_ID&returnGeometry=false&f=json",
+      "sha256": "85a451dbca63b70b636fdcd38399628d8c6918f543864205f6f2c518a8e2271a"
+    }
+  },
+  "method": "Joined MassGIS parcel features to the MassGIS municipal crosswalk by TOWN_ID and confirmed that the two published geometries are disjoint.",
+  "trial": {
+    "failing_key": [
+      "county_fips",
+      "PROP_ID"
+    ],
+    "alternate_failing_key": [
+      "county_fips",
+      "MAP_PAR_ID"
+    ],
+    "trial_check": "Retrieve two separate geometries and preserve TOWN_ID, the local parcel identifiers, LOC_ID and FY for each result.",
+    "scope": "Two FY 2026 records. This reference pair does not score a vendor or establish coverage beyond the two records. MassGIS parcel geometry is for reference."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": 20055,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.3370729973291,
+              42.1496283259398
+            ],
+            [
+              -71.3364601403237,
+              42.1493961934339
+            ],
+            [
+              -71.3395888315631,
+              42.1493853316892
+            ],
+            [
+              -71.3396621291954,
+              42.1493852541783
+            ],
+            [
+              -71.3396260131578,
+              42.1495615756162
+            ],
+            [
+              -71.3395198988353,
+              42.149804242399
+            ],
+            [
+              -71.3393082342022,
+              42.1500180410678
+            ],
+            [
+              -71.339284888321,
+              42.1501007194883
+            ],
+            [
+              -71.3391338665246,
+              42.1500446772347
+            ],
+            [
+              -71.3385548119947,
+              42.149851398922
+            ],
+            [
+              -71.3370729973291,
+              42.1496283259398
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "OBJECTID": 20055,
+        "TOWN_ID": 175,
+        "PROP_ID": "01-001",
+        "MAP_PAR_ID": "01-001",
+        "LOC_ID": "F_699981_2879584",
+        "FY": 2026,
+        "POLY_TYPE": "FEE",
+        "municipality": "Medfield",
+        "county_fips": "25021",
+        "trial_point": {
+          "longitude": -71.3386078,
+          "latitude": 42.1497163
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 1850336,
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -71.4429012374606,
+              42.1752880378872
+            ],
+            [
+              -71.4397749038948,
+              42.1762953497094
+            ],
+            [
+              -71.439817756482,
+              42.1761788944717
+            ],
+            [
+              -71.4398677661071,
+              42.1760928284656
+            ],
+            [
+              -71.4399282883552,
+              42.1758897275094
+            ],
+            [
+              -71.4400937890002,
+              42.1752674740445
+            ],
+            [
+              -71.4406344740179,
+              42.1752722567769
+            ],
+            [
+              -71.4419246290902,
+              42.1752869847684
+            ],
+            [
+              -71.4429012374606,
+              42.1752880378872
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "OBJECTID": 1850336,
+        "TOWN_ID": 177,
+        "PROP_ID": "01-001",
+        "MAP_PAR_ID": "01-001",
+        "LOC_ID": "M_204911_880581",
+        "FY": 2026,
+        "POLY_TYPE": "FEE",
+        "municipality": "Medway",
+        "county_fips": "25021",
+        "trial_point": {
+          "longitude": -71.4409879,
+          "latitude": 42.1755889
+        }
+      }
+    }
+  ]
+}
