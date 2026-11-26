@@ -12,6 +12,11 @@ const product = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-product.json'
 const { links } = product
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 
+const { workflows } = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
+const buyerGuides = workflows.map(({ label, guide, slug }) => [
+  `${label} | ${guide}`, `${SITE}/blog/${slug}.md`,
+])
+
 const sections = [
   ['Connect to Invariant Earth', [
     ['API quickstart and first query', `${links.quickstart}.md`],
@@ -38,7 +43,8 @@ const sections = [
       ...(worksheet?.jsonPath ? [['Data provider trial inputs and expected results (JSON)', SITE + worksheet.jsonPath]] : []),
     ]),
   ]],
-  ['Examples by industry', product.examples.map(({ audience, title, href }) => [
+  ['Guides by industry', buyerGuides],
+  ['API examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,
   ])],
   ['Land acquisition', [
@@ -46,7 +52,12 @@ const sections = [
     ['Check Chicago city-owned land offerings, parcel groups and deadlines', `${SITE}/blog/chicago-city-owned-land-for-sale.md`],
   ]],
   ['Commercial property underwriting', [
+    ['Check what FEMA flood claim history can establish by address', `${SITE}/blog/flood-insurance-claim-history-by-address.md`],
     ['Reconcile a statement of values and download the Excel review workbook', `${SITE}/blog/commercial-property-statement-of-values.md`],
+  ]],
+  ['Retail site selection', [
+    ['Estimate whether a second store adds household reach', `${SITE}/blog/retail-trade-area-overlap.md`],
+    ['Compare workplace and household demand for a store', `${SITE}/blog/daytime-population-retail-site-selection.md`],
   ]],
   ['Commercial lending', [
     ['Calculate DSCR and debt yield across two payment schedules', `${SITE}/calculators/dscr-debt-yield.md`],
@@ -68,7 +79,7 @@ const sections = [
     ['Find space and power for GPU clusters', `${SITE}/blog/ai-compute-capacity-for-neoclouds.md`],
   ]],
   ['Optional', [
-    ['Complete link directory, including glossary, calculators and regulatory references', `${SITE}/llms-index.txt`],
+    ['Complete research guide, glossary and calculator directory', `${SITE}/llms-index.txt`],
     ['Full text of data, site selection and power guides', `${SITE}/llms-full.txt`],
     ['Article feed with revision dates', `${SITE}/feed.xml`],
     ['Security and data handling', `${SITE}/trust`],
@@ -89,32 +100,6 @@ const shortIndex = [
     '',
   ]),
 ]
-
-// ── Parse page registry ──────────────────────────────────────────────────────
-const registry = readFileSync(join(ROOT, 'src/data/page-registry.ts'), 'utf8')
-// Accept single OR double quotes for every quoted field.
-const Q = `(?:'([^']+)'|"([^"]+)")`
-const blockRe = new RegExp(
-  `\\{\\s*slug:\\s*${Q},\\s*title:\\s*${Q},(?:\\s*shortTitle:\\s*${Q},)?\\s*description:\\s*\\n?\\s*${Q},\\s*pillar:\\s*${Q},\\s*type:\\s*${Q},\\s*live:\\s*(true|false)`,
-  'g',
-)
-const pages = []
-let m
-while ((m = blockRe.exec(registry))) {
-  // Each Q produces 2 capture groups (single, double). Pick whichever matched.
-  const pick = (i) => m[i] ?? m[i + 1]
-  const slug = pick(1)
-  const title = pick(3)
-  const description = pick(7)
-  const pillar = pick(9)
-  const type = pick(11)
-  const live = m[13]
-  if (live === 'true') pages.push({ slug, title, description, pillar, type })
-}
-
-const pillars = pages.filter((p) => p.type === 'pillar')
-const clustersSpace = pages.filter((p) => p.type === 'cluster' && p.pillar === 'space')
-const clustersNuclear = pages.filter((p) => p.type === 'cluster' && p.pillar === 'nuclear')
 
 // ── Glossary ─────────────────────────────────────────────────────────────────
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
@@ -160,6 +145,11 @@ for (const article of industryArticles.filter(article => article.topic === 'Data
   out.push(`- [${article.title}](${SITE}/blog/${article.slug}.md): ${article.summary}`)
 }
 out.push('')
+out.push('## Guides by industry')
+out.push('')
+for (const [label, href] of buyerGuides) out.push(`- [${label}](${href})`)
+out.push('')
+
 out.push('## Data center site due diligence and power studies')
 out.push('')
 out.push('Invariant runs due diligence on US data center sites in two steps, for developers, investors, lenders, landowners and brokers (including white-label work for advisers).')
@@ -194,37 +184,8 @@ for (const article of industryArticles.filter(isIndiaArticle)) {
 }
 out.push('')
 
-out.push('## Earlier regulatory references')
+out.push('## Calculators')
 out.push('')
-for (const p of pillars) {
-  out.push(`- [${p.title}](${SITE}/${p.slug}), ${p.description}`)
-}
-if (clustersNuclear.length) {
-  out.push('')
-  out.push('### Nuclear guides')
-  for (const c of clustersNuclear) {
-    out.push(`- [${c.title}](${SITE}/${c.slug}), ${c.description}`)
-  }
-}
-if (clustersSpace.length) {
-  out.push('')
-  out.push('### Space guides')
-  for (const c of clustersSpace) {
-    out.push(`- [${c.title}](${SITE}/${c.slug}), ${c.description}`)
-  }
-}
-
-out.push('')
-out.push('### Regulatory tools and resources')
-out.push('- [Mission timeline](https://invariant-ai.com/timeline), Enter a space company website and get the full US and India regulatory filing plan, FCC, NOAA, ITAR and EAR, FAA, IN-SPACe, with real review clocks and fees.')
-out.push('- [Blog](https://invariant-ai.com/blog), field notes and data guides.')
-out.push('- [Glossary](https://invariant-ai.com/glossary), Authoritative definitions of regulatory and qualification compliance terms.')
-out.push('- [Compliance library](https://invariant-ai.com/compliance), Every Invariant resource for space, nuclear, and aerospace.')
-out.push('- [Trust](https://invariant-ai.com/trust), Security and data-handling disclosures.')
-out.push('')
-out.push('### Calculators')
-out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline), Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
-out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline), Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
 out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand and compare on-site generation and utility imports during a generator trip or grid outage.')
 out.push('- [Backup generator run-hour calculator](https://invariant-ai.com/calculators/generator-run-hours.md), Calculate rolling hours for a generator group and an individual engine.')
 out.push('- [Data center water use calculator](https://invariant-ai.com/calculators/data-center-water-use.md), Estimate annual on-site water and average daily gallons or calculate site WUE from annual records.')
@@ -235,11 +196,6 @@ out.push('- [Commercial real estate refinance gap calculator](https://invariant-
 out.push('- [Commercial real estate DSCR and debt yield calculator](https://invariant-ai.com/calculators/dscr-debt-yield.md), Compare two annual payment schedules and find the net operating income needed for your coverage and debt yield targets.')
 out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calculators/battery-recharge-window.md), Check whether a grid-scale battery can recharge for a planned dispatch under import and export limits.')
 
-out.push('')
-out.push('## Earlier nuclear references')
-out.push('')
-out.push('- [10 CFR Part 100 vs Part 53 Subpart D: A Siting Comparison](https://invariant-ai.com/blog/part100-vs-part53-siting), A line-by-line comparison of the legacy and the new technology-inclusive frameworks.')
-out.push('- [SSE/OBE → GMRS/SDC: The Seismic Design Shift to Part 53](https://invariant-ai.com/blog/seismic-design-shift), The deterministic two-tier framework is replaced by risk-tiered ground motions and seismic design categories.')
 out.push('')
 out.push('## Data centers and oil and gas')
 out.push('- [Data-center compliance](https://invariant-ai.com/data-center-compliance): U.S. siting, power, air, water, construction and operating requirements.')

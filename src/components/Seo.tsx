@@ -53,6 +53,7 @@ export function Seo({
       <meta name="description" content={description} />
       {canonical && <link rel="canonical" href={canonical} />}
       {markdown && <link rel="alternate" type="text/markdown" href={markdown} title="Markdown for AI agents" />}
+      {markdown && <link rel="describedby" href="/llms.txt" />}
       {feed && <link rel="alternate" type="application/atom+xml" href={feed} title="Invariant Blog" />}
       {robots && <meta name="robots" content={robots} />}
       <meta property="og:title" content={fullTitle} />

@@ -88,6 +88,7 @@ class Page(HTMLParser):
         self.ids = []
         self.downloads = set()
         self.markdown = []
+        self.agent_directories = []
         self.feeds = []
         self.schemas = []
         self.titles = []
@@ -131,6 +132,8 @@ class Page(HTMLParser):
             rel = attr.get("rel")
             if rel == "canonical":
                 self.canonical.append(attr.get("href"))
+            if rel == "describedby":
+                self.agent_directories.append(attr.get("href"))
             if rel == "alternate" and attr.get("type") == "text/markdown":
                 self.markdown.append(attr["href"])
             if rel == "alternate" and attr.get("type") == "application/atom+xml":
@@ -380,6 +383,8 @@ def verify(origin, job, expected_urls, preview, crawler=None, *, deployed_assets
                 require(preview or not header_noindex, "public page sends X-Robots-Tag noindex")
                 require(actual.schemas == expected.schemas, "structured data differs from dist/")
                 require(actual.markdown == expected.markdown, "Markdown alternate differs from dist/")
+                require(actual.agent_directories == expected.agent_directories,
+                        "agent directory discovery link differs from dist/")
                 require(actual.feeds == expected.feeds, "Atom discovery link differs from dist/")
                 missing_links = {
                     link for link in expected.links - actual.links if CANONICAL + link in expected_urls
@@ -628,6 +633,8 @@ def build_jobs(sitemap, full):
     for path in candidates:
         page = Page(path, (DIST / path.lstrip("/") / "index.html").read_bytes())
         jobs.append((path, "page", page))
+        require(page.agent_directories == (["/llms.txt"] if page.markdown else []),
+                f"{path} has a missing, duplicate, or unexpected agent directory link")
         alternate_files.update(page.markdown)
         downloads.update(page.downloads)
         assets.update(page.assets)
