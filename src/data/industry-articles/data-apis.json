@@ -1,5 +1,450 @@
 [
   {
+    "slug": "ercot-lmp-vs-settlement-point-price",
+    "topic": "Data & APIs",
+    "region": "ERCOT, Texas, United States",
+    "title": "ERCOT LMP vs. Settlement Point Price",
+    "description": "Find ERCOT dispatch and 15-minute settlement prices. Replay one quarter-hour and verify a $25.70/MWh gap between the West Load Zone and West Hub.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "ERCOT’s published real-time prices from 6:30 to 6:45 p.m. CST on November 25, 2026, were $46.78 per MWh at West Hub, $62.14 at ALP_BESS_RN, and $72.48 at West Load Zone.",
+    "coverCaption": "ERCOT NP6-905-CD, November 25, 2026, delivery hour 19, interval 3. Prices shown in US dollars per MWh as posted.",
+    "intro": "ERCOT’s real-time locational marginal price (LMP) is a dispatch price for a location at a Security-Constrained Economic Dispatch run. The real-time Settlement Point Price (SPP) is the published price for a 15-minute settlement interval. Match the price series, settlement point and delivery interval before calculating an energy cost or comparing power contracts. In one November 25 quarter-hour, ERCOT posted $46.78/MWh at West Hub and $72.48/MWh at West Load Zone. That $25.70/MWh difference comes from comparing two different settlement points at the same time.",
+    "takeaways": [
+      "Use NP6-788-CD for dispatch LMPs at settlement points, NP6-787-CD for electrical bus LMPs and NP6-905-CD for 15-minute settlement point prices.",
+      "Match the exact point name, point type and delivery interval. The ERCOT export can list a load zone under more than one type.",
+      "At resource node ALP_BESS_RN, weighting four dispatch intervals by their seconds in the quarter-hour reproduces the posted $62.14/MWh to the cent. Averaging the three runs that started inside the quarter gives $62.25/MWh."
+    ],
+    "guideActions": [
+      {
+        "href": "#replay-ercot-quarter-hour",
+        "label": "Replay the quarter-hour"
+      },
+      {
+        "href": "/blog/ercot-lmp-settlement-price-replay.json",
+        "label": "Download the source rows and calculation",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "choose-ercot-lmp-or-spp",
+        "heading": "Which ERCOT price series should you use?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Question",
+              "ERCOT report",
+              "What to keep from the record"
+            ],
+            "rows": [
+              [
+                "What price did a dispatch run produce at a resource node, hub or load zone?",
+                "NP6-788-CD, LMPs by settlement point. Dispatch usually runs about every five minutes.",
+                "SCED timestamp, repeated-hour flag and settlement point name."
+              ],
+              [
+                "What was the price at a specific electrical bus?",
+                "NP6-787-CD, LMPs by electrical bus.",
+                "Electrical bus identifier and dispatch timestamp. Check any mapping to a settlement point separately."
+              ],
+              [
+                "What real-time price was posted for the contract’s settlement interval?",
+                "NP6-905-CD, settlement point prices at 15-minute intervals.",
+                "Delivery date, hour, interval, repeated-hour flag, point name and point type."
+              ],
+              [
+                "Was a reliability deployment price adder present?",
+                "NP6-323-CD, price adders by dispatch interval.",
+                "Timestamp, repeated-hour flag and the separate energy adder field, RTRDPA."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dispatch-lmp"
+              ],
+              [
+                "bus-lmp"
+              ],
+              [
+                "settlement-spp",
+                "price-rules"
+              ],
+              [
+                "dispatch-adders",
+                "price-rules"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "A resource node, trading hub and load zone are different settlement locations. ERCOT’s rules specify how prices are formed for each. Start with the point and product named in your contract or market workflow. When you need a historical result, save the report edition and check for corrections after the initial posting.",
+            "sourceIds": [
+              "price-rules",
+              "price-history"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "replay-ercot-quarter-hour",
+        "heading": "How does a dispatch LMP become a 15-minute settlement price?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The sample covers 18:30 to 18:45 Central Standard Time on November 25, 2026. ERCOT identifies it as delivery hour 19, interval 3, with DST flag N. In UTC it runs from 00:30 to 00:45 on November 26. The dispatch run at 18:25:25 was still in effect for the first 20 seconds. The run at 18:45:25 falls beyond the interval.",
+            "sourceIds": [
+              "posted-spp",
+              "dispatch-lmp",
+              "price-rules"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "SCED run start, CST",
+              "Seconds in this quarter-hour",
+              "ALP_BESS_RN LMP",
+              "Energy adder"
+            ],
+            "rows": [
+              [
+                "18:25:25",
+                "20",
+                "$58.72/MWh",
+                "$0.00/MWh"
+              ],
+              [
+                "18:30:20",
+                "298",
+                "$60.80/MWh",
+                "$0.00/MWh"
+              ],
+              [
+                "18:35:18",
+                "301",
+                "$62.06/MWh",
+                "$0.00/MWh"
+              ],
+              [
+                "18:40:19",
+                "281",
+                "$63.90/MWh",
+                "$0.00/MWh"
+              ]
+            ],
+            "stackOnMobile": true,
+            "sourceIds": [
+              "dispatch-lmp",
+              "dispatch-adders"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a resource node, ERCOT applies the published time weights to the dispatch prices plus the energy adder, subject to the applicable price floor. In this quarter-hour the four energy adders were zero. The weighted sum divided by 900 seconds was $62.1431/MWh, which rounds to the posted $62.14/MWh. An equal-weight average of the three runs that started in the quarter-hour gives $62.25/MWh. The downloadable record includes the prior and next dispatch timestamps so you can check the interval boundaries.",
+            "sourceIds": [
+              "price-rules",
+              "dispatch-adders",
+              "posted-spp"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the selected ERCOT rows, source ZIP links and calculation",
+            "path": "/blog/ercot-lmp-settlement-price-replay.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "ercot-hub-vs-load-zone",
+        "heading": "Why can the West Hub and West Load Zone prices differ?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "Settlement point",
+              "Type as published",
+              "Real-time SPP"
+            ],
+            "rows": [
+              [
+                "HB_WEST",
+                "Trading hub (HU)",
+                "$46.78/MWh"
+              ],
+              [
+                "LZ_WEST",
+                "Load zone (LZ)",
+                "$72.48/MWh"
+              ],
+              [
+                "ALP_BESS_RN",
+                "Resource node (RN)",
+                "$62.14/MWh"
+              ],
+              [
+                "HB_HOUSTON",
+                "Trading hub (HU)",
+                "$31.76/MWh"
+              ],
+              [
+                "LZ_HOUSTON",
+                "Load zone (LZ)",
+                "$31.91/MWh"
+              ]
+            ],
+            "stackOnMobile": true,
+            "sourceIds": [
+              "posted-spp"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For the same 15 minutes, West Load Zone minus West Hub was $25.70/MWh. Houston’s load zone minus hub was $0.15/MWh. A flat 50 MW load would consume 12.5 MWh during the interval. Multiplying that volume by the West price difference gives an illustrative $321.25 difference in the indexed energy component. Apply the contract’s settlement point, meter profile, delivery charges and other terms for a site budget.",
+            "sourceIds": [
+              "posted-spp",
+              "price-rules"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The original export lists both LZ and energy-weighted LZEW records for West and Houston. The two type rows share a name and happen to have the same price for these zones in this quarter-hour. Preserve the type in the raw key, then select the relevant series before calculating a spread. Use the quoted contract point when comparing procurement options.",
+            "sourceIds": [
+              "posted-spp",
+              "gridstatus"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-ercot-price-apis",
+        "heading": "How do you compare ERCOT price data APIs?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give each candidate the same local time window and point type. Request the source timestamp, UTC timestamp, price units, correction treatment and source report. Start with the posted ERCOT prices as the control.",
+            "sourceIds": [
+              "public-api",
+              "price-history"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Product or tool",
+              "Documented starting point",
+              "What to verify in the same trial"
+            ],
+            "rows": [
+              [
+                "ERCOT Public API and public reports",
+                "The market operator’s pricing products, with direct report IDs and a registered API.",
+                "Retrieve NP6-788-CD and NP6-905-CD separately. Preserve the dispatch boundary times and raw point type codes."
+              ],
+              [
+                "Grid Status",
+                "Separate ERCOT dispatch LMP and 15-minute settlement datasets.",
+                "Check whether your selected location field preserves the LZ and LZEW distinction. Verify UTC conversion and how corrected prices enter the series."
+              ],
+              [
+                "Yes Energy DataSignals",
+                "Nodal market time series through its API and datasets with historical versions.",
+                "Ask for the as-posted record and any later revision for the same interval. Match the exact West Load Zone and West Hub types."
+              ],
+              [
+                "ISO-DART",
+                "An open-source Python client with distinct ERCOT dispatch and settlement data products.",
+                "Save the query parameters and API timestamps. Verify that the returned report matches your intended interval and price series."
+              ],
+              [
+                "Invariant Earth",
+                "Join the electricity evidence to the site’s mapped utility territory and physical assets where fields are available.",
+                "Start with an exact site match and check the field sources. Attach the relevant contract or ERCOT record to establish the settlement point and pricing basis."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "public-api",
+                "dispatch-lmp",
+                "settlement-spp"
+              ],
+              [
+                "gridstatus"
+              ],
+              [
+                "yesenergy"
+              ],
+              [
+                "isodart"
+              ],
+              [
+                "earth-fields"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "links",
+            "label": "Related ERCOT and site checks",
+            "items": [
+              {
+                "slug": "ercot-day-ahead-real-time-price-data",
+                "label": "Download and compare day-ahead and real-time price history"
+              },
+              {
+                "slug": "texas-data-center-large-load-interconnection-2026",
+                "label": "Check the Texas interconnection evidence for a large load"
+              },
+              {
+                "slug": "grid-capacity-apis-load-headroom",
+                "label": "Compare grid capacity and load study evidence"
+              },
+              {
+                "slug": "battery-storage-site-interconnection",
+                "label": "Screen charge and discharge limits at a battery site"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between LMP and SPP in ERCOT?",
+        "answer": "An LMP comes from a dispatch run at a location. The 15-minute SPP is the published real-time price for a settlement point and delivery interval, calculated under ERCOT’s rules for resources, hubs and load zones.",
+        "sourceIds": [
+          "dispatch-lmp",
+          "settlement-spp",
+          "price-rules"
+        ]
+      },
+      {
+        "question": "Which ERCOT report has 15-minute prices?",
+        "answer": "Use NP6-905-CD for real-time Settlement Point Prices at resource nodes, hubs and load zones. Keep the delivery date, hour, interval, repeated-hour flag, point name and point type.",
+        "sourceIds": [
+          "settlement-spp",
+          "posted-spp"
+        ]
+      },
+      {
+        "question": "Can I average three five-minute LMP readings to get an ERCOT settlement price?",
+        "answer": "For a resource node, weight each dispatch run by the seconds it covers inside the quarter-hour, include the applicable energy adder, and apply ERCOT’s price calculation rules. Use the published SPP to verify the result.",
+        "sourceIds": [
+          "price-rules",
+          "dispatch-adders",
+          "posted-spp"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "dispatch-lmp",
+        "title": "LMPs by Resource Nodes, Load Zones and Trading Hubs, NP6-788-CD",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-788-CD",
+        "linkLabel": "Dispatch LMP report"
+      },
+      {
+        "id": "bus-lmp",
+        "title": "LMPs by Electrical Bus, NP6-787-CD",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-787-CD",
+        "linkLabel": "Electrical bus LMP report"
+      },
+      {
+        "id": "settlement-spp",
+        "title": "Settlement Point Prices at Resource Nodes, Hubs and Load Zones, NP6-905-CD",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-905-CD",
+        "linkLabel": "15-minute settlement price report"
+      },
+      {
+        "id": "dispatch-adders",
+        "title": "Real-Time Price Adders by SCED Interval, NP6-323-CD",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/mp/data-products/data-product-details?id=NP6-323-CD",
+        "linkLabel": "SCED price adder report"
+      },
+      {
+        "id": "posted-spp",
+        "title": "November 25, 2026 hour 19 interval 3 posted settlement ZIP",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/misdownload/servlets/mirDownload?mimic_duns=000000000&doclookupId=1303083375",
+        "linkLabel": "November 25 settlement ZIP"
+      },
+      {
+        "id": "price-rules",
+        "title": "November 6, 2026 Nodal Protocol Section 6.6.1, real-time settlement prices",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/files/docs/2024/06/28/06-110626_Nodal.docx",
+        "linkLabel": "Settlement calculation rules"
+      },
+      {
+        "id": "price-history",
+        "title": "Market prices, historical hub and load zone series and price corrections",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/mktinfo/prices",
+        "linkLabel": "Price history and corrections"
+      },
+      {
+        "id": "public-api",
+        "title": "ERCOT developer portal, API access and registration",
+        "publisher": "ERCOT",
+        "url": "https://www.ercot.com/services/mdt/data-portal",
+        "linkLabel": "ERCOT Public API"
+      },
+      {
+        "id": "gridstatus",
+        "title": "Grid Status interval and pricing dataset guide",
+        "publisher": "Grid Status",
+        "url": "https://docs.gridstatus.io/data-guides",
+        "linkLabel": "Grid Status pricing datasets"
+      },
+      {
+        "id": "yesenergy",
+        "title": "DataSignals nodal price history and API",
+        "publisher": "Yes Energy",
+        "url": "https://www.yesenergy.com/products/datasignals",
+        "linkLabel": "Yes Energy DataSignals"
+      },
+      {
+        "id": "isodart",
+        "title": "ISO-DART utility for ERCOT dispatch and settlement products",
+        "publisher": "Lawrence Livermore National Laboratory",
+        "url": "https://software.llnl.gov/ISO-DART/isos/ercot/pricing.html",
+        "linkLabel": "ISO-DART ERCOT pricing guide"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth field catalog",
+        "publisher": "Invariant",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "linkLabel": "Earth API field catalog"
+      }
+    ],
+    "relatedSlugs": [
+      "ercot-day-ahead-real-time-price-data",
+      "texas-data-center-large-load-interconnection-2026",
+      "grid-capacity-apis-load-headroom",
+      "battery-storage-site-interconnection"
+    ],
+    "dataset": {
+      "name": "ERCOT dispatch and settlement price replay for November 25, 2026",
+      "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a reproducible comparison of West Hub and West Load Zone.",
+      "spatialCoverage": "ERCOT, Texas, United States",
+      "temporalCoverage": "2026-11-25",
+      "sourceIds": [
+        "dispatch-lmp",
+        "dispatch-adders",
+        "posted-spp",
+        "price-rules"
+      ]
+    }
+  },
+  {
     "slug": "building-permit-history-by-contractor",
     "topic": "Data & APIs",
     "region": "New York City, United States",
@@ -19850,6 +20295,10 @@
             "type": "links",
             "label": "Related Texas power and site guides",
             "items": [
+              {
+                "slug": "ercot-lmp-vs-settlement-point-price",
+                "label": "Replay ERCOT dispatch LMPs against 15-minute settlement prices"
+              },
               {
                 "slug": "texas-data-center-large-load-interconnection-2026",
                 "label": "Check the Texas large-load connection and utility study process"
