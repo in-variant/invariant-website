@@ -374,7 +374,7 @@ writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify({
   recentDatasets,
   updatedDate,
 }))
-const articleSearch = Object.fromEntries(articles.map(article => {
+const articleSearch = articles.map(article => {
   const headings = [
     ...article.sections.map(section => section.heading),
     ...article.faqs.map(faq => faq.question),
@@ -394,10 +394,23 @@ const articleSearch = Object.fromEntries(articles.map(article => {
     ...article.faqs.map(faq => faq.answer),
     ...article.sources.flatMap(source => [source.publisher, source.title]),
   ].join('\n')
-  const bodyTerms = [...new Set(articleSearchWords(body))].sort()
-  return [article.slug, { headings, bodyTerms }]
+  return { slug: article.slug, headings, bodyTerms: new Set(articleSearchWords(body)) }
+})
+const articleTermPostings = new Map()
+articleSearch.forEach(({ bodyTerms }, position) => {
+  for (const term of bodyTerms) {
+    if (!articleTermPostings.has(term)) articleTermPostings.set(term, [])
+    articleTermPostings.get(term).push(position)
+  }
+})
+writeIfChanged(new URL('details.json', searchDir), JSON.stringify({
+  documents: articleSearch.map(({ slug, headings }) => ({ slug, headings })),
+  // Gaps from the previous document number compress common terms more efficiently.
+  bodyPostings: Object.fromEntries([...articleTermPostings.keys()].sort().map(term => {
+    const positions = articleTermPostings.get(term)
+    return [term, positions.map((position, index) => position - (positions[index - 1] ?? -1))]
+  })),
 }))
-writeIfChanged(new URL('details.json', searchDir), JSON.stringify(articleSearch))
 const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
 writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
 writeIfChanged(new URL('earth-coverage-examples.json', base), `${JSON.stringify(coverageExamples, null, 2)}\n`)

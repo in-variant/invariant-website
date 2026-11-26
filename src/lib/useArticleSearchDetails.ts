@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { ArticleSearchDetails } from '../data/blogSearch'
+import { expandArticleSearchDetails, type ArticleSearchDetails } from '../data/blogSearch'
 
 export function useArticleSearchDetails(searching: boolean) {
   const [details, setDetails] = useState<ArticleSearchDetails | null>()
@@ -8,10 +8,9 @@ export function useArticleSearchDetails(searching: boolean) {
   useEffect(() => {
     if (!pending) return
     let active = true
-    import('../data/.generated-blog-search/details.json').then(
-      ({ default: content }) => { if (active) setDetails(content) },
-      () => { if (active) setDetails(null) },
-    )
+    import('../data/.generated-blog-search/details.json')
+      .then(({ default: content }) => { if (active) setDetails(expandArticleSearchDetails(content)) })
+      .catch(() => { if (active) setDetails(null) })
     return () => { active = false }
   }, [pending])
 

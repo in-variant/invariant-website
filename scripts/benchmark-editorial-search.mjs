@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs'
-import { editorialSearchWords, prepareArticleSearch, rankSearch } from '../src/data/blogSearch.ts'
+import { editorialSearchWords, expandArticleSearchDetails, prepareArticleSearch, rankSearch } from '../src/data/blogSearch.ts'
 
 const read = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'))
 const { articles } = read('../src/data/.generated-blog-search/article-list.json')
-const details = read('../src/data/.generated-blog-search/details.json')
+const details = expandArticleSearchDetails(read('../src/data/.generated-blog-search/details.json'))
 const available = new Set(articles.map(({ slug }) => '/blog/' + slug))
 const cases = [...read('./geo-buyer-prompts.json'), ...read('./geo-collection-prompts.json')]
   .map(example => ({ ...example, article: example.target?.split('#')[0] }))

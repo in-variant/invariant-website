@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { articleSearchWords, editorialSearchWords, prepareSearch, rankSearch } from '../src/data/blogSearch.ts'
+import { articleSearchWords, editorialSearchWords, expandArticleSearchDetails, prepareSearch, rankSearch } from '../src/data/blogSearch.ts'
 
 const index = prepareSearch([
   { title: 'Find a 100 MW data center site', metadata: 'Powered land and phased utility service' },
@@ -12,6 +12,24 @@ const index = prepareSearch([
 ], entry => entry)
 const search = query => rankSearch(index, editorialSearchWords(query), { allowPartialMatches: true })
   .map(result => result.title)
+
+test('compressed search postings keep exact membership across adjacent and skipped documents', () => {
+  const details = expandArticleSearchDetails({
+    documents: [
+      { slug: 'registry', headings: 'Recorded instruments' },
+      { slug: 'forecast', headings: 'Load forecasts' },
+      { slug: 'unindexed-body', headings: 'A short guide' },
+      { slug: 'tax-lot', headings: 'Assessor records' },
+    ],
+    bodyPostings: { parcel: [1, 3], archive: [2], record: [1, 1, 2] },
+  })
+  assert.deepEqual(details, {
+    registry: { headings: 'Recorded instruments', bodyTerms: ['parcel', 'record'] },
+    forecast: { headings: 'Load forecasts', bodyTerms: ['archive', 'record'] },
+    'unindexed-body': { headings: 'A short guide', bodyTerms: [] },
+    'tax-lot': { headings: 'Assessor records', bodyTerms: ['parcel', 'record'] },
+  })
+})
 
 test('editorial query cleanup retains the sites and evidence terms', () => {
   assert.deepEqual(editorialSearchWords('Could you show me workplace jobs near Logan Square?'),

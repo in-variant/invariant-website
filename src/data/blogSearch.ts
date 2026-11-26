@@ -21,6 +21,23 @@ export function editorialSearchWords(value: string) {
 
 export type ArticleSearchDetails = Record<string, { headings: string; bodyTerms: string[] }>
 
+type PackedArticleSearchDetails = {
+  documents: { slug: string; headings: string }[]
+  bodyPostings: Record<string, number[]>
+}
+
+export function expandArticleSearchDetails({ documents, bodyPostings }: PackedArticleSearchDetails): ArticleSearchDetails {
+  const details = documents.map(({ headings }) => ({ headings, bodyTerms: [] as string[] }))
+  for (const [term, gaps] of Object.entries(bodyPostings)) {
+    let position = -1
+    for (const gap of gaps) {
+      position += gap
+      details[position].bodyTerms.push(term)
+    }
+  }
+  return Object.fromEntries(documents.map(({ slug }, position) => [slug, details[position]]))
+}
+
 export function prepareSearch<T>(
   entries: readonly T[],
   textFor: (entry: T) => { title: string; relatedTitle?: string; metadata: string; details?: string; bodyTerms?: string[] },
