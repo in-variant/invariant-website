@@ -1,5 +1,75 @@
 [
   {
+    "slug": "industrial-outdoor-storage-zoning",
+    "topic": "Data & APIs",
+    "title": "Industrial Outdoor Storage Zoning and Truck Parking Permits",
+    "summary": "Check whether a parcel can be used as a truck or trailer yard. See how Fontana approved a 250-space layout and which records establish operating rights.",
+    "date": "November 26, 2026",
+    "dateTime": "2026-11-26",
+    "region": "Fontana, California",
+    "image": "/blog/industry/industrial-outdoor-storage-zoning.webp?v=877a8e5a",
+    "dataset": {
+      "name": "Fontana industrial outdoor storage zoning and permit records",
+      "description": "Two Fontana truck yard approvals, including the 250-vehicle cap and parcel boundary at 9910 Almond Avenue and the separate maintenance approval at 13929 Santa Ana Avenue. Includes dated sources and checksums.",
+      "spatialCoverage": "Fontana, San Bernardino County, California",
+      "temporalCoverage": "2026-09-15/2026-11-26",
+      "datePublished": "2026-11-26",
+      "sources": [
+        "https://dsogis.fontana.org/server/rest/services/Accela/Parcels_no_Owner/MapServer/0/query?outSR=4326&f=geojson&returnGeometry=true&where=PARCELID%3D%27023406104%27&outFields=OBJECTID%2CPARCELID%2CSUB_PARCELID%2CADDR_HN%2CADDR_SN%2CADDR_ST",
+        "https://dmz-gis-2.fontana.org/server/rest/services/Internet/Zoning/MapServer/0/query?outSR=4326&f=geojson&returnGeometry=false&geometry=-117.49416666666667%2C34.07277777777778&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&inSR=4326&where=1%3D1&outFields=OBJECTID%2CGPLAN%2CSP_NO%2CFINAL_ZONE%2CLABELNAME",
+        "https://fontana.legistar.com/View.ashx?GUID=83811C6F-D55C-4E26-B59C-1FE83C81D5A5&ID=1416917&M=M#page=4",
+        "https://fontana.legistar.com/View.ashx?GUID=4354F959-0A96-4930-885F-69449FD1A0B9&ID=15840227&M=F",
+        "https://ceqanet.lci.ca.gov/2009091089/17",
+        "https://fontana.legistar.com/LegislationDetail.aspx?GUID=5BD2E338-FF3D-47F5-96FF-5302C70FF802&ID=8315853&Options=&Search=",
+        "https://ceqanet.lci.ca.gov/2026110714"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Fontana parcel 023406104 and mapped address 9910 Almond Avenue",
+          "publisher": "City of Fontana GIS",
+          "url": "https://dsogis.fontana.org/server/rest/services/Accela/Parcels_no_Owner/MapServer/0/query?outSR=4326&f=geojson&returnGeometry=true&where=PARCELID%3D%27023406104%27&outFields=OBJECTID%2CPARCELID%2CSUB_PARCELID%2CADDR_HN%2CADDR_SN%2CADDR_ST"
+        },
+        {
+          "title": "Zoning at the Almond Avenue project point",
+          "publisher": "City of Fontana GIS",
+          "url": "https://dmz-gis-2.fontana.org/server/rest/services/Internet/Zoning/MapServer/0/query?outSR=4326&f=geojson&returnGeometry=false&geometry=-117.49416666666667%2C34.07277777777778&geometryType=esriGeometryPoint&spatialRel=esriSpatialRelIntersects&inSR=4326&where=1%3D1&outFields=OBJECTID%2CGPLAN%2CSP_NO%2CFINAL_ZONE%2CLABELNAME"
+        },
+        {
+          "title": "Final September 15, 2026 minutes, page 4, item PH-B",
+          "publisher": "City of Fontana Planning Commission",
+          "url": "https://fontana.legistar.com/View.ashx?GUID=83811C6F-D55C-4E26-B59C-1FE83C81D5A5&ID=1416917&M=M#page=4"
+        },
+        {
+          "title": "Almond Avenue permit conditions, Exhibit A, conditions 1 and 11 to 17",
+          "publisher": "City of Fontana Planning Commission agenda packet",
+          "url": "https://fontana.legistar.com/View.ashx?GUID=4354F959-0A96-4930-885F-69449FD1A0B9&ID=15840227&M=F"
+        },
+        {
+          "title": "Almond Truck Storage Notice of Determination, September 18, 2026",
+          "publisher": "California State Clearinghouse",
+          "url": "https://ceqanet.lci.ca.gov/2009091089/17"
+        },
+        {
+          "title": "Fontana File 26-1320 and the Santa Ana Avenue staff report",
+          "publisher": "City of Fontana Planning Commission",
+          "url": "https://fontana.legistar.com/LegislationDetail.aspx?GUID=5BD2E338-FF3D-47F5-96FF-5302C70FF802&ID=8315853&Options=&Search="
+        },
+        {
+          "title": "Santa Ana Avenue Notice of Exemption, November 20, 2026",
+          "publisher": "California State Clearinghouse",
+          "url": "https://ceqanet.lci.ca.gov/2026110714"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the permit records, parcel shape and replay queries",
+          "path": "/blog/fontana-outdoor-storage-permit-records.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "manufacturing-labor-shed-site-selection",
     "topic": "Data & APIs",
     "title": "How to Estimate a Manufacturing Labor Shed for Site Selection",
@@ -7935,7 +8005,7 @@
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/warehouse-site-selection-rail-truck-access.webp?v=ac3ed131",
     "dataset": {
       "name": "Joliet warehouse and trailer-yard access comparison",
@@ -8397,7 +8467,7 @@
     "date": "November 24, 2026",
     "dateTime": "2026-11-24",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/industrial-land-for-sale-acreage-zoning.webp?v=cd1b9b7f",
     "dataset": {
       "name": "Virginia industrial land listings screened at 50 acres",
