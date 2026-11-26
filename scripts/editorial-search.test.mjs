@@ -120,6 +120,16 @@ test('comparison search recognizes provider names, variants and buyer phrasing',
     ['Lightcast labor shed', 'manufacturing-labor-shed'],
     ['Which API covers parcel boundaries here?', 'parcel-boundaries'],
     ['HERE vs TomTom', 'charging-data'],
+    ['Acres Intelligence vs Land id', 'site-screening'],
+    ['Google Earth Engine vs CARTO', 'gis-integration'],
+    ['Land Use Labs vs Zoneomics', 'zoning'],
+    ['Jupiter Intelligence vs First Street', 'flood-hazard'],
+    ['Paces vs GridUnity', 'power-flow'],
+    ['Transect vs Enverus', 'renewable-siting'],
+    ['PermitFlow vs Shovels', 'building-permits'],
+    ['Moody’s CRE vs MSCI Real Capital Analytics', 'lending'],
+    ['Kalibrate vs Placer.ai', 'retail-location'],
+    ['Lens by Upstream Tech', 'agricultural-land'],
   ]
   for (const [query, expected] of cases) {
     const { workflows, providerOnly } = searchProviderComparisons(query)

@@ -5124,6 +5124,16 @@
                 "GE Vernova Consulting Services",
                 "Engineering and power economics consulting. Published data center siting work covers generation surplus, curtailment, congestion and site conditions.",
                 "A scoped study that connects the regional cost and reliability results to the specific facility’s point of delivery and operating profile."
+              ],
+              [
+                "GridUnity",
+                "Software for managing large-load connection requests, including application intake, study milestones and financial security deadlines.",
+                "Start with a phased load request. Ask which utility reviews it, who owns the next milestone, and which study or agreement records the proposed service date."
+              ],
+              [
+                "Transect",
+                "Environmental feasibility reports with buildable area, local permitting context and site-level exclusion mapping.",
+                "Use the same candidate tract to reproduce excluded acres and check the permit triggers. Ask which utility records support a separate connection review."
               ]
             ],
             "rowSourceIds": [
@@ -5151,6 +5161,12 @@
               ],
               [
                 "ge-vernova"
+              ],
+              [
+                "gridunity"
+              ],
+              [
+                "transect"
               ]
             ]
           }
@@ -5447,6 +5463,18 @@
         "publisher": "Invariant",
         "url": "https://invariant-ai.com/blog/utility-grade-power-study",
         "linkLabel": "Read the power study method"
+      },
+      {
+        "id": "gridunity",
+        "title": "GridInterConnect for Large Load",
+        "url": "https://www.gridunity.com/gridinterconnect-for-large-load",
+        "publisher": "GridUnity"
+      },
+      {
+        "id": "transect",
+        "title": "Site reports, buildable area and permit matrix",
+        "url": "https://support.transect.com/assessing-sites-in-reports",
+        "publisher": "Transect"
       }
     ],
     "dataset": {
@@ -5469,7 +5497,8 @@
       "data-center-site-selection-checklist",
       "utility-will-serve-letter-load-study-esa",
       "utility-grade-power-study"
-    ]
+    ],
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "electric-utility-lookup-by-address",
@@ -18125,6 +18154,11 @@
                 "Check three known deals in your submarket and confirm which fields you can export. Ask for API or bulk-feed terms when the workflow needs recurring delivery."
               ],
               [
+                "Track market transactions and capital flows",
+                "MSCI Real Capital Analytics for commercial deal pricing, volume and ownership changes.",
+                "Use a transfer involving several buildings. Ask which amount covers the deal and whether a separate price was allocated to the property under review."
+              ],
+              [
                 "Trace public documents and federal leases",
                 "Use a local recorder such as NYC ACRIS, the GSA lease inventory, and SEC EDGAR filings when public companies disclose lease terms.",
                 "Retain the original reference, source date and amount definition. Review the missing or redacted terms before underwriting."
@@ -18146,6 +18180,9 @@
                 "costar-brokers",
                 "crexi-comps",
                 "crexi-export"
+              ],
+              [
+                "msci-rca"
               ],
               [
                 "acris-master",
@@ -18638,6 +18675,12 @@
         "url": "https://learn.crexi.com/how-to-export-comps-property-records-crexi-help-center",
         "publisher": "Crexi",
         "linkLabel": "Crexi export documentation"
+      },
+      {
+        "id": "msci-rca",
+        "title": "Commercial transactions, financing and ownership data",
+        "url": "https://www.msci.com/data-and-analytics/real-estate/real-capital-analytics",
+        "publisher": "MSCI Real Capital Analytics"
       }
     ],
     "relatedSlugs": [
@@ -18661,7 +18704,7 @@
         "sec-exhibit"
       ]
     },
-    "updatedDate": "2026-11-24"
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "hospital-school-fire-service-area-data",
@@ -21003,6 +21046,13 @@
             ]
           },
           {
+            "type": "paragraph",
+            "text": "Lens by Upstream Tech supports remote monitoring and imagery comparisons across fields. For a crop-history trial, put its selected images next to the annual crop labels for the same boundary. Keep the image collection date and field coverage so another reviewer can distinguish a planting change from a different point in the growing season.",
+            "sourceIds": [
+              "lens"
+            ]
+          },
+          {
             "type": "links",
             "items": [
               {
@@ -21166,6 +21216,12 @@
         "url": "https://api.invariant-ai.com/v1/meta/fields",
         "publisher": "Invariant Earth",
         "linkLabel": "Invariant Earth field catalog"
+      },
+      {
+        "id": "lens",
+        "title": "Remote monitoring and imagery for land portfolios",
+        "url": "https://lens.tech/",
+        "publisher": "Lens by Upstream Tech"
       }
     ],
     "dataset": {
@@ -21187,7 +21243,8 @@
       "lidar-slope-developable-land",
       "wetlands-hydric-soils-land-development",
       "historical-parcel-boundaries-api"
-    ]
+    ],
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "lidar-slope-developable-land",
@@ -26126,6 +26183,11 @@
                 "For a roofing match, can you return the source permit and distinguish the issue date from the date inspections were completed?"
               ],
               [
+                "PermitFlow",
+                "Manage active permit applications, agency follow-ups and inspections from submission through closeout.",
+                "Ask which milestones carry an agency-issued ID and source document. For prior permits, request the underlying jurisdiction’s history for the same property."
+              ],
+              [
                 "Issuing agency",
                 "Look up the work permit, filing and applicable inspection or closeout record.",
                 "Which local systems and work types are covered, and what history does each system expose?"
@@ -26148,6 +26210,9 @@
               ],
               [
                 "permitstack"
+              ],
+              [
+                "permitflow"
               ],
               [
                 "nyc-systems",
@@ -26680,6 +26745,12 @@
         "title": "2024 New York State orthoimagery",
         "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer",
         "publisher": "NYS ITS Geospatial Services"
+      },
+      {
+        "id": "permitflow",
+        "title": "Permit research, submission, coordination and inspections",
+        "url": "https://www.permitflow.com/",
+        "publisher": "PermitFlow"
       }
     ],
     "dataset": {
@@ -26754,7 +26825,7 @@
     "title": "Zoning data APIs for U.S. parcels and site selection",
     "description": "Compare zoning APIs and city GIS. Use NYC parcel tests to see how a lookup handles split zoning and a commercial overlay that covers part of a lot.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "readMinutes": 7,
     "region": "United States",
     "coverAlt": "Aerial map of 2239 Forest Avenue in Staten Island. Five colored areas show the share of the tax lot in each base zoning district. The published point falls in C8-1.",
@@ -26810,6 +26881,16 @@
                 "Review the matched assessor parcel number. The published catalog allows a nearest-parcel fallback for parcel matching. Use the city district geometry to test the whole tract."
               ],
               [
+                "Land Use Labs",
+                "Address or coordinate lookups for base and overlay districts, with standardized land use and development rules in covered areas.",
+                "Submit a point inside the overlay and another outside it. Save both sets of results and verify precedence and effective dates in the local code."
+              ],
+              [
+                "LightBox",
+                "Standardized zoning and development controls by address, parcel identifier or spatial geometry where covered.",
+                "Run both the parcel-ID lookup and a geometry query. Compare the returned district IDs, allowed-use fields and source dates against the city map."
+              ],
+              [
                 "Municipal GIS and code",
                 "Local tax maps, district polygons, overlays and the adopted map and ordinance. Format and update process depend on the jurisdiction.",
                 "Confirm map and ordinance dates independently. Ask the authority which zoning lot and approvals apply to your plan."
@@ -26828,6 +26909,12 @@
               ],
               [
                 "invariant"
+              ],
+              [
+                "land-use-labs"
+              ],
+              [
+                "lightbox-zoning"
               ],
               [
                 "mappluto",
@@ -27154,6 +27241,18 @@
         "publisher": "U.S. Geological Survey",
         "title": "The National Map NAIP Plus aerial imagery service",
         "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer"
+      },
+      {
+        "id": "land-use-labs",
+        "title": "Zoning API and coverage",
+        "url": "https://www.landuselabs.com/zoningapi",
+        "publisher": "Land Use Labs"
+      },
+      {
+        "id": "lightbox-zoning",
+        "title": "Zoning API overview and supported lookups",
+        "url": "https://developer.lightboxre.com/apis/zoning",
+        "publisher": "LightBox"
       }
     ],
     "additionalDatasets": [
@@ -29025,7 +29124,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Invariant makes Invariant Earth. This comparison uses public product documentation and published evidence. Run both APIs on the same properties to verify coverage for your account."
+            "text": "Invariant makes Invariant Earth. This comparison uses public product documentation and published evidence. Use the same properties across APIs and map-based tools to verify coverage and exports for your account."
           },
           {
             "type": "table",
@@ -29055,6 +29154,16 @@
                 "West Kite",
                 "Commercial property research and a report using the parcel outline for flood and wetland area.",
                 "Check the property match and whether each layer is published for the county. The documented response identifies fields that could not be answered."
+              ],
+              [
+                "Acres Intelligence",
+                "Map-based land diligence with comparable sales, flood and terrain layers, and property reports.",
+                "Use the same waterfront tax lot. Record the layer date and whether the report provides geometry you can intersect or a map you inspect visually."
+              ],
+              [
+                "Land id",
+                "Interactive parcel, ownership and terrain overlays with current aerial and historical topographic basemaps.",
+                "On a recently changed parcel, pin the aerial collection date and the assessor boundary vintage separately. Check which records are available in an export."
               ]
             ],
             "rowSourceIds": [
@@ -29071,6 +29180,12 @@
               ],
               [
                 "west-kite"
+              ],
+              [
+                "acres"
+              ],
+              [
+                "land-id"
               ]
             ]
           }
@@ -29353,6 +29468,18 @@
         "publisher": "Invariant",
         "title": "Brooklyn Army Terminal flood overlay and source queries",
         "url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection#brooklyn-parcel-test"
+      },
+      {
+        "id": "acres",
+        "title": "Land analysis, comparable sales and property reports",
+        "url": "https://www.acres.com/solutions/analyze-land",
+        "publisher": "Acres Intelligence"
+      },
+      {
+        "id": "land-id",
+        "title": "Basemaps and property data overlays",
+        "url": "https://id.land/product/basemap-overlays",
+        "publisher": "Land id"
       }
     ],
     "dataset": {
@@ -31570,6 +31697,11 @@
               ["Invariant Earth", "Screening known sites with parcel, terrain, hazard and infrastructure fields, with source links, vintages and status.", "Run the same inputs through Fetch and Enrich. Check the parcel match near a boundary and retain the source and date for each field."],
               ["Esri ArcGIS Location Platform", "Geocoding, basemaps, routing, and publishing spatial layers.", "Check how geocodes resolve on large campuses. Confirm that the plan supports storing geocodes and serving your own data layers."],
               ["CARTO", "Spatial analysis in a cloud data warehouse, with datasets available through the Data Observatory.", "Ask for the parcel and zoning datasets needed in your counties. Check the licensed fields and update dates, then rerun the polygon query in your warehouse."],
+              [
+                "Google Earth Engine",
+                "Geospatial processing across image collections and vector assets, with JavaScript, Python and REST interfaces.",
+                "Bring the same parcel polygon and select a named image collection and date range. Record the projection and scale used for an area statistic, then verify what the export preserves."
+              ],
               ["Regrid", "Parcel boundaries, APN lookups and searches by GeoJSON geometry.", "Test a recent split and a narrow polygon that crosses parcel boundaries. Check county refresh dates for the fields you need."],
               ["GetParcelData", "Parcel searches by point, radius or WKT polygon.", "Check whether partial overlaps qualify and whether pagination returns every match. Confirm data vintage for the counties in scope."],
               ["Parceled", "Parcel lookups, hosted parcel tiles and linked assessor, permit and zoning fields.", "Check parcel and permit coverage separately for each county. Test a parcel whose permit history you can verify."],
@@ -31580,7 +31712,49 @@
               ["PVcase Prospect", "Map-based site screening, with withdrawal capacity studies for data center loads.", "Check which connection, load case, and study year the capacity layer represents. Verify the site and power questions that still need utility evidence."],
               ["Ageospatial", "Property and infrastructure intelligence for insurance and credit workflows.", "Give it a schedule with multiple buildings at one address. Inspect the evidence behind the building match and risk inputs."]
             ],
-            "rowSourceIds": [["invariant-fields", "invariant-responses"], ["esri"], ["carto"], ["regrid", "regrid-id"], ["getparceldata"], ["parceled"], ["west-kite"], ["mireye"], ["geoforge"], ["paces"], ["pvcase"], ["ageospatial"]]
+            "rowSourceIds": [
+              [
+                "invariant-fields",
+                "invariant-responses"
+              ],
+              [
+                "esri"
+              ],
+              [
+                "carto"
+              ],
+              [
+                "earth-engine"
+              ],
+              [
+                "regrid",
+                "regrid-id"
+              ],
+              [
+                "getparceldata"
+              ],
+              [
+                "parceled"
+              ],
+              [
+                "west-kite"
+              ],
+              [
+                "mireye"
+              ],
+              [
+                "geoforge"
+              ],
+              [
+                "paces"
+              ],
+              [
+                "pvcase"
+              ],
+              [
+                "ageospatial"
+              ]
+            ]
           }
         ]
       },
@@ -31795,7 +31969,13 @@
       {"id": "mappluto", "title": "MapPLUTO tax lot geometry and attributes", "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0", "publisher": "NYC Department of City Planning"},
       {"id": "fema", "title": "National Flood Hazard Layer 28, flood hazard zones", "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28", "publisher": "FEMA"},
       {"id": "imagery", "title": "Spring 2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"},
-      {"id": "power-study", "title": "How a utility-grade power study evaluates a proposed connection", "url": "https://invariant-ai.com/blog/utility-grade-power-study", "publisher": "Invariant"}
+      {"id": "power-study", "title": "How a utility-grade power study evaluates a proposed connection", "url": "https://invariant-ai.com/blog/utility-grade-power-study", "publisher": "Invariant"},
+      {
+        "id": "earth-engine",
+        "title": "Geospatial processing and REST API",
+        "url": "https://developers.google.com/earth-engine/reference/rest",
+        "publisher": "Google Earth Engine"
+      }
     ],
     "relatedSlugs": ["gis-mcp-servers-for-site-selection", "data-center-site-selection-checklist", "utility-grade-power-study"]
   },
@@ -33526,6 +33706,16 @@
                 "Cherre",
                 "A real estate data integration platform. Its Data Fabric links sources for deeds, valuations, tax, boundaries, liens and mortgages.",
                 "Load the same collateral schedule and recorder documents. Check whether you can retain the recording number, original date and unresolved matches when the credit file is refreshed."
+              ],
+              [
+                "Moody’s CRE",
+                "Property and market analytics for credit assessment, lending workflows and portfolio monitoring.",
+                "Use a sample with two buildings and one loan. Compare the attached assets, reporting dates and financial period before relying on a portfolio rollup."
+              ],
+              [
+                "MSCI Real Capital Analytics",
+                "Commercial transaction, ownership and financing data for investors and lenders.",
+                "Send a multi-asset mortgage and ask how the provider distinguishes the debt instrument, transaction and collateral. Check the source date and any property-level allocation."
               ]
             ],
             "rowSourceIds": [
@@ -33552,6 +33742,12 @@
               ],
               [
                 "cherre-data-fabric"
+              ],
+              [
+                "moodys-cre"
+              ],
+              [
+                "msci-rca"
               ]
             ]
           }
@@ -34129,6 +34325,18 @@
         "title": "Cherre Data Fabric and entity resolution",
         "publisher": "Cherre",
         "url": "https://cherre.com/platform/"
+      },
+      {
+        "id": "moodys-cre",
+        "title": "Property, market, lending and portfolio workflows",
+        "url": "https://www.moodys.com/web/en/us/capabilities/commercial-properties.html",
+        "publisher": "Moody’s CRE"
+      },
+      {
+        "id": "msci-rca",
+        "title": "Commercial transactions, financing and ownership data",
+        "url": "https://www.msci.com/data-and-analytics/real-estate/real-capital-analytics",
+        "publisher": "MSCI Real Capital Analytics"
       }
     ],
     "relatedSlugs": [
@@ -34337,6 +34545,11 @@
                 "Keep the depth reference, time horizon and scenario with the returned value. Confirm which structure or point the model used."
               ],
               [
+                "Jupiter Intelligence",
+                "Portfolio physical climate risk and finer-resolution flood models for asset review.",
+                "Compare two buildings on the same parcel. Ask which resolution, scenario and time horizon the results use, then retain the relevant FEMA panel separately."
+              ],
+              [
                 "Guidewire HazardHub",
                 "Flood data alongside other property risk and peril information for underwriting.",
                 "Ask for the source and method behind each flood field used in the underwriting decision."
@@ -34369,6 +34582,9 @@
               ],
               [
                 "first-street"
+              ],
+              [
+                "jupiter"
               ],
               [
                 "hazardhub"
@@ -34725,6 +34941,12 @@
         "publisher": "Invariant Earth API",
         "url": "https://docs.invariant-ai.com/check-flood-zone-by-address",
         "linkLabel": "Run the flood zone workflow"
+      },
+      {
+        "id": "jupiter",
+        "title": "Physical risk for portfolios and individual assets",
+        "url": "https://www.jupiterintel.com/solutions/portfolio-asset-management",
+        "publisher": "Jupiter Intelligence"
       }
     ],
     "dataset": {
@@ -36927,6 +37149,15 @@
           },
           {
             "type": "paragraph",
+            "text": "Transect lets you run a tract-level constraints report with custom exclusions. Enverus combines suitable-land analytics and project tracking, and Pearl Street Technologies offers interconnection scenario analysis through Interconnect. Give all three the same fenced layout and planned export. Ask for the acreage exclusions, queue record or modeled connection each product supplies. Keep the source dates and ownership of the remaining verification work in the same project file.",
+            "sourceIds": [
+              "transect",
+              "enverus",
+              "pearl-street"
+            ]
+          },
+          {
+            "type": "paragraph",
             "text": "Invariant Earth publishes fields for elevation, slope, wetland and flood indicators, and distance to transmission lines and substations. Use point fields to enrich a search, then use the tract and layout polygons to calculate buildable acreage. When evaluating an API, ask for the original source and geometry, the units, and the behavior when data is missing. Invariant publishes this guide. We checked the listed capabilities against public documentation.",
             "sourceIds": ["invariant-fields", "invariant-responses"]
           },
@@ -36989,7 +37220,25 @@
       {"id": "pjm-uprate-ii", "title": "AH1-580 study, Phase II, June 3, 2026", "url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_2/AH1-580/AH1-580_imp_PHASE_2.htm#cost-summary", "publisher": "PJM Interconnection"},
       {"id": "geoforge", "title": "Example power screening report", "url": "https://geoforge.ai/report/power", "publisher": "Geoforge"},
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
-      {"id": "invariant-responses", "title": "Earth API responses and provenance", "url": "https://docs.invariant-ai.com/responses", "publisher": "Invariant"}
+      {"id": "invariant-responses", "title": "Earth API responses and provenance", "url": "https://docs.invariant-ai.com/responses", "publisher": "Invariant"},
+      {
+        "id": "transect",
+        "title": "Site reports, buildable area and permit matrix",
+        "url": "https://support.transect.com/assessing-sites-in-reports",
+        "publisher": "Transect"
+      },
+      {
+        "id": "enverus",
+        "title": "Power project tracking and suitable land analytics",
+        "url": "https://www.enverus.com/products/power-project-tracking/",
+        "publisher": "Enverus"
+      },
+      {
+        "id": "pearl-street",
+        "title": "SUGAR and Interconnect for grid studies",
+        "url": "https://pearlstreettechnologies.com/",
+        "publisher": "Pearl Street Technologies"
+      }
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "utility-grade-power-study", "power-evidence-data-center-site-verification", "interconnection-queue-data"]
   },
@@ -37208,11 +37457,40 @@
                 "Which businesses changed at a location?",
                 "Data Axle’s Business Database supports geographic search, place records and change notifications.",
                 "Track a known tenant change at a shared address. Check which record marks the old operator out of business and when the change first became visible."
+              ],
+              [
+                "How much demand could a new store draw from existing locations?",
+                "Kalibrate Location Intelligence for trade areas, sales forecasts and overlap with existing stores.",
+                "Freeze the proposed and existing store locations, then inspect the trade area definition and historical validation before comparing sales forecasts."
               ]
             ],
             "rowSourceIds": [
-              ["invariant-fields"],["esri-routing", "census"], ["placer-area", "placer-glossary"], ["fsq", "fsq-releases", "safegraph-open-close"], ["nyc-dot", "mta-monthly"],
-              ["data-axle-places"]
+              [
+                "invariant-fields"
+              ],
+              [
+                "esri-routing",
+                "census"
+              ],
+              [
+                "placer-area",
+                "placer-glossary"
+              ],
+              [
+                "fsq",
+                "fsq-releases",
+                "safegraph-open-close"
+              ],
+              [
+                "nyc-dot",
+                "mta-monthly"
+              ],
+              [
+                "data-axle-places"
+              ],
+              [
+                "kalibrate"
+              ]
             ]
           },
           {
@@ -37455,6 +37733,12 @@
         "title": "Data Axle Business Database APIs and data plans",
         "publisher": "Data Axle",
         "url": "https://www.data-axle.com/data-solutions/apis/"
+      },
+      {
+        "id": "kalibrate",
+        "title": "Site selection, trade areas and sales forecasting",
+        "url": "https://kalibrate.com/kalibrate-location-intelligence-software/site-selection/",
+        "publisher": "Kalibrate"
       }
     ],
     "additionalDatasets": [
@@ -38318,7 +38602,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Use the comparison to choose a starting point for procurement. It describes what each provider publishes about its tools as of November 22, 2026. Invariant publishes this guide. The South Carolina example comes from the public docket. It is independent of the provider descriptions."
+            "text": "Use the comparison to choose a starting point for procurement. It describes what each provider publishes about its tools as of November 25, 2026. Invariant publishes this guide. The South Carolina example comes from the public docket. It is independent of the provider descriptions."
           },
           {
             "type": "table",
@@ -38358,6 +38642,11 @@
                 "Mireye",
                 "Cited location and infrastructure data, including substations, transmission voltage classes and site screening bundles.",
                 "Use it to identify nearby candidates and inspect sources. Ask separately for evidence behind any MW figure or service date you intend to carry into underwriting."
+              ],
+              [
+                "GridUnity",
+                "Utility and transmission operator workflows for large-load intake, queue status, study milestones and service commitments.",
+                "Ask whether the serving utility uses the platform and who supplied each milestone. For the shortlisted connection, request the linked study and the latest accepted load ramp."
               ]
             ],
             "rowSourceIds": [
@@ -38381,6 +38670,9 @@
               ],
               [
                 "mireye"
+              ],
+              [
+                "gridunity"
               ]
             ]
           },
@@ -38533,7 +38825,13 @@
       {"id": "aiken-application", "title": "Central application, docket 2024-61-E, proposed demand", "url": "https://dms.psc.sc.gov/Attachments/Matter/22620ad8-27bf-451b-8cea-29459466abaa#page=4", "publisher": "South Carolina PSC docket"},
       {"id": "aiken-order", "title": "Order 2024-498, approved transmission scope", "url": "https://dms.psc.sc.gov/Attachments/Order/f3daf477-c6ef-432a-bcaf-3893bcd510ca#page=9", "publisher": "South Carolina Public Service Commission"},
       {"id": "aiken-options", "title": "Order 2024-498, evidence on connection alternatives", "url": "https://dms.psc.sc.gov/Attachments/Order/f3daf477-c6ef-432a-bcaf-3893bcd510ca#page=22", "publisher": "South Carolina Public Service Commission"},
-      {"id": "aiken-status", "title": "April 2, 2026 Aiken transmission project status report", "url": "https://dms.psc.sc.gov/Attachments/Matters/7b7241a9-d728-45d6-b6a9-fc1f30c0b1bf.pdf", "publisher": "Santee Cooper"}
+      {"id": "aiken-status", "title": "April 2, 2026 Aiken transmission project status report", "url": "https://dms.psc.sc.gov/Attachments/Matters/7b7241a9-d728-45d6-b6a9-fc1f30c0b1bf.pdf", "publisher": "Santee Cooper"},
+      {
+        "id": "gridunity",
+        "title": "GridInterConnect for Large Load",
+        "url": "https://www.gridunity.com/gridinterconnect-for-large-load",
+        "publisher": "GridUnity"
+      }
     ],
     "relatedSlugs": ["200-mw-data-center-site", "utility-grade-power-study", "power-evidence-data-center-site-verification"]
   },
@@ -44421,6 +44719,11 @@
                 "Check the input coordinate and source. Ask how the response distinguishes an empty search from unavailable coverage."
               ],
               [
+                "Transect",
+                "Development feasibility reports that bring together buildable area, water features, species constraints and permitting requirements.",
+                "Upload the same tract and buffer. Ask which polygons came from a published layer, which reflect proprietary modeling, and which findings need field verification."
+              ],
+              [
                 "LightBox EDR",
                 "Order environmental data packages designed for transaction screens and Phase I workflows, depending on the package.",
                 "Review the included historical sources and coverage for the subject property with your environmental professional."
@@ -44442,6 +44745,9 @@
               ],
               [
                 "mireye"
+              ],
+              [
+                "transect"
               ],
               [
                 "lightbox-edr"
@@ -44696,6 +45002,12 @@
         "publisher": "U.S. Environmental Protection Agency",
         "title": "All Appropriate Inquiries activities and environmental professional requirements",
         "url": "https://www.epa.gov/brownfields/brownfields-all-appropriate-inquiries"
+      },
+      {
+        "id": "transect",
+        "title": "Site reports, buildable area and permit matrix",
+        "url": "https://support.transect.com/assessing-sites-in-reports",
+        "publisher": "Transect"
       }
     ],
     "dataset": {
@@ -44715,7 +45027,8 @@
       "industrial-environmental-permit-history-by-parcel",
       "mireye-alternatives-for-property-screening",
       "data-center-environmental-site-screening"
-    ]
+    ],
+    "updatedDate": "2026-11-25"
   },
   {
     "slug": "property-data-as-of-date",
