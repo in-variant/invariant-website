@@ -1,0 +1,160 @@
+{
+  "name": "Dakota County 2026 spring axle limits for three county roads",
+  "version": "1.0.0",
+  "guide_url": "https://invariant-ai.com/blog/minnesota-spring-load-restrictions#dakota-county-truck-weight-examples",
+  "jurisdiction": "Dakota County, Minnesota, United States",
+  "scope": "Eight historical county table rows for three roads, with label text retained. Geography, travel direction, ramp connections and bridge, axle-group or gross limits were not inferred. Check current postings, the road authority and vehicle-specific requirements before travel.",
+  "source_snapshots": [
+    {
+      "source_id": "dakota-table",
+      "url": "https://dakotacountymn.gov/content/dam/site/main/documents/transportation/SpringLoadRestrictionsTable.pdf",
+      "sha256": "c683db866c38ffa4047c9380aede2571d0b5ec2744eeb28e9f24b7e56e21cd08",
+      "checked_date": "2026-11-26"
+    },
+    {
+      "source_id": "dakota-dates",
+      "url": "https://dakotacountymn.gov/residents/transportation/road-policies/spring-load-restrictions",
+      "sha256": "43885be389e9f00fdb806d4a94bf424e2900e11b9948df12cd59ba8ac6e1b3bf",
+      "checked_date": "2026-11-26"
+    },
+    {
+      "source_id": "mndot-dates",
+      "url": "https://www.dot.state.mn.us/loadlimits/index.html",
+      "sha256": "353c2ce95dec740dd7bc3f636a2ba18ac8ca8811a2eca2114dd35e9f7fc896e1",
+      "checked_date": "2026-11-26"
+    }
+  ],
+  "county_restriction_window": {
+    "starts_at_inclusive": "2026-03-03T00:01:00-06:00",
+    "ends_at_exclusive": "2026-04-20T00:01:00-05:00",
+    "time_zone": "America/Chicago",
+    "source_id": "dakota-dates"
+  },
+  "selected_segments": [
+    {
+      "segment_id": "cr-70-1",
+      "county_road_number": 70,
+      "first_endpoint_as_published": "I-35W",
+      "second_endpoint_as_published": "Scott County Line",
+      "spring_limit_us_short_tons_per_axle": 9,
+      "spring_limit_lb_per_axle": 18000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-70-2",
+      "county_road_number": 70,
+      "first_endpoint_as_published": "I-35W",
+      "second_endpoint_as_published": "CR 23",
+      "spring_limit_us_short_tons_per_axle": 10,
+      "spring_limit_lb_per_axle": 20000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-71-3",
+      "county_road_number": 71,
+      "first_endpoint_as_published": "CR 42",
+      "second_endpoint_as_published": "0.75 miles south of 117th Street",
+      "spring_limit_us_short_tons_per_axle": 7,
+      "spring_limit_lb_per_axle": 14000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-71-4",
+      "county_road_number": 71,
+      "first_endpoint_as_published": "0.75 miles south of 117th Street",
+      "second_endpoint_as_published": "CR 32",
+      "spring_limit_us_short_tons_per_axle": 9,
+      "spring_limit_lb_per_axle": 18000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-71-5",
+      "county_road_number": 71,
+      "first_endpoint_as_published": "CR 32",
+      "second_endpoint_as_published": "TH 149",
+      "spring_limit_us_short_tons_per_axle": 7,
+      "spring_limit_lb_per_axle": 14000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-81-6",
+      "county_road_number": 81,
+      "first_endpoint_as_published": "TH 50",
+      "second_endpoint_as_published": "CR 66",
+      "spring_limit_us_short_tons_per_axle": 5,
+      "spring_limit_lb_per_axle": 10000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-81-7",
+      "county_road_number": 81,
+      "first_endpoint_as_published": "CR 66",
+      "second_endpoint_as_published": "¼ mile north",
+      "spring_limit_us_short_tons_per_axle": 9,
+      "spring_limit_lb_per_axle": 18000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    },
+    {
+      "segment_id": "cr-81-8",
+      "county_road_number": 81,
+      "first_endpoint_as_published": "¼ Mile north of CR 66",
+      "second_endpoint_as_published": "CR 46",
+      "spring_limit_us_short_tons_per_axle": 7,
+      "spring_limit_lb_per_axle": 14000,
+      "source_id": "dakota-table",
+      "pdf_page": 2
+    }
+  ],
+  "outside_season_observations": [
+    {
+      "segment_id": "cr-81-6",
+      "reported_limit_us_short_tons_per_axle_after_lift": 7,
+      "reported_limit_lb_per_axle_after_lift": 14000,
+      "source_id": "dakota-dates",
+      "source_locator": "When spring load restrictions are lifted"
+    }
+  ],
+  "source_label_review": {
+    "segment_ids": [
+      "cr-70-1",
+      "cr-70-2"
+    ],
+    "county_table_label": "I-35W",
+    "city_interchange_label": "I-35",
+    "city_source_id": "lakeville-access",
+    "note": "Retained both publisher labels. Obtain a confirmed interchange and road-segment match before assigning geometry."
+  },
+  "illustrative_axle_checks": [
+    {
+      "local_travel_date": "2026-03-31",
+      "assumed_heaviest_single_axle_lb": 17000,
+      "segment_checked": "cr-71-3",
+      "comparison_result": "above_published_single_axle_limit"
+    },
+    {
+      "local_travel_date": "2026-03-31",
+      "assumed_heaviest_single_axle_lb": 17000,
+      "segment_checked": "cr-71-4",
+      "comparison_result": "at_or_below_published_single_axle_limit"
+    },
+    {
+      "local_travel_date": "2026-03-31",
+      "assumed_heaviest_single_axle_lb": 17000,
+      "segment_checked": "cr-71-5",
+      "comparison_result": "above_published_single_axle_limit"
+    }
+  ],
+  "sources": {
+    "dakota-dates": "https://dakotacountymn.gov/residents/transportation/road-policies/spring-load-restrictions",
+    "dakota-table": "https://dakotacountymn.gov/content/dam/site/main/documents/transportation/SpringLoadRestrictionsTable.pdf",
+    "mndot-dates": "https://www.dot.state.mn.us/loadlimits/index.html",
+    "lakeville-access": "https://lakevillemn.gov/194/Location-Advantage"
+  }
+}

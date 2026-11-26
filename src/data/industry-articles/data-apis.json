@@ -1,5 +1,319 @@
 [
   {
+    "slug": "minnesota-spring-load-restrictions",
+    "topic": "Data & APIs",
+    "region": "Minnesota, United States",
+    "title": "Minnesota Spring Load Restrictions and Truck Route Weight Limits",
+    "description": "Find the current Minnesota spring load restriction map and check axle limits to a loading gate. Replay three county roads from Dakota County’s 2026 records.",
+    "date": "2026-11-26",
+    "readMinutes": 6,
+    "coverAlt": "A tractor-trailer follows a county road past thawing fields and a warehouse.",
+    "coverCaption": "Illustration of a Minnesota freight corridor in spring. Image generated for this guide.",
+    "intro": "Check the weight on each loaded axle against the limits in force along the whole trip, including the road to the loading gate. MnDOT publishes spring load restriction dates and maps for state and federal trunk highways. Use county, city and township records for their roads. In Dakota County’s 2026 table, one stretch of County Road 71 had an 18,000-pound axle limit. The table listed a 14,000-pound limit on the stretches on either side.",
+    "takeaways": [
+      "Check the trip date, the applicable frost zone and the agency that controls each segment.",
+      "Store limits by segment and weight type. A posted single-axle cap answers only one part of a loaded route check.",
+      "Before committing to a warehouse lease or heavy delivery, compare the actual gate approach with the current postings and confirm ambiguous records with the road authority."
+    ],
+    "guideActions": [
+      {
+        "href": "#dakota-county-truck-weight-examples",
+        "label": "See the Dakota County examples"
+      },
+      {
+        "href": "/blog/dakota-county-2026-spring-axle-limits.json",
+        "label": "Download the 2026 comparison",
+        "download": true
+      },
+      {
+        "href": "https://www.dot.state.mn.us/loadlimits/index.html",
+        "label": "Check current MnDOT dates"
+      }
+    ],
+    "sections": [
+      {
+        "id": "current-minnesota-spring-load-map",
+        "heading": "Where to check Minnesota spring load restrictions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Open MnDOT’s start and end dates, then find the road in the seasonal load limit map. The dates are set by frost zone. As a historical example, the 2026 Metro window ran from March 3 at 12:01 a.m. to April 20 at 12:01 a.m. local time. The North zone began March 20 and ended May 15 that year. For a future delivery, use the notice for that trip’s year and confirm the route against current postings.",
+            "sourceIds": [
+              "mndot-dates",
+              "mndot-maps"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For county roads, use the county’s own seasonal table and notices. Check city and township streets with their road authorities. Minnesota Statutes § 169.87 covers seasonal and locally imposed limits. Record a different value for each applicable restriction, including single-axle, axle-group, gross vehicle and bridge limits. For specialized equipment, ask the issuing agency which permits it can issue for the planned dates.",
+            "sourceIds": [
+              "mndot-maps",
+              "dakota-dates",
+              "minnesota-law"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dakota-county-truck-weight-examples",
+        "heading": "What three Dakota County roads show",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We matched eight rows in Dakota County’s 2026 spring table to its published effective dates. The city of Lakeville names County Road 70 and Dodd Boulevard as the location of Interstate South Logistics Park. Treat the county’s corridor limits as one input when comparing sites in that area. A specific industrial entrance adds its own connecting roads and restrictions.",
+            "sourceIds": [
+              "dakota-table",
+              "dakota-dates",
+              "lakeville-report"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Road",
+              "2026 spring limits per axle",
+              "Check before using the record"
+            ],
+            "rows": [
+              [
+                "County Road 70",
+                "9 US tons (18,000 lb) between the interstate reference in the county table and the Scott County line, and 10 US tons (20,000 lb) between that reference and CR 23.",
+                "The county table says I-35W. The city identifies the CR 70 interchange as I-35. Confirm the segment match with the road authority before assigning it to a route."
+              ],
+              [
+                "County Road 71",
+                "7 US tons (14,000 lb) from CR 42 to 0.75 miles south of 117th Street, 9 US tons (18,000 lb) from there to CR 32, and 7 US tons from CR 32 to MN 149.",
+                "The 9-ton record covers the middle stretch. Check the approach from the exact cross street and gate."
+              ],
+              [
+                "County Road 81",
+                "5 US tons (10,000 lb) between MN 50 and CR 66 during the county’s 2026 spring window.",
+                "The county lists 7 US tons (14,000 lb) on that same stretch after the restrictions lift."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dakota-table",
+                "lakeville-access"
+              ],
+              [
+                "dakota-table"
+              ],
+              [
+                "dakota-table",
+                "dakota-dates"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a March 31, 2026 example, take a truck with a 17,000-pound single axle. That axle is below the published limit on the middle stretch of County Road 71 and above the limit on the two neighboring stretches in the table. The point of the comparison is to catch a bad join at a segment boundary. A trip review still needs the other loaded axles, axle spacing, gross weight, full path and conditions at the time of travel.",
+            "sourceIds": [
+              "dakota-table",
+              "dakota-dates"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/dakota-county-2026-spring-axle-limits.json",
+            "format": "JSON",
+            "label": "Download eight county table rows, effective dates and the three axle checks"
+          }
+        ]
+      },
+      {
+        "id": "test-truck-weight-routing-api",
+        "heading": "How to test an API for seasonal weight restrictions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give each vendor the same stop coordinates, loaded axle weights, axle spacing, gross weight and departure window. Ask which of those inputs the endpoint uses for routing and which it uses for estimates. Require the route geometry, warnings and the source date for the restrictions. Include one case where a locally posted limit conflicts with the proposed route."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Tool",
+              "What to verify in a trial"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Use the address and parcel record to establish which property the analysis covers. Confirm the loading gate with the operator, then pass it to the route review."
+              ],
+              [
+                "HERE Routing API v8",
+                "Evaluate section notices, including informational notices for administrative-area restrictions. Ask the vendor to demonstrate coverage and effective dates for the county segment you need."
+              ],
+              [
+                "Trimble Maps",
+                "Check which restrictions the chosen product and profile apply to the planned departure. Inspect any stop warning and verify the final road to the gate."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-parcels"
+              ],
+              [
+                "here"
+              ],
+              [
+                "trimble"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the downloadable records as an offline check for your own data pipeline. For a live routing trial, pick a currently posted road and capture the exact vendor response and road authority record on the same day. The 2026 sample can establish an expected historical result, while a live API requires proof that its data supports that date and local road.",
+            "sourceIds": [
+              "dakota-table",
+              "dakota-dates",
+              "here",
+              "trimble"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Screen a warehouse for truck access and rail service"
+              },
+              {
+                "slug": "truck-routing-apis-nyc-truck-route-restrictions",
+                "label": "Test truck routes against adopted rules and crossing limits"
+              },
+              {
+                "slug": "truck-traffic-counts-by-address",
+                "label": "Find truck counts for the actual road segment"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Where can I find the current Minnesota spring load restriction dates?",
+        "answer": "Use MnDOT’s seasonal load limits page to find the dates for your frost zone and its maps to check the trunk highway. Check the corresponding county, city or township notice for each local approach.",
+        "sourceIds": [
+          "mndot-dates",
+          "mndot-maps"
+        ]
+      },
+      {
+        "question": "What does a 7-ton road restriction mean in Dakota County’s spring table?",
+        "answer": "The Dakota County table reports axle weight. Seven US short tons are 14,000 pounds on a single axle. Confirm axle-group, gross, bridge and any vehicle-specific limits separately.",
+        "sourceIds": [
+          "dakota-table",
+          "minnesota-law"
+        ]
+      },
+      {
+        "question": "When did spring load restrictions end in Dakota County in 2026?",
+        "answer": "Dakota County’s published 2026 spring window ended April 20 at 12:01 a.m. local time. Some county roads have separate limits after the seasonal period.",
+        "sourceIds": [
+          "dakota-dates"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "mndot-dates",
+        "publisher": "Minnesota Department of Transportation",
+        "title": "Seasonal load limit dates by frost zone",
+        "linkLabel": "MnDOT spring load restriction dates",
+        "url": "https://www.dot.state.mn.us/loadlimits/index.html"
+      },
+      {
+        "id": "mndot-maps",
+        "publisher": "Minnesota Department of Transportation",
+        "title": "Seasonal load limit maps and jurisdiction guidance",
+        "linkLabel": "MnDOT restricted road maps",
+        "url": "https://www.dot.state.mn.us/loadlimits/maps.html"
+      },
+      {
+        "id": "dakota-dates",
+        "publisher": "Dakota County Transportation",
+        "title": "2026 restriction dates and year-round county highway limits",
+        "linkLabel": "Dakota County spring and year-round limits",
+        "url": "https://dakotacountymn.gov/residents/transportation/road-policies/spring-load-restrictions"
+      },
+      {
+        "id": "dakota-table",
+        "publisher": "Dakota County Transportation",
+        "title": "2026 Spring Load Restrictions table, page 2",
+        "linkLabel": "Dakota County 2026 axle-weight table",
+        "url": "https://dakotacountymn.gov/content/dam/site/main/documents/transportation/SpringLoadRestrictionsTable.pdf"
+      },
+      {
+        "id": "lakeville-access",
+        "publisher": "City of Lakeville",
+        "title": "Interstate 35 interchange at County Road 70 and Cedar Avenue designation",
+        "linkLabel": "Lakeville’s interchange and road names",
+        "url": "https://lakevillemn.gov/194/Location-Advantage"
+      },
+      {
+        "id": "lakeville-report",
+        "publisher": "City of Lakeville",
+        "title": "2025 Economic Development Annual Report, page 10",
+        "linkLabel": "Lakeville industrial site locations",
+        "url": "https://www.lakevillemn.gov/DocumentCenter/View/18555/2025-Economic-Development-Annual-Report-PDF"
+      },
+      {
+        "id": "minnesota-law",
+        "publisher": "Minnesota Office of the Revisor of Statutes",
+        "title": "Minnesota Statutes 2026 § 169.87, seasonal load restriction and route designation",
+        "linkLabel": "Minnesota seasonal weight statute",
+        "url": "https://www.revisor.mn.gov/statutes/2026/cite/169.87"
+      },
+      {
+        "id": "here",
+        "publisher": "HERE",
+        "title": "Routing API v8 administrative-area-wide restrictions",
+        "linkLabel": "HERE time-dependent restriction notices",
+        "url": "https://docs.here.com/routing/docs/routing-v8-admin-wide-restrictions"
+      },
+      {
+        "id": "trimble",
+        "publisher": "Trimble Maps",
+        "title": "Truck routing profiles, time restrictions and stop warnings",
+        "linkLabel": "Trimble Maps truck-routing documentation",
+        "url": "https://developer.trimblemaps.com/en/features-guide/truck-routing/"
+      },
+      {
+        "id": "earth-parcels",
+        "publisher": "Invariant",
+        "title": "Look up a parcel by address",
+        "linkLabel": "Invariant Earth parcel lookup",
+        "url": "https://docs.invariant-ai.com/lookup-parcel-by-address"
+      }
+    ],
+    "dataset": {
+      "name": "Dakota County 2026 spring axle limits for three county roads",
+      "description": "Eight historical spring axle weight limits from the county’s published table, with record locators, the effective window and three example single-axle checks.",
+      "spatialCoverage": "County Roads 70, 71 and 81, Dakota County, Minnesota, United States",
+      "temporalCoverage": "2026-03-03/2026-04-20",
+      "sourceIds": [
+        "dakota-table",
+        "dakota-dates",
+        "lakeville-access"
+      ],
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/dakota-county-2026-spring-axle-limits-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      }
+    },
+    "relatedSlugs": [
+      "truck-routing-apis-nyc-truck-route-restrictions",
+      "warehouse-site-selection-rail-truck-access",
+      "truck-traffic-counts-by-address",
+      "truck-depot-charging-site-selection"
+    ]
+  },
+  {
     "slug": "protective-safeguards-endorsement",
     "topic": "Data & APIs",
     "region": "United States",
@@ -43883,6 +44197,7 @@
                 "label": "Compare cooler and freezer capacity before a cold storage search"
               },
               {"path": "/data-coverage#transport-and-connectivity", "label": "Review the mapped road and rail fields"},
+              {"slug": "minnesota-spring-load-restrictions", "label": "Check seasonal truck weight limits to your gate"},
               {"slug": "freight-analysis-framework-data", "label": "Compare freight tonnage across distribution markets"},
               {"slug": "site-selection-due-diligence", "label": "Use the site selection due diligence checklist"},
               {"slug": "manufacturing-site-selection-100-buildable-acres", "label": "Check industrial land, rail and utility connections"},
@@ -47268,6 +47583,10 @@
             "type": "links",
             "label": "Continue verifying a logistics site",
             "items": [
+              {
+                "slug": "minnesota-spring-load-restrictions",
+                "label": "Check seasonal axle limits on Minnesota county roads"
+              },
               {
                 "slug": "warehouse-site-selection-rail-truck-access",
                 "label": "Check rail, loading gates and truck access for a warehouse"
