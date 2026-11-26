@@ -1,0 +1,143 @@
+{
+  "name": "Commercial EV charging tariff replay for PG&E BEV-2-S",
+  "published_on": "2026-11-25",
+  "model_period": [
+    "2026-04-01",
+    "2026-05-01"
+  ],
+  "period_end_exclusive": true,
+  "meter_timezone": "America/Los_Angeles",
+  "interval_minutes": 15,
+  "tariff": {
+    "utility": "Pacific Gas and Electric Company",
+    "schedule": "BEV-2-S",
+    "service": "Bundled secondary-voltage service",
+    "sheet_2": "Cal. P.U.C. 61092-E",
+    "effective_on": "2026-03-01",
+    "advice_filing_url": "https://www.pge.com/tariffs/assets/pdf/adviceletter/ELEC_7846-E.pdf",
+    "full_schedule_url": "https://www.pge.com/tariffs/assets/pdf/tariffbook/ELEC_SCHEDS_BEV.pdf",
+    "schedule_sha256": "7e898a78ff52e61b1e01a6b12a74b6a2c505e7ab5cfed9c6251e941cc98a5a52",
+    "energy_usd_per_kwh": {
+      "peak": "0.36977",
+      "off_peak": "0.15654",
+      "super_off_peak": "0.13327"
+    },
+    "subscription_block_kw": 50,
+    "minimum_subscription_kw": 100,
+    "subscription_usd_per_block": "95.56",
+    "overage_usd_per_kw": "3.82",
+    "local_windows": {
+      "peak": [
+        [
+          "16:00",
+          "21:00"
+        ]
+      ],
+      "off_peak": [
+        [
+          "21:00",
+          "09:00"
+        ],
+        [
+          "14:00",
+          "16:00"
+        ]
+      ],
+      "super_off_peak": [
+        [
+          "09:00",
+          "14:00"
+        ]
+      ]
+    }
+  },
+  "assumptions": [
+    "Synthetic interval loads at the utility meter. Each scenario uses 1,200 metered kWh per day for 30 days.",
+    "One EV meter, one April 2026 billing period, outside the grace period. All intervals use the same rate version.",
+    "The profile uses constant AC meter draw inside each charging window and zero outside that window. Charger DC output, losses and vehicle-level scheduling are not modeled separately.",
+    "Subtotal includes bundled time-of-use energy, subscription and any overage. It excludes taxes, individual credits, construction and other site costs."
+  ],
+  "profiles_csv": "/blog/ev-charging-electricity-cost-15-minute-profiles.csv",
+  "scenarios": [
+    {
+      "id": "evening_concurrent",
+      "label": "Concurrent evening charging",
+      "daily_charging_window_local": [
+        "16:00",
+        "18:00"
+      ],
+      "peak_metered_kw": 600,
+      "subscription_kw": 600,
+      "overage_kw": 0,
+      "energy_kwh_by_period": {
+        "peak": "36000",
+        "off_peak": "0",
+        "super_off_peak": "0"
+      },
+      "energy_charge_usd": "13311.72",
+      "subscription_charge_usd": "1146.72",
+      "overage_charge_usd": "0.00",
+      "modeled_charge_subtotal_usd": "14458.44"
+    },
+    {
+      "id": "evening_managed",
+      "label": "Managed evening charging",
+      "daily_charging_window_local": [
+        "16:00",
+        "20:00"
+      ],
+      "peak_metered_kw": 300,
+      "subscription_kw": 300,
+      "overage_kw": 0,
+      "energy_kwh_by_period": {
+        "peak": "36000",
+        "off_peak": "0",
+        "super_off_peak": "0"
+      },
+      "energy_charge_usd": "13311.72",
+      "subscription_charge_usd": "573.36",
+      "overage_charge_usd": "0.00",
+      "modeled_charge_subtotal_usd": "13885.08"
+    },
+    {
+      "id": "midday_managed",
+      "label": "Managed midday charging",
+      "daily_charging_window_local": [
+        "09:00",
+        "13:00"
+      ],
+      "peak_metered_kw": 300,
+      "subscription_kw": 300,
+      "overage_kw": 0,
+      "energy_kwh_by_period": {
+        "peak": "0",
+        "off_peak": "0",
+        "super_off_peak": "36000"
+      },
+      "energy_charge_usd": "4797.72",
+      "subscription_charge_usd": "573.36",
+      "overage_charge_usd": "0.00",
+      "modeled_charge_subtotal_usd": "5371.08"
+    },
+    {
+      "id": "evening_undersubscribed",
+      "label": "Concurrent charging with a 300 kW subscription",
+      "daily_charging_window_local": [
+        "16:00",
+        "18:00"
+      ],
+      "peak_metered_kw": 600,
+      "subscription_kw": 300,
+      "overage_kw": 300,
+      "energy_kwh_by_period": {
+        "peak": "36000",
+        "off_peak": "0",
+        "super_off_peak": "0"
+      },
+      "energy_charge_usd": "13311.72",
+      "subscription_charge_usd": "573.36",
+      "overage_charge_usd": "1146.00",
+      "modeled_charge_subtotal_usd": "15031.08"
+    }
+  ]
+}
