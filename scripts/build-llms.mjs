@@ -40,6 +40,9 @@ const sections = [
   ['Examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,
   ])],
+  ['Commercial property underwriting', [
+    ['Reconcile a statement of values and download the Excel review workbook', `${SITE}/blog/commercial-property-statement-of-values.md`],
+  ]],
   ['Commercial lending', [
     ['Calculate a commercial refinance gap and break-even thresholds', `${SITE}/calculators/commercial-refinance-gap.md`],
     ['Find dated CMBS property financials', `${SITE}/blog/cmbs-dscr-noi-by-property.md`],
