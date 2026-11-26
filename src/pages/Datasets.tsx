@@ -117,21 +117,34 @@ function Datasets({
   const deferredQuery = useDeferredValue(query)
   const terms = useMemo(() => editorialSearchWords(deferredQuery), [deferredQuery])
   const searching = terms.length > 0
-  const { details: searchDetails, pending: searchPending } = useDatasetSearchDetails(searching)
-  const searchIndex = useMemo(() => searching ? buildSearchIndex(searchDetails) : undefined,
-    [searching, searchDetails, buildSearchIndex])
+  const exactDownloads = useMemo(() => {
+    const value = deferredQuery.trim()
+    const location = /^[a-z0-9-]+\.[a-z0-9]+$/i.test(value) ? `/blog/${value}` : value
+    try {
+      const url = new URL(location, SITE_URL)
+      if (url.origin !== SITE_URL || !url.pathname.startsWith('/blog/')) return []
+      const path = url.pathname.toLowerCase()
+      return catalogEntries.filter(({ dataset }) => dataset.downloads.some(file => file.path === path))
+    } catch {
+      return []
+    }
+  }, [catalogEntries, deferredQuery])
+  const searchingText = searching && !exactDownloads.length
+  const { details: searchDetails, pending: searchPending } = useDatasetSearchDetails(searchingText)
+  const searchIndex = useMemo(() => searchingText ? buildSearchIndex(searchDetails) : undefined,
+    [searchingText, searchDetails, buildSearchIndex])
   const isFiltered = Boolean(searching || topic || format)
   const matches = useMemo(() => {
     const candidates = searchIndex
       ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true, longQuestionRanking: true, requireRecordIds: true })
-      : catalogEntries
+      : searching ? exactDownloads : catalogEntries
     if (!topic && !format) return candidates
 
     return candidates.filter(({ topics, dataset }) =>
       (!topic || topics.includes(topic)) &&
       (!format || dataset.downloads.some(file => file.format === format)),
     )
-  }, [searchIndex, terms, topic, format])
+  }, [catalogEntries, exactDownloads, searchIndex, searching, terms, topic, format])
   useLayoutEffect(() => {
     const disclosure = archive.current
     if (!disclosure) return
@@ -377,7 +390,7 @@ function Datasets({
         <div className="dataset-controls">
           <label>
             <span>Search data samples</span>
-            <input ref={searchInput} type="search" placeholder="Search topics, addresses, or record IDs" disabled={!searchReady} value={query}
+            <input ref={searchInput} type="search" placeholder="Topic, address, record ID or filename" disabled={!searchReady} value={query}
               onChange={event => updateFilter('q', event.target.value)} />
           </label>
           <label className="dataset-topic-select">
@@ -400,7 +413,7 @@ function Datasets({
           <div className="dataset-results" aria-busy={query !== deferredQuery || searchPending || undefined}>
             <p role="status">
               {searchPending ? 'Searching research examples…' : `${matches.length} ${isFiltered ? 'matching' : 'published'} research ${matches.length === 1 ? 'example' : 'examples'}`}
-              {searching && searchDetails === null && ' (catalog summaries only)'}
+              {searchingText && searchDetails === null && ' (catalog summaries only)'}
             </p>
             {isFiltered && <div className="dataset-search-actions">
               <button type="button" className="dataset-clear" onClick={clearFilters}>Clear filters</button>

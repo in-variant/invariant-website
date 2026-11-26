@@ -150,7 +150,10 @@ function articleMd(a) {
     out.push(`## ${sectionLink('Questions', page, 'questions')}`, '')
     for (const f of a.faqs) out.push(`### ${f.question}`, '', f.answer + cite(f.sourceIds), '')
   }
-  if (a.sources?.length) out.push(`## ${sectionLink('Sources', page, 'sources')}`, '', ...a.sources.map(s => `- ${s.publisher}: ${citationLink(s.title, s.url)}`), '')
+  if (a.sources?.length) {
+    out.push(`## ${sectionLink('Sources', page, 'sources')}`, '', ...a.sources.map(({ publisher, title, url, license }) =>
+      `- ${publisher}: ${citationLink(title, url)}${license ? ` · ${citationLink('Source license', license)}` : ''}`), '')
+  }
   if (a.relatedSlugs?.length) out.push('## Related', '', ...a.relatedSlugs.map(s => `- [${titles.get(s) ?? s}](${SITE}/blog/${s})`), '')
   if (a.kind === 'site-guide' && a.service) {
     out.push('---', '', `[Prepare a site request](${SITE}/contact?request=site-selection) · [Book a site selection call](${SITE_BOOKING})`, '')

@@ -579,8 +579,9 @@ def verify_dataset_catalog(catalog, pages):
                     f"{dataset['url']} must identify each source by its published title and URL")
             for source in record["sourceDetails"]:
                 if license_url := source.get("license"):
-                    require(license_url in catalog.main_links and license_url in markdown,
-                            f"{dataset['url']} needs a visible link to the original source license")
+                    require(license_url in catalog.main_links and license_url in markdown
+                            and license_url in page.main_links and license_url in article_markdown,
+                            f"{dataset['url']} needs a visible source license in the guide and catalog")
             reuse = record.get("sourceReuse")
             if reuse:
                 reuse_anchor = f"{anchor}-reuse"
