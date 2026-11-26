@@ -331,6 +331,7 @@ const catalogDataset = ({ sources, sourceDetails, ...dataset }) => ({
   ...dataset,
   sourceIndex: catalogSources.push(sourceDetails) - 1,
   sourceCount: sourceDetails.length,
+  sourceLicenses: sourceDetails.flatMap(({ title, license }) => license ? [{ title, license }] : []),
 })
 const catalogArticles = publishedArticles
   .filter(({ dataset, additionalDatasets }) => dataset || additionalDatasets?.length)

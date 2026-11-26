@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
@@ -6,7 +6,7 @@ import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbS
 import { editorialSearchWords, prepareSearch, rankSearch, type ArticleSearchDetails } from '../data/blogSearch'
 import { useDatasetSearchDetails } from '../lib/useArticleSearchDetails'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
-import { loadResearchDatasets } from '../data/resources'
+import { getResearchDatasets, loadDatasetSources, type CatalogDataset, type ResourceDataset } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
 import researchCatalog from '../data/research-dataset-catalog.json'
 import { links as earthLinks } from '../data/earth-product.json'
@@ -14,7 +14,7 @@ import posthog from '../posthog'
 import './Resources.css'
 import './Datasets.css'
 
-const title = 'Physical economy data samples'
+const title = 'Physical economy research datasets'
 const recentSampleCount = 8
 const { url: canonical } = DATA_CATALOG
 const { description, access, siteSearch, underwriting, powerStudy } = researchCatalog
@@ -35,8 +35,8 @@ const catalog = {
   publisher: DATASET_PUBLISHER,
 }
 
-async function prepareCatalog() {
-  const researchDatasets = await loadResearchDatasets()
+function prepareCatalog() {
+  const researchDatasets = getResearchDatasets()
   const featured = featuredResearch.flatMap(study => researchDatasets
     .filter(entry => entry.id === study.slug)
     .map(({ image, srcSet, notesPath, workflow, dataset }) => ({ ...study, image, srcSet, notesPath, workflow, sample: dataset.downloads[0] })),
@@ -65,9 +65,7 @@ async function prepareCatalog() {
       region, topic, ...topics, workflow?.label, featuredQuestions.get(id),
       ...dataset.downloads.map(file => `${file.label} ${file.format}`),
     ].join(' '),
-    details: [searchDetails?.[id]?.headings,
-      ...dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`),
-    ].filter(Boolean).join('\n'),
+    details: searchDetails?.[id]?.headings,
     bodyTerms: searchDetails?.[id]?.bodyTerms,
   }))
 
@@ -95,9 +93,46 @@ async function prepareCatalog() {
   }
 }
 
-export async function loadDatasetsPage() {
-  const catalogView = await prepareCatalog()
+export function loadDatasetsPage() {
+  const catalogView = prepareCatalog()
   return { default: () => <Datasets {...catalogView} /> }
+}
+
+function DatasetSources({ dataset, notesPath }: {
+  dataset: CatalogDataset;
+  notesPath: string;
+}) {
+  const [sources, setSources] = useState<ResourceDataset['sourceDetails'] | 'loading' | 'unavailable'>()
+  const activate = useCallback((disclosure: HTMLDetailsElement | null) => {
+    if (!disclosure?.open || sources !== undefined) return
+    setSources('loading')
+    void loadDatasetSources(dataset.sourceIndex)
+      .then(setSources)
+      .catch(() => setSources('unavailable'))
+  }, [dataset.sourceIndex, sources])
+
+  return (
+    <details className="dataset-sources" ref={activate} onToggle={event => activate(event.currentTarget)}>
+      <summary>Source records ({dataset.sourceCount})</summary>
+      {dataset.sourceReuse && <p className="dataset-reuse">{dataset.sourceReuse.note} <a href={dataset.sourceReuse.policyUrl}>{dataset.sourceReuse.policyLabel}</a></p>}
+      {!Array.isArray(sources) && dataset.sourceLicenses.map(({ title, license }) => (
+        <p key={`${title}:${license}`} className="dataset-reuse"><a href={license}>Source license for {title}</a></p>
+      ))}
+      {Array.isArray(sources) ? (
+        <ul>
+          {sources.map(source => (
+            <li key={`${source.url}:${source.title}`}>
+              <a href={source.url}>{source.title}</a>
+              <span>{source.publisher}</span>
+              {source.license && <span><a href={source.license} aria-label={`Source license for ${source.title}`}>Source license</a></span>}
+            </li>
+          ))}
+        </ul>
+      ) : sources === 'loading' ? <p role="status">Loading source records…</p> : (
+        <p><Link to={notesPath.replace(/#.*$/, '#sources')}>Open source records in the study</Link></p>
+      )}
+    </details>
+  )
 }
 
 function Datasets({
@@ -225,19 +260,7 @@ function Datasets({
         </div>
       </div>
       <div className="dataset-row-evidence">
-        <details className="dataset-sources">
-          <summary>Source records ({dataset.sourceDetails.length})</summary>
-          {dataset.sourceReuse && <p className="dataset-reuse">{dataset.sourceReuse.note} <a href={dataset.sourceReuse.policyUrl}>{dataset.sourceReuse.policyLabel}</a></p>}
-          <ul>
-            {dataset.sourceDetails.map(source => (
-              <li key={`${source.url}:${source.title}`}>
-                <a href={source.url}>{source.title}</a>
-                <span>{source.publisher}</span>
-                {source.license && <span><a href={source.license} aria-label={`Source license for ${source.title}`}>Source license</a></span>}
-              </li>
-            ))}
-          </ul>
-        </details>
+        <DatasetSources dataset={dataset} notesPath={notesPath} />
         <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} archivedRelease={dataset.archivedRelease} onDemand />
       </div>
     </article>
@@ -376,6 +399,7 @@ function Datasets({
         <nav className="dataset-topics" aria-label="Dataset topics">
           {topicLinks.map(({ label, count }) => (
             <Link key={label} to={{ search: filterSearch('topic', label), hash: '#dataset-search' }}
+              rel={label ? 'nofollow' : undefined}
               onClick={event => {
                 if (window.location.search === search || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
                 event.preventDefault()

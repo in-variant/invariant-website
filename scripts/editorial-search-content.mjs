@@ -15,6 +15,7 @@ export function datasetSearchDocuments(article) {
   const datasets = [article.dataset, ...(article.additionalDatasets ?? [])].filter(Boolean)
   if (!datasets.length) return []
 
+  const sourcesById = new Map(article.sources.map(source => [source.id, source]))
   const sectionsByAnchor = new Map()
   const ownersBySource = new Map()
   for (const dataset of datasets) {
@@ -38,12 +39,16 @@ export function datasetSearchDocuments(article) {
     if (owners.size === 1) sectionsByAnchor.get([...owners][0])?.push(section)
   }
 
-  return datasets.map(({ anchor }) => {
+  return datasets.map(({ anchor, sourceIds }) => {
     const sections = sectionsByAnchor.get(anchor ?? 'dataset')
     const body = sections.flatMap(section => section.blocks.flatMap(blockSearchText)).join(' ')
+    const sources = sourceIds.map(id => {
+      const { title, publisher, url } = sourcesById.get(id)
+      return `${publisher} ${title} ${new URL(url).hostname}`
+    })
     return {
       slug: anchor ? `${article.slug}-${anchor}` : article.slug,
-      headings: sections.map(section => section.heading).join('\n'),
+      headings: [...sections.map(section => section.heading), ...sources].join('\n'),
       bodyTerms: new Set(articleSearchWords(body)),
     }
   })

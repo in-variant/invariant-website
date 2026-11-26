@@ -38,6 +38,11 @@ test('dataset search terms follow the download or a uniquely cited dataset', () 
     slug: 'permit-api-review',
     dataset: { sourceIds: ['nyc', 'shared'] },
     additionalDatasets: [{ anchor: 'dataset-chicago', sourceIds: ['chicago', 'shared'] }],
+    sources: [
+      { id: 'nyc', title: 'Permit search', publisher: 'NYC DOB', url: 'https://www.nyc.gov/dob' },
+      { id: 'chicago', title: 'Building permits', publisher: 'City of Chicago', url: 'https://data.cityofchicago.org/permits' },
+      { id: 'shared', title: 'Construction records', publisher: 'U.S. Census Bureau', url: 'https://www.census.gov/construction' },
+    ],
     sections: [
       { heading: 'NYC works', blocks: [
         { type: 'table', columns: ['Permit'], rows: [['B01440157']], rowSourceIds: [['nyc']] },
@@ -54,8 +59,8 @@ test('dataset search terms follow the download or a uniquely cited dataset', () 
   const [nyc, chicago] = datasetSearchDocuments(article)
   assert.equal(nyc.slug, 'permit-api-review')
   assert.equal(chicago.slug, 'permit-api-review-dataset-chicago')
-  assert.equal(nyc.headings, 'NYC works')
-  assert.equal(chicago.headings, 'Chicago works')
+  assert.equal(nyc.headings, 'NYC works\nNYC DOB Permit search www.nyc.gov\nU.S. Census Bureau Construction records www.census.gov')
+  assert.equal(chicago.headings, 'Chicago works\nCity of Chicago Building permits data.cityofchicago.org\nU.S. Census Bureau Construction records www.census.gov')
   assert.ok(nyc.bodyTerms.has('b01440157'))
   assert.ok(chicago.bodyTerms.has('101077422'))
   assert.ok(!nyc.bodyTerms.has('101077422') && !chicago.bodyTerms.has('b01440157'))
