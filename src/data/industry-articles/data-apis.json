@@ -9259,7 +9259,8 @@
     "title": "EV Charger Uptime, Availability, and Charge Success Data",
     "description": "Compare EV charger uptime, live port availability and successful charges. Recalculate the California field-test results and see what data to request from a network.",
     "date": "2026-11-24",
-    "readMinutes": 6,
+    "updatedDate": "2026-11-26",
+    "readMinutes": 7,
     "coverAlt": "California DC fast charging field tests. There were 1,610 successful charges across 1,754 plug-in tests, or 91.8 percent. Among the 1,712 operational ports tested, that was 94.0 percent.",
     "coverCaption": "The same 1,610 successful charges produce two results depending on which tests are included. CEC staff report CEC-600-2026-034 and Appendix B.",
     "intro": "Use live port status to see whether a compatible charger is free now. Use a dated port history to measure uptime, and session results to see whether attempts succeed. Those feeds answer different questions. In a recent California field study, 1,610 fast-charge tests succeeded. That is 94.0% of plug-in tests at operational ports and 91.8% of all fast-charge plug-in tests in the sample.",
@@ -9381,6 +9382,11 @@
             "sourceIds": [
               "cec-report"
             ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The first assigned payment method failed in 17.7% of the study’s attempts. The reported rates were 34.4% for credit or debit cards, 2.3% for plug-in payment and 14.0% for other methods. Testers could try another method after a failure, and one closed-network provider dominated the plug-in payment sample. For a fleet, test the actual payment method and account before using those results to judge a stop.",
+            "sourceIds": ["cec-report"]
           }
         ]
       },
@@ -29405,10 +29411,10 @@
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
-    "description": "Compare EV charging APIs for station locations and live port availability. Verify port counts, shared power, uptime and successful charging.",
+    "description": "Compare EV charging APIs for station locations and live port availability. Verify port counts, shared power and which Ohio NEVI stations are open.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-26",
-    "readMinutes": 12,
+    "readMinutes": 10,
     "region": "United States",
     "coverAlt": "Aerial map of the I-70 and U.S. Route 42 interchange near London, Ohio, with Pilot 454 and TA London marked.",
     "coverCaption": "I-70 Exit 79 near London, Ohio. Pins use AFDC station coordinates. Aerial imagery from USGS, USDA and The National Map.",
@@ -29750,67 +29756,26 @@
       },
       {
         "id": "ev-charger-uptime-versus-successful-charging",
-        "heading": "How does EV charger uptime differ from a successful charge?",
+        "heading": "What can a charging availability API tell you?",
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Use a live feed to decide whether a compatible port appears free now. For a fleet contract or site review, ask for three separate records. You need recent port status, uptime calculated over the contract period, and the share of visits that result in a successful charge. Confirm which visits and outages each measure includes."
+            "text": "Use live port status for routing. For procurement, ask for session outcomes and the dated outage log. Compare them by stable port ID. The California field tests show how operating status, access and payment can affect a charge attempt."
           },
           {
-            "type": "paragraph",
-            "text": "California Energy Commission staff analyzed 3,571 plug-in tests and observations of another 12,586 charging ports from January 2024 to February 2026. Their November 2026 report gives two field measures. The operational rate describes conditions when testers visited. The success rate measures charging among ports the study judged operational.",
-            "sourceIds": [
-              "cec-ev-field-tests",
-              "cec-ev-field-publication"
-            ]
-          },
-          {
-            "type": "table",
-            "columns": [
-              "CEC field measure",
-              "Level 2",
-              "DC fast charging",
-              "What it measures"
-            ],
-            "rows": [
-              [
-                "Operational at the time of testing",
-                "96.2%",
-                "96.4%",
-                "Plug-in tests and observations. The study weighted certain observational results."
-              ],
-              [
-                "Successful charge attempt rate (SCAR)",
-                "93.1%",
-                "94.0%",
-                "Plug-in tests where the port was otherwise operational."
-              ]
-            ],
-            "stackOnMobile": true,
-            "sourceIds": [
-              "cec-ev-field-tests"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Testers could try another payment method after the first failed. Across the study, 17.7% of initial payment attempts failed. The study also excluded inaccessible ports from the two reliability measures. Testers were unable to access 615 of the 8,320 fast-charging ports they attempted to reach. For a fleet stop, test the payment method, vehicle and access route your drivers will actually use.",
-            "sourceIds": [
-              "cec-ev-field-tests"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "For covered projects, the federal rule requires each port to exceed 97% average annual uptime. Operators calculate it monthly for the preceding 12 months, with specified outage exclusions. California’s reporting rules cover qualifying publicly or ratepayer funded DC fast chargers and have their own scope and exclusions. Use the applicable per-port outage log for compliance and the field measures to assess driver experience.",
-            "sourceIds": [
-              "federal-charging-uptime",
-              "cec-ev-uptime-reporting"
+            "type": "links",
+            "items": [
+              {
+                "path": "/blog/ev-charger-uptime-data#california-field-test-results",
+                "label": "Compare uptime, successful charges and payment failures in the California field tests"
+              }
             ]
           },
           {
             "type": "download",
             "path": "/blog/california-ev-charger-field-test-reliability.json",
             "format": "JSON",
-            "label": "Download the California field test results and metric definitions",
+            "label": "Download the California field test summary",
             "datasetAnchor": "dataset-california-ev-field-test-reliability"
           }
         ]
@@ -29849,14 +29814,6 @@
       }
     ],
     "faqs": [
-      {
-        "question": "Does 97% EV charger uptime mean 97% of drivers can charge?",
-        "answer": "Uptime measures the credited operating time of a port over the applicable period. A successful charge rate measures sessions within its own trial or reporting population, and can reflect payment and vehicle communication failures. Ask for the denominator and exclusion rules behind each figure.",
-        "sourceIds": [
-          "federal-charging-uptime",
-          "cec-ev-field-tests"
-        ]
-      },
       {
         "question": "Does the AFDC API show current EV charger availability?",
         "answer": "The AFDC station status describes the facility. Use the AFDC inventory to find stations and installed ports, then use a live operator or aggregator feed for occupancy.",
@@ -29914,13 +29871,6 @@
         "url": "https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-680/section-680.116",
         "publisher": "Federal Highway Administration via eCFR",
         "linkLabel": "Federal per-port uptime rule"
-      },
-      {
-        "id": "cec-ev-uptime-reporting",
-        "title": "EV charger performance standards and uptime reporting scope",
-        "url": "https://www.energy.ca.gov/programs-and-topics/programs/clean-transportation-program/ev-charger-data-and-reliability-1",
-        "publisher": "California Energy Commission",
-        "linkLabel": "California uptime reporting requirements"
       },
       {
         "id": "earth-workflow",
@@ -39203,15 +39153,6 @@
             "type": "paragraph",
             "text": "A California utility program evaluation documented a truck with 120 kW and 60 kW inlet limits connected to a charger that split its output at 90 kW per port. With both inlets active, the limits imply a combined ceiling of 150 kW. When requesting a matched truck and charger demonstration, ask for a session log with both inlet rates and elapsed charging time under the intended operating conditions.",
             "sourceIds": ["cpuc-truck-inlet"]
-          },
-          {
-            "type": "links",
-            "items": [
-              {
-                "path": "/blog/ev-charging-station-data-apis#ev-charger-uptime-versus-successful-charging",
-                "label": "Check port uptime against payment and charging test results"
-              }
-            ]
           }
         ]
       },
@@ -39234,7 +39175,7 @@
             "items": [
               {"slug":"ev-charging-station-data-apis","label":"Compare charging station inventory and live status APIs"},
               {
-                "slug": "ev-charger-uptime-data",
+                "path": "/blog/ev-charger-uptime-data#california-field-test-results",
                 "label": "Compare public charger uptime with successful plug-in tests"
               },
               {"slug":"truck-depot-charging-site-selection","label":"Screen a depot against its utility service limit"},
