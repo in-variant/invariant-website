@@ -1,5 +1,56 @@
 [
   {
+    "slug": "flood-insurance-claim-history-by-address",
+    "topic": "Data & APIs",
+    "title": "How to check flood insurance claim history by address",
+    "summary": "Buying a property? Find out which flood records you can request by address, what sellers disclose in NJ, NY and FL, and why public FEMA claims cannot prove a loss at a specific home.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/flood-insurance-claim-history-by-address.webp?v=84f827d6",
+    "dataset": {
+      "name": "Hurricane Ida public NFIP claim geography in two Hudson County ZIP codes",
+      "description": "Aggregate counts, exact FEMA queries, data vintage and disclosure form references for a buyer’s check of public claim geography after Hurricane Ida.",
+      "spatialCoverage": "Hudson County, New Jersey, United States",
+      "temporalCoverage": "2021-09-01/2021-09-04",
+      "sources": [
+        "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v3",
+        "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707030%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0",
+        "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707302%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0"
+      ],
+      "sourceDetails": [
+        {
+          "title": "FIMA NFIP Redacted Claims v3",
+          "publisher": "FEMA",
+          "url": "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v3"
+        },
+        {
+          "title": "OpenFEMA claims field definitions",
+          "publisher": "FEMA",
+          "url": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150"
+        },
+        {
+          "title": "Selected Hurricane Ida loss dates in Hudson County, reported ZIP 07030",
+          "publisher": "FEMA",
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707030%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0"
+        },
+        {
+          "title": "Selected Hurricane Ida loss dates in Hudson County, reported ZIP 07302",
+          "publisher": "FEMA",
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707302%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the aggregate counts, source queries and form references",
+          "path": "/blog/nfip-flood-claim-history-buyer-evidence.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ercot-lmp-vs-settlement-point-price",
     "topic": "Data & APIs",
     "title": "ERCOT LMP vs. Settlement Point Price",

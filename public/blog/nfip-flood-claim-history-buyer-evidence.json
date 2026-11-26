@@ -1,0 +1,56 @@
+{
+  "title": "Hurricane Ida public NFIP claim geography in two Hudson County ZIP codes",
+  "observed_on": "2026-11-25",
+  "source_dataset": "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v3",
+  "source_data_as_of": "2026-11-16",
+  "county_code": "34017",
+  "loss_dates_inclusive": [
+    "2021-09-01",
+    "2021-09-04"
+  ],
+  "event_on_all_returned_rows": {
+    "flood_event": "Hurricane Ida",
+    "event_designation_number": "NJ0421"
+  },
+  "method": "Count API rows by reported ZIP and by the published latitude/longitude pair. Add the two ZIP counts by pair, then count how many rows in each ZIP appear at the most frequent pair overall. Counts measure source rows.",
+  "combined": {
+    "claim_rows": 380,
+    "distinct_published_coordinate_pairs": 3,
+    "rows_at_most_common_coordinate_pair": 326
+  },
+  "by_reported_zip_code": [
+    {
+      "reported_zip_code": "07030",
+      "claim_rows": 273,
+      "distinct_published_coordinate_pairs": 2,
+      "rows_at_most_common_coordinate_pair_across_both_zips": 259,
+      "source_query": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707030%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0",
+      "api_response_at_utc": "2026-11-26T05:14:04.288Z"
+    },
+    {
+      "reported_zip_code": "07302",
+      "claim_rows": 107,
+      "distinct_published_coordinate_pairs": 3,
+      "rows_at_most_common_coordinate_pair_across_both_zips": 67,
+      "source_query": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707302%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0",
+      "api_response_at_utc": "2026-11-26T05:14:04.189Z"
+    }
+  ],
+  "seller_form_references": [
+    {
+      "state": "New Jersey",
+      "citation": "P.L. 2023, c. 93, section 2(b)(7) and (8)",
+      "url": "https://pub.njleg.state.nj.us/Bills/2022/PL23/93_.HTM"
+    },
+    {
+      "state": "New York",
+      "citation": "DOS-1614-f, effective July 2025, question 17",
+      "url": "https://dos.ny.gov/system/files/documents/2025/05/dos-1614-f-property-condition-disclosure-statement_04.2025-eff.-07.2025.pdf"
+    },
+    {
+      "state": "Florida",
+      "citation": "2026 Fla. Stat. section 689.302, disclosure items 1 through 3",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0689/Sections/0689.302.html"
+    }
+  ]
+}

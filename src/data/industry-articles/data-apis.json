@@ -1,5 +1,440 @@
 [
   {
+    "slug": "flood-insurance-claim-history-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to check flood insurance claim history by address",
+    "description": "Buying a property? Find out which flood records you can request by address, what sellers disclose in NJ, NY and FL, and why public FEMA claims cannot prove a loss at a specific home.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Among 380 public NFIP claim records for Hurricane Ida in two Hudson County ZIP codes, 326 share the same published map point. The shared point covers 259 of 273 rows in ZIP 07030 and 67 of 107 in ZIP 07302.",
+    "coverCaption": "Invariant analysis of FEMA’s redacted NFIP claims, Hudson County, New Jersey. Loss dates September 1–4, 2021, data as of November 16, 2026.",
+    "intro": "To check flood insurance claim history before buying a property, start with the seller’s flood disclosure. Ask the seller to request and share any available National Flood Insurance Program (NFIP) records and to obtain relevant records from private insurers. FEMA requires appropriate consent for a prospective buyer to obtain prior NFIP claims. You can look up the flood zone and nearby reported losses yourself. Use those public sources to decide what to ask about at the address and which repairs to inspect.",
+    "takeaways": [
+      "Use the applicable disclosure form and ask when the seller took ownership. New Jersey, New York and Florida ask about the seller’s flood insurance claims, and each form has its own scope.",
+      "Match any disclosed loss to the insured building, date and cause. Request repair records separately from evidence of a claim payment.",
+      "In two Hudson County ZIP codes, 326 of 380 Hurricane Ida claim rows share one public map point. Use these public records to study losses by area."
+    ],
+    "guideActions": [
+      {
+        "href": "#compare-flood-disclosure-forms",
+        "label": "Compare seller disclosure forms"
+      },
+      {
+        "href": "/blog/nfip-flood-claim-history-buyer-evidence.json",
+        "label": "Download the FEMA comparison and queries",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "what-you-can-check-by-address",
+        "heading": "What flood records can you look up by address?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What you need",
+              "Where to start",
+              "What it tells you"
+            ],
+            "rows": [
+              [
+                "Effective flood zone",
+                "Search FEMA’s Flood Map Service Center by address. Confirm the building’s position on the map and note the panel and effective date.",
+                "The flood hazard designation on the effective map. Keep the map date for comparisons with past losses."
+              ],
+              [
+                "The property’s NFIP claim history",
+                "Ask the seller to request any available history from FEMA and share it with the necessary consent. Once you own the property, ask FloodSmart about access to records and how to verify ownership and identity.",
+                "Which NFIP losses FEMA can disclose for the property. Check the date, insured building and whether the record covers the structure or its contents."
+              ],
+              [
+                "Private flood claims",
+                "Ask the seller or authorized broker for records from the carrier and the time each policy was in force. For personal property insurance, the seller can request their own CLUE file and check which losses appear.",
+                "Reported losses within the carrier and policy history reviewed. Ask which insurers, policies and dates the report covers."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "fema-map"
+              ],
+              [
+                "nfip-privacy",
+                "floodsmart-contact"
+              ],
+              [
+                "clue",
+                "nfip-privacy"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask for the dates the seller owned the property and held each policy. A seller may be able to tell you about water they saw in the building, even when they have no claim record for that event. Ask about the first time water entered, which floors or systems were affected, and what work followed.",
+            "sourceIds": [
+              "nj-law",
+              "ny-form",
+              "fl-law"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-flood-disclosure-forms",
+        "heading": "What does a seller have to disclose about flood claims?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Read the version of the form that applies to the property and transaction. These three states ask about flood claims alongside separate questions about damage or assistance.",
+            "sourceIds": [
+              "nj-law",
+              "ny-law",
+              "fl-law"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "State",
+              "When to request it",
+              "What to look for"
+            ],
+            "rows": [
+              [
+                "New Jersey",
+                "The seller of real property must disclose the required information before the purchaser becomes obligated under a contract.",
+                "Section 2(b)(7) asks whether the seller filed a flood insurance claim with any provider, including the NFIP, and the amount received for an approved claim. Section 2(b)(8) asks separately about known flood damage, seepage or pooled water and its frequency."
+              ],
+              [
+                "New York",
+                "For covered residential sales, request the signed disclosure before signing the binding sale contract. The law defines the covered property types and exempts certain transfers.",
+                "Item 17 of form DOS-1614-f asks about the seller’s flood damage claims and requests an explanation. The nearby questions ask about known federal disaster assistance, current flood insurance and an available elevation certificate."
+              ],
+              [
+                "Florida",
+                "For residential real property, the seller must provide the disclosure at or before execution of the sale contract.",
+                "Item 1 asks about known damage from flooding during the seller’s ownership. Item 2 asks whether the seller filed a flood insurance claim, including with the NFIP. Item 3 asks about flood damage assistance the seller received."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nj-law"
+              ],
+              [
+                "ny-law",
+                "ny-scope",
+                "ny-exemptions",
+                "ny-form"
+              ],
+              [
+                "fl-law"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "A seller who reports no flood claims may still disclose past damage. Follow up on both answers. A repair invoice, a dated inspection photo or an earlier disclosure can help establish what happened and whether the cost was paid out of pocket.",
+            "sourceIds": [
+              "nj-law",
+              "ny-form",
+              "fl-law"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hudson-county-claims-location-test",
+        "heading": "Can public FEMA claims identify which properties flooded?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried OpenFEMA for Hudson County, New Jersey, and reported ZIP codes 07030 and 07302, using September 1 through September 4, 2021 as loss dates. All 380 returned rows carry the Hurricane Ida event designation NJ0421. We grouped the rows by the latitude and longitude pairs published by FEMA.",
+            "sourceIds": [
+              "ida-07030",
+              "ida-07302"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Reported ZIP",
+              "Claim rows",
+              "Distinct published map points",
+              "Rows at the most common point across both ZIPs"
+            ],
+            "rows": [
+              [
+                "07030",
+                "273",
+                "2",
+                "259"
+              ],
+              [
+                "07302",
+                "107",
+                "3",
+                "67"
+              ],
+              [
+                "Both ZIPs",
+                "380",
+                "3",
+                "326"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "ida-07030"
+              ],
+              [
+                "ida-07302"
+              ],
+              [
+                "ida-07030",
+                "ida-07302"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "FEMA rounds public claim coordinates to one decimal place for privacy and documents that the resulting point may even fall outside the county or state for the claim. Here, the same point represents about 86% of the selected rows and appears under both reported ZIP codes. Use the published geographic fields to summarize area losses. For a specific building, obtain the authorized loss documentation.",
+            "sourceIds": [
+              "claims-schema",
+              "nfip-privacy"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The sample counts the rows returned by the redacted NFIP dataset. It describes one event and two reported ZIP codes as of November 16, 2026. The download includes the exact queries and ZIP-level counts so you can reproduce the grouping or check a future revision.",
+            "sourceIds": [
+              "claims-v3",
+              "ida-07030",
+              "ida-07302"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/nfip-flood-claim-history-buyer-evidence.json",
+            "label": "Download the aggregate counts, source queries and form references",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "documents-to-request-before-closing",
+        "heading": "Which documents should you request before closing?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For each disclosed loss, ask for the reported cause, date of loss, affected building or unit and the claim determination the seller can share. Request dated photos, repair invoices and any permits or inspection sign-offs. Use the current inspection to check the parts of the building those records describe, including electrical equipment or mechanical rooms that were affected."
+          },
+          {
+            "type": "paragraph",
+            "text": "For commercial property, request carrier loss runs through the seller or the authorized broker. On a campus or at a shared mailing address, reconcile each loss against the insured building or scheduled location. Check which policy years the reports cover and record any unknown building matches."
+          },
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to find the flood zone at the address as part of the screening record. Keep a dated reference to the map, then attach the disclosure, authorized claim history and repair evidence as you receive them.",
+            "sourceIds": [
+              "earth-flood",
+              "fema-map"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related flood and property checks",
+            "items": [
+              {
+                "slug": "fema-flood-zone-history-for-underwriting",
+                "label": "Check when a property’s flood zone changed"
+              },
+              {
+                "slug": "commercial-property-loss-runs",
+                "label": "Match commercial loss runs to the insured building"
+              },
+              {
+                "slug": "nfip-flood-claims-data-api",
+                "label": "Compare county-level NFIP claims and payments"
+              },
+              {
+                "slug": "elevation-certificate-by-address",
+                "label": "Find an elevation certificate by address"
+              },
+              {
+                "slug": "best-flood-risk-data-apis",
+                "label": "Compare mapped and modeled flood risk sources"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can a buyer look up prior NFIP claims for an address?",
+        "answer": "A prospective buyer needs appropriate consent for FEMA to release prior NFIP claim information. Ask the seller to request their available property history and share it, or ask FloodSmart about the required consent. The public redacted dataset is for geographic analysis.",
+        "sourceIds": [
+          "nfip-privacy",
+          "floodsmart-contact"
+        ]
+      },
+      {
+        "question": "Can the public FEMA claims API show whether a particular house filed a claim?",
+        "answer": "FEMA removes the identifying information used to connect a claim to a house. The public coordinates are rounded. Use the available geographic fields for area research and obtain authorized records for the house.",
+        "sourceIds": [
+          "claims-schema",
+          "nfip-privacy"
+        ]
+      },
+      {
+        "question": "Does a seller reporting no insurance claims establish that the property never flooded?",
+        "answer": "The claim question covers a particular kind of history. Read the separate questions about water damage and assistance and review records from the seller’s ownership and any earlier periods you can verify.",
+        "sourceIds": [
+          "nj-law",
+          "ny-form",
+          "fl-law"
+        ]
+      },
+      {
+        "question": "Can I get a previous owner’s private flood claim history through CLUE?",
+        "answer": "The CFPB describes how a consumer can request their own CLUE file. Ask the seller to request and share their file where relevant. Ask the seller or broker for carrier records to verify the specific insurers, policies and periods you need.",
+        "sourceIds": [
+          "clue"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "nfip-privacy",
+        "title": "FAQs about NFIP data and who can request property claims",
+        "publisher": "FEMA FloodSmart",
+        "url": "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data",
+        "linkLabel": "NFIP claims access and privacy"
+      },
+      {
+        "id": "floodsmart-contact",
+        "title": "Flood Insurance Advocate and Flood Mapping and Insurance eXchange contact information",
+        "publisher": "FEMA FloodSmart",
+        "url": "https://www.floodsmart.gov/contact",
+        "linkLabel": "Contact the NFIP"
+      },
+      {
+        "id": "fema-map",
+        "title": "Official flood map lookup by address",
+        "publisher": "FEMA",
+        "url": "https://msc.fema.gov/portal/home",
+        "linkLabel": "FEMA Flood Map Service Center"
+      },
+      {
+        "id": "claims-v3",
+        "title": "FIMA NFIP Redacted Claims v3",
+        "publisher": "FEMA",
+        "url": "https://www.fema.gov/openfema-data-page/fima-nfip-redacted-claims-v3",
+        "linkLabel": "OpenFEMA redacted claims dataset"
+      },
+      {
+        "id": "claims-schema",
+        "title": "OpenFEMA claims field definitions",
+        "publisher": "FEMA",
+        "url": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
+        "linkLabel": "FEMA coordinate and ZIP field definitions"
+      },
+      {
+        "id": "ida-07030",
+        "title": "Selected Hurricane Ida loss dates in Hudson County, reported ZIP 07030",
+        "publisher": "FEMA",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707030%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0",
+        "linkLabel": "Run the query for ZIP 07030"
+      },
+      {
+        "id": "ida-07302",
+        "title": "Selected Hurricane Ida loss dates in Hudson County, reported ZIP 07302",
+        "publisher": "FEMA",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24filter=countyCode+eq+%2734017%27+and+reportedZipCode+eq+%2707302%27+and+dateOfLoss+ge+%272021-09-01%27+and+dateOfLoss+lt+%272021-09-05%27&%24select=id%2CasOfDate%2CfloodEvent%2CeventDesignationNumber%2CcountyCode%2CreportedZipCode%2Clatitude%2Clongitude%2CdateOfLoss&%24inlinecount=allpages&%24top=1000&%24orderby=id+asc&%24skip=0",
+        "linkLabel": "Run the query for ZIP 07302"
+      },
+      {
+        "id": "nj-law",
+        "title": "P.L. 2023, Chapter 93, Section 2, flood disclosure on sale",
+        "publisher": "New Jersey Legislature",
+        "url": "https://pub.njleg.state.nj.us/Bills/2022/PL23/93_.HTM",
+        "linkLabel": "New Jersey flood disclosure law"
+      },
+      {
+        "id": "ny-law",
+        "title": "Real Property Law Section 462, Property Condition Disclosure Statement",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPP/462",
+        "linkLabel": "New York disclosure requirement"
+      },
+      {
+        "id": "ny-scope",
+        "title": "Real Property Law Section 461, definitions",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPP/461",
+        "linkLabel": "New York property types"
+      },
+      {
+        "id": "ny-exemptions",
+        "title": "Real Property Law Section 463, exemptions",
+        "publisher": "New York State Senate",
+        "url": "https://www.nysenate.gov/legislation/laws/RPP/463",
+        "linkLabel": "New York transfer exemptions"
+      },
+      {
+        "id": "ny-form",
+        "title": "Property Condition Disclosure Statement, DOS-1614-f, effective July 2025",
+        "publisher": "New York Department of State",
+        "url": "https://dos.ny.gov/system/files/documents/2025/05/dos-1614-f-property-condition-disclosure-statement_04.2025-eff.-07.2025.pdf",
+        "linkLabel": "New York disclosure form"
+      },
+      {
+        "id": "fl-law",
+        "title": "2026 Florida Statutes Section 689.302, Flood Disclosure",
+        "publisher": "Florida Legislature",
+        "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0689/Sections/0689.302.html",
+        "linkLabel": "Florida disclosure requirement and form"
+      },
+      {
+        "id": "clue",
+        "title": "CLUE consumer reporting company profile and file request",
+        "publisher": "Consumer Financial Protection Bureau",
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/consumer-reporting-companies/companies-list/comprehensive-loss-underwriting-exchange/",
+        "linkLabel": "CFPB on requesting a CLUE report"
+      },
+      {
+        "id": "earth-flood",
+        "title": "Check flood zone by address",
+        "publisher": "Invariant",
+        "url": "https://docs.invariant-ai.com/check-flood-zone-by-address",
+        "linkLabel": "Invariant Earth flood zone workflow"
+      }
+    ],
+    "relatedSlugs": [
+      "fema-flood-zone-history-for-underwriting",
+      "commercial-property-loss-runs",
+      "nfip-flood-claims-data-api",
+      "elevation-certificate-by-address",
+      "best-flood-risk-data-apis"
+    ],
+    "dataset": {
+      "name": "Hurricane Ida public NFIP claim geography in two Hudson County ZIP codes",
+      "description": "Aggregate counts, exact FEMA queries, data vintage and disclosure form references for a buyer’s check of public claim geography after Hurricane Ida.",
+      "spatialCoverage": "Hudson County, New Jersey, United States",
+      "temporalCoverage": "2021-09-01/2021-09-04",
+      "sourceIds": [
+        "claims-v3",
+        "claims-schema",
+        "ida-07030",
+        "ida-07302"
+      ]
+    }
+  },
+  {
     "slug": "ercot-lmp-vs-settlement-point-price",
     "topic": "Data & APIs",
     "region": "ERCOT, Texas, United States",
@@ -5728,6 +6163,7 @@
       }
     ],
     "relatedSlugs": [
+      "flood-insurance-claim-history-by-address",
       "commercial-property-insurance-data-apis",
       "building-footprint-data-apis",
       "florida-hurricane-insurance-claims-by-county",
@@ -22962,6 +23398,7 @@
       "temporalCoverage": "2021-08-28/2021-09-04"
     },
     "relatedSlugs": [
+      "flood-insurance-claim-history-by-address",
       "best-flood-risk-data-apis",
       "fema-flood-zone-history-for-underwriting",
       "commercial-property-insurance-data-apis"
