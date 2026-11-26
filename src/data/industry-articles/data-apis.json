@@ -33240,15 +33240,16 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "How to verify data center fiber route diversity",
-    "description": "Check carriers by address, then verify independent entrances, fiber paths, and cloud handoffs. A Secaucus example shows what public directories can tell you.",
+    "description": "Verify data center fiber route diversity, from building entrances to cloud peering. Compare AWS Direct Connect, Azure ExpressRoute, and Google Cloud Interconnect.",
     "date": "2026-11-22",
-    "readMinutes": 7,
+    "readMinutes": 10,
     "coverAlt": "Diagram of two Equinix buildings on Secaucus Road. AWS lists NY5 as a Direct Connect location and shows it is also accessible from NY4 at a different street address.",
     "coverCaption": "Equinix lists NY4 and NY5 at different addresses. AWS lists NY4 as an access option for the NY5 Direct Connect location. The diagram shows the directory relationship.",
     "intro": "To verify fiber route diversity at a data center, identify the exact endpoints of both circuits and ask the providers for evidence of their physical paths. Check the building entrances, internal paths, outside conduits and crossings, and where each circuit hands off to the next network. A directory can tell you which carriers or cloud services to investigate. For a lease or service commitment, document what the surviving circuit can carry when one route or facility fails.",
     "takeaways": [
       "Look up the exact building and service address. Record the carrier, underlying operator, connection endpoint, and whether the proposed service has been ordered or built.",
       "At Secaucus, Equinix lists two different building addresses, while AWS lists one Direct Connect location for the access relationship shown in this example.",
+      "Check cloud peering and physical routes separately. Cloud edge domains, buildings and circuit orders describe different parts of the connection.",
       "Check both route separation and surviving throughput. Two 10 Gbps circuits leave 10 Gbps of nominal capacity after a single circuit loss."
     ],
     "sections": [
@@ -33309,6 +33310,73 @@
         ]
       },
       {
+        "id": "cloud-interconnect-redundancy",
+        "heading": "Compare AWS, Azure and Google Cloud interconnect redundancy",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "A cloud peering location is where a connection meets the cloud provider’s network. Count the location or maintenance domain in the provider’s own terms. Then identify the parts of the circuit on the customer and carrier side that each availability commitment covers."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Service",
+              "What the provider documents",
+              "What to ask for"
+            ],
+            "rows": [
+              [
+                "AWS Direct Connect",
+                "The Maximum Resiliency design uses separate devices across more than one Direct Connect location. Two devices at one location protect against device failure. The applicable SLA depends on the deployment and its eligibility.",
+                "Request the ordered location, connection ID, port assignment and resiliency model. For a hosted service, request the partner’s contract."
+              ],
+              [
+                "Azure ExpressRoute",
+                "A standard circuit has a primary and secondary link. ExpressRoute Metro connects to two peering locations in a supported city. Microsoft’s guidance for geographic disaster recovery covers circuits in different peering locations.",
+                "Request the circuit and peering location mapping for each link. Match the facility and access path for each handoff."
+              ],
+              [
+                "Google Cloud Dedicated Interconnect",
+                "Google documents both multi-region and qualified single-region configurations for 99.99% availability. The designs require at least four connections plus the specified placement, VLAN attachments and routing configuration.",
+                "Request the location codes and edge availability domains, the facility for each connection, the attachment design, and the terms that cover the order."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "aws-resiliency",
+                "aws-direct-connect-sla"
+              ],
+              [
+                "azure-metro",
+                "azure-diversity"
+              ],
+              [
+                "google-topology",
+                "google-interconnect-sla"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the directory checks as controls. In Dallas, Google’s dfw-zone1-4 and dfw-zone2-4 share the Equinix DA1 facility label and have separate edge availability domains. In its New York Metro listing, Microsoft names Equinix NY5 and 165 Halsey Street as the peering pair. In the Secaucus AWS example above, the NY4 and NY5 building records point to one named AWS location. Confirm which entries apply to your circuit before comparing the carrier paths.",
+            "sourceIds": [
+              "google-locations",
+              "google-terminology",
+              "azure-metro",
+              "aws-locations"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/cloud-interconnect-diversity-reference.json",
+            "format": "JSON",
+            "label": "Download the AWS, Azure and Google Cloud directory checks",
+            "datasetAnchor": "dataset-cloud-interconnect-diversity"
+          }
+        ]
+      },
+      {
         "id": "verify-shared-failure-points",
         "heading": "How to verify two independent fiber paths",
         "blocks": [
@@ -33330,6 +33398,68 @@
             "type": "paragraph",
             "text": "The AWS Direct Connect resiliency models also distinguish device failures from complete location failures. Pick the level of resilience your workload requires, including any separate facility or device requirements, and verify the last-mile design that connects your equipment to those AWS locations.",
             "sourceIds": ["aws-resiliency"]
+          }
+        ]
+      },
+      {
+        "id": "fiber-procurement-evidence",
+        "heading": "What to request before accepting a diversity claim",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Scope",
+              "Ask for",
+              "Who supplies it"
+            ],
+            "rows": [
+              [
+                "Customer access",
+                "A dated statement for the ordered circuit pair naming both endpoints, the underlying operators and any shared segments or equipment.",
+                "Carrier or last-mile operator"
+              ],
+              [
+                "Building entry",
+                "Written confirmation of independent entrances, internal pathways and handoff rooms, scoped to the suite or server hall.",
+                "Facility operator"
+              ],
+              [
+                "Cloud edge",
+                "Cloud location and port assignments, cross-connect orders, applicable resiliency model and service-level terms.",
+                "Cloud provider and connectivity partner"
+              ],
+              [
+                "Failover",
+                "An authorized acceptance-test record with direction, surviving path, traffic demand, measured throughput, packet loss and recovery time.",
+                "Customer and providers"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "ietf-diversity",
+                "azure-diversity"
+              ],
+              [
+                "ietf-diversity"
+              ],
+              [
+                "aws-resiliency",
+                "azure-metro",
+                "google-terminology"
+              ],
+              [
+                "aws-failover-test"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Give the buyer or reviewer the same acceptance limits for traffic in both directions. In an authorized test, the AWS toolkit can take a selected BGP session out of service so the operator can observe rerouting. Treat the test as evidence of the recorded routing event. Keep the written route comparison and any exclusions with it.",
+            "sourceIds": [
+              "aws-failover-test",
+              "ietf-diversity"
+            ]
           }
         ]
       },
@@ -33383,21 +33513,153 @@
         "sourceIds": ["ietf-diversity"]
       },
       {
+        "question": "Do two Google Cloud Interconnect locations guarantee diverse fiber?",
+        "answer": "Compare the edge availability domain in each location code. Google lists dfw-zone1-4 and dfw-zone2-4 at Equinix DA1, so their cloud maintenance domains differ while the catalog facility is the same. Request proof of the customer’s physical paths and compare the ordered design with the SLA.",
+        "sourceIds": [
+          "google-locations",
+          "google-terminology",
+          "google-interconnect-sla"
+        ]
+      },
+      {
         "question": "Do two 10 Gbps circuits support 15 Gbps after one fails?",
         "answer": "On nominal rates, one surviving 10 Gbps circuit leaves a 5 Gbps shortfall against a 15 Gbps requirement. Check measured throughput and failover behavior under the workload you plan to carry."
       }
     ],
     "sources": [
-      {"id": "fcc-map", "title": "What the National Broadband Map shows", "url": "https://help.bdc.fcc.gov/hc/en-us/articles/13532984820379-What-s-on-the-National-Broadband-Map", "publisher": "FCC"},
-      {"id": "equinix-ny4", "title": "Equinix NY4 facility information and address", "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny4", "publisher": "Equinix"},
-      {"id": "equinix-ny5", "title": "Equinix NY5 facility information and address", "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny5", "publisher": "Equinix"},
-      {"id": "coresite-ny1", "title": "CoreSite NY1 facility information and address", "url": "https://www.coresite.com/data-center/ny1-new-york-ny", "publisher": "CoreSite"},
-      {"id": "aws-locations", "title": "AWS Direct Connect locations and access options", "url": "https://aws.amazon.com/directconnect/locations/", "publisher": "AWS"},
-      {"id": "aws-resiliency", "title": "AWS Direct Connect Resiliency Toolkit", "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html", "publisher": "AWS"},
-      {"id": "ietf-diversity", "title": "RFC 4054, diversity and optical route constraints", "url": "https://datatracker.ietf.org/doc/html/rfc4054", "publisher": "IETF"}
+      {
+        "id": "fcc-map",
+        "title": "What the National Broadband Map shows",
+        "url": "https://help.bdc.fcc.gov/hc/en-us/articles/13532984820379-What-s-on-the-National-Broadband-Map",
+        "publisher": "FCC"
+      },
+      {
+        "id": "equinix-ny4",
+        "title": "Equinix NY4 facility information and address",
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny4",
+        "publisher": "Equinix"
+      },
+      {
+        "id": "equinix-ny5",
+        "title": "Equinix NY5 facility information and address",
+        "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny5",
+        "publisher": "Equinix"
+      },
+      {
+        "id": "coresite-ny1",
+        "title": "CoreSite NY1 facility information and address",
+        "url": "https://www.coresite.com/data-center/ny1-new-york-ny",
+        "publisher": "CoreSite"
+      },
+      {
+        "id": "aws-locations",
+        "title": "AWS Direct Connect locations and access options",
+        "url": "https://aws.amazon.com/directconnect/locations/",
+        "publisher": "AWS"
+      },
+      {
+        "id": "aws-resiliency",
+        "title": "AWS Direct Connect Resiliency Toolkit",
+        "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html",
+        "publisher": "AWS",
+        "linkLabel": "Resiliency models"
+      },
+      {
+        "id": "ietf-diversity",
+        "title": "RFC 4054, diversity and optical route constraints",
+        "url": "https://datatracker.ietf.org/doc/html/rfc4054",
+        "publisher": "IETF"
+      },
+      {
+        "id": "aws-direct-connect-sla",
+        "title": "AWS Direct Connect service level agreement",
+        "url": "https://aws.amazon.com/directconnect/sla/",
+        "publisher": "Amazon Web Services",
+        "linkLabel": "Direct Connect SLA"
+      },
+      {
+        "id": "aws-failover-test",
+        "title": "AWS Direct Connect virtual interface failover test and test history",
+        "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_failover.html",
+        "publisher": "Amazon Web Services",
+        "linkLabel": "Failover test"
+      },
+      {
+        "id": "azure-metro",
+        "title": "ExpressRoute Metro topology and peering locations",
+        "url": "https://learn.microsoft.com/en-us/azure/expressroute/metro",
+        "publisher": "Microsoft",
+        "linkLabel": "Metro locations"
+      },
+      {
+        "id": "azure-diversity",
+        "title": "Disaster recovery design for ExpressRoute private peering",
+        "url": "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering",
+        "publisher": "Microsoft",
+        "linkLabel": "Disaster recovery"
+      },
+      {
+        "id": "google-locations",
+        "title": "Dedicated Interconnect colocation facilities and edge availability domains",
+        "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/choosing-colocation-facilities",
+        "publisher": "Google Cloud",
+        "linkLabel": "Facility directory"
+      },
+      {
+        "id": "google-terminology",
+        "title": "Cloud Interconnect edge availability domain and cross-connect authorization definitions",
+        "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/terminology#edge-availability-domain",
+        "publisher": "Google Cloud",
+        "linkLabel": "Edge domains"
+      },
+      {
+        "id": "google-topology",
+        "title": "Dedicated Interconnect configurations for 99.99% availability",
+        "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/tutorials/dedicated-creating-9999-availability",
+        "publisher": "Google Cloud",
+        "linkLabel": "99.99% design"
+      },
+      {
+        "id": "google-interconnect-sla",
+        "title": "Cloud Interconnect service level agreement",
+        "url": "https://cloud.google.com/network-connectivity/docs/interconnect/sla",
+        "publisher": "Google Cloud",
+        "linkLabel": "Interconnect SLA"
+      }
     ],
     "relatedSlugs": ["data-center-site-selection-checklist", "data-center-power-screening-tools", "best-gis-apis-for-site-selection"],
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-25",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-cloud-interconnect-diversity",
+        "datePublished": "2026-11-25",
+        "name": "Cloud interconnect directory checks for AWS, Google Cloud and Azure",
+        "description": "Three dated provider directory checks from Secaucus, Dallas and the New York metro. Compares physical facility names, AWS location labels, Google edge availability domains and Azure Metro peering sites. Includes a buyer’s evidence request for validating customer circuits.",
+        "sourceIds": [
+          "aws-locations",
+          "equinix-ny4",
+          "equinix-ny5",
+          "google-locations",
+          "google-terminology",
+          "google-interconnect-sla",
+          "azure-metro",
+          "azure-diversity"
+        ],
+        "spatialCoverage": "Dallas, Texas, and the New York–New Jersey metropolitan area, United States",
+        "temporalCoverage": "2026-11-22/2026-11-25"
+      }
+    ],
+    "guideActions": [
+      {
+        "href": "#cloud-interconnect-redundancy",
+        "label": "Compare cloud handoffs"
+      },
+      {
+        "href": "/blog/cloud-interconnect-diversity-reference.json",
+        "label": "Download the provider directory checks",
+        "download": true
+      }
+    ]
   },
   {
     "slug": "nyc-environmental-restrictions-by-address",

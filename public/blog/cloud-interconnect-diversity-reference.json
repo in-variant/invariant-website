@@ -1,0 +1,188 @@
+{
+  "name": "Cloud interconnect directory checks for AWS, Google Cloud and Azure",
+  "verified_at": "2026-11-25",
+  "scope": "Public catalog entries and provider documentation only. No customer circuits, exact outside-plant routes, measured failover results or SLA eligibility determinations are included.",
+  "cases": [
+    {
+      "id": "aws-secaucus-building-access",
+      "service": "AWS Direct Connect",
+      "metro": "New York",
+      "input": "Equinix NY4 and Equinix NY5 as listed in the AWS location directory and on their operator facility pages.",
+      "observed": [
+        {
+          "facility_label": "Equinix NY4",
+          "directory_role": "Accessible from",
+          "aws_location": "Equinix NY5, Secaucus, NJ"
+        },
+        {
+          "facility_label": "Equinix NY5",
+          "directory_role": "Named location",
+          "aws_location": "Equinix NY5, Secaucus, NJ"
+        }
+      ],
+      "comparison": {
+        "named_building_count": 2,
+        "named_aws_location_count": 1
+      },
+      "interpretation": "These two building records resolve to one named AWS Direct Connect location in this directory check.",
+      "customer_physical_route_status": "Requires circuit-specific provider records",
+      "source_ids": [
+        "aws-locations",
+        "equinix-ny4",
+        "equinix-ny5"
+      ],
+      "records_reviewed_date": "2026-11-22"
+    },
+    {
+      "id": "google-dallas-domains",
+      "service": "Google Cloud Dedicated Interconnect",
+      "metro": "Dallas",
+      "input": "Google Cloud locations dfw-zone1-4 and dfw-zone2-4.",
+      "observed": [
+        {
+          "facility_label": "Equinix Dallas (DA1)",
+          "location_code": "dfw-zone1-4",
+          "edge_availability_domain": "zone1"
+        },
+        {
+          "facility_label": "Equinix Dallas (DA1)",
+          "location_code": "dfw-zone2-4",
+          "edge_availability_domain": "zone2"
+        }
+      ],
+      "comparison": {
+        "catalog_facility_count": 1,
+        "cloud_edge_availability_domain_count": 2
+      },
+      "interpretation": "The catalog distinguishes two Google maintenance domains at one named facility. Compare the full design with the applicable SLA.",
+      "customer_physical_route_status": "Requires circuit-specific provider records",
+      "source_ids": [
+        "google-locations",
+        "google-terminology",
+        "google-interconnect-sla"
+      ],
+      "records_reviewed_date": "2026-11-25"
+    },
+    {
+      "id": "azure-new-york-metro",
+      "service": "Azure ExpressRoute Metro",
+      "metro": "New York",
+      "input": "Microsoft ExpressRoute Metro locations table, New York Metro row.",
+      "observed": [
+        {
+          "facility_label": "Equinix NY5",
+          "directory_role": "Peering location in the New York Metro pair"
+        },
+        {
+          "facility_label": "165 Halsey Street",
+          "directory_role": "Peering location in the New York Metro pair"
+        }
+      ],
+      "comparison": {
+        "listed_peering_location_count": 2
+      },
+      "interpretation": "Microsoft lists two edge locations for the New York Metro offering. Validate the proposed customer access paths independently.",
+      "customer_physical_route_status": "Requires circuit-specific provider records",
+      "source_ids": [
+        "azure-metro",
+        "azure-diversity"
+      ],
+      "records_reviewed_date": "2026-11-25"
+    }
+  ],
+  "acceptance_evidence_requests": [
+    {
+      "check": "Customer access",
+      "ask_for": "A dated statement for the ordered circuit pair naming both endpoints, the underlying operators and any shared segments or equipment.",
+      "owner": "Carrier or last-mile operator",
+      "source_ids": [
+        "ietf-diversity",
+        "azure-diversity"
+      ]
+    },
+    {
+      "check": "Building entry",
+      "ask_for": "Written confirmation of independent entrances, internal pathways and handoff rooms, scoped to the suite or server hall.",
+      "owner": "Facility operator",
+      "source_ids": [
+        "ietf-diversity"
+      ]
+    },
+    {
+      "check": "Cloud edge",
+      "ask_for": "Cloud location and port assignments, cross-connect orders, applicable resiliency model and service-level terms.",
+      "owner": "Cloud provider and connectivity partner",
+      "source_ids": [
+        "aws-resiliency",
+        "azure-metro",
+        "google-terminology"
+      ]
+    },
+    {
+      "check": "Failover",
+      "ask_for": "An authorized acceptance-test record with direction, surviving path, traffic demand, measured throughput, packet loss and recovery time.",
+      "owner": "Customer and providers",
+      "source_ids": [
+        "aws-failover-test"
+      ]
+    }
+  ],
+  "sources": {
+    "aws-locations": {
+      "title": "AWS Direct Connect locations and access options",
+      "url": "https://aws.amazon.com/directconnect/locations/",
+      "publisher": "AWS"
+    },
+    "equinix-ny4": {
+      "title": "Equinix NY4 facility information and address",
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny4",
+      "publisher": "Equinix"
+    },
+    "equinix-ny5": {
+      "title": "Equinix NY5 facility information and address",
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny5",
+      "publisher": "Equinix"
+    },
+    "google-locations": {
+      "title": "Dedicated Interconnect colocation facilities and edge availability domains",
+      "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/choosing-colocation-facilities",
+      "publisher": "Google Cloud"
+    },
+    "google-terminology": {
+      "title": "Cloud Interconnect edge availability domain and cross-connect authorization definitions",
+      "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/terminology#edge-availability-domain",
+      "publisher": "Google Cloud"
+    },
+    "google-interconnect-sla": {
+      "title": "Cloud Interconnect service level agreement",
+      "url": "https://cloud.google.com/network-connectivity/docs/interconnect/sla",
+      "publisher": "Google Cloud"
+    },
+    "azure-metro": {
+      "title": "ExpressRoute Metro topology and peering locations",
+      "url": "https://learn.microsoft.com/en-us/azure/expressroute/metro",
+      "publisher": "Microsoft"
+    },
+    "azure-diversity": {
+      "title": "Disaster recovery design for ExpressRoute private peering",
+      "url": "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering",
+      "publisher": "Microsoft"
+    },
+    "ietf-diversity": {
+      "title": "RFC 4054, diversity and optical route constraints",
+      "url": "https://datatracker.ietf.org/doc/html/rfc4054",
+      "publisher": "IETF"
+    },
+    "aws-resiliency": {
+      "title": "AWS Direct Connect Resiliency Toolkit",
+      "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_toolkit.html",
+      "publisher": "AWS"
+    },
+    "aws-failover-test": {
+      "title": "AWS Direct Connect virtual interface failover test and test history",
+      "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/resiliency_failover.html",
+      "publisher": "Amazon Web Services"
+    }
+  },
+  "citation_url": "https://invariant-ai.com/blog/data-center-fiber-route-diversity#dataset-cloud-interconnect-diversity"
+}

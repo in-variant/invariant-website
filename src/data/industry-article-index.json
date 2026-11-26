@@ -6877,7 +6877,7 @@
     "slug": "data-center-fiber-route-diversity",
     "topic": "Data & APIs",
     "title": "How to verify data center fiber route diversity",
-    "summary": "Check carriers by address, then verify independent entrances, fiber paths, and cloud handoffs. A Secaucus example shows what public directories can tell you.",
+    "summary": "Verify data center fiber route diversity, from building entrances to cloud peering. Compare AWS Direct Connect, Azure ExpressRoute, and Google Cloud Interconnect.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
@@ -6929,7 +6929,76 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-cloud-interconnect-diversity",
+        "datePublished": "2026-11-25",
+        "name": "Cloud interconnect directory checks for AWS, Google Cloud and Azure",
+        "description": "Three dated provider directory checks from Secaucus, Dallas and the New York metro. Compares physical facility names, AWS location labels, Google edge availability domains and Azure Metro peering sites. Includes a buyer’s evidence request for validating customer circuits.",
+        "spatialCoverage": "Dallas, Texas, and the New York–New Jersey metropolitan area, United States",
+        "temporalCoverage": "2026-11-22/2026-11-25",
+        "sources": [
+          "https://aws.amazon.com/directconnect/locations/",
+          "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny4",
+          "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny5",
+          "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/choosing-colocation-facilities",
+          "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/terminology#edge-availability-domain",
+          "https://cloud.google.com/network-connectivity/docs/interconnect/sla",
+          "https://learn.microsoft.com/en-us/azure/expressroute/metro",
+          "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+        ],
+        "sourceDetails": [
+          {
+            "title": "AWS Direct Connect locations and access options",
+            "publisher": "AWS",
+            "url": "https://aws.amazon.com/directconnect/locations/"
+          },
+          {
+            "title": "Equinix NY4 facility information and address",
+            "publisher": "Equinix",
+            "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny4"
+          },
+          {
+            "title": "Equinix NY5 facility information and address",
+            "publisher": "Equinix",
+            "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny5"
+          },
+          {
+            "title": "Dedicated Interconnect colocation facilities and edge availability domains",
+            "publisher": "Google Cloud",
+            "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/choosing-colocation-facilities"
+          },
+          {
+            "title": "Cloud Interconnect edge availability domain and cross-connect authorization definitions",
+            "publisher": "Google Cloud",
+            "url": "https://docs.cloud.google.com/network-connectivity/docs/interconnect/concepts/terminology#edge-availability-domain"
+          },
+          {
+            "title": "Cloud Interconnect service level agreement",
+            "publisher": "Google Cloud",
+            "url": "https://cloud.google.com/network-connectivity/docs/interconnect/sla"
+          },
+          {
+            "title": "ExpressRoute Metro topology and peering locations",
+            "publisher": "Microsoft",
+            "url": "https://learn.microsoft.com/en-us/azure/expressroute/metro"
+          },
+          {
+            "title": "Disaster recovery design for ExpressRoute private peering",
+            "publisher": "Microsoft",
+            "url": "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the AWS, Azure and Google Cloud directory checks",
+            "path": "/blog/cloud-interconnect-diversity-reference.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "nyc-environmental-restrictions-by-address",
