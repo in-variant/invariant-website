@@ -4,10 +4,22 @@ This repository contains the public website and research examples for [Invariant
 
 - [API quickstart and authentication](https://docs.invariant-ai.com/quickstart)
 - [Earth API field catalog](https://docs.invariant-ai.com/api/field-catalog)
-- [Connect Earth to a coding agent over MCP](https://docs.invariant-ai.com/mcp/installation)
+- [Invariant Earth MCP server, tools and sample parcel check](https://invariant-ai.com/mcp)
 - [Official MCP Registry entry (JSON)](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.in-variant%2Finvariant-earth/versions/latest)
 - [Research datasets and source records](https://invariant-ai.com/datasets)
 - [Data guides by industry and use case](https://invariant-ai.com/blog/physical-world-data-by-use-case)
+
+## Check an agent's parcel answer against city records
+
+Use the [GIS MCP trial](https://invariant-ai.com/blog/gis-mcp-servers-for-site-selection#replay-a-condo-parcel-answer) to check whether an agent distinguishes a condominium unit, its billing lot and its mapped base parcel. Connect your client using the [installation guide](https://docs.invariant-ai.com/mcp/installation), then ask for each identifier and the source that supports it.
+
+Replay the underlying New York City records without an Invariant key. The command makes four public agency queries and compares the returned fields with the dated fixture.
+
+```bash
+python3 public/blog/parcel-mcp-source-replay.py --compare public/blog/parcel-mcp-source-replay.json
+```
+
+Use the replay as reference evidence when checking your agent's response. A changed record is reported with the old and new values so you can review the source before scoring the answer.
 
 ## Compare data providers on the same records
 
