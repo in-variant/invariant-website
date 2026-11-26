@@ -51,6 +51,7 @@ const researchArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
 const glossaryBySlug = new Map(glossary.map(entry => [entry.slug, entry]))
 const glossaryTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/glossary-topics.json'), 'utf8'))
+const glossaryDirectory = JSON.parse(readFileSync(join(ROOT, 'src/data/glossary-directory.json'), 'utf8'))
 const datasetEntries = articleIndex.flatMap(article => {
   const { dataset, additionalDatasets = [] } = article
   const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
@@ -164,9 +165,12 @@ function glossaryMd(e) {
 
 function glossaryDirectoryMd() {
   return [
-    '# Infrastructure and compliance glossary', '',
-    'Source-backed definitions for property due diligence, insurance, GIS, data center siting, and infrastructure compliance.', '',
-    citationLink('Browse the glossary', SITE + '/glossary'), '',
+    `# ${glossaryDirectory.title}`, '', glossaryDirectory.description, '',
+    citationLink('Explore the glossary', SITE + '/glossary'), '',
+    '## Definitions in practice', '',
+    ...glossaryDirectory.examples.map(({ label, definition, guide }) =>
+      `- ${citationLink(glossaryBySlug.get(definition).term, `${SITE}/glossary/${definition}.md`)}. ${citationLink(label, SITE + guide)}.`),
+    '',
     ...Object.entries(glossaryTopics).flatMap(([topic, label]) => {
       const entries = glossary.filter(entry => entry.topic === topic).sort((a, b) => a.term.localeCompare(b.term))
       return entries.length ? [

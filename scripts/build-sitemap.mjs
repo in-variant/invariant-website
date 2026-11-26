@@ -26,7 +26,8 @@ const datasetLastmod = [datasetCatalog.updatedDate, latestDatasetDate].sort().at
 const researchLastmod = [research.updatedDate, latestDatasetDate].sort().at(-1)
 const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
-const glossaryLastmod = glossary.entries.map(entry => entry.last_updated).filter(Boolean).sort().at(-1)
+const glossaryDirectory = JSON.parse(readFileSync(join(ROOT, 'src/data/glossary-directory.json'), 'utf8'))
+const glossaryLastmod = [glossaryDirectory.updatedDate, ...glossary.entries.map(entry => entry.last_updated)].filter(Boolean).sort().at(-1)
 
 // ── Live core pages ──────────────────────────────────────────────────────────
 const CORE = [
