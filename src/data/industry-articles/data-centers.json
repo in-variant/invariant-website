@@ -279,10 +279,10 @@
     "slug": "data-center-backup-generator-air-permits",
     "topic": "Data Centers",
     "title": "Data Center Backup Generator Air Permits and Run-Hour Limits",
-    "description": "Check backup generator air permits, calculate rolling run-hour totals, and download a per-engine log. See issued permits and federal testing rules.",
+    "description": "Find which air permits data center backup generators need. Check construction approval, Title V, federal engine rules and site-specific testing limits.",
     "date": "2026-09-15",
-    "readMinutes": 13,
-    "intro": "Before installing backup generators at a U.S. data center, identify the state or local construction authorization, check whether the site needs a Title V operating permit, and determine which federal standards apply to each engine. To figure out how long a generator can run, start with the reason for the run. Check the federal rules for that use and the site permit’s limits for the engine and any group it belongs to.",
+    "readMinutes": 15,
+    "intro": "A U.S. data center needs to check three things before installing backup generators. Identify the construction permit or other authorization from the air agency, determine whether the entire facility needs a Title V operating permit, and identify the federal rules for each engine. Build the permit schedule around the full fleet and the way it will operate. Local conditions can limit when you pour equipment pads, how many generators you test together, and how you count their hours.",
     "guideActions": [
       {
         "href": "/calculators/generator-run-hours",
@@ -295,7 +295,7 @@
       }
     ],
     "takeaways": [
-      "Check the construction permit, the operating permit, and the federal rules for each engine.",
+      "Check construction authorization, the need for an operating permit, and the federal engine standards before releasing equipment or construction work.",
       "Price the controls and testing required for the proposed site before ordering the equipment.",
       "Keep the approved use, limits and run logs for each engine and for every group with a combined cap.",
       "Review a separate operating scenario for routine site power before committing to a generator bridge."
@@ -306,27 +306,63 @@
         "heading": "What air permits does a backup generator fleet need?",
         "blocks": [
           {
-            "type": "paragraph",
-            "text": "Start with the federal standards for each engine. Applicability depends on fuel and ignition type, construction and manufacture dates, engine rating, planned use, and whether the facility is a major or area source of hazardous air pollutants. The main federal provisions are NSPS Subpart IIII for compression ignition engines, NSPS Subpart JJJJ for spark ignition engines, and the hazardous-air-pollutant standards in Subpart ZZZZ.",
-            "sourceIds": [
-              "engine-overview",
-              "ci-nsps",
-              "si-nsps",
-              "rice"
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Approval or requirement",
+              "What determines it",
+              "Record to obtain"
+            ],
+            "rows": [
+              [
+                "Construction authorization",
+                "The permitting authority, source boundary, expected potential emissions and local air-quality designation. A local program may require minor or major New Source Review, allow registration under a rule, or recognize an exemption.",
+                "The issued construction permit, applicable registration or documented basis for an exemption. Verify which installation work can begin."
+              ],
+              [
+                "Facility operating permit",
+                "The emissions and status of the stationary source as a whole. Title V applicability has its own tests. Some jurisdictions also require a state operating permit.",
+                "The effective operating permit and applicable amendments, or the facility’s documented applicability determination."
+              ],
+              [
+                "Federal requirements for each engine",
+                "Engine technology, size, age and use, and whether the facility is a major or area source of hazardous air pollutants.",
+                "The model, engine family, relevant dates, any required certification, and the applicable testing, operating and recordkeeping requirements."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nsr",
+                "texas-pbr"
+              ],
+              [
+                "title-v",
+                "nd-permit-portal"
+              ],
+              [
+                "engine-overview",
+                "ci-nsps",
+                "si-nsps",
+                "rice"
+              ]
             ]
           },
           {
             "type": "paragraph",
-            "text": "Second, determine the site's New Source Review path. EPA identifies Prevention of Significant Deterioration, nonattainment NSR, and minor-source permitting. A facility may have obligations under more than one part of this framework. Most permits are issued by state or local air agencies, whose approved programs have their own requirements and procedures.",
+            "text": "Bring the air agency a dated list of engines and later phases, the site plan, and a description of testing, outages and any use before full utility service. Ask which equipment belongs to the same source and which limits the project relies on. Write those limits into procurement and the commissioning plan before ordering units. For example, the Texas operating permit below points to a separate construction authorization for equipment listed in the operating permit.",
             "sourceIds": [
-              "nsr"
+              "nsr",
+              "deq-aggregation",
+              "texas-o4780"
             ]
           },
           {
             "type": "paragraph",
-            "text": "Assess Title V operating-permit applicability separately. EPA uses pollutant-specific thresholds, including lower thresholds for some pollutants in nonattainment areas. A project can have a minor construction permit while its facility has a Title V operating permit. Keep the basis for both determinations.",
+            "text": "Check what can start while the application is under review. Virginia’s minor-source rule requires the permit before actual construction of a covered project. Its definition includes permanent work on the emissions unit, such as foundations and buried piping. Mark generator pads and other work tied to the engines on the drawings and obtain the agency’s determination before releasing that work. EPA’s May 2026 proposal addresses a separate federal rulemaking on what can start before certain New Source Review permits.",
             "sourceIds": [
-              "title-v"
+              "va-construction-requirements",
+              "va-construction-definition",
+              "epa-construction-proposal"
             ]
           }
         ]
@@ -484,6 +520,74 @@
             "format": "CSV",
             "label": "Download the Texas engine and stack records with source pages",
             "datasetAnchor": "dataset-texas-air-permit"
+          }
+        ]
+      },
+      {
+        "id": "harwood-fleet-generator-air-permit",
+        "heading": "How can an air permit limit testing across a whole generator fleet?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "In North Dakota’s draft construction permit ACP-18345 for Applied Digital’s FAR Generation Plant in Harwood, the agency proposed a synthetic minor classification. Under that approach, permit restrictions keep estimated potential emissions below applicable major-source thresholds. The draft lists 192 diesel generators rated at 3,000 kW each and a combined planned-operation limit of 3,039 engine-hours on a rolling 12-month basis. Use the signed permit and its amendments to determine the effective conditions.",
+            "sourceIds": [
+              "nd-far-draft",
+              "nd-far-analysis",
+              "nd-permit-portal"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Draft condition or supporting record",
+              "What it measures",
+              "What to check before testing"
+            ],
+            "rows": [
+              [
+                "Condition 2.D, facility planned-operation cap",
+                "3,039 engine-hours across the fleet. Dividing by 192 gives about 15.8 hours per engine as an equal-share illustration.",
+                "Sum elapsed hours for every engine that will run. The draft’s cap applies to the combined total, alongside applicable limits for individual engines."
+              ],
+              [
+                "Conditions 2.F–2.G, ambient NO₂ monitoring",
+                "The planned testing conditions change with monitor availability. With both monitors online, the draft bars testing when the relevant one-hour reading exceeds 100 parts per billion.",
+                "Confirm the monitoring status and the testing restrictions that apply to the planned run."
+              ],
+              [
+                "Staff analysis, Table 1",
+                "The agency estimates 99 tons of nitrogen oxides per year in its permit-limited non-emergency scenario.",
+                "Keep the model assumptions and operating scenario with the number. Compare actual emissions and operating records separately."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "nd-far-draft",
+                "nd-far-analysis"
+              ],
+              [
+                "nd-far-testing"
+              ],
+              [
+                "nd-far-analysis"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For example, a half-hour test on 24 engines uses 12 engine-hours of a combined budget and half an hour on each engine’s meter. That calculation measures hours only. Confirm the applicable per-engine limits, the allowed testing sequence and any monitoring or notice requirements before approving a test.",
+            "sourceIds": [
+              "nd-far-draft",
+              "nd-far-testing"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Harwood draft conditions and source pages",
+            "path": "/blog/far-generation-plant-draft-generator-conditions.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-far-generation-plant-draft"
           }
         ]
       },
@@ -896,6 +1000,48 @@
     ],
     "sources": [
       {
+        "id": "nd-far-draft",
+        "title": "Draft ACP-18345 v1.0, Condition 2.D, PDF page 3",
+        "publisher": "North Dakota Department of Environmental Quality",
+        "url": "https://deq.nd.gov/aq/Notices/AppliedDigital/DRAFTACP18345%20v1_0.pdf#page=3"
+      },
+      {
+        "id": "nd-far-testing",
+        "title": "Draft ACP-18345 v1.0, Conditions 2.F and 2.G, PDF page 5",
+        "publisher": "North Dakota Department of Environmental Quality",
+        "url": "https://deq.nd.gov/aq/Notices/AppliedDigital/DRAFTACP18345%20v1_0.pdf#page=5"
+      },
+      {
+        "id": "nd-far-analysis",
+        "title": "FAR Generation Plant draft Air Quality Effects Analysis, PDF pages 2–3",
+        "publisher": "North Dakota Department of Environmental Quality",
+        "url": "https://deq.nd.gov/aq/Notices/AppliedDigital/DRAFTACP18345v1_0AQEA.pdf#page=2"
+      },
+      {
+        "id": "nd-permit-portal",
+        "title": "Find construction and operating permits in North Dakota",
+        "publisher": "North Dakota Department of Environmental Quality",
+        "url": "https://www.deq.nd.gov/AQ/permitting/permitportal.aspx"
+      },
+      {
+        "id": "va-construction-definition",
+        "title": "9VAC5-80-1110, Virginia minor-source definition of begin actual construction",
+        "publisher": "Virginia Legislative Information System",
+        "url": "https://law.lis.virginia.gov/admincode/title9/agency5/chapter80/section1110/"
+      },
+      {
+        "id": "va-construction-requirements",
+        "title": "9VAC5-80-1120, Virginia minor-source permit requirements",
+        "publisher": "Virginia Legislative Information System",
+        "url": "https://law.lis.virginia.gov/admincode/title9/agency5/chapter80/section1120/"
+      },
+      {
+        "id": "epa-construction-proposal",
+        "title": "May 13, 2026 proposed rule on beginning actual construction under New Source Review",
+        "publisher": "U.S. Environmental Protection Agency",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-13/html/2026-09524.htm"
+      },
+      {
         "id": "engine-overview",
         "title": "Understanding the Stationary Engines Rules",
         "url": "https://www.epa.gov/stationary-engines/understanding-stationary-engines-rules",
@@ -1118,7 +1264,7 @@
       "data-center-site-selection-permitting",
       "data-center-sites-for-sale-virginia"
     ],
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "dataset": {
       "name": "Digital Loudoun backup generator operating permit limits",
       "description": "Nine rows from Virginia DEQ’s 2025 Title V renewal for registration 73670, covering permit dates, six individual or combined run-hour limits, and the record-retention condition.",
@@ -1129,6 +1275,24 @@
       "spatialCoverage": "Ashburn, Loudoun County, Virginia, United States"
     },
     "additionalDatasets": [
+      {
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/far-generation-plant-draft-generator-conditions-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "anchor": "dataset-far-generation-plant-draft",
+        "name": "Harwood FAR Generation Plant draft generator conditions",
+        "description": "North Dakota’s draft ACP-18345 conditions and staff estimates for the Harwood diesel generator fleet. Includes the shared testing cap, monitor-dependent conditions, staff-modeled emissions, PDF pages and document hashes.",
+        "datePublished": "2026-11-26",
+        "sourceIds": [
+          "nd-far-draft",
+          "nd-far-testing",
+          "nd-far-analysis"
+        ],
+        "spatialCoverage": "Harwood, Cass County, North Dakota, United States",
+        "temporalCoverage": "2026-03-09/2026-07-15"
+      },
       {
         "anchor": "dataset-texas-air-permit",
         "datePublished": "2026-11-24",

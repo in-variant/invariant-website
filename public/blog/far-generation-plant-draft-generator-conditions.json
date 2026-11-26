@@ -1,0 +1,90 @@
+{
+  "title": "Harwood FAR Generation Plant draft generator conditions",
+  "version": "1.0.0",
+  "as_of": "2026-11-26",
+  "guide_url": "https://invariant-ai.com/blog/data-center-backup-generator-air-permits",
+  "facility": "FAR Generation Plant",
+  "permittee": "Applied Digital Corporation",
+  "location": "Harwood, Cass County, North Dakota",
+  "permit_id": "ACP-18345 v1.0",
+  "document_status": "draft published for comment",
+  "verified_effective_permit_conditions": null,
+  "application_date": "2026-03-09",
+  "draft_analysis_date": "2026-06-11",
+  "public_comment_window": [
+    "2026-06-15",
+    "2026-07-15"
+  ],
+  "proposed_source_description": "Synthetic minor source for PSD, synthetic HAP area source, synthetic non-Title V source",
+  "fleet": {
+    "generator_count": 192,
+    "nameplate_kw_per_generator": 3000,
+    "source": "staff_analysis",
+    "pdf_page": 2
+  },
+  "proposed_conditions": [
+    {
+      "condition": "2.D.1",
+      "scope": "facility combined planned generator operation under Conditions 2.F and 2.G",
+      "cap_engine_hours": 3039,
+      "window": "rolling 12 months",
+      "source": "draft_permit",
+      "pdf_page": 3
+    },
+    {
+      "condition": "2.D.2",
+      "scope": "each emergency engine",
+      "applicable_operating_rule": "40 CFR 60.4211(f)",
+      "source": "draft_permit",
+      "pdf_page": 3
+    },
+    {
+      "condition": "2.F.1",
+      "scope": "maintenance and readiness testing while either applicable monitor is offline",
+      "maximum_test_duration_hours": 1,
+      "maximum_simultaneous_buildings": 1,
+      "source": "draft_permit",
+      "pdf_page": 5
+    },
+    {
+      "condition": "2.G.1",
+      "scope": "maintenance and readiness testing while both applicable monitors are online",
+      "no_testing_above_hourly_no2_ppb": 100,
+      "source": "draft_permit",
+      "pdf_page": 5
+    }
+  ],
+  "reported_staff_scenario": {
+    "scenario": "Permit-limited non-emergency operations",
+    "modeled_nox_short_tons_per_year": 99,
+    "source": "staff_analysis",
+    "pdf_page": 3
+  },
+  "illustrative_test": {
+    "engines": 24,
+    "elapsed_hours": 0.5,
+    "combined_engine_hours": 12,
+    "authorized_test": null
+  },
+  "sources": {
+    "draft_permit": {
+      "url": "https://deq.nd.gov/aq/Notices/AppliedDigital/DRAFTACP18345%20v1_0.pdf",
+      "pdf_pages_one_based": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "sha256": "041e8576fe6d82beb4e26ed36ab97f6a2cd7932ba4df86109114ea3b632cdf30"
+    },
+    "staff_analysis": {
+      "url": "https://deq.nd.gov/aq/Notices/AppliedDigital/DRAFTACP18345v1_0AQEA.pdf",
+      "pdf_pages_one_based": [
+        1,
+        2,
+        3
+      ],
+      "sha256": "a971451d4d089ec762f248eda0b194c33a31f4b64747f005bc00a18f57c537de"
+    }
+  }
+}
