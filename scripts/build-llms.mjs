@@ -40,6 +40,9 @@ const sections = [
   ['Examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,
   ])],
+  ['Land acquisition', [
+    ['Check Chicago city-owned land offerings, parcel groups and deadlines', `${SITE}/blog/chicago-city-owned-land-for-sale.md`],
+  ]],
   ['Commercial property underwriting', [
     ['Reconcile a statement of values and download the Excel review workbook', `${SITE}/blog/commercial-property-statement-of-values.md`],
   ]],

@@ -1,5 +1,66 @@
 [
   {
+    "slug": "chicago-city-owned-land-for-sale",
+    "topic": "Data & APIs",
+    "title": "How to find Chicago city-owned lots for sale",
+    "summary": "Find Chicago city-owned land through ChiBlockBuilder. Check application dates, group parcel IDs into sites, and download the November 25 inventory review.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "Chicago, Illinois, United States",
+    "image": "/blog/industry/chicago-city-owned-land-for-sale.webp?v=fb9b7140",
+    "dataset": {
+      "name": "Chicago city-owned land application evidence and deadlines",
+      "description": "November 25, 2026 review of 19 city-owned PINs with an Apply label. Includes the query and count definitions, date outcomes, source links and the six parcel rows for three courtyard-building sites.",
+      "spatialCoverage": "Chicago, Cook County, Illinois, United States",
+      "temporalCoverage": "2026-11-25",
+      "sources": [
+        "https://data.cityofchicago.org/d/aksk-kvfp",
+        "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=property_status%2Ccount%28%2A%29+as+rows%2Ccount%28distinct+pin%29+as+pins&%24group=property_status&%24order=rows+desc",
+        "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=id%2Cpin%2Caddress%2Cproperty_status%2Cmanaging_organization%2Csales_status%2Csale_offering_status%2Capplication_use%2Cgrouped_parcels%2Capplication_opens%2Capplication_deadline%2Coffer_round%2Capplication_url%2Cland_value%2Cvaluation_date%2Clast_update%2Clatitude%2Clongitude&%24where=sales_status%3D%27Apply%27+and+property_status%3D%27Owned+by+City%27&%24limit=100&%24order=application_deadline+DESC%2Cid+ASC",
+        "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=id%2Cpin%2Caddress%2Cproperty_status%2Cmanaging_organization%2Csales_status%2Csale_offering_status%2Capplication_use%2Cgrouped_parcels%2Capplication_opens%2Capplication_deadline%2Coffer_round%2Capplication_url%2Cland_value%2Cvaluation_date%2Clast_update%2Clatitude%2Clongitude&%24where=property_status%3D%27Owned+by+City%27+and+application_deadline+%3E%3D+%272026-11-25T00%3A00%3A00%27+and+application_opens+%3C%3D+%272026-11-25T23%3A59%3A59%27&%24limit=500&%24order=application_deadline+ASC%2Cid+ASC",
+        "https://cocdpd.submittable.com/submit/24b1ff6b-c55f-4f18-bdd6-5c5c8811230f/chiblockbuilder-2026-rfp"
+      ],
+      "sourceDetails": [
+        {
+          "title": "City-Owned Land Inventory and its field definitions",
+          "publisher": "City of Chicago",
+          "url": "https://data.cityofchicago.org/d/aksk-kvfp",
+          "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+        },
+        {
+          "title": "Inventory records grouped by property status",
+          "publisher": "City of Chicago",
+          "url": "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=property_status%2Ccount%28%2A%29+as+rows%2Ccount%28distinct+pin%29+as+pins&%24group=property_status&%24order=rows+desc",
+          "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+        },
+        {
+          "title": "City-owned rows with Sales Status set to Apply",
+          "publisher": "City of Chicago",
+          "url": "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=id%2Cpin%2Caddress%2Cproperty_status%2Cmanaging_organization%2Csales_status%2Csale_offering_status%2Capplication_use%2Cgrouped_parcels%2Capplication_opens%2Capplication_deadline%2Coffer_round%2Capplication_url%2Cland_value%2Cvaluation_date%2Clast_update%2Clatitude%2Clongitude&%24where=sales_status%3D%27Apply%27+and+property_status%3D%27Owned+by+City%27&%24limit=100&%24order=application_deadline+DESC%2Cid+ASC",
+          "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+        },
+        {
+          "title": "City-owned rows with an application window spanning November 25, 2026",
+          "publisher": "City of Chicago",
+          "url": "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=id%2Cpin%2Caddress%2Cproperty_status%2Cmanaging_organization%2Csales_status%2Csale_offering_status%2Capplication_use%2Cgrouped_parcels%2Capplication_opens%2Capplication_deadline%2Coffer_round%2Capplication_url%2Cland_value%2Cvaluation_date%2Clast_update%2Clatitude%2Clongitude&%24where=property_status%3D%27Owned+by+City%27+and+application_deadline+%3E%3D+%272026-11-25T00%3A00%3A00%27+and+application_opens+%3C%3D+%272026-11-25T23%3A59%3A59%27&%24limit=500&%24order=application_deadline+ASC%2Cid+ASC",
+          "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+        },
+        {
+          "title": "City of Chicago 2026 courtyard buildings RFP application",
+          "publisher": "Chicago Department of Planning and Development",
+          "url": "https://cocdpd.submittable.com/submit/24b1ff6b-c55f-4f18-bdd6-5c5c8811230f/chiblockbuilder-2026-rfp"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the 19 reviewed rows, group counts and source queries",
+          "path": "/blog/chicago-city-land-application-review.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "data-center-site-selection-platforms-and-advisors",
     "topic": "Data Centers",
     "title": "How to compare data center site selection platforms and advisors",

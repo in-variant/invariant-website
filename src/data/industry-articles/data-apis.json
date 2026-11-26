@@ -1,5 +1,464 @@
 [
   {
+    "slug": "chicago-city-owned-land-for-sale",
+    "topic": "Data & APIs",
+    "region": "Chicago, Illinois, United States",
+    "title": "How to find Chicago city-owned lots for sale",
+    "description": "Find Chicago city-owned land through ChiBlockBuilder. Check application dates, group parcel IDs into sites, and download the November 25 inventory review.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Illustration of a grassy vacant lot between two brick homes on a residential Chicago street.",
+    "coverCaption": "Generated editorial illustration of an infill lot, separate from the sites in the city’s offering.",
+    "intro": "To find city-owned land for sale in Chicago, start with the ChiBlockBuilder listing for your planned use. Check its application window and the exact parcel numbers before you put the site on a shortlist. On November 25, 2026, the city inventory showed 12,001 records marked Owned by City. Only 19 also said Apply, and four failed a check of the opening and closing dates.",
+    "takeaways": [
+      "Check ownership, sales status and the application dates separately. Compare the listing with the application or notice for the specific site.",
+      "The November 25 inventory review found six parcel rows for the city’s three courtyard-building RFP sites. Four of those rows form one offering on South Indiana Avenue.",
+      "Check the basis of a listed dollar value. The city’s Land Value field carries its own valuation date. The solicitation or agreement sets the actual purchase terms."
+    ],
+    "guideActions": [
+      {
+        "href": "#november-25-application-snapshot",
+        "label": "See the dated Chicago inventory check"
+      },
+      {
+        "href": "/blog/chicago-city-land-application-review.json",
+        "label": "Download the 19-record review",
+        "download": true
+      },
+      {
+        "href": "https://chicago.gov/blockbuilder",
+        "label": "Check the official listings"
+      }
+    ],
+    "sections": [
+      {
+        "id": "where-to-find-city-owned-lots",
+        "heading": "Where to look for city-owned land in Chicago",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use ChiBlockBuilder for purchase opportunities from Chicago’s Department of Planning and Development. It organizes offerings around uses including housing, commercial and mixed-use development, side yards, open space and agriculture. Open the offering for your planned use and check which parcel or group of parcels it lists. The same city site separately posts public notices for proposed transfers and other limited processes.",
+            "sourceIds": [
+              "chiblockbuilder"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use City-Owned Land Inventory to verify the property index number (PIN), the city’s ownership label and the status fields. The inventory includes historical records such as sales. For a county land bank property, use the Cook County Land Bank Authority’s own listing and announcement. On November 25 the Authority said it was temporarily pausing applications during a system transition.",
+            "sourceIds": [
+              "inventory",
+              "county-land-bank"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "november-25-application-snapshot",
+        "heading": "How many records pass the city’s application date check?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried Chicago’s published inventory on November 25, 2026, using the local calendar date. We counted unique PINs, filtered to Owned by City and Apply, and required the published opening date to be at or before November 25 and the deadline to be at or after it. The dates are as the city recorded them. Check the offering for the time of day and amendments.",
+            "sourceIds": [
+              "inventory-counts",
+              "apply-records",
+              "current-dates"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Inventory check",
+              "PIN records",
+              "How to interpret the result"
+            ],
+            "rows": [
+              [
+                "Entire city inventory",
+                "20,784",
+                "Includes current and historical records."
+              ],
+              [
+                "Property status “Owned by City”",
+                "12,001",
+                "Shows the ownership label in the city inventory."
+              ],
+              [
+                "Owned by City plus sales status “Apply”",
+                "19",
+                "Check the two date fields before treating the property as an application lead."
+              ],
+              [
+                "Both dates span November 25",
+                "15",
+                "Six RFP parcels, four public notice parcels, two commercial, two side yard, and one open space. Verify the specific use and offer."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "inventory-counts"
+              ],
+              [
+                "inventory-counts"
+              ],
+              [
+                "apply-records"
+              ],
+              [
+                "current-dates",
+                "chiblockbuilder"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Three of the four excluded records carried November 16 deadlines. At 118 East 104th Street, the recorded January 15, 2026 deadline precedes the October 1, 2026 opening date. Keep the original values and flag the row for review. An application URL or an Apply label alone leaves that conflict unresolved.",
+            "sourceIds": [
+              "apply-records"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Even among the 15 date-matched records, four were classified as Public Notice. A notice can describe a transfer or a limited process. Read the notice before treating it as an invitation to apply. These are counts from an inventory query on one date. The city can change offerings.",
+            "sourceIds": [
+              "current-dates",
+              "chiblockbuilder"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/chicago-city-land-application-review.json",
+            "format": "JSON",
+            "label": "Download the 19 reviewed rows, group counts and source queries"
+          },
+          {
+            "type": "paragraph",
+            "text": "This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one’s own risk.",
+            "sourceIds": [
+              "terms"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "courtyard-building-rfp-parcel-groups",
+        "heading": "Three development sites in the courtyard-building RFP",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The city’s separate request for proposals (RFP) application names three development sites and gives a January 10, 2027 deadline at 11:59 p.m. In the inventory, the middle site appears in four rows with the same group label. A buyer needs the entire group and the applicable solicitation to estimate the usable site or prepare an application.",
+            "sourceIds": [
+              "courtyard-rfp",
+              "current-dates"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "RFP site",
+              "City inventory PINs",
+              "Parcel rows"
+            ],
+            "rows": [
+              [
+                "4200 South Indiana Avenue",
+                "20-03-120-014-0000",
+                "1"
+              ],
+              [
+                "4500–4514 South Indiana Avenue",
+                "20-03-314-017-0000, 20-03-314-018-0000, 20-03-314-019-0000, 20-03-314-020-0000",
+                "4"
+              ],
+              [
+                "4823 South Evans Avenue",
+                "20-10-214-032-0000",
+                "1"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "courtyard-rfp",
+                "current-dates"
+              ],
+              [
+                "courtyard-rfp",
+                "current-dates"
+              ],
+              [
+                "courtyard-rfp",
+                "current-dates"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For 4514 South Indiana Avenue, the city reports a Land Value of $91,083 dated October 1, 2026. LandBankSearch shows the same figure under its assessed-value label and links back to the city application. For underwriting, preserve the original city field name and valuation date and obtain the county assessment and sale terms separately.",
+            "sourceIds": [
+              "current-dates",
+              "landbank-search",
+              "cco-assessor"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compare-land-search-tools",
+        "heading": "Compare land search tools and source records",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use a discovery site to find candidates, then confirm the decision with the seller’s record. Invariant Earth can screen parcel and location attributes such as terrain, mapped hazards, and nearby infrastructure. Start with the actual lot or parcel group from the city application. Use the same date and PINs when comparing the tools below.",
+            "sourceIds": [
+              "earth",
+              "courtyard-rfp"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Starting point",
+              "What it helps with",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Chicago Cityscape",
+                "Search local land by PIN, lot size, zoning, vacancy and ownership filters.",
+                "Ask it to return all four PINs in the South Indiana Avenue offer and check the date of each record."
+              ],
+              [
+                "LandBankSearch",
+                "Find listings from multiple public agencies and link back to an application.",
+                "Ask for the original land-value field, its basis and date, and the offering that contains the parcel."
+              ],
+              [
+                "Civic Worth",
+                "Browse compiled local records and parcel listings.",
+                "An application list can include expired dates. Compare the date labels with the seller’s application."
+              ],
+              [
+                "ChiBlockBuilder",
+                "Check the city’s offering, use and deadline.",
+                "Read the actual solicitation and any amendments. Confirm the site group and next step."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cityscape"
+              ],
+              [
+                "landbank-search",
+                "current-dates"
+              ],
+              [
+                "civic-worth",
+                "chiblockbuilder"
+              ],
+              [
+                "chiblockbuilder",
+                "courtyard-rfp"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "verify-the-parcel-and-use",
+        "heading": "What to verify before applying",
+        "blocks": [
+          {
+            "type": "list",
+            "items": [
+              "Match all PINs to the county parcel records. Compare the boundaries, access and use for the full development site. When an inventory row is flagged as an obsolete PIN, ask for the current parcel and its relationship to the older record.",
+              "Read the offering’s eligibility and project requirements. Verify the zoning and any overlay or requested relief with the city. Check whether the application is for a commercial building, housing, a side yard or a different use.",
+              "Record separate dates for the city inventory, application, valuation and any public action. Keep value estimates, proposed price and final transaction terms in separate fields.",
+              "Check title, survey, environmental conditions, utilities and the buildable footprint before relying on a shortlist. Use the published application to confirm the latest deadline."
+            ],
+            "sourceIds": [
+              "inventory",
+              "cco-assessor",
+              "chiblockbuilder",
+              "courtyard-rfp"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue screening the site",
+            "items": [
+              {
+                "label": "Find and preserve the correct parcel number",
+                "slug": "parcel-number-lookup-by-address"
+              },
+              {
+                "label": "Trace parcel identifiers through splits and mergers",
+                "slug": "historical-parcel-boundaries-api"
+              },
+              {
+                "label": "Compare parcel zoning and boundary overlays",
+                "slug": "zoning-data-apis-for-site-selection"
+              },
+              {
+                "label": "Ask an agent for parcel source evidence",
+                "slug": "gis-mcp-servers-for-site-selection"
+              },
+              {
+                "label": "Build a checklist for a land shortlist",
+                "slug": "site-selection-due-diligence"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I find city-owned vacant lots for sale in Chicago?",
+        "answer": "Use ChiBlockBuilder’s listing for your proposed use and open the specific application or notice. Match each property index number in the listing to the city inventory and the Cook County parcel record. Check both the application opening and closing dates.",
+        "sourceIds": [
+          "chiblockbuilder",
+          "inventory",
+          "cco-assessor"
+        ]
+      },
+      {
+        "question": "What did the November 25 Chicago application check find?",
+        "answer": "On November 25, 2026, 15 unique city-owned PINs had an Apply label and dates spanning that day. Four of the 15 were Public Notice records. The remaining 11 included six RFP parcel rows across three sites. Check the current offer before relying on the dated count.",
+        "sourceIds": [
+          "apply-records",
+          "current-dates",
+          "courtyard-rfp"
+        ]
+      },
+      {
+        "question": "When is the Chicago courtyard-building RFP due?",
+        "answer": "The city’s published RFP application gives January 10, 2027 at 11:59 p.m. for 4200 South Indiana Avenue, 4500–4514 South Indiana Avenue and 4823 South Evans Avenue. Check the city form for amendments.",
+        "sourceIds": [
+          "courtyard-rfp"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "inventory",
+        "title": "City-Owned Land Inventory and its field definitions",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/d/aksk-kvfp",
+        "linkLabel": "Read the inventory metadata",
+        "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+      },
+      {
+        "id": "inventory-counts",
+        "title": "Inventory records grouped by property status",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=property_status%2Ccount%28%2A%29+as+rows%2Ccount%28distinct+pin%29+as+pins&%24group=property_status&%24order=rows+desc",
+        "linkLabel": "Run the ownership count",
+        "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+      },
+      {
+        "id": "apply-records",
+        "title": "City-owned rows with Sales Status set to Apply",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=id%2Cpin%2Caddress%2Cproperty_status%2Cmanaging_organization%2Csales_status%2Csale_offering_status%2Capplication_use%2Cgrouped_parcels%2Capplication_opens%2Capplication_deadline%2Coffer_round%2Capplication_url%2Cland_value%2Cvaluation_date%2Clast_update%2Clatitude%2Clongitude&%24where=sales_status%3D%27Apply%27+and+property_status%3D%27Owned+by+City%27&%24limit=100&%24order=application_deadline+DESC%2Cid+ASC",
+        "linkLabel": "Query the Apply rows",
+        "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+      },
+      {
+        "id": "current-dates",
+        "title": "City-owned rows with an application window spanning November 25, 2026",
+        "publisher": "City of Chicago",
+        "url": "https://data.cityofchicago.org/resource/aksk-kvfp.json?%24select=id%2Cpin%2Caddress%2Cproperty_status%2Cmanaging_organization%2Csales_status%2Csale_offering_status%2Capplication_use%2Cgrouped_parcels%2Capplication_opens%2Capplication_deadline%2Coffer_round%2Capplication_url%2Cland_value%2Cvaluation_date%2Clast_update%2Clatitude%2Clongitude&%24where=property_status%3D%27Owned+by+City%27+and+application_deadline+%3E%3D+%272026-11-25T00%3A00%3A00%27+and+application_opens+%3C%3D+%272026-11-25T23%3A59%3A59%27&%24limit=500&%24order=application_deadline+ASC%2Cid+ASC",
+        "linkLabel": "Replay the application date query",
+        "license": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html"
+      },
+      {
+        "id": "chiblockbuilder",
+        "title": "ChiBlockBuilder official land sale programs",
+        "publisher": "Chicago Department of Planning and Development",
+        "url": "https://chicago.gov/blockbuilder",
+        "linkLabel": "Open city land sale programs"
+      },
+      {
+        "id": "courtyard-rfp",
+        "title": "City of Chicago 2026 courtyard buildings RFP application",
+        "publisher": "Chicago Department of Planning and Development",
+        "url": "https://cocdpd.submittable.com/submit/24b1ff6b-c55f-4f18-bdd6-5c5c8811230f/chiblockbuilder-2026-rfp",
+        "linkLabel": "Check the three RFP sites and deadline"
+      },
+      {
+        "id": "county-land-bank",
+        "title": "Cook County Land Bank inventory and current application status",
+        "publisher": "Cook County Land Bank Authority",
+        "url": "https://cookcountylandbank.org/what-are-you-looking-for/",
+        "linkLabel": "Check the land bank’s current status"
+      },
+      {
+        "id": "cco-assessor",
+        "title": "Cook County Assessor instructions for searching by PIN",
+        "publisher": "Cook County Assessor’s Office",
+        "url": "https://rpie.cookcountyassessor.com/address-search",
+        "linkLabel": "Find the 14-digit county PIN"
+      },
+      {
+        "id": "cityscape",
+        "title": "Property Finder scope for Chicago, Cook County and nearby counties",
+        "publisher": "Chicago Cityscape",
+        "url": "https://www.chicagocityscape.com/features/propertyfinder.php",
+        "linkLabel": "See Property Finder filters"
+      },
+      {
+        "id": "landbank-search",
+        "title": "Parcel listing for 4514 South Indiana Avenue",
+        "publisher": "LandBankSearch",
+        "url": "https://www.landbanksearch.com/p/3a8efde2-ad29-48be-bc23-853b0cdcac68",
+        "linkLabel": "See the aggregator’s parcel listing"
+      },
+      {
+        "id": "civic-worth",
+        "title": "Chicago city-owned land page",
+        "publisher": "Civic Worth",
+        "url": "https://civicworth.com/chicago/city-owned-land",
+        "linkLabel": "See the compiled listings"
+      },
+      {
+        "id": "earth",
+        "title": "Site screening workflow",
+        "publisher": "Invariant Earth",
+        "url": "https://docs.invariant-ai.com/screen-a-site",
+        "linkLabel": "Open the Earth site screening workflow"
+      },
+      {
+        "id": "terms",
+        "title": "Data Terms of Use",
+        "publisher": "City of Chicago",
+        "url": "https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html",
+        "linkLabel": "Read the city’s terms"
+      }
+    ],
+    "dataset": {
+      "name": "Chicago city-owned land application evidence and deadlines",
+      "description": "November 25, 2026 review of 19 city-owned PINs with an Apply label. Includes the query and count definitions, date outcomes, source links and the six parcel rows for three courtyard-building sites.",
+      "sourceIds": [
+        "inventory",
+        "inventory-counts",
+        "apply-records",
+        "current-dates",
+        "courtyard-rfp"
+      ],
+      "spatialCoverage": "Chicago, Cook County, Illinois, United States",
+      "temporalCoverage": "2026-11-25"
+    },
+    "relatedSlugs": [
+      "parcel-number-lookup-by-address",
+      "historical-parcel-boundaries-api",
+      "zoning-data-apis-for-site-selection",
+      "gis-mcp-servers-for-site-selection"
+    ]
+  },
+  {
     "slug": "data-center-site-selection-platforms-and-advisors",
     "topic": "Data Centers",
     "region": "United States",
@@ -25664,6 +26123,16 @@
           {
             "type": "paragraph",
             "text": "These are documented fields and access paths. Use your plan and client to confirm which details appear in the MCP response. For underwriting, keep the source identifiers and dates beside the value that drove the decision so someone else can repeat the check."
+          },
+          {
+            "type": "links",
+            "label": "Try a second source check",
+            "items": [
+              {
+                "slug": "chicago-city-owned-land-for-sale",
+                "label": "Trace a Chicago land offering from individual PINs to the dated city application"
+              }
+            ]
           }
         ]
       },
