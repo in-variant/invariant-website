@@ -102,11 +102,12 @@ function Datasets({
   featured, formats, datasetTopics, catalogEntries, topicLinks, catalogPage, getSearchIndex,
 }: Awaited<ReturnType<typeof prepareCatalog>>) {
   const [searchReady, setSearchReady] = useState(false)
-  const [query, setQuery] = useState('')
-  const [format, setFormat] = useState('')
+  const [shareResult, setShareResult] = useState<{ search: string; copied: boolean }>()
   const { search, hash } = useLocation()
   const navigate = useNavigate()
   const params = new URLSearchParams(search)
+  const query = params.get('q') ?? ''
+  const format = formats.find(value => value === params.get('format')) ?? ''
   const topic = datasetTopics.find(({ label }) => label === params.get('topic'))?.label ?? ''
   const searchInput = useRef<HTMLInputElement>(null)
   const archive = useRef<HTMLDetailsElement>(null)
@@ -117,7 +118,9 @@ function Datasets({
   const searchIndex = searching ? getSearchIndex() : undefined
   const isFiltered = Boolean(searching || topic || format)
   const matches = useMemo(() => {
-    const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true }) : catalogEntries
+    const candidates = searchIndex
+      ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true, longQuestionRanking: true })
+      : catalogEntries
     if (!topic && !format) return candidates
 
     return candidates.filter(({ topics, dataset }) =>
@@ -141,18 +144,40 @@ function Datasets({
     return () => window.removeEventListener('hashchange', revealSample)
   }, [hash, isFiltered])
 
-  const topicSearch = (label: string) => {
-    const topicParams = new URLSearchParams(params)
-    if (label) topicParams.set('topic', label)
-    else topicParams.delete('topic')
-    return topicParams.toString()
+  const filterSearch = (key: 'q' | 'topic' | 'format', value: string, current = search) => {
+    const next = new URLSearchParams(current)
+    if (value) next.set(key, value)
+    else next.delete(key)
+    return next.toString()
+  }
+
+  const updateFilter = (key: 'q' | 'topic' | 'format', value: string, anchor = window.location.hash) => {
+    // The browser URL reflects the previous input even while React is updating the results.
+    navigate({ search: filterSearch(key, value, window.location.search), hash: anchor }, { replace: key === 'q' })
   }
 
   const clearFilters = () => {
-    setQuery('')
-    if (params.has('topic')) navigate({ search: topicSearch(''), hash })
-    setFormat('')
+    const next = new URLSearchParams(window.location.search)
+    for (const key of ['q', 'topic', 'format']) next.delete(key)
+    navigate({ search: next.toString(), hash: window.location.hash })
     searchInput.current?.focus()
+  }
+
+  const copySearch = async () => {
+    const current = window.location.search
+    const active = new URLSearchParams(current)
+    const link = new URL(canonical)
+    for (const key of ['q', 'topic', 'format']) {
+      const value = active.get(key)?.trim()
+      if (value) link.searchParams.set(key, value)
+    }
+    link.hash = 'dataset-search'
+    try {
+      await navigator.clipboard.writeText(link.href)
+      setShareResult({ search: current, copied: true })
+    } catch {
+      setShareResult({ search: current, copied: false })
+    }
   }
 
   const rows = useMemo(() => matches.map(({ id, notesPath, datePublished, dataset, workflow }) => (
@@ -333,7 +358,12 @@ function Datasets({
         <noscript><p className="dataset-scope">All examples are available below. Enable JavaScript to search or filter by topic.</p></noscript>
         <nav className="dataset-topics" aria-label="Dataset topics">
           {topicLinks.map(({ label, count }) => (
-            <Link key={label} to={{ search: topicSearch(label), hash: '#dataset-search' }}
+            <Link key={label} to={{ search: filterSearch('topic', label), hash: '#dataset-search' }}
+              onClick={event => {
+                if (window.location.search === search || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                event.preventDefault()
+                updateFilter('topic', label, '#dataset-search')
+              }}
               aria-label={`${label || 'All topics'} ${count} research examples`}
               aria-current={label === topic ? 'true' : undefined}>
               {label || 'All topics'} <span aria-hidden="true">{count}</span>
@@ -343,19 +373,20 @@ function Datasets({
         <div className="dataset-controls">
           <label>
             <span>Search data samples</span>
-            <input ref={searchInput} type="search" placeholder="Try flood zones, loan filings, or grid capacity" disabled={!searchReady} value={query} onChange={event => setQuery(event.target.value)} />
+            <input ref={searchInput} type="search" placeholder="Try flood zones, loan filings, or grid capacity" disabled={!searchReady} value={query}
+              onChange={event => updateFilter('q', event.target.value)} />
           </label>
           <label className="dataset-topic-select">
             <span id="dataset-topic-label">Topic</span>
             <select aria-labelledby="dataset-topic-label" disabled={!searchReady} value={topic}
-              onChange={event => navigate({ search: topicSearch(event.target.value), hash })}>
+              onChange={event => updateFilter('topic', event.target.value)}>
               {topicLinks.map(({ label, count }) => <option key={label} value={label}>{label || 'All topics'} ({count})</option>)}
             </select>
           </label>
           <label>
             <span id="dataset-format-label">File format</span>
             <select aria-labelledby="dataset-format-label" disabled={!searchReady} value={format}
-              onChange={event => setFormat(event.target.value)}>
+              onChange={event => updateFilter('format', event.target.value)}>
               <option value="">All formats</option>
               {formats.map(value => <option key={value}>{value}</option>)}
             </select>
@@ -364,7 +395,13 @@ function Datasets({
         <div className="dataset-list-meta">
           <div className="dataset-results" aria-busy={query !== deferredQuery || undefined}>
             <p role="status">{matches.length} {isFiltered ? 'matching' : 'published'} research {matches.length === 1 ? 'example' : 'examples'}</p>
-            {isFiltered && <button type="button" className="dataset-clear" onClick={clearFilters}>Clear filters</button>}
+            {isFiltered && <div className="dataset-search-actions">
+              <button type="button" className="dataset-clear" onClick={clearFilters}>Clear filters</button>
+              <button type="button" className="dataset-clear" onClick={copySearch}>Copy search link</button>
+              <span role="status">{shareResult?.search === search
+                ? shareResult.copied ? 'Link copied' : 'Copy the address from your browser.'
+                : ''}</span>
+            </div>}
           </div>
           <div className="dataset-catalog-downloads">
             <a href="/datasets.csl.json" download>Download citations (CSL JSON) <span aria-hidden="true">↓</span></a>
