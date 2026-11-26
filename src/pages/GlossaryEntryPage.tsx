@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { GLOSSARY_TOPIC_LABELS, getGlossarySummary, type GlossaryEntry } from '../data/glossary'
 import { renderLinkified } from '../components/linkifyGlossary'
+import directory from '../data/glossary-directory.json'
 
 function glossaryEntrySeo(entry: GlossaryEntry) {
   const canonical = `${SITE_URL}/glossary/${entry.slug}`
@@ -16,7 +17,7 @@ function glossaryEntrySeo(entry: GlossaryEntry) {
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       '@id': `${SITE_URL}/glossary#defined-term-set`,
-      name: 'Invariant Infrastructure and Compliance Glossary',
+      name: directory.title,
       url: `${SITE_URL}/glossary`,
     },
   }

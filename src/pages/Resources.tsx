@@ -89,7 +89,7 @@ export default function Resources() {
         <nav aria-label="Data downloads and API documentation" className="resources-data-links">
           <Link to={links.coverage} className="resource-text-link">API data coverage <ResourceArrow diagonal /></Link>
           <Link to={links.datasets} className="resource-text-link">Data samples <ResourceArrow diagonal /></Link>
-          <Link to="/glossary#property-infrastructure" className="resource-text-link">Property and infrastructure glossary <ResourceArrow diagonal /></Link>
+          <Link to="/glossary" className="resource-text-link">Property, power, and infrastructure glossary <ResourceArrow diagonal /></Link>
           <a href={links.quickstart} className="resource-text-link">Invariant Earth API quickstart <ResourceArrow diagonal /></a>
         </nav>
       </section>

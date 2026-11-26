@@ -27,7 +27,7 @@ const glossarySeo = {
   description: directory.description,
   canonical: URL,
   markdown: '/glossary.md',
-  ogImage: `${SITE_URL}/og/glossary.png`,
+  ogImage: `${SITE_URL}/og/physical-world-glossary.png`,
   jsonLd: [
     ORG_SCHEMA,
     breadcrumbSchema([{ name: 'Invariant', url: SITE_URL + '/' }, { name: 'Glossary', url: URL }]),
@@ -35,7 +35,7 @@ const glossarySeo = {
       '@context': 'https://schema.org',
       '@type': 'DefinedTermSet',
       '@id': `${URL}#defined-term-set`,
-      name: 'Invariant Infrastructure and Compliance Glossary',
+      name: directory.title,
       url: URL,
       hasDefinedTerm: GLOSSARY.map(entry => ({
         '@type': 'DefinedTerm',
@@ -93,10 +93,11 @@ export default function Glossary() {
             <section className="glossary-examples" aria-labelledby="glossary-examples-heading">
               <h2 id="glossary-examples-heading">Definitions in practice</h2>
               <ul>
-                {examples.map(({ label, guide, term }) => (
+                {examples.map(({ label, guide, detail, term }) => (
                   <li key={term.slug}>
-                    <Link to={guide}>{label}</Link>
-                    <Link className="glossary-definition-link" to={`/glossary/${term.slug}`}>{term.term}</Link>
+                    <h3><Link to={`/glossary/${term.slug}`}>{term.term}</Link></h3>
+                    <p>{detail}</p>
+                    <Link className="glossary-example-guide" to={guide}>{label} <span aria-hidden="true">↗</span></Link>
                   </li>
                 ))}
               </ul>

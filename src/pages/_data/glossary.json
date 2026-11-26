@@ -6773,6 +6773,115 @@
         "label": "Calculate debt yield and compare it with a lender’s target",
         "path": "/calculators/dscr-debt-yield"
       }
+    },
+    {
+      "slug": "annual-average-daily-traffic",
+      "term": "Annual average daily traffic (AADT)",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "AADT",
+        "average annual daily traffic",
+        "annual daily traffic"
+      ],
+      "seo_title": "Annual Average Daily Traffic (AADT) Definition",
+      "short_definition": "Annual average daily traffic, or AADT, is the estimated number of vehicles that pass a particular point on a road on an average day over a year.",
+      "full_definition": "For a complete year of valid daily counts, divide the total by the number of days in that year. Transportation agencies can also estimate AADT from shorter counts and apply factors for the season and day of week. Keep the agency, year, segment ID, direction, and method with the number because nearby segments can carry different volumes.\n\nWhen estimating the truck share of total traffic, use counts for the same segment, direction, and year. At Industrial Boulevard location 42991 in Minnesota, MnDOT reported 13,204 total vehicles per day and 863 heavy commercial vehicles per day for 2025. The matched figures give a 6.54% heavy commercial share.\n\nFor warehouse access or an EV charging site, also check vehicle classes, peak hours, turning movements, and entrance restrictions. A yearly road volume gives context for those checks.",
+      "related_to": [
+        "assessor-parcel-number",
+        "point-in-time-property-data"
+      ],
+      "citations": [
+        {
+          "label": "FHWA Traffic Monitoring Guide, traffic data methods",
+          "url": "https://highways.dot.gov/sites/fhwa.dot.gov/files/2022_TMG.pdf"
+        },
+        {
+          "label": "MnDOT historical total traffic layer",
+          "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_HISTORY_SAMPLED/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR"
+        },
+        {
+          "label": "MnDOT historical heavy commercial traffic layer",
+          "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_HISTORY/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CHCAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR"
+        }
+      ],
+      "last_updated": "2026-11-26",
+      "guide": {
+        "label": "Match traffic years and calculate truck share",
+        "path": "/blog/truck-traffic-counts-by-address#match-aadt-and-truck-count-year"
+      }
+    },
+    {
+      "slug": "hosting-capacity",
+      "term": "Grid hosting capacity",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "hosting capacity",
+        "distribution hosting capacity",
+        "solar hosting capacity"
+      ],
+      "seo_title": "Grid Hosting Capacity Definition for Solar, Batteries and Load",
+      "short_definition": "Grid hosting capacity estimates how much generation, storage, or load a grid asset can accommodate under a specified screening method and set of conditions.",
+      "full_definition": "Read the utility’s definition and the direction of power flow for each map field. A solar map may estimate export to the grid before studied limits require changes. A load map can report remaining capacity to serve demand. For batteries, check charging and discharging separately. Save the equipment identifier, model or observation date, season, units and assumptions.\n\nIn the November 2026 Vail Mills comparison, the same National Grid feeder had 0.10 MW of published photovoltaic export hosting capacity and 3.18 MVA of published summer load headroom. MW measures real power. MVA measures apparent power. Comparing the figures requires the power direction and, for load, the applicable power factor.\n\nUse map results to choose which connections to investigate. Ask the utility to evaluate the site’s actual demand or export, operating schedule, connection point, necessary upgrades, and timing before committing to service.",
+      "related_to": [
+        "substation-withdrawal-headroom",
+        "point-of-interconnection",
+        "load-study"
+      ],
+      "citations": [
+        {
+          "label": "Con Edison hosting capacity map values and uses",
+          "url": "https://www.coned.com/en/business-partners/hosting-capacity/about?language=en"
+        },
+        {
+          "label": "National Grid New York System Data Portal guide",
+          "url": "https://systemdataportal.nationalgrid.com/NY/documents/National%20Grid%20New%20York%20System%20Data%20Portal%20User%20Guide.pdf"
+        },
+        {
+          "label": "National Grid Vail Mills PV hosting capacity query",
+          "url": "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Hosting_Capacity_Data/MapServer/0/query?where=Master_CDF%3D%2736_35_39253%27&outFields=Master_CDF%2Cfeeder_min_hc%2Cfeeder_max_hc%2Chca_refresh_date&returnGeometry=false&f=pjson"
+        },
+        {
+          "label": "National Grid Vail Mills summer load query",
+          "url": "https://systemdataportal.nationalgrid.com/arcgis/rest/services/NYSDP/Electrification_Data/MapServer/0/query?where=feeder_cdf%3D%2736_35_39253%27&outFields=feeder_cdf%2Cfeeder_load_capacity_headroom%2Csub_load_capacity_headroom%2Crefresh_date&returnGeometry=false&f=pjson"
+        }
+      ],
+      "last_updated": "2026-11-26",
+      "guide": {
+        "label": "Compare three capacity figures for one feeder",
+        "path": "/blog/grid-capacity-apis-load-headroom#same-feeder-three-values"
+      }
+    },
+    {
+      "slug": "trade-area-overlap",
+      "term": "Retail trade area overlap",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "trade area overlap",
+        "catchment overlap",
+        "retail household overlap"
+      ],
+      "seo_title": "Retail Trade Area Overlap Definition and Household Formula",
+      "short_definition": "Retail trade area overlap is the share of two stores’ modeled catchments that they have in common. Measure it in households, residents, or square miles.",
+      "full_definition": "Intersect the two drive or walk areas. For a household comparison, divide the household estimate in the intersection by the household estimate for the store you are evaluating. To estimate the candidate’s additional reach, subtract the shared households from its total. For the combined market, add the two totals and subtract the overlap once.\n\nIn the Detroit grocery example, around 31,200 Michigan households could reach both stores within a modeled 15-minute drive. They represented 17.2% of the Whittier Bodega catchment. At 20 minutes, the estimated share rose to 42.5%. Keep the travel mode, cutoff, route direction, and Census release fixed when comparing candidates.\n\nHousehold overlap measures potential reach. Estimate sales transfer using customer origins and comparable openings as well as the trade area.",
+      "related_to": [
+        "annual-average-daily-traffic",
+        "point-in-time-property-data"
+      ],
+      "citations": [
+        {
+          "label": "Valhalla isochrone API, travel time and direction",
+          "url": "https://valhalla.github.io/valhalla/api/isochrone/api-reference/"
+        },
+        {
+          "label": "U.S. Census Bureau, sampling margins for aggregated ACS data",
+          "url": "https://www.census.gov/programs-surveys/acs/data/variance-tables.html"
+        }
+      ],
+      "last_updated": "2026-11-26",
+      "guide": {
+        "label": "Model reach with the trade area overlap calculator",
+        "path": "/blog/retail-trade-area-overlap#trade-area-overlap-calculator"
+      }
     }
   ]
 }

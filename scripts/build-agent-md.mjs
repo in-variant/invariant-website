@@ -171,8 +171,8 @@ function glossaryDirectoryMd() {
     `# ${glossaryDirectory.title}`, '', glossaryDirectory.description, '',
     citationLink('Explore the glossary', SITE + '/glossary'), '',
     '## Definitions in practice', '',
-    ...glossaryDirectory.examples.map(({ label, definition, guide }) =>
-      `- ${citationLink(glossaryBySlug.get(definition).term, `${SITE}/glossary/${definition}.md`)}. ${citationLink(label, SITE + guide)}.`),
+    ...glossaryDirectory.examples.map(({ label, definition, guide, detail }) =>
+      `- ${citationLink(glossaryBySlug.get(definition).term, `${SITE}/glossary/${definition}.md`)}. ${detail} ${citationLink(label, SITE + guide)}.`),
     '',
     ...Object.entries(glossaryTopics).flatMap(([topic, label]) => {
       const entries = glossary.filter(entry => entry.topic === topic).sort((a, b) => a.term.localeCompare(b.term))
@@ -397,7 +397,7 @@ function resourcesMd() {
     `- [Read the dataset catalog and citations](${SITE}${links.datasets}.md)`,
     `- [Get source URLs and download checksums](${SITE}${links.datasets}.json)`,
     `- [Check API data coverage](${SITE}${links.coverage})`,
-    `- [Property and infrastructure glossary](${SITE}/glossary.md)`,
+    `- [Property, power, and infrastructure glossary](${SITE}/glossary.md)`,
     `- [Invariant Earth API quickstart](${links.quickstart})`, '',
     '## Featured research', '',
     `[Explore research](${SITE}${links.research})`, '',
