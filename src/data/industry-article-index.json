@@ -5165,11 +5165,11 @@
     "slug": "ev-charging-station-data-apis",
     "topic": "Data & APIs",
     "title": "EV charging station APIs for location and live availability",
-    "summary": "Compare EV charging APIs for station locations and live port availability. Test port counts, shared power and which Ohio NEVI stations are open.",
+    "summary": "Compare EV charging APIs for station locations and live port availability. Verify port counts, shared power, uptime and successful charging.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/ev-charging-station-data-apis.webp?v=51b6a8ea",
     "dataset": {
       "archivedRelease": {
@@ -5206,6 +5206,43 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-california-ev-field-test-reliability",
+        "name": "California EV charger field test reliability metrics",
+        "description": "California Energy Commission staff results for operational status, successful charge attempts, accessibility and initial-payment failures. Keeps the field-test scope separate from the federal per-port uptime calculation.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "California, United States",
+        "temporalCoverage": "2024-01/2026-02",
+        "sources": [
+          "https://www.energy.ca.gov/sites/default/files/2026-11/CEC-600-2026-034.pdf",
+          "https://www.energy.ca.gov/publications/2026/results-field-tests-californias-electric-vehicle-charging-network-conducted",
+          "https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-680/section-680.116"
+        ],
+        "sourceDetails": [
+          {
+            "title": "November 2026 EV charging field test staff report, CEC-600-2026-034, pp. 3, 5–6 and 11",
+            "publisher": "California Energy Commission",
+            "url": "https://www.energy.ca.gov/sites/default/files/2026-11/CEC-600-2026-034.pdf"
+          },
+          {
+            "title": "CEC-600-2026-034 publication and data appendix",
+            "publisher": "California Energy Commission",
+            "url": "https://www.energy.ca.gov/publications/2026/results-field-tests-californias-electric-vehicle-charging-network-conducted"
+          },
+          {
+            "title": "23 CFR § 680.116(b), minimum uptime for covered charging ports",
+            "publisher": "Federal Highway Administration via eCFR",
+            "url": "https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-680/section-680.116"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the California field test results and metric definitions",
+            "path": "/blog/california-ev-charger-field-test-reliability.json",
+            "format": "JSON"
+          }
+        ]
+      },
       {
         "anchor": "dataset-california-ev-power-sharing",
         "datePublished": "2026-11-24",

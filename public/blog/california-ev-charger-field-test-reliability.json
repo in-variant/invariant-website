@@ -1,0 +1,68 @@
+{
+  "name": "California EV charger field test reliability metrics",
+  "description": "California Energy Commission staff results for operational status, successful charge attempts, accessibility and initial-payment failures. Keeps the field-test scope separate from the federal per-port uptime calculation.",
+  "date_published": "2026-11-26",
+  "source": {
+    "publisher": "California Energy Commission",
+    "publication_number": "CEC-600-2026-034",
+    "publication_month": "2026-11",
+    "publication_url": "https://www.energy.ca.gov/publications/2026/results-field-tests-californias-electric-vehicle-charging-network-conducted",
+    "pdf_url": "https://www.energy.ca.gov/sites/default/files/2026-11/CEC-600-2026-034.pdf",
+    "pdf_sha256": "41fc947b91ff38f251f88ee2ec80f9b1041368a4d1882668d2a746ca5e6f7db9",
+    "printed_pages": [
+      3,
+      5,
+      6,
+      11
+    ],
+    "pdf_pages_one_based": [
+      9,
+      11,
+      12,
+      17
+    ]
+  },
+  "measurement_window": {
+    "start_month": "2024-01",
+    "end_month": "2026-02"
+  },
+  "metrics_by_charger_type": [
+    {
+      "charger_type": "Level 2",
+      "ports_access_attempted": 10027,
+      "ports_accessed": 8452,
+      "ports_plug_in_tested": 1817,
+      "additional_ports_observed": 6635,
+      "operational_rate_pct": 96.2,
+      "successful_charge_attempt_rate_pct": 93.1
+    },
+    {
+      "charger_type": "DC fast charging",
+      "ports_access_attempted": 8320,
+      "ports_accessed": 7705,
+      "ports_plug_in_tested": 1754,
+      "additional_ports_observed": 5951,
+      "operational_rate_pct": 96.4,
+      "successful_charge_attempt_rate_pct": 94.0
+    }
+  ],
+  "method": {
+    "access": "Exclude ports that could not be accessed from the operational and successful charge metrics.",
+    "operational_rate": "Point-in-time result from plug-in tests and observations, with weighting described on printed page 6.",
+    "successful_charge_attempt_rate": "Successful charges among operational ports in the plug-in tests. The test protocol allowed alternative payment options after an unsuccessful method."
+  },
+  "initial_payment_attempt_failure_pct": {
+    "all_assigned_methods": 17.7,
+    "credit_or_debit_card": 34.4,
+    "plug_in_payment": 2.3,
+    "other": 14.0
+  },
+  "federal_uptime": {
+    "source": "https://www.ecfr.gov/current/title-23/chapter-I/subchapter-G/part-680/section-680.116",
+    "section": "680.116(b)",
+    "applies_to": "Ports covered by the federal rule",
+    "threshold_pct": 97,
+    "comparison": "greater_than",
+    "measurement": "prior 12 months, calculated monthly using qualifying outage exclusions"
+  }
+}
