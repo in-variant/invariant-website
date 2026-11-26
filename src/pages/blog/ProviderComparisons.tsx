@@ -1,19 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import directory from '../../data/physical-world-provider-comparisons.json'
-
-function searchText(value: string) {
-  return value.toLowerCase().normalize('NFKD').replace(/\p{Mark}/gu, '')
-    .replace(/[^a-z0-9]+/g, ' ').trim()
-}
+import { searchProviderComparisons } from '../../data/providerComparisonSearch'
 
 export default function ProviderComparisons() {
   const [query, setQuery] = useState('')
-  const terms = searchText(query).split(/\s+/).filter(Boolean)
-  const workflows = directory.workflows.filter(({ title, test, providers }) => {
-    const text = searchText([title, test, ...providers.map(({ name }) => name)].join(' '))
-    return terms.every(term => text.includes(term))
-  })
+  const { workflows, providerOnly } = searchProviderComparisons(query)
 
   return (
     <section className="blog-collection-comparisons" aria-labelledby="provider-comparisons">
@@ -22,8 +14,11 @@ export default function ProviderComparisons() {
       <div className="blog-comparison-filter">
         <label htmlFor="provider-comparison-search">Find a provider or workflow</label>
         <input id="provider-comparison-search" type="search" value={query}
-          placeholder="Try Regrid, underwriting or truck routing" onChange={event => setQuery(event.target.value)} />
-        <span role="status">{workflows.length} {workflows.length === 1 ? 'workflow' : 'workflows'}</span>
+          placeholder="Try Regrid vs LightBox, underwriting or truck routing" onChange={event => setQuery(event.target.value)} />
+        <span role="status">
+          {workflows.length} {workflows.length === 1 ? 'workflow' : 'workflows'}
+          {providerOnly && ' matching the provider names'}
+        </span>
       </div>
       {workflows.length === 0 && <p>Try a shorter search or clear the field to see all workflows.</p>}
       <div className="blog-comparison-grid">

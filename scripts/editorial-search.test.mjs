@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { articleSearchWords, editorialSearchWords, expandArticleSearchDetails, prepareSearch, rankSearch } from '../src/data/blogSearch.ts'
+import { searchProviderComparisons } from '../src/data/providerComparisonSearch.ts'
 
 const index = prepareSearch([
   { title: 'Find a 100 MW data center site', metadata: 'Powered land and phased utility service' },
@@ -106,4 +107,43 @@ test('editorial tokens normalize U.S. and notification phrasing', () => {
   assert.deepEqual(articleSearchWords('U.S. zoning permits'), articleSearchWords('United States zoning permits'))
   assert.deepEqual(editorialSearchWords('How do I get notified when nearby permits are issued?'),
     ['alert', 'nearby', 'permit', 'issued'])
+})
+
+test('comparison search recognizes provider names, variants and buyer phrasing', () => {
+  const cases = [
+    ['Regrid vs Light Box', 'parcel-boundaries'],
+    ['Paces alternatives for a load flow study', 'power-flow'],
+    ['Permit Pal alternatives for local opposition', 'development-risk'],
+    ['Mireye.com API for flood zones', 'flood-hazard'],
+    ['Regrid and LightBox MCP servers for US parcel data with provenance', 'gis-agents'],
+    ['Which provider can verify contractor permit history in NYC?', 'contractor-permit-history'],
+    ['Lightcast labor shed', 'manufacturing-labor-shed'],
+    ['Which API covers parcel boundaries here?', 'parcel-boundaries'],
+    ['HERE vs TomTom', 'charging-data'],
+  ]
+  for (const [query, expected] of cases) {
+    const { workflows, providerOnly } = searchProviderComparisons(query)
+    assert.equal(workflows[0]?.id, expected, query)
+    assert.equal(providerOnly, false, query)
+  }
+})
+
+test('comparison search requires named providers to share a workflow', () => {
+  const { workflows, providerOnly } = searchProviderComparisons('Geoforge versus Paces')
+  assert.deepEqual(workflows.map(({ id }) => id), ['power-flow', 'data-center-siting-platforms'])
+  assert.equal(providerOnly, false)
+  assert.deepEqual(searchProviderComparisons('Paces vs LightBox').workflows, [])
+  assert.deepEqual(searchProviderComparisons('Regrid vs JobsEQ').workflows, [])
+  assert.equal(searchProviderComparisons('Lightcast vs JobsEQ').workflows[0]?.id, 'manufacturing-labor-shed')
+  assert.deepEqual(searchProviderComparisons('Recipe for a blueberry pie').workflows, [])
+})
+
+test('comparison search keeps provider matches visible for unsupported criteria', () => {
+  const result = searchProviderComparisons('LightBox and Regrid for Arizona zoning')
+  assert.equal(result.providerOnly, true)
+  assert.equal(result.workflows[0].id, 'zoning')
+  for (const { providers } of result.workflows) {
+    assert(providers.some(({ name }) => name === 'Regrid'))
+    assert(providers.some(({ name }) => name === 'LightBox'))
+  }
 })
