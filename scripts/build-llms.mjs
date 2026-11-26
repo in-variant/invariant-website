@@ -48,6 +48,7 @@ const sections = [
     ['Reconcile a statement of values and download the Excel review workbook', `${SITE}/blog/commercial-property-statement-of-values.md`],
   ]],
   ['Commercial lending', [
+    ['Calculate DSCR and debt yield across two payment schedules', `${SITE}/calculators/dscr-debt-yield.md`],
     ['Calculate a commercial refinance gap and break-even thresholds', `${SITE}/calculators/commercial-refinance-gap.md`],
     ['Find dated CMBS property financials', `${SITE}/blog/cmbs-dscr-noi-by-property.md`],
     ['Verify a commercial mortgage maturity date', `${SITE}/blog/commercial-mortgage-maturity-data-apis.md`],
@@ -230,6 +231,7 @@ out.push('- [AEP Ohio data center demand charge calculator](https://invariant-ai
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
 out.push('- [Net effective rent calculator](https://invariant-ai.com/calculators/net-effective-rent.md), Compare commercial lease offers with annual increases, free months and build-out allowances.')
 out.push('- [Commercial real estate refinance gap calculator](https://invariant-ai.com/calculators/commercial-refinance-gap.md), Check DSCR, LTV and debt yield and find the income and property value required to cover payoff and costs.')
+out.push('- [Commercial real estate DSCR and debt yield calculator](https://invariant-ai.com/calculators/dscr-debt-yield.md), Compare two annual payment schedules and find the net operating income needed for your coverage and debt yield targets.')
 out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calculators/battery-recharge-window.md), Check whether a grid-scale battery can recharge for a planned dispatch under import and export limits.')
 
 out.push('')

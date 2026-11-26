@@ -58,6 +58,7 @@ export const contentRouteSources = {
   '/calculators/data-center-power-delivery-schedule': './pages/calculators/DataCenterPowerSchedule.tsx',
   '/calculators/net-effective-rent': './pages/calculators/LeaseRent.tsx',
   '/calculators/commercial-refinance-gap': './pages/calculators/CommercialRefinanceGap.tsx',
+  '/calculators/dscr-debt-yield': './pages/calculators/CommercialDebtCoverage.tsx',
   '/calculators/battery-recharge-window': './pages/calculators/BatteryRecharge.tsx',
   '/faa-ac-450-series': './pages/clusters/FaaAc450Series.tsx',
   '/part-53-subparts': './pages/clusters/Part53Subparts.tsx',

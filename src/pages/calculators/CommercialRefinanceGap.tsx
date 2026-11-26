@@ -146,6 +146,7 @@ export default function CommercialRefinanceGap() {
               <a href={handbook}>OCC handbook on DSCR, debt yield and valuation ↗</a>
               <a href={risk}>OCC refinance risk guidance ↗</a>
               <Link to="/blog/cmbs-dscr-noi-by-property">Trace dated CMBS property financials ↗</Link>
+              <Link to="/calculators/dscr-debt-yield">Compare debt coverage across two payment schedules ↗</Link>
               <Link to="/blog/commercial-mortgage-maturity-data-apis">Verify a commercial mortgage maturity ↗</Link>
               <Link to="/blog/commercial-real-estate-data-apis-for-lenders">Check collateral across a portfolio ↗</Link>
             </div>

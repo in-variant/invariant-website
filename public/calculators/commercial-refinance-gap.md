@@ -31,4 +31,5 @@ Use a dated closing payoff that accounts for accrued interest and applicable exi
 - [OCC Commercial Real Estate Lending handbook, printed pages 43–44](https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/commercial-real-estate-lending/pub-ch-commercial-real-estate.pdf#page=47)
 - [OCC guidance on commercial refinance risk](https://www.occ.gov/news-issuances/bulletins/2024/bulletin-2024-29.html)
 - [Verify property and loan financials in SEC filings](https://invariant-ai.com/blog/cmbs-dscr-noi-by-property)
+- [Compare debt-service coverage and debt yield across two payment schedules](https://invariant-ai.com/calculators/dscr-debt-yield)
 - [Check the last signed change to mortgage maturity](https://invariant-ai.com/blog/commercial-mortgage-maturity-data-apis)

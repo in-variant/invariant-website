@@ -4,6 +4,7 @@ import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
 import { GLOSSARY, GLOSSARY_TOPICS, GLOSSARY_TOPIC_LABELS, entriesByTopic, getGlossarySummary } from '../data/glossary'
 import { articleSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import directory from '../data/glossary-directory.json'
+import '../styles/invariant-brand.css'
 import './Glossary.css'
 
 const URL = `${SITE_URL}/glossary`

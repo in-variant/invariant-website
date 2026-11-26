@@ -6,6 +6,7 @@ import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_SLUG, BATTERY_RECHARGE_T
 import { WATER_USE_DESCRIPTION, WATER_USE_SLUG, WATER_USE_TITLE } from '../../data/dataCenterWaterUse'
 import { AEP_DEMAND_DESCRIPTION, AEP_DEMAND_SLUG, AEP_DEMAND_TITLE } from '../../data/aepOhioDemandCharge'
 import { REFINANCE_DESCRIPTION, REFINANCE_SLUG, REFINANCE_TITLE } from '../../data/commercialRefinance'
+import { DEBT_COVERAGE_DESCRIPTION, DEBT_COVERAGE_SLUG, DEBT_COVERAGE_TITLE } from '../../data/commercialDebtCoverage'
 
 import { GENERATOR_HOURS_DESCRIPTION, GENERATOR_HOURS_SLUG, GENERATOR_HOURS_TITLE } from '../../data/generatorRunHours'
 
@@ -48,6 +49,11 @@ const TOOLS = [
     description: REFINANCE_DESCRIPTION,
   },
   {
+    slug: DEBT_COVERAGE_SLUG,
+    title: DEBT_COVERAGE_TITLE,
+    description: DEBT_COVERAGE_DESCRIPTION,
+  },
+  {
     slug: BATTERY_RECHARGE_SLUG,
     title: BATTERY_RECHARGE_TITLE,
     description: BATTERY_RECHARGE_DESCRIPTION,
@@ -77,7 +83,7 @@ export default function CalculatorsIndex() {
     <>
       <Seo
         title="Infrastructure and compliance calculators"
-        description="Free calculators for data center power, water use and utility costs, battery recharge, commercial lease costs, and commercial refinance loan sizing."
+        description="Free calculators for data center power, water use and utility costs, battery recharge, commercial lease costs, DSCR, debt yield, and refinance loan sizing."
         canonical={URL}
         ogImage={`${SITE_URL}/og-image.png`}
         jsonLd={[
@@ -114,7 +120,7 @@ export default function CalculatorsIndex() {
             Infrastructure and compliance calculators
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Estimate data center power, water use, utility charges and service dates. Compare commercial leases and refinancing, test battery recharge windows, and check licensing timelines and satellite deorbit feasibility.
+            Estimate data center power, water use, utility charges and service dates. Compare lease costs, loan coverage, and refinance proceeds. Test battery recharge windows, licensing timelines, and satellite deorbit feasibility.
           </p>
 
           <ul className="mt-12 divide-y divide-ink/10">

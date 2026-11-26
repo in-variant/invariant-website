@@ -6,6 +6,7 @@ import { BATTERY_RECHARGE_DESCRIPTION, BATTERY_RECHARGE_PATH, BATTERY_RECHARGE_T
 import { WATER_USE_DESCRIPTION, WATER_USE_PATH, WATER_USE_TITLE } from './dataCenterWaterUse'
 import { AEP_DEMAND_DESCRIPTION, AEP_DEMAND_PATH, AEP_DEMAND_TITLE } from './aepOhioDemandCharge'
 import { REFINANCE_DESCRIPTION, REFINANCE_PATH, REFINANCE_TITLE } from './commercialRefinance'
+import { DEBT_COVERAGE_DESCRIPTION, DEBT_COVERAGE_PATH, DEBT_COVERAGE_TITLE } from './commercialDebtCoverage'
 
 export type ResourceReference = {
   path: string
@@ -30,6 +31,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: AEP_DEMAND_PATH, title: AEP_DEMAND_TITLE, summary: AEP_DEMAND_DESCRIPTION, topic: 'Data Centers', kind: 'Tool', searchContext: 'utility bill distribution rate kilowatt minimum capacity ramp 11-month ratchet load lookback' },
   { path: LEASE_RENT_PATH, title: LEASE_RENT_TITLE, summary: LEASE_RENT_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool' },
   { path: REFINANCE_PATH, title: REFINANCE_TITLE, summary: REFINANCE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'maximum loan size DSCR debt service coverage loan to value debt yield income payoff maturity CMBS cash needed' },
+  { path: DEBT_COVERAGE_PATH, title: DEBT_COVERAGE_TITLE, summary: DEBT_COVERAGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'income NOI annual payment interest only amortizing DSCR ratio debt yield underwriting threshold loan coverage commercial mortgage' },
   { path: BATTERY_RECHARGE_PATH, title: BATTERY_RECHARGE_TITLE, summary: BATTERY_RECHARGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'BESS charging duration grid import headroom utility-scale interconnection' },
   ...directory.guides as ResourceReference[],
   ...directory.datasets as ResourceReference[],
