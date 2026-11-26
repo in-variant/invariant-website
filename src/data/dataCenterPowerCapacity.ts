@@ -7,6 +7,14 @@ export const DEFAULT_POWER_CASE = {
 
 export type PowerCase = typeof DEFAULT_POWER_CASE
 
+export const DEFAULT_GRID_CASE = { imports: '0', importsAfterTrip: '0', islandGeneration: '' }
+export type GridPowerCase = typeof DEFAULT_GRID_CASE
+
+export const HYBRID_POWER_EXAMPLE = {
+  power: { it: '50', multiplier: '1.25', normal: '50', outage: '40' },
+  grid: { imports: '20', importsAfterTrip: '20', islandGeneration: '50' },
+} satisfies { power: PowerCase; grid: GridPowerCase }
+
 export const DEFAULT_BATTERY_BRIDGE = { power: '10', energy: '2', duration: '15' }
 export type BatteryBridge = typeof DEFAULT_BATTERY_BRIDGE
 
@@ -16,24 +24,30 @@ export function hundredths(value: string) {
   return Number.isSafeInteger(scaled) ? scaled : null
 }
 
-export function calculatePowerCapacity(caseInputs: PowerCase) {
+export function calculatePowerCapacity(caseInputs: PowerCase, grid?: GridPowerCase) {
   const it = hundredths(caseInputs.it)
   const multiplier = hundredths(caseInputs.multiplier)
   const normal = hundredths(caseInputs.normal)
   const outage = hundredths(caseInputs.outage)
+  const imports = grid ? hundredths(grid.imports) : 0
+  const importsAfterTrip = grid ? hundredths(grid.importsAfterTrip) : 0
+  const islandPower = grid?.islandGeneration ? hundredths(grid.islandGeneration) : null
   if (it === null || it <= 0 || multiplier === null || multiplier < 100 ||
-      normal === null || outage === null) return null
+      normal === null || outage === null || imports === null || importsAfterTrip === null ||
+      (grid?.islandGeneration && islandPower === null)) return null
 
   // In units of 0.0001 MW to keep zero margins and decimal thresholds exact.
   const demand = it * multiplier
-  const normalPower = normal * 100
-  const outagePower = outage * 100
-  if (![demand, normalPower, outagePower].every(Number.isSafeInteger)) return null
+  const normalPower = (normal + imports) * 100
+  const outagePower = (outage + importsAfterTrip) * 100
+  const islandNet = islandPower === null ? null : islandPower * 100
+  if (![demand, normalPower, outagePower, islandNet ?? 0].every(Number.isSafeInteger)) return null
 
   return {
     facilityMw: demand / 10000,
     normalMarginMw: (normalPower - demand) / 10000,
     outageMarginMw: (outagePower - demand) / 10000,
+    islandMarginMw: islandNet === null ? null : (islandNet - demand) / 10000,
   }
 }
 
