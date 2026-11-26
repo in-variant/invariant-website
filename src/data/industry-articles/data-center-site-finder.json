@@ -23633,11 +23633,15 @@
   "title": "U.S. Data Centers for Sale and Lease",
   "description": "Browse U.S. data centers for sale or lease, including operating facilities, powered shells and development projects. Compare advertised power and what can transfer.",
   "date": "2026-11-09",
-  "readMinutes": 16,
+  "readMinutes": 18,
   "intro": "Compare operating data centers, powered shells, and development projects by advertised power and what could transfer at closing. Listings range from a $785,000 Knoxville edge facility to sites with phased utility plans.",
   "listingSections": [
    {"id": "sites-available", "label": "Built facilities and powered shells"},
    {"id": "development-projects-for-sale", "label": "Development projects for sale"},
+   {
+    "id": "data-center-sale-leaseback-power",
+    "label": "Check a sale-leaseback"
+   },
    {"id": "verify-current-listing-status", "label": "Check listing status"}
   ],
   "takeaways": [
@@ -23654,7 +23658,7 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We checked the seller and broker pages on November 25, 2026. They show the terms being marketed on that date. Confirm that the offer is still open and ask what a buyer or tenant can use at handover. UPS capacity describes backup equipment, while commissioned IT load takes account of the electrical and cooling systems that support the racks."
+      "text": "We checked the seller and broker pages on November 25 and 26, 2026. The table shows the marketed terms we found. Confirm that the offer is still open and ask what a buyer or tenant can use at handover. UPS capacity describes backup equipment, while commissioned IT load takes account of the electrical and cooling systems that support the racks."
      },
      {
       "type": "table",
@@ -23670,6 +23674,12 @@
         "Fitted edge facility. The seller advertises an asking price of $785,000 and may consider lease-to-own.",
         "40 kW of installed UPS capacity. The seller describes an option to expand the UPS to 80 kW.",
         "A load-test report with usable IT kW and cooling performance during maintenance."
+       ],
+       [
+        "1205 Buckeye Avenue, Ames, Iowa. 15,512 sq ft.",
+        "Equipped facility marketed for $4 million. Revere describes a possible partial leaseback.",
+        "The broker flyer reports 500 kVA of service and a possible additional 500 kVA. Revere advertises 1.6 MW.",
+        "A utility service confirmation, the electrical one-line and a schedule of any seller-retained capacity."
        ],
        [
         "Hickory, North Carolina. About 50,000 sq ft.",
@@ -23713,6 +23723,11 @@
         "knoxville-owner"
        ],
        [
+        "ames-broker-listing",
+        "ames-broker-flyer",
+        "ames-revere"
+       ],
+       [
         "hickory-listing"
        ],
        [
@@ -23736,6 +23751,9 @@
       ],
       "stackOnMobile": true,
       "rowTransactions": [
+       [
+        "sale"
+       ],
        [
         "sale"
        ],
@@ -24165,6 +24183,49 @@
       "format": "JSON",
       "label": "Download the six examples, source links and 10 MW screen",
       "datasetAnchor": "dataset-listing-power"
+     }
+    ]
+   },
+   {
+    "id": "data-center-sale-leaseback-power",
+    "heading": "What power do you get in a data center sale-leaseback?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "In a sale-leaseback, the buyer acquires the property and the seller stays as a tenant. For a partial leaseback, check which rooms the seller keeps, how much power and cooling the lease reserves, and who controls the utility account. Review the lease exhibits and the utility agreement before pricing capacity for your own workload."
+     },
+     {
+      "type": "paragraph",
+      "text": "At 1205 Buckeye Avenue in Ames, Iowa, the broker lists the 15,512-square-foot data center for $4 million. Revere advertises 1.6 MW and a possible partial leaseback. The broker’s listing and equipment flyer give 500 kVA of service with a possible additional 500 kVA. The flyer lists two 500 kW standby generators separately and says the servers and network switches will be removed.",
+      "sourceIds": [
+       "ames-broker-listing",
+       "ames-broker-flyer",
+       "ames-revere"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Ask Ames Electric Services to confirm utility capacity at the meter and the status of the proposed expansion. kVA measures apparent power. Commissioned IT capacity also depends on power factor, cooling, electrical distribution and any capacity reserved for the seller. Ask the City which parts of your retrofit require permits. Its published pause on processing data center permits runs to May 1, 2027.",
+      "sourceIds": [
+       "ames-broker-flyer",
+       "ames-permit-pause"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "In Lockport, New York, Starpoint Central School District reported that the sale of two Yahoo properties to H5 Data Centers ended two payment-in-lieu-of-taxes agreements. Separately, the New York Power Authority’s October 1, 2026 register still lists 14,000 kW of Expansion Power for Yahoo Holdings Inc. in Lockport. The allocation record names a customer and a city. Ask for the agreement and meter schedule to see which facilities it serves, who can draw the power and whether either right can transfer.",
+      "sourceIds": [
+       "lockport-ida-sale",
+       "lockport-pilot-termination",
+       "lockport-yahoo-nypa"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/data-center-sale-leaseback-evidence.json",
+      "format": "JSON",
+      "label": "Download the Ames and Lockport sale and leaseback records",
+      "datasetAnchor": "dataset-data-center-sale-leaseback"
      }
     ]
    },
@@ -24973,6 +25034,55 @@
   ],
   "sources": [
    {
+    "id": "ames-broker-listing",
+    "title": "1205 Buckeye Avenue listing on Crexi",
+    "url": "https://www.crexi.com/properties/2566535/iowa-ames-data-center",
+    "publisher": "Cushman & Wakefield Iowa Commercial Advisors",
+    "linkLabel": "Ames broker listing"
+   },
+   {
+    "id": "ames-broker-flyer",
+    "title": "Ames Data Center property flyer, property and equipment highlights",
+    "url": "https://images1.cityfeet.com/d2/80jzGED4YayjXuIGyknuCXRIsJWBMDS_NO726yKr_uw/document.pdf",
+    "publisher": "Cushman & Wakefield Iowa Commercial Advisors",
+    "linkLabel": "Ames equipment flyer"
+   },
+   {
+    "id": "ames-revere",
+    "title": "1205 Buckeye Avenue data center listing",
+    "url": "https://platform.reverecre.com/project/0738d0a1-8aeb-4b6d-a7a0-f07eee9fe0e9",
+    "publisher": "LightBox Revere",
+    "linkLabel": "Ames marketplace listing"
+   },
+   {
+    "id": "ames-permit-pause",
+    "title": "Ames data center development updates",
+    "url": "https://www.cityofames.org/Resident-Services/Whats-Happening-in-Ames/Major-Projects/Data-Center-Development-Updates",
+    "publisher": "City of Ames",
+    "linkLabel": "City data center permit update"
+   },
+   {
+    "id": "lockport-ida-sale",
+    "title": "December 2024 IDA board minutes, attorney’s report",
+    "url": "https://www.lockporteconomicdevelopment.com/wp-content/uploads/2024/12/December-2024-IDA-Board-Minutes.pdf",
+    "publisher": "Town of Lockport Industrial Development Agency",
+    "linkLabel": "IDA board minutes"
+   },
+   {
+    "id": "lockport-pilot-termination",
+    "title": "February 10, 2025 budget presentation, loss of PILOTs",
+    "url": "https://core-docs.s3.us-east-1.amazonaws.com/documents/asset/uploaded_file/3701/SCSD/5337916/2025-26_Budget_Presentation__4_February_10__2025.pdf",
+    "publisher": "Starpoint Central School District",
+    "linkLabel": "School district budget record"
+   },
+   {
+    "id": "lockport-yahoo-nypa",
+    "title": "Hydropower Allocations, Yahoo Holdings Inc. in Lockport",
+    "url": "https://data.ny.gov/resource/fu56-qujc.json?%24where=upper%28city%29%3D%27LOCKPORT%27+AND+customer%3D%27Yahoo+Holdings+Inc.%27",
+    "publisher": "New York Power Authority through Open Data NY",
+    "linkLabel": "Exact NYPA allocation record"
+   },
+   {
     "id": "market-invariant",
     "title": "Invariant Market · listings and buyer process",
     "publisher": "Invariant Market",
@@ -25394,6 +25504,23 @@
    "temporalCoverage": "2026-08-07/2026-11-22"
   },
   "additionalDatasets": [
+   {
+    "anchor": "dataset-data-center-sale-leaseback",
+    "name": "Ames and Lockport data center sale and leaseback records",
+    "description": "Broker, local government and NYPA records for the Ames data center offering and the sale of two Yahoo properties in Lockport. Separates advertised utility service, standby capacity, incentive status and the named power allocation.",
+    "datePublished": "2026-11-26",
+    "sourceIds": [
+     "ames-broker-listing",
+     "ames-broker-flyer",
+     "ames-revere",
+     "ames-permit-pause",
+     "lockport-ida-sale",
+     "lockport-pilot-termination",
+     "lockport-yahoo-nypa"
+    ],
+    "spatialCoverage": "Ames, Iowa, and Lockport, New York, United States",
+    "temporalCoverage": "2024-12-12/2026-11-26"
+   },
    {
     "anchor": "dataset-development-projects",
     "name": "Data center development projects for sale and acquisition terms",

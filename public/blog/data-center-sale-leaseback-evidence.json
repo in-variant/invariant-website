@@ -1,0 +1,102 @@
+{
+  "name": "Ames and Lockport data center sale and leaseback records",
+  "description": "Broker, local government and NYPA records for the Ames data center offering and the sale of two Yahoo properties in Lockport. Separates advertised utility service, standby capacity, incentive status and the named power allocation.",
+  "checked_on": "2026-11-26",
+  "sources": {
+    "ames-broker-listing": {
+      "publisher": "Cushman & Wakefield Iowa Commercial Advisors",
+      "url": "https://www.crexi.com/properties/2566535/iowa-ames-data-center"
+    },
+    "ames-broker-flyer": {
+      "publisher": "Cushman & Wakefield Iowa Commercial Advisors",
+      "url": "https://images1.cityfeet.com/d2/80jzGED4YayjXuIGyknuCXRIsJWBMDS_NO726yKr_uw/document.pdf"
+    },
+    "ames-revere": {
+      "publisher": "LightBox Revere",
+      "url": "https://platform.reverecre.com/project/0738d0a1-8aeb-4b6d-a7a0-f07eee9fe0e9"
+    },
+    "ames-permit-pause": {
+      "publisher": "City of Ames",
+      "url": "https://www.cityofames.org/Resident-Services/Whats-Happening-in-Ames/Major-Projects/Data-Center-Development-Updates"
+    },
+    "lockport-ida-sale": {
+      "publisher": "Town of Lockport Industrial Development Agency",
+      "url": "https://www.lockporteconomicdevelopment.com/wp-content/uploads/2024/12/December-2024-IDA-Board-Minutes.pdf"
+    },
+    "lockport-pilot-termination": {
+      "publisher": "Starpoint Central School District",
+      "url": "https://core-docs.s3.us-east-1.amazonaws.com/documents/asset/uploaded_file/3701/SCSD/5337916/2025-26_Budget_Presentation__4_February_10__2025.pdf"
+    },
+    "lockport-yahoo-nypa": {
+      "publisher": "New York Power Authority through Open Data NY",
+      "url": "https://data.ny.gov/resource/fu56-qujc.json?%24where=upper%28city%29%3D%27LOCKPORT%27+AND+customer%3D%27Yahoo+Holdings+Inc.%27"
+    }
+  },
+  "records": [
+    {
+      "address": "1205 Buckeye Avenue, Ames, IA 50010",
+      "offering_status": "publicly marketed when checked; confirm current status with the broker",
+      "asking_price_usd": 400000,
+      "building_sq_ft": 15512,
+      "listing_source": "ames-broker-listing",
+      "power_observations": [
+        {
+          "value": 500,
+          "unit": "kVA",
+          "meaning": "advertised utility service",
+          "source": "ames-broker-flyer"
+        },
+        {
+          "value": 500,
+          "unit": "kVA",
+          "meaning": "additional capacity described as possible",
+          "source": "ames-broker-flyer"
+        },
+        {
+          "value": 500,
+          "unit": "kW",
+          "quantity": 2,
+          "meaning": "standby nameplate per generator",
+          "source": "ames-broker-flyer"
+        },
+        {
+          "value": 1.6,
+          "unit": "MW",
+          "meaning": "marketplace installed-power claim",
+          "source": "ames-revere"
+        }
+      ],
+      "tenant_terms": {
+        "partial_leaseback": "marketed as an option",
+        "contracted_rooms_or_capacity": null,
+        "source": "ames-revere"
+      },
+      "confirmed_buyer_it_kw": null,
+      "permit_check": {
+        "city_reported_pause_end": "2027-05-01",
+        "scope_to_confirm": "permits for the proposed retrofit",
+        "source": "ames-permit-pause"
+      }
+    },
+    {
+      "property_group": "Two former Yahoo PILOT properties in Lockport, NY",
+      "buyer": "H5 Data Centers",
+      "pilot_agreements_reported_terminated": 2,
+      "sale_and_tax_sources": [
+        "lockport-ida-sale",
+        "lockport-pilot-termination"
+      ],
+      "power_allocation": {
+        "customer": "Yahoo Holdings Inc.",
+        "city": "Lockport",
+        "program": "Expansion Power",
+        "amount_kw": 14000,
+        "as_of": "2026-10-01",
+        "source": "lockport-yahoo-nypa",
+        "catalog": "https://data.ny.gov/Energy-Environment/Hydropower-Allocations/fu56-qujc",
+        "delivery_meter": null,
+        "assignability": null
+      }
+    }
+  ]
+}
