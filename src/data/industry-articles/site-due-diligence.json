@@ -2829,24 +2829,25 @@
   "topic": "Data Centers",
   "kind": "study-guide",
   "region": "United States",
-  "title": "Check FEMA flood zones by address for data centers",
-  "description": "Check 10 data center addresses against effective FEMA maps. Compare Zone AE and shaded or unshaded Zone X, with the parcel and building evidence for each site.",
+  "title": "FEMA flood zones by address for 11 data center sites",
+  "description": "Look up FEMA flood zones by address, then verify the tax lot and building. Compare 11 data center sites with map panels, effective dates and a downloadable CSV.",
   "date": "2026-11-20",
-  "readMinutes": 10,
-  "intro": "A FEMA address search shows the mapped zone at one point. For a site decision, match the tax lot and building outline, then check access and planned equipment separately. This comparison shows the effective map result for ten U.S. data center sites and which geometry each result covers.",
+  "readMinutes": 11,
+  "intro": "A FEMA address search shows the mapped flood zone at one point. Check the tax lot and building outline before you use that result for a site decision. One address can span two FEMA map panels, as DataBank ATL4 does in South Fulton. The examples below show what the effective maps report for 11 data center sites and which part of each site was checked.",
   "takeaways": [
    "Separate the point from the parcel. A single roof point can be in Zone AE on a tax lot that crosses several FEMA zones.",
    "Keep the Zone X subtype. Plano and Novva Mesa both returned X, but the Mesa parcel is in the mapped 0.2% annual-chance flood hazard area.",
    "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
    "In Tampa, the address point, parcel and building matched to FEMA Zone X. The county hurricane evacuation map puts the parcel in Zone C.",
    "Save the map panel, effective date and any applicable map revisions with the zone and subtype.",
+   "Look up every printed panel covering the site. The address point at DataBank ATL4 returns one Fulton County panel, while the mapped building extends onto a second.",
    "Check the building, electrical yard and access route separately. Each can intersect a different hazard area.",
    "Use the local floodplain administrator and a qualified engineer to resolve boundary, elevation and floodway questions before design or acquisition."
   ],
   "guideActions": [
    {
     "href": "#compare-fema-addresses",
-    "label": "Compare the 10 sites"
+    "label": "Compare the 11 sites"
    },
    {
     "href": "https://docs.invariant-ai.com/check-flood-zone-by-address",
@@ -2861,7 +2862,7 @@
   "sections": [
    {
     "id": "compare-fema-addresses",
-    "heading": "FEMA flood zones for 10 data center sites",
+    "heading": "FEMA flood zones for 11 data center sites",
     "blocks": [
      {
       "type": "paragraph",
@@ -2928,6 +2929,11 @@
         "1100 White Street SW, Atlanta, GA (DataBank ATL2)",
         "Unshaded Zone X",
         "Parcel and a mapped building outline. The result covers the White Street site."
+       ],
+       [
+        "200 Selig Drive SW, South Fulton, GA (DataBank ATL4)",
+        "Unshaded Zone X",
+        "County address point, parcel and main mapped building. The building crosses two Fulton County map panels."
        ]
       ],
       "rowSectionIds": [
@@ -2940,13 +2946,14 @@
        "plano-novva-mesa-flood-zones",
        "plano-novva-mesa-flood-zones",
        "weehawken-1919-park-flood-zone",
-       "atlanta-1100-white-street-flood-zone"
+       "atlanta-1100-white-street-flood-zone",
+       "south-fulton-200-selig-flood-zone"
       ]
      },
      {
       "type": "download",
       "path": "/blog/data-center-fema-address-comparison.csv",
-      "label": "Download all 10 FEMA address checks",
+      "label": "Download all 11 FEMA address checks",
       "format": "CSV",
       "datasetAnchor": null
      }
@@ -3384,6 +3391,92 @@
       "sourceIds": [
        "earth-flood-workflow"
       ]
+     }
+    ]
+   },
+   {
+    "id": "south-fulton-200-selig-flood-zone",
+    "heading": "FEMA flood zone at 200 Selig Drive SW in South Fulton",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "DataBank ATL4 at 200 Selig Drive SW is in unshaded FEMA Zone X, an area of minimal mapped flood hazard. That result applies to the county address point, the full mapped tax parcel and the main mapped building. The site crosses Fulton County panels 13121C0218F and 13121C0331F. Both took effect September 18, 2013.",
+      "sourceIds": [
+       "atl4-operator",
+       "atl4-point-zone",
+       "atl4-parcel",
+       "atl4-county-structures",
+       "atl4-zones",
+       "atl4-panels"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The City of South Fulton’s ATL4 building permit row and Fulton County’s address record both point to parcel 14F0083 LL0204. The address point is inside that parcel, outside the main building outline. Use the building polygon for the building result. The county GIS lists it as structure LST0024685 on the same parcel.",
+      "sourceIds": [
+       "atl4-permit",
+       "atl4-address",
+       "atl4-parcel",
+       "atl4-county-structures"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Fulton County FEMA panel",
+       "Share of the tax parcel",
+       "Share of the main mapped building"
+      ],
+      "rows": [
+       [
+        "13121C0218F",
+        "42.9%",
+        "88.9%"
+       ],
+       [
+        "13121C0331F",
+        "57.1%",
+        "11.1%"
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "atl4-13121C0218F"
+       ],
+       [
+        "atl4-13121C0331F"
+       ]
+      ],
+      "sourceIds": [
+       "atl4-parcel",
+       "atl4-county-structures",
+       "atl4-panels"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The address point lands on panel 13121C0218F. A point lookup alone would miss the second Fulton County panel. The map index also returns an overlapping Cobb County panel. Use the Fulton County products for this Fulton County tax lot and keep both panel numbers in the diligence file.",
+      "sourceIds": [
+       "atl4-address",
+       "atl4-parcel",
+       "atl4-panels"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The effective FEMA layer returned zero Special Flood Hazard Area polygons intersecting the tax lot. Before relying on the Zone X result, check drainage, entrance and equipment elevations, and any access roads the facility needs during a flood.",
+      "sourceIds": [
+       "atl4-sfha-parcel-count",
+       "fema-nfhl"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/databank-atl4-fema-map-panels.json",
+      "label": "Download the ATL4 parcel, footprint and FEMA panel checks",
+      "format": "JSON",
+      "datasetAnchor": "dataset-atl4-fema-map-panels"
      }
     ]
    },
@@ -4263,6 +4356,72 @@
     "title": "Draft air permit 7374-121-0973-S-01-0 separates the 200 Selig Drive facility from the White Street mailing address",
     "publisher": "Georgia Environmental Protection Division",
     "url": "https://epd.georgia.gov/document/document/28975-draft/download"
+   },
+   {
+    "id": "atl4-operator",
+    "title": "DataBank ATL4 South Fulton facility address",
+    "publisher": "DataBank",
+    "url": "https://www.databank.com/data-centers/atlanta/200-selig-dr-sw/"
+   },
+   {
+    "id": "atl4-permit",
+    "title": "ATL4 commercial building permit row and tax parcel, PDF page 2",
+    "publisher": "City of South Fulton",
+    "url": "https://www.cityofsouthfultonga.gov/DocumentCenter/View/7974/JUN-2023-ALL-PERMITS-ISSUED#page=2"
+   },
+   {
+    "id": "atl4-address",
+    "title": "County address point SFAP411879 at 200 Selig Drive SW",
+    "publisher": "Fulton County GIS",
+    "url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/ArcGIS/rest/services/Address_Points/FeatureServer/0/query?where=StNumber%3D200+AND+UPPER%28Name%29%3D%27SELIG%27&outFields=OBJECTID%2CFCFeatID%2CParcelID%2CLabel%2CPtType%2CPtClass%2CCity%2CZip%2CStatus%2CSource&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "atl4-parcel",
+    "title": "Tax parcel 14F0083 LL0204 at 200 Selig Drive SW",
+    "publisher": "Fulton County GIS",
+    "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=AddrNumber%3D%27200%27+AND+UPPER%28AddrStreet%29%3D%27SELIG%27&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres&returnGeometry=true&outSR=4326&f=geojson"
+   },
+   {
+    "id": "atl4-county-structures",
+    "title": "County mapped structures around the ATL4 parcel",
+    "publisher": "Fulton County GIS",
+    "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/Basemap/FultonStreetBaseMap/MapServer/133/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=%2A"
+   },
+   {
+    "id": "atl4-zones",
+    "title": "Effective hazard polygon 13121C_11098 around ATL4",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+   },
+   {
+    "id": "atl4-point-zone",
+    "title": "Effective FEMA hazard at the county address point",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.5471884872439%2C33.7502501542683&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&f=json&outFields=DFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF"
+   },
+   {
+    "id": "atl4-sfha-parcel-count",
+    "title": "FEMA count of Special Flood Hazard Area polygons intersecting the ATL4 tax parcel",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=SFHA_TF%3D%27T%27&geometry=%7B%22rings%22%3A%5B%5B%5B-84.54684197740126%2C33.750916945563105%5D%2C%5B-84.54687688192672%2C33.750839499000236%5D%2C%5B-84.54690525121502%2C33.75076021154878%5D%2C%5B-84.54692694665587%2C33.750679466841476%5D%2C%5B-84.54694186422006%2C33.75059765742023%5D%2C%5B-84.54694993119736%2C33.75051517933586%5D%2C%5B-84.54695587798464%2C33.750386183514394%5D%2C%5B-84.54695807570214%2C33.750257104565364%5D%2C%5B-84.54695236180892%2C33.750199966536485%5D%2C%5B-84.54694202802952%2C33.75014328274277%5D%2C%5B-84.54692711978096%2C33.75008731452189%5D%2C%5B-84.54688019983084%2C33.74993631353824%5D%2C%5B-84.54682762233425%2C33.74978661841272%5D%2C%5B-84.54676086284194%2C33.749667678047686%5D%2C%5B-84.54668870136615%2C33.74955095880786%5D%2C%5B-84.54661124661814%2C33.749436632564574%5D%2C%5B-84.54650522951184%2C33.74931782728958%5D%2C%5B-84.54639293157852%2C33.74920312030667%5D%2C%5B-84.54630161989712%2C33.74910185090701%5D%2C%5B-84.54621626808789%2C33.74899701692233%5D%2C%5B-84.54613707366157%2C33.7488888630068%5D%2C%5B-84.54603141742389%2C33.7487114993888%5D%2C%5B-84.54592253388721%2C33.74853550347392%5D%2C%5B-84.54587987829052%2C33.74845546601795%5D%2C%5B-84.54584305546972%2C33.74837343331154%5D%2C%5B-84.54581219946729%2C33.748289699788074%5D%2C%5B-84.54578742169755%2C33.7482045689663%5D%2C%5B-84.5457580631827%2C33.74809416810842%5D%2C%5B-84.5457344556279%2C33.74798280826023%5D%2C%5B-84.54571664418869%2C33.74787069937101%5D%2C%5B-84.54570465998863%2C33.74775805143252%5D%2C%5B-84.54646035249112%2C33.74802112548819%5D%2C%5B-84.54707442769174%2C33.74823489175928%5D%2C%5B-84.5482297746312%2C33.74863707380324%5D%2C%5B-84.54866123232357%2C33.74922053669053%5D%2C%5B-84.54872071225233%2C33.74930092954798%5D%2C%5B-84.54864607804937%2C33.74935686897517%5D%2C%5B-84.54988425193817%2C33.75103107726152%5D%2C%5B-84.549480791918%2C33.751384158363386%5D%2C%5B-84.54684197740126%2C33.750916945563105%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true&f=json"
+   },
+   {
+    "id": "atl4-panels",
+    "title": "FEMA panel index records around 200 Selig Drive SW",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CEFF_DATE%2CPANEL_TYP"
+   },
+   {
+    "id": "atl4-13121C0218F",
+    "title": "Download effective Fulton County map panel 13121C0218F",
+    "publisher": "FEMA Map Service Center",
+    "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0218F"
+   },
+   {
+    "id": "atl4-13121C0331F",
+    "title": "Download effective Fulton County map panel 13121C0331F",
+    "publisher": "FEMA Map Service Center",
+    "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0331F"
    }
   ],
   "relatedSlugs": [
@@ -4418,6 +4577,27 @@
      "atl2-firm",
      "atl2-roof-zone",
      "atl2-mailing-address"
+    ]
+   },
+   {
+    "anchor": "dataset-atl4-fema-map-panels",
+    "name": "DataBank ATL4 FEMA parcel and building panel check",
+    "description": "Point, parcel and main building checks for 200 Selig Drive SW. Includes two Fulton County FEMA panels, mapped area shares, municipal permit identifiers and source queries.",
+    "datePublished": "2026-11-26",
+    "spatialCoverage": "South Fulton, Fulton County, Georgia, United States",
+    "temporalCoverage": "2026-11-26",
+    "sourceIds": [
+     "atl4-operator",
+     "atl4-permit",
+     "atl4-address",
+     "atl4-parcel",
+     "atl4-county-structures",
+     "atl4-zones",
+     "atl4-point-zone",
+     "atl4-sfha-parcel-count",
+     "atl4-panels",
+     "atl4-13121C0218F",
+     "atl4-13121C0331F"
     ]
    }
   ]

@@ -1,0 +1,137 @@
+{
+  "title": "DataBank ATL4 FEMA address, parcel and building check",
+  "version": "1.0.0",
+  "checked_on": "2026-11-26",
+  "guide_url": "https://invariant-ai.com/blog/data-center-flood-zone-screening#south-fulton-200-selig-flood-zone",
+  "facility": "DataBank ATL4, South Fulton Data Center",
+  "address": "200 Selig Drive SW, South Fulton, GA 30336",
+  "building_permit": {
+    "application_id": "BLDG-COM-2023-03-016834",
+    "permit_id": "BLD-03-23-008160",
+    "listed_status": "Permit Issued",
+    "source": "permit",
+    "pdf_page": 2
+  },
+  "county_address_point": {
+    "feature_id": "SFAP411879",
+    "coordinates_lon_lat": [
+      -84.5471884872439,
+      33.7502501542683
+    ],
+    "inside_matched_parcel": true,
+    "inside_main_mapped_building": false,
+    "fema_zone": "X",
+    "source": "address"
+  },
+  "county_parcel": {
+    "id": "14F0083  LL0204",
+    "recorded_land_acres": 17.92,
+    "fema_unshaded_zone_x_percent": 100,
+    "special_flood_hazard_area_percent": 0,
+    "source": "parcel"
+  },
+  "main_mapped_building": {
+    "feature_id": "LST0024685",
+    "object_id": 99739,
+    "footprint_area_m2_approximate": 10607,
+    "fema_unshaded_zone_x_percent": 100,
+    "special_flood_hazard_area_percent": 0,
+    "source": "county-structures"
+  },
+  "fema_effective_hazard": {
+    "flood_area_id": "13121C_11098",
+    "zone": "X",
+    "subtype": "AREA OF MINIMAL FLOOD HAZARD",
+    "special_flood_hazard_area": false,
+    "source": "zones"
+  },
+  "fulton_firm_panels": [
+    {
+      "id": "13121C0218F",
+      "effective_date": "2013-09-18",
+      "parcel_area_share_percent": 42.9,
+      "main_mapped_building_area_share_percent": 88.9,
+      "covers_address_point": true
+    },
+    {
+      "id": "13121C0331F",
+      "effective_date": "2013-09-18",
+      "parcel_area_share_percent": 57.1,
+      "main_mapped_building_area_share_percent": 11.1,
+      "covers_address_point": false
+    }
+  ],
+  "neighboring_panel_returned_by_index": {
+    "id": "13067C0218H",
+    "county": "Cobb County",
+    "used_for_site_result": false,
+    "reason": "The overlapping panel index feature belongs to a different county than the matched tax parcel."
+  },
+  "method": "Matched the operator address and municipal permit to the county address point and tax lot. Selected the main county structure by the common parcel ID and mapped size. Intersected county geometries with effective FEMA hazard and printed panel index polygons in NAD83 / UTM zone 16N (EPSG:26916). Repaired a self-touch in the FEMA polygon before overlay and independently queried FEMA for the address point and the count of SFHA polygons intersecting the tax parcel. Panel area shares are rounded to one decimal place.",
+  "scope": "Screening result for the mapped point, tax parcel and main county building polygon. Finished floor elevation, access routes, equipment areas, local drainage, and insurance terms were not evaluated.",
+  "sources": {
+    "operator": {
+      "title": "DataBank ATL4 South Fulton facility address",
+      "publisher": "DataBank",
+      "url": "https://www.databank.com/data-centers/atlanta/200-selig-dr-sw/"
+    },
+    "permit": {
+      "title": "ATL4 commercial building permit row and tax parcel, PDF page 2",
+      "publisher": "City of South Fulton",
+      "url": "https://www.cityofsouthfultonga.gov/DocumentCenter/View/7974/JUN-2023-ALL-PERMITS-ISSUED#page=2",
+      "sha256_at_retrieval": "e27df633e5902ac1b36bee39b8bf01cc20fe1a116c0c90f133f2e61b670b0f40"
+    },
+    "address": {
+      "title": "County address point SFAP411879 at 200 Selig Drive SW",
+      "publisher": "Fulton County GIS",
+      "url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/ArcGIS/rest/services/Address_Points/FeatureServer/0/query?where=StNumber%3D200+AND+UPPER%28Name%29%3D%27SELIG%27&outFields=OBJECTID%2CFCFeatID%2CParcelID%2CLabel%2CPtType%2CPtClass%2CCity%2CZip%2CStatus%2CSource&returnGeometry=true&outSR=4326&f=geojson",
+      "sha256_at_retrieval": "c8616831e8e144048d02fc2a6f433207a9bfbce94263bcd5152d72082b2a81d7"
+    },
+    "parcel": {
+      "title": "Tax parcel 14F0083 LL0204 at 200 Selig Drive SW",
+      "publisher": "Fulton County GIS",
+      "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=AddrNumber%3D%27200%27+AND+UPPER%28AddrStreet%29%3D%27SELIG%27&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres&returnGeometry=true&outSR=4326&f=geojson",
+      "sha256_at_retrieval": "78e730ec7c7e0fc357c13c30853e88baa74311a781010c7aa101aafc164df644"
+    },
+    "county-structures": {
+      "title": "County mapped structures around the ATL4 parcel",
+      "publisher": "Fulton County GIS",
+      "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/Basemap/FultonStreetBaseMap/MapServer/133/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=%2A",
+      "sha256_at_retrieval": "4e9b8e66d0e37f7bdb3e663cd01dee7ad2ecca3f52aac010465f7e69b3885a44"
+    },
+    "zones": {
+      "title": "Effective hazard polygon 13121C_11098 around ATL4",
+      "publisher": "FEMA",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+      "sha256_at_retrieval": "b3eac974493ff7250d8b4765b9cbf58eebcff1c0d62fc4939224f867ddf3b907"
+    },
+    "point-zone": {
+      "title": "Effective FEMA hazard at the county address point",
+      "publisher": "FEMA",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.5471884872439%2C33.7502501542683&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&f=json&outFields=DFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF",
+      "sha256_at_retrieval": "031776a623cc36ec53a31baf40e200ab0e5cfa90a53d3368ab7795979b5732f1"
+    },
+    "sfha-parcel-count": {
+      "title": "FEMA count of Special Flood Hazard Area polygons intersecting the ATL4 tax parcel",
+      "publisher": "FEMA",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=SFHA_TF%3D%27T%27&geometry=%7B%22rings%22%3A%5B%5B%5B-84.54684197740126%2C33.750916945563105%5D%2C%5B-84.54687688192672%2C33.750839499000236%5D%2C%5B-84.54690525121502%2C33.75076021154878%5D%2C%5B-84.54692694665587%2C33.750679466841476%5D%2C%5B-84.54694186422006%2C33.75059765742023%5D%2C%5B-84.54694993119736%2C33.75051517933586%5D%2C%5B-84.54695587798464%2C33.750386183514394%5D%2C%5B-84.54695807570214%2C33.750257104565364%5D%2C%5B-84.54695236180892%2C33.750199966536485%5D%2C%5B-84.54694202802952%2C33.75014328274277%5D%2C%5B-84.54692711978096%2C33.75008731452189%5D%2C%5B-84.54688019983084%2C33.74993631353824%5D%2C%5B-84.54682762233425%2C33.74978661841272%5D%2C%5B-84.54676086284194%2C33.749667678047686%5D%2C%5B-84.54668870136615%2C33.74955095880786%5D%2C%5B-84.54661124661814%2C33.749436632564574%5D%2C%5B-84.54650522951184%2C33.74931782728958%5D%2C%5B-84.54639293157852%2C33.74920312030667%5D%2C%5B-84.54630161989712%2C33.74910185090701%5D%2C%5B-84.54621626808789%2C33.74899701692233%5D%2C%5B-84.54613707366157%2C33.7488888630068%5D%2C%5B-84.54603141742389%2C33.7487114993888%5D%2C%5B-84.54592253388721%2C33.74853550347392%5D%2C%5B-84.54587987829052%2C33.74845546601795%5D%2C%5B-84.54584305546972%2C33.74837343331154%5D%2C%5B-84.54581219946729%2C33.748289699788074%5D%2C%5B-84.54578742169755%2C33.7482045689663%5D%2C%5B-84.5457580631827%2C33.74809416810842%5D%2C%5B-84.5457344556279%2C33.74798280826023%5D%2C%5B-84.54571664418869%2C33.74787069937101%5D%2C%5B-84.54570465998863%2C33.74775805143252%5D%2C%5B-84.54646035249112%2C33.74802112548819%5D%2C%5B-84.54707442769174%2C33.74823489175928%5D%2C%5B-84.5482297746312%2C33.74863707380324%5D%2C%5B-84.54866123232357%2C33.74922053669053%5D%2C%5B-84.54872071225233%2C33.74930092954798%5D%2C%5B-84.54864607804937%2C33.74935686897517%5D%2C%5B-84.54988425193817%2C33.75103107726152%5D%2C%5B-84.549480791918%2C33.751384158363386%5D%2C%5B-84.54684197740126%2C33.750916945563105%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true&f=json",
+      "sha256_at_retrieval": "618de7d9f46f3f697d827a1b6d84974760d5deda62e4e592adaa3c646602a94c"
+    },
+    "panels": {
+      "title": "FEMA panel index records around 200 Selig Drive SW",
+      "publisher": "FEMA",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CEFF_DATE%2CPANEL_TYP",
+      "sha256_at_retrieval": "862bb512af33b28e5fb0f1714aad4bafc866b5473c9e97833a0805b2cf24eb48"
+    },
+    "13121C0218F": {
+      "title": "Download effective Fulton County map panel 13121C0218F",
+      "publisher": "FEMA Map Service Center",
+      "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0218F"
+    },
+    "13121C0331F": {
+      "title": "Download effective Fulton County map panel 13121C0331F",
+      "publisher": "FEMA Map Service Center",
+      "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0331F"
+    }
+  }
+}

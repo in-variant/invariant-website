@@ -9974,8 +9974,8 @@
   {
     "slug": "data-center-flood-zone-screening",
     "topic": "Data Centers",
-    "title": "Check FEMA flood zones by address for data centers",
-    "summary": "Check 10 data center addresses against effective FEMA maps. Compare Zone AE and shaded or unshaded Zone X, with the parcel and building evidence for each site.",
+    "title": "FEMA flood zones by address for 11 data center sites",
+    "summary": "Look up FEMA flood zones by address, then verify the tax lot and building. Compare 11 data center sites with map panels, effective dates and a downloadable CSV.",
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
@@ -10553,6 +10553,91 @@
           {
             "label": "Download the Weehawken and Atlanta map checks",
             "path": "/blog/data-center-flood-weehawken-atlanta.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-atl4-fema-map-panels",
+        "name": "DataBank ATL4 FEMA parcel and building panel check",
+        "description": "Point, parcel and main building checks for 200 Selig Drive SW. Includes two Fulton County FEMA panels, mapped area shares, municipal permit identifiers and source queries.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "South Fulton, Fulton County, Georgia, United States",
+        "temporalCoverage": "2026-11-26",
+        "sources": [
+          "https://www.databank.com/data-centers/atlanta/200-selig-dr-sw/",
+          "https://www.cityofsouthfultonga.gov/DocumentCenter/View/7974/JUN-2023-ALL-PERMITS-ISSUED#page=2",
+          "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/ArcGIS/rest/services/Address_Points/FeatureServer/0/query?where=StNumber%3D200+AND+UPPER%28Name%29%3D%27SELIG%27&outFields=OBJECTID%2CFCFeatID%2CParcelID%2CLabel%2CPtType%2CPtClass%2CCity%2CZip%2CStatus%2CSource&returnGeometry=true&outSR=4326&f=geojson",
+          "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=AddrNumber%3D%27200%27+AND+UPPER%28AddrStreet%29%3D%27SELIG%27&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres&returnGeometry=true&outSR=4326&f=geojson",
+          "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/Basemap/FultonStreetBaseMap/MapServer/133/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=%2A",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.5471884872439%2C33.7502501542683&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&f=json&outFields=DFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=SFHA_TF%3D%27T%27&geometry=%7B%22rings%22%3A%5B%5B%5B-84.54684197740126%2C33.750916945563105%5D%2C%5B-84.54687688192672%2C33.750839499000236%5D%2C%5B-84.54690525121502%2C33.75076021154878%5D%2C%5B-84.54692694665587%2C33.750679466841476%5D%2C%5B-84.54694186422006%2C33.75059765742023%5D%2C%5B-84.54694993119736%2C33.75051517933586%5D%2C%5B-84.54695587798464%2C33.750386183514394%5D%2C%5B-84.54695807570214%2C33.750257104565364%5D%2C%5B-84.54695236180892%2C33.750199966536485%5D%2C%5B-84.54694202802952%2C33.75014328274277%5D%2C%5B-84.54692711978096%2C33.75008731452189%5D%2C%5B-84.54688019983084%2C33.74993631353824%5D%2C%5B-84.54682762233425%2C33.74978661841272%5D%2C%5B-84.54676086284194%2C33.749667678047686%5D%2C%5B-84.54668870136615%2C33.74955095880786%5D%2C%5B-84.54661124661814%2C33.749436632564574%5D%2C%5B-84.54650522951184%2C33.74931782728958%5D%2C%5B-84.54639293157852%2C33.74920312030667%5D%2C%5B-84.54630161989712%2C33.74910185090701%5D%2C%5B-84.54621626808789%2C33.74899701692233%5D%2C%5B-84.54613707366157%2C33.7488888630068%5D%2C%5B-84.54603141742389%2C33.7487114993888%5D%2C%5B-84.54592253388721%2C33.74853550347392%5D%2C%5B-84.54587987829052%2C33.74845546601795%5D%2C%5B-84.54584305546972%2C33.74837343331154%5D%2C%5B-84.54581219946729%2C33.748289699788074%5D%2C%5B-84.54578742169755%2C33.7482045689663%5D%2C%5B-84.5457580631827%2C33.74809416810842%5D%2C%5B-84.5457344556279%2C33.74798280826023%5D%2C%5B-84.54571664418869%2C33.74787069937101%5D%2C%5B-84.54570465998863%2C33.74775805143252%5D%2C%5B-84.54646035249112%2C33.74802112548819%5D%2C%5B-84.54707442769174%2C33.74823489175928%5D%2C%5B-84.5482297746312%2C33.74863707380324%5D%2C%5B-84.54866123232357%2C33.74922053669053%5D%2C%5B-84.54872071225233%2C33.74930092954798%5D%2C%5B-84.54864607804937%2C33.74935686897517%5D%2C%5B-84.54988425193817%2C33.75103107726152%5D%2C%5B-84.549480791918%2C33.751384158363386%5D%2C%5B-84.54684197740126%2C33.750916945563105%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true&f=json",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CEFF_DATE%2CPANEL_TYP",
+          "https://msc.fema.gov/portal/downloadProduct?productID=13121C0218F",
+          "https://msc.fema.gov/portal/downloadProduct?productID=13121C0331F"
+        ],
+        "sourceDetails": [
+          {
+            "title": "DataBank ATL4 South Fulton facility address",
+            "publisher": "DataBank",
+            "url": "https://www.databank.com/data-centers/atlanta/200-selig-dr-sw/"
+          },
+          {
+            "title": "ATL4 commercial building permit row and tax parcel, PDF page 2",
+            "publisher": "City of South Fulton",
+            "url": "https://www.cityofsouthfultonga.gov/DocumentCenter/View/7974/JUN-2023-ALL-PERMITS-ISSUED#page=2"
+          },
+          {
+            "title": "County address point SFAP411879 at 200 Selig Drive SW",
+            "publisher": "Fulton County GIS",
+            "url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/ArcGIS/rest/services/Address_Points/FeatureServer/0/query?where=StNumber%3D200+AND+UPPER%28Name%29%3D%27SELIG%27&outFields=OBJECTID%2CFCFeatID%2CParcelID%2CLabel%2CPtType%2CPtClass%2CCity%2CZip%2CStatus%2CSource&returnGeometry=true&outSR=4326&f=geojson"
+          },
+          {
+            "title": "Tax parcel 14F0083 LL0204 at 200 Selig Drive SW",
+            "publisher": "Fulton County GIS",
+            "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0/query?where=AddrNumber%3D%27200%27+AND+UPPER%28AddrStreet%29%3D%27SELIG%27&outFields=OBJECTID%2CParcelID%2CTaxYear%2CAddress%2CLandAcres&returnGeometry=true&outSR=4326&f=geojson"
+          },
+          {
+            "title": "County mapped structures around the ATL4 parcel",
+            "publisher": "Fulton County GIS",
+            "url": "https://gismaps.fultoncountyga.gov/arcgispub/rest/services/Basemap/FultonStreetBaseMap/MapServer/133/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=%2A"
+          },
+          {
+            "title": "Effective hazard polygon 13121C_11098 around ATL4",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+          },
+          {
+            "title": "Effective FEMA hazard at the county address point",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=1%3D1&geometry=-84.5471884872439%2C33.7502501542683&geometryType=esriGeometryPoint&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&f=json&outFields=DFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF"
+          },
+          {
+            "title": "FEMA count of Special Flood Hazard Area polygons intersecting the ATL4 tax parcel",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?where=SFHA_TF%3D%27T%27&geometry=%7B%22rings%22%3A%5B%5B%5B-84.54684197740126%2C33.750916945563105%5D%2C%5B-84.54687688192672%2C33.750839499000236%5D%2C%5B-84.54690525121502%2C33.75076021154878%5D%2C%5B-84.54692694665587%2C33.750679466841476%5D%2C%5B-84.54694186422006%2C33.75059765742023%5D%2C%5B-84.54694993119736%2C33.75051517933586%5D%2C%5B-84.54695587798464%2C33.750386183514394%5D%2C%5B-84.54695807570214%2C33.750257104565364%5D%2C%5B-84.54695236180892%2C33.750199966536485%5D%2C%5B-84.54694202802952%2C33.75014328274277%5D%2C%5B-84.54692711978096%2C33.75008731452189%5D%2C%5B-84.54688019983084%2C33.74993631353824%5D%2C%5B-84.54682762233425%2C33.74978661841272%5D%2C%5B-84.54676086284194%2C33.749667678047686%5D%2C%5B-84.54668870136615%2C33.74955095880786%5D%2C%5B-84.54661124661814%2C33.749436632564574%5D%2C%5B-84.54650522951184%2C33.74931782728958%5D%2C%5B-84.54639293157852%2C33.74920312030667%5D%2C%5B-84.54630161989712%2C33.74910185090701%5D%2C%5B-84.54621626808789%2C33.74899701692233%5D%2C%5B-84.54613707366157%2C33.7488888630068%5D%2C%5B-84.54603141742389%2C33.7487114993888%5D%2C%5B-84.54592253388721%2C33.74853550347392%5D%2C%5B-84.54587987829052%2C33.74845546601795%5D%2C%5B-84.54584305546972%2C33.74837343331154%5D%2C%5B-84.54581219946729%2C33.748289699788074%5D%2C%5B-84.54578742169755%2C33.7482045689663%5D%2C%5B-84.5457580631827%2C33.74809416810842%5D%2C%5B-84.5457344556279%2C33.74798280826023%5D%2C%5B-84.54571664418869%2C33.74787069937101%5D%2C%5B-84.54570465998863%2C33.74775805143252%5D%2C%5B-84.54646035249112%2C33.74802112548819%5D%2C%5B-84.54707442769174%2C33.74823489175928%5D%2C%5B-84.5482297746312%2C33.74863707380324%5D%2C%5B-84.54866123232357%2C33.74922053669053%5D%2C%5B-84.54872071225233%2C33.74930092954798%5D%2C%5B-84.54864607804937%2C33.74935686897517%5D%2C%5B-84.54988425193817%2C33.75103107726152%5D%2C%5B-84.549480791918%2C33.751384158363386%5D%2C%5B-84.54684197740126%2C33.750916945563105%5D%5D%5D%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryPolygon&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true&f=json"
+          },
+          {
+            "title": "FEMA panel index records around 200 Selig Drive SW",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?where=1%3D1&geometry=-84.54998425193817%2C33.747658051432516%2C-84.54560465998863%2C33.75148415836339&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=true&f=geojson&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CEFF_DATE%2CPANEL_TYP"
+          },
+          {
+            "title": "Download effective Fulton County map panel 13121C0218F",
+            "publisher": "FEMA Map Service Center",
+            "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0218F"
+          },
+          {
+            "title": "Download effective Fulton County map panel 13121C0331F",
+            "publisher": "FEMA Map Service Center",
+            "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0331F"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the ATL4 parcel, footprint and FEMA panel checks",
+            "path": "/blog/databank-atl4-fema-map-panels.json",
             "format": "JSON"
           }
         ]
