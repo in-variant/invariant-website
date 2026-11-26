@@ -12659,6 +12659,393 @@
     }
   },
   {
+    "slug": "nyc-local-law-97-building-lookup",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "title": "NYC Local Law 97 Building Lookup by Address",
+    "description": "Check NYC Local Law 97 coverage by address, tax lot and building ID. Compare the 2025 and 2026 lists and see what to request before estimating penalties.",
+    "date": "2026-11-26",
+    "readMinutes": 6,
+    "coverAlt": "At 37 Wall Street, the 2025 covered buildings list flags tax lot 1000260014 as CP3. The 2026 workbook lists building 1078991 as CP0 and building 1078992 as CP3.",
+    "coverCaption": "The Department of Buildings switched from reporting pathways by tax lot to identifying the pathway for each building in the 2026 covered buildings list.",
+    "intro": "To check whether a New York City building is covered by Local Law 97, find its Building Identification Number (BIN) and look up that number in the Department of Buildings’ 2026 Covered Buildings List. Keep the borough, block and lot (BBL) as a second identifier, especially when one tax lot contains several buildings. Use the owner’s filing and current DOB records to verify compliance and any penalties.",
+    "takeaways": [
+      "The 2026 workbook reports both the LL97 coverage flag and the compliance pathway by building ID.",
+      "At 37 Wall Street, the 2025 tax lot row flagged CP3. The 2026 release lists one building under CP0 and the other under CP3.",
+      "A listed pathway describes how a covered building reports. Filing acceptance, emissions above the limit and assessed penalties require separate evidence."
+    ],
+    "sections": [
+      {
+        "id": "lookup-by-address",
+        "heading": "How to check Local Law 97 coverage by address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Search by borough and street address in the Department of Buildings’ Building Information System. Open the property profile and confirm the building’s BIN and the tax lot’s BBL. In the 2026 Sustainability Covered Buildings List, read columns C and D for that BIN. Column C gives the Local Law 97 coverage flag and column D gives the pathway code. On a shared tax lot, retain each BIN and the published code for that building.",
+            "sourceIds": [
+              "dob-building-search",
+              "dob-overview",
+              "cbl-2026",
+              "dob-cbl-faq"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The usual thresholds are more than 25,000 gross square feet for one building, or more than 50,000 gross square feet for multiple buildings on the same tax lot or condominium buildings governed by the same board of managers. The pathway depends on the building. DOB treats the workbook as preliminary and records approved corrections in its BEAM reporting portal.",
+            "sourceIds": [
+              "dob-overview",
+              "dob-cbl-faq"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Compare the two lists at the level each one represents. In 2025, the workbook flagged pathways for the tax lot and listed preliminary BINs. In 2026, it gives a pathway for each BIN. The agency says a difference may reflect a corrected record, information from a partner agency or a change in the building’s circumstances.",
+            "sourceIds": [
+              "cbl-2025",
+              "cbl-2026",
+              "cbl-2026-notice"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "2025-vs-2026",
+        "heading": "What changed in the 2026 covered buildings list?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We matched three tax lots by exact BBL in the published 2025 and 2026 workbooks. Addresses in the table are the city’s tax lot labels and can repeat across several BINs. The workbook row numbers and the source file checksums are in the download.",
+            "sourceIds": [
+              "cbl-2025",
+              "cbl-2026"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Tax lot shown by DOB",
+              "2025 tax lot flag",
+              "2026 records by BIN"
+            ],
+            "rows": [
+              [
+                "37 Wall Street · 1000260014",
+                "CP3",
+                "1078991 · CP0 / 1078992 · CP3"
+              ],
+              [
+                "48 Beaver Street · 1000297501",
+                "CP1",
+                "1078997 · CP0 / 1078998 · CP0 / 1078999 · CP1"
+              ],
+              [
+                "280 Broadway · 1001530001",
+                "No exact BBL row found",
+                "1079215 · CP4"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cbl-2025",
+                "cbl-2026"
+              ],
+              [
+                "cbl-2025",
+                "cbl-2026"
+              ],
+              [
+                "cbl-2025",
+                "cbl-2026"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "At 37 Wall Street, applying the 2025 lot flag to both building records would miss the CP0 entry in 2026. At 48 Beaver Street, the 2026 worksheet has three BIN entries and repeats the Department of Finance’s reported lot building count of two on each row. Keep that mismatch visible until the building inventory is reconciled. The lot square footage also repeats on every row, so keep it at lot level.",
+            "sourceIds": [
+              "cbl-2025",
+              "cbl-2026"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 280 Broadway, the 2026 list gives BIN 1079215 the CP4 code for City or NYCHA buildings. The separate energy benchmarking disclosure gives the same BIN two Portfolio Manager reporting records with different floor areas. Use the BIN to connect the sources and retain each source’s individual reporting scope.",
+            "sourceIds": [
+              "cbl-2026",
+              "cbl-2026-notice"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "building-energy-benchmarking-data-by-address",
+                "label": "See the meter and floor area comparison for 280 Broadway"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compliance-pathways",
+        "heading": "What do the Local Law 97 pathway codes mean?",
+        "blocks": [
+          {
+            "type": "table",
+            "columns": [
+              "DOB code",
+              "How DOB describes it"
+            ],
+            "rows": [
+              [
+                "CP0",
+                "Article 320 beginning in 2024"
+              ],
+              [
+                "CP1",
+                "Article 320 beginning in 2026"
+              ],
+              [
+                "CP2",
+                "Article 320 beginning in 2035"
+              ],
+              [
+                "CP3",
+                "Article 321 one-time compliance"
+              ],
+              [
+                "CP4",
+                "City building or NYCHA"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cbl-2026-notice",
+                "dob-cbl-faq"
+              ],
+              [
+                "cbl-2026-notice",
+                "dob-cbl-faq"
+              ],
+              [
+                "cbl-2026-notice",
+                "dob-cbl-faq"
+              ],
+              [
+                "cbl-2026-notice",
+                "dob-cbl-faq"
+              ],
+              [
+                "cbl-2026-notice",
+                "dob-cbl-faq"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "Track the emissions calendar year separately from the filing year. For an annual Article 320 report, the owner files for the previous calendar year. A pathway that begins in calendar year 2026 and an update to the filing-year 2026 workbook describe different dates.",
+            "sourceIds": [
+              "dob-overview",
+              "dob-info-guide",
+              "cbl-2026-notice"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "verify-penalties",
+        "heading": "How to verify Local Law 97 compliance and penalties",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For an acquisition or refinance, obtain the filed report for each covered BIN and year, the BEAM submission status, the applicable emissions limit and the reported tonnes of carbon dioxide equivalent. Confirm the gross floor area by use, energy records, qualifying deductions and any adjustment approved by DOB. Ask for the status of any separate reporting or emissions violation and the underlying DOB notice.",
+            "sourceIds": [
+              "dob-rule",
+              "dob-info-guide",
+              "dob-violations"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The city’s Article 320 formula for above-limit emissions applies $268 per metric ton of carbon dioxide equivalent above the applicable annual limit. An illustrative 100 metric tons over the limit would produce $26,800 before any applicable mitigation. DOB lists a separate monthly floor-area formula for failure to file. Keep modeled exposure, a penalty notice and the amount actually due in separate fields.",
+            "sourceIds": [
+              "dob-violations",
+              "dob-mitigation"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Request the certified emissions calculation when a screening estimate uses a public benchmarking record. The applicable limits use floor area by property type or occupancy category, and the energy calculation uses the fuel and electricity rules for the relevant year. A single energy-use intensity figure is insufficient for that calculation.",
+            "sourceIds": [
+              "dob-rule",
+              "dob-info-guide"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "See the full commercial collateral review"
+              },
+              {
+                "slug": "building-violations-by-address",
+                "label": "Find building violations by address"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "replay",
+        "heading": "Download and reproduce the three building lookups",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The extract preserves the original workbook columns, exact BBLs and row numbers. For a fresh comparison, download the department’s two workbooks and pass their paths to the replay script in 2025 and 2026 order. The script requires Python 3.11 or later and accepts repeated --bbl arguments for other ten-digit tax lots. The resulting file includes the source checksums so you can identify the workbook versions you used.",
+            "sourceIds": [
+              "cbl-2025",
+              "cbl-2026"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/nyc-local-law-97-covered-buildings.json",
+            "format": "JSON",
+            "label": "Download the three tax lot and building match records"
+          },
+          {
+            "type": "download",
+            "path": "/blog/nyc-local-law-97-covered-buildings-replay.py",
+            "format": "Python",
+            "datasetAnchor": null,
+            "label": "Download the workbook lookup script"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How can I check whether an NYC building is covered by Local Law 97?",
+        "answer": "Look up the building’s BIN in the Department of Buildings’ current covered buildings list. Read the LL97 flag and pathway for the building, then verify any correction or special circumstance with the owner and DOB. A shared tax lot can have more than one BIN.",
+        "sourceIds": [
+          "dob-overview",
+          "cbl-2026",
+          "dob-cbl-faq"
+        ]
+      },
+      {
+        "question": "How do I look up a Local Law 97 fine for a specific building?",
+        "answer": "Ask the owner for the applicable DOB notice, payment or resolution status, and the filed report for the relevant BIN and year. The covered buildings workbook gives a coverage flag and pathway. It has no assessed penalty amount.",
+        "sourceIds": [
+          "cbl-2026",
+          "dob-violations",
+          "dob-mitigation"
+        ]
+      },
+      {
+        "question": "Can buildings on the same tax lot have different Local Law 97 requirements?",
+        "answer": "Yes. The 2026 workbook shows BIN 1078991 under Article 320 beginning in 2024 and BIN 1078992 under Article 321. Both are on the tax lot DOB labels 37 Wall Street.",
+        "sourceIds": [
+          "cbl-2026",
+          "dob-cbl-faq"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "dob-building-search",
+        "title": "Building Information System address, lot and BIN search",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://a810-bisweb.nyc.gov/bisweb/bispi00.jsp",
+        "linkLabel": "Find the building ID at DOB"
+      },
+      {
+        "id": "dob-overview",
+        "title": "Local Law 97 coverage, filing and reporting",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/codes/ll97-greenhouse-gas-emissions-reductions.page",
+        "linkLabel": "DOB rule overview"
+      },
+      {
+        "id": "cbl-2025",
+        "title": "2025 Local Law 97 Covered Buildings List workbook",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://home4.nyc.gov/assets/buildings/excel/cbl_cy25.xlsx",
+        "linkLabel": "2025 source workbook"
+      },
+      {
+        "id": "cbl-2026",
+        "title": "2026 Sustainability Covered Buildings List workbook",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://home4.nyc.gov/assets/buildings/excel/cbl26.xlsx",
+        "linkLabel": "2026 source workbook"
+      },
+      {
+        "id": "cbl-2026-notice",
+        "title": "March 30, 2026 notice about the 2026 covered buildings list",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/assets/buildings/pdf/cov_build-sn.pdf",
+        "linkLabel": "2026 service notice"
+      },
+      {
+        "id": "dob-cbl-faq",
+        "title": "Covered Buildings List questions and building-level filing",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/codes/ll97-cbl-faq.page",
+        "linkLabel": "DOB coverage FAQ"
+      },
+      {
+        "id": "dob-rule",
+        "title": "Rule 1 RCNY §103-14 for covered building emissions",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/assets/buildings/rules/1_RCNY_103-14.pdf",
+        "linkLabel": "Article 320 reporting rule"
+      },
+      {
+        "id": "dob-info-guide",
+        "title": "Article 320 information guide for annual emissions calculations",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/assets/buildings/pdf/article_320_guide.pdf",
+        "linkLabel": "Article 320 guide"
+      },
+      {
+        "id": "dob-violations",
+        "title": "Local Law 97 penalties for reporting and emissions violations",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/codes/greenhouse-gas-emissions-reductions-violations.page",
+        "linkLabel": "DOB penalty formulas"
+      },
+      {
+        "id": "dob-mitigation",
+        "title": "Article 320 penalty mitigation user guide",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/assets/buildings/pdf/pen_mit_article320.pdf",
+        "linkLabel": "DOB mitigation guide"
+      }
+    ],
+    "relatedSlugs": [
+      "building-energy-benchmarking-data-by-address",
+      "building-violations-by-address",
+      "commercial-real-estate-data-apis-for-lenders",
+      "property-data-as-of-date"
+    ],
+    "dataset": {
+      "name": "NYC Local Law 97 coverage by tax lot and building ID",
+      "description": "Reproducible matches for 37 Wall Street, 48 Beaver Street and 280 Broadway in the 2025 and 2026 NYC covered buildings workbooks. Includes source checksums, worksheet row numbers and exact coverage and pathway cells.",
+      "sourceIds": [
+        "cbl-2025",
+        "cbl-2026",
+        "cbl-2026-notice"
+      ],
+      "datePublished": "2026-11-26",
+      "spatialCoverage": "Manhattan, New York City, United States",
+      "temporalCoverage": "2025/2026"
+    }
+  },
+  {
     "slug": "building-energy-benchmarking-data-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -12758,6 +13145,15 @@
             "text": "Site EUI is in kBtu per square foot per year. Both reports say “Whole Property,” but the raw 2025 energy totals are 16.75 million and 13.34 million kBtu, respectively. Dividing each raw total by its own calculated building area reproduces the disclosed EUI after rounding. The Abro series fell 12.7% from 2024 to 2025 while the DCAS series rose 18.5%. Those are changes within two published reporting records. Ask for their meter lists, building area worksheets and any shared utility account before attributing either change to the whole building. Averaging the two scores would obscure the difference in coverage.",
             "sourceIds": [
               "bin"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "nyc-local-law-97-building-lookup",
+                "label": "Check 280 Broadway’s Local Law 97 pathway in the city’s 2026 workbook"
+              }
             ]
           }
         ]
@@ -12984,6 +13380,7 @@
       }
     ],
     "relatedSlugs": [
+      "nyc-local-law-97-building-lookup",
       "building-footprint-data-apis",
       "building-permit-data-apis",
       "commercial-occupancy-vacancy-lease-rollover-data",
@@ -13007,7 +13404,8 @@
         "footprint",
         "epa"
       ]
-    }
+    },
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "soil-productivity-by-parcel-nccpi-csr2",
@@ -34104,7 +34502,7 @@
     "title": "Commercial real estate data APIs for lenders",
     "description": "Compare commercial real estate data APIs using a dated collateral file, recorded lender roles and loan-level balance and coupon disclosures from SEC filings.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Empire State Building tax lot outlined in gold.",
     "coverCaption": "Empire State Building, Manhattan tax lot 1008350041. The outline uses NYC MapPLUTO 26v2 over 2024 New York State aerial imagery. The records below are from 2013.",
@@ -34491,6 +34889,15 @@
                 "label": "Compare DSCR and debt yield across payment schedules"
               }
             ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "nyc-local-law-97-building-lookup",
+                "label": "Check NYC Local Law 97 coverage and emissions filing records"
+              }
+            ]
           }
         ]
       },
@@ -34818,7 +35225,8 @@
       "power-evidence-data-center-site-verification",
       "commercial-property-tax-delinquency-data",
       "building-violations-by-address",
-      "commercial-property-tax-assessment-history-by-address"
+      "commercial-property-tax-assessment-history-by-address",
+      "nyc-local-law-97-building-lookup"
     ],
     "additionalDatasets": [
       {
