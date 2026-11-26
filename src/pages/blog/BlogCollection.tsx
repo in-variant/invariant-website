@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ORG_SCHEMA, Seo, SITE_URL, breadcrumbSchema } from '../../components/Seo'
 import collections from '../../data/blog-collections.json'
+import providerTrial from '../../data/physical-world-data-api-trial.json'
 import collectionCoverSrcSets from '../../data/.generated-collection-cover-srcsets.json'
 import { groupCollectionGuides } from '../../data/blogCollections'
 import { versionedCover } from '../../data/coverImages'
@@ -20,6 +21,7 @@ export default function BlogCollection() {
   const canonical = `${SITE_URL}/blog/${collection.slug}`
   const image = versionedCover(collection.image)
   const srcSet = coverSrcSets[collection.slug]
+  const trial = providerTrial.url === canonical ? providerTrial : undefined
   const collectionGuides = collection.guides
   const guideGroups = groupCollectionGuides(collectionGuides)
   const namedGuideGroups = guideGroups.filter(group => group.heading)
@@ -74,9 +76,15 @@ export default function BlogCollection() {
             )}
             {collection.worksheet && (
               <div className="blog-collection-worksheet">
-                <a href={collection.worksheet.path} download>
-                  {collection.worksheet.label} <span aria-hidden="true">↓</span>
-                </a>
+                <div className="blog-collection-worksheet-links">
+                  <a href={collection.worksheet.path} download>
+                    {collection.worksheet.label} <span aria-hidden="true">↓</span>
+                  </a>
+                  {trial && <>
+                    <a href={trial.json_path} download>Download cases as JSON <span aria-hidden="true">↓</span></a>
+                    <a href={trial.release_url}>Versioned reference pack <span aria-hidden="true">↗</span></a>
+                  </>}
+                </div>
                 <p>{collection.worksheet.detail}</p>
               </div>
             )}
@@ -96,8 +104,9 @@ export default function BlogCollection() {
           </figure>
         </header>
 
-        {namedGuideGroups.length > 1 && (
+        {(namedGuideGroups.length > 1 || trial) && (
           <nav className="blog-collection-jump" aria-label="Jump to a guide topic">
+            {trial && <a href="#reference-cases">Reference cases</a>}
             {namedGuideGroups.map(group => <a href={`#${group.id}`} key={group.id}>{group.heading}</a>)}
           </nav>
         )}
@@ -114,6 +123,29 @@ export default function BlogCollection() {
           </dl>
         </section>
 
+        {trial && (
+          <section className="blog-collection-cases" aria-labelledby="reference-cases">
+            <h2 id="reference-cases">Reference cases</h2>
+            {trial.cases.map(item => (
+              <details key={item.test_id} className="blog-collection-case" id={item.test_id}>
+                <summary>{item.title}</summary>
+                <dl>
+                  <div><dt>Input</dt><dd>{item.case_input}</dd></div>
+                  <div><dt>Request</dt><dd>{item.request}</dd></div>
+                  <div><dt>Acceptance criteria</dt><dd>{item.acceptance_criteria}</dd></div>
+                  <div><dt>Reference result</dt><dd>{item.reference_result}</dd></div>
+                  <div><dt>Reference date</dt><dd>{item.reference_as_of}</dd></div>
+                </dl>
+                <div className="blog-collection-case-links">
+                  <a href={item.source_case_url}>Walkthrough</a>
+                  <a href={item.reference_fixture_url} download>Reference file</a>
+                  <a href={item.primary_source_url}>Primary source</a>
+                  <a href={item.second_source_url}>Second source</a>
+                </div>
+              </details>
+            ))}
+          </section>
+        )}
         <section className="blog-collection-guides" aria-labelledby="collection-guides">
           <h2 id="collection-guides">{collection.guidesTitle}</h2>
           {guideGroups.map(group => (

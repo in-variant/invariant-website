@@ -33,6 +33,7 @@ const CONTACT = `Site screens and power studies: ${SITE_EMAIL}, (628) 220-8972, 
 const FILES = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'site-selection-guides.json', 'powered-land-sites.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
 const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles', f), 'utf8')))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
+const providerTrial = JSON.parse(readFileSync(join(ROOT, 'src/data/physical-world-data-api-trial.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
 const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
@@ -479,6 +480,7 @@ const full = [
   `[Invariant Earth product](${SITE}/product.md) · [MCP server and agent setup](${SITE}/mcp.md)`, '', CONTACT, '',
 ]
 for (const collection of blogCollections) {
+  const trial = providerTrial.url === `${SITE}/blog/${collection.slug}` ? providerTrial : undefined
   const md = [
     `# ${collection.heading}`, '', collection.description, '',
     `URL: ${SITE}/blog/${collection.slug}  `, `Updated: ${collection.updatedDate} · Publisher: Invariant`, '',
@@ -489,6 +491,21 @@ for (const collection of blogCollections) {
     ...collection.checks.map(check => `- **${check.title}.** ${check.detail}`), '',
     ...(collection.worksheet ? [
       `[${collection.worksheet.label}](${SITE}${collection.worksheet.path}). ${collection.worksheet.detail}`, '',
+    ] : []),
+    ...(trial ? [
+      citationLink('Download case inputs and expected results (JSON)', SITE + trial.json_path), '',
+      citationLink('Versioned reference pack', trial.release_url), '',
+      '## Reference cases', '',
+      ...trial.cases.flatMap(item => [
+        `### ${citationLink(item.title, `${trial.url}#${item.test_id}`)}`, '',
+        `- **Input** ${item.case_input}`,
+        `- **Request** ${item.request}`,
+        `- **Acceptance criteria** ${item.acceptance_criteria}`,
+        `- **Reference result** ${item.reference_result}`,
+        `- **Reference date** ${item.reference_as_of}`,
+        [citationLink('Walkthrough', item.source_case_url), citationLink('Reference file', item.reference_fixture_url),
+          citationLink('Primary source', item.primary_source_url), citationLink('Second source', item.second_source_url)].join(' · '), '',
+      ]),
     ] : []),
     `## ${collection.guidesTitle}`, '',
     ...collection.guides.flatMap((guide, index) => [

@@ -32,7 +32,10 @@ const sections = [
     ['Research findings, methods and source records', `${SITE}${links.research}.md`],
     ['Research datasets and citations', `${SITE}${links.datasets}.md`],
     ['Research dataset manifest with source URLs and file checksums', `${SITE}${links.datasets}.json`],
-    ...blogCollections.map(({ title, slug }) => [title, `${SITE}/blog/${slug}.md`]),
+    ...blogCollections.flatMap(({ title, slug, worksheet }) => [
+      [title, `${SITE}/blog/${slug}.md`],
+      ...(worksheet?.jsonPath ? [['Data provider trial inputs and expected results (JSON)', SITE + worksheet.jsonPath]] : []),
+    ]),
   ]],
   ['Examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,

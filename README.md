@@ -9,6 +9,12 @@ This repository contains the public website and research examples for [Invariant
 - [Research datasets and source records](https://invariant-ai.com/datasets)
 - [Data guides by industry and use case](https://invariant-ai.com/blog/physical-world-data-by-use-case)
 
+## Compare data providers on the same records
+
+The [public vendor trial](https://invariant-ai.com/blog/physical-world-data-api-evaluation#reference-cases) gives buyers 16 dated cases across GIS, commercial property, underwriting, lending, power, logistics, wastewater and retail. Each case includes an input, a request, acceptance criteria and the original source links.
+
+The [versioned case pack](https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0) includes JSON, the editable CSV and all 16 dated reference files. Unzip the pack and run `shasum -a 256 -c SHA256SUMS.txt` from its folder to verify the files. Run each request with your providers and record the entity, source date and any unresolved evidence in the CSV.
+
 ## Run the parcel and flood trial
 
 The [GIS API trial](https://invariant-ai.com/blog/best-gis-apis-for-site-selection#gis-api-trial-requests) gives you the request bodies, dated city and FEMA references, and what to check in each response. Use it to evaluate parcel matching and flood overlap on the same sites across providers.

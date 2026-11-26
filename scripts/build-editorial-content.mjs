@@ -9,6 +9,7 @@ const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence
 const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry-articles/${file}`, base), 'utf8')))
 const legacyArticles = JSON.parse(readFileSync(new URL('legacy-blog-articles.json', base), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(new URL('blog-collections.json', base), 'utf8'))
+const providerTrial = JSON.parse(readFileSync(new URL('physical-world-data-api-trial.json', base), 'utf8'))
 const coverageTopics = JSON.parse(readFileSync(new URL('earth-coverage-topics.json', base), 'utf8'))
 const coverageSnapshot = JSON.parse(readFileSync(new URL('../public/data-coverage-fields.json', import.meta.url), 'utf8'))
 const writeIfChanged = (file, content) => {
@@ -32,9 +33,9 @@ const worksheetColumns = [
   'Facility phase', 'Required facility MW at meter', 'Required utility service date',
   'MW supported by cited record', 'Service date or range in cited record', 'Power evidence stage',
 ]
-const csvCell = value => {
+const csvCell = (value, quoteAll = true) => {
   const safe = /^[\s]*[=+@-]/.test(value) ? "'" + value : value
-  return '"' + safe.replaceAll('"', '""') + '"'
+  return quoteAll || /[",\r\n]/.test(safe) ? '"' + safe.replaceAll('"', '""') + '"' : safe
 }
 const allArticles = [...articles, ...legacyArticles]
 const slugs = new Set(allArticles.map(article => article.slug))
@@ -74,6 +75,43 @@ for (const { id, fields } of coverageTopics) {
     coverageExamples[name] = field
   }
 }
+const trialGuide = blogCollections.find(({ slug }) => `https://invariant-ai.com/blog/${slug}` === providerTrial.url)
+if (trialGuide?.worksheet?.path !== providerTrial.csv_path
+  || trialGuide.worksheet.jsonPath !== providerTrial.json_path
+  || ![providerTrial.csv_path, providerTrial.json_path].every(path => /^\/blog\/[a-z0-9-]+\.(csv|json)$/.test(path))) {
+  throw new Error('Data provider trial download paths do not match the collection')
+}
+const trialIds = new Set(providerTrial.cases.map(row => row.test_id))
+if (!trialIds.size || trialIds.size !== providerTrial.cases.length) throw new Error('Missing or duplicate provider trial cases')
+const trialInputColumns = ['test_id', 'workflow', 'case_input', 'request', 'acceptance_criteria', 'source_case_url']
+const trialReferenceColumns = ['reference_fixture_url', 'primary_source_url', 'second_source_url', 'reference_result', 'reference_as_of']
+const trialReviewColumns = [
+  'provider', 'request_date', 'returned_entity_id', 'returned_effective_date',
+  'source_url', 'data_vintage', 'result_status', 'reviewer_notes',
+]
+const trialColumns = [...trialInputColumns, ...trialReviewColumns, ...trialReferenceColumns]
+const trialOrigin = new URL(providerTrial.url).origin
+for (const row of providerTrial.cases) {
+  if (!/^[a-z0-9-]+$/.test(row.test_id) || !row.title?.trim()
+    || ![...trialInputColumns, ...trialReferenceColumns].every(column => row[column]?.trim())) {
+    throw new Error(`Incomplete provider trial case: ${row.test_id}`)
+  }
+  const guide = new URL(row.source_case_url)
+  const fixture = new URL(row.reference_fixture_url)
+  const article = allArticles.find(item => guide.pathname === `/blog/${item.slug}`)
+  if (!article || guide.origin !== trialOrigin
+    || (guide.hash && !article.sections?.some(section => section.id === guide.hash.slice(1)))
+    || fixture.origin !== trialOrigin || !existsSync(new URL(`../public${fixture.pathname}`, import.meta.url))
+    || [row.primary_source_url, row.second_source_url].some(url => new URL(url).protocol !== 'https:')) {
+    throw new Error(`Invalid provider trial references: ${row.test_id}`)
+  }
+}
+const trialCsv = [trialColumns, ...providerTrial.cases.map(row => trialColumns.map(column => row[column] ?? ''))]
+  .map(row => row.map(value => csvCell(value, false)).join(','))
+  .join('\n') + '\n'
+writeIfChanged(new URL(`../public${providerTrial.csv_path}`, import.meta.url), trialCsv)
+writeIfChanged(new URL(`../public${providerTrial.json_path}`, import.meta.url), `${JSON.stringify(providerTrial, null, 2)}\n`)
+
 for (const collection of blogCollections) {
   if (!/^[a-z0-9-]+$/.test(collection.slug) || publicBlogSlugs.has(collection.slug)) {
     throw new Error(`Invalid or duplicate blog collection slug: ${collection.slug}`)
@@ -157,7 +195,7 @@ for (const article of articles) {
       if (worksheets.has(article.slug)) throw new Error(`Multiple worksheets for ${article.slug}`)
       const columns = [...block.columns, ...worksheetColumns]
       const rows = block.rows.map(row => [...row, ...worksheetColumns.map(() => '')])
-      worksheets.set(article.slug, [columns, ...rows].map(row => row.map(csvCell).join(',')).join('\n') + '\n')
+      worksheets.set(article.slug, [columns, ...rows].map(row => row.map(value => csvCell(value)).join(',')).join('\n') + '\n')
     }
   }
   if (new Set(article.relatedSlugs).size !== article.relatedSlugs.length) {
