@@ -10107,6 +10107,10 @@
                 "label": "Compare city coverage, fee milestones and inspection fields in permit APIs"
               },
               {
+                "path": "/blog/building-permit-data-apis#austin-expired-building-permits",
+                "label": "Check which building and trade permits expired at an Austin unit"
+              },
+              {
                 "slug": "historical-parcel-boundaries-api",
                 "label": "Trace property identifiers through parcel splits and mergers"
               },
@@ -27829,10 +27833,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Data APIs for Commercial Property",
-    "description": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test coverage, issue dates, fees and inspections in three U.S. cities.",
+    "description": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test fees, inspections and expired permits in four U.S. cities.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-26",
-    "readMinutes": 12,
+    "readMinutes": 14,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
     "intro": "Use Invariant Earth to connect permit research to a cited U.S. property record. One coordinate can return parcel identity and boundary, zoning, building characteristics and hazards. Join the original permit by building ID and verify its scope at the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement. In Chicago, one week of records includes 50 fee-due permits with a populated issue date.",
@@ -28368,6 +28372,92 @@
         ]
       },
       {
+        "id": "austin-expired-building-permits",
+        "heading": "How to check expired building permits before buying a property",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Search the permit history for the exact building and unit. Open the building permit and its linked trade permits, then ask the issuing department what must be resolved before the buyer can do new work. Austin Development Services says the current owner is responsible for expired permits, including permits issued before they bought the property. It may require resolution before issuing a new permit.",
+            "sourceIds": [
+              "austin-reactivation"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 1900 E Howard Lane in Austin, Building F has separate building and trade permits for two units in the same core-and-shell remodel. Both building permits share plan review ID 13587455. The City’s November 26, 2026 feed showed the four Unit 1 permits as Final. Unit 2’s mechanical permit was Final while its three other permits were Expired.",
+            "sourceIds": [
+              "austin-howard-query",
+              "austin-permit-fields"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Work scope",
+              "Permit number stem",
+              "Building",
+              "Electrical",
+              "Mechanical",
+              "Plumbing"
+            ],
+            "rows": [
+              [
+                "Unit 1 core and shell",
+                "2025-141063",
+                "Final",
+                "Final",
+                "Final",
+                "Final"
+              ],
+              [
+                "Unit 2 core and shell",
+                "2025-141064",
+                "Expired",
+                "Expired",
+                "Final",
+                "Expired"
+              ],
+              [
+                "Unit 1 restaurant change of use",
+                "2026-085139",
+                "Final",
+                "Final",
+                "Final",
+                "Final"
+              ]
+            ],
+            "sourceIds": [
+              "austin-howard-query"
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "For Unit 2, the building and trade rows share the number stem 2025-141064. The building permit’s Project ID is 13608829. Each of the three trade rows identifies 13608829 in its parent permit field. The three Expired rows list November 24 as the expiration date and November 25 as the status update date. Austin defines that update date as the last change to either the status or the expiration field. Keep it separate from the actual inspection date.",
+            "sourceIds": [
+              "austin-howard-query",
+              "austin-permit-fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Before closing or signing a lease, ask which Unit 2 permits the city requires the owner to reopen or close, who will arrange inspections, and what fees and work remain. Request the occupancy certificate for the intended unit and use. The later restaurant change-of-use permits apply to Unit 1. The city feed supplies a starting point for the inquiry. Obtain the actual inspection and occupancy records for the decision.",
+            "sourceIds": [
+              "austin-howard-query",
+              "austin-reactivation",
+              "austin-certificate-occupancy"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/austin-howard-lane-building-and-trade-permit-status.json",
+            "format": "JSON",
+            "label": "Download the 12 Austin permit records and source query",
+            "datasetAnchor": "dataset-austin-building-and-trade-permit-status"
+          }
+        ]
+      },
+      {
         "id": "run-a-vendor-trial",
         "heading": "Run a trial on buildings you already know",
         "blocks": [
@@ -28384,7 +28474,7 @@
             "items": [
               "Start with the Brooklyn fit-out and the Seattle roof records above. Add a multi-building parcel and a job that predates the current local filing system in a market you cover.",
               "Compare the building match, permit IDs and individual milestone dates. Ask how missing records and uncertain address matches are returned.",
-              "Reconcile one multi-trade job. Check whether the API returns rows, permits or projects when it reports a count.",
+              "Reconcile one multi-trade job. For the Austin example, ask for each unit and each trade status with its source ID. Check whether the API returns rows, permits or projects when it reports a count.",
               "Test the result you would actually use. For a roof field, ask for the replaced assembly and completion evidence. For legal use, request the occupancy document.",
               "Confirm update lag, historical versions, bulk access and rights to retain the original evidence in your workflow."
             ]
@@ -28411,6 +28501,13 @@
       }
     ],
     "faqs": [
+      {
+        "question": "Who is responsible for an expired Austin building permit after a sale?",
+        "answer": "Austin Development Services says the current property owner is responsible for expired permits even when another owner pulled them. Ask the city which permits need reactivation or another form of resolution before applying for new work at that property.",
+        "sourceIds": [
+          "austin-reactivation"
+        ]
+      },
       {
         "question": "Does an issue date in a Chicago permit API mean work can begin?",
         "answer": "Check the review program, milestone and permit fees. Chicago’s general issue-date column records when a permit was ready to issue subject to payment. Express Permit Program records use the issuance date after full payment. Check the city’s current record before making a work-start decision.",
@@ -28456,6 +28553,34 @@
       }
     ],
     "sources": [
+      {
+        "id": "austin-howard-query",
+        "title": "Exact Austin permit query for 1900 E Howard Lane, Building F tenant units",
+        "url": "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=project_id%2Cpermit_number%2Cpermittype%2Cpermit_class%2Cwork_class%2Coriginal_address1%2Ctcad_id%2Cmasterpermitnum%2Cstatus_current%2Cstatusdate%2Cissue_date%2Cexpiresdate&%24where=starts_with%28original_address1%2C%271900+E+HOWARD+LN+BLDG+F+UNIT+%27%29+AND+issue_date+%3E%3D+%272025-01-01T00%3A00%3A00%27&%24order=permit_number%2Cproject_id&%24limit=100",
+        "publisher": "Austin Development Services through Austin Open Data",
+        "linkLabel": "Run the exact Austin permit query"
+      },
+      {
+        "id": "austin-permit-fields",
+        "title": "Issued Construction Permits and field definitions",
+        "url": "https://data.austintexas.gov/Building-and-Development/Issued-Construction-Permits/3syk-w9eu/about_data",
+        "publisher": "Austin Development Services through Austin Open Data",
+        "linkLabel": "Austin permit field definitions"
+      },
+      {
+        "id": "austin-reactivation",
+        "title": "City of Austin permit reactivation and modification",
+        "url": "https://www.austintexas.gov/development-services/modify-permit",
+        "publisher": "Austin Development Services",
+        "linkLabel": "Austin permit reactivation rules"
+      },
+      {
+        "id": "austin-certificate-occupancy",
+        "title": "Austin Certificate of Occupancy and Temporary Certificate of Occupancy",
+        "url": "https://www.austintexas.gov/development-services/certificate-occupancy",
+        "publisher": "Austin Development Services",
+        "linkLabel": "Austin occupancy certificates"
+      },
       {
         "id": "nyc-fitout-query",
         "title": "Exact DOB NOW query for the three Brooklyn fit-out filings",
@@ -28699,6 +28824,18 @@
       "temporalCoverage": "2022-10-20/2026-11-23"
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-austin-building-and-trade-permit-status",
+        "name": "Austin building and trade permit status by tenant unit",
+        "description": "Twelve Austin-issued building, electrical, mechanical and plumbing permit rows for 1900 E Howard Lane, Building F. Preserves separate tenant units, permit and parent IDs, source status, issue dates and expiration dates.",
+        "datePublished": "2026-11-26",
+        "sourceIds": [
+          "austin-howard-query",
+          "austin-permit-fields"
+        ],
+        "spatialCoverage": "1900 East Howard Lane, Building F, Austin, Texas, United States",
+        "temporalCoverage": "2026-02-23/2026-11-26"
+      },
       {
         "anchor": "dataset-chicago-permit-milestones",
         "name": "Chicago permit milestones and fees for November 18 to 24, 2026",

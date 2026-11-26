@@ -4806,7 +4806,7 @@
     "slug": "building-permit-data-apis",
     "topic": "Data & APIs",
     "title": "Building Permit Data APIs for Commercial Property",
-    "summary": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test coverage, issue dates, fees and inspections in three U.S. cities.",
+    "summary": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test fees, inspections and expired permits in four U.S. cities.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
@@ -4852,6 +4852,37 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-austin-building-and-trade-permit-status",
+        "name": "Austin building and trade permit status by tenant unit",
+        "description": "Twelve Austin-issued building, electrical, mechanical and plumbing permit rows for 1900 E Howard Lane, Building F. Preserves separate tenant units, permit and parent IDs, source status, issue dates and expiration dates.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "1900 East Howard Lane, Building F, Austin, Texas, United States",
+        "temporalCoverage": "2026-02-23/2026-11-26",
+        "sources": [
+          "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=project_id%2Cpermit_number%2Cpermittype%2Cpermit_class%2Cwork_class%2Coriginal_address1%2Ctcad_id%2Cmasterpermitnum%2Cstatus_current%2Cstatusdate%2Cissue_date%2Cexpiresdate&%24where=starts_with%28original_address1%2C%271900+E+HOWARD+LN+BLDG+F+UNIT+%27%29+AND+issue_date+%3E%3D+%272025-01-01T00%3A00%3A00%27&%24order=permit_number%2Cproject_id&%24limit=100",
+          "https://data.austintexas.gov/Building-and-Development/Issued-Construction-Permits/3syk-w9eu/about_data"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Exact Austin permit query for 1900 E Howard Lane, Building F tenant units",
+            "publisher": "Austin Development Services through Austin Open Data",
+            "url": "https://data.austintexas.gov/resource/3syk-w9eu.json?%24select=project_id%2Cpermit_number%2Cpermittype%2Cpermit_class%2Cwork_class%2Coriginal_address1%2Ctcad_id%2Cmasterpermitnum%2Cstatus_current%2Cstatusdate%2Cissue_date%2Cexpiresdate&%24where=starts_with%28original_address1%2C%271900+E+HOWARD+LN+BLDG+F+UNIT+%27%29+AND+issue_date+%3E%3D+%272025-01-01T00%3A00%3A00%27&%24order=permit_number%2Cproject_id&%24limit=100"
+          },
+          {
+            "title": "Issued Construction Permits and field definitions",
+            "publisher": "Austin Development Services through Austin Open Data",
+            "url": "https://data.austintexas.gov/Building-and-Development/Issued-Construction-Permits/3syk-w9eu/about_data"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the 12 Austin permit records and source query",
+            "path": "/blog/austin-howard-lane-building-and-trade-permit-status.json",
+            "format": "JSON"
+          }
+        ]
+      },
       {
         "anchor": "dataset-chicago-permit-milestones",
         "name": "Chicago permit milestones and fees for November 18 to 24, 2026",
