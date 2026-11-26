@@ -9,9 +9,13 @@ const EDITORIAL_ALIASES = new Map([
   ['serve', ['service', 'served']],
 ])
 
+const POWER_SIZE = /^\d+(?:\.\d+)?w$/
+const GUIDANCE_TERMS = new Set(['checklist', 'commission', 'confirm', 'evidence', 'study', 'verify', 'worksheet'])
+
 export function editorialSearchWords(value: string) {
   const question = value.trim()
     .replace(/^please\s+/i, '')
+    .replace(/\b(?:get|be)\s+notified\b/gi, 'alert')
     .replace(/^(?:(?:can|could|would)\s+you\s+)?(?:show|tell|give)\s+me\s+/i, '')
     .replace(/^(?:where|how)\s+(?:can|could|do|should)\s+i\s+(?:find|get|see)\s+/i, '')
     .replace(/^i\s+(?:want|need)\s+to\s+/i, '')
@@ -75,9 +79,12 @@ function editorialWeight<T>(item: SearchItem<T>, term: string) {
   return 0
 }
 
-function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[]) {
+function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[], query: string[]) {
   const hasTerm = (item: SearchItem<T>, term: string) => editorialWeight(item, term) > 0 || item.bodyTerms?.has(term)
-  const capacities = terms.filter(term => /^\d+(?:\.\d+)?w$/.test(term))
+  const capacities = terms.filter(term => POWER_SIZE.test(term))
+  const guidance = terms.filter(term => GUIDANCE_TERMS.has(term))
+  const buying = terms.some(term => term === 'sale' || term === 'lease' || term === 'listing' || term === 'buy')
+  const phrases = new Set(query.slice(1).map((word, i) => ` ${query[i]} ${word} `))
   const frequencies = terms.flatMap(term => {
     const count = index.filter(item => hasTerm(item, term)).length
     return count ? [{ term, importance: 1 + Math.log(index.length / count), distinctive: count <= Math.max(1, index.length / 3) }] : []
@@ -85,7 +92,9 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[]) {
   const minimumMatches = Math.max(4, Math.ceil(frequencies.length * .4))
 
   return index.flatMap(item => {
-    if (!capacities.every(term => hasTerm(item, term))) return []
+    // Sizing is part of the question for a study or checklist. For an offer, keep the requested size.
+    const guidanceMatch = !buying && guidance.some(term => editorialWeight(item, term) >= 6)
+    if (!guidanceMatch && !capacities.every(term => hasTerm(item, term))) return []
     let matches = 0
     let directMatches = 0
     let hasDistinctiveMatch = false
@@ -99,8 +108,15 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[]) {
         hasDistinctiveMatch ||= distinctive
       }
       score += importance * (direct || 1)
+      if (POWER_SIZE.test(term) && direct >= 6 && !guidanceMatch) score += importance * 3
     }
     if (matches < minimumMatches || directMatches < 2 || !hasDistinctiveMatch) return []
+    const title = ` ${item.title.join(' ')} `
+    const related = ` ${item.relatedTitle.join(' ')} `
+    for (const phrase of phrases) {
+      if (title.includes(phrase)) score += 5
+      else if (related.includes(phrase)) score += 3
+    }
     return [{ entry: item.entry, score }]
   }).sort((a, b) => b.score - a.score).map(({ entry }) => entry)
 }
@@ -153,9 +169,9 @@ export function rankSearch<T>(
   // A passing mention can cover a long question without addressing its main subject.
   // Keep the existing ranking for shorter queries that already have matches.
   const isLongQuestion = terms.length >= 12
-  const needsFallback = terms.length >= 7 && strictResults.length === 0
+  const needsFallback = terms.length >= 6 && strictResults.length === 0
   if (longQuestionRanking && (isLongQuestion || needsFallback)) {
-    const questionResults = rankLongQuestion(index, terms)
+    const questionResults = rankLongQuestion(index, terms, queryWords)
     if (questionResults.length) return questionResults
   }
   return strictResults

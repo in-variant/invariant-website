@@ -7139,12 +7139,23 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Change Alerts by Address",
-    "description": "Track permit issuance, expiration and completion by address. Compare San Francisco’s county housing totals with records for specific projects.",
+    "description": "Track building permits by address or nearby radius. Compare issue dates, recent portal loads and county totals, with queries from the San Francisco permit feed.",
     "date": "2026-11-24",
-    "readMinutes": 7,
+    "readMinutes": 8,
     "coverAlt": "Three dates for the permit at 345 California Street. The permit was issued on December 1, 2020, showed an expired status dated October 28, 2026, and was loaded to DataSF on October 30, 2026.",
     "coverCaption": "Three dates for San Francisco DBI permit 202009234825. All four address rows carry the same permit dates and October 30 portal load date.",
-    "intro": "To track building permit changes by address, match the property to the issuing agency’s identifiers and save a dated copy of the permit record. Alert on the milestone the user cares about, such as issuance, expiration or completion. Keep the time your system first saw the change alongside the date the agency gives it. An updated row can carry a permit that was issued years earlier.",
+    "intro": "To get alerts for building permits at or near an address, identify the lots you want to watch and check the issuing agency’s permit feed. Use the issue date for a new permit alert and keep the portal load date so you can see when the record appeared. In one San Francisco example, 34 distinct permits within 300 meters had November issue dates, while 103 had rows loaded in the same period. The right filter depends on whether you want new authorizations or recently loaded records.",
+    "guideActions": [
+      {
+        "href": "#permits-near-an-address",
+        "label": "See the nearby permit test"
+      },
+      {
+        "href": "/blog/san-francisco-nearby-building-permit-alerts.json",
+        "label": "Download the queries and rows",
+        "download": true
+      }
+    ],
     "takeaways": [
       "Use the permit number and issuing system to count permits. Keep the linked address, unit and parcel rows for property matching.",
       "A San Francisco permit issued in 2020 shows an expired status dated October 28, 2026. DataSF loaded the row on October 30.",
@@ -7227,6 +7238,90 @@
                 "label": "Compare live bid, award and rebid evidence in the Miami-Dade cases"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "permits-near-an-address",
+        "heading": "How to get alerts for building permits near an address",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose a distance and a milestone. For new authorizations, filter by the permit issue date. To catch records the portal recently published or refreshed, also check the load timestamp and compare each result with the last saved version. For a neighboring parcel, confirm the lot boundary. Nearby address points can be on either side of a street or several properties away.",
+            "sourceIds": [
+              "sf-dbi",
+              "sf-within-circle"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "We used the city’s published point for 345 California Street and queried its building permit extract on November 25, 2026. The table compares the displayed issue and load dates from November 1 through November 25, inclusive. The city’s permit locations are associated with its assessor block and lot. The queries include only records with a mapped point inside the radius.",
+            "sourceIds": [
+              "sf-area-center",
+              "sf-dbi",
+              "sf-within-circle"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Radius",
+              "Issued Nov 1–25",
+              "Loaded Nov 1–25"
+            ],
+            "rows": [
+              [
+                "100 m",
+                "2 permits across 2 rows",
+                "9 permits across 9 rows"
+              ],
+              [
+                "300 m",
+                "34 permits across 35 rows",
+                "103 permits across 109 rows"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "sf-100-issued",
+                "sf-100-loaded"
+              ],
+              [
+                "sf-300-issued",
+                "sf-300-loaded"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Within 300 meters, the issue-date query returned 34 distinct permit numbers. Two rows for permit 202611130735 at 353 Sacramento Street account for the 35th row. They carry different lot identifiers under the same permit. Notify once for the November 20 issuance and retain both lot links.",
+            "sourceIds": [
+              "sf-300-issued"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The load-date query returned 103 distinct permit numbers within 300 meters. One row at 345 California Street was loaded on November 25 even though its issue and status dates were January 21. At 350 California Street, the same November 25 load included two different permit numbers still marked filed. Those records belong in a recently loaded activity view. A new-issuance alert should use the issue date.",
+            "sourceIds": [
+              "sf-300-loaded",
+              "sf-100-loaded"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To answer what was permitted next door, look up the adjoining parcels in the city’s parcel map and join by block and lot. For an area watchlist, keep the radius and center with the query. Give each notification a stable identity based on the issuing system, permit number and dated milestone, and make the original record available from the alert.",
+            "sourceIds": [
+              "sf-dbi",
+              "sf-within-circle"
+            ]
+          },
+          {
+            "type": "download",
+            "format": "JSON",
+            "path": "/blog/san-francisco-nearby-building-permit-alerts.json",
+            "label": "Download both radii, both date filters and the source rows",
+            "datasetAnchor": "dataset-nearby-permit-alerts"
           }
         ]
       },
@@ -7369,6 +7464,15 @@
     ],
     "faqs": [
       {
+        "question": "How can I get notified when the city issues a building permit next to a property I own?",
+        "answer": "Identify the property and adjoining lot IDs, then check for newly issued permits in the city’s permit feed. You can use a radius for a wider watchlist. Filter on issue date and deduplicate the permit number before sending a notification. Use portal load time to pick up records that arrived late or were refreshed.",
+        "sourceIds": [
+          "sf-dbi",
+          "sf-within-circle",
+          "sf-100-issued"
+        ]
+      },
+      {
         "question": "Can an old building permit trigger a new alert?",
         "answer": "Yes. A recent status change can affect a permit issued years earlier. Confirm the date of the change from the issuing agency and keep the source update and publication times with the notification.",
         "sourceIds": [
@@ -7398,6 +7502,48 @@
         "title": "Building Permits, source fields and update process",
         "url": "https://data.sf.gov/Housing-and-Buildings/Building-Permits/i98e-djp9",
         "publisher": "City and County of San Francisco"
+      },
+      {
+        "id": "sf-area-center",
+        "title": "DBI parcel-based coordinates for the 345 California Street example",
+        "publisher": "City and County of San Francisco",
+        "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=permit_number+%3D+%27202009234825%27&%24select=permit_number%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cissued_date&%24limit=25",
+        "linkLabel": "Map point from DBI records"
+      },
+      {
+        "id": "sf-within-circle",
+        "title": "SoQL within_circle geometry and radius parameters",
+        "publisher": "Socrata",
+        "url": "https://dev.socrata.com/docs/functions/within_circle.html",
+        "linkLabel": "Socrata radius query"
+      },
+      {
+        "id": "sf-100-issued",
+        "title": "DataSF November permit rows by issued_date, 100 m of 345 California Street",
+        "publisher": "City and County of San Francisco",
+        "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+100%29+and+issued_date+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=issued_date%2C+permit_number%2C+record_id&%24limit=1000",
+        "linkLabel": "100 m issued rows"
+      },
+      {
+        "id": "sf-100-loaded",
+        "title": "DataSF November permit rows by data_loaded_at, 100 m of 345 California Street",
+        "publisher": "City and County of San Francisco",
+        "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+100%29+and+data_loaded_at+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+data_loaded_at+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=data_loaded_at%2C+permit_number%2C+record_id&%24limit=1000",
+        "linkLabel": "100 m loaded rows"
+      },
+      {
+        "id": "sf-300-issued",
+        "title": "DataSF November permit rows by issued_date, 300 m of 345 California Street",
+        "publisher": "City and County of San Francisco",
+        "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+300%29+and+issued_date+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=issued_date%2C+permit_number%2C+record_id&%24limit=1000",
+        "linkLabel": "300 m issued rows"
+      },
+      {
+        "id": "sf-300-loaded",
+        "title": "DataSF November permit rows by data_loaded_at, 300 m of 345 California Street",
+        "publisher": "City and County of San Francisco",
+        "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+300%29+and+data_loaded_at+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+data_loaded_at+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=data_loaded_at%2C+permit_number%2C+record_id&%24limit=1000",
+        "linkLabel": "300 m loaded rows"
       },
       {
         "id": "sf-dbi-rows",
@@ -7471,6 +7617,27 @@
       }
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-nearby-permit-alerts",
+        "datePublished": "2026-11-25",
+        "name": "Building permit issuance and portal loads near 345 California Street",
+        "description": "San Francisco permit extracts within 100 and 300 meters of the same address. Four pinned queries and selected source fields show what changes when an alert uses issue dates or portal load timestamps.",
+        "spatialCoverage": "Financial District, San Francisco, California, United States",
+        "temporalCoverage": "2026-11-01/2026-11-25",
+        "sourceIds": [
+          "sf-dbi",
+          "sf-area-center",
+          "sf-100-issued",
+          "sf-100-loaded",
+          "sf-300-issued",
+          "sf-300-loaded"
+        ],
+        "sourceReuse": {
+          "note": "Source records from the City and County of San Francisco.",
+          "policyLabel": "DataSF terms of use",
+          "policyUrl": "https://data.sf.gov/terms-of-use"
+        }
+      },
       {
         "anchor": "dataset-sf-county-housing-authorizations",
         "datePublished": "2026-11-25",

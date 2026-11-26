@@ -1086,7 +1086,7 @@
     "slug": "building-permit-change-alerts-by-address",
     "topic": "Data & APIs",
     "title": "Building Permit Change Alerts by Address",
-    "summary": "Track permit issuance, expiration and completion by address. Compare San Francisco’s county housing totals with records for specific projects.",
+    "summary": "Track building permits by address or nearby radius. Compare issue dates, recent portal loads and county totals, with queries from the San Francisco permit feed.",
     "date": "November 24, 2026",
     "dateTime": "2026-11-24",
     "region": "United States",
@@ -1139,6 +1139,66 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-nearby-permit-alerts",
+        "datePublished": "2026-11-25",
+        "name": "Building permit issuance and portal loads near 345 California Street",
+        "description": "San Francisco permit extracts within 100 and 300 meters of the same address. Four pinned queries and selected source fields show what changes when an alert uses issue dates or portal load timestamps.",
+        "spatialCoverage": "Financial District, San Francisco, California, United States",
+        "temporalCoverage": "2026-11-01/2026-11-25",
+        "sourceReuse": {
+          "note": "Source records from the City and County of San Francisco.",
+          "policyLabel": "DataSF terms of use",
+          "policyUrl": "https://data.sf.gov/terms-of-use"
+        },
+        "sources": [
+          "https://data.sf.gov/Housing-and-Buildings/Building-Permits/i98e-djp9",
+          "https://data.sf.gov/resource/i98e-djp9.json?%24where=permit_number+%3D+%27202009234825%27&%24select=permit_number%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cissued_date&%24limit=25",
+          "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+100%29+and+issued_date+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=issued_date%2C+permit_number%2C+record_id&%24limit=1000",
+          "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+100%29+and+data_loaded_at+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+data_loaded_at+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=data_loaded_at%2C+permit_number%2C+record_id&%24limit=1000",
+          "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+300%29+and+issued_date+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=issued_date%2C+permit_number%2C+record_id&%24limit=1000",
+          "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+300%29+and+data_loaded_at+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+data_loaded_at+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=data_loaded_at%2C+permit_number%2C+record_id&%24limit=1000"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Building Permits, source fields and update process",
+            "publisher": "City and County of San Francisco",
+            "url": "https://data.sf.gov/Housing-and-Buildings/Building-Permits/i98e-djp9"
+          },
+          {
+            "title": "DBI parcel-based coordinates for the 345 California Street example",
+            "publisher": "City and County of San Francisco",
+            "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=permit_number+%3D+%27202009234825%27&%24select=permit_number%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cprimary_address_flag%2Cissued_date&%24limit=25"
+          },
+          {
+            "title": "DataSF November permit rows by issued_date, 100 m of 345 California Street",
+            "publisher": "City and County of San Francisco",
+            "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+100%29+and+issued_date+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=issued_date%2C+permit_number%2C+record_id&%24limit=1000"
+          },
+          {
+            "title": "DataSF November permit rows by data_loaded_at, 100 m of 345 California Street",
+            "publisher": "City and County of San Francisco",
+            "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+100%29+and+data_loaded_at+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+data_loaded_at+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=data_loaded_at%2C+permit_number%2C+record_id&%24limit=1000"
+          },
+          {
+            "title": "DataSF November permit rows by issued_date, 300 m of 345 California Street",
+            "publisher": "City and County of San Francisco",
+            "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+300%29+and+issued_date+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=issued_date%2C+permit_number%2C+record_id&%24limit=1000"
+          },
+          {
+            "title": "DataSF November permit rows by data_loaded_at, 300 m of 345 California Street",
+            "publisher": "City and County of San Francisco",
+            "url": "https://data.sf.gov/resource/i98e-djp9.json?%24where=within_circle%28location%2C+37.793009465%2C+-122.400521254%2C+300%29+and+data_loaded_at+%3E%3D+%272026-11-01T00%3A00%3A00%27+and+data_loaded_at+%3C+%272026-11-26T00%3A00%3A00%27&%24select=permit_number%2Crecord_id%2Cblock%2Clot%2Clocation%2Cstreet_number%2Cstreet_name%2Cstreet_suffix%2Cpermit_type_definition%2Cdescription%2Cstatus%2Cissued_date%2Cstatus_date%2Cdata_loaded_at&%24order=data_loaded_at%2C+permit_number%2C+record_id&%24limit=1000"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download both radii, both date filters and the source rows",
+            "path": "/blog/san-francisco-nearby-building-permit-alerts.json",
+            "format": "JSON"
+          }
+        ]
+      },
       {
         "anchor": "dataset-sf-county-housing-authorizations",
         "datePublished": "2026-11-25",

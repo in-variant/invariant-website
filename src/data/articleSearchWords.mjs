@@ -12,10 +12,11 @@ export function articleSearchWords(value) {
       const watts = Number(amount) * WATTS[unit[0]]
       return ` ${Number(watts.toPrecision(15))}w `
     })
+    .replace(/\b(?:u\.s(?:\.a)?\.?(?=\W|$)|united states\b)/g, 'usa')
     .replace(/[^a-z0-9.]+/g, ' ')
     .replace(/(?<!\d)\.|\.(?!\d)/g, ' ')
     .replace(/\bdata\s*cent(?:er|re)s?\b/g, 'data center')
-    .replace(/\bpowerflow\b/g, 'power flow')
+    .replace(/\b(?:powerflow|load\s+flow)\b/g, 'power flow')
     .replace(/\blook\s+up\b/g, 'lookup')
     .replace(/\b(boundar|propert|stud)ies\b/g, '$1y')
     .replace(/\bpre\s+fill\b/g, 'prefill')

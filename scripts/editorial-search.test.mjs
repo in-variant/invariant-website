@@ -90,3 +90,20 @@ test('long unrelated searches do not fall back from a missing exact power size',
   assert.deepEqual(rankSearch(index, words, editorialOptions), [])
   assert.deepEqual(rankSearch(questionIndex, editorialSearchWords('Show recipes for raspberry pie and how I might make a pastry from scratch for dinner'), editorialOptions), [])
 })
+
+test('load flow questions can find a study guide for a project with an unfamiliar size', () => {
+  const studyIndex = prepareSearch([
+    { title: 'Power flow study for a data center', metadata: 'Commission a study for phased campus loads and contingencies' },
+    { title: 'A 100 MW data center for sale', metadata: 'Utility service for a phased campus' },
+  ], entry => entry)
+  const words = editorialSearchWords('Where do I begin commissioning a load flow study for a 143 MW data center?')
+  assert.deepEqual(rankSearch(studyIndex, words, editorialOptions), [studyIndex[0].entry])
+  const listing = editorialSearchWords('Find a data center for sale with 143 MW and a load flow study')
+  assert.deepEqual(rankSearch(studyIndex, listing, editorialOptions), [])
+})
+
+test('editorial tokens normalize U.S. and notification phrasing', () => {
+  assert.deepEqual(articleSearchWords('U.S. zoning permits'), articleSearchWords('United States zoning permits'))
+  assert.deepEqual(editorialSearchWords('How do I get notified when nearby permits are issued?'),
+    ['alert', 'nearby', 'permit', 'issued'])
+})
