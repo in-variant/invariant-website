@@ -28,7 +28,7 @@ function glossaryEntrySeo(entry: GlossaryEntry) {
     },
   }
   return {
-    title: `${entry.term}, definition`,
+    title: entry.seo_title ?? `${entry.term}, definition`,
     description: entry.short_definition,
     canonical,
     ogImage: `${SITE_URL}/og/glossary/${entry.slug}.png`,
@@ -75,6 +75,16 @@ export default function GlossaryEntryPage({ entry }: { entry: GlossaryEntry }) {
             {entry.short_definition}
           </p>
 
+          {entry.guide && (
+            <Link
+              to={entry.guide.path}
+              className="mt-6 inline-flex min-h-11 items-center gap-3 border border-copper/25 bg-white px-4 py-2 font-sans text-sm font-medium text-copper transition-colors hover:border-copper hover:bg-copper/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-copper"
+            >
+              {entry.guide.label}
+              <span aria-hidden="true">↗</span>
+            </Link>
+          )}
+
           <div className="mt-10 space-y-4 font-sans text-base leading-relaxed text-ink/70">
             {(() => {
               // Skip self-linking, but cross-link to every other glossary term mentioned.
@@ -84,14 +94,6 @@ export default function GlossaryEntryPage({ entry }: { entry: GlossaryEntry }) {
               ))
             })()}
           </div>
-
-          {entry.guide && (
-            <p className="mt-10 font-sans text-base">
-              <Link to={entry.guide.path} className="text-copper underline decoration-copper/40 underline-offset-4 hover:decoration-copper">
-                {entry.guide.label} ↗
-              </Link>
-            </p>
-          )}
 
           {related.length > 0 && (
             <section className="mt-12 rounded-[3px] border border-ink/10 bg-white p-6 md:p-8">

@@ -141,9 +141,9 @@ function articleMd(a) {
 function glossaryMd(e) {
   const out = [`# ${e.term}`, '', `> ${e.short_definition}`, '', `URL: ${SITE}/glossary/${e.slug}  `, `Updated: ${e.last_updated ?? ''} · Publisher: Invariant`, '']
   if (e.aliases?.length) out.push(`Also called: ${e.aliases.join(', ')}`, '')
+  if (e.guide) out.push(`[${linkText(e.guide.label)}](${SITE}${e.guide.path})`, '')
   out.push(e.full_definition ?? '', '')
   if (e.citations?.length) out.push('## Sources', '', ...e.citations.map(c => `- ${citationLink(c.label, c.url)}`), '')
-  if (e.guide) out.push(`Guide: [${e.guide.label}](${SITE}${e.guide.path})`, '')
   const related = (e.related_to ?? []).map(slug => glossaryBySlug.get(slug)).filter(Boolean)
   if (related.length) out.push('Related: ' + related.map(({ slug, term }) =>
     `[${linkText(term)}](${SITE}/glossary/${slug})`).join(', '), '')

@@ -6,6 +6,7 @@ export type GlossaryEntry = {
   slug: string
   term: string
   aliases?: string[]
+  seo_title?: string
   short_definition: string
   full_definition: string
   related_to: string[]

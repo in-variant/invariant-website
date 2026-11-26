@@ -97,6 +97,16 @@ for (const collection of blogCollections) {
   }
   publicBlogSlugs.add(collection.slug)
 }
+for (const { slug, guide } of glossary) {
+  if (!guide) continue
+  const blogLink = /^\/blog\/([a-z0-9-]+)(?:#([^#]+))?$/.exec(guide.path)
+  const linkedArticle = blogLink && articles.find(article => article.slug === blogLink[1])
+  const validBlogLink = blogLink && publicBlogSlugs.has(blogLink[1])
+    && (!blogLink[2] || linkedArticle?.sections.some(section => section.id === blogLink[2]))
+  if (!guide.label?.trim() || (!validBlogLink && !linkablePaths.has(guide.path))) {
+    throw new Error(`Invalid glossary guide: ${slug} (${guide.path})`)
+  }
+}
 for (const article of articles) {
   if (!['Data Centers', 'Oil & Gas', 'Data & APIs'].includes(article.topic)) throw new Error(`Invalid topic: ${article.slug}`)
   if (JSON.stringify(article).includes('\u2014')) throw new Error(`Em dash in ${article.slug}`)
