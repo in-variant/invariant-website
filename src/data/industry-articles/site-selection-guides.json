@@ -1878,11 +1878,12 @@
     "slug": "power-evidence-data-center-site-verification",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Data center power verification: the five rungs of evidence that a site can be powered",
-    "description": "How to verify data center power at a site: the five rungs of power evidence, how to grade a broker's MW claim, and what to ask the utility to move a site up a rung.",
+    "title": "How to Verify Data Center Power Before Financing or Buying",
+    "description": "Check a will-serve letter, load study, or service agreement for committed MW, phase dates, and upgrade obligations. Includes a lender’s power evidence checklist.",
     "date": "2026-11-09",
+    "updatedDate": "2026-11-26",
     "readMinutes": 11,
-    "intro": "A data center site can be powered when a utility or grid operator has said so in writing for this load, at this location, by a date. Everything short of that is a lead. Most sites marketed as powered land rest on a map showing a substation nearby, which is the weakest evidence there is. This guide sorts power claims into five rungs, from a map to a metered connection, shows the documents that sit on each rung, and explains how a buyer can grade a broker's megawatt figure and push a site higher before spending money on parcels, surveys or options.",
+    "intro": "Verify data center power for the parcel, point of connection, and load phase you plan to finance or operate. Start with the serving utility’s documents. A preliminary plan can identify a path and study assumptions. A signed agreement can establish the customer’s commitments, conditions, and dates. Check outstanding upgrades and milestones before relying on a service date.",
     "takeaways": [
       "Distance to a substation tells you almost nothing about spare capacity. In one 2025 ERCOT study, only about 17% of substations near suitable land had any withdrawal headroom.",
       "Grade every power claim by the document behind it. A named MW figure is rung 2 until a current utility letter or study for this load is in hand.",
@@ -1986,6 +1987,90 @@
             "text": "Rung 3 is where most real projects stall. Dominion Energy's Virginia process is a clear example of the steps. A customer files a site plan, a load letter and a load ramp through Dominion's data center portal. Dominion's team can then prepare an infrastructure evaluation and preliminary power plan, and a will-serve letter if needed. Dominion says projects over 50 MW will likely need a transmission extension and a new substation, and it often phases service with a bridging solution while the final plan is built. A preliminary power plan for your load is rung 3. A generic statement that the area has capacity is rung 2 at best.",
             "sourceIds": [
               "dominion"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lender-utility-documents",
+        "heading": "Which power documents should a data center lender review?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Confirm how many facility MW are covered by the service documents, when each phase can be energized, and which upgrades the borrower must fund. Ask for the current documents and exhibits tied to the borrower and the parcel. Reconcile the power delivery dates with commissioning, the facility opening, and any lease obligations."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Underwriting question",
+              "Evidence to request",
+              "What to record"
+            ],
+            "rows": [
+              [
+                "Who can take service at this site?",
+                "Utility will-serve letter or preliminary power plan. Match the parcel and service applicant to the loan and lease documents.",
+                "Serving utility, site, customer, proposed connection point, and any reassignment consent."
+              ],
+              [
+                "How much power can each phase use and when?",
+                "Final utility study and executed electric service agreement with the dated load ramp and service schedule.",
+                "MW at the meter by phase, target service date, milestone owner, and dependencies. Keep a planned date distinct from a binding service date."
+              ],
+              [
+                "Who pays for upgrades before energization?",
+                "Construction or facilities agreement, applicable tariff, security requirements, and payment milestones.",
+                "Customer contribution, facilities the utility will build, security due dates, and what happens if the schedule slips."
+              ],
+              [
+                "What is already in service?",
+                "Meter, energization notice, and recent billing or demand history for the same facility.",
+                "Date and load observed, service limits, and remaining phases. Keep existing service separate from the expansion."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dominion"
+              ],
+              [
+                "dominion",
+                "aep-dct-contract"
+              ],
+              [
+                "aep-dct-contract"
+              ],
+              []
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Dominion’s Virginia process places the will-serve letter in site evaluation. AEP Ohio’s Schedule DCT separately addresses contract capacity, the load ramp, minimum billing and customer security. Find the applicable charges and security rules in the tariff. Read the executed agreements for the project’s dates and obligations.",
+            "sourceIds": [
+              "dominion",
+              "aep-dct-contract"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Suppose a 60 MW first phase needs utility service before commissioning. The utility’s dated schedule covers 25 MW by that deadline, with the remaining 35 MW tied to a later substation upgrade. Use 25 MW as the first-phase schedule input, flag any conditions still open, and keep the other 35 MW on the upgrade schedule. Ask for the remaining approvals, construction responsibilities, and payment dates before lending against the full 60 MW."
+          },
+          {
+            "type": "links",
+            "label": "Check the dates and costs",
+            "items": [
+              {
+                "slug": "utility-will-serve-letter-load-study-esa",
+                "label": "Compare a will-serve letter, utility study, and electric service agreement"
+              },
+              {
+                "path": "/calculators/data-center-power-delivery-schedule",
+                "label": "Work back from the opening date to the service deadline"
+              },
+              {
+                "slug": "aep-ohio-data-center-tariff-minimum-demand",
+                "label": "Check AEP Ohio minimum charges for the contracted ramp"
+              }
             ]
           }
         ]
@@ -2468,6 +2553,7 @@
       }
     ],
     "sources": [
+      {"id": "aep-dct-contract", "title": "Ohio Power Company Schedule DCT, contract capacity, ramp, and obligations", "url": "https://dam.assets.ohio.gov/image/upload/puco.ohio.gov/empliibrary/files/docketing/tariffs/Electric/Ohio%20Power%20dba%20AEP%20Ohio/PUCO%2022.pdf", "publisher": "Public Utilities Commission of Ohio"},
       {
         "id": "paces",
         "title": "The grid is planning for data centers that will never exist: Aligning transmission investment with development reality",

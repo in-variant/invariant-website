@@ -9,6 +9,7 @@ const EDITORIAL_ALIASES = new Map([
   ['serve', ['service', 'served']],
 ])
 
+const WORKSHEET_TERMS = new Set(['checklist', 'worksheet'])
 const POWER_SIZE = /^\d+(?:\.\d+)?w$/
 const GUIDANCE_TERMS = new Set(['checklist', 'commission', 'confirm', 'evidence', 'study', 'verify', 'worksheet'])
 
@@ -48,12 +49,14 @@ export function prepareSearch<T>(
 ) {
   return entries.map(entry => {
     const { title, relatedTitle = '', metadata, details = '', bodyTerms } = textFor(entry)
+    const headings = details.split('\n').map(articleSearchWords)
     return {
       entry,
       title: articleSearchWords(title),
       relatedTitle: articleSearchWords(relatedTitle),
       metadata: new Set(articleSearchWords(metadata)),
-      details: new Set(articleSearchWords(details)),
+      details: new Set(headings.flat()),
+      headingText: headings.map(words => ` ${words.join(' ')} `).join('\n'),
       bodyTerms: bodyTerms ? new Set(bodyTerms) : undefined,
     }
   })
@@ -85,9 +88,21 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[], query: str
   const guidance = terms.filter(term => GUIDANCE_TERMS.has(term))
   const buying = terms.some(term => term === 'sale' || term === 'lease' || term === 'listing' || term === 'buy')
   const phrases = new Set(query.slice(1).map((word, i) => ` ${query[i]} ${word} `))
+  // Keep subject terms distinctive when other guides only mention them in passing.
   const frequencies = terms.flatMap(term => {
-    const count = index.filter(item => hasTerm(item, term)).length
-    return count ? [{ term, importance: 1 + Math.log(index.length / count), distinctive: count <= Math.max(1, index.length / 3) }] : []
+    let matches = 0
+    let directMatches = 0
+    for (const item of index) {
+      if (editorialWeight(item, term)) directMatches += 1
+      else if (item.bodyTerms?.has(term)) matches += 1
+    }
+    const count = matches + directMatches
+    if (!count) return []
+    return [{
+      term,
+      importance: 1 + Math.log(index.length / count),
+      distinctive: directMatches <= Math.max(1, index.length / 3),
+    }]
   })
   const minimumMatches = Math.max(4, Math.ceil(frequencies.length * .4))
 
@@ -108,6 +123,7 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[], query: str
         hasDistinctiveMatch ||= distinctive
       }
       score += importance * (direct || 1)
+      if (direct >= 6 && WORKSHEET_TERMS.has(term)) score += importance * 3
       if (POWER_SIZE.test(term) && direct >= 6 && !guidanceMatch) score += importance * 3
     }
     if (matches < minimumMatches || directMatches < 2 || !hasDistinctiveMatch) return []
@@ -115,7 +131,7 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[], query: str
     const related = ` ${item.relatedTitle.join(' ')} `
     for (const phrase of phrases) {
       if (title.includes(phrase)) score += 5
-      else if (related.includes(phrase)) score += 3
+      else if (related.includes(phrase) || item.headingText.includes(phrase)) score += 3
     }
     return [{ entry: item.entry, score }]
   }).sort((a, b) => b.score - a.score).map(({ entry }) => entry)
@@ -168,7 +184,8 @@ export function rankSearch<T>(
 
   // A passing mention can cover a long question without addressing its main subject.
   // Keep the existing ranking for shorter queries that already have matches.
-  const isLongQuestion = terms.length >= 12
+  const requestsWorksheet = terms.length >= 8 && terms.some(term => WORKSHEET_TERMS.has(term))
+  const isLongQuestion = terms.length >= 12 || requestsWorksheet
   const needsFallback = terms.length >= 6 && strictResults.length === 0
   if (longQuestionRanking && (isLongQuestion || needsFallback)) {
     const questionResults = rankLongQuestion(index, terms, queryWords)

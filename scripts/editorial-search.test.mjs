@@ -103,6 +103,30 @@ test('load flow questions can find a study guide for a project with an unfamilia
   assert.deepEqual(rankSearch(studyIndex, listing, editorialOptions), [])
 })
 
+test('a worksheet request can find the guide without a listing at the requested MW', () => {
+  const worksheetIndex = prepareSearch([
+    { title: '100 MW data center site for sale', metadata: 'Find land with a utility service path' },
+    { title: 'Data center site selection checklist', metadata: 'Verify the land option, utility service, dates and study', details: 'Land option and service date' },
+  ], item => item)
+  const request = editorialSearchWords('What should I verify before paying for a site option for a 60 MW data center? Is there a checklist I can use?')
+  const offers = editorialSearchWords('Find land for sale for a 60 MW data center, including utility service and any checklist')
+  assert.equal(rankSearch(worksheetIndex, request, editorialOptions)[0]?.title, 'Data center site selection checklist')
+  assert.deepEqual(rankSearch(worksheetIndex, offers, editorialOptions), [])
+})
+
+test('a phrase in one heading carries more weight than words across neighboring headings', () => {
+  const index = prepareSearch([
+    { title: 'Grid review one', metadata: 'Verify the site connection before a utility load study', details: 'Ask the utility\nLoad study documentation' },
+    { title: 'Grid review two', metadata: 'Verify the site connection before a utility load study', details: 'Ask the utility load study team\nDocumentation' },
+    { title: 'Wildfire hazard guide', metadata: 'State severity maps' },
+    { title: 'Historical zoning parcels', metadata: 'Track local ordinance amendments' },
+    { title: 'Shopping district visits', metadata: 'Compare pedestrian counts' },
+    { title: 'Agricultural productivity', metadata: 'Crop rotations and drainage' },
+  ], item => item)
+  const request = editorialSearchWords('Which utility load study documents should I verify before taking a loan for this land development with a site connection?')
+  assert.equal(rankSearch(index, request, editorialOptions)[0]?.title, 'Grid review two')
+})
+
 test('editorial tokens normalize U.S. and notification phrasing', () => {
   assert.deepEqual(articleSearchWords('U.S. zoning permits'), articleSearchWords('United States zoning permits'))
   assert.deepEqual(editorialSearchWords('How do I get notified when nearby permits are issued?'),

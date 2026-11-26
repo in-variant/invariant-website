@@ -396,7 +396,7 @@ const articleSearch = articles.map(article => {
   const headings = [
     ...article.sections.map(section => section.heading),
     ...article.faqs.map(faq => faq.question),
-  ].join(' ')
+  ].join('\n')
   const body = [
     article.intro, ...article.takeaways,
     ...article.sections.flatMap(section => section.blocks.flatMap(block => {
