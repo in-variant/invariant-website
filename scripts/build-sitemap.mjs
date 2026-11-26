@@ -25,6 +25,7 @@ const latestDatasetDate = datasetPublicationDates.sort().at(-1)
 const datasetLastmod = [datasetCatalog.updatedDate, latestDatasetDate].sort().at(-1)
 const researchLastmod = [research.updatedDate, latestDatasetDate].sort().at(-1)
 const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
+const virginiaSites = JSON.parse(readFileSync(join(ROOT, 'src/data/virginia-industrial-sites-snapshot.json'), 'utf8'))
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
 const glossaryDirectory = JSON.parse(readFileSync(join(ROOT, 'src/data/glossary-directory.json'), 'utf8'))
 const glossaryLastmod = [glossaryDirectory.updatedDate, ...glossary.entries.map(entry => entry.last_updated)].filter(Boolean).sort().at(-1)
@@ -41,6 +42,7 @@ const CORE = [
   { loc: '/glossary', lastmod: glossaryLastmod, changefreq: 'weekly', priority: '0.8' },
   { loc: '/research', lastmod: researchLastmod, changefreq: 'monthly', priority: '0.85' },
   { loc: '/resources', lastmod: resourceHub.updatedDate, changefreq: 'weekly', priority: '0.85' },
+  { loc: '/virginia-industrial-land-for-sale', lastmod: virginiaSites.checkedAt.slice(0, 10), changefreq: 'weekly', priority: '0.8' },
   { loc: '/datasets', lastmod: datasetLastmod, changefreq: 'monthly', priority: '0.7' },
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },

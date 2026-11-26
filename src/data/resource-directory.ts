@@ -7,6 +7,7 @@ import { WATER_USE_DESCRIPTION, WATER_USE_PATH, WATER_USE_TITLE } from './dataCe
 import { AEP_DEMAND_DESCRIPTION, AEP_DEMAND_PATH, AEP_DEMAND_TITLE } from './aepOhioDemandCharge'
 import { REFINANCE_DESCRIPTION, REFINANCE_PATH, REFINANCE_TITLE } from './commercialRefinance'
 import { DEBT_COVERAGE_DESCRIPTION, DEBT_COVERAGE_PATH, DEBT_COVERAGE_TITLE } from './commercialDebtCoverage'
+import { VIRGINIA_SITES_DESCRIPTION, VIRGINIA_SITES_PATH, VIRGINIA_SITES_TITLE } from './virginiaIndustrialSites'
 
 export type ResourceReference = {
   path: string
@@ -33,6 +34,7 @@ export const RESOURCE_REFERENCES: ResourceReference[] = [
   { path: REFINANCE_PATH, title: REFINANCE_TITLE, summary: REFINANCE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'maximum loan size DSCR debt service coverage loan to value debt yield income payoff maturity CMBS cash needed' },
   { path: DEBT_COVERAGE_PATH, title: DEBT_COVERAGE_TITLE, summary: DEBT_COVERAGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'income NOI annual payment interest only amortizing DSCR ratio debt yield underwriting threshold loan coverage commercial mortgage' },
   { path: BATTERY_RECHARGE_PATH, title: BATTERY_RECHARGE_TITLE, summary: BATTERY_RECHARGE_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'BESS charging duration grid import headroom utility-scale interconnection' },
+  { path: VIRGINIA_SITES_PATH, title: VIRGINIA_SITES_TITLE, summary: VIRGINIA_SITES_DESCRIPTION, topic: 'Data & APIs', kind: 'Tool', searchContext: 'Virginia industrial land for sale 50 100 200 buildable contiguous acreage site inventory VEDP local zoning factory' },
   ...directory.guides as ResourceReference[],
   ...directory.datasets as ResourceReference[],
 ]

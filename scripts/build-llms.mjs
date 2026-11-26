@@ -42,6 +42,7 @@ const sections = [
     `${audience} | ${title}`, `${SITE}${href}.md`,
   ])],
   ['Land acquisition', [
+    ['Search Virginia industrial land listings by 50, 100, or 200 acres', `${SITE}/virginia-industrial-land-for-sale.md`],
     ['Check Chicago city-owned land offerings, parcel groups and deadlines', `${SITE}/blog/chicago-city-owned-land-for-sale.md`],
   ]],
   ['Commercial property underwriting', [

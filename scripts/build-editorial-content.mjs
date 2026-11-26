@@ -46,7 +46,7 @@ for (const article of allArticles) {
 }
 const publicBlogSlugs = new Set(slugs)
 const linkablePaths = new Set([...readFileSync(new URL('../contentRoutes.ts', base), 'utf8')
-  .matchAll(/^\s*'(\/product|\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
+  .matchAll(/^\s*'(\/product|\/virginia-industrial-land-for-sale|\/calculators\/[a-z0-9-]+)':/gm)].map(([, path]) => path))
 linkablePaths.add('/data-coverage')
 linkablePaths.add('/mcp')
 linkablePaths.add('/contact?request=site-selection')

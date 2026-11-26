@@ -7,6 +7,7 @@ export const contentRouteSources = {
   '/contact': './pages/Contact.tsx',
   '/charter': './pages/Charter.tsx',
   '/resources': './pages/Resources.tsx',
+  '/virginia-industrial-land-for-sale': './pages/VirginiaIndustrialSites.tsx',
   '/datasets': './pages/Datasets.tsx',
   '/blog': './pages/Blog.tsx',
   '/blog/site-selection-due-diligence': './pages/blog/BlogCollection.tsx',

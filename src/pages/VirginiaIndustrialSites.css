@@ -1,0 +1,140 @@
+.virginia-sites {
+  background: var(--inv-paper);
+  color: var(--inv-ink);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.virginia-sites-inner {
+  max-width: 1250px;
+  margin-inline: auto;
+  padding: clamp(42px, 7vw, 92px) clamp(20px, 5vw, 72px);
+}
+
+.virginia-sites-intro { margin-bottom: var(--inv-space-6); }
+.virginia-sites h1 {
+  max-width: 19ch;
+  margin: var(--inv-space-3) 0 var(--inv-space-4);
+  font-size: var(--inv-h1);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: var(--inv-display-track);
+}
+.virginia-sites h2 { font-size: var(--inv-h3); font-weight: 500; letter-spacing: var(--inv-text-track); }
+.virginia-sites p { max-width: 73ch; color: var(--inv-muted); line-height: 1.55; }
+.virginia-sites a { color: var(--inv-accent); text-decoration: underline; text-underline-offset: 3px; }
+.virginia-sites a:hover { color: var(--inv-ocean); }
+.virginia-sites :is(a, input, button):focus-visible { outline: 2px solid var(--inv-accent); outline-offset: 3px; }
+
+.virginia-sites-screen {
+  padding: clamp(16px, 3vw, 30px);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  background: white;
+}
+.virginia-sites-screen-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--inv-space-2) var(--inv-space-5);
+}
+.virginia-sites-screen-heading p { margin-top: var(--inv-space-1); }
+.virginia-sites-form { margin-top: var(--inv-space-5); }
+.virginia-sites-controls, .virginia-sites-presets { display: flex; flex-wrap: wrap; align-items: center; gap: var(--inv-space-2); }
+.virginia-sites-controls { margin-top: var(--inv-space-2); }
+.virginia-sites-controls input { width: 112px; font-variant-numeric: tabular-nums; }
+
+.virginia-sites input, .virginia-sites button {
+  min-height: 44px;
+  padding: var(--inv-space-1) var(--inv-space-3);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  color: var(--inv-ink);
+  background: white;
+  font: inherit;
+}
+.virginia-sites-presets button[aria-pressed='true'] {
+  border-color: var(--inv-accent);
+  background: color-mix(in srgb, var(--inv-accent) 9%, white);
+}
+.virginia-sites button:not(:disabled):hover { border-color: var(--inv-accent); }
+.virginia-sites button:disabled { cursor: default; opacity: .55; }
+.virginia-sites button.virginia-sites-primary {
+  margin-left: auto;
+  background: var(--inv-ink);
+  color: white;
+  border-color: var(--inv-ink);
+}
+.virginia-sites button.virginia-sites-primary:not(:disabled):hover { background: var(--inv-accent); }
+.virginia-sites-status, .virginia-sites-list-count {
+  margin-top: var(--inv-space-4);
+  color: var(--inv-muted);
+  font-size: .875rem;
+}
+
+.virginia-sites-totals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: var(--inv-space-4) 0 0;
+  border-top: 1px solid var(--inv-border);
+}
+.virginia-sites-totals div { padding-top: var(--inv-space-3); padding-right: var(--inv-space-3); }
+.virginia-sites-totals dt { color: var(--inv-muted); font-size: .875rem; }
+.virginia-sites-totals dd { margin: 2px 0 0; font-size: 1.85rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+
+.virginia-sites-list, .virginia-sites-method { margin-top: var(--inv-space-7); }
+.virginia-sites-locality-search { display: grid; gap: var(--inv-space-1); font-size: .875rem; }
+.virginia-sites-table {
+  width: 100%;
+  margin-top: var(--inv-space-4);
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed;
+}
+.virginia-sites-table :is(th, td) {
+  padding: var(--inv-space-3);
+  border-bottom: 1px solid var(--inv-border);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.virginia-sites-table thead th { color: var(--inv-muted); font-size: .8125rem; font-weight: 500; }
+.virginia-sites-table thead th:first-child { width: 35%; }
+.virginia-sites-table thead th:last-child { width: 23%; }
+.virginia-sites-table tbody th { font-weight: 500; }
+.virginia-sites-table tbody td { font-variant-numeric: tabular-nums; }
+.virginia-sites-table thead th:not(:first-child, :last-child), .virginia-sites-table tbody td:not(:last-child) { text-align: right; }
+.virginia-sites-locality { display: block; margin-top: var(--inv-space-1); color: var(--inv-muted); font-size: .8125rem; font-weight: 400; }
+.virginia-sites-acreage-note { display: block; margin-top: var(--inv-space-1); color: var(--inv-muted); font-size: .8125rem; }
+.virginia-sites-more, .virginia-sites-empty { margin-top: var(--inv-space-4); }
+
+.virginia-sites-method p { margin-top: var(--inv-space-3); }
+.virginia-sites-links { display: flex; flex-wrap: wrap; gap: var(--inv-space-2) var(--inv-space-4); margin-top: var(--inv-space-4); }
+
+@media (max-width: 700px) {
+  .virginia-sites button.virginia-sites-primary { margin-left: 0; }
+  .virginia-sites-table :is(tbody, tr) { display: block; }
+  .virginia-sites-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .virginia-sites-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--inv-space-2);
+    padding: var(--inv-space-3) 0;
+    border-bottom: 1px solid var(--inv-border);
+  }
+  .virginia-sites-table tbody :is(th, td) { padding: 0; border: 0; }
+  .virginia-sites-table tbody :is(th, td:last-child) { grid-column: 1 / -1; }
+  .virginia-sites-table tbody td:not(:last-child) { text-align: left; }
+  .virginia-sites-table tbody td::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--inv-muted);
+    font-size: .75rem;
+  }
+}

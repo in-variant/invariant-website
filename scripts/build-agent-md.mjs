@@ -45,6 +45,7 @@ const coverage = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-sum
 const coverageTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/earth-coverage-topics.json'), 'utf8'))
 const coverageFields = JSON.parse(readFileSync(join(ROOT, 'public/data-coverage-fields.json'), 'utf8'))
 const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
+const virginiaSites = JSON.parse(readFileSync(join(ROOT, 'src/data/virginia-industrial-sites-snapshot.json'), 'utf8'))
 const resourceDirectory = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated-blog-search/resource-directory.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
 const researchArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated-blog-search/research-articles.json'), 'utf8'))
@@ -350,6 +351,31 @@ function researchMd() {
   return out.join('\n')
 }
 
+function virginiaSitesMd() {
+  const directory = 'https://sites.vedp.org/'
+  const snapshotDate = new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(virginiaSites.checkedAt))
+  return [
+    '# Virginia industrial land for sale by acreage', '',
+    `[Check current listings](${SITE}/virginia-industrial-land-for-sale) in the interactive screener.`, '',
+    `Snapshot checked ${snapshotDate} UTC. The Virginia Economic Development Partnership (VEDP) Available Sites layer returned ${virginiaSites.saleListings} listing records marked for sale.`, '',
+    '## How many listings meet 50, 100, or 200 acres?', '',
+    '| Minimum in each field | Gross acres meet the minimum | Also meets contiguous acreage | Also meets construction acreage |',
+    '| ---: | ---: | ---: | ---: |',
+    ...virginiaSites.screens.map(({ minimum, gross, contiguous, construction }) => `| ${minimum} | ${gross} | ${contiguous} | ${construction} |`),
+    '', 'The screen requires each field independently. The interactive tool flags records when an acreage field exceeds the stated gross acreage. Ask for the offered boundary and a plan showing where the contiguous and construction-suitable land overlaps. Confirm the proposed use, zoning and availability with the listing contact and local authority.', '',
+    '## Example listings and reported acreage', '',
+    '| Official listing | Locality | Gross acres | Contiguous acres | Construction acres | Listed zoning | Source update date |',
+    '| --- | --- | ---: | ---: | ---: | --- | --- |',
+    ...virginiaSites.examples.map(({ propertyId, name, locality, gross, contiguous, construction, zoning, sourceUpdated }) =>
+      `| ${citationLink(name, directory + 'PropertyByID/' + propertyId)} | ${locality} | ${gross} | ${contiguous} | ${construction} | ${zoning ?? 'Unreported'} | ${sourceUpdated ?? 'Unreported'} |`),
+    '', '## Sources and follow-up', '',
+    `- ${citationLink('VEDP sites and buildings directory', directory)}.`,
+    `- ${citationLink('Replay the VEDP Available Sites query', virginiaSites.sourceQuery)}. The source query returns current rows.`,
+    `- ${citationLink('Screen industrial land by acreage and zoning', SITE + '/blog/industrial-land-for-sale-acreage-zoning.md')}.`,
+    `- ${citationLink('Verify rail, water and power requirements for a manufacturing site', SITE + '/blog/manufacturing-site-selection-100-buildable-acres.md')}.`, '',
+  ].join('\n')
+}
+
 function resourcesMd() {
   const { heading, intro, workflows, planningLinks } = resourceHub
   const { links } = product
@@ -487,6 +513,7 @@ writeFileSync(join(DIST, 'product.md'), productMd())
 writeFileSync(join(DIST, 'mcp.md'), mcpMd())
 writeFileSync(join(DIST, 'data-coverage.md'), coverageMd())
 writeFileSync(join(DIST, 'resources.md'), resourcesMd())
+writeFileSync(join(DIST, 'virginia-industrial-land-for-sale.md'), virginiaSitesMd())
 writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'glossary.md'), glossaryDirectoryMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
