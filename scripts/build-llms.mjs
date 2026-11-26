@@ -49,6 +49,7 @@ const sections = [
     ['Verify a commercial mortgage maturity date', `${SITE}/blog/commercial-mortgage-maturity-data-apis.md`],
   ]],
   ['Data centers, land and power', [
+    ['Compare data center site selection platforms and advisors', `${SITE}/blog/data-center-site-selection-platforms-and-advisors.md`],
     ['Find a U.S. data center site', `${SITE}/blog/find-data-center-site-us.md`],
     ['Compare data centers for sale and lease', `${SITE}/blog/data-center-for-sale.md`],
     ['Site selection criteria and worksheet', `${SITE}/blog/data-center-site-selection-checklist.md`],
