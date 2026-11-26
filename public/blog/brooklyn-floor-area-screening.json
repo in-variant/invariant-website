@@ -1,0 +1,127 @@
+{
+  "title": "Floor area screening on three Union Street tax lots in Brooklyn",
+  "observation_date": "2026-11-26",
+  "scope": "Three non-condominium tax lots on Brooklyn block 955. The calculations are screening scenarios, not determinations of zoning floor area or development rights.",
+  "sources": {
+    "mappluto_26v3": {
+      "query_url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL+IN+%283009550037%2C3009550040%2C3009550042%29&outFields=BBL%2CAddress%2CLotArea%2CBldgArea%2CAreaSource%2CCondoNo%2CComArea%2CResArea%2COfficeArea%2CRetailArea%2CBuiltFAR%2CResidFAR%2CAffResFAR%2CCommFAR%2CZoneDist1%2COverlay1%2CSplitZone%2CVersion&orderByFields=BBL&returnGeometry=false&f=json",
+      "response_sha256": "32e392ad138fe03ca5fb51a846793ab62f842322c6ea22c28ab7fae9431cabdc"
+    },
+    "pluto_26v3_dictionary": {
+      "url": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/pluto_datadictionary.pdf",
+      "pages": [
+        22,
+        27,
+        36,
+        37
+      ],
+      "response_sha256": "5fa28d38622d5aa3994b203ad4b8d992bedb4a611856d592d1ee2fcb5b62a1ec"
+    },
+    "zoning_resolution_definitions": "https://zr.planning.nyc.gov/article-i/chapter-2",
+    "standard_and_qualifying_residential_floor_area": "https://zr.planning.nyc.gov/article-ii/chapter-3/23-22",
+    "commercial_only_floor_area_for_r6a_c1_or_c2": "https://zr.planning.nyc.gov/article-iii/chapter-3/33-121",
+    "mixed_building_floor_area": "https://zr.planning.nyc.gov/article-iii/chapter-5/35-31",
+    "earlier_c1_4_overlay_geometry": "https://invariant-ai.com/blog/brooklyn-commercial-zoning-overlay-trial.geojson"
+  },
+  "method": {
+    "area_units": "square feet",
+    "id": "The numeric BBL values are NYC borough-block-lot identifiers, preserved as returned by MapPLUTO.",
+    "built_far": "MapPLUTO divides the recorded gross building area for these tax lots by tax lot area and reports a rounded ratio.",
+    "residential_scenarios": "Multiply recorded tax lot area by the corresponding R6A ratio from § 23-22. Assume the tax lot area equals zoning lot area, and use the qualifying ratio only to illustrate the category. No zoning lot survey, building plans, or eligibility determination was used.",
+    "commercial_far": "Preserve the original CommFAR values. The data dictionary ties the field to ZoneDist1. Review the separate overlay, local code, proposed use and legal zoning lot before interpreting commercial development potential.",
+    "unknown_balance": "The remaining amount may require zoning floor area by use, applicable exclusions, other floor area charged to the same zoning lot and documented allocations or transfers.",
+    "overlay_geometry": "Read the matched lot’s GIS measurements from the separately dated overlay replay. Use the mapped parcel area as the denominator for the overlay share and keep the assessor lot area as its own field."
+  },
+  "lots": [
+    {
+      "mappluto_26v3_attributes": {
+        "BBL": 3009550037,
+        "Address": "676 UNION STREET",
+        "LotArea": 2000,
+        "BldgArea": 6500,
+        "AreaSource": "2",
+        "CondoNo": null,
+        "ComArea": 1400,
+        "ResArea": 5100,
+        "OfficeArea": 0,
+        "RetailArea": 1400,
+        "BuiltFAR": 3.25,
+        "ResidFAR": 3,
+        "AffResFAR": 3.9,
+        "CommFAR": 0,
+        "ZoneDist1": "R6A",
+        "Overlay1": null,
+        "SplitZone": "N",
+        "Version": "26v3"
+      },
+      "illustrative_standard_residential_floor_area_sqft": 6000.0,
+      "illustrative_qualifying_residential_floor_area_sqft": 7800.0,
+      "verified_remaining_zoning_floor_area_sqft": null,
+      "overlay_geometry_check_2026_11_24": {
+        "calculated_parcel_area_sqft": 1947.067,
+        "calculated_overlay_area_sqft": 0.0,
+        "calculated_overlay_share_percent": 0.0
+      }
+    },
+    {
+      "mappluto_26v3_attributes": {
+        "BBL": 3009550040,
+        "Address": "682 UNION STREET",
+        "LotArea": 2000,
+        "BldgArea": 5900,
+        "AreaSource": "2",
+        "CondoNo": null,
+        "ComArea": 3000,
+        "ResArea": 2900,
+        "OfficeArea": 1000,
+        "RetailArea": 2000,
+        "BuiltFAR": 2.95,
+        "ResidFAR": 3,
+        "AffResFAR": 3.9,
+        "CommFAR": 0,
+        "ZoneDist1": "R6A",
+        "Overlay1": "C1-4",
+        "SplitZone": "N",
+        "Version": "26v3"
+      },
+      "illustrative_standard_residential_floor_area_sqft": 6000.0,
+      "illustrative_qualifying_residential_floor_area_sqft": 7800.0,
+      "verified_remaining_zoning_floor_area_sqft": null,
+      "overlay_geometry_check_2026_11_24": {
+        "calculated_parcel_area_sqft": 1963.664,
+        "calculated_overlay_area_sqft": 913.176,
+        "calculated_overlay_share_percent": 46.503672
+      }
+    },
+    {
+      "mappluto_26v3_attributes": {
+        "BBL": 3009550042,
+        "Address": "688 UNION STREET",
+        "LotArea": 2116,
+        "BldgArea": 7222,
+        "AreaSource": "2",
+        "CondoNo": null,
+        "ComArea": 2890,
+        "ResArea": 4332,
+        "OfficeArea": 0,
+        "RetailArea": 2890,
+        "BuiltFAR": 3.41,
+        "ResidFAR": 3,
+        "AffResFAR": 3.9,
+        "CommFAR": 0,
+        "ZoneDist1": "R6A",
+        "Overlay1": "C1-4",
+        "SplitZone": "N",
+        "Version": "26v3"
+      },
+      "illustrative_standard_residential_floor_area_sqft": 6348.0,
+      "illustrative_qualifying_residential_floor_area_sqft": 8252.4,
+      "verified_remaining_zoning_floor_area_sqft": null,
+      "overlay_geometry_check_2026_11_24": {
+        "calculated_parcel_area_sqft": 2393.8,
+        "calculated_overlay_area_sqft": 2393.798,
+        "calculated_overlay_share_percent": 99.999895
+      }
+    }
+  ]
+}

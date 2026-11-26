@@ -29088,10 +29088,10 @@
     "slug": "zoning-data-apis-for-site-selection",
     "topic": "Data & APIs",
     "title": "Zoning data APIs for U.S. parcels and site selection",
-    "description": "Compare zoning APIs and city GIS. Use NYC parcel tests to see how a lookup handles split zoning and a commercial overlay that covers part of a lot.",
+    "description": "Compare zoning APIs and city GIS. Use NYC tax lots to check split zoning, commercial overlays and floor area ratio before pricing an expansion.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-26",
-    "readMinutes": 7,
+    "readMinutes": 9,
     "region": "United States",
     "coverAlt": "Aerial map of 2239 Forest Avenue in Staten Island. Five colored areas show the share of the tax lot in each base zoning district. The published point falls in C8-1.",
     "coverCaption": "2239 Forest Avenue, Staten Island. The white line traces the MapPLUTO tax lot. Colors show the clipped NYC zoning polygons. Aerial imagery from USDA, USGS and The National Map.",
@@ -29114,7 +29114,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Give every provider the same parcel boundary and proposed use. The commercial comparison below uses published documentation. The five-district result comes from the city data queried for this article."
+            "text": "Give each provider the same parcel boundary and proposed use. The table uses provider documentation. We queried the city data for the address tests below."
           },
           {
             "type": "table",
@@ -29142,8 +29142,8 @@
               ],
               [
                 "Invariant Earth",
-                "A coordinate lookup returns parcel identity and a Regrid-sourced zoning code alongside other location fields.",
-                "Review the matched assessor parcel number. The published catalog allows a nearest-parcel fallback for parcel matching. Use the city district geometry to test the whole tract."
+                "Fetch returns the parcel identifier, boundary and zoning at a coordinate. The zoning field uses loaded local maps where available, with Regrid as a fallback.",
+                "Review the sources for parcel_apn and parcel_zoning. Check the match before using parcel_area_m2, which measures mapped tax parcel geometry in square metres. Verify the legal zoning lot separately."
               ],
               [
                 "Land Use Labs",
@@ -29154,6 +29154,11 @@
                 "LightBox",
                 "Standardized zoning and development controls by address, parcel identifier or spatial geometry where covered.",
                 "Run both the parcel-ID lookup and a geometry query. Compare the returned district IDs, allowed-use fields and source dates against the city map."
+              ],
+              [
+                "Buildability (property report)",
+                "Its Zoning Atlas documents cited dimensional standards such as FAR and setbacks in the jurisdictions it has reviewed.",
+                "Ask for the code section and map layer behind the result. Test whether the report distinguishes the R6A rule, the C1-4 overlay and the tax record for 682 Union Street."
               ],
               [
                 "Municipal GIS and code",
@@ -29181,6 +29186,7 @@
               [
                 "lightbox-zoning"
               ],
+              ["buildability-atlas", "buildability-reports"],
               [
                 "mappluto",
                 "zoning-gis",
@@ -29295,7 +29301,7 @@
           },
           {
             "type": "paragraph",
-            "text": "For a vendor trial, ask for the base district, overlay code and geometry as separate outputs. Invariant Earth’s parcel zoning field gives the sourced parcel code for the initial screen. Use the city geometries to test the overlay share and ask how the provider reports a confirmed absence or an unresolved lookup.",
+            "text": "For a vendor trial, ask for the base district, overlay code and geometry as separate outputs. Invariant Earth’s zoning field reports the sourced district at the coordinate or its parcel-data fallback. Use the city geometries to test the overlay share and ask how the provider reports a confirmed absence or an unresolved lookup.",
             "sourceIds": ["invariant", "nyc-commercial-overlays"]
           },
           {
@@ -29304,6 +29310,121 @@
             "label": "Download the three lots, overlay geometry and exact city queries",
             "path": "/blog/brooklyn-commercial-zoning-overlay-trial.geojson",
             "format": "GeoJSON"
+          }
+        ]
+      },
+      {
+        "id": "buildable-floor-area-by-address",
+        "heading": "How much floor area can you add at an address?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the documented zoning lot. Multiply its area by the floor area ratio (FAR) that applies to the proposed use, then subtract the zoning floor area already charged to that lot. A tax lot can be part of a larger zoning lot. Setbacks, height, lot coverage and other rules can limit what fits even when the arithmetic leaves a balance.",
+            "sourceIds": [
+              "zoning-lot",
+              "standard-residential-far",
+              "split-lot-rules"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 682 Union Street in Brooklyn, MapPLUTO lists a 2,000-square-foot tax lot, 5,900 square feet of gross building area and a built FAR of 2.95. Using the tax lot area as a stand-in for the zoning lot, the R6A standard residential FAR of 3.00 gives a 6,000-square-foot starting figure. The 3.90 figure gives 7,800 square feet for qualifying affordable or senior housing under the rule. Eligibility for the higher ratio requires a separate review. Before treating the 100-square-foot difference as unused development rights, check the existing zoning floor area under the city’s inclusion and exclusion rules. The 5,900-square-foot figure is a tax-record estimate of gross area.",
+            "sourceIds": [
+              "union-floor-area-records",
+              "pluto-26v3-dictionary",
+              "standard-residential-far",
+              "zoning-lot"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Brooklyn address",
+              "Tax lot area",
+              "Recorded gross building area",
+              "Built FAR",
+              "Published commercial FAR",
+              "Mapped C1-4 overlay"
+            ],
+            "rows": [
+              [
+                "676 Union Street",
+                "2,000 sq ft",
+                "6,500 sq ft",
+                "3.25",
+                "0",
+                "None"
+              ],
+              [
+                "682 Union Street",
+                "2,000 sq ft",
+                "5,900 sq ft",
+                "2.95",
+                "0",
+                "46.50% of tax lot"
+              ],
+              [
+                "688 Union Street",
+                "2,116 sq ft",
+                "7,222 sq ft",
+                "3.41",
+                "0",
+                "About 100% of tax lot"
+              ]
+            ],
+            "sourceIds": [
+              "union-floor-area-records",
+              "nyc-commercial-overlays"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "All three records show commercial FAR of zero. The PLUTO dictionary ties that field to the primary zoning district, which is R6A for each lot. At 682 Union Street, the same record lists a C1-4 overlay and 3,000 square feet of commercial area, including 2,000 square feet of retail and 1,000 square feet of office. The overlay covers about 913 of the lot’s 1,964 square feet in GIS. Keep those mapped areas separate from the 2,000 square feet in the tax record.",
+            "sourceIds": [
+              "union-floor-area-records",
+              "pluto-26v3-dictionary",
+              "nyc-commercial-overlays"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Section 33-121 lists a 2.00 commercial-only FAR for C1 and C2 districts mapped within R6A. Verify the portion of the legal zoning lot in the overlay, the intended use and any rules for a lot divided by district boundaries. Where Section 35-31 applies, the combined limit is generally the highest FAR for a permitted use on the zoning lot. Check the exceptions before using that limit.",
+            "sourceIds": [
+              "commercial-overlay-far",
+              "mixed-building-far",
+              "split-lot-rules"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For an acquisition, ask for the zoning lot documents, the current approved plans and a floor-area schedule by use. Have the reviewer reconcile the existing zoning floor area with any recorded allocations or transfers before pricing the expansion. For a lease, verify the approved use for the actual premises and floor.",
+            "sourceIds": [
+              "zoning-lot",
+              "mixed-building-far",
+              "nyc-retail-uses"
+            ]
+          },
+          {
+            "type": "download",
+            "datasetAnchor": "dataset-brooklyn-floor-area-screening",
+            "label": "Download the three tax-lot records, calculations and source queries",
+            "path": "/blog/brooklyn-floor-area-screening.json",
+            "format": "JSON"
+          },
+          {
+            "type": "links",
+            "label": "Check the building record",
+            "items": [
+              {
+                "path": "/blog/certificate-of-occupancy-lookup-by-address#lookup",
+                "label": "Find the certificate of occupancy by building and address"
+              },
+              {
+                "slug": "industrial-land-for-sale-acreage-zoning",
+                "label": "Check usable land and zoning before shortlisting an industrial site"
+              }
+            ]
           }
         ]
       },
@@ -29403,7 +29524,7 @@
       },
       {
         "question": "Can I estimate buildable floor area from a zoning API?",
-        "answer": "Use the API to screen a scenario. Verify the zoning lot, current rules, intended use and applicable approvals before applying a floor-area figure to a design or project budget.",
+        "answer": "Use the API to screen the zoning district and possible floor area. To estimate unused floor area, confirm the legal zoning lot and the existing zoning floor area. MapPLUTO built FAR uses estimated gross building area on the tax lot, and commercial overlays may require a separate check.",
         "sourceIds": [
           "city-code",
           "zoning-lot",
@@ -29412,6 +29533,55 @@
       }
     ],
     "sources": [
+      {
+        "id": "union-floor-area-records",
+        "title": "MapPLUTO 26v3 floor area and zoning fields for three Union Street tax lots",
+        "linkLabel": "MapPLUTO tax-lot query",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL+IN+%283009550037%2C3009550040%2C3009550042%29&outFields=BBL%2CAddress%2CLotArea%2CBldgArea%2CAreaSource%2CCondoNo%2CComArea%2CResArea%2COfficeArea%2CRetailArea%2CBuiltFAR%2CResidFAR%2CAffResFAR%2CCommFAR%2CZoneDist1%2COverlay1%2CSplitZone%2CVersion&orderByFields=BBL&returnGeometry=false&f=json",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "pluto-26v3-dictionary",
+        "title": "PLUTO 26v3 data dictionary, pages 22, 27 and 36 to 37",
+        "linkLabel": "PLUTO field definitions",
+        "url": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/pluto_datadictionary.pdf",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "standard-residential-far",
+        "title": "NYC Zoning Resolution § 23-22, standard and qualifying residential floor area ratios",
+        "linkLabel": "NYC residential FAR table",
+        "url": "https://zr.planning.nyc.gov/article-ii/chapter-3/23-22",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "commercial-overlay-far",
+        "title": "NYC Zoning Resolution § 33-121, floor area in commercial overlays",
+        "linkLabel": "NYC commercial overlay FAR",
+        "url": "https://zr.planning.nyc.gov/article-iii/chapter-3/33-121",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "mixed-building-far",
+        "title": "NYC Zoning Resolution § 35-31, maximum floor area for mixed uses",
+        "linkLabel": "NYC combined FAR rules",
+        "url": "https://zr.planning.nyc.gov/article-iii/chapter-5/35-31",
+        "publisher": "NYC Department of City Planning"
+      },
+      {
+        "id": "buildability-atlas",
+        "title": "Zoning Atlas method, dimensional standards and coverage gaps",
+        "linkLabel": "Buildability Zoning Atlas",
+        "url": "https://buildability.us/docs/atlas",
+        "publisher": "Buildability"
+      },
+      {
+        "id": "buildability-reports",
+        "title": "Property Report contents and dimensional standards",
+        "linkLabel": "Buildability report documentation",
+        "url": "https://buildability.us/docs/reports",
+        "publisher": "Buildability"
+      },
       {
         "id": "earth-workflow",
         "title": "Look up a parcel by address",
@@ -29428,7 +29598,7 @@
       {
         "id": "mappluto-metadata",
         "publisher": "NYC Department of City Planning",
-        "title": "MapPLUTO 26v2 shoreline-clipped field definitions",
+        "title": "MapPLUTO shoreline-clipped field definitions",
         "url": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/meta_mappluto.pdf"
       },
       {
@@ -29447,6 +29617,7 @@
         "id": "zoning-lot",
         "publisher": "NYC Department of City Planning",
         "title": "Zoning Resolution, definitions and zoning lot",
+        "linkLabel": "NYC zoning definitions",
         "url": "https://zr.planning.nyc.gov/article-i/chapter-2"
       },
       {
@@ -29459,6 +29630,7 @@
         "id": "nyc-commercial-overlays",
         "publisher": "NYC Department of City Planning",
         "title": "NYC commercial overlay district GIS layer",
+        "linkLabel": "NYC commercial overlay map",
         "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/ArcGIS/rest/services/nyco/FeatureServer/0"
       },
       {
@@ -29471,6 +29643,7 @@
         "id": "split-lot-rules",
         "publisher": "NYC Department of City Planning",
         "title": "Zoning Resolution, lots divided by district boundaries",
+        "linkLabel": "NYC rules for split-zoned lots",
         "url": "https://zr.planning.nyc.gov/article-vii/chapter-7"
       },
       {
@@ -29529,6 +29702,28 @@
       }
     ],
     "additionalDatasets": [
+      {
+        "anchor": "dataset-brooklyn-floor-area-screening",
+        "datePublished": "2026-11-26",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/brooklyn-floor-area-screening-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "name": "Floor area screening on three Union Street tax lots in Brooklyn",
+        "description": "MapPLUTO 26v3 records and mapped C1-4 commercial overlay shares for 676, 682 and 688 Union Street. Includes recorded lot and building areas, two R6A residential screening calculations per address, exact source queries and an explicit unknown for unused development rights.",
+        "spatialCoverage": "Brooklyn, New York City, United States",
+        "temporalCoverage": "2026-11-24/2026-11-26",
+        "sourceIds": [
+          "union-floor-area-records",
+          "pluto-26v3-dictionary",
+          "standard-residential-far",
+          "commercial-overlay-far",
+          "mixed-building-far",
+          "nyc-commercial-overlays",
+          "zoning-lot"
+        ]
+      },
       {
         "anchor": "dataset-brooklyn-commercial-overlay-trial",
         "datePublished": "2026-11-24",
@@ -45875,7 +46070,7 @@
     "description": "Find a NYC certificate of occupancy in DOB NOW or BIS. Use the building ID, check the floor use and expiration, and replay two Manhattan address lookups.",
     "topic": "Data & APIs",
     "date": "2026-11-24",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "region": "New York City, United States",
     "readMinutes": 6,
     "coverAlt": "270 Park Avenue has legacy building ID 1035421 and newer building ID 1091010 on the same NYC tax lot.",
@@ -46066,6 +46261,7 @@
             "type": "links",
             "label": "Continue the building review",
             "items": [
+              {"path": "/blog/zoning-data-apis-for-site-selection#buildable-floor-area-by-address", "label": "Check the zoning floor area before pricing an expansion"},
               {
                 "slug": "building-permit-data-apis",
                 "label": "Compare building permit data and issuing agency records"
