@@ -7,6 +7,8 @@ import { WATER_USE_DESCRIPTION, WATER_USE_SLUG, WATER_USE_TITLE } from '../../da
 import { AEP_DEMAND_DESCRIPTION, AEP_DEMAND_SLUG, AEP_DEMAND_TITLE } from '../../data/aepOhioDemandCharge'
 import { REFINANCE_DESCRIPTION, REFINANCE_SLUG, REFINANCE_TITLE } from '../../data/commercialRefinance'
 
+import { GENERATOR_HOURS_DESCRIPTION, GENERATOR_HOURS_SLUG, GENERATOR_HOURS_TITLE } from '../../data/generatorRunHours'
+
 const URL = `${SITE_URL}/calculators`
 
 const TOOLS = [
@@ -14,6 +16,11 @@ const TOOLS = [
     slug: 'data-center-power-capacity',
     title: 'Data center power capacity calculator',
     description: 'Compare on-site power and utility imports during a generator trip or grid outage, and check battery runtime.',
+  },
+  {
+    slug: GENERATOR_HOURS_SLUG,
+    title: GENERATOR_HOURS_TITLE,
+    description: GENERATOR_HOURS_DESCRIPTION,
   },
   {
     slug: POWER_SCHEDULE_SLUG,

@@ -51,6 +51,7 @@ export const contentRouteSources = {
   '/calculators': './pages/calculators/Index.tsx',
   '/calculators/fcc-deorbit-feasibility': './pages/calculators/FccDeorbitCalculator.tsx',
   '/calculators/data-center-power-capacity': './pages/calculators/DataCenterPowerCapacity.tsx',
+  '/calculators/generator-run-hours': './pages/calculators/GeneratorRunHours.tsx',
   '/calculators/data-center-water-use': './pages/calculators/DataCenterWaterUse.tsx',
   '/calculators/aep-ohio-data-center-demand-charge': './pages/calculators/AepOhioDemandCharge.tsx',
   '/calculators/data-center-power-delivery-schedule': './pages/calculators/DataCenterPowerSchedule.tsx',

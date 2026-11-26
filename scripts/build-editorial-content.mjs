@@ -190,7 +190,7 @@ for (const article of articles) {
       ? blocks.some(block => block.type === 'download' && block.path === href)
       : href?.startsWith('#')
         ? sectionIds.has(href.slice(1))
-        : article.sources.some(source => source.url === href)
+        : linkablePaths.has(href) || article.sources.some(source => source.url === href)
     if (!label?.trim() || !valid) throw new Error(`Invalid guide action: ${article.slug} (${href})`)
   }
   for (const block of [...blocks, ...article.faqs]) {

@@ -279,10 +279,21 @@
     "slug": "data-center-backup-generator-air-permits",
     "topic": "Data Centers",
     "title": "Data Center Backup Generator Air Permits and Run-Hour Limits",
-    "description": "Check backup generator air permits and run-hour limits. See issued permits, federal testing rules, and how Virginia handles short-notice utility outages.",
+    "description": "Check backup generator air permits, calculate rolling run-hour totals, and download a per-engine log. See issued permits and federal testing rules.",
     "date": "2026-09-15",
     "readMinutes": 13,
     "intro": "Before installing backup generators at a U.S. data center, identify the state or local construction authorization, check whether the site needs a Title V operating permit, and determine which federal standards apply to each engine. To figure out how long a generator can run, start with the reason for the run. Check the federal rules for that use and the site permit’s limits for the engine and any group it belongs to.",
+    "guideActions": [
+      {
+        "href": "/calculators/generator-run-hours",
+        "label": "Calculate generator run-hours"
+      },
+      {
+        "href": "/blog/generator-run-hours-log.csv",
+        "label": "Download the run log",
+        "download": true
+      }
+    ],
     "takeaways": [
       "Check the construction permit, the operating permit, and the federal rules for each engine.",
       "Price the controls and testing required for the proposed site before ordering the equipment.",
@@ -328,6 +339,22 @@
             "type": "paragraph",
             "text": "For emergency diesel engines covered by federal Subpart IIII, qualifying maintenance and readiness testing generally have a 100-hour allowance per calendar year. Any allowed non-emergency hours count toward that total. Site permits may add limits for each engine or for a group over a rolling 12 months. Check both before scheduling a run.",
             "sourceIds": ["federal-ci-operation", "loudoun-title-v"]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/calculators/generator-run-hours",
+                "label": "Calculate rolling hours for a generator group and one engine"
+              }
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/generator-run-hours-log.csv",
+            "format": "CSV",
+            "label": "Download a blank generator run log",
+            "datasetAnchor": null
           },
           {
             "type": "table",

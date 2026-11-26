@@ -52,6 +52,7 @@ const sections = [
     ['Verify what a utility letter, study or service agreement establishes', `${SITE}/blog/utility-will-serve-letter-load-study-esa.md`],
     ['Power-flow studies, limits and contingency cases', `${SITE}${links.power}.md`],
     ['Calculate facility demand and power margin', `${SITE}/calculators/data-center-power-capacity.md`],
+    ['Calculate backup generator run-hours', `${SITE}/calculators/generator-run-hours.md`],
     ['Calculate on-site water use and water usage effectiveness', `${SITE}/calculators/data-center-water-use.md`],
     ['Calculate monthly AEP Ohio data center demand charges', `${SITE}/calculators/aep-ohio-data-center-demand-charge.md`],
     ['Find space and power for GPU clusters', `${SITE}/blog/ai-compute-capacity-for-neoclouds.md`],
@@ -218,6 +219,7 @@ out.push('### Calculators')
 out.push('- [FAA Part 450 timeline estimator](https://invariant-ai.com/calculators/faa-part-450-timeline), Interactive estimator for FAA 14 CFR Part 450 launch and reentry license duration.')
 out.push('- [NRC license timeline estimator](https://invariant-ai.com/calculators/nrc-license-timeline), Interactive estimator for NRC reactor license duration under Parts 50, 52, 53.')
 out.push('- [Data center power capacity calculator](https://invariant-ai.com/calculators/data-center-power-capacity.md), Estimate facility demand and compare on-site generation and utility imports during a generator trip or grid outage.')
+out.push('- [Backup generator run-hour calculator](https://invariant-ai.com/calculators/generator-run-hours.md), Calculate rolling hours for a generator group and an individual engine.')
 out.push('- [Data center water use calculator](https://invariant-ai.com/calculators/data-center-water-use.md), Estimate annual on-site water and average daily gallons or calculate site WUE from annual records.')
 out.push('- [AEP Ohio data center demand charge calculator](https://invariant-ai.com/calculators/aep-ohio-data-center-demand-charge.md), Compare the meter, minimum demand and 11-month lookback for one Schedule DCT new-load contract.')
 out.push('- [Data center power delivery schedule calculator](https://invariant-ai.com/calculators/data-center-power-delivery-schedule.md), Work back from each opening date to the power service deadline and compare reported service MW with facility demand.')
