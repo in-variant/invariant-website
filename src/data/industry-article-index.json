@@ -1,5 +1,67 @@
 [
   {
+    "slug": "manufacturing-labor-shed-site-selection",
+    "topic": "Data & APIs",
+    "title": "How to Estimate a Manufacturing Labor Shed for Site Selection",
+    "summary": "Use Census commuting data, occupation wages, and drive times to screen a factory or warehouse location. Reproduce the Dayton metro example.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "Ohio, United States",
+    "image": "/blog/industry/manufacturing-labor-shed-site-selection.webp?v=b2b66f43",
+    "dataset": {
+      "name": "Dayton metro primary-job flows, manufacturing residence counts and occupation wages",
+      "description": "2024 Census primary-job flows across home and workplace counties, 2024 resident manufacturing job counts, and May 2025 BLS employment, wages and location quotients for four occupations.",
+      "spatialCoverage": "Dayton-Kettering-Beavercreek, Ohio, United States",
+      "temporalCoverage": "2024-04-01/2025-05-31",
+      "sources": [
+        "https://lehd.ces.census.gov/data/lodes/LODES8/oh/od/oh_od_main_JT01_2024.csv.gz",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/oh/od/oh_od_aux_JT01_2024.csv.gz",
+        "https://lehd.ces.census.gov/data/lodes/LODES8/oh/rac/oh_rac_S000_JT01_2024.csv.gz",
+        "https://www.bls.gov/oes/2025/may/msa_def.htm",
+        "https://data.bls.gov/oes/#/area/0019430/2025"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Ohio 2024 origin-destination primary jobs, in-state residential file",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/oh/od/oh_od_main_JT01_2024.csv.gz"
+        },
+        {
+          "title": "Ohio 2024 origin-destination primary jobs, out-of-state residential file",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/oh/od/oh_od_aux_JT01_2024.csv.gz"
+        },
+        {
+          "title": "Ohio 2024 Residence Area Characteristics, primary jobs",
+          "publisher": "U.S. Census Bureau",
+          "url": "https://lehd.ces.census.gov/data/lodes/LODES8/oh/rac/oh_rac_S000_JT01_2024.csv.gz"
+        },
+        {
+          "title": "May 2025 OEWS metropolitan and nonmetropolitan area definitions",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "url": "https://www.bls.gov/oes/2025/may/msa_def.htm"
+        },
+        {
+          "title": "May 2025 Dayton-Kettering-Beavercreek OEWS estimates",
+          "publisher": "U.S. Bureau of Labor Statistics",
+          "url": "https://data.bls.gov/oes/#/area/0019430/2025"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the 2024 county-to-county job flows",
+          "path": "/blog/dayton-primary-job-county-flows.csv",
+          "format": "CSV"
+        },
+        {
+          "label": "Download counts, occupation estimates and exact source queries",
+          "path": "/blog/dayton-manufacturing-labor-shed.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "ev-charging-electricity-cost-demand-charges",
     "topic": "Data & APIs",
     "title": "How to Estimate EV Charging Electricity Costs and Demand Charges",

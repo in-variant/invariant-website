@@ -1,5 +1,463 @@
 [
   {
+    "slug": "manufacturing-labor-shed-site-selection",
+    "topic": "Data & APIs",
+    "date": "2026-11-25",
+    "readMinutes": 8,
+    "region": "Ohio, United States",
+    "title": "How to Estimate a Manufacturing Labor Shed for Site Selection",
+    "description": "Use Census commuting data, occupation wages, and drive times to screen a factory or warehouse location. Reproduce the Dayton metro example.",
+    "coverAlt": "Census 2024 primary jobs with workplaces in the Dayton metro by home location. There were 230,406 inside the metro and 116,658 outside it, or 33.6 percent outside.",
+    "coverCaption": "2024 Census LODES 8.5 primary jobs, workplace counties Greene, Miami and Montgomery. Home locations are from the published aggregate records.",
+    "intro": "A manufacturing labor shed is the area a plant can reasonably recruit from. Start with where workers in the area live, use the plant’s employee entrance and shift times to test the commute, then compare wages by occupation. In Dayton, 33.6% of primary jobs in the three-county metro were linked to homes outside it in the Census Bureau’s 2024 data. A county or metro boundary can leave out places worth recruiting from.",
+    "takeaways": [
+      "Use work-to-home Census records to identify where existing workers live. Measure travel to the proposed entrance at each shift start.",
+      "Use home-based manufacturing employment to identify areas with industry experience, and occupation wage estimates to benchmark each role.",
+      "Verify shift-level hiring with competing employers, job postings, training providers and local recruiters before relying on a recruitment target."
+    ],
+    "guideActions": [
+      {
+        "href": "#dayton-commute-and-wage-example",
+        "label": "See the Dayton example"
+      },
+      {
+        "href": "/blog/dayton-primary-job-county-flows.csv",
+        "label": "Download the county flows",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "estimate-manufacturing-labor-shed",
+        "heading": "How do you estimate a plant’s labor shed?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Build the hiring plan first. Record the number of people needed by job, shift and start date. Keep construction trades separate from the people who will operate the facility. Match each permanent role to a Standard Occupational Classification code so you can compare wages and existing jobs across markets.",
+            "sourceIds": [
+              "oews-method"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Question",
+              "Record or measurement",
+              "What to retain"
+            ],
+            "stackOnMobile": true,
+            "rows": [
+              [
+                "Where do people who work near this site live?",
+                "Census OnTheMap or LODES origin-destination files for an existing industrial corridor or a comparable group of workplaces.",
+                "Workplace boundary, reference year and primary jobs by home area."
+              ],
+              [
+                "Who can reach the proposed site?",
+                "Drive times toward the employee entrance at each shift start. Use ACS civilian labor force and employed resident counts for context.",
+                "Entrance coordinate, inbound trip times, traffic assumptions, assumed travel mode and geographic coverage."
+              ],
+              [
+                "What would it cost to recruit the required roles?",
+                "BLS occupation wages, recent postings for comparable jobs, local recruiting quotes and competing shift premiums.",
+                "Role and skill requirements, wage definition, shift differential and data vintage."
+              ],
+              [
+                "How many can we hire by opening?",
+                "Interviews with staffing and training partners and a hiring test for the proposed duties, pay and schedule.",
+                "Expected qualified applicants, acceptances and training completions by date."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "onthemap",
+                "lodes-fields"
+              ],
+              [
+                "earth",
+                "esri"
+              ],
+              [
+                "oews-method",
+                "lightcast"
+              ],
+              [
+                "jobsohio",
+                "chmura"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a first pass, run Invariant Earth’s labor shed API from each candidate entrance at 15, 30 and 45 minutes. The result sums ACS labor-force estimates for included tracts and reports population separately. It uses tract representative points and typical travel conditions. Before committing to a site, test inbound routes at the actual shift change, especially across bridges, grade crossings and restricted entrances.",
+            "sourceIds": [
+              "earth"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dayton-commute-and-wage-example",
+        "heading": "What does the Dayton manufacturing labor market look like?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Using the May 2025 BLS metro definition, we selected workplaces in Greene, Miami and Montgomery counties. In the 2024 Census primary-job files, those counties account for 347,064 primary jobs. Of those, 230,406 are linked to homes in the same three counties, and 116,658 to homes outside them. Warren County accounts for 18,200 and Clark County for 13,233 of the outside-metro job links.",
+            "sourceIds": [
+              "metro",
+              "lodes-main",
+              "lodes-aux"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The outside-metro count is 33.6% of the workplace total, including 6,789 job links to homes outside Ohio. Census describes LODES home patterns as partially synthetic. These are job links between recorded home and work areas. The records contain no trip frequency, travel mode or shift time. The Census release also identifies missing data for Alaska and Michigan workers.",
+            "sourceIds": [
+              "lodes",
+              "lodes-fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The separate home-based file counts 42,760 primary jobs in manufacturing held by residents of the three counties. That figure includes people whose jobs may be outside the metro. It measures the employer’s industry, including roles such as accounting, maintenance and production. The BLS occupation estimates below cover the entire metro and all industries.",
+            "sourceIds": [
+              "lodes-rac",
+              "lodes-fields",
+              "oews-method"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Occupation and SOC code",
+              "Estimated jobs",
+              "Median hourly wage",
+              "Location quotient"
+            ],
+            "stackOnMobile": true,
+            "rows": [
+              [
+                "Industrial engineers · 17-2112",
+                "1,720",
+                "$47.86",
+                "1.97"
+              ],
+              [
+                "Industrial machinery mechanics · 49-9041",
+                "900",
+                "$30.11",
+                "0.85"
+              ],
+              [
+                "Machinists · 51-4041",
+                "1,360",
+                "$28.39",
+                "1.97"
+              ],
+              [
+                "Welders, cutters, solderers, and brazers · 51-4121",
+                "820",
+                "$24.23",
+                "0.82"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "oews"
+              ],
+              [
+                "oews"
+              ],
+              [
+                "oews"
+              ],
+              [
+                "oews"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The May 2025 estimate for machinists was 1,360 jobs with a median wage of $28.39 an hour. Its location quotient of 1.97 means machinists accounted for nearly twice the share of local jobs that they did nationally. It helps identify an established occupation to investigate. Recruiting feasibility still depends on the required skills, the work schedule and the offer.",
+            "sourceIds": [
+              "oews",
+              "oews-method"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To reproduce the count, filter both Ohio origin-destination files to the three workplace county FIPS codes, then group S000 by the first five digits of the home block code. The main file covers homes in Ohio and the auxiliary file covers homes outside Ohio. Use the residence file separately for the industry counts. The download includes the Census checksums and twelve BLS series IDs.",
+            "sourceIds": [
+              "lodes-fields",
+              "lodes-main",
+              "lodes-aux",
+              "lodes-rac",
+              "oews"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/dayton-primary-job-county-flows.csv",
+            "format": "CSV",
+            "label": "Download the 2024 county-to-county job flows"
+          },
+          {
+            "type": "download",
+            "path": "/blog/dayton-manufacturing-labor-shed.json",
+            "format": "JSON",
+            "label": "Download counts, occupation estimates and exact source queries"
+          }
+        ]
+      },
+      {
+        "id": "compare-manufacturing-workforce-data",
+        "heading": "Which labor market data tools should site selectors compare?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give providers the same site entrance, shift window and list of occupations. Ask for the source year, geography, work or home basis and the occupations that enter each count. Ask each provider to reproduce the Dayton baseline, then show what their tool adds when the analysis moves down to a parcel.",
+            "sourceIds": [
+              "lodes-fields",
+              "oews-method",
+              "earth"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Source or tool",
+              "Where to start",
+              "Trial question"
+            ],
+            "stackOnMobile": true,
+            "rows": [
+              [
+                "Invariant Earth",
+                "Screen drive-time labor force at the employee entrance alongside parcel, access and infrastructure checks.",
+                "Can the same candidate entrance and travel limits be reused across the site screen, and which tracts were missed or approximated?"
+              ],
+              [
+                "Census OnTheMap / LODES",
+                "Find where workers live and work from published job links.",
+                "Does the workplace total include home blocks outside the state? Which release and job type were used?"
+              ],
+              [
+                "BLS OEWS",
+                "Benchmark jobs, wages and occupation concentration for a metro.",
+                "Can we reproduce the role, median, year and geography without applying industry labels to occupation counts?"
+              ],
+              [
+                "Lightcast",
+                "Compare labor markets, employer demand and skills in postings.",
+                "How did the provider map CNC experience to the role, and how are duplicate postings handled?"
+              ],
+              [
+                "Chmura JobsEQ",
+                "Compare regional workforce, job posts, wages and recruitment areas.",
+                "Which figures are local observations and which are modeled? Can we change the catchment without changing the unit?"
+              ],
+              [
+                "ArcGIS Business Analyst",
+                "Create road-based catchments and add demographic and socioeconomic data.",
+                "Does the estimate use trips toward the entrance, and how does the provider allocate a partially covered Census area?"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth"
+              ],
+              [
+                "onthemap",
+                "lodes-fields"
+              ],
+              [
+                "oews",
+                "oews-method"
+              ],
+              [
+                "lightcast"
+              ],
+              [
+                "chmura"
+              ],
+              [
+                "esri"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related industrial site checks",
+            "items": [
+              {
+                "slug": "county-manufacturing-employment-data",
+                "label": "Compare manufacturing jobs and establishments by county"
+              },
+              {
+                "slug": "drive-time-demographics-census-trade-area",
+                "label": "See how a drive-time boundary changes the population estimate"
+              },
+              {
+                "slug": "manufacturing-site-selection-100-buildable-acres",
+                "label": "Verify the land and utilities for a manufacturing plant"
+              },
+              {
+                "slug": "shovel-ready-industrial-site-checklist",
+                "label": "Verify what an industrial site certification covers"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between a labor shed and a drive-time area?",
+        "answer": "A labor shed describes where a site can recruit workers. A drive-time area estimates geographic reach under stated road and traffic assumptions. Use existing commuting patterns, occupation and wage data, and local hiring evidence to turn that boundary into a recruiting assessment.",
+        "sourceIds": [
+          "onthemap",
+          "earth",
+          "oews"
+        ]
+      },
+      {
+        "question": "Can you count machinists within a 30-minute drive using Census LODES?",
+        "answer": "LODES measures employment and residence geography. The combined goods-producing field in the origin-destination file includes multiple industries, and the file has no detailed occupation field. Use a separate occupational source and ask how it estimates worker residence at the scale you need.",
+        "sourceIds": [
+          "lodes-fields",
+          "oews-method"
+        ]
+      },
+      {
+        "question": "Is a manufacturing job count the same thing as available workers?",
+        "answer": "Manufacturing employment measures covered jobs at manufacturers. It includes many occupations and cannot show who is willing to change jobs. Test the actual offer, shift and start date with local recruiters and training providers.",
+        "sourceIds": [
+          "lodes-fields",
+          "jobsohio"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "lodes",
+        "title": "LODES 8.5, 2024 release and coverage notice",
+        "publisher": "U.S. Census Bureau",
+        "url": "https://www.census.gov/programs-surveys/ces/news-and-updates/updates/11052026.html",
+        "linkLabel": "Census 2024 LODES release"
+      },
+      {
+        "id": "lodes-fields",
+        "title": "LODES 8.5 technical document, OD and RAC file structures",
+        "publisher": "U.S. Census Bureau",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/LODESTechDoc8.5.pdf",
+        "linkLabel": "LODES file specifications"
+      },
+      {
+        "id": "onthemap",
+        "title": "OnTheMap and downloadable LODES data",
+        "publisher": "U.S. Census Bureau",
+        "url": "https://lehd.ces.census.gov/data/#lodes",
+        "linkLabel": "Find LODES data and OnTheMap"
+      },
+      {
+        "id": "lodes-main",
+        "title": "Ohio 2024 origin-destination primary jobs, in-state residential file",
+        "publisher": "U.S. Census Bureau",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/oh/od/oh_od_main_JT01_2024.csv.gz",
+        "linkLabel": "Ohio workplace and Ohio home file"
+      },
+      {
+        "id": "lodes-aux",
+        "title": "Ohio 2024 origin-destination primary jobs, out-of-state residential file",
+        "publisher": "U.S. Census Bureau",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/oh/od/oh_od_aux_JT01_2024.csv.gz",
+        "linkLabel": "Ohio workplace and out-of-state home file"
+      },
+      {
+        "id": "lodes-rac",
+        "title": "Ohio 2024 Residence Area Characteristics, primary jobs",
+        "publisher": "U.S. Census Bureau",
+        "url": "https://lehd.ces.census.gov/data/lodes/LODES8/oh/rac/oh_rac_S000_JT01_2024.csv.gz",
+        "linkLabel": "Ohio home-based employment file"
+      },
+      {
+        "id": "metro",
+        "title": "May 2025 OEWS metropolitan and nonmetropolitan area definitions",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "url": "https://www.bls.gov/oes/2025/may/msa_def.htm",
+        "linkLabel": "Dayton metro county definition"
+      },
+      {
+        "id": "oews",
+        "title": "May 2025 Dayton-Kettering-Beavercreek OEWS estimates",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "url": "https://data.bls.gov/oes/#/area/0019430/2025",
+        "linkLabel": "Dayton occupation estimates"
+      },
+      {
+        "id": "oews-method",
+        "title": "May 2025 OEWS survey methods",
+        "publisher": "U.S. Bureau of Labor Statistics",
+        "url": "https://www.bls.gov/oes/methods_25.pdf",
+        "linkLabel": "OEWS survey methods"
+      },
+      {
+        "id": "earth",
+        "title": "Estimate a labor shed by drive time",
+        "publisher": "Invariant",
+        "url": "https://docs.invariant-ai.com/estimate-labor-shed-by-drive-time",
+        "linkLabel": "Invariant Earth labor shed API example"
+      },
+      {
+        "id": "esri",
+        "title": "Evaluate a site using ArcGIS Business Analyst",
+        "publisher": "Esri",
+        "url": "https://doc.esri.com/en/arcgis-pro/latest/help/analysis/business-analyst/evaluate-site.html",
+        "linkLabel": "ArcGIS Business Analyst site evaluation"
+      },
+      {
+        "id": "lightcast",
+        "title": "Site selection and labor market analysis",
+        "publisher": "Lightcast",
+        "url": "https://lightcast.io/use-cases/site-selection",
+        "linkLabel": "Lightcast site selection"
+      },
+      {
+        "id": "chmura",
+        "title": "JobsEQ site selection and labor market reporting",
+        "publisher": "Chmura",
+        "url": "https://www.chmura.com/solutions/site-selection",
+        "linkLabel": "JobsEQ site selection"
+      },
+      {
+        "id": "jobsohio",
+        "title": "Ohio workforce recruitment and training programs",
+        "publisher": "JobsOhio",
+        "url": "https://www.jobsohio.com/workforce-talent",
+        "linkLabel": "JobsOhio workforce resources"
+      }
+    ],
+    "relatedSlugs": [
+      "county-manufacturing-employment-data",
+      "drive-time-demographics-census-trade-area",
+      "manufacturing-site-selection-100-buildable-acres",
+      "shovel-ready-industrial-site-checklist"
+    ],
+    "dataset": {
+      "name": "Dayton metro primary-job flows, manufacturing residence counts and occupation wages",
+      "description": "2024 Census primary-job flows across home and workplace counties, 2024 resident manufacturing job counts, and May 2025 BLS employment, wages and location quotients for four occupations.",
+      "spatialCoverage": "Dayton-Kettering-Beavercreek, Ohio, United States",
+      "temporalCoverage": "2024-04-01/2025-05-31",
+      "sourceIds": [
+        "lodes-main",
+        "lodes-aux",
+        "lodes-rac",
+        "metro",
+        "oews"
+      ]
+    }
+  },
+  {
     "slug": "ev-charging-electricity-cost-demand-charges",
     "topic": "Data & APIs",
     "region": "California, United States",
@@ -19282,6 +19740,7 @@
       }
     ],
     "relatedSlugs": [
+      "manufacturing-labor-shed-site-selection",
       "retail-trade-area-overlap",
       "retail-site-selection-trade-area-apis",
       "census-tract-housing-vacancy-rent-burden",
@@ -22888,6 +23347,7 @@
       "temporalCoverage": "2024-01/2026-03"
     },
     "relatedSlugs": [
+      "manufacturing-labor-shed-site-selection",
       "manufacturing-site-selection-100-buildable-acres",
       "freight-analysis-framework-data",
       "best-gis-apis-for-site-selection"
@@ -37983,7 +38443,7 @@
       {"id": "camp-brochure", "title": "Campus 9 brochure, January 2025", "url": "https://www.camphall.com/wp-content/uploads/2025/01/Campus_9_Camp_Hall_01.2025__1_.pdf", "publisher": "Camp Hall"},
       {"id": "camp-listing", "title": "Campus 9 site listing and property resources", "url": "https://www.camphall.com/sites/campus-9/", "publisher": "Camp Hall"}
     ],
-    "relatedSlugs": ["best-gis-apis-for-site-selection", "industrial-environmental-permit-history-by-parcel", "power-evidence-data-center-site-verification"]
+    "relatedSlugs": ["manufacturing-labor-shed-site-selection", "best-gis-apis-for-site-selection", "industrial-environmental-permit-history-by-parcel", "power-evidence-data-center-site-verification"]
   },
   {
     "slug": "warehouse-site-selection-rail-truck-access",
