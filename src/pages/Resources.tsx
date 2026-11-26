@@ -49,10 +49,11 @@ export default function Resources() {
     details: resource.articleSlug ? details?.[resource.articleSlug]?.headings : undefined,
     bodyTerms: resource.articleSlug ? details?.[resource.articleSlug]?.bodyTerms : undefined,
   })) : [], [searching, details, directorySearch])
-  const candidates = searching ? rankSearch(searchIndex, queryWords, { allowPartialMatches: true }) : library
-  const filtered = candidates.filter(resource =>
-    (format === 'All' || `${resource.kind}s` === format) && (topic === 'All topics' || resource.topic === topic),
-  )
+  const matchesFilters = (resource: (typeof library)[number]) =>
+    (format === 'All' || `${resource.kind}s` === format) && (topic === 'All topics' || resource.topic === topic)
+  const filtered = searching
+    ? rankSearch(searchIndex.filter(({ entry }) => matchesFilters(entry)), queryWords, { allowPartialMatches: true, longQuestionRanking: true })
+    : library.filter(matchesFilters)
   const clearFilters = () => { setFormat('All'); setTopic('All topics'); setQuery(''); setVisibleCount(PAGE_SIZE) }
 
   return (

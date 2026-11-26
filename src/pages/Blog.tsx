@@ -103,10 +103,12 @@ export default function Blog() {
   const isFiltered = topic !== 'All articles' || searching
   const { details: searchDetails, pending: searchPending } = useArticleSearchDetails(searching)
   const searchIndex = useMemo(() => searching ? prepareArticleSearch(ARTICLES, searchDetails ?? {}) : [], [searchDetails, searching])
-  const candidates = searching ? rankSearch(searchIndex, queryWords, { allowPartialMatches: true }) : ARTICLES
-  const articles = candidates.filter(article => isFiltered
-    ? topic === 'All articles' || topic === article.topic
-    : !featuredSlugs.has(article.slug) && !earlierSlugs.has(article.slug))
+  const matchesTopic = (article: ArticleListEntry) => topic === 'All articles' || topic === article.topic
+  const articles = searching
+    ? rankSearch(searchIndex.filter(({ entry }) => matchesTopic(entry)), queryWords, { allowPartialMatches: true, longQuestionRanking: true })
+    : ARTICLES.filter(article => isFiltered
+      ? matchesTopic(article)
+      : !featuredSlugs.has(article.slug) && !earlierSlugs.has(article.slug))
 
   return (
     <div className="blog-index">

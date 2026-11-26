@@ -40,3 +40,35 @@ test('the field search uses the original token matching', () => {
   assert.deepEqual(rankSearch(index, articleSearchWords('employment')), [])
   assert.equal(rankSearch(index, articleSearchWords('parcel'))[0].title, 'Commercial property ownership records')
 })
+
+const questionIndex = prepareSearch([
+  {
+    title: 'Historical parcel boundaries by date',
+    metadata: 'Reproduce boundary changes across a split or merger',
+    bodyTerms: ['retained', 'lot', 'geometry', 'fiscal'],
+  },
+  {
+    title: 'Commercial real estate ownership',
+    metadata: 'Consider prior deeds and mortgage records',
+    bodyTerms: ['parcel', 'transaction', 'boundaries', 'geometry', 'prior', 'county'],
+  },
+  {
+    title: 'Commercial roof age underwriting',
+    metadata: 'Insurance roof permits and inspections',
+  },
+], entry => entry)
+const question = editorialSearchWords('How can I compare a parcel split with the prior geometry and retain the original lot record in my audit file?')
+const editorialOptions = { allowPartialMatches: true, longQuestionRanking: true }
+
+test('full questions recover a guide with specific overlap in title, summary, and records', () => {
+  assert.equal(rankSearch(questionIndex, question, { allowPartialMatches: true }).length, 0)
+  assert.equal(rankSearch(questionIndex, question, editorialOptions)[0].title, 'Historical parcel boundaries by date')
+  assert.deepEqual(rankSearch(questionIndex, editorialSearchWords('mortgage records'), editorialOptions),
+    [questionIndex[1].entry])
+})
+
+test('long unrelated searches do not fall back from a missing exact power size', () => {
+  const words = editorialSearchWords('Find powered land with 73 MW, phased utility capacity, grid service, and a documented delivery schedule')
+  assert.deepEqual(rankSearch(index, words, editorialOptions), [])
+  assert.deepEqual(rankSearch(questionIndex, editorialSearchWords('Show recipes for raspberry pie and how I might make a pastry from scratch for dinner'), editorialOptions), [])
+})

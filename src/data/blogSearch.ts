@@ -48,10 +48,50 @@ export function prepareArticleSearch(articles: ArticleListEntry[], details: Arti
   }))
 }
 
+type SearchItem<T> = ReturnType<typeof prepareSearch<T>>[number]
+
+function editorialWeight<T>(item: SearchItem<T>, term: string) {
+  if (item.title.includes(term)) return 8
+  if (item.relatedTitle.includes(term)) return 6
+  if (item.metadata.has(term)) return 4
+  if (item.details.has(term)) return 2
+  return 0
+}
+
+function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[]) {
+  const hasTerm = (item: SearchItem<T>, term: string) => editorialWeight(item, term) > 0 || item.bodyTerms?.has(term)
+  const capacities = terms.filter(term => /^\d+(?:\.\d+)?w$/.test(term))
+  const frequencies = terms.flatMap(term => {
+    const count = index.filter(item => hasTerm(item, term)).length
+    return count ? [{ term, importance: 1 + Math.log(index.length / count), distinctive: count <= Math.max(1, index.length / 3) }] : []
+  })
+  const minimumMatches = Math.max(4, Math.ceil(frequencies.length * .4))
+
+  return index.flatMap(item => {
+    if (!capacities.every(term => hasTerm(item, term))) return []
+    let matches = 0
+    let directMatches = 0
+    let hasDistinctiveMatch = false
+    let score = 0
+    for (const { term, importance, distinctive } of frequencies) {
+      const direct = editorialWeight(item, term)
+      if (!direct && !item.bodyTerms?.has(term)) continue
+      matches += 1
+      if (direct) {
+        directMatches += 1
+        hasDistinctiveMatch ||= distinctive
+      }
+      score += importance * (direct || 1)
+    }
+    if (matches < minimumMatches || directMatches < 2 || !hasDistinctiveMatch) return []
+    return [{ entry: item.entry, score }]
+  }).sort((a, b) => b.score - a.score).map(({ entry }) => entry)
+}
+
 export function rankSearch<T>(
   index: ReturnType<typeof prepareSearch<T>>,
   queryWords: string[],
-  { numericPrefixes = false, allowPartialMatches = false } = {},
+  { numericPrefixes = false, allowPartialMatches = false, longQuestionRanking = false } = {},
 ) {
   const terms = [...new Set(queryWords)]
   const phrase = ` ${queryWords.join(' ')} `
@@ -60,15 +100,9 @@ export function rankSearch<T>(
   const missingAllowance = allowPartialMatches && terms.length >= 4
     ? Math.min(2, Math.floor(terms.length / 4))
     : 0
-  return index.flatMap(({ entry, title, relatedTitle, metadata, details, bodyTerms }) => {
+  const strictResults = index.flatMap(item => {
+    const { entry, title, relatedTitle, metadata, details, bodyTerms } = item
     const matchesPhrase = ` ${title.join(' ')} `.includes(phrase) || ` ${relatedTitle.join(' ')} `.includes(phrase)
-    const wordWeight = (term: string) => {
-      if (title.includes(term)) return 8
-      if (relatedTitle.includes(term)) return 6
-      if (metadata.has(term)) return 4
-      if (details.has(term)) return 2
-      return 0
-    }
     let score = matchesPhrase ? (allowPartialMatches ? 8 : 6) : 0
     let bodyMatches = 0
     let strongMatches = 0
@@ -76,8 +110,8 @@ export function rankSearch<T>(
 
     for (const term of terms) {
       const aliases = allowPartialMatches ? EDITORIAL_ALIASES.get(term) : undefined
-      let weight = wordWeight(term)
-      if (aliases) weight = aliases.reduce((best, alias) => Math.max(best, wordWeight(alias) - 1), weight)
+      let weight = editorialWeight(item, term)
+      if (aliases) weight = aliases.reduce((best, alias) => Math.max(best, editorialWeight(item, alias) - 1), weight)
       if (!weight && term === lastWord && canMatchPrefix &&
         [...title, ...relatedTitle, ...metadata, ...details].some(word => word.startsWith(term))) weight = 1
       if (!weight && bodyTerms?.has(term)) bodyMatches += 1
@@ -98,4 +132,14 @@ export function rankSearch<T>(
     ? b.score - a.score || a.missing - b.missing
     : a.bodyMatches - b.bodyMatches || b.score - a.score,
   ).map(({ entry }) => entry)
+
+  // A passing mention can cover a long question without addressing its main subject.
+  // Keep the existing ranking for shorter queries that already have matches.
+  const isLongQuestion = terms.length >= 12
+  const needsFallback = terms.length >= 7 && strictResults.length === 0
+  if (longQuestionRanking && (isLongQuestion || needsFallback)) {
+    const questionResults = rankLongQuestion(index, terms)
+    if (questionResults.length) return questionResults
+  }
+  return strictResults
 }
