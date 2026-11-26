@@ -10252,8 +10252,8 @@
   {
     "slug": "data-center-flood-zone-screening",
     "topic": "Data Centers",
-    "title": "FEMA flood zones by address for 11 data center sites",
-    "summary": "Look up FEMA flood zones by address, then verify the tax lot and building. Compare 11 data center sites with map panels, effective dates and a downloadable CSV.",
+    "title": "FEMA flood zones by address for data center sites",
+    "summary": "Check 12 data center sites against FEMA flood maps. Compare address points with parcel and building boundaries, including flood and liquefaction at Equinix SE4 in Kent.",
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
@@ -10916,6 +10916,84 @@
           {
             "label": "Download the ATL4 parcel, footprint and FEMA panel checks",
             "path": "/blog/databank-atl4-fema-map-panels.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-se4-flood-liquefaction",
+        "name": "Equinix SE4 flood zone and liquefaction check",
+        "description": "County address point and tax lot at 6906 South 204th Street, with effective FEMA zone overlaps, map panel date, Washington liquefaction class and exact source queries.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Kent, King County, Washington, United States",
+        "temporalCoverage": "2026-11-26",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/equinix-se4-kent-hazards-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "sources": [
+          "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+          "https://gismaps.kingcounty.gov/ArcGIS/rest/services/Address/KingCo_AddressPoints/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDR_FULL%2CCTYNAME%2CPIN%2CSITEID%2CSITETYPE&returnGeometry=true&where=ADDR_FULL+LIKE+%276906%25204TH%25%27",
+          "https://gismaps.kingcounty.gov/imagery/rest/services/Transit/TransitGrievanceTracking/MapServer/1/query?f=geojson&outSR=4326&outFields=OBJECTID%2CPIN%2CADDR_FULL%2CCTYNAME&returnGeometry=true&where=PIN%3D%270122049034%27",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.24746485290142%2C47.42148045475589&geometryType=esriGeometryPoint&inSR=4326",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CDFIRM_ID%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CEFF_DATE%2CDFIRM_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+          "https://gis.dnr.wa.gov/site1/rest/services/Public_Geology/Ground_Response/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CLIQUEFACTION_SUSCEPT&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+          "https://dnr.wa.gov/washington-geological-survey/geologic-hazards-and-environment/geologic-hazard-maps",
+          "https://www.kentwa.gov/departments/public-works/environmental/floodplains"
+        ],
+        "sourceDetails": [
+          {
+            "title": "SE4 location and published facility specifications",
+            "publisher": "Equinix",
+            "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4"
+          },
+          {
+            "title": "King County address point for 6906 South 204th Street",
+            "publisher": "King County GIS",
+            "url": "https://gismaps.kingcounty.gov/ArcGIS/rest/services/Address/KingCo_AddressPoints/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDR_FULL%2CCTYNAME%2CPIN%2CSITEID%2CSITETYPE&returnGeometry=true&where=ADDR_FULL+LIKE+%276906%25204TH%25%27"
+          },
+          {
+            "title": "King County parcel geometry for tax lot 0122049034",
+            "publisher": "King County GIS",
+            "url": "https://gismaps.kingcounty.gov/imagery/rest/services/Transit/TransitGrievanceTracking/MapServer/1/query?f=geojson&outSR=4326&outFields=OBJECTID%2CPIN%2CADDR_FULL%2CCTYNAME&returnGeometry=true&where=PIN%3D%270122049034%27"
+          },
+          {
+            "title": "National Flood Hazard Layer result at the county address point",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.24746485290142%2C47.42148045475589&geometryType=esriGeometryPoint&inSR=4326"
+          },
+          {
+            "title": "National Flood Hazard Layer flood zone polygons used in the parcel overlap",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CDFIRM_ID%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects"
+          },
+          {
+            "title": "National Flood Hazard Layer FIRM panels for the parcel and surrounding area",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CEFF_DATE%2CDFIRM_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects"
+          },
+          {
+            "title": "Washington Geological Survey liquefaction susceptibility polygons used in the parcel overlap",
+            "publisher": "Washington Geological Survey",
+            "url": "https://gis.dnr.wa.gov/site1/rest/services/Public_Geology/Ground_Response/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CLIQUEFACTION_SUSCEPT&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects"
+          },
+          {
+            "title": "Washington Geological Survey guidance on the use of regional geologic hazard maps",
+            "publisher": "Washington Geological Survey",
+            "url": "https://dnr.wa.gov/washington-geological-survey/geologic-hazards-and-environment/geologic-hazard-maps"
+          },
+          {
+            "title": "City of Kent effective flood maps and elevation certificate guidance",
+            "publisher": "City of Kent",
+            "url": "https://www.kentwa.gov/departments/public-works/environmental/floodplains"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Kent flood and liquefaction records",
+            "path": "/blog/equinix-se4-kent-flood-liquefaction.json",
             "format": "JSON"
           }
         ]

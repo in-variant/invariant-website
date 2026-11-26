@@ -1,0 +1,110 @@
+{
+  "title": "FEMA flood zone and liquefaction check for Equinix SE4 in Kent, Washington",
+  "checked_on": "2026-11-26",
+  "article": "https://invariant-ai.com/blog/data-center-flood-zone-screening#equinix-se4-kent-flood-liquefaction",
+  "address": "6906 South 204th Street, Kent, WA 98032",
+  "county_address_record_id": 567432,
+  "tax_lot_id": "0122049034",
+  "geometry_scope": [
+    "King County address point",
+    "King County tax lot"
+  ],
+  "fema": {
+    "panel": "53033C0986G",
+    "panel_effective_date": "2020-08-19",
+    "address_point_zone": "X",
+    "address_point_subtype": "AREA OF MINIMAL FLOOD HAZARD",
+    "parcel_square_meters": 34822.8,
+    "parcel_sfha_square_meters": 9928.24,
+    "parcel_sfha_percent": 28.51074,
+    "parcel_zone_rows": [
+      {
+        "flood_area_id": "53033C_1757",
+        "zone": "AE",
+        "subtype": null,
+        "special_flood_hazard_area": true,
+        "contains_address_point": false,
+        "lot_overlap_square_meters": 9924.88,
+        "lot_overlap_percent": 28.5011
+      },
+      {
+        "flood_area_id": "53033C_2202",
+        "zone": "AE",
+        "subtype": "FLOODWAY",
+        "special_flood_hazard_area": true,
+        "contains_address_point": false,
+        "lot_overlap_square_meters": 3.36,
+        "lot_overlap_percent": 0.00964
+      },
+      {
+        "flood_area_id": "53033C_4920",
+        "zone": "X",
+        "subtype": "AREA OF MINIMAL FLOOD HAZARD",
+        "special_flood_hazard_area": false,
+        "contains_address_point": true,
+        "lot_overlap_square_meters": 24894.56,
+        "lot_overlap_percent": 71.48926
+      }
+    ]
+  },
+  "washington_geological_survey": {
+    "layer": "Liquefaction Susceptibility",
+    "feature_id": 19403,
+    "address_point_susceptibility": "moderate to high",
+    "parcel_susceptibility": "moderate to high",
+    "parcel_share_percent": 100
+  },
+  "method": "Matched the operator’s address to the county address point and tax lot ID. Reprojected the county and agency GeoJSON geometries from WGS 84 (EPSG:4326) to WGS 84 / UTM zone 10N (EPSG:32610). Intersected the effective FEMA zone polygons with the full county tax lot. Divided the union of the intersecting SFHA areas by tax lot area. Checked the state susceptibility polygon separately. Queried the agency layers at the address point independently.",
+  "limits": [
+    "Area shares are approximate GIS measurements from public geometries. Small edge overlaps require confirmation with official site records and surveyed geometry.",
+    "The analysis covers the address point and county tax lot. Building footprint, floor elevation, applicable site-specific map amendments and access routes were not verified.",
+    "The liquefaction label is a regional relative susceptibility class. It does not measure building performance, site-specific soil conditions or annual probability."
+  ],
+  "source_queries": [
+    {
+      "label": "addresses",
+      "url": "https://gismaps.kingcounty.gov/ArcGIS/rest/services/Address/KingCo_AddressPoints/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDR_FULL%2CCTYNAME%2CPIN%2CSITEID%2CSITETYPE&returnGeometry=true&where=ADDR_FULL+LIKE+%276906%25204TH%25%27",
+      "retrieved_response_sha256": "3a6eef0f336d496ed7ca0ba65b3e1e066bdfeb4fd8564fe8e4257807cdbbddcc"
+    },
+    {
+      "label": "parcel",
+      "url": "https://gismaps.kingcounty.gov/imagery/rest/services/Transit/TransitGrievanceTracking/MapServer/1/query?f=geojson&outSR=4326&outFields=OBJECTID%2CPIN%2CADDR_FULL%2CCTYNAME&returnGeometry=true&where=PIN%3D%270122049034%27",
+      "retrieved_response_sha256": "d364af923a87286d3ada6d407b42c9639ab2c3ed781a021a87a0738ee04432a6"
+    },
+    {
+      "label": "zones",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CDFIRM_ID%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+      "retrieved_response_sha256": "a7505f7b97fa09ced8c9389875d34c3fdecc75c2e07a2c20b6b9962d8621e8c8"
+    },
+    {
+      "label": "panels",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CEFF_DATE%2CDFIRM_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+      "retrieved_response_sha256": "2dd10f3294875ec9b21fb81343e91a106edfa643b6c2a082c297fb7c75c043b6"
+    },
+    {
+      "label": "liquefaction",
+      "url": "https://gis.dnr.wa.gov/site1/rest/services/Public_Geology/Ground_Response/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CLIQUEFACTION_SUSCEPT&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+      "retrieved_response_sha256": "7b0fddbb78ac92b9d03bcd6228d45fbb14b79fd0668c3075dc4226cfcbbaf440"
+    },
+    {
+      "label": "point-zone",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.24746485290142%2C47.42148045475589&geometryType=esriGeometryPoint&inSR=4326",
+      "retrieved_response_sha256": "f11f7b499cb3e13defe676e0d687c31c11fa55c2bb1662f82ae49abc23328670"
+    },
+    {
+      "label": "point-panel",
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CEFF_DATE&returnGeometry=true&where=1%3D1&geometry=-122.24746485290142%2C47.42148045475589&geometryType=esriGeometryPoint&inSR=4326",
+      "retrieved_response_sha256": "2ef0427a23cf5857761030be45787832bfa41d5b477c317f7a398435c54f3177"
+    },
+    {
+      "label": "point-liquefaction",
+      "url": "https://gis.dnr.wa.gov/site1/rest/services/Public_Geology/Ground_Response/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CLIQUEFACTION_SUSCEPT&returnGeometry=true&where=1%3D1&geometry=-122.24746485290142%2C47.42148045475589&geometryType=esriGeometryPoint&inSR=4326",
+      "retrieved_response_sha256": "7b0fddbb78ac92b9d03bcd6228d45fbb14b79fd0668c3075dc4226cfcbbaf440"
+    }
+  ],
+  "source_documents": [
+    "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+    "https://www.kentwa.gov/departments/public-works/environmental/floodplains",
+    "https://dnr.wa.gov/washington-geological-survey/geologic-hazards-and-environment/geologic-hazard-maps"
+  ]
+}

@@ -2829,13 +2829,13 @@
   "topic": "Data Centers",
   "kind": "study-guide",
   "region": "United States",
-  "title": "FEMA flood zones by address for 11 data center sites",
-  "description": "Look up FEMA flood zones by address, then verify the tax lot and building. Compare 11 data center sites with map panels, effective dates and a downloadable CSV.",
+  "title": "FEMA flood zones by address for data center sites",
+  "description": "Check 12 data center sites against FEMA flood maps. Compare address points with parcel and building boundaries, including flood and liquefaction at Equinix SE4 in Kent.",
   "date": "2026-11-20",
-  "readMinutes": 11,
-  "intro": "A FEMA address search shows the mapped flood zone at one point. Check the tax lot and building outline before you use that result for a site decision. One address can span two FEMA map panels, as DataBank ATL4 does in South Fulton. The examples below show what the effective maps report for 11 data center sites and which part of each site was checked.",
+  "readMinutes": 13,
+  "intro": "A FEMA address search gives you the mapped zone at a single point. At Equinix SE4 in Kent, Washington, the county address point is in unshaded Zone X, while roughly 28.5% of the tax lot is in the mapped Special Flood Hazard Area. Compare the flood checks for 12 data center sites below and see where a parcel or building boundary changes the answer.",
   "takeaways": [
-   "Separate the point from the parcel. A single roof point can be in Zone AE on a tax lot that crosses several FEMA zones.",
+   "Check the point and the parcel. At Equinix SE4, the county point is in Zone X and about 28.5% of the lot is in Zone AE.",
    "Keep the Zone X subtype. Plano and Novva Mesa both returned X, but the Mesa parcel is in the mapped 0.2% annual-chance flood hazard area.",
    "An address-range match can land beside the property. At 100 Delawanna Avenue, it was about two metres outside the tax lot.",
    "In Tampa, the address point, parcel and building matched to FEMA Zone X. The county hurricane evacuation map puts the parcel in Zone C.",
@@ -2847,7 +2847,7 @@
   "guideActions": [
    {
     "href": "#compare-fema-addresses",
-    "label": "Compare the 11 sites"
+    "label": "Compare the 12 sites"
    },
    {
     "href": "https://docs.invariant-ai.com/check-flood-zone-by-address",
@@ -2862,11 +2862,11 @@
   "sections": [
    {
     "id": "compare-fema-addresses",
-    "heading": "FEMA flood zones for 11 data center sites",
+    "heading": "FEMA flood zones for 12 data center sites",
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We checked the effective FEMA National Flood Hazard Layer from November 24 to 26, 2026. Select a site for the map panel, source records and download. The CSV includes the parcel ID and the share of the parcel in the Special Flood Hazard Area where a tax lot was identified.",
+      "text": "We checked the effective FEMA National Flood Hazard Layer from November 24 to 26, 2026. Select a site for the map panel, source records and download. A combined CSV covers the first 11 checks. The Kent case includes a separate JSON file with flood and liquefaction evidence.",
       "sourceIds": [
        "fema-nfhl"
       ]
@@ -2934,6 +2934,11 @@
         "200 Selig Drive SW, South Fulton, GA (DataBank ATL4)",
         "Unshaded Zone X",
         "County address point, parcel and main mapped building. The building crosses two Fulton County map panels."
+       ],
+       [
+        "6906 South 204th Street, Kent, WA (Equinix SE4)",
+        "Unshaded Zone X at the address point. About 28.5% of the lot is in Zone AE.",
+        "County address point and tax lot. Checked the state liquefaction layer for both."
        ]
       ],
       "rowSectionIds": [
@@ -2947,15 +2952,108 @@
        "plano-novva-mesa-flood-zones",
        "weehawken-1919-park-flood-zone",
        "atlanta-1100-white-street-flood-zone",
-       "south-fulton-200-selig-flood-zone"
+       "south-fulton-200-selig-flood-zone",
+       "equinix-se4-kent-flood-liquefaction"
       ]
      },
      {
       "type": "download",
       "path": "/blog/data-center-fema-address-comparison.csv",
-      "label": "Download all 11 FEMA address checks",
+      "label": "Download the original 11 FEMA address checks",
       "format": "CSV",
       "datasetAnchor": null
+     }
+    ]
+   },
+   {
+    "id": "equinix-se4-kent-flood-liquefaction",
+    "heading": "Equinix SE4 flood zone and liquefaction in Kent, Washington",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The county address point for Equinix SE4 at 6906 South 204th Street is in unshaded FEMA Zone X. About 28.5% of the matched tax lot overlaps FEMA’s mapped Special Flood Hazard Area in Zone AE. Washington’s regional liquefaction layer classifies the address point and the full lot as “moderate to high.”",
+      "sourceIds": [
+       "se4-operator",
+       "se4-fema-point",
+       "se4-fema-zones",
+       "se4-wgs"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Record",
+       "What we found"
+      ],
+      "rows": [
+       [
+        "FEMA address check",
+        "Unshaded Zone X, which FEMA labels an area of minimal flood hazard."
+       ],
+       [
+        "FEMA tax lot check",
+        "King County parcel 0122049034 crosses Zones X and AE. About 28.5% of the lot falls in the mapped Special Flood Hazard Area. The lot is on Flood Insurance Rate Map panel 53033C0986G, effective August 19, 2020."
+       ],
+       [
+        "Washington liquefaction check",
+        "The county point and the entire mapped lot fall in the state’s “moderate to high” susceptibility class. Susceptibility describes where soils are more likely to lose strength during earthquake shaking."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "se4-address",
+        "se4-fema-point"
+       ],
+       [
+        "se4-parcel",
+        "se4-fema-zones",
+        "se4-fema-panel"
+       ],
+       [
+        "se4-wgs",
+        "se4-wgs-method"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Equinix reports that the facility sits above the base flood elevation and lists Seismic Design Category D. The parcel overlay does not establish the building’s flood zone or verify those design and elevation records. For a lease, acquisition or underwriting review, request a surveyed footprint and elevation certificate, check for any applicable FEMA map amendments, and ask for the geotechnical report and structural design records. Check the access route separately so the building and the road each get their own result.",
+      "sourceIds": [
+       "se4-operator",
+       "se4-kent-floodplains",
+       "se4-wgs-method"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "We joined King County’s address point to its tax lot ID and intersected the lot with the effective FEMA zones and Washington’s liquefaction layer on November 26, 2026. The download includes the polygon identifiers, exact queries and area calculation.",
+      "sourceIds": [
+       "se4-address",
+       "se4-parcel",
+       "se4-fema-zones",
+       "se4-wgs"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/equinix-se4-kent-flood-liquefaction.json",
+      "label": "Download the Kent flood and liquefaction records",
+      "format": "JSON",
+      "datasetAnchor": "dataset-se4-flood-liquefaction"
+     },
+     {
+      "type": "links",
+      "items": [
+       {
+        "label": "How underwriters check earthquake risk by address",
+        "slug": "earthquake-risk-by-address-for-underwriting"
+       },
+       {
+        "label": "Washington data center site selection",
+        "slug": "data-center-sites-for-sale-washington"
+       }
+      ]
      }
     ]
    },
@@ -3741,6 +3839,10 @@
     ]
    },
    {
+    "question": "What flood zone is Equinix SE4 in Kent, Washington?",
+    "answer": "The county address point for Equinix SE4 is in unshaded FEMA Zone X. Approximately 28.5% of King County tax lot 0122049034 is in the mapped Special Flood Hazard Area in Zone AE. FEMA panel 53033C0986G took effect August 19, 2020. The building footprint needs a separate check."
+   },
+   {
     "question": "What FEMA flood zone covers 400 South Akard Street in Dallas?",
     "answer": "Our November 24, 2026 check found unshaded Zone X at the city’s address point and across the mapped tax parcel. The effective panel is 48113C0345J, dated August 23, 2001. This check covers the point and tax parcel.",
     "sourceIds": [
@@ -4422,6 +4524,69 @@
     "title": "Download effective Fulton County map panel 13121C0331F",
     "publisher": "FEMA Map Service Center",
     "url": "https://msc.fema.gov/portal/downloadProduct?productID=13121C0331F"
+   },
+   {
+    "id": "se4-operator",
+    "title": "SE4 location and published facility specifications",
+    "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se4",
+    "publisher": "Equinix",
+    "linkLabel": "Equinix SE4 specifications"
+   },
+   {
+    "id": "se4-address",
+    "title": "King County address point for 6906 South 204th Street",
+    "url": "https://gismaps.kingcounty.gov/ArcGIS/rest/services/Address/KingCo_AddressPoints/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CADDR_FULL%2CCTYNAME%2CPIN%2CSITEID%2CSITETYPE&returnGeometry=true&where=ADDR_FULL+LIKE+%276906%25204TH%25%27",
+    "publisher": "King County GIS",
+    "linkLabel": "County address query"
+   },
+   {
+    "id": "se4-parcel",
+    "title": "King County parcel geometry for tax lot 0122049034",
+    "url": "https://gismaps.kingcounty.gov/imagery/rest/services/Transit/TransitGrievanceTracking/MapServer/1/query?f=geojson&outSR=4326&outFields=OBJECTID%2CPIN%2CADDR_FULL%2CCTYNAME&returnGeometry=true&where=PIN%3D%270122049034%27",
+    "publisher": "King County GIS",
+    "linkLabel": "County parcel query"
+   },
+   {
+    "id": "se4-fema-point",
+    "title": "National Flood Hazard Layer result at the county address point",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.24746485290142%2C47.42148045475589&geometryType=esriGeometryPoint&inSR=4326",
+    "publisher": "FEMA",
+    "linkLabel": "FEMA point query"
+   },
+   {
+    "id": "se4-fema-zones",
+    "title": "National Flood Hazard Layer flood zone polygons used in the parcel overlap",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CDFIRM_ID%2CFLD_AR_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+    "publisher": "FEMA",
+    "linkLabel": "FEMA zone polygons"
+   },
+   {
+    "id": "se4-fema-panel",
+    "title": "National Flood Hazard Layer FIRM panels for the parcel and surrounding area",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&outFields=OBJECTID%2CFIRM_PAN%2CEFF_DATE%2CDFIRM_ID&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+    "publisher": "FEMA",
+    "linkLabel": "FEMA panel records"
+   },
+   {
+    "id": "se4-wgs",
+    "title": "Washington Geological Survey liquefaction susceptibility polygons used in the parcel overlap",
+    "url": "https://gis.dnr.wa.gov/site1/rest/services/Public_Geology/Ground_Response/MapServer/0/query?f=geojson&outSR=4326&outFields=OBJECTID%2CLIQUEFACTION_SUSCEPT&returnGeometry=true&where=1%3D1&geometry=-122.2511680181779%2C47.41852594189056%2C-122.2448010394603%2C47.42503714466894&inSR=4326&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects",
+    "publisher": "Washington Geological Survey",
+    "linkLabel": "Washington liquefaction polygons"
+   },
+   {
+    "id": "se4-wgs-method",
+    "title": "Washington Geological Survey guidance on the use of regional geologic hazard maps",
+    "url": "https://dnr.wa.gov/washington-geological-survey/geologic-hazards-and-environment/geologic-hazard-maps",
+    "publisher": "Washington Geological Survey",
+    "linkLabel": "Washington hazard map guidance"
+   },
+   {
+    "id": "se4-kent-floodplains",
+    "title": "City of Kent effective flood maps and elevation certificate guidance",
+    "url": "https://www.kentwa.gov/departments/public-works/environmental/floodplains",
+    "publisher": "City of Kent",
+    "linkLabel": "Kent floodplain and elevation records"
    }
   ],
   "relatedSlugs": [
@@ -4599,6 +4764,30 @@
      "atl4-13121C0218F",
      "atl4-13121C0331F"
     ]
+   },
+   {
+    "anchor": "dataset-se4-flood-liquefaction",
+    "name": "Equinix SE4 flood zone and liquefaction check",
+    "description": "County address point and tax lot at 6906 South 204th Street, with effective FEMA zone overlaps, map panel date, Washington liquefaction class and exact source queries.",
+    "datePublished": "2026-11-26",
+    "spatialCoverage": "Kent, King County, Washington, United States",
+    "temporalCoverage": "2026-11-26",
+    "sourceIds": [
+     "se4-operator",
+     "se4-address",
+     "se4-parcel",
+     "se4-fema-point",
+     "se4-fema-zones",
+     "se4-fema-panel",
+     "se4-wgs",
+     "se4-wgs-method",
+     "se4-kent-floodplains"
+    ],
+    "archivedRelease": {
+     "url": "https://github.com/in-variant/invariant-website/releases/tag/equinix-se4-kent-hazards-v1.0.0",
+     "version": "1.0.0",
+     "datePublished": "2026-11-26"
+    }
    }
   ]
  },
