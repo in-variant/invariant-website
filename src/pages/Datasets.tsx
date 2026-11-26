@@ -16,10 +16,10 @@ import './Datasets.css'
 const title = 'Physical economy data samples'
 const recentSampleCount = 8
 const { url: canonical } = DATA_CATALOG
-const { description, access, siteSearch, underwriting } = researchCatalog
+const { description, access, siteSearch, underwriting, powerStudy } = researchCatalog
 
 function trackResearchLink(properties: {
-  action: 'browse_samples' | 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist' | 'underwriting_wildfire' | 'underwriting_portfolio'
+  action: 'browse_samples' | 'study' | 'workflow' | 'sample' | 'api_coverage' | 'api_quickstart' | 'site_listings' | 'site_shortlist' | 'underwriting_flood' | 'underwriting_portfolio' | 'power_study'
   surface: 'intro' | 'buyer_paths' | 'featured' | 'catalog' | 'no_results'
   dataset?: string
   format?: string
@@ -204,14 +204,14 @@ export default function Datasets() {
             <div>
               <p>{description}</p>
               <nav aria-label="Data samples and API" className="resources-data-links">
-                <a className="dataset-browse-button" href="#dataset-search"
+                <Link className="dataset-coverage-button" to={earthLinks.coverage}
+                  onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
+                  Check API coverage <ResourceArrow diagonal />
+                </Link>
+                <a className="dataset-method" href="#dataset-search"
                   onClick={() => trackResearchLink({ action: 'browse_samples', surface: 'intro' })}>
                   Browse samples <span aria-hidden="true">↓</span>
                 </a>
-                <Link className="dataset-method" to={earthLinks.coverage}
-                  onClick={() => trackResearchLink({ action: 'api_coverage', surface: 'intro' })}>
-                  See what you can query <ResourceArrow diagonal />
-                </Link>
               </nav>
             </div>
           </div>
@@ -236,13 +236,23 @@ export default function Datasets() {
               <h2 id="dataset-underwriting-title">{underwriting.title}</h2>
               <p>{underwriting.description}</p>
               <div className="dataset-buyer-actions">
-                <a className="dataset-method" href={underwriting.wildfireUrl}
-                  onClick={() => trackResearchLink({ action: 'underwriting_wildfire', surface: 'buyer_paths' })}>
-                  {underwriting.wildfireLabel} <ResourceArrow diagonal />
+                <a className="dataset-method" href={underwriting.floodUrl}
+                  onClick={() => trackResearchLink({ action: 'underwriting_flood', surface: 'buyer_paths' })}>
+                  {underwriting.floodLabel} <ResourceArrow diagonal />
                 </a>
                 <Link className="dataset-method" to={underwriting.portfolioPath}
                   onClick={() => trackResearchLink({ action: 'underwriting_portfolio', surface: 'buyer_paths' })}>
                   {underwriting.portfolioLabel} <ResourceArrow diagonal />
+                </Link>
+              </div>
+            </section>
+            <section aria-labelledby="dataset-power-study-title">
+              <h2 id="dataset-power-study-title">{powerStudy.title}</h2>
+              <p>{powerStudy.description}</p>
+              <div className="dataset-buyer-actions">
+                <Link className="dataset-method" to={powerStudy.path}
+                  onClick={() => trackResearchLink({ action: 'power_study', surface: 'buyer_paths' })}>
+                  {powerStudy.label} <ResourceArrow diagonal />
                 </Link>
               </div>
             </section>
@@ -254,7 +264,7 @@ export default function Datasets() {
             <Link className="dataset-method" to={DATA_USE_CASES_PATH}>All use-case guides <ResourceArrow diagonal /></Link>
           </div>
           <ul>
-            {featured.map(({ slug, title, summary, scope, evidence, image, srcSet, imageLabel, notesPath, workflow, sample, workflowLabel }, index) => (
+            {featured.map(({ slug, title, summary, scope, evidence, image, srcSet, imageLabel, notesPath, workflow, sample, workflowLabel, workflowType }, index) => (
               <li key={slug}>
                 <Link className="dataset-featured-study" to={notesPath} aria-labelledby={`featured-${slug}`}
                   onClick={() => trackResearchLink({ action: 'study', surface: 'featured', dataset: slug })}>
@@ -274,10 +284,13 @@ export default function Datasets() {
                   </div>
                 </Link>
                 <div className="dataset-featured-actions">
-                  {workflow && workflowLabel && <a className="dataset-featured-workflow" href={workflow.url}
-                    onClick={() => trackResearchLink({ action: 'workflow', surface: 'featured', dataset: slug })}>
-                    {workflowLabel} <ResourceArrow />
-                  </a>}
+                  {workflow && <div className="dataset-featured-next">
+                    <span id={`workflow-type-${slug}`}>{workflowType}</span>
+                    <a className="dataset-featured-workflow" href={workflow.url} aria-describedby={`workflow-type-${slug}`}
+                      onClick={() => trackResearchLink({ action: 'workflow', surface: 'featured', dataset: slug })}>
+                      {workflowLabel} <ResourceArrow />
+                    </a>
+                  </div>}
                   <a className="dataset-featured-sample" href={sample.path} download aria-label={`Download ${sample.format} sample for ${title}`}
                     aria-describedby={`sample-scope-${slug}`}
                     onClick={() => trackResearchLink({ action: 'sample', surface: 'featured', dataset: slug, format: sample.format })}>

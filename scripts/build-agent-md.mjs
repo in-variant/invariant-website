@@ -344,7 +344,7 @@ function resourcesMd() {
 }
 
 function datasetCatalogMd() {
-  const { siteSearch, underwriting } = datasetCatalog
+  const { siteSearch, underwriting, powerStudy } = datasetCatalog
   const out = [
     '# Data samples for the physical economy', '',
     `Catalog page: ${SITE}/datasets`, '',
@@ -360,19 +360,22 @@ function datasetCatalogMd() {
     `- [${siteSearch.requestLabel}](${SITE}${siteSearch.requestPath})`, '',
     `## ${underwriting.title}`, '',
     underwriting.description, '',
-    `- [${underwriting.wildfireLabel}](${underwriting.wildfireUrl})`,
+    `- [${underwriting.floodLabel}](${underwriting.floodUrl})`,
     `- [${underwriting.portfolioLabel}](${SITE}${underwriting.portfolioPath})`, '',
+    `## ${powerStudy.title}`, '',
+    powerStudy.description, '',
+    `- [${powerStudy.label}](${SITE}${powerStudy.path})`, '',
     '## See what the data can answer', '',
-    ...featuredResearch.flatMap(({ slug, title, summary, scope, evidence, workflowLabel }) => {
+    ...featuredResearch.flatMap(({ slug, title, summary, scope, evidence, workflowLabel, workflowType }) => {
       const study = primaryDatasets.get(slug)
       const workflow = researchWorkflows.get(slug)
-      if (!study || (workflowLabel && !workflow)) throw new Error(`Missing featured research dataset or workflow for ${slug}`)
+      if (!study || !workflow || !workflowLabel || !workflowType) throw new Error(`Missing featured research dataset or workflow for ${slug}`)
       const sample = study.dataset.downloads[0]
       return [
         `- [${title}](${study.url}). ${summary}`,
         `  - ${scope}`,
         `  - Research inputs: ${evidence}`,
-        ...(workflowLabel ? [`  - [${workflowLabel}](${workflow.url})`] : []),
+        `  - ${workflowType} · [${workflowLabel}](${workflow.url})`,
         `  - [Download the ${sample.format} sample](${SITE}${sample.path})`,
       ]
     }), '',
