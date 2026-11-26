@@ -95,9 +95,12 @@ const trialReviewColumns = [
 const trialColumns = [...trialInputColumns, ...trialReviewColumns, ...trialReferenceColumns]
 const trialOrigin = new URL(providerTrial.url).origin
 const workflowIds = new Set()
-for (const { id, title, guide, test, providers } of providerComparisons.workflows) {
+for (const { id, title, guide, guideAnchor, test, providers } of providerComparisons.workflows) {
   if (!/^[a-z0-9-]+$/.test(id) || workflowIds.has(id) || !slugs.has(guide) || !title?.trim() || !test?.trim()) {
     throw new Error(`Invalid provider comparison workflow: ${id}`)
+  }
+  if (guideAnchor !== undefined && !allArticles.find(article => article.slug === guide)?.sections?.some(section => section.id === guideAnchor)) {
+    throw new Error(`Invalid provider comparison guide section: ${id}`)
   }
   workflowIds.add(id)
   if (providers.length < 2 || new Set(providers.map(({ name }) => name)).size !== providers.length

@@ -27,12 +27,12 @@ export default function ProviderComparisons() {
       </div>
       {workflows.length === 0 && <p>Try a shorter search or clear the field to see all workflows.</p>}
       <div className="blog-comparison-grid">
-        {workflows.map(({ id, title, guide, test, providers }) => (
+        {workflows.map(({ id, title, guide, guideAnchor, test, providers }) => (
           <details className="blog-comparison" id={`compare-${id}`} key={id}>
             <summary>{title}</summary>
             <div className="blog-comparison-body">
               <p>{test}</p>
-              <Link className="blog-comparison-guide" to={`/blog/${guide}`}>Read the test and sources <span aria-hidden="true">↗</span></Link>
+              <Link className="blog-comparison-guide" to={`/blog/${guide}${guideAnchor ? `#${guideAnchor}` : ''}`}>Read the test and sources <span aria-hidden="true">↗</span></Link>
               <ul aria-label="Provider documentation and public data">
                 {providers.map(({ name, url }) => <li key={name}><a href={url}>{name}</a></li>)}
               </ul>

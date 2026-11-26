@@ -519,9 +519,9 @@ for (const collection of blogCollections) {
       citationLink('Download case inputs and expected results (JSON)', SITE + trial.json_path), '',
       citationLink('Versioned reference pack', trial.release_url), '',
       `## ${providerComparisons.heading}`, '', providerComparisons.description, '',
-      ...providerComparisons.workflows.flatMap(({ id, title, guide, test, providers }) => [
+      ...providerComparisons.workflows.flatMap(({ id, title, guide, guideAnchor, test, providers }) => [
         `### ${citationLink(title, `${trial.url}#compare-${id}`)}`, '', test, '',
-        citationLink('Read the test and sources', `${SITE}/blog/${guide}`), '',
+        citationLink('Read the test and sources', `${SITE}/blog/${guide}${guideAnchor ? `#${guideAnchor}` : ''}`), '',
         providers.map(({ name, url }) => citationLink(name, url)).join(' · '), '',
       ]),
       '## Reference cases', '',
