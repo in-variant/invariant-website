@@ -1,0 +1,102 @@
+{
+  "name": "One Market Plaza concrete screening address and parcel check",
+  "checked_on": "2026-11-26",
+  "city_stated_screening_deadline": "2027-06-09",
+  "lookup": {
+    "query": "1 MARKET ST",
+    "suggestions_returned": 5,
+    "exact_matches": 1,
+    "displayed_assessor_parcel": "3713007",
+    "observed_address": "1 MARKET ST"
+  },
+  "planning_record": {
+    "record_id": "2017-000914ZAD",
+    "issued_on": "2017-02-21",
+    "pdf_page": 1,
+    "lots": [
+      {
+        "assessor_parcel": "3713006",
+        "buildings": [
+          {
+            "name": "The Landmark (Southern Pacific Building)",
+            "built": 1916,
+            "stories": 11
+          }
+        ]
+      },
+      {
+        "assessor_parcel": "3713007",
+        "buildings": [
+          {
+            "name": "Spear Tower",
+            "built": 1976,
+            "stories": 43
+          },
+          {
+            "name": "Steuart Tower",
+            "built": 1976,
+            "stories": 27
+          }
+        ],
+        "podium_stories": 6
+      }
+    ]
+  },
+  "status": {
+    "individual_forms_verified": null,
+    "exemptions_verified": null,
+    "retrofits_verified": null,
+    "structural_classification_verified": null
+  },
+  "method": "Match the exact DBI suggestion to the parcel numbers in the city's active parcel layer and the buildings named in the 2017 planning letter.",
+  "sources": [
+    {
+      "id": "dbi-deadline",
+      "url": "https://media.api.sf.gov/documents/CAC_20260303_2.pdf#page=2",
+      "retrieved_at": "2026-11-26T12:03:40+00:00",
+      "sha256": "299061eb2dd2616e03d294e799e571a8dac86d2060af734bc7f12862839465bc"
+    },
+    {
+      "id": "chapter-5g",
+      "url": "https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_building/0-0-0-103098"
+    },
+    {
+      "id": "ordinance-70-25",
+      "url": "https://sfbos.org/sites/default/files/o0070-25.pdf"
+    },
+    {
+      "id": "dbi-lookup",
+      "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/Index",
+      "retrieved_at": "2026-11-26T12:02:36+00:00",
+      "sha256": "655f40b7dd40d3d5cab869dd54e2c41f3868d683041977fe8cd741c740100211"
+    },
+    {
+      "id": "dbi-form",
+      "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/"
+    },
+    {
+      "id": "market-answer",
+      "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/SearchAddress?text=1+MARKET+ST",
+      "retrieved_at": "2026-11-26T12:03:38+00:00",
+      "sha256": "af19d89cc6e24603dfe8765f56a86e4ee75a8ef54b6617efaa44fc6f6a3093f9"
+    },
+    {
+      "id": "market-letter",
+      "url": "https://sfplanning.org/sites/default/files/za/1%20Market%20Street.pdf#page=1",
+      "retrieved_at": "2026-11-26T12:03:40+00:00",
+      "sha256": "f8d9e0bd203d98f8789c9ee82b3ff3068b28703831aa6d3cc7975098839e4eed"
+    },
+    {
+      "id": "market-parcels",
+      "url": "https://data.sfgov.org/resource/acdm-wktn.geojson?%24where=active+%3D+true+and+blklot+in+%28%273713006%27%2C%273713007%27%29&%24select=blklot%2Cblock_num%2Clot_num%2Cshape",
+      "retrieved_at": "2026-11-26T12:03:55+00:00",
+      "sha256": "0f4cbc981a9a0e68aa1fd8bed712b7e0c7adf4dbbd38ea7182dadfc9561e889e"
+    },
+    {
+      "id": "naip",
+      "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage?bbox=-13625142.812414441%2C4550145.676933502%2C-13624592.812414441%2C4550478.571670343&bboxSR=3857&imageSR=3857&size=1520%2C920&format=jpg&interpolation=RSP_BilinearInterpolation&f=image",
+      "retrieved_at": "2026-11-26T12:04:48+00:00",
+      "sha256": "895aeeafc32358289d068ad56ef0b703f36bf371b4d4db93877e0e83c03cdb9e"
+    }
+  ]
+}

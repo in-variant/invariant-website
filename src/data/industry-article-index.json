@@ -2337,6 +2337,58 @@
     }
   },
   {
+    "slug": "san-francisco-concrete-building-screening",
+    "topic": "Data & APIs",
+    "title": "San Francisco Concrete Building Screening Deadline and Address Lookup",
+    "summary": "Check San Francisco’s June 9, 2027 concrete building screening deadline, search by address and verify which buildings a parcel result actually covers.",
+    "date": "November 26, 2026",
+    "dateTime": "2026-11-26",
+    "region": "San Francisco, California",
+    "image": "/blog/industry/san-francisco-concrete-building-screening.webp?v=38670b58",
+    "dataset": {
+      "name": "One Market Plaza concrete screening address and parcel check",
+      "description": "Dated DBI lookup for 1 Market Street, the exact match for lot 3713/007 and the Planning Department’s building descriptions for lots 3713/006 and 3713/007. Includes the source queries and SHA-256 checksums.",
+      "spatialCoverage": "One Market Plaza, San Francisco, California, United States",
+      "temporalCoverage": "2017-02-21/2026-11-26",
+      "datePublished": "2026-11-26",
+      "sources": [
+        "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/SearchAddress?text=1+MARKET+ST",
+        "https://sfplanning.org/sites/default/files/za/1%20Market%20Street.pdf#page=1",
+        "https://data.sfgov.org/resource/acdm-wktn.geojson?%24where=active+%3D+true+and+blklot+in+%28%273713006%27%2C%273713007%27%29&%24select=blklot%2Cblock_num%2Clot_num%2Cshape",
+        "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/"
+      ],
+      "sourceDetails": [
+        {
+          "title": "DBI lookup results for 1 Market Street",
+          "publisher": "San Francisco Department of Building Inspection",
+          "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/SearchAddress?text=1+MARKET+ST"
+        },
+        {
+          "title": "One Market Street Letter of Determination 2017-000914ZAD, page 1",
+          "publisher": "San Francisco Planning Department",
+          "url": "https://sfplanning.org/sites/default/files/za/1%20Market%20Street.pdf#page=1"
+        },
+        {
+          "title": "Active parcel geometries for 3713/006 and 3713/007",
+          "publisher": "DataSF",
+          "url": "https://data.sfgov.org/resource/acdm-wktn.geojson?%24where=active+%3D+true+and+blklot+in+%28%273713006%27%2C%273713007%27%29&%24select=blklot%2Cblock_num%2Clot_num%2Cshape"
+        },
+        {
+          "title": "Screening form instructions and multiple buildings per parcel",
+          "publisher": "San Francisco Department of Building Inspection",
+          "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the exact lookup and parcel evidence",
+          "path": "/blog/san-francisco-concrete-screening-one-market.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "earthquake-risk-by-address-for-underwriting",
     "topic": "Data & APIs",
     "title": "Earthquake Risk by Address for Commercial Property",
@@ -2344,6 +2396,7 @@
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/earthquake-risk-by-address-for-underwriting.webp?v=eb2660d7",
     "dataset": {
       "name": "San Francisco address point liquefaction checks and USGS seismic design cases",

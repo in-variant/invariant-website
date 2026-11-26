@@ -13815,12 +13815,353 @@
     }
   },
   {
+    "slug": "san-francisco-concrete-building-screening",
+    "topic": "Data & APIs",
+    "region": "San Francisco, California",
+    "title": "San Francisco Concrete Building Screening Deadline and Address Lookup",
+    "description": "Check San Francisco’s June 9, 2027 concrete building screening deadline, search by address and verify which buildings a parcel result actually covers.",
+    "date": "2026-11-26",
+    "readMinutes": 7,
+    "coverAlt": "USGS aerial view of One Market Plaza with San Francisco tax parcel 3713/006 outlined in yellow and 3713/007 in blue.",
+    "coverCaption": "One Market Plaza spans two tax parcels. The public screening lookup’s exact 1 Market Street result returned lot 007. Parcel boundaries from DataSF and aerial imagery from USGS and USDA NAIP.",
+    "intro": "San Francisco lists June 9, 2027 as the deadline for subject buildings under its Concrete and Rigid-Wall-Flexible-Diaphragm Building Screening Program. The form records the building’s structure, permits and retrofit history. For a purchase or renewal, start with the city’s address lookup and match the result to the building you actually own, insure or lend against.",
+    "takeaways": [
+      "Use the property address and assessor block and lot to find the correct lookup result.",
+      "DBI asks for one form per covered building. A single parcel can contain several buildings.",
+      "Keep the notice, submission confirmation and any DBI exemption or determination with the building record.",
+      "Check current permits before budgeting for an addition, alteration, repair or occupancy change that may trigger separate requirements."
+    ],
+    "guideActions": [
+      {
+        "href": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/Index",
+        "label": "Open the city address lookup"
+      },
+      {
+        "href": "#one-market-plaza-parcel-check",
+        "label": "See the One Market Plaza example"
+      },
+      {
+        "href": "/blog/san-francisco-concrete-screening-one-market.json",
+        "label": "Download the lookup evidence",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "deadline-and-scope",
+        "heading": "When is San Francisco’s concrete screening deadline?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "San Francisco’s Department of Building Inspection (DBI) gives June 9, 2027 as the screening deadline. Chapter 5G applies to certain concrete buildings and certain rigid-wall-flexible-diaphragm buildings. A DBI notification puts a property into the screening process until the department determines whether an exemption applies. Owners of buildings that may be subject should check with DBI even when an address search comes back empty.",
+            "sourceIds": [
+              "dbi-deadline",
+              "chapter-5g",
+              "dbi-lookup"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For the rigid-wall category, Section 501G.3 uses a combined footprint greater than 3,000 square feet for the qualifying portions. It also looks at whether those portions were built or permitted before July 1, 1999, or designed under a code adopted or amended before that date, and whether they were retrofitted under Appendix A, Chapter A2. Concrete buildings have their own exemption rules. Have a licensed design professional check the actual structure and permit history.",
+            "sourceIds": [
+              "chapter-5g",
+              "ordinance-70-25",
+              "dbi-form"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "find-your-building",
+        "heading": "How to check the screening program by address",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Step",
+              "What to keep"
+            ],
+            "rows": [
+              [
+                "Search the DBI address lookup.",
+                "Select the exact address and save the block and lot, the lookup date and the notice. Several similar addresses may appear."
+              ],
+              [
+                "Match the lot to the building.",
+                "Use the city’s parcel map and the owner’s plans to match the tower, structure or insured location. Ask DBI how to file for additional covered buildings on one lot."
+              ],
+              [
+                "Request the building documents.",
+                "Get original structural plans, retrofit permits, final inspection records and the design professional’s structural classification. Keep each permit tied to its building and work scope."
+              ],
+              [
+                "Track the department’s response.",
+                "Save the submitted form, receipt and any exemption or determination. Confirm the date on each record before using it in an underwriting or credit file."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dbi-lookup"
+              ],
+              [
+                "dbi-form",
+                "market-parcels"
+              ],
+              [
+                "dbi-form",
+                "chapter-5g"
+              ],
+              [
+                "chapter-5g",
+                "dbi-form"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "one-market-plaza-parcel-check",
+        "heading": "One Market Plaza shows why the block and lot are only the start",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "On November 26, 2026, the public lookup returned five suggestions for 1 Market St. The exact address entry showed parcel 3713007. San Francisco Planning’s 2017 determination describes One Market Plaza as two parcels with three named structures. That difference matters when the submission or loan references only the property’s street address.",
+            "sourceIds": [
+              "market-answer",
+              "market-letter",
+              "market-parcels"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Assessor block and lot",
+              "Observed lookup result",
+              "Buildings in the 2017 planning record"
+            ],
+            "rows": [
+              [
+                "3713/007",
+                "Exact match for 1 Market St in the public screening lookup.",
+                "Planning identifies Spear Tower and Steuart Tower, built in 1976, with a six-story podium."
+              ],
+              [
+                "3713/006",
+                "The exact 1 Market St result did not identify this parcel.",
+                "Planning identifies the Landmark, also called the Southern Pacific Building, built in 1916."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "market-answer",
+                "market-letter",
+                "market-parcels"
+              ],
+              [
+                "market-answer",
+                "market-letter",
+                "market-parcels"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The lookup result identifies the lot for follow-up. It leaves the status of individual buildings open. For lot 007, ask which structure the notice and the city’s response cover. For the Landmark, check the separate lot and request its own records. This example establishes the address-to-parcel match and the planning record’s building split. Filing, exemption and engineering status remain unverified.",
+            "sourceIds": [
+              "dbi-lookup",
+              "dbi-form",
+              "market-answer",
+              "market-letter"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/san-francisco-concrete-screening-one-market.json",
+            "label": "Download the exact lookup and parcel evidence",
+            "format": "JSON",
+            "datasetAnchor": "dataset"
+          }
+        ]
+      },
+      {
+        "id": "what-screening-means-for-a-deal",
+        "heading": "What to verify before underwriting, lending or buying",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Chapter 5G establishes a screening and inventory process. The Existing Building Code can require seismic work for a separate addition, alteration, repair, relocation or occupancy change. A prior retrofit can support an exemption where the code criteria apply and DBI approves it. A permit description alone leaves the completed scope and exemption status open.",
+            "sourceIds": [
+              "chapter-5g",
+              "ordinance-70-25"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Decision",
+              "Record to request"
+            ],
+            "rows": [
+              [
+                "Insurance renewal",
+                "A building-level property schedule, the engineer’s structural classification and dated retrofit or screening documents."
+              ],
+              [
+                "Loan or acquisition",
+                "A parcel and building schedule, copies of applicable notices and DBI responses, and the engineer’s scope and estimated cost for any required work."
+              ],
+              [
+                "Conversion or major work",
+                "The proposed occupancy and construction scope, with design review of separate seismic triggers under the applicable code."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "dbi-form",
+                "chapter-5g"
+              ],
+              [
+                "dbi-form",
+                "chapter-5g"
+              ],
+              [
+                "chapter-5g"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related property diligence guides",
+            "items": [
+              {
+                "slug": "earthquake-risk-by-address-for-underwriting",
+                "label": "Check shaking and liquefaction separately"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Match the building and the insurance submission"
+              },
+              {
+                "slug": "commercial-real-estate-data-apis-for-lenders",
+                "label": "Keep a dated collateral file"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the San Francisco concrete building screening deadline?",
+        "answer": "DBI lists June 9, 2027 for the screening form. Submit one form for each covered building.",
+        "sourceIds": [
+          "dbi-deadline",
+          "dbi-form"
+        ]
+      },
+      {
+        "question": "Should I submit one screening form for a whole parcel?",
+        "answer": "DBI asks for one form per covered building. The city’s form provides instructions for additional covered buildings on a single parcel.",
+        "sourceIds": [
+          "dbi-form"
+        ]
+      },
+      {
+        "question": "Does a screening lookup show whether a building was retrofitted?",
+        "answer": "The lookup shows a program address and lot. Use the building-specific permit history, completion records and any DBI determination to verify the retrofit or exemption.",
+        "sourceIds": [
+          "dbi-lookup",
+          "chapter-5g",
+          "dbi-form"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "dbi-deadline",
+        "title": "Screening deadline and one form per building, March 2026 presentation, slide 2",
+        "publisher": "San Francisco Department of Building Inspection",
+        "url": "https://media.api.sf.gov/documents/CAC_20260303_2.pdf#page=2"
+      },
+      {
+        "id": "chapter-5g",
+        "title": "Existing Building Code Chapter 5G, Sections 501G and 502G",
+        "publisher": "San Francisco Existing Building Code",
+        "url": "https://codelibrary.amlegal.com/codes/san_francisco/latest/sf_building/0-0-0-103098"
+      },
+      {
+        "id": "ordinance-70-25",
+        "title": "Enacted Ordinance 70-25, File 250211",
+        "publisher": "San Francisco Board of Supervisors",
+        "url": "https://sfbos.org/sites/default/files/o0070-25.pdf"
+      },
+      {
+        "id": "dbi-lookup",
+        "title": "Public concrete screening address lookup",
+        "publisher": "San Francisco Department of Building Inspection",
+        "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/Index"
+      },
+      {
+        "id": "dbi-form",
+        "title": "Screening form instructions and multiple buildings per parcel",
+        "publisher": "San Francisco Department of Building Inspection",
+        "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/"
+      },
+      {
+        "id": "market-answer",
+        "title": "DBI lookup results for 1 Market Street",
+        "publisher": "San Francisco Department of Building Inspection",
+        "url": "https://dbiweb02.sfgov.org/DBI.ConcreteScreening/Property/SearchAddress?text=1+MARKET+ST"
+      },
+      {
+        "id": "market-letter",
+        "title": "One Market Street Letter of Determination 2017-000914ZAD, page 1",
+        "publisher": "San Francisco Planning Department",
+        "url": "https://sfplanning.org/sites/default/files/za/1%20Market%20Street.pdf#page=1"
+      },
+      {
+        "id": "market-parcels",
+        "title": "Active parcel geometries for 3713/006 and 3713/007",
+        "publisher": "DataSF",
+        "url": "https://data.sfgov.org/resource/acdm-wktn.geojson?%24where=active+%3D+true+and+blklot+in+%28%273713006%27%2C%273713007%27%29&%24select=blklot%2Cblock_num%2Clot_num%2Cshape"
+      },
+      {
+        "id": "naip",
+        "title": "National Agriculture Imagery Program aerial view of the property",
+        "publisher": "U.S. Geological Survey and U.S. Department of Agriculture",
+        "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPImagery/ImageServer/exportImage?bbox=-13625142.812414441%2C4550145.676933502%2C-13624592.812414441%2C4550478.571670343&bboxSR=3857&imageSR=3857&size=1520%2C920&format=jpg&interpolation=RSP_BilinearInterpolation&f=image"
+      }
+    ],
+    "relatedSlugs": [
+      "earthquake-risk-by-address-for-underwriting",
+      "commercial-property-insurance-data-apis",
+      "commercial-real-estate-data-apis-for-lenders"
+    ],
+    "dataset": {
+      "name": "One Market Plaza concrete screening address and parcel check",
+      "description": "Dated DBI lookup for 1 Market Street, the exact match for lot 3713/007 and the Planning Department’s building descriptions for lots 3713/006 and 3713/007. Includes the source queries and SHA-256 checksums.",
+      "sourceIds": [
+        "market-answer",
+        "market-letter",
+        "market-parcels",
+        "dbi-form"
+      ],
+      "spatialCoverage": "One Market Plaza, San Francisco, California, United States",
+      "temporalCoverage": "2017-02-21/2026-11-26",
+      "datePublished": "2026-11-26"
+    }
+  },
+  {
     "slug": "earthquake-risk-by-address-for-underwriting",
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Earthquake Risk by Address for Commercial Property",
     "description": "Check earthquake hazard by address with USGS seismic design data and local liquefaction maps. Replay two San Francisco checks and download the source queries.",
     "date": "2026-11-23",
+    "updatedDate": "2026-11-26",
     "readMinutes": 6,
     "coverAlt": "Design spectral acceleration at one second for Site Classes C, CD and D at two San Francisco library address points. Only the Mission Bay Branch point intersects the city liquefaction layer.",
     "coverCaption": "USGS ASCE 7-22 design cases using an assumed Risk Category II. The liquefaction check uses San Francisco Planning’s layer. Observations made November 23, 2026 local time.",
@@ -13961,6 +14302,25 @@
             "path": "/blog/earthquake-risk-by-address-for-underwriting.json",
             "format": "JSON",
             "label": "Download both address checks and all six USGS requests"
+          }
+        ]
+      },
+      {
+        "id": "san-francisco-building-screening",
+        "heading": "Check the structural record for San Francisco buildings",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a San Francisco property, keep the mapped hazard result and the city’s building screening record in separate fields. One Market Plaza has two lots and several structures under a shared street address."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "san-francisco-concrete-building-screening",
+                "label": "Check the June 9, 2027 deadline and the One Market Plaza parcel example"
+              }
+            ]
           }
         ]
       },
