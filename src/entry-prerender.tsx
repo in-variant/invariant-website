@@ -14,6 +14,8 @@ import NotFound from './pages/NotFound'
 
 export { clientOnlyPaths } from './contentRoutes'
 
+const readingDirectories = new Set(['/blog', '/glossary', '/research', '/resources'])
+
 async function pageFor(path: string) {
   if (path === '/404.html') {
     return { page: <NotFound />, source: './pages/NotFound.tsx' }
@@ -56,7 +58,7 @@ export async function renderPublicRoute(path: string) {
   const { page, source, dataSources } = await pageFor(path)
   const hydrate = path === '/datasets' ? 'catalog'
     : source === './pages/blog/IndustryArticle.tsx' ? 'article'
-    : isBlogCollectionSource(source) ? 'collection'
+    : isBlogCollectionSource(source) || readingDirectories.has(path) ? 'collection'
     : undefined
   const metadata: SeoProps[] = []
   const routes = (

@@ -6,29 +6,33 @@ import { chromium } from 'playwright-core'
 
 const origin = new URL(process.argv[2] ?? 'http://127.0.0.1:5358').origin
 const canonicalOrigin = 'https://invariant-ai.com'
-const comparisonPath = '/blog/physical-world-data-api-evaluation'
-const paths = [
-  '/blog/data-center-site-selection-checklist',
-  '/blog/electric-utility-lookup-by-address?utm_source=article-check',
-  '/blog/data-center-for-sale',
-  comparisonPath,
+const faq = '.industry-faq details'
+const pages = [
+  { path: '/blog/data-center-site-selection-checklist', details: faq },
+  { path: '/blog/electric-utility-lookup-by-address?utm_source=article-check', details: faq },
+  { path: '/blog/data-center-for-sale', details: faq },
+  { path: '/blog/physical-world-data-api-evaluation', details: '#compare-contractor-permit-history' },
+  { path: '/blog', details: '.blog-index-archive' },
+  { path: '/research', details: 'main details' },
+  { path: '/glossary', focus: '[aria-labelledby="property-infrastructure"] a' },
+  { path: '/resources', focus: '.resources-library nav a' },
 ]
 
 const browser = await chromium.launch({ channel: 'chrome' })
 try {
-  for (const path of paths) {
+  for (const { path, details: detailsSelector, focus: focusSelector } of pages) {
     const page = await browser.newPage({ viewport: { width: 390, height: 852 } })
     const errors = []
     page.on('pageerror', error => errors.push(error.message))
 
-    // Let the published article render before its entry module can run.
+    // Let the static page render before its entry module can run.
     let releaseEntry
     const entryReady = new Promise(resolve => { releaseEntry = resolve })
     await page.route(/\/assets\/index-[^/]+\.js$/, async route => {
       await entryReady
       await route.continue()
     })
-    // The article should be interactive while the analytics bundle is unavailable.
+    // The page should be interactive while the analytics bundle is unavailable.
     const analyticsBundle = /\/assets\/posthog-[^/]+\.js$/
     let releaseAnalytics
     const analyticsReady = new Promise(resolve => { releaseAnalytics = resolve })
@@ -41,16 +45,19 @@ try {
 
     const prerenderedMetadata = page.locator('head [data-prerender-seo]').first()
     await prerenderedMetadata.waitFor({ state: 'attached' })
-    const disclosure = page.locator(path === comparisonPath
-      ? '#compare-contractor-permit-history'
-      : '.industry-faq details').first()
-    const summary = disclosure.locator('summary')
-    await summary.press('Enter')
-    const details = await disclosure.elementHandle()
+    const heading = await page.locator('main h1').elementHandle()
+    assert.ok(heading, path + ' missing its initial heading')
+    const disclosure = detailsSelector ? page.locator(detailsSelector).first() : undefined
+    const focus = disclosure?.locator('summary') ?? page.locator(focusSelector).first()
     await page.evaluate(() => document.fonts.ready)
-    assert.ok(await details.evaluate(node => node.open), path + ' disclosure did not open before hydration')
+    await focus.scrollIntoViewIfNeeded()
+    if (disclosure) await focus.press('Enter')
+    else await focus.focus()
+    const focused = await focus.elementHandle()
+    const details = await disclosure?.elementHandle()
+    if (details) assert.ok(await details.evaluate(node => node.open), path + ' disclosure did not open before hydration')
     const scrollBefore = await page.evaluate(() => scrollY)
-    assert.ok(scrollBefore > 0)
+    assert.ok(scrollBefore > 0, path + ' scroll probe must be below the first viewport')
     await page.evaluate(() => {
       window.duplicateCanonical = false
       new MutationObserver(() => {
@@ -62,8 +69,9 @@ try {
 
     releaseEntry()
     await prerenderedMetadata.waitFor({ state: 'detached' })
-    assert.ok(await details.evaluate(node => node.isConnected && node.open), path + ' lost the original open disclosure')
-    assert.ok(await details.evaluate(node => node.querySelector('summary') === document.activeElement), path + ' lost keyboard focus')
+    assert.ok(await heading.evaluate(node => node.isConnected), path + ' replaced the original page content')
+    if (details) assert.ok(await details.evaluate(node => node.isConnected && node.open), path + ' lost the original open disclosure')
+    assert.ok(await focused.evaluate(node => node === document.activeElement), path + ' lost keyboard focus')
     assert.equal(await page.evaluate(() => scrollY), scrollBefore, path + ' lost the scroll position')
     assert.equal(await page.locator('main').count(), 1)
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), canonicalOrigin + new URL(path, origin).pathname)
@@ -72,9 +80,9 @@ try {
     await page.getByRole('button', { name: 'Close navigation' }).waitFor()
     const analyticsResponse = page.waitForResponse(analyticsBundle)
     releaseAnalytics()
-    assert.ok((await analyticsResponse).ok(), path + ' did not load analytics after the article was interactive')
+    assert.ok((await analyticsResponse).ok(), path + ' did not load analytics after the page was interactive')
     assert.deepEqual(errors, [])
-    console.log(`Preserved disclosure, focus, scroll and canonical metadata for ${path}`)
+    console.log(`Preserved content, focus, scroll and canonical metadata for ${path}`)
     await page.close()
   }
 } finally {
