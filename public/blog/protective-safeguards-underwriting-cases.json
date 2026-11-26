@@ -1,0 +1,131 @@
+{
+  "title": "Protective safeguards endorsement evidence for commercial property renewal",
+  "prepared_on": "2026-11-26",
+  "scope": "Original summaries of a policy specimen, one historical court opinion, New York City’s Fire Code and Fannie Mae multifamily documentation. All underwriting inputs below are fictional and identify no live property.",
+  "sources": {
+    "iso-form": {
+      "url": "https://www.propertyinsurancecoveragelaw.com/wp-content/uploads/2023/12/CP-04-11-09-17-Protective-Safeguards.pdf",
+      "sha256": "80294bafc38969559b8265edec609670aee4adc0b78b477238cf95abb8b46c12",
+      "locators": [
+        "Schedule, page 1",
+        "Conditions A.1–A.3, page 1",
+        "Exclusion B, page 1",
+        "Safeguard classifications C, pages 1–2"
+      ]
+    },
+    "berenato-order": {
+      "url": "https://www.govinfo.gov/content/pkg/USCOURTS-paed-2_15-cv-04325/pdf/USCOURTS-paed-2_15-cv-04325-0.pdf",
+      "sha256": "1c9db0de1bded562250fd5fa566ccb03484eec097419e8df1239b34a733daf8f",
+      "locators": [
+        "Pages 1–2, policy and procedural summary",
+        "Pages 6–8, endorsement conditions and insurer notice"
+      ]
+    },
+    "nyc-fire-code": {
+      "url": "https://www.nyc.gov/assets/fdny/downloads/pdf/about/chapter-9-2022.pdf",
+      "sha256": "7c29ce4814f07780c321b94464019f46d5872f8bfe59958d865d571fae2f0d35",
+      "locators": [
+        "§ 901.7.3, planned removal and notice",
+        "§ 901.7.5.2, notice to the department",
+        "§ 901.7.6, restoration and verification"
+      ]
+    },
+    "fannie-evidence": {
+      "url": "https://mfguide.fanniemae.com/node/4311",
+      "sha256": "fb16e6deb6ad21530a138e7867781e0632152d848acfbc3c31b295350a003d99",
+      "locators": [
+        "§ 501.01H, acceptable temporary and permanent evidence"
+      ]
+    }
+  },
+  "document_observations": [
+    {
+      "source": "iso-form",
+      "form": "CP 04 11 09 17",
+      "automatic_sprinkler_symbol": "P-1",
+      "scope": "The scheduled premises and building numbers identify where a safeguard applies. The form specifies maintenance, activation and notice conditions.",
+      "notice_exception_limit_hours": 48,
+      "notice_exception_scope": "The exception addresses the insurer notice requirement for specified partial shutoffs when full protection can be restored within the period. Review the issued form and local requirements separately."
+    },
+    {
+      "source": "berenato-order",
+      "court_docket": "2:15-cv-04325-CMR",
+      "date": "2017-03-01",
+      "observation": "The court treated the notice exception in the policy before it as separate from maintenance and granted summary judgment for the insurer on the fire claim."
+    },
+    {
+      "source": "nyc-fire-code",
+      "sections": [
+        "901.7.3",
+        "901.7.5.2",
+        "901.7.6"
+      ],
+      "observation": "The local provisions separately address planned work, agency notification and evidence of restoration. The notice triggers include sprinkler protection out of service on more than one floor."
+    },
+    {
+      "source": "fannie-evidence",
+      "section": "501.01H",
+      "observation": "The program distinguishes temporary from permanent evidence and lists an individual endorsement and an insurance binder among items insufficient as permanent evidence by themselves."
+    }
+  ],
+  "review_cases": [
+    {
+      "id": "scope-mismatch",
+      "illustrative": true,
+      "input": {
+        "insured_building": "Building 02",
+        "endorsement_safeguard_symbol": "P-1",
+        "file_evidence": "Building 01 has a signed-off sprinkler permit. Owner provided no current inspection or protection schedule for Building 02."
+      },
+      "expected_review_status": "request_matching_building_evidence",
+      "current_system_status": null,
+      "coverage_decision": null,
+      "request": [
+        "Match the policy schedule, statement of values and building identifier.",
+        "Obtain scope and current inspection, testing and maintenance records for Building 02."
+      ],
+      "reference_ids": [
+        "iso-form",
+        "nyc-fire-code"
+      ]
+    },
+    {
+      "id": "planned-multi-floor-work",
+      "illustrative": true,
+      "input": {
+        "jurisdiction": "New York City",
+        "endorsement_safeguard_symbol": "P-1",
+        "file_evidence": "The owner reports proposed sprinkler work affecting more than one floor. The file has an issued permit and no restoration test report because work has yet to occur."
+      },
+      "expected_review_status": "refer_planned_impairment_before_renewal",
+      "current_system_status": null,
+      "coverage_decision": null,
+      "request": [
+        "Obtain the actual policy schedule and confirm notice requirements with the broker and carrier.",
+        "Ask the impairment coordinator for the applicable notification and restoration records as they become available."
+      ],
+      "reference_ids": [
+        "iso-form",
+        "nyc-fire-code"
+      ]
+    },
+    {
+      "id": "temporary-lender-evidence",
+      "illustrative": true,
+      "input": {
+        "program": "Fannie Mae multifamily",
+        "file_evidence": "A binder and a single protective safeguards endorsement appear in the file. The full policy or other qualifying permanent evidence has not been provided."
+      },
+      "expected_review_status": "request_program_acceptable_permanent_evidence",
+      "current_system_status": null,
+      "coverage_decision": null,
+      "request": [
+        "Check the loan program and evidence deadline.",
+        "Obtain permanent evidence accepted under the applicable program and keep the active safeguard schedule with the policy review."
+      ],
+      "reference_ids": [
+        "fannie-evidence"
+      ]
+    }
+  ]
+}
