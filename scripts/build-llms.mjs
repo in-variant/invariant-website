@@ -32,6 +32,7 @@ const sections = [
     ['Research findings, methods and source records', `${SITE}${links.research}.md`],
     ['Research datasets and citations', `${SITE}${links.datasets}.md`],
     ['Research dataset manifest with source URLs and file checksums', `${SITE}${links.datasets}.json`],
+    ['Glossary for property, insurance and infrastructure', `${SITE}/glossary.md`],
     ...blogCollections.flatMap(({ title, slug, worksheet }) => [
       [title, `${SITE}/blog/${slug}.md`],
       ...(worksheet?.jsonPath ? [['Data provider trial inputs and expected results (JSON)', SITE + worksheet.jsonPath]] : []),
@@ -116,10 +117,7 @@ const clustersNuclear = pages.filter((p) => p.type === 'cluster' && p.pillar ===
 // ── Glossary ─────────────────────────────────────────────────────────────────
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
 const entries = glossary.entries || []
-const glossSpace = entries.filter((e) => e.topic === 'space')
-const glossNuclear = entries.filter((e) => e.topic === 'nuclear')
-const glossAerospace = entries.filter((e) => e.topic === 'aerospace')
-const glossDataCenters = entries.filter((e) => e.topic === 'data-centers')
+const glossaryTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/glossary-topics.json'), 'utf8'))
 
 // ── Compose ──────────────────────────────────────────────────────────────────
 const out = []
@@ -247,26 +245,14 @@ for (const article of industryArticles.filter(article => article.topic !== 'Data
 
 if (entries.length) {
   out.push('')
-  out.push('## Glossary entries (DefinedTerm)')
-  if (glossSpace.length) {
-    out.push('')
-    out.push('Space:')
-    for (const e of glossSpace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
-  }
-  if (glossNuclear.length) {
-    out.push('')
-    out.push('Nuclear:')
-    for (const e of glossNuclear) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
-  }
-  if (glossAerospace.length) {
-    out.push('')
-    out.push('Aerospace:')
-    for (const e of glossAerospace) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
-  }
-  if (glossDataCenters.length) {
-    out.push('')
-    out.push('Data center sites and power:')
-    for (const e of glossDataCenters) out.push(`- [${e.term}](${SITE}/glossary/${e.slug}), ${e.short_definition}`)
+  out.push('## Glossary entries')
+  for (const [topic, label] of Object.entries(glossaryTopics)) {
+    const terms = entries.filter(entry => entry.topic === topic)
+    if (!terms.length) continue
+    out.push('', `### ${label}`, '')
+    for (const term of terms) {
+      out.push(`- [${term.term}](${SITE}/glossary/${term.slug}), ${term.short_definition}`)
+    }
   }
 }
 

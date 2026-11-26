@@ -52,9 +52,11 @@ linkablePaths.add('/mcp')
 linkablePaths.add('/contact?request=site-selection')
 linkablePaths.add('/contact?request=site-submission')
 const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
-for (const { slug } of glossary) {
+const glossaryTopics = JSON.parse(readFileSync(new URL('glossary-topics.json', base), 'utf8'))
+for (const { slug, topic } of glossary) {
   const path = `/glossary/${slug}`
   if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`Invalid glossary slug: ${slug}`)
+  if (!Object.hasOwn(glossaryTopics, topic)) throw new Error(`Invalid glossary topic: ${slug} (${topic})`)
   if (linkablePaths.has(path)) throw new Error(`Duplicate glossary entry slug: ${slug}`)
   linkablePaths.add(path)
 }

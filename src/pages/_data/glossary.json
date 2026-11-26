@@ -6463,6 +6463,257 @@
         "label": "Data centre land and powered land in India",
         "path": "/blog/data-centre-land-india"
       }
+    },
+    {
+      "slug": "assessor-parcel-number",
+      "term": "Assessor parcel number",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "APN",
+        "assessor’s parcel number"
+      ],
+      "seo_title": "Assessor Parcel Number (APN) Definition",
+      "short_definition": "An assessor parcel number, or APN, identifies a parcel in a local assessor’s records. Keep it with the issuing jurisdiction and the record date.",
+      "full_definition": "Begin with the assessor or tax map for the property’s jurisdiction. An address can refer to a building, entrance, or unit. Check which tax parcel and geometry the local record associates with it. For land acquisition, match the record to the survey and title materials.\n\nSan Francisco combines a block and lot. The city’s standard gives APN 0117004 for lot 004 in block 0117. Store the identifier as text so leading zeros survive. A condominium lot can have an identifier distinct from the base parcel. Resolve that relationship before joining a tax account to an entire building footprint.\n\nFor a historical lookup, keep the parcel date. A split or merger can change which parcel IDs and boundaries correspond to the same address.",
+      "related_to": [
+        "recorded-easement",
+        "certificate-of-occupancy",
+        "point-in-time-property-data"
+      ],
+      "citations": [
+        {
+          "label": "San Francisco, parcel data standard",
+          "url": "https://sfdigitalservices.gitbook.io/data-standards-guide/standard-reference-data/basemap/parcels"
+        },
+        {
+          "label": "San Francisco, dated parcel geography",
+          "url": "https://data.sfgov.org/dataset/Recorded-Parcel-Geography-with-Transaction-Date-Hi/25dk-perw/data"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Find a parcel number from an address",
+        "path": "/blog/parcel-number-lookup-by-address#county-lookup"
+      }
+    },
+    {
+      "slug": "recorded-easement",
+      "term": "Recorded easement",
+      "topic": "property-infrastructure",
+      "seo_title": "Recorded Easement Definition and Property Records",
+      "short_definition": "A recorded easement is a right to use land for a stated purpose, documented in the local land records. Common purposes include access, utilities, and drainage.",
+      "full_definition": "Search the recorder using the parcel identifiers, relevant parties, and document types. Read the signed instrument and any exhibit to see who holds the right, the land it covers, the activities it permits, and whether an amendment changed it.\n\nAn easement index or map can help locate a document. At an Inwood parcel examined in our guide, two New York City recorder entries were indexed as easement documents even though the separate lot-level flag was N. Read the original records before deciding whether a corridor is available for a particular project.",
+      "related_to": [
+        "assessor-parcel-number",
+        "by-right-use",
+        "point-in-time-property-data"
+      ],
+      "citations": [
+        {
+          "label": "NYC Department of Finance, real property recording",
+          "url": "https://www.nyc.gov/site/finance/taxes/property-recording-property-related-documents.page"
+        },
+        {
+          "label": "NYC Housing Preservation and Development, Inwood site addendum",
+          "url": "https://www.nyc.gov/assets/hpd/downloads/pdfs/services/inwood-9th-addendum1.pdf"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Look up a recorded property easement",
+        "path": "/blog/property-easement-lookup-by-address#look-up-easements"
+      }
+    },
+    {
+      "slug": "certificate-of-occupancy",
+      "term": "Certificate of occupancy",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "temporary certificate of occupancy"
+      ],
+      "seo_title": "Certificate of Occupancy Definition and Lookup",
+      "short_definition": "A certificate of occupancy is a local building department record that identifies permitted use or occupancy for a building or part of it.",
+      "full_definition": "Start with the building identifier as well as the address. Review the issued certificate, certificate type and issue date, and check the floors or spaces it covers. A tax parcel can contain multiple buildings. Match the certificate to the building and intended use before underwriting, leasing, or buying it.\n\nA temporary certificate can have an expiration date and a narrower scope. New York City provides floor-use records for certificates in DOB NOW and directs some older records to the Buildings Information System. Other jurisdictions use their own record systems and requirements.",
+      "related_to": [
+        "assessor-parcel-number",
+        "by-right-use",
+        "point-in-time-property-data"
+      ],
+      "citations": [
+        {
+          "label": "NYC Department of Buildings, obtaining a certificate of occupancy",
+          "url": "https://www.nyc.gov/site/buildings/industry/obtain-a-co.page"
+        },
+        {
+          "label": "NYC Department of Buildings, temporary certificates",
+          "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/temporary-certificate-of-occupancy.page"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Find and verify a certificate by address",
+        "path": "/blog/certificate-of-occupancy-lookup-by-address#lookup"
+      }
+    },
+    {
+      "slug": "statement-of-values",
+      "term": "Statement of values",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "commercial property statement of values"
+      ],
+      "seo_title": "Statement of Values (SOV) in Property Insurance",
+      "short_definition": "A statement of values, or SOV, lists the properties and reported insured values an organization submits for commercial property insurance.",
+      "full_definition": "Use a separate record for each building or other insured item the program asks you to identify. Keep the location number, building identifier, reported values by coverage category, and valuation date. A mailing address alone can group several distinct buildings and duplicate or hide exposure.\n\nFor renewal, reconcile added or removed locations and verify the valuation basis. Compare the schedule with the policy and endorsements to determine the applicable limit, deductible, and terms. Keep the submitted values and issued terms in separate fields.",
+      "related_to": [
+        "assessor-parcel-number",
+        "certificate-of-occupancy",
+        "base-flood-elevation"
+      ],
+      "citations": [
+        {
+          "label": "Texas State Office of Risk Management, property insurance program",
+          "url": "https://www.sorm.state.tx.us/insurance-services/property-program/"
+        },
+        {
+          "label": "Appanoose County, published commercial property schedule",
+          "url": "https://appanoosecounty.iowa.gov/wp-content/uploads/2021/01/1-18-2021-Board-Packet.pdf#page=15"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Review a commercial property statement of values and download the workbook",
+        "path": "/blog/commercial-property-statement-of-values#sov-review-workbook"
+      }
+    },
+    {
+      "slug": "vertical-datum",
+      "term": "Vertical datum",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "height reference datum"
+      ],
+      "seo_title": "Vertical Datum Definition for GIS and Flood Elevations",
+      "short_definition": "A vertical datum is the reference used to measure heights. Match the datum and units before comparing terrain, surveyed building, and flood elevations.",
+      "full_definition": "The horizontal coordinate reference locates a point on the map. The vertical datum determines the reference for a height at that point. A latitude and longitude alone tell you nothing about the datum used for the reported elevation.\n\nUSGS identifies NAVD88 as typical for its elevation models in the conterminous United States. Copernicus GLO-30 uses EGM2008. For a survey-to-map comparison, read the reference from the actual source or certificate and apply a location-appropriate conversion when required. Record the method along with the converted value.\n\nAlign the physical quantities as well. An elevation model may describe terrain or the top of a surface, while an elevation certificate can describe a particular building floor.",
+      "related_to": [
+        "base-flood-elevation",
+        "assessor-parcel-number",
+        "point-in-time-property-data"
+      ],
+      "citations": [
+        {
+          "label": "USGS, coordinate references for elevation models",
+          "url": "https://www.usgs.gov/faqs/what-projection-horizontal-datum-vertical-datum-and-resolution-a-usgs-digital-elevation-model"
+        },
+        {
+          "label": "Copernicus Data Space, elevation model and vertical reference",
+          "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM"
+        },
+        {
+          "label": "FEMA, Elevation Certificate questions",
+          "url": "https://www.fema.gov/sites/default/files/documents/fema_floodplain_elevation-certificate-faq_2023.pdf"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Compare elevation sources, reference systems and dates",
+        "path": "/blog/elevation-data-apis-by-address#elevation-source-datum-and-date"
+      }
+    },
+    {
+      "slug": "base-flood-elevation",
+      "term": "Base flood elevation",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "BFE"
+      ],
+      "seo_title": "Base Flood Elevation (BFE) Definition",
+      "short_definition": "Base flood elevation, or BFE, is the modeled water-surface elevation for a flood with a 1% annual chance of being reached or exceeded at a location.",
+      "full_definition": "Read the applicable effective flood map or study for the building location. Keep the panel or study reference, source date, vertical datum, and units. Some mapped areas have no published BFE. Ask the floodplain administrator what evidence is applicable to the site.\n\nTo compare BFE with a surveyed building elevation, first align the datum and confirm which building feature is being evaluated. As an illustration, a surveyed floor at 112 feet and a BFE of 110 feet in the same datum differ by two feet. The local design requirement may include additional height above BFE, so review the applicable rules before making a compliance decision.",
+      "related_to": [
+        "vertical-datum",
+        "certificate-of-occupancy",
+        "statement-of-values"
+      ],
+      "citations": [
+        {
+          "label": "FEMA, guidance for mapping base flood elevations",
+          "url": "https://www.fema.gov/sites/default/files/2020-02/BFE_Mapping_Guidance_Feb_2019.pdf"
+        },
+        {
+          "label": "FEMA, Elevation Certificate questions",
+          "url": "https://www.fema.gov/sites/default/files/documents/fema_floodplain_elevation-certificate-faq_2023.pdf"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Compare an elevation certificate with the effective flood map",
+        "path": "/blog/elevation-certificate-by-address#compare-with-the-flood-map"
+      }
+    },
+    {
+      "slug": "point-in-time-property-data",
+      "term": "Point-in-time property data",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "property data as of a date"
+      ],
+      "seo_title": "Point-in-Time Property Data Definition",
+      "short_definition": "Point-in-time property data reconstructs a property record for an earlier date using the facts and source versions that qualify for that cutoff.",
+      "full_definition": "Identify the parcel or building before applying the date filter. Then decide which date the question calls for. When an event took effect and when its source recorded or published it are separate facts. Track when your own system retrieved the record as well.\n\nAt 25 Water Street in our worked case, four instruments dated November 25, 2025 were recorded on December 9. They belong in a December 10 recorded-date report and fall outside a December 5 recorded-date report. Retain the original document dates so a reviewer can answer a different question later.\n\nMatch each result to its own version and source. Preserve corrections as dated records so you can reconstruct both the earlier decision and what changed afterward.",
+      "related_to": [
+        "assessor-parcel-number",
+        "recorded-easement",
+        "certificate-of-occupancy"
+      ],
+      "citations": [
+        {
+          "label": "Martin Fowler, bitemporal history",
+          "url": "https://martinfowler.com/articles/bitemporal-history.html"
+        },
+        {
+          "label": "NYC Department of Finance, recorder search documentation",
+          "url": "https://a836-acris.nyc.gov/acrisHelp/docsearch/default.htm"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Rebuild a historical property file using three dated cutoffs",
+        "path": "/blog/property-data-as-of-date#three-december-cutoffs"
+      }
+    },
+    {
+      "slug": "by-right-use",
+      "term": "By-right use",
+      "topic": "property-infrastructure",
+      "aliases": [
+        "permitted by right",
+        "by-right zoning"
+      ],
+      "seo_title": "By-Right Use Definition in Zoning",
+      "short_definition": "A by-right use is one the applicable zoning rules permit without a discretionary land-use approval, provided the proposal meets the governing standards.",
+      "full_definition": "Check the parcel’s base district, overlays, and any earlier conditions tied to the land. Confirm the use and building configuration the planning office will review. Administrative site-plan review and building permits can still be part of the process.\n\nThe approval path can change with an ordinance. Prince William County revised its data center overlay in September 2026 and identified districts outside the overlay where new data center proposals require a special use permit. Save the ordinance version and obtain a parcel-specific determination before making a land commitment.",
+      "related_to": [
+        "assessor-parcel-number",
+        "certificate-of-occupancy",
+        "data-center-site-selection"
+      ],
+      "citations": [
+        {
+          "label": "Prince William County, adopted data center overlay amendment",
+          "url": "https://www.pwcva.gov/department/planning-office/dpa2026-00006-data-center-opportunity-zone-overlay-district-dcozod"
+        },
+        {
+          "label": "Prince William County, zoning verification request",
+          "url": "https://www.pwcva.gov/assets/2021-06/Application%20for%20Zoning%20Verification.pdf"
+        }
+      ],
+      "last_updated": "2026-11-25",
+      "guide": {
+        "label": "Compare the zoning and permit records for a data center site",
+        "path": "/blog/data-center-zoning-special-use-permit#by-right-or-special-use"
+      }
     }
   ]
 }

@@ -50,6 +50,7 @@ const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.j
 const researchArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated-blog-search/research-articles.json'), 'utf8'))
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
 const glossaryBySlug = new Map(glossary.map(entry => [entry.slug, entry]))
+const glossaryTopics = JSON.parse(readFileSync(join(ROOT, 'src/data/glossary-topics.json'), 'utf8'))
 const datasetEntries = articleIndex.flatMap(article => {
   const { dataset, additionalDatasets = [] } = article
   const datasets = dataset ? [dataset, ...additionalDatasets] : additionalDatasets
@@ -159,6 +160,21 @@ function glossaryMd(e) {
   if (related.length) out.push('Related: ' + related.map(({ slug, term }) =>
     `[${linkText(term)}](${SITE}/glossary/${slug})`).join(', '), '')
   return out.join('\n')
+}
+
+function glossaryDirectoryMd() {
+  return [
+    '# Infrastructure and compliance glossary', '',
+    'Source-backed definitions for property due diligence, insurance, GIS, data center siting, and infrastructure compliance.', '',
+    citationLink('Browse the glossary', SITE + '/glossary'), '',
+    ...Object.entries(glossaryTopics).flatMap(([topic, label]) => {
+      const entries = glossary.filter(entry => entry.topic === topic).sort((a, b) => a.term.localeCompare(b.term))
+      return entries.length ? [
+        `## ${label}`, '',
+        ...entries.map(entry => `- ${citationLink(entry.term, SITE + '/glossary/' + entry.slug + '.md')} · ${entry.short_definition}`), '',
+      ] : []
+    }),
+  ].join('\n')
 }
 
 function productMd() {
@@ -345,6 +361,7 @@ function resourcesMd() {
     `- [Read the dataset catalog and citations](${SITE}${links.datasets}.md)`,
     `- [Get source URLs and download checksums](${SITE}${links.datasets}.json)`,
     `- [Check API data coverage](${SITE}${links.coverage})`,
+    `- [Property and infrastructure glossary](${SITE}/glossary.md)`,
     `- [Invariant Earth API quickstart](${links.quickstart})`, '',
     '## Featured research', '',
     `[Explore research](${SITE}${links.research})`, '',
@@ -463,6 +480,7 @@ writeFileSync(join(DIST, 'mcp.md'), mcpMd())
 writeFileSync(join(DIST, 'data-coverage.md'), coverageMd())
 writeFileSync(join(DIST, 'resources.md'), resourcesMd())
 writeFileSync(join(DIST, 'research.md'), researchMd())
+writeFileSync(join(DIST, 'glossary.md'), glossaryDirectoryMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)
 const datasetCitations = datasetEntries.map(({ dataset, dateTime, url }) => ({

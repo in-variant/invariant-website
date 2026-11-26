@@ -1,14 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
-import { getGlossarySummary, type GlossaryEntry } from '../data/glossary'
+import { GLOSSARY_TOPIC_LABELS, getGlossarySummary, type GlossaryEntry } from '../data/glossary'
 import { renderLinkified } from '../components/linkifyGlossary'
-
-const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', string> = {
-  space: 'Space',
-  nuclear: 'Nuclear',
-  aerospace: 'Aerospace',
-  'data-centers': 'Data center',
-}
 
 function glossaryEntrySeo(entry: GlossaryEntry) {
   const canonical = `${SITE_URL}/glossary/${entry.slug}`
@@ -60,7 +53,7 @@ export default function GlossaryEntryPage({ entry }: { entry: GlossaryEntry }) {
           </Link>
 
           <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.14em] text-copper">
-            {TOPIC_LABEL[entry.topic]} · Definition
+            {GLOSSARY_TOPIC_LABELS[entry.topic]} · Definition
           </p>
           <h1 className="mt-3 font-serif text-4xl font-normal leading-[1.05] tracking-[-0.025em] text-ink md:text-5xl">
             {entry.term}

@@ -25,6 +25,8 @@ const latestDatasetDate = datasetPublicationDates.sort().at(-1)
 const datasetLastmod = [datasetCatalog.updatedDate, latestDatasetDate].sort().at(-1)
 const researchLastmod = [research.updatedDate, latestDatasetDate].sort().at(-1)
 const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
+const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
+const glossaryLastmod = glossary.entries.map(entry => entry.last_updated).filter(Boolean).sort().at(-1)
 
 // ── Live core pages ──────────────────────────────────────────────────────────
 const CORE = [
@@ -35,7 +37,7 @@ const CORE = [
   { loc: '/contact', lastmod: '2026-11-24', changefreq: 'monthly', priority: '0.7' },
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', lastmod: blogLastmod, changefreq: 'weekly', priority: '0.8' },
-  { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
+  { loc: '/glossary', lastmod: glossaryLastmod, changefreq: 'weekly', priority: '0.8' },
   { loc: '/research', lastmod: researchLastmod, changefreq: 'monthly', priority: '0.85' },
   { loc: '/resources', lastmod: resourceHub.updatedDate, changefreq: 'weekly', priority: '0.85' },
   { loc: '/datasets', lastmod: datasetLastmod, changefreq: 'monthly', priority: '0.7' },
@@ -86,7 +88,6 @@ while ((m = blockRe.exec(registry))) {
 }
 
 // ── Glossary entries ─────────────────────────────────────────────────────────
-const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8'))
 const glossaryUrls = (glossary.entries || []).map((e) => ({
   loc: `/glossary/${e.slug}`,
   lastmod: e.last_updated,

@@ -1,20 +1,15 @@
 import { Link } from 'react-router-dom'
 import { Seo, ORG_SCHEMA, breadcrumbSchema, SITE_URL } from '../components/Seo'
-import { GLOSSARY, entriesByTopic } from '../data/glossary'
+import { GLOSSARY, GLOSSARY_TOPICS, GLOSSARY_TOPIC_LABELS, entriesByTopic } from '../data/glossary'
 
 const URL = `${SITE_URL}/glossary`
 
-const TOPIC_LABEL: Record<'space' | 'nuclear' | 'aerospace' | 'data-centers', string> = {
-  space: 'Space',
-  nuclear: 'Nuclear',
-  aerospace: 'Aerospace',
-  'data-centers': 'Data center',
-}
-
+const DESCRIPTION = 'Source-backed definitions for property due diligence, insurance, GIS, data center siting, and infrastructure compliance.'
 const glossarySeo = {
   title: 'Infrastructure and Compliance Glossary',
-  description: 'Source-backed definitions for data center siting, space, aerospace, and nuclear compliance.',
+  description: DESCRIPTION,
   canonical: URL,
+  markdown: '/glossary.md',
   ogImage: `${SITE_URL}/og/glossary.png`,
   jsonLd: [
     ORG_SCHEMA,
@@ -39,10 +34,10 @@ const glossarySeo = {
 
 export default function Glossary() {
   const groups = entriesByTopic()
-  for (const k of Object.keys(groups) as (keyof typeof groups)[]) {
-    groups[k].sort((a, b) => a.term.localeCompare(b.term))
+  for (const entries of groups.values()) {
+    entries.sort((a, b) => a.term.localeCompare(b.term))
   }
-
+  const activeTopics = GLOSSARY_TOPICS.filter(topic => groups.get(topic)?.length)
 
   return (
     <>
@@ -54,21 +49,29 @@ export default function Glossary() {
             Infrastructure and compliance glossary
           </h1>
           <p className="mt-6 font-sans text-lg leading-relaxed text-ink/70 md:text-xl">
-            Definitions for data center siting, space, aerospace, and nuclear compliance, with links to the original sources.
+            {DESCRIPTION}
           </p>
+          {activeTopics.length > 0 && (
+            <nav aria-label="Glossary topics" className="mt-6 flex flex-wrap gap-x-5">
+              {activeTopics.map(topic => (
+                <a key={topic} href={`#${topic}`} className="inline-flex min-h-11 items-center font-sans text-sm text-copper underline underline-offset-4">
+                  {GLOSSARY_TOPIC_LABELS[topic]}
+                </a>
+              ))}
+            </nav>
+          )}
           {GLOSSARY.length === 0 ? (
             <p className="mt-10 font-sans text-base text-ink/60">
               Compiling. Definitions are being written and reviewed; this page will fill in over the next 24 hours.
             </p>
           ) : (
             <div className="mt-12 space-y-12">
-              {(['space', 'nuclear', 'aerospace', 'data-centers'] as const).map((topic) => {
-                const items = groups[topic]
-                if (!items?.length) return null
+              {activeTopics.map((topic) => {
+                const items = groups.get(topic) ?? []
                 return (
-                  <section key={topic}>
-                    <h2 className="font-sans text-[11px] uppercase tracking-[0.14em] text-ink/55">
-                      {TOPIC_LABEL[topic]}
+                  <section key={topic} aria-labelledby={topic}>
+                    <h2 id={topic} className="scroll-mt-24 font-sans text-[11px] uppercase tracking-[0.14em] text-ink/55">
+                      {GLOSSARY_TOPIC_LABELS[topic]}
                     </h2>
                     <ul className="mt-4 divide-y divide-ink/10">
                       {items.map((e) => (
