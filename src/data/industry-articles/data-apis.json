@@ -43523,7 +43523,7 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "How to verify data center fiber route diversity",
-    "description": "Compare fiber maps, serviceability APIs and cloud handoffs. Verify separate building entrances, carrier routes, and capacity after a circuit fails.",
+    "description": "Verify data center fiber service by address. Check carrier routes, building entrances, install dates, cloud handoffs and capacity after one circuit fails.",
     "date": "2026-11-22",
     "readMinutes": 12,
     "coverAlt": "Diagram of two Equinix buildings on Secaucus Road. AWS lists NY5 as a Direct Connect location and shows it is also accessible from NY4 at a different street address.",
@@ -43764,6 +43764,57 @@
         ]
       },
       {
+        "id": "forney-fiber-serviceability",
+        "heading": "Does fiber near the property mean a carrier can deliver service?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask the carrier for a current serviceability quote for the exact parcel and building. The quote should name the building entrance and remote handoff, identify any new construction, and give a delivery date with its dependencies. For a greenfield site, give both carriers the same concept plan and opening date so they price the same job."
+          },
+          {
+            "type": "paragraph",
+            "text": "Gateway in Forney, Texas, shows how far a public site package can take that check. The Forney Economic Development Corporation places the target area about 30 fiber-route miles from downtown Dallas and identifies several nearby providers. Its 2018 engineering study shows an example duct layout linking three proposed interconnection vaults on part of the development. The published drawing helps a buyer ask where an entrance could go. The route mileage describes distance, and the design describes proposed civil works. The public records reviewed here provide no carrier order, installed route record or service date for a specific building.",
+            "sourceIds": [
+              "forney-edc",
+              "forney-fiber-study"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Stage",
+              "Evidence to keep",
+              "Decision it supports"
+            ],
+            "rows": [
+              [
+                "Shortlist",
+                "Exact parcel and building, intended entrances, provider contact and proposed handoffs.",
+                "Decide which candidate warrants a carrier field survey."
+              ],
+              [
+                "Before signing",
+                "A quote for each circuit. Ask who builds the extension, which permits or easements are open, when service can start, and when the quote expires.",
+                "Check whether fiber can meet your opening date and who pays for the build."
+              ],
+              [
+                "Before accepting service",
+                "Current carrier records for the installed circuit pair, acceptance results and agreed capacity after a circuit loss.",
+                "Verify service against the order and the workload’s failover requirement."
+              ]
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the carrier serviceability request worksheet",
+            "path": "/blog/data-center-fiber-serviceability-request.csv",
+            "format": "CSV",
+            "datasetAnchor": null
+          }
+        ]
+      },
+      {
         "id": "fiber-procurement-evidence",
         "heading": "What to request before accepting a diversity claim",
         "blocks": [
@@ -43889,6 +43940,18 @@
       }
     ],
     "sources": [
+      {
+        "id": "forney-edc",
+        "title": "Gateway Target Area connectivity and fiber distance",
+        "publisher": "Forney Economic Development Corporation",
+        "url": "https://forneytexasedc.org/sectors/data-centers-and-technology"
+      },
+      {
+        "id": "forney-fiber-study",
+        "title": "Gateway Fiber Optics Study, 2018 example site entrance layout, PDF page 33",
+        "publisher": "Forney Economic Development Corporation and NEF",
+        "url": "https://forneytexasedc.org/assets/main/target-sectors/Gateway-Fiber-Optics-Study---Fall-2018-1596138825.pdf#page=33"
+      },
       {
         "id": "fcc-map",
         "title": "What the National Broadband Map shows",
@@ -44020,7 +44083,7 @@
       }
     ],
     "relatedSlugs": ["data-center-site-selection-checklist", "data-center-power-screening-tools", "best-gis-apis-for-site-selection"],
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "additionalDatasets": [
       {
         "anchor": "dataset-cloud-interconnect-diversity",
