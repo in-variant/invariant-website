@@ -7780,6 +7780,10 @@
             "label": "Run an underwriting data trial",
             "items": [
               {
+                "slug": "commercial-roof-age-by-address",
+                "label": "Check commercial roof age and partial replacement by address"
+              },
+              {
                 "slug": "property-portfolio-flood-exposure",
                 "label": "Roll up the same schedule by building and FEMA flood zone"
               },
@@ -7966,6 +7970,7 @@
       }
     ],
     "relatedSlugs": [
+      "commercial-roof-age-by-address",
       "property-portfolio-flood-exposure",
       "commercial-property-insurance-data-apis",
       "commercial-property-loss-runs",
@@ -29131,12 +29136,333 @@
     ]
   },
   {
+    "slug": "commercial-roof-age-by-address",
+    "topic": "Data & APIs",
+    "region": "Beverly Hills, California, United States",
+    "title": "How to Check Commercial Roof Age by Address",
+    "description": "Verify commercial roof age by address, work scope and closeout records. See how Beverly Hills documents a partial replacement and a separate phased project.",
+    "date": "2026-11-26",
+    "readMinutes": 5,
+    "coverAlt": "The Beverly Hills library roof project replaced about 1,100 square feet and repaired about 500 square feet.",
+    "coverCaption": "Beverly Hills Public Library roof work quantities reported to City Council on May 16, 2023. The report gives no total roof area.",
+    "intro": "Start with the work address and the insured building. Find the most recent documented replacement for each roof section and check the scope against a closeout record. Keep repairs on their own line. At the Beverly Hills Public Library, one project replaced about 1,100 square feet and repaired about 500 square feet, leaving the replacement date for the rest of the roof unknown in the city packet.",
+    "takeaways": [
+      "Use an address to find candidate records, then confirm the building and roof area against the work description or plan.",
+      "Record the installation, inspection and acceptance dates in separate fields. Label the date you actually verified.",
+      "For a partial replacement, record the replaced area, the repaired area and the remaining sections with unknown dates."
+    ],
+    "guideActions": [
+      {
+        "href": "#beverly-hills-library-roof-scope",
+        "label": "See the Beverly Hills roof case"
+      }
+    ],
+    "sections": [
+      {
+        "id": "roof-records-by-address",
+        "heading": "Where to look up roof work",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Search the building department’s permit portal by street address and parcel ID. Look for reroofing, membrane replacement, recovery and repair. When several buildings share an address, match the permit to a building ID, tenant building name, footprint or roof plan. Check the work address in the document before using the applicant or owner address. For municipal buildings, search council minutes and contract closeout packets by site name and project number as well."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Record",
+              "What to carry into the property file"
+            ],
+            "rows": [
+              [
+                "Permit or contract",
+                "Work address, building identifier, permit or project number, stated scope and issue or award date."
+              ],
+              [
+                "Roof plan or itemized scope",
+                "Roof sections covered, work performed in each section, material and area where reported. Record whether the membrane, deck, or both were included when the documents specify."
+              ],
+              [
+                "Final inspection or closeout",
+                "Event type, date, status and the work that the document covers. Request an installation record or contractor statement when the exact installation date matters."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For a commercial roof that was recently replaced, ask the owner for the roof plan, contractor scope, closeout and applicable warranty. Aerial imagery can help you identify a visible change or locate different roof sections before you review the records. Carry that observation with its imagery date."
+          }
+        ]
+      },
+      {
+        "id": "beverly-hills-library-roof-scope",
+        "heading": "Beverly Hills library roof work, by area",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The Beverly Hills Public Library at 444 N. Rexford Drive had about 1,100 square feet of its single-ply roofing system replaced and about 500 square feet repaired under bid 23-350-1. City staff reported that Public Works and Community Development had inspected the work. City Council accepted the project on May 16, 2023. The project report gives no full-roof replacement date or total roof area.",
+            "sourceIds": [
+              "library-scope",
+              "library-acceptance"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Dated evidence",
+              "What it establishes"
+            ],
+            "rows": [
+              [
+                "November 15, 2022 · contract award",
+                "The council approved agreement 706-22 for the library roofing repair and partial replacement project."
+              ],
+              [
+                "May 16, 2023 · staff report",
+                "Staff described the work quantities and reported that the work conformed to the construction documents."
+              ],
+              [
+                "May 16, 2023 · council minutes",
+                "Item E-14 was approved, accepting the work and authorizing the City Clerk to record the notice of completion."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "library-award"
+              ],
+              [
+                "library-scope"
+              ],
+              [
+                "library-acceptance"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The proposed notice in the agenda packet lists the owner at 455 N. Rexford Drive. Its work address is 444 N. Rexford Drive. The packet copy has blank signature and recording fields. The documented council approval establishes the acceptance date. To verify the exact installation date by roof section, ask for the contractor’s installation record.",
+            "sourceIds": [
+              "library-scope",
+              "library-acceptance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "roof-phases-over-time",
+        "heading": "How to read a phased roof project",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Beverly Hills budgets list a separate roof project under two addresses, 439 N. Cañon Drive and 438 N. Beverly Drive. The FY 2024–25 budget forecast phase 1 completion in FY 2023–24. The FY 2025–26 budget reported that phase 1 was completed in FY 2024–25. Record the forecast and completion as separate events.",
+            "sourceIds": [
+              "cip-2024-25",
+              "cip-2025-26"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Adopted budget",
+              "Phase 2 status in that edition"
+            ],
+            "rows": [
+              [
+                "FY 2024–25",
+                "Listed among the priorities for FY 2024–25."
+              ],
+              [
+                "FY 2025–26",
+                "Listed among the priorities for FY 2025–26."
+              ],
+              [
+                "FY 2026–27",
+                "Listed among the priorities for FY 2026–27."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "cip-2024-25"
+              ],
+              [
+                "cip-2025-26"
+              ],
+              [
+                "cip-2026-27"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Retain all three planning observations with their budget editions. Record phase 1 as completed in FY 2024–25 according to the city’s FY 2025–26 budget. The reviewed budget pages give no phase 2 closeout or roof-section geometry. Request those documents before assigning a replacement year to that section.",
+            "sourceIds": [
+              "cip-2025-26",
+              "cip-2026-27"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "roof-age-for-underwriting",
+        "heading": "How to record roof age for underwriting or lending",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Put each documented roof section on its own line in the property file. Include the building ID or work address, section reference, work type, area and units, source page, date and event type. At renewal, compare those rows to the prior submission. A newer document may describe the same work under a different date or report a new phase."
+          },
+          {
+            "type": "paragraph",
+            "text": "For the library case, record approximately 1,100 square feet of replacement and approximately 500 square feet of repair. Use May 16, 2023 for project acceptance. Leave the exact installation date and the age of the remaining roof unknown until you have section-level evidence. When a submission asks for a single year, retain the section-level record and confirm how the recipient wants partial replacements reported.",
+            "sourceIds": [
+              "library-scope",
+              "library-acceptance"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Continue the property review",
+            "items": [
+              {
+                "slug": "commercial-property-statement-of-values",
+                "label": "Match the roof evidence to the building on the statement of values"
+              },
+              {
+                "slug": "ageospatial-alternatives-commercial-roof-underwriting",
+                "label": "Compare roof-data providers on a dated replacement case"
+              },
+              {
+                "slug": "commercial-property-insurance-data-apis",
+                "label": "Test permit and inspection matching before an API trial"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "download-roof-records",
+        "heading": "Download the source-backed roof records",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The extract includes the two projects, the dated events, the reported work quantities, PDF page numbers and SHA-256 checksums for all six city documents. Use the page references to reproduce the lookup. The two projects are selected examples from Beverly Hills.",
+            "sourceIds": [
+              "library-award",
+              "library-scope",
+              "library-acceptance",
+              "cip-2024-25",
+              "cip-2025-26",
+              "cip-2026-27"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/beverly-hills-roof-replacement-scope.json",
+            "format": "JSON",
+            "label": "Download the Beverly Hills roof work records"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I use a roof permit date as the replacement date?",
+        "answer": "Use the permit date as the date of issuance. Check inspections, closeout or a contractor installation record to establish when the scoped roof work was completed. Keep the date and event type together.",
+        "sourceIds": [
+          "library-award",
+          "library-scope",
+          "library-acceptance"
+        ]
+      },
+      {
+        "question": "How do I record a partial roof replacement?",
+        "answer": "Record the roof section, work type, replaced area and verified date for each section. Keep repairs and roof sections with unknown dates separate. Calculate the share replaced only when you have a verified total area on the same basis.",
+        "sourceIds": [
+          "library-scope"
+        ]
+      },
+      {
+        "question": "Does a city capital budget show that a roof was replaced?",
+        "answer": "Read the project status and budget edition. Beverly Hills reported phase 1 completed in FY 2024–25 and separately listed phase 2 as a priority in successive budgets. A completion or acceptance record for phase 2 would establish its status.",
+        "sourceIds": [
+          "cip-2024-25",
+          "cip-2025-26",
+          "cip-2026-27"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "library-award",
+        "title": "Library roof contract award, item E-8",
+        "publisher": "City of Beverly Hills",
+        "url": "https://beverlyhills.granicus.com/MetaViewer.php?event_id=6222&meta_id=575493&view_id=49#page=7"
+      },
+      {
+        "id": "library-scope",
+        "title": "Library roof scope, inspections and proposed notice, item E-14",
+        "publisher": "City of Beverly Hills",
+        "url": "https://beverlyhills.granicus.com/MetaViewer.php?view_id=49&clip_id=9204&meta_id=563761#page=2"
+      },
+      {
+        "id": "library-acceptance",
+        "title": "Council acceptance of library roof work, item E-14",
+        "publisher": "City of Beverly Hills",
+        "url": "https://beverlyhills.granicus.com/MetaViewer.php?event_id=6655&meta_id=589374&view_id=49#page=8"
+      },
+      {
+        "id": "cip-2024-25",
+        "title": "FY 2024–25 capital budget, project 00833 status",
+        "publisher": "City of Beverly Hills",
+        "url": "https://www.beverlyhills.gov/DocumentCenter/View/7632/FY-2024-2025-CIP-Budget-PDF#page=113"
+      },
+      {
+        "id": "cip-2025-26",
+        "title": "FY 2025–26 capital budget, project 00833 status",
+        "publisher": "City of Beverly Hills",
+        "url": "https://www.beverlyhills.org/DocumentCenter/View/11154/FY-2025-2026-CIP-Budget-PDF#page=111"
+      },
+      {
+        "id": "cip-2026-27",
+        "title": "FY 2026–27 capital budget, project 00833 status",
+        "publisher": "City of Beverly Hills",
+        "url": "https://www.beverlyhills.gov/DocumentCenter/View/17051/FY-2026-2027-CIP-Budget-PDF#page=102"
+      }
+    ],
+    "relatedSlugs": [
+      "ageospatial-alternatives-commercial-roof-underwriting",
+      "commercial-property-statement-of-values",
+      "commercial-property-insurance-data-apis",
+      "building-permit-data-apis",
+      "building-violations-by-address"
+    ],
+    "dataset": {
+      "name": "Beverly Hills roof repair, replacement and project history",
+      "description": "Beverly Hills Public Library bid 23-350-1 scope and council acceptance at 444 N. Rexford Drive, plus capital project 00833 roof phase history for 439 N. Cañon Drive and 438 N. Beverly Drive. Includes areas, dated evidence, PDF page numbers and source checksums.",
+      "sourceIds": [
+        "library-award",
+        "library-scope",
+        "library-acceptance",
+        "cip-2024-25",
+        "cip-2025-26",
+        "cip-2026-27"
+      ],
+      "spatialCoverage": "Beverly Hills, Los Angeles County, California, United States",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/beverly-hills-roof-replacement-scope-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      }
+    }
+  },
+  {
     "slug": "ageospatial-alternatives-commercial-roof-underwriting",
     "topic": "Data & APIs",
     "title": "Ageospatial alternatives for commercial roof underwriting",
     "description": "Compare Ageospatial, Moody’s, ZestyAI, Verisk and Invariant Earth with a real test for building identity, roof replacement dates and source evidence.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 7,
     "region": "United States",
     "coverAlt": "Aerial view of the Rosemead Public Works warehouse with its county building footprint outlined.",
@@ -29352,6 +29678,10 @@
             "label": "Continue the underwriting review",
             "items": [
               {
+                "slug": "commercial-roof-age-by-address",
+                "label": "Check commercial roof age and partial replacement by address"
+              },
+              {
                 "slug": "building-permit-data-apis",
                 "label": "Check the scope behind a roof-related permit"
               },
@@ -29543,6 +29873,7 @@
       ]
     },
     "relatedSlugs": [
+      "commercial-roof-age-by-address",
       "commercial-property-insurance-data-apis",
       "fema-flood-zone-history-for-underwriting",
       "commercial-real-estate-data-apis-for-lenders"
