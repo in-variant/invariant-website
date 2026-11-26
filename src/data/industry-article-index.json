@@ -4705,11 +4705,12 @@
   {
     "slug": "nfip-flood-claims-data-api",
     "topic": "Data & APIs",
-    "title": "FEMA Flood Claims Data API: NFIP v3 and County-Level Losses",
-    "summary": "Use OpenFEMA’s current NFIP claims API. Compare Hurricane Ida records and net flood payments in two counties and download the reproducible totals.",
+    "title": "FEMA flood insurance claims data from the NFIP v3 API",
+    "summary": "Query OpenFEMA NFIP v3 and compare Hurricane Ida business claims by county. Download the occupancy codes, building and contents payments, and exact API queries.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/nfip-flood-claims-data-api.webp?v=d5ac97c9",
     "dataset": {
       "name": "County-level Hurricane Ida claims and payments in OpenFEMA",
@@ -4751,7 +4752,57 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-nfip-ida-business-claims",
+        "name": "Hurricane Ida NFIP business claims by county and coverage",
+        "description": "Two OpenFEMA county aggregates for legacy business occupancy code 6. Includes positive, zero and missing building payments, contents payments and reported nonpayment reason counts where present.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "St. John the Baptist Parish, Louisiana, and Bergen County, New Jersey, United States",
+        "temporalCoverage": "2021-08-28/2021-09-04",
+        "sourceReuse": {
+          "note": "Credit FEMA OpenFEMA and carry the NFIP Claims v3 extract date, occupancy code and selected counties when reusing these totals.",
+          "policyLabel": "OpenFEMA citation guidance",
+          "policyUrl": "https://www.fema.gov/about/openfema/terms-conditions"
+        },
+        "sources": [
+          "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
+          "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+          "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+          "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data"
+        ],
+        "sourceDetails": [
+          {
+            "title": "NFIP Redacted Claims v3 field definitions",
+            "publisher": "OpenFEMA",
+            "url": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150"
+          },
+          {
+            "title": "St. John the Baptist Parish query with occupancy and net coverage payments",
+            "publisher": "OpenFEMA",
+            "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0"
+          },
+          {
+            "title": "Bergen County query with occupancy and net coverage payments",
+            "publisher": "OpenFEMA",
+            "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0"
+          },
+          {
+            "title": "NFIP guidance on joining records, loss dates and disbursements",
+            "publisher": "National Flood Insurance Program",
+            "url": "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download business claim counts, coverage totals and source queries",
+            "path": "/blog/nfip-ida-business-claims-by-county.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "building-footprint-data-apis",

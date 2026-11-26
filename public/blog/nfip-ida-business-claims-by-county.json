@@ -1,0 +1,114 @@
+{
+  "name": "Hurricane Ida NFIP business claims by county and coverage",
+  "version": "1.0.0",
+  "retrieved_on": "2026-11-26",
+  "source_data_as_of": "2026-11-16",
+  "guide_url": "https://invariant-ai.com/blog/nfip-flood-claims-data-api#nfip-business-claims-hurricane-ida",
+  "source_dataset": "OpenFEMA NFIP Redacted Claims v3 (NfipClaims)",
+  "loss_date_window": {
+    "inclusive_start": "2021-08-28",
+    "exclusive_end": "2021-09-05"
+  },
+  "selected_occupancy": {
+    "field": "occupancyType",
+    "code": 6,
+    "meaning": "Non-residential business"
+  },
+  "method": "Fetch the full loss-date window for each county code, sorted by ID. Check the returned count, unique row IDs and extract date. Keep Hurricane Ida rows with the county’s state event code. Select the legacy business occupancy code 6. Sum the reported net coverage components separately in nominal US dollars. Count explicit zero, negative and missing building-payment values separately. Read the building nonpayment reason only for the zero-building-payment comparison.",
+  "scope": "This subset contains the claims reported under code 6, with no individual claim or policy identifiers. Generic non-residential code 4 and the other codes in the FEMA dictionary are excluded. Zero net building payments do not establish how a claim was closed or whether the contents component paid. Totals by loss date cannot reconstruct when payments were disbursed or establish unique properties or a claim rate.",
+  "sources": {
+    "field_dictionary": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipClaims%27&%24top=150",
+    "nfip_data_faq": "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data"
+  },
+  "counties": [
+    {
+      "reported_county": "St. John the Baptist Parish, Louisiana",
+      "county_fips": "22095",
+      "event_designation_number": "LA0421",
+      "full_date_window_rows": 3582,
+      "all_ida_rows": 3573,
+      "other_nonresidential_code_4_rows_excluded": 21,
+      "business_code_6_rows": 55,
+      "business_building_payment_rows": {
+        "positive": 44,
+        "zero": 11,
+        "negative": 0,
+        "missing": 0
+      },
+      "total_net_building_payment_usd": "10233098.80",
+      "total_net_contents_payment_usd": "4891273.42",
+      "missing_net_contents_payment_rows": 0,
+      "positive_net_contents_payment_among_zero_building_payment": 1,
+      "building_nonpayment_reason_recorded_among_zero_building_payment": 8,
+      "building_nonpayment_reason_blank_among_zero_building_payment": 3,
+      "reason_codes_among_zero_building_payment": {
+        "06": 6,
+        "97": 1,
+        "99": 1
+      },
+      "source_pages": [
+        {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+          "sha256": "dd99cad89fd1089f647a48d7317834d51decdb014f5e6a3e11487b7fb8f31873",
+          "returned_rows": 1000
+        },
+        {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=1000",
+          "sha256": "c4bb858f39d867a7a846bd2495b43e9a038aca1cac5f4297d0d2348e8a4199e4",
+          "returned_rows": 1000
+        },
+        {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=2000",
+          "sha256": "66e1d223c2bd9b770a685b44ee04b4694c793001fb3e4e7d11be8222b6ef3697",
+          "returned_rows": 1000
+        },
+        {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=3000",
+          "sha256": "3627c851d69c5c4a2c8872bc707e34f2bac6d443b8b32b23ef2c33db217ed095",
+          "returned_rows": 582
+        }
+      ]
+    },
+    {
+      "reported_county": "Bergen County, New Jersey",
+      "county_fips": "34003",
+      "event_designation_number": "NJ0421",
+      "full_date_window_rows": 1727,
+      "all_ida_rows": 1707,
+      "other_nonresidential_code_4_rows_excluded": 25,
+      "business_code_6_rows": 200,
+      "business_building_payment_rows": {
+        "positive": 136,
+        "zero": 64,
+        "negative": 0,
+        "missing": 0
+      },
+      "total_net_building_payment_usd": "16495923.77",
+      "total_net_contents_payment_usd": "8700756.59",
+      "missing_net_contents_payment_rows": 0,
+      "positive_net_contents_payment_among_zero_building_payment": 30,
+      "building_nonpayment_reason_recorded_among_zero_building_payment": 28,
+      "building_nonpayment_reason_blank_among_zero_building_payment": 36,
+      "reason_codes_among_zero_building_payment": {
+        "01": 12,
+        "06": 2,
+        "08": 2,
+        "20": 2,
+        "97": 8,
+        "99": 2
+      },
+      "source_pages": [
+        {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+          "sha256": "66586e170a84e2260af3382ff9567250aecbf9c382ad6b695c4d320c133e3cdc",
+          "returned_rows": 1000
+        },
+        {
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=1000",
+          "sha256": "d064e9af5a0a4cd7517dd91a5b255e655e451779e168d5247eda845e18a116ed",
+          "returned_rows": 727
+        }
+      ]
+    }
+  ]
+}

@@ -8762,6 +8762,10 @@
                 "label": "Compare county and statewide storm reporting"
               },
               {
+                "path": "/blog/nfip-flood-claims-data-api#nfip-business-claims-hurricane-ida",
+                "label": "Compare public NFIP business payments by coverage"
+              },
+              {
                 "slug": "property-underwriting",
                 "label": "Get the property underwriting API trial scorecard"
               }
@@ -27224,17 +27228,18 @@
     "slug": "nfip-flood-claims-data-api",
     "topic": "Data & APIs",
     "region": "United States",
-    "title": "FEMA Flood Claims Data API: NFIP v3 and County-Level Losses",
-    "description": "Use OpenFEMA’s current NFIP claims API. Compare Hurricane Ida records and net flood payments in two counties and download the reproducible totals.",
+    "title": "FEMA flood insurance claims data from the NFIP v3 API",
+    "description": "Query OpenFEMA NFIP v3 and compare Hurricane Ida business claims by county. Download the occupancy codes, building and contents payments, and exact API queries.",
     "date": "2026-11-23",
-    "readMinutes": 6,
+    "readMinutes": 8,
     "coverAlt": "Hurricane Ida’s clouds and eye seen from the International Space Station, with the station’s robotic arm in the foreground.",
     "coverCaption": "Hurricane Ida seen from the International Space Station. Photograph from NASA.",
     "intro": "Use Invariant Earth to check the FEMA flood map at a U.S. site, then use OpenFEMA’s NFIP Redacted Claims v3 to study payment history at county scale. In FEMA’s November 2026 extract, rows tagged to Hurricane Ida in the period we checked sum to about $290.6 million in net building payments in St. John the Baptist Parish, Louisiana, and $63.8 million in Bergen County, New Jersey. The totals describe payments in the federal insurance program and the same storm has a different event code in each state.",
     "takeaways": [
       "Use the current endpoint, /api/open/v3/NfipClaims. We tested it on November 23, 2026 and received a valid response. The old FimaNfipClaims v2 endpoint returned 404.",
       "For event analysis, use the loss date, reported county code and storm designation together. Keep rows with blank event tags in a separate count.",
-      "Keep building, contents and Increased Cost of Compliance payments in separate fields. Retain the data vintage and use the published county field for geography."
+      "Keep building, contents and Increased Cost of Compliance payments in separate fields. Retain the data vintage and use the published county field for geography.",
+      "For a business claims sample, keep the occupancy code and each coverage component. In Bergen County, 30 Ida-tagged business records with zero net building payment still showed a positive net contents payment."
     ],
     "sections": [
       {
@@ -27323,6 +27328,75 @@
         ]
       },
       {
+        "id": "nfip-business-claims-hurricane-ida",
+        "heading": "How to find business flood insurance claims in OpenFEMA",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use occupancyType 6 to select the historical NFIP code for non-residential business. Keep that code in your output. FEMA also defines a generic non-residential building code and separate Risk Rating 2.0 codes. This example uses the business code alone so the rule is the same in both counties. The query covers August 28 through September 4, 2021, uses each state’s Ida event code, and reads the November 16, 2026 extract.",
+            "sourceIds": [
+              "fields",
+              "business-claims-louisiana",
+              "business-claims-new-jersey"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Reported county",
+              "Business claim rows",
+              "Net building payments",
+              "Net contents payments"
+            ],
+            "rows": [
+              [
+                "St. John the Baptist Parish, Louisiana",
+                "55",
+                "$10,233,098.80",
+                "$4,891,273.42"
+              ],
+              [
+                "Bergen County, New Jersey",
+                "200",
+                "$16,495,923.77",
+                "$8,700,756.59"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "business-claims-louisiana"
+              ],
+              [
+                "business-claims-new-jersey"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In Bergen County, 64 of the 200 business records showed zero net building payment. Thirty of those 64 showed a positive net contents payment. The building nonpayment reason field was populated on 28 of the 64 records. Use separate fields for the building and contents results. To assess the reason for a zero building payment, use the reason code where it is present and leave the other reasons unknown.",
+            "sourceIds": [
+              "fields",
+              "business-claims-new-jersey"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the loss date to group the event and save the extract date so you can compare it with a later release. Disbursement dates and building-level loss history require separate records.",
+            "sourceIds": [
+              "fema-claims-policy-guidance"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/nfip-ida-business-claims-by-county.json",
+            "format": "JSON",
+            "label": "Download business claim counts, coverage totals and source queries",
+            "datasetAnchor": "dataset-nfip-ida-business-claims"
+          }
+        ]
+      },
+      {
         "id": "use-claims-aggregates",
         "heading": "How should a risk team interpret those totals?",
         "blocks": [
@@ -27332,6 +27406,15 @@
             "sourceIds": [
               "catalog",
               "fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To count policies in force, use OpenFEMA’s separate NfipPolicies v3 resource. FEMA’s method keeps records with policyEffectiveDate on or before the comparison date and policyTerminationDate after it. For a county comparison, use the first five characters of a valid 12-character policy censusGeoid and compare with countyCode on the claims side. Track missing geographies separately and check policyCount, which measures insured units. The public files provide county aggregates. Matching a claim to its specific policy requires authorized records.",
+            "sourceIds": [
+              "fema-claims-policy-guidance",
+              "nfip-policy-v3-fields",
+              "census-county-geoid"
             ]
           },
           {
@@ -27461,6 +27544,41 @@
         "title": "Invariant Earth data responses and vintages",
         "url": "https://docs.invariant-ai.com/responses",
         "publisher": "Invariant Earth"
+      },
+      {
+        "id": "business-claims-louisiana",
+        "title": "St. John the Baptist Parish query with occupancy and net coverage payments",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2722095%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+        "publisher": "OpenFEMA",
+        "linkLabel": "Louisiana occupancy query"
+      },
+      {
+        "id": "business-claims-new-jersey",
+        "title": "Bergen County query with occupancy and net coverage payments",
+        "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24select=id%2CasOfDate%2CdateOfLoss%2CcountyCode%2CfloodEvent%2CeventDesignationNumber%2CoccupancyType%2CnetBuildingPaymentAmount%2CnetContentsPaymentAmount%2CnonPaymentReasonBuilding&%24filter=countyCode+eq+%2734003%27+and+dateOfLoss+ge+%272021-08-28%27+and+dateOfLoss+lt+%272021-09-05%27&%24orderby=id+asc&%24top=1000&%24inlinecount=allpages&%24skip=0",
+        "publisher": "OpenFEMA",
+        "linkLabel": "New Jersey occupancy query"
+      },
+      {
+        "id": "fema-claims-policy-guidance",
+        "title": "NFIP guidance on joining records, loss dates and disbursements",
+        "url": "https://agents.floodsmart.gov/flood-maps-and-data/faqs-about-nfip-data",
+        "publisher": "National Flood Insurance Program",
+        "linkLabel": "NFIP data guidance"
+      },
+      {
+        "id": "nfip-policy-v3-fields",
+        "title": "NFIP Policies v3 field definitions for coverage dates, censusGeoid and policyCount",
+        "url": "https://www.fema.gov/api/open/v1/OpenFemaDataSetFields?%24filter=openFemaDataSet+eq+%27NfipPolicies%27&%24top=150",
+        "publisher": "OpenFEMA",
+        "linkLabel": "Policy field definitions"
+      },
+      {
+        "id": "census-county-geoid",
+        "title": "Census geographic identifiers and the block group hierarchy",
+        "url": "https://www.census.gov/programs-surveys/geography/guidance/geo-identifiers.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census GEOID guide"
       }
     ],
     "dataset": {
@@ -27480,6 +27598,28 @@
       "best-flood-risk-data-apis",
       "fema-flood-zone-history-for-underwriting",
       "commercial-property-insurance-data-apis"
+    ],
+    "updatedDate": "2026-11-26",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-nfip-ida-business-claims",
+        "name": "Hurricane Ida NFIP business claims by county and coverage",
+        "description": "Two OpenFEMA county aggregates for legacy business occupancy code 6. Includes positive, zero and missing building payments, contents payments and reported nonpayment reason counts where present.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "St. John the Baptist Parish, Louisiana, and Bergen County, New Jersey, United States",
+        "temporalCoverage": "2021-08-28/2021-09-04",
+        "sourceReuse": {
+          "note": "Credit FEMA OpenFEMA and carry the NFIP Claims v3 extract date, occupancy code and selected counties when reusing these totals.",
+          "policyLabel": "OpenFEMA citation guidance",
+          "policyUrl": "https://www.fema.gov/about/openfema/terms-conditions"
+        },
+        "sourceIds": [
+          "fields",
+          "business-claims-louisiana",
+          "business-claims-new-jersey",
+          "fema-claims-policy-guidance"
+        ]
+      }
     ]
   },
   {
@@ -37856,8 +37996,8 @@
             "label": "Map history and property underwriting",
             "items": [
               {
-                "slug": "nfip-flood-claims-data-api",
-                "label": "Compare what NFIP paid in two counties after Hurricane Ida"
+                "path": "/blog/nfip-flood-claims-data-api#nfip-business-claims-hurricane-ida",
+                "label": "Compare NFIP business building and contents payments"
               },
               {
                 "slug": "fema-flood-zone-history-for-underwriting",
