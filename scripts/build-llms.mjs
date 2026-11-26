@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 import { agentTopicGuides } from './agent-topic-guides.mjs'
+import { INDUSTRY_HUBS } from '../src/data/industryHubs.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -46,6 +47,7 @@ const sections = [
     ]),
   ]],
   ['Guides by industry', buyerGuides],
+  ['Compliance requirements by industry', INDUSTRY_HUBS.map(hub => [hub.title, `${SITE}/${hub.slug}.md`])],
   ['Focused guide directories', topicLinks],
   ['API examples by industry', product.examples.map(({ audience, title, href }) => [
     `${audience} | ${title}`, `${SITE}${href}.md`,
@@ -183,7 +185,7 @@ out.push('')
 out.push('## Data centres in India')
 out.push('')
 out.push('Guides to data centre locations, state and national policy, approvals, power and grid connection, open access charges, land, water, and physical risks in India.')
-out.push('- [Data centre approvals in India](' + SITE + '/data-centre-compliance-india): authorities and primary sources for project approvals.')
+out.push('- [Data centre approvals in India](' + SITE + '/data-centre-compliance-india.md): authorities and primary sources for project approvals.')
 for (const article of industryArticles.filter(isIndiaArticle)) {
   out.push(`- [${article.title}](${SITE}/blog/${article.slug}.md): ${article.summary}`)
 }
@@ -203,8 +205,8 @@ out.push('- [Battery storage recharge calculator](https://invariant-ai.com/calcu
 
 out.push('')
 out.push('## Data centers and oil and gas')
-out.push('- [Data-center compliance](https://invariant-ai.com/data-center-compliance): U.S. siting, power, air, water, construction and operating requirements.')
-out.push('- [Oil-and-gas compliance](https://invariant-ai.com/oil-gas-compliance): U.S. onshore permitting, methane requirements and operating evidence.')
+out.push('- [Data-center compliance](https://invariant-ai.com/data-center-compliance.md): U.S. siting, power, air, water, construction and operating requirements.')
+out.push('- [Oil-and-gas compliance](https://invariant-ai.com/oil-gas-compliance.md): U.S. onshore permitting, methane requirements and operating evidence.')
 for (const article of industryArticles.filter(article => article.topic !== 'Data & APIs' && !isIndiaArticle(article))) out.push(`- [${article.title}](${SITE}/blog/${article.slug}): ${article.summary}`)
 
 if (entries.length) {

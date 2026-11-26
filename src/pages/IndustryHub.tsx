@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { INDUSTRY_HUBS, hubIncludes } from '../data/industryHubs'
+import { INDUSTRY_HUBS, hubIncludes, hubUpdatedDate } from '../data/industryHubs.mjs'
 import { versionedCover } from '../data/coverImages'
 import { coverSrcSet } from '../data/coverSrcSets'
 import { ARTICLE_LIST } from '../data/articleList'
@@ -21,14 +21,30 @@ export default function IndustryHub({ slug }: { slug: string }) {
   const image = versionedCover(hub.image)
   const srcSet = coverSrcSet(image)
   return <article className="industry-hub">
-    <Seo title={hub.title} description={hub.description} canonical={canonical} ogImage={`${SITE_URL}${image}`} jsonLd={[ORG_SCHEMA, breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]), { '@context': 'https://schema.org', '@type': 'CollectionPage', name: hub.title, description: hub.description, url: canonical, hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })) }]} />
+    <Seo
+      title={hub.title}
+      description={hub.description}
+      canonical={canonical}
+      ogImage={`${SITE_URL}${image}`}
+      markdown={`/${hub.slug}.md`}
+      jsonLd={[
+        ORG_SCHEMA,
+        breadcrumbSchema([{ name: 'Invariant', url: SITE_URL }, { name: label, url: canonical }]),
+        {
+          '@context': 'https://schema.org', '@type': 'CollectionPage',
+          name: hub.title, description: hub.description, url: canonical,
+          dateModified: hubUpdatedDate(hub, articles),
+          hasPart: articles.map(article => ({ '@type': 'Article', headline: article.title, url: `${SITE_URL}/blog/${article.slug}` })),
+        },
+      ]}
+    />
     <header className="industry-hub-hero industry-hub-container">
       <div className="industry-hub-heading"><p className="industry-hub-eyebrow">{isIndia ? 'Data centres / India' : `${hub.topic} / Compliance`}</p><h1>{hub.heading}</h1><p>{hub.intro}</p><a className="industry-hub-jump" href="#compliance-map">Explore the requirements <span aria-hidden="true">↓</span></a></div>
       <figure><img src={image} srcSet={srcSet} sizes={srcSet ? coverSizes : undefined} width="1600" height="900" alt={isIndia ? 'Illustrative data centre campus and grid substation in India' : hub.topic === 'Data Centers' ? 'Illustrative data-center campus and electrical substation at dusk' : 'Illustrative onshore oil field with a pumpjack at sunset'} fetchPriority="high" decoding="async" /></figure>
     </header>
-    {hub.topic === 'Data Centers' && !isIndia && <section className="industry-register industry-hub-container" aria-labelledby="register-heading">
+    {hub.register && <section className="industry-register industry-hub-container" aria-labelledby="register-heading">
       <div><p className="industry-hub-eyebrow">A working document</p><h2 id="register-heading">Start your compliance register.</h2></div>
-      <div><p>Ten workstreams, with fields for the exact permit condition, equipment, owner, deadline and supporting record. Use it to turn an applicability decision into work someone owns.</p><p className="industry-register-note">A starting template for U.S. facilities. Complete the jurisdiction and applicability review for your site before using it as a compliance calendar.</p><a href="/downloads/data-center-compliance-register.csv" download>Download the register <span aria-hidden="true">↗</span></a><span className="industry-register-format">CSV · 10 workstreams · No signup</span></div>
+      <div><p>Ten workstreams, with fields for the exact permit condition, equipment, owner, deadline and supporting record. Use it to turn an applicability decision into work someone owns.</p><p className="industry-register-note">A starting template for U.S. facilities. Complete the jurisdiction and applicability review for your site before using it as a compliance calendar.</p><a href={hub.register.path} download>Download the register <span aria-hidden="true">↗</span></a><span className="industry-register-format">CSV · 10 workstreams · No signup</span></div>
     </section>}
     <section className="industry-hub-library industry-hub-container" aria-labelledby="industry-guides"><div className="industry-hub-section-heading"><div><p className="industry-hub-eyebrow">The field guides</p><h2 id="industry-guides">Start with the next decision.</h2></div><p>Detailed explanations, working checklists and links to the authorities behind each requirement.</p></div><div className="resource-article-grid">{articles.map(article => <ResourceArticleCard key={article.slug} article={article} srcSet={coverSrcSet(article.image)} />)}</div></section>
     <section id="compliance-map" className="industry-compliance-map industry-hub-container"><div className="industry-hub-section-heading"><div><p className="industry-hub-eyebrow">The compliance map</p><h2>Follow the whole project.</h2></div><p>{hub.scope}</p></div><div className="industry-gates">{hub.gates.map((gate, i) => <section key={gate.title} className="industry-gate"><span className="industry-gate-number">{String(i + 1).padStart(2, '0')}</span><div><h3>{gate.title}</h3><p className="industry-gate-question">{gate.question}</p></div><div><p><span>Evidence to assemble</span>{gate.evidence}</p><p><span>Authority and scope</span>{gate.authority}</p><div className="industry-gate-links"><a href={gate.source}>Primary reference ↗</a>{gate.guide && <Link to={`/blog/${gate.guide}`}>Read the guide ↗</Link>}</div></div></section>)}</div></section>

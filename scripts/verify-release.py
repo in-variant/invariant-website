@@ -28,12 +28,13 @@ DATASET_INDEX_PATH = "/datasets.json"
 DATASET_CITATIONS_PATH = "/datasets.csl.json"
 COVERAGE_FIELDS_PATH = "/data-coverage-fields.json"
 AGENT_INDEX_PATHS = frozenset(("/llms.txt", "/llms-index.txt", "/llms-full.txt"))
+INDUSTRY_HUB_PATHS = ("/data-center-compliance", "/data-centre-compliance-india", "/oil-gas-compliance")
 SAMPLE = (
     "/", "/product", "/data-coverage", "/blog", "/resources", "/research", "/datasets",
     "/blog/data-center-site-selection-checklist",
     "/glossary/data-center-site-selection",
     "/calculators/nrc-license-timeline",
-)
+) + INDUSTRY_HUB_PATHS
 MISSING = (
     "/__release-check-missing__", "/blog/__release-check-missing__",
     "/glossary/__release-check-missing__", "/blog/__release-check-missing__.geojson",
@@ -55,7 +56,7 @@ CRAWLER_SMOKE_PATHS = frozenset((
     "/llms/topics/commercial-real-estate-lending.md", "/llms/topics/power-utilities-and-connectivity.md",
     "/data-coverage", "/data-coverage.md", COVERAGE_FIELDS_PATH,
     "/blog/", "/product/", "/datasets/", "/data-coverage/",
-)) | AGENT_INDEX_PATHS
+)) | AGENT_INDEX_PATHS | frozenset(path + suffix for path in INDUSTRY_HUB_PATHS for suffix in ("", ".md"))
 NON_CONTENT_TEXT_TAGS = frozenset(("script", "style", "noscript"))
 SEARCH_METADATA = ("description", "og:url", "og:title", "og:description", "og:image", "twitter:image")
 VITE_ASSET = re.compile(r"^(/assets/[^/?]+)-[A-Za-z0-9_-]{8}(\.(?:css|js))$")
@@ -456,6 +457,26 @@ def verify_agent_links(files, pages):
                 require(fragment in pages[destination].ids, f"{path} links to a missing fragment: {href}")
 
 
+def verify_industry_hubs(pages, sitemap):
+    for path in INDUSTRY_HUB_PATHS:
+        page = pages[path]
+        markdown_path = path + ".md"
+        require(page.markdown == [markdown_path], f"{path} needs its agent edition URL")
+        collections = [node for node in page.schemas if node.get("@type") == "CollectionPage"]
+        require(len(collections) == 1, f"{path} needs one CollectionPage schema")
+        lastmod = sitemap[page.url]
+        require(lastmod and collections[0].get("dateModified") == lastmod,
+                f"{path} sitemap and CollectionPage revision dates differ")
+        contents = (DIST / markdown_path.lstrip("/")).read_text(encoding="utf-8")
+        require(f"URL: {page.url}  \nUpdated: {lastmod} · Publisher: Invariant" in contents,
+                f"{markdown_path} has an incorrect canonical URL or revision date")
+        require("\n## Field guides\n" in contents, f"{markdown_path} is missing its field guide directory")
+        guide_list = contents.rsplit("\n## Field guides\n", 1)[1]
+        links = set(re.findall(r"\]\(<(https://invariant-ai\.com/blog/[a-z0-9-]+)\.md>\)", guide_list))
+        expected = {part["url"] for part in collections[0]["hasPart"]}
+        require(links and links == expected, f"{markdown_path} has a different guide inventory from the HTML hub")
+
+
 def verify_search_metadata(pages):
     titles = {}
     for path, page in pages.items():
@@ -672,6 +693,7 @@ def build_jobs(sitemap, full):
         assets.update(page.assets)
         pages[path] = page
     verify_search_metadata(pages)
+    verify_industry_hubs(pages, sitemap)
     citation_files = verify_dataset_catalog(catalog, pages)
     feed = (DIST / FEED_PATH.lstrip("/")).read_bytes()
     verify_blog_feed(pages["/blog"], feed, expected_urls)

@@ -4,6 +4,7 @@
 //   /glossary/<slug>.md   one markdown file per glossary entry
 //   /product.md          platform overview and agent setup
 //   /resources.md        workflow guides, research, and planning links
+//   industry hub .md     requirements, authorities and guide links for each industry hub
 //   /research.md         selected Invariant case studies, methods, and downloads
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
@@ -20,6 +21,7 @@ import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { datasetCitationPath } from '../src/data/datasetCitationPath.mjs'
 import { formatEarthRequest } from '../src/data/formatEarthRequest.mjs'
 import { buildArticleCollectionLinks, guideGroupId } from '../src/data/collectionGuideLinks.mjs'
+import { INDUSTRY_HUBS, hubIncludes, hubUpdatedDate } from '../src/data/industryHubs.mjs'
 import { agentTopicGuides } from './agent-topic-guides.mjs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
@@ -602,6 +604,29 @@ mkdirSync(join(DIST, 'citations'), { recursive: true })
 for (const citation of datasetCitations) {
   writeFileSync(join(DIST, datasetCitationPath(citation.URL).slice(1)), `${JSON.stringify([citation], null, 2)}\n`)
 }
+for (const hub of INDUSTRY_HUBS) {
+  const page = `${SITE}/${hub.slug}`
+  const guides = articleIndex.filter(article => hubIncludes(hub, article))
+  const body = [
+    `# ${hub.title}`, '',
+    `URL: ${page}  `, `Updated: ${hubUpdatedDate(hub, guides)} · Publisher: Invariant`, '',
+    hub.intro, '', hub.scope, '',
+    ...(hub.register ? [citationLink(hub.register.label, SITE + hub.register.path), ''] : []),
+    `## ${sectionLink('Compliance requirements and primary sources', page, 'compliance-map')}`, '',
+    ...hub.gates.flatMap(({ title, question, evidence, authority, source, guide }) => [
+      `### ${title}`, '', question, '',
+      `**Evidence to assemble.** ${evidence}`, '',
+      `**Authority and scope.** ${authority}`, '',
+      [citationLink('Primary reference', source),
+        ...(guide ? [citationLink('Read the guide', `${SITE}/blog/${guide}.md`)] : []),
+      ].join(' · '), '',
+    ]),
+    '## Field guides', '',
+    ...guides.map(guide => `- ${citationLink(guide.title, `${SITE}/blog/${guide.slug}.md`)}`), '',
+  ].join('\n')
+  writeFileSync(join(DIST, `${hub.slug}.md`), body)
+}
+
 const full = [
   '# Invariant data, site selection, power and compliance guides', '',
   '> Full text of the industry guides and buyer workflows. Each article has a Markdown copy at its URL plus `.md`.', '',
@@ -660,4 +685,4 @@ for (const a of articles) {
 writeFileSync(join(DIST, 'llms-full.txt'), full.join('\n'))
 
 for (const e of glossary) writeFileSync(join(DIST, 'glossary', `${e.slug}.md`), glossaryMd(e))
-console.log(`agent markdown: ${articles.length} articles, ${blogCollections.length} collections, ${topicGuides.length} topic directories, ${glossary.length} glossary entries, llms-full.txt`)
+console.log(`agent markdown: ${articles.length} articles, ${blogCollections.length} collections, ${INDUSTRY_HUBS.length} industry hubs, ${topicGuides.length} topic directories, ${glossary.length} glossary entries, llms-full.txt`)

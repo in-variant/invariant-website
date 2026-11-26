@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { INDUSTRY_HUBS, hubUpdatedDate } from '../src/data/industryHubs.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -69,8 +70,7 @@ const BLOG = [
   ...blogCollections.map(collection => ({ loc: `/blog/${collection.slug}`, lastmod: collection.updatedDate, changefreq: 'monthly', priority: '0.8' })),
 ]
 const industryUrls = [
-  ...['data-center-compliance', 'oil-gas-compliance'].map(slug => ({ loc: `/${slug}`, changefreq: 'monthly', priority: '0.85', lastmod: '2026-09-15' })),
-  { loc: '/data-centre-compliance-india', changefreq: 'monthly', priority: '0.85', lastmod: '2026-11-21' },
+  ...INDUSTRY_HUBS.map(hub => ({ loc: `/${hub.slug}`, changefreq: 'monthly', priority: '0.85', lastmod: hubUpdatedDate(hub, industryArticles) })),
   ...industryArticles.map(article => ({ loc: `/blog/${article.slug}`, changefreq: 'monthly', priority: '0.8', lastmod: article.updatedDate ?? article.dateTime })),
 ]
 
