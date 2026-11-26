@@ -95,6 +95,12 @@ function articleMd(a) {
     out.push(...a.listingSections.map(({ id, label }) => `- [${linkText(label)}](${SITE}/blog/${a.slug}#${id})`),
       `- [Request a shortlist](${SITE}/contact?request=site-selection)`, '')
   }
+  if (a.guideActions) {
+    out.push(...a.guideActions.map(({ href, label }) => {
+      const url = new URL(href, `${SITE}/blog/${a.slug}`)
+      return `- ${citationLink(label, url.href)}`
+    }), '')
+  }
   const collectionLink = articleCollectionLinks.get(a.slug)
   if (collectionLink) out.push(`Browse [${linkText(collectionLink.label)}](${SITE}${collectionLink.path}) for related guides.`, '')
   if (a.takeaways?.length) out.push('## Key points', '', ...a.takeaways.map(t => `- ${t}`), '')
@@ -108,6 +114,8 @@ function articleMd(a) {
         if (b.worksheet) out.push(`[Download the worksheet (CSV)](${SITE}/blog/${a.slug}.csv)`, '')
         const rows = b.rows.map((row, rowIndex) => {
           const cells = row.map(cell)
+          const rowSectionId = b.rowSectionIds?.[rowIndex]
+          if (rowSectionId) cells[0] = cell(citationLink(row[0], `${SITE}/blog/${a.slug}#${rowSectionId}`))
           cells[cells.length - 1] += cell(cite(b.rowSourceIds?.[rowIndex]))
           return `| ${cells.join(' | ')} |`
         })

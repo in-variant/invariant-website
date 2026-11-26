@@ -2821,10 +2821,10 @@
   "kind": "study-guide",
   "region": "United States",
   "title": "Check FEMA flood zones by address for data centers",
-  "description": "Find the FEMA zone by data center address. Compare ten sites, including 1919 Park Avenue in Weehawken and 1100 White Street SW in Atlanta.",
+  "description": "Check 10 data center addresses against effective FEMA maps. Compare Zone AE and shaded or unshaded Zone X, with the parcel and building evidence for each site.",
   "date": "2026-11-20",
   "readMinutes": 10,
-  "intro": "Look up the address on FEMA’s effective map, then check the full parcel, the building outline and the access route. At 1919 Park Avenue in Weehawken, the state’s rooftop point is in Zone AE and about 35% of the tax lot is in Zone AE. At 1100 White Street SW in Atlanta, the parcel and the city’s mapped building outline are in unshaded Zone X. The ten examples below show which records support each result.",
+  "intro": "A FEMA address search shows the mapped zone at one point. For a site decision, match the tax lot and building outline, then check access and planned equipment separately. This comparison shows the effective map result for ten U.S. data center sites and which geometry each result covers.",
   "takeaways": [
    "Separate the point from the parcel. A single roof point can be in Zone AE on a tax lot that crosses several FEMA zones.",
    "Keep the Zone X subtype. Plano and Novva Mesa both returned X, but the Mesa parcel is in the mapped 0.2% annual-chance flood hazard area.",
@@ -2834,7 +2834,115 @@
    "Check the building, electrical yard and access route separately. Each can intersect a different hazard area.",
    "Use the local floodplain administrator and a qualified engineer to resolve boundary, elevation and floodway questions before design or acquisition."
   ],
+  "guideActions": [
+   {
+    "href": "#compare-fema-addresses",
+    "label": "Compare the 10 sites"
+   },
+   {
+    "href": "https://docs.invariant-ai.com/check-flood-zone-by-address",
+    "label": "Check your own address"
+   },
+   {
+    "href": "/blog/data-center-fema-address-comparison.csv",
+    "label": "Download the CSV",
+    "download": true
+   }
+  ],
   "sections": [
+   {
+    "id": "compare-fema-addresses",
+    "heading": "FEMA flood zones for 10 data center sites",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "We checked the effective FEMA National Flood Hazard Layer on November 24 and 25, 2026. Select a site for the map panel, source records and download. The CSV includes the parcel ID and the share of the parcel in the Special Flood Hazard Area where a tax lot was identified.",
+      "sourceIds": [
+       "fema-nfhl"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Site",
+       "Mapped FEMA zone",
+       "What we checked"
+      ],
+      "rows": [
+       [
+        "100 Delawanna Avenue, Clifton, NJ",
+        "Unshaded Zone X",
+        "Address-range point and tax lot. The point fell about 2 m outside the lot."
+       ],
+       [
+        "501 Northwest Avenue, Northlake, IL (Aligned ORD-02)",
+        "Unshaded Zone X",
+        "Address-range point only. The site’s tax lot is still unconfirmed."
+       ],
+       [
+        "55 Marietta Street NW, Atlanta, GA",
+        "Unshaded Zone X",
+        "City address point and tax lot."
+       ],
+       [
+        "400 South Akard Street, Dallas, TX",
+        "Unshaded Zone X",
+        "City address point and tax lot. A separate building footprint was unresolved."
+       ],
+       [
+        "655 North Franklin Street, Tampa, FL",
+        "Unshaded Zone X",
+        "County address point, tax lot and city footprint. County hurricane evacuation Zone C is a separate designation."
+       ],
+       [
+        "13760 University Boulevard, Gainesville, VA",
+        "Unshaded Zone X",
+        "County address point and tax lot. The assessor uses 13780 University Boulevard. The building footprint remains unverified."
+       ],
+       [
+        "2800 Summit Avenue, Plano, TX",
+        "Unshaded Zone X",
+        "City parcel address point, tax lot and six mapped footprints."
+       ],
+       [
+        "Novva Mesa, Warner Road and Ellsworth Road, Mesa, AZ",
+        "Shaded Zone X (0.2% annual chance)",
+        "Tax lot, 12 city address points and nine mapped outlines. The outlines have unverified as-built status."
+       ],
+       [
+        "1919 Park Avenue, Weehawken, NJ",
+        "Zone AE at the rooftop point. About 35.1% of the lot is in Zone AE.",
+        "State rooftop point and tax lot. The other EWR2 address and the building footprint are outside the check."
+       ],
+       [
+        "1100 White Street SW, Atlanta, GA (DataBank ATL2)",
+        "Unshaded Zone X",
+        "Parcel and a mapped building outline. The result covers the White Street site."
+       ]
+      ],
+      "rowSectionIds": [
+       "address-check-examples",
+       "address-check-examples",
+       "address-check-examples",
+       "dallas-tampa-flood-map",
+       "dallas-tampa-flood-map",
+       "gainesville-crossing-flood-zone",
+       "plano-novva-mesa-flood-zones",
+       "plano-novva-mesa-flood-zones",
+       "weehawken-1919-park-flood-zone",
+       "atlanta-1100-white-street-flood-zone"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/data-center-fema-address-comparison.csv",
+      "label": "Download all 10 FEMA address checks",
+      "format": "CSV",
+      "datasetAnchor": null
+     }
+    ]
+   },
    {
     "id": "address-check-examples",
     "heading": "FEMA flood zones for three data center addresses",

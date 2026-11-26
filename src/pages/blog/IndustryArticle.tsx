@@ -55,7 +55,9 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
             {block.rows.map((row, i) => (
               <tr key={i} role="row">
                 {row.map((cell, j) => j === 0 ? (
-                  <th key={j} scope="row" role="rowheader">{cell}</th>
+                  <th key={j} scope="row" role="rowheader">{block.rowSectionIds
+                    ? <a className="industry-table-section-link" href={`#${block.rowSectionIds[i]}`}>{cell}</a>
+                    : cell}</th>
                 ) : (
                   <td key={j} role="cell">
                     {stackOnMobile && <span className="industry-worksheet-field" aria-hidden="true">{block.columns[j]}</span>}
@@ -217,11 +219,11 @@ export default function IndustryArticle({ article }: { article: Article }) {
   const isSiteSelectionService = article.kind === 'site-guide' && !!article.service
   const checklist = article.sections.find(section => section.blocks.some(block => block.type === 'table' && block.worksheet))
   const workbook = checklist?.blocks.find(block => block.type === 'download' && block.format === 'XLSX')
-  const guideActions = article.kind === 'site-guide' && checklist && workbook?.type === 'download' ? [
+  const guideActions = article.guideActions ?? (article.kind === 'site-guide' && checklist && workbook?.type === 'download' ? [
     { href: workbook.path, label: 'Download Excel workbook', download: true },
     { href: `#${checklist.id}`, label: 'See the checklist' },
     { href: '/blog/energized-data-center-sites-available-now#sites-available', label: 'Browse sites by power status' },
-  ] : undefined
+  ] : undefined)
   const reviewedDate = article.updatedDate ?? article.date
   const railLink = article.collectionLink ?? (
     isSiteListing ? { path: '/blog/find-data-center-site-us', label: 'Data center site finder' } :

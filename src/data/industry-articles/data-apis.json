@@ -22933,13 +22933,13 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Mireye Alternatives for U.S. Property Screening",
-    "description": "Compare Mireye, Invariant Earth, West Kite, and Regrid for U.S. property screening. Check how each handles parcel matches, hazards, and utility evidence.",
+    "description": "Compare Mireye, Invariant Earth and other U.S. property screening APIs. Test parcel matching, point versus boundary results, source dates and parcel history.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
+    "updatedDate": "2026-11-25",
     "readMinutes": 7,
     "coverAlt": "Illustrative aerial view of an industrial building beside winding wetlands.",
     "coverCaption": "AI-generated illustration of an industrial site beside wetlands.",
-    "intro": "Use Invariant Earth when your workflow needs cited site conditions, parcel boundaries and the reason a parcel was matched. Compare Mireye for public location fields and parcel enrichment, West Kite for lot-level flood and wetland overlap, and Regrid for parcel geometry and identity. Run the same property through each workflow and check which location and source produced each result.",
+    "intro": "Use Invariant Earth when your property screen must show which parcel matched, which source supplied each field, and when the source was retrieved. Compare Mireye and Invariant on the same coordinates, then test how your workflow handles a tax lot that changed boundaries while keeping its identifier. The trials below cover current fields and a dated parcel example.",
     "takeaways": [
       "Compare the coordinates and geometry behind each field. The same field name can describe a different search or source.",
       "Both Mireye and Invariant use wetland_acres for an entire selected wetland polygon. To estimate affected acreage, calculate its intersection with the property or project area.",
@@ -22952,7 +22952,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Invariant makes Invariant Earth. We reviewed public catalogs and documentation on November 22, 2026. The comparison describes documented inputs and outputs. Test account-specific coverage, latency, and results on your own properties."
+            "text": "Invariant makes Invariant Earth. This comparison uses public product documentation and published evidence. Run both APIs on the same properties to verify coverage for your account."
           },
           {
             "type": "table",
@@ -22964,40 +22964,40 @@
             ],
             "rows": [
               [
-                "Mireye",
-                "Point data through Fetch or parcel records through Enrich.",
-                "Compare the input coordinate with Enrich’s analysis_point. Its documented example resolves a parcel and uses the stored parcel centroid for analysis."
-              ],
-              [
                 "Invariant Earth",
                 "Location and parcel fields with field-level source, dataset vintage and status.",
                 "Inspect parcel_match_type and parcel_match_distance_m. The parcel ID can fall back to a nearest parcel within 250 meters. Check the match before joining another dataset."
               ],
               [
-                "West Kite",
-                "Commercial property research and a report using the parcel outline for flood and wetland area.",
-                "Check the property match and whether each layer is published for the county. The documented response identifies fields that could not be answered."
+                "Mireye",
+                "Point data through Fetch or parcel records through Enrich.",
+                "Compare the input coordinate with Enrich’s analysis_point. Its documented example resolves a parcel and uses the stored parcel centroid for analysis."
               ],
               [
                 "Regrid",
                 "Parcel IDs and boundaries for use in your own GIS or pipeline.",
                 "Use the county record to verify a recent split. Regrid explains which events preserve its ID and which retire it."
+              ],
+              [
+                "West Kite",
+                "Commercial property research and a report using the parcel outline for flood and wetland area.",
+                "Check the property match and whether each layer is published for the county. The documented response identifies fields that could not be answered."
               ]
             ],
             "rowSourceIds": [
-              [
-                "mireye-fetch",
-                "mireye-enrich"
-              ],
               [
                 "invariant-fields",
                 "invariant-response"
               ],
               [
-                "west-kite"
+                "mireye-fetch",
+                "mireye-enrich"
               ],
               [
                 "regrid-id"
+              ],
+              [
+                "west-kite"
               ]
             ]
           }
@@ -23071,6 +23071,37 @@
             "label": "Download the property screening API field comparison",
             "path": "/blog/mireye-alternatives-for-property-screening.csv",
             "format": "CSV"
+          }
+        ]
+      },
+      {
+        "id": "compare-parcel-history",
+        "heading": "When is Invariant Earth a good Mireye alternative?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose Invariant Earth for a workflow that needs to explain each current parcel match and preserve the underlying evidence for later comparison. In our Brooklyn example, one tax lot kept its identifier through a split and retained about 53% of its former mapped area. The downloadable case has dated geometries from the city and separates archived boundaries from current point and parcel queries.",
+            "sourceIds": [
+              "invariant-history",
+              "invariant-response"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In a trial, ask each provider to return the current parcel and match distance, then show the earlier boundary for the same site or identify the archive you would need. Check whether you can recover the date and source of both geometries. Pin a snapshot so you can explain what changed when an underwriter or developer reopens the file."
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "historical-parcel-boundaries-api",
+                "label": "Replay the Brooklyn parcel split"
+              },
+              {
+                "path": "/data-coverage",
+                "label": "Check which fields you can query in Invariant Earth"
+              }
+            ]
           }
         ]
       },
@@ -23171,6 +23202,12 @@
       }
     ],
     "sources": [
+      {
+        "id": "invariant-history",
+        "title": "Brooklyn tax lot changes and downloadable dated polygons",
+        "url": "https://invariant-ai.com/blog/historical-parcel-boundaries-api#dataset",
+        "publisher": "Invariant"
+      },
       {
         "id": "invariant-fields",
         "linkLabel": "Invariant Earth catalog",
@@ -31943,12 +31980,13 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Data center site selection tools for power capacity",
-    "description": "Compare six power screening tools for a 200 MW data center. See how a South Carolina docket separates load plans, upgrades, and actual energization.",
+    "description": "Compare Invariant, Paces, Geoforge and other data center power screening tools using a 200 MW utility connection case. Check phase MW, upgrades and timing.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-25",
     "readMinutes": 8,
     "coverAlt": "Diagram of the Aiken No. 3 to Mt. Zion transmission buildout. A 16.2-mile section leads to the Mt. Zion switching station. Two feeders totaling 1.5 miles lead to customer substations. The first energized on December 15, 2025.",
     "coverCaption": "Simplified transmission scope for the Aiken project. The South Carolina Public Service Commission granted certificates in July 2024. Santee Cooper later reported the first customer substation energized in December 2025.",
-    "intro": "For a 200 MW data center, use a power screening tool to compare where you could connect, how much load each point can support under a stated study case, and what has to happen before each phase. Start with a site search or sourced grid report, then get a study that tests your actual load profile. Before committing to a site or promising a date, ask the serving utility for the documents behind the MW, the upgrades, and the schedule.",
+    "intro": "Start with Invariant when your 200 MW site decision needs parcel constraints, named connection options, MW by phase, and a study of what limits service. Compare Paces, Geoforge, and other providers on the same site and load profile. The Aiken County docket below shows the utility records a model needs to be checked against before you carry a date into a lease or acquisition.",
     "takeaways": [
       "Compare tools on the same site, load ramp and target dates. Ask which connection points, planning cases, prior requests and outages drive each answer.",
       "Keep modeled load capacity, signed service terms, construction and energization as separate steps.",
@@ -31966,21 +32004,75 @@
           {
             "type": "table",
             "stackOnMobile": true,
-            "columns": ["Tool", "What the provider documents", "What to ask for on the same 200 MW site"],
-            "rows": [
-              ["Paces", "Portfolio and parcel screening with regional withdrawal-capacity views, plus project reports and support for interconnection applications.", "Ask how the regional capacity layer was calculated. Request a worked report with the selected connection, modeled phase MW, dependencies, and an explanation of how it arrived at its dates."],
-              ["Geoforge", "Site reports combine offtake capacity by year and scenario, modeled on ISO/RTO grid cases as described by the provider, with queue context and planned upgrades. Its example shows a connection shortlist and an estimated time-to-power range.", "Ask which loads and upgrades were included in each scenario. Have the provider show how the timeline changes if a named upgrade slips or a competing request advances."],
-              ["PVcase Prospect", "Map-based screening using modeled withdrawal capacity. Its capacity documentation explains the use of planning scenarios and a focus on later-stage queue projects.", "Confirm the exact substation bus, constraint scenario and year. Ask which projects were included and how the report handles a load larger than the displayed withdrawal capacity."],
-              ["GridCARE", "Grid simulation and utility collaboration to identify underused capacity. Its National Grid announcement describes an effort to identify capacity for large loads in New York.", "Confirm the utility and service area for your site. Ask what flexibility or curtailment the case assumes, how many MW would be available in each phase, and who can approve the service terms."],
-              ["Mireye", "Cited location and infrastructure data, including substations, transmission voltage classes and site screening bundles.", "Use it to identify nearby candidates and inspect sources. Ask separately for evidence behind any MW figure or service date you intend to carry into underwriting."],
-              ["Invariant", "Earth provides parcel and grid context. The published study workflow describes AC power flow and loss-of-one-element contingency tests by connection and study year, with indicative upgrade costs and timing.", "Ask which cases are reconstructed or supplied by a utility, how the model was checked, and what evidence supports each phase and its cost range."]
+            "columns": [
+              "Tool",
+              "What the provider documents",
+              "What to ask for on the same 200 MW site"
             ],
-            "rowSourceIds": [["paces"], ["geoforge-method", "geoforge-report"], ["pvcase", "pvcase-method"], ["gridcare"], ["mireye"], ["invariant-fields", "invariant-study"]]
+            "rows": [
+              [
+                "Invariant",
+                "Earth provides parcel and grid context. The published study workflow describes AC power flow and loss-of-one-element contingency tests by connection and study year, with indicative upgrade costs and timing.",
+                "Ask which cases are reconstructed or supplied by a utility, how the model was checked, and what evidence supports each phase and its cost range."
+              ],
+              [
+                "Paces",
+                "Portfolio and parcel screening with regional withdrawal-capacity views, plus project reports and support for interconnection applications.",
+                "Ask how the regional capacity layer was calculated. Request a worked report with the selected connection, modeled phase MW, dependencies, and an explanation of how it arrived at its dates."
+              ],
+              [
+                "Geoforge",
+                "Site reports combine offtake capacity by year and scenario, modeled on ISO/RTO grid cases as described by the provider, with queue context and planned upgrades. Its example shows a connection shortlist and an estimated time-to-power range.",
+                "Ask which loads and upgrades were included in each scenario. Have the provider show how the timeline changes if a named upgrade slips or a competing request advances."
+              ],
+              [
+                "PVcase Prospect",
+                "Map-based screening using modeled withdrawal capacity. Its capacity documentation explains the use of planning scenarios and a focus on later-stage queue projects.",
+                "Confirm the exact substation bus, constraint scenario and year. Ask which projects were included and how the report handles a load larger than the displayed withdrawal capacity."
+              ],
+              [
+                "GridCARE",
+                "Grid simulation and utility collaboration to identify underused capacity. Its National Grid announcement describes an effort to identify capacity for large loads in New York.",
+                "Confirm the utility and service area for your site. Ask what flexibility or curtailment the case assumes, how many MW would be available in each phase, and who can approve the service terms."
+              ],
+              [
+                "Mireye",
+                "Cited location and infrastructure data, including substations, transmission voltage classes and site screening bundles.",
+                "Use it to identify nearby candidates and inspect sources. Ask separately for evidence behind any MW figure or service date you intend to carry into underwriting."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "invariant-fields",
+                "invariant-study"
+              ],
+              [
+                "paces"
+              ],
+              [
+                "geoforge-method",
+                "geoforge-report"
+              ],
+              [
+                "pvcase",
+                "pvcase-method"
+              ],
+              [
+                "gridcare"
+              ],
+              [
+                "mireye"
+              ]
+            ]
           },
           {
             "type": "paragraph",
             "text": "Treat the date from a screening report as an estimate with a source and assumptions. A queue entry records a request or study status, depending on the system. Ask whether the product shows large loads, generation, or both, and which requests were actually included in the planning case. Operators publish different amounts of load information. For example, ERCOT has a separate large-load integration process.",
-            "sourceIds": ["geoforge-report", "pvcase-method", "ercot-load"]
+            "sourceIds": [
+              "geoforge-report",
+              "pvcase-method",
+              "ercot-load"
+            ]
           }
         ]
       },
@@ -32015,6 +32107,42 @@
             "label": "Download the Aiken milestones and links to the source filings",
             "path": "/blog/data-center-power-screening-tools.json",
             "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-paces-alternatives",
+        "heading": "How to compare Paces and Invariant on the same site",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Paces describes site origination, critical issues analysis, power flow studies and interconnection support for data center developers. Invariant combines a site and parcel screen with a project-specific AC power-flow study. Ask both teams to model the same phase dates, facility load at the meter, reliability target and candidate points of interconnection.",
+            "sourceIds": [
+              "paces",
+              "invariant-study",
+              "invariant-fields"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use the Aiken utility record above to grade the submissions. Each result should name the connection, report MW by study year, identify the line or transformer that limits service, and record who must fund each upgrade. Ask for the alternate outcome if a critical upgrade is late, plus the written utility action still needed before service can be committed.",
+            "sourceIds": [
+              "aiken-options",
+              "aiken-status"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "utility-grade-power-study",
+                "label": "Review Invariant’s power-flow study and deliverables"
+              },
+              {
+                "path": "/calculators/data-center-power-delivery-schedule",
+                "label": "Compare the service date with your phase schedule"
+              }
+            ]
           }
         ]
       },

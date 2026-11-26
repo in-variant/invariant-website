@@ -17,7 +17,7 @@ export type ArticleBlock = (
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'shell'; command: string }
-  | { type: 'table'; columns: string[]; rows: string[][]; worksheet?: boolean; stackOnMobile?: boolean; rowSourceIds?: string[][] }
+  | { type: 'table'; columns: string[]; rows: string[][]; worksheet?: boolean; stackOnMobile?: boolean; rowSourceIds?: string[][]; rowSectionIds?: string[] }
   | ({ type: 'download'; datasetAnchor?: string | null } & DatasetDownload)
   | ({ type: 'download'; datasetAnchor: null; format: 'Python' | 'XLSX' } & Omit<DatasetDownload, 'format'>)
   | { type: 'links'; label?: string; items: ({ label: string } & ({ slug: string; path?: never } | { path: string; slug?: never }))[] }
@@ -37,6 +37,7 @@ export type IndustryArticle = {
   intro: string
   takeaways: string[]
   listingSections?: { id: string; label: string }[]
+  guideActions?: { href: string; label: string; download?: boolean }[]
   sections: { id: string; heading: string; blocks: ArticleBlock[] }[]
   faqs: { question: string; answer: string; sourceIds?: string[] }[]
   sources: ArticleSource[]

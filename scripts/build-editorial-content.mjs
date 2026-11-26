@@ -122,7 +122,8 @@ for (const article of articles) {
       throw new Error(`Invalid source license URL: ${article.slug} (${source.id})`)
     }
   }
-  if (new Set(article.sections.map(section => section.id)).size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
+  const sectionIds = new Set(article.sections.map(section => section.id))
+  if (sectionIds.size !== article.sections.length) throw new Error(`Duplicate heading: ${article.slug}`)
   if (article.listingSections) {
     const destinations = new Set(article.listingSections.map(({ id }) => id))
     if (article.kind !== 'site-listing' || destinations.size === 0 || destinations.size !== article.listingSections.length ||
@@ -131,6 +132,14 @@ for (const article of articles) {
     }
   }
   const blocks = article.sections.flatMap(section => section.blocks)
+  for (const { href, label, download } of article.guideActions ?? []) {
+    const valid = download
+      ? blocks.some(block => block.type === 'download' && block.path === href)
+      : href?.startsWith('#')
+        ? sectionIds.has(href.slice(1))
+        : article.sources.some(source => source.url === href)
+    if (!label?.trim() || !valid) throw new Error(`Invalid guide action: ${article.slug} (${href})`)
+  }
   for (const block of [...blocks, ...article.faqs]) {
     for (const id of [...(block.sourceIds ?? []), ...(block.rowSourceIds?.flat() ?? [])]) if (!ids.has(id)) throw new Error(`Unknown source ${id}: ${article.slug}`)
     if (block.type === 'links') for (const item of block.items) {
@@ -141,6 +150,9 @@ for (const article of articles) {
     if (block.type === 'download' && (!/^\/blog\/[a-z0-9-]+\.[a-z0-9]+$/.test(block.path) || !existsSync(new URL(`../public${block.path}`, import.meta.url)))) throw new Error(`Invalid download ${block.path}: ${article.slug}`)
     if (block.type === 'table' && block.rows.some(row => row.length !== block.columns.length)) throw new Error(`Uneven table: ${article.slug}`)
     if (block.rowSourceIds && block.rowSourceIds.length !== block.rows.length) throw new Error(`Uneven table citations: ${article.slug}`)
+    if (block.type === 'table' && block.rowSectionIds && (
+      block.rowSectionIds.length !== block.rows.length || block.rowSectionIds.some(id => !sectionIds.has(id))
+    )) throw new Error(`Invalid table section links: ${article.slug}`)
     if (block.type === 'table' && block.worksheet) {
       if (worksheets.has(article.slug)) throw new Error(`Multiple worksheets for ${article.slug}`)
       const columns = [...block.columns, ...worksheetColumns]
