@@ -6,7 +6,7 @@ const comparisonWords = new Set('alternative best better compare compared compar
 function normalizeNames(text: string) {
   return text
     .replace(/\b(?:geo\s+forge|light\s+box|permit\s+pal|west\s+kite)\b/gi, name => name.replace(/\s+/g, ''))
-    .replace(/\b(?:www\.)?(mireye|regrid|paces|westkite|permitpal|geoforge|landstats|batchdata|parceled|permitintel)\.(?:ai|com|io|us)\b/gi, '$1')
+    .replace(/\b(?:www\.)?(regrid|paces|permitpal|landstats|batchdata|parceled|permitintel)\.(?:ai|com|io|us)\b/gi, '$1')
     .replace(/\b(?:www\.)?landrecords(?:\.us)?\b/gi, 'Landstats')
     .replace(/\b(?:www\.)?buildingactivity\.com\b/gi, 'Building Activity')
 }

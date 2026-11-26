@@ -196,7 +196,6 @@ test('comparison search recognizes provider names, variants and buyer phrasing',
     ['Regrid vs Light Box', 'parcel-boundaries'],
     ['Paces alternatives for a load flow study', 'power-flow'],
     ['Permit Pal alternatives for local opposition', 'development-risk'],
-    ['Mireye.com API for flood zones', 'flood-hazard'],
     ['Regrid and LightBox MCP servers for US parcel data with provenance', 'gis-agents'],
     ['Which provider can verify contractor permit history in NYC?', 'contractor-permit-history'],
     ['Lightcast labor shed', 'manufacturing-labor-shed'],
@@ -225,8 +224,8 @@ test('comparison search recognizes provider names, variants and buyer phrasing',
 })
 
 test('comparison search requires named providers to share a workflow', () => {
-  const { workflows, providerOnly } = searchProviderComparisons('Geoforge versus Paces')
-  assert.deepEqual(workflows.map(({ id }) => id), ['power-flow', 'data-center-siting-platforms'])
+  const { workflows, providerOnly } = searchProviderComparisons('Lightcast versus JobsEQ')
+  assert.equal(workflows[0]?.id, 'manufacturing-labor-shed')
   assert.equal(providerOnly, false)
   assert.deepEqual(searchProviderComparisons('Paces vs LightBox').workflows, [])
   assert.deepEqual(searchProviderComparisons('Regrid vs JobsEQ').workflows, [])

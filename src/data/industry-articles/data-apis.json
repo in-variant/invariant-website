@@ -5255,12 +5255,12 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "How to compare elevation data APIs for a U.S. address",
-    "description": "Compare Invariant Earth, USGS, Mireye, Google, OpenTopography and emem. See three live elevation results at one address and download the source trial.",
+    "description": "Compare Invariant Earth, USGS, Google, OpenTopography and emem for U.S. elevation by address. See two live results at one site and download the source trial.",
     "date": "2026-11-25",
     "readMinutes": 7,
     "coverAlt": "Illustrated oblique aerial view of streets and buildings climbing a hillside above a California bay.",
     "coverCaption": "Generated editorial illustration of a coastal hillside. The source trial uses a separate address in San Francisco.",
-    "intro": "For ground elevation at a U.S. address, confirm the address point and start with a bare-earth terrain source such as USGS 3DEP. For slope or grading, use a terrain raster and the full site boundary. In a live test at San Francisco Main Library, USGS and Mireye returned 19.25 m and 19.28 m from different terrain grids. emem returned 20.59 m from a Copernicus surface model at a nearby representative point. Each value answers a different measurement question.",
+    "intro": "For ground elevation at a U.S. address, confirm the address point and start with a bare-earth source such as USGS 3DEP. For slope or grading, use a terrain raster and the full site boundary. At San Francisco Main Library, USGS returned 19.25 m from its terrain model. emem returned 20.59 m from a Copernicus surface model at the representative point of a nearby grid cell. Check what the dataset measures before using the value.",
     "takeaways": [
       "Check the coordinate, physical surface, vertical datum, source resolution and date before comparing two elevation results.",
       "For parcel screening with Invariant Earth, use point elevation alongside separate records for the parcel, building footprint and flood intersections.",
@@ -5310,11 +5310,6 @@
                 "Keep the reported raster ID, resolution and acquisition date. Repeat at the same coordinate rather than at a nearby geocode."
               ],
               [
-                "Mireye Fetch",
-                "Address or coordinate lookup for point elevation and other location fields. Its catalog describes a seamless 3DEP terrain grid and an EPQS fallback.",
-                "Read the source, data vintage and status. Request the original raster ID or acquisition date if your review needs it."
-              ],
-              [
                 "Google Maps Elevation API",
                 "Point and sampled path elevations through the Maps Platform. Returns coordinates and elevation, with resolution where available.",
                 "Compare a single-point call with your production sampling pattern. Ask how to align the result with the vertical datum used by your other inputs."
@@ -5340,10 +5335,6 @@
                 "usgs-sample"
               ],
               [
-                "mireye-fetch",
-                "mireye-catalog"
-              ],
-              [
                 "google"
               ],
               [
@@ -5357,7 +5348,7 @@
           },
           {
             "type": "paragraph",
-            "text": "Invariant publishes this comparison. We ran live reads against USGS, Mireye and emem on November 25, 2026 Pacific time. The entries for Invariant Earth, Google Maps Platform and OpenTopography use their public documentation. The test covers one point and compares what each response measures and reports."
+            "text": "Invariant publishes this comparison. We ran live reads against USGS and emem on November 25, 2026 Pacific time. The entries for Invariant Earth, Google Maps Platform and OpenTopography use their public documentation. The test covers one point and compares what each response measures and reports."
           }
         ]
       },
@@ -5367,11 +5358,10 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "We used the published city address point for 100 Larkin Street, at 37.77905419° N and 122.41632622° W, within San Francisco tax lot 0354001. The download retains the coordinate at full precision. USGS and Mireye accepted it directly. For emem, we resolved the coordinate to its cell and requested that cell’s Copernicus elevation band.",
+            "text": "We used the published city address point for 100 Larkin Street, at 37.77905419° N and 122.41632622° W, within San Francisco tax lot 0354001. The download retains the coordinate at full precision. USGS accepted it directly. For emem, we resolved the coordinate to its cell and requested that cell’s Copernicus elevation band.",
             "sourceIds": [
               "city-address",
               "usgs-sample",
-              "mireye-fetch",
               "emem"
             ]
           },
@@ -5390,11 +5380,6 @@
                 "Interpolated bare-earth elevation at the input point. The response returned raster 72150 at 1 m resolution, with a March 4, 2023 acquisition date."
               ],
               [
-                "Mireye Fetch",
-                "19.28 m",
-                "Ground elevation at the input point. The response identified the 3DEP seamless grid at about 10 m. Its vintage field named the product without a specific acquisition date."
-              ],
-              [
                 "emem",
                 "20.59 m",
                 "Copernicus GLO-30 surface height at one pixel containing the cell’s representative point. The response identified April 30, 2021 as the source edition date."
@@ -5406,10 +5391,6 @@
                 "usgs-epqs"
               ],
               [
-                "mireye-fetch",
-                "mireye-catalog"
-              ],
-              [
                 "emem",
                 "copernicus"
               ]
@@ -5417,10 +5398,9 @@
           },
           {
             "type": "paragraph",
-            "text": "The displays are rounded to two decimal places to distinguish the returned values. That precision is a display choice. The products sample the ground or surface differently, at different resolutions and sometimes at different points. The elevation difference cannot establish building height or an error in either source.",
+            "text": "The table rounds both values to two decimal places. The products sample different surfaces at different resolutions and locations. The difference alone cannot establish building height or an error in either source.",
             "sourceIds": [
               "usgs-epqs",
-              "mireye-catalog",
               "copernicus",
               "emem"
             ]
@@ -5578,20 +5558,6 @@
         "linkLabel": "Verify USGS datum guidance"
       },
       {
-        "id": "mireye-fetch",
-        "title": "Fetch API for a coordinate or address",
-        "publisher": "Mireye",
-        "url": "https://docs.mireye.ai/api-reference/fetch",
-        "linkLabel": "Read the Fetch contract"
-      },
-      {
-        "id": "mireye-catalog",
-        "title": "Elevation field definition and source",
-        "publisher": "Mireye",
-        "url": "https://api.mireye.com/v1/meta/fields",
-        "linkLabel": "Open the public field catalog"
-      },
-      {
         "id": "copernicus",
         "title": "GLO-30 surface model and vertical reference",
         "publisher": "Copernicus Data Space Ecosystem",
@@ -5648,8 +5614,6 @@
         "city-address",
         "usgs-sample",
         "usgs-epqs",
-        "mireye-fetch",
-        "mireye-catalog",
         "emem",
         "copernicus"
       ],
@@ -5662,7 +5626,8 @@
       "lidar-slope-developable-land",
       "elevation-certificate-by-address",
       "parcel-number-lookup-by-address"
-    ]
+    ],
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "chicago-city-owned-land-for-sale",
@@ -6189,11 +6154,6 @@
                 "A report and the evidence behind each stage in the pipeline. Ask how a modeled connection becomes a utility application and how the team tracks subsequent changes."
               ],
               [
-                "Geoforge",
-                "Site reports with modeled injection and offtake capacity by year and scenario, plus other site diligence information.",
-                "A site-level offtake scenario with named connection, study year, modeled MW and assumptions on competing demand and upgrades."
-              ],
-              [
                 "GridCARE",
                 "Grid modeling and utility collaboration for accelerating large customer connections. Its Portland General Electric announcement describes using load flexibility to study capacity.",
                 "Whether the serving utility can study that path and how the proposed firm and flexible load portions would be treated under the service terms."
@@ -6232,9 +6192,6 @@
               ],
               [
                 "paces"
-              ],
-              [
-                "geoforge"
               ],
               [
                 "gridcare"
@@ -6513,13 +6470,6 @@
         "linkLabel": "See the developer workflow"
       },
       {
-        "id": "geoforge",
-        "title": "Power and site reports for data center development",
-        "publisher": "Geoforge",
-        "url": "https://geoforge.ai/",
-        "linkLabel": "See the site reports"
-      },
-      {
         "id": "gridcare",
         "title": "Announced Portland General Electric collaboration",
         "publisher": "GridCARE",
@@ -6576,12 +6526,11 @@
     },
     "relatedSlugs": [
       "data-center-power-screening-tools",
-      "geoforge-alternatives-data-center-power",
       "data-center-site-selection-checklist",
       "utility-will-serve-letter-load-study-esa",
       "utility-grade-power-study"
     ],
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "electric-utility-lookup-by-address",
@@ -8191,8 +8140,8 @@
     ],
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "Industrial rail spur reopening, inspection and delivery milestones",
@@ -8215,7 +8164,8 @@
       "manufacturing-site-selection-100-buildable-acres",
       "industrial-wastewater-capacity-site-selection",
       "freight-analysis-framework-data"
-    ]
+    ],
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "cmbs-loan-collateral-by-address",
@@ -16822,7 +16772,7 @@
     "description": "Find commercial mortgage records by address. Use NYC recorder data to trace assignments, agreements and releases, and avoid counting the same obligation twice.",
     "date": "2026-11-23",
     "readMinutes": 9,
-    "coverFile": "west-kite-alternatives-for-commercial-property-data.webp",
+    "coverFile": "25-water-street-aerial.webp",
     "coverAlt": "Aerial photograph of 25 Water Street in Lower Manhattan with the tax lot outlined.",
     "coverCaption": "25 Water Street during conversion. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant added the MapPLUTO 26v2 tax lot outline.",
     "intro": "Start with the parcel and recorder’s office. Then trace each mortgage, assignment, agreement and release by instrument number. At 25 Water Street in New York, the recorder indexed a $415 million agreement and a $415 million assignment of leases and rents on the same day in 2025. The rent assignment directly references the agreement. Adding those two rows would put $830 million in the file without evidence of two separate loans.",
@@ -17047,11 +16997,6 @@
                 "Resolve the parcel and verify the match. Join it to the city’s instrument records and preserve the dates from both sources."
               ],
               [
-                "West Kite",
-                "Its recorded-loans reference describes the latest recorded financing with lender, amount, and satisfaction filtering.",
-                "Ask whether the source returns the agreement and rent assignment as distinct documents linked to one financing and exposes their file numbers."
-              ],
-              [
                 "ATTOM",
                 "Its assignments and releases data describes earlier mortgage references and ATTOM property IDs for records it can match.",
                 "Ask for the document and date that support each link. Test whether ambiguous or unmatched records stay visible."
@@ -17070,9 +17015,6 @@
             "rowSourceIds": [
               [
                 "earth-parcels"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "attom"
@@ -17107,10 +17049,6 @@
               {
                 "slug": "commercial-property-tax-delinquency-data",
                 "label": "Check tax delinquency and municipal lien evidence separately"
-              },
-              {
-                "slug": "west-kite-alternatives-for-commercial-property-data",
-                "label": "Replay the address and building match at 25 Water Street"
               }
             ]
           }
@@ -17239,13 +17177,6 @@
         "linkLabel": "Live API field metadata"
       },
       {
-        "id": "west-kite",
-        "title": "Recorded loans reference and filters",
-        "url": "https://westkite.com/docs/api/reference#recorded_loans",
-        "publisher": "West Kite",
-        "linkLabel": "Recorded loans documentation"
-      },
-      {
         "id": "attom",
         "title": "Assignment and release records and property linkage",
         "url": "https://cloud-help.attomdata.com/article/610-assignments-and-releases",
@@ -17263,13 +17194,12 @@
     "relatedSlugs": [
       "commercial-foreclosure-records-by-address",
       "commercial-real-estate-data-apis-for-lenders",
-      "commercial-mortgage-maturity-data-apis",
-      "west-kite-alternatives-for-commercial-property-data"
+      "commercial-mortgage-maturity-data-apis"
     ],
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "25 Water Street commercial mortgage recording chain",
@@ -17286,7 +17216,7 @@
       "spatialCoverage": "25 Water Street, Manhattan, New York, United States",
       "temporalCoverage": "2015-02-23/2025-12-09"
     },
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "commercial-property-tax-delinquency-data",
@@ -17550,11 +17480,6 @@
                 "Check the reporting year, underlying jurisdiction and availability for your portfolio."
               ],
               [
-                "West Kite",
-                "Dated delinquency, sale and lands-available notices. Its tax notices page lists selected Florida and Texas counties.",
-                "Ask for the notice date, original list, covered counties and how it reports any later resolution."
-              ],
-              [
                 "Local treasurer or tax collector",
                 "Charge-level balances, payment status and related official records for the parcel.",
                 "Ask how the jurisdiction documents a paid balance, sale, redemption or release and what date each record covers."
@@ -17567,9 +17492,6 @@
               ],
               [
                 "regrid"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "tax-billing",
@@ -17729,12 +17651,6 @@
         "title": "Assessment and tax data dictionary",
         "publisher": "Regrid",
         "url": "https://support.regrid.com/docs/assessment-tax"
-      },
-      {
-        "id": "west-kite",
-        "title": "Tax notice data and published county coverage",
-        "publisher": "West Kite",
-        "url": "https://westkite.com/api/tax-notices"
       }
     ],
     "relatedSlugs": [
@@ -17758,7 +17674,8 @@
         "lot-account",
         "sale-process"
       ]
-    }
+    },
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "fire-station-distance-commercial-property-underwriting",
@@ -18338,11 +18255,6 @@
                 "Verify grid resolution, timestamp, product history limit and any AQI definition."
               ],
               [
-                "Mireye Fetch",
-                "Air-quality context within a broader address or coordinate search.",
-                "Ask which source, time and geography produced the returned data."
-              ],
-              [
                 "EPA NEI and CAMPD",
                 "Facility emissions inventory and, for covered units, more frequent power-sector emissions records.",
                 "Match the facility and unit identifiers, reporting period and emissions basis."
@@ -18364,9 +18276,6 @@
               ],
               [
                 "google"
-              ],
-              [
-                "mireye"
               ],
               [
                 "nei",
@@ -18547,13 +18456,6 @@
         "linkLabel": "Google Air Quality API"
       },
       {
-        "id": "mireye",
-        "title": "Mireye Fetch and air-quality location screen",
-        "url": "https://www.mireye.com/products/fetch",
-        "publisher": "Mireye",
-        "linkLabel": "Mireye Fetch"
-      },
-      {
         "id": "earth",
         "title": "Invariant Earth PM2.5 design values and monitor identity fields",
         "url": "https://api.invariant-ai.com/v1/meta/fields",
@@ -18567,7 +18469,8 @@
       "wildfire-risk-by-address-for-underwriting",
       "best-gis-apis-for-site-selection",
       "natural-gas-pipeline-capacity-site-service"
-    ]
+    ],
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "oregon-water-rights-by-parcel",
@@ -19585,16 +19488,6 @@
                 "Check the field definition and source date. Ask the operator about the feasible connection and delivery terms."
               ],
               [
-                "Mireye Power Read",
-                "Gas pipeline distance in an address-level utility screen.",
-                "Check the geometry and whether the closest feature corresponds to the operator that can serve the parcel."
-              ],
-              [
-                "Geoforge Behind the Meter",
-                "A site report with gas headroom and fuel-cost context.",
-                "Compare the named meter, gas day and heat-rate assumptions with the operator’s postings and your plant load."
-              ],
-              [
                 "EIA and pipeline bulletin boards",
                 "Pipeline maps and project datasets from EIA. Point and segment postings from the operators.",
                 "Preserve the receipt or delivery direction, gas day, quantity and whether the value describes design, operations or scheduled use."
@@ -19608,12 +19501,6 @@
             "rowSourceIds": [
               [
                 "earth"
-              ],
-              [
-                "mireye"
-              ],
-              [
-                "geoforge"
               ],
               [
                 "eia",
@@ -19799,20 +19686,6 @@
         "url": "https://api.invariant-ai.com/v1/meta/fields",
         "publisher": "Invariant Earth",
         "linkLabel": "Invariant Earth data fields"
-      },
-      {
-        "id": "mireye",
-        "title": "Mireye Power Read site screening template",
-        "url": "https://www.mireye.com/templates/power-read",
-        "publisher": "Mireye",
-        "linkLabel": "Mireye Power Read"
-      },
-      {
-        "id": "geoforge",
-        "title": "Geoforge Behind the Meter example report",
-        "url": "https://geoforge.ai/report/behind-the-meter",
-        "publisher": "Geoforge",
-        "linkLabel": "Geoforge example"
       }
     ],
     "relatedSlugs": [
@@ -19820,7 +19693,8 @@
       "behind-the-meter-power-for-data-centers",
       "grid-capacity-apis-load-headroom",
       "manufacturing-site-selection-100-buildable-acres"
-    ]
+    ],
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "commercial-occupancy-vacancy-lease-rollover-data",
@@ -20156,11 +20030,6 @@
                 "Run the same building, submarket and suite-size filter against a known comp and check its deal date and area basis."
               ],
               [
-                "West Kite market series",
-                "Retrieving yearly commercial vacancy and commercial-space filing series in the geographies it serves.",
-                "Compare coverage and year for each geography before charting a trend."
-              ],
-              [
                 "Issuer filings, owner rent rolls and leasing teams",
                 "Reconciling current commitments, expirations and the latest unit-level availability.",
                 "Verify that the lease, the listing and the rent roll refer to the same premises and that each date means what your workflow expects."
@@ -20177,9 +20046,6 @@
               ],
               [
                 "compstak"
-              ],
-              [
-                "westkite"
               ],
               [
                 "bxp-q2",
@@ -20309,13 +20175,6 @@
         "linkLabel": "Invariant Earth API fields"
       },
       {
-        "id": "westkite",
-        "title": "West Kite Find API and commercial market series",
-        "url": "https://westkite.com/docs/api/find",
-        "publisher": "West Kite",
-        "linkLabel": "West Kite Find API"
-      },
-      {
         "id": "compstak",
         "title": "CompStak Space Insights API and data delivery",
         "url": "https://compstak.com/data-api",
@@ -20343,7 +20202,7 @@
       "retail-site-selection-trade-area-apis",
       "energized-data-center-sites-available-now"
     ],
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "additionalDatasets": [
       {
         "anchor": "dataset-redstone-lease-option",
@@ -20399,7 +20258,7 @@
               ],
               [
                 "Find nearby recorded sales",
-                "West Kite documents nearby deed-based sales comparables and flags portfolio transfers. ATTOM documents sales history by property ID or address.",
+                "ATTOM documents sales history by property ID or address.",
                 "Test a deed, an assignment of a ground lease, and a multi-property transfer. Check whether sale, recording, and observation dates stay separate."
               ],
               [
@@ -20428,7 +20287,6 @@
                 "earth"
               ],
               [
-                "westkite",
                 "attom"
               ],
               [
@@ -20538,8 +20396,7 @@
             "sourceIds": [
               "deed",
               "assignment",
-              "acris-types",
-              "westkite"
+              "acris-types"
             ]
           },
           {
@@ -20791,13 +20648,6 @@
         "url": "https://api.invariant-ai.com/v1/meta/fields",
         "publisher": "Invariant Earth",
         "linkLabel": "Invariant Earth API fields"
-      },
-      {
-        "id": "westkite",
-        "title": "West Kite recorded sales API reference",
-        "url": "https://westkite.com/docs/api/reference",
-        "publisher": "West Kite",
-        "linkLabel": "West Kite sales API reference"
       },
       {
         "id": "attom",
@@ -28606,7 +28456,7 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Data APIs for Commercial Property",
-    "description": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test fees, inspections and expired permits in four U.S. cities.",
+    "description": "Compare Invariant Earth, Shovels, PermitStack and other building permit data APIs. Test fees, inspections and expired permits against records from four U.S. cities.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-26",
     "readMinutes": 14,
@@ -28645,19 +28495,9 @@
             "rows": [
               ["Invariant Earth", "Build a cited property record for permit diligence. Fetch the parcel, zoning, building features and hazards together by coordinate.", "Check that the issuing agency’s building ID and work address refer to the structure you’re reviewing. Save the permit ID and the Earth field sources."],
               [
-                "Mireye Permits",
-                "Search or count permits by area or parcel. Check office coverage and dates before querying.",
-                "Does the search cover the office, dates and work type you need? Can you retain both the source status and the normalized status?"
-              ],
-              [
                 "Shovels",
                 "Search by geography and date range, with filters for work and property details.",
                 "Can you recover the original permit number and status for commercial work in each target jurisdiction?"
-              ],
-              [
-                "West Kite",
-                "Request permits as part of a commercial property record or search for permits in an area.",
-                "Can you distinguish one building from another when both sit on the same tax lot?"
               ],
               [
                 "ATTOM",
@@ -28703,14 +28543,7 @@
             "rowSourceIds": [
               ["earth-fields"],
               [
-                "mireye-permits",
-                "mireye-permit-coverage"
-              ],
-              [
                 "shovels"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "attom"
@@ -28751,56 +28584,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Start with the issuing office, the milestone you care about and its date range. We checked Mireye’s public office summaries for New York City and Seattle on November 24, 2026. Then we counted permit numbers in each city’s own export for issue dates after the last date in the corresponding office summary, through November 23.",
-            "sourceIds": [
-              "mireye-permit-coverage"
-            ]
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Issuing city",
-              "Mireye office summary",
-              "Newer issue dates in the city export"
-            ],
-            "rows": [
-              [
-                "New York City",
-                "Partial. Latest date in the office summary was November 20.",
-                "777 rows and 665 distinct work permit numbers issued November 21 to 23."
-              ],
-              [
-                "Seattle",
-                "Partial. Latest date in the office summary was November 19.",
-                "9 rows and 9 distinct permit numbers issued November 20 to 23."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "mireye-coverage-ny",
-                "nyc-newer-permit-count"
-              ],
-              [
-                "mireye-coverage-wa",
-                "seattle-newer-permit-count"
-              ]
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "The date difference shows why a coverage check belongs in a trial. It compares the public office summaries with the cities’ exports. A licensed record-by-record search would establish which permits the vendor actually returns. For your own trial, use the same office, date field, work types and distinct permit ID on both sides. Save the retrieval date and track changes during the trial.",
-            "sourceIds": [
-              "mireye-permits",
-              "mireye-permit-coverage"
-            ]
-          },
-          {
-            "type": "download",
-            "path": "/blog/building-permit-api-coverage-check-2026-11-24.csv",
-            "label": "Download the New York and Seattle coverage check and exact source queries",
-            "format": "CSV",
-            "datasetAnchor": "dataset-permit-coverage-check"
+            "text": "Start with the issuing office, the date field and the work types you need. Pull a dated sample from the issuing agency and compare distinct work permit numbers with your vendor’s results for the same filters. Count renewals, inspections and closeout separately. Record the retrieval time so you can tell late-arriving records from a coverage gap."
           }
         ]
       },
@@ -29257,10 +29041,6 @@
             "label": "Continue the property review",
             "items": [
               {
-                "slug": "west-kite-alternatives-for-commercial-property-data",
-                "label": "Compare property-data providers with an occupancy case"
-              },
-              {
                 "slug": "historical-parcel-boundaries-api",
                 "label": "Trace parcel IDs after a split or merger"
               },
@@ -29293,12 +29073,10 @@
       {"question": "How does Invariant Earth fit into building permit diligence?", "answer": "Use Invariant Earth to retrieve parcel identity, zoning, building characteristics and hazards together with sources. Link the issuer’s permit by its building and filing IDs to preserve the scope and dates of the work.", "sourceIds": ["earth-fields"]},
       {
         "question": "Which API should I use for building permits by address?",
-        "answer": "Start with Invariant Earth for the cited parcel and building context. For permit records, compare Mireye and Shovels for area and date searches, West Kite for commercial property records, ATTOM within an ATTOM integration, and PermitStack for property permit history. Check the authority, dates, scope and coverage against the issuer.",
+        "answer": "Start with Invariant Earth for the cited parcel and building context. For permit records, compare Shovels for area and date searches, ATTOM for a property lookup within an existing integration, and PermitStack for permit history. Check the authority, dates, scope and coverage against the issuer.",
         "sourceIds": [
           "earth-fields",
-          "mireye-permits",
           "shovels",
-          "west-kite",
           "attom",
           "permitstack"
         ]
@@ -29378,39 +29156,11 @@
       {"id": "earth-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth", "linkLabel": "Earth field catalog"},
       {"id": "earth-quickstart", "title": "Quickstart for a cited coordinate lookup", "url": "https://docs.invariant-ai.com/quickstart", "publisher": "Invariant Earth", "linkLabel": "Try the Earth API"},
       {
-        "id": "mireye-permits",
-        "title": "Mireye permit search, lookup and response coverage",
-        "url": "https://docs.mireye.ai/api-reference/permits",
-        "publisher": "Mireye",
-        "linkLabel": "Mireye Permits API"
-      },
-      {
-        "id": "mireye-permit-coverage",
-        "title": "Office coverage, dates, and which searches report partial coverage",
-        "url": "https://docs.mireye.ai/api-reference/permits-coverage",
-        "publisher": "Mireye",
-        "linkLabel": "Mireye coverage methodology"
-      },
-      {
-        "id": "mireye-coverage-ny",
-        "title": "New York City office coverage response, ny:place:51000",
-        "url": "https://api.mireye.com/v1/permits/coverage?state=NY",
-        "publisher": "Mireye",
-        "linkLabel": "New York City coverage response"
-      },
-      {
         "id": "nyc-newer-permit-count",
         "title": "NYC DOB NOW Approved Permits exact issue-date count",
         "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+work_permit%29+as+unique_permit_numbers&%24where=issued_date+%3E%3D+%272026-11-21T00%3A00%3A00%27+AND+issued_date+%3C+%272026-11-24T00%3A00%3A00%27",
         "publisher": "NYC Department of Buildings",
         "linkLabel": "New York City source count"
-      },
-      {
-        "id": "mireye-coverage-wa",
-        "title": "Seattle office coverage response, wa:place:63000",
-        "url": "https://api.mireye.com/v1/permits/coverage?state=WA",
-        "publisher": "Mireye",
-        "linkLabel": "Seattle coverage response"
       },
       {
         "id": "seattle-newer-permit-count",
@@ -29508,12 +29258,6 @@
         "title": "Permit search API reference",
         "url": "https://docs.shovels.ai/api-reference/permits/search-permits",
         "publisher": "Shovels"
-      },
-      {
-        "id": "west-kite",
-        "title": "Building permits and property lookup",
-        "url": "https://www.westkite.com/api/permits",
-        "publisher": "West Kite"
       },
       {
         "id": "attom",
@@ -29629,21 +29373,6 @@
         "temporalCoverage": "2026-11-18/2026-11-24"
       },
       {
-        "anchor": "dataset-permit-coverage-check",
-        "name": "New York and Seattle building permit coverage check",
-        "description": "Two dated comparisons of public permit office summaries with city-issued permit records. Includes office IDs, provider data version, date windows, distinct counts and the exact City Open Data queries.",
-        "sourceIds": [
-          "mireye-permit-coverage",
-          "mireye-coverage-ny",
-          "nyc-newer-permit-count",
-          "mireye-coverage-wa",
-          "seattle-newer-permit-count"
-        ],
-        "spatialCoverage": "New York City, New York, and Seattle, Washington, United States",
-        "temporalCoverage": "2026-11-19/2026-11-24",
-        "datePublished": "2026-11-24"
-      },
-      {
         "archivedRelease": {
           "url": "https://github.com/in-variant/invariant-website/releases/tag/building-permit-api-trial-v1.0.0",
           "version": "1.0.0",
@@ -29683,7 +29412,6 @@
     "relatedSlugs": [
       "building-permit-history-by-contractor",
       "certificate-of-occupancy-lookup-by-address",
-      "west-kite-alternatives-for-commercial-property-data",
       "ageospatial-alternatives-commercial-roof-underwriting",
       "building-violations-by-address"
     ]
@@ -30340,8 +30068,8 @@
     ],
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "Five base zoning district intersections at 2239 Forest Avenue",
@@ -31019,8 +30747,8 @@
     ],
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "AFDC fast charging inventory audit at I-70 Exit 79 in London, Ohio",
@@ -31037,368 +30765,6 @@
       "truck-depot-charging-site-selection",
       "best-gis-apis-for-site-selection",
       "warehouse-site-selection-rail-truck-access"
-    ]
-  },
-  {
-    "slug": "geoforge-alternatives-data-center-power",
-    "topic": "Data & APIs",
-    "title": "Geoforge alternatives for data center power screening",
-    "description": "Compare Geoforge, Paces, PVcase, GridCARE and Invariant. Use 49 PJM upgrade records to test the dates and assumptions behind a data center power forecast.",
-    "date": "2026-11-22",
-    "updatedDate": "2026-11-23",
-    "readMinutes": 7,
-    "region": "United States",
-    "coverAlt": "Illustrative aerial view of transmission towers and a construction lane crossing harvested fields.",
-    "coverCaption": "AI-generated illustration of a transmission corridor in agricultural terrain.",
-    "intro": "Start with Invariant for a power study tied to the proposed campus, its load ramp and the dates each phase needs service. Compare Geoforge for candidate connections and modeled offtake, Paces for portfolio screening, PVcase Prospect for grid constraints and GridCARE for utility programs that evaluate flexible load. Give each provider the same test. Ask which facility limits service, when the relevant upgrade enters service and how a delay changes the first phase.",
-    "takeaways": [
-      "In one PJM plan, the same 765 kV line segment had a June 2030 required date and an October 2031 projected date, a gap of 517 days.",
-      "AEP Ohio used separate service estimates for different groups of studied customers. One group needed an additional regional upgrade.",
-      "A usable power forecast names the connection, the case year, the limiting element and the work required for each load phase."
-    ],
-    "sections": [
-      {
-        "id": "compare-geoforge-alternatives",
-        "heading": "Which Geoforge alternative fits your site search?",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "The table summarizes public product descriptions. Use the Ohio example below to test what a provider can explain about its output for your location."
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Tool",
-              "What the provider documents",
-              "What to ask in the demo"
-            ],
-            "rows": [
-              [
-                "Geoforge",
-                "Site reports with potential connections, modeled offtake by year and scenario, queue context and an energization estimate. It also offers deeper power-flow studies.",
-                "Ask which grid case and upgrade records drive the range for the first phase. Request the basis for any competing load in that case."
-              ],
-              [
-                "Paces",
-                "Regional capacity screening, project-level connection evaluation and support through interconnection studies.",
-                "Ask how capacity layer results carry into a study of your site, and which grid, land or permitting issue changes the shortlist."
-              ],
-              [
-                "PVcase Prospect",
-                "Modeled injection and withdrawal, with limiting elements for different scenarios. The published documentation distinguishes base-case and contingency coverage by market.",
-                "Check the available scenarios for your region and whether the constraint is already present before your load is added."
-              ],
-              [
-                "GridCARE",
-                "Utility work on grid capacity for flexible loads. National Grid describes its use in New York and work with UK Electricity Transmission.",
-                "Confirm the serving utility is involved and get the MW, hours, operating limits and dispatch conditions for any flexible service."
-              ],
-              [
-                "Invariant",
-                "The published site-study workflow covers AC power flow, contingency analysis, candidate connections, and indicative costs and timing.",
-                "Request the case vintage, phased results and limiting facilities. Ask which assumptions can be rerun as utility evidence changes."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "geoforge",
-                "geoforge-sample"
-              ],
-              [
-                "paces"
-              ],
-              [
-                "pvcase"
-              ],
-              [
-                "gridcare"
-              ],
-              [
-                "invariant"
-              ]
-            ]
-          }
-        ]
-      },
-      {
-        "id": "ohio-service-dates",
-        "heading": "An Ohio power forecast can contain several valid dates",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "AEP Ohio’s November 2025 study letter covered about 13 GW of new data center load. It found that the studied projects needed regional transmission work under the scenarios evaluated. Its initial estimate was Q4 2031 for Clusters 1 and 3 with the regional project and applicable parallel upgrades in service. Cluster 2 had a 2033 planning estimate and needed another regional solution. A buyer needs the customer’s actual service plan to determine which work applies.",
-            "sourceIds": [
-              "aep-study"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "PJM cross-references the first regional proposal, 2025W1-570, to upgrade package b4068. In the March 2026 assessment, b4068.2, the AEP portion of the Greentown to Teddy 765 kV line, had a required date of June 1, 2030 and a projected date of October 31, 2031. The first is the planning need date. The second is the forecast in that report. A particular customer’s electric service date has its own evidence.",
-            "sourceIds": [
-              "pjm-corridor",
-              "pjm-required-projected",
-              "aep-study"
-            ]
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "What a report might show",
-              "Date in the public record",
-              "How to use it"
-            ],
-            "rows": [
-              [
-                "Planning need for b4068.2",
-                "June 1, 2030",
-                "Keep it as the date the reliability plan requires the work."
-              ],
-              [
-                "Projected in-service date for b4068.2",
-                "October 31, 2031",
-                "Use it as a dated component forecast and check the latest schedule."
-              ],
-              [
-                "AEP Ohio Cluster 2 service planning estimate",
-                "2033",
-                "Check the second regional dependency, local work and actual customer schedule."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "pjm-required-projected"
-              ],
-              [
-                "pjm-required-projected"
-              ],
-              [
-                "aep-study"
-              ]
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "AEP Ohio later reported that 5,642 MW had signed binding contracts under the new tariff as of February 12, 2026. That update gives the scale of the committed cohort. It leaves the distribution by bus, year and cluster open. Ask your provider how it treats unconfirmed demand, then test a scenario with a different set of competing projects.",
-            "sourceIds": [
-              "aep-study",
-              "aep-contracts"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "audit-the-upgrade-dates",
-        "heading": "What the 49 PJM upgrade rows show",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "We extracted the required and projected dates for each b4068 sub-ID in the March assessment. Two rows projected June 2028, 21 projected October 2030, and 26 projected October 2031. These are counts of published sub-IDs. A project forecast should identify the subset the connection actually depends on.",
-            "sourceIds": [
-              "pjm-baseline"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Two rows in that assessment show an invalid calendar value in the required-date column. The February board recommendations show June 1, 2030 for both sub-IDs. The download retains the February dates and the March source values separately, with the latter normalized to null. Ask a provider which source its model used and how it handles this sort of discrepancy.",
-            "sourceIds": [
-              "pjm-missing",
-              "pjm-board"
-            ]
-          },
-          {
-            "type": "download",
-            "label": "Download the 49 PJM upgrade rows and AEP Ohio study evidence",
-            "path": "/blog/pjm-b4068-transmission-upgrade-dates.json",
-            "format": "JSON"
-          }
-        ]
-      },
-      {
-        "id": "test-your-first-power-date",
-        "heading": "How to test the first phase before paying for a site option",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Give the vendor the parcel, the minimum load needed on day one, the full facility load, the two service dates and how much load you can curtail. For example, ask for 50 MW by July 2030 and 200 MW by January 2032 at the meter. Those are illustrative targets, with the utility service for your project to be confirmed."
-          },
-          {
-            "type": "list",
-            "items": [
-              "Ask for the modeled MW on each date at the same connection point. Record the model year, the limiting equipment and the outage assumption.",
-              "Request a second run with the relevant upgrade out of service through your target date. Ask which phase remains feasible and what changes the answer.",
-              "Get the utility’s written service terms, required work and estimated start of service. Keep energization and facility handover as separate milestones."
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Continue the power diligence",
-            "items": [
-              {
-                "slug": "data-center-power-screening-tools",
-                "label": "Compare more power screening tools and the Aiken energization case"
-              },
-              {
-                "slug": "utility-grade-power-study",
-                "label": "See what a site-specific load study can test"
-              },
-              {
-                "slug": "200-mw-data-center-site",
-                "label": "Find and verify a site for a 200 MW data center"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Evaluate other data APIs",
-            "items": [
-              {
-                "slug": "physical-world-data-api-evaluation",
-                "label": "Run the same vendor evaluation across workflows"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "faqs": [
-      {
-        "question": "What are the best Geoforge alternatives for finding power for a data center?",
-        "answer": "Consider Paces for portfolio screening, PVcase Prospect for modeled point-of-interconnection constraints, GridCARE for opportunities that depend on utility-supported load flexibility, and Invariant for a phased site study. Test your actual service dates with each provider.",
-        "sourceIds": [
-          "paces",
-          "pvcase",
-          "gridcare",
-          "invariant"
-        ]
-      },
-      {
-        "question": "What is the difference between required and projected in-service dates?",
-        "answer": "The required date expresses when the planning case needs an upgrade. The projected date is the schedule estimate in that record. PJM’s March 2026 assessment lists June 1, 2030 and October 31, 2031 respectively for b4068.2. Use the relevant utility agreement and construction schedule to evaluate customer service.",
-        "sourceIds": [
-          "pjm-required-projected",
-          "aep-study"
-        ]
-      },
-      {
-        "question": "Can a power screening report tell me when I can energize a data center?",
-        "answer": "A power screen can estimate when the grid could support a proposed load under a specific case. The serving utility’s agreement and work plan establish the commercial service terms and estimated date. Confirm energization through a commissioning or utility record.",
-        "sourceIds": [
-          "invariant",
-          "aep-tariff"
-        ]
-      }
-    ],
-    "sources": [
-      {
-        "id": "geoforge",
-        "publisher": "Geoforge",
-        "title": "Power reports and grid data methodology",
-        "url": "https://geoforge.ai/"
-      },
-      {
-        "id": "geoforge-sample",
-        "publisher": "Geoforge",
-        "title": "Public example of a power site report",
-        "url": "https://geoforge.ai/report/power"
-      },
-      {
-        "id": "paces",
-        "publisher": "Paces",
-        "title": "Site screening, point-of-interconnection analysis and studies",
-        "url": "https://www.paces.com/post/the-power-development-funnel-from-siting-to-interconnection"
-      },
-      {
-        "id": "pvcase",
-        "publisher": "PVcase",
-        "title": "Prospect capacity and constraint scenarios",
-        "url": "https://help.pvcase.com/hc/en-us/articles/47268175189907-Constraint-scenarios"
-      },
-      {
-        "id": "gridcare",
-        "publisher": "National Grid",
-        "title": "2026/27 half-year results, GridCARE work on flexible loads",
-        "url": "https://www.nationalgrid.com/document/601726/download"
-      },
-      {
-        "id": "invariant",
-        "publisher": "Invariant",
-        "title": "Site-specific power study scope and example",
-        "url": "https://invariant-ai.com/blog/utility-grade-power-study"
-      },
-      {
-        "id": "aep-study",
-        "publisher": "AEP Ohio",
-        "title": "November 7, 2025 load study letter, pages 3 to 5",
-        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/ohio/AEP-Ohio_DCT_Load_Study_Letter_25.11.7.pdf#page=3"
-      },
-      {
-        "id": "aep-contracts",
-        "publisher": "AEP Ohio",
-        "title": "February 2026 update on signed data center contracts",
-        "url": "https://www.aepohio.com/company/news/view?releaseID=10753"
-      },
-      {
-        "id": "aep-tariff",
-        "publisher": "AEP Ohio",
-        "title": "Data center tariff and process for service agreements",
-        "url": "https://www.aepohio.com/company/about/rates/data-center-tariff/"
-      },
-      {
-        "id": "pjm-baseline",
-        "publisher": "PJM",
-        "title": "March 18, 2026 reliability assessment, b4068 rows on printed pages 15 to 21 and 41",
-        "url": "https://www.pjm.com/-/media/DotCom/planning/rtep-dev/baseline-reports/2025-rtep-baseline-assessment.pdf#page=19"
-      },
-      {
-        "id": "pjm-required-projected",
-        "publisher": "PJM",
-        "title": "Required and projected dates for Greentown to Teddy, row b4068.2",
-        "url": "https://www.pjm.com/-/media/DotCom/planning/rtep-dev/baseline-reports/2025-rtep-baseline-assessment.pdf#page=23"
-      },
-      {
-        "id": "pjm-missing",
-        "publisher": "PJM",
-        "title": "Two b4068 rows with non-calendar values in the required date column",
-        "url": "https://www.pjm.com/-/media/DotCom/planning/rtep-dev/baseline-reports/2025-rtep-baseline-assessment.pdf#page=45"
-      },
-      {
-        "id": "pjm-board",
-        "publisher": "PJM",
-        "title": "February 2026 board recommendations, b4068.48 and b4068.49, printed page 27",
-        "url": "https://www.pjm.com/-/media/DotCom/committees-groups/committees/teac/2026/20260203/20260203-pjm-board-whitepaper-february-2026.pdf#page=30"
-      },
-      {
-        "id": "pjm-corridor",
-        "publisher": "PJM",
-        "title": "Transition Cycle 2 impact study, cross-reference from proposal 570 to b4068",
-        "url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_2/AG2-329/AG2-329_imp_PHASE_2.htm"
-      }
-    ],
-    "dataset": {
-      "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
-        "datePublished": "2026-11-26"
-      },
-      "name": "PJM b4068 upgrade dates and AEP Ohio data center service assumptions",
-      "description": "A review of 49 PJM b4068 upgrade rows with required and projected dates, PDF page references, two earlier required dates, and AEP Ohio’s published load and service assumptions.",
-      "spatialCoverage": "Central Ohio and eastern Indiana, United States",
-      "temporalCoverage": "2025-11-07/2026-03-18",
-      "sourceIds": [
-        "aep-study",
-        "aep-contracts",
-        "pjm-baseline",
-        "pjm-board",
-        "pjm-corridor"
-      ]
-    },
-    "relatedSlugs": [
-      "data-center-site-selection-platforms-and-advisors",
-      "data-center-power-screening-tools",
-      "utility-grade-power-study",
-      "200-mw-data-center-site"
     ]
   },
   {
@@ -32134,8 +31500,8 @@
     ],
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "Rosemead commercial roof replacement evidence and test inputs",
@@ -32158,836 +31524,6 @@
       "commercial-property-insurance-data-apis",
       "fema-flood-zone-history-for-underwriting",
       "commercial-real-estate-data-apis-for-lenders"
-    ]
-  },
-  {
-    "slug": "west-kite-alternatives-for-commercial-property-data",
-    "topic": "Data & APIs",
-    "region": "United States",
-    "title": "West Kite Alternatives for Commercial Property Data",
-    "description": "Compare West Kite, ATTOM, Regrid, and Invariant Earth. Use a 25 Water Street case to test address matching, unit counts, permits, and occupancy history.",
-    "date": "2026-11-22",
-    "updatedDate": "2026-11-24",
-    "readMinutes": 8,
-    "coverAlt": "2024 aerial photograph of 25 Water Street in Lower Manhattan with its tax lot outlined and a construction crane on the roof.",
-    "coverCaption": "25 Water Street during conversion. Cropped NYC OTI 2024 aerial imagery, CC BY 4.0. Invariant added the MapPLUTO 26v2 tax lot outline.",
-    "intro": "Use Invariant Earth to match a parcel and evaluate it against sourced terrain, hazards and nearby infrastructure in one API. Compare West Kite for commercial property records and owner research, ATTOM for property and transaction data, and Regrid for parcel geometry. At 25 Water Street, a property lookup and the city’s occupancy records give different unit totals for the same conversion. Ask each provider to show which records explain the change.",
-    "takeaways": [
-      "West Kite’s public lookup resolved three addresses to the same property and returned 1,323 units. MapPLUTO reports 1,323 total units and 1,320 residential units on that lot.",
-      "DOB NOW has four issuances of the same general construction permit and ten occupancy issuance records under the related job. Keep each event and its date.",
-      "Ask a provider which entity and source each field describes, and whether a historical query retrieves what was known at the time of a decision."
-    ],
-    "sections": [
-      {
-        "id": "providers",
-        "heading": "Which property API fits the job?",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Invariant makes Invariant Earth. We reviewed the providers’ public documentation and ran the West Kite unauthenticated address lookup on November 22, 2026. The other rows describe documented capabilities and give tests for a paid trial."
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Provider",
-              "Where to start",
-              "What to test"
-            ],
-            "rows": [
-              [
-                "West Kite",
-                "Commercial property records, ownership research, sales, assessments, and permits.",
-                "Resolve address aliases and request the permit sequence and original sources. Check whether an occupancy certificate is available for the exact building and date."
-              ],
-              [
-                "ATTOM",
-                "Property characteristics, deeds, mortgages, sales and building permits for an integration.",
-                "Use the same address and assessor ID. Confirm county coverage and ask which permit dates and identifiers the feed exposes."
-              ],
-              [
-                "Regrid",
-                "Parcel boundaries, assessor IDs, and matching across county records.",
-                "Verify how the current and prior parcel versions link after a split or merger. Join building and permit records from their issuing agencies."
-              ],
-              [
-                "Invariant Earth",
-                "Location and parcel fields with source URLs, dataset vintages and field status, including terrain, hazards and nearby infrastructure.",
-                "Check match type, distance and boundary before joining site conditions to a building. For a permit or occupancy history, use the issuing agency’s records or test a provider that indexes them."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "west-docs",
-                "west-permits"
-              ],
-              [
-                "attom"
-              ],
-              [
-                "regrid"
-              ],
-              [
-                "invariant-response",
-                "invariant-fields"
-              ]
-            ]
-          }
-        ]
-      },
-      {
-        "id": "water-street",
-        "heading": "One building, three addresses and two unit counts",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "The city’s Office Adaptive Reuse Task Force identifies 25 Water Street, 115 Broad Street and 4 New York Plaza as addresses for the same building. We sent each address to West Kite’s public Try endpoint. Each response marked the match exact, returned the same property ID and displayed 115 Broad Street with 1,323 in the units field.",
-            "sourceIds": [
-              "aliases",
-              "west-try"
-            ]
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Record",
-              "What it returned",
-              "How to use the result"
-            ],
-            "rows": [
-              [
-                "West Kite public lookup",
-                "1,323 units on a property labelled Multifamily.",
-                "Use the matched property ID for research. Check the unit definition before using the number in a pro forma."
-              ],
-              [
-                "NYC MapPLUTO 26v3, lot 1000050010",
-                "1,323 total units and 1,320 residential units.",
-                "Keep these two fields separately. The assessor aggregates the buildings on the tax lot."
-              ],
-              [
-                "NYC DOB NOW, building 1000007",
-                "1,320 dwelling units in each of the ten returned occupancy issuance records for job M08013214.",
-                "Check the actual certificate and the floor-use schedule for the building or space under review."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "west-try"
-              ],
-              [
-                "mappluto",
-                "pluto-schema"
-              ],
-              [
-                "occupancy",
-                "dob-guidance"
-              ]
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "The public lookup’s number agreed with the assessor’s total-unit field in the November 22 check. The city’s November 24 query returned a newer MapPLUTO edition with the same two unit counts. The public response alone does not establish where the provider obtained it. NYC’s Comptroller also reports 1,320 apartments at the conversion. Use the residential count for an apartment-level analysis and verify the current rent roll and occupancy documents for the deal.",
-            "sourceIds": [
-              "nyc-comptroller",
-              "mappluto"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "timeline",
-        "heading": "Reconstruct the conversion from permits and occupancy records",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "The tax lot ties together records at these addresses. The Department of Buildings uses a building identification number, or BIN, to identify the structure. Join the general construction permit M08013214-I1-GC to the occupancy filings under base job M08013214. Keep the original permit, renewal sequence, certificate number and issuance dates.",
-            "sourceIds": [
-              "permit-rows",
-              "occupancy"
-            ]
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Date",
-              "Record for the conversion",
-              "What the date tells you"
-            ],
-            "rows": [
-              [
-                "October 18, 2023",
-                "Initial general construction permit issuance. Its row gives an October 6 approval date.",
-                "Keep approval and issuance as distinct events."
-              ],
-              [
-                "February 7, 2025",
-                "First occupancy issuance in the reviewed dataset, certificate 1000007-0000001.",
-                "The index reports an issuance. Read the certificate to see the applicable spaces, use, and terms."
-              ],
-              [
-                "December 17, 2025",
-                "Fourth issuance of the same general construction permit, a renewal with changes.",
-                "A later work permit can coexist with an earlier occupancy issuance."
-              ],
-              [
-                "September 30, 2026",
-                "Latest occupancy issuance in the reviewed data, 1000007-0000010, listed as a renewal without change.",
-                "Check the certificate type and applicable expiry directly with DOB."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "permit-rows"
-              ],
-              [
-                "occupancy",
-                "dob-guidance"
-              ],
-              [
-                "permit-rows"
-              ],
-              [
-                "occupancy",
-                "dob-guidance"
-              ]
-            ]
-          },
-          {
-            "type": "download",
-            "label": "Download the NYC address, permit and occupancy records for 25 Water Street",
-            "path": "/blog/25-water-street-property-records.json",
-            "format": "JSON"
-          }
-        ]
-      },
-      {
-        "id": "trial",
-        "heading": "Run a trial on the records your team uses",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Pick a recent conversion, a property with multiple buildings or parcels, and a sale you can verify in the recorder’s file. Ask each provider for the matched IDs, relevant date and original record. Keep the date an event happened separate from the date the provider observed it. For an acquisition or a loan decision, save the actual evidence available on that date."
-          },
-          {
-            "type": "paragraph",
-            "text": "Ask how you can retain the history in your system. A provider may return the current assessed use, a list of dated permits, or historic snapshots as different products. Ask which prior versions you can query and whether missing results mean no published record, no coverage, or a retrieval failure."
-          },
-          {
-            "type": "links",
-            "label": "Related guides",
-            "items": [
-              {
-                "slug": "building-permit-data-apis",
-                "label": "Compare building permit APIs with a Brooklyn fit-out"
-              },
-              {
-                "label": "Trace changes to parcel boundaries",
-                "slug": "historical-parcel-boundaries-api"
-              },
-              {
-                "label": "Compare credit diligence and recording-date data",
-                "slug": "commercial-real-estate-data-apis-for-lenders"
-              },
-              {
-                "label": "Evaluate property and hazard screening fields",
-                "slug": "mireye-alternatives-for-property-screening"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Evaluate other data APIs",
-            "items": [
-              {
-                "slug": "physical-world-data-api-evaluation",
-                "label": "Run the same vendor evaluation across workflows"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Property ownership research",
-            "items": [
-              {
-                "slug": "commercial-property-ownership-data-apis",
-                "label": "Trace deed ownership, LLCs and control at the GM Building"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "faqs": [
-      {
-        "question": "What are alternatives to West Kite for commercial property data?",
-        "answer": "Evaluate ATTOM for county property, transaction and permit data, Regrid for parcel boundaries and identifiers, and Invariant Earth for cited parcel context and physical site fields. Compare each tool against the original records from the jurisdictions you work in.",
-        "sourceIds": [
-          "attom",
-          "regrid",
-          "invariant-response"
-        ]
-      },
-      {
-        "question": "Why does 25 Water Street show both 1,320 and 1,323 units?",
-        "answer": "NYC MapPLUTO lists 1,320 residential units and 1,323 total units on tax lot 1000050010. DOB’s occupancy issuance records report 1,320 dwellings. West Kite’s public lookup reported 1,323 in its units field, matching the MapPLUTO total.",
-        "sourceIds": [
-          "mappluto",
-          "occupancy",
-          "west-try"
-        ]
-      },
-      {
-        "question": "Can a building permit confirm that a conversion is ready for occupancy?",
-        "answer": "The work permit documents the scope and status of permitted construction. For occupancy in New York City, ask for the building’s applicable certificate and floor-use schedule. Check which spaces it covers, its type, and any expiry or terms.",
-        "sourceIds": [
-          "dob-guidance"
-        ]
-      }
-    ],
-    "sources": [
-      {
-        "id": "west-docs",
-        "publisher": "West Kite",
-        "title": "Developer API reference and documented endpoints",
-        "url": "https://westkite.com/docs/api",
-        "linkLabel": "West Kite API"
-      },
-      {
-        "id": "west-permits",
-        "publisher": "West Kite",
-        "title": "Property permit records and dates",
-        "url": "https://westkite.com/api/permits",
-        "linkLabel": "West Kite permits"
-      },
-      {
-        "id": "attom",
-        "publisher": "ATTOM",
-        "title": "Property, transaction, and building permit API documentation",
-        "url": "https://api.developer.attomdata.com/docs"
-      },
-      {
-        "id": "regrid",
-        "publisher": "Regrid",
-        "title": "Regrid identifier persistence rules",
-        "url": "https://support.regrid.com/docs/regrid-id"
-      },
-      {
-        "id": "invariant-response",
-        "publisher": "Invariant Earth",
-        "title": "Responses and provenance",
-        "url": "https://docs.invariant-ai.com/responses",
-        "linkLabel": "Invariant Earth responses"
-      },
-      {
-        "id": "invariant-fields",
-        "publisher": "Invariant Earth",
-        "title": "Public location field catalog",
-        "url": "https://api.invariant-ai.com/v1/meta/fields",
-        "linkLabel": "Invariant Earth catalog"
-      },
-      {
-        "id": "aliases",
-        "publisher": "NYC Office Adaptive Reuse Task Force",
-        "title": "November 2022 presentation identifying all three 25 Water Street addresses",
-        "url": "https://www.bers.nyc.gov/assets/planning/download/pdf/plans-studies/office-reuse-task-force/presentation-appendix4-111622.pdf#page=12",
-        "linkLabel": "NYC reuse task force"
-      },
-      {
-        "id": "west-try",
-        "publisher": "West Kite",
-        "title": "Public lookup for 25 Water Street",
-        "url": "https://api.westkite.com/v1/try?q=25%20Water%20Street%2C%20New%20York%2C%20NY",
-        "linkLabel": "West Kite lookup"
-      },
-      {
-        "id": "mappluto",
-        "publisher": "NYC Department of City Planning",
-        "title": "Current MapPLUTO query for tax lot 1000050010",
-        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json",
-        "linkLabel": "MapPLUTO lot"
-      },
-      {
-        "id": "pluto-schema",
-        "publisher": "NYC Department of City Planning",
-        "title": "MapPLUTO field descriptions for UnitsRes and UnitsTotal",
-        "url": "https://s-media.nyc.gov/agencies/dcp/assets/files/pdf/data-tools/bytes/meta_mappluto.pdf",
-        "linkLabel": "MapPLUTO definitions"
-      },
-      {
-        "id": "occupancy",
-        "publisher": "NYC Department of Buildings",
-        "title": "DOB NOW occupancy issuance records for BIN 1000007",
-        "url": "https://data.cityofnewyork.us/resource/pkdm-hqz6.json?bin=1000007&job_filing_name=M08013214&%24select=bin%2Cjob_filing_name%2Cc_of_o_number%2Capplication_number%2Cc_of_o_issuance_date%2Cc_of_o_status%2Cc_of_o_filing_type%2Cnumber_of_dwelling_units&%24order=c_of_o_number+ASC",
-        "linkLabel": "NYC occupancy records"
-      },
-      {
-        "id": "permit-rows",
-        "publisher": "NYC Department of Buildings",
-        "title": "DOB NOW Building permits for BIN 1000007",
-        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=1000007&work_permit=M08013214-I1-GC&%24select=bin%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Capproved_date%2Cissued_date%2Cexpired_date%2Cpermit_status&%24order=issued_date+ASC%2Csequence_number+ASC",
-        "linkLabel": "NYC permit records"
-      },
-      {
-        "id": "dob-guidance",
-        "publisher": "NYC Department of Buildings",
-        "title": "Temporary certificate of occupancy and how to find certificates",
-        "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/temporary-certificate-of-occupancy.page",
-        "linkLabel": "NYC DOB guidance"
-      },
-      {
-        "id": "nyc-comptroller",
-        "publisher": "Office of the New York City Comptroller",
-        "title": "Office-to-Residential Conversions in NYC, 25 Water Street case",
-        "url": "https://comptroller.nyc.gov/reports/office-to-residential-conversions-in-nyc-economics-and-fiscal-estimates/",
-        "linkLabel": "NYC Comptroller"
-      },
-      {
-        "id": "ortho",
-        "publisher": "NYC Office of Technology and Innovation",
-        "title": "NYC Orthos 2024, original imagery for the crop and parcel overlay",
-        "url": "https://www.arcgis.com/home/item.html?id=423f15185bd04f8dad8d99fba736772f",
-        "linkLabel": "NYC OTI aerial imagery"
-      },
-      {
-        "id": "ortho-license",
-        "publisher": "City of New York",
-        "title": "2024 aerial imagery attribution and CC BY 4.0 terms",
-        "url": "https://github.com/CityOfNewYork/nyc-geo-metadata/blob/main/Metadata/Metadata_AerialImagery.md",
-        "linkLabel": "Imagery license"
-      }
-    ],
-    "dataset": {
-      "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
-        "datePublished": "2026-11-26"
-      },
-      "name": "25 Water Street address aliases, permits and occupancy records",
-      "description": "Three addresses identified by the city, the MapPLUTO 26v3 tax lot summary, four general construction permit issuances and ten NYC Department of Buildings occupancy issuance records for the office-to-residential conversion at 25 Water Street.",
-      "sourceReuse": {
-        "note": "Credit NYC City Planning and NYC Department of Buildings for the MapPLUTO, permit and occupancy fields. Invariant matched the three address aliases to the selected lot and building records. Retain the identifiers and retrieval date with the match.",
-        "policyLabel": "NYC Open Data terms of use",
-        "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"
-      },
-      "sourceIds": [
-        "aliases",
-        "mappluto",
-        "permit-rows",
-        "occupancy"
-      ],
-      "spatialCoverage": "25 Water Street, Manhattan, New York City, United States",
-      "temporalCoverage": "2023-10-18/2026-11-22"
-    },
-    "relatedSlugs": [
-      "commercial-mortgage-records-by-address",
-      "mireye-alternatives-for-property-screening",
-      "commercial-real-estate-data-apis-for-lenders"
-    ]
-  },
-  {
-    "slug": "mireye-alternatives-for-property-screening",
-    "topic": "Data & APIs",
-    "region": "United States",
-    "title": "Mireye Alternatives for U.S. Property Screening",
-    "description": "Compare Mireye, Invariant Earth and other U.S. property screening APIs. Test parcel matching, point versus boundary results, source dates and parcel history.",
-    "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
-    "readMinutes": 7,
-    "coverAlt": "Illustrative aerial view of an industrial building beside winding wetlands.",
-    "coverCaption": "AI-generated illustration of an industrial site beside wetlands.",
-    "intro": "Use Invariant Earth when your property screen must show which parcel matched, which source supplied each field, and when the source was retrieved. Compare Mireye and Invariant on the same coordinates, then test how your workflow handles a tax lot that changed boundaries while keeping its identifier. The trials below cover current fields and a dated parcel example.",
-    "takeaways": [
-      "Compare the coordinates and geometry behind each field. The same field name can describe a different search or source.",
-      "Both Mireye and Invariant use wetland_acres for an entire selected wetland polygon. To estimate affected acreage, calculate its intersection with the property or project area.",
-      "Bring the same assessor parcel, hazard map and required service level to each trial. Record the provider’s matching, missing data and source dates."
-    ],
-    "guideActions": [
-      {
-        "href": "https://docs.invariant-ai.com/screen-a-site",
-        "label": "Run the Invariant Earth site screen"
-      }
-    ],
-    "sections": [
-      {
-        "id": "providers",
-        "heading": "Which tool should you evaluate?",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Invariant makes Invariant Earth. This comparison uses public product documentation and published evidence. Use the same properties across APIs and map-based tools to verify coverage and exports for your account."
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Provider",
-              "Good fit",
-              "What to check in a trial"
-            ],
-            "rows": [
-              [
-                "Invariant Earth",
-                "Location and parcel fields with field-level source, dataset vintage and status.",
-                "Inspect parcel_match_type and parcel_match_distance_m. The parcel ID can fall back to a nearest parcel within 250 meters. Check the match before joining another dataset."
-              ],
-              [
-                "Mireye",
-                "Point data through Fetch or parcel records through Enrich.",
-                "Compare the input coordinate with Enrich’s analysis_point. Its documented example resolves a parcel and uses the stored parcel centroid for analysis."
-              ],
-              [
-                "Regrid",
-                "Parcel IDs and boundaries for use in your own GIS or pipeline.",
-                "Use the county record to verify a recent split. Regrid explains which events preserve its ID and which retire it."
-              ],
-              [
-                "West Kite",
-                "Commercial property research and a report using the parcel outline for flood and wetland area.",
-                "Check the property match and whether each layer is published for the county. The documented response identifies fields that could not be answered."
-              ],
-              [
-                "Acres Intelligence",
-                "Map-based land diligence with comparable sales, flood and terrain layers, and property reports.",
-                "Use the same waterfront tax lot. Record the layer date and whether the report provides geometry you can intersect or a map you inspect visually."
-              ],
-              [
-                "Land id",
-                "Interactive parcel, ownership and terrain overlays with current aerial and historical topographic basemaps.",
-                "On a recently changed parcel, pin the aerial collection date and the assessor boundary vintage separately. Check which records are available in an export."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "invariant-fields",
-                "invariant-response"
-              ],
-              [
-                "mireye-fetch",
-                "mireye-enrich"
-              ],
-              [
-                "regrid-id"
-              ],
-              [
-                "west-kite"
-              ],
-              [
-                "acres"
-              ],
-              [
-                "land-id"
-              ]
-            ]
-          }
-        ]
-      },
-      {
-        "id": "field-by-field",
-        "heading": "Four fields to verify before switching",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Mireye publishes separate catalogs for Fetch and Enrich. Invariant lists parcel-match fields in its location catalog. Check the catalog for the endpoint that will serve the workflow. The download records the field name, published unit, source identifier, and what to verify for each output.",
-            "sourceIds": [
-              "mireye-enrich-fields",
-              "mireye-fields",
-              "invariant-fields"
-            ]
-          },
-          {
-            "type": "table",
-            "stackOnMobile": true,
-            "columns": [
-              "Buyer question",
-              "What the catalogs describe",
-              "How to verify it"
-            ],
-            "rows": [
-              [
-                "Is the location in a mapped flood zone?",
-                "Both document within_floodplain_polygon as a FEMA Special Flood Hazard Area test at a point.",
-                "For land or buildings, intersect the full geometry with the effective FEMA polygons. Keep the map date and area by zone."
-              ],
-              [
-                "How many wetland acres affect the tract?",
-                "Both define wetland_acres as the total area of the selected National Wetlands Inventory polygon. It can be the nearest wetland, including one outside the tract.",
-                "Intersect mapped wetlands with the tax lot or proposed disturbance area, then calculate the acreage inside it."
-              ],
-              [
-                "Which substation should we investigate?",
-                "Both expose nearest_substation_distance_m. Invariant lists a 10 km search. Mireye describes an EIA layer for substations at 69 kV or above.",
-                "Save the returned facility, layer and method. Confirm the serving utility and proposed connection before relying on a capacity estimate."
-              ],
-              [
-                "How reliable is the water service map?",
-                "Both expose water_service_area_provenance. Invariant describes the boundary method and original provider. Mireye describes source-based and modeled categories.",
-                "Save the original evidence. Ask the utility about pressure, flow, and a service commitment for the intended use."
-              ]
-            ],
-            "rowSourceIds": [
-              [
-                "invariant-fields",
-                "mireye-fields"
-              ],
-              [
-                "invariant-fields",
-                "mireye-fields",
-                "wetland-limit"
-              ],
-              [
-                "invariant-fields",
-                "mireye-fields"
-              ],
-              [
-                "invariant-fields",
-                "mireye-fields"
-              ]
-            ]
-          },
-          {
-            "type": "download",
-            "label": "Download the property screening API field comparison",
-            "path": "/blog/mireye-alternatives-for-property-screening.csv",
-            "format": "CSV"
-          }
-        ]
-      },
-      {
-        "id": "compare-parcel-history",
-        "heading": "When is Invariant Earth a good Mireye alternative?",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Choose Invariant Earth for a workflow that needs to explain each current parcel match and preserve the underlying evidence for later comparison. In our Brooklyn example, one tax lot kept its identifier through a split and retained about 53% of its former mapped area. The downloadable case has dated geometries from the city and separates archived boundaries from current point and parcel queries.",
-            "sourceIds": [
-              "invariant-history",
-              "invariant-response"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "In a trial, ask each provider to return the current parcel and match distance, then show the earlier boundary for the same site or identify the archive you would need. Check whether you can recover the date and source of both geometries. Pin a snapshot so you can explain what changed when an underwriter or developer reopens the file."
-          },
-          {
-            "type": "links",
-            "items": [
-              {
-                "slug": "historical-parcel-boundaries-api",
-                "label": "Replay the Brooklyn parcel split"
-              },
-              {
-                "path": "/data-coverage",
-                "label": "Check which fields you can query in Invariant Earth"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "trial",
-        "heading": "Run the same test on your own property",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Pick a candidate whose boundary you already know. Submit the assessor’s location point and a second point inside the proposed work area. Keep the site address and county parcel ID fixed. Request the parcel boundary separately and record where each result was evaluated. Include a multi-parcel site in the trial when that is part of your usual work."
-          },
-          {
-            "type": "paragraph",
-            "text": "Use the same source layer and edition when reconciling values. At Brooklyn Army Terminal, for example, the published location point returned FEMA Zone AE. Intersecting the parcel boundary with the same map showed that about 20% of the lot was in Zone AE. The parcel overlay below includes the source queries so you can repeat the calculation.",
-            "sourceIds": [
-              "brooklyn-study"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "text": "Save the field status with the value. Mireye Fetch and Invariant Earth document a distinction between a successful value, no data at a location, and a failed field request. A successful response can include a failed field. Store the dataset edition separately from the fetch time, especially when you are recreating an earlier decision.",
-            "sourceIds": [
-              "mireye-fetch",
-              "invariant-response"
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Reference checks",
-            "items": [
-              {
-                "label": "Run a documented GIS API trial for parcel matches and flood overlap",
-                "slug": "best-gis-apis-for-site-selection"
-              },
-              {
-                "label": "Trace historical parcel boundaries",
-                "slug": "historical-parcel-boundaries-api"
-              },
-              {
-                "label": "Verify a utility’s capacity and service date",
-                "slug": "power-evidence-data-center-site-verification"
-              },
-              {
-                "label": "Compare West Kite using a real commercial property conversion",
-                "slug": "west-kite-alternatives-for-commercial-property-data"
-              }
-            ]
-          },
-          {
-            "type": "links",
-            "label": "Evaluate other data APIs",
-            "items": [
-              {
-                "slug": "physical-world-data-api-evaluation",
-                "label": "Run the same vendor evaluation across workflows"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "procurement",
-        "heading": "What to ask for before signing",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "text": "Ask each provider for one response from a county you know well and another from an area where coverage is uncertain. Check that someone on your team could reconstruct each property match and find the original source months later. Agree on which fields you can store, how source editions change, and how the provider reports gaps. For utility capacity, ask for a study and service evidence at the proposed connection."
-          }
-        ]
-      }
-    ],
-    "faqs": [
-      {
-        "question": "What is a practical alternative to Mireye for property screening?",
-        "answer": "Evaluate Invariant Earth for source-backed point and parcel fields, West Kite for commercial property reports that measure area over a parcel, and Regrid for parcel boundaries and IDs. Try each on the same property and source dates before selecting a provider.",
-        "sourceIds": [
-          "invariant-response",
-          "west-kite",
-          "regrid-id"
-        ]
-      },
-      {
-        "question": "Does Mireye Enrich use the same location as Fetch?",
-        "answer": "Fetch reads fields at a point. Enrich resolves a parcel and reports its analysis_point separately. The Enrich documentation shows a case where the analysis point is the stored parcel centroid, which differs from the input coordinate.",
-        "sourceIds": [
-          "mireye-fetch",
-          "mireye-enrich"
-        ]
-      },
-      {
-        "question": "Does wetland_acres mean acres of wetlands on my property?",
-        "answer": "The Invariant Earth and Mireye catalogs describe this field as the size of the selected mapped wetland polygon. Calculate its intersection with your project or parcel boundary to estimate acreage inside it. The National Wetlands Inventory describes mapped habitat.",
-        "sourceIds": [
-          "invariant-fields",
-          "mireye-fields",
-          "wetland-limit"
-        ]
-      }
-    ],
-    "sources": [
-      {
-        "id": "earth-workflow",
-        "title": "Screen a site using the Earth API",
-        "publisher": "Invariant",
-        "url": "https://docs.invariant-ai.com/screen-a-site",
-        "linkLabel": "Screen a site using the Earth API"
-      },
-      {
-        "id": "invariant-history",
-        "title": "Brooklyn tax lot changes and downloadable dated polygons",
-        "url": "https://invariant-ai.com/blog/historical-parcel-boundaries-api#dataset",
-        "publisher": "Invariant"
-      },
-      {
-        "id": "invariant-fields",
-        "linkLabel": "Invariant Earth catalog",
-        "publisher": "Invariant Earth",
-        "title": "Public location field catalog",
-        "url": "https://api.invariant-ai.com/v1/meta/fields"
-      },
-      {
-        "id": "invariant-response",
-        "linkLabel": "Invariant Earth response",
-        "publisher": "Invariant Earth",
-        "title": "Responses and provenance",
-        "url": "https://docs.invariant-ai.com/responses"
-      },
-      {
-        "id": "mireye-fields",
-        "linkLabel": "Mireye Fetch catalog",
-        "publisher": "Mireye",
-        "title": "Public Fetch field catalog",
-        "url": "https://api.mireye.com/v1/meta/fields"
-      },
-      {
-        "id": "mireye-enrich-fields",
-        "linkLabel": "Mireye Enrich catalog",
-        "publisher": "Mireye",
-        "title": "Parcel Enrich field catalog",
-        "url": "https://api.mireye.com/v1/enrich/fields"
-      },
-      {
-        "id": "mireye-enrich",
-        "linkLabel": "Mireye Enrich reference",
-        "publisher": "Mireye",
-        "title": "Enrich request, match and analysis point",
-        "url": "https://docs.mireye.ai/api-reference/enrich"
-      },
-      {
-        "id": "mireye-fetch",
-        "linkLabel": "Mireye Fetch reference",
-        "publisher": "Mireye",
-        "title": "Fetch reference and field status",
-        "url": "https://docs.mireye.ai/api-reference/fetch"
-      },
-      {
-        "id": "west-kite",
-        "publisher": "West Kite",
-        "title": "Parcel site screening and response format",
-        "url": "https://westkite.com/api/site-screening"
-      },
-      {
-        "id": "regrid-id",
-        "publisher": "Regrid",
-        "title": "Parcel identifiers and persistence",
-        "url": "https://support.regrid.com/docs/regrid-id"
-      },
-      {
-        "id": "wetland-limit",
-        "publisher": "U.S. Fish and Wildlife Service",
-        "title": "National Wetlands Inventory frequently asked questions",
-        "url": "https://www.fws.gov/page/national-wetlands-inventory-frequently-asked-questions"
-      },
-      {
-        "id": "brooklyn-study",
-        "publisher": "Invariant",
-        "title": "Brooklyn Army Terminal flood overlay and source queries",
-        "url": "https://invariant-ai.com/blog/best-gis-apis-for-site-selection#brooklyn-parcel-test"
-      },
-      {
-        "id": "acres",
-        "title": "Land analysis, comparable sales and property reports",
-        "url": "https://www.acres.com/solutions/analyze-land",
-        "publisher": "Acres Intelligence"
-      },
-      {
-        "id": "land-id",
-        "title": "Basemaps and property data overlays",
-        "url": "https://id.land/product/basemap-overlays",
-        "publisher": "Land id"
-      }
-    ],
-    "dataset": {
-      "name": "Mireye and Invariant Earth property screening field comparison",
-      "description": "Public API catalog observations from November 22, 2026. Compares selected field names, units, source identifiers, the geometry they measure, and buyer verification steps. Includes separate parcel match fields from Mireye Enrich.",
-      "sourceIds": [
-        "invariant-fields",
-        "mireye-fields",
-        "mireye-enrich-fields"
-      ],
-      "spatialCoverage": "United States"
-    },
-    "relatedSlugs": [
-      "best-gis-apis-for-site-selection",
-      "regrid-alternatives-parcel-data-apis"
     ]
   },
   {
@@ -34864,7 +33400,7 @@
     "coverFile": "best-gis-apis-for-site-selection.webp",
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
-    "intro": "Use Invariant Earth to compare the U.S. parcel at an address with flood zones, terrain and nearby infrastructure in one agent workflow. Regrid, LightBox and West Kite offer different property and parcel workflows. ArcGIS Enterprise can expose the maps and tools your organization already runs. Test each connector against the same sites and save the tool responses alongside the agent’s answer.",
+    "intro": "Use Invariant Earth to compare the U.S. parcel at an address with flood zones, terrain and nearby infrastructure in one agent workflow. Regrid and LightBox offer parcel and property workflows. ArcGIS Enterprise can expose the maps and tools your organization already runs. Test each connector against the same sites and save the tool responses alongside the agent’s answer.",
     "takeaways": [
       "Choose the server by the decision you need to support. Identify the datasets and tool permissions available through that connection.",
       "Test the address, parcel and building separately. Keep the original identifier, the source and the date returned with each result.",
@@ -34913,11 +33449,6 @@
                 "Can you trace a parcel match to the correct assessment when a single geometry covers several units?"
               ],
               [
-                "West Kite",
-                "U.S. commercial property research, including owners of record and people behind LLCs.",
-                "Can you distinguish the recorded owner from a linked person or entity and show the evidence for the relationship?"
-              ],
-              [
                 "MCP for ArcGIS Enterprise",
                 "Access to permitted GIS content and tools in an organization’s ArcGIS Enterprise deployment.",
                 "Can you find the approved internal layer and use it to answer the same site question within the user’s permissions?"
@@ -34938,9 +33469,6 @@
               ],
               [
                 "lightbox-mcp"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "arcgis"
@@ -35149,18 +33677,12 @@
                 "LightBox",
                 "The parcel API documents lookup by county FIPS and assessor parcel number, plus links to related assessments. LightBox describes MCP access separately through its Early Access Program.",
                 "In the early-access connector, ask for the local assessor number, its linked assessment, the original source, and the relevant dates. Check which items the tool returns."
-              ],
-              [
-                "West Kite",
-                "The property API documents source IDs on typed items including sales, assessments and permits. Its source catalog describes the publisher, coverage, and last load for each entry where recorded.",
-                "Resolve the source ID to its catalog entry. Ask for the local permit or deed reference and event date as separate evidence."
               ]
             ],
             "rowSourceIds": [
               ["earth-responses", "earth-field-catalog"],
               ["regrid-lineage"],
-              ["lightbox-mcp", "lightbox-apn"],
-              ["west-kite-reference", "west-kite-sources"]
+              ["lightbox-mcp", "lightbox-apn"]
             ]
           },
           {
@@ -35380,24 +33902,6 @@
         "url": "https://lightbox.document360.io/data-and-api/docs/parcels-documentation"
       },
       {
-        "id": "west-kite-reference",
-        "title": "Property record items and source identifiers",
-        "publisher": "West Kite",
-        "url": "https://westkite.com/docs/api/reference"
-      },
-      {
-        "id": "west-kite-sources",
-        "title": "Source catalog response, coverage and last load",
-        "publisher": "West Kite",
-        "url": "https://westkite.com/docs/api/sources"
-      },
-      {
-        "id": "west-kite",
-        "title": "Connect West Kite to your AI assistant",
-        "publisher": "West Kite",
-        "url": "https://westkite.com/docs/connect"
-      },
-      {
         "id": "arcgis",
         "title": "Introduction to MCP Services for ArcGIS Enterprise",
         "publisher": "Esri",
@@ -35585,9 +34089,6 @@
               ["Regrid", "Parcel boundaries, APN lookups and searches by GeoJSON geometry.", "Test a recent split and a narrow polygon that crosses parcel boundaries. Check county refresh dates for the fields you need."],
               ["GetParcelData", "Parcel searches by point, radius or WKT polygon.", "Check whether partial overlaps qualify and whether pagination returns every match. Confirm data vintage for the counties in scope."],
               ["Parceled", "Parcel lookups, hosted parcel tiles and linked assessor, permit and zoning fields.", "Check parcel and permit coverage separately for each county. Test a parcel whose permit history you can verify."],
-              ["West Kite", "Commercial property research across owners, deeds, assessments, permits, and site context.", "Start with its county-level coverage. Test whether the deed, permit, or mortgage that matters to your team is available for the exact property."],
-              ["Mireye", "Location enrichment and screening with source information across land, hazards, and infrastructure.", "Ask for the source, spatial method, and missing-value behavior for the same point and parcel. Check which tools accept a polygon."],
-              ["Geoforge", "Shareable power screening reports with modeled load and generation headroom, queue context, and planned upgrades.", "Check the study year, load direction, and assumptions for each candidate connection. Ask how you can export the data behind the report."],
               ["Paces", "Finding and screening data center sites with power and development constraints in one workflow.", "Ask for a shortlist using your phased load and service dates. Verify how the workflow handles utility feedback, site control, and evidence for each milestone."],
               ["PVcase Prospect", "Map-based site screening, with withdrawal capacity studies for data center loads.", "Check which connection, load case, and study year the capacity layer represents. Verify the site and power questions that still need utility evidence."],
               ["Ageospatial", "Property and infrastructure intelligence for insurance and credit workflows.", "Give it a schedule with multiple buildings at one address. Inspect the evidence behind the building match and risk inputs."]
@@ -35615,15 +34116,6 @@
               ],
               [
                 "parceled"
-              ],
-              [
-                "west-kite"
-              ],
-              [
-                "mireye"
-              ],
-              [
-                "geoforge"
               ],
               [
                 "paces"
@@ -35857,11 +34349,7 @@
             "type": "links",
             "label": "Compare the field definitions",
             "items": [
-              {"slug":"zoning-data-apis-for-site-selection","label":"Test how zoning APIs handle a split-zoned parcel"},
-              {
-                "label": "Mireye alternatives for property screening",
-                "slug": "mireye-alternatives-for-property-screening"
-              }
+              {"slug":"zoning-data-apis-for-site-selection","label":"Test how zoning APIs handle a split-zoned parcel"}
             ]
           }
         ]
@@ -35876,7 +34364,7 @@
       {
         "question": "Can a GIS API tell me how much power a site can get?",
         "answer": "A GIS API can identify candidate substations, lines, and service territories. Some products also expose utility capacity maps or model estimates. For a specific load and schedule, confirm the proposed service point, study conditions, needed upgrades, and utility service terms.",
-        "sourceIds": ["west-kite", "geoforge", "power-study"]
+        "sourceIds": ["power-study"]
       },
       {
         "question": "Can I compare a property now with the same property at an earlier date?",
@@ -35900,8 +34388,6 @@
       {"id": "parceled", "title": "Property datasets and documented API access", "url": "https://www.parceled.ai/data", "publisher": "Parceled"},
       {"id": "sf-polygon-layer", "title": "Active city parcels used in the Civic Center test", "url": "https://data.sf.gov/d/acdm-wktn", "publisher": "DataSF"},
       {"id": "invariant-polygon-workflow", "title": "Find parcels intersecting a polygon", "url": "https://docs.invariant-ai.com/find-parcels-intersecting-a-polygon", "publisher": "Invariant Earth", "linkLabel": "Run the San Francisco polygon test"},
-      {"id": "west-kite", "title": "Commercial property data sources and coverage", "url": "https://www.westkite.com/docs/data", "publisher": "West Kite"},
-      {"id": "mireye", "title": "Mireye API introduction", "url": "https://docs.mireye.ai/introduction", "publisher": "Mireye"},
       {"id": "invariant-fields", "title": "Public API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant Earth catalog"},
       {"id": "invariant-parcel-fields", "title": "Live parcel enrichment fields and presets", "url": "https://api.invariant-ai.com/v1/enrich/fields", "publisher": "Invariant Earth"},
       {"id": "invariant-openapi", "title": "Deployed Earth API specification for Fetch and Enrich", "url": "https://api.invariant-ai.com/openapi.json", "publisher": "Invariant Earth"},
@@ -35911,7 +34397,6 @@
       {"id": "trial-san-francisco", "title": "City address records and active parcels for two San Francisco buildings", "url": "https://invariant-ai.com/blog/parcel-number-lookup-by-address.json", "publisher": "Invariant, using City and County of San Francisco records"},
       {"id": "trial-gowanus", "title": "NYC address, footprint and lot compared with the FEMA map in Gowanus", "url": "https://invariant-ai.com/blog/gowanus-fema-address-parcel-building-overlay.geojson", "publisher": "Invariant, using New York City and FEMA records"},
       {"id": "invariant-responses", "title": "Responses and provenance", "url": "https://docs.invariant-ai.com/responses", "publisher": "Invariant Earth docs"},
-      {"id": "geoforge", "title": "Example power screening report", "url": "https://geoforge.ai/report/power", "publisher": "Geoforge"},
       {"id": "paces", "title": "Site selection for data center developers", "url": "https://www.paces.com/data-center-developers", "publisher": "Paces"},
       {"id": "pvcase", "title": "Using PVcase Prospect capacity data to site data centers", "url": "https://help.pvcase.com/hc/en-us/articles/47083999498259-How-do-I-site-data-centers-with-PVcase-Prospect-capacity-data", "publisher": "PVcase"},
       {"id": "ageospatial", "title": "Geospatial insurance and finance workflows", "url": "https://www.ageospatial.com/", "publisher": "Ageospatial"},
@@ -36534,8 +35019,8 @@
     "slug": "commercial-property-insurance-data-apis",
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "Brooklyn Army Terminal Building A identity check",
@@ -36831,10 +35316,9 @@
               ["Ageospatial", "Building evidence for insurers drawn from imagery, maps, records, and documents.", "How a line on a schedule is tied to a footprint, how conflicting building attributes surface, and what history can be exported."],
               ["COPEData", "Address-based COPE reports with source links, statement of values exports and API access by inquiry.", "Ask which sources support a sprinkler flag and whether each result identifies the building, covered space and date. Verify the issued policy and inspection records separately."],
               ["ATTOM", "Property characteristics such as year built, construction type, and roof cover in its property API.", "A large commercial property split across structures. Ask which fields describe the primary structure and which aggregate across the site."],
-              ["West Kite", "Commercial property records and permits tied to properties, with dated sources.", "A permit lookup for Building A and a walkthrough of how the API preserves the filing date, issuance, scope, and later status."],
               ["Invariant Earth", "Location and parcel context, including hazard layers and field-level provenance and status.", "The coordinate and parcel response for a known property, with the source and dataset vintage. Validate the building separately before attaching exposure to it."]
             ],
-            "rowSourceIds": [["cotality"], ["moodys-cape"], ["verisk"], ["hazardhub"], ["zesty-roof", "zesty-commercial"], ["nearmap-betterview"], ["first-street"], ["ageospatial"], ["copedata-reports"], ["attom"], ["west-kite"], ["earth-catalog", "earth-responses"]]
+            "rowSourceIds": [["cotality"], ["moodys-cape"], ["verisk"], ["hazardhub"], ["zesty-roof", "zesty-commercial"], ["nearmap-betterview"], ["first-street"], ["ageospatial"], ["copedata-reports"], ["attom"], ["earth-catalog", "earth-responses"]]
           }
         ]
       },
@@ -37031,7 +35515,6 @@
       {"id":"first-street","title":"Flood probability, depths, and damages API","url":"https://docs.firststreet.org/api/climate-risk-api/retrieving-data/flood-probability-and-damages","publisher":"First Street"},
       {"id":"ageospatial","title":"Physical intelligence for insurance underwriting","url":"https://www.ageospatial.com/","publisher":"Ageospatial"},
       {"id":"attom","title":"Property detail API fields","url":"https://api.developer.attomdata.com/docs","publisher":"ATTOM"},
-      {"id":"west-kite","title":"Commercial property data and sources","url":"https://www.westkite.com/docs/data","publisher":"West Kite"},
       {"id":"earth-catalog","title":"Public field catalog","url":"https://api.invariant-ai.com/v1/meta/fields","publisher":"Invariant Earth catalog"},
       {"id":"earth-responses","title":"API responses and field provenance","url":"https://docs.invariant-ai.com/responses","publisher":"Invariant Earth docs"},
       {"id":"aerial","title":"New York State spring 2024 orthoimagery","url":"https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer","publisher":"NYS ITS Geospatial Services"},
@@ -37272,7 +35755,7 @@
     "title": "Commercial Property Ownership Data and APIs",
     "description": "Find who owns a commercial property, trace an LLC to its documented investors, and compare deed and ownership APIs using the GM Building in New York.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 7,
     "coverAlt": "2024 aerial imagery of Midtown Manhattan with the General Motors Building tax lot outlined beside Central Park.",
     "coverCaption": "The General Motors Building’s full-block tax lot is Manhattan block 1294, lot 1. NYC MapPLUTO 26v2 geometry over 2024 New York State aerial imagery.",
@@ -37407,11 +35890,6 @@
             ],
             "rows": [
               [
-                "West Kite",
-                "Property ownership research using deeds, business registries and SEC filings.",
-                "Does the 2013 governance change appear beside the ownership percentage, with the underlying SEC filing?"
-              ],
-              [
                 "Regrid",
                 "Parcel and assessor ownership. Enhanced Ownership can return the recorder’s deed owner as a separate field.",
                 "Can 761 and 767 Fifth Avenue be matched to the correct parcel while preserving the input address?"
@@ -37438,9 +35916,6 @@
               ]
             ],
             "rowSourceIds": [
-              [
-                "west-kite"
-              ],
               [
                 "regrid"
               ],
@@ -37500,10 +35975,6 @@
               {
                 "slug": "historical-parcel-boundaries-api",
                 "label": "Trace parcel splits and mergers across dates"
-              },
-              {
-                "slug": "west-kite-alternatives-for-commercial-property-data",
-                "label": "Compare commercial property record providers"
               }
             ]
           }
@@ -37644,12 +36115,6 @@
         "publisher": "New York Department of State"
       },
       {
-        "id": "west-kite",
-        "title": "Property ownership and entity research API",
-        "url": "https://westkite.com/docs/data",
-        "publisher": "West Kite"
-      },
-      {
         "id": "regrid",
         "title": "Assessor owner and recorded deed owner fields",
         "url": "https://support.regrid.com/docs/enhanced-ownership",
@@ -37710,7 +36175,6 @@
     "relatedSlugs": [
       "property-ownership-change-alerts-by-address",
       "commercial-real-estate-data-apis-for-lenders",
-      "west-kite-alternatives-for-commercial-property-data",
       "historical-parcel-boundaries-api",
       "commercial-mortgage-maturity-data-apis"
     ]
@@ -37719,8 +36183,8 @@
     "slug": "commercial-real-estate-data-apis-for-lenders",
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "Empire State Building recording-date benchmark",
@@ -37744,7 +36208,7 @@
     "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Empire State Building tax lot outlined in gold.",
     "coverCaption": "Empire State Building, Manhattan tax lot 1008350041. The outline uses NYC MapPLUTO 26v2 over 2024 New York State aerial imagery. The records below are from 2013.",
-    "intro": "Use Invariant Earth to match the collateral parcel and check cited building and flood evidence in one coordinate lookup. Use West Kite or LightBox to evaluate feeds for recorded property and transaction data and Regrid to work directly with parcel identity and boundaries. For an earlier credit decision, ask which instruments had been recorded by that date and when each provider first made them available. For privately originated debt, check which fields come from the recorder and which come from issuer filings or servicing records.",
+    "intro": "Use Invariant Earth to match the collateral parcel and check cited building and flood evidence in one coordinate lookup. Evaluate LightBox for recorded property and transaction data and Regrid for parcel identity and boundaries. For an earlier credit decision, ask which instruments had been recorded by that date and when each provider first made them available. Check which private debt fields come from the recorder, issuer filings or servicing records.",
     "takeaways": [
       "Carry the parcel identifier and legal description into the credit file. An address alone can point to a building that spans several parcels.",
       "Keep the date on the instrument, the recording date, and the date your system obtained the record. Each supports a different question.",
@@ -37773,11 +36237,6 @@
                 "Invariant Earth",
                 "Start with a sourced U.S. parcel match, owner fields, geometry, and mapped hazard context for your underwriting or portfolio system.",
                 "Use the public replay to test a dated recorder cutoff. Ask for parcel match method, field status and source vintage alongside the documents you join."
-              ],
-              [
-                "West Kite",
-                "Commercial property research with recorded mortgages and securitized loan data. Its documentation lists recorded mortgages in New York City.",
-                "Ask for the full set of instruments behind a result. Check how it identifies assignments and which source supports any balance or maturity."
               ],
               [
                 "LightBox",
@@ -37820,9 +36279,6 @@
                 "invariant-fields",
                 "invariant-responses",
                 "cutoff-replay"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "lightbox"
@@ -38258,12 +36714,6 @@
     ],
     "sources": [
       {
-        "id": "west-kite",
-        "title": "Financing fields and county coverage",
-        "url": "https://westkite.com/docs/data",
-        "publisher": "West Kite"
-      },
-      {
         "id": "lightbox",
         "title": "Transactions API and date fields",
         "url": "https://developer.lightboxre.com/apis/transactions",
@@ -38650,16 +37100,6 @@
                 "Query layers 28 and 3. Confirm the area feature, every printed panel covering the checked geometry, and applicable map changes."
               ],
               [
-                "Mireye",
-                "Address or coordinate screening with a cited FEMA field in Fetch.",
-                "Compare the coordinate and source with any parcel or area result before you use a field at a different scale."
-              ],
-              [
-                "West Kite",
-                "Commercial site reports with FEMA zone and parcel share inside the mapped 1% annual chance floodplain.",
-                "Ask for the parcel denominator and check building exposure separately against the building polygon."
-              ],
-              [
                 "Regrid",
                 "Premium parcel fields for FEMA zone, subtype and map effective date. The raw field can carry multiple zones.",
                 "Check how the provider assigns the primary zone and how it expresses each overlapping share."
@@ -38699,12 +37139,6 @@
                 "fema-zones",
                 "fema-panels",
                 "fema-determination"
-              ],
-              [
-                "mireye"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "regrid"
@@ -39005,13 +37439,6 @@
         "publisher": "Guidewire HazardHub"
       },
       {
-        "id": "mireye",
-        "title": "Mireye Fetch API and public FEMA point response",
-        "url": "https://www.mireye.com/products/fetch",
-        "publisher": "Mireye",
-        "linkLabel": "Mireye Fetch example"
-      },
-      {
         "id": "invariant-fields",
         "title": "Invariant Earth public field catalog and null semantics",
         "url": "https://api.invariant-ai.com/v1/meta/fields",
@@ -39050,13 +37477,6 @@
         "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/arcgis/rest/services/Digital_Tax_Map_VIEW/FeatureServer/5/query?where=BBL%3D3009780016&outFields=BBL%2CBORO%2CBLOCK%2CLOT%2CEFFECTIVE_TAX_YEAR%2COBJECTID&outSR=4326&returnGeometry=true&f=geojson",
         "publisher": "NYC Department of Finance",
         "linkLabel": "City tax-lot geometry"
-      },
-      {
-        "id": "west-kite",
-        "title": "West Kite public source and screening API reference",
-        "url": "https://westkite.com/docs/data",
-        "publisher": "West Kite",
-        "linkLabel": "West Kite site reports"
       },
       {
         "id": "regrid",
@@ -39488,7 +37908,7 @@
     "title": "Commercial Mortgage Maturity Data and APIs",
     "description": "Compare commercial mortgage maturity data and APIs. Test extensions, corrected CMBS filings and a refinance that replaced one loan with senior and mezzanine debt.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-26",
     "readMinutes": 10,
     "coverAlt": "Timeline showing Orion’s original February 2027 maturity, the amended February 2029 maturity, and conditional options in February and August 2030.",
     "coverCaption": "Orion Properties disclosed the amendment on February 19, 2026. The two 2030 dates depend on borrowers exercising their options and meeting the agreement’s conditions.",
@@ -39811,11 +38231,6 @@
             ],
             "rows": [
               [
-                "West Kite",
-                "CMBS loan search with reported balance, maturity and associated properties. Its separate NYC recorded-loan index gives lender and amount without a maturity field.",
-                "Ask for the source month behind a maturity result and try a commercial loan that appears only in the county recorder index."
-              ],
-              [
                 "CMBS Wire",
                 "Loan search by maturity and loan-level history based on public trusts that report to the SEC.",
                 "Test how it handles an amended filing. Check its explicit coverage limits for private deals and held loans."
@@ -39837,9 +38252,6 @@
               ]
             ],
             "rowSourceIds": [
-              [
-                "west-kite"
-              ],
               [
                 "cmbs-wire"
               ],
@@ -40002,12 +38414,6 @@
       {"id": "wfcm-amended-102", "title": "Replacement Exhibit 102 asset records (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/exh_102.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
       {"id": "wfcm-original-103", "title": "Original Exhibit 103 asset-related document (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019167/exh_103.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
       {"id": "wfcm-amended-103", "title": "Replacement Exhibit 103 asset-related document (XML)", "url": "https://www.sec.gov/Archives/edgar/data/2086308/000188852426019793/exh_103.xml", "publisher": "Wells Fargo Commercial Mortgage Trust 2025-C65 via SEC EDGAR"},
-      {
-        "id": "west-kite",
-        "title": "Financing datasets and API queries",
-        "url": "https://westkite.com/docs/data",
-        "publisher": "West Kite"
-      },
       {
         "id": "cmbs-wire",
         "title": "Loan maturity filters, filings and API coverage",
@@ -40497,7 +38903,7 @@
     "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
     "coverCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024. The individual commercial unit does not have its own polygon in the queried tax-map layer.",
-    "intro": "Use Invariant Earth when you need to connect parcels to terrain, hazards, or infrastructure with a source for each field. Compare Regrid and LightBox for boundaries, Realie and ATTOM for assessor-linked records, and Korzy and Mireye for site screening. Start each trial with the same public records. At 432 Park Avenue, one address has three tax lot IDs. In Norfolk County, Massachusetts, two towns use the same assessor parcel number for two different lots.",
+    "intro": "Use Invariant Earth when you need to connect parcels to terrain, hazards, or infrastructure with a source for each field. Compare Regrid and LightBox for boundaries, Realie and ATTOM for assessor-linked records, and Korzy for site screening. At 432 Park Avenue, one address has three tax lot IDs. In Norfolk County, Massachusetts, two towns use the same assessor parcel number for different lots. Use both examples to test which property record each result describes.",
     "takeaways": [
       "Keep the original ID as text, the issuing jurisdiction, and the record date. A county and parcel number can still identify more than one lot.",
       "Record whether a returned shape belongs to the requested unit, a parent lot or another match.",
@@ -40548,19 +38954,9 @@
                 "Confirm that the product includes the geometry you need and that you can join it to the right tax record."
               ],
               [
-                "West Kite",
-                "Commercial property research with parcel records, owners, assessments, and other records where available by county.",
-                "Test the relevant county fields and whether the API can return the parent and unit under their own identifiers."
-              ],
-              [
                 "Korzy",
                 "Address or point lookup with intersecting parcels, optional shape, nearby infrastructure, and coverage status.",
                 "Capture all parcels covering the point. Compare the returned local and provider IDs and check which fields are unknown or lack coverage."
-              ],
-              [
-                "Mireye",
-                "Cited geospatial enrichment for a selected parcel from an address or coordinate, with additional site data.",
-                "Inspect which parcel the address or coordinate matched. Test how it reports the unit, parent geometry, and source of each field."
               ],
               [
                 "Invariant Earth",
@@ -40606,14 +39002,7 @@
                 "attom"
               ],
               [
-                "west-kite",
-                "west-kite-api"
-              ],
-              [
                 "korzy-reference"
-              ],
-              [
-                "mireye"
               ],
               [
                 "earth-fields",
@@ -41004,12 +39393,11 @@
     "faqs": [
       {
         "question": "What are good alternatives to Regrid for parcel data?",
-        "answer": "Compare LightBox for boundaries linked to assessments and structures, Realie for assessor-linked property lookups, and Korzy or Mireye for parcel and site context. Test each against the authoritative records for the counties you need.",
+        "answer": "Compare LightBox for boundaries linked to assessments and structures, Realie for assessor-linked property lookups, and Korzy for parcel and site context. Test each against the authoritative records for the counties you need.",
         "sourceIds": [
           "lightbox-parcels",
           "realie-parcels",
-          "korzy-reference",
-          "mireye"
+          "korzy-reference"
         ]
       },
       {
@@ -41104,24 +39492,6 @@
         "title": "Property API fields, profiles, and boundary products",
         "url": "https://api.developer.attomdata.com/docs",
         "publisher": "ATTOM"
-      },
-      {
-        "id": "west-kite",
-        "title": "Commercial property records and county coverage",
-        "url": "https://westkite.com/docs/data",
-        "publisher": "West Kite"
-      },
-      {
-        "id": "west-kite-api",
-        "title": "Developer API, free address test and property records",
-        "url": "https://westkite.com/api",
-        "publisher": "West Kite API docs"
-      },
-      {
-        "id": "mireye",
-        "title": "Parcel enrichment and source fields",
-        "url": "https://docs.mireye.ai/introduction",
-        "publisher": "Mireye"
       },
       {
         "id": "earth-fields",
@@ -41513,8 +39883,8 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Use public GIS layers when you need to run your own polygon calculations. PVcase Prospect documents a greenfield workflow for filtering by buildable acres and working with site constraints. Geoforge’s example report shows how a separate power screen can organize modeled headroom, queue records, and upgrades. LandGate documents buildable-area analysis with custom exclusions, as well as separate solar and battery storage studies. Give each provider the same tract and export the excluded polygons. Ask for the study year and connection used for each capacity result. For storage, record charging and discharge limits separately.",
-            "sourceIds": ["pvcase", "geoforge", "landgate"]
+            "text": "Use public GIS layers when you need to run your own polygon calculations. PVcase Prospect documents a greenfield workflow for filtering by buildable acres and working with site constraints. LandGate documents buildable-area analysis with custom exclusions, as well as separate solar and battery storage studies. Give each provider the same tract and export the excluded polygons. Ask for the study year and connection used for each capacity result. For storage, record charging and discharge limits separately.",
+            "sourceIds": ["pvcase", "landgate"]
           },
           {
             "type": "paragraph",
@@ -41617,7 +39987,6 @@
       {"id": "pjm-base-ii", "title": "AG2-082 study, Phase II, June 3, 2026", "url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_2/AG2-082/AG2-082_imp_PHASE_2.htm#cost-summary", "publisher": "PJM Interconnection"},
       {"id": "pjm-uprate-i", "title": "AH1-580 study, Phase I, October 29, 2025", "url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_1/AH1-580/AH1-580_imp_PHASE_1.htm#cost-summary", "publisher": "PJM Interconnection"},
       {"id": "pjm-uprate-ii", "title": "AH1-580 study, Phase II, June 3, 2026", "url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_2/AH1-580/AH1-580_imp_PHASE_2.htm#cost-summary", "publisher": "PJM Interconnection"},
-      {"id": "geoforge", "title": "Example power screening report", "url": "https://geoforge.ai/report/power", "publisher": "Geoforge"},
       {"id": "invariant-fields", "title": "Public Earth API field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
       {"id": "invariant-responses", "title": "Earth API responses and provenance", "url": "https://docs.invariant-ai.com/responses", "publisher": "Invariant"},
       {
@@ -42754,7 +41123,7 @@
     "title": "Water and Sewer Data APIs for Site Selection",
     "description": "Find the water and sewer utilities for a property. Compare service area APIs, plant capacity and written allocations using a documented Maryland site.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 7,
     "coverAlt": "Aerial image of the Aligned data center site at Quantum Frederick Lot 106, with the lot outlined and county water and sewer map labels.",
     "coverCaption": "Quantum Frederick Lot 106. Frederick County parcel geometry over 2025 Maryland iMAP imagery. The service labels come from the county’s November 2026 map query.",
@@ -42884,11 +41253,6 @@
                 "Look up MD0021822. Confirm which plant the record covers, then obtain the utility’s current allocation and conveyance information."
               ],
               [
-                "West Kite",
-                "Utilities lookup covering water systems, sewer service areas and wastewater treatment plants where available.",
-                "Ask for the boundary source and vintage. Test whether it can distinguish a planned sewer area from a nearby treatment plant."
-              ],
-              [
                 "Invariant Earth",
                 "Point-in-polygon data for EPA community drinking-water systems with boundary provenance. Parcel fields can help anchor the lookup.",
                 "Check whether the mapped intersection is true or false and review the source. Check the county’s separate sewer and allocation records."
@@ -42908,9 +41272,6 @@
               [
                 "echo",
                 "echo-plant"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "invariant"
@@ -43090,12 +41451,6 @@
         "publisher": "U.S. EPA ECHO"
       },
       {
-        "id": "west-kite",
-        "title": "Utilities API documentation",
-        "url": "https://www.westkite.com/api/nearby",
-        "publisher": "West Kite"
-      },
-      {
         "id": "invariant",
         "title": "Public field catalog and water service area provenance",
         "url": "https://api.invariant-ai.com/v1/meta/fields",
@@ -43251,10 +41606,6 @@
             "label": "Evaluate the proposed connection",
             "items": [
               {"slug":"data-center-power-screening-tools","label":"Compare grid screening tools for a 200 MW data center"},
-              {
-                "slug": "geoforge-alternatives-data-center-power",
-                "label": "Compare data center power tools against published PJM upgrades"
-              },
               {"slug":"utility-grade-power-study","label":"What a utility-grade power-flow and contingency study evaluates"},
               {"slug":"truck-depot-charging-site-selection","label":"Screen an electric truck depot against a 5 MW service limit"}
             ]
@@ -43325,7 +41676,8 @@
       "spatialCoverage": "Vail Mills, New York, United States",
       "temporalCoverage": "2026-03-25/2026-03-31"
     },
-    "relatedSlugs": ["data-center-power-screening-tools", "utility-grade-power-study", "truck-depot-charging-site-selection", "interconnection-queue-data"]
+    "relatedSlugs": ["data-center-power-screening-tools", "utility-grade-power-study", "truck-depot-charging-site-selection", "interconnection-queue-data"],
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "data-center-power-screening-tools",
@@ -43339,13 +41691,13 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Data center site selection tools for power capacity",
-    "description": "Compare Invariant, Paces, Geoforge and other data center power screening tools using a 200 MW utility connection case. Check phase MW, upgrades and timing.",
+    "description": "Compare Invariant, Paces and other data center power screening tools using a 200 MW utility connection case. Check phased service, upgrades and power dates.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 8,
     "coverAlt": "Diagram of the Aiken No. 3 to Mt. Zion transmission buildout. A 16.2-mile section leads to the Mt. Zion switching station. Two feeders totaling 1.5 miles lead to customer substations. The first energized on December 15, 2025.",
     "coverCaption": "Simplified transmission scope for the Aiken project. The South Carolina Public Service Commission granted certificates in July 2024. Santee Cooper later reported the first customer substation energized in December 2025.",
-    "intro": "Start with Invariant when your 200 MW site decision needs parcel constraints, named connection options, MW by phase, and a study of what limits service. Compare Paces, Geoforge, and other providers on the same site and load profile. The Aiken County docket below shows the utility records a model needs to be checked against before you carry a date into a lease or acquisition.",
+    "intro": "Start with Invariant when your 200 MW site decision needs parcel constraints, named connection options, MW by phase and a study of what limits service. Give each provider the same site, load profile and service dates. The Aiken County docket shows which utility records to check before carrying a power date into a lease or acquisition.",
     "takeaways": [
       "Compare tools on the same site, load ramp and target dates. Ask which connection points, planning cases, prior requests and outages drive each answer.",
       "Keep modeled load capacity, signed service terms, construction and energization as separate steps.",
@@ -43380,11 +41732,6 @@
                 "Ask how the regional capacity layer was calculated. Request a worked report with the selected connection, modeled phase MW, dependencies, and an explanation of how it arrived at its dates."
               ],
               [
-                "Geoforge",
-                "Site reports combine offtake capacity by year and scenario, modeled on ISO/RTO grid cases as described by the provider, with queue context and planned upgrades. Its example shows a connection shortlist and an estimated time-to-power range.",
-                "Ask which loads and upgrades were included in each scenario. Have the provider show how the timeline changes if a named upgrade slips or a competing request advances."
-              ],
-              [
                 "PVcase Prospect",
                 "Map-based screening using modeled withdrawal capacity. Its capacity documentation explains the use of planning scenarios and a focus on later-stage queue projects.",
                 "Confirm the exact substation bus, constraint scenario and year. Ask which projects were included and how the report handles a load larger than the displayed withdrawal capacity."
@@ -43393,11 +41740,6 @@
                 "GridCARE",
                 "Grid simulation and utility collaboration to identify underused capacity. Its National Grid announcement describes an effort to identify capacity for large loads in New York.",
                 "Confirm the utility and service area for your site. Ask what flexibility or curtailment the case assumes, how many MW would be available in each phase, and who can approve the service terms."
-              ],
-              [
-                "Mireye",
-                "Cited location and infrastructure data, including substations, transmission voltage classes and site screening bundles.",
-                "Use it to identify nearby candidates and inspect sources. Ask separately for evidence behind any MW figure or service date you intend to carry into underwriting."
               ],
               [
                 "GridUnity",
@@ -43414,18 +41756,11 @@
                 "paces"
               ],
               [
-                "geoforge-method",
-                "geoforge-report"
-              ],
-              [
                 "pvcase",
                 "pvcase-method"
               ],
               [
                 "gridcare"
-              ],
-              [
-                "mireye"
               ],
               [
                 "gridunity"
@@ -43436,7 +41771,6 @@
             "type": "paragraph",
             "text": "Treat the date from a screening report as an estimate with a source and assumptions. A queue entry records a request or study status, depending on the system. Ask whether the product shows large loads, generation, or both, and which requests were actually included in the planning case. Operators publish different amounts of load information. For example, ERCOT has a separate large-load integration process.",
             "sourceIds": [
-              "geoforge-report",
               "pvcase-method",
               "ercot-load"
             ]
@@ -43539,7 +41873,6 @@
             "type": "links",
             "label": "Related power diligence guides",
             "items": [
-              {"slug": "geoforge-alternatives-data-center-power", "label": "Compare Geoforge alternatives and check 49 PJM upgrade dates"},
               {"slug": "200-mw-data-center-site", "label": "Explore the requirements for a 200 MW data center site"},
               {"slug": "utility-grade-power-study", "label": "See what a power flow and contingency study evaluates"},
               {"slug": "grid-capacity-apis-load-headroom", "label": "Compare grid capacity APIs and check load versus export values"},
@@ -43548,13 +41881,108 @@
             ]
           }
         ]
+      },
+      {
+        "id": "ohio-service-dates",
+        "heading": "An Ohio power forecast can contain several valid dates",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "AEP Ohio’s November 2025 study letter covered about 13 GW of new data center load. It found that the studied projects needed regional transmission work under the scenarios evaluated. Its initial estimate was Q4 2031 for Clusters 1 and 3 with the regional project and applicable parallel upgrades in service. Cluster 2 had a 2033 planning estimate and needed another regional solution. A buyer needs the customer’s actual service plan to determine which work applies.",
+            "sourceIds": [
+              "aep-study"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "PJM cross-references the first regional proposal, 2025W1-570, to upgrade package b4068. In the March 2026 assessment, b4068.2, the AEP portion of the Greentown to Teddy 765 kV line, had a required date of June 1, 2030 and a projected date of October 31, 2031. The first is the planning need date. The second is the forecast in that report. A particular customer’s electric service date has its own evidence.",
+            "sourceIds": [
+              "pjm-corridor",
+              "pjm-required-projected",
+              "aep-study"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "What a report might show",
+              "Date in the public record",
+              "How to use it"
+            ],
+            "rows": [
+              [
+                "Planning need for b4068.2",
+                "June 1, 2030",
+                "Keep it as the date the reliability plan requires the work."
+              ],
+              [
+                "Projected in-service date for b4068.2",
+                "October 31, 2031",
+                "Use it as a dated component forecast and check the latest schedule."
+              ],
+              [
+                "AEP Ohio Cluster 2 service planning estimate",
+                "2033",
+                "Check the second regional dependency, local work and actual customer schedule."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "pjm-required-projected"
+              ],
+              [
+                "pjm-required-projected"
+              ],
+              [
+                "aep-study"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "AEP Ohio later reported that 5,642 MW had signed binding contracts under the new tariff as of February 12, 2026. That update gives the scale of the committed cohort. It leaves the distribution by bus, year and cluster open. Ask your provider how it treats unconfirmed demand, then test a scenario with a different set of competing projects.",
+            "sourceIds": [
+              "aep-study",
+              "aep-contracts"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "audit-the-upgrade-dates",
+        "heading": "What the 49 PJM upgrade rows show",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We extracted the required and projected dates for each b4068 sub-ID in the March assessment. Two rows projected June 2028, 21 projected October 2030, and 26 projected October 2031. These are counts of published sub-IDs. A project forecast should identify the subset the connection actually depends on.",
+            "sourceIds": [
+              "pjm-baseline"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Two rows in that assessment show an invalid calendar value in the required-date column. The February board recommendations show June 1, 2030 for both sub-IDs. The download retains the February dates and the March source values separately, with the latter normalized to null. Ask a provider which source its model used and how it handles this sort of discrepancy.",
+            "sourceIds": [
+              "pjm-missing",
+              "pjm-board"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the 49 PJM upgrade rows and AEP Ohio study evidence",
+            "path": "/blog/pjm-b4068-transmission-upgrade-dates.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-pjm-upgrade-dates"
+          }
+        ]
       }
     ],
     "faqs": [
       {
         "question": "What is the best data center site selection tool for power capacity?",
-        "answer": "Evaluate Paces or Geoforge for a screened shortlist, PVcase for comparing modeled withdrawal at mapped connections, and project-specific study providers for your exact load ramp. Check the inputs, point of interconnection, study year, and output you can verify. The serving utility establishes the applicable service terms.",
-        "sourceIds": ["paces", "geoforge-report", "pvcase", "ercot-load"]
+        "answer": "Evaluate Paces for a screened shortlist, PVcase for comparing modeled withdrawal at mapped connections, and project-specific study providers for your exact load ramp. Check the inputs, point of interconnection, study year, and output you can verify. The serving utility establishes the applicable service terms.",
+        "sourceIds": ["paces", "pvcase", "ercot-load"]
       },
       {
         "question": "Can a substation’s voltage tell me whether it can serve 200 MW?",
@@ -43569,12 +41997,9 @@
     ],
     "sources": [
       {"id": "paces", "title": "Site screening and grid workflows for data center developers", "url": "https://www.paces.com/data-center-developers", "publisher": "Paces"},
-      {"id": "geoforge-method", "title": "Power report data and method", "url": "https://geoforge.ai/", "publisher": "Geoforge"},
-      {"id": "geoforge-report", "title": "Example power report with a connection shortlist and timeline", "url": "https://geoforge.ai/report/power", "publisher": "Geoforge"},
       {"id": "pvcase", "title": "Screen data center sites using withdrawal capacity", "url": "https://help.pvcase.com/hc/en-us/articles/47083999498259-How-do-I-site-data-centers-with-PVcase-Prospect-capacity-data", "publisher": "PVcase"},
       {"id": "pvcase-method", "title": "Methodology and queue assumptions in capacity data", "url": "https://help.pvcase.com/hc/en-us/articles/47084802867987-Methodology-in-Capacity-data", "publisher": "PVcase"},
       {"id": "gridcare", "title": "Large-load collaboration with National Grid", "url": "https://www.gridcare.ai/post/gridcare-and-national-grid-collaborate-to-unlock-grid-capacity-for-infrastructure", "publisher": "GridCARE"},
-      {"id": "mireye", "title": "Infrastructure fields and site screening bundles", "url": "https://docs.mireye.ai/introduction", "publisher": "Mireye"},
       {"id": "invariant-fields", "title": "Earth public field catalog", "url": "https://api.invariant-ai.com/v1/meta/fields", "publisher": "Invariant"},
       {"id": "invariant-study", "title": "Published power study workflow and limits", "url": "https://invariant-ai.com/blog/utility-grade-power-study", "publisher": "Invariant"},
       {"id": "ercot-load", "title": "ERCOT Large Load Integration", "url": "https://www.ercot.com/services/rq/large-load-integration/", "publisher": "ERCOT"},
@@ -43587,9 +42012,53 @@
         "title": "GridInterConnect for Large Load",
         "url": "https://www.gridunity.com/gridinterconnect-for-large-load",
         "publisher": "GridUnity"
+      },
+      {
+        "id": "aep-study",
+        "publisher": "AEP Ohio",
+        "title": "November 7, 2025 load study letter, pages 3 to 5",
+        "url": "https://www.aepohio.com/lib/docs/ratesandtariffs/ohio/AEP-Ohio_DCT_Load_Study_Letter_25.11.7.pdf#page=3"
+      },
+      {
+        "id": "aep-contracts",
+        "publisher": "AEP Ohio",
+        "title": "February 2026 update on signed data center contracts",
+        "url": "https://www.aepohio.com/company/news/view?releaseID=10753"
+      },
+      {
+        "id": "pjm-baseline",
+        "publisher": "PJM",
+        "title": "March 18, 2026 reliability assessment, b4068 rows on printed pages 15 to 21 and 41",
+        "url": "https://www.pjm.com/-/media/DotCom/planning/rtep-dev/baseline-reports/2025-rtep-baseline-assessment.pdf#page=19"
+      },
+      {
+        "id": "pjm-required-projected",
+        "publisher": "PJM",
+        "title": "Required and projected dates for Greentown to Teddy, row b4068.2",
+        "url": "https://www.pjm.com/-/media/DotCom/planning/rtep-dev/baseline-reports/2025-rtep-baseline-assessment.pdf#page=23"
+      },
+      {
+        "id": "pjm-missing",
+        "publisher": "PJM",
+        "title": "Two b4068 rows with non-calendar values in the required date column",
+        "url": "https://www.pjm.com/-/media/DotCom/planning/rtep-dev/baseline-reports/2025-rtep-baseline-assessment.pdf#page=45"
+      },
+      {
+        "id": "pjm-board",
+        "publisher": "PJM",
+        "title": "February 2026 board recommendations, b4068.48 and b4068.49, printed page 27",
+        "url": "https://www.pjm.com/-/media/DotCom/committees-groups/committees/teac/2026/20260203/20260203-pjm-board-whitepaper-february-2026.pdf#page=30"
+      },
+      {
+        "id": "pjm-corridor",
+        "publisher": "PJM",
+        "title": "Transition Cycle 2 impact study, cross-reference from proposal 570 to b4068",
+        "url": "https://www.pjm.com/pjmfiles/pub/planning/project-queues/TC2/PHASE_2/AG2-329/AG2-329_imp_PHASE_2.htm"
       }
     ],
-    "relatedSlugs": ["200-mw-data-center-site", "utility-grade-power-study", "power-evidence-data-center-site-verification"]
+    "relatedSlugs": ["200-mw-data-center-site", "utility-grade-power-study", "power-evidence-data-center-site-verification"],
+    "additionalDatasets": [{"archivedRelease": {"url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1", "version": "1.0.0", "datePublished": "2026-11-26"}, "name": "PJM b4068 upgrade dates and AEP Ohio data center service assumptions", "description": "A review of 49 PJM b4068 upgrade rows with required and projected dates, PDF page references, two earlier required dates, and AEP Ohio’s published load and service assumptions.", "spatialCoverage": "Central Ohio and eastern Indiana, United States", "temporalCoverage": "2025-11-07/2026-03-18", "sourceIds": ["aep-study", "aep-contracts", "pjm-baseline", "pjm-board", "pjm-corridor"], "anchor": "dataset-pjm-upgrade-dates",
+        "datePublished": "2026-11-26"}]
   },
   {
     "slug": "industrial-wastewater-capacity-site-selection",
@@ -43752,8 +42221,8 @@
     "relatedSlugs": ["water-sewer-data-apis-site-selection", "manufacturing-site-selection-100-buildable-acres", "industrial-environmental-permit-history-by-parcel"],
     "dataset": {
       "archivedRelease": {
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.0",
-        "version": "1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1",
+        "version": "1.0.1",
         "datePublished": "2026-11-26"
       },
       "name": "Camp Hall industrial sewer and Lower Berkeley treatment capacity records",
@@ -43761,7 +42230,8 @@
       "sourceIds": ["palmetto-camp-hall", "camp-hall-grant", "lower-berkeley-flow", "camp-hall-project-flow", "camp-hall-contract"],
       "spatialCoverage": "Camp Hall Commerce Park and Lower Berkeley Wastewater Treatment Plant, Berkeley County, South Carolina, United States",
       "temporalCoverage": "2021/2025-06-17"
-    }
+    },
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "manufacturing-site-selection-100-buildable-acres",
@@ -46438,11 +44908,6 @@
                 "Identify the covered roles and document types, then measure when notices arrive."
               ],
               [
-                "West Kite",
-                "Query recorded sales and, where supported, other transfers. Its sales reference describes how portfolio deeds are represented.",
-                "Compare the two Brooklyn lots and check that their shared deed ID is recoverable."
-              ],
-              [
                 "ATTOM",
                 "Query deed and mortgage history for an address through Sales History.",
                 "Trace the transaction date, recording fields and original record identifiers for the same five instruments."
@@ -46460,9 +44925,6 @@
               ],
               [
                 "recording-notice"
-              ],
-              [
-                "west-kite"
               ],
               [
                 "attom"
@@ -46577,12 +45039,6 @@
         "linkLabel": "Invariant parcel lookup"
       },
       {
-        "id": "west-kite",
-        "title": "API reference, recorded sales and other transfers",
-        "url": "https://westkite.com/docs/api/reference",
-        "publisher": "West Kite"
-      },
-      {
         "id": "attom",
         "title": "Property API, Sales History",
         "url": "https://api.developer.attomdata.com/docs",
@@ -46670,7 +45126,8 @@
         "legals_metadata",
         "parties_metadata"
       ]
-    }
+    },
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "certificate-of-occupancy-lookup-by-address",
@@ -46877,10 +45334,6 @@
               {
                 "slug": "commercial-property-insurance-data-apis",
                 "label": "Evaluate commercial property data for underwriting"
-              },
-              {
-                "slug": "west-kite-alternatives-for-commercial-property-data",
-                "label": "Trace an office conversion through permit and occupancy records"
               }
             ]
           }
@@ -47009,8 +45462,7 @@
     "relatedSlugs": [
       "building-permit-data-apis",
       "building-footprint-data-apis",
-      "commercial-property-insurance-data-apis",
-      "west-kite-alternatives-for-commercial-property-data"
+      "commercial-property-insurance-data-apis"
     ],
     "dataset": {
       "name": "NYC occupancy index records for 270 Park Avenue and 350 Fifth Avenue",
@@ -49562,7 +48014,7 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "LightBox Alternatives for Environmental Site Screening",
-    "description": "Compare LightBox, Invariant Earth, Mireye and ERIS for environmental due diligence. Use an EPA Superfund example to test site geometry and cleanup history.",
+    "description": "Compare LightBox, Invariant Earth and ERIS for environmental due diligence. Use an EPA Superfund example to test site geometry and cleanup history.",
     "date": "2026-11-25",
     "readMinutes": 7,
     "coverAlt": "Map of EPA’s Gowanus Canal Superfund footprint and an enlarged view showing the agency’s published site coordinate 21.7 meters outside the nearest edge.",
@@ -49605,11 +48057,6 @@
                 "Use the same EPA ID for the address and geometry queries. Inspect the geometry type and confirm the source and vintage of each return."
               ],
               [
-                "Mireye",
-                "Screen a point using documented Superfund and brownfield distance and count fields within 8 km.",
-                "Check the input coordinate and source. Ask how the response distinguishes an empty search from unavailable coverage."
-              ],
-              [
                 "Transect",
                 "Development feasibility reports that bring together buildable area, water features, species constraints and permitting requirements.",
                 "Upload the same tract and buffer. Ask which polygons came from a published layer, which reflect proprietary modeling, and which findings need field verification."
@@ -49633,9 +48080,6 @@
               ],
               [
                 "lightbox-epa"
-              ],
-              [
-                "mireye"
               ],
               [
                 "transect"
@@ -49847,12 +48291,6 @@
         "url": "https://www.lightboxre.com/product/edr-environmental-data-packages/"
       },
       {
-        "id": "mireye",
-        "publisher": "Mireye",
-        "title": "Live point field catalog",
-        "url": "https://api.mireye.com/v1/meta/fields"
-      },
-      {
         "id": "eris",
         "publisher": "ERIS",
         "title": "Environmental database and historical report packages",
@@ -49916,10 +48354,9 @@
     },
     "relatedSlugs": [
       "industrial-environmental-permit-history-by-parcel",
-      "mireye-alternatives-for-property-screening",
       "data-center-environmental-site-screening"
     ],
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "property-data-as-of-date",
@@ -50126,12 +48563,76 @@
               {
                 "slug": "commercial-mortgage-records-by-address",
                 "label": "Trace the recorded financing at 25 Water Street"
-              },
-              {
-                "slug": "west-kite-alternatives-for-commercial-property-data",
-                "label": "Replay the building and unit-count comparison"
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "timeline",
+        "heading": "25 Water Street permit and occupancy records",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The tax lot ties together records at these addresses. The Department of Buildings uses a building identification number, or BIN, to identify the structure. Join the general construction permit M08013214-I1-GC to the occupancy filings under base job M08013214. Keep the original permit, renewal sequence, certificate number and issuance dates.",
+            "sourceIds": [
+              "permit-rows",
+              "occupancy"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Date",
+              "Record for the conversion",
+              "What the date tells you"
+            ],
+            "rows": [
+              [
+                "October 18, 2023",
+                "Initial general construction permit issuance. Its row gives an October 6 approval date.",
+                "Keep approval and issuance as distinct events."
+              ],
+              [
+                "February 7, 2025",
+                "First occupancy issuance in the reviewed dataset, certificate 1000007-0000001.",
+                "The index reports an issuance. Read the certificate to see the applicable spaces, use, and terms."
+              ],
+              [
+                "December 17, 2025",
+                "Fourth issuance of the same general construction permit, a renewal with changes.",
+                "A later work permit can coexist with an earlier occupancy issuance."
+              ],
+              [
+                "September 30, 2026",
+                "Latest occupancy issuance in the reviewed data, 1000007-0000010, listed as a renewal without change.",
+                "Check the certificate type and applicable expiry directly with DOB."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "permit-rows"
+              ],
+              [
+                "occupancy",
+                "dob-guidance"
+              ],
+              [
+                "permit-rows"
+              ],
+              [
+                "occupancy",
+                "dob-guidance"
+              ]
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the NYC address, permit and occupancy records for 25 Water Street",
+            "path": "/blog/25-water-street-property-records.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-water-street-permits-and-occupancy"
           }
         ]
       }
@@ -50220,6 +48721,27 @@
         "publisher": "Invariant",
         "title": "Trace parcel boundary history through a split or merger",
         "url": "https://docs.invariant-ai.com/trace-parcel-boundary-history"
+      },
+      {
+        "id": "mappluto",
+        "publisher": "NYC Department of City Planning",
+        "title": "Current MapPLUTO query for tax lot 1000050010",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1000050010&outFields=BBL%2CAddress%2CVersion%2CUnitsRes%2CUnitsTotal%2COwnerName&returnGeometry=false&f=json",
+        "linkLabel": "MapPLUTO lot"
+      },
+      {
+        "id": "permit-rows",
+        "publisher": "NYC Department of Buildings",
+        "title": "DOB NOW Building permits for BIN 1000007",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?bin=1000007&work_permit=M08013214-I1-GC&%24select=bin%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Capproved_date%2Cissued_date%2Cexpired_date%2Cpermit_status&%24order=issued_date+ASC%2Csequence_number+ASC",
+        "linkLabel": "NYC permit records"
+      },
+      {
+        "id": "dob-guidance",
+        "publisher": "NYC Department of Buildings",
+        "title": "Temporary certificate of occupancy and how to find certificates",
+        "url": "https://www.nyc.gov/site/buildings/property-or-business-owner/temporary-certificate-of-occupancy.page",
+        "linkLabel": "NYC DOB guidance"
       }
     ],
     "dataset": {
@@ -50242,8 +48764,9 @@
     "relatedSlugs": [
       "historical-parcel-boundaries-api",
       "commercial-mortgage-records-by-address",
-      "west-kite-alternatives-for-commercial-property-data",
       "commercial-real-estate-data-apis-for-lenders"
-    ]
+    ],
+    "additionalDatasets": [{"archivedRelease": {"url": "https://github.com/in-variant/invariant-website/releases/tag/physical-world-data-api-trial-v1.0.1", "version": "1.0.0", "datePublished": "2026-11-26"}, "name": "25 Water Street address aliases, permits and occupancy records", "description": "Three addresses identified by the city, the MapPLUTO 26v3 tax lot summary, four general construction permit issuances and ten NYC Department of Buildings occupancy issuance records for the office-to-residential conversion at 25 Water Street.", "sourceReuse": {"note": "Credit NYC City Planning and NYC Department of Buildings for the MapPLUTO, permit and occupancy fields. Invariant matched the three address aliases to the selected lot and building records. Retain the identifiers and retrieval date with the match.", "policyLabel": "NYC Open Data terms of use", "policyUrl": "https://cityofnewyork.github.io/opendatatsm/publicpolicies.html"}, "sourceIds": ["aliases", "mappluto", "permit-rows", "occupancy"], "spatialCoverage": "25 Water Street, Manhattan, New York City, United States", "temporalCoverage": "2023-10-18/2026-11-22", "anchor": "dataset-water-street-permits-and-occupancy",
+        "datePublished": "2026-11-26"}]
   }
 ]

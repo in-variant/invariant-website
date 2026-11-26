@@ -40,8 +40,8 @@ const COMPLIANCE_PROMPTS = [
 
 const PROVIDERS = ['openai', 'claude', 'gemini']
 const BUYER_COMPARISONS = [
-  'ageospatial.com', 'geoforge.ai', 'korzy.co', 'mireye.ai', 'mireye.com', 'paxiv.com',
-  'realie.ai', 'regrid.com', 'scoutdata.com', 'westkite.com',
+  'ageospatial.com', 'korzy.co', 'paxiv.com',
+  'realie.ai', 'regrid.com', 'scoutdata.com',
 ]
 
 function comparisonDomains(domains) {

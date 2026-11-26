@@ -30,29 +30,6 @@
       "method_documentation": "https://www.usgs.gov/faqs/how-accurate-are-elevations-generated-elevation-point-query-service-national-map"
     },
     {
-      "provider": "Mireye Fetch",
-      "request": {
-        "method": "POST",
-        "url": "https://api.mireye.com/v1/fetch",
-        "body": {
-          "lat": 37.779054193871154,
-          "lng": -122.41632622023333,
-          "fields": [
-            "elevation"
-          ]
-        }
-      },
-      "value_m": 19.278257369995117,
-      "fetched_at": "2026-11-26T02:33:21.259682+00:00",
-      "status": "ok",
-      "source": "USGS_3DEP_COG",
-      "source_url": "https://www.usgs.gov/3d-elevation-program",
-      "dataset_vintage_as_returned": "3DEP 1/3 arc-second seamless DEM",
-      "raster_acquisition_date": null,
-      "vertical_reference": "NAVD88 per the published elevation field definition.",
-      "field_documentation": "https://api.mireye.com/v1/meta/fields"
-    },
-    {
       "provider": "emem",
       "requests": [
         {
@@ -106,5 +83,5 @@
       "documentation": "https://www.emem.dev/docs/agents.html"
     }
   ],
-  "interpretation": "Three dated reads for one address point. The providers differ in source grids, sampling approach and in some cases vertical references and physical surface. A difference is not an accuracy estimate or a building height. Use a terrain raster and parcel or footprint geometry for site-wide work."
+  "interpretation": "Two dated reads for one address. The results come from different source grids and sampling locations. Use a terrain raster and parcel or footprint geometry for a site-wide measurement."
 }

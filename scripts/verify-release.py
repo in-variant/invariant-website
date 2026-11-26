@@ -44,6 +44,9 @@ RETIRED = (
     "/blog/nuclear-compliance-tam", "/blog/space-compliance-tam",
     "/ai-for-nuclear-compliance", "/ai-for-space-compliance",
     "/blog/part100-vs-part53-siting", "/blog/seismic-design-shift",
+    "/blog/geoforge-alternatives-data-center-power",
+    "/blog/mireye-alternatives-for-property-screening",
+    "/blog/west-kite-alternatives-for-commercial-property-data",
 )
 CRAWLER_USER_AGENTS = (
     "Googlebot/2.1", "bingbot/2.0", "OAI-SearchBot/1.4", "Claude-SearchBot/1.0", "PerplexityBot/1.0",
