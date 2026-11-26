@@ -25616,11 +25616,11 @@
   "topic": "Data Centers",
   "kind": "site-guide",
   "region": "United States",
-  "title": "Data Center Site Selection Checklist and Criteria",
-  "description": "Compare data center sites with a downloadable workbook. Check 12 criteria covering utility MW by phase, service dates, usable acres, water, fiber and permits.",
+  "title": "Data center site selection checklist and criteria",
+  "description": "Evaluate data center sites against 12 criteria. Get a comparison workbook and an RFP template for utility MW, service dates, land, water, fiber and permits.",
   "date": "2026-11-09",
-  "readMinutes": 17,
-  "intro": "Data center site selection starts with the opening date and the load the facility needs at the utility meter. Set those requirements for each phase, then screen usable land, site control, cooling water, fiber and permits against the same schedule. The checklist helps you decide which sites warrant a study, which need one more document and which miss a requirement you can’t change.",
+  "readMinutes": 19,
+  "intro": "Start with the opening date and peak facility load at the utility meter for each phase. Then check usable land, site control, water, fiber and permits against that same schedule. The 12 criteria below help you shortlist sites, compare the evidence and give sellers or consultants a clear set of requirements.",
   "takeaways": [
    "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
    "Check the utility connection, land and approval path in parallel. Record which event could move the opening date.",
@@ -25640,6 +25640,10 @@
     {
       "label": "Compare two sites",
       "href": "#compare-two-sites"
+    },
+    {
+      "label": "Use the site selection RFP template",
+      "href": "#data-center-site-selection-rfp"
     },
     {
       "label": "Request a site shortlist",
@@ -25860,6 +25864,54 @@
        "Advance to detailed diligence when the available evidence supports a viable path for every required first-phase condition. Record which studies, approvals and service terms are still due.",
        "Hold when an open issue could change the decision. Name the party who can resolve it, the specific record you need and the deadline before the next payment or commitment.",
        "Rule out the site for this scope when the evidence shows a fixed requirement cannot be met by the deadline. Record the threshold the site missed and what would have to change to reconsider it."
+      ]
+     }
+    ]
+   },
+   {
+    "id": "data-center-site-selection-rfp",
+    "heading": "Data center site selection RFP template",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Give every seller or site-selection firm the same opening date, load schedule and siting requirements. Ask for one response per proposed property and one row per power phase. A useful response ties each claim to a dated record, shows what that record covers, and names who can resolve any open conditions.",
+      "sourceIds": ["siting", "dominion-data-center-requests"]
+     },
+     {
+      "type": "download",
+      "label": "Download the editable site selection RFP template",
+      "path": "/blog/data-center-site-selection-rfp.csv",
+      "format": "CSV",
+      "datasetAnchor": null
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": ["Put this in your request", "Evidence to request"],
+      "rows": [
+       ["Allowed markets and transaction", "Street address, parcel IDs and offered boundary. Identify the owner or authorized seller, purchase or lease terms, option expiration and any off-site rights needed."],
+       ["Facility load and service dates by phase", "Facility MW at the meter, utility, candidate delivery point and earliest documented service date for each phase. Attach the relevant letter, study, agreement or metering record. List limits, upgrades and commercial obligations."],
+       ["Buildable area and access", "A dated concept plan showing building and equipment pads, setbacks, flood or wetland exclusions, access and utility corridors. Give usable acres after exclusions and state how you calculated them."],
+       ["Cooling, water and sewer", "Expected demand at design conditions, the proposed providers, the service and discharge points, and written capacity or service terms where available."],
+       ["Fiber and any latency ceiling", "Carrier and installation date for each proposed circuit. Mark building entries and any shared route segments. State which endpoints the latency estimate uses."],
+       ["Approval and decision dates", "Jurisdiction, zoning and permit path, decision or docket references, and the next action. State which conditions must clear before land commitment, grading, utility service or operation."]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Use the same date and unit on every bid. For the 40 MW first phase above, request service by May 16, 2028. A study showing 50 MW on June 15 still misses that schedule. Keep it on hold while the utility reviews an earlier date, and mark a seller estimate as a lead until you have a utility record."
+     },
+     {
+      "type": "paragraph",
+      "text": "Ask which documents the utility will require next. Dominion Energy Virginia’s transmission delivery-point criteria, effective April 1, 2026, call for a preliminary electrical diagram and scaled site plan at request intake. At the feasibility stage for a data center, they call for a 30% site plan and a local zoning conformance letter. Include the time to prepare those documents in the schedule for a site served through that process.",
+      "sourceIds": ["dominion-delivery-point-feasibility"]
+     },
+     {
+      "type": "links",
+      "label": "Review the responses",
+      "items": [
+       {"path": "/blog/data-center-site-selection-checklist#compare-two-sites", "label": "Compare candidate dates and power evidence"},
+       {"path": "/blog/data-center-site-selection-services#sample-data-center-shortlist", "label": "See a sample site shortlist"}
       ]
      }
     ]
@@ -26984,6 +27036,13 @@
     "linkLabel": "Dominion request steps"
    },
    {
+    "id": "dominion-delivery-point-feasibility",
+    "title": "Facility Interconnection Requirements, Attachment 2, sections 2.7 and 3.1",
+    "url": "https://www.pjm.com/-/media/DotCom/planning/planning-criteria/dominion-planning-criteria.ashx#page=106",
+    "publisher": "Dominion Energy Virginia",
+    "linkLabel": "Transmission delivery-point requirements"
+   },
+   {
     "id": "gre-site-assessment",
     "title": "Data Center Site Assessment Program supporting documentation, pages 1–2",
     "url": "https://econdev.greatriverenergy.com/media/userfiles/files/gre/data-center/gre-site-assessment-supporting-documentation.pdf",
@@ -27384,6 +27443,10 @@
        {
         "label": "Compare utility letters, studies and service agreements",
         "slug": "utility-will-serve-letter-load-study-esa"
+       },
+       {
+        "label": "Prepare the same site requirements for every bidder",
+        "path": "/blog/data-center-site-selection-checklist#data-center-site-selection-rfp"
        }
       ]
      }
@@ -27878,7 +27941,7 @@
    "data-center-site-due-diligence",
    "data-center-for-sale"
   ],
-  "updatedDate": "2026-11-25",
+  "updatedDate": "2026-11-26",
   "service": {
    "name": "Invariant data center site selection",
    "serviceType": "Data center site sourcing and power due diligence",
