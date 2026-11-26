@@ -1,5 +1,500 @@
 [
   {
+    "slug": "truck-traffic-counts-by-address",
+    "topic": "Data & APIs",
+    "region": "United States",
+    "title": "How to Find Truck Traffic Counts by Address",
+    "description": "Find daily truck traffic on a road segment and compare AADT with annual average daily truck traffic. Reproduce a six-segment Minnesota test and compare traffic data APIs.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "Minnesota DOT reports 1,652 heavy commercial vehicles per day on 85th Avenue North west of Zane Avenue, and 426 east of Zane Avenue, for 2025.",
+    "coverCaption": "MnDOT 2025 Heavy Commercial Annual Average Daily Traffic, locations 42697 and 42698. Both values have source data type E.",
+    "intro": "To find how many trucks pass an address each day, locate the entrance that trucks will use, then match the road in front of it to a state or local traffic segment. Read the truck volume, vehicle class, year and direction. In Brooklyn Park, Minnesota, MnDOT’s 2025 maps report 1,652 heavy commercial vehicles per day west of Zane Avenue on 85th Avenue North and 426 east of it. Choosing the correct side of the intersection changes the estimate by almost fourfold.",
+    "takeaways": [
+      "Use an annual average truck figure, such as AADTT or Minnesota’s HCAADT, for corridor screening. Check the source’s definition of a truck.",
+      "Match the same segment and year before dividing truck traffic by total traffic. One Minnesota pair of current layers showed 2025 truck traffic beside 2019 total traffic.",
+      "Request a turning count or gate data when the decision depends on movements into a driveway, a particular shift or actual warehouse arrivals."
+    ],
+    "guideActions": [
+      {
+        "href": "#mndot-truck-count-test",
+        "label": "See the six-segment Minnesota test"
+      },
+      {
+        "href": "/blog/mndot-truck-traffic-segment-comparison.json",
+        "label": "Download the counts and source queries",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "find-truck-traffic-by-address",
+        "heading": "Where can you look up daily truck traffic near a property?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the driveway or gate, then identify the road segment on the approach to it. A parcel may front several roads, and a nearby freeway can be closer to the parcel than the street trucks actually use. For an industrial lease, use the address and frontage fields in Invariant Earth to narrow the search, then join the approach road to a traffic record from the road authority.",
+            "sourceIds": [
+              "earth-coverage",
+              "mndot-tools",
+              "mndot-corridors"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Measure",
+              "What to request"
+            ],
+            "rows": [
+              [
+                "Annual average daily traffic (AADT)",
+                "All motor vehicles on a specified road segment. Record the year and whether the value covers one direction or both."
+              ],
+              [
+                "Annual average daily truck traffic (AADTT)",
+                "Trucks on the same segment. Check which classes the publisher includes. MnDOT defines heavy commercial traffic as trucks with at least two axles and six tires."
+              ],
+              [
+                "Hourly or turning movement counts",
+                "Time of day, direction and maneuvers at a specific intersection or driveway. Ask for the observed dates, vehicle classes and a collection period suited to the decision."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "fhwa-hpms",
+                "mndot-method"
+              ],
+              [
+                "fhwa-aadtt",
+                "mndot-method"
+              ],
+              [
+                "mndot-tools",
+                "mndot-corridors"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mndot-truck-count-test",
+        "heading": "What changes when you pick the correct road segment?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried MnDOT’s current all-vehicle and heavy commercial segment layers on November 25, 2026. We joined six records by Location ID and checked that the geometry matched between layers. MnDOT annual averages cover both directions for these road segments. The table keeps each layer’s year and source type code.",
+            "sourceIds": [
+              "mndot-current-aadt",
+              "mndot-current-hcaadt",
+              "mndot-method"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Segment and MnDOT Location ID",
+              "All vehicles per day",
+              "Heavy commercial vehicles per day",
+              "Matched-year truck share"
+            ],
+            "rows": [
+              [
+                "85th Avenue N, west of CSAH 14 (Zane Avenue) · 42697",
+                "20,014 (2025, M)",
+                "1,652 (2025, E)",
+                "8.3%"
+              ],
+              [
+                "85th Avenue N, east of CSAH 14 (Zane Avenue) · 42698",
+                "18,396 (2025, M)",
+                "426 (2025, E)",
+                "2.3%"
+              ],
+              [
+                "I-94, southeast of MN 101 · 10393",
+                "116,025 (2025, A)",
+                "13,424 (2025, C)",
+                "11.6%"
+              ],
+              [
+                "Main Street (CSAH 81), south of I-94 · 43026",
+                "27,156 (2025, M)",
+                "1,783 (2025, C)",
+                "6.6%"
+              ],
+              [
+                "Rogers Drive, south of Diamond Lake Road · 66417",
+                "9,156 (2025, A)",
+                "604 (2025, A)",
+                "6.6%"
+              ],
+              [
+                "Industrial Boulevard, southwest of Church Avenue · 42991",
+                "14,800 (2019, A)",
+                "863 (2025, E)",
+                "Different years"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "mndot-current-aadt",
+                "mndot-current-hcaadt"
+              ],
+              [
+                "mndot-current-aadt",
+                "mndot-current-hcaadt"
+              ],
+              [
+                "mndot-current-aadt",
+                "mndot-current-hcaadt"
+              ],
+              [
+                "mndot-current-aadt",
+                "mndot-current-hcaadt"
+              ],
+              [
+                "mndot-current-aadt",
+                "mndot-current-hcaadt"
+              ],
+              [
+                "mndot-current-aadt",
+                "mndot-current-hcaadt"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The two Brooklyn Park records share an endpoint at Zane Avenue. Total traffic is 20,014 west of the intersection and 18,396 east of it. The much larger difference in heavy commercial traffic gives estimated truck shares of 8.3% and 2.3%. Keep the actual approach segment in the site record so a reviewer can reproduce the result.",
+            "sourceIds": [
+              "mndot-current-aadt",
+              "mndot-current-hcaadt"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In Rogers, MnDOT reports 13,424 heavy commercial vehicles per day on the selected I-94 segment and 604 on Rogers Drive south of Diamond Lake Road. Both support a regional screening decision. To plan arrival windows or model a proposed loading entrance, collect traffic for the relevant approach, turning movement and hours.",
+            "sourceIds": [
+              "mndot-current-hcaadt",
+              "mndot-tools",
+              "mndot-corridors"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "match-aadt-and-truck-count-year",
+        "heading": "How do you calculate truck share when the years differ?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For Industrial Boulevard, Location ID 42991, the current layers display 14,800 total vehicles per day for 2019 and 863 heavy commercial vehicles per day for 2025. Hold the ratio until you have values for the same year. MnDOT’s historical AADT table has a 2025 entry of 13,204 at that same location. Pairing the two 2025 rows gives 863 divided by 13,204, or 6.54%.",
+            "sourceIds": [
+              "mndot-current-aadt",
+              "mndot-current-hcaadt",
+              "mndot-history-aadt",
+              "mndot-history-hcaadt"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the original method code alongside both numbers. MnDOT’s data products page describes A as count-based, M as modeled and C as factored. The heavy commercial export also returned E for several rows in this example. The download preserves that code as published. Use the agency’s classification records when the decision requires a direct count.",
+            "sourceIds": [
+              "mndot-products",
+              "mndot-method",
+              "mndot-current-hcaadt"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/mndot-truck-traffic-segment-comparison.json",
+            "format": "JSON",
+            "label": "Download the six segment matches, historical rows and source queries"
+          }
+        ]
+      },
+      {
+        "id": "compare-truck-traffic-data-providers",
+        "heading": "Which truck traffic data API or source fits the job?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use a traffic authority’s data where it covers your approach road. For a national shortlist, commercial estimates can fill in research on additional roads and dates. Trial each source on the same segment, direction, year and truck class. Ask how it handles a local road without observations.",
+            "sourceIds": [
+              "mndot-tools",
+              "streetlight",
+              "replica"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider",
+              "Best place to start",
+              "How to check it on a trial"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Use one property lookup to identify a parcel, frontage roads, nearest major road and other site constraints.",
+                "Give it your actual truck entrance. Carry the matched road into the DOT or traffic API lookup and attach the original traffic evidence to the property."
+              ],
+              [
+                "State and local DOTs",
+                "Look up the named segment and current or historical class volumes.",
+                "Check the report year, observed, modeled or factored basis and which vehicle classes are included."
+              ],
+              [
+                "StreetLight",
+                "Query the Advanced Traffic Counts API for truck-mode volume estimates by segment.",
+                "Check the OSM vintage, direction, weight class, sample count and day-type definition for the requested period."
+              ],
+              [
+                "Replica",
+                "Review annual single-unit and combination truck volumes on supported motorways and trunks.",
+                "Check coverage at the approach road, the version of the model and whether the output is directional."
+              ],
+              [
+                "INRIX",
+                "Review directional volume profiles by time of day and day of week.",
+                "Request the product vintage and ask which vehicle-class breakout, if any, applies to the segment."
+              ],
+              [
+                "HERE",
+                "Review historical speed observations and probe volumes in Traffic Analytics.",
+                "Ask how the delivered probe metric relates to total truck volume and whether the segment has truck data."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-coverage"
+              ],
+              [
+                "mndot-tools",
+                "mndot-products"
+              ],
+              [
+                "streetlight"
+              ],
+              [
+                "replica"
+              ],
+              [
+                "inrix"
+              ],
+              [
+                "here"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related freight and site checks",
+            "items": [
+              {
+                "slug": "warehouse-site-selection-rail-truck-access",
+                "label": "Verify warehouse truck access and trailer parking"
+              },
+              {
+                "slug": "truck-routing-apis-nyc-truck-route-restrictions",
+                "label": "Compare truck routing and crossing restrictions"
+              },
+              {
+                "slug": "freight-analysis-framework-data",
+                "label": "Compare regional freight flows and commodity demand"
+              },
+              {
+                "slug": "industrial-land-for-sale-acreage-zoning",
+                "label": "Screen industrial land by access, acreage and zoning"
+              },
+              {
+                "slug": "foot-traffic-data-by-address",
+                "label": "Check pedestrian visits for retail site selection"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I find truck traffic counts by address?",
+        "answer": "Start from the driveway address and identify the road segment trucks use. Check the state or local transportation agency’s truck traffic or vehicle classification layer. Save the segment ID, count year, directions and vehicle classes along with the estimate.",
+        "sourceIds": [
+          "mndot-tools",
+          "mndot-method"
+        ]
+      },
+      {
+        "question": "What is the difference between AADT and AADTT?",
+        "answer": "AADT describes average daily traffic for the reporting year on a segment. AADTT describes the truck component. Look up the local definition of truck and the time period before calculating truck share.",
+        "sourceIds": [
+          "fhwa-aadtt",
+          "fhwa-hpms"
+        ]
+      },
+      {
+        "question": "Can I use a truck traffic count to estimate deliveries to one warehouse?",
+        "answer": "Use the road count to understand the corridor. For arrivals to a specific warehouse, request gate records or count truck movements into and out of the entrance in the relevant hours.",
+        "sourceIds": [
+          "mndot-method",
+          "mndot-corridors"
+        ]
+      },
+      {
+        "question": "Why does a current traffic layer show an older year?",
+        "answer": "The current layer can contain the latest value published for that segment in that layer, even when another layer has a different reporting year. For a comparable pair, look up each figure for the same Location ID and year in the historical tables.",
+        "sourceIds": [
+          "mndot-products",
+          "mndot-history-aadt",
+          "mndot-history-hcaadt"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "fhwa-aadtt",
+        "title": "Traffic Monitoring Guide glossary and annual average daily truck traffic",
+        "publisher": "Federal Highway Administration",
+        "url": "https://www.fhwa.dot.gov/policyinformation/tmguide/tmg_2022/tmg-glossary.cfm",
+        "linkLabel": "FHWA traffic count definitions"
+      },
+      {
+        "id": "fhwa-hpms",
+        "title": "Federal reporting for AADT, single-unit trucks and combination trucks",
+        "publisher": "Federal Highway Administration",
+        "url": "https://www.fhwa.dot.gov/policyinformation/tmguide/tmg_2022/federal-data-reporting.cfm",
+        "linkLabel": "FHWA reporting and vehicle classes"
+      },
+      {
+        "id": "mndot-tools",
+        "title": "Transportation Data Management System and public Traffic Viewer",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://www.dot.state.mn.us/traffic/data/tdms.html",
+        "linkLabel": "Open the MnDOT traffic viewer"
+      },
+      {
+        "id": "mndot-method",
+        "title": "Traffic volume and vehicle classification collection methods",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://www.dot.state.mn.us/traffic/data/coll-methods.html",
+        "linkLabel": "MnDOT collection and annualization methods"
+      },
+      {
+        "id": "mndot-products",
+        "title": "Published traffic layers and data type codes",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://www.dot.state.mn.us/traffic/data/data-products.html",
+        "linkLabel": "MnDOT traffic layers and data codes"
+      },
+      {
+        "id": "mndot-geometry",
+        "title": "Heavy Commercial Annual Average Daily Traffic Segments Current in Minnesota",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://www.arcgis.com/home/item.html?id=7fb9bb44724c4e4e9f7d3c265d89d45c",
+        "linkLabel": "MnDOT layer metadata and credit"
+      },
+      {
+        "id": "mndot-corridors",
+        "title": "Corridor planning guide for freight, access management and physical constraints",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://www.dot.state.mn.us/planning/program/corridor-planning-guidebook/motor-vehicles-freight.html",
+        "linkLabel": "MnDOT freight corridor planning"
+      },
+      {
+        "id": "mndot-current-aadt",
+        "title": "Current total vehicle traffic for six Hennepin County segments",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID",
+        "linkLabel": "Query the current AADT rows"
+      },
+      {
+        "id": "mndot-current-hcaadt",
+        "title": "Current heavy commercial traffic for the same six segments",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID",
+        "linkLabel": "Query the current HCAADT rows"
+      },
+      {
+        "id": "mndot-history-aadt",
+        "title": "Historical AADT rows for Industrial Boulevard and Rogers Drive",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_HISTORY_SAMPLED/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR",
+        "linkLabel": "Query the historical AADT rows"
+      },
+      {
+        "id": "mndot-history-hcaadt",
+        "title": "Historical HCAADT rows for the same locations",
+        "publisher": "Minnesota Department of Transportation",
+        "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_HISTORY/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CHCAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR",
+        "linkLabel": "Query the historical HCAADT rows"
+      },
+      {
+        "id": "earth-coverage",
+        "title": "Invariant Earth data coverage and parcel frontage fields",
+        "publisher": "Invariant",
+        "url": "https://invariant-ai.com/data-coverage",
+        "linkLabel": "Invariant Earth field coverage"
+      },
+      {
+        "id": "streetlight",
+        "title": "Advanced Traffic Counts API, available metrics and truck filters",
+        "publisher": "StreetLight Data",
+        "url": "https://developer.streetlightdata.com/docs/available-metrics",
+        "linkLabel": "StreetLight traffic API metrics"
+      },
+      {
+        "id": "replica",
+        "title": "Annual Average Daily Traffic methodology and truck coverage by road class",
+        "publisher": "Replica",
+        "url": "https://documentation.replicahq.com/docs/annual-average-daily-traffic-aadt",
+        "linkLabel": "Replica annual traffic methodology"
+      },
+      {
+        "id": "inrix",
+        "title": "Volume Profiles 3.0 product and methodology brochure",
+        "publisher": "INRIX",
+        "url": "https://inrix.com/wp-content/uploads/2025/10/Volume-Profiles-3.0-Brochure-2025.pdf",
+        "linkLabel": "INRIX volume profiles"
+      },
+      {
+        "id": "here",
+        "title": "Traffic Analytics probe counts and historical traffic scope",
+        "publisher": "HERE",
+        "url": "https://docs.here.com/traffic-analytics/docs/readme",
+        "linkLabel": "HERE Traffic Analytics"
+      }
+    ],
+    "relatedSlugs": [
+      "warehouse-site-selection-rail-truck-access",
+      "truck-routing-apis-nyc-truck-route-restrictions",
+      "freight-analysis-framework-data",
+      "industrial-land-for-sale-acreage-zoning",
+      "foot-traffic-data-by-address"
+    ],
+    "dataset": {
+      "name": "Minnesota AADT and heavy commercial traffic on six road segments",
+      "description": "Matched MnDOT segment geometry and traffic volumes for six roads in Brooklyn Park and Rogers, with original year and method codes, historical rows and the four source queries.",
+      "spatialCoverage": "Brooklyn Park and Rogers, Hennepin County, Minnesota, United States",
+      "temporalCoverage": "2019/2025",
+      "sourceIds": [
+        "mndot-geometry",
+        "mndot-current-aadt",
+        "mndot-current-hcaadt",
+        "mndot-history-aadt",
+        "mndot-history-hcaadt"
+      ],
+      "sourceReuse": {
+        "note": "Traffic records and segment geometry are credited to the Minnesota Department of Transportation. The download preserves a dated selection of those records.",
+        "policyLabel": "MnDOT layer metadata and use information",
+        "policyUrl": "https://www.arcgis.com/home/item.html?id=7fb9bb44724c4e4e9f7d3c265d89d45c"
+      }
+    }
+  },
+  {
     "slug": "flood-insurance-claim-history-by-address",
     "topic": "Data & APIs",
     "region": "United States",
@@ -36915,6 +37410,7 @@
       }
     ],
     "relatedSlugs": [
+      "truck-traffic-counts-by-address",
       "truck-routing-apis-nyc-truck-route-restrictions","manufacturing-site-selection-100-buildable-acres", "truck-depot-charging-site-selection", "best-gis-apis-for-site-selection"],
     "additionalDatasets": [
       {
@@ -40242,6 +40738,7 @@
       }
     ],
     "relatedSlugs": [
+      "truck-traffic-counts-by-address",
       "warehouse-site-selection-rail-truck-access",
       "truck-depot-charging-site-selection",
       "power-outage-road-closure-history",

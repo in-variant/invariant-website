@@ -1,5 +1,67 @@
 [
   {
+    "slug": "truck-traffic-counts-by-address",
+    "topic": "Data & APIs",
+    "title": "How to Find Truck Traffic Counts by Address",
+    "summary": "Find daily truck traffic on a road segment and compare AADT with annual average daily truck traffic. Reproduce a six-segment Minnesota test and compare traffic data APIs.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "United States",
+    "image": "/blog/industry/truck-traffic-counts-by-address.webp?v=c4a43f5f",
+    "dataset": {
+      "name": "Minnesota AADT and heavy commercial traffic on six road segments",
+      "description": "Matched MnDOT segment geometry and traffic volumes for six roads in Brooklyn Park and Rogers, with original year and method codes, historical rows and the four source queries.",
+      "spatialCoverage": "Brooklyn Park and Rogers, Hennepin County, Minnesota, United States",
+      "temporalCoverage": "2019/2025",
+      "sourceReuse": {
+        "note": "Traffic records and segment geometry are credited to the Minnesota Department of Transportation. The download preserves a dated selection of those records.",
+        "policyLabel": "MnDOT layer metadata and use information",
+        "policyUrl": "https://www.arcgis.com/home/item.html?id=7fb9bb44724c4e4e9f7d3c265d89d45c"
+      },
+      "sources": [
+        "https://www.arcgis.com/home/item.html?id=7fb9bb44724c4e4e9f7d3c265d89d45c",
+        "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID",
+        "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID",
+        "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_HISTORY_SAMPLED/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR",
+        "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_HISTORY/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CHCAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR"
+      ],
+      "sourceDetails": [
+        {
+          "title": "Heavy Commercial Annual Average Daily Traffic Segments Current in Minnesota",
+          "publisher": "Minnesota Department of Transportation",
+          "url": "https://www.arcgis.com/home/item.html?id=7fb9bb44724c4e4e9f7d3c265d89d45c"
+        },
+        {
+          "title": "Current total vehicle traffic for six Hennepin County segments",
+          "publisher": "Minnesota Department of Transportation",
+          "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID"
+        },
+        {
+          "title": "Current heavy commercial traffic for the same six segments",
+          "publisher": "Minnesota Department of Transportation",
+          "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID"
+        },
+        {
+          "title": "Historical AADT rows for Industrial Boulevard and Rogers Drive",
+          "publisher": "Minnesota Department of Transportation",
+          "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_HISTORY_SAMPLED/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR"
+        },
+        {
+          "title": "Historical HCAADT rows for the same locations",
+          "publisher": "Minnesota Department of Transportation",
+          "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_HISTORY/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CHCAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the six segment matches, historical rows and source queries",
+          "path": "/blog/mndot-truck-traffic-segment-comparison.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "flood-insurance-claim-history-by-address",
     "topic": "Data & APIs",
     "title": "How to check flood insurance claim history by address",

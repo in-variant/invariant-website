@@ -1,0 +1,640 @@
+{
+  "name": "Minnesota AADT and heavy commercial traffic on six road segments",
+  "observed_on": "2026-11-25",
+  "publisher_of_source_records": "Minnesota Department of Transportation",
+  "source_geometry_crs": "EPSG:4326 (longitude, latitude)",
+  "scope": "Six selected road segments. Their current AADT and HCAADT features share the stated Location ID and identical returned geometry. The annual values are two-way. HCAADT represents heavy commercial vehicle traffic under MnDOT’s definition.",
+  "source_queries": {
+    "selected-AADT": {
+      "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID",
+      "response_sha256": "8820fcf2e926255ed03481b2eeecfa836cd222aec753a1b5adcefe0de486c95e"
+    },
+    "selected-HCAADT": {
+      "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_SEGMENT_CURRENT/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2810393%2C+43026%2C+66417%2C+42991%2C+42697%2C+42698%29&outFields=LOCATION_ID%2CROUTE_LABEL%2CSTREET_NAME%2CLOCATION_DESCRIPTION%2CCOUNTY%2CCOMMUNITY%2CJURISDICTION%2CCURRENT_YEAR%2CCURRENT_VOLUME%2CDATA_TYPE&returnGeometry=true&outSR=4326&orderByFields=LOCATION_ID",
+      "response_sha256": "d772da64005a5abf6d8b467293d92e01980aa9369266167ef58d7f1d5e29042e"
+    },
+    "history-AADT": {
+      "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_HISTORY_SAMPLED/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR",
+      "response_sha256": "d7499e3ca94db8007888ff307391c94871e7d7e5ddbd55d448893f52914ddc17"
+    },
+    "history-HCAADT": {
+      "url": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/HCAADT_HISTORY/FeatureServer/0/query?f=json&where=LOCATION_ID+IN+%2842991%2C+66417%29+AND+DATA_YEAR+%3E%3D+2021&outFields=LOCATION_ID%2CDATA_YEAR%2CHCAADT%2CDATA_TYPE&returnGeometry=false&orderByFields=LOCATION_ID%2CDATA_YEAR",
+      "response_sha256": "0a402407fcf929d8e2b72a67f8483d9c90ff6a02435e953b434b9d2889d38ee0"
+    }
+  },
+  "segments": [
+    {
+      "location_id": 42697,
+      "display_name": "85th Avenue N, west of CSAH 14 (Zane Avenue)",
+      "agency_route_label": "CSAH 109",
+      "agency_location_description": "WEST OF CSAH14",
+      "community": "Brooklyn Park",
+      "jurisdiction": "Hennepin County",
+      "geometry": {
+        "paths": [
+          [
+            [
+              -93.37677367210101,
+              45.108907746362924
+            ],
+            [
+              -93.37030199056353,
+              45.10881299766967
+            ],
+            [
+              -93.36917403125749,
+              45.108838631645476
+            ],
+            [
+              -93.3691021210598,
+              45.10883886407178
+            ],
+            [
+              -93.36767120167225,
+              45.10879808377923
+            ],
+            [
+              -93.3667406397761,
+              45.10876123399888
+            ],
+            [
+              -93.36579253205524,
+              45.10872367668684
+            ],
+            [
+              -93.36441401022152,
+              45.10869588432303
+            ],
+            [
+              -93.36168588655924,
+              45.108716204933565
+            ],
+            [
+              -93.3600291140938,
+              45.10870444446717
+            ],
+            [
+              -93.35887050495015,
+              45.10872417714512
+            ],
+            [
+              -93.35670018608408,
+              45.10873544112004
+            ],
+            [
+              -93.35643783600119,
+              45.108733298629666
+            ]
+          ]
+        ]
+      },
+      "aadt": {
+        "year": 2025,
+        "vehicles_per_day": 20014,
+        "source_data_type": "M"
+      },
+      "hcaadt": {
+        "year": 2025,
+        "vehicles_per_day": 1652,
+        "source_data_type": "E"
+      },
+      "truck_share_pct": 8.25
+    },
+    {
+      "location_id": 42698,
+      "display_name": "85th Avenue N, east of CSAH 14 (Zane Avenue)",
+      "agency_route_label": "CSAH 109",
+      "agency_location_description": "EAST OF CSAH14 (ZANE AV)",
+      "community": "Brooklyn Park",
+      "jurisdiction": "Hennepin County",
+      "geometry": {
+        "paths": [
+          [
+            [
+              -93.35643783600119,
+              45.108733298629666
+            ],
+            [
+              -93.35225892022096,
+              45.1087521515847
+            ],
+            [
+              -93.3507086153364,
+              45.10876180173829
+            ],
+            [
+              -93.34645962252897,
+              45.10875676699759
+            ],
+            [
+              -93.34137676351946,
+              45.10874956884029
+            ]
+          ]
+        ]
+      },
+      "aadt": {
+        "year": 2025,
+        "vehicles_per_day": 18396,
+        "source_data_type": "M"
+      },
+      "hcaadt": {
+        "year": 2025,
+        "vehicles_per_day": 426,
+        "source_data_type": "E"
+      },
+      "truck_share_pct": 2.32
+    },
+    {
+      "location_id": 10393,
+      "display_name": "I-94, southeast of MN 101",
+      "agency_route_label": "I 94",
+      "agency_location_description": "SE OF MN 101",
+      "community": "Rogers",
+      "jurisdiction": "State Highway Agency",
+      "geometry": {
+        "paths": [
+          [
+            [
+              -93.55628953432836,
+              45.19639606344503
+            ],
+            [
+              -93.55404555778229,
+              45.19543129478108
+            ],
+            [
+              -93.55305074496952,
+              45.19500356154361
+            ],
+            [
+              -93.55285286832363,
+              45.19491848208117
+            ],
+            [
+              -93.5526998865521,
+              45.19485621116874
+            ],
+            [
+              -93.55240263904685,
+              45.194727125758604
+            ],
+            [
+              -93.549066028751,
+              45.19329394514579
+            ],
+            [
+              -93.54869868754915,
+              45.19308782705645
+            ],
+            [
+              -93.54845364983296,
+              45.19295033401131
+            ],
+            [
+              -93.54822786130228,
+              45.19276237494253
+            ],
+            [
+              -93.5472954165648,
+              45.192098206325234
+            ],
+            [
+              -93.54644892462225,
+              45.19144213433511
+            ],
+            [
+              -93.5463738789429,
+              45.19137958100453
+            ],
+            [
+              -93.52846048074277,
+              45.17644106553201
+            ],
+            [
+              -93.52778691631922,
+              45.17551251831049
+            ],
+            [
+              -93.5272910401861,
+              45.17452911880267
+            ],
+            [
+              -93.5272222575655,
+              45.17414481366846
+            ],
+            [
+              -93.52707953544822,
+              45.17240433615717
+            ],
+            [
+              -93.5270545569747,
+              45.17185552134915
+            ],
+            [
+              -93.52695217348044,
+              45.16961129489166
+            ],
+            [
+              -93.52688060875933,
+              45.16900850470882
+            ],
+            [
+              -93.52671453743535,
+              45.16833414600561
+            ],
+            [
+              -93.52621888747134,
+              45.167409259396244
+            ],
+            [
+              -93.52578614355122,
+              45.16679462938246
+            ],
+            [
+              -93.52539656383823,
+              45.16633283643822
+            ],
+            [
+              -93.52491034761826,
+              45.16586699448857
+            ],
+            [
+              -93.52440866879016,
+              45.165495729945505
+            ],
+            [
+              -93.52153428254556,
+              45.1635386517148
+            ],
+            [
+              -93.51698258611712,
+              45.16042499984813
+            ],
+            [
+              -93.51286932732533,
+              45.15765853406782
+            ],
+            [
+              -93.50369835815296,
+              45.151429307013295
+            ],
+            [
+              -93.50280048240137,
+              45.15072663075418
+            ],
+            [
+              -93.50179734981712,
+              45.149713842479464
+            ],
+            [
+              -93.50145243252943,
+              45.14932379279291
+            ],
+            [
+              -93.49978149101078,
+              45.14658109925407
+            ],
+            [
+              -93.49904149770316,
+              45.14506803498535
+            ],
+            [
+              -93.49890616209701,
+              45.14479131089237
+            ]
+          ]
+        ]
+      },
+      "aadt": {
+        "year": 2025,
+        "vehicles_per_day": 116025,
+        "source_data_type": "A"
+      },
+      "hcaadt": {
+        "year": 2025,
+        "vehicles_per_day": 13424,
+        "source_data_type": "C"
+      },
+      "truck_share_pct": 11.57
+    },
+    {
+      "location_id": 43026,
+      "display_name": "Main Street (CSAH 81), south of I-94",
+      "agency_route_label": "CSAH 81",
+      "agency_location_description": "SOUTH OF I-94",
+      "community": "Rogers",
+      "jurisdiction": "Hennepin County",
+      "geometry": {
+        "paths": [
+          [
+            [
+              -93.55053731732164,
+              45.190357939977346
+            ],
+            [
+              -93.5518700389091,
+              45.1911712321598
+            ],
+            [
+              -93.5522111312927,
+              45.19141442771906
+            ],
+            [
+              -93.5523480684346,
+              45.19156280547402
+            ],
+            [
+              -93.5524400983713,
+              45.19173801810296
+            ],
+            [
+              -93.55254178243158,
+              45.19202940394789
+            ],
+            [
+              -93.5525064472079,
+              45.19225618183786
+            ],
+            [
+              -93.55250440606979,
+              45.192384680923475
+            ],
+            [
+              -93.55250304504074,
+              45.19301633157068
+            ],
+            [
+              -93.55248869364685,
+              45.19354747884598
+            ],
+            [
+              -93.55248470063064,
+              45.193699247541026
+            ],
+            [
+              -93.55248029104189,
+              45.193750074037794
+            ],
+            [
+              -93.55240263904685,
+              45.194727125758604
+            ]
+          ]
+        ]
+      },
+      "aadt": {
+        "year": 2025,
+        "vehicles_per_day": 27156,
+        "source_data_type": "M"
+      },
+      "hcaadt": {
+        "year": 2025,
+        "vehicles_per_day": 1783,
+        "source_data_type": "C"
+      },
+      "truck_share_pct": 6.57
+    },
+    {
+      "location_id": 66417,
+      "display_name": "Rogers Drive, south of Diamond Lake Road",
+      "agency_route_label": "MSAS 110",
+      "agency_location_description": "SOUTH OF CSAH49 (DIAMOND LK RD)",
+      "community": "Rogers",
+      "jurisdiction": "Rogers",
+      "geometry": {
+        "paths": [
+          [
+            [
+              -93.5501724855651,
+              45.19943873406137
+            ],
+            [
+              -93.55016962630347,
+              45.199256987223464
+            ],
+            [
+              -93.55017249992274,
+              45.199067669409295
+            ],
+            [
+              -93.55025033575154,
+              45.198888513338694
+            ],
+            [
+              -93.55051346515816,
+              45.19852244579953
+            ],
+            [
+              -93.55091297237244,
+              45.19809542702946
+            ],
+            [
+              -93.55092054581525,
+              45.198085983807005
+            ]
+          ]
+        ]
+      },
+      "aadt": {
+        "year": 2025,
+        "vehicles_per_day": 9156,
+        "source_data_type": "A"
+      },
+      "hcaadt": {
+        "year": 2025,
+        "vehicles_per_day": 604,
+        "source_data_type": "A"
+      },
+      "truck_share_pct": 6.6
+    },
+    {
+      "location_id": 42991,
+      "display_name": "Industrial Boulevard, southwest of Church Avenue",
+      "agency_route_label": "CSAH 81",
+      "agency_location_description": "SW OF (CHURCH AV)",
+      "community": "Rogers",
+      "jurisdiction": "Hennepin County",
+      "geometry": {
+        "paths": [
+          [
+            [
+              -93.54051225841211,
+              45.183050391619
+            ],
+            [
+              -93.54410434689912,
+              45.18601474947014
+            ],
+            [
+              -93.54413376505471,
+              45.18609235644309
+            ],
+            [
+              -93.54520139265813,
+              45.18687180236101
+            ],
+            [
+              -93.54554023715465,
+              45.18711322842827
+            ],
+            [
+              -93.5467181269289,
+              45.18800952358052
+            ],
+            [
+              -93.54688117189808,
+              45.188114989234194
+            ],
+            [
+              -93.5472621924278,
+              45.18835517298695
+            ],
+            [
+              -93.54759842627386,
+              45.18855482882159
+            ]
+          ]
+        ]
+      },
+      "aadt": {
+        "year": 2019,
+        "vehicles_per_day": 14800,
+        "source_data_type": "A"
+      },
+      "hcaadt": {
+        "year": 2025,
+        "vehicles_per_day": 863,
+        "source_data_type": "E"
+      },
+      "truck_share_pct": null
+    }
+  ],
+  "historical_table_rows": {
+    "AADT": [
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2021,
+        "AADT": 12241,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2022,
+        "AADT": 12572,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2023,
+        "AADT": 12459,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2024,
+        "AADT": 12907,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2025,
+        "AADT": 13204,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2021,
+        "AADT": 8618,
+        "DATA_TYPE": "A"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2022,
+        "AADT": 8731,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2023,
+        "AADT": 8724,
+        "DATA_TYPE": "A"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2024,
+        "AADT": 7966,
+        "DATA_TYPE": "M"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2025,
+        "AADT": 9156,
+        "DATA_TYPE": "A"
+      }
+    ],
+    "HCAADT": [
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2022,
+        "HCAADT": 822,
+        "DATA_TYPE": "A"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2023,
+        "HCAADT": 814,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2024,
+        "HCAADT": 843,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 42991,
+        "DATA_YEAR": 2025,
+        "HCAADT": 863,
+        "DATA_TYPE": "E"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2021,
+        "HCAADT": 645,
+        "DATA_TYPE": "A"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2022,
+        "HCAADT": 654,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2023,
+        "HCAADT": 653,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2024,
+        "HCAADT": 597,
+        "DATA_TYPE": "C"
+      },
+      {
+        "LOCATION_ID": 66417,
+        "DATA_YEAR": 2025,
+        "HCAADT": 604,
+        "DATA_TYPE": "A"
+      }
+    ]
+  },
+  "year_matched_industrial_boulevard": {
+    "location_id": 42991,
+    "data_year": 2025,
+    "aadt": 13204,
+    "hcaadt": 863,
+    "truck_share_pct": 6.54
+  }
+}
