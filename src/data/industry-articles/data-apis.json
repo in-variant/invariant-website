@@ -21,6 +21,10 @@
         "label": "See the Dayton example"
       },
       {
+        "href": "#ohio-40-minute-congested-labor-shed",
+        "label": "Check the Ohio 40-minute commute example"
+      },
+      {
         "href": "/blog/dayton-primary-job-county-flows.csv",
         "label": "Download the county flows",
         "download": true
@@ -210,6 +214,70 @@
             "path": "/blog/dayton-manufacturing-labor-shed.json",
             "format": "JSON",
             "label": "Download counts, occupation estimates and exact source queries"
+          }
+        ]
+      },
+      {
+        "id": "ohio-40-minute-congested-labor-shed",
+        "heading": "What does a 40-minute commute measure in an Ohio site screen?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ohio DOT and JobsOhio screened 78 priority development sites. Ohio DOT classified 24 as high readiness, 38 as medium and 16 as low. The overall score uses labor access alongside utility infrastructure, transportation proximity, environmental conditions and site readiness. Ohio DOT notes that a site can have high overall readiness with low workforce access.",
+            "sourceIds": [
+              "odot-workforce-access"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Year in the study",
+              "What Ohio DOT modeled",
+              "What to use it for"
+            ],
+            "rows": [
+              [
+                "2025",
+                "Figure 2.87 shows workers within a 40-minute drive under congested conditions, alongside site readiness classes.",
+                "Compare geographic reach using the same time threshold and traffic assumptions."
+              ],
+              [
+                "2035",
+                "Projected workers within a 40-minute congested drive enter the readiness score.",
+                "Screen a planned opening year with a dated estimate for population and network conditions."
+              ],
+              [
+                "2055",
+                "Figure 2.75 maps the risk that congestion will reduce access to workers. The report flags segments around Columbus’s I-270 and Cincinnati’s I-275.",
+                "Identify routes that merit a traffic sensitivity check. Ask for a current inbound route test to the gate."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "odot-workforce-map"
+              ],
+              [
+                "odot-workforce-access"
+              ],
+              [
+                "odot-workforce-risk"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For two candidate sites, hold the workforce vintage and 40-minute cutoff fixed while you change the traffic assumptions. Run the inbound trip to the employee gate at each planned shift start. Then compare occupation counts and wages on the same geography. The statewide score and maps do not supply a count of workers who meet a plant’s skill or shift requirements.",
+            "sourceIds": [
+              "odot-workforce-access"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Ohio study measures and source pages",
+            "path": "/blog/ohio-priority-site-commute-study.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-ohio-priority-site-commute-study"
           }
         ]
       },
@@ -439,6 +507,27 @@
         "publisher": "JobsOhio",
         "url": "https://www.jobsohio.com/workforce-talent",
         "linkLabel": "JobsOhio workforce resources"
+      },
+      {
+        "id": "odot-workforce-access",
+        "title": "Ohio DOT priority site selection method and readiness results, Chapter 2",
+        "url": "https://dam.assets.ohio.gov/image/upload/transportation.ohio.gov/statewide-planning/statewide-study/Statewide-Study-Final-Report.pdf#page=132",
+        "publisher": "Ohio Department of Transportation",
+        "linkLabel": "Ohio DOT site readiness method"
+      },
+      {
+        "id": "odot-workforce-map",
+        "title": "Ohio DOT Figure 2.87, 2025 overall readiness rating and workforce access",
+        "url": "https://dam.assets.ohio.gov/image/upload/transportation.ohio.gov/statewide-planning/statewide-study/Statewide-Study-Final-Report.pdf#page=133",
+        "publisher": "Ohio Department of Transportation",
+        "linkLabel": "2025 workforce access map"
+      },
+      {
+        "id": "odot-workforce-risk",
+        "title": "Ohio DOT Figure 2.75, 2055 roadway risk of losing access to workers",
+        "url": "https://dam.assets.ohio.gov/image/upload/transportation.ohio.gov/statewide-planning/statewide-study/Statewide-Study-Final-Report.pdf#page=112",
+        "publisher": "Ohio Department of Transportation",
+        "linkLabel": "2055 congestion risk map"
       }
     ],
     "relatedSlugs": [
@@ -459,7 +548,23 @@
         "metro",
         "oews"
       ]
-    }
+    },
+    "updatedDate": "2026-11-26",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-ohio-priority-site-commute-study",
+        "name": "Ohio DOT priority site readiness and workforce access",
+        "description": "Ohio DOT’s 78 priority sites in three readiness classes, with the 2025, 2035 and 2055 uses of congested 40-minute worker reach. Includes PDF pages and a source checksum.",
+        "sourceIds": [
+          "odot-workforce-access",
+          "odot-workforce-map",
+          "odot-workforce-risk"
+        ],
+        "spatialCoverage": "Ohio, United States",
+        "datePublished": "2026-11-26",
+        "temporalCoverage": "2025/2055"
+      }
+    ]
   },
   {
     "slug": "ev-charging-electricity-cost-demand-charges",
@@ -24094,6 +24199,10 @@
             "label": "Related manufacturing and freight guides",
             "items": [
               {
+                "slug": "manufacturing-labor-shed-site-selection",
+                "label": "Estimate the workers who can reach the proposed site at shift change"
+              },
+              {
                 "slug": "manufacturing-site-selection-100-buildable-acres",
                 "label": "Verify that a manufacturing site has 100 buildable acres"
               },
@@ -24261,7 +24370,8 @@
       "manufacturing-site-selection-100-buildable-acres",
       "freight-analysis-framework-data",
       "best-gis-apis-for-site-selection"
-    ]
+    ],
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "hourly-weather-data-for-data-center-cooling",
@@ -40571,6 +40681,7 @@
             "type": "links",
             "label": "Related site diligence guides",
             "items": [
+              {"slug": "manufacturing-labor-shed-site-selection", "label": "Check the labor shed and shift-time routes before the option expires"},
               {"slug": "county-manufacturing-employment-data", "label": "Compare manufacturing jobs and industry concentration by county"},
               {"slug": "industrial-wastewater-capacity-site-selection", "label": "Check sewer capacity and pretreatment for a factory"},
               {"slug": "site-selection-due-diligence", "label": "Use the site selection due diligence checklist"},
@@ -40623,7 +40734,7 @@
       {"id": "camp-listing", "title": "Campus 9 site listing and property resources", "url": "https://www.camphall.com/sites/campus-9/", "publisher": "Camp Hall"}
     ],
     "relatedSlugs": ["manufacturing-labor-shed-site-selection", "best-gis-apis-for-site-selection", "industrial-environmental-permit-history-by-parcel", "power-evidence-data-center-site-verification"],
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "warehouse-site-selection-rail-truck-access",
