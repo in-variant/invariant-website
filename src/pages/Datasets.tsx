@@ -221,7 +221,7 @@ function Datasets({
             ))}
           </ul>
         </details>
-        <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} onDemand />
+        <DatasetCitation name={dataset.name} datePublished={datePublished} url={`${SITE_URL}${notesPath}`} archivedRelease={dataset.archivedRelease} onDemand />
       </div>
     </article>
   )), [matches])

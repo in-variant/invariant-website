@@ -132,6 +132,8 @@ function articleMd(a) {
         out.push(`[${b.label} (${b.format})](${SITE}${b.path})`, '')
         const record = datasetByFirstDownload.get(`${a.slug}:${b.path}`)
         if (record) out.push(`[Download citation (CSL JSON)](${SITE}${datasetCitationPath(record.url)})`, '')
+        const archive = record?.dataset.archivedRelease
+        if (archive) out.push(citationLink(`Archived release v${archive.version} · ${archive.datePublished}`, archive.url), '')
         const reuse = record?.dataset.sourceReuse
         if (reuse) out.push(`${reuse.note} ${citationLink(reuse.policyLabel, reuse.policyUrl)}`, '')
         if (workflow && b.path === datasetDownload) {
@@ -461,6 +463,9 @@ function datasetCatalogMd() {
       `- [Dataset notes](${url}) · [Markdown guide](${SITE}/blog/${slug}.md) · [Download citation (CSL JSON)](${SITE}${datasetCitationPath(url)})`,
       ...(workflow ? [`- [${workflow.label}](${workflow.url})`] : []),
       `- Published: ${dataset.datePublished ?? dateTime}`,
+      ...(dataset.archivedRelease ? [
+        `- ${citationLink(`Archived release v${dataset.archivedRelease.version} · ${dataset.archivedRelease.datePublished}`, dataset.archivedRelease.url)}`,
+      ] : []),
       ...(dataset.spatialCoverage ? [`- Spatial coverage: ${dataset.spatialCoverage}`] : []),
       ...(dataset.temporalCoverage ? [`- Temporal coverage: ${dataset.temporalCoverage}`] : []),
       ...(dataset.sourceReuse ? [`- ${dataset.sourceReuse.note} ${citationLink(dataset.sourceReuse.policyLabel, dataset.sourceReuse.policyUrl)}`] : []),

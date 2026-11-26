@@ -85,7 +85,7 @@ function StudyCard({ study, featured = false }: { study: typeof studies[number];
             </a>
           ))}
         </div>
-        <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} />
+        <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} archivedRelease={entry.dataset.archivedRelease} />
       </div>
     </article>
   )

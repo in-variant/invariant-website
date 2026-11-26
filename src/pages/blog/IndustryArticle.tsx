@@ -38,7 +38,7 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
       {entry && <p id={entry.anchor} className="industry-dataset-title"><Link to={`/datasets#${entry.id}`}>{entry.dataset.name}</Link></p>}
       <a className="industry-worksheet-download" href={block.path} download>{block.label} <span>{block.format}</span></a>
       {entry && reuse && <p id={`${entry.anchor}-reuse`} className="industry-dataset-reuse">{reuse.note} <a href={reuse.policyUrl}>{reuse.policyLabel}</a></p>}
-      {entry && <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} />}
+      {entry && <DatasetCitation name={entry.dataset.name} datePublished={entry.datePublished} url={`${SITE_URL}${entry.notesPath}`} archivedRelease={entry.dataset.archivedRelease} />}
       {workflow && <p><a className="industry-dataset-workflow" href={workflow.url}>{workflow.label} <span aria-hidden="true">↗</span></a></p>}
     </>
   }

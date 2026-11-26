@@ -218,6 +218,11 @@ export function datasetSchema(dataset: ResourceDataset, articleUrl: string, date
       ...(source.license && { license: source.license }),
     })),
     ...(dataset.sourceReuse && { usageInfo: `${url}-reuse` }),
+    ...(dataset.archivedRelease && { subjectOf: {
+      '@type': 'CreativeWork',
+      name: `${dataset.name}, release v${dataset.archivedRelease.version}`,
+      ...dataset.archivedRelease,
+    } }),
     ...(dataset.spatialCoverage && { spatialCoverage: { '@type': 'Place', name: dataset.spatialCoverage } }),
     ...(dataset.temporalCoverage && { temporalCoverage: dataset.temporalCoverage }),
     distribution: dataset.downloads.map(file => ({

@@ -563,6 +563,14 @@ def verify_dataset_catalog(catalog, pages):
             require(record["name"] == dataset["name"] and record["description"] == dataset["description"]
                     and record.get("datePublished", record["guide"]["published"]) == dataset["datePublished"],
                     f"{dataset['url']} has inconsistent JSON dataset metadata")
+            if archive := record.get("archivedRelease"):
+                require(dataset.get("subjectOf") == {
+                    "@type": "CreativeWork",
+                    "name": f"{name}, release v{archive['version']}",
+                    **archive,
+                } and archive["url"] in page.main_links and archive["url"] in catalog.main_links
+                        and archive["url"] in article_markdown and archive["url"] in markdown,
+                        f"{dataset['url']} needs the same archive in both catalogs and guide formats")
             sources = [{"@type": "CreativeWork", "name": source["title"], "url": source["url"],
                         **({"license": source["license"]} if "license" in source else {})}
                        for source in record["sourceDetails"]]

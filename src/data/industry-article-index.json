@@ -306,9 +306,15 @@
     "date": "November 25, 2026",
     "dateTime": "2026-11-25",
     "region": "ERCOT, Texas, United States",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/ercot-lmp-vs-settlement-point-price.webp?v=08032929",
     "dataset": {
       "name": "ERCOT dispatch and settlement price replay for November 25, 2026",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.1",
+        "version": "1.0.1",
+        "datePublished": "2026-11-26"
+      },
       "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a West Hub and West Load Zone comparison, and three same-interval Dryos query observations.",
       "spatialCoverage": "ERCOT, Texas, United States",
       "temporalCoverage": "2026-11-25",
@@ -1122,6 +1128,11 @@
       {
         "anchor": "dataset-sov-renewal-history",
         "name": "Appanoose County statement of values renewal history for 1200 IA-2",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/appanoose-sov-renewal-history-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
         "description": "Thirty-nine observations from three dated board-packet statements of values. Tracks 12 comparable printed rows in each term and the fuel tank entry by source page, row form and value status. The handwritten entry in the 2022 schedule carries a blank USD amount.",
         "datePublished": "2026-11-26",
         "spatialCoverage": "1200 IA-2, Centerville, Iowa, United States",
@@ -3207,6 +3218,11 @@
     "image": "/blog/industry/retail-trade-area-overlap.webp?v=97e2f9b9",
     "dataset": {
       "name": "Detroit grocery trade-area overlap at 10, 15 and 20 minutes",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/detroit-household-overlap-replay-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      },
       "description": "Disjoint modeled grocery drive-time areas in Detroit and estimated Michigan households and residents. Includes 80 matched ACS variance replicates, allocation weights, source versions and geometry for each travel cutoff.",
       "spatialCoverage": "Detroit and surrounding Michigan communities, United States",
       "temporalCoverage": "2020-01-01/2024-12-31",
@@ -5557,7 +5573,56 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-432-park-parcel-replay",
+        "name": "432 Park Avenue parcel identifier and geometry lookup replay",
+        "description": "Four New York City source queries for the commercial unit, condominium billing lot and mapped base lot at 432 Park Avenue. Includes the observed unit polygon count, effective tax year and MapPLUTO edition used to test parcel MCP answers.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "432 Park Avenue, Manhattan, New York, United States",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/parcel-mcp-source-replay-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "sources": [
+          "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/4/query?where=UNIT_BBL%3D%271012921303%27&f=json&outFields=UNIT_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CEFFECTIVE_TAX_YEAR&returnGeometry=false",
+          "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL%3D%271012921303%27&f=json&returnCountOnly=true",
+          "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/3/query?where=CONDO_BILLING_BBL%3D%271012927502%27&f=json&outFields=CONDO_BILLING_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER&returnGeometry=false",
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012927502&f=json&outFields=BBL%2CAddress%2CCondoNo%2CVersion&returnGeometry=false"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Digital Tax Map condominium unit record for 1012921303",
+            "publisher": "NYC Department of Finance",
+            "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/4/query?where=UNIT_BBL%3D%271012921303%27&f=json&outFields=UNIT_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CEFFECTIVE_TAX_YEAR&returnGeometry=false"
+          },
+          {
+            "title": "Digital Tax Map exact polygon count for 1012921303",
+            "publisher": "NYC Department of Finance",
+            "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL%3D%271012921303%27&f=json&returnCountOnly=true"
+          },
+          {
+            "title": "Digital Tax Map billing to base lot record for 1012927502",
+            "publisher": "NYC Department of Finance",
+            "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/3/query?where=CONDO_BILLING_BBL%3D%271012927502%27&f=json&outFields=CONDO_BILLING_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER&returnGeometry=false"
+          },
+          {
+            "title": "MapPLUTO billing lot record for 432 Park Avenue",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012927502&f=json&outFields=BBL%2CAddress%2CCondoNo%2CVersion&returnGeometry=false"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the recorded city results and source URLs",
+            "path": "/blog/parcel-mcp-source-replay.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "best-gis-apis-for-site-selection",
@@ -8815,6 +8880,11 @@
     "image": "/blog/industry/property-data-as-of-date.webp?v=6ed06eab",
     "dataset": {
       "name": "25 Water Street property records at three December 2025 cutoffs",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/point-in-time-property-replay-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      },
       "description": "Ten DOB occupancy issuance rows, 12 selected ACRIS instruments, three reproduced cutoffs and a later MapPLUTO observation. Includes request URLs and source response fingerprints.",
       "spatialCoverage": "25 Water Street, Manhattan, New York City, United States",
       "temporalCoverage": "2025-12-01/2025-12-10",
@@ -12751,6 +12821,11 @@
     "image": "/blog/industry/aep-ohio-data-center-tariff-minimum-demand.webp?v=f5174a95",
     "dataset": {
       "name": "Ohio Power data center demand floors and a 100 MW billing example",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/aep-ohio-dct-replay-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      },
       "description": "Reproducible Schedule DCT inputs, six contract-tier examples, four ramp-year floors and thirteen illustrative monthly billed demands with primary base charges. Includes exact sheet locations and the tariff PDF checksum.",
       "spatialCoverage": "Ohio Power Company service territory, Ohio, United States",
       "sources": [

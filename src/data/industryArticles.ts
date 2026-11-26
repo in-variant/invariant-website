@@ -1,12 +1,14 @@
 import type { ResourceArticle } from './resources'
 
 export type IndustryTopic = 'Data Centers' | 'Oil & Gas' | 'Data & APIs'
+export type ArchivedDatasetRelease = { url: string; version: string; datePublished: string }
 export type ArticleDataset = {
   name: string
   description: string
   sourceIds: string[]
   spatialCoverage?: string
   temporalCoverage?: string
+  archivedRelease?: ArchivedDatasetRelease
   sourceReuse?: { note: string; policyLabel: string; policyUrl: string }
 }
 export type DatasetDownload = { label: string; path: string; format: 'CSV' | 'GeoJSON' | 'JSON' }

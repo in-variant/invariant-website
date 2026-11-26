@@ -2358,6 +2358,7 @@
     "title": "ERCOT LMP vs. Settlement Point Price",
     "description": "Find ERCOT dispatch and 15-minute settlement prices. Replay one quarter-hour and verify a $25.70/MWh gap between the West Load Zone and West Hub.",
     "date": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 7,
     "coverAlt": "ERCOT’s published real-time prices from 6:30 to 6:45 p.m. CST on November 25, 2026, were $46.78 per MWh at West Hub, $62.14 at ALP_BESS_RN, and $72.48 at West Load Zone.",
     "coverCaption": "ERCOT NP6-905-CD, November 25, 2026, delivery hour 19, interval 3. Prices shown in US dollars per MWh as posted.",
@@ -2758,9 +2759,9 @@
       },
       {
         "id": "ercot-replay-release",
-        "title": "ERCOT settlement price replay v1.0.0",
+        "title": "ERCOT settlement price replay v1.0.1",
         "publisher": "Invariant",
-        "url": "https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.0",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.1",
         "linkLabel": "Versioned replay and checksums"
       },
       {
@@ -2842,6 +2843,11 @@
     ],
     "dataset": {
       "name": "ERCOT dispatch and settlement price replay for November 25, 2026",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.1",
+        "version": "1.0.1",
+        "datePublished": "2026-11-26"
+      },
       "description": "A matched 15-minute ERCOT settlement file and selected dispatch and adder records, with source archive checksums, point classifications, seconds weights, and a West Hub and West Load Zone comparison, and three same-interval Dryos query observations.",
       "spatialCoverage": "ERCOT, Texas, United States",
       "temporalCoverage": "2026-11-25",
@@ -7996,6 +8002,11 @@
       {
         "anchor": "dataset-sov-renewal-history",
         "name": "Appanoose County statement of values renewal history for 1200 IA-2",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/appanoose-sov-renewal-history-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
         "description": "Thirty-nine observations from three dated board-packet statements of values. Tracks 12 comparable printed rows in each term and the fuel tank entry by source page, row form and value status. The handwritten entry in the 2022 schedule carries a blank USD amount.",
         "datePublished": "2026-11-26",
         "spatialCoverage": "1200 IA-2, Centerville, Iowa, United States",
@@ -19736,6 +19747,11 @@
     ],
     "dataset": {
       "name": "Detroit grocery trade-area overlap at 10, 15 and 20 minutes",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/detroit-household-overlap-replay-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      },
       "description": "Disjoint modeled grocery drive-time areas in Detroit and estimated Michigan households and residents. Includes 80 matched ACS variance replicates, allocation weights, source versions and geometry for each travel cutoff.",
       "sourceIds": [
         "detroit-benchmark",
@@ -31831,7 +31847,7 @@
             "label": "Download the recorded city results and source URLs",
             "path": "/blog/parcel-mcp-source-replay.json",
             "format": "JSON",
-            "datasetAnchor": null
+            "datasetAnchor": "dataset-432-park-parcel-replay"
           },
           {
             "type": "download",
@@ -32058,6 +32074,26 @@
       ],
       "spatialCoverage": "San Francisco, California and Brooklyn, New York, United States"
     },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-432-park-parcel-replay",
+        "name": "432 Park Avenue parcel identifier and geometry lookup replay",
+        "description": "Four New York City source queries for the commercial unit, condominium billing lot and mapped base lot at 432 Park Avenue. Includes the observed unit polygon count, effective tax year and MapPLUTO edition used to test parcel MCP answers.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "432 Park Avenue, Manhattan, New York, United States",
+        "sourceIds": [
+          "replay-condo-unit",
+          "replay-unit-polygon-count",
+          "replay-billing-to-base",
+          "replay-mappluto-billing"
+        ],
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/parcel-mcp-source-replay-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        }
+      }
+    ],
     "relatedSlugs": [
       "best-gis-apis-for-site-selection",
       "regrid-alternatives-parcel-data-apis",
@@ -45822,6 +45858,11 @@
     ],
     "dataset": {
       "name": "25 Water Street property records at three December 2025 cutoffs",
+      "archivedRelease": {
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/point-in-time-property-replay-v1.0.0",
+        "version": "1.0.0",
+        "datePublished": "2026-11-26"
+      },
       "description": "Ten DOB occupancy issuance rows, 12 selected ACRIS instruments, three reproduced cutoffs and a later MapPLUTO observation. Includes request URLs and source response fingerprints.",
       "spatialCoverage": "25 Water Street, Manhattan, New York City, United States",
       "temporalCoverage": "2025-12-01/2025-12-10",

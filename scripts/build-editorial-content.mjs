@@ -256,6 +256,11 @@ for (const article of articles) {
         referencedSources.some(source => !source?.title?.trim() || !source.publisher?.trim())) {
       throw new Error(`Invalid dataset metadata: ${article.slug}`)
     }
+    const archive = details.archivedRelease
+    if (archive && (!archive.version?.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(archive.datePublished) ||
+        new URL(archive.url).protocol !== 'https:')) {
+      throw new Error(`Invalid dataset archive: ${article.slug}`)
+    }
     const reuse = details.sourceReuse
     if (reuse && (!reuse.note?.trim() || !reuse.policyLabel?.trim() ||
         new URL(reuse.policyUrl).protocol !== 'https:')) {

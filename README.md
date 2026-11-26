@@ -60,7 +60,7 @@ The live run reports the point and parcel separately, checks the effective map p
 
 ## Reproduce an ERCOT settlement price
 
-The [ERCOT settlement replay](https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.0) bundles the selected dispatch and settlement rows, a Python script and checksums for the [worked pricing example](https://invariant-ai.com/blog/ercot-lmp-vs-settlement-point-price#replay-ercot-quarter-hour).
+The [ERCOT settlement replay](https://github.com/in-variant/invariant-website/releases/tag/ercot-settlement-price-replay-v1.0.1) bundles the selected dispatch and settlement rows, a Python script and checksums for the [worked pricing example](https://invariant-ai.com/blog/ercot-lmp-vs-settlement-point-price#replay-ercot-quarter-hour).
 
 ```bash
 python3 public/blog/ercot-settlement-replay.py

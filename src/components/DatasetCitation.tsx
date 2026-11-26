@@ -1,11 +1,13 @@
 import { useCallback, useState } from 'react'
 import { datasetCitationPath } from '../data/datasetCitationPath.mjs'
+import type { ArchivedDatasetRelease } from '../data/industryArticles'
 import './DatasetCitation.css'
 
-export default function DatasetCitation({ name, datePublished, url, onDemand = false }: {
+export default function DatasetCitation({ name, datePublished, url, archivedRelease, onDemand = false }: {
   name: string
   datePublished: string
   url: string
+  archivedRelease?: ArchivedDatasetRelease
   onDemand?: boolean
 }) {
   const [message, setMessage] = useState('')
@@ -31,6 +33,7 @@ export default function DatasetCitation({ name, datePublished, url, onDemand = f
       <summary>Cite dataset</summary>
       <div className="dataset-citation-panel">
         <p>{reference} <a href={url}>{url}</a></p>
+        {archivedRelease && <p><a href={archivedRelease.url}>Archived release v{archivedRelease.version}</a> · {archivedRelease.datePublished}</p>}
         <div className="dataset-citation-actions">
           {showCopy && <>
             <button type="button" onClick={() => copy(`${reference} ${url}`, 'Citation copied')}>Copy citation</button>
