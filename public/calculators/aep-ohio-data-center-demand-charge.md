@@ -22,4 +22,5 @@ Budget energy supply, transmission and other riders, applicable reactive demand 
 - [Ohio Power November 2026 tariff book, Sheet 223-3 rates](https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=115)
 - [Ohio Power November 2026 tariff book, Sheet 223-4 demand floors](https://www.aepohio.com/lib/docs/ratesandtariffs/Ohio/November_2026_Ohio_Power_Tariff_Book.pdf#page=116)
 - [Worked AEP Ohio tariff example across 13 months](https://invariant-ai.com/blog/aep-ohio-data-center-tariff-minimum-demand)
+- [Download the offline replay, editable inputs, CSV, and checksums](https://github.com/in-variant/invariant-website/releases/tag/aep-ohio-dct-replay-v1.0.0)
 - [Compare the Dominion Virginia GS-5 billing components](https://invariant-ai.com/blog/dominion-virginia-gs5-data-center-tariff)

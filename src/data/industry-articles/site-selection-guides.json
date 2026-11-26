@@ -1112,6 +1112,7 @@
     "title": "AEP Ohio Data Center Tariff: Minimum Demand and a 100 MW Example",
     "description": "Calculate minimum billing demand under Ohio Power Schedule DCT. See the ramp floor, 11-month demand ratchet and base charges for a worked 100 MW example.",
     "date": "2026-11-24",
+    "updatedDate": "2026-11-26",
     "readMinutes": 7,
     "coverAlt": "Chart of a hypothetical 100 MW Ohio Power contract. After a 100 MW billed peak, monthly billing demand stays at 85 MW for 11 months while the meter peaks at 65 MW. It drops to 82.5 MW in month 13.",
     "coverCaption": "Illustrative first 13 months after the ramp for one 100 MW New Load contract. Calculation from Ohio Power Schedule DCT, Sheets 223-3 and 223-4.",
@@ -1289,6 +1290,36 @@
             "sourceIds": [
               "dct-four"
             ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Replay the thirteen illustrative billing months with the same tariff and editable inputs. The base distribution plus customer subtotal is $9,031,821.90. Of that, $1,919,000 is the additional base distribution charge above using each month’s metered peak alone. Those figures hold the filed rates fixed and exclude the rest of the electricity bill.",
+            "sourceIds": [
+              "dct-three",
+              "dct-four",
+              "dct-replay-release"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download monthly demand and base charges",
+            "path": "/blog/aep-ohio-dct-example-output.csv",
+            "format": "CSV",
+            "datasetAnchor": null
+          },
+          {
+            "type": "download",
+            "label": "Download the editable example inputs",
+            "path": "/blog/aep-ohio-dct-example-input.json",
+            "format": "JSON",
+            "datasetAnchor": null
+          },
+          {
+            "type": "download",
+            "label": "Download the offline replay script",
+            "path": "/blog/aep-ohio-dct-replay.py",
+            "format": "Python",
+            "datasetAnchor": null
           }
         ]
       },
@@ -1491,6 +1522,13 @@
         "url": "https://www.aepohio.com/company/about/rates/data-center-tariff/",
         "publisher": "Ohio Power Company",
         "linkLabel": "Utility customer guidance"
+      },
+      {
+        "id": "dct-replay-release",
+        "title": "Schedule DCT billing demand replay v1.0.0",
+        "publisher": "Invariant",
+        "url": "https://github.com/in-variant/invariant-website/releases/tag/aep-ohio-dct-replay-v1.0.0",
+        "linkLabel": "Download the versioned replay and checksums"
       }
     ],
     "relatedSlugs": [

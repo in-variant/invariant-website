@@ -127,6 +127,7 @@ export default function AepOhioDemandCharge() {
               <a href={rateBook+'#page=115'}>Read the filed rate sheet ↗</a>
               <a href={rateBook+'#page=116'}>Read the demand floors and lookback ↗</a>
               <Link to="/blog/aep-ohio-data-center-tariff-minimum-demand">See the full Ohio tariff example ↗</Link>
+              <a href="https://github.com/in-variant/invariant-website/releases/tag/aep-ohio-dct-replay-v1.0.0">Download the 13-month replay and CSV ↗</a>
               <Link to="/blog/dominion-virginia-gs5-data-center-tariff">Compare the Virginia billing components ↗</Link>
               <Link to={SITE_SEARCH_REQUEST_PATH}>Share your site and power requirements ↗</Link>
             </div>
