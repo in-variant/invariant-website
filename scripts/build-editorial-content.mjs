@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { coverageFieldPath } from '../src/data/coverageFieldPath.mjs'
 import { articleSearchWords } from '../src/data/articleSearchWords.mjs'
 import { buildArticleCollectionLinks } from '../src/data/collectionGuideLinks.mjs'
+import { blockSearchText, datasetSearchDocuments } from './editorial-search-content.mjs'
 
 const base = new URL('../src/data/', import.meta.url)
 const files = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence.json', 'data-center-site-finder.json', 'powered-land-sites.json', 'site-selection-guides.json', 'data-centers.json', 'data-center-operations.json', 'data-center-fire-safety.json', 'india-data-centres.json', 'oil-gas.json']
@@ -404,36 +405,31 @@ const articleSearch = articles.map(article => {
   ].join('\n')
   const body = [
     article.intro, ...article.takeaways,
-    ...article.sections.flatMap(section => section.blocks.flatMap(block => {
-      switch (block.type) {
-        case 'paragraph': return [block.text]
-        case 'list': return block.items
-        case 'table': return [...block.columns, ...block.rows.flat()]
-        case 'download': return [block.label]
-        case 'links': return block.items.map(item => item.label)
-        default: return []
-      }
-    })),
+    ...article.sections.flatMap(section => section.blocks.flatMap(blockSearchText)),
     ...article.faqs.map(faq => faq.answer),
     ...article.sources.flatMap(source => [source.publisher, source.title]),
   ].join('\n')
   return { slug: article.slug, headings, bodyTerms: new Set(articleSearchWords(body)) }
 })
-const articleTermPostings = new Map()
-articleSearch.forEach(({ bodyTerms }, position) => {
-  for (const term of bodyTerms) {
-    if (!articleTermPostings.has(term)) articleTermPostings.set(term, [])
-    articleTermPostings.get(term).push(position)
-  }
-})
-writeIfChanged(new URL('details.json', searchDir), JSON.stringify({
-  documents: articleSearch.map(({ slug, headings }) => ({ slug, headings })),
-  // Gaps from the previous document number compress common terms more efficiently.
-  bodyPostings: Object.fromEntries([...articleTermPostings.keys()].sort().map(term => {
-    const positions = articleTermPostings.get(term)
-    return [term, positions.map((position, index) => position - (positions[index - 1] ?? -1))]
-  })),
-}))
+function writeSearchDetails(filename, documents) {
+  const postings = new Map()
+  documents.forEach(({ bodyTerms }, position) => {
+    for (const term of bodyTerms) {
+      if (!postings.has(term)) postings.set(term, [])
+      postings.get(term).push(position)
+    }
+  })
+  writeIfChanged(new URL(filename, searchDir), JSON.stringify({
+    documents: documents.map(({ slug, headings }) => ({ slug, headings })),
+    // Gaps from the previous document number compress common terms more efficiently.
+    bodyPostings: Object.fromEntries([...postings.keys()].sort().map(term => {
+      const positions = postings.get(term)
+      return [term, positions.map((position, index) => position - (positions[index - 1] ?? -1))]
+    })),
+  }))
+}
+writeSearchDetails('details.json', articleSearch)
+writeSearchDetails('dataset-search-details.json', articles.flatMap(datasetSearchDocuments))
 const siteSlugs = articles.filter(article => ['site-listing', 'site-guide', 'study-guide', 'compute-guide', 'india-guide'].includes(article.kind)).map(article => article.slug)
 writeIfChanged(new URL('site-article-slugs.json', base), `${JSON.stringify(siteSlugs, null, 2)}\n`)
 writeIfChanged(new URL('earth-coverage-examples.json', base), `${JSON.stringify(coverageExamples, null, 2)}\n`)

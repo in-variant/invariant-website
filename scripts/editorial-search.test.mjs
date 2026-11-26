@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { articleSearchWords, editorialSearchWords, expandArticleSearchDetails, prepareSearch, rankSearch } from '../src/data/blogSearch.ts'
 import { searchProviderComparisons } from '../src/data/providerComparisonSearch.ts'
+import { datasetSearchDocuments } from './editorial-search-content.mjs'
 
 const index = prepareSearch([
   { title: 'Find a 100 MW data center site', metadata: 'Powered land and phased utility service' },
@@ -30,6 +31,45 @@ test('compressed search postings keep exact membership across adjacent and skipp
     'unindexed-body': { headings: 'A short guide', bodyTerms: [] },
     'tax-lot': { headings: 'Assessor records', bodyTerms: ['parcel', 'record'] },
   })
+})
+
+test('dataset search terms follow the download or a uniquely cited dataset', () => {
+  const article = {
+    slug: 'permit-api-review',
+    dataset: { sourceIds: ['nyc', 'shared'] },
+    additionalDatasets: [{ anchor: 'dataset-chicago', sourceIds: ['chicago', 'shared'] }],
+    sections: [
+      { heading: 'NYC works', blocks: [
+        { type: 'table', columns: ['Permit'], rows: [['B01440157']], rowSourceIds: [['nyc']] },
+      ] },
+      { heading: 'Chicago works', blocks: [
+        { type: 'paragraph', text: 'Record 101077422 shows fee due.' },
+        { type: 'download', label: 'Download the Chicago cohort', datasetAnchor: 'dataset-chicago' },
+      ] },
+      { heading: 'Shared example', blocks: [
+        { type: 'paragraph', text: 'The shared case 999999999 compares offices.', sourceIds: ['shared'] },
+      ] },
+    ],
+  }
+  const [nyc, chicago] = datasetSearchDocuments(article)
+  assert.equal(nyc.slug, 'permit-api-review')
+  assert.equal(chicago.slug, 'permit-api-review-dataset-chicago')
+  assert.equal(nyc.headings, 'NYC works')
+  assert.equal(chicago.headings, 'Chicago works')
+  assert.ok(nyc.bodyTerms.has('b01440157'))
+  assert.ok(chicago.bodyTerms.has('101077422'))
+  assert.ok(!nyc.bodyTerms.has('101077422') && !chicago.bodyTerms.has('b01440157'))
+  assert.ok(!nyc.bodyTerms.has('999999999') && !chicago.bodyTerms.has('999999999'))
+})
+
+test('long dataset questions keep an explicit record identifier', () => {
+  const chicago = { title: 'Chicago building permit milestones and fees', metadata: 'City inspections and work start', bodyTerms: ['101077422'] }
+  const unrelated = { ...chicago, bodyTerms: ['101077423'] }
+  const index = prepareSearch([unrelated, chicago], sample => sample)
+  const options = { allowPartialMatches: true, longQuestionRanking: true, requireRecordIds: true }
+  const query = number => editorialSearchWords(`Where can I see Chicago building permits for permit number ${number} and verify inspection milestones and fees before starting work?`)
+  assert.deepEqual(rankSearch(index, query('101077422'), options), [chicago])
+  assert.deepEqual(rankSearch(index, query('999998332'), options), [])
 })
 
 test('editorial query cleanup retains the sites and evidence terms', () => {

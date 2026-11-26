@@ -8,7 +8,7 @@ import type { ResourceTopic } from '../data/resources'
 import { FEATURED_RESOURCE_ARTICLES, RESOURCE_REFERENCES } from '../data/resource-directory'
 import resourceHub from '../data/resource-hub.json'
 import earthProduct from '../data/earth-product.json'
-import { useArticleSearchDetails } from '../lib/useArticleSearchDetails'
+import { useArticleSearchDetails, useDatasetSearchDetails } from '../lib/useArticleSearchDetails'
 import './Resources.css'
 
 const FORMATS = ['All', 'Guides', 'Tools', 'Datasets'] as const
@@ -30,6 +30,8 @@ export default function Resources() {
   const searching = queryWords.length > 0
   const searchGuides = searching && (format === 'All' || format === 'Guides')
   const { details, pending: articleSearchPending } = useArticleSearchDetails(searchGuides)
+  const searchDatasets = searching && (format === 'All' || format === 'Datasets')
+  const { details: datasetDetails, pending: datasetSearchPending } = useDatasetSearchDetails(searchDatasets)
   const [directorySearch, setDirectorySearch] = useState<Record<string, string> | null>()
   const directorySearchPending = searching && directorySearch === undefined
   useEffect(() => {
@@ -41,18 +43,23 @@ export default function Resources() {
     )
     return () => { active = false }
   }, [directorySearchPending])
-  const pending = articleSearchPending || directorySearchPending
-  const searchIndex = useMemo(() => searching ? prepareSearch(library, resource => ({
-    title: resource.title,
-    relatedTitle: resource.articleSlug,
-    metadata: `${resource.summary} ${resource.topic} ${resource.searchContext ?? directorySearch?.[resource.path] ?? ''}`,
-    details: resource.articleSlug ? details?.[resource.articleSlug]?.headings : undefined,
-    bodyTerms: resource.articleSlug ? details?.[resource.articleSlug]?.bodyTerms : undefined,
-  })) : [], [searching, details, directorySearch])
+  const pending = articleSearchPending || datasetSearchPending || directorySearchPending
+  const searchIndex = useMemo(() => searching ? prepareSearch(library, resource => {
+    const detail = resource.kind === 'Dataset'
+      ? datasetDetails?.[resource.path.slice('/datasets#'.length)]
+      : resource.articleSlug ? details?.[resource.articleSlug] : undefined
+    return {
+      title: resource.title,
+      relatedTitle: resource.articleSlug,
+      metadata: `${resource.summary} ${resource.topic} ${resource.searchContext ?? directorySearch?.[resource.path] ?? ''}`,
+      details: detail?.headings,
+      bodyTerms: detail?.bodyTerms,
+    }
+  }) : [], [searching, details, datasetDetails, directorySearch])
   const matchesFilters = (resource: (typeof library)[number]) =>
     (format === 'All' || `${resource.kind}s` === format) && (topic === 'All topics' || resource.topic === topic)
   const filtered = searching
-    ? rankSearch(searchIndex.filter(({ entry }) => matchesFilters(entry)), queryWords, { allowPartialMatches: true, longQuestionRanking: true })
+    ? rankSearch(searchIndex.filter(({ entry }) => matchesFilters(entry)), queryWords, { allowPartialMatches: true, longQuestionRanking: true, requireRecordIds: true })
     : library.filter(matchesFilters)
   const clearFilters = () => { setFormat('All'); setTopic('All topics'); setQuery(''); setVisibleCount(PAGE_SIZE) }
 
@@ -126,7 +133,7 @@ export default function Resources() {
           <p className="resources-result-count" role="status">
             {pending ? 'Searching the library…' : `${filtered.length} ${filtered.length === 1 ? 'resource' : 'resources'}`}
             {!pending && searching && ` matching “${query.trim()}”`}
-            {!pending && searching && (directorySearch === null || (searchGuides && details === null)) && ' (some search details unavailable)'}
+            {!pending && searching && (directorySearch === null || (searchGuides && details === null) || (searchDatasets && datasetDetails === null)) && ' (some search details unavailable)'}
           </p>
           <div className="resources-reference-list">
             {filtered.slice(0, visibleCount).map((resource) => (

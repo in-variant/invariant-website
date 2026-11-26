@@ -3,7 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import DatasetCitation from '../components/DatasetCitation'
 import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
-import { editorialSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
+import { editorialSearchWords, prepareSearch, rankSearch, type ArticleSearchDetails } from '../data/blogSearch'
+import { useDatasetSearchDetails } from '../lib/useArticleSearchDetails'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
 import { loadResearchDatasets } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
@@ -57,17 +58,18 @@ async function prepareCatalog() {
       count: catalogEntries.filter(entry => entry.topics.includes(label)).length,
     })),
   ]
-  const buildSearchIndex = () => prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
+  const buildSearchIndex = (searchDetails?: ArticleSearchDetails | null) => prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
     title: dataset.name,
     relatedTitle: title,
     metadata: [dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
       region, topic, ...topics, workflow?.label, featuredQuestions.get(id),
       ...dataset.downloads.map(file => `${file.label} ${file.format}`),
     ].join(' '),
-    details: dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`).join(' '),
+    details: [searchDetails?.[id]?.headings,
+      ...dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`),
+    ].filter(Boolean).join('\n'),
+    bodyTerms: searchDetails?.[id]?.bodyTerms,
   }))
-
-  let catalogSearchIndex: ReturnType<typeof buildSearchIndex> | undefined
 
   const catalogPage = {
     '@context': 'https://schema.org',
@@ -89,7 +91,7 @@ async function prepareCatalog() {
   }
   return {
     featured, formats, datasetTopics, catalogEntries, topicLinks, catalogPage,
-    getSearchIndex: () => catalogSearchIndex ??= buildSearchIndex(),
+    buildSearchIndex,
   }
 }
 
@@ -99,7 +101,7 @@ export async function loadDatasetsPage() {
 }
 
 function Datasets({
-  featured, formats, datasetTopics, catalogEntries, topicLinks, catalogPage, getSearchIndex,
+  featured, formats, datasetTopics, catalogEntries, topicLinks, catalogPage, buildSearchIndex,
 }: Awaited<ReturnType<typeof prepareCatalog>>) {
   const [searchReady, setSearchReady] = useState(false)
   const [shareResult, setShareResult] = useState<{ search: string; copied: boolean }>()
@@ -115,11 +117,13 @@ function Datasets({
   const deferredQuery = useDeferredValue(query)
   const terms = useMemo(() => editorialSearchWords(deferredQuery), [deferredQuery])
   const searching = terms.length > 0
-  const searchIndex = searching ? getSearchIndex() : undefined
+  const { details: searchDetails, pending: searchPending } = useDatasetSearchDetails(searching)
+  const searchIndex = useMemo(() => searching ? buildSearchIndex(searchDetails) : undefined,
+    [searching, searchDetails, buildSearchIndex])
   const isFiltered = Boolean(searching || topic || format)
   const matches = useMemo(() => {
     const candidates = searchIndex
-      ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true, longQuestionRanking: true })
+      ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true, longQuestionRanking: true, requireRecordIds: true })
       : catalogEntries
     if (!topic && !format) return candidates
 
@@ -373,7 +377,7 @@ function Datasets({
         <div className="dataset-controls">
           <label>
             <span>Search data samples</span>
-            <input ref={searchInput} type="search" placeholder="Try flood zones, loan filings, or grid capacity" disabled={!searchReady} value={query}
+            <input ref={searchInput} type="search" placeholder="Search topics, addresses, or record IDs" disabled={!searchReady} value={query}
               onChange={event => updateFilter('q', event.target.value)} />
           </label>
           <label className="dataset-topic-select">
@@ -393,8 +397,11 @@ function Datasets({
           </label>
         </div>
         <div className="dataset-list-meta">
-          <div className="dataset-results" aria-busy={query !== deferredQuery || undefined}>
-            <p role="status">{matches.length} {isFiltered ? 'matching' : 'published'} research {matches.length === 1 ? 'example' : 'examples'}</p>
+          <div className="dataset-results" aria-busy={query !== deferredQuery || searchPending || undefined}>
+            <p role="status">
+              {searchPending ? 'Searching research examples…' : `${matches.length} ${isFiltered ? 'matching' : 'published'} research ${matches.length === 1 ? 'example' : 'examples'}`}
+              {searching && searchDetails === null && ' (catalog summaries only)'}
+            </p>
             {isFiltered && <div className="dataset-search-actions">
               <button type="button" className="dataset-clear" onClick={clearFilters}>Clear filters</button>
               <button type="button" className="dataset-clear" onClick={copySearch}>Copy search link</button>
@@ -408,7 +415,7 @@ function Datasets({
             <a href="/datasets.json" download>Download catalog (JSON) <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        {matches.length === 0 && (
+        {matches.length === 0 && !searchPending && (
           <div className="dataset-empty">
             <p>No samples match your filters. The API coverage page lists available fields, including fields without a published sample.</p>
             <Link className="dataset-method" to={earthLinks.coverage}

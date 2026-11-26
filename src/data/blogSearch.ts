@@ -11,6 +11,7 @@ const EDITORIAL_ALIASES = new Map([
 
 const WORKSHEET_TERMS = new Set(['checklist', 'worksheet'])
 const POWER_SIZE = /^\d+(?:\.\d+)?w$/
+const RECORD_ID = /^[a-z]*\d{6,}[a-z]*$/
 const GUIDANCE_TERMS = new Set(['checklist', 'commission', 'confirm', 'evidence', 'study', 'verify', 'worksheet'])
 
 export function editorialSearchWords(value: string) {
@@ -26,7 +27,7 @@ export function editorialSearchWords(value: string) {
 
 export type ArticleSearchDetails = Record<string, { headings: string; bodyTerms: string[] }>
 
-type PackedArticleSearchDetails = {
+export type PackedArticleSearchDetails = {
   documents: { slug: string; headings: string }[]
   bodyPostings: Record<string, number[]>
 }
@@ -140,7 +141,7 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[], query: str
 export function rankSearch<T>(
   index: ReturnType<typeof prepareSearch<T>>,
   queryWords: string[],
-  { numericPrefixes = false, allowPartialMatches = false, longQuestionRanking = false } = {},
+  { numericPrefixes = false, allowPartialMatches = false, longQuestionRanking = false, requireRecordIds = false } = {},
 ) {
   const terms = [...new Set(queryWords)]
   const phrase = ` ${queryWords.join(' ')} `
@@ -149,7 +150,12 @@ export function rankSearch<T>(
   const missingAllowance = allowPartialMatches && terms.length >= 4
     ? Math.min(2, Math.floor(terms.length / 4))
     : 0
-  const strictResults = index.flatMap(item => {
+  // A question about a specific record must keep that identifier in the results.
+  const recordIds = requireRecordIds ? terms.filter(term => RECORD_ID.test(term) && !POWER_SIZE.test(term)) : []
+  const candidates = recordIds.length ? index.filter(item =>
+    recordIds.every(term => editorialWeight(item, term) > 0 || item.bodyTerms?.has(term)),
+  ) : index
+  const strictResults = candidates.flatMap(item => {
     const { entry, title, relatedTitle, metadata, details, bodyTerms } = item
     const matchesPhrase = ` ${title.join(' ')} `.includes(phrase) || ` ${relatedTitle.join(' ')} `.includes(phrase)
     let score = matchesPhrase ? (allowPartialMatches ? 8 : 6) : 0
@@ -188,7 +194,7 @@ export function rankSearch<T>(
   const isLongQuestion = terms.length >= 12 || requestsWorksheet
   const needsFallback = terms.length >= 6 && strictResults.length === 0
   if (longQuestionRanking && (isLongQuestion || needsFallback)) {
-    const questionResults = rankLongQuestion(index, terms, queryWords)
+    const questionResults = rankLongQuestion(candidates, terms, queryWords)
     if (questionResults.length) return questionResults
   }
   return strictResults
