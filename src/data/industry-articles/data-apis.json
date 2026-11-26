@@ -1,5 +1,420 @@
 [
   {
+    "slug": "building-permit-history-by-contractor",
+    "topic": "Data & APIs",
+    "region": "New York City, United States",
+    "title": "How to find building permit history by contractor",
+    "description": "Look up permits by contractor name or license number. Compare Shovels, PermitStack and BuildZoom with 254 NYC permit rows and a downloadable test.",
+    "date": "2026-11-25",
+    "readMinutes": 7,
+    "coverAlt": "In New York City’s Approved Permits extract, 254 contractor search rows resolve to 230 distinct work permit numbers, of which 182 have an initial issuance in the period.",
+    "coverCaption": "NYC DOB NOW approved permits for contractor license GC 002305, January 1 through November 25, 2026. Counts from an Invariant review of the city extract.",
+    "intro": "To find a contractor’s building permit history, start with the issuing agency’s contractor name or license lookup. Match the license type and number, then pull the original permit IDs and issue dates for the work you care about. In New York City, a 2026 search for permits listing Turner Construction returned 254 source rows and 230 distinct work permit numbers. Only 182 of those permit numbers had an initial issuance in the selected period. The difference matters when using permit data to evaluate prior work, count new authorizations, or identify sales leads.",
+    "takeaways": [
+      "Check the authority, license type and license number alongside the company name. Keep the exact business name from the permit record.",
+      "For a count of new work authorizations, group by work permit number and check the filing reason. Keep renewal sequences and work types for the history.",
+      "Use inspection and sign-off records to check completion. For a sales lead, verify the active scope and whether the contract or subcontract is still open."
+    ],
+    "guideActions": [
+      {
+        "href": "#nyc-contractor-permit-test",
+        "label": "See the NYC contractor test"
+      },
+      {
+        "href": "/blog/nyc-contractor-permit-history-records.json",
+        "label": "Download the sample and queries",
+        "download": true
+      }
+    ],
+    "sections": [
+      {
+        "id": "look-up-permits-by-name-or-license",
+        "heading": "How do you look up permits by contractor name or license?",
+        "blocks": [
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Step",
+              "What to look up",
+              "What to keep"
+            ],
+            "rows": [
+              [
+                "Find the contractor’s credential",
+                "Open NYC DOB NOW’s Licensee tool. Search by business name or license number and select the license type. Confirm the associated business and check the current status through the issuing authority.",
+                "Licensing authority, license class, number and associated business. Preserve leading zeros."
+              ],
+              [
+                "Find permits issued to that license",
+                "In the NYC Approved Permits dataset, filter Applicant License and Permittee’s License Type. Try a distinctive business-name prefix if you start with a company name.",
+                "As recorded business name, work permit ID, sequence, filing reason, work type, address and Building Identification Number (BIN)."
+              ],
+              [
+                "Check the original job record",
+                "Look up the job filing and permit in the public DOB portal. Check BIS for records filed there. NYC publishes separate datasets for electrical, elevator and limited alteration applications.",
+                "Source system, job filing, permit issue and expiration, and applicable inspection and sign-off records."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "licensee-search",
+                "renewal-notice"
+              ],
+              [
+                "permit-data",
+                "permit-rows",
+                "license-query"
+              ],
+              [
+                "licensee-search",
+                "permit-data",
+                "dob-build-faq"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "NYC allows a different business associated with the same applicant’s license to be selected through a renewal with changes. The city also provides a process for a new applicant to take over a permit. Preserve the applicant and business at each sequence. Read the source paperwork when a renewal affects who was responsible for the work.",
+            "sourceIds": [
+              "renewal-notice",
+              "dob-build-faq"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "nyc-contractor-permit-test",
+        "heading": "What does the Turner Construction permit history show?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "We queried DOB NOW issue dates from January 1 through November 25, 2026, for the business-name prefix TURNER CONSTRUCTION. The portal stores the name as TURNER CONSTRUCTION COMPA in these rows. A separate query by license type GC and number 002305 returned the same count under the recorded company name.",
+            "sourceIds": [
+              "permit-rows",
+              "license-query"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Count",
+              "Result",
+              "What it measures"
+            ],
+            "rows": [
+              [
+                "Source rows",
+                "254",
+                "184 initial rows and 70 renewal rows across the observed period."
+              ],
+              [
+                "Distinct permit numbers",
+                "230",
+                "All work permit numbers represented, including permits whose first issue was earlier."
+              ],
+              [
+                "Permit and sequence pairs",
+                "251",
+                "Repeated work type rows can share the same permit and sequence."
+              ],
+              [
+                "Distinct permits with an initial issue in the period",
+                "182",
+                "Permit numbers with an Initial Permit row in this extract."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "permit-rows"
+              ],
+              [
+                "permit-rows"
+              ],
+              [
+                "permit-rows",
+                "permit-sequences"
+              ],
+              [
+                "permit-rows"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 635 West 165th Street, the same structural permit, M01036737-Z4-ST, appears four times. Sequence 1 was issued April 23. Sequences 2, 3 and 4 were issued April 27, September 3 and October 29 as renewals with changes. Preserve all four rows for the history and count one permit number.",
+            "sourceIds": [
+              "permit-sequences"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At 140 West 65th Street, permit M01302982-I1-GC-CX has two initial rows dated February 20 with the same sequence. One is General Construction and one is Mechanical Systems. At 726 Madison Avenue, permit M01168678-I1-GC first appeared on May 30, 2025, and entered the 2026 extract through renewals. Keep the original date and the renewal dates available when deciding how to count work in a period.",
+            "sourceIds": [
+              "permit-sequences"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/nyc-contractor-permit-history-records.json",
+            "label": "Download the 254 matched rows, nine replay records and original NYC queries",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "id": "compare-contractor-permit-data-apis",
+        "heading": "Which contractor permit data provider should you trial?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For one jurisdiction, start with the city’s records so you can compare any vendor’s result against the original. For a multi-market integration, test contractor search and permit history on the counties and trades you sell to or underwrite. The comparison references documented starting points. Use the New York extract as a shared reference case.",
+            "sourceIds": [
+              "permit-data",
+              "permit-rows"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Provider",
+              "Where to start",
+              "What to verify in a trial"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Resolve sites to parcels and buildings and connect the permit record to property, access and hazard context where available.",
+                "Give the API the sites in the case. Check the match and field sources, then keep the contractor and version from the issuing authority with each site."
+              ],
+              [
+                "Shovels",
+                "Search contractors by geographic area, work and credentials, then retrieve permits linked to the contractor ID.",
+                "Ask for the permit IDs behind the contractor’s activity count, the original filing reasons and a way to reproduce the total by issue date."
+              ],
+              [
+                "PermitStack",
+                "Search by business name or license and use the contractor ID to retrieve linked permits.",
+                "Check whether the original work permit and license identifiers survive the match. Find the two work types on one permit and confirm the scope of the total."
+              ],
+              [
+                "Gryd by BuildZoom",
+                "Review contractor work history through its construction intelligence offering or ask about the bulk data.",
+                "Test a spelling variant and a contractor with permits across jurisdictions. Export the identifiers that support a single company match."
+              ],
+              [
+                "Construction Monitor",
+                "Use its permit search with contractor name, jurisdiction, date range and project categories.",
+                "Compare filing, permit and publication dates. Ask how renewals enter the lead feed and confirm scope with the buyer or owner."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-fields"
+              ],
+              [
+                "shovels-contractors",
+                "shovels-permits"
+              ],
+              [
+                "permitstack-contractors"
+              ],
+              [
+                "gryd"
+              ],
+              [
+                "construction-monitor"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "id": "use-contractor-history-in-diligence",
+        "heading": "How to use the history in underwriting, procurement or sales",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For a surety or underwriting review, pick comparable work by trade, size and location. Confirm the named applicant, check the relevant license and read the final inspection or sign-off. For procurement, use the issuer history to choose project references, then check what the contractor actually delivered and when it was accepted.",
+            "sourceIds": [
+              "licensee-search",
+              "dob-build-faq"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For market analysis, publish the unit of measurement. Work permit numbers, first issuances, jobs, buildings and construction starts each describe a different quantity. For a construction lead, confirm that the relevant package is still open before entering it into a pipeline.",
+            "sourceIds": [
+              "permit-data",
+              "permit-sequences"
+            ]
+          },
+          {
+            "type": "links",
+            "label": "Related property and construction checks",
+            "items": [
+              {
+                "slug": "building-permit-data-apis",
+                "label": "Compare building permit data APIs and agency sources"
+              },
+              {
+                "slug": "building-permit-change-alerts-by-address",
+                "label": "Track permit changes by address"
+              },
+              {
+                "slug": "commercial-construction-leads-bids-and-awards",
+                "label": "Verify commercial leads against open bids and awards"
+              },
+              {
+                "slug": "certificate-of-occupancy-lookup-by-address",
+                "label": "Check the building’s certificate of occupancy"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Can I search NYC building permits by contractor license number?",
+        "answer": "Yes. Verify the license number and license type in DOB NOW’s Licensee tool. Filter the Approved Permits dataset by Applicant License and Permittee’s License Type, then use the original permit and job filing IDs to check details.",
+        "sourceIds": [
+          "licensee-search",
+          "permit-data"
+        ]
+      },
+      {
+        "question": "Why does one contractor permit number appear several times?",
+        "answer": "A permit can have several issue sequences, and the same permit and sequence can appear on separate work type rows. Preserve those records and group by work permit number when measuring distinct permits.",
+        "sourceIds": [
+          "permit-sequences",
+          "dob-build-faq"
+        ]
+      },
+      {
+        "question": "How can I tell whether work on a permit was completed?",
+        "answer": "Open the applicable inspection and sign-off records in the issuing system. Match the permit number, work scope and date to the job under review.",
+        "sourceIds": [
+          "licensee-search",
+          "dob-build-faq"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "permit-data",
+        "title": "DOB NOW: Build Approved Permits dataset and dictionary",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/d/rbx6-tga4",
+        "linkLabel": "DOB NOW permit dataset"
+      },
+      {
+        "id": "permit-rows",
+        "title": "NYC approved permit rows matching the Turner business prefix for the selected period",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Cpermittee_s_license_type%2Capplicant_license%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Cissued_date%2Cexpired_date%2Chouse_no%2Cstreet_name%2Cborough%2Cbin%2Cwork_type&%24where=upper%28applicant_business_name%29+like+%27TURNER+CONSTRUCTION%25%27+and+issued_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24order=issued_date%2Cwork_permit%2Csequence_number&%24limit=1000",
+        "linkLabel": "Query the 254 permit rows"
+      },
+      {
+        "id": "license-query",
+        "title": "Check the same records by GC license 002305",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Ccount%28%2A%29+as+rows&%24where=applicant_license%3D%27002305%27+and+permittee_s_license_type%3D%27GC%27+and+issued_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24group=applicant_business_name&%24order=rows+desc&%24limit=100",
+        "linkLabel": "Check the GC license match"
+      },
+      {
+        "id": "permit-sequences",
+        "title": "Three selected work permits across all issue dates",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Cpermittee_s_license_type%2Capplicant_license%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Cissued_date%2Cexpired_date%2Chouse_no%2Cstreet_name%2Cborough%2Cbin%2Cwork_type%2Cpermit_status&%24where=work_permit+in+%28%27M01036737-Z4-ST%27%2C%27M01302982-I1-GC-CX%27%2C%27M01168678-I1-GC%27%29&%24order=work_permit%2Cissued_date%2Csequence_number%2Cwork_type&%24limit=100",
+        "linkLabel": "Query the nine example rows"
+      },
+      {
+        "id": "licensee-search",
+        "title": "DOB NOW public portal search instructions",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/industry/dob-now-public-portal-faqs.page",
+        "linkLabel": "NYC licensee and record search"
+      },
+      {
+        "id": "renewal-notice",
+        "title": "June 24, 2026 service notice on business changes at renewal",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/assets/buildings/pdf/permitrenewals_bizname-sn.pdf",
+        "linkLabel": "NYC business changes on renewals"
+      },
+      {
+        "id": "dob-build-faq",
+        "title": "Work permit renewals, additional permits and changes of applicant",
+        "publisher": "NYC Department of Buildings",
+        "url": "https://www.nyc.gov/site/buildings/industry/dob-now-build-faqs.page",
+        "linkLabel": "DOB NOW permit and inspection FAQ"
+      },
+      {
+        "id": "shovels-contractors",
+        "title": "Contractor search and linked permit history",
+        "publisher": "Shovels",
+        "url": "https://docs.shovels.ai/api-reference/contractors/search-contractors",
+        "linkLabel": "Shovels contractor search"
+      },
+      {
+        "id": "shovels-permits",
+        "title": "Contractor and permit endpoints",
+        "publisher": "Shovels",
+        "url": "https://www.shovels.ai/solutions/api",
+        "linkLabel": "Shovels linked permit records"
+      },
+      {
+        "id": "permitstack-contractors",
+        "title": "Contractor search, permit history and licenses",
+        "publisher": "PermitStack",
+        "url": "https://permit-stack.com/docs/#op-search_contractors",
+        "linkLabel": "PermitStack contractor API"
+      },
+      {
+        "id": "gryd",
+        "title": "Gryd construction intelligence, work histories and bulk data",
+        "publisher": "BuildZoom Data",
+        "url": "https://www.buildzoomdata.com/",
+        "linkLabel": "Gryd by BuildZoom"
+      },
+      {
+        "id": "construction-monitor",
+        "title": "Powersearch permit filters and contractor search",
+        "publisher": "Construction Monitor",
+        "url": "https://www.constructionmonitor.com/assets/pdf/construction-monitor-user-manual.pdf",
+        "linkLabel": "Construction Monitor search manual"
+      },
+      {
+        "id": "earth-fields",
+        "title": "Invariant Earth field catalog",
+        "publisher": "Invariant",
+        "url": "https://api.invariant-ai.com/v1/meta/fields",
+        "linkLabel": "Invariant Earth field catalog"
+      }
+    ],
+    "relatedSlugs": [
+      "building-permit-data-apis",
+      "building-permit-change-alerts-by-address",
+      "commercial-construction-leads-bids-and-awards",
+      "certificate-of-occupancy-lookup-by-address"
+    ],
+    "dataset": {
+      "name": "NYC DOB NOW contractor permit history case and source rows",
+      "description": "254 selected Approved Permits rows for GC license 002305 and nine rows for three replay permits, with exact source queries, permit identifiers, sequence and work types.",
+      "spatialCoverage": "New York City, United States",
+      "temporalCoverage": "2025-05-30/2026-11-25",
+      "sourceIds": [
+        "permit-data",
+        "permit-rows",
+        "license-query",
+        "permit-sequences"
+      ]
+    }
+  },
+  {
     "slug": "chicago-liquor-license-lookup-by-address",
     "topic": "Data & APIs",
     "region": "Chicago, Illinois, United States",
@@ -23090,6 +23505,7 @@
       }
     ],
     "relatedSlugs": [
+      "building-permit-history-by-contractor",
       "certificate-of-occupancy-lookup-by-address",
       "west-kite-alternatives-for-commercial-property-data",
       "ageospatial-alternatives-commercial-roof-underwriting",

@@ -1,5 +1,56 @@
 [
   {
+    "slug": "building-permit-history-by-contractor",
+    "topic": "Data & APIs",
+    "title": "How to find building permit history by contractor",
+    "summary": "Look up permits by contractor name or license number. Compare Shovels, PermitStack and BuildZoom with 254 NYC permit rows and a downloadable test.",
+    "date": "November 25, 2026",
+    "dateTime": "2026-11-25",
+    "region": "New York City, United States",
+    "image": "/blog/industry/building-permit-history-by-contractor.webp?v=d4399b7e",
+    "dataset": {
+      "name": "NYC DOB NOW contractor permit history case and source rows",
+      "description": "254 selected Approved Permits rows for GC license 002305 and nine rows for three replay permits, with exact source queries, permit identifiers, sequence and work types.",
+      "spatialCoverage": "New York City, United States",
+      "temporalCoverage": "2025-05-30/2026-11-25",
+      "sources": [
+        "https://data.cityofnewyork.us/d/rbx6-tga4",
+        "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Cpermittee_s_license_type%2Capplicant_license%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Cissued_date%2Cexpired_date%2Chouse_no%2Cstreet_name%2Cborough%2Cbin%2Cwork_type&%24where=upper%28applicant_business_name%29+like+%27TURNER+CONSTRUCTION%25%27+and+issued_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24order=issued_date%2Cwork_permit%2Csequence_number&%24limit=1000",
+        "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Ccount%28%2A%29+as+rows&%24where=applicant_license%3D%27002305%27+and+permittee_s_license_type%3D%27GC%27+and+issued_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24group=applicant_business_name&%24order=rows+desc&%24limit=100",
+        "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Cpermittee_s_license_type%2Capplicant_license%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Cissued_date%2Cexpired_date%2Chouse_no%2Cstreet_name%2Cborough%2Cbin%2Cwork_type%2Cpermit_status&%24where=work_permit+in+%28%27M01036737-Z4-ST%27%2C%27M01302982-I1-GC-CX%27%2C%27M01168678-I1-GC%27%29&%24order=work_permit%2Cissued_date%2Csequence_number%2Cwork_type&%24limit=100"
+      ],
+      "sourceDetails": [
+        {
+          "title": "DOB NOW: Build Approved Permits dataset and dictionary",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/d/rbx6-tga4"
+        },
+        {
+          "title": "NYC approved permit rows matching the Turner business prefix for the selected period",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Cpermittee_s_license_type%2Capplicant_license%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Cissued_date%2Cexpired_date%2Chouse_no%2Cstreet_name%2Cborough%2Cbin%2Cwork_type&%24where=upper%28applicant_business_name%29+like+%27TURNER+CONSTRUCTION%25%27+and+issued_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24order=issued_date%2Cwork_permit%2Csequence_number&%24limit=1000"
+        },
+        {
+          "title": "Check the same records by GC license 002305",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Ccount%28%2A%29+as+rows&%24where=applicant_license%3D%27002305%27+and+permittee_s_license_type%3D%27GC%27+and+issued_date+%3E%3D+%272026-01-01T00%3A00%3A00%27+and+issued_date+%3C+%272026-11-26T00%3A00%3A00%27&%24group=applicant_business_name&%24order=rows+desc&%24limit=100"
+        },
+        {
+          "title": "Three selected work permits across all issue dates",
+          "publisher": "NYC Department of Buildings",
+          "url": "https://data.cityofnewyork.us/resource/rbx6-tga4.json?%24select=applicant_business_name%2Cpermittee_s_license_type%2Capplicant_license%2Cjob_filing_number%2Cwork_permit%2Csequence_number%2Cfiling_reason%2Cissued_date%2Cexpired_date%2Chouse_no%2Cstreet_name%2Cborough%2Cbin%2Cwork_type%2Cpermit_status&%24where=work_permit+in+%28%27M01036737-Z4-ST%27%2C%27M01302982-I1-GC-CX%27%2C%27M01168678-I1-GC%27%29&%24order=work_permit%2Cissued_date%2Csequence_number%2Cwork_type&%24limit=100"
+        }
+      ],
+      "downloads": [
+        {
+          "label": "Download the 254 matched rows, nine replay records and original NYC queries",
+          "path": "/blog/nyc-contractor-permit-history-records.json",
+          "format": "JSON"
+        }
+      ]
+    }
+  },
+  {
     "slug": "chicago-liquor-license-lookup-by-address",
     "topic": "Data & APIs",
     "title": "How to check a Chicago liquor license by address",
