@@ -26,6 +26,14 @@ try {
       await entryReady
       await route.continue()
     })
+    // The article should be interactive while the analytics bundle is unavailable.
+    const analyticsBundle = /\/assets\/posthog-[^/]+\.js$/
+    let releaseAnalytics
+    const analyticsReady = new Promise(resolve => { releaseAnalytics = resolve })
+    await page.route(analyticsBundle, async route => {
+      await analyticsReady
+      await route.continue()
+    })
     await page.route(url => url.origin !== origin, route => route.abort())
     await page.goto(origin + path, { waitUntil: 'commit' })
 
@@ -58,6 +66,9 @@ try {
     assert.equal(await page.evaluate(() => window.duplicateCanonical), false, path + ' produced duplicate canonical links')
     await page.getByRole('button', { name: 'Open navigation' }).click()
     await page.getByRole('button', { name: 'Close navigation' }).waitFor()
+    const analyticsResponse = page.waitForResponse(analyticsBundle)
+    releaseAnalytics()
+    assert.ok((await analyticsResponse).ok(), path + ' did not load analytics after the article was interactive')
     assert.deepEqual(errors, [])
     console.log(`Preserved FAQ, focus, scroll and canonical metadata for ${path}`)
     await page.close()
