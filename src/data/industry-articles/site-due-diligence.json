@@ -2856,7 +2856,7 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We checked the effective FEMA National Flood Hazard Layer on November 24 and 25, 2026. Select a site for the map panel, source records and download. The CSV includes the parcel ID and the share of the parcel in the Special Flood Hazard Area where a tax lot was identified.",
+      "text": "We checked the effective FEMA National Flood Hazard Layer from November 24 to 26, 2026. Select a site for the map panel, source records and download. The CSV includes the parcel ID and the share of the parcel in the Special Flood Hazard Area where a tax lot was identified.",
       "sourceIds": [
        "fema-nfhl"
       ]
@@ -2878,7 +2878,7 @@
        [
         "501 Northwest Avenue, Northlake, IL (Aligned ORD-02)",
         "Unshaded Zone X",
-        "Address-range point only. The site’s tax lot is still unconfirmed."
+        "Mapped ORD-02 building outline and containing Cook County tax lot. The county lists the lot under 505 Northwest Avenue."
        ],
        [
         "55 Marietta Street NW, Atlanta, GA",
@@ -2923,7 +2923,7 @@
       ],
       "rowSectionIds": [
        "address-check-examples",
-       "address-check-examples",
+       "northlake-501-northwest-flood-zone",
        "address-check-examples",
        "dallas-tampa-flood-map",
        "dallas-tampa-flood-map",
@@ -2949,7 +2949,7 @@
     "blocks": [
      {
       "type": "paragraph",
-      "text": "We checked FEMA’s effective National Flood Hazard Layer on November 24, 2026. The Clifton and Northlake checks use Census street-range points. For Atlanta, we matched the city’s address records to the Fulton County tax parcel and checked both the point and the entire parcel.",
+      "text": "We checked FEMA’s effective National Flood Hazard Layer on November 24, 2026. The Clifton and Northlake rows show the original Census street-range checks. The Northlake building and parcel follow-up is below. For Atlanta, we matched the city’s address records to the Fulton County tax parcel and checked both the point and the entire parcel.",
       "sourceIds": [
        "census-geocoder",
        "fema-nfhl",
@@ -2975,7 +2975,7 @@
        [
         "501 Northwest Avenue, Northlake, IL (Aligned ORD-02)",
         "Zone X, area of minimal flood hazard at the Census address-range point. The download includes both FEMA map panel records returned at that point.",
-        "Point check only. Cook County returned nearby parcels addressed as 505 and 525 Northwest Avenue. Ask for the parcel ID and site plan for 501 before screening the property."
+        "In the follow-up, the mapped ORD-02 footprint fell inside a Cook County parcel listed under 505 Northwest Avenue. Both are in unshaded Zone X."
        ],
        [
         "55 Marietta Street NW, Atlanta, GA",
@@ -2994,7 +2994,9 @@
         "aligned-northlake",
         "northlake-zone",
         "northlake-panels",
-        "cook-northlake-parcels"
+        "cook-northlake-parcels",
+        "northlake-ord02-county-parcel",
+        "northlake-ord02-zones"
        ],
        [
         "55-marietta-operator",
@@ -3019,6 +3021,78 @@
       "label": "Download the FEMA point and parcel checks",
       "format": "JSON",
       "path": "/blog/data-center-fema-flood-zone-address-checks.json"
+     }
+    ]
+   },
+   {
+    "id": "northlake-501-northwest-flood-zone",
+    "heading": "FEMA flood zone at 501 Northwest Avenue in Northlake, Illinois",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The mapped Aligned ORD-02 building at 501 Northwest Avenue and its containing Cook County tax parcel are entirely in unshaded FEMA Zone X on the effective map checked November 26, 2026. The parcel is 12-31-301-021-0000. Cook County lists it under 505 Northwest Avenue, the address Aligned uses for adjacent ORD-01.",
+      "sourceIds": [
+       "aligned-northlake",
+       "northlake-ord02-osm",
+       "northlake-ord02-county-parcel",
+       "northlake-ord02-zones"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "What we checked",
+       "Result",
+       "How it was matched"
+      ],
+      "rows": [
+       [
+        "Original Census address point",
+        "Unshaded Zone X",
+        "The street-range point is about 113 metres from the mapped ORD-02 building."
+       ],
+       [
+        "Mapped ORD-02 building",
+        "100% in unshaded Zone X",
+        "The OpenStreetMap outline lies entirely within Cook County parcel 12-31-301-021-0000. The county’s 2022 footprint layer has no matching outline at this location."
+       ],
+       [
+        "Containing Cook County tax parcel",
+        "100% in unshaded Zone X",
+        "The 2026 parcel layer gives the lot address as 505 Northwest Avenue. The parcel has 0% overlap with the mapped Special Flood Hazard Area."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "northlake-zone",
+        "northlake-ord02-osm"
+       ],
+       [
+        "northlake-ord02-osm",
+        "northlake-ord02-county-footprints",
+        "northlake-ord02-zones"
+       ],
+       [
+        "northlake-ord02-county-parcel",
+        "northlake-ord02-zones"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The hazard polygon is from the Cook County FEMA map, panel 17031C0366J, effective August 19, 2008. The FEMA panel index also returns the neighboring DuPage panel 17043C0091J at this location. Keep the Cook County panel with this result. Ask for a current site plan and survey before relying on the result for a transaction. The map check does not establish building elevation, local drainage or safe access.",
+      "sourceIds": [
+       "northlake-ord02-zones",
+       "northlake-ord02-panels"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the ORD-02 parcel match and FEMA sources",
+      "path": "/blog/northlake-ord02-fema-footprint.json",
+      "format": "JSON",
+      "datasetAnchor": "dataset-northlake-ord02-fema-footprint"
      }
     ]
    },
@@ -3744,6 +3818,42 @@
     "publisher": "Cook County GIS"
    },
    {
+    "id": "northlake-ord02-osm",
+    "title": "Mapped ORD-02 building outline, OpenStreetMap way 1217649350",
+    "publisher": "OpenStreetMap contributors",
+    "url": "https://www.openstreetmap.org/way/1217649350"
+   },
+   {
+    "id": "northlake-ord02-county-addresses",
+    "title": "Cook County address point query for 501, 505 and 525 Northwest Avenue",
+    "publisher": "Cook County GIS",
+    "url": "https://gis.cookcountyil.gov/traditional/rest/services/addressZipCode/MapServer/0/query?f=geojson&outSR=4326&where=Add_Number+IN+%28501%2C505%2C525%29+AND+%28geocode_muni+%3D+%27NORTHLAKE%27+OR+Inc_Muni+%3D+%27NORTHLAKE%27+OR+Post_Comm+%3D+%27NORTHLAKE%27%29+AND+%28St_Name+LIKE+%27NORTHWEST%25%27+OR+STNAMECOM+LIKE+%27NORTHWEST%25%27%29&outFields=OBJECTID%2CCMPADDABRV%2CPIN%2CAdd_Number%2CSt_Name%2CPlacement%2CPost_Comm%2CInc_Muni%2Ccreated_date%2Clast_edited_date"
+   },
+   {
+    "id": "northlake-ord02-county-parcel",
+    "title": "Cook County 2026 parcel geometry and tax addresses",
+    "publisher": "Cook County GIS",
+    "url": "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CPIN10%2CPIN14%2Cstreet_address%2CTAXYR%2CCITYNAME%2CLANDSF%2CBLDGSQFT"
+   },
+   {
+    "id": "northlake-ord02-county-footprints",
+    "title": "Cook County 2022 building footprint query",
+    "publisher": "Cook County GIS",
+    "url": "https://gis.cookcountyil.gov/traditional/rest/services/buildingFootprint_2022/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CArea_SQFT%2CYear"
+   },
+   {
+    "id": "northlake-ord02-zones",
+    "title": "Effective FEMA flood hazard polygons around ORD-02 and the matched parcel",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+   },
+   {
+    "id": "northlake-ord02-panels",
+    "title": "FEMA map panel index around ORD-02, including overlapping Cook and DuPage records",
+    "publisher": "FEMA",
+    "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE"
+   },
+   {
     "id": "55-marietta-operator",
     "title": "55 Marietta data center operator and street address",
     "url": "https://55mariettast.com/",
@@ -4126,7 +4236,7 @@
    "data-center-environmental-site-screening",
    "best-flood-risk-data-apis"
   ],
-  "updatedDate": "2026-11-25",
+  "updatedDate": "2026-11-26",
   "dataset": {
    "name": "FEMA flood zone checks for three public data center addresses",
    "description": "FEMA checks for three address points and the matched tax parcels in Clifton and Atlanta. Includes measured flood zone overlap, nearby Northlake parcel records, map panel dates and exact source queries.",
@@ -4154,6 +4264,24 @@
   "coverAlt": "Two maps show FEMA Zone X across the mapped Dallas and Tampa tax parcels. The Tampa map also shows the city building outline and the address point about 19 meters away. Hillsborough County maps the Tampa parcel in hurricane evacuation Zone C.",
   "coverCaption": "FEMA effective-map checks for 400 South Akard Street in Dallas and 655 North Franklin Street in Tampa. In Tampa, the city footprint shares parcel folio 193449.0000 with the county address record.",
   "additionalDatasets": [
+   {
+    "anchor": "dataset-northlake-ord02-fema-footprint",
+    "name": "Northlake ORD-02 FEMA building and tax parcel check",
+    "description": "Effective FEMA Zone X results for the mapped Aligned ORD-02 building at 501 Northwest Avenue and Cook County parcel 12-31-301-021-0000. Includes the county’s alternate parcel address, both map panels and the distance from the original address-range point.",
+    "datePublished": "2026-11-26",
+    "spatialCoverage": "Northlake, Cook County, Illinois, United States",
+    "temporalCoverage": "2026-11-26",
+    "sourceIds": [
+     "aligned-northlake",
+     "northlake-zone",
+     "northlake-ord02-osm",
+     "northlake-ord02-county-addresses",
+     "northlake-ord02-county-parcel",
+     "northlake-ord02-county-footprints",
+     "northlake-ord02-zones",
+     "northlake-ord02-panels"
+    ]
+   },
    {
     "anchor": "dataset-dallas-tampa-flood",
     "name": "Dallas and Tampa data center flood maps and location evidence",

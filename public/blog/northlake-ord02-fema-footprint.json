@@ -1,0 +1,102 @@
+{
+  "name": "Northlake ORD-02 FEMA building and tax parcel check",
+  "observed_on": "2026-11-26",
+  "facility": {
+    "operator": "Aligned Data Centers",
+    "name": "ORD-02",
+    "operator_address": "501 Northwest Avenue, Northlake, IL 60164"
+  },
+  "previous_point_check": {
+    "observed_on": "2026-11-24",
+    "point_type": "Census street-range geocode",
+    "distance_to_osm_outline_m": 113.19,
+    "mapped_zone": "Unshaded Zone X",
+    "archive": "/blog/data-center-fema-flood-zone-address-checks.json"
+  },
+  "location_evidence": {
+    "building_outline": {
+      "source": "OpenStreetMap contributors",
+      "way_id": 1217649350,
+      "way_version": 3,
+      "edited_at": "2026-10-25T15:57:34Z",
+      "map_url": "https://www.openstreetmap.org/way/1217649350",
+      "mapped_plan_area_m2": 10702.0,
+      "source_license": "https://www.openstreetmap.org/copyright"
+    },
+    "cook_county_address_point_501_found": false,
+    "cook_county_building_outline_2022_match_found": false,
+    "containing_tax_parcel": {
+      "pin": "12313010210000",
+      "display_pin": "12-31-301-021-0000",
+      "tax_year": 2026,
+      "assessor_address": "505 Northwest Avenue, Northlake, IL",
+      "pct_of_building_outline_inside": 100.0,
+      "mapped_area_m2": 56460.07
+    },
+    "relationship": "The operator and the mapped building use 501 Northwest Avenue, while the county lists the containing tax parcel under 505. The link comes from polygon containment."
+  },
+  "fema": {
+    "layer": "Effective National Flood Hazard Layer flood hazard areas",
+    "area_id": "17031C_7501",
+    "zone": "X",
+    "subtype": "AREA OF MINIMAL FLOOD HAZARD",
+    "building_outline_unshaded_zone_x_pct": 100.0,
+    "tax_parcel_unshaded_zone_x_pct": 100.0,
+    "tax_parcel_mapped_sfha_pct": 0.0,
+    "static_bfe_ft": null,
+    "panels_returned": [
+      {
+        "map_panel": "17031C0366J",
+        "effective_date": "2008-08-19",
+        "county": "Cook",
+        "hazard_polygon_firm_id": true
+      },
+      {
+        "map_panel": "17043C0091J",
+        "effective_date": "2019-08-01",
+        "county": "DuPage",
+        "hazard_polygon_firm_id": false
+      }
+    ],
+    "hazard_polygon_firm_id": "17031C"
+  },
+  "method": "Intersect the complete mapped footprint and tax parcel with effective FEMA polygons. Calculate area and nearest-point distance in NAD83 / UTM zone 16N (EPSG:26916). The FEMA panel indexes overlap here. Associate the containing flood polygon with its Cook County FIRM ID.",
+  "scope": "Mapped building outline and containing tax parcel only. A recent survey, verified footprint, site elevation, stormwater, campus boundary and access routes were outside the check.",
+  "sources": {
+    "aligned-northlake": {
+      "url": "https://aligneddc.com/chicago-data-centers/",
+      "retrieved_at": "2026-11-26T11:53:20+00:00",
+      "sha256": "b6dba2ed510634153d428de69c3f1054146e6df2363c63e9ba1772719acdf004"
+    },
+    "northlake-ord02-osm": {
+      "url": "https://www.openstreetmap.org/api/0.6/way/1217649350/full",
+      "retrieved_at": "2026-11-26T11:53:19+00:00",
+      "sha256": "610bf6114551b1160d54aaf4234d838043be3450b2711dc137f84a4003824989"
+    },
+    "northlake-ord02-county-addresses": {
+      "url": "https://gis.cookcountyil.gov/traditional/rest/services/addressZipCode/MapServer/0/query?f=geojson&outSR=4326&where=Add_Number+IN+%28501%2C505%2C525%29+AND+%28geocode_muni+%3D+%27NORTHLAKE%27+OR+Inc_Muni+%3D+%27NORTHLAKE%27+OR+Post_Comm+%3D+%27NORTHLAKE%27%29+AND+%28St_Name+LIKE+%27NORTHWEST%25%27+OR+STNAMECOM+LIKE+%27NORTHWEST%25%27%29&outFields=OBJECTID%2CCMPADDABRV%2CPIN%2CAdd_Number%2CSt_Name%2CPlacement%2CPost_Comm%2CInc_Muni%2Ccreated_date%2Clast_edited_date",
+      "retrieved_at": "2026-11-26T11:52:02+00:00",
+      "sha256": "991170fe7313617036068ef4435e985b99e640e7e896723945b9a726677a555c"
+    },
+    "northlake-ord02-county-parcel": {
+      "url": "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CPIN10%2CPIN14%2Cstreet_address%2CTAXYR%2CCITYNAME%2CLANDSF%2CBLDGSQFT",
+      "retrieved_at": "2026-11-26T11:52:02+00:00",
+      "sha256": "fbca5a6391b3e31891ddbba69e729a12c8300c12339531694c4117f056382935"
+    },
+    "northlake-ord02-county-footprints": {
+      "url": "https://gis.cookcountyil.gov/traditional/rest/services/buildingFootprint_2022/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CArea_SQFT%2CYear",
+      "retrieved_at": "2026-11-26T11:52:02+00:00",
+      "sha256": "c6a8d4631ea85e1cb6031c779579b037c554164e387fe6dde7c2f60998e6eb57"
+    },
+    "northlake-ord02-zones": {
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+      "retrieved_at": "2026-11-26T11:55:06+00:00",
+      "sha256": "dbe2f541f3ad6ed5070b7755494db80a76786e6b29842f2e23c41530b832818b"
+    },
+    "northlake-ord02-panels": {
+      "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE",
+      "retrieved_at": "2026-11-26T11:52:02+00:00",
+      "sha256": "e05b6ac04d9b884a4381ba634771e2187a535700df2e654c48b94d89e3aae4ae"
+    }
+  }
+}

@@ -9405,7 +9405,7 @@
     "date": "November 20, 2026",
     "dateTime": "2026-11-20",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/data-center-flood-dallas-tampa.webp?v=f9641b1d",
     "dataset": {
       "name": "FEMA flood zone checks for three public data center addresses",
@@ -9510,6 +9510,73 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-northlake-ord02-fema-footprint",
+        "name": "Northlake ORD-02 FEMA building and tax parcel check",
+        "description": "Effective FEMA Zone X results for the mapped Aligned ORD-02 building at 501 Northwest Avenue and Cook County parcel 12-31-301-021-0000. Includes the county’s alternate parcel address, both map panels and the distance from the original address-range point.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Northlake, Cook County, Illinois, United States",
+        "temporalCoverage": "2026-11-26",
+        "sources": [
+          "https://aligneddc.com/chicago-data-centers/",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+          "https://www.openstreetmap.org/way/1217649350",
+          "https://gis.cookcountyil.gov/traditional/rest/services/addressZipCode/MapServer/0/query?f=geojson&outSR=4326&where=Add_Number+IN+%28501%2C505%2C525%29+AND+%28geocode_muni+%3D+%27NORTHLAKE%27+OR+Inc_Muni+%3D+%27NORTHLAKE%27+OR+Post_Comm+%3D+%27NORTHLAKE%27%29+AND+%28St_Name+LIKE+%27NORTHWEST%25%27+OR+STNAMECOM+LIKE+%27NORTHWEST%25%27%29&outFields=OBJECTID%2CCMPADDABRV%2CPIN%2CAdd_Number%2CSt_Name%2CPlacement%2CPost_Comm%2CInc_Muni%2Ccreated_date%2Clast_edited_date",
+          "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CPIN10%2CPIN14%2Cstreet_address%2CTAXYR%2CCITYNAME%2CLANDSF%2CBLDGSQFT",
+          "https://gis.cookcountyil.gov/traditional/rest/services/buildingFootprint_2022/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CArea_SQFT%2CYear",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM",
+          "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Aligned ORD-02 published facility address",
+            "publisher": "Aligned Data Centers",
+            "url": "https://aligneddc.com/chicago-data-centers/"
+          },
+          {
+            "title": "FEMA flood zone at the Northlake Census address point",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=pjson&geometry=-87.919288029251%2C41.913918308687&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=OBJECTID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+          },
+          {
+            "title": "Mapped ORD-02 building outline, OpenStreetMap way 1217649350",
+            "publisher": "OpenStreetMap contributors",
+            "url": "https://www.openstreetmap.org/way/1217649350"
+          },
+          {
+            "title": "Cook County address point query for 501, 505 and 525 Northwest Avenue",
+            "publisher": "Cook County GIS",
+            "url": "https://gis.cookcountyil.gov/traditional/rest/services/addressZipCode/MapServer/0/query?f=geojson&outSR=4326&where=Add_Number+IN+%28501%2C505%2C525%29+AND+%28geocode_muni+%3D+%27NORTHLAKE%27+OR+Inc_Muni+%3D+%27NORTHLAKE%27+OR+Post_Comm+%3D+%27NORTHLAKE%27%29+AND+%28St_Name+LIKE+%27NORTHWEST%25%27+OR+STNAMECOM+LIKE+%27NORTHWEST%25%27%29&outFields=OBJECTID%2CCMPADDABRV%2CPIN%2CAdd_Number%2CSt_Name%2CPlacement%2CPost_Comm%2CInc_Muni%2Ccreated_date%2Clast_edited_date"
+          },
+          {
+            "title": "Cook County 2026 parcel geometry and tax addresses",
+            "publisher": "Cook County GIS",
+            "url": "https://gis.cookcountyil.gov/traditional/rest/services/cookviewer3DynamicLabels/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CPIN10%2CPIN14%2Cstreet_address%2CTAXYR%2CCITYNAME%2CLANDSF%2CBLDGSQFT"
+          },
+          {
+            "title": "Cook County 2022 building footprint query",
+            "publisher": "Cook County GIS",
+            "url": "https://gis.cookcountyil.gov/traditional/rest/services/buildingFootprint_2022/MapServer/0/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CArea_SQFT%2CYear"
+          },
+          {
+            "title": "Effective FEMA flood hazard polygons around ORD-02 and the matched parcel",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CDFIRM_ID%2CFLD_AR_ID%2CFLD_ZONE%2CZONE_SUBTY%2CSFHA_TF%2CSTATIC_BFE%2CV_DATUM"
+          },
+          {
+            "title": "FEMA map panel index around ORD-02, including overlapping Cook and DuPage records",
+            "publisher": "FEMA",
+            "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query?f=geojson&outSR=4326&geometry=-87.9214%2C41.9122%2C-87.9162%2C41.9153&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=OBJECTID%2CFIRM_PAN%2CDFIRM_ID%2CPANEL_TYP%2CEFF_DATE"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the ORD-02 parcel match and FEMA sources",
+            "path": "/blog/northlake-ord02-fema-footprint.json",
+            "format": "JSON"
+          }
+        ]
+      },
       {
         "anchor": "dataset-dallas-tampa-flood",
         "name": "Dallas and Tampa data center flood maps and location evidence",
