@@ -31210,8 +31210,8 @@
     "topic": "Data & APIs",
     "region": "United States",
     "date": "2026-11-24",
-    "updatedDate": "2026-11-25",
-    "readMinutes": 8,
+    "updatedDate": "2026-11-26",
+    "readMinutes": 10,
     "title": "GIS MCP Servers for Parcel Data and Site Selection",
     "description": "Compare Invariant Earth, Regrid, LightBox, West Kite and ArcGIS Enterprise MCP. Test which parcel and flood answers you can trace to the source.",
     "coverFile": "best-gis-apis-for-site-selection.webp",
@@ -31227,6 +31227,10 @@
       {
         "href": "https://docs.invariant-ai.com/mcp/installation",
         "label": "Connect Invariant Earth to your agent"
+      },
+      {
+        "href": "#replay-a-condo-parcel-answer",
+        "label": "Run the city record check"
       }
     ],
     "sections": [
@@ -31469,6 +31473,83 @@
         ]
       },
       {
+        "id": "replay-a-condo-parcel-answer",
+        "heading": "Replay a parcel answer against the city record",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Give each connector commercial unit lot 1012921303 at 432 Park Avenue in Manhattan. Ask whether the unit has its own polygon in the Digital Tax Map and which IDs refer to the billing lot and the underlying land. Ask for the city query supporting each result, with the source edition or tax year where available."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Check",
+              "City result on November 26, 2026",
+              "What to keep in the agent’s answer"
+            ],
+            "rows": [
+              [
+                "Unit record",
+                "Unit 1012921303 links to base lot 1012920033. The unit row lists effective tax year 2016–2017.",
+                "Keep the unit BBL as the tax record ID and label 1012920033 as its parent."
+              ],
+              [
+                "Geometry",
+                "The Digital Tax Map polygon layer returns zero rows for unit 1012921303.",
+                "Report zero in the named layer. Label a returned parent polygon as parent geometry."
+              ],
+              [
+                "Billing lot",
+                "MapPLUTO 26v3 lists 1012927502 at 432 Park Avenue. The Finance condominium table links it to base lot 1012920033.",
+                "Keep the MapPLUTO billing ID, edition, and Finance relationship as separate evidence."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "replay-condo-unit"
+              ],
+              [
+                "replay-unit-polygon-count"
+              ],
+              [
+                "replay-mappluto-billing",
+                "replay-billing-to-base"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Review the saved tool response before accepting the answer. A catalog link can identify the provider’s dataset. The city query shows whether the precise lot and geometry claim holds. Keep the lookup time separate from the effective tax year and the MapPLUTO edition. Flag a discrepancy when a connector reports the whole building as a match for the individual unit."
+          },
+          {
+            "type": "download",
+            "label": "Download the recorded city results and source URLs",
+            "path": "/blog/parcel-mcp-source-replay.json",
+            "format": "JSON",
+            "datasetAnchor": null
+          },
+          {
+            "type": "download",
+            "label": "Download the Python replay for the four city queries",
+            "path": "/blog/parcel-mcp-source-replay.py",
+            "format": "Python",
+            "datasetAnchor": null
+          },
+          {
+            "type": "shell",
+            "command": "python3 parcel-mcp-source-replay.py --compare parcel-mcp-source-replay.json"
+          },
+          {
+            "type": "paragraph",
+            "text": "The replay uses public city endpoints and reports any difference from the saved record values. It needs no API key. Run the prompt separately through Invariant Earth, Regrid, or LightBox to record what your connector returns under your account.",
+            "sourceIds": [
+              "condo-replay-release"
+            ]
+          }
+        ]
+      },
+      {
         "id": "review-a-site-answer",
         "heading": "What should an agent show before you use a site answer?",
         "blocks": [
@@ -31521,6 +31602,11 @@
       }
     ],
     "sources": [
+      {"id": "replay-condo-unit", "title": "Digital Tax Map condominium unit record for 1012921303", "publisher": "NYC Department of Finance", "linkLabel": "NYC unit record", "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/4/query?where=UNIT_BBL%3D%271012921303%27&f=json&outFields=UNIT_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CEFFECTIVE_TAX_YEAR&returnGeometry=false"},
+      {"id": "replay-unit-polygon-count", "title": "Digital Tax Map exact polygon count for 1012921303", "publisher": "NYC Department of Finance", "linkLabel": "NYC unit polygon query", "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL%3D%271012921303%27&f=json&returnCountOnly=true"},
+      {"id": "replay-billing-to-base", "title": "Digital Tax Map billing to base lot record for 1012927502", "publisher": "NYC Department of Finance", "linkLabel": "NYC billing-to-base record", "url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/3/query?where=CONDO_BILLING_BBL%3D%271012927502%27&f=json&outFields=CONDO_BILLING_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER&returnGeometry=false"},
+      {"id": "replay-mappluto-billing", "title": "MapPLUTO billing lot record for 432 Park Avenue", "publisher": "NYC Department of City Planning", "linkLabel": "MapPLUTO billing record", "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012927502&f=json&outFields=BBL%2CAddress%2CCondoNo%2CVersion&returnGeometry=false"},
+      {"id": "condo-replay-release", "title": "Parcel MCP source replay v1.0.0", "url": "https://github.com/in-variant/invariant-website/releases/tag/parcel-mcp-source-replay-v1.0.0", "publisher": "Invariant", "linkLabel": "Versioned files and checksums"},
       {"id": "carto-mcp", "title": "Publish CARTO Workflows as MCP tools", "url": "https://docs.carto.com/carto-user-manual/workflows/workflows-as-mcp-tools", "publisher": "CARTO"},
       {
         "id": "registry",
@@ -36377,7 +36463,7 @@
     "title": "Regrid Alternatives for U.S. Parcel Data APIs",
     "description": "Compare Invariant Earth, Regrid, Korzy, LightBox and other parcel APIs. Download trial files for bulk lookups, condo tax lots, and boundary changes.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 10,
     "coverAlt": "Aerial view of Midtown Manhattan with the Digital Tax Map base lot for 432 Park Avenue outlined in gold.",
     "coverCaption": "432 Park Avenue. The outline shows the Digital Tax Map base lot. Aerial imagery from NYS ITS, 2024. The individual commercial unit does not have its own polygon in the queried tax-map layer.",
@@ -36767,6 +36853,17 @@
             ]
           },
           {
+            "type": "paragraph",
+            "text": "For an MCP test at 432 Park Avenue, ask the connector for the unit record, the parent lot and the original geometry query. Regrid describes a county source URL and county refresh date where supplied. Invariant Earth identifies Regrid as the source for its parcel ID. Use the Digital Tax Map as the independent check for the unit relationship and the separate geometry count.",
+            "sourceIds": [
+              "regrid-lineage",
+              "earth-fields",
+              "nyc-unit",
+              "nyc-unit-boundary",
+              "mcp-city-replay"
+            ]
+          },
+          {
             "type": "links",
             "label": "Related data guides",
             "items": [
@@ -36780,7 +36877,7 @@
               },
               {
                 "slug": "gis-mcp-servers-for-site-selection",
-                "label": "See what parcel and GIS tools return as source evidence"
+                "label": "Compare parcel MCP servers and replay the city record checks"
               },
               {
                 "slug": "commercial-real-estate-data-apis-for-lenders",
@@ -36828,6 +36925,8 @@
       }
     ],
     "sources": [
+      {"id": "regrid-lineage", "title": "Parcel source links, county refresh dates and row timestamps", "url": "https://support.regrid.com/docs/source-lineage", "publisher": "Regrid"},
+      {"id": "mcp-city-replay", "title": "Four city record queries for a condo parcel MCP answer", "url": "https://invariant-ai.com/blog/gis-mcp-servers-for-site-selection#replay-a-condo-parcel-answer", "publisher": "Invariant", "linkLabel": "City record replay"},
       {
         "id": "bulk-earth",
         "title": "Look up a parcel by address with Geocode and Enrich",
@@ -37034,8 +37133,7 @@
       "best-gis-apis-for-site-selection",
       "commercial-real-estate-data-apis-for-lenders",
       "parcel-number-lookup-by-address"
-    ],
-    "updatedDate": "2026-11-25"
+    ]
   },
   {
     "slug": "solar-farm-site-selection-gis",

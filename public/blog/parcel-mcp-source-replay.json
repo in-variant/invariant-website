@@ -1,0 +1,53 @@
+{
+  "title": "Parcel MCP source replay at 432 Park Avenue",
+  "article": "https://invariant-ai.com/blog/gis-mcp-servers-for-site-selection#replay-a-condo-parcel-answer",
+  "scope": "Four NYC public record queries. No paid provider response or ownership determination.",
+  "named_inputs": {
+    "unit_bbl": "1012921303",
+    "billing_bbl": "1012927502",
+    "mapped_base_bbl": "1012920033"
+  },
+  "checks": {
+    "condo_unit": {
+      "source_url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/4/query?where=UNIT_BBL%3D%271012921303%27&f=json&outFields=UNIT_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER%2CEFFECTIVE_TAX_YEAR&returnGeometry=false",
+      "observed_at": "2026-11-26T07:51:27+00:00",
+      "response_sha256": "d3443cce0fc56c1e017ed649afb1eb717da0bfd19215e27f507097f0b7fe8b03",
+      "record": {
+        "UNIT_BBL": "1012921303",
+        "CONDO_BASE_BBL": "1012920033",
+        "CONDO_NUMBER": 2352,
+        "EFFECTIVE_TAX_YEAR": "2016-2017"
+      }
+    },
+    "unit_polygon": {
+      "source_url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/0/query?where=BBL%3D%271012921303%27&f=json&returnCountOnly=true",
+      "observed_at": "2026-11-26T07:51:27+00:00",
+      "response_sha256": "618de7d9f46f3f697d827a1b6d84974760d5deda62e4e592adaa3c646602a94c",
+      "record": {
+        "bbl": "1012921303",
+        "polygon_count": 0
+      }
+    },
+    "billing_to_base": {
+      "source_url": "https://services6.arcgis.com/yG5s3afENB5iO9fj/ArcGIS/rest/services/DTM_ETL_DAILY_view/FeatureServer/3/query?where=CONDO_BILLING_BBL%3D%271012927502%27&f=json&outFields=CONDO_BILLING_BBL%2CCONDO_BASE_BBL%2CCONDO_NUMBER&returnGeometry=false",
+      "observed_at": "2026-11-26T07:51:28+00:00",
+      "response_sha256": "7f2cff17a21081ac6e9dee75d3aac0f810486d32b4aa37da93c99b6efa8d0b54",
+      "record": {
+        "CONDO_BILLING_BBL": "1012927502",
+        "CONDO_BASE_BBL": "1012920033",
+        "CONDO_NUMBER": 2352
+      }
+    },
+    "mappluto_billing": {
+      "source_url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?where=BBL%3D1012927502&f=json&outFields=BBL%2CAddress%2CCondoNo%2CVersion&returnGeometry=false",
+      "observed_at": "2026-11-26T07:51:28+00:00",
+      "response_sha256": "a84a4b8bed85f06cd0cd15c85a9bfffe65dc299ed204446d553714e9d31d9cdb",
+      "record": {
+        "BBL": 1012927502,
+        "Address": "432 PARK AVENUE",
+        "CondoNo": 2352,
+        "Version": "26v3"
+      }
+    }
+  }
+}
