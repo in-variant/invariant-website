@@ -20,7 +20,7 @@ from xml.etree import ElementTree
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 CANONICAL = "https://invariant-ai.com"
-SEARCH_SIGNATURE_VERSION = 2
+SEARCH_SIGNATURE_VERSION = 3
 SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 ATOM_NS = "{http://www.w3.org/2005/Atom}"
 FEED_PATH = "/feed.xml"
@@ -242,6 +242,18 @@ def search_signature(page):
             schema for schema in schemas
             if not isinstance(schema, dict) or schema.get("@id") != CANONICAL + "/#organization"
         ]
+    if page.url.startswith(CANONICAL + "/glossary/"):
+        normalized = []
+        for schema in schemas:
+            term_set = schema.get("inDefinedTermSet") if isinstance(schema, dict) else None
+            if isinstance(term_set, dict) and term_set.get("@id") == CANONICAL + "/glossary#defined-term-set":
+                # The glossary directory owns the name. Keep each term's definition and the set identity.
+                schema = {
+                    **schema,
+                    "inDefinedTermSet": {key: value for key, value in term_set.items() if key != "name"},
+                }
+            normalized.append(schema)
+        schemas = normalized
     main_text = page.main_text
     if page.url.startswith(CANONICAL + "/blog/"):
         # The published date stays in the comparison even when the byline adds a label.
