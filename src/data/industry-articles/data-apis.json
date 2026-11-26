@@ -38412,7 +38412,7 @@
               ],
               [
                 "Parceled",
-                "Parcel searches by coordinate or parcel ID through REST, GraphQL, or MCP.",
+                "Coordinate lookup through REST, GraphQL, or MCP. The MCP parcel search also accepts a parcel ID.",
                 "Look up both Massachusetts lots by coordinate. Check whether the returned parcel IDs and the original assessor numbers are distinct fields."
               ],
               [
@@ -38680,7 +38680,7 @@
           },
           {
             "type": "paragraph",
-            "text": "To test a provider, send a point inside each polygon. Compare the result with the original identifiers and boundaries in the download. Then try a lookup using only the county and local number. A useful response lets you distinguish both lots or asks for the town. One unqualified match leaves you unable to tell which property the lookup resolved."
+            "text": "To test a provider, send a point inside each polygon. Compare the result with the original identifiers and boundaries in the download. For products that accept a county and local number, test that lookup too. A useful response returns both candidates or asks for the town. One unqualified match leaves you unable to tell how the lookup resolved the ambiguity."
           },
           {
             "type": "download",
@@ -39086,7 +39086,7 @@
       },
       {
         "id": "parceled-api",
-        "title": "Parcel ID and coordinate searches in REST, GraphQL and MCP",
+        "title": "Coordinate and parcel ID lookup parameters",
         "publisher": "Parceled",
         "url": "https://www.parceled.ai/docs"
       },
