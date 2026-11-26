@@ -9,6 +9,7 @@ import type { ResourceDataset } from '../../data/resources'
 import { SITE_SEARCH_REQUEST_PATH, SITE_SUBMISSION_PATH } from '../../data/siteContact'
 import './IndustryArticle.css'
 import './ListingTable.css'
+import SiteComparison from './SiteComparison'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
   if (!ids?.length) return null
@@ -40,6 +41,7 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
       {workflow && <p><a className="industry-dataset-workflow" href={workflow.url}>{workflow.label} <span aria-hidden="true">↗</span></a></p>}
     </>
   }
+  if (block.type === 'site-comparison') return <SiteComparison />
   if (block.rowTransactions) return <ListingTable block={block} article={article} transactions={block.rowTransactions} />
   return <ArticleTable block={block} article={article} />
 }

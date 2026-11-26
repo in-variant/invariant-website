@@ -19,6 +19,7 @@ export type ArticleBlock = (
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'shell'; command: string }
+  | { type: 'site-comparison' }
   | { type: 'table'; columns: string[]; rows: string[][]; worksheet?: boolean; stackOnMobile?: boolean; rowSourceIds?: string[][]; rowSectionIds?: string[]; rowTransactions?: ListingTransaction[][] }
   | ({ type: 'download'; datasetAnchor?: string | null } & DatasetDownload)
   | ({ type: 'download'; datasetAnchor: null; format: 'Python' | 'XLSX' } & Omit<DatasetDownload, 'format'>)
