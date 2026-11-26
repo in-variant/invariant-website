@@ -21,7 +21,13 @@
         "address_point_inside_city_parcel": true,
         "records_checked_at": "2026-11-23T22:16:49-08:00"
       },
-      "record_in_trial": "Compare the published APN with parcel_match.parcel.apn and the returned boundary. Preserve a leading zero when normalizing the identifier."
+      "record_in_trial": "Compare the published APN with parcel_match.parcel.apn and the returned boundary. Preserve a leading zero when normalizing the identifier.",
+      "inputs": {
+        "address": "100 Larkin Street, San Francisco, CA",
+        "longitude": -122.41632622023333,
+        "latitude": 37.779054193871154,
+        "coordinate_crs": "EPSG:4326"
+      }
     },
     {
       "id": "brooklyn-army-terminal",
@@ -35,7 +41,13 @@
         "point_fema_zone": "AE",
         "records_checked_on": "2026-11-22"
       },
-      "record_in_trial": "Require the workflow to distinguish documented geometry differences from a nearby fallback. A nearest point result does not establish containment. Compare the exact polygon and its shoreline convention first."
+      "record_in_trial": "Require the workflow to distinguish documented geometry differences from a nearby fallback. A nearest point result does not establish containment. Compare the exact polygon and its shoreline convention first.",
+      "inputs": {
+        "longitude": -74.0271955,
+        "latitude": 40.6451992,
+        "coordinate_crs": "EPSG:4326",
+        "reference_boundary_edition": "MapPLUTO 26v2"
+      }
     },
     {
       "id": "gowanus",
@@ -60,5 +72,32 @@
     "map or dataset date",
     "source URL",
     "omitted fields and reason"
-  ]
+  ],
+  "connector_checks": [
+    {
+      "provider": "Landstats",
+      "documented_start": "parcel_at_point with the published longitude and latitude",
+      "source": "https://landstats.com/documentation/mcp-server",
+      "compare": "Return the exact tested boundary and distinguish point containment from a centroid search."
+    },
+    {
+      "provider": "BatchData",
+      "documented_start": "Property lookup, then property comparables",
+      "source": "https://batchdata.io/mcp-server",
+      "compare": "Check the subject parcel and the sale date and record identifier for each comparable."
+    },
+    {
+      "provider": "Parceled",
+      "documented_start": "check_availability at the coordinate before requesting fields",
+      "source": "https://www.parceled.ai/docs",
+      "compare": "Save which fields were available and whether a permit row includes an issue date and source link."
+    },
+    {
+      "provider": "MAIA Analytics",
+      "documented_start": "Import a public address sample into an authorized test project",
+      "source": "https://maia-analytics.com/docs/mcp/upload-a-file",
+      "compare": "Compare the reported parcel matches, unmatched rows and out-of-county rows."
+    }
+  ],
+  "connector_documentation_checked_on": "2026-11-26"
 }

@@ -154,6 +154,10 @@ test('comparison search recognizes provider names, variants and buyer phrasing',
     ['Moody’s CRE vs MSCI Real Capital Analytics', 'lending'],
     ['Kalibrate vs Placer.ai', 'retail-location'],
     ['Lens by Upstream Tech', 'agricultural-land'],
+    ['LandRecords.us vs BatchData MCP', 'gis-agents'],
+    ['Parceled compared with MAIA Analytics', 'gis-agents'],
+    ['PermitIntel vs buildingactivity.com', 'building-permits'],
+    ['building activity vs PermitStack', 'building-permits'],
   ]
   for (const [query, expected] of cases) {
     const { workflows, providerOnly } = searchProviderComparisons(query)

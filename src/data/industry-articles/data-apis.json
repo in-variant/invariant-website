@@ -26195,7 +26195,7 @@
     "title": "Building Permit Data APIs for Commercial Property",
     "description": "Compare Invariant Earth, Mireye, Shovels and other permit APIs. Test coverage by city, building matches, project counts and inspection dates.",
     "date": "2026-11-23",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "readMinutes": 10,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
@@ -26265,6 +26265,16 @@
                 "Issuing agency",
                 "Look up the work permit, filing and applicable inspection or closeout record.",
                 "Which local systems and work types are covered, and what history does each system expose?"
+              ],
+              [
+                "PermitIntel",
+                "Filter permit history by trade, stage and jurisdiction. Its documentation keeps missing issue dates empty and identifies which trade matcher ran.",
+                "Compare the source type and work description with the normalized trade. Keep an unknown issue date separate from an observed filing date."
+              ],
+              [
+                "Building Activity",
+                "Search permit records by geography and date. The documented change feed reports when a new or changed record was observed.",
+                "Separate the date you first saw the update from the agency’s application, issue or inspection dates. Replay the same feed cursor in a trial."
               ]
             ],
             "rowSourceIds": [
@@ -26291,6 +26301,12 @@
               [
                 "nyc-systems",
                 "seattle-permit-history"
+              ],
+              [
+                "permitintel"
+              ],
+              [
+                "building-activity"
               ]
             ]
           },
@@ -26825,6 +26841,18 @@
         "title": "Permit research, submission, coordination and inspections",
         "url": "https://www.permitflow.com/",
         "publisher": "PermitFlow"
+      },
+      {
+        "id": "permitintel",
+        "title": "PermitIntel source dates, raw statuses and trade filters",
+        "url": "https://permitintel.ai/permit-data",
+        "publisher": "PermitIntel"
+      },
+      {
+        "id": "building-activity",
+        "title": "Building Activity permit records and ordered change feed",
+        "url": "https://www.buildingactivity.com/solutions/developers/",
+        "publisher": "Building Activity"
       }
     ],
     "dataset": {
@@ -31276,7 +31304,7 @@
     "updatedDate": "2026-11-26",
     "readMinutes": 10,
     "title": "GIS MCP Servers for Parcel Data and Site Selection",
-    "description": "Compare Invariant Earth, Regrid, LightBox, West Kite and ArcGIS Enterprise MCP. Test which parcel and flood answers you can trace to the source.",
+    "description": "Compare Invariant Earth, Regrid, LightBox, Landstats, BatchData, Parceled and other GIS MCP servers. Test parcel matches and original source records.",
     "coverFile": "best-gis-apis-for-site-selection.webp",
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
@@ -31366,6 +31394,70 @@
               ]
             ],
             "stackOnMobile": true
+          }
+        ]
+      },
+      {
+        "id": "property-mcp-connectors",
+        "heading": "Compare property MCP servers by the job",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use Invariant Earth to resolve an address, check the matched parcel, and inspect terrain, flood, or infrastructure fields with the available source references. To choose a connector for a portfolio or new integration, compare all candidates on the same inputs and save what each one returns."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Server",
+              "Documented workflow",
+              "What to check in your trial"
+            ],
+            "rows": [
+              [
+                "Landstats",
+                "Query parcel polygons at coordinates, filter attributes, or search for centroids in a shape. Bring a separate geocoder for street addresses. The older LandRecords.us documentation redirects here.",
+                "At the published Brooklyn Army Terminal coordinate, run parcel_at_point. Compare the returned boundary with the shoreline-clipped city parcel. Save which boundary was tested."
+              ],
+              [
+                "BatchData",
+                "Look up property details, search for candidate properties and request comparables for data enabled on the account.",
+                "At the same address, check the property matched before using its comps. Save the reported sale date, source, and record identity for each comparable."
+              ],
+              [
+                "Parceled",
+                "Check which datasets are available at a point, then request parcel, zoning, building, assessor, or permit fields from the catalog.",
+                "Check availability first. For any roof permit returned, retain the permit number, issue date, and issuer link. Record whether a field was unavailable or returned no matching rows."
+              ],
+              [
+                "MAIA Analytics",
+                "Import an address CSV or GeoJSON into a project and check parcel-match and unmatched-row counts.",
+                "In a test project, import the same public address sample. Compare the matched, unmatched and out-of-county totals before trusting the joined layer."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "landrecords"
+              ],
+              [
+                "batchdata"
+              ],
+              [
+                "parceled-mcp"
+              ],
+              [
+                "maia-mcp"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Try longitude −74.0271955 and latitude 40.6451992 at Brooklyn Army Terminal. The city comparison placed that point about 9 meters outside the clipped lot. A connector can return a nearby match or a different boundary edition. Check geometry, match type, and source vintage before using it to join owner, permit or flood records.",
+            "sourceIds": [
+              "reference-terminal",
+              "landrecords",
+              "earth-field-catalog"
+            ]
           }
         ]
       },
@@ -31778,6 +31870,30 @@
         "title": "Invariant Earth versioned GIS trial and offline replay",
         "publisher": "Invariant AI",
         "url": "https://github.com/in-variant/invariant-website/releases/tag/earth-gis-trial-v1.0.0"
+      },
+      {
+        "id": "landrecords",
+        "title": "Landstats Parcel MCP tool reference",
+        "url": "https://landstats.com/documentation/mcp-server",
+        "publisher": "Landstats"
+      },
+      {
+        "id": "batchdata",
+        "title": "BatchData MCP property lookup, search and comparables",
+        "url": "https://batchdata.io/mcp-server",
+        "publisher": "BatchData"
+      },
+      {
+        "id": "parceled-mcp",
+        "title": "Parceled MCP tools, fields and availability checks",
+        "url": "https://www.parceled.ai/docs",
+        "publisher": "Parceled"
+      },
+      {
+        "id": "maia-mcp",
+        "title": "MAIA MCP file import and parcel matching",
+        "url": "https://maia-analytics.com/docs/mcp/upload-a-file",
+        "publisher": "MAIA Analytics"
       }
     ],
     "dataset": {
