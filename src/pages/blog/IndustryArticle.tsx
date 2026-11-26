@@ -1,12 +1,14 @@
+import { useEffect, useId, useState } from 'react'
 import { Link } from 'react-router-dom'
 import BlogArticleHeader, { BlogRelatedReading } from '../../components/BlogArticleHeader'
 import DatasetCitation from '../../components/DatasetCitation'
 import { Seo, SITE_URL, ORG_SCHEMA, EDITORIAL_TEAM, articleSchema, breadcrumbSchema, datasetSchema, faqSchema, howToSchema } from '../../components/Seo'
-import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock } from '../../data/industryArticles'
+import { INDUSTRY_HUBS, isSiteKind, DILIGENCE_PILLAR, COMPUTE_PILLAR, INDIA_PILLAR, INDIA_HUB, BOOKING_URL, SITES_PHONE, SITES_PHONE_DISPLAY, SITES_EMAIL, type IndustryArticle as Article, type ArticleBlock, type ListingTransaction } from '../../data/industryArticles'
 import { publishedDatasets } from '../../data/publishedDatasets'
 import type { ResourceDataset } from '../../data/resources'
 import { SITE_SEARCH_REQUEST_PATH, SITE_SUBMISSION_PATH } from '../../data/siteContact'
 import './IndustryArticle.css'
+import './ListingTable.css'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
   if (!ids?.length) return null
@@ -38,7 +40,48 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
       {workflow && <p><a className="industry-dataset-workflow" href={workflow.url}>{workflow.label} <span aria-hidden="true">↗</span></a></p>}
     </>
   }
+  if (block.rowTransactions) return <ListingTable block={block} article={article} transactions={block.rowTransactions} />
+  return <ArticleTable block={block} article={article} />
+}
+
+type TableBlock = Extract<ArticleBlock, { type: 'table' }>
+
+function ListingTable({ block, article, transactions }: { block: TableBlock; article: Article; transactions: ListingTransaction[][] }) {
+  const field = useId()
+  const [mode, setMode] = useState<'all' | ListingTransaction>('all')
+  const [query, setQuery] = useState('')
+  const [ready, setReady] = useState(false)
+  useEffect(() => setReady(true), [])
+  const text = query.trim().toLowerCase()
+  const matching = block.rows.flatMap((row, index) =>
+    (mode === 'all' || transactions[index].includes(mode)) && row[0].toLowerCase().includes(text) ? [index] : [],
+  )
+
+  return (
+    <>
+      <div className="industry-listing-filter">
+        <div role="group" aria-label="Transaction type" className="industry-listing-types">
+          {([['all', 'All listings'], ['sale', 'For sale'], ['lease', 'For lease']] as const).map(([value, label]) => (
+            <button key={value} type="button" disabled={!ready} aria-pressed={mode === value} onClick={() => setMode(value)}>
+              {label}
+            </button>
+          ))}
+        </div>
+        <label htmlFor={field} className="industry-listing-search">
+          <span>Find a property or market</span>
+          <input id={field} type="search" value={query} disabled={!ready} onChange={event => setQuery(event.target.value)} />
+        </label>
+        <p role="status">{matching.length} {matching.length === 1 ? 'matching listing' : 'matching listings'} in this table.</p>
+      </div>
+      {matching.length > 0 ? <ArticleTable block={block} article={article} matching={matching} /> :
+        <p>Try a different market or transaction type.</p>}
+    </>
+  )
+}
+
+function ArticleTable({ block, article, matching }: { block: TableBlock; article: Article; matching?: number[] }) {
   const stackOnMobile = block.worksheet || block.stackOnMobile
+  const rowIndexes = matching ?? block.rows.map((_, index) => index)
   return (
     <figure className={`industry-table${block.worksheet ? ' industry-table--worksheet' : ''}${stackOnMobile ? ' industry-table--stacked' : ''}`}>
       {block.worksheet && (
@@ -52,9 +95,9 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
             <tr role="row">{block.columns.map(column => <th key={column} scope="col" role="columnheader">{column}</th>)}</tr>
           </thead>
           <tbody role="rowgroup">
-            {block.rows.map((row, i) => (
+            {rowIndexes.map(i => (
               <tr key={i} role="row">
-                {row.map((cell, j) => j === 0 ? (
+                {block.rows[i].map((cell, j) => j === 0 ? (
                   <th key={j} scope="row" role="rowheader">{block.rowSectionIds
                     ? <a className="industry-table-section-link" href={`#${block.rowSectionIds[i]}`}>{cell}</a>
                     : cell}</th>
@@ -62,7 +105,7 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
                   <td key={j} role="cell">
                     {stackOnMobile && <span className="industry-worksheet-field" aria-hidden="true">{block.columns[j]}</span>}
                     {cell}
-                    {j === row.length - 1 && <Citations ids={block.rowSourceIds?.[i]} article={article} />}
+                    {j === block.columns.length - 1 && <Citations ids={block.rowSourceIds?.[i]} article={article} />}
                   </td>
                 ))}
               </tr>

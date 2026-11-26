@@ -211,6 +211,11 @@ for (const article of articles) {
     if (block.type === 'table' && block.rowSectionIds && (
       block.rowSectionIds.length !== block.rows.length || block.rowSectionIds.some(id => !sectionIds.has(id))
     )) throw new Error(`Invalid table section links: ${article.slug}`)
+    if (block.type === 'table' && block.rowTransactions && (
+      block.rowTransactions.length !== block.rows.length || block.rowTransactions.some(types =>
+        !Array.isArray(types) || types.length === 0 || new Set(types).size !== types.length ||
+        types.some(type => type !== 'sale' && type !== 'lease'))
+    )) throw new Error(`Invalid listing transactions: ${article.slug}`)
     if (block.type === 'table' && block.worksheet) {
       if (worksheets.has(article.slug)) throw new Error(`Multiple worksheets for ${article.slug}`)
       const columns = [...block.columns, ...worksheetColumns]
