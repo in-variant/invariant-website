@@ -5628,10 +5628,10 @@
     "slug": "california-wildfire-insurance-nonrenewal-moratorium",
     "topic": "Data & APIs",
     "title": "California wildfire insurance nonrenewal moratoriums by ZIP code",
-    "summary": "Check California wildfire insurance nonrenewal rules for residential and commercial property, with dates and 37 ZIP-code records from the Dove and Gann fire bulletins.",
+    "summary": "Check California wildfire insurance moratoriums by ZIP code. See Mile Post 18, Dove, Gann, Gifford and Pack Fire dates and residential or commercial scope.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/california-wildfire-insurance-nonrenewal-moratorium.webp?v=6c03b863",
     "dataset": {
       "name": "Dove and Gann Fire insurance moratorium ZIP codes",
@@ -5656,12 +5656,63 @@
       ],
       "downloads": [
         {
-          "label": "Download the 37 ZIP-code records and source dates",
+          "label": "Download the original Dove and Gann ZIP records",
           "path": "/blog/california-wildfire-insurance-nonrenewal-moratorium-zip-codes.csv",
           "format": "CSV"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-active-wildfire-moratorium-zip-codes",
+        "name": "California wildfire moratorium ZIP and bulletin snapshot, November 2026",
+        "description": "76 ZIP-and-fire rows covering 69 distinct ZIP codes across five California insurance bulletins as checked November 26, 2026. Records include policy scope, bulletin issue date, declaration date, one-year anniversary, source page, and PDF checksum.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "California, United States",
+        "temporalCoverage": "2025-12-09/2027-11-10",
+        "sources": [
+          "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-13_One-Year-Moratorium-MP18-Fire.pdf",
+          "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-11-One-Year-Moratorium-Dove-Fire.pdf",
+          "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-6-One-Year-Moratorium.pdf",
+          "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-01-One-Year-Moratorium.pdf",
+          "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2025-17-One-Year-Moratorium.pdf"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Bulletin 2026-13, Mile Post 18 Fire, ZIP list on page 3",
+            "publisher": "California Department of Insurance",
+            "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-13_One-Year-Moratorium-MP18-Fire.pdf"
+          },
+          {
+            "title": "Bulletin 2026-11, Dove Fire, November 10, 2026",
+            "publisher": "California Department of Insurance",
+            "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-11-One-Year-Moratorium-Dove-Fire.pdf"
+          },
+          {
+            "title": "Bulletin 2026-6, Gann Fire, August 14, 2026",
+            "publisher": "California Department of Insurance",
+            "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-6-One-Year-Moratorium.pdf"
+          },
+          {
+            "title": "Bulletin 2026-01, Gifford Fire, ZIP list on page 2",
+            "publisher": "California Department of Insurance",
+            "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2026-01-One-Year-Moratorium.pdf"
+          },
+          {
+            "title": "Bulletin 2025-17, Pack Fire, ZIP list on page 2",
+            "publisher": "California Department of Insurance",
+            "url": "https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin-2025-17-One-Year-Moratorium.pdf"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the 76 ZIP-and-fire records with policy scope and source dates",
+            "path": "/blog/california-wildfire-moratorium-zip-codes-2026-11-26.csv",
+            "format": "CSV"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "shovel-ready-industrial-site-checklist",
@@ -6135,6 +6186,11 @@
         ]
       },
       {
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/brooklyn-mappluto-parcel-pagination-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
         "anchor": "dataset-brooklyn-mappluto-pagination",
         "name": "Brooklyn MapPLUTO parcel query and pagination replay",
         "description": "Two retrieved pages from NYC MapPLUTO 26v3, checked against a separate count and object ID query. Includes the spatial filters, source URLs, raw response checksums, 2,244 features and the transfer-limit flag.",
