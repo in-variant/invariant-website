@@ -35591,7 +35591,7 @@
     "title": "Best commercial property data APIs for insurance underwriting",
     "description": "Compare commercial property data APIs for underwriting. See how to match buildings, verify roof permit closeout, and check historical flood and hail evidence.",
     "date": "2026-11-22",
-    "readMinutes": 11,
+    "readMinutes": 12,
     "coverAlt": "Aerial view of Brooklyn Army Terminal, with the small footprint returned by the city’s Building A identifier marked in gold for review.",
     "coverCaption": "The gold outline is the footprint returned by the city building-ID lookup. Aerial imagery from NYS ITS, spring 2024. Tax lot from NYC MapPLUTO 26v2.",
     "intro": "Use Invariant Earth when your underwriting team needs to verify the parcel and inspect the sources behind building and hazard fields. Evaluate Cotality for building prefill and reconstruction cost, Moody’s CAPE for imagery-derived roof attributes, Verisk for commercial underwriting reports, and Guidewire HazardHub for peril and fire-protection data. First Street provides modeled flood depth and damage. Compare Ageospatial for building and property evidence workflows. Use the scorecard below to test shared addresses, roof records and evidence that changes after the quote date.",
@@ -35736,6 +35736,74 @@
             "label": "Download the Los Angeles roof permit and inspection checks",
             "format": "JSON",
             "datasetAnchor": "dataset-la-roof-permits-and-final-inspection"
+          }
+        ]
+      },
+      {
+        "id": "florida-commercial-wind-mitigation-forms",
+        "heading": "Which wind mitigation form belongs in a Florida commercial submission?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Choose the form using the insurer, policy type and building, then check the inspection date and revision. Citizens Property Insurance in Florida has separate routes for lower-rise commercial residential properties, taller residential buildings and commercial nonresidential wind-only coverage. Pull the building number and story count from your records to start the review. Confirm both against the submission and inspection before requesting a credit.",
+            "sourceIds": [
+              "citizens-wind-forms",
+              "citizens-wind-2026"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Citizens submission",
+              "Form",
+              "What to verify before populating the file"
+            ],
+            "rows": [
+              [
+                "Commercial Residential Type I, up to three stories",
+                "OIR-B1-1802",
+                "For inspections from April 1, 2026, review the April 2026 version. Compare the roof covering, roof-deck fastening, roof-to-wall connection, and opening protection as separate fields."
+              ],
+              [
+                "Commercial Residential Type II or III",
+                "MIT-BT II and III",
+                "Type II is four to six stories. Type III is seven or more. Match the form’s building number and address to the scheduled building. Retain the supporting photos and documents."
+              ],
+              [
+                "Commercial Nonresidential Wind-Only",
+                "WPD-1C",
+                "Verify shutters, glazing or other opening protection for the insured building. The form calls for a qualified Florida professional, supporting documents and a photo of each device covered by the verification."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "citizens-wind-forms",
+                "citizens-wind-2026",
+                "fl-oir-wind-form"
+              ],
+              [
+                "citizens-tall-building-form"
+              ],
+              [
+                "citizens-wpd-1c"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Consider a warehouse with a finaled reroof permit and invoices for replacement office windows. The permit can establish the recorded roof work for that building. The window invoices can help trace the installed products. Keep windstorm opening protection unverified until the supporting record covers the other relevant openings, such as loading doors and skylights, and its inspection and photos match the scheduled building.",
+            "sourceIds": [
+              "citizens-wpd-1c"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For renewals, keep the inspection date, form revision and evidence of later alterations. Citizens says the WPD-1C verification can remain valid for up to five years provided the structure has no material changes and the form has no inaccuracies. A later door or glazing replacement can change the evidence you need. Record the underlying permit and inspection separately from any credit the insurer has actually accepted.",
+            "sourceIds": [
+              "citizens-wpd-1c",
+              "citizens-wind-forms"
+            ]
           }
         ]
       },
@@ -35939,6 +36007,36 @@
       }
     ],
     "sources": [
+      {
+        "id": "citizens-wind-forms",
+        "title": "Citizens wind inspection forms by building and policy type",
+        "url": "https://www.citizensfla.com/your-wind-inspection",
+        "publisher": "Citizens Property Insurance Corporation"
+      },
+      {
+        "id": "citizens-wind-2026",
+        "title": "April 2026 uniform wind inspection form revision and effective date",
+        "url": "https://www.citizensfla.com/-/20260319-uniform-mitigation-verification-inspection-form-changes",
+        "publisher": "Citizens Property Insurance Corporation"
+      },
+      {
+        "id": "fl-oir-wind-form",
+        "title": "Uniform Mitigation Verification Inspection Form OIR-B1-1802, April 2026 revision",
+        "url": "https://floir.gov/docs-sf/property-casualty-libraries/product-review/all-forms/form-oir-1802-adopted-version-%28no-watermark%29.pdf",
+        "publisher": "Florida Office of Insurance Regulation"
+      },
+      {
+        "id": "citizens-tall-building-form",
+        "title": "MIT-BT II and III building wind mitigation inspection form, PDF page 1",
+        "url": "https://www.citizensfla.com/documents/20702/31330/Building%2BType%2BII%2Band%2BIII%2BMitigation%2BVerification%2BMIT-BT%2BII%2B%26%2BIII/00551c26-4d51-4ebe-8987-af4428469325#page=1",
+        "publisher": "Citizens Property Insurance Corporation"
+      },
+      {
+        "id": "citizens-wpd-1c",
+        "title": "WPD-1C commercial windstorm protection form, PDF pages 1–2",
+        "url": "https://www.citizensfla.com/documents/20702/31330/Commercial%2BWindstorm%2BProtective%2BDevice%2BProof%2Bof%2BCompliance%2BWPD-1C/20f30e25-6f9c-4eef-b3e7-d88b369f86b4",
+        "publisher": "Citizens Property Insurance Corporation"
+      },
       {
         "id": "earth-workflow",
         "title": "Verify a building by address",
