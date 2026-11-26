@@ -9,6 +9,14 @@ This repository contains the public website and research examples for [Invariant
 - [Research datasets and source records](https://invariant-ai.com/datasets)
 - [Data guides by industry and use case](https://invariant-ai.com/blog/physical-world-data-by-use-case)
 
+## Find a dataset for your workflow
+
+The [research catalog](https://invariant-ai.com/datasets.md) links to nine topic indexes with sample coverage, direct downloads, and citation files. The [JSON manifest](https://invariant-ai.com/datasets.json) also includes the source records and SHA-256 for each download.
+
+- [Retail and demographics](https://invariant-ai.com/llms/datasets/retail-demographics-community.md). Compare [Census grocery establishment counts and SNAP supermarket records in four ZIP codes](https://invariant-ai.com/blog/retail-site-selection-trade-area-apis#dataset-grocery-establishments-by-zip).
+- [Insurance and property risk](https://invariant-ai.com/llms/datasets/insurance-property-risk.md). Review [Hurricane Ida business claims and payments by county and coverage](https://invariant-ai.com/blog/nfip-flood-claims-data-api#dataset-nfip-ida-business-claims).
+- [Lending and real estate](https://invariant-ai.com/llms/datasets/lending-real-estate.md). Trace [90 industrial properties through SEC-filed collateral schedules](https://invariant-ai.com/blog/cmbs-loan-collateral-by-address#dataset).
+
 ## Check an agent's parcel answer against city records
 
 Use the [GIS MCP trial](https://invariant-ai.com/blog/gis-mcp-servers-for-site-selection#replay-a-condo-parcel-answer) to check whether an agent distinguishes a condominium unit, its billing lot and its mapped base parcel. Connect your client using the [installation guide](https://docs.invariant-ai.com/mcp/installation), then ask for each identifier and the source that supports it.

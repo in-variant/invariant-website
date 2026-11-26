@@ -396,6 +396,22 @@ function Datasets({
           </a>
         </nav>
         <noscript><p className="dataset-scope">All examples are available below. Enable JavaScript to search or filter by topic.</p></noscript>
+        <details className="dataset-topic-indexes">
+          <summary>See research examples by topic</summary>
+          <ul>
+            {Object.entries(researchCatalog.topicExamples).map(([topicName, example]) => (
+              <li key={example.slug}>
+                <h3>{topicName}</h3>
+                <Link className="dataset-method dataset-topic-example" to={example.path}
+                  onClick={() => trackResearchLink({ action: 'study', surface: 'catalog' })}>
+                  {example.label} <ResourceArrow diagonal />
+                </Link>
+                <a className="dataset-method" href={`/llms/datasets/${example.slug}.md`}
+                  aria-label={`Open Markdown index for ${topicName}`}>Topic index (Markdown)</a>
+              </li>
+            ))}
+          </ul>
+        </details>
         <nav className="dataset-topics" aria-label="Dataset topics">
           {topicLinks.map(({ label, count }) => (
             <Link key={label} to={{ search: filterSearch('topic', label), hash: '#dataset-search' }}

@@ -653,7 +653,12 @@ def build_jobs(sitemap, full):
         index_text = (DIST / index_path.lstrip("/")).read_text(encoding="utf-8")
         links = re.findall(re.escape(CANONICAL) + r"(/llms/topics/[a-z0-9-]+\.md)\)", index_text)
         require(sorted(links) == sorted(topic_files), f"{index_path} must link to each focused guide directory once")
-    alternate_files = topic_files.copy()
+    dataset_topic_files = {href for href in catalog.links if href.startswith("/llms/datasets/") and href.endswith(".md")}
+    dataset_topic_folder = DIST / "llms" / "datasets"
+    require(dataset_topic_files and dataset_topic_files == {
+        f"/{file.relative_to(DIST).as_posix()}" for file in dataset_topic_folder.glob("*.md")
+    }, "the research catalog needs links to every dataset topic index")
+    alternate_files = topic_files | dataset_topic_files
     downloads = catalog.downloads.copy()
     assets = set()
     pages = {}

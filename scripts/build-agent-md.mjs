@@ -8,6 +8,7 @@
 //   /datasets.md         catalog of published research datasets and their downloads
 //   /datasets.json       dataset sources, coverage, downloads, and SHA-256 checksums
 //   /datasets.csl.json   dataset citations for reference managers
+//   /llms/datasets/*.md  research downloads and citations by topic
 //   /citations/*.csl.json one citation file per research dataset
 //   /llms/topics/*.md    guide directories by industry and decision
 //   /llms-full.txt        every industry article in full, due diligence and power studies first
@@ -77,6 +78,19 @@ for (const [label, slugs] of Object.entries(datasetCatalog.topics)) {
 }
 for (const [slug, topics] of datasetTopics) {
   if (topics.length === 0) throw new Error(`Missing research dataset topic for ${slug}`)
+}
+const datasetTopicIndexes = Object.entries(datasetCatalog.topicExamples).map(([topic, example]) => {
+  const entries = datasetEntries.filter(({ slug }) => datasetTopics.get(slug).includes(topic))
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(example.slug)
+    || !example.label.trim()
+    || !entries.some(({ url }) => url === SITE + example.path)) {
+    throw new Error(`Invalid representative dataset for ${topic}`)
+  }
+  return { topic, example, entries, path: `/llms/datasets/${example.slug}.md` }
+})
+if (datasetTopicIndexes.length !== Object.keys(datasetCatalog.topics).length
+  || new Set(datasetTopicIndexes.map(({ path }) => path)).size !== datasetTopicIndexes.length) {
+  throw new Error('Dataset topics need a distinct index and an example for each topic')
 }
 const researchWorkflows = new Map()
 for (const { label, url, articles } of workflowGroups) {
@@ -456,11 +470,9 @@ function datasetCatalogMd() {
       ]
     }), '',
     '## Browse data samples', '',
-    ...Object.keys(datasetCatalog.topics).map(label => {
-      const params = new URLSearchParams({ topic: label })
-      const count = datasetEntries.filter(({ slug }) => datasetTopics.get(slug).includes(label)).length
-      return `- [${label}](${SITE}/datasets?${params}#dataset-search) · ${count} research examples`
-    }), '',
+    ...datasetTopicIndexes.map(({ topic, example, entries, path }) =>
+      `- ${citationLink(topic, SITE + path)} · ${entries.length} research examples. ${citationLink(example.label, SITE + example.path)}.`),
+    '',
   ]
   for (const { slug, dateTime, dataset, url } of datasetEntries) {
     const workflow = researchWorkflows.get(slug)
@@ -486,12 +498,40 @@ function datasetCatalogMd() {
   return out.join('\n')
 }
 
+function datasetTopicMd({ topic, example, entries }) {
+  const topicFilter = new URLSearchParams({ topic })
+  const out = [
+    `# ${topic} research datasets`, '',
+    `${entries.length} published research examples from Invariant. Check each sample’s coverage and record dates before applying it to another site or decision.`, '',
+    `[Browse this topic on the website](${SITE}/datasets?${topicFilter}#dataset-search) · [Full catalog and source records](${SITE}/datasets.md)`, '',
+    `Start with ${citationLink(example.label, SITE + example.path)}.`, '',
+  ]
+  for (const { dataset, dateTime, url } of entries) {
+    out.push(
+      `## ${linkText(dataset.name)}`, '', dataset.description, '',
+      ...(dataset.spatialCoverage ? [`- Coverage: ${dataset.spatialCoverage}`] : []),
+      ...(dataset.temporalCoverage ? [`- Record dates: ${dataset.temporalCoverage}`] : []),
+      `- Published: ${dataset.datePublished ?? dateTime}`,
+      `- ${citationLink('Dataset notes and sources', url)} · ${citationLink('Citation (CSL JSON)', SITE + datasetCitationPath(url))}`,
+      ...dataset.downloads.map(file => `- ${citationLink(`${file.label} (${file.format})`, SITE + file.path)}`),
+      '',
+    )
+  }
+  return out.join('\n')
+}
+
 function datasetCatalogJson() {
   return {
     url: `${SITE}/datasets`,
     publisher: 'Invariant',
     description: datasetCatalog.description,
     access: datasetCatalog.access,
+    topicIndexes: datasetTopicIndexes.map(({ topic, example, entries, path }) => ({
+      topic,
+      url: SITE + path,
+      count: entries.length,
+      example: { label: example.label, url: SITE + example.path },
+    })),
     datasets: datasetEntries.map(({ slug, title, dateTime, updatedDate, dataset, url }) => {
       const { anchor, downloads, ...metadata } = dataset
       return {
@@ -532,6 +572,10 @@ writeFileSync(join(DIST, 'research.md'), researchMd())
 writeFileSync(join(DIST, 'glossary.md'), glossaryDirectoryMd())
 writeFileSync(join(DIST, 'datasets.md'), datasetCatalogMd())
 writeFileSync(join(DIST, 'datasets.json'), `${JSON.stringify(datasetCatalogJson(), null, 2)}\n`)
+mkdirSync(join(DIST, 'llms', 'datasets'), { recursive: true })
+for (const index of datasetTopicIndexes) {
+  writeFileSync(join(DIST, index.path.slice(1)), datasetTopicMd(index))
+}
 const topicGuides = agentTopicGuides(blogCollections)
 mkdirSync(join(DIST, 'llms', 'topics'), { recursive: true })
 for (const { path, heading, description, collectionPath, guides } of topicGuides) {

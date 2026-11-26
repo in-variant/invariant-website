@@ -37,7 +37,7 @@ const sections = [
   ['Datasets and research', [
     ['Research and workflow guides', `${SITE}/resources.md`],
     ['Research findings, methods and source records', `${SITE}${links.research}.md`],
-    ['Research datasets and citations', `${SITE}${links.datasets}.md`],
+    ['Research dataset topic indexes, downloads, and citations', `${SITE}${links.datasets}.md`],
     ['Research dataset manifest with source URLs and file checksums', `${SITE}${links.datasets}.json`],
     ['Glossary for property, insurance and infrastructure', `${SITE}/glossary.md`],
     ...blogCollections.flatMap(({ title, slug, worksheet }) => [
@@ -139,7 +139,7 @@ out.push(`- [Request a data field](${links.fieldRequests}.md) and [download the 
 out.push('- [Docs index for LLMs](https://docs.invariant-ai.com/llms.txt) and [full docs as Markdown](https://docs.invariant-ai.com/llms-full.txt).')
 out.push(`- [Research and workflow guides](${SITE}/resources.md). Find guides by industry, data samples, API coverage, and planning tools.`)
 out.push(`- [Research case studies](${SITE}/research). Findings, methods and downloads for selected studies are also available [as Markdown](${SITE}/research.md).`)
-out.push(`- [Research datasets](${SITE}/datasets). Read named source records and find downloads in the [Markdown catalog](${SITE}/datasets.md). The [JSON catalog](${SITE}/datasets.json) also includes SHA-256 checksums.`)
+out.push(`- [Research datasets](${SITE}/datasets). Find topic indexes, downloads, and named source records in the [Markdown catalog](${SITE}/datasets.md). The [JSON catalog](${SITE}/datasets.json) includes SHA-256 checksums.`)
 out.push(`- [Invariant blog feed](${SITE}/feed.xml) with article URLs, summaries and revision dates.`)
 for (const collection of blogCollections) {
   out.push(`- [${collection.title}](${SITE}/blog/${collection.slug}.md): ${collection.description}`)
