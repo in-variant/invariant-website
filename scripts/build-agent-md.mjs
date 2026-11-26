@@ -47,6 +47,7 @@ const coverageFields = JSON.parse(readFileSync(join(ROOT, 'public/data-coverage-
 const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
 const resourceDirectory = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated-blog-search/resource-directory.json'), 'utf8'))
 const research = JSON.parse(readFileSync(join(ROOT, 'src/data/research-studies.json'), 'utf8'))
+const researchArticles = JSON.parse(readFileSync(join(ROOT, 'src/data/.generated-blog-search/research-articles.json'), 'utf8'))
 const glossary = JSON.parse(readFileSync(join(ROOT, 'src/pages/_data/glossary.json'), 'utf8')).entries ?? []
 const glossaryBySlug = new Map(glossary.map(entry => [entry.slug, entry]))
 const datasetEntries = articleIndex.flatMap(article => {
@@ -289,11 +290,14 @@ function researchMd() {
   const out = [
     `# ${research.title}`, '', research.description, '',
     `URL: ${SITE}/research`,
-    `Updated: ${research.updatedDate}`, '',
+    `Updated: ${researchArticles.updatedDate}`, '',
     `- [Browse research datasets](${SITE}/datasets)`,
     `- [Explore data guides](${SITE}/blog/physical-world-data-by-use-case)`,
     `- [Check API data coverage](${SITE}${product.links.coverage})`, '',
-    `## ${heading}`, '', description, '',
+    '## Recent datasets by topic', '',
+    ...researchArticles.recentDatasets.map(({ topic, title, datePublished, notesPath, download }) =>
+      `- ${topic} · ${datePublished} · [${linkText(title)}](${SITE}${notesPath}) · [Download ${download.format}](${SITE}${download.path})`),
+    '', `## ${heading}`, '', description, '',
   ]
   for (const { slug, anchor = 'dataset', topic, title, linkLabel, observations } of examples) {
     const url = `${SITE}/blog/${slug}#${anchor}`

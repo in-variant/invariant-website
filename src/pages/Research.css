@@ -147,6 +147,55 @@
   font-size: clamp(31px, 3.5vw, 50px);
   line-height: 1.08;
 }
+.research-recent {
+  padding-top: clamp(48px, 7vw, 104px);
+  scroll-margin-top: 26px;
+}
+.research-recent-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-bottom: 16px;
+}
+.research-page .research-recent-heading h2 {
+  font-size: clamp(31px, 3.5vw, 50px);
+  line-height: 1.08;
+}
+.research-recent-heading a, .research-recent-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+.research-recent-heading a, .research-recent-list a[download] {
+  color: var(--research-accent);
+  font-size: 14px;
+}
+.research-recent a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.research-recent-list { list-style: none; margin: 0; padding: 0; }
+.research-recent-list li {
+  display: grid;
+  grid-template-columns: minmax(130px, .85fr) minmax(0, 2.15fr) 108px 78px;
+  align-items: center;
+  gap: 0 clamp(10px, 2vw, 32px);
+  padding-block: 8px;
+  border-top: 1px solid var(--research-border);
+}
+.research-recent-list li:last-child { border-bottom: 1px solid var(--research-border); }
+.research-recent-topic, .research-recent-list time {
+  color: var(--research-muted);
+  font-size: 13px;
+}
+.research-recent-list time { font-variant-numeric: tabular-nums; }
+.research-recent-title { font-weight: 500; line-height: 1.35; }
+.research-recent-list a[download] { justify-self: end; }
+@media (max-width: 680px) {
+  .research-recent-list li { grid-template-columns: minmax(0, 1fr) auto; padding-block: 12px 8px; }
+  .research-recent-title { grid-row: 2; }
+  .research-recent-list time { text-align: right; }
+}
 .research-history > p {
   max-width: 66ch;
   margin-top: 10px;

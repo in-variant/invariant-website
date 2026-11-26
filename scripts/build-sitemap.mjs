@@ -21,7 +21,10 @@ const blogLastmod = [...industryArticles, ...blogCollections].map(entry => entry
 const datasetPublicationDates = industryArticles.flatMap(({ dataset, additionalDatasets = [], dateTime }) =>
   (dataset ? [dataset, ...additionalDatasets] : additionalDatasets).map(sample => sample.datePublished ?? dateTime),
 )
-const datasetLastmod = [datasetCatalog.updatedDate, ...datasetPublicationDates].sort().at(-1)
+const latestDatasetDate = datasetPublicationDates.sort().at(-1)
+const datasetLastmod = [datasetCatalog.updatedDate, latestDatasetDate].sort().at(-1)
+const researchLastmod = [research.updatedDate, latestDatasetDate].sort().at(-1)
+const resourceHub = JSON.parse(readFileSync(join(ROOT, 'src/data/resource-hub.json'), 'utf8'))
 
 // ── Live core pages ──────────────────────────────────────────────────────────
 const CORE = [
@@ -33,8 +36,8 @@ const CORE = [
   { loc: '/probe', changefreq: 'monthly', priority: '0.7' },
   { loc: '/blog', lastmod: blogLastmod, changefreq: 'weekly', priority: '0.8' },
   { loc: '/glossary', changefreq: 'weekly', priority: '0.8' },
-  { loc: '/research', lastmod: research.updatedDate, changefreq: 'monthly', priority: '0.85' },
-  { loc: '/resources', changefreq: 'weekly', priority: '0.85' },
+  { loc: '/research', lastmod: researchLastmod, changefreq: 'monthly', priority: '0.85' },
+  { loc: '/resources', lastmod: resourceHub.updatedDate, changefreq: 'weekly', priority: '0.85' },
   { loc: '/datasets', lastmod: datasetLastmod, changefreq: 'monthly', priority: '0.7' },
   { loc: '/compliance', changefreq: 'weekly', priority: '0.9' },
   { loc: '/trust', changefreq: 'monthly', priority: '0.6' },

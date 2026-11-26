@@ -350,7 +350,28 @@ const directorySearch = Object.fromEntries(
 writeIfChanged(new URL('resource-directory-search.json', searchDir), JSON.stringify(directorySearch))
 const research = JSON.parse(readFileSync(new URL('research-studies.json', base), 'utf8'))
 const researchSlugs = new Set(research.studies.map(({ slug }) => slug))
-writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify(publishedArticles.filter(({ slug }) => researchSlugs.has(slug))))
+const datasetCatalog = JSON.parse(readFileSync(new URL('research-dataset-catalog.json', base), 'utf8'))
+const publications = index.flatMap(({ slug, title, dateTime, dataset, additionalDatasets = [] }) =>
+  [dataset, ...additionalDatasets].filter(Boolean).map(sample => ({
+    slug, title, datePublished: sample.datePublished ?? dateTime,
+    notesPath: `/blog/${slug}#${sample.anchor ?? 'dataset'}`,
+    download: sample.downloads[0],
+  })),
+).sort((a, b) => b.datePublished.localeCompare(a.datePublished))
+const displayedNotes = new Set()
+const recentDatasets = Object.entries(datasetCatalog.topics).map(([topic, slugs]) => {
+  const matching = publications.filter(({ slug }) => slugs.includes(slug))
+  const sample = matching.find(({ notesPath }) => !displayedNotes.has(notesPath)) ?? matching[0]
+  if (!sample) throw new Error(`No published datasets for research topic: ${topic}`)
+  displayedNotes.add(sample.notesPath)
+  return { topic, ...sample }
+})
+const updatedDate = [research.updatedDate, ...recentDatasets.map(({ datePublished }) => datePublished)].sort().at(-1)
+writeIfChanged(new URL('research-articles.json', searchDir), JSON.stringify({
+  studies: publishedArticles.filter(({ slug }) => researchSlugs.has(slug)),
+  recentDatasets,
+  updatedDate,
+}))
 const articleSearch = Object.fromEntries(articles.map(article => {
   const headings = [
     ...article.sections.map(section => section.heading),

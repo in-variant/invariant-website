@@ -12,7 +12,7 @@ import './Resources.css'
 import './Research.css'
 
 const canonical = `${SITE_URL}/research`
-const researchDatasets = (researchArticles as ResourceArticle[]).flatMap(publishedDatasets)
+const researchDatasets = (researchArticles.studies as ResourceArticle[]).flatMap(publishedDatasets)
 const studies = research.studies.flatMap(study =>
   researchDatasets
     .filter(entry => entry.slug === study.slug && entry.anchor === (study.anchor ?? 'dataset'))
@@ -29,7 +29,7 @@ const collection = {
   url: canonical,
   name: research.title,
   description: research.description,
-  dateModified: research.updatedDate,
+  dateModified: researchArticles.updatedDate,
   publisher: { '@id': `${SITE_URL}/#organization` },
   mainEntity: {
     '@type': 'ItemList',
@@ -120,6 +120,24 @@ export default function Research() {
       <div className="resource-container research-featured">
         <StudyCard study={featured} featured />
       </div>
+      <section id="recent-datasets" className="resource-container research-recent" aria-labelledby="research-recent-title">
+        <div className="research-recent-heading">
+          <h2 id="research-recent-title">Recent datasets by topic</h2>
+          <Link to="/datasets">Browse the full catalog <ResourceArrow diagonal /></Link>
+        </div>
+        <ul className="research-recent-list">
+          {researchArticles.recentDatasets.map(({ topic, title, datePublished, notesPath, download }) => (
+            <li key={topic}>
+              <span className="research-recent-topic">{topic}</span>
+              <Link className="research-recent-title" to={notesPath}>{title}</Link>
+              <time dateTime={datePublished}>{recordDate.format(new Date(datePublished))}</time>
+              <a href={download.path} download aria-label={download.label}>
+                {download.format} <span aria-hidden="true">↓</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
       <section id="record-history" className="resource-container research-history" aria-labelledby="record-history-title">
         <h2 id="record-history-title">{recordHistory.heading}</h2>
         <p>{recordHistory.description}</p>
