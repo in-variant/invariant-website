@@ -97,10 +97,14 @@ const pageModules = import.meta.glob<{ default: ComponentType }>([
   './pages/calculators/*.tsx',
   './pages/clusters/*.tsx',
   '!./pages/NotFound.tsx',
+  '!./pages/Datasets.tsx',
   '!./pages/{Careers,Partners,Prototype}.tsx',
 ])
 
-export function loadContentPage(source: PageSource) {
+export function loadContentPage(source: PageSource): Promise<{ default: ComponentType }> {
+  if (source === contentRouteSources['/datasets']) {
+    return import('./pages/Datasets').then(({ loadDatasetsPage }) => loadDatasetsPage())
+  }
   const load = pageModules[source]
   if (!load) throw new Error(`Missing page module ${source}`)
   return load()

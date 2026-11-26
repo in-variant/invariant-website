@@ -5,7 +5,7 @@ import { ResourceArrow } from '../components/ResourceCards'
 import { DATA_CATALOG, DATASET_PUBLISHER, ORG_SCHEMA, SITE_URL, Seo, breadcrumbSchema } from '../components/Seo'
 import { editorialSearchWords, prepareSearch, rankSearch } from '../data/blogSearch'
 import { DATA_USE_CASES_PATH } from '../data/blogCollections'
-import { RESEARCH_DATASETS } from '../data/resources'
+import { loadResearchDatasets } from '../data/resources'
 import featuredResearch from '../data/featured-research-datasets.json'
 import researchCatalog from '../data/research-dataset-catalog.json'
 import { links as earthLinks } from '../data/earth-product.json'
@@ -26,38 +26,6 @@ function trackResearchLink(properties: {
 }) {
   posthog.capture('research_catalog_link_clicked', properties, { transport: 'sendBeacon', send_instantly: true })
 }
-const featured = featuredResearch.flatMap(study => RESEARCH_DATASETS
-  .filter(entry => entry.id === study.slug)
-  .map(({ image, srcSet, notesPath, workflow, dataset }) => ({ ...study, image, srcSet, notesPath, workflow, sample: dataset.downloads[0] })),
-)
-const featuredQuestions = new Map(featured.map(({ slug, title, summary }) => [slug, `${title} ${summary}`]))
-const formats = [...new Set(RESEARCH_DATASETS.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
-const datasetTopics = Object.entries(researchCatalog.topics).map(([label, articles]) => ({
-  label,
-  articles: new Set(articles),
-}))
-const catalogEntries = RESEARCH_DATASETS.map(entry => ({
-  ...entry,
-  topics: datasetTopics.filter(topic => topic.articles.has(entry.slug)).map(topic => topic.label),
-}))
-const topicLinks = [
-  { label: '', count: catalogEntries.length },
-  ...datasetTopics.map(({ label }) => ({
-    label,
-    count: catalogEntries.filter(entry => entry.topics.includes(label)).length,
-  })),
-]
-const buildSearchIndex = () => prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
-  title: dataset.name,
-  relatedTitle: title,
-  metadata: [dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
-    region, topic, ...topics, workflow?.label, featuredQuestions.get(id),
-    ...dataset.downloads.map(file => `${file.label} ${file.format}`),
-  ].join(' '),
-  details: dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`).join(' '),
-}))
-
-let catalogSearchIndex: ReturnType<typeof buildSearchIndex> | undefined
 
 const catalog = {
   '@context': 'https://schema.org',
@@ -66,26 +34,73 @@ const catalog = {
   publisher: DATASET_PUBLISHER,
 }
 
-const catalogPage = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  '@id': canonical,
-  url: canonical,
-  name: title,
-  description,
-  about: { '@id': DATA_CATALOG['@id'] },
-  mainEntity: {
-    '@type': 'ItemList',
-    itemListElement: RESEARCH_DATASETS.map(({ notesPath, dataset }, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: dataset.name,
-      url: `${SITE_URL}${notesPath}`,
+async function prepareCatalog() {
+  const researchDatasets = await loadResearchDatasets()
+  const featured = featuredResearch.flatMap(study => researchDatasets
+    .filter(entry => entry.id === study.slug)
+    .map(({ image, srcSet, notesPath, workflow, dataset }) => ({ ...study, image, srcSet, notesPath, workflow, sample: dataset.downloads[0] })),
+  )
+  const featuredQuestions = new Map(featured.map(({ slug, title, summary }) => [slug, `${title} ${summary}`]))
+  const formats = [...new Set(researchDatasets.flatMap(({ dataset }) => dataset.downloads.map(file => file.format)))].sort()
+  const datasetTopics = Object.entries(researchCatalog.topics).map(([label, articles]) => ({
+    label,
+    articles: new Set(articles),
+  }))
+  const catalogEntries = researchDatasets.map(entry => ({
+    ...entry,
+    topics: datasetTopics.filter(topic => topic.articles.has(entry.slug)).map(topic => topic.label),
+  }))
+  const topicLinks = [
+    { label: '', count: catalogEntries.length },
+    ...datasetTopics.map(({ label }) => ({
+      label,
+      count: catalogEntries.filter(entry => entry.topics.includes(label)).length,
     })),
-  },
+  ]
+  const buildSearchIndex = () => prepareSearch(catalogEntries, ({ id, dataset, title, region, topic, topics, workflow }) => ({
+    title: dataset.name,
+    relatedTitle: title,
+    metadata: [dataset.description, dataset.spatialCoverage, dataset.temporalCoverage,
+      region, topic, ...topics, workflow?.label, featuredQuestions.get(id),
+      ...dataset.downloads.map(file => `${file.label} ${file.format}`),
+    ].join(' '),
+    details: dataset.sourceDetails.map(({ publisher, title, url }) => `${publisher} ${title} ${new URL(url).hostname}`).join(' '),
+  }))
+
+  let catalogSearchIndex: ReturnType<typeof buildSearchIndex> | undefined
+
+  const catalogPage = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': canonical,
+    url: canonical,
+    name: title,
+    description,
+    about: { '@id': DATA_CATALOG['@id'] },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: researchDatasets.map(({ notesPath, dataset }, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: dataset.name,
+        url: `${SITE_URL}${notesPath}`,
+      })),
+    },
+  }
+  return {
+    featured, formats, datasetTopics, catalogEntries, topicLinks, catalogPage,
+    getSearchIndex: () => catalogSearchIndex ??= buildSearchIndex(),
+  }
 }
 
-export default function Datasets() {
+export async function loadDatasetsPage() {
+  const catalogView = await prepareCatalog()
+  return { default: () => <Datasets {...catalogView} /> }
+}
+
+function Datasets({
+  featured, formats, datasetTopics, catalogEntries, topicLinks, catalogPage, getSearchIndex,
+}: Awaited<ReturnType<typeof prepareCatalog>>) {
   const [searchReady, setSearchReady] = useState(false)
   const [query, setQuery] = useState('')
   const [format, setFormat] = useState('')
@@ -99,7 +114,7 @@ export default function Datasets() {
   const deferredQuery = useDeferredValue(query)
   const terms = useMemo(() => editorialSearchWords(deferredQuery), [deferredQuery])
   const searching = terms.length > 0
-  const searchIndex = searching ? (catalogSearchIndex ??= buildSearchIndex()) : undefined
+  const searchIndex = searching ? getSearchIndex() : undefined
   const isFiltered = Boolean(searching || topic || format)
   const matches = useMemo(() => {
     const candidates = searchIndex ? rankSearch(searchIndex, terms, { numericPrefixes: true, allowPartialMatches: true }) : catalogEntries

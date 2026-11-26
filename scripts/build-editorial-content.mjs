@@ -307,7 +307,12 @@ const searchDir = new URL('.generated-blog-search/', base)
 mkdirSync(searchDir, { recursive: true })
 const publishedArticles = [...index, ...legacyArticles]
 const featuredDatasetSlugs = new Set(JSON.parse(readFileSync(new URL('featured-research-datasets.json', base), 'utf8')).map(({ slug }) => slug))
-const catalogDataset = ({ sources, ...dataset }) => dataset
+const catalogSources = []
+const catalogDataset = ({ sources, sourceDetails, ...dataset }) => ({
+  ...dataset,
+  sourceIndex: catalogSources.push(sourceDetails) - 1,
+  sourceCount: sourceDetails.length,
+})
 const catalogArticles = publishedArticles
   .filter(({ dataset, additionalDatasets }) => dataset || additionalDatasets?.length)
   .map(({ slug, title, topic, region, dateTime, image, dataset, additionalDatasets }) => ({
@@ -317,6 +322,7 @@ const catalogArticles = publishedArticles
     ...(additionalDatasets?.length && { additionalDatasets: additionalDatasets.map(catalogDataset) }),
   }))
 writeIfChanged(new URL('dataset-articles.json', searchDir), JSON.stringify(catalogArticles))
+writeIfChanged(new URL('dataset-sources.json', searchDir), JSON.stringify(catalogSources))
 const articleList = publishedArticles.map(({ slug, title, topic, summary, date, dateTime, updatedDate, region, image, dataset, additionalDatasets = [] }) => ({
   slug, title, topic, summary, date, dateTime, updatedDate, region, image,
   datasetNames: [dataset?.name, ...additionalDatasets.map(item => item.name)].filter(Boolean).join(' '),
