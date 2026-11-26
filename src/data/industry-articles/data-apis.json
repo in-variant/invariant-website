@@ -2052,6 +2052,15 @@
               "mndot-tools",
               "mndot-corridors"
             ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/blog/retail-site-selection-trade-area-apis#traffic-counts-and-driveway-access",
+                "label": "See a worked turning count and driveway access check"
+              }
+            ]
           }
         ]
       },
@@ -40587,10 +40596,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Retail site selection APIs for trade areas and foot traffic",
-    "description": "Compare retail locations with trade areas, store opening and closure records, and comparable foot traffic. See worked examples from New York and Chicago.",
+    "description": "Compare retail sites using drive times, store openings, foot traffic and directional vehicle counts. Check the records behind driveway access.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
-    "readMinutes": 9,
+    "updatedDate": "2026-11-26",
+    "readMinutes": 11,
     "coverAlt": "Aerial map of two 125th Street subway complexes and Trader Joe’s Harlem. From September 2023 to September 2024, estimated A, B, C and D station entries rose 17.6 percent, and 2 and 3 station entries rose 18.0 percent.",
     "coverCaption": "Transit context on 125th Street in Harlem. Station points and entry estimates from the MTA. Store location from NYC GeoSearch. Aerial imagery from NYS ITS Geospatial Services, 2024.",
     "intro": "Start in Invariant Earth to check the parcel, building characteristics and road context at a proposed store location. Then connect the site to routing, store history and visits to compare trade areas. Before signing a retail lease, find out who can reach the site, where customers at comparable stores actually come from, and what happened as nearby stores opened or closed. Those questions call for different data. Use routing for travel-time areas, a dated place directory for nearby stores, and comparable visit or pedestrian counts for activity. Keep the area, measure, and time window with every number so you can rerun the comparison.",
@@ -40614,6 +40623,11 @@
               ["Where do people who visit a comparable store come from?", "Placer’s Trade Area report for estimated visitor origins. Its glossary distinguishes visits, unique visitors, and the sampled device panel.", "Request the store-level boundary and date range. Check how repeat trips are counted, what is suppressed, and which histories can be regenerated with a common model."],
               ["Which nearby stores opened or closed?", "Foursquare Open Source Places for location identity and dated releases. SafeGraph publishes inferred opening and closing months for tracked places.", "Match brand, address, unit, and coordinates. Keep the provider’s observation, its inferred operating date, and any direct evidence as separate fields."],
               ["How busy is the corridor at comparable times?", "Municipal pedestrian counts or transit agency data. NYC DOT counts pedestrians at sampled locations and the MTA publishes station entry estimates.", "Require a defined entrance, count line or property boundary. Preserve hours, days, and the instrument’s definition. For a specific storefront, ask for a comparable venue visit series or a direct count."],
+              [
+                "Can customers turn into the site from the busiest approach?",
+                "Local transportation department counts for observed turns. StreetLight and Replica for modeled intersection volumes.",
+                "Match the approach, direction, period and count type. Confirm allowed movements at the actual driveway with its access plan or permit."
+              ],
               [
                 "Which businesses changed at a location?",
                 "Data Axle’s Business Database supports geographic search, place records and change notifications.",
@@ -40645,6 +40659,12 @@
               [
                 "nyc-dot",
                 "mta-monthly"
+              ],
+              [
+                "retail-fhwa-traffic",
+                "retail-austin-camera-fields",
+                "retail-streetlight-turns",
+                "retail-replica-turns"
               ],
               [
                 "data-axle-places"
@@ -40797,6 +40817,79 @@
         ]
       },
       {
+        "id": "traffic-counts-and-driveway-access",
+        "heading": "How to use traffic counts and driveway access in retail site selection",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Use annual average daily traffic (AADT) to screen road segments. At the shortlist stage, check turning counts by approach during the hours your customers would arrive. Plot the actual entrance, median openings and allowed turns, then rerun the drive-time area toward that entrance. Use the approved driveway plan or access permit and verify it on site.",
+            "sourceIds": [
+              "retail-fhwa-traffic",
+              "esri-routing"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Austin’s camera at 38th Street and Medical Parkway recorded the counts below on June 18, 2024, from 5 to 6 p.m. local time. We added the published vehicle volumes across four 15-minute intervals and both vehicle classes. The westbound approach had more through traffic. Both approaches recorded four right turns.",
+            "sourceIds": [
+              "retail-austin-camera-query",
+              "retail-austin-camera-fields"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Approach",
+              "Through",
+              "Left turns",
+              "Right turns"
+            ],
+            "rows": [
+              [
+                "Eastbound",
+                "230",
+                "5",
+                "4"
+              ],
+              [
+                "Westbound",
+                "262",
+                "8",
+                "4"
+              ]
+            ],
+            "stackOnMobile": true,
+            "sourceIds": [
+              "retail-austin-camera-query"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Those counts describe movements at the intersection during that hour. For a storefront, check the driveway itself and obtain counts for a representative set of hours and days. StreetLight and Replica offer modeled turning counts. Ask each provider to match the approach and time window, then check its estimate against an observed count.",
+            "sourceIds": [
+              "retail-austin-camera-query",
+              "retail-streetlight-turns",
+              "retail-replica-turns"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "At Riverview Marketplace, 2401 Coffee Road in Bakersfield, the July 2026 draft environmental report described five proposed right-in/right-out driveways and two signalized entries along Rosedale Highway and Coffee Road. It also described an entrance from El Toro Viejo Road. The study projected excess demand at the main Coffee Road and Jet Way entrance and described two 250-foot left-turn lanes there. These proposals identify the street improvements to check in the final plans. A separate notice records the City’s November 4 general plan and environmental approval. Ask the road authority for the final access plans and permits before relying on the turns in a lease decision.",
+            "sourceIds": [
+              "retail-riverview-draft",
+              "retail-riverview-nod"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/retail-traffic-counts-and-driveway-access.json",
+            "format": "JSON",
+            "label": "Download the Austin turn counts and Bakersfield driveway records",
+            "datasetAnchor": "dataset-retail-traffic-counts-driveway-access"
+          }
+        ]
+      },
+      {
         "id": "test-with-your-own-shortlist",
         "heading": "What to ask for in a vendor trial",
         "blocks": [
@@ -40870,6 +40963,55 @@
       }
     ],
     "sources": [
+      {
+        "id": "retail-austin-camera-query",
+        "title": "38th Street and Medical Parkway camera count query",
+        "url": "https://data.austintexas.gov/resource/sh59-i6y9.json?%24select=record_id%2Catd_device_id%2Cread_date%2Cintersection_name%2Cdirection%2Cmovement%2Cheavy_vehicle%2Cvolume%2Cbin_duration&%24where=intersection_name%3D%2738TH+ST+%2F+MEDICAL+PKWY%27+AND+read_date+%3E%3D+%272024-06-18T22%3A00%3A00%27+AND+read_date+%3C+%272024-06-18T23%3A00%3A00%27&%24order=read_date%2C+direction%2C+movement%2C+heavy_vehicle%2C+record_id&%24limit=200",
+        "publisher": "City of Austin Open Data",
+        "linkLabel": "Run the Austin count query"
+      },
+      {
+        "id": "retail-austin-camera-fields",
+        "title": "Camera Traffic Counts field definitions",
+        "url": "https://data.austintexas.gov/Transportation-and-Mobility/Camera-Traffic-Counts/sh59-i6y9/about_data",
+        "publisher": "City of Austin Open Data",
+        "linkLabel": "Austin camera count fields"
+      },
+      {
+        "id": "retail-riverview-draft",
+        "title": "Riverview Marketplace Draft EIR, Transportation, pp. 4.16-17 and 4.16-18",
+        "url": "https://ceqanet.lci.ca.gov/2025101507/2/Attachment/4t0GAU",
+        "publisher": "City of Bakersfield through CEQAnet",
+        "linkLabel": "Riverview transportation study"
+      },
+      {
+        "id": "retail-riverview-nod",
+        "title": "Riverview Marketplace Notice of Determination, General Plan Amendment 23-0001",
+        "url": "https://ceqanet.lci.ca.gov/2025101507/3",
+        "publisher": "City of Bakersfield through CEQAnet",
+        "linkLabel": "Riverview approval record"
+      },
+      {
+        "id": "retail-fhwa-traffic",
+        "title": "Traffic Monitoring Guide, traffic data collection and processing",
+        "url": "https://www.fhwa.dot.gov/policyinformation/tmguide/tmg_2022/traffic-data-methodologies.cfm",
+        "publisher": "Federal Highway Administration",
+        "linkLabel": "FHWA traffic count methodology"
+      },
+      {
+        "id": "retail-streetlight-turns",
+        "title": "StreetLight intersection studies and validation",
+        "url": "https://www.streetlightdata.com/intersection-studies/",
+        "publisher": "StreetLight Data",
+        "linkLabel": "StreetLight intersection data"
+      },
+      {
+        "id": "retail-replica-turns",
+        "title": "Replica turning movement counts and validation",
+        "url": "https://documentation.replicahq.com/docs/turning-movement-counts-tmcs",
+        "publisher": "Replica",
+        "linkLabel": "Replica turning movement data"
+      },
       {"id": "mta-monthly", "title": "Subway station monthly ridership, beginning February 2017", "url": "https://data.ny.gov/d/ak4z-sape", "publisher": "Metropolitan Transportation Authority"},
       {"id": "tj-store", "title": "Harlem store, 123 West 125th Street", "url": "https://locations.traderjoes.com/ny/new-york/576/", "publisher": "Trader Joe’s"},
       {"id": "urban-league", "title": "Empowerment Center project updates, July 2024", "url": "https://campaignforequity.org/updates/", "publisher": "National Urban League"},
@@ -40903,6 +41045,20 @@
       }
     ],
     "additionalDatasets": [
+      {
+        "anchor": "dataset-retail-traffic-counts-driveway-access",
+        "name": "Retail traffic counts and driveway access records",
+        "description": "Four 15-minute camera-count intervals at 38th Street and Medical Parkway in Austin, and the entrance design and land-use approval records for Riverview Marketplace in Bakersfield.",
+        "sourceIds": [
+          "retail-austin-camera-query",
+          "retail-austin-camera-fields",
+          "retail-riverview-draft",
+          "retail-riverview-nod"
+        ],
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Austin, Texas, and Bakersfield, California, United States",
+        "temporalCoverage": "2024-06-18/2026-11-04"
+      },
       {
         "anchor": "dataset-englewood-store-history",
         "name": "Chicago Englewood grocery location, licenses and inspections",

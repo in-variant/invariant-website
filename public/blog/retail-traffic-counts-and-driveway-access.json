@@ -1,0 +1,719 @@
+{
+  "name": "Retail traffic counts and driveway access records",
+  "description": "Four 15-minute camera-count intervals at 38th Street and Medical Parkway in Austin, and the entrance design and land-use approval records for Riverview Marketplace in Bakersfield.",
+  "date_published": "2026-11-26",
+  "austin": {
+    "publisher": "City of Austin",
+    "dataset": "Camera Traffic Counts",
+    "dataset_metadata": "https://data.austintexas.gov/Transportation-and-Mobility/Camera-Traffic-Counts/sh59-i6y9/about_data",
+    "source_query": "https://data.austintexas.gov/resource/sh59-i6y9.json?%24select=record_id%2Catd_device_id%2Cread_date%2Cintersection_name%2Cdirection%2Cmovement%2Cheavy_vehicle%2Cvolume%2Cbin_duration&%24where=intersection_name%3D%2738TH+ST+%2F+MEDICAL+PKWY%27+AND+read_date+%3E%3D+%272024-06-18T22%3A00%3A00%27+AND+read_date+%3C+%272024-06-18T23%3A00%3A00%27&%24order=read_date%2C+direction%2C+movement%2C+heavy_vehicle%2C+record_id&%24limit=200",
+    "retrieved_at": "2026-11-26T14:44:40+00:00",
+    "raw_response_sha256": "247ca65e0ec380d234c03ea0206f0ea2ddafd3c2976ea1431b846b913c49fe6c",
+    "site": "38th Street and Medical Parkway",
+    "time_zone": "America/Chicago",
+    "start_local": "2024-06-18T17:00:00-05:00",
+    "end_local_exclusive": "2024-06-18T18:00:00-05:00",
+    "aggregation": "Sum volume by direction and movement over returned bins and both vehicle classifications. No unreported bin or movement was filled with a zero.",
+    "approach_totals": {
+      "EASTBOUND": {
+        "THRU": 230,
+        "LEFT TURN": 5,
+        "RIGHT TURN": 4
+      },
+      "WESTBOUND": {
+        "THRU": 262,
+        "LEFT TURN": 8,
+        "RIGHT TURN": 4
+      }
+    },
+    "rows": [
+      {
+        "record_id": "e863cafee662f43a580e59b2f3317dac",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "37503b67364d69f22b3e2c163f1f445f",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "b472d566b1453bb6b746792e7d3a3f15",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "d7434f945114283a75cf942c66af0aa5",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "39",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "123c3c074fdef0f799c66cbe893aba80",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "14",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "9b957f5b6536e953bbba98012193b07b",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "47625095519f372022a35b88d76593f9",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "4",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "176326479156d001a6713cd3398d5010",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "63dbcf6e68083400209fb247a2d18dd5",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "e67c3966895bb87de364d5d33a1a23ce",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "e63c9864742cc2684d18a633088cd491",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "5cd75c899c7132f8c3dca11495da6177",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "c3c9c5cc700278a9fade85b9615ed814",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "41cccd8c0567d60d34a437fa78bc67be",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "c30b0b045ba3de9ceca28abbdb5f064a",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "67",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "cdcd165987c11fb8299d67addae86678",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:00:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "28",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "a5b846aa60e877e82e662419f7d684ec",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "d38b2d0a41fd9bf8e6257caa326a0812",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "52",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "fc67ccbc4f38ebd82918d38b89a47dbc",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "13",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "3f96fae96b779a679f9101902ee78a02",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "395a97d39a7942eda73d4a38e3880e54",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "ea61048641d71e38bdce59058ccbe8fb",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "4",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "e7a967ad7ef8a9f24cd2d0cc88a93941",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "eec945c1e22f19e7cdead21116af81c4",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "4692d3176a9fa489dd772b95f4714c6c",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "f2092b590f0c38c76a126219df7355ed",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "cea64253a5333e729ffe756a13eee128",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "43",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "92e8b9bc1e5588ca0d470f2b30023026",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:15:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "17",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "20da89232e563d85b0e6d9f9ce4e7b05",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "f484f8022eccc208c0cd8eeef1f88bc7",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "e6c3c8a5e29f1dcb53f017c72a7184d2",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "55",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "37b9865e2db95810c68a2f701cd02af1",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "12",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "1351d73217bacc6e29c147c0edc1f905",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "81db3029a9c83e170e4ed93be3fd0426",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "c4b1c2f3a72107cea931e238f9e99668",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "b0ace30573e4ca318dbcbf666186d461",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "3",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "724921a5ba8d106037d801a2584bda37",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "c443a531dc310f1fc6b825b89bab447b",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "d71d8dde5064c4d24ac5f9c4a9ca44af",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": true,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "7c31b410ae39cde73ea34334edb266aa",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "57f8501f67387a39299bbfe25945b696",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "9d3c3527e71198e431e0460784749b3c",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": true,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "1fae038c42f39c78e429fd896b05582e",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "e75dd075099f25f5d39b4f60ef09ed5e",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "35",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "031e4b0a9b513fb50e6c44dcb2fc1c2c",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:30:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "12",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "f752a480a8134787bfe80c025aac78c7",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "fef11ed51f9ef3c050b173fca41d88f0",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "37",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "54cd01e6e80d230fd3ccd279383b6785",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "EASTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "8",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "fc6720cd25efbe1d4f0e1a6da0a85248",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "801662456128c381ea4fdcf9b6d15684",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "a054c60728813eea95237227b0fec579",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "NORTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "13cdfce7578015debb0ee536d99ee8fb",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "4aa67969e09f6ed00df1c3f8a7181d41",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "4202833bbf7fe056620fad7b1e307bb4",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "SOUTHBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "682e6187ba598e1bcfa2809f744a5997",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "LEFT TURN",
+        "heavy_vehicle": false,
+        "volume": "1",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "f79c8c85cf79e3a72b235bcb0b61651c",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "RIGHT TURN",
+        "heavy_vehicle": false,
+        "volume": "2",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "302912966cc19df0f1e4b1b10a9c5d4d",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": false,
+        "volume": "48",
+        "bin_duration": "900"
+      },
+      {
+        "record_id": "998621d5863960f4696f94471dd97896",
+        "atd_device_id": "6653",
+        "read_date": "2024-06-18T22:45:00.000",
+        "intersection_name": "38TH ST / MEDICAL PKWY",
+        "direction": "WESTBOUND",
+        "movement": "THRU",
+        "heavy_vehicle": true,
+        "volume": "12",
+        "bin_duration": "900"
+      }
+    ]
+  },
+  "bakersfield": {
+    "publisher": "City of Bakersfield",
+    "project": "Riverview Marketplace",
+    "site": "2401 Coffee Road, Bakersfield, CA",
+    "sch_number": "2025101507",
+    "draft_environmental_report": {
+      "filing_date": "2026-07-13",
+      "index_url": "https://ceqanet.lci.ca.gov/2025101507/2",
+      "pdf_url": "https://ceqanet.lci.ca.gov/2025101507/2/Attachment/4t0GAU",
+      "pdf_sha256": "37dfc9c2dd698b9cf92d3e17f1e95d2aade418094ccfb313b13bc63205bbdb65",
+      "printed_pages": [
+        "4.16-17",
+        "4.16-18"
+      ],
+      "pdf_pages_one_based": [
+        347,
+        348
+      ],
+      "proposed_driveways": [
+        {
+          "street": "Rosedale Highway",
+          "right_in_right_out_count": 3,
+          "signalized_count": 1
+        },
+        {
+          "street": "Coffee Road",
+          "right_in_right_out_count": 2,
+          "signalized_count": 1
+        },
+        {
+          "street": "El Toro Viejo Road",
+          "total_count": 1
+        }
+      ],
+      "queuing_review": {
+        "location": "Coffee Road and Project Driveway G / Jet Way",
+        "projected_excess_demand": true,
+        "proposed_left_turn_lane_count": 2,
+        "proposed_lane_length_ft_each": 250
+      }
+    },
+    "land_use_approval": {
+      "action": "General Plan Amendment 23-0001 and environmental approval",
+      "date": "2026-11-04",
+      "notice_posted_date": "2026-11-06",
+      "source": "https://ceqanet.lci.ca.gov/2025101507/3"
+    },
+    "scope": "The draft describes proposed access and modeled queuing. Confirm final permitted geometry and operating conditions separately."
+  }
+}

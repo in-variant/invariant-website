@@ -7724,11 +7724,11 @@
     "slug": "retail-site-selection-trade-area-apis",
     "topic": "Data & APIs",
     "title": "Retail site selection APIs for trade areas and foot traffic",
-    "summary": "Compare retail locations with trade areas, store opening and closure records, and comparable foot traffic. See worked examples from New York and Chicago.",
+    "summary": "Compare retail sites using drive times, store openings, foot traffic and directional vehicle counts. Check the records behind driveway access.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/retail-site-selection-trade-area-apis.webp?v=b9586424",
     "dataset": {
       "name": "Harlem 125th Street station entries and a dated store location",
@@ -7772,6 +7772,49 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-retail-traffic-counts-driveway-access",
+        "name": "Retail traffic counts and driveway access records",
+        "description": "Four 15-minute camera-count intervals at 38th Street and Medical Parkway in Austin, and the entrance design and land-use approval records for Riverview Marketplace in Bakersfield.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Austin, Texas, and Bakersfield, California, United States",
+        "temporalCoverage": "2024-06-18/2026-11-04",
+        "sources": [
+          "https://data.austintexas.gov/resource/sh59-i6y9.json?%24select=record_id%2Catd_device_id%2Cread_date%2Cintersection_name%2Cdirection%2Cmovement%2Cheavy_vehicle%2Cvolume%2Cbin_duration&%24where=intersection_name%3D%2738TH+ST+%2F+MEDICAL+PKWY%27+AND+read_date+%3E%3D+%272024-06-18T22%3A00%3A00%27+AND+read_date+%3C+%272024-06-18T23%3A00%3A00%27&%24order=read_date%2C+direction%2C+movement%2C+heavy_vehicle%2C+record_id&%24limit=200",
+          "https://data.austintexas.gov/Transportation-and-Mobility/Camera-Traffic-Counts/sh59-i6y9/about_data",
+          "https://ceqanet.lci.ca.gov/2025101507/2/Attachment/4t0GAU",
+          "https://ceqanet.lci.ca.gov/2025101507/3"
+        ],
+        "sourceDetails": [
+          {
+            "title": "38th Street and Medical Parkway camera count query",
+            "publisher": "City of Austin Open Data",
+            "url": "https://data.austintexas.gov/resource/sh59-i6y9.json?%24select=record_id%2Catd_device_id%2Cread_date%2Cintersection_name%2Cdirection%2Cmovement%2Cheavy_vehicle%2Cvolume%2Cbin_duration&%24where=intersection_name%3D%2738TH+ST+%2F+MEDICAL+PKWY%27+AND+read_date+%3E%3D+%272024-06-18T22%3A00%3A00%27+AND+read_date+%3C+%272024-06-18T23%3A00%3A00%27&%24order=read_date%2C+direction%2C+movement%2C+heavy_vehicle%2C+record_id&%24limit=200"
+          },
+          {
+            "title": "Camera Traffic Counts field definitions",
+            "publisher": "City of Austin Open Data",
+            "url": "https://data.austintexas.gov/Transportation-and-Mobility/Camera-Traffic-Counts/sh59-i6y9/about_data"
+          },
+          {
+            "title": "Riverview Marketplace Draft EIR, Transportation, pp. 4.16-17 and 4.16-18",
+            "publisher": "City of Bakersfield through CEQAnet",
+            "url": "https://ceqanet.lci.ca.gov/2025101507/2/Attachment/4t0GAU"
+          },
+          {
+            "title": "Riverview Marketplace Notice of Determination, General Plan Amendment 23-0001",
+            "publisher": "City of Bakersfield through CEQAnet",
+            "url": "https://ceqanet.lci.ca.gov/2025101507/3"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Austin turn counts and Bakersfield driveway records",
+            "path": "/blog/retail-traffic-counts-and-driveway-access.json",
+            "format": "JSON"
+          }
+        ]
+      },
       {
         "anchor": "dataset-englewood-store-history",
         "name": "Chicago Englewood grocery location, licenses and inspections",
