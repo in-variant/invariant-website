@@ -34,6 +34,7 @@ const FILES = ['data-apis.json', 'ai-compute-capacity.json', 'site-due-diligence
 const articles = FILES.flatMap(f => JSON.parse(readFileSync(join(ROOT, 'src/data/industry-articles', f), 'utf8')))
 const blogCollections = JSON.parse(readFileSync(join(ROOT, 'src/data/blog-collections.json'), 'utf8'))
 const providerTrial = JSON.parse(readFileSync(join(ROOT, 'src/data/physical-world-data-api-trial.json'), 'utf8'))
+const providerComparisons = JSON.parse(readFileSync(join(ROOT, 'src/data/physical-world-provider-comparisons.json'), 'utf8'))
 const articleIndex = JSON.parse(readFileSync(join(ROOT, 'src/data/industry-article-index.json'), 'utf8'))
 const featuredResearch = JSON.parse(readFileSync(join(ROOT, 'src/data/featured-research-datasets.json'), 'utf8'))
 const datasetCatalog = JSON.parse(readFileSync(join(ROOT, 'src/data/research-dataset-catalog.json'), 'utf8'))
@@ -495,6 +496,12 @@ for (const collection of blogCollections) {
     ...(trial ? [
       citationLink('Download case inputs and expected results (JSON)', SITE + trial.json_path), '',
       citationLink('Versioned reference pack', trial.release_url), '',
+      `## ${providerComparisons.heading}`, '', providerComparisons.description, '',
+      ...providerComparisons.workflows.flatMap(({ id, title, guide, test, providers }) => [
+        `### ${citationLink(title, `${trial.url}#compare-${id}`)}`, '', test, '',
+        citationLink('Read the test and sources', `${SITE}/blog/${guide}`), '',
+        providers.map(({ name, url }) => citationLink(name, url)).join(' · '), '',
+      ]),
       '## Reference cases', '',
       ...trial.cases.flatMap(item => [
         `### ${citationLink(item.title, `${trial.url}#${item.test_id}`)}`, '',

@@ -6,6 +6,7 @@ import collectionCoverSrcSets from '../../data/.generated-collection-cover-srcse
 import { groupCollectionGuides } from '../../data/blogCollections'
 import { versionedCover } from '../../data/coverImages'
 import NotFound from '../NotFound'
+import ProviderComparisons from './ProviderComparisons'
 import '../Blog.css'
 import './BlogCollection.css'
 
@@ -106,6 +107,7 @@ export default function BlogCollection() {
 
         {(namedGuideGroups.length > 1 || trial) && (
           <nav className="blog-collection-jump" aria-label="Jump to a guide topic">
+            {trial && <a href="#provider-comparisons">Compare providers</a>}
             {trial && <a href="#reference-cases">Reference cases</a>}
             {namedGuideGroups.map(group => <a href={`#${group.id}`} key={group.id}>{group.heading}</a>)}
           </nav>
@@ -123,6 +125,7 @@ export default function BlogCollection() {
           </dl>
         </section>
 
+        {trial && <ProviderComparisons />}
         {trial && (
           <section className="blog-collection-cases" aria-labelledby="reference-cases">
             <h2 id="reference-cases">Reference cases</h2>

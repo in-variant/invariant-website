@@ -1,0 +1,962 @@
+{
+  "heading": "Compare data providers by workflow",
+  "description": "Invariant Earth connects property, infrastructure and environmental records through one API. Use these tests to compare it with specialist tools and public data sources on the same sites and dates.",
+  "workflows": [
+    {
+      "id": "parcel-boundaries",
+      "title": "Parcel boundaries and ownership",
+      "guide": "regrid-alternatives-parcel-data-apis",
+      "test": "Give each provider the same Manhattan condo address and unit. Ask for the base lot, the billing lot, the unit identifier and the record behind the geometry.",
+      "providers": [
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/api-endpoint-overview"
+        },
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/parcels"
+        },
+        {
+          "name": "ATTOM",
+          "url": "https://api.developer.attomdata.com/docs"
+        },
+        {
+          "name": "Realie",
+          "url": "https://www.realie.ai/info/county-parcel-data-search"
+        },
+        {
+          "name": "Korzy",
+          "url": "https://korzy.co/docs/reference/"
+        },
+        {
+          "name": "Paxiv",
+          "url": "https://paxiv.com/compare/paxiv-vs-regrid"
+        },
+        {
+          "name": "Scout",
+          "url": "https://scoutdata.com/api"
+        },
+        {
+          "name": "West Kite",
+          "url": "https://westkite.com/api"
+        }
+      ]
+    },
+    {
+      "id": "site-screening",
+      "title": "Location data and property screening",
+      "guide": "mireye-alternatives-for-property-screening",
+      "test": "Check the address point and whole parcel at Brooklyn Army Terminal. Ask the provider to identify which geometry it tested and report the share of the lot in Zone AE.",
+      "providers": [
+        {
+          "name": "Mireye",
+          "url": "https://docs.mireye.ai/api-reference/enrich"
+        },
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/regrid-id"
+        },
+        {
+          "name": "West Kite",
+          "url": "https://westkite.com/api/site-screening"
+        }
+      ]
+    },
+    {
+      "id": "gis-integration",
+      "title": "GIS APIs for land and site selection",
+      "guide": "best-gis-apis-for-site-selection",
+      "test": "Start with a polygon that crosses parcel lines. Check what the API matches, which fields come back unknown and whether you can export the geometry and its source.",
+      "providers": [
+        {
+          "name": "Esri ArcGIS",
+          "url": "https://developers.arcgis.com/products/arcgis-location-platform/"
+        },
+        {
+          "name": "GetParcelData",
+          "url": "https://getparceldata.com/api"
+        },
+        {
+          "name": "Parceled",
+          "url": "https://www.parceled.ai/data"
+        },
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/api-endpoint-overview"
+        }
+      ]
+    },
+    {
+      "id": "gis-agents",
+      "title": "GIS MCP servers and mapping agents",
+      "guide": "gis-mcp-servers-for-site-selection",
+      "test": "Ask an AI agent to look up a parcel as of an earlier date. Verify the cited records and check that the geometry and date in the answer came from the tool response.",
+      "providers": [
+        {
+          "name": "Esri ArcGIS",
+          "url": "https://doc.esri.com/en/mcp-arcgis-enterprise/latest/introduction/introduction.html"
+        },
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/mcp-server"
+        },
+        {
+          "name": "LightBox",
+          "url": "https://www.lightboxre.com/data/lightbox-mcp"
+        },
+        {
+          "name": "West Kite",
+          "url": "https://westkite.com/docs/connect"
+        }
+      ]
+    },
+    {
+      "id": "building-identity",
+      "title": "Building footprints and property details",
+      "guide": "building-footprint-data-apis",
+      "test": "Use an address shared by multiple buildings. Require separate footprints and IDs, then verify which footprint area belongs to each building and how it was measured.",
+      "providers": [
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/structures"
+        },
+        {
+          "name": "Overture Maps",
+          "url": "https://docs.overturemaps.org/guides/buildings/"
+        },
+        {
+          "name": "Microsoft Building Footprints",
+          "url": "https://github.com/microsoft/GlobalMLBuildingFootprints"
+        }
+      ]
+    },
+    {
+      "id": "building-permits",
+      "title": "Building permits and inspection history",
+      "guide": "building-permit-data-apis",
+      "test": "Use one work permit that appears in two trade rows. Ask for the permit number, inspection status and earlier expiration date, with the source for each field.",
+      "providers": [
+        {
+          "name": "Mireye",
+          "url": "https://docs.mireye.ai/api-reference/permits"
+        },
+        {
+          "name": "Shovels",
+          "url": "https://docs.shovels.ai/api-reference/permits/search-permits"
+        },
+        {
+          "name": "PermitStack",
+          "url": "https://permit-stack.com/docs/#op-get_property_history"
+        },
+        {
+          "name": "ATTOM",
+          "url": "https://api.developer.attomdata.com/docs"
+        },
+        {
+          "name": "West Kite",
+          "url": "https://www.westkite.com/api/permits"
+        }
+      ]
+    },
+    {
+      "id": "development-risk",
+      "title": "Entitlements, moratoria and local opposition",
+      "guide": "data-center-moratorium-local-opposition-site-screening",
+      "test": "For the East Palatka proposal, trace the hearing, adopted decision and conditions. Check which development phase the wastewater and electric service evidence applies to.",
+      "providers": [
+        {
+          "name": "PermitPal",
+          "url": "https://www.permitpal.ai/our-product/market-intelligence"
+        },
+        {
+          "name": "Data Center Watch",
+          "url": "https://datacenterwatch.org/q1-2026"
+        }
+      ]
+    },
+    {
+      "id": "zoning",
+      "title": "Zoning and permitted uses",
+      "guide": "zoning-data-apis-for-site-selection",
+      "test": "At 2239 Forest Avenue, compare the zoning at the address point with the districts that intersect the tax lot. Ask for the code, geometry and date that support the permitted use.",
+      "providers": [
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/zoning"
+        },
+        {
+          "name": "Zoneomics",
+          "url": "https://www.zoneomics.com/api-documentation"
+        },
+        {
+          "name": "Gridics",
+          "url": "https://gridics.com/zoning-data-api/"
+        },
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/land-use-zoning"
+        }
+      ]
+    },
+    {
+      "id": "environmental-diligence",
+      "title": "Environmental records and Phase I screening",
+      "guide": "lightbox-alternatives-environmental-site-screening",
+      "test": "Run the Gowanus Canal case with a point search and a footprint intersection. Trace cleanup milestones to the original documents and ask which historical records the vendor supplies for Phase I work.",
+      "providers": [
+        {
+          "name": "LightBox EDR",
+          "url": "https://www.lightboxre.com/product/edr-environmental-data-packages/"
+        },
+        {
+          "name": "ERIS",
+          "url": "https://www.erisinfo.com/products/database-report-packages/"
+        },
+        {
+          "name": "Mireye",
+          "url": "https://api.mireye.com/v1/meta/fields"
+        }
+      ]
+    },
+    {
+      "id": "lending",
+      "title": "Commercial lending and collateral diligence",
+      "guide": "commercial-real-estate-data-apis-for-lenders",
+      "test": "Replay two review dates for the same collateral. Distinguish the signing date, recorder date and date the vendor observed the filing. Check the property identifier against each document.",
+      "providers": [
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/transactions"
+        },
+        {
+          "name": "ATTOM",
+          "url": "https://api.developer.attomdata.com/dlpv2docs"
+        },
+        {
+          "name": "Regrid",
+          "url": "https://regrid.com/library/parcel-data-quality/how-to-evaluate-parcel-data-quality"
+        },
+        {
+          "name": "Ageospatial",
+          "url": "https://www.ageospatial.com/"
+        },
+        {
+          "name": "West Kite",
+          "url": "https://westkite.com/docs/data"
+        }
+      ]
+    },
+    {
+      "id": "corporate-ownership",
+      "title": "Deeds, LLCs and ownership networks",
+      "guide": "commercial-property-ownership-data-apis",
+      "test": "Choose an LLC with a similar name in another state. Require the recorded deed, the entity jurisdiction and the evidence that links the company to this asset.",
+      "providers": [
+        {
+          "name": "OpenCorporates",
+          "url": "https://api.opencorporates.com/documentation/API-Reference"
+        },
+        {
+          "name": "ATTOM",
+          "url": "https://api.developer.attomdata.com/docs"
+        },
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/transactions"
+        },
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/enhanced-ownership"
+        },
+        {
+          "name": "West Kite",
+          "url": "https://westkite.com/docs/data"
+        }
+      ]
+    },
+    {
+      "id": "securitized-credit",
+      "title": "CMBS, loan maturity and collateral monitoring",
+      "guide": "commercial-mortgage-maturity-data-apis",
+      "test": "Test a loan whose maturity changed. Ask for the scheduled date, any optional extension and the filing that shows whether that extension took effect.",
+      "providers": [
+        {
+          "name": "Trepp",
+          "url": "https://www.trepp.com/hubfs/docs/CMBSDataFeed.pdf"
+        },
+        {
+          "name": "CRED iQ",
+          "url": "https://pages.cred-iq.com/datafeed"
+        },
+        {
+          "name": "CMBS Wire",
+          "url": "https://cmbs.news/developers/"
+        }
+      ]
+    },
+    {
+      "id": "leasing-and-comps",
+      "title": "Commercial sales, leases and comparables",
+      "guide": "commercial-real-estate-sales-lease-comps-apis",
+      "test": "At 32 Old Slip, ask for source-backed sale and lease figures. Check the interest transferred and how the vendor treats serviced rent, fixed rent and floor area.",
+      "providers": [
+        {
+          "name": "CoStar",
+          "url": "https://www.costar.com/products/sales-comps"
+        },
+        {
+          "name": "CompStak",
+          "url": "https://compstak.com/data-api"
+        },
+        {
+          "name": "Crexi",
+          "url": "https://www.crexi.com/intelligence/data"
+        },
+        {
+          "name": "ATTOM",
+          "url": "https://api.developer.attomdata.com/docs"
+        }
+      ]
+    },
+    {
+      "id": "commercial-underwriting",
+      "title": "Commercial property insurance underwriting",
+      "guide": "commercial-property-insurance-data-apis",
+      "test": "Send a statement of values for two buildings on one tax lot. Request the building match and sources for construction, occupancy, roof and hazard data. Track which fields need manual review.",
+      "providers": [
+        {
+          "name": "Cotality",
+          "url": "https://www.cotality.com/products/underwriting-commercial-valuation"
+        },
+        {
+          "name": "Moody’s CAPE",
+          "url": "https://www.moodys.com/web/en/us/solutions/underwriting/property-underwriting/commercial-property-intelligence.html"
+        },
+        {
+          "name": "Verisk",
+          "url": "https://gateway.verisk.com/docs/Default.aspx?Page=Commercial-Lines-Index"
+        },
+        {
+          "name": "Guidewire HazardHub",
+          "url": "https://www.guidewire.com/products/analytics/hazardhub-risk-data"
+        },
+        {
+          "name": "Ageospatial",
+          "url": "https://www.ageospatial.com/"
+        },
+        {
+          "name": "ZestyAI",
+          "url": "https://zesty.ai/resource/harford-mutual-insurance"
+        }
+      ]
+    },
+    {
+      "id": "roof-underwriting",
+      "title": "Roof age and replacement evidence",
+      "guide": "ageospatial-alternatives-commercial-roof-underwriting",
+      "test": "Use the Rosemead roof project and a June 30 quote date. Request the imagery date and any documentary evidence of completion. Check when the evidence was available to the underwriter.",
+      "providers": [
+        {
+          "name": "Ageospatial",
+          "url": "https://www.ageospatial.com/"
+        },
+        {
+          "name": "Moody’s CAPE",
+          "url": "https://www.moodys.com/web/en/us/solutions/underwriting/property-underwriting/commercial-property-intelligence.html"
+        },
+        {
+          "name": "ZestyAI",
+          "url": "https://zesty.ai/products/roof-age"
+        },
+        {
+          "name": "Verisk",
+          "url": "https://www.verisk.com/49cf81/siteassets/media/downloads/underwriting/verisk-roof-underwriting-report.pdf"
+        }
+      ]
+    },
+    {
+      "id": "flood-hazard",
+      "title": "Flood risk and catastrophe exposure",
+      "guide": "best-flood-risk-data-apis",
+      "test": "Choose a building, address and parcel that yield different flood results. Ask for the FEMA panel and effective date, plus the model version for any estimated flood depth.",
+      "providers": [
+        {
+          "name": "First Street",
+          "url": "https://docs.firststreet.org/api/climate-risk-api/retrieving-data/flood-probability-and-damages"
+        },
+        {
+          "name": "National Flood Data",
+          "url": "https://docs.nationalflooddata.com/dataservice/v3/index.html"
+        },
+        {
+          "name": "Guidewire HazardHub",
+          "url": "https://www.guidewire.com/products/analytics/hazardhub-risk-data"
+        },
+        {
+          "name": "Mireye",
+          "url": "https://www.mireye.com/products/fetch"
+        },
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/fema-national-flood-hazard-layer"
+        }
+      ]
+    },
+    {
+      "id": "hail-weather",
+      "title": "Hail history and weather verification",
+      "guide": "hail-history-by-address-for-underwriting",
+      "test": "Check neighboring sites on the same storm date. Require the measuring station or data grid, the observation time and the source of the estimate before attributing damage to a building.",
+      "providers": [
+        {
+          "name": "Verisk Benchmark",
+          "url": "https://www.verisk.com/49936c/siteassets/media/downloads/property-estimating/benchmark-for-hail-wind-and-lightning.pdf"
+        },
+        {
+          "name": "PerilIQ",
+          "url": "https://periliq.com/storm-data-api/"
+        },
+        {
+          "name": "Parceled",
+          "url": "https://www.parceled.ai/data/hail-history"
+        }
+      ]
+    },
+    {
+      "id": "power-flow",
+      "title": "Powered land and data center power studies",
+      "guide": "data-center-power-screening-tools",
+      "test": "Give each provider the same 200 MW ramp schedule and candidate connections. Request the power-flow assumptions, binding equipment, outage cases and upgrades. Ask for the utility record behind any service date.",
+      "providers": [
+        {
+          "name": "Paces",
+          "url": "https://www.paces.com/data-center-developers"
+        },
+        {
+          "name": "Geoforge",
+          "url": "https://geoforge.ai/"
+        },
+        {
+          "name": "GridCARE",
+          "url": "https://www.gridcare.ai/post/gridcare-and-national-grid-collaborate-to-unlock-grid-capacity-for-infrastructure"
+        },
+        {
+          "name": "PVcase Prospect",
+          "url": "https://help.pvcase.com/hc/en-us/articles/47083999498259-How-do-I-site-data-centers-with-PVcase-Prospect-capacity-data"
+        },
+        {
+          "name": "Mireye",
+          "url": "https://docs.mireye.ai/introduction"
+        }
+      ]
+    },
+    {
+      "id": "grid-headroom",
+      "title": "Substation, feeder and grid capacity data",
+      "guide": "grid-capacity-apis-load-headroom",
+      "test": "Use the same feeder ID at summer and winter peak. Ask for load headroom, the limiting element, the units and the model date. Request generation hosting capacity separately.",
+      "providers": [
+        {
+          "name": "Substation Capacity",
+          "url": "https://substationcapacity.com/api"
+        },
+        {
+          "name": "GridCapacity API",
+          "url": "https://gridcapacityapi.com/reference"
+        },
+        {
+          "name": "LandGate",
+          "url": "https://www.landgate.com/energy-markets/offtake-capacity"
+        }
+      ]
+    },
+    {
+      "id": "renewable-siting",
+      "title": "Solar and storage site selection",
+      "guide": "solar-farm-site-selection-gis",
+      "test": "Ask for the candidate connection’s queue stage and the study underlying upgrade costs. Compare usable acreage after removing wetland, slope and setback constraints.",
+      "providers": [
+        {
+          "name": "PVcase",
+          "url": "https://help.pvcase.com/hc/en-us/articles/46173748447763-Greenfield-siting-guide"
+        },
+        {
+          "name": "Geoforge",
+          "url": "https://geoforge.ai/report/power"
+        }
+      ]
+    },
+    {
+      "id": "charging-data",
+      "title": "EV charging and fleet mobility data",
+      "guide": "ev-charging-station-data-apis",
+      "test": "Look up the same two charging stations. Compare installed fast-charge ports, enabled connectors and live status. Require timestamps and network coverage for live results.",
+      "providers": [
+        {
+          "name": "TomTom",
+          "url": "https://docs.tomtom.com/ev-charging-stations-availability-api/documentation/product-information/introduction"
+        },
+        {
+          "name": "HERE",
+          "url": "https://docs.here.com/geocoding-and-search/docs/ev-attributes"
+        },
+        {
+          "name": "Google Maps Platform",
+          "url": "https://developers.google.com/maps/documentation/places/web-service/reference/rpc/google.maps.places.v1#evchargeoptions"
+        },
+        {
+          "name": "U.S. DOE AFDC",
+          "url": "https://developer.nlr.gov/docs/transportation/alt-fuel-stations-v1/all/"
+        }
+      ]
+    },
+    {
+      "id": "logistics-routing",
+      "title": "Industrial logistics and truck routing",
+      "guide": "truck-routing-apis-nyc-truck-route-restrictions",
+      "test": "Route the same truck to a specific loading entrance. Supply height, weight and departure date, then check the last mile against adopted routes and bridge restrictions.",
+      "providers": [
+        {
+          "name": "HERE",
+          "url": "https://docs.here.com/routing/docs/routing-v8-truck-routing"
+        },
+        {
+          "name": "Trimble Maps",
+          "url": "https://developer.trimblemaps.com/restful-apis/developer-guide/how-to-guides/vehicle-routing-profiles/"
+        }
+      ]
+    },
+    {
+      "id": "retail-location",
+      "title": "Retail trade areas, foot traffic and consumer demand",
+      "guide": "retail-site-selection-trade-area-apis",
+      "test": "For two stores, ask for each trade area boundary, the visit measurement window and households served only by the proposed location. Check how sampling and missing businesses are handled.",
+      "providers": [
+        {
+          "name": "Placer.ai",
+          "url": "https://docs.placer.ai/reference/post_v1-reports-true-trade-area-1"
+        },
+        {
+          "name": "Foursquare",
+          "url": "https://docs.foursquare.com/data-products/docs/places-os-data-schema"
+        },
+        {
+          "name": "SafeGraph",
+          "url": "https://docs.safegraph.com/docs/places-rich-attributes"
+        },
+        {
+          "name": "Esri ArcGIS",
+          "url": "https://developers.arcgis.com/rest/routing/serviceArea-service-direct/"
+        }
+      ]
+    },
+    {
+      "id": "fiber-connectivity",
+      "title": "Business fiber and telecom serviceability",
+      "guide": "business-broadband-availability-by-address",
+      "test": "Use a multi-tenant building and check the suite address. Request the carrier, technology and installation terms. For redundant service, request separate entrance, conduit and route evidence.",
+      "providers": [
+        {
+          "name": "Connectbase",
+          "url": "https://developers.connectbase.com/solutions/location-truth"
+        },
+        {
+          "name": "FCC National Broadband Map",
+          "url": "https://help.bdc.fcc.gov/hc/en-us/articles/10467446103579-How-to-Use-the-FCC-s-National-Broadband-Map"
+        }
+      ]
+    },
+    {
+      "id": "aerial-terrain",
+      "title": "Aerial imagery and developable terrain",
+      "guide": "lidar-slope-developable-land",
+      "test": "Ask for the acquisition date and image footprint over a parcel. For a slope screen, check the LiDAR vintage, ground resolution and vertical datum before measuring buildable acres.",
+      "providers": [
+        {
+          "name": "Nearmap",
+          "url": "https://help.nearmap.com/kb/articles/340-missing-imagery-and-survey-boundaries"
+        },
+        {
+          "name": "Planet",
+          "url": "https://docs.planet.com/develop/apis/data/items/"
+        },
+        {
+          "name": "USGS 3DEP",
+          "url": "https://www.usgs.gov/faqs/what-types-elevation-datasets-are-available-what-formats-do-they-come-and-where-can-i-download"
+        }
+      ]
+    },
+    {
+      "id": "air-monitoring",
+      "title": "Air quality and facility emissions",
+      "guide": "air-quality-data-apis-monitoring-emissions",
+      "test": "Compare a modeled address result with the nearest station on the same day. Require pollutant, units, time basis and station ID. Separately request the facility emissions reporting year.",
+      "providers": [
+        {
+          "name": "Google Maps Platform",
+          "url": "https://developers.google.com/maps/documentation/air-quality/quick-reference"
+        },
+        {
+          "name": "Mireye",
+          "url": "https://www.mireye.com/products/fetch"
+        },
+        {
+          "name": "OpenAQ",
+          "url": "https://docs.openaq.org/resources/measurements"
+        },
+        {
+          "name": "EPA Air Quality System",
+          "url": "https://aqs.epa.gov/aqsweb/documents/data_api.html"
+        }
+      ]
+    },
+    {
+      "id": "public-awards",
+      "title": "Government contract awards and project signals",
+      "guide": "federal-contract-awards-data-api",
+      "test": "Follow an infrastructure project from the solicitation to the award and a subsequent modification. Check the IDs that link the records and the source for the amount actually obligated.",
+      "providers": [
+        {
+          "name": "HigherGov",
+          "url": "https://www.highergov.com/api/"
+        },
+        {
+          "name": "USAspending",
+          "url": "https://api.usaspending.gov/docs/endpoints"
+        },
+        {
+          "name": "SAM.gov",
+          "url": "https://open.gsa.gov/api/contract-awards/"
+        }
+      ]
+    },
+    {
+      "id": "agricultural-land",
+      "title": "Farmland history and crop monitoring",
+      "guide": "farmland-crop-history-by-parcel",
+      "test": "Use the same field boundary for three crop years. Record the classification resolution and capture season. Compare soil moisture and crop history separately before drawing a conclusion about productivity.",
+      "providers": [
+        {
+          "name": "Planet",
+          "url": "https://docs.planet.com/data/planetary-variables/soil-water-content/"
+        },
+        {
+          "name": "USDA CropScape",
+          "url": "https://pdi.scinet.usda.gov/image/rest/services/CDL_WM/ImageServer"
+        },
+        {
+          "name": "USDA NRCS",
+          "url": "https://sdmdataaccess.nrcs.usda.gov/documents/AdvancedQueries.html"
+        }
+      ]
+    },
+    {
+      "id": "land-availability",
+      "title": "Industrial land for sale and site availability",
+      "guide": "industrial-land-for-sale-acreage-zoning",
+      "test": "Search for at least 100 contiguous buildable acres for purchase. Ask which parcels are currently offered, how much land remains after setbacks and constraints, and who can confirm the terms.",
+      "providers": [
+        {
+          "name": "LoopNet",
+          "url": "https://www.loopnet.com/search/industrial-land/usa/for-sale/"
+        },
+        {
+          "name": "Virginia Economic Development Partnership",
+          "url": "https://sites.vedp.org/"
+        },
+        {
+          "name": "North Carolina Department of Commerce",
+          "url": "https://www.commerce.nc.gov/business/site-search-location-data"
+        }
+      ]
+    },
+    {
+      "id": "water-sewer",
+      "title": "Water and sewer service for a project",
+      "guide": "water-sewer-data-apis-site-selection",
+      "test": "Use a parcel next to a mapped service boundary. Ask for separate water and sewer providers and the dated record supporting any treatment or connection capacity.",
+      "providers": [
+        {
+          "name": "EPA Water System Service Areas",
+          "url": "https://www.epa.gov/ground-water-and-drinking-water/public-water-system-service-areas"
+        },
+        {
+          "name": "EPA ECHO",
+          "url": "https://echo.epa.gov/tools/web-services"
+        },
+        {
+          "name": "Frederick County GIS",
+          "url": "https://fcgis.frederickcountymd.gov/server_pub/rest/services/PlanningAndPermitting/WaterSewerServiceAreas/MapServer/2/query?f=json&geometry=-77.47406031%2C39.33569024&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&returnGeometry=false&outFields=SP_Type%2CSERVICE_PROVIDER%2CTAXMAP%2CPARCEL%2CLOT"
+        }
+      ]
+    },
+    {
+      "id": "water-allocation",
+      "title": "Water supply, withdrawals and allocation",
+      "guide": "water-withdrawal-data-api-site-allocation",
+      "test": "Ask for the latest reported withdrawals and the period and geography they cover. Separately identify the permit, utility commitment or other record that could support a particular allocation.",
+      "providers": [
+        {
+          "name": "USGS Water Use",
+          "url": "https://water.usgs.gov/nwaa-data/web-services/"
+        },
+        {
+          "name": "WRI Aqueduct",
+          "url": "https://www.wri.org/data/aqueduct-global-maps-40-data"
+        },
+        {
+          "name": "WaDE",
+          "url": "https://westernstateswater.org/wade/"
+        }
+      ]
+    },
+    {
+      "id": "wetlands-and-soils",
+      "title": "Wetlands, soils and buildable land",
+      "guide": "wetlands-hydric-soils-land-development",
+      "test": "Measure mapped wetlands and hydric soils inside the same parcel. Require layer vintages and units, then identify the field delineation or jurisdictional determination needed for design.",
+      "providers": [
+        {
+          "name": "U.S. Fish and Wildlife Service",
+          "url": "https://www.fws.gov/program/national-wetlands-inventory/wetlands-mapper"
+        },
+        {
+          "name": "USDA NRCS",
+          "url": "https://sdmdataaccess.nrcs.usda.gov/documents/AdvancedQueries.html"
+        },
+        {
+          "name": "U.S. Army Corps of Engineers",
+          "url": "https://publibrary.sec.usace.army.mil/api/download?filename=20260112_NWP-2025-00423_AJD.pdf&id=6eff4434-e48a-4a2d-a733-cd06e613cbf9&preview=true&token=#page=6"
+        }
+      ]
+    },
+    {
+      "id": "weather-history",
+      "title": "Hourly weather and climate for engineering",
+      "guide": "hourly-weather-data-for-data-center-cooling",
+      "test": "Request dry-bulb and dew point for the same site and year. Compare stations and gridded estimates, then check missing hours and time zones before estimating cooling conditions.",
+      "providers": [
+        {
+          "name": "NOAA NCEI",
+          "url": "https://www.ncei.noaa.gov/products/global-historical-climatology-network-hourly"
+        },
+        {
+          "name": "Tomorrow.io",
+          "url": "https://docs.tomorrow.io/reference/historical-overview"
+        },
+        {
+          "name": "Open-Meteo",
+          "url": "https://open-meteo.com/en/docs/historical-weather-api"
+        }
+      ]
+    },
+    {
+      "id": "demographics-and-employment",
+      "title": "Population, employment and market demographics",
+      "guide": "daytime-population-retail-site-selection",
+      "test": "Use the same trade area and reference year. Ask for household residents and daytime workers separately, and check how census blocks are assigned at the boundary.",
+      "providers": [
+        {
+          "name": "Esri ArcGIS Business Analyst",
+          "url": "https://doc.arcgis.com/en/business-analyst/web/understand-data-apportionment.htm"
+        },
+        {
+          "name": "U.S. Census Bureau LODES",
+          "url": "https://lehd.ces.census.gov/doc/help/onthemap/OnTheMapDataOverview.pdf"
+        },
+        {
+          "name": "American Community Survey",
+          "url": "https://www.census.gov/programs-surveys/acs/data/data-via-api.html"
+        }
+      ]
+    },
+    {
+      "id": "industrial-activity",
+      "title": "Industrial employment and economic signals",
+      "guide": "county-manufacturing-employment-data",
+      "test": "Compare three counties for the same manufacturing industry and quarter. Check that totals use the same industry classification, geography and employment concept. Preserve suppressed values as unknown.",
+      "providers": [
+        {
+          "name": "BLS QCEW",
+          "url": "https://www.bls.gov/cew/additional-resources/open-data/csv-data-slices.htm"
+        },
+        {
+          "name": "Esri Demographics",
+          "url": "https://doc.arcgis.com/en/esri-demographics/latest/reference/esri.htm"
+        }
+      ]
+    },
+    {
+      "id": "property-tax",
+      "title": "Property tax history and assessments",
+      "guide": "commercial-property-tax-assessment-history-by-address",
+      "test": "Retrieve three years for one commercial parcel. Separate market value, taxable assessed value, exemptions and the actual bill. Check how the provider treats a parcel ID change.",
+      "providers": [
+        {
+          "name": "LightBox",
+          "url": "https://developer.lightboxre.com/apis/catalog"
+        },
+        {
+          "name": "NYC Department of Finance",
+          "url": "https://home4.nyc.gov/site/finance/property/property-assessment-roll-archives.page"
+        }
+      ]
+    },
+    {
+      "id": "project-signals",
+      "title": "Construction leads and planned developments",
+      "guide": "track-proposed-data-center-projects",
+      "test": "Search for the same project under its developer, address and planning case ID. Ask for the hearing, approval and construction start as separate events, with the dated record for each.",
+      "providers": [
+        {
+          "name": "ConstructConnect",
+          "url": "https://www.constructconnect.com/en/products/project-intelligence"
+        },
+        {
+          "name": "Loudoun County LandMARC",
+          "url": "https://www.loudoun.gov/landmarc"
+        }
+      ]
+    },
+    {
+      "id": "energy-prices",
+      "title": "Electricity prices, load and demand",
+      "guide": "ercot-day-ahead-real-time-price-data",
+      "test": "Compare prices for the same ERCOT settlement point and operating interval. Keep day-ahead and real-time series separate, then check handling of revisions and daylight saving time.",
+      "providers": [
+        {
+          "name": "Yes Energy DataSignals",
+          "url": "https://www.yesenergy.com/products/datasignals"
+        },
+        {
+          "name": "ERCOT Public Data API",
+          "url": "https://www.ercot.com/services/mdt/data-portal"
+        }
+      ]
+    },
+    {
+      "id": "community-services",
+      "title": "Schools, hospitals and emergency service areas",
+      "guide": "hospital-school-fire-service-area-data",
+      "test": "Check a parcel near a district boundary. Request the assigned school, the responsible emergency service and a routed trip to the relevant hospital as three separate results.",
+      "providers": [
+        {
+          "name": "NCES",
+          "url": "https://nces.ed.gov/programs/edge/Geographic/DistrictBoundaries"
+        },
+        {
+          "name": "CMS Provider Data",
+          "url": "https://data.cms.gov/provider-data/dataset/xubh-q36u"
+        },
+        {
+          "name": "Valhalla",
+          "url": "https://valhalla.github.io/valhalla/api/route/api-reference/"
+        }
+      ]
+    },
+    {
+      "id": "housing-markets",
+      "title": "Housing vacancy, affordability and neighborhoods",
+      "guide": "census-tract-housing-vacancy-rent-burden",
+      "test": "Compare the same geography across releases. Ask for the boundary vintage, margin of error and denominator before turning a change in vacancy or rent burden into a trend.",
+      "providers": [
+        {
+          "name": "American Community Survey",
+          "url": "https://api.census.gov/data/2024/acs/acs5/groups/B25070.html"
+        },
+        {
+          "name": "Esri Demographics",
+          "url": "https://doc.arcgis.com/en/esri-demographics/latest/reference/esri.htm"
+        }
+      ]
+    },
+    {
+      "id": "geology",
+      "title": "Geology, natural resources and well records",
+      "guide": "geologic-maps-well-logs-site-due-diligence",
+      "test": "Request the geological map scale and the location accuracy of nearby well logs. Check how the provider distinguishes conditions logged at a well from site-specific borings.",
+      "providers": [
+        {
+          "name": "USGS National Geologic Map Database",
+          "url": "https://www.usgs.gov/tools/national-geologic-map-database-ngmdb"
+        },
+        {
+          "name": "Oregon DOGAMI",
+          "url": "https://www.oregon.gov/dogami/pubs/pages/dds/p-ogdc-8.aspx"
+        },
+        {
+          "name": "Oregon Water Resources Department",
+          "url": "https://apps.wrd.state.or.us/apps/gw/well_log/Default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "disruptions",
+      "title": "Outage history and road closures",
+      "guide": "power-outage-road-closure-history",
+      "test": "Use a known disruption date and an exact site entrance. Check the reporting footprint, outage observation time and road restriction segment before treating a nearby event as a site impact.",
+      "providers": [
+        {
+          "name": "DOE OE-417",
+          "url": "https://doe417.energy.gov/"
+        },
+        {
+          "name": "Oak Ridge National Laboratory",
+          "url": "https://doi.ccs.ornl.gov/dataset/2be78213-ef9e-5433-b1b0-9762d051146c"
+        },
+        {
+          "name": "U.S. DOT Work Zone Data Exchange",
+          "url": "https://github.com/usdot-jpo-ode/wzdx/blob/develop/spec-content/objects/WorkZoneRoadEvent.md"
+        }
+      ]
+    },
+    {
+      "id": "claim-aggregates",
+      "title": "Disaster losses and aggregated claims",
+      "guide": "nfip-flood-claims-data-api",
+      "test": "For the same storm, ask which losses and insurance lines each source reports. Require the program, extraction date and geographic resolution before comparing totals.",
+      "providers": [
+        {
+          "name": "OpenFEMA",
+          "url": "https://www.fema.gov/api/open/v3/NfipClaims?%24top=1&%24select=asOfDate"
+        },
+        {
+          "name": "Florida Office of Insurance Regulation",
+          "url": "https://floir.gov/tools-and-data/catastrophe-reporting"
+        }
+      ]
+    },
+    {
+      "id": "trade-and-freight",
+      "title": "Trade flows, ports and freight demand",
+      "guide": "freight-analysis-framework-data",
+      "test": "Give both sources the same origin, destination, commodity and year. Ask whether they provide domestic estimates or reported shipments, and whether the units are value, weight or containers.",
+      "providers": [
+        {
+          "name": "BTS Freight Analysis Framework",
+          "url": "https://www.bts.gov/faf"
+        },
+        {
+          "name": "S&P Global PIERS",
+          "url": "https://www.spglobal.com/market-intelligence/en/solutions/products/piers"
+        }
+      ]
+    },
+    {
+      "id": "historical-records",
+      "title": "Historical parcel boundaries and change events",
+      "guide": "historical-parcel-boundaries-api",
+      "test": "Replay Brooklyn tax lot 3039470001 on both sides of a split. Require both geometries, the change event and the date of each source edition, even where the retained parcel kept its ID.",
+      "providers": [
+        {
+          "name": "Regrid",
+          "url": "https://support.regrid.com/docs/regrid-id"
+        },
+        {
+          "name": "NYC Digital Tax Map",
+          "url": "https://propertyinformationportal.nyc.gov/pdf/PIP_UserGuide.pdf"
+        }
+      ]
+    }
+  ]
+}

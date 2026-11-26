@@ -10,6 +10,7 @@ const articles = files.flatMap(file => JSON.parse(readFileSync(new URL(`industry
 const legacyArticles = JSON.parse(readFileSync(new URL('legacy-blog-articles.json', base), 'utf8'))
 const blogCollections = JSON.parse(readFileSync(new URL('blog-collections.json', base), 'utf8'))
 const providerTrial = JSON.parse(readFileSync(new URL('physical-world-data-api-trial.json', base), 'utf8'))
+const providerComparisons = JSON.parse(readFileSync(new URL('physical-world-provider-comparisons.json', base), 'utf8'))
 const coverageTopics = JSON.parse(readFileSync(new URL('earth-coverage-topics.json', base), 'utf8'))
 const coverageSnapshot = JSON.parse(readFileSync(new URL('../public/data-coverage-fields.json', import.meta.url), 'utf8'))
 const writeIfChanged = (file, content) => {
@@ -91,6 +92,20 @@ const trialReviewColumns = [
 ]
 const trialColumns = [...trialInputColumns, ...trialReviewColumns, ...trialReferenceColumns]
 const trialOrigin = new URL(providerTrial.url).origin
+const workflowIds = new Set()
+for (const { id, title, guide, test, providers } of providerComparisons.workflows) {
+  if (!/^[a-z0-9-]+$/.test(id) || workflowIds.has(id) || !slugs.has(guide) || !title?.trim() || !test?.trim()) {
+    throw new Error(`Invalid provider comparison workflow: ${id}`)
+  }
+  workflowIds.add(id)
+  if (providers.length < 2 || new Set(providers.map(({ name }) => name)).size !== providers.length
+    || providers.some(({ name, url }) => {
+      const source = new URL(url)
+      return !name?.trim() || source.protocol !== 'https:' || source.username || source.password || source.origin === trialOrigin
+    })) {
+    throw new Error(`Invalid source links in provider workflow: ${id}`)
+  }
+}
 for (const row of providerTrial.cases) {
   if (!/^[a-z0-9-]+$/.test(row.test_id) || !row.title?.trim()
     || ![...trialInputColumns, ...trialReferenceColumns].every(column => row[column]?.trim())) {
