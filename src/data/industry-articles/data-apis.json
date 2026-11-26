@@ -40264,17 +40264,18 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Solar farm site selection with GIS and interconnection data",
-    "description": "Screen buildable acres, compare points of interconnection, and verify solar export capacity. See what changed between two PJM study phases at one substation.",
+    "description": "Screen buildable acres, verify solar export capacity, and check decommissioning before you option land. Compare PJM studies and a Virginia bond condition.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-25",
-    "readMinutes": 7,
+    "updatedDate": "2026-11-26",
+    "readMinutes": 9,
     "coverAlt": "Chart of PJM allocated interconnection cost estimates at Nottingham 138 kV. The original request rose from $2.33 million to $4.16 million. Its 200 MW uprate rose from $2.68 million to $6.34 million.",
     "coverCaption": "PJM Transition Cycle 2 estimates at Nottingham 138 kV, Ohio. The chart compares allocations published in October 2025 and June 2026.",
     "intro": "Before you option land for a utility-scale solar farm, check whether the tract fits the proposed array and whether the grid can take the project’s output on your schedule. Use GIS to calculate contiguous buildable acreage and map routes to candidate connections. Then verify the exact point of interconnection, requested export in MW AC, upgrade costs, and schedule against the operator’s studies and project agreement.",
     "takeaways": [
       "Keep the buildable polygons, the exclusions that produced them, and the largest contiguous area. The acreage on an assessor record cannot tell you what fits.",
       "Use line and substation maps to find connection candidates. Verify the terminal or line tap, the route from the project, and the export case with the transmission provider.",
-      "Carry forward the latest study version and scope. At one Ohio substation, the estimate for a 200 MW solar uprate went from $2.68 million to $6.34 million between PJM study phases."
+      "Carry forward the latest study version and scope. At one Ohio substation, the estimate for a 200 MW solar uprate went from $2.68 million to $6.34 million between PJM study phases.",
+      "Verify the decommissioning estimate and security the local authority accepted. An application-stage cost sheet can use different assumptions from the approval."
     ],
     "guideActions": [
       {
@@ -40375,6 +40376,70 @@
         ]
       },
       {
+        "id": "solar-decommissioning-bond",
+        "heading": "How much is a solar farm decommissioning bond?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the estimate the local authority accepted and the amount on the financial guarantee actually posted. A solar application can include a removal cost, a salvage credit and a future cost projection on the same page. Each number answers a different question. The permit conditions and decommissioning agreement establish which costs count and when the project must post security."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Virginia project",
+              "Published estimate",
+              "Approval and bond evidence"
+            ],
+            "rows": [
+              [
+                "Bluegrass Solar, Campbell County · 3 MW approved",
+                "$364,998.14 in the 2025 cost sheet. The applicant separately modeled a $137,539.30 salvage credit and estimated $539,806.50 in 2060 after salvage and inflation.",
+                "Condition 5 requires a current-dollar estimate with no salvage credit and a performance surety bond before sitework. The approval minutes specify the calculation basis and leave the posted amount undisclosed."
+              ],
+              [
+                "Grassland Solar, Orange County · 6 MW proposed",
+                "$497,081.30 for Year 5, plus a 10% contingency, for $546,789.43. The engineer excluded salvage proceeds.",
+                "The Board referred the application back for rehearing on October 27, 2026. The filed estimate documents the applicant’s scenario. The reviewed records establish no accepted bond amount."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "bluegrass-plan",
+                "bluegrass-approval"
+              ],
+              [
+                "grassland-plan",
+                "grassland-status"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Bluegrass’s narrative gives a 2025 cost of $365,998, which differs by $999.86 from the itemized sheet. Keep both figures with their page references and ask for the signed estimate the county accepted. The board’s condition is what makes the earlier salvage assumption material. The county required the bond to equal the approved estimate and stay in effect until the obligations are met.",
+            "sourceIds": [
+              "bluegrass-plan",
+              "bluegrass-approval"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "During a purchase or lease review, request the accepted estimate, signed decommissioning agreement and current bond or other approved instrument. Record the beneficiary, face amount, date the authority accepted it, and when the estimate and security must be updated. Virginia’s current statute calls for an update every five years for covered projects. For a covered sale or transfer of a lease or property, the statute calls for notice to the local government within 30 days and a new financial guarantee from the incoming leaseholder or owner. Verify the project’s applicability and acquisition documents before relying on the seller’s existing instrument.",
+            "sourceIds": [
+              "bluegrass-approval",
+              "virginia-solar-security"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Virginia solar decommissioning records",
+            "path": "/blog/virginia-solar-decommissioning-records.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-virginia-solar-decommissioning-records"
+          }
+        ]
+      },
+      {
         "id": "evaluate-solar-siting-tools",
         "heading": "Which GIS tools and APIs fit a solar developer’s workflow?",
         "blocks": [
@@ -40434,6 +40499,36 @@
     ],
     "sources": [
       {
+        "id": "bluegrass-plan",
+        "title": "Bluegrass Solar plan narrative and cost sheet, PDF pages 192 and 194",
+        "publisher": "Campbell County",
+        "url": "https://www.campbellcountyva.gov/AgendaCenter/ViewFile/Agenda/_01062026-533?packet=true#page=192"
+      },
+      {
+        "id": "bluegrass-approval",
+        "title": "Bluegrass Solar approval PL-25-248, condition 5, PDF page 4",
+        "publisher": "Campbell County",
+        "url": "https://www.campbellcountyva.gov/AgendaCenter/ViewFile/Minutes/_02032026-539#page=4"
+      },
+      {
+        "id": "grassland-status",
+        "title": "Grassland Solar case SUP-2026-00534 and hearing status",
+        "publisher": "Orange County",
+        "url": "https://orangecountyva.gov/1238/SUP-2026-00534-Grassland-Solar"
+      },
+      {
+        "id": "grassland-plan",
+        "title": "Grassland Solar decommissioning plan and cost sheet, PDF pages 7 and 9",
+        "publisher": "Orange County",
+        "url": "https://orangecountyva.gov/DocumentCenter/View/7813/SUP-2026-00534---Decomissioning-Plan-and-Estimate---4-2-2026?bidId=#page=9"
+      },
+      {
+        "id": "virginia-solar-security",
+        "title": "Virginia Code § 15.2-2241.2, decommissioning and financial assurance",
+        "publisher": "Virginia Legislative Information System",
+        "url": "https://law.lis.virginia.gov/vacode/title15.2/chapter22/section15.2-2241.2/"
+      },
+      {
         "id": "earth-workflow",
         "title": "Screen a solar farm site",
         "publisher": "Invariant",
@@ -40474,6 +40569,28 @@
         "title": "SUGAR and Interconnect for grid studies",
         "url": "https://pearlstreettechnologies.com/",
         "publisher": "Pearl Street Technologies"
+      }
+    ],
+    "additionalDatasets": [
+      {
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/virginia-solar-decommissioning-records-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "anchor": "dataset-virginia-solar-decommissioning-records",
+        "name": "Virginia solar decommissioning estimates and bond conditions",
+        "description": "Two Virginia solar projects, with dated engineering estimates, salvage and contingency assumptions, local approval status, PDF pages, and posted-security evidence.",
+        "sourceIds": [
+          "bluegrass-plan",
+          "bluegrass-approval",
+          "grassland-status",
+          "grassland-plan",
+          "virginia-solar-security"
+        ],
+        "spatialCoverage": "Campbell County and Orange County, Virginia, United States",
+        "datePublished": "2026-11-26",
+        "temporalCoverage": "2025-03-21/2026-11-26"
       }
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "utility-grade-power-study", "power-evidence-data-center-site-verification", "interconnection-queue-data"]

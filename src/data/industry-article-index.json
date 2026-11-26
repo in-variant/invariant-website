@@ -7666,11 +7666,11 @@
     "slug": "solar-farm-site-selection-gis",
     "topic": "Data & APIs",
     "title": "Solar farm site selection with GIS and interconnection data",
-    "summary": "Screen buildable acres, compare points of interconnection, and verify solar export capacity. See what changed between two PJM study phases at one substation.",
+    "summary": "Screen buildable acres, verify solar export capacity, and check decommissioning before you option land. Compare PJM studies and a Virginia bond condition.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/solar-farm-site-selection-gis.webp?v=76bae295",
     "dataset": {
       "name": "Nottingham solar interconnection study comparison",
@@ -7712,7 +7712,63 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/virginia-solar-decommissioning-records-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "anchor": "dataset-virginia-solar-decommissioning-records",
+        "name": "Virginia solar decommissioning estimates and bond conditions",
+        "description": "Two Virginia solar projects, with dated engineering estimates, salvage and contingency assumptions, local approval status, PDF pages, and posted-security evidence.",
+        "spatialCoverage": "Campbell County and Orange County, Virginia, United States",
+        "datePublished": "2026-11-26",
+        "temporalCoverage": "2025-03-21/2026-11-26",
+        "sources": [
+          "https://www.campbellcountyva.gov/AgendaCenter/ViewFile/Agenda/_01062026-533?packet=true#page=192",
+          "https://www.campbellcountyva.gov/AgendaCenter/ViewFile/Minutes/_02032026-539#page=4",
+          "https://orangecountyva.gov/1238/SUP-2026-00534-Grassland-Solar",
+          "https://orangecountyva.gov/DocumentCenter/View/7813/SUP-2026-00534---Decomissioning-Plan-and-Estimate---4-2-2026?bidId=#page=9",
+          "https://law.lis.virginia.gov/vacode/title15.2/chapter22/section15.2-2241.2/"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Bluegrass Solar plan narrative and cost sheet, PDF pages 192 and 194",
+            "publisher": "Campbell County",
+            "url": "https://www.campbellcountyva.gov/AgendaCenter/ViewFile/Agenda/_01062026-533?packet=true#page=192"
+          },
+          {
+            "title": "Bluegrass Solar approval PL-25-248, condition 5, PDF page 4",
+            "publisher": "Campbell County",
+            "url": "https://www.campbellcountyva.gov/AgendaCenter/ViewFile/Minutes/_02032026-539#page=4"
+          },
+          {
+            "title": "Grassland Solar case SUP-2026-00534 and hearing status",
+            "publisher": "Orange County",
+            "url": "https://orangecountyva.gov/1238/SUP-2026-00534-Grassland-Solar"
+          },
+          {
+            "title": "Grassland Solar decommissioning plan and cost sheet, PDF pages 7 and 9",
+            "publisher": "Orange County",
+            "url": "https://orangecountyva.gov/DocumentCenter/View/7813/SUP-2026-00534---Decomissioning-Plan-and-Estimate---4-2-2026?bidId=#page=9"
+          },
+          {
+            "title": "Virginia Code § 15.2-2241.2, decommissioning and financial assurance",
+            "publisher": "Virginia Legislative Information System",
+            "url": "https://law.lis.virginia.gov/vacode/title15.2/chapter22/section15.2-2241.2/"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Virginia solar decommissioning records",
+            "path": "/blog/virginia-solar-decommissioning-records.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "battery-storage-site-interconnection",
@@ -13832,7 +13888,7 @@
         "https://content.govdelivery.com/accounts/OHPUC/bulletins/4336c25",
         "https://dam.assets.ohio.gov/image/upload/puco.ohio.gov/empliibrary/files/OPA/Mapping/OPSB/Solar%20Facilities%20Map/Natural_Gas_Map_and_Stats.pdf#page=4",
         "https://scs-public.s3-us-gov-west-1.amazonaws.com/env_production/oid372/did200149/pid_215999/project-documents/P0140492D.pdf",
-        "https://ohid.ohio.gov/wps/wcm/connect/gov/Ohio%2BContent%2BEnglish/epa/about/media-center/events/public-hearing-FairfieldEnergy",
+        "https://ohioepa.commentinput.com/?id=RJAbKYcFh",
         "https://www.supremecourt.ohio.gov/rod/docs/pdf/0/2026/2026-Ohio-3035.pdf",
         "https://app.enhancedvoting.com/results/public/pickaway-county-oh/elections/GE2026_20261028170048"
       ],
@@ -13853,9 +13909,9 @@
           "url": "https://scs-public.s3-us-gov-west-1.amazonaws.com/env_production/oid372/did200149/pid_215999/project-documents/P0140492D.pdf"
         },
         {
-          "title": "Fairfield draft air permit public meeting and November 12 comment deadline",
+          "title": "Ohio EPA public comment record for draft Fairfield permit P0140492",
           "publisher": "Ohio EPA",
-          "url": "https://ohid.ohio.gov/wps/wcm/connect/gov/Ohio%2BContent%2BEnglish/epa/about/media-center/events/public-hearing-FairfieldEnergy"
+          "url": "https://ohioepa.commentinput.com/?id=RJAbKYcFh"
         },
         {
           "title": "McNamara-Smith v. Grube, 2026-Ohio-3035, paragraphs 6–8 and 41",
