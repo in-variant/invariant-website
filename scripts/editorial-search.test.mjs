@@ -100,6 +100,19 @@ test('editorial search preserves matching power sizes and requires any numeric t
   assert.deepEqual(search('73 MW land ready for service'), [])
 })
 
+test('acquisition searches prefer the guide dedicated to the requested power size', () => {
+  const capacity = { title: '500 MW data center sites and power evidence', metadata: 'Review utility agreements', bodyTerms: ['sale'] }
+  const market = { title: 'Data center sites for sale in Iowa', metadata: '500 MW powered land', details: 'Power and utility schedules' }
+  const capacityIndex = prepareSearch([market, capacity], entry => entry)
+  const options = { allowPartialMatches: true, longQuestionRanking: true }
+  const results = query => rankSearch(capacityIndex, editorialSearchWords(query), options)
+
+  assert.equal(results('500 MW data center sites for sale with power')[0], capacity)
+  assert.equal(results('0.5 GW data center sites for sale with power')[0], capacity)
+  assert.equal(results('500 MW data center sites in Iowa')[0], market)
+  assert.deepEqual(results('510 MW data center sites for sale with power'), [])
+})
+
 test('the field search uses the original token matching', () => {
   assert.deepEqual(rankSearch(index, articleSearchWords('employment')), [])
   assert.equal(rankSearch(index, articleSearchWords('parcel'))[0].title, 'Commercial property ownership records')

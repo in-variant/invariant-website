@@ -13,6 +13,7 @@ const WORKSHEET_TERMS = new Set(['checklist', 'worksheet'])
 const POWER_SIZE = /^\d+(?:\.\d+)?w$/
 const RECORD_ID = /^[a-z]*\d{6,}[a-z]*$/
 const GUIDANCE_TERMS = new Set(['checklist', 'commission', 'confirm', 'evidence', 'study', 'verify', 'worksheet'])
+const ACQUISITION_TERMS = new Set(['sale', 'lease', 'listing', 'buy', 'purchase'])
 
 export function editorialSearchWords(value: string) {
   const question = value.trim()
@@ -87,7 +88,7 @@ function rankLongQuestion<T>(index: SearchItem<T>[], terms: string[], query: str
   const hasTerm = (item: SearchItem<T>, term: string) => editorialWeight(item, term) > 0 || item.bodyTerms?.has(term)
   const capacities = terms.filter(term => POWER_SIZE.test(term))
   const guidance = terms.filter(term => GUIDANCE_TERMS.has(term))
-  const buying = terms.some(term => term === 'sale' || term === 'lease' || term === 'listing' || term === 'buy')
+  const buying = terms.some(term => ACQUISITION_TERMS.has(term))
   const phrases = new Set(query.slice(1).map((word, i) => ` ${query[i]} ${word} `))
   // Keep subject terms distinctive when other guides only mention them in passing.
   const frequencies = terms.flatMap(term => {
@@ -144,6 +145,7 @@ export function rankSearch<T>(
   { numericPrefixes = false, allowPartialMatches = false, longQuestionRanking = false, requireRecordIds = false } = {},
 ) {
   const terms = [...new Set(queryWords)]
+  const buying = allowPartialMatches && terms.some(term => ACQUISITION_TERMS.has(term))
   const phrase = ` ${queryWords.join(' ')} `
   const lastWord = queryWords[queryWords.length - 1]
   const canMatchPrefix = numericPrefixes ? lastWord?.length >= 3 : /^[a-z]{3,}$/.test(lastWord)
@@ -176,6 +178,8 @@ export function rankSearch<T>(
       }
 
       score += weight
+      // For acquisition searches, give weight to the advertised size in the title or slug.
+      if (buying && weight >= 6 && POWER_SIZE.test(term)) score += 12
       if (weight >= 4) strongMatches += 1
     }
 
