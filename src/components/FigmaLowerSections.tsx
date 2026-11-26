@@ -463,7 +463,7 @@ const footerColumns = [
   ] },
   { title: 'Company', links: [
     ['Why we exist', '/charter'], ['About', '/about'],
-    ['Resources', '/resources'], ['API docs', 'https://docs.invariant-ai.com/'], ['Contact', '/contact'],
+    ['Resources', '/resources'], ['Contact', '/contact'],
   ] },
   { title: 'Legal', links: [
     ['Privacy', 'mailto:founders@invariant-ai.com?subject=Privacy%20policy%20request'],
