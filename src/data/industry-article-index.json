@@ -1420,7 +1420,7 @@
     "date": "November 24, 2026",
     "dateTime": "2026-11-24",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/building-permit-change-alerts-by-address.webp?v=29511aae",
     "dataset": {
       "name": "San Francisco permit activity, address links and publication timestamps",
@@ -4579,7 +4579,7 @@
     "slug": "building-permit-data-apis",
     "topic": "Data & APIs",
     "title": "Building Permit Data APIs for Commercial Property",
-    "summary": "Compare Invariant Earth, Mireye, Shovels and other permit APIs. Test coverage by city, building matches, project counts and inspection dates.",
+    "summary": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test coverage, issue dates, fees and inspections in three U.S. cities.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
@@ -4620,6 +4620,54 @@
       ]
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-chicago-permit-milestones",
+        "name": "Chicago permit milestones and fees for November 18 to 24, 2026",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/chicago-building-permit-milestones-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "description": "595 Chicago permit records grouped by the current milestone and reported unpaid fees. Includes three selected permits, the publication criteria, query date and issuer field definitions.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Chicago, Illinois, United States",
+        "temporalCoverage": "2026-11-18/2026-11-24",
+        "sources": [
+          "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+          "https://data.cityofchicago.org/api/views/ydr8-5enu.json",
+          "https://data.cityofchicago.org/resource/ydr8-5enu.json?%24select=permit_%2Cpermit_status%2Cpermit_milestone%2Cpermit_type%2Creview_type%2Capplication_start_date%2Cissue_date%2Cstreet_number%2Cstreet_direction%2Cstreet_name%2Cwork_type%2Csubtotal_paid%2Csubtotal_unpaid%2Ctotal_fee%2Creported_cost&%24where=issue_date+%3E%3D+%272026-11-18T00%3A00%3A00%27+and+issue_date+%3C+%272026-11-25T00%3A00%3A00%27&%24order=issue_date%2Cpermit_&%24limit=1500",
+          "https://data.cityofchicago.org/resource/ydr8-5enu.json?%24select=permit_%2Cpermit_status%2Cpermit_milestone%2Cpermit_type%2Creview_type%2Capplication_start_date%2Cissue_date%2Cstreet_number%2Cstreet_direction%2Cstreet_name%2Cwork_type%2Cwork_description%2Csubtotal_paid%2Csubtotal_unpaid&%24where=permit_+in+%28%27101077422%27%2C%27101090230%27%2C%27101090233%27%29&%24order=permit_"
+        ],
+        "sourceDetails": [
+          {
+            "title": "Chicago Building Permits dataset and publication scope",
+            "publisher": "City of Chicago",
+            "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu"
+          },
+          {
+            "title": "Chicago Building Permits column definitions and source vintage",
+            "publisher": "City of Chicago",
+            "url": "https://data.cityofchicago.org/api/views/ydr8-5enu.json"
+          },
+          {
+            "title": "Chicago permit rows with issue dates November 18 to 24, 2026",
+            "publisher": "City of Chicago",
+            "url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?%24select=permit_%2Cpermit_status%2Cpermit_milestone%2Cpermit_type%2Creview_type%2Capplication_start_date%2Cissue_date%2Cstreet_number%2Cstreet_direction%2Cstreet_name%2Cwork_type%2Csubtotal_paid%2Csubtotal_unpaid%2Ctotal_fee%2Creported_cost&%24where=issue_date+%3E%3D+%272026-11-18T00%3A00%3A00%27+and+issue_date+%3C+%272026-11-25T00%3A00%3A00%27&%24order=issue_date%2Cpermit_&%24limit=1500"
+          },
+          {
+            "title": "Chicago permit records for 410 North Elizabeth Street and 180 North LaSalle Street",
+            "publisher": "City of Chicago",
+            "url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?%24select=permit_%2Cpermit_status%2Cpermit_milestone%2Cpermit_type%2Creview_type%2Capplication_start_date%2Cissue_date%2Cstreet_number%2Cstreet_direction%2Cstreet_name%2Cwork_type%2Cwork_description%2Csubtotal_paid%2Csubtotal_unpaid&%24where=permit_+in+%28%27101077422%27%2C%27101090230%27%2C%27101090233%27%29&%24order=permit_"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Chicago permit cohort, examples and source queries",
+            "path": "/blog/chicago-permit-milestones-november-2026.json",
+            "format": "JSON"
+          }
+        ]
+      },
       {
         "anchor": "dataset-permit-coverage-check",
         "name": "New York and Seattle building permit coverage check",

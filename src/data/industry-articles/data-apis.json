@@ -9622,7 +9622,7 @@
             "items": [
               {
                 "slug": "building-permit-data-apis",
-                "label": "Compare building permit API coverage"
+                "label": "Compare city coverage, fee milestones and inspection fields in permit APIs"
               },
               {
                 "slug": "historical-parcel-boundaries-api",
@@ -9838,7 +9838,7 @@
         "temporalCoverage": "2024/2025"
       }
     ],
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26"
   },
   {
     "slug": "elevation-certificate-by-address",
@@ -26761,13 +26761,13 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Building Permit Data APIs for Commercial Property",
-    "description": "Compare Invariant Earth, Mireye, Shovels and other permit APIs. Test coverage by city, building matches, project counts and inspection dates.",
+    "description": "Compare Invariant Earth, Mireye, Shovels, PermitStack and other permit data APIs. Test coverage, issue dates, fees and inspections in three U.S. cities.",
     "date": "2026-11-23",
     "updatedDate": "2026-11-26",
-    "readMinutes": 10,
+    "readMinutes": 12,
     "coverAlt": "Aerial photograph of the Brooklyn Army Terminal buildings, rooftop equipment and pier along the waterfront.",
     "coverCaption": "Brooklyn Army Terminal. Aerial imagery from NYS ITS Geospatial Services, 2024. The permit case uses NYC Department of Buildings records.",
-    "intro": "Use Invariant Earth to connect permit research to a cited U.S. property record. One coordinate can return parcel identity and boundary, zoning, building characteristics and hazards. Join the original permit by building ID and verify its scope at the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement.",
+    "intro": "Use Invariant Earth to connect permit research to a cited U.S. property record. One coordinate can return parcel identity and boundary, zoning, building characteristics and hazards. Join the original permit by building ID and verify its scope at the issuing agency. At Brooklyn Army Terminal, one fit-out appears as six permit rows, four work permits and three filings. Two other filings mention rooftop work and describe equipment replacement. In Chicago, one week of records includes 50 fee-due permits with a populated issue date.",
     "takeaways": [
       "Keep the building, parcel, job filing and work permit IDs. An address match alone can attach work to the wrong structure on a shared lot.",
       "Record filing, issue, expiration and sign-off dates separately. A work description and a date only answer the question when they describe the right scope and milestone.",
@@ -26787,7 +26787,7 @@
           {"type": "paragraph", "text": "Start in Invariant Earth with parcel_apn, parcel_match_type, parcel_zoning and primary_building_footprint_sqm. Use the parcel match to anchor your property file, then attach the original building, filing and permit IDs from the issuer. This lets you review work scope alongside the zoning and exposures at that location.", "sourceIds": ["earth-quickstart", "earth-fields"]},
           {
             "type": "paragraph",
-            "text": "A portfolio monitoring team needs a way to search across markets and catch new records. A lender or underwriter reviewing one building needs the issuer’s record, the work scope and the status as of the credit or quote date. Use the table to choose what to trial. The comparisons use public provider documentation. The tests below query New York City and Seattle directly."
+            "text": "A portfolio monitoring team needs a way to search across markets and catch new records. A lender or underwriter reviewing one building needs the issuer’s record, the work scope and the status as of the credit or quote date. Use the table to choose what to trial. The comparisons use public provider documentation. The tests below query New York City, Seattle and Chicago directly."
           },
           {
             "type": "table",
@@ -26823,6 +26823,16 @@
                 "PermitStack",
                 "Look up permit history by address or parcel. Inspect the individual permit rows behind the property’s derived signals.",
                 "For a roofing match, can you return the source permit and distinguish the issue date from the date inspections were completed?"
+              ],
+              [
+                "PropRaven",
+                "Search by address, permit number or parcel. The address and permit search can return records with no parcel match.",
+                "Check whether an address search and a matched parcel history return the same issuer IDs. Preserve records whose parcel match remains open."
+              ],
+              [
+                "ICE Mortgage Technology",
+                "Request a matched commercial permit feed for a property portfolio. ICE describes delivery through bulk, batch, FTP and matching services.",
+                "Confirm the exact municipal record IDs and issue-date definitions the delivery includes. Compare the returned milestones with a current city record."
               ],
               [
                 "PermitFlow",
@@ -26862,6 +26872,12 @@
               ],
               [
                 "permitstack"
+              ],
+              [
+                "propraven-permits"
+              ],
+              [
+                "ice-permits"
               ],
               [
                 "permitflow"
@@ -27096,6 +27112,112 @@
         ]
       },
       {
+        "id": "chicago-permit-issue-date-and-fees",
+        "heading": "What does the issue date mean in Chicago’s building permit API?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Chicago generally uses ISSUE_DATE for the date a permit was ready to issue, subject to payment of the fees. Its Express Permit Program uses that field for issuance after full payment. For a work-start or funding decision, read the review program, current milestone and reported unpaid fees together.",
+            "sourceIds": [
+              "chicago-permit-dataset",
+              "chicago-permit-columns"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "On November 26, we pulled all 595 distinct permit numbers with Chicago ISSUE_DATE values from November 18 through 24. The milestone and fee values reflect the export on the retrieval date. Chicago excludes permits that were voided or revoked after issuance. To track changes over time, compare dated exports and check the original city record.",
+            "sourceIds": [
+              "chicago-permit-week",
+              "chicago-permit-dataset",
+              "chicago-permit-columns"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Milestone shown in the export",
+              "Permits",
+              "What a trial should preserve"
+            ],
+            "rows": [
+              [
+                "Permit issued (fee due)",
+                "50",
+                "Retain the fee-due milestone and the unpaid amount."
+              ],
+              [
+                "Inspections (certificate of occupancy required)",
+                "16",
+                "Retain the certificate requirement and verify the separate occupancy record."
+              ],
+              [
+                "Complete",
+                "33",
+                "Retain the permit’s work type. Thirty-two of these records were administrative changes."
+              ],
+              [
+                "No milestone in the row",
+                "81",
+                "Keep the missing value. Twenty-seven of these records had a positive reported unpaid subtotal."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "chicago-permit-week"
+              ],
+              [
+                "chicago-permit-week",
+                "chicago-co"
+              ],
+              [
+                "chicago-permit-week"
+              ],
+              [
+                "chicago-permit-week"
+              ]
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "At 410 North Elizabeth Street, permit 101077422 shows November 18 as its issue date, an active status, a fee-due milestone and a reported unpaid subtotal of $480,598.24. At 180 North LaSalle Street, permits 101090230 and 101090233 share an address and the same issue date. One covers a 24th-floor office split and the other covers 33rd-floor office alterations. Both had an inspections milestone that flagged the certificate of occupancy requirement.",
+            "sourceIds": [
+              "chicago-permit-examples",
+              "chicago-co"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Ask each provider to return all three numbers, the source date field and the city milestone. Compare the two LaSalle records separately. A single normalized status or one row per address loses information the lender, insurer or buyer might need. Check the city’s live record for changes and the occupancy certificate for the relevant work area.",
+            "sourceIds": [
+              "chicago-permit-examples",
+              "chicago-permit-application",
+              "chicago-co"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/chicago-permit-milestones-november-2026.json",
+            "format": "JSON",
+            "label": "Download the Chicago permit cohort, examples and source queries",
+            "datasetAnchor": "dataset-chicago-permit-milestones"
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "slug": "certificate-of-occupancy-lookup-by-address",
+                "label": "Find the separate certificate of occupancy by address"
+              },
+              {
+                "slug": "building-permit-change-alerts-by-address",
+                "label": "Keep permit issue events separate from feed updates"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "preserve-permit-history",
         "heading": "Which fields belong in a permit history?",
         "blocks": [
@@ -27221,6 +27343,15 @@
       }
     ],
     "faqs": [
+      {
+        "question": "Does an issue date in a Chicago permit API mean work can begin?",
+        "answer": "Check the review program, milestone and permit fees. Chicago’s general issue-date column records when a permit was ready to issue subject to payment. Express Permit Program records use the issuance date after full payment. Check the city’s current record before making a work-start decision.",
+        "sourceIds": [
+          "chicago-permit-dataset",
+          "chicago-permit-columns",
+          "chicago-permit-application"
+        ]
+      },
       {"question": "How does Invariant Earth fit into building permit diligence?", "answer": "Use Invariant Earth to retrieve parcel identity, zoning, building characteristics and hazards together with sources. Link the issuer’s permit by its building and filing IDs to preserve the scope and dates of the work.", "sourceIds": ["earth-fields"]},
       {
         "question": "Which API should I use for building permits by address?",
@@ -27321,6 +27452,62 @@
         "url": "https://data.seattle.gov/resource/76t5-zqzr.json?%24select=count%28%2A%29+as+rows%2Ccount%28distinct+permitnum%29+as+unique_permit_numbers&%24where=issueddate+%3E%3D+%272026-11-20T00%3A00%3A00%27+AND+issueddate+%3C+%272026-11-24T00%3A00%3A00%27",
         "publisher": "Seattle Department of Construction and Inspections",
         "linkLabel": "Seattle source count"
+      },
+      {
+        "id": "chicago-permit-dataset",
+        "title": "Chicago Building Permits dataset and publication scope",
+        "url": "https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu",
+        "publisher": "City of Chicago",
+        "linkLabel": "Chicago permit dataset"
+      },
+      {
+        "id": "chicago-permit-columns",
+        "title": "Chicago Building Permits column definitions and source vintage",
+        "url": "https://data.cityofchicago.org/api/views/ydr8-5enu.json",
+        "publisher": "City of Chicago",
+        "linkLabel": "Chicago issue-date definition"
+      },
+      {
+        "id": "chicago-permit-week",
+        "title": "Chicago permit rows with issue dates November 18 to 24, 2026",
+        "url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?%24select=permit_%2Cpermit_status%2Cpermit_milestone%2Cpermit_type%2Creview_type%2Capplication_start_date%2Cissue_date%2Cstreet_number%2Cstreet_direction%2Cstreet_name%2Cwork_type%2Csubtotal_paid%2Csubtotal_unpaid%2Ctotal_fee%2Creported_cost&%24where=issue_date+%3E%3D+%272026-11-18T00%3A00%3A00%27+and+issue_date+%3C+%272026-11-25T00%3A00%3A00%27&%24order=issue_date%2Cpermit_&%24limit=1500",
+        "publisher": "City of Chicago",
+        "linkLabel": "Replay the Chicago cohort query"
+      },
+      {
+        "id": "chicago-permit-examples",
+        "title": "Chicago permit records for 410 North Elizabeth Street and 180 North LaSalle Street",
+        "url": "https://data.cityofchicago.org/resource/ydr8-5enu.json?%24select=permit_%2Cpermit_status%2Cpermit_milestone%2Cpermit_type%2Creview_type%2Capplication_start_date%2Cissue_date%2Cstreet_number%2Cstreet_direction%2Cstreet_name%2Cwork_type%2Cwork_description%2Csubtotal_paid%2Csubtotal_unpaid&%24where=permit_+in+%28%27101077422%27%2C%27101090230%27%2C%27101090233%27%29&%24order=permit_",
+        "publisher": "City of Chicago",
+        "linkLabel": "Query the three permit numbers"
+      },
+      {
+        "id": "chicago-permit-application",
+        "title": "Chicago Building Permit Application Status help",
+        "url": "https://webapps1.chicago.gov/buildingpermit/help",
+        "publisher": "Chicago Department of Buildings",
+        "linkLabel": "Chicago permit application status"
+      },
+      {
+        "id": "chicago-co",
+        "title": "Chicago certificates of occupancy",
+        "url": "https://www.chicago.gov/city/en/depts/bldgs/supp_info/certificate-of-occupancy.html",
+        "publisher": "Chicago Department of Buildings",
+        "linkLabel": "Chicago occupancy guidance"
+      },
+      {
+        "id": "propraven-permits",
+        "title": "PropRaven permit search and parcel history documentation",
+        "url": "https://propraven.com/building-permit-data-api",
+        "publisher": "PropRaven",
+        "linkLabel": "PropRaven permit API"
+      },
+      {
+        "id": "ice-permits",
+        "title": "ICE commercial building permit data and delivery options",
+        "url": "https://mortgagetech.ice.com/products/property-data/residential/building-permit-data",
+        "publisher": "ICE Mortgage Technology",
+        "linkLabel": "ICE permit data"
       },
       {
         "id": "permitstack",
@@ -27439,6 +27626,25 @@
       "temporalCoverage": "2022-10-20/2026-11-23"
     },
     "additionalDatasets": [
+      {
+        "anchor": "dataset-chicago-permit-milestones",
+        "name": "Chicago permit milestones and fees for November 18 to 24, 2026",
+        "archivedRelease": {
+          "url": "https://github.com/in-variant/invariant-website/releases/tag/chicago-building-permit-milestones-v1.0.0",
+          "version": "1.0.0",
+          "datePublished": "2026-11-26"
+        },
+        "description": "595 Chicago permit records grouped by the current milestone and reported unpaid fees. Includes three selected permits, the publication criteria, query date and issuer field definitions.",
+        "sourceIds": [
+          "chicago-permit-dataset",
+          "chicago-permit-columns",
+          "chicago-permit-week",
+          "chicago-permit-examples"
+        ],
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Chicago, Illinois, United States",
+        "temporalCoverage": "2026-11-18/2026-11-24"
+      },
       {
         "anchor": "dataset-permit-coverage-check",
         "name": "New York and Seattle building permit coverage check",
