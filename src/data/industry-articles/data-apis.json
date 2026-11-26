@@ -34021,12 +34021,25 @@
         "sourceIds": ["invariant-fields", "invariant-parcel-fields", "invariant-openapi", "trial-terminal", "trial-san-francisco", "trial-gowanus"],
         "spatialCoverage": "Brooklyn, New York, and San Francisco, California, United States",
         "temporalCoverage": "2026-11-22/2026-11-24"
+      },
+      {
+        "anchor": "dataset-brooklyn-mappluto-pagination",
+        "name": "Brooklyn MapPLUTO parcel query and pagination replay",
+        "description": "Two retrieved pages from NYC MapPLUTO 26v3, checked against a separate count and object ID query. Includes the spatial filters, source URLs, raw response checksums, 2,244 features and the transfer-limit flag.",
+        "datePublished": "2026-11-26",
+        "sourceIds": [
+          "mappluto",
+          "mappluto-pagination-count",
+          "mappluto-pagination-ids"
+        ],
+        "spatialCoverage": "Sunset Park waterfront, Brooklyn, New York, United States",
+        "temporalCoverage": "2026-11-26"
       }
     ],
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Best GIS APIs for U.S. site selection",
-    "description": "Compare GIS APIs for U.S. site selection. Run five requests against three documented sites to test parcel matching, flood overlap and evidence quality.",
+    "description": "Compare GIS APIs for U.S. site selection. Replay parcel pagination in NYC and test parcel matching, flood overlap and source evidence in three locations.",
     "date": "2026-11-22",
     "updatedDate": "2026-11-26",
     "readMinutes": 10,
@@ -34135,6 +34148,71 @@
             "type": "paragraph",
             "text": "Once you have the full parcel list, verify an interior point for each candidate. Use Earth to check the parcel match and enrich the selected sites with fields such as slope and flood classification. Save the area search and enrichment responses separately so you can trace which record supports each result.",
             "sourceIds": ["invariant-polygon-workflow"]
+          }
+        ]
+      },
+      {
+        "id": "parcel-polygon-api-pagination",
+        "heading": "How do you know a parcel API returned every match?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Run a count with the same polygon, filters and source edition, then compare it with the unique feature IDs collected from every page. A successful request can still return a partial list. For a buyer screening an area, those missing rows never reach the eligibility check."
+          },
+          {
+            "type": "paragraph",
+            "text": "A November 26 replay around Brooklyn’s Sunset Park waterfront returned 2,244 features in NYC MapPLUTO 26v3. The first page stopped at the layer’s 2,000-record limit and reported that more records matched. Starting the second request at offset 2,000 returned the remaining 244. The two pages contained all 2,244 object IDs from the independent ID query.",
+            "sourceIds": [
+              "mappluto-pagination-count",
+              "mappluto-pagination-ids"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Check",
+              "Brooklyn result",
+              "What to keep"
+            ],
+            "rows": [
+              [
+                "Count before retrieval",
+                "2,244 features matched",
+                "The envelope, intersection rule, source edition and filters"
+              ],
+              [
+                "First feature page",
+                "2,000 rows with a transfer-limit flag",
+                "The limit flag, page size and object ID sort"
+              ],
+              [
+                "Second feature page",
+                "244 rows with no further page indicated",
+                "The offset or cursor and the feature IDs returned"
+              ],
+              [
+                "Reconcile the result",
+                "All 2,244 object IDs accounted for",
+                "The source ID set and the list of retrieved rows"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Use object IDs to reconcile records within the queried layer. Keep the borough, block and lot number (BBL) as text for joining to other property records. ArcGIS documents returnIdsOnly=true for listing matching feature IDs. Regrid documents return_count for the count and offset_id for paging. For Invariant Earth, keep the area-search result beside the parcel and site evidence you retrieve for each candidate.",
+            "sourceIds": [
+              "esri-feature-query",
+              "regrid-api-paging",
+              "invariant-polygon-workflow"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the query URLs, response checksums and 2,244 parcel records",
+            "path": "/blog/brooklyn-mappluto-parcel-pagination.json",
+            "format": "JSON",
+            "datasetAnchor": "dataset-brooklyn-mappluto-pagination"
           }
         ]
       },
@@ -34334,6 +34412,34 @@
       {"id": "paces", "title": "Site selection for data center developers", "url": "https://www.paces.com/data-center-developers", "publisher": "Paces"},
       {"id": "pvcase", "title": "Using PVcase Prospect capacity data to site data centers", "url": "https://help.pvcase.com/hc/en-us/articles/47083999498259-How-do-I-site-data-centers-with-PVcase-Prospect-capacity-data", "publisher": "PVcase"},
       {"id": "ageospatial", "title": "Geospatial insurance and finance workflows", "url": "https://www.ageospatial.com/", "publisher": "Ageospatial"},
+      {
+        "id": "mappluto-pagination-count",
+        "title": "MapPLUTO 26v3 feature count for the Brooklyn test envelope",
+        "publisher": "NYC Department of City Planning",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=json&where=Borough%3D%27BK%27+AND+Lot%3E0&geometry=-74.022%2C40.642%2C-74.010%2C40.652&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true",
+        "linkLabel": "NYC feature count query"
+      },
+      {
+        "id": "mappluto-pagination-ids",
+        "title": "MapPLUTO matching object IDs for the Brooklyn test envelope",
+        "publisher": "NYC Department of City Planning",
+        "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=json&where=Borough%3D%27BK%27+AND+Lot%3E0&geometry=-74.022%2C40.642%2C-74.010%2C40.652&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnIdsOnly=true",
+        "linkLabel": "NYC object ID query"
+      },
+      {
+        "id": "esri-feature-query",
+        "title": "Querying a feature layer, record limits, object IDs and pagination",
+        "publisher": "Esri",
+        "url": "https://developers.arcgis.com/rest/services-reference/enterprise/query-feature-service-layer/",
+        "linkLabel": "ArcGIS feature query documentation"
+      },
+      {
+        "id": "regrid-api-paging",
+        "title": "Parcel count and offset_id pagination",
+        "publisher": "Regrid",
+        "url": "https://support.regrid.com/docs/api-best-practices",
+        "linkLabel": "Regrid count and paging documentation"
+      },
       {"id": "mappluto", "title": "MapPLUTO tax lot geometry and attributes", "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0", "publisher": "NYC Department of City Planning"},
       {"license": "https://www.usa.gov/government-works", "id": "fema", "title": "National Flood Hazard Layer 28, flood hazard zones", "url": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28", "publisher": "FEMA"},
       {"id": "imagery", "title": "Spring 2024 New York State orthoimagery", "url": "https://orthos.its.ny.gov/arcgis/rest/services/wms/2024/MapServer", "publisher": "NYS ITS Geospatial Services"},

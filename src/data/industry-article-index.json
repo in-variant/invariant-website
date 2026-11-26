@@ -6033,7 +6033,7 @@
     "slug": "best-gis-apis-for-site-selection",
     "topic": "Data & APIs",
     "title": "Best GIS APIs for U.S. site selection",
-    "summary": "Compare GIS APIs for U.S. site selection. Run five requests against three documented sites to test parcel matching, flood overlap and evidence quality.",
+    "summary": "Compare GIS APIs for U.S. site selection. Replay parcel pagination in NYC and test parcel matching, flood overlap and source evidence in three locations.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
@@ -6130,6 +6130,43 @@
           {
             "label": "Download five GIS API requests and the three reference checks",
             "path": "/blog/gis-api-parcel-and-flood-trial.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-brooklyn-mappluto-pagination",
+        "name": "Brooklyn MapPLUTO parcel query and pagination replay",
+        "description": "Two retrieved pages from NYC MapPLUTO 26v3, checked against a separate count and object ID query. Includes the spatial filters, source URLs, raw response checksums, 2,244 features and the transfer-limit flag.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Sunset Park waterfront, Brooklyn, New York, United States",
+        "temporalCoverage": "2026-11-26",
+        "sources": [
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0",
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=json&where=Borough%3D%27BK%27+AND+Lot%3E0&geometry=-74.022%2C40.642%2C-74.010%2C40.652&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true",
+          "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=json&where=Borough%3D%27BK%27+AND+Lot%3E0&geometry=-74.022%2C40.642%2C-74.010%2C40.652&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnIdsOnly=true"
+        ],
+        "sourceDetails": [
+          {
+            "title": "MapPLUTO tax lot geometry and attributes",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0"
+          },
+          {
+            "title": "MapPLUTO 26v3 feature count for the Brooklyn test envelope",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=json&where=Borough%3D%27BK%27+AND+Lot%3E0&geometry=-74.022%2C40.642%2C-74.010%2C40.652&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnCountOnly=true"
+          },
+          {
+            "title": "MapPLUTO matching object IDs for the Brooklyn test envelope",
+            "publisher": "NYC Department of City Planning",
+            "url": "https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/MAPPLUTO/FeatureServer/0/query?f=json&where=Borough%3D%27BK%27+AND+Lot%3E0&geometry=-74.022%2C40.642%2C-74.010%2C40.652&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&returnIdsOnly=true"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the query URLs, response checksums and 2,244 parcel records",
+            "path": "/blog/brooklyn-mappluto-parcel-pagination.json",
             "format": "JSON"
           }
         ]
