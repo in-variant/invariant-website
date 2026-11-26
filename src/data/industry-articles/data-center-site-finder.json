@@ -25619,7 +25619,7 @@
   "title": "Data Center Site Selection Checklist and Criteria",
   "description": "Download a data center site comparison workbook. Check 12 criteria, including phased utility MW, service dates, usable land, cooling water, fiber and permits.",
   "date": "2026-11-09",
-  "readMinutes": 15,
+  "readMinutes": 17,
   "intro": "Data center site selection starts with the opening date and the load the facility needs at the utility meter. Set those requirements for each phase, then screen usable land, site control, cooling water, fiber and permits against the same schedule. The checklist helps you decide which sites warrant a study, which need one more document and which miss a requirement you can’t change.",
   "takeaways": [
    "Write down IT load, facility MW at the meter, and the last acceptable service date for each phase.",
@@ -25942,6 +25942,78 @@
           "label": "Read on-site boring records before estimating grading work"
         }
       ]
+     }
+    ]
+   },
+   {
+    "id": "geotechnical-due-diligence-data-center-sites",
+    "heading": "How ground conditions can change a data center construction schedule",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "Ask the geotechnical engineer to review the current grading plan, building footprints and equipment loads together. A flood design can raise the pads, adding weight that compresses the soil below. Have the engineer identify which areas must be monitored or treated and what evidence lets the contractor start foundations."
+     },
+     {
+      "type": "paragraph",
+      "text": "For San José Data Center 04, the December 2020 geotechnical report modeled up to 10 feet of added fill in the building areas and up to 3 feet at the substation. The same 10 feet produced different settlement estimates for the two buildings. The figures below describe the fill scenarios in that report.",
+      "sourceIds": [
+       "sj04-geotech",
+       "sj04-docket"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Area",
+       "Added fill modeled",
+       "Estimated fill settlement",
+       "Estimated time to about 90% of clay settlement"
+      ],
+      "rows": [
+       [
+        "Building 1",
+        "10 ft",
+        "6 in",
+        "About 6 months"
+       ],
+       [
+        "Building 2",
+        "10 ft",
+        "5.5 in",
+        "About 4 to 5 months"
+       ],
+       [
+        "Substation",
+        "3 ft",
+        "2.5 in",
+        "About 4 months"
+       ]
+      ],
+      "sourceIds": [
+       "sj04-geotech"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Terracon proposed early fill placement and surveys at least monthly to confirm when foundations could begin. The table excludes settlement from structural loads and liquefaction. Ask which observations and acceptance criteria apply under the final design before adding a waiting period to the construction schedule.",
+      "sourceIds": [
+       "sj04-geotech"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The applicant’s July 2025 revision expected grading without imported fill and proposed building piles extending about 80 feet below existing grade. It also described leaving grades low on roughly the western third of the property so that shallow floodwater could pass through. Use the revised civil and foundation documents to confirm current quantities, contractor scope and the schedule before exercising a land option.",
+      "sourceIds": [
+       "sj04-revision"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/san-jose-data-center-04-grading-and-settlement.json",
+      "format": "JSON",
+      "label": "Download the SJ04 grading and settlement records",
+      "datasetAnchor": "dataset-san-jose-data-center-04-geotechnical"
      }
     ]
    },
@@ -26762,6 +26834,14 @@
   ],
   "faqs": [
    {
+    "question": "Can raising a data center site for flood protection delay foundations?",
+    "answer": "Added fill can compress underlying soil. Ask the geotechnical engineer to estimate settlement for each building and equipment pad using the current grading design, specify how to measure it, and confirm when foundations can begin. Recheck those assumptions after a grading revision.",
+    "sourceIds": [
+     "sj04-geotech",
+     "sj04-revision"
+    ]
+   },
+   {
     "question": "What are the most important data center site selection criteria?",
     "answer": "Start with the amount of power the facility needs at the meter and the date it needs it. Then screen usable land and control, available cooling water, independent fiber paths where required, hazards, and the local approvals that could change the schedule. The order can change with the project.",
     "sourceIds": [
@@ -26808,6 +26888,27 @@
    }
   ],
   "sources": [
+   {
+    "id": "sj04-geotech",
+    "title": "Terracon geotechnical report, December 15, 2020, printed pages 5–7",
+    "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=80141&tn=245955",
+    "publisher": "Terracon through California Energy Commission",
+    "linkLabel": "2020 geotechnical report"
+   },
+   {
+    "id": "sj04-revision",
+    "title": "Fourth revised SJ04 project description, July 2025, §§3.3.7 and 3.4.1",
+    "url": "https://efiling.energy.ca.gov/GetDocument.aspx?DocumentContentId=101543&tn=264764",
+    "publisher": "Microsoft through California Energy Commission",
+    "linkLabel": "2025 revised project description"
+   },
+   {
+    "id": "sj04-docket",
+    "title": "San José Data Center 04 project and parcel identifiers",
+    "url": "https://www.energy.ca.gov/powerplant/backup-generating-system/san-jose-data-center-04",
+    "publisher": "California Energy Commission",
+    "linkLabel": "SJ04 project and parcels"
+   },
    {
     "id": "taurus-approval",
     "linkLabel": "June 11 approval letter",
@@ -27134,6 +27235,19 @@
    ]
   },
   "additionalDatasets": [
+   {
+    "anchor": "dataset-san-jose-data-center-04-geotechnical",
+    "name": "San José Data Center 04 grading and settlement records",
+    "description": "A 2020 fill settlement analysis and the applicant’s 2025 grading and foundation proposal for two data center buildings and a substation in San José. Includes original docket identifiers and PDF pages.",
+    "datePublished": "2026-11-26",
+    "sourceIds": [
+     "sj04-geotech",
+     "sj04-revision",
+     "sj04-docket"
+    ],
+    "spatialCoverage": "San José Data Center 04, Santa Clara County, California, United States",
+    "temporalCoverage": "2020-12-15/2025-07-14"
+   },
    {
     "archivedRelease": {
       "url": "https://github.com/in-variant/invariant-website/releases/tag/project-taurus-approval-and-power-records-v1.0.0",
