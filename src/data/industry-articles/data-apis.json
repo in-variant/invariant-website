@@ -1480,6 +1480,11 @@
                 "Whether the serving utility can study that path and how the proposed firm and flexible load portions would be treated under the service terms."
               ],
               [
+                "LandGate",
+                "Parcel and site screening with power, fiber, topography and exclusion layers, plus data center feasibility studies.",
+                "A buildable polygon and a named service point for the same candidate. Ask for the year and case behind the offtake estimate, then compare both with your phased service dates."
+              ],
+              [
                 "GE Vernova Consulting Services",
                 "Engineering and power economics consulting. Published data center siting work covers generation surplus, curtailment, congestion and site conditions.",
                 "A scoped study that connects the regional cost and reliability results to the specific facility’s point of delivery and operating profile."
@@ -1504,6 +1509,9 @@
               ],
               [
                 "gridcare"
+              ],
+              [
+                "landgate"
               ],
               [
                 "ge-vernova"
@@ -1698,6 +1706,7 @@
       }
     ],
     "sources": [
+      {"id": "landgate", "title": "Site, solar, data center and battery storage analysis", "url": "https://www.landgate.com/analysis", "publisher": "LandGate"},
       {
         "id": "parcel",
         "title": "Fairfax County parcel detail for 6295 Edsall Road",
@@ -18889,6 +18898,7 @@
     "title": "ERCOT Day-Ahead and Real-Time Price Data",
     "description": "Download ERCOT historical hub prices and compare day-ahead and real-time settlement intervals. Reproduce the 25-hour Houston and West hub example.",
     "date": "2026-11-23",
+    "updatedDate": "2026-11-25",
     "readMinutes": 6,
     "coverAlt": "Day-ahead and real-time electricity price lines for the Houston and West trading hubs on November 2, 2025. The two 02:00 intervals appear side by side in a shaded band.",
     "coverCaption": "ERCOT’s Houston and West hub settlement prices across the November 2, 2025 operating day. Real-time points are hourly means of four 15-minute prices.",
@@ -18943,6 +18953,11 @@
                 "forecasts"
               ]
             ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Grid Status offers historical and current ISO market datasets through a hosted API. Run the same ERCOT settlement-point query there and through ERCOT’s published archive. On the repeated-hour date below, compare the two UTC intervals for the duplicate local time and verify that the real-time feed uses the settlement interval your analysis requires.",
+            "sourceIds": ["grid-status", "rt-doc"]
           },
           {
             "type": "paragraph",
@@ -19104,6 +19119,7 @@
       }
     ],
     "sources": [
+      {"id": "grid-status", "title": "Hosted API and electricity market datasets", "url": "https://github.com/gridstatus/gridstatusio", "publisher": "Grid Status"},
       {
         "id": "prices",
         "title": "ERCOT market prices and corrections",
@@ -24119,6 +24135,11 @@
                 "Ask how the model distinguishes a full replacement from partial work and which fields expose the evidence or model basis."
               ],
               [
+                "Nearmap Roof Age API",
+                "Predicted roof installation age for residential and commercial buildings, using aerial imagery and additional records.",
+                "Submit the River Avenue footprint and ask how the estimate treats partial work. Compare its observation date and the estimated replacement period with the city’s completion record."
+              ],
+              [
                 "Verisk Roof Underwriting Report",
                 "A commercial roof report with age, condition, material, equipment and an estimated roof replacement cost.",
                 "Review the target location and scope of the reported age and cost. Ask what can be retained as machine-readable data."
@@ -24139,6 +24160,9 @@
               [
                 "zesty",
                 "zesty-commercial"
+              ],
+              [
+                "nearmap-roof-age"
               ],
               [
                 "verisk"
@@ -24331,6 +24355,7 @@
       }
     ],
     "sources": [
+      {"id": "nearmap-roof-age", "title": "Nearmap Roof Age API", "url": "https://developer.nearmap.com/docs/roof-age-api", "publisher": "Nearmap"},
       {
         "id": "spec",
         "publisher": "City of Rosemead",
@@ -26910,6 +26935,7 @@
     "topic": "Data & APIs",
     "region": "United States",
     "date": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "readMinutes": 8,
     "title": "GIS MCP Servers for Parcel Data and Site Selection",
     "description": "Compare Invariant Earth, Regrid, LightBox, West Kite and ArcGIS Enterprise MCP. Test which parcel and flood answers you can trace to the source.",
@@ -26963,6 +26989,11 @@
                 "MCP for ArcGIS Enterprise",
                 "Access to permitted GIS content and tools in an organization’s ArcGIS Enterprise deployment.",
                 "Can you find the approved internal layer and use it to answer the same site question within the user’s permissions?"
+              ],
+              [
+                "CARTO MCP Server",
+                "Publish geospatial workflows built by your team as tools an agent can call.",
+                "Use the same parcel polygon with two dated layer versions. Check that the workflow returns the layer version and shows when a repeated call reuses a cached result."
               ]
             ],
             "rowSourceIds": [
@@ -26981,6 +27012,9 @@
               ],
               [
                 "arcgis"
+              ],
+              [
+                "carto-mcp"
               ]
             ],
             "stackOnMobile": true
@@ -27206,6 +27240,7 @@
       }
     ],
     "sources": [
+      {"id": "carto-mcp", "title": "Publish CARTO Workflows as MCP tools", "url": "https://docs.carto.com/carto-user-manual/workflows/workflows-as-mcp-tools", "publisher": "CARTO"},
       {
         "id": "registry",
         "title": "Official MCP Registry entry for Invariant Earth",
@@ -27359,7 +27394,7 @@
     "title": "Best GIS APIs for U.S. site selection",
     "description": "Compare GIS APIs for U.S. site selection. Run five requests against three documented sites to test parcel matching, flood overlap and evidence quality.",
     "date": "2026-11-22",
-    "updatedDate": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "readMinutes": 10,
     "coverAlt": "Aerial map of Brooklyn Army Terminal with the shoreline-clipped tax lot outlined in white, Zone AE on the lot shaded blue, and the published coordinate marked just outside the boundary.",
     "coverCaption": "Brooklyn Army Terminal. The white outline is the MapPLUTO 26v2 tax lot, blue shows FEMA Zone AE within it, and the gold dot marks the published coordinate. Aerial imagery from NYS ITS, spring 2024.",
@@ -27376,7 +27411,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Invariant makes Invariant Earth. We reviewed public product documentation on November 22 and 24, 2026. The San Francisco and Brooklyn checks use city and federal records. The comparison describes documented capabilities and checks to run in a vendor trial."
+            "text": "Invariant makes Invariant Earth. We reviewed public product documentation from November 22 to 25, 2026. The San Francisco and Brooklyn checks use city and federal records. The comparison describes documented capabilities and checks to run in a vendor trial."
           },
           {
             "type": "table",
@@ -27385,6 +27420,7 @@
             "rows": [
               ["Invariant Earth", "Screening known sites with parcel, terrain, hazard and infrastructure fields, with source links, vintages and status.", "Run the same inputs through Fetch and Enrich. Check the parcel match near a boundary and retain the source and date for each field."],
               ["Esri ArcGIS Location Platform", "Geocoding, basemaps, routing, and publishing spatial layers.", "Check how geocodes resolve on large campuses. Confirm that the plan supports storing geocodes and serving your own data layers."],
+              ["CARTO", "Spatial analysis in a cloud data warehouse, with datasets available through the Data Observatory.", "Ask for the parcel and zoning datasets needed in your counties. Check the licensed fields and update dates, then rerun the polygon query in your warehouse."],
               ["Regrid", "Parcel boundaries, APN lookups and searches by GeoJSON geometry.", "Test a recent split and a narrow polygon that crosses parcel boundaries. Check county refresh dates for the fields you need."],
               ["GetParcelData", "Parcel searches by point, radius or WKT polygon.", "Check whether partial overlaps qualify and whether pagination returns every match. Confirm data vintage for the counties in scope."],
               ["Parceled", "Parcel lookups, hosted parcel tiles and linked assessor, permit and zoning fields.", "Check parcel and permit coverage separately for each county. Test a parcel whose permit history you can verify."],
@@ -27395,7 +27431,7 @@
               ["PVcase Prospect", "Map-based site screening, with withdrawal capacity studies for data center loads.", "Check which connection, load case, and study year the capacity layer represents. Verify the site and power questions that still need utility evidence."],
               ["Ageospatial", "Property and infrastructure intelligence for insurance and credit workflows.", "Give it a schedule with multiple buildings at one address. Inspect the evidence behind the building match and risk inputs."]
             ],
-            "rowSourceIds": [["invariant-fields", "invariant-responses"], ["esri"], ["regrid", "regrid-id"], ["getparceldata"], ["parceled"], ["west-kite"], ["mireye"], ["geoforge"], ["paces"], ["pvcase"], ["ageospatial"]]
+            "rowSourceIds": [["invariant-fields", "invariant-responses"], ["esri"], ["carto"], ["regrid", "regrid-id"], ["getparceldata"], ["parceled"], ["west-kite"], ["mireye"], ["geoforge"], ["paces"], ["pvcase"], ["ageospatial"]]
           }
         ]
       },
@@ -27577,6 +27613,7 @@
       }
     ],
     "sources": [
+      {"id": "carto", "title": "Spatial Data Catalog and warehouse access", "url": "https://docs.carto.com/carto-user-manual/data-observatory", "publisher": "CARTO"},
       {"id": "esri", "title": "ArcGIS Location Platform services", "url": "https://developers.arcgis.com/products/arcgis-location-platform/", "publisher": "Esri"},
       {"id": "regrid", "title": "Parcel API endpoint overview", "url": "https://support.regrid.com/docs/api-endpoint-overview", "publisher": "Regrid"},
       {"id": "regrid-id", "title": "How the Regrid parcel ID is maintained", "url": "https://support.regrid.com/docs/regrid-id", "publisher": "Regrid ID policy"},
@@ -28381,13 +28418,14 @@
               ["Verisk", "Commercial underwriting reports through its API, including U.S. LOCATION and ProMetrix products.", "Which U.S. report covers your commercial portfolio, the property ID it uses, and the fields returned at building versus location level."],
               ["Guidewire HazardHub", "An API for property characteristics, peril scores, and fire-suppression context.", "The underlying variables, source dates, and the location geometry used for a flood or fire-protection result."],
               ["ZestyAI", "Roof age and condition signals from imagery and records, with an API for its roof age estimates.", "Whether the result is an estimate or based on observed work, which roof sections it covers, and whether the product supports your property types."],
+              ["Nearmap Betterview", "Imagery-derived property insights, roof condition indicators, and hazard information for insurance workflows.", "For two buildings on one lot, verify the building that received each roof result. Check the imagery capture date and whether you can retain it with the quote record."],
               ["First Street", "Modeled flood depths and damage metrics with scenario, return period, and time horizon.", "A footprint result and a coordinate-only case. Verify how the model reports depth when an outline is unavailable."],
               ["Ageospatial", "Building evidence for insurers drawn from imagery, maps, records, and documents.", "How a line on a schedule is tied to a footprint, how conflicting building attributes surface, and what history can be exported."],
               ["ATTOM", "Property characteristics such as year built, construction type, and roof cover in its property API.", "A large commercial property split across structures. Ask which fields describe the primary structure and which aggregate across the site."],
               ["West Kite", "Commercial property records and permits tied to properties, with dated sources.", "A permit lookup for Building A and a walkthrough of how the API preserves the filing date, issuance, scope, and later status."],
               ["Invariant Earth", "Location and parcel context, including hazard layers and field-level provenance and status.", "The coordinate and parcel response for a known property, with the source and dataset vintage. Validate the building separately before attaching exposure to it."]
             ],
-            "rowSourceIds": [["cotality"], ["moodys-cape"], ["verisk"], ["hazardhub"], ["zesty-roof", "zesty-commercial"], ["first-street"], ["ageospatial"], ["attom"], ["west-kite"], ["earth-catalog", "earth-responses"]]
+            "rowSourceIds": [["cotality"], ["moodys-cape"], ["verisk"], ["hazardhub"], ["zesty-roof", "zesty-commercial"], ["nearmap-betterview"], ["first-street"], ["ageospatial"], ["attom"], ["west-kite"], ["earth-catalog", "earth-responses"]]
           }
         ]
       },
@@ -28519,6 +28557,7 @@
       }
     ],
     "sources": [
+      {"id": "nearmap-betterview", "title": "Integrating with the Betterview API", "url": "https://developer.nearmap.com/docs/integrating-with-betterview", "publisher": "Nearmap"},
       {
         "id": "roof-permit-workflow",
         "title": "Re-run the New York City and Seattle roof permit queries",
@@ -32513,6 +32552,7 @@
     "title": "Solar farm site selection with GIS and interconnection data",
     "description": "Screen buildable acres, compare points of interconnection, and verify solar export capacity. See what changed between two PJM study phases at one substation.",
     "date": "2026-11-22",
+    "updatedDate": "2026-11-25",
     "readMinutes": 7,
     "coverAlt": "Chart of PJM allocated interconnection cost estimates at Nottingham 138 kV. The original request rose from $2.33 million to $4.16 million. Its 200 MW uprate rose from $2.68 million to $6.34 million.",
     "coverCaption": "PJM Transition Cycle 2 estimates at Nottingham 138 kV, Ohio. The chart compares allocations published in October 2025 and June 2026.",
@@ -32620,8 +32660,8 @@
         "blocks": [
           {
             "type": "paragraph",
-            "text": "Use public GIS layers when you need to run your own polygon calculations. PVcase Prospect documents a greenfield workflow for filtering by buildable acres and working with site constraints. Geoforge’s example report shows how a separate power screen can organize modeled headroom, queue records, and upgrades. Ask each provider which cases it covers and which results you can export with dates and sources.",
-            "sourceIds": ["pvcase", "geoforge"]
+            "text": "Use public GIS layers when you need to run your own polygon calculations. PVcase Prospect documents a greenfield workflow for filtering by buildable acres and working with site constraints. Geoforge’s example report shows how a separate power screen can organize modeled headroom, queue records, and upgrades. LandGate documents buildable-area analysis with custom exclusions, as well as separate solar and battery storage studies. Give each provider the same tract and export the excluded polygons. Ask for the study year and connection used for each capacity result. For storage, record charging and discharge limits separately.",
+            "sourceIds": ["pvcase", "geoforge", "landgate"]
           },
           {
             "type": "paragraph",
@@ -32664,6 +32704,7 @@
       }
     ],
     "sources": [
+      {"id": "landgate", "title": "Site, solar, data center and battery storage analysis", "url": "https://www.landgate.com/analysis", "publisher": "LandGate"},
       {"id": "doe", "title": "Large-scale solar siting resources", "url": "https://www.energy.gov/cmei/systems/large-scale-solar-siting-resources", "publisher": "U.S. Department of Energy"},
       {"id": "usgs", "title": "3D Elevation Program products and services", "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services", "publisher": "U.S. Geological Survey"},
       {"id": "wetlands", "title": "Wetlands mapping limitations and exclusions", "url": "https://www.fws.gov/page/wetlands-data-limitations-exclusions-and-precautions", "publisher": "U.S. Fish and Wildlife Service"},
