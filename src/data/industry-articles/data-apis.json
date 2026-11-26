@@ -19259,6 +19259,7 @@
     "title": "How to calculate retail trade area overlap",
     "description": "Measure the households two retail sites can both reach. Compare 10-, 15- and 20-minute drive times at two Detroit grocery stores, with downloadable Census estimates.",
     "date": "2026-11-24",
+    "updatedDate": "2026-11-26",
     "region": "United States",
     "readMinutes": 6,
     "coverAlt": "Aerial map with the two 15-minute Detroit drive areas and three zones. Micah’s only reaches about 247,700 households, both reach 31,200, and Whittier’s only reaches 150,300.",
@@ -19271,11 +19272,36 @@
     ],
     "guideActions": [
       {
+        "href": "#trade-area-overlap-calculator",
+        "label": "Calculate household overlap"
+      },
+      {
         "href": "https://docs.invariant-ai.com/estimate-labor-shed-by-drive-time",
         "label": "Check population around a candidate store"
       }
     ],
     "sections": [
+      {
+        "id": "trade-area-overlap-calculator",
+        "heading": "Retail trade area overlap calculator",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Enter the households in each store’s drive area and the households in the intersection. Use the same travel time, travel direction and Census release for all three. For multiple existing stores, enter the household count for their combined area and its overlap with the candidate."
+          },
+          {
+            "type": "trade-area-overlap"
+          },
+          {
+            "type": "paragraph",
+            "text": "At 15 minutes in the Detroit example, Whittier’s area adds about 150,300 households beyond Micah’s. About 31,200 can reach both stores, or 17.2% of Whittier’s reachable households. The two areas together reach about 429,200 distinct Michigan households. The example inputs use the 2020–2024 American Community Survey, rounded to whole households. To project sales transfer, compare the shared area with customer origins and comparable-store sales.",
+            "sourceIds": [
+              "acs-households",
+              "valhalla"
+            ]
+          }
+        ]
+      },
       {
         "id": "calculate-overlapping-drive-areas",
         "heading": "How do you calculate trade area overlap?",
@@ -19389,6 +19415,24 @@
             "path": "/blog/detroit-retail-trade-area-overlap.json",
             "label": "Download the disjoint drive areas, household estimates and Census weights",
             "format": "JSON"
+          },
+          {
+            "type": "download",
+            "path": "/blog/retail-trade-area-replay.py",
+            "label": "Download the household overlap and sampling margin replay",
+            "format": "Python",
+            "datasetAnchor": null
+          },
+          {
+            "type": "shell",
+            "command": "python3 retail-trade-area-replay.py detroit-retail-trade-area-overlap.json"
+          },
+          {
+            "type": "paragraph",
+            "text": "Run the replay with Python 3.10 or later. It combines the same 80 ACS replicates for each drive time and exports the household totals, overlap shares and 90% sampling margins as CSV. The release includes the calculated CSV and the source snapshot.",
+            "sourceIds": [
+              "detroit-overlap-replay-release"
+            ]
           }
         ]
       },
@@ -19443,6 +19487,7 @@
       }
     ],
     "sources": [
+      {"id": "detroit-overlap-replay-release", "title": "Detroit household overlap replay with checksums", "publisher": "Invariant", "url": "https://github.com/in-variant/invariant-website/releases/tag/detroit-household-overlap-replay-v1.0.0", "linkLabel": "Versioned files and checksums"},
       {
         "id": "earth-workflow",
         "title": "Estimate a labor shed by drive time",

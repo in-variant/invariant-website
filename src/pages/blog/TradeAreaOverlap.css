@@ -1,0 +1,80 @@
+@import '../../styles/invariant-brand.css';
+
+.trade-overlap {
+  display: grid;
+  gap: var(--inv-space-5);
+  padding: clamp(16px, 3vw, 28px);
+  margin-block: var(--inv-space-5);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  background: var(--inv-paper);
+  color: var(--inv-ink);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.trade-overlap fieldset { display: grid; gap: var(--inv-space-4); min-width: 0; }
+.trade-overlap legend { margin-bottom: var(--inv-space-3); font-size: 1.0625rem; font-weight: 500; }
+.trade-overlap-inputs, .trade-overlap-highlights, .trade-overlap-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--inv-space-4);
+}
+.trade-overlap label { display: grid; gap: var(--inv-space-1); align-content: space-between; font-size: .875rem; }
+.trade-overlap .trade-overlap-example { width: min(100%, 315px); }
+.trade-overlap :is(input, select) {
+  min-width: 0;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--inv-space-1) var(--inv-space-2);
+  border: 1px solid var(--inv-border);
+  border-radius: var(--inv-radius);
+  background: #fff;
+  color: var(--inv-ink);
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+.trade-overlap :is(input, select):focus-visible { outline: 2px solid var(--inv-accent); outline-offset: 2px; }
+.trade-overlap-output { display: grid; gap: var(--inv-space-3); }
+.trade-overlap-output :is(dl, dd, p) { margin: 0; }
+.trade-overlap-highlights > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid var(--inv-border);
+  padding-block: var(--inv-space-3);
+}
+.trade-overlap-highlights dt, .trade-overlap-legend dt { font-size: .875rem; line-height: 1.4; }
+.trade-overlap-highlights dd {
+  margin-top: var(--inv-space-2);
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  line-height: 1.2;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.trade-overlap-highlights dd span { font-size: 1rem; }
+.trade-overlap-bar {
+  display: flex;
+  overflow: hidden;
+  height: 9px;
+  border-radius: var(--inv-radius);
+  background: var(--inv-border);
+}
+.trade-overlap-bar span { flex-basis: 0; }
+.trade-overlap [data-kind='existing'] { --zone: var(--inv-earth); }
+.trade-overlap [data-kind='shared'] { --zone: var(--inv-accent); }
+.trade-overlap [data-kind='candidate'] { --zone: var(--inv-ocean); }
+.trade-overlap-bar span { background: var(--zone); }
+.trade-overlap-legend dt::before {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: var(--inv-space-2);
+  background: var(--zone);
+  content: '';
+}
+.trade-overlap-legend dd { font-size: .875rem; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 660px) {
+  .trade-overlap-inputs, .trade-overlap-highlights { grid-template-columns: minmax(0, 1fr); gap: var(--inv-space-3); }
+  .trade-overlap-legend { gap: var(--inv-space-2); }
+}

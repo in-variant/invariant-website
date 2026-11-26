@@ -117,6 +117,7 @@ function articleMd(a) {
       else if (b.type === 'list') out.push(...b.items.map(i => `- ${i}`), ...(b.sourceIds?.length ? ['', `Sources:${cite(b.sourceIds)}`] : []), '')
       else if (b.type === 'shell') out.push('```bash', b.command, '```', '')
       else if (b.type === 'site-comparison') out.push(citationLink('Run the site comparison with your own requirements', `${SITE}/blog/${a.slug}#${s.id}`), '')
+      else if (b.type === 'trade-area-overlap') out.push(citationLink('Calculate trade area overlap with your household counts', `${SITE}/blog/${a.slug}#${s.id}`), '')
       else if (b.type === 'table') {
         if (b.worksheet) out.push(`[Download the worksheet (CSV)](${SITE}/blog/${a.slug}.csv)`, '')
         const rows = b.rows.map((row, rowIndex) => {

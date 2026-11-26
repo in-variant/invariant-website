@@ -10,6 +10,7 @@ import { SITE_SEARCH_REQUEST_PATH, SITE_SUBMISSION_PATH } from '../../data/siteC
 import './IndustryArticle.css'
 import './ListingTable.css'
 import SiteComparison from './SiteComparison'
+import TradeAreaOverlap from './TradeAreaOverlap'
 
 function Citations({ ids, article }: { ids?: string[]; article: Article }) {
   if (!ids?.length) return null
@@ -42,6 +43,7 @@ function Block({ block, article, datasets }: { block: ArticleBlock; article: Art
     </>
   }
   if (block.type === 'site-comparison') return <SiteComparison />
+  if (block.type === 'trade-area-overlap') return <TradeAreaOverlap />
   if (block.rowTransactions) return <ListingTable block={block} article={article} transactions={block.rowTransactions} />
   return <ArticleTable block={block} article={article} />
 }
