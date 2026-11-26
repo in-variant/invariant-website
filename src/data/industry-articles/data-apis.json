@@ -34947,19 +34947,31 @@
   {
     "slug": "business-broadband-availability-by-address",
     "topic": "Data & APIs",
-    "title": "How to check business broadband availability by address",
-    "description": "Find reported business fiber, cable and fixed wireless at a property. Compare two San Francisco addresses and verify installation, upload speeds and service terms before signing.",
+    "title": "Business fiber availability by address: maps, APIs and quotes",
+    "description": "Check reported business fiber by address. Compare Invariant Earth, Connectbase, FiberLocator, and the FCC, then test a vendor on two documented addresses.",
     "date": "2026-11-24",
+    "updatedDate": "2026-11-25",
     "region": "United States",
-    "readMinutes": 6,
+    "readMinutes": 9,
     "coverFile": "parcel-number-lookup-by-address.webp",
     "coverAlt": "Mapped address points and parcel boundaries for Main Library and the Asian Art Museum in San Francisco’s Civic Center.",
     "coverCaption": "The Main Library and Asian Art Museum address points from San Francisco’s Enterprise Addressing System.",
-    "intro": "To check business broadband at a property, match the street address and suite, then look for provider reports for that location. Read the last-mile technology and the advertised upload speed as well as the download speed. Ask the carrier for a written serviceability quote before relying on the result for a lease or opening date.",
+    "intro": "Start with the exact building and suite. Use the FCC or your state broadband map to see which providers report fiber at that location. For a property portfolio, use an address or parcel API to keep the site identity and source date with each result. Ask the carrier for a written quote for the exact service, install date, and build charges before you rely on it for a lease.",
     "takeaways": [
       "Match the building and suite first. An area-level result gives you providers to investigate.",
       "Keep business and consumer offers separate. Check technology, advertised download and upload, and the date of the records.",
       "For a lease or build, get a written quote for the exact service address, installation timing, costs and performance terms."
+    ],
+    "guideActions": [
+      {
+        "href": "#compare-business-fiber-apis",
+        "label": "Compare fiber data sources"
+      },
+      {
+        "href": "/blog/business-fiber-api-trial-scorecard.csv",
+        "label": "Download the vendor trial CSV",
+        "download": true
+      }
     ],
     "sections": [
       {
@@ -35069,6 +35081,88 @@
         ]
       },
       {
+        "id": "compare-business-fiber-apis",
+        "heading": "Which business fiber availability API should you trial?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with Invariant Earth when you need to join connectivity indicators to site, parcel and infrastructure records. Use the FCC or a state map for reported availability, and evaluate a telecom API when you need carriers, building connection status or a dedicated service quote. The comparisons below come from published documentation. Run the same addresses through a trial account before buying."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "Good starting point",
+              "What to verify"
+            ],
+            "rows": [
+              [
+                "Invariant Earth",
+                "Parcel and location screening with operator-access fiber availability and provider-count indicators for the surrounding cell.",
+                "Ask for site identity, cell-level scope and data date. Keep the carrier quote attached to the same building and suite as a separate record."
+              ],
+              [
+                "Connectbase",
+                "Address validation and provider lookup across locations. Connection statuses distinguish on-net, near-net and limited-access buildings.",
+                "Choose a multi-tenant property. Check that the response matches the suite or building and identifies how it determined the connection status."
+              ],
+              [
+                "FiberLocator",
+                "Carrier-supplied lit-building records and fiber maps available through a subscription API.",
+                "Check the matched building, contributing carrier and vintage. Ask which services can be ordered at the suite and what missing coverage means."
+              ],
+              [
+                "FCC National Broadband Map",
+                "Provider-reported fixed broadband availability by location, technology and advertised speed.",
+                "Use the business filter and preserve the data date. Check whether the map treats the building as a mass-market serviceable location."
+              ],
+              [
+                "California Public Utilities Commission",
+                "Dated provider polygons and consumer speed summaries for California.",
+                "Use the business rows and save both advertised speeds for each technology. A result on a consumer census block gives less specific evidence."
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "earth-point-fields",
+                "earth-coverage-guide"
+              ],
+              [
+                "connectbase-location-truth",
+                "connectbase-service-status"
+              ],
+              [
+                "fiberlocator"
+              ],
+              [
+                "fcc-address-map",
+                "fcc-fixed-availability"
+              ],
+              [
+                "cpuc-provider-layer",
+                "cpuc-consumer-layer"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "On the December 2024 California map, the 1,200 Mbps cable record at 100 Larkin Street pairs that download rate with 35 Mbps up. Neither address returned a business wireline row meeting an illustrative 100 Mbps upload requirement. Each point did intersect business fixed wireless rows above that threshold. Use the worksheet to test whether a provider keeps the speed pair and technology together and can supply a written quote for the requested service.",
+            "sourceIds": [
+              "larkin-public-replay",
+              "cpuc-provider-layer"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/business-fiber-api-trial-scorecard.csv",
+            "label": "Download the business fiber API trial scorecard",
+            "format": "CSV",
+            "datasetAnchor": null
+          }
+        ]
+      },
+      {
         "id": "confirm-serviceability",
         "heading": "What to get from the carrier before signing a lease",
         "blocks": [
@@ -35115,6 +35209,14 @@
         "answer": "Use the availability challenge on the selected FCC location. Keep a quote, denial or record of the provider conversation. FCC guidance describes when ordinary installation delays or charges qualify as an availability issue.",
         "sourceIds": [
           "fcc-challenges"
+        ]
+      },
+      {
+        "question": "What do on-net and near-net mean for business fiber?",
+        "answer": "On-net generally indicates that a carrier has a network presence at the building. Near-net indicates a nearby network that may be extended to the site. Check the vendor’s status definition, then ask the carrier for access to the exact suite, any construction work, and an install date.",
+        "sourceIds": [
+          "connectbase-service-status",
+          "fiberlocator"
         ]
       }
     ],
@@ -35198,6 +35300,30 @@
         "url": "https://invariant-ai.com/data-coverage#coverage-search",
         "publisher": "Invariant",
         "linkLabel": "Check Earth API field definitions and access"
+      },
+      {
+        "id": "connectbase-location-truth",
+        "title": "Address and network lookup APIs",
+        "url": "https://developers.connectbase.com/solutions/location-truth",
+        "publisher": "Connectbase"
+      },
+      {
+        "id": "connectbase-service-status",
+        "title": "Network intelligence and building connection statuses",
+        "url": "https://help.tcw.connectbase.com/en/analyze-network-intelligence-data.html",
+        "publisher": "Connectbase"
+      },
+      {
+        "id": "fiberlocator",
+        "title": "Carrier-supplied maps, lit buildings and subscription API",
+        "url": "https://www.fiberlocator.com/faq/",
+        "publisher": "FiberLocator"
+      },
+      {
+        "id": "larkin-public-replay",
+        "title": "Larkin Street public availability records and replay",
+        "url": "https://invariant-ai.com/blog/larkin-street-business-broadband-availability.json",
+        "publisher": "Invariant Earth"
       }
     ],
     "relatedSlugs": [
@@ -35230,9 +35356,9 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "How to verify data center fiber route diversity",
-    "description": "Verify data center fiber route diversity, from building entrances to cloud peering. Compare AWS Direct Connect, Azure ExpressRoute, and Google Cloud Interconnect.",
+    "description": "Compare fiber maps, serviceability APIs and cloud handoffs. Verify separate building entrances, carrier routes, and capacity after a circuit fails.",
     "date": "2026-11-22",
-    "readMinutes": 10,
+    "readMinutes": 12,
     "coverAlt": "Diagram of two Equinix buildings on Secaucus Road. AWS lists NY5 as a Direct Connect location and shows it is also accessible from NY4 at a different street address.",
     "coverCaption": "Equinix lists NY4 and NY5 at different addresses. AWS lists NY4 as an access option for the NY5 Direct Connect location. The diagram shows the directory relationship.",
     "intro": "To verify fiber route diversity at a data center, identify the exact endpoints of both circuits and ask the providers for evidence of their physical paths. Check the building entrances, internal paths, outside conduits and crossings, and where each circuit hands off to the next network. A directory can tell you which carriers or cloud services to investigate. For a lease or service commitment, document what the surviving circuit can carry when one route or facility fails.",
@@ -35241,6 +35367,17 @@
       "At Secaucus, Equinix lists two different building addresses, while AWS lists one Direct Connect location for the access relationship shown in this example.",
       "Check cloud peering and physical routes separately. Cloud edge domains, buildings and circuit orders describe different parts of the connection.",
       "Check both route separation and surviving throughput. Two 10 Gbps circuits leave 10 Gbps of nominal capacity after a single circuit loss."
+    ],
+    "guideActions": [
+      {
+        "href": "#cloud-interconnect-redundancy",
+        "label": "Compare cloud handoffs"
+      },
+      {
+        "href": "/blog/cloud-interconnect-diversity-reference.json",
+        "label": "Download the provider directory checks",
+        "download": true
+      }
     ],
     "sections": [
       {
@@ -35263,6 +35400,74 @@
             "type": "paragraph",
             "text": "A carrier name by itself leaves several questions open. Ask who owns and operates the access segment and whether either provider leases facilities from the same third party. In a multi-building campus, confirm the service address, point of entry, handoff room and equipment for the specific circuit you intend to buy.",
             "sourceIds": ["ietf-diversity", "aws-resiliency"]
+          }
+        ]
+      },
+      {
+        "id": "compare-fiber-route-data",
+        "heading": "Compare fiber maps and route APIs for data center site selection",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Start with the parcel and building you intend to use. Invariant Earth helps keep those records alongside terrain, hazards and infrastructure evidence. A network map can help find candidate carriers and handoffs. Get the circuit-specific route and building evidence from the providers before accepting a diversity commitment.",
+            "sourceIds": [
+              "earth-coverage-guide",
+              "ietf-diversity"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Source",
+              "What it documents",
+              "Trial question"
+            ],
+            "rows": [
+              [
+                "Connectbase Network Path",
+                "Path lookup between two supplied endpoints, with segment identifiers and a comparison for two returned segments.",
+                "What endpoints and operators are in scope? Is the route comparison for modeled candidates or for the actual services being quoted?"
+              ],
+              [
+                "FiberLocator",
+                "Street-level fiber maps and lit-building records from participating carriers.",
+                "Can you identify the carrier and exact building, and obtain a separate route confirmation for the circuit order?"
+              ],
+              [
+                "Transect",
+                "A fiber layer with parcel proximity filters and operator, service type and status attributes where available.",
+                "Is the mapped segment operational, and do you know who can quote a connection to the parcel?"
+              ],
+              [
+                "LandGate",
+                "Dark fiber route context for screening potential data center sites.",
+                "Which mapped routes are near the parcel, and what evidence can you get from the carrier about orderable service and construction?"
+              ]
+            ],
+            "rowSourceIds": [
+              [
+                "connectbase-paths"
+              ],
+              [
+                "fiberlocator"
+              ],
+              [
+                "transect"
+              ],
+              [
+                "landgate-fiber"
+              ]
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "label": "Run the business fiber availability API trial",
+                "slug": "business-broadband-availability-by-address"
+              }
+            ]
           }
         ]
       },
@@ -35615,6 +35820,36 @@
         "url": "https://cloud.google.com/network-connectivity/docs/interconnect/sla",
         "publisher": "Google Cloud",
         "linkLabel": "Interconnect SLA"
+      },
+      {
+        "id": "connectbase-paths",
+        "title": "Network Path and Shareable Routes API documentation",
+        "url": "https://developer.connectbase.com/api-reference-guides",
+        "publisher": "Connectbase"
+      },
+      {
+        "id": "fiberlocator",
+        "title": "Carrier-supplied maps, lit buildings and subscription API",
+        "url": "https://www.fiberlocator.com/faq/",
+        "publisher": "FiberLocator"
+      },
+      {
+        "id": "transect",
+        "title": "Fiber Optic Lines add-on and parcel proximity filters",
+        "url": "https://support.transect.com/fiber-optic-data-center-info",
+        "publisher": "Transect"
+      },
+      {
+        "id": "landgate-fiber",
+        "title": "Dark fiber data for data center site selection",
+        "url": "https://www.landgate.com/news/dark-fiber-data-center-site-selection",
+        "publisher": "LandGate"
+      },
+      {
+        "id": "earth-coverage-guide",
+        "title": "Earth API field definitions and access",
+        "url": "https://invariant-ai.com/data-coverage#coverage-search",
+        "publisher": "Invariant"
       }
     ],
     "relatedSlugs": ["data-center-site-selection-checklist", "data-center-power-screening-tools", "best-gis-apis-for-site-selection"],
