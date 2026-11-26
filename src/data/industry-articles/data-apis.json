@@ -21108,6 +21108,10 @@
               {
                 "slug": "retail-site-selection-trade-area-apis",
                 "label": "Combine trade areas with foot traffic and store history"
+              },
+              {
+                "path": "/blog/retail-site-selection-trade-area-apis#grocery-competitor-counts-by-zip",
+                "label": "Count grocery establishments by ZIP and see what the data can tell you"
               }
             ]
           },
@@ -41041,10 +41045,10 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Retail site selection APIs for trade areas and foot traffic",
-    "description": "Compare retail sites using drive times, store openings, foot traffic and directional vehicle counts. Check the records behind driveway access.",
+    "description": "Compare retail sites using trade areas, visits, traffic and store history. See how to count grocery competitors by ZIP with Census and USDA data.",
     "date": "2026-11-22",
     "updatedDate": "2026-11-26",
-    "readMinutes": 11,
+    "readMinutes": 13,
     "coverAlt": "Aerial map of two 125th Street subway complexes and Trader Joe’s Harlem. From September 2023 to September 2024, estimated A, B, C and D station entries rose 17.6 percent, and 2 and 3 station entries rose 18.0 percent.",
     "coverCaption": "Transit context on 125th Street in Harlem. Station points and entry estimates from the MTA. Store location from NYC GeoSearch. Aerial imagery from NYS ITS Geospatial Services, 2024.",
     "intro": "Start in Invariant Earth to check the parcel, building characteristics and road context at a proposed store location. Then connect the site to routing, store history and visits to compare trade areas. Before signing a retail lease, find out who can reach the site, where customers at comparable stores actually come from, and what happened as nearby stores opened or closed. Those questions call for different data. Use routing for travel-time areas, a dated place directory for nearby stores, and comparable visit or pedestrian counts for activity. Keep the area, measure, and time window with every number so you can rerun the comparison.",
@@ -41241,6 +41245,108 @@
         ]
       },
       {
+        "id": "grocery-competitor-counts-by-zip",
+        "heading": "How many grocery competitors are in a ZIP code?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "For an annual baseline, use the Census Bureau’s ZIP Code Business Patterns industry detail file. Select the ZIP and 2017 NAICS code 445110 for supermarkets and other grocery stores excluding convenience stores. Read the total establishment field, est. In the 2023 release, ZIP 10027 has 29 employer establishments in this category. Nearby ZIP 10026 has 18. Census still lists 2023 as its latest release as of November 26, 2026.",
+            "sourceIds": [
+              "zbp-release-status",
+              "zbp-2023-detail",
+              "zbp-record-layout",
+              "zbp-2023-api"
+            ]
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "ZIP and city",
+              "2022 Census grocery establishments",
+              "2023 Census grocery establishments",
+              "USDA supermarkets authorized September 1, 2023"
+            ],
+            "rows": [
+              [
+                "10026 · New York",
+                "19",
+                "18",
+                "1"
+              ],
+              [
+                "10027 · New York",
+                "31",
+                "29",
+                "3"
+              ],
+              [
+                "48207 · Detroit",
+                "10",
+                "10",
+                "6"
+              ],
+              [
+                "60621 · Chicago",
+                "9",
+                "8",
+                "2"
+              ]
+            ],
+            "sourceIds": [
+              "zbp-2022-detail",
+              "zbp-2023-detail",
+              "usda-retailer-history"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "USDA classifies three authorized locations in ZIP 10027 as Supermarket on September 1, 2023. The Census total counts employer establishments over its reference year in a broader grocery industry. The USDA comparison counts supermarket authorizations that cover the selected date. Use Census to size the market and a dated store directory, local permits or operator records to identify the businesses competing with your site.",
+            "sourceIds": [
+              "zbp-methodology",
+              "zbp-naics-2017",
+              "usda-retailer-history"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep unpublished counts blank. ZIP 10026 has a published 2023 convenience store count of three under code 445120. The 2022 file has no published row for that pair. Census omits cells with fewer than three establishments, so the files do not establish how many stores opened. For employment-size bands, keep the N flag as unavailable or not comparable. Use the published total rather than adding only the visible bands.",
+            "sourceIds": [
+              "zbp-2022-detail",
+              "zbp-2023-detail",
+              "zbp-methodology",
+              "zbp-record-layout"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Keep the geography with the count. Business Patterns uses postal ZIP codes. Census ZIP Code Tabulation Areas are generalized statistical boundaries. To see which stores a candidate can actually compete with, geocode the stores, confirm operating status and intersect those points with the same drive-time boundary you used to count households.",
+            "sourceIds": [
+              "zbp-methodology",
+              "zcta-geography"
+            ]
+          },
+          {
+            "type": "download",
+            "label": "Download the Census ZIP counts and USDA authorization comparison",
+            "format": "JSON",
+            "path": "/blog/grocery-establishments-by-zip.json",
+            "datasetAnchor": "dataset-grocery-establishments-by-zip"
+          },
+          {
+            "type": "download",
+            "label": "Download the Python ZIP count script",
+            "format": "Python",
+            "path": "/blog/grocery-establishment-zip-replay.py",
+            "datasetAnchor": null
+          },
+          {
+            "type": "shell",
+            "command": "python3 grocery-establishment-zip-replay.py zbp23detail.zip 10026 10027"
+          }
+        ]
+      },
+      {
         "id": "make-a-comparable-store-history",
         "heading": "Build a store history you can compare across markets",
         "blocks": [
@@ -41341,6 +41447,11 @@
           {
             "type": "paragraph",
             "text": "Give each provider three sites where you know something about what happened. Choose a standalone location, a store within a larger property, and a competitor that recently moved. Ask for an export with the store identity, the mapped boundary, the date and definition of each observation, and the results for the same two periods. Check the latest result against a dated store listing or your own counts. Test how the provider handles the old location after a move."
+          },
+          {
+            "type": "paragraph",
+            "text": "For the shared-property test, use Target 3337 and Trader Joe’s 576 at 123 West 125th Street. Request two venue IDs and ask which visits each result counts. Placer’s API documentation explains that some locations in dense areas or multistory buildings lack support for standard reports. Keep the provider’s support status next to each result. Where you only have a property-level count, leave the individual stores’ visit totals unknown.",
+            "sourceIds": ["target-harlem", "tj-store", "placer-property-report-support"]
           },
           {
             "type": "paragraph",
@@ -41466,6 +41577,7 @@
       {"id": "census", "title": "General guidelines for comparing ACS estimates", "url": "https://www.census.gov/help/topics/faq.what-are-some-general-guidelines-for-using-the-acs.html", "publisher": "U.S. Census Bureau"},
       {"id": "placer-area", "title": "Trade Area API report", "url": "https://docs.placer.ai/reference/post_v1-reports-true-trade-area-1", "publisher": "Placer.ai"},
       {"id": "placer-glossary", "title": "Definitions of visits, visitors, and device panel metrics", "url": "https://docs.placer.ai/reference/glossary", "publisher": "Placer.ai"},
+      {"id": "placer-property-report-support", "title": "Property report support and flagged places in the Placer API FAQ", "url": "https://docs.placer.ai/reference/faqs-1", "publisher": "Placer.ai"},
       {"id": "fsq", "title": "Open Source Places schema and date fields", "url": "https://docs.foursquare.com/data-products/docs/places-os-data-schema", "publisher": "Foursquare"},
       {"id": "fsq-releases", "title": "Open Source Places release notes", "url": "https://docs.foursquare.com/data-products/docs/fsq-os-places-release-notes", "publisher": "Foursquare"},
       {"id": "safegraph-open-close", "title": "How opening and closing months are inferred", "url": "https://docs.safegraph.com/docs/places-rich-attributes", "publisher": "SafeGraph"},
@@ -41487,6 +41599,62 @@
         "title": "Site selection, trade areas and sales forecasting",
         "url": "https://kalibrate.com/kalibrate-location-intelligence-software/site-selection/",
         "publisher": "Kalibrate"
+      },
+      {
+        "id": "zbp-release-status",
+        "title": "County Business Patterns release status",
+        "url": "https://www.census.gov/programs-surveys/cbp/data.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census release status"
+      },
+      {
+        "id": "zbp-2022-detail",
+        "title": "2022 ZIP Code Industry Detail file",
+        "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2022/zbp22detail.zip",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2022 ZIP archive"
+      },
+      {
+        "id": "zbp-2023-detail",
+        "title": "2023 ZIP Code Industry Detail file",
+        "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2023/zbp23detail.zip",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2023 ZIP archive"
+      },
+      {
+        "id": "zbp-record-layout",
+        "title": "ZIP industry detail record layout and size-class flags",
+        "url": "https://www2.census.gov/programs-surveys/cbp/technical-documentation/records-layouts/2019_record_layouts/zip_code_industry_detail_record_layout_2019.txt",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ZIP field definitions"
+      },
+      {
+        "id": "zbp-methodology",
+        "title": "County Business Patterns scope, classification and publication rules",
+        "url": "https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "Census publication rules"
+      },
+      {
+        "id": "zbp-naics-2017",
+        "title": "2017 NAICS grocery and convenience store definitions",
+        "url": "https://www.census.gov/naics/2017NAICS/2017_Definition_File.pdf",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2017 NAICS definitions"
+      },
+      {
+        "id": "zbp-2023-api",
+        "title": "2023 CBP variables and 2017 NAICS classification",
+        "url": "https://api.census.gov/data/2023/cbp/variables.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "2023 CBP fields"
+      },
+      {
+        "id": "zcta-geography",
+        "title": "ZIP Code Tabulation Areas and the postal ZIP distinction",
+        "url": "https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html",
+        "publisher": "U.S. Census Bureau",
+        "linkLabel": "ZIP geography notes"
       }
     ],
     "additionalDatasets": [
@@ -41525,6 +41693,21 @@
         "sourceIds": ["usda-retailer-history", "target-harlem", "tj-store", "chicago-food-inspections", "chicago-business-licenses"],
         "spatialCoverage": "Harlem, New York, and Englewood, Chicago, United States",
         "datePublished": "2026-11-25"
+      },
+      {
+        "anchor": "dataset-grocery-establishments-by-zip",
+        "name": "Grocery establishment and SNAP supermarket counts in four ZIP codes",
+        "description": "Reproducible 2022 and 2023 Census ZIP industry totals, publication flags and USDA supermarket authorization counts for two September dates in New York, Detroit and Chicago.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Selected ZIP codes in New York, Michigan and Illinois, United States",
+        "temporalCoverage": "2022/2025",
+        "sourceIds": [
+          "zbp-2022-detail",
+          "zbp-2023-detail",
+          "zbp-methodology",
+          "zbp-record-layout",
+          "usda-retailer-history"
+        ]
       }
     ],
     "relatedSlugs": ["best-gis-apis-for-site-selection", "historical-parcel-boundaries-api", "regrid-alternatives-parcel-data-apis", "foot-traffic-data-by-address"]

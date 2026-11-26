@@ -7875,7 +7875,7 @@
     "slug": "retail-site-selection-trade-area-apis",
     "topic": "Data & APIs",
     "title": "Retail site selection APIs for trade areas and foot traffic",
-    "summary": "Compare retail sites using drive times, store openings, foot traffic and directional vehicle counts. Check the records behind driveway access.",
+    "summary": "Compare retail sites using trade areas, visits, traffic and store history. See how to count grocery competitors by ZIP with Census and USDA data.",
     "date": "November 22, 2026",
     "dateTime": "2026-11-22",
     "region": "United States",
@@ -8052,6 +8052,55 @@
           {
             "label": "Download the historical SNAP rows and matching rules",
             "path": "/blog/snap-retailer-authorization-history.json",
+            "format": "JSON"
+          }
+        ]
+      },
+      {
+        "anchor": "dataset-grocery-establishments-by-zip",
+        "name": "Grocery establishment and SNAP supermarket counts in four ZIP codes",
+        "description": "Reproducible 2022 and 2023 Census ZIP industry totals, publication flags and USDA supermarket authorization counts for two September dates in New York, Detroit and Chicago.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Selected ZIP codes in New York, Michigan and Illinois, United States",
+        "temporalCoverage": "2022/2025",
+        "sources": [
+          "https://www2.census.gov/programs-surveys/cbp/datasets/2022/zbp22detail.zip",
+          "https://www2.census.gov/programs-surveys/cbp/datasets/2023/zbp23detail.zip",
+          "https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html",
+          "https://www2.census.gov/programs-surveys/cbp/technical-documentation/records-layouts/2019_record_layouts/zip_code_industry_detail_record_layout_2019.txt",
+          "https://www.fns.usda.gov/snap/retailer-locator/data"
+        ],
+        "sourceDetails": [
+          {
+            "title": "2022 ZIP Code Industry Detail file",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2022/zbp22detail.zip"
+          },
+          {
+            "title": "2023 ZIP Code Industry Detail file",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2023/zbp23detail.zip"
+          },
+          {
+            "title": "County Business Patterns scope, classification and publication rules",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html"
+          },
+          {
+            "title": "ZIP industry detail record layout and size-class flags",
+            "publisher": "U.S. Census Bureau",
+            "url": "https://www2.census.gov/programs-surveys/cbp/technical-documentation/records-layouts/2019_record_layouts/zip_code_industry_detail_record_layout_2019.txt"
+          },
+          {
+            "title": "Historical SNAP Retailer Locator Data, December 31, 2025 edition",
+            "publisher": "U.S. Department of Agriculture",
+            "url": "https://www.fns.usda.gov/snap/retailer-locator/data"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the Census ZIP counts and USDA authorization comparison",
+            "path": "/blog/grocery-establishments-by-zip.json",
             "format": "JSON"
           }
         ]

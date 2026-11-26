@@ -1,0 +1,359 @@
+{
+  "name": "Grocery establishment and SNAP supermarket counts in four ZIP codes",
+  "version": "1.0.0",
+  "retrieved_on": "2026-11-26",
+  "guide_url": "https://invariant-ai.com/blog/retail-site-selection-trade-area-apis#grocery-competitor-counts-by-zip",
+  "naics_2017": {
+    "445110": "Supermarkets and Other Grocery (except Convenience) Stores",
+    "445120": "Convenience Stores"
+  },
+  "sources": {
+    "census_2022": {
+      "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2022/zbp22detail.zip",
+      "member": "zbp22detail.txt",
+      "archive_sha256": "5cc11dad818e2d64411781b97d658954dbdf637976f4387dfdc4bc95ed98dbf4"
+    },
+    "census_2023": {
+      "url": "https://www2.census.gov/programs-surveys/cbp/datasets/2023/zbp23detail.zip",
+      "member": "zbp23detail.txt",
+      "archive_sha256": "bbed2edd444e8b35c36a100e4dd846ce18e7c36660d6ba8f1f14743a67596809"
+    },
+    "snap": {
+      "publisher": "USDA Food and Nutrition Service",
+      "archive_url": "https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-retailer-locator-data2005-2025.zip",
+      "archive_sha256": "872a6f814a63514a1f1b0c4517a90309a9fbb01d97d6e4dbb1e8b20421c08cce",
+      "member": "Historical SNAP Retailer Locator Data 2005-2025.csv",
+      "archive_through": "2025-12-31"
+    },
+    "census_layout": "https://www2.census.gov/programs-surveys/cbp/technical-documentation/records-layouts/2019_record_layouts/zip_code_industry_detail_record_layout_2019.txt",
+    "census_methodology": "https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html",
+    "snap_landing_page": "https://www.fns.usda.gov/snap/retailer-locator/data"
+  },
+  "census_method": "Select each exact ZIP and six-digit NAICS code in the named Census ZIP Code Industry Detail archive. Read est as the published total. N is the source flag for an employment-size cell that is unavailable or not comparable. A missing ZIP-industry record is null. The table covers employer establishments for each reference year and gives a market baseline.",
+  "snap_method": "Select the exact state and ZIP for each example and the USDA Store Type value Supermarket. Select authorizations starting on or before September 1 and with end date after September 1 or blank. Count raw rows and distinct normalized store-name and full-address keys. Trim and collapse whitespace and compare case-insensitively. USDA store-type categories and Census industry classifications are different, and the counts have different reference periods.",
+  "census_zip_counts": [
+    {
+      "reference_year": 2022,
+      "zip_code": "10026",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 19,
+      "published_employment_size_fields": {
+        "n<5": "15",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "10026",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445120",
+      "row_status": "no_published_row",
+      "establishments": null
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "10027",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 31,
+      "published_employment_size_fields": {
+        "n<5": "18",
+        "n5_9": "3",
+        "n10_19": "4",
+        "n20_49": "5",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "10027",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445120",
+      "row_status": "published",
+      "establishments": 16,
+      "published_employment_size_fields": {
+        "n<5": "15",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "48207",
+      "city": "Detroit",
+      "state": "MI",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 10,
+      "published_employment_size_fields": {
+        "n<5": "N",
+        "n5_9": "3",
+        "n10_19": "4",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "48207",
+      "city": "Detroit",
+      "state": "MI",
+      "naics_2017": "445120",
+      "row_status": "no_published_row",
+      "establishments": null
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "60621",
+      "city": "Chicago",
+      "state": "IL",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 9,
+      "published_employment_size_fields": {
+        "n<5": "7",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2022,
+      "zip_code": "60621",
+      "city": "Chicago",
+      "state": "IL",
+      "naics_2017": "445120",
+      "row_status": "no_published_row",
+      "establishments": null
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "10026",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 18,
+      "published_employment_size_fields": {
+        "n<5": "16",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "10026",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445120",
+      "row_status": "published",
+      "establishments": 3,
+      "published_employment_size_fields": {
+        "n<5": "3",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "10027",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 29,
+      "published_employment_size_fields": {
+        "n<5": "17",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "6",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "10027",
+      "city": "New York",
+      "state": "NY",
+      "naics_2017": "445120",
+      "row_status": "published",
+      "establishments": 16,
+      "published_employment_size_fields": {
+        "n<5": "15",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "48207",
+      "city": "Detroit",
+      "state": "MI",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 10,
+      "published_employment_size_fields": {
+        "n<5": "N",
+        "n5_9": "3",
+        "n10_19": "3",
+        "n20_49": "3",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "48207",
+      "city": "Detroit",
+      "state": "MI",
+      "naics_2017": "445120",
+      "row_status": "no_published_row",
+      "establishments": null
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "60621",
+      "city": "Chicago",
+      "state": "IL",
+      "naics_2017": "445110",
+      "row_status": "published",
+      "establishments": 8,
+      "published_employment_size_fields": {
+        "n<5": "6",
+        "n5_9": "N",
+        "n10_19": "N",
+        "n20_49": "N",
+        "n50_99": "N",
+        "n100_249": "N",
+        "n250_499": "N",
+        "n500_999": "N",
+        "n1000": "N"
+      }
+    },
+    {
+      "reference_year": 2023,
+      "zip_code": "60621",
+      "city": "Chicago",
+      "state": "IL",
+      "naics_2017": "445120",
+      "row_status": "no_published_row",
+      "establishments": null
+    }
+  ],
+  "snap_supermarket_authorization_counts": [
+    {
+      "zip": "10026",
+      "date": "2023-09-01",
+      "authorization_rows": 1,
+      "distinct_normalized_name_and_address_keys": 1,
+      "distinct_normalized_addresses": 1
+    },
+    {
+      "zip": "10026",
+      "date": "2025-09-01",
+      "authorization_rows": 1,
+      "distinct_normalized_name_and_address_keys": 1,
+      "distinct_normalized_addresses": 1
+    },
+    {
+      "zip": "10027",
+      "date": "2023-09-01",
+      "authorization_rows": 3,
+      "distinct_normalized_name_and_address_keys": 3,
+      "distinct_normalized_addresses": 3
+    },
+    {
+      "zip": "10027",
+      "date": "2025-09-01",
+      "authorization_rows": 5,
+      "distinct_normalized_name_and_address_keys": 5,
+      "distinct_normalized_addresses": 5
+    },
+    {
+      "zip": "48207",
+      "date": "2023-09-01",
+      "authorization_rows": 6,
+      "distinct_normalized_name_and_address_keys": 6,
+      "distinct_normalized_addresses": 6
+    },
+    {
+      "zip": "48207",
+      "date": "2025-09-01",
+      "authorization_rows": 6,
+      "distinct_normalized_name_and_address_keys": 6,
+      "distinct_normalized_addresses": 6
+    },
+    {
+      "zip": "60621",
+      "date": "2023-09-01",
+      "authorization_rows": 2,
+      "distinct_normalized_name_and_address_keys": 2,
+      "distinct_normalized_addresses": 2
+    },
+    {
+      "zip": "60621",
+      "date": "2025-09-01",
+      "authorization_rows": 2,
+      "distinct_normalized_name_and_address_keys": 2,
+      "distinct_normalized_addresses": 2
+    }
+  ]
+}
