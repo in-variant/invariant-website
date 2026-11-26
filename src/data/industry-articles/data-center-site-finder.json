@@ -14275,7 +14275,7 @@
   "title": "Data center sites for sale in New York: powered land and energized sites (2026)",
   "description": "New York data center sites and powered land for sale or lease through Invariant: 60 MW+ power plant. How power, grid rules and local approval work in New York.",
   "date": "2026-11-09",
-  "updatedDate": "2026-11-22",
+  "updatedDate": "2026-11-26",
   "readMinutes": 5,
   "intro": "New York has its own grid operator, NYISO, and upstate sites with hydro, existing plants and transmission built for heavy industry. Invariant lists a 60 MW+ operating gas peaker plant site upstate.",
   "takeaways": [
@@ -14329,11 +14329,15 @@
      },
      {
       "type": "links",
-      "label": "See the Baldwinsville case",
+      "label": "See the Baldwinsville and Ilion cases",
       "items": [
        {
         "label": "Trace a 300 MW New York listing to its queue and permitting records",
         "slug": "300-mw-data-center-site"
+       },
+       {
+        "label": "Check the Ilion tenant and power records at 14 Hoefler Avenue",
+        "slug": "data-center-for-sale"
        }
       ]
      }
@@ -23878,6 +23882,93 @@
     ]
    },
    {
+    "id": "14-hoefler-avenue-ilion",
+    "heading": "Is there a data center tenant at 14 Hoefler Avenue in Ilion?",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "We found no named data center tenant in the public records reviewed through November 26, 2026. In its 2025 application to the Herkimer County Industrial Development Agency, Turin Hoefler Avenue LLC reported that future occupants were still to be determined. In the revised January 2026 brownfield application, the company reported that it took title to Site C on June 20, 2025, and that the property was vacant at the time of filing.",
+      "sourceIds": [
+       "ilion-ida-application",
+       "ilion-site-c-title"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Turin Management LLC is the developer named on two load requests for the former Remington factory redevelopment in the October 31 NYISO queue. Both entries were at the system impact study stage, which evaluates how a proposed connection would affect the network.",
+      "sourceIds": [
+       "ilion-nyiso-queue"
+      ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "NYISO queue position",
+       "Peak load requested",
+       "Proposed point of connection",
+       "Proposed initial backfeed"
+      ],
+      "rows": [
+       [
+        "1735",
+        "100 MW",
+        "Ilion Municipal 115 kV substation",
+        "July 2027"
+       ],
+       [
+        "1740",
+        "400 MW incremental request",
+        "Two 345 kV lines listed",
+        "August 2028"
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "ilion-nyiso-queue"
+       ],
+       [
+        "ilion-nyiso-queue"
+       ]
+      ],
+      "stackOnMobile": true
+     },
+     {
+      "type": "paragraph",
+      "text": "The proposed backfeed dates describe when electricity might first energize site equipment. The queue leaves the interconnection agreement tender dates blank for both entries. The January brownfield filing describes a 200 MW data center in a mixed-use redevelopment concept. That figure describes the applicant’s proposed development. The queue entries describe the separate requests NYISO was studying.",
+      "sourceIds": [
+       "ilion-nyiso-queue",
+       "ilion-site-c-concept"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "New York’s Department of Environmental Conservation announced that it had received brownfield applications for five sites at the address in April 2026. The Village Board tabled a vote on the proposed large electric load moratorium on September 28. On November 2, the board went into executive session for legal advice on possible utility studies, cost-sharing and escrow terms for the redevelopment.",
+      "sourceIds": [
+       "ilion-dec-notice",
+       "ilion-september-minutes",
+       "ilion-november-minutes"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Before buying or leasing, ask for the executed lease or other agreement that identifies the customer and the utility documents that establish service terms. Check the committed MW and dates by phase and confirm current cleanup and local permit requirements directly with the agencies.",
+      "sourceIds": [
+       "ilion-ida-application",
+       "ilion-nyiso-queue",
+       "ilion-dec-notice",
+       "ilion-november-minutes"
+      ]
+     },
+     {
+      "type": "download",
+      "path": "/blog/ilion-14-hoefler-avenue-data-center-records.json",
+      "format": "JSON",
+      "label": "Download the Ilion project records and source references",
+      "datasetAnchor": "dataset-ilion-project-records"
+     }
+    ]
+   },
+   {
     "id": "do-power-rights-transfer",
     "heading": "Does power transfer when you buy a data center development site?",
     "blocks": [
@@ -24830,6 +24921,55 @@
     "linkLabel": "Charlotte power brochure"
    },
    {
+    "id": "ilion-ida-application",
+    "title": "Turin Hoefler Avenue LLC project application",
+    "publisher": "Herkimer County Industrial Development Agency",
+    "url": "https://www.herkimercountyida.org/wp-content/uploads/2025/04/1FINAL-Turin-Hoefler-Avenue-HCIDA-Application-Fully-Executed-_WEB_redacted-1.pdf#page=4",
+    "linkLabel": "IDA application"
+   },
+   {
+    "id": "ilion-site-c-title",
+    "title": "Site C brownfield application, ownership and occupancy",
+    "publisher": "New York State Department of Environmental Conservation",
+    "url": "https://extapps.dec.ny.gov/data/DecDocs/C622036C/Application.BCP.C622036C.2026-01-12.BCP%20Application.pdf#page=32",
+    "linkLabel": "Site C ownership filing"
+   },
+   {
+    "id": "ilion-site-c-concept",
+    "title": "Site C brownfield application, proposed redevelopment",
+    "publisher": "New York State Department of Environmental Conservation",
+    "url": "https://extapps.dec.ny.gov/data/DecDocs/C622036C/Application.BCP.C622036C.2026-01-12.BCP%20Application.pdf#page=89",
+    "linkLabel": "Redevelopment proposal"
+   },
+   {
+    "id": "ilion-dec-notice",
+    "title": "Public notice for five Remington brownfield applications",
+    "publisher": "New York State Department of Environmental Conservation",
+    "url": "https://content.govdelivery.com/accounts/NYSDEC/bulletins/410ae6a",
+    "linkLabel": "DEC notice"
+   },
+   {
+    "id": "ilion-nyiso-queue",
+    "title": "October 31, 2026 interconnection queue, load projects 1735 and 1740",
+    "publisher": "New York Independent System Operator",
+    "url": "https://www.nyiso.com/documents/20142/1407078/NYISO-Interconnection-Queue-10312026.xlsx/ff0e2005-e8d3-e75d-3e81-fa7027a52685?t=1794581737933",
+    "linkLabel": "NYISO queue workbook"
+   },
+   {
+    "id": "ilion-september-minutes",
+    "title": "September 28, 2026 Village Board minutes",
+    "publisher": "Village of Ilion",
+    "url": "https://www.ilionny.gov/qdynamo/download.php?docid=2287",
+    "linkLabel": "September 28 minutes"
+   },
+   {
+    "id": "ilion-november-minutes",
+    "title": "November 2, 2026 special Village Board minutes",
+    "publisher": "Village of Ilion",
+    "url": "https://www.ilionny.gov/qdynamo/download.php?docid=2302",
+    "linkLabel": "November 2 minutes"
+   },
+   {
     "id": "reston-announcement",
     "title": "August Reston offering and committed colocation capacity",
     "publisher": "Five 9s Digital",
@@ -24909,6 +25049,23 @@
     ],
     "spatialCoverage": "Genesee County, New York, and Young County, Texas, United States",
     "temporalCoverage": "2026-02-24/2026-11-09"
+   },
+   {
+    "anchor": "dataset-ilion-project-records",
+    "name": "14 Hoefler Avenue data center redevelopment records",
+    "description": "Dated evidence from New York load interconnection, ownership, brownfield and village records for the former Remington factory redevelopment in Ilion.",
+    "sourceIds": [
+     "ilion-ida-application",
+     "ilion-site-c-title",
+     "ilion-site-c-concept",
+     "ilion-dec-notice",
+     "ilion-nyiso-queue",
+     "ilion-september-minutes",
+     "ilion-november-minutes"
+    ],
+    "datePublished": "2026-11-26",
+    "spatialCoverage": "14 Hoefler Avenue, Ilion, Herkimer County, New York, United States",
+    "temporalCoverage": "2025-05-02/2026-11-02"
    },
    {
     "anchor": "dataset-broker-listing-status",
