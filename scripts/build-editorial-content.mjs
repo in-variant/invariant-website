@@ -52,6 +52,9 @@ linkablePaths.add('/data-coverage')
 linkablePaths.add('/mcp')
 linkablePaths.add('/contact?request=site-selection')
 linkablePaths.add('/contact?request=site-submission')
+for (const { slug, sections } of articles) {
+  for (const { id } of sections) linkablePaths.add(`/blog/${slug}#${id}`)
+}
 const glossary = JSON.parse(readFileSync(new URL('../pages/_data/glossary.json', base), 'utf8')).entries ?? []
 const glossaryTopics = JSON.parse(readFileSync(new URL('glossary-topics.json', base), 'utf8'))
 for (const { slug, topic } of glossary) {
