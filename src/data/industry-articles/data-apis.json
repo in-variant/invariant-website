@@ -10723,6 +10723,10 @@
               {
                 "path": "/calculators/dscr-debt-yield",
                 "label": "Calculate coverage after checking the filing’s income and payment basis"
+              },
+              {
+                "path": "/blog/commercial-property-tax-assessment-history-by-address#hollywood-tax-underwriting-and-escrow",
+                "label": "Check how a lender modeled property taxes and set the escrow"
               }
             ]
           }
@@ -11979,16 +11983,17 @@
     "topic": "Data & APIs",
     "region": "United States",
     "title": "Commercial Property Tax Assessment History by Address",
-    "description": "Find past commercial property tax assessments by address. Follow five years of Empire State Building tax-roll records and reconcile them with posted NYC tax charges.",
+    "description": "Find commercial property tax assessment history by address. Compare NYC roll and tax charges, California reassessment, and a lender’s tax escrow.",
     "date": "2026-11-23",
-    "readMinutes": 6,
+    "readMinutes": 8,
     "coverAlt": "Empire State Building actual and taxable assessed values for fiscal years 2023 to 2027. Both start at $407.8 million. In FY2027 actual assessed value is $577.4 million and taxable assessed value is $492.4 million.",
     "coverCaption": "NYC Department of Finance final assessment roll records for Manhattan tax lot 1008350041. Amounts on the chart are assessed values in millions of dollars.",
     "intro": "To find a commercial property’s tax assessment history, look up its parcel number in the local assessor’s map, then retrieve the published assessment for each tax year. Save the tax class, taxable value, and publication stage with each record. Use the tax collector’s account to check billed charges and payment status separately.",
     "takeaways": [
       "Join the assessor and tax account using the jurisdiction and parcel number. Keep address aliases with the file.",
       "Use the final roll for a finalized tax-year comparison. Retain earlier notices for decisions made before it was published.",
-      "Read taxable assessed value, the adopted tax rate, and posted charges together before setting an operating expense or escrow assumption."
+      "Read taxable assessed value, the adopted tax rate, and posted charges together before setting an operating expense or escrow assumption.",
+      "For a California purchase, track the annual bill, any supplemental bills, the recurring expense estimate and the required escrow separately."
     ],
     "sections": [
       {
@@ -12157,6 +12162,104 @@
         ]
       },
       {
+        "id": "california-property-tax-reassessment",
+        "heading": "Commercial property tax reassessment after a California sale",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Ask the county assessor which interest transfers and whether the transaction triggers reassessment. The assessor generally values the transferred interest at fair market value on the date of a qualifying change in ownership. A purchase of an interest in a company can also trigger reassessment when it changes control of an entity that owns real property. Review the transaction structure and the assessor’s determination before relying on the seller’s tax expense.",
+            "sourceIds": [
+              "ca-ownership",
+              "ca-entity-control"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "For each affected fiscal year, subtract the applicable annual roll value from the new assessed value. Apply the local tax rate and the county’s proration factor. A reassessment event in January through May generally produces two supplemental bills or refunds, one for the rest of the current fiscal year and another for the next full fiscal year. June through December generally produces one. June events take effect on July 1 and apply to the next full fiscal year.",
+            "sourceIds": [
+              "ca-supplemental"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Consider a hypothetical March closing with an $8 million annual roll value for both years, a $15 million new assessment and a 1.25% tax rate. The modeled annual tax increase is $87,500. The April-through-June factor of 0.25 gives a $21,875 first supplemental bill. The next full fiscal year adds $87,500 on the same assumptions. Use the actual roll for each year and confirm the applicable rate and any separate charges with the county.",
+            "sourceIds": [
+              "ca-supplemental"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Supplemental bills generally go directly to the owner, even when the lender impounds regular property taxes. At closing, reconcile the existing annual bill with the supplemental estimate and confirm who will pay each bill. Ask for the actual county assessment notice and tax bill as soon as they are issued.",
+            "sourceIds": [
+              "ca-supplemental"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hollywood-tax-underwriting-and-escrow",
+        "heading": "A Hollywood refinance shows what tax escrow actually measures",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "The BANK 2026-BNK52 prospectus lists a $23.7 million refinance for SoCal Self Storage Hollywood at 5900 Hollywood Boulevard. It reports three tax figures in the operating history and loan terms.",
+            "sourceIds": [
+              "hollywood-prospectus"
+            ]
+          },
+          {
+            "type": "table",
+            "columns": [
+              "Figure",
+              "Amount",
+              "Basis"
+            ],
+            "rows": [
+              [
+                "Reported property tax expense",
+                "$244,808",
+                "Trailing 12 months ended February 28, 2026"
+              ],
+              [
+                "Underwritten property tax expense",
+                "$324,409",
+                "Annual expense used to size the loan"
+              ],
+              [
+                "Required property tax escrow",
+                "$20,603",
+                "Monthly deposit at origination"
+              ]
+            ],
+            "sourceIds": [
+              "hollywood-prospectus"
+            ],
+            "stackOnMobile": true
+          },
+          {
+            "type": "paragraph",
+            "text": "The underwriting expense is $79,601 above the trailing figure. The prospectus describes applying the tax rate to the note amount to account for Proposition 13 and special assessments. The monthly escrow is based on estimated payments over the coming 12 months. Annualizing that deposit gives $247,236. Use the historical figure to reconcile operating statements, the underwriting figure to review loan sizing and the escrow amount to check monthly cash requirements. Obtain the county tax account for the actual bills.",
+            "sourceIds": [
+              "hollywood-prospectus"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "An Oakland City Center appraisal shows why a sale analysis can also point toward lower taxes. The appraisal reports a $176,360,436 assessment and a $2,407,586 tax bill for tax year 2025. Its cash-flow forecast assumes lower taxes after a hypothetical sale at the appraised value. Treat the projected expense as an appraisal assumption and confirm any actual change in the county roll and tax account.",
+            "sourceIds": [
+              "oakland-appraisal"
+            ]
+          },
+          {
+            "type": "download",
+            "path": "/blog/california-commercial-property-tax-underwriting-records.json",
+            "format": "JSON",
+            "label": "Download the California tax underwriting records",
+            "datasetAnchor": "dataset-california-commercial-property-tax-underwriting"
+          }
+        ]
+      },
+      {
         "id": "lending-and-valuation",
         "heading": "What to keep in a lender or valuation file",
         "blocks": [
@@ -12225,6 +12328,20 @@
           "annual-tax",
           "rates",
           "account"
+        ]
+      },
+      {
+        "question": "How many supplemental property tax bills could a California purchase trigger?",
+        "answer": "A qualifying event from January through May generally produces two supplemental bills or refunds. One covers the rest of the current fiscal year, and the other covers the next full fiscal year. A qualifying event from June through December generally produces one.",
+        "sourceIds": [
+          "ca-supplemental"
+        ]
+      },
+      {
+        "question": "Does a lender’s property tax escrow cover a California supplemental bill?",
+        "answer": "California generally sends supplemental bills directly to the property owner. Check the loan terms and confirm with the lender who will pay the supplemental bill and whether you need a separate reserve.",
+        "sourceIds": [
+          "ca-supplemental"
         ]
       }
     ],
@@ -12298,6 +12415,41 @@
         "url": "https://docs.invariant-ai.com/lookup-parcel-by-address",
         "publisher": "Invariant Earth",
         "linkLabel": "Try a parcel lookup"
+      },
+      {
+        "id": "ca-ownership",
+        "title": "California property tax change in ownership",
+        "url": "https://www.boe.ca.gov/proptaxes/faqs/changeinownership.htm",
+        "publisher": "California State Board of Equalization",
+        "linkLabel": "Change in ownership rules"
+      },
+      {
+        "id": "ca-entity-control",
+        "title": "Change in control of a legal entity",
+        "url": "https://www.boe.ca.gov/proptaxes/leopcic.htm",
+        "publisher": "California State Board of Equalization",
+        "linkLabel": "Legal entity transfer rules"
+      },
+      {
+        "id": "ca-supplemental",
+        "title": "Supplemental assessment and billing cycle",
+        "url": "https://www.boe.ca.gov/proptaxes/supplemental-assessment/",
+        "publisher": "California State Board of Equalization",
+        "linkLabel": "Supplemental billing rules and proration"
+      },
+      {
+        "id": "hollywood-prospectus",
+        "title": "BANK 2026-BNK52 prospectus, loan No. 10, SoCal Self Storage Hollywood",
+        "url": "https://www.sec.gov/Archives/edgar/data/2138709/000153949726001769/n5947_x17-424b2.htm",
+        "publisher": "Morgan Stanley Capital I Inc. through SEC EDGAR",
+        "linkLabel": "Hollywood refinance prospectus"
+      },
+      {
+        "id": "oakland-appraisal",
+        "title": "Pacific Oak Strategic Opportunity REIT Q2 2026 report, Oakland City Center appraisal",
+        "url": "https://www.sec.gov/Archives/edgar/data/1452936/000145293626000044/pacific_q2x2026-en.htm",
+        "publisher": "Pacific Oak Strategic Opportunity REIT through SEC EDGAR",
+        "linkLabel": "Oakland City Center appraisal"
       }
     ],
     "relatedSlugs": [
@@ -12325,7 +12477,21 @@
       "spatialCoverage": "Empire State Building, Manhattan, New York City, United States",
       "temporalCoverage": "2022-07-01/2027-06-30"
     },
-    "updatedDate": "2026-11-25"
+    "updatedDate": "2026-11-26",
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-california-commercial-property-tax-underwriting",
+        "name": "California commercial property tax underwriting records",
+        "description": "Property tax expense, underwriting and escrow records for one Hollywood refinance, plus dated assessment and billing figures reported in an Oakland appraisal.",
+        "datePublished": "2026-11-26",
+        "sourceIds": [
+          "hollywood-prospectus",
+          "oakland-appraisal"
+        ],
+        "spatialCoverage": "Los Angeles and Oakland, California, United States",
+        "temporalCoverage": "2025/2026"
+      }
+    ]
   },
   {
     "slug": "hurricane-wind-history-by-address",

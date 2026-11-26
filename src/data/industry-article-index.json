@@ -2057,11 +2057,11 @@
     "slug": "commercial-property-tax-assessment-history-by-address",
     "topic": "Data & APIs",
     "title": "Commercial Property Tax Assessment History by Address",
-    "summary": "Find past commercial property tax assessments by address. Follow five years of Empire State Building tax-roll records and reconcile them with posted NYC tax charges.",
+    "summary": "Find commercial property tax assessment history by address. Compare NYC roll and tax charges, California reassessment, and a lender’s tax escrow.",
     "date": "November 23, 2026",
     "dateTime": "2026-11-23",
     "region": "United States",
-    "updatedDate": "2026-11-25",
+    "updatedDate": "2026-11-26",
     "image": "/blog/industry/commercial-property-tax-assessment-history-by-address.webp?v=1a6ea87e",
     "dataset": {
       "name": "Empire State Building assessments and posted property tax charges",
@@ -2119,7 +2119,40 @@
           "format": "JSON"
         }
       ]
-    }
+    },
+    "additionalDatasets": [
+      {
+        "anchor": "dataset-california-commercial-property-tax-underwriting",
+        "name": "California commercial property tax underwriting records",
+        "description": "Property tax expense, underwriting and escrow records for one Hollywood refinance, plus dated assessment and billing figures reported in an Oakland appraisal.",
+        "datePublished": "2026-11-26",
+        "spatialCoverage": "Los Angeles and Oakland, California, United States",
+        "temporalCoverage": "2025/2026",
+        "sources": [
+          "https://www.sec.gov/Archives/edgar/data/2138709/000153949726001769/n5947_x17-424b2.htm",
+          "https://www.sec.gov/Archives/edgar/data/1452936/000145293626000044/pacific_q2x2026-en.htm"
+        ],
+        "sourceDetails": [
+          {
+            "title": "BANK 2026-BNK52 prospectus, loan No. 10, SoCal Self Storage Hollywood",
+            "publisher": "Morgan Stanley Capital I Inc. through SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/2138709/000153949726001769/n5947_x17-424b2.htm"
+          },
+          {
+            "title": "Pacific Oak Strategic Opportunity REIT Q2 2026 report, Oakland City Center appraisal",
+            "publisher": "Pacific Oak Strategic Opportunity REIT through SEC EDGAR",
+            "url": "https://www.sec.gov/Archives/edgar/data/1452936/000145293626000044/pacific_q2x2026-en.htm"
+          }
+        ],
+        "downloads": [
+          {
+            "label": "Download the California tax underwriting records",
+            "path": "/blog/california-commercial-property-tax-underwriting-records.json",
+            "format": "JSON"
+          }
+        ]
+      }
+    ]
   },
   {
     "slug": "hurricane-wind-history-by-address",

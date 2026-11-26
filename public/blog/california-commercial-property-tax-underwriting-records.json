@@ -1,0 +1,82 @@
+{
+  "name": "California commercial property tax underwriting records",
+  "description": "Property tax expense, underwriting and escrow records for one Hollywood refinance, plus dated assessment and billing figures reported in an Oakland appraisal.",
+  "datePublished": "2026-11-26",
+  "records": [
+    {
+      "property": "SoCal Self Storage Hollywood",
+      "address": "5900 Hollywood Boulevard, Los Angeles, CA 90028",
+      "source": {
+        "publisher": "Morgan Stanley Capital I Inc.",
+        "repository": "SEC EDGAR",
+        "form": "424B2",
+        "accession": "0001539497-26-001769",
+        "label": "BANK 2026-BNK52, loan No. 10",
+        "url": "https://www.sec.gov/Archives/edgar/data/2138709/000153949726001769/n5947_x17-424b2.htm"
+      },
+      "loan_purpose": "refinance",
+      "note_date": "2026-03-30",
+      "currency": "USD",
+      "observations": [
+        {
+          "field": "reported_real_estate_tax_expense",
+          "amount": 244808,
+          "period": "trailing 12 months",
+          "period_ending": "2026-02-28",
+          "source_section": "Operating History and Underwritten Net Cash Flow"
+        },
+        {
+          "field": "underwritten_real_estate_tax_expense",
+          "amount": 324409,
+          "period": "annual",
+          "source_section": "Operating History and Underwritten Net Cash Flow, footnote 4"
+        },
+        {
+          "field": "required_real_estate_tax_escrow",
+          "amount": 20603,
+          "period": "monthly at origination",
+          "source_section": "Escrows and Reserves"
+        },
+        {
+          "field": "initial_real_estate_tax_escrow",
+          "amount": 103013,
+          "period": "one-time at origination",
+          "source_section": "Escrows and Reserves"
+        }
+      ],
+      "derived": {
+        "underwritten_minus_reported_expense": 79601,
+        "annualized_monthly_escrow": 247236
+      },
+      "scope": "Loan disclosure. Obtain county assessor and tax collector records to establish actual assessments, bills and payments."
+    },
+    {
+      "property": "Oakland City Center",
+      "address": "1300 Clay Street and 505 14th Street, Oakland, CA",
+      "source": {
+        "publisher": "Pacific Oak Strategic Opportunity REIT",
+        "repository": "SEC EDGAR",
+        "accession": "0001452936-26-000044",
+        "label": "Q2 2026 report, Oakland City Center appraisal",
+        "url": "https://www.sec.gov/Archives/edgar/data/1452936/000145293626000044/pacific_q2x2026-en.htm"
+      },
+      "appraisal_effective_date": "2026-06-30",
+      "currency": "USD",
+      "observations": [
+        {
+          "field": "total_assessment_as_reported_by_appraiser",
+          "amount": 176360436,
+          "tax_year": 2025,
+          "source_section": "Taxes, Current Taxation & Assessment Description"
+        },
+        {
+          "field": "tax_bill_as_reported_by_appraiser",
+          "amount": 2407586,
+          "tax_year": 2025,
+          "source_section": "Taxes, Current Taxation & Assessment Description"
+        }
+      ],
+      "scope": "Appraisal disclosure. The projected tax reduction depends on a hypothetical sale at appraised value."
+    }
+  ]
+}
