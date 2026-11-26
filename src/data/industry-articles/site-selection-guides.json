@@ -5402,14 +5402,14 @@
     "slug": "behind-the-meter-power-for-data-centers",
     "topic": "Data Centers",
     "kind": "site-guide",
-    "title": "Behind-the-Meter Power for Data Centers: MW and Timelines",
-    "description": "Compare on-site natural gas, fuel cells and utility power for data centers. Check net MW, delivery dates, and battery sizing after a generator trip.",
+    "title": "Behind-the-Meter Power vs. Utility Power for Data Centers",
+    "description": "Compare on-site generation, utility service and hybrid power for a data center. Check delivery dates, contracted grid imports and capacity after a generator trip.",
     "date": "2026-11-09",
     "updatedDate": "2026-11-26",
     "readMinutes": 20,
     "intro": "Behind-the-meter power supplies a data center from generation on the customer side of the utility meter. It can bring a first phase online while the utility builds, or serve the campus longer term. Before committing to the site, ask how many megawatts can reach the data center by the required date and what the supplier can deliver during an outage. For a new gas plant, that means checking firm fuel, the permit for the intended operating hours, equipment delivery and the electrical connection.",
     "takeaways": [
-      "Size the first phase in megawatts at the facility intake. Compare that demand with net power available during the design outage case.",
+      "Compare net on-site output and contracted utility imports at the facility intake, both at opening and after the loss of your largest unit.",
       "At Vantage VA2 in Virginia, the gas turbines started normal operation 199 days after the state issued the September air permit.",
       "Aggreko reports 60 MW of temporary power for commissioning a construction-ready Indiana data center. For a tenant opening, ask for a separate acceptance date and guaranteed operating capacity.",
       "Ask the pipeline for firm capacity, pressure and gas quality in writing before any equipment order.",
@@ -5417,6 +5417,66 @@
       "Plan the grid path from day one so the bridge generation has an end state."
     ],
     "sections": [
+      {
+        "id": "behind-the-meter-vs-utility-power",
+        "heading": "How does behind-the-meter power compare with utility power?",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "text": "Compare the power that reaches the data center by opening day and the power that remains after the largest generator or utility feed is lost. For a site with both on-site generation and utility service, the import limit can determine how much load stays online."
+          },
+          {
+            "type": "paragraph",
+            "text": "For example, a planned 100 MW facility load might be served by three 25 MW net generators and 25 MW of utility imports. Losing one generator leaves 50 MW on site. With an import cap of 25 MW and the grid available, the facility is 25 MW short. With those imports curtailed to zero, it is 50 MW short. That shortfall is the power that storage, reserve generation or load reduction must cover for the specified outage. Verify how long each can sustain it and whether it can respond fast enough."
+          },
+          {
+            "type": "table",
+            "stackOnMobile": true,
+            "columns": [
+              "Supply arrangement",
+              "What to verify before choosing a site"
+            ],
+            "rows": [
+              [
+                "Utility service",
+                "Get the executed service agreement and the MW and dates for each phase at the agreed delivery point. Check which utility upgrades control the dates and what happens when a feed or transformer is out."
+              ],
+              [
+                "Islanded on-site power",
+                "Use zero grid imports in the outage case. Verify the remaining net output at summer conditions, fuel delivery during the outage and how long storage can cover a shortfall."
+              ],
+              [
+                "On-site power in parallel with the grid",
+                "Read the import limit, curtailment terms and ramp or transfer conditions in the applicable service and interconnection agreements. Verify any export permission separately."
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The 2025 siting report for Hilliard, Ohio, identifies a 328 MW campus load at Amazon and says the planned fuel cells would offset part of it. The plant would run in parallel with the grid under a no-export design. For backup imports after a trip, ask for the service agreement and protection settings at the point of delivery.",
+            "sourceIds": [
+              "hilliard-siting"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "In PJM’s November 16 filing in docket ER27-531-000, proposed firm contract demand service would provide energy and capacity up to an agreed MW limit. Proposed non-firm contract demand service would supply energy when available, and interim network service before upgrades would also be non-firm. The filing proposes controls to enforce withdrawal limits. Check the docket for an effective tariff, then confirm the actual retail service and import limit with the serving utility.",
+            "sourceIds": [
+              "pjm-colocation-imports",
+              "pjm-colocation-docket"
+            ]
+          },
+          {
+            "type": "links",
+            "items": [
+              {
+                "path": "/blog/utility-load-study-cost-and-timeline#pjm-fast-energization-timeline",
+                "label": "Read the PJM study timeline and evidence checklist"
+              }
+            ]
+          }
+        ]
+      },
       {
         "id": "bridge-power-before-utility-upgrades",
         "heading": "How can a data center get power before a utility upgrade?",
@@ -6403,7 +6463,7 @@
           },
           {
             "type": "paragraph",
-            "text": "Plan the grid path even for a site that starts islanded. Long-term, the grid gives you a backstop and possibly an export route. Ask the utility for a load study now so the queue clock starts, and record whether the bridge generators will stay as backup, move to another site or be sold. AEP's Ohio fuel cells were approved explicitly as a bridge while the grid expands.",
+            "text": "Plan the utility connection even for a site that starts islanded. Ask for the load study process and check what import, standby and export service the utility can offer. Record whether the bridge generators will stay as backup, move to another site or be sold. AEP’s Ohio fuel cells were approved as a bridge while the grid expands.",
             "sourceIds": [
               "aep-bloom"
             ]
@@ -6765,6 +6825,20 @@
         "url": "https://hilliardohio.gov/wp-content/uploads/2025/10/OPSB-Report-Certificate-and-Conditions.pdf",
         "publisher": "Ohio Power Siting Board",
         "linkLabel": "Ohio siting report"
+      },
+      {
+        "id": "pjm-colocation-imports",
+        "title": "November 16 proposed tariff for large loads and co-location, transmittal pp. 35–39 and 42–44",
+        "url": "https://www.pjm.com/-/media/DotCom/documents/ferc/filings/2026/20261116-er27-531-000.pdf",
+        "publisher": "PJM Interconnection",
+        "linkLabel": "PJM proposed transmission terms"
+      },
+      {
+        "id": "pjm-colocation-docket",
+        "title": "ER27-531-000 filing and docket updates",
+        "url": "https://elibrary.ferc.gov/eLibrary/docketsheet?docket_number=ER27-531&sub_docket=000",
+        "publisher": "Federal Energy Regulatory Commission",
+        "linkLabel": "FERC docket ER27-531-000"
       },
       {
         "id": "hilliard-air",
