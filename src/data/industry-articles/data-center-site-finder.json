@@ -25490,7 +25490,7 @@
   "kind": "site-guide",
   "region": "United States",
   "title": "Data Center Site Selection Checklist and Criteria",
-  "description": "Compare U.S. data center sites on 12 criteria, including utility MW by phase, service dates, usable land, cooling water, fiber, permits and cost.",
+  "description": "Download a data center site comparison workbook. Check 12 criteria, including phased utility MW, service dates, usable land, cooling water, fiber and permits.",
   "date": "2026-11-09",
   "readMinutes": 15,
   "intro": "Data center site selection starts with the opening date and the load the facility needs at the utility meter. Set those requirements for each phase, then screen usable land, site control, cooling water, fiber and permits against the same schedule. The checklist helps you decide which sites warrant a study, which need one more document and which miss a requirement you can’t change.",
@@ -26054,8 +26054,96 @@
        {
         "slug": "utility-load-study-cost-and-timeline",
         "label": "Compare study fees, deposits and financial security"
+       },
+       {
+        "path": "/blog/data-center-site-selection-checklist#project-taurus-planning-cap-and-power-study",
+        "label": "See how Project Taurus kept a 50 MW planning cap separate from the utility study"
        }
       ]
+     }
+    ]
+   },
+   {
+    "id": "project-taurus-planning-cap-and-power-study",
+    "heading": "Project Taurus shows what a 50 MW planning approval covers",
+    "blocks": [
+     {
+      "type": "paragraph",
+      "text": "The Colorado Springs Planning Commission capped utility use at 50 MW for Project Taurus, a proposed data center conversion at 1565 High Tech Way. City Council later postponed the appeal and required a large-load electricity study or agreement before its April 13, 2027 meeting. Treat the 50 MW as the limit in the commission’s planning decision. Keep service capacity and the energization date open until the utility supplies them.",
+      "sourceIds": [
+       "taurus-planning",
+       "taurus-council"
+      ]
+     },
+     {
+      "type": "table",
+      "stackOnMobile": true,
+      "columns": [
+       "Date",
+       "Record",
+       "What a buyer can establish"
+      ],
+      "rows": [
+       [
+        "June 10, 2026",
+        "Administrative approval, DEPN-26-0039",
+        "The June 11 letter records approval of the plan modification for the data center conversion on Corporate Ridge Filing No. 1, Lot 4."
+       ],
+       [
+        "July 23, 2026",
+        "Planning Commission’s conditional decision",
+        "The commission denied the appeals and modified the approval. Any proposal above 50 MW would return to the Planning Commission for a hearing."
+       ],
+       [
+        "September 17, 2026",
+        "City Council action on the subsequent appeals",
+        "Council voted 7–2 to postpone the hearing until April 13, 2027. Its recorded motion calls for a large-load electricity study or agreement. The docket still lists that date as of November 26."
+       ],
+       [
+        "November 25, 2026",
+        "Utility spokesperson’s update reported by Axios",
+        "The spokesperson said the developer had yet to pay for the required study or sign a service agreement. Ask for the study authorization and the utility’s written service terms before assigning a delivery date."
+       ]
+      ],
+      "rowSourceIds": [
+       [
+        "taurus-approval"
+       ],
+       [
+        "taurus-planning"
+       ],
+       [
+        "taurus-council",
+        "taurus-docket"
+       ],
+       [
+        "taurus-latest-study"
+       ]
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "The staff report identifies tax schedule number 7326101136. Raeden’s statement refers to 1615 Garden of the Gods Road. Follow the city’s lot description and case number to keep records for the same project together when addresses differ.",
+      "sourceIds": [
+       "taurus-parcel",
+       "taurus-applicant",
+       "taurus-docket"
+      ]
+     },
+     {
+      "type": "paragraph",
+      "text": "Colorado Springs Utilities’ rules require a large-load application for new or expanding electric load of at least 5 MW and applicable payment at the time of the study request. The separate Industrial Service Large Load tariff describes eligibility at 10 MW of maximum demand under its billing-period rules. Ask the utility which process and tariff apply, then get written MW by phase, required upgrades, cost responsibility, and the date and conditions of service.",
+      "sourceIds": [
+       "springs-intake",
+       "springs-rate"
+      ]
+     },
+     {
+      "type": "download",
+      "label": "Download the Project Taurus decisions, tariff references and source checksums",
+      "path": "/blog/project-taurus-approval-and-power-records.json",
+      "format": "JSON",
+      "datasetAnchor": "dataset-project-taurus-approval-and-power"
      }
     ]
    },
@@ -26594,6 +26682,69 @@
   ],
   "sources": [
    {
+    "id": "taurus-approval",
+    "linkLabel": "June 11 approval letter",
+    "title": "June 11 letter documenting the June 10 planning action, DEPN-26-0039",
+    "publisher": "Colorado Springs Land Use Review Division",
+    "url": "https://coloradosprings.legistar.com/View.ashx?GUID=2D7A8452-BC2C-4345-9506-C036F02DAFF4&ID=15843179&M=F#page=1"
+   },
+   {
+    "id": "taurus-parcel",
+    "linkLabel": "Planning staff report",
+    "title": "Project Taurus staff report and tax schedule number, page 1",
+    "publisher": "Colorado Springs Planning Department",
+    "url": "https://coloradosprings.legistar.com/View.ashx?GUID=F230073B-7971-4A54-A665-60D13009FC1D&ID=15969423&M=F#page=1"
+   },
+   {
+    "id": "taurus-planning",
+    "linkLabel": "July 23 commission minutes",
+    "title": "July 23 final minutes, page 63, revised approval and 50 MW cap",
+    "publisher": "Colorado Springs Planning Commission",
+    "url": "https://coloradosprings.legistar.com/View.ashx?GUID=42D16A91-11EF-4917-BACD-1FE19AF1EA93&ID=1428871&M=M#page=63"
+   },
+   {
+    "id": "taurus-council",
+    "linkLabel": "September 17 council minutes",
+    "title": "September 17 revised minutes, page 20, postponement and utility study or agreement",
+    "publisher": "Colorado Springs City Council",
+    "url": "https://coloradosprings.legistar.com/View.ashx?GUID=0D0062D0-423D-4CD6-B450-774488B4BF4F&ID=1436309&M=M#page=20"
+   },
+   {
+    "id": "taurus-docket",
+    "linkLabel": "Current appeal docket",
+    "title": "Current appeal listing, APPL-26-0003 and APPL-26-0004",
+    "publisher": "Colorado Springs City Council",
+    "url": "https://coloradosprings.legistar.com/LegislationDetail.aspx?GUID=853D9C19-EC34-4B05-9143-0ED4D10307E4&ID=8206955&Options=&Search="
+   },
+   {
+    "id": "taurus-applicant",
+    "linkLabel": "Raeden statement",
+    "title": "September 18 applicant statement and its project address",
+    "publisher": "Raeden",
+    "url": "https://raeden.com/raeden-statement-on-colorado-springs-project-taurus-city-council-hearing/"
+   },
+   {
+    "id": "springs-intake",
+    "linkLabel": "Utility rules",
+    "title": "Utilities Rules and Regulations, Sheet 20, Section J, effective January 1, 2026",
+    "publisher": "Colorado Springs Utilities",
+    "url": "https://www.csu.org/hubfs/Document%20Library/UtilitiesRulesRegsTariff.pdf?hsLang=en#page=22"
+   },
+   {
+    "id": "springs-rate",
+    "linkLabel": "Electric rate schedule",
+    "title": "Electric rate schedules, First Revised Sheet 27, effective March 1, 2026",
+    "publisher": "Colorado Springs Utilities",
+    "url": "https://www.csu.org/hubfs/39606065/Document%20Library/ElectricTariff.pdf#page=82"
+   },
+   {
+    "id": "taurus-latest-study",
+    "linkLabel": "November 25 utility update",
+    "title": "November 25 account of Springs Utilities’ statement on the fee and agreement",
+    "publisher": "Axios reporting of Colorado Springs Utilities’ statement",
+    "url": "https://www.axios.com/local/colorado-springs/2026/11/25/colorado-springs-project-taurus-data-center-electric-bills"
+   },
+   {
     "id": "dominion-data-center-requests",
     "title": "Virginia data center requests and steps to provide service",
     "url": "https://www.dominionenergy.com/virginia/large-business-services/data-center-requests",
@@ -26856,6 +27007,25 @@
    ]
   },
   "additionalDatasets": [
+   {
+    "anchor": "dataset-project-taurus-approval-and-power",
+    "name": "Project Taurus approval, appeal and electric service records",
+    "description": "The 50 MW planning cap, two levels of appeal and utility tariff thresholds for Raeden’s proposed Colorado Springs project. Includes tax schedule number 7326101136, dated source pages and checksums.",
+    "sourceIds": [
+     "taurus-approval",
+     "taurus-parcel",
+     "taurus-planning",
+     "taurus-council",
+     "taurus-docket",
+     "taurus-applicant",
+     "springs-intake",
+     "springs-rate",
+     "taurus-latest-study"
+    ],
+    "spatialCoverage": "Colorado Springs, El Paso County, Colorado",
+    "temporalCoverage": "2026-06-10/2026-11-26",
+    "datePublished": "2026-11-26"
+   },
    {
     "anchor": "dataset-transformer-delivery-route",
     "name": "Transformer delivery route checks and source records",
